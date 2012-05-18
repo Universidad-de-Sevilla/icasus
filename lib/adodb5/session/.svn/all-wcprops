@@ -1,0 +1,125 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session
+END
+adodb-sessions.mysql.sql
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-sessions.mysql.sql
+END
+adodb-session-clob2.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-session-clob2.php
+END
+adodb-sessions.oracle.sql
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-sessions.oracle.sql
+END
+adodb-session.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-session.php
+END
+session_schema2.xml
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/session_schema2.xml
+END
+adodb-cryptsession2.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-cryptsession2.php
+END
+adodb-sessions.oracle.clob.sql
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-sessions.oracle.clob.sql
+END
+adodb-session-clob.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-session-clob.php
+END
+adodb-encrypt-mcrypt.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-encrypt-mcrypt.php
+END
+adodb-session2.php.bak
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-session2.php.bak
+END
+adodb-compress-gzip.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-compress-gzip.php
+END
+crypt.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/crypt.inc.php
+END
+adodb-cryptsession.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-cryptsession.php
+END
+session_schema.xml
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/session_schema.xml
+END
+adodb-sess.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-sess.txt
+END
+adodb-session2.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-session2.php
+END
+adodb-encrypt-md5.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-encrypt-md5.php
+END
+adodb-encrypt-secret.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-encrypt-secret.php
+END
+adodb-encrypt-sha1.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-encrypt-sha1.php
+END
+adodb-compress-bzip2.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/session/adodb-compress-bzip2.php
+END

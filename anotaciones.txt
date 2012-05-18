@@ -1,0 +1,78 @@
+-------------------------------------------------------------------------
+Proyecto: Icasus (http://forja.rediris.es/projects/icasus/)
+Archivo: anotaciones.txt
+Tipo: Archivo de texto
+Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin (jjmc@us.es)
+-------------------------------------------------------------------------
+
+  * Funcionalidades Pendientes
+  * Funcionalidades Implementadas
+  * Comprobaciones Pendientes
+  * Comprobaciones Realizadas
+  * Errores Pendientes
+  * Errores Solucionados
+
+
+=== Funcionalidades Pendientes ===
+  * Tag o etiquetas para los indicadores
+  * Bloc de notas del usuario, de la entidad y de los indicadores
+  * Pasar a versión 0.6.0 y poner nuevo paquete en la forja
+  * Implementar periodos de medición en los cuadros de mando
+  * Borrado de entidades con comprobacion
+  * Las entidades del usuario se cargan en la variable de sesion de este y sirven para comprobar los permisos desde $usuario/operario->autorizar
+  * Elegir al responsable de una acción estratégica desde una lista desplegable con los usuarios de la unidad
+
+
+=== Funcionalidades Implementadas ===
+  * Interfaz para realizar cuadros de mando eligiendo indicadores - 17.06.2009
+  * Grafica de seguimiento del indicador en el propio indicador - 20.05.2009
+  * Poner solo unidades nivel 1 en listado - 26.04.2009
+  * Mostrar los procesos en los listados y el detalle de indicadores - 25.04.2009
+  * Gestión de dimensiones: creación y edición  - 22.04.2009
+  * Edición de la entidad padre de una entidad - 21.04.2009
+  * Las entidades heredan los procesos de sus padres - 21.04.2009
+  * Gestión de dimensiones (20.04.2009) 
+  * Copiar indicadores desde el diccionario - 18.04.2009
+  * Lista Desplegable para moverse comodamente entre los indicadores de una unidad - 22.07.2009
+  * Interfaz para exportar indicadores a Excel y Word - 1.09.2009
+  * Crear un log para recoger todas o parte de las acciones que se realizan - 9.11.2009
+  * Hacer una pagina para mostrar un proceso con sus indicadores - proceso_mostrar - 1.11.2009 
+  * Capacidades de cálculo en la entrada de valores - 20.11.2009
+  * Poner enlace a subunidades - 4.12.2009
+
+
+=== Comprobaciones Pendientes ===
+  * UTF8 en todas las tablas.
+  * Ver que pasa cuando se borra un indicador asociado a un cuadro de mando - 17.06.2009
+
+=== Comprobaciones Realizadas (CCRR) ===
+
+
+=== Errores Pendientes ===
+  * Borrar cuadromando_historico.php y tpl - 17.05.2009
+  * Si editamos un valor sin cambiar nada y grabamos da un error - 26.05.2009
+  * Comprobar que no se graba un valor para un periodo ya existente - 20.11.2009
+  * Deja crear un objetivo sin seleccionar la línea - 4.12.2009
+  * No deja cambiar la línea cuando se modifica un objetivo - 4.12.2009
+  * No muestra el nombre de la unidad en la planificación estratégica - 4.12.2009
+
+
+=== Errores Solucionados (EESS) ===
+  * Error en la librería gráfica, entra en un bucle infinito con ciertos valores - 01.07.2009 - 10.07.2009
+  * No se pueden editar los valores de un indicador - 20.05.2009 - 26.05.2009
+  * Después de agregar un valor no se ve la grafica - 20.05.2009 - 26.05.2009
+  * Las graficas de los indicadores dan un error cuando no hay valores - 25.05.2009 - 26.05.2009
+  * Cambiar el formato en que se ven las fechas de los periodos de los valores - 20.05.2009 - 20.05.2009
+  * No se graban los valores - 19.05.2009 - 19.05.2009
+  * El primer listado de unidades al entrar no oculta las subunidades - 05.05.2009 - 10.05.2009
+  * El título de la página sale en chino - 05.05.2009
+  * Al seleccionar el nombre de un responsable en el detalle del indicador hace logout - 04.04.2009
+  * La marcha atrás, en páginas que envían datos lanza una advertencia del navegador - 05.10.2009
+  * Al cambiar los objetivos pactados y/o carta de un valor da un error de que no puede grabar - 14.10.2009
+  * No permite editar los datos de los usuarios a los usuarios como DNI, página web - 11.11.2009
+  * No pueden cambiar el código de la unidad. - 11/11/2009
+  * Cuando editas el proceso no te permite cambiar el código - 11/11/2009
+  * Botón para borrar procesos no encuentra la página - 11/11/2009
+  * Después de poblar una entidad se pierden los procesos - 25.10.2009
+  
+

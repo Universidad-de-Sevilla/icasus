@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico
+END
+informes.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/informes.tpl
+END
+plan_informe1.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/plan_informe1.php
+END
+plan_informe2.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/plan_informe2.php
+END
+select_dependiente.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/select_dependiente.tpl
+END
+objetivo_crear.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/objetivo_crear.php
+END
+informe_funcional.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/informe_funcional.php
+END
+exportar_inf_funcional.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/exportar_inf_funcional.php
+END
+objetivo_modificar.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/objetivo_modificar.php
+END
+borrar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/borrar.tpl
+END
+plan_informe1.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/plan_informe1.tpl
+END
+linea_crear.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/linea_crear.php
+END
+linea_modificar.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/linea_modificar.php
+END
+objetivo_crear.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/objetivo_crear.tpl
+END
+informe_funcional.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/informe_funcional.tpl
+END
+objetivo_modificar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/objetivo_modificar.tpl
+END
+accion_crear.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/accion_crear.php
+END
+plan_listar.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/plan_listar.php
+END
+accion_modificar.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/accion_modificar.php
+END
+linea_crear.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/linea_crear.tpl
+END
+informe_ejecutivo.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/informe_ejecutivo.php
+END
+linea_modificar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/linea_modificar.tpl
+END
+exportar_inf_ejecutivo.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/exportar_inf_ejecutivo.php
+END
+accion_crear.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/accion_crear.tpl
+END
+plan_listar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/plan_listar.tpl
+END
+accion_modificar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/accion_modificar.tpl
+END
+verificar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/verificar.tpl
+END
+informes.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/informes.php
+END
+select_dependiente.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/select_dependiente.php
+END
+informe_ejecutivo.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/informe_ejecutivo.tpl
+END
+borrar.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/icasus/!svn/ver/284/1.0/plan_estrategico/borrar.php
+END

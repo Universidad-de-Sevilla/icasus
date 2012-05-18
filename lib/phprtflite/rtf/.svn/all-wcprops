@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf
+END
+Rtf.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Rtf.php
+END
+ParFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/ParFormat.php
+END
+Util.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Util.php
+END
+Footer.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Footer.php
+END
+Cell.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Cell.php
+END
+Image.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Image.php
+END
+Container.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Container.php
+END
+Section.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Section.php
+END
+Bordered.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Bordered.php
+END
+Font.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Font.php
+END
+BorderFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/BorderFormat.php
+END
+Table.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Table.php
+END
+Header.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/icasus/!svn/ver/284/1.0/lib/phprtflite/rtf/Header.php
+END

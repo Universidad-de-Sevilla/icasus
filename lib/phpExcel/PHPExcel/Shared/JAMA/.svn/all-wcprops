@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Shared/JAMA
+END
+LUDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Shared/JAMA/LUDecomposition.php
+END
+CholeskyDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Shared/JAMA/CholeskyDecomposition.php
+END
+SingularValueDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Shared/JAMA/SingularValueDecomposition.php
+END
+QRDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Shared/JAMA/QRDecomposition.php
+END
+CHANGELOG.TXT
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Shared/JAMA/CHANGELOG.TXT
+END
+EigenvalueDecomposition.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Shared/JAMA/EigenvalueDecomposition.php
+END
+Matrix.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Shared/JAMA/Matrix.php
+END

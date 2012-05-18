@@ -1,0 +1,191 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests
+END
+test-php5.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test-php5.php
+END
+xmlschema.xml
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/xmlschema.xml
+END
+benchmark.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/benchmark.php
+END
+time.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/time.php
+END
+test-xmlschema.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test-xmlschema.php
+END
+testmssql.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/testmssql.php
+END
+test2.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test2.php
+END
+test3.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test3.php
+END
+testoci8.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/testoci8.php
+END
+test4.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test4.php
+END
+test-active-recs2.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test-active-recs2.php
+END
+test5.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test5.php
+END
+test-active-record.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test-active-record.php
+END
+test.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test.php
+END
+test_rs_array.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test_rs_array.php
+END
+test-pgblob.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test-pgblob.php
+END
+tmssql.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/tmssql.php
+END
+test-active-relations.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test-active-relations.php
+END
+testgenid.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/testgenid.php
+END
+testpear.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/testpear.php
+END
+test-datadict.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test-datadict.php
+END
+testdatabases.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/testdatabases.inc.php
+END
+testoci8cursor.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/testoci8cursor.php
+END
+testcache.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/testcache.php
+END
+testpaging.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/testpaging.php
+END
+testsessions.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/testsessions.php
+END
+test-perf.php
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test-perf.php
+END
+client.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/client.php
+END
+test-active-relationsx.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/test-active-relationsx.php
+END
+pdo.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/pdo.php
+END
+xmlschema-mssql.xml
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/tests/xmlschema-mssql.xml
+END

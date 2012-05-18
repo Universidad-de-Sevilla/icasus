@@ -1,0 +1,1251 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Rtf</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Rtf</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Class for creating rtf documents.</p>
+	<ul class="tags">
+				<li><span class="field">copyright:</span> 2007-2008 Denis Slaveckij</li>
+				<li><span class="field">author:</span> Denis Slaveckij &lt;<a href="mailto:info@phprtf.com">info@phprtf.com</a>&gt;</li>
+				<li><span class="field">version:</span> 0.3.0</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="_Rtf.php.html">/Rtf.php</a> (line <span class="field">29</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																																																																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$footers" title="details" class="var-name">$footers</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$headers" title="details" class="var-name">$headers</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$marginBottom" title="details" class="var-name">$marginBottom</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$marginLeft" title="details" class="var-name">$marginLeft</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$marginRight" title="details" class="var-name">$marginRight</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$marginTop" title="details" class="var-name">$marginTop</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$oddEvenDifferent" title="details" class="var-name">$oddEvenDifferent</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$paperHeight" title="details" class="var-name">$paperHeight</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$paperWidth" title="details" class="var-name">$paperWidth</a>
+				</div>
+																<div class="var-title">
+					<span class="var-type">mixed</span>
+					<a href="#$sections" title="details" class="var-name">$sections</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																																																																																																																																																																																				
+												<div class="method-definition">
+											<span class="method-result">Rtf</span>
+										<a href="#Rtf" title="details" class="method-name">Rtf</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addColor" title="details" class="method-name">addColor</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$color</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#addFont" title="details" class="method-name">addFont</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$font</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../Rtf/Footer.html">Footer</a></span>
+										<a href="#addFooter" title="details" class="method-name">&amp;addFooter</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">'all'</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../Rtf/Header.html">Header</a></span>
+										<a href="#addHeader" title="details" class="method-name">&amp;addHeader</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">'all'</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result"><a href="../Rtf/Section.html">Section</a></span>
+										<a href="#addSection" title="details" class="method-name">&amp;addSection</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getBackColor" title="details" class="method-name">getBackColor</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$backColor</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getColor" title="details" class="method-name">getColor</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$color</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getFont" title="details" class="method-name">getFont</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$font</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getFontColor" title="details" class="method-name">getFontColor</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$fontColor</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#save" title="details" class="method-name">save</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$fileName</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#sendRtf" title="details" class="method-name">sendRtf</a>
+											([<span class="var-type">string</span>&nbsp;<span class="var-name">$fileName</span> = <span class="var-default">&quot;simple&quot;</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setBorders" title="details" class="method-name">setBorders</a>
+											(<span class="var-type"><a href="../Rtf/BorderFormat.html">BorderFormat</a></span>&nbsp;<span class="var-name">&$borderFormat</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$left</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$top</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$right</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$bottom</span> = <span class="var-default">true</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setDefaultTabWidth" title="details" class="method-name">setDefaultTabWidth</a>
+											(<span class="var-type">float</span>&nbsp;<span class="var-name">$defaultTabWidth</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setGutter" title="details" class="method-name">setGutter</a>
+											(<span class="var-type">float</span>&nbsp;<span class="var-name">$gutter</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setInfo" title="details" class="method-name">setInfo</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$property</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setLandscape" title="details" class="method-name">setLandscape</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setMargins" title="details" class="method-name">setMargins</a>
+											(<span class="var-type">float</span>&nbsp;<span class="var-name">$marginLeft</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$marginTop</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$marginRight</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$marginBottom</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setMirrorMargins" title="details" class="method-name">setMirrorMargins</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setOddEvenDifferent" title="details" class="method-name">setOddEvenDifferent</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setPaperHeight" title="details" class="method-name">setPaperHeight</a>
+											(<span class="var-type">float</span>&nbsp;<span class="var-name">$paperHeight</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setPaperWidth" title="details" class="method-name">setPaperWidth</a>
+											(<span class="var-type">float</span>&nbsp;<span class="var-name">$paperWidth</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setStartPage" title="details" class="method-name">setStartPage</a>
+											(<span class="var-type">float</span>&nbsp;<span class="var-name">$startPage</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setViewMode" title="details" class="method-name">setViewMode</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$viewMode</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setZoom" title="details" class="method-name">setZoom</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$zoom</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setZoomKind" title="details" class="method-name">setZoomKind</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$zoomKind</span>)
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			<a name="var$footers" id="$footers"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$footers</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">39</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$headers" id="$headers"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$headers</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">37</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$marginBottom" id="$marginBottom"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$marginBottom</span>
+			 = <span class="var-default"> 2</span>			(line <span class="line-number">51</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$marginLeft" id="$marginLeft"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$marginLeft</span>
+			 = <span class="var-default"> 3</span>			(line <span class="line-number">45</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$marginRight" id="$marginRight"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$marginRight</span>
+			 = <span class="var-default"> 3</span>			(line <span class="line-number">47</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$marginTop" id="$marginTop"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$marginTop</span>
+			 = <span class="var-default"> 1</span>			(line <span class="line-number">49</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$oddEvenDifferent" id="$oddEvenDifferent"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$oddEvenDifferent</span>
+						(line <span class="line-number">53</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$paperHeight" id="$paperHeight"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$paperHeight</span>
+			 = <span class="var-default"> 29</span>			(line <span class="line-number">43</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$paperWidth" id="$paperWidth"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$paperWidth</span>
+			 = <span class="var-default"> 21</span>			(line <span class="line-number">41</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="var$sections" id="$sections"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$sections</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">35</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+																	<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methodRtf" id="Rtf"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor Rtf</span> (line <span class="line-number">90</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Rtf constructor.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">Rtf</span>
+		<span class="method-name">
+			Rtf
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodaddColor" id="addColor"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">addColor</span> (line <span class="line-number">389</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adds color to rtf document. Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addColor
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$color</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$color</span><span class="var-description">: Color</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddFont" id="addFont"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">addFont</span> (line <span class="line-number">375</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adds font to rtf document. Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			addFont
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$font</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$font</span><span class="var-description">: Font</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddFooter" id="addFooter"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">addFooter</span> (line <span class="line-number">324</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates footer for document pages.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../Rtf/Footer.html">Footer</a></span>
+		<span class="method-name">
+			&amp;addFooter
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">'all'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type</span><span class="var-description">: Possible values: <br />  'all' =&gt; all pages (different odd and even headers/footers must be not set) <br />  'left' =&gt; left pages (different odd and even headers/footers must be set) <br />  'right' =&gt; right pages (different odd and even headers/footers must be set)     <br />  'first' =&gt; first page</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddHeader" id="addHeader"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">addHeader</span> (line <span class="line-number">295</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Creates header for document pages.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../Rtf/Header.html">Header</a></span>
+		<span class="method-name">
+			&amp;addHeader
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$type</span> = <span class="var-default">'all'</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$type</span><span class="var-description">: Possible values: <br />  'all' =&gt; all pages (different odd and even headers/footers must be not set) <br />  'left' =&gt; left pages (different odd and even headers/footers must be set) <br />  'right' =&gt; right pages (different odd and even headers/footers must be set) <br />  'first' =&gt; first page</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodaddSection" id="addSection"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">addSection</span> (line <span class="line-number">134</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Adds section to rtf document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result"><a href="../Rtf/Section.html">Section</a></span>
+		<span class="method-name">
+			&amp;addSection
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodgetBackColor" id="getBackColor"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getBackColor</span> (line <span class="line-number">434</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets rtf code of background color. Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getBackColor
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$backColor</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$backColor</span><span class="var-description">: Background color</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetColor" id="getColor"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getColor</span> (line <span class="line-number">414</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets rtf code of color. Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getColor
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$color</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$color</span><span class="var-description">: Color</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetFont" id="getFont"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFont</span> (line <span class="line-number">404</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets rtf code of font. Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getFont
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$font</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$font</span><span class="var-description">: Font</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetFontColor" id="getFontColor"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">getFontColor</span> (line <span class="line-number">424</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets rtf code of font color. Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getFontColor
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$fontColor</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fontColor</span><span class="var-description">: Font color</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsave" id="save"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">save</span> (line <span class="line-number">346</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Saves rtf document to file.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			save
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$fileName</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fileName</span><span class="var-description">: Name of file</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsendRtf" id="sendRtf"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">sendRtf</span> (line <span class="line-number">358</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sends rtf content as file attachment.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			sendRtf
+		</span>
+					([<span class="var-type">string</span>&nbsp;<span class="var-name">$fileName</span> = <span class="var-default">&quot;simple&quot;</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fileName</span><span class="var-description">: Name of file</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetBorders" id="setBorders"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setBorders</span> (line <span class="line-number">269</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets borders of document pages. Sections can override this borders.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setBorders
+		</span>
+					(<span class="var-type"><a href="../Rtf/BorderFormat.html">BorderFormat</a></span>&nbsp;<span class="var-name">&$borderFormat</span>, [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$left</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$top</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$right</span> = <span class="var-default">true</span>], [<span class="var-type">boolean</span>&nbsp;<span class="var-name">$bottom</span> = <span class="var-default">true</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../Rtf/BorderFormat.html">BorderFormat</a></span>
+				<span class="var-name">&$borderFormat</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$left</span><span class="var-description">: If false, left border is not set (default true)</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$top</span><span class="var-description">: If false, top border is not set (default true)</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$right</span><span class="var-description">: If false, right border is not set (default true)</span>			</li>
+					<li>
+				<span class="var-type">boolean</span>
+				<span class="var-name">$bottom</span><span class="var-description">: If false, bottom border is not set (default true)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetDefaultTabWidth" id="setDefaultTabWidth"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setDefaultTabWidth</span> (line <span class="line-number">151</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets default tab width of the document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setDefaultTabWidth
+		</span>
+					(<span class="var-type">float</span>&nbsp;<span class="var-name">$defaultTabWidth</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$defaultTabWidth</span><span class="var-description">: Default tab width</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetGutter" id="setGutter"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setGutter</span> (line <span class="line-number">203</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the gutter width. <br />  NOTICE: OpenOficce doesn't understant.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setGutter
+		</span>
+					(<span class="var-type">float</span>&nbsp;<span class="var-name">$gutter</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$gutter</span><span class="var-description">: Gutter width</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetInfo" id="setInfo"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setInfo</span> (line <span class="line-number">112</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">SetS document information properties.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setInfo
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$property</span>, <span class="var-type">mixed</span>&nbsp;<span class="var-name">$value</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$property</span><span class="var-description">: Property of document. Possible properties: <br />  'title' =&gt; title of the document (value string)<br />  'subject' =&gt; subject of the document (value string)<br />  'author' =&gt; author of the document (value string)<br />  'manager' =&gt; manager of the document (value string)<br />  'company' =&gt; company of author (value string)<br />  'operator' =&gt; operator of document. Operator is a person who last made changes to the document. (value string) <br />  'category' =&gt; category of document (value string)<br />  'keywords' =&gt; keywords of document (value string)<br />  'doccomm' =&gt; comments of document (value string)<br />  'creatim' =&gt; creation time (value int) <br />  'revtim' =&gt; last revision time (value int) <br />  'buptim' =&gt; last backup time (value int) <br />  'printim' =&gt; last print time (value int) <br /></span>			</li>
+					<li>
+				<span class="var-type">mixed</span>
+				<span class="var-name">$value</span><span class="var-description">: Value</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetLandscape" id="setLandscape"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setLandscape</span> (line <span class="line-number">256</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets landscape orientation of paper.</p>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setLandscape
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsetMargins" id="setMargins"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setMargins</span> (line <span class="line-number">181</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the margins of document pages.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setMargins
+		</span>
+					(<span class="var-type">float</span>&nbsp;<span class="var-name">$marginLeft</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$marginTop</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$marginRight</span>, <span class="var-type">float</span>&nbsp;<span class="var-name">$marginBottom</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$marginLeft</span><span class="var-description">: Margin left (default 3 cm)</span>			</li>
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$marginTop</span><span class="var-description">: Margin top (default 1 cm)</span>			</li>
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$marginRight</span><span class="var-description">: Margin right (default 3 cm)</span>			</li>
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$marginBottom</span><span class="var-description">: Margin bottom (default 2 cm)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetMirrorMargins" id="setMirrorMargins"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setMirrorMargins</span> (line <span class="line-number">193</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the margin definitions on left and right pages. <br />  NOTICE: OpenOficce doesn't Understant.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setMirrorMargins
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsetOddEvenDifferent" id="setOddEvenDifferent"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setOddEvenDifferent</span> (line <span class="line-number">281</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets if odd and even headers/footers are different</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setOddEvenDifferent
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsetPaperHeight" id="setPaperHeight"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setPaperHeight</span> (line <span class="line-number">169</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the paper height of document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setPaperHeight
+		</span>
+					(<span class="var-type">float</span>&nbsp;<span class="var-name">$paperHeight</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$paperHeight</span><span class="var-description">: Paper height</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetPaperWidth" id="setPaperWidth"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setPaperWidth</span> (line <span class="line-number">160</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the paper width of document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setPaperWidth
+		</span>
+					(<span class="var-type">float</span>&nbsp;<span class="var-name">$paperWidth</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$paperWidth</span><span class="var-description">: Paper width</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetStartPage" id="setStartPage"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setStartPage</span> (line <span class="line-number">212</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the beginning page number.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setStartPage
+		</span>
+					(<span class="var-type">float</span>&nbsp;<span class="var-name">$startPage</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">float</span>
+				<span class="var-name">$startPage</span><span class="var-description">: Beginning page number (if not defined, Word understands as 1)</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetViewMode" id="setViewMode"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setViewMode</span> (line <span class="line-number">227</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the view mode of the document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setViewMode
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$viewMode</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$viewMode</span><span class="var-description">: (0 - 5) $viewMode View Mode. Possible values: <br />  '0' =&gt;  None <br />  '1' =&gt; Page Layout view <br />  '2' - Outline view <br />  '3' - Master Document view <br />  '4' - Normal view <br />  '5' - Online Layout view</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetZoom" id="setZoom"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setZoom</span> (line <span class="line-number">237</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the zoom level (in percents) of the document. By default word understands as 100%. <br />  NOTICE: if zoom kind is defined, zoom level is not used.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setZoom
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$zoom</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$zoom</span><span class="var-description">: Zoom Level</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetZoomKind" id="setZoomKind"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setZoomKind</span> (line <span class="line-number">249</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets the zoom kind of the document.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setZoomKind
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$zoomKind</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$zoomKind</span><span class="var-description">: Zoom kind. Possible values: <br />  '0' =&gt; None <br />  '1' =&gt; Full Page <br />  '2' =&gt; Best Fit</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Fri, 25 Jan 2008 23:10:51 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.1</a>
+	</p>
+	</div></body>
+</html>

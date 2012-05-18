@@ -1,0 +1,521 @@
+K 25
+svn:wc:ra_dav:version-url
+V 34
+/svn/icasus/!svn/ver/284/1.0/grupo
+END
+acuerdo_borrar.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/icasus/!svn/ver/284/1.0/grupo/acuerdo_borrar.php
+END
+asuntos.php
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/icasus/!svn/ver/284/1.0/grupo/asuntos.php
+END
+grupo_editar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_editar.tpl
+END
+acta_editar.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_editar.php
+END
+acuerdo_actualizar.php
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/icasus/!svn/ver/284/1.0/grupo/acuerdo_actualizar.php
+END
+convocatoria_acciones.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/icasus/!svn/ver/284/1.0/grupo/convocatoria_acciones.tpl
+END
+convocatoria_modificar.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/icasus/!svn/ver/284/1.0/grupo/convocatoria_modificar.php
+END
+asuntos.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/icasus/!svn/ver/284/1.0/grupo/asuntos.tpl
+END
+convocatoria_grabar.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/icasus/!svn/ver/284/1.0/grupo/convocatoria_grabar.php
+END
+asistentes_marcar.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/icasus/!svn/ver/284/1.0/grupo/asistentes_marcar.php
+END
+grupo_crear.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_crear.php
+END
+acta_editar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_editar.tpl
+END
+tarea_grabar.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/tarea_grabar.php
+END
+grupo_crear.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_crear.tpl
+END
+nombre.php
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/icasus/!svn/ver/284/1.0/grupo/nombre.php
+END
+asistentes.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/icasus/!svn/ver/284/1.0/grupo/asistentes.php
+END
+acta_crear.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_crear.php
+END
+notas.php
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/icasus/!svn/ver/284/1.0/grupo/notas.php
+END
+acta_modificar.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_modificar.php
+END
+convocatoria.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/convocatoria.php
+END
+grupo_despoblar.php
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_despoblar.php
+END
+nombre.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/icasus/!svn/ver/284/1.0/grupo/nombre.tpl
+END
+asistentes.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/icasus/!svn/ver/284/1.0/grupo/asistentes.tpl
+END
+acta_crear.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_crear.tpl
+END
+notas.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/icasus/!svn/ver/284/1.0/grupo/notas.tpl
+END
+acta_exportar.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_exportar.php
+END
+grupo_despoblar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_despoblar.tpl
+END
+convocatoria.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/convocatoria.tpl
+END
+acuerdo_grabar.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/icasus/!svn/ver/284/1.0/grupo/acuerdo_grabar.php
+END
+nombre_grabar.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/icasus/!svn/ver/284/1.0/grupo/nombre_grabar.php
+END
+tareas_listado.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/icasus/!svn/ver/284/1.0/grupo/tareas_listado.tpl
+END
+acta_cerrar.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_cerrar.php
+END
+grupo_grabar.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_grabar.php
+END
+notas_editar.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/notas_editar.php
+END
+notas_editar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/notas_editar.tpl
+END
+asunto_crear.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/asunto_crear.php
+END
+grupo_datos.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_datos.php
+END
+acta_grabar.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_grabar.php
+END
+acta_listar.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_listar.php
+END
+grupo_poblar.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_poblar.php
+END
+acuerdos_listado.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/icasus/!svn/ver/284/1.0/grupo/acuerdos_listado.tpl
+END
+asunto_crear.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/asunto_crear.tpl
+END
+acuerdo_crear.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/icasus/!svn/ver/284/1.0/grupo/acuerdo_crear.php
+END
+grupo_datos.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_datos.tpl
+END
+acta_listar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_listar.tpl
+END
+asunto_editar.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/icasus/!svn/ver/284/1.0/grupo/asunto_editar.php
+END
+acta_datos.php
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_datos.php
+END
+menu-css.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/icasus/!svn/ver/284/1.0/grupo/menu-css.tpl
+END
+grupo_poblar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_poblar.tpl
+END
+acuerdo_crear.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/icasus/!svn/ver/284/1.0/grupo/acuerdo_crear.tpl
+END
+grupo_ver.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_ver.php
+END
+asunto_editar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/icasus/!svn/ver/284/1.0/grupo/asunto_editar.tpl
+END
+tareas.php
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/icasus/!svn/ver/284/1.0/grupo/tareas.php
+END
+convocatoria_editar.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/icasus/!svn/ver/284/1.0/grupo/convocatoria_editar.php
+END
+grupo_ver.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_ver.tpl
+END
+asunto_borrar.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/icasus/!svn/ver/284/1.0/grupo/asunto_borrar.php
+END
+asuntos_listado.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/icasus/!svn/ver/284/1.0/grupo/asuntos_listado.tpl
+END
+ajax.php
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/icasus/!svn/ver/284/1.0/grupo/ajax.php
+END
+tarea_editar.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/tarea_editar.php
+END
+grupo_convocar.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_convocar.php
+END
+tareas.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/icasus/!svn/ver/284/1.0/grupo/tareas.tpl
+END
+convocatoria_editar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/icasus/!svn/ver/284/1.0/grupo/convocatoria_editar.tpl
+END
+asunto_actualizar.php
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/icasus/!svn/ver/284/1.0/grupo/asunto_actualizar.php
+END
+tarea_editar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/tarea_editar.tpl
+END
+convocatoria_borrar.php
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/icasus/!svn/ver/284/1.0/grupo/convocatoria_borrar.php
+END
+grupo_convocar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_convocar.tpl
+END
+nombre_acciones.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/icasus/!svn/ver/284/1.0/grupo/nombre_acciones.tpl
+END
+notas_grabar.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/notas_grabar.php
+END
+tarea_borrar.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/tarea_borrar.php
+END
+acuerdos.php
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/icasus/!svn/ver/284/1.0/grupo/acuerdos.php
+END
+acta.php
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/icasus/!svn/ver/284/1.0/grupo/acta.php
+END
+tarea_crear.php
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/tarea_crear.php
+END
+nombre_listado.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/icasus/!svn/ver/284/1.0/grupo/nombre_listado.tpl
+END
+nombre_editar.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/icasus/!svn/ver/284/1.0/grupo/nombre_editar.php
+END
+acuerdo_editar.php
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/icasus/!svn/ver/284/1.0/grupo/acuerdo_editar.php
+END
+tarea_actualizar.php
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/icasus/!svn/ver/284/1.0/grupo/tarea_actualizar.php
+END
+ajax_acta.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/icasus/!svn/ver/284/1.0/grupo/ajax_acta.php
+END
+acuerdos.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/icasus/!svn/ver/284/1.0/grupo/acuerdos.tpl
+END
+convocatoria_listado.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/icasus/!svn/ver/284/1.0/grupo/convocatoria_listado.tpl
+END
+acta_leer.php
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_leer.php
+END
+tarea_crear.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/icasus/!svn/ver/284/1.0/grupo/tarea_crear.tpl
+END
+acuerdo_editar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/icasus/!svn/ver/284/1.0/grupo/acuerdo_editar.tpl
+END
+nombre_editar.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/icasus/!svn/ver/284/1.0/grupo/nombre_editar.tpl
+END
+grupo_editar.php
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/icasus/!svn/ver/284/1.0/grupo/grupo_editar.php
+END
+asunto_grabar.php
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/icasus/!svn/ver/284/1.0/grupo/asunto_grabar.php
+END
+acta_leer.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/icasus/!svn/ver/284/1.0/grupo/acta_leer.tpl
+END

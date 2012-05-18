@@ -1,0 +1,22 @@
+<?php
+//---------------------------------------------------------------------------------------------------
+// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Archivo: indicador_datos_excel.php
+// Tipo: controlador
+// Desarrolladores: Juanan Ruiz (juanan@us.es)
+//---------------------------------------------------------------------------------------------------
+// Descripcion: Muestra todos los parametros de un indicador y la gráfica de los valores introducidos
+//---------------------------------------------------------------------------------------------------
+	$excel->getActiveSheet()->setCellValue('B'.$j, date("m/Y",$valores[$i]['fecha_recogida']));
+$excel->getActiveSheet()->getStyle('B'.$j)->applyFromArray($styleThinBlackBorderOutline);
+	$excel->getActiveSheet()->setCellValue('C'.$j, $valores[$i]['valor']);
+$excel->getActiveSheet()->getStyle('C'.$j)->applyFromArray($styleThinBlackBorderOutline);
+	$excel->getActiveSheet()->setCellValue('D'.$j, $valores[$i]['objetivo']);
+$excel->getActiveSheet()->getStyle('D'.$j)->applyFromArray($styleThinBlackBorderOutline);
+	$excel->getActiveSheet()->setCellValue('E'.$j, $valores[$i]['objetivo_estrategico']);
+$excel->getActiveSheet()->getStyle('E'.$j)->applyFromArray($styleThinBlackBorderOutline);
+	$excel->getActiveSheet()->setCellValue('F'.$j, $valores[$i]['objetivo_carta']);
+$excel->getActiveSheet()->getStyle('F'.$j)->applyFromArray($styleThinBlackBorderOutline);
+
+?>
+

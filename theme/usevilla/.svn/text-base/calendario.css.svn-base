@@ -1,0 +1,60 @@
+#basis {
+	display:inline;
+	position:relative;
+	}
+#calender {
+	position:absolute;
+	top:-160px;
+	left:20px;
+	width:220px;
+	background-color:#eeeeee;
+	border:1px solid #993333;
+	padding:10px;
+	z-index:10;
+	}
+#control {
+	text-align:center;
+	margin:0 0 5px 0;
+	}
+#control select {
+	font-size:11px;
+	margin:0 5px;
+	vertical-align:middle;
+	}
+#calender .controlPlus {
+	padding:0 5px;
+	text-decoration:none;
+	color:#333;
+	}
+#calender table {
+	empty-cells: show;
+	width:100%;
+	font-size:11px;
+	table-layout:fixed;
+	}
+#calender .weekdays td{
+	text-align:right;
+	padding:1px 5px 1px 1px;
+	color:#333;
+	}
+#calender .week td {
+	text-align:right;
+	cursor:pointer;
+	border:1px solid #fff;
+	padding:1px 4px 1px 0;
+	}
+#calender .week .today { 
+	background-color:#e5e5e5;
+	border:1px solid #993333;
+	color:#000;
+	}
+#calender .week .holiday {
+	font-weight: bold; color:#993333
+	}
+#calender .week .hoverEle {
+	border:1px solid #933;
+	background-color:#fff;
+	color:#000;
+	}
+.boton2 {cursor:pointer; background-color:#FFFFFF; border:0; background:url(calendario.png) no-repeat; margin-left:.5em}
+

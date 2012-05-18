@@ -1,0 +1,2 @@
+{$okanuncio}
+{$linea}

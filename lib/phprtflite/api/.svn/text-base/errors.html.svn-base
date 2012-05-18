@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>phpDocumentor Parser Errors and Warnings</title>
+			<link rel="stylesheet" href="media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+						<a href="#Post-parsing">Post-parsing</a><br>
+<a href="#BorderFormat.php">BorderFormat.php</a><br>
+<a href="#Cell.php">Cell.php</a><br>
+<a href="#Container.php">Container.php</a><br>
+<a href="#Font.php">Font.php</a><br>
+<a href="#Footer.php">Footer.php</a><br>
+<a href="#Header.php">Header.php</a><br>
+<a href="#Image.php">Image.php</a><br>
+<a href="#ParFormat.php">ParFormat.php</a><br>
+<a href="#Rtf.php">Rtf.php</a><br>
+<a href="#Section.php">Section.php</a><br>
+<a href="#Table.php">Table.php</a><br>
+<a href="#Util.php">Util.php</a><br>
+<a name="Bordered.php"></a>
+<h1>Bordered.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "Bordered", use another DocBlock to document the file<br>
+<a name="BorderFormat.php"></a>
+<h1>BorderFormat.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - DocBlock would be page-level, but precedes class "BorderFormat", use another DocBlock to document the file<br>
+<a name="Cell.php"></a>
+<h1>Cell.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - DocBlock would be page-level, but precedes class "Cell", use another DocBlock to document the file<br>
+<a name="Container.php"></a>
+<h1>Container.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "Container", use another DocBlock to document the file<br>
+<a name="Font.php"></a>
+<h1>Font.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "Font", use another DocBlock to document the file<br>
+<a name="Footer.php"></a>
+<h1>Footer.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - DocBlock would be page-level, but precedes class "Footer", use another DocBlock to document the file<br>
+<a name="Header.php"></a>
+<h1>Header.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - DocBlock would be page-level, but precedes class "Header", use another DocBlock to document the file<br>
+<a name="Image.php"></a>
+<h1>Image.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 175</b> - File "c:\wamp\www\phprtflite\rtf\Image.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="ParFormat.php"></a>
+<h1>ParFormat.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "ParFormat", use another DocBlock to document the file<br>
+<a name="Rtf.php"></a>
+<h1>Rtf.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 540</b> - File "c:\wamp\www\phprtflite\rtf\Rtf.php" has no page-level DocBlock, use @package in the first DocBlock to create one<br>
+<a name="Section.php"></a>
+<h1>Section.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 6</b> - DocBlock would be page-level, but precedes class "Section", use another DocBlock to document the file<br>
+<b>Warning on line 193</b> - Unknown tag "@accces" used<br>
+<b>Warning on line 272</b> - Unknown tag "@?ccess" used<br>
+<a name="Table.php"></a>
+<h1>Table.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - DocBlock would be page-level, but precedes class "Table", use another DocBlock to document the file<br>
+<a name="Util.php"></a>
+<h1>Util.php</h1>
+<h2>Warnings:</h2><br>
+<b>Warning on line 5</b> - DocBlock would be page-level, but precedes class "Util", use another DocBlock to document the file<br>
+	<p class="notes" id="credit">
+		Documentation generated on Fri, 25 Jan 2008 23:10:53 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.1</a>
+	</p>
+	</body>
+</html>

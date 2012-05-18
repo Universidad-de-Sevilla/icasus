@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Style
+END
+Border.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Style/Border.php
+END
+Color.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Style/Color.php
+END
+Alignment.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Style/Alignment.php
+END
+Borders.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Style/Borders.php
+END
+NumberFormat.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Style/NumberFormat.php
+END
+Conditional.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Style/Conditional.php
+END
+Fill.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Style/Fill.php
+END
+Protection.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Style/Protection.php
+END
+Font.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/icasus/!svn/ver/284/1.0/lib/phpExcel/PHPExcel/Style/Font.php
+END

@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Font</title>
+			<link rel="stylesheet" href="../media/stylesheet.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name">Class Font</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+															<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Text font formating class.</p>
+		<p class="notes">
+			Located in <a class="field" href="_Font.php.html">/Font.php</a> (line <span class="field">7</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+												<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																																																												
+												<div class="method-definition">
+											<span class="method-result">Font</span>
+										<a href="#Font" title="details" class="method-name">Font</a>
+											([<span class="var-type">int</span>&nbsp;<span class="var-name">$size</span> = <span class="var-default">10</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$font</span> = <span class="var-default">''</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$fontColor</span> = <span class="var-default">''</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$backColor</span> = <span class="var-default">''</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">string</span>
+										<a href="#getContent" title="details" class="method-name">getContent</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">&$rtf</span>, <span class="var-type"><a href="../Rtf/Rtf.html">Rtf</a></span>&nbsp;<span class="var-name">$rtf</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setAnimatedText" title="details" class="method-name">setAnimatedText</a>
+											(<span class="var-type">integer</span>&nbsp;<span class="var-name">$animatedText</span>)
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setBold" title="details" class="method-name">setBold</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setItalic" title="details" class="method-name">setItalic</a>
+										()
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setStrike" title="details" class="method-name">setStrike</a>
+											([<span class="var-type">$strike</span>&nbsp;<span class="var-name">$strike</span> = <span class="var-default">1</span>])
+									</div>
+																<div class="method-definition">
+											<span class="method-result">void</span>
+										<a href="#setUnderline" title="details" class="method-name">setUnderline</a>
+										()
+									</div>
+								</div>
+		</div>
+	</div>		
+
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+
+<a name="methodFont" id="Font"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">Constructor Font</span> (line <span class="line-number">38</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Font constructor</p>
+	
+	<div class="method-signature">
+		<span class="method-result">Font</span>
+		<span class="method-name">
+			Font
+		</span>
+					([<span class="var-type">int</span>&nbsp;<span class="var-name">$size</span> = <span class="var-default">10</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$font</span> = <span class="var-default">''</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$fontColor</span> = <span class="var-default">''</span>], [<span class="var-type">string</span>&nbsp;<span class="var-name">$backColor</span> = <span class="var-default">''</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">int</span>
+				<span class="var-name">$size</span><span class="var-description">: Font size</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$font</span><span class="var-description">: Font (etc. &quot;Times new Roman&quot;, &quot;Arial&quot; and other)</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$fontColor</span><span class="var-description">: Font color</span>			</li>
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$backColor</span><span class="var-description">: Background color of font</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodgetContent" id="getContent"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">getContent</span> (line <span class="line-number">104</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Gets rtf code of font. Internal use.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			getContent
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">&$rtf</span>, <span class="var-type"><a href="../Rtf/Rtf.html">Rtf</a></span>&nbsp;<span class="var-name">$rtf</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"><a href="../Rtf/Rtf.html">Rtf</a></span>
+				<span class="var-name">$rtf</span><span class="var-description">: Rtf object</span>			</li>
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">&$rtf</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetAnimatedText" id="setAnimatedText"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setAnimatedText</span> (line <span class="line-number">94</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets animated text properties.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setAnimatedText
+		</span>
+					(<span class="var-type">integer</span>&nbsp;<span class="var-name">$animatedText</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">integer</span>
+				<span class="var-name">$animatedText</span><span class="var-description">: Animated Text Properties. Possible values: <br />  '1' =&gt; Las Vegas Lights,  <br />  '2' =&gt; Blinking background, <br />  '3' =&gt; Sparkle text, <br />  '4' =&gt; Marching black ants, <br />  '5' =&gt; Marching red ants, <br />  '6' =&gt; Shimmer</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetBold" id="setBold"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setBold</span> (line <span class="line-number">49</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets text bold.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setBold
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsetItalic" id="setItalic"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setItalic</span> (line <span class="line-number">57</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets text italic.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setItalic
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="methodsetStrike" id="setStrike"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<span class="method-title">setStrike</span> (line <span class="line-number">74</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets strikethrough of text.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setStrike
+		</span>
+					([<span class="var-type">$strike</span>&nbsp;<span class="var-name">$strike</span> = <span class="var-default">1</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">$strike</span>
+				<span class="var-name">$strike</span><span class="var-description">: If 1 then single, if 2 then double</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="methodsetUnderline" id="setUnderline"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<span class="method-title">setUnderline</span> (line <span class="line-number">65</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Sets text underline.</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			setUnderline
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+
+	<p class="notes" id="credit">
+		Documentation generated on Fri, 25 Jan 2008 23:10:50 +0200 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.3.1</a>
+	</p>
+	</div></body>
+</html>

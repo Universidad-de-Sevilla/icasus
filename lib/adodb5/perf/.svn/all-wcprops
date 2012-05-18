@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/perf
+END
+perf-db2.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/perf/perf-db2.inc.php
+END
+perf-informix.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/perf/perf-informix.inc.php
+END
+perf-mssql.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/perf/perf-mssql.inc.php
+END
+perf-oci8.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/perf/perf-oci8.inc.php
+END
+perf-mysql.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/perf/perf-mysql.inc.php
+END
+perf-postgres.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/perf/perf-postgres.inc.php
+END
+perf-mssqlnative.inc.php
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/icasus/!svn/ver/284/1.0/lib/adodb5/perf/perf-mssqlnative.inc.php
+END
