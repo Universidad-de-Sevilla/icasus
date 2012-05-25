@@ -1,6 +1,6 @@
 <?php 
 //---------------------------------------------------------------------------------------------------
-// Proyecto Icasus (http://wiki.us.es/icasus/)
+// Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
 // Archivo: index.php
 // Desarrolladores: Juanan Ruiz <juanan@us.es>, Jesús Martin <jjmc@us.es>
 //---------------------------------------------------------------------------------------------------
@@ -10,24 +10,23 @@
 //ini_set('display_errors', '1');
 //error_reporting(E_ALL);
 
-//header("location:http://leia.sav.us.es/icasus");
-
-include_once ('config.php');
-include_once('lib/adodb5/adodb.inc.php');
-include_once('lib/adodb5/adodb-active-record.inc.php');
-include_once('lib/smarty/Smarty.class.php');
-include_once('function/sanitize.php');
-include_once('function/caracteres.php');
+include_once ('../app_code/config.php');
+include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
+include_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
+include_once('../../cascara_core/lib/smarty/Smarty.class.php');
+include_once('../../cascara_core/function/sanitize.php');
+include_once('../../cascara_core/function/caracteres.php');
 // TODO: Quizás las dos de abajo podrían ponerse sólo en las que lo necesiten
-include_once('lib/phprtflite/rtf/Rtf.php');
-include_once('lib/phpExcel/PHPExcel.php');
+//include_once('lib/phprtflite/rtf/Rtf.php');
+//include_once('lib/phpExcel/PHPExcel.php');
 
-// Carga las clases necesarias
+// Carga las clases necesarias automaticamente
+spl_autoload_register('__autoload');
 function __autoload($class_name) 
 {
-	if (file_exists('class/'.$class_name.'.php'))
+	if (file_exists('../class/'.$class_name.'.php'))
 	{	
-		require_once('class/'.$class_name.'.php');
+		require_once('../class/'.$class_name.'.php');
 	}
 }
 
@@ -35,22 +34,16 @@ function __autoload($class_name)
 $smarty = new Smarty();
 //$smarty->cache = false; 
 $smarty->template_dir = '.'; 
-$smarty->compile_dir = 'templates_c'; 
-$smarty->config_dir = 'configs'; 
-$smarty->cache_dir = 'cache'; 
+$smarty->compile_dir = '../templates_c'; 
+$smarty->config_dir = '../configs'; 
+$smarty->cache_dir = '../cache'; 
 
 //Versión actual de icasus
-$smarty->assign('_version', '1.0');
-$smarty->assign('_revision', '272');
-//$smarty->assign('_revision', '249');
+$smarty->assign('_version', '1.1');
 
-// Conexion a la base de datos con la clase basedatos 
-// Las constantes vienen de config.php
-$basedatos = new basedatos(IC_DB_HOST,IC_DB_LOGIN,IC_DB_CLAVE,IC_DB_DATABASE); 
-// Utilizaremos ADODB y ActiveRecord en los nuevos modulos del proyecto
+// Conectamos a los datos con ADODB y ActiveRecord 
 $adodb = NewADOConnection('mysql://'.IC_DB_LOGIN.':'.IC_DB_CLAVE.'@'.IC_DB_HOST.'/'.IC_DB_DATABASE);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
-$plantilla = '';
 
 // Crea una sesión con un identificador encriptado para evitar ataques
 $session_key = substr(md5(IC_DIR_BASE), 0, 8);
@@ -74,14 +67,11 @@ if (isset($_GET['page']) && isset($_SESSION['usuario']))
 	$id_usuario_url = sanitize($_GET['id_usuario'],2);
 	// Si viene id_entidad le asignamos su valor, si no, asignamos cero.
 	$id_entidad = isset($_REQUEST['id_entidad'])?sanitize($_REQUEST['id_entidad'],16):0;
-	$operario = new usuario($basedatos);
-	$operario = $_SESSION['usuario'];
-	// Al pasar $operario a una variable de sesion pierde la conexion de la base de datos, asi la recuperamos.
-	$operario->database = $basedatos;
-	$smarty->assign('_operario',$operario->datos);
-	// Comprueba si el operario tiene permiso para realizar esta acción
-//	if (! $operario->autorizar($page, $id_entidad, $operario->id_usuario))
-	if (! $operario->autorizar($page, $id_entidad, $operario->id_usuario, $id_usuario_url))
+	$usuario = new usuario();
+	$usuario = $_SESSION['usuario'];
+	$smarty->assign('_usuario',$usuario->datos);
+	// Comprueba si el usuario tiene permiso para realizar esta acción
+	if (! $usuario->autorizar($page, $id_entidad, $usuario->id_usuario, $id_usuario_url))
 	{
 		$smarty->assign('error', 'No tiene permisos para realizar esta acción');
 		$page = "error";
@@ -93,18 +83,21 @@ else
 	$page = 'login';
 }
 
+// Definimos $plantilla en blanco para que se comporte como variable global
+$plantilla = '';
+
 // Carga la página solicitada ($_GET['page']) o la pagina por defecto ('login' en nuestro caso)
-if(file_exists($page . '.php'))
+if(file_exists("../app_code/$page.php"))
 {
-	require_once($page.'.php');
+	require_once("../app_code/$page.php");
 }
 else
 {
 	$smarty->assign('error' ,  "<b>Error 404</b>: no encontramos la página que ha solicitado."); 
-	$plantilla = "error.tpl";
+	$plantilla = "../app_code/error.tpl";
 }
 // Llama a las tres plantillas que conforman la página html
 $smarty->display('theme/'.IC_THEME.'/cabecera.tpl'); 
-$smarty->display($plantilla);
+$smarty->display("../app_code/$plantilla");
 $smarty->display('theme/'.IC_THEME.'/piecera.tpl'); 
 ?>

@@ -1,5 +1,3 @@
-{if $aviso}<p class='aviso'>{$aviso}</p>{/if} 
-{if $error}<p class='error'>{$error}</p>{/if} 
 <div style='width: 335px; float:left; margin:5px;'>
 <img src='theme/usevilla/cuadromando.png' alt='icono grafica lineal' align='right' /><p><b>Icasus</b> es una aplicación web para la gestión de la calidad en la 
 <a href="http://www.us.es/">Universidad de Sevilla</a>.</p>
