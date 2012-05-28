@@ -16,7 +16,7 @@
 define('IC_DB_HOST','localhost');
 define('IC_DB_LOGIN','icasus');
 define('IC_DB_CLAVE','icasusdesarrollo2012');
-define('IC_DB_DATABASE','icasus');
+define('IC_DB_DATABASE','icasus_bbtk');
 //La autenticación en desarrollo es de tipo básico
 define('IC_LOGIN', 'login_basico');
 //Directorios

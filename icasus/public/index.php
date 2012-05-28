@@ -70,12 +70,14 @@ if (isset($_GET['page']) && isset($_SESSION['usuario']))
 	$usuario = new usuario();
 	$usuario = $_SESSION['usuario'];
 	$smarty->assign('_usuario',$usuario->datos);
+  /*
 	// Comprueba si el usuario tiene permiso para realizar esta acción
 	if (! $usuario->autorizar($page, $id_entidad, $usuario->id_usuario, $id_usuario_url))
 	{
 		$smarty->assign('error', 'No tiene permisos para realizar esta acción');
 		$page = "error";
 	}
+  */
 }
 else
 {

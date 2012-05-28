@@ -15,7 +15,7 @@ como software libre</a>.</p>
 
 </div>
 <div style='width: 250px; float:left; margin:20px;'>
-<form method="post" action="index.php?page=login" id="formlogin" onsubmit="return login_validar(this)">
+<form method="post" action="index.php?page=login_basico" id="formlogin" onsubmit="return login_validar(this)">
     <input type="hidden" name="acceso" value="1" />
     <label for="login">Usuario</label> <br />
     <input type="text" name="login" id="login" class="inp" />
@@ -24,12 +24,6 @@ como software libre</a>.</p>
     <input type="submit" class="submit-btn" value="Enviar" />
 </form>
 </div>
-<!--
-<p class='aviso'>Hemos realizado una nueva actualización de Icasus (11/11/2009 10:00).
-Por favor si observas algún error escribe a <a href='mailto:juanan@us.es'><img
-src='iconos/16x16/email_edit.png' /> juanan@us.es</a> o llama al <img
-src='iconos/16x16/phone.png' /> 87458</p>                  
--->
 <!-- Novedades Icasus -->
 <p style="clear:both;">&nbsp;</p>
 {$pagina->contenido}
