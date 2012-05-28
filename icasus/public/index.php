@@ -10,7 +10,7 @@
 //ini_set('display_errors', '1');
 //error_reporting(E_ALL);
 
-include_once ('../app_code/config.php');
+include_once('../app_code/app_config.php');
 include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
 include_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
 include_once('../../cascara_core/lib/smarty/Smarty.class.php');
@@ -33,7 +33,7 @@ function __autoload($class_name)
 // Variables globales
 $smarty = new Smarty();
 //$smarty->cache = false; 
-$smarty->template_dir = '.'; 
+$smarty->template_dir = '../app_code'; 
 $smarty->compile_dir = '../templates_c'; 
 $smarty->config_dir = '../configs'; 
 $smarty->cache_dir = '../cache'; 
@@ -80,7 +80,7 @@ if (isset($_GET['page']) && isset($_SESSION['usuario']))
 else
 {
 	// Si no se ha pedido ninguna página o no se ha iniciado sesión cargamos la de login  
-	$page = 'login';
+	$page = 'login_basico';
 }
 
 // Definimos $plantilla en blanco para que se comporte como variable global
@@ -98,6 +98,6 @@ else
 }
 // Llama a las tres plantillas que conforman la página html
 $smarty->display('theme/'.IC_THEME.'/cabecera.tpl'); 
-$smarty->display("../app_code/$plantilla");
+$smarty->display("$plantilla");
 $smarty->display('theme/'.IC_THEME.'/piecera.tpl'); 
 ?>

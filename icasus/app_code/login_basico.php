@@ -1,5 +1,4 @@
 <?php
-global $basedatos;
 global $smarty;
 global $plantilla;
 $smarty->assign('_javascript' , array('login_validar','ordenatabla'));
@@ -18,12 +17,12 @@ if (isset($_POST['acceso']))
 	{
 		$login = sanitize($_POST["login"],2);
 		$clave = sanitize($_POST["clave"],2);
-		$operario = new usuario($basedatos);
+		$operario = new usuario();
 		if ($id_operario = $operario->comprobar_login($login, $clave)) 
 		{
 			$operario->obtener_datos($id_operario);
 			$smarty->assign('_operario',$operario->datos);
-			session_start();
+			//session_start();
 			$_SESSION["id_usuario"] = $operario->datos['id_usuario'];
 			$_SESSION['usuario'] = $operario;
 			// Registra la entrada en el log
@@ -36,7 +35,7 @@ if (isset($_POST['acceso']))
 		{
 			$aviso="Usuario o clave incorrectos.";
 			$smarty->assign('aviso',$aviso);
-			$plantilla = 'login.tpl';
+			$plantilla = 'login_basico.tpl';
 		}
 	}
 	else 
@@ -44,7 +43,7 @@ if (isset($_POST['acceso']))
 		// Si falta algun parametro volvemos al formulario y avisamos
 		$aviso = "Indique su nombre de usuario y clave.";
 		$smarty->assign('aviso',$aviso);
-		$plantilla = 'login.tpl';
+		$plantilla = 'login_basico.tpl';
 	}
 }
 else
@@ -52,6 +51,6 @@ else
 	// Si no venía del formulario lo mostramos sin más
 	session_unset();
 	$smarty->assign('_operario',false);	
-	$plantilla = 'login.tpl';
+	$plantilla = 'login_basico.tpl';
 }
 ?>
