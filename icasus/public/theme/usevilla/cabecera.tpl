@@ -11,10 +11,11 @@
 <!--[if IE]><link rel="stylesheet" href="theme/usevilla/ie.css" type="text/css" media="screen, projection" /><![endif]--> 
 
 
-
-{foreach from=$_javascript item=script} 
-	<script type='text/javascript' src="js/{$script}.js"></script>
-{/foreach}
+{if isset($_javascript)}
+  {foreach from=$_javascript item=script} 
+    <script type='text/javascript' src="js/{$script}.js"></script>
+  {/foreach}
+{/if}
 
 </head>
 

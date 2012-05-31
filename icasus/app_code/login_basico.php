@@ -1,7 +1,7 @@
 <?php
 global $smarty;
 global $plantilla;
-$smarty->assign('_javascript' , array('login_validar','ordenatabla'));
+$smarty->assign('_javascript' , array('login_validar'));
 $smarty->assign('_nombre_pagina' , 'Bienvenido a Icasus');
 
 //Carga la página de novedades para mostrar en la pantalla inicial
@@ -15,17 +15,15 @@ if (isset($_POST['acceso']))
 	// Comprueba que vengan los datos
 	if (isset($_POST["login"]) && isset($_POST["clave"]))
 	{
-    print_r($_POST);
 		$login = sanitize($_POST["login"],2);
 		$clave = sanitize($_POST["clave"],2);
 		$usuario = new usuario();
 		if ($usuario->load_joined("login = '$login' AND clave = '$clave'")) 
 		{
-			$smarty->assign('_usuario',$usuario);
 			$_SESSION['usuario'] = $usuario;
 			// Registra la entrada en el log
 			$log = new log();
-		    $log->add('login',0,$usuario->id);	
+		  $log->add('login',0,$usuario->id);	
 			// Reenvia a la lista de entidades
 			header("location:index.php?page=entidad_listar");
 		}

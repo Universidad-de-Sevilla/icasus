@@ -9,11 +9,11 @@
  * @license http://www.opensource.org/licenses/bsd-license.php 
  ** ---------------------------------------------------------------------------- */ 
 
-class usuario_entidad extends ADOdb_Active_Record { 
+class usuario_entidad extends ADOdb_Active_Record
+{
 	var $_table='usuarios_entidades'; 
+  var $entidad;
 	var $asiste;	
-	var $nombre_usuario;	
-	var $apellidos_usuario;	
 
 	function Find_entidades($condicion) 
 	{ 
@@ -24,6 +24,7 @@ class usuario_entidad extends ADOdb_Active_Record {
 				$entidad = new entidad(); 
 				$id = $usuario_entidad->id_entidad; 
 				$entidad->load("id = $id"); 
+        $usuario_entidad->entidad = $entidad;
 			}
       return $usuarios_entidades;
        
@@ -34,6 +35,7 @@ class usuario_entidad extends ADOdb_Active_Record {
     }
   }
     
+  //TODO: borrar?
 	//funcion antigua para generar los asistentes
 
 	function join_usuarios_asiste($entidad,$acta)

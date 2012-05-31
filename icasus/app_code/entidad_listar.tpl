@@ -1,12 +1,9 @@
-{if $error}<p class='error'>{$error}</p>{/if}
-{if $aviso}<p class='aviso'>{$aviso}</p>{/if}
-
-{if $grupos_operario}
+{if isset($grupos_usuario)}
 <h3>Equipos de Trabajo del usuario</h3>
 <table width="95%">
     <thead><tr><th>C&oacute;digo</th><th>Equipo</th><th colspan="4">Acciones</th></tr></thead>
     <tbody>
-{foreach from=$grupos_operario item=grupo}
+{foreach from=$grupos_usuario item=grupo}
    <tr>
     <td>{$grupo.codigo}</td>
     <td>{$grupo.nombre}</td>
@@ -25,27 +22,26 @@
 {/if}
 
 <h3>Unidades del usuario</h3>
-{if $entidades_operario}
-<table>
-    <thead><tr><th>C&oacute;digo</th><th>Unidad</th><th>Acciones</th></tr></thead>
-    <tbody>
-{foreach from=$entidades_operario item=entidad}
-   <tr>
-    <td>{$entidad.codigo}</td>
-    <td>{$entidad.nombre}</td>
-    <td>
-	<a href='index.php?page=entidad_datos&id_entidad={$entidad.id_entidad}'>Ver</a> - 
-	<a href='index.php?page=indicador_listar&id_entidad={$entidad.id_entidad}'>Indicadores</a> - 
-	<a href='index.php?page=proceso_listar&id_entidad={$entidad.id_entidad}'> Procesos</a> - 
-    <a href="index.php?page=plan_estrategico/plan_listar&id_entidad={$entidad.id_entidad}&entidad={$entidad.nombre|htmlentities}">Planificaci&oacute;n</a>
-	-
-    <a href='index.php?page=grupo/acta_listar&id_entidad={$entidad.id_entidad}' title="Ver las actas de este equipo">Actas</a> 
-	</td>
-   </tr>
-{/foreach}
-</tbody></table>
+{if isset($entidades_usuario)}
+  <table>
+      <thead><tr><th>C&oacute;digo</th><th>Unidad</th><th>Acciones</th></tr></thead>
+      <tbody>
+      {foreach from=$entidades_usuario item=entidad}
+         <tr>
+          <td>{$entidad.codigo}</td>
+          <td>{$entidad.nombre}</td>
+          <td>
+          <a href='index.php?page=entidad_datos&id_entidad={$entidad.id_entidad}'>Ver</a> - 
+          <a href='index.php?page=indicador_listar&id_entidad={$entidad.id_entidad}'>Indicadores</a> - 
+          <a href='index.php?page=proceso_listar&id_entidad={$entidad.id_entidad}'> Procesos</a> - 
+          <a href="index.php?page=plan_estrategico/plan_listar&id_entidad={$entidad.id_entidad}&entidad={$entidad.nombre|htmlentities}">Planificaci&oacute;n</a> -
+          <a href='index.php?page=grupo/acta_listar&id_entidad={$entidad.id_entidad}' title="Ver las actas de este equipo">Actas</a> 
+        </td>
+        </tr>
+      {/foreach}
+  </tbody></table>
 {else}
-<p class='aviso'>No tiene asignada ninguna unidad</p>
+  <p class='aviso'>No tiene asignada ninguna unidad</p>
 {/if}
 
 <h3>Buscar unidades y/o equipos de trabajo</h3>
@@ -56,17 +52,18 @@
 <input name='criterio' type='text' class='inp' value='{$criterio}'/>
 </form>
 
-{if $lista_entidades}
-<table class='listing' id='sortable'>
-<thead><tr><th>C&oacute;digo</th><th>Entidad</th><th colspan='2'>Acciones</th></tr></thead>
-<tbody>
-{foreach from=$lista_entidades item=entidad}
-   <tr>
-    <td>{$entidad.codigo}</td>
-    <td>{$entidad.nombre}</td>
-    <td>
-    <a href='index.php?page=entidad_datos&id_entidad={$entidad.id_entidad}'>Ver</a> - <a href='index.php?page=indicador_listar&id_entidad={$entidad.id_entidad}'>Indicadores</a></td>
-   </tr>
-{/foreach}
-</tbody></table>
+{if isset($entidades)}
+  <table class='listing' id='sortable'>
+    <thead><tr><th>C&oacute;digo</th><th>Entidad</th><th colspan='2'>Acciones</th></tr></thead>
+    <tbody>
+    {foreach from=$entidades item=entidad}
+       <tr>
+        <td>{$entidad->codigo}</td>
+        <td>{$entidad->nombre}</td>
+        <td>
+        <a href='index.php?page=entidad_datos&id_entidad={$entidad->id_entidad}'>Ver</a> - <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>Indicadores</a></td>
+       </tr>
+    {/foreach}
+    </tbody>
+  </table>
 {/if}

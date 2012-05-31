@@ -63,12 +63,12 @@ if(!@session_id())
 if (isset($_GET['page']) && isset($_SESSION['usuario'])) 
 {
 	$page = sanitize($_GET['page'],2);
-	$id_usuario_url = sanitize($_GET['id_usuario'],2);
+	//$id_usuario_url = sanitize($_GET['id_usuario'],2);
 	// Si viene id_entidad le asignamos su valor, si no, asignamos cero.
 	$id_entidad = isset($_REQUEST['id_entidad'])?sanitize($_REQUEST['id_entidad'],16):0;
 	$usuario = new usuario();
 	$usuario = $_SESSION['usuario'];
-	$smarty->assign('_usuario',$usuario->datos);
+	$smarty->assign('_usuario',$usuario);
   /*
 	// Comprueba si el usuario tiene permiso para realizar esta acción
 	if (! $usuario->autorizar($page, $id_entidad, $usuario->id_usuario, $id_usuario_url))
