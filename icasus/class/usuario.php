@@ -9,11 +9,11 @@
 class usuario extends ADOdb_Active_Record
 {
   //Propiedades de la clase
-	var $_table = 'usuarios';
-	var $entidades = array();
-  var $grupos = array();
+	public $_table = 'usuarios';
+	public $entidades = array();
+  public $grupos = array();
 
-  function load_joined($condicion)
+  public function load_joined($condicion)
   {
     if ($this->load($condicion))
     {
@@ -29,7 +29,7 @@ class usuario extends ADOdb_Active_Record
 
   //TODO: eliminar tras comprobar que no se usa
   //Devuelve las entidades a las que pertenece el usuario con sus respectivas subentidades
-  function entidades()
+  public function entidades()
   {
     $entidades = $usuario_entidad->Find_entidades("id_usuario = $this->id");
   } 

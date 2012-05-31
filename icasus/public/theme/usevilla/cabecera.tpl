@@ -45,8 +45,8 @@
 			<a href='index.php?page=entidad_listar' accesskey='u'><img 
 			src='/icons/ff16/chart_organisation.png' /> Unidades</a> 
 			&nbsp;
-			<a href='index.php?page=usuario_datos&id_usuario={$_usuario.id_usuario}&id_entidad=0'><img 
-			src='/icons/ff16/user.png' />{$_usuario.login}</a> 
+			<a href='index.php?page=usuario_datos&id_usuario={$_usuario->id}&id_entidad=0'><img 
+			src='/icons/ff16/user.png' />{$_usuario->login}</a> 
 			&nbsp;
 			<a href='index.php?page=login'><img src='/icons/ff16/page_white_go.png' /> 
 			Salir</a>

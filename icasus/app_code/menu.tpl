@@ -11,7 +11,7 @@
 	</li>
 
 {if isset($_usuario)}
-	{if $_usuario->id == 1 OR $_usuario->id==20 OR $_usuario->id==22 OR $_usuario->id==29 OR $_usuario->id==375 OR $_usuario->id==2839}
+	{*if $_usuario->id == 1 OR $_usuario->id==20 OR $_usuario->id==22 OR $_usuario->id==29 OR $_usuario->id==375 OR $_usuario->id==2839*}
 		<li>
 			<h3>Administradores</h3>
 			<ul>                    
@@ -29,7 +29,6 @@
 					Listar informes</a></li>
 			</ul>
 		</li>
-	{/if}
 {/if}
 
 	{if isset($entidad)}

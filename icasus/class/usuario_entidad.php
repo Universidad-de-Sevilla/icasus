@@ -1,21 +1,19 @@
 <?php
-/* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 */
-
-/**----------------------------------------------------------------------------
- * File: usuario_entidad.php
- * Description: gestiona las entidades de un usuario y los usuarios de una entidad
- * ----------------------------------------------------------------------------
- * @author Juanan Ruiz <juanan@juananruiz.com>, Jesus Martin <jjmc@us.es>
- * @license http://www.opensource.org/licenses/bsd-license.php 
- ** ---------------------------------------------------------------------------- */ 
+//----------------------------------------------------------------------------------
+// Proyecto: Icasus
+// Fichero: class/usuario_entidad.php
+// Descripcion: gestiona las entidades de un usuario y los usuarios de una entidad
+//----------------------------------------------------------------------------------
 
 class usuario_entidad extends ADOdb_Active_Record
 {
-	var $_table='usuarios_entidades'; 
-  var $entidad;
-	var $asiste;	
+	public $_table='usuarios_entidades'; 
+	public $asiste;	
+  public $entidad;
+  public $rol;
+  public $usuario;
 
-	function Find_entidades($condicion) 
+	public function Find_entidades($condicion) 
 	{ 
 		if ($usuarios_entidades = $this->Find($condicion)) 
 		{ 
@@ -34,32 +32,28 @@ class usuario_entidad extends ADOdb_Active_Record
       return false;
     }
   }
+
+  public function Find_usuarios($condicion)
+  {
+    if($usuarios_entidades = $this->Find($condicion))
+    {
+      foreach($usuarios_entidades as& $usuario_entidad)
+      {
+        $usuario_entidad->usuario = new usuario;
+        $usuario_entidad->usuario->load("id = $usuario_entidad->id_usuario");
+        $usuario_entidad->rol = new rol;
+        $usuario_entidad->rol->load("id = $usuario_entidad->id_rol");
+      }
+      return $usuarios_entidades;
+    }
+    else
+    {
+      return false;
+    }
+  }
     
-  //TODO: borrar?
-	//funcion antigua para generar los asistentes
-
-	function join_usuarios_asiste($entidad,$acta)
-	{
-		if ($usuarios = $this->find($entidad))
-		{
-			foreach ($usuarios as $usuario)
-			{
-				$condicion = "id_usuario=".$usuario->id_usuario." AND ".$acta;
-				$asistente = new asistente();
-				$asistente->load($condicion);
-				$usuario->asiste = $asistente->asistencia;
-			
-				$miembro = new ado_usuario();
-				$miembro->load('id_usuario='.$usuario->id_usuario);
-				$usuario->nombre_usuario = $miembro->nombre;
-				$usuario->apellidos_usuario = $miembro->apellidos;
-
-			}
-		return $usuarios;
-		}
-	}
-	//funcion para comprobr los permisos de las actas
-	function acta_permisos($id_usuario,$id_entidad,$id_rol)
+	//funcion para comprobrar los permisos de las actas
+	public function acta_permisos($id_usuario,$id_entidad,$id_rol)
 	{
 		$permiso = $this->load('id_usuario ='.$id_usuario.' AND id_entidad = '.$id_entidad.' AND id_rol = '.$id_rol);
 		return $permiso;

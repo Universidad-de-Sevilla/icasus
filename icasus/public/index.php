@@ -16,9 +16,6 @@ include_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
 include_once('../../cascara_core/lib/smarty/Smarty.class.php');
 include_once('../../cascara_core/function/sanitize.php');
 include_once('../../cascara_core/function/caracteres.php');
-// TODO: Quizás las dos de abajo podrían ponerse sólo en las que lo necesiten
-//include_once('lib/phprtflite/rtf/Rtf.php');
-//include_once('lib/phpExcel/PHPExcel.php');
 
 // Carga las clases necesarias automaticamente
 spl_autoload_register('__autoload');
