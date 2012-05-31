@@ -26,9 +26,9 @@
 		<p class="subtitulo">ICASUS :: Gesti&oacute;n de calidad en la Universidad de Sevilla</p>
 		<h1>{$_nombre_pagina}</h1>
 	
-	{if $_operario}
+	{if isset($_usuario)}
 		<div id='operario'>
-			{if $barra_indicadores}
+			{if isset($barra_indicadores)}
 				<select name='combo_indicadores' id='combo_indicadores' 
 					onchange='var url=document.getElementById(this.id).value; window.location = url '>
 					<option value='#'>Indicadores de esta unidad</option>
@@ -39,15 +39,15 @@
 				
 			{/if}
 			&nbsp;
-			<a href='javascript:window.history.back();'><img src='iconos/16x16/arrow_undo.png' /> Volver</a>  
+			<a href='javascript:window.history.back();'><img src='/icons/ff16/arrow_undo.png' /> Volver</a>  
 			&nbsp;
 			<a href='index.php?page=entidad_listar' accesskey='u'><img 
-			src='iconos/16x16/chart_organisation.png' /> Unidades</a> 
+			src='/icons/ff16/chart_organisation.png' /> Unidades</a> 
 			&nbsp;
-			<a href='index.php?page=usuario_datos&id_usuario={$_operario.id_usuario}&id_entidad=0'><img 
-			src='iconos/16x16/user.png' />{$_operario.login}</a> 
+			<a href='index.php?page=usuario_datos&id_usuario={$_usuario.id_usuario}&id_entidad=0'><img 
+			src='/icons/ff16/user.png' />{$_usuario.login}</a> 
 			&nbsp;
-			<a href='index.php?page=login'><img src='iconos/16x16/page_white_go.png' /> 
+			<a href='index.php?page=login'><img src='/icons/ff16/page_white_go.png' /> 
 			Salir</a>
 		</div>
 	{/if}
@@ -56,7 +56,13 @@
 	<div id='principal'>
 		
 		<div id="menu">
-			{if $_operario}{include file='menu.tpl'}{/if}
+			{if isset($_usuario)}{include file='menu.tpl'}{/if}
 		</div><!-- #menu -->
 
 		<div id="contenido">
+    {if isset($smarty.get.error)}
+      <p class="error">{$smarty.get.error}</p>
+    {/if}
+    {if isset($error)}
+      <p class="error">{$error}</p>
+    {/if}

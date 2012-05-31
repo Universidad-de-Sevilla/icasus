@@ -15,23 +15,23 @@ if (isset($_POST['acceso']))
 	// Comprueba que vengan los datos
 	if (isset($_POST["login"]) && isset($_POST["clave"]))
 	{
+    print_r($_POST);
 		$login = sanitize($_POST["login"],2);
 		$clave = sanitize($_POST["clave"],2);
-		$operario = new usuario();
-		if ($operario->load_joined("login = '$login' AND clave = '$clave'")) 
+		$usuario = new usuario();
+		if ($usuario->load_joined("login = '$login' AND clave = '$clave'")) 
 		{
-      print_r($operario);
-			$smarty->assign('_operario',$operario);
-			$_SESSION['usuario'] = $operario;
+			$smarty->assign('_usuario',$usuario);
+			$_SESSION['usuario'] = $usuario;
 			// Registra la entrada en el log
 			$log = new log();
-		    $log->add('login',0,$operario->id);	
+		    $log->add('login',0,$usuario->id);	
 			// Reenvia a la lista de entidades
 			header("location:index.php?page=entidad_listar");
 		}
 		else 
 		{
-			$aviso="Usuario o clave incorrectos.";
+			$error="Usuario o clave incorrectos.";
 			$smarty->assign('error',$error);
 			$plantilla = 'login_basico.tpl';
 		}
@@ -39,7 +39,7 @@ if (isset($_POST['acceso']))
 	else 
 	{
 		// Si falta algun parametro volvemos al formulario y avisamos
-		$aviso = "Indique su nombre de usuario y clave.";
+		$error = "Indique su nombre de usuario y clave.";
 		$smarty->assign('error',$error);
 		$plantilla = 'login_basico.tpl';
 	}
@@ -48,7 +48,7 @@ else
 {	
 	// Si no venía del formulario lo mostramos sin más
 	session_unset();
-	$smarty->assign('_operario',false);	
+	$smarty->assign('_usuario',false);	
 	$plantilla = 'login_basico.tpl';
 }
 ?>

@@ -1,9 +1,8 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Proyecto: Icasus
 // Archivo: class/usuario.php
-// Tipo: definicion de clase
-// Desarrolladores: Juanan Ruiz (juanan@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin(jjmc@us.es
 //---------------------------------------------------------------------------------------------------
 // Descripcion: gestiona los usuarios (usa active record)
 //---------------------------------------------------------------------------------------------------
@@ -19,7 +18,7 @@ class usuario extends ADOdb_Active_Record
     if ($this->load($condicion))
     {
         $usuario_entidad = new usuario_entidad();
-        $this->entidades = $usuario_entidad->Find_entidades("id_usuario = $this->id_usuario");
+        $this->entidades = $usuario_entidad->Find_entidades("id_usuario = $this->id");
         return true;
     }
     else
@@ -31,7 +30,7 @@ class usuario extends ADOdb_Active_Record
   //Devuelve las entidades a las que pertenece el usuario con sus respectivas subentidades
   function entidades()
   {
-    $entidades = $usuario_entidad->Find_entidades("id_usuario = $this->id_usuario");
+    $entidades = $usuario_entidad->Find_entidades("id_usuario = $this->id");
   } 
 }
 ?>

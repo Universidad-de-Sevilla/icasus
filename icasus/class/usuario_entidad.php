@@ -5,13 +5,12 @@
  * File: usuario_entidad.php
  * Description: gestiona las entidades de un usuario y los usuarios de una entidad
  * ----------------------------------------------------------------------------
- * @author Juanan Ruiz <juanan@juananruiz.com>
+ * @author Juanan Ruiz <juanan@juananruiz.com>, Jesus Martin <jjmc@us.es>
  * @license http://www.opensource.org/licenses/bsd-license.php 
- * @package Icasus 
  ** ---------------------------------------------------------------------------- */ 
 
 class usuario_entidad extends ADOdb_Active_Record { 
-	var $_table='usuario_entidad'; 
+	var $_table='usuarios_entidades'; 
 	var $asiste;	
 	var $nombre_usuario;	
 	var $apellidos_usuario;	
@@ -22,11 +21,11 @@ class usuario_entidad extends ADOdb_Active_Record {
 		{ 
 			foreach ($usuarios_entidades as& $usuario_entidad) 
 			{ 
-				$entidad = new ado_entidad(); 
-				$id_entidad = $usuario_entidad->id_entidad; 
-				$entidad->load("id_entidad=$id_entidad"); 
+				$entidad = new entidad(); 
+				$id = $usuario_entidad->id_entidad; 
+				$entidad->load("id = $id"); 
 			}
-      return $usuario_entidades;
+      return $usuarios_entidades;
        
     }
     else

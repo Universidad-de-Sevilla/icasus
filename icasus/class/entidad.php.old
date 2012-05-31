@@ -2,11 +2,11 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: clase_entidad.php
-// Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: gestiona las entidades 
 //---------------------------------------------------------------------------------------------------
+
 class entidad {
    //Propiedades de la clase
    var $id_entidad;

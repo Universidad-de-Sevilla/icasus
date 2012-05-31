@@ -7,8 +7,8 @@
 // Descripcion: Esta es la página que carga a todas las demas en su seno maternal 
 //---------------------------------------------------------------------------------------------------
 // Esto es para que se vean los errores
-//ini_set('display_errors', '1');
-//error_reporting(E_ALL);
+ini_set('display_errors', '1');
+error_reporting(E_ALL);
 
 include_once('../app_code/app_config.php');
 include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
@@ -59,7 +59,6 @@ if(!@session_id())
 	//@ini_set("session.gc_maxlifetime",10);
     @session_start();
 }
-session_start();
 // Hay que haber iniciado sesión y haber pedido pagina
 if (isset($_GET['page']) && isset($_SESSION['usuario'])) 
 {
