@@ -42,11 +42,15 @@ if (isset($_POST['acceso']))
 		$plantilla = 'login_basico.tpl';
 	}
 }
-else
+else if(isset($_GET["logout"]))
 {	
-	// Si no venía del formulario lo mostramos sin más
+	// Si no venía del formulario cerramos sesión y enviamos a inicio
 	session_unset();
-	$smarty->assign('_usuario',false);	
-	$plantilla = 'login_basico.tpl';
+  header("location:index.php");
+}
+else
+{
+  // Si no viene del formulario, ni de logout, mostramos el formulario
+  $plantilla = "login_basico.tpl";
 }
 ?>

@@ -18,7 +18,7 @@ define('IC_DB_LOGIN','icasus');
 define('IC_DB_CLAVE','icasusdesarrollo2012');
 define('IC_DB_DATABASE','icasus_bbtk');
 //La autenticación en desarrollo es de tipo básico
-define('IC_LOGIN', 'login_basico');
+define('IC_TIPO_LOGIN', 'login_basico');
 //Directorios
 define('IC_DIR_BASE','/Users/juananruiz/www/icasus/');
 
@@ -30,7 +30,7 @@ define('IC_DB_LOGIN','icasus');
 define('IC_DB_CLAVE','poner_clave');
 define('IC_DB_DATABASE','icasus');
 //La autenticación en desarrollo es de tipo básico
-define('IC_LOGIN', 'login_ldap');
+define('IC_TIPO_LOGIN', 'login_ldap');
 //Directorios
 define('IC_DIR_BASE','/var/www/icasus/');
 */

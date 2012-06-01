@@ -60,7 +60,6 @@ if(!@session_id())
 if (isset($_GET['page']) && isset($_SESSION['usuario'])) 
 {
 	$page = sanitize($_GET['page'],2);
-	//$id_usuario_url = sanitize($_GET['id_usuario'],2);
 	// Si viene id_entidad le asignamos su valor, si no, asignamos cero.
 	$id_entidad = isset($_REQUEST['id_entidad'])?sanitize($_REQUEST['id_entidad'],16):0;
 	$usuario = new usuario();
@@ -78,7 +77,7 @@ if (isset($_GET['page']) && isset($_SESSION['usuario']))
 else
 {
 	// Si no se ha pedido ninguna página o no se ha iniciado sesión cargamos la de login  
-	$page = 'login_basico';
+	$page = IC_TIPO_LOGIN;
 }
 
 // Definimos $plantilla en blanco para que se comporte como variable global
@@ -91,8 +90,8 @@ if(file_exists("../app_code/$page.php"))
 }
 else
 {
-	$smarty->assign('error' ,  "<b>Error 404</b>: no encontramos la página que ha solicitado."); 
-	$plantilla = "../app_code/error.tpl";
+	$smarty->assign('error', "Error 404: no encontramos la página que ha solicitado."); 
+  require_once("../app_code/error.php");
 }
 // Llama a las tres plantillas que conforman la página html
 $smarty->display('theme/'.IC_THEME.'/cabecera.tpl'); 
