@@ -1,7 +1,3 @@
-{if $error}<p class='error'>{$error}</p>{/if}
-{if $smarty.get.error}<p class='error'>{$smarty.get.error}</p>{/if}
-{if $aviso}<p class='aviso'>{$aviso}</p>{/if}
-{if $smarty.get.aviso}<p class='aviso'>{$smarty.get.aviso}</p>{/if}
 <h3>{$proceso->codigo} - {$proceso->nombre}</h3>
 <a href='index.php?page=proceso_editar&id_proceso={$proceso->id_proceso}&id_entidad={$proceso->id_entidad}'><img 
 	src='iconos/16x16/cog_edit.png' alt='icono' /> Editar proceso</a> &nbsp; 

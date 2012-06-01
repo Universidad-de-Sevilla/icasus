@@ -20,7 +20,7 @@ if ($_REQUEST['id_entidad'])
 	$smarty->assign('entidad' , $entidad);
 
 	$subentidad = new entidad();
-	$subentidades = $subentidad->Find("id_padre = $id_entidad ORDER by codigo");
+	$subentidades = $subentidad->Find("id_madre = $id_entidad ORDER by codigo");
 	$smarty->assign('subentidades', $subentidades);
   
   $usuario_entidad = new usuario_entidad;

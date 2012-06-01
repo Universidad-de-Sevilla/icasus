@@ -1,23 +1,15 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Proyecto: Icasus 
 // Archivo: proceso_listar.php
-// Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Muestra los datos de un proceso y los indicadores asociados
+// Muestra los datos de un proceso y los indicadores asociados
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
-global $basedatos;
 global $plantilla;
 global $id_entidad;
 
-// Esto es para prevenir que se cargue el script sin pasar por index.php
-if (!is_object($smarty))
-{
-	header("Location:index.php?page=proceso_listar?id_entidad=$id_entidad");	
-}
 
 // Si vienen datos suficientes cargamos proceso con sus indicadores
 if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))

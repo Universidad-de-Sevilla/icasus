@@ -1,10 +1,10 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: entidad.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es) y Jesús Martín (jjmc@us.es)
+// Archivo: entidad_listar.php
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Controla todas las acciones relacionadas con las entidades
+// Muestra un listado de las unidades y los grupos del usuario actual
+// Permite buscar cualquier unidad
 //---------------------------------------------------------------------------------------------------
 global $smarty;
 global $usuario;

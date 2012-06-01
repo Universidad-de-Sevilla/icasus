@@ -14,7 +14,7 @@
 	<tr><th>Código</th><td>{$entidad->codigo}</td></tr>
 	<tr><th>Nombre</th><td>{$entidad->nombre}</td></tr>
 	<tr><th>Página web</th><td><a href='{$entidad->web}'>{$entidad->web}</a></td></tr>
-	<tr><th>Unidad superior</th><td><a href="index.php?page=entidad_datos&id_entidad={$entidad->padre->id}">{$entidad->padre->nombre}</a></td></tr>
+	<tr><th>Unidad superior</th><td><a href="index.php?page=entidad_datos&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a></td></tr>
 </table>
 
 <h3>Usuarios</h3>
@@ -56,7 +56,7 @@
 		<tr>
 			<td>{$subentidad->codigo}</td>
 			<td>{$subentidad->nombre}</td>
-			<td><a href='index.php?page=entidad_datos&id_entidad={$subentidad->id_entidad}'>Mostrar</a></td>
+			<td><a href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'>Mostrar</a></td>
 		</tr>
    	{/foreach}
 	</tbody>

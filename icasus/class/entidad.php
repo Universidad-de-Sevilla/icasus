@@ -10,14 +10,14 @@ class entidad extends ADOdb_Active_Record
 {
 	public $_table = 'entidades';
 	public $indicadores;
-  public $padre;
+  public $madre;
 
   public function load_joined($condicion)
   {
     if ($this->load($condicion))
     {
-      $this->padre = new entidad;
-      $this->padre->load("id = $this->id_padre");
+      $this->madre = new entidad;
+      $this->madre->load("id = $this->id_madre");
       return true;
     }
     else
@@ -42,7 +42,7 @@ class entidad extends ADOdb_Active_Record
 
   public function actas_grupo($id_entidad)
   {
-    if ($grupos = $this ->find('id_padre='.$id_entidad))
+    if ($grupos = $this ->find('id_madre='.$id_entidad))
     {
       foreach ($grupos as $grupo)
       {
