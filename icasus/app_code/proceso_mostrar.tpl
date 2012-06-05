@@ -1,5 +1,5 @@
 <h3>{$proceso->codigo} - {$proceso->nombre}</h3>
-<a href='index.php?page=proceso_editar&id_proceso={$proceso->id_proceso}&id_entidad={$proceso->id_entidad}'><img 
+<a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'><img 
 	src='/icons/ff16/cog_edit.png' alt='icono' /> Editar proceso</a> &nbsp; 
 <a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'><img 
 	src='/icons/ff16/cog.png' alt='icono'/> Listar procesos</a> &nbsp;
@@ -7,7 +7,7 @@
 	src='/icons/ff16/cog_add.png' alt='icono' /> Crear proceso</a> &nbsp; 
 <a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'><img 
 	src='/icons/ff16/chart_curve_add.png' alt='icono' /> Crear indicador</a> &nbsp; 
-<a href='index.php?page=proceso_borrar&id_proceso={$proceso->id_proceso}&id_entidad={$proceso->id_entidad}'
+<a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
 onClick='return confirmar();'><img 
 	src='/icons/ff16/cog_delete.png' alt='icono' /> Borrar proceso</a> &nbsp; 
 
@@ -28,12 +28,12 @@ onClick='return confirmar();'><img
 		  <td><a href='index.php?page=usuario_datos&id_usuario={$indicador->id_responsable}'>{$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a></td>
 		  <td nowrap>
 			<a
-			href='index.php?page=indicador_datos&id_indicador={$indicador->id_indicador}&id_entidad={$proceso->id_entidad}'>Ver</a><br/>
-			<!--<a href='index.php?page=indicador_copiar&id_indicador={$indicador->id_indicador}'>Copiar</a> 
+			href='index.php?page=indicador_datos&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>Ver</a><br/>
+			<!--<a href='index.php?page=indicador_copiar&id_indicador={$indicador->id}'>Copiar</a> 
 			<br />--> 
-			<a href='index.php?page=valor_crear&id_indicador={$indicador->id_indicador}&id_entidad={$indicador->id_entidad}'>Grabar valor</a>
+			<a href='index.php?page=valor_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>Grabar valor</a>
 			<br /> 
-			<a href='index.php?page=indicador_editar&id_indicador={$indicador->id_indicador}&id_entidad={$indicador->id_entidad}'>Editar</a>
+			<a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>Editar</a>
 			</td>
 		  </tr>
 		{/foreach}
