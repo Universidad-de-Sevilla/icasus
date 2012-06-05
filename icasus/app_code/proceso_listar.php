@@ -7,7 +7,6 @@
 //---------------------------------------------------------------------------------------------------
 global $smarty;
 global $plantilla;
-global $id_entidad;
 
 if (isset($_REQUEST["id_entidad"]))
 {

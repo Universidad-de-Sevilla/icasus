@@ -19,16 +19,16 @@
 
   <p><label for="id_propietario">Propietario</label> &nbsp; <span class="grey">(requerido)</span><br />
     <select name="id_propietario" id="id_propietario" class="inp">
-      {foreach from=$usuarios item=usuario}
-        <option value="{$usuario->id}">{$usuario->nombre} {$usuario->apellidos}</option>
+      {foreach from=$usuarios_entidades item=usuario_entidad}
+        <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos}</option>
       {/foreach}
     </select>
   </p>
 
   <p><label for="alcance">Tipo de proceso</label> <br />
     <select name="alcance" id="alcance" class="inp">
-      <option value="Operativo" >Operativo</option>
       <option value="Indefinido" >Indefinido ...</option>
+      <option value="Operativo" >Operativo</option>
       <option value="Apoyo" >Apoyo</option>
       <option value="Directivos/Gestion" >Directivo/Gestión</option>
     </select>

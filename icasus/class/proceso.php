@@ -33,7 +33,6 @@ class proceso extends ADOdb_Active_Record
 
 	public function Find_joined($condition)
 	{
-    $condition = "id_entidad = 5";
 		if ($procesos = $this->Find($condition))
 		{	
 			foreach ($procesos as& $proceso)
@@ -83,3 +82,4 @@ class proceso extends ADOdb_Active_Record
       }
   }
 } 
+?>
