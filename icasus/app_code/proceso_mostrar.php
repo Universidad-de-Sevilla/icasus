@@ -14,21 +14,22 @@ global $id_entidad;
 // Si vienen datos suficientes cargamos proceso con sus indicadores
 if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 {
-	$id_proceso = sanitize($_REQUEST['id_proceso'],2);
-    // Datos del proceso
+	$id_proceso = sanitize($_REQUEST['id_proceso'],INT);
+	$id_entidad = sanitize($_REQUEST['id_entidad'],INT);
+  // Datos del proceso
 	$proceso = new proceso();
-	$proceso->load_joined("id_proceso=$id_proceso");
+	$proceso->load_joined("id = $id_proceso");
 	$smarty->assign('proceso',$proceso);
-    // Listado de subprocesos
-    $subprocesos = $proceso->Find_joined("id_madre = $id_proceso");
-    $smarty->assign('subprocesos',$subprocesos);
-    // Listado de indicadores
-	$indicador = new ado_indicador();
-	$indicadores = $indicador->Find_joined("id_proceso = $id_proceso");
+  // Listado de subprocesos
+  $subprocesos = $proceso->Find_joined("id_madre = $id_proceso");
+  $smarty->assign('subprocesos',$subprocesos);
+  // Listado de indicadores
+	$indicador = new indicador();
+	$indicadores = $indicador->Find_joined("id = $id_proceso");
 	$smarty->assign('indicadores',$indicadores);
 	
-    $smarty->assign('id_entidad',$id_entidad);
-	$smarty->assign('_nombre_pagina' , $proceso->nombre);
+  $smarty->assign('id_entidad',$id_entidad);
+	$smarty->assign('_nombre_pagina' , "Proceso: " . $proceso->nombre);
 	$smarty->assign('_javascript' , array('proceso_borrar'));
 	$plantilla = 'proceso_mostrar.tpl';
 }

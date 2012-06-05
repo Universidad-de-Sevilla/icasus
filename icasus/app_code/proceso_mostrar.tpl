@@ -1,15 +1,15 @@
 <h3>{$proceso->codigo} - {$proceso->nombre}</h3>
 <a href='index.php?page=proceso_editar&id_proceso={$proceso->id_proceso}&id_entidad={$proceso->id_entidad}'><img 
-	src='iconos/16x16/cog_edit.png' alt='icono' /> Editar proceso</a> &nbsp; 
+	src='/icons/ff16/cog_edit.png' alt='icono' /> Editar proceso</a> &nbsp; 
 <a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'><img 
-	src='iconos/16x16/cog.png' alt='icono'/> Listar procesos</a> &nbsp;
+	src='/icons/ff16/cog.png' alt='icono'/> Listar procesos</a> &nbsp;
 <a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'><img 
-	src='iconos/16x16/cog_add.png' alt='icono' /> Crear proceso</a> &nbsp; 
+	src='/icons/ff16/cog_add.png' alt='icono' /> Crear proceso</a> &nbsp; 
 <a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'><img 
-	src='iconos/16x16/chart_curve_add.png' alt='icono' /> Crear indicador</a> &nbsp; 
+	src='/icons/ff16/chart_curve_add.png' alt='icono' /> Crear indicador</a> &nbsp; 
 <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id_proceso}&id_entidad={$proceso->id_entidad}'
 onClick='return confirmar();'><img 
-	src='iconos/16x16/cog_delete.png' alt='icono' /> Borrar proceso</a> &nbsp; 
+	src='/icons/ff16/cog_delete.png' alt='icono' /> Borrar proceso</a> &nbsp; 
 
 {if $indicadores}
 	<h3>Indicadores asociados</h3>	

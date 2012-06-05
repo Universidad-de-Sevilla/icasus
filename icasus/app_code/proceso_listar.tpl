@@ -1,5 +1,5 @@
 <h3>Lista de procesos</h3>        
-<p><a href="index.php?page=proceso_crear&id_entidad={$entidad->id_entidad}"><img 
+<p><a href="index.php?page=proceso_crear&id_entidad={$entidad->id}"><img 
         src='/icons/ff16/cog_add.png' /> Crear nuevo proceso</a></p>
 
 {if $procesos}                   
@@ -12,12 +12,12 @@
         {foreach from=$procesos item=proceso}
             <tr>                  
             <td nowrap>{$proceso->codigo}</td>
-            <td><a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id_proceso}&id_entidad={$proceso->id_entidad}"><b>{$proceso->nombre}</b></a></td>
+            <td><a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><b>{$proceso->nombre}</b></a></td>
             <td>{$proceso->propietario->nombre} {$proceso->propietario->apellidos}</td>               
             <td>{$proceso->alcance}</td>
-            <td><a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id_proceso}&id_entidad={$proceso->id_entidad}">Ver</a>
-            - <a href="index.php?page=proceso_editar&id_proceso={$proceso->id_proceso}&id_entidad={$proceso->id_entidad}">Editar</a>
-            - <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id_proceso}&id_entidad={$proceso->id_entidad}'
+            <td><a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">Ver</a>
+            - <a href="index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">Editar</a>
+            - <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
             onClick='return confirmar();'>Borrar</a></td>           
             </tr>
         {/foreach}
