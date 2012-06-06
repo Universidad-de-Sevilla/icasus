@@ -1,4 +1,6 @@
 <h3>Datos del indicador: {$indicador->nombre}</h3>
+<a href='index.php?page=mediciones_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+	src='/icons/ff16/chart_curve.png' /> Gestionar mediciones</a> &nbsp;
 <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img 
 	src='/icons/ff16/chart_curve.png' /> Listar todos</a> &nbsp;
 <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 

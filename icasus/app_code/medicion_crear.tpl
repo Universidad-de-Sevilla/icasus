@@ -1,14 +1,16 @@
-<p>Indicador: {$indicador->codigo} - {$indicador->nombre}</p>
+<h2>Indicador: {$indicador->codigo} - {$indicador->nombre}</h2>
 
 <form name="medicion" id="medicion" action="index.php?page=medicion_grabar" method="post">
+  <input type="hidden" name="id_indicador" value="{$indicador->id}" />
+  
   <p><label for="etiqueta">Etiqueta</label>
   <input type="input" name="etiqueta" /></p>
   
   <p><label for="periodo_inicio">Inicio del periodo</label>
-  <input type="input" name="periodo" /></p>
+  <input type="input" name="periodo_inicio" /></p>
 
   <p><label for="periodo_fin">Fin del periodo</label>
-  <input type="input" name="grabacion_inicio" /></p>
+  <input type="input" name="periodo_fin" /></p>
 
   <p><label for="grabacion_inicio">Inicio de grabación</label>
   <input type="input" name="grabacion_inicio" /></p>
