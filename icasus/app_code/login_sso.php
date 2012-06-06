@@ -40,10 +40,11 @@ if (isset($_GET["autenticar"]))
 			$usuario = new usuario();
 			if ($usuario->load_joined("login = '".$_SESSION["ssodato"]["uid"]."'"))
 			{
+				//print_r($usuario);
 				$_SESSION['usuario'] = $usuario;
 				//$log = new $log;
 				//$log->add('login',0,$usuario->id);
-				header("location:index.php?page=entidad_listar");
+				header("location:index.php?page=entidad_listar&la");
 			}
 			else
 			{
@@ -54,6 +55,7 @@ if (isset($_GET["autenticar"]))
 				$usuario->correo = $_SESSION["ssodato"]["mail"];
 				if($usuario->save())
 				{
+				$_SESSION['usuario'] = $usuario;
 					header("location:index.php?page=entidad_listar");
 				}
 				else
