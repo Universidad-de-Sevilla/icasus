@@ -1,0 +1,15 @@
+0.3.4
+	* Fixed 'error' attribute name
+
+0.3.3
+	* GET parameter not considered when not in https connections
+
+0.3.2
+	* Cookie for IE workaround is now only set for https connections
+
+0.3.1
+        * New pack for opensso-pre (certificate changed)
+
+0.3
+	* Configuration packs/bundles with certificate validation support
+	* Modified "User Agent" string
