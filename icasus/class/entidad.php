@@ -32,7 +32,7 @@ class entidad extends ADOdb_Active_Record
     foreach($dptos as $dpto)
     {
       //indicadores de la unidad
-      $indicador = new ado_indicador();
+      $indicador = new indicador();
       $indicadores = $indicador->find_valor("id_entidad = $dpto->id_entidad");
       $dpto->indicadores = $indicadores;
 
@@ -68,7 +68,7 @@ class entidad extends ADOdb_Active_Record
 		}
 		foreach($dptos as $dpto)
 		{
-			$indicador = new ado_indicador();
+			$indicador = new indicador();
 			$indicadores = $indicador->find_valor("id_entidad = $dpto->id_entidad AND ($codes)");
 			$dpto->indicadores = $indicadores;
 		}
@@ -92,12 +92,10 @@ class entidad extends ADOdb_Active_Record
 								 AND year(from_unixtime(v.fecha_recogida)) = ".$periodo ;
 					$cuenta = $db->execute($sql);
         	$code[$codigo][$periodo] = $cuenta->fields[$dato];
-        	//$code[$codigo][$periodo] = $cuenta->fields["valor"];
       	}
     	}
 			$entidad->indicadores = $code;	
 		}
-		//print_r($entidades);
 		return $entidades;
 	}
 }

@@ -1,9 +1,7 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Proyecto: Icasus
 // Archivo: class/proceso.php
-// Tipo: definicion de clase
-// Desarrolladores: Juanan Ruiz (juanan@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: gestiona los procesos
 //---------------------------------------------------------------------------------------------------
@@ -18,8 +16,8 @@ class proceso extends ADOdb_Active_Record
 	{
 		if ($this->load($condition))
 		{
-			$propietario = new ado_usuario();
-			$propietario->load("id_usuario = $this->id_propietario");
+			$propietario = new usuario();
+			$propietario->load("id = $this->id_propietario");
 			$this->propietario = $propietario;
 
       $madre = new proceso();
@@ -35,7 +33,6 @@ class proceso extends ADOdb_Active_Record
 
 	public function Find_joined($condition)
 	{
-    $condition = "id_entidad = 5";
 		if ($procesos = $this->Find($condition))
 		{	
 			foreach ($procesos as& $proceso)
@@ -60,10 +57,10 @@ class proceso extends ADOdb_Active_Record
   public function borrar($id_proceso)
   {
       // Carga el proceso
-      if ($this->load("id_proceso = $id_proceso"))
+      if ($this->load("id= $id_proceso"))
       {   
           // Comprueba que no tenga indicadores asociados
-          $indicador = new ado_indicador();
+          $indicador = new indicador();
           if ($indicador->Find("id_proceso = $id_proceso") OR $this->Find("id_madre = $id_proceso"))
           {
               // Informa de error
@@ -85,3 +82,4 @@ class proceso extends ADOdb_Active_Record
       }
   }
 } 
+?>

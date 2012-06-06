@@ -8,14 +8,14 @@
 
 class indicador extends ADOdb_Active_Record
 {
-	var $_table = 'indicadores';
-	var $ruta_imagen;
-	var $valores;
-	var $proceso;
-	var $responsable;
-	var $entidad;
+	public $_table = 'indicadores';
+	public $ruta_imagen;
+	public $valores;
+	public $proceso;
+	public $responsable;
+	public $entidad;
 
-	function Find_joined($criterio)
+	public function Find_joined($criterio)
 	{
 		if ($indicadores = $this->Find($criterio))
 		{
@@ -25,7 +25,7 @@ class indicador extends ADOdb_Active_Record
 				$proceso->load("id_proceso = $indicador->id_proceso");
 				$indicador->proceso = $proceso->nombre;
 
-			  $responsable = new ado_usuario();
+			  $responsable = new usuario();
 				$responsable->load("id_usuario = $indicador->id_responsable");
 				$indicador->responsable = $responsable;
 			}
@@ -38,7 +38,7 @@ class indicador extends ADOdb_Active_Record
 	}	
 
 	// Obtiene los valores introducidos en este indicador con la fecha de recogida como campo clave
-	function obtener_valores()
+	public function obtener_valores()
 	{	
 		$datos = array();
 		$db = $this->DB();
@@ -59,13 +59,13 @@ class indicador extends ADOdb_Active_Record
 			return false;
 		}
 	}
-	function indicador_publico()
+	public function indicador_publico()
 	{
 		if ($indicadores = $this->find("id_visibilidad = 2"))
 		{
 			foreach ($indicadores as $indicador)
 			{
-			$entidad = new ado_entidad();	
+			$entidad = new entidad();	
 			$entidad->load("id_entidad = $indicador->id_entidad");
 			$indicador->entidad = $entidad->nombre;
 			}
@@ -77,12 +77,12 @@ class indicador extends ADOdb_Active_Record
 		}
 	}
 //devuelve los indicadores con su valores
-	function find_valor($condicion)
+	public function find_valor($condicion)
 	{
 		$indicadores = $this->find($condicion);
 		foreach ($indicadores as $indicador)
 		{
-			$valor = new ado_valor();
+			$valor = new valor();
 			$valors = $valor->find("id_indicador = ".$indicador->id_indicador." ORDER BY fecha_recogida DESC");
 			$indicador->valores = $valors;
 		}

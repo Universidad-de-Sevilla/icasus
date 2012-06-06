@@ -25,7 +25,6 @@ class usuario_entidad extends ADOdb_Active_Record
         $usuario_entidad->entidad = $entidad;
 			}
       return $usuarios_entidades;
-       
     }
     else
     {
@@ -39,9 +38,9 @@ class usuario_entidad extends ADOdb_Active_Record
     {
       foreach($usuarios_entidades as& $usuario_entidad)
       {
-        $usuario_entidad->usuario = new usuario;
+        $usuario_entidad->usuario = new usuario();
         $usuario_entidad->usuario->load("id = $usuario_entidad->id_usuario");
-        $usuario_entidad->rol = new rol;
+        $usuario_entidad->rol = new rol();
         $usuario_entidad->rol->load("id = $usuario_entidad->id_rol");
       }
       return $usuarios_entidades;
