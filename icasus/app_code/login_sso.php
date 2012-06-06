@@ -11,13 +11,13 @@ $smarty->assign('pagina',$pagina);
 
 if (isset($_GET["autenticar"]))
 { 
-        $o = new OpenSSO();
-        $res1 = $o->check_and_force_sso();
-        if ($res1 === TRUE)
-        {
-		$_SESSION['ssodato'] = $o->all_attributes();
+	$sso = new OpenSSO();
+	$res = $sso->check_and_force_sso();
+	if ($res === TRUE)
+	{
+		$_SESSION['ssodato'] = $sso->all_attributes();
 		$autorizado = 0;
-	        $usesrelacion = $_SESSION["ssodato"]["usesrelacion"];
+		$usesrelacion = $_SESSION["ssodato"]["usesrelacion"];
 		if (is_array($usesrelacion))
 		{
 			foreach($usesrelacion as $item)
@@ -37,49 +37,46 @@ if (isset($_GET["autenticar"]))
 		}
 		if ($autorizado >= 1)
 		{
-			$usuario = new usuario();
-			if ($usuario->load_joined("login = '".$_SESSION["ssodato"]["uid"]."'"))
-			{
-				//print_r($usuario);
-				$_SESSION['usuario'] = $usuario;
-				//$log = new $log;
-				//$log->add('login',0,$usuario->id);
-				header("location:index.php?page=entidad_listar&la");
-			}
-			else
-			{
-				$usuario->login = $_SESSION["ssodato"]["uid"];
-				$usuario->nombre = $_SESSION["ssodato"]["givenname"];
-				$usuario->nif = $_SESSION["ssodato"]["irispersonaluniqueid"];
-				$usuario->apellidos = $_SESSION["ssodato"]["sn"];
-				$usuario->correo = $_SESSION["ssodato"]["mail"];
-				if($usuario->save())
+				$usuario = new usuario();
+				if ($usuario->load_joined("login = '".$_SESSION["ssodato"]["uid"]."'"))
 				{
-				$_SESSION['usuario'] = $usuario;
+					$_SESSION['usuario'] = $usuario;
+					//$log = new $log;
+					//$log->add('login',0,$usuario->id);
 					header("location:index.php?page=entidad_listar");
 				}
 				else
 				{
-					$error="El usuario pertenece al colectivo que tiene permiso para utilizar esta herramienta pero no se ha podido dar de alta en la herramienta. Contactar con icasus@us.es";
-		                        $smarty->assign('error',$error);
-					header("location:index.php?page=entidad_listar&error=$error");
+					$usuario->login = $_SESSION["ssodato"]["uid"];
+					$usuario->nombre = $_SESSION["ssodato"]["givenname"];
+					$usuario->nif = $_SESSION["ssodato"]["irispersonaluniqueid"];
+					$usuario->apellidos = $_SESSION["ssodato"]["sn"];
+					$usuario->correo = $_SESSION["ssodato"]["mail"];
+					if($usuario->save())
+					{
+						$_SESSION['usuario'] = $usuario;
+						header("location:index.php?page=entidad_listar");
+					}
+					else
+					{
+						$error="El usuario pertenece al colectivo que tiene permiso para utilizar esta herramienta pero no se ha podido dar de alta en la herramienta. Contactar con icasus@us.es";
+						$smarty->assign('error',$error);
+						header("location:index.php?page=entidad_listar&error=$error");
+					}
 				}
-			}
-			
 		}
 		else
 		{
 			$error="La relacion de este usuario con la Universidad no es la definida para utilizar esta herramienta. Contactar con icasus@us.es";
-                        $smarty->assign('error',$error);
-                        header("location:index.php?page=entidad_listar&error=$error");
-
+			$smarty->assign('error',$error);
+			header("location:index.php?page=entidad_listar&error=$error");
 		}
-        }
+	}
 }
 else if (isset($_GET["logout"]))
 {
 	session_unset();
-	header("location:index.php");
+	header("location:https://opensso.us.es/opensso/UI/Logout?goto=". IC_URL_BASE);
 }
 else
 {
