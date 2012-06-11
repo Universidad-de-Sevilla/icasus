@@ -9,7 +9,7 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-if (isset($_REQUEST["id_indicador"]) AND isset($_REQUEST["periodo_inicio"]) AND isset($_REQUEST["periodo_fin"]))
+if (isset($_REQUEST["id_indicador"]) AND is_array($_REQUEST["id_unidades"]) AND isset($_REQUEST["periodo_inicio"]) AND isset($_REQUEST["periodo_fin"]))
 {
   $medicion = new medicion();
   $medicion->id_indicador = sanitize($_REQUEST["id_indicador"], INT);
@@ -19,7 +19,23 @@ if (isset($_REQUEST["id_indicador"]) AND isset($_REQUEST["periodo_inicio"]) AND 
 
   if ($medicion->save())
   {
-    $aviso = "Se ha agregado correctamente una nueva medición con X unidades afectadas";
+    // Grabamos un valor en blanco a cada una de las unidades seleccionadas
+    $contador = 0;
+    $iterador = 0;
+    foreach($_REQUEST["id_unidades"] as $id_unidad)
+    {
+      $id_unidad = sanitize($_REQUEST["id_unidades"][$iterador], INT);
+      if(is_int($id_unidad) AND ($id_unidad > 0))
+      {
+        $contador ++;
+        $valor = new valor();
+        $valor->id_unidad = $id_unidad;
+        $valor->id_medicion = $medicion->id;
+        $valor->save();
+      }
+      $iterador ++;
+    }
+    $aviso = "Se ha agregado correctamente una nueva medición con $contador unidades afectadas";
     header("location:index.php?page=medicion_listar&id_indicador=$medicion->id_indicador&aviso=$aviso");
   }
   else

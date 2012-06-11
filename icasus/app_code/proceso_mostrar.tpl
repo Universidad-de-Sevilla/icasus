@@ -15,8 +15,7 @@ onClick='return confirmar();'><img
 	<h3>Indicadores asociados</h3>	
 	<table class='listing' id='sortable'>
 	<thead>
-		<tr><th>Código</th><th>Indicador</th><th>Formulaci&oacute;n</th>
-		<th>Propietario</th><th>Acciones</th></tr>
+		<tr><th>Código</th><th>Indicador</th><th>Propietario</th><th>Acciones</th></tr>
 	</thead>
 		
 	<tbody>
@@ -24,15 +23,14 @@ onClick='return confirmar();'><img
 		  <tr>
 		  <td>{$indicador->codigo}</td>
 		  <td><b>{$indicador->nombre}</b><a href='#' title='{$indicador->descripcion}'><big>*</big></a></td>
-		  <td>{$indicador->formulacion}</td>
 		  <td><a href='index.php?page=usuario_datos&id_usuario={$indicador->id_responsable}'>{$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a></td>
 		  <td nowrap>
 			<a
-			href='index.php?page=indicador_datos&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>Ver</a><br/>
-			<!--<a href='index.php?page=indicador_copiar&id_indicador={$indicador->id}'>Copiar</a> 
-			<br />--> 
-			<a href='index.php?page=valor_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>Grabar valor</a>
-			<br /> 
+			href='index.php?page=indicador_datos&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>Mostrar</a> - 
+			<!--
+      <a href='index.php?page=indicador_copiar&id_indicador={$indicador->id}'>Copiar</a> 
+			<a href='index.php?page=valor_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>Grabar valor</a> <br /> 
+			--> 
 			<a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>Editar</a>
 			</td>
 		  </tr>
