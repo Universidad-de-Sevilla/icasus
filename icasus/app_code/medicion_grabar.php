@@ -24,12 +24,12 @@ if (isset($_REQUEST["id_indicador"]) AND is_array($_REQUEST["id_unidades"]) AND 
     $iterador = 0;
     foreach($_REQUEST["id_unidades"] as $id_unidad)
     {
-      $id_unidad = sanitize($_REQUEST["id_unidades"][$iterador], INT);
-      if(is_int($id_unidad) AND ($id_unidad > 0))
+      $id_entidad = sanitize($_REQUEST["id_unidades"][$iterador], INT);
+      if(is_int($id_entidad) AND ($id_unidad > 0))
       {
         $contador ++;
         $valor = new valor();
-        $valor->id_unidad = $id_unidad;
+        $valor->id_entidad = $id_entidad;
         $valor->id_medicion = $medicion->id;
         $valor->save();
       }

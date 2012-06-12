@@ -19,7 +19,7 @@
   <input type="input" name="grabacion_fin" /></p>
   
   <h4>Unidades/subunidades implicadas</h4>
-    <input type="checkbox" name="id_unidades[]" checked /> {$entidad->nombre}<hr />
+    <input type="checkbox" name="id_unidades[]" value="{$entidad->id}" checked /> {$entidad->nombre}<hr />
     {foreach $subunidades as $subunidad}
       <input type="checkbox" name="id_unidades[]" value="{$subunidad->id}" checked /> {$subunidad->nombre}<br />
     {/foreach}

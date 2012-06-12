@@ -9,17 +9,19 @@
         <th>Fecha fin periodo</th>
         <th>Fecha inicio grabacion</th>
         <th>Fecha fin grabacion</th>
+        <th>Acciones</th>
       </tr>
     </thead>
 
     <tbody>
       {foreach $mediciones as $medicion}
         <tr>
-          <td>{$medicion->etiqueta}</td>
+          <td nowrap>{$medicion->etiqueta}</td>
           <td>{$medicion->periodo_inicio}</td>
           <td>{$medicion->periodo_fin}</td>
           <td>{$medicion->grabacion_inicio}</td>
           <td>{$medicion->grabacion_fin}</td>
+          <td><a href="index.php?page=medicion_mostrar&id_medicion={$medicion->id}">Mostrar</a> - Editar - Borrar</td>
       {/foreach}
     </tbody>
   </table>
