@@ -1,4 +1,4 @@
-{if isset($grupos_usuario)}
+{if is_array($grupos_usuario)}
   <h3>Equipos de Trabajo del usuario</h3>
   <table width="95%">
       <thead><tr><th>C&oacute;digo</th><th>Equipo</th><th colspan="4">Acciones</th></tr></thead>
@@ -24,7 +24,7 @@
 {/if}
 
 <h3>Unidades del usuario</h3>
-{if isset($entidades_usuario)}
+{if is_array($entidades_usuario)}
   <table>
       <thead><tr><th>C&oacute;digo</th><th>Unidad</th><th>Acciones</th></tr></thead>
       <tbody>

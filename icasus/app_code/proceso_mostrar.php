@@ -25,7 +25,7 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
   $smarty->assign('subprocesos',$subprocesos);
   // Listado de indicadores
 	$indicador = new indicador();
-	$indicadores = $indicador->Find_joined("id = $id_proceso");
+	$indicadores = $indicador->Find_joined("id_proceso = $id_proceso");
 	$smarty->assign('indicadores',$indicadores);
 	
   $smarty->assign('id_entidad',$id_entidad);

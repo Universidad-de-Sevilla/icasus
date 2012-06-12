@@ -14,8 +14,9 @@ $smarty->assign('_javascript', array('ordenatabla'));
 $smarty->assign('_nombre_pagina', 'Lista de Unidades');
 
 // Entidades de este usuario
-$entidades_usuario = $usuario->entidades;
-//$grupos_operario = $operario->obtener_grupos($operario->id_usuario);
+$smarty->assign('entidades_usuario',$usuario->entidades);
+$grupos_usuario = ""; //Deshabilitado de momento
+$smarty->assign('grupos_usuario',$grupos_usuario);
 
 //Todas las entidades
 if (isset($_REQUEST['criterio']))
@@ -27,7 +28,5 @@ if (isset($_REQUEST['criterio']))
   $entidades = $entidad->Find($condicion);
   $smarty->assign('entidades',$entidades);
 }
-$smarty->assign('entidades_usuario',$entidades_usuario);
-//$smarty->assign('grupos_operario',$grupos_operario);
 $plantilla = 'entidad_listar.tpl';
 ?>
