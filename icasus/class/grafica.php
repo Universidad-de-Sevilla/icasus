@@ -1,27 +1,41 @@
 <?php  
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Proyecto: Icasus 
 // Archivo: class/grafica.php
 // Tipo: clase
-// Desarrolladores: Juanan Ruiz (juanan@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Crea gráficas utilizando la libreria pChart
+// Descripcion: Crea gráficas utilizando la libreria pChart 2.1.3
 //---------------------------------------------------------------------------------------------------
 
 class grafica
 {
-	var $font_path;
+	private $font_path;
+  private $pchart;
 
-	function grafica($ancho=650,$alto=170)
+	public function grafica($ancho=650,$alto=170)
 	{	
-		require_once("lib/pChart/pChart/pData.class");     
-		require_once("lib/pChart/pChart/pChart.class");     
-		$this->font_path = IC_DIR_BASE . 'lib/pChart/Fonts/tahoma.ttf'; 
+		require_once("../../cascara_core/lib/pChart2/pChart/pData.class");     
+		require_once("../../cascara_core/lib/pChart2/pChart/pChart.class");     
+		$this->font_path = IC_DIR_BASE . '../../cascara_core/lib/pChart2/Fonts/tahoma.ttf'; 
 		$this->ancho = $ancho;
 		$this->alto = $alto;
+		// Inicializa el grafico  
+		$this->pchart = new pChart($this->ancho,$this->alto);  
+		$this->pchart->setColorPalette(0,0,119,170); //Cambiamos la paleta de la primera serie
+		$this->pchart->setColorPalette(0,0,0,0); //Cambiamos la paleta de la primera serie
+		$this->pchart->setColorPalette(1,150,22,56); //Cambiamos la paleta de la primera serie
+		$this->pchart->setFontProperties($this->font_path,10);  
+		$this->pchart->setGraphArea(60,20,($this->ancho*95/100),($this->alto*85/100));  
 	}
 	 
-	function dibuja_indicador($ruta_imagen,$datos)
+  public function dibuja($ruta_imagen, $datos)
+  {
+		$this->pchart->drawGraphArea(252,252,252);  
+
+  }
+
+  // En desuso
+	public function dibuja_indicador($ruta_imagen,$datos)
 	{	
 		// Prepara los datos del indicador para pasarlos a un dataset
 		foreach ($datos as $dato)
