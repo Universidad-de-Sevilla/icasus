@@ -21,9 +21,9 @@ $smarty->assign('grupos_usuario',$grupos_usuario);
 //Todas las entidades
 if (isset($_REQUEST['criterio']))
 {
-	$criterio = sanitize($_REQUEST['criterio'], SQL);
-	$smarty->assign('criterio', $criterio);
-	$condicion = "nombre LIKE '%$criterio%' OR codigo LIKE '%$criterio%'";
+  $criterio = sanitize($_REQUEST['criterio'], SQL);
+  $smarty->assign('criterio', $criterio);
+  $condicion = "nombre LIKE '%$criterio%' OR codigo LIKE '%$criterio%'";
   $entidad = new entidad;
   $entidades = $entidad->Find($condicion);
   $smarty->assign('entidades',$entidades);
