@@ -37,7 +37,7 @@ if (isset($_GET['id_indicador']))
 		$grafica->dibuja_indicador($ruta_imagen, $valores);
 		$smarty->assign('ruta_imagen', $ruta_imagen);
 	}
-	$plantilla = 'indicador_datos.tpl';
+	$plantilla = 'indicador_mostrar.tpl';
 }
 else
 {
