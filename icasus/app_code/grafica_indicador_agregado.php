@@ -1,9 +1,9 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: 
+// Archivo: app_code/grafica_indicador_agregado.php 
 //---------------------------------------------------------------------------------------------------
-// Descripcion: 
+// Descripcion: Muestra una gráfica con las medias de los valores de un indicador agregado
 //---------------------------------------------------------------------------------------------------
 global $usuario;
 
@@ -19,6 +19,7 @@ if (isset($_REQUEST["id_indicador"]))
   $fin = isset($_REQUEST["fin"])?sanitize($_REQUEST["fin"], INT):0;
 
   $indicador = new indicador();
+  $indicador->load("id = $id_indicador");
   $db = $indicador->DB();
   $query = "SELECT etiqueta, ROUND(AVG(valor),2) AS media FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion;";
   $resultado = $db->getAll($query);
@@ -36,16 +37,18 @@ if (isset($_REQUEST["id_indicador"]))
     $myData->addPoints($etiquetas, "Periodo");
     $myData->setAbscissa("Periodo");
     $myData->setSerieOnAxis("Media", 0);
-    $myPicture = new pImage(700,230,$myData);
+    $myPicture = new pImage(700,270,$myData);
     $myPicture->setFontProperties(array("FontName"=>"../../cascara_core/lib/pChart2/fonts/calibri.ttf","FontSize"=>11));
-    $myPicture->setGraphArea(60,40,670,190);
+    $myPicture->setGraphArea(60,40,670,220);
     /* Draw the scale */ 
     $ScaleSettings = array("XMargin"=>35,"DrawSubTicks"=>TRUE,"GridR"=>155,"GridG"=>155,"GridB"=>155,"AxisR"=>0,"AxisG"=>0,"AxisB"=>0,"GridAlpha"=>30,"CycleBackground"=>TRUE);
     $myPicture->drawScale($ScaleSettings);
     //$media = round($myData->getSerieAverage("Media"),2);
     //$myPicture->drawThreshold($media,array("WriteCaption"=>TRUE));
-    //$myPicture->drawBarChart();
-    $myPicture->drawSplineChart();
+    //$myPicture->drawBarChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO));
+    $myPicture->drawLineChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO));
+    $myPicture->drawPlotChart();
+    $myPicture->drawText(20,260,"{$indicador->nombre}",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
     $myPicture->Stroke();
   }
   else
