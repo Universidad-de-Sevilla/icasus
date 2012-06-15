@@ -251,6 +251,10 @@ form.datos select.inp {
 	width: 570px;
 	}
 
+form.datos th {
+	background: #f6f6f6;
+}
+	
 form.datos input.submit {
 	border: 1px solid #aab;
 	font: 12px arial, sans-serif;
