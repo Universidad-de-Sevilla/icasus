@@ -23,11 +23,27 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
   {
     $proceso = new proceso();
     $proceso->load("id = $id_proceso");         
-    $proceso->id_madre = sanitize($_POST['madre'],2);   
-    $proceso->codigo = sanitize($_POST['codigo'],2);    
-    $proceso->nombre = sanitize($_POST['nombre'],2);    
-    $proceso->alcance = sanitize($_POST['alcance'],2);        
-    $proceso->id_propietario = isset($_POST['id_propietario'])?sanitize($_POST['id_propietario'],16):null;
+    $proceso->id_madre = isset($_POST['madre'])?sanitize($_POST['madre'],2):0;   
+    $proceso->codigo = isset($_POST['codigo'])?sanitize($_POST['codigo'],2):null;
+    $proceso->revision = isset($_POST['revision'])?sanitize($_POST['revision'],2):null;
+    $fecha = isset($_POST['fecha_revision'])?sanitize($_POST['fecha_revision'],SQL):null;
+    $fecha = explode("/",$fecha);
+    $fecha = $fecha[2]."/".$fecha[1]."/".$fecha[0];
+    $proceso->fecha_revision = $fecha;  
+    $proceso->nombre = isset($_POST['nombre'])?sanitize($_POST['nombre'],2):null;    
+    $proceso->alcance = isset($_POST['alcance'])?sanitize($_POST['alcance'],2):null; 
+    $proceso->mision = isset($_POST['mision'])?sanitize($_POST['mision'],2):null;    
+    $proceso->equipo_de_proceso = isset($_POST['equipo_de_proceso'])?sanitize($_POST['equipo_de_proceso'],2):null;    
+    $proceso->resultados_clave = isset($_POST['resultados_clave'])?sanitize($_POST['resultados_clave'],2):null;
+    $proceso->entradas = isset($_POST['entradas'])?sanitize($_POST['entradas'],2):null;   
+    $proceso->proveedores = isset($_POST['proveedores'])?sanitize($_POST['proveedores'],2):null;    
+    $proceso->salidas = isset($_POST['salidas'])?sanitize($_POST['salidas'],2):null;    
+    $proceso->clientes = isset($_POST['clientes'])?sanitize($_POST['clientes'],2):null;
+    $proceso->actividades = isset($_POST['actividades'])?sanitize($_POST['actividades'],2):null;   
+    $proceso->documentacion = isset($_POST['documentacion'])?sanitize($_POST['documentacion'],2):null;    
+    $proceso->mediciones = isset($_POST['mediciones'])?sanitize($_POST['mediciones'],2):null;    
+    $proceso->registros = isset($_POST['registros'])?sanitize($_POST['registros'],2):null;  
+    $proceso->id_propietario = isset($_POST['id_propietario'])?sanitize($_POST['id_propietario'],2):null;
     
     if ($proceso->save())
     {

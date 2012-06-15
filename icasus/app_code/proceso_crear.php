@@ -16,13 +16,13 @@ if (isset($_REQUEST["id_entidad"]))
   $entidad->load("id = $id_entidad");
   $smarty->assign("entidad", $entidad);
 
-  $proceso = new proceso();
-  $procesos = $proceso->find("id_entidad = $id_entidad");
-  $smarty->assign("procesos",$procesos);
-
   $usuario_entidad = new usuario_entidad;
-  $usuarios_entidades = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
-  $smarty->assign("usuarios_entidades", $usuarios_entidades);
+  $usuarios_entidad = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
+  $smarty->assign("usuarios_entidad", $usuarios_entidad);
+
+  $proceso_madre = new proceso();
+  $procesos_madre = $proceso_madre->find("id_entidad = $id_entidad");
+  $smarty->assign('procesos_madre', $procesos_madre);
 
   $smarty->assign("_nombre_pagina", $entidad->nombre);
   $plantilla = "proceso_crear.tpl";
