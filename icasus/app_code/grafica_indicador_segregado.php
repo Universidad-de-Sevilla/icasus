@@ -37,7 +37,8 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
     $myData->setAbscissa("Nombres");
     $myData->setSerieOnAxis("Valores", 0);
     $media = round($myData->getSerieAverage("Valores"),2);
-
+    $serieSettings = array("R"=>163,"G"=>38,"B"=>56,"Alpha"=>10);
+    //$MyData->setPalette("Valores",$serieSettings);
     // ancho, alto
     $myPicture = new pImage(600,550,$myData);
     $myPicture->setFontProperties(array("FontName"=>"../../cascara_core/lib/pChart2/fonts/calibri.ttf","FontSize"=>8));
@@ -47,7 +48,7 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
     //$myPicture->drawFilledRectangle(0,50,230,500,array("R"=>55,"G"=>255,"B"=>255,"Surrounding"=>-200,"Alpha"=>10)); 
     $ScaleSettings = array("Pos"=>SCALE_POS_TOPBOTTOM,"XMargin"=>20,"DrawSubTicks"=>TRUE,"GridR"=>155,"GridG"=>155,"GridB"=>155,"AxisR"=>0,"AxisG"=>0,"AxisB"=>0,"GridAlpha"=>30,"CycleBackground"=>TRUE);
     $myPicture->drawScale($ScaleSettings); 
-    $myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>250,"G"=>0,"B"=>0,"Alpha"=>10)); 
+    $myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>163,"G"=>38,"B"=>56,"Alpha"=>10)); 
     $myPicture->drawBarChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO)); 
     $myPicture->drawText(20,530,"{$indicador->nombre} ({$medicion})",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
     //$myPicture->drawLegend(510,205,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
