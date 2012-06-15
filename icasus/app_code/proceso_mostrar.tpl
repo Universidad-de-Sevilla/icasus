@@ -1,3 +1,16 @@
+<p><a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'><img 
+	src='/icons/ff16/cog_edit.png' alt='icono' /> Editar proceso</a> &nbsp; 
+<a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'><img 
+	src='/icons/ff16/cog.png' alt='icono'/> Listar procesos</a> &nbsp;
+<a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'><img 
+	src='/icons/ff16/cog_add.png' alt='icono' /> Crear proceso</a> &nbsp; 
+<a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'><img 
+	src='/icons/ff16/chart_curve_add.png' alt='icono' /> Crear indicador</a> &nbsp; 
+<a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
+onClick='return confirmar();'><img 
+	src='/icons/ff16/cog_delete.png' alt='icono' /> Borrar proceso</a> &nbsp; 
+</p>
+
 <p><label for='madre'>Proceso madre: {if $proceso_madre->id > 0} {$proceso_madre->codigo} - {$proceso_madre->nombre} {else} Es un Proceso Madre {/if}</label>
 </p>                           
 <p>
@@ -58,18 +71,6 @@
   <p><label for="mediciones">Mediciones: {$proceso->mediciones}</label></p>
   <p><label for="registros">Registros: {$proceso->registros}</label></p>
   <p><label for="alcance">Tipo de proceso: {$proceso->alcance}</label></p>
-<a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'><img 
-	src='/icons/ff16/cog_edit.png' alt='icono' /> Editar proceso</a> &nbsp; 
-<a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'><img 
-	src='/icons/ff16/cog.png' alt='icono'/> Listar procesos</a> &nbsp;
-<a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'><img 
-	src='/icons/ff16/cog_add.png' alt='icono' /> Crear proceso</a> &nbsp; 
-<a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'><img 
-	src='/icons/ff16/chart_curve_add.png' alt='icono' /> Crear indicador</a> &nbsp; 
-<a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-onClick='return confirmar();'><img 
-	src='/icons/ff16/cog_delete.png' alt='icono' /> Borrar proceso</a> &nbsp; 
-
 {if $indicadores}
 	<h3>Indicadores asociados</h3>	
 	<table class='listing' id='sortable'>
