@@ -1,6 +1,6 @@
 <h3>Datos del indicador: {$indicador->nombre}</h3>
 <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-	src='/icons/ff16/chart_curve.png' /> Gestionar mediciones</a> &nbsp;
+	src='/icons/ff16/chart_curve.png' /> Mostrar mediciones</a> &nbsp;
 <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img 
 	src='/icons/ff16/chart_curve.png' /> Listar todos</a> &nbsp;
 <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
@@ -69,37 +69,9 @@ href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={
 	{$indicador->responsable->apellidos}</a></td></tr>
 </table>
 
-<h3>Valores recogidos</h3>
-<a href='index.php?page=valor_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-	src='/icons/ff16/tag_blue_add.png' /> Agregar valor</a>
-{if $valores}
-	<p><img src='theme/usevilla/leyenda650.png' alt='Leyenda' /><br />
-    <img src='{$ruta_imagen}' alt='Representacion grafica del indicador' iwidth="630" iheight="240"/></p>
+<h3>Mediciones</h3>
+  <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+    src='/icons/ff16/time.png' /> Mostrar Mediciones</a>
+    
 	
-	<table class='listing' id='sortable'>
-		<thead><tr><th>Periodo</th><th>Valor</th><th>Cálculo</th><th>Objetivo</th><th>Obj pactado</th>
-		<th>Obj carta</th><th>Acciones</th></tr></thead>
-		<tbody>
-		{foreach from=$valores item=valor}
-			<tr>
-			<td>{$valor->fecha_recogida|date_format:"%m/%Y"}</td>
-			<td>{$valor->valor}
-				{if $valor->observaciones}
-					<a href='#' title='{$valor->observaciones}'>*</a>
-				{/if}
-			</td>
-			<td>{$valor->calculo}</td>
-			<td>{$valor->objetivo}</td>
-			<td>{$valor->objetivo_estrategico}</td>
-			<td>{$valor->objetivo_carta}</td>
-			<td><a href='index.php?page=valor_editar&id_valor={$valor->id}&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>Editar</a>
-			- <a
-			  href='index.php?page=valor_borrar&id_valor={$valor->id}&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'
-			  onClick='return valor_borrar();'>Borrar</a></td>
-			</tr> 
-  		{/foreach}
-		</tbody>
-	</table>
-{else} 
-	<p>A&uacute;n no se han introducido datos en este indicador</p>
-{/if}
+  <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" />

@@ -25,7 +25,7 @@
 							{$indicador->responsable->apellidos}</a></td>
 			  <td nowrap>
 				<a
-				href='index.php?page=indicador_datos&id_indicador={$indicador->id}&id_entidad={$entidad->id}'>Mostrar</a><br />
+				href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}'>Mostrar</a><br />
 				<!--
 				<a href='index.php?page=indicador_copiar&id_indicador={$indicador->id}'>Copiar</a>
 				<a
