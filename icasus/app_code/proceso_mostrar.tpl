@@ -1,4 +1,63 @@
-<h3>{$proceso->codigo} - {$proceso->nombre}</h3>
+<p><label for='madre'>Proceso madre: {if $proceso_madre->id > 0} {$proceso_madre->codigo} - {$proceso_madre->nombre} {else} Es un Proceso Madre {/if}</label>
+</p>                           
+<p>
+  <table width="100%">
+    <tr>
+      <th><label for='codigo'>C&oacute;digo</label> &nbsp; <span class='grey'>(requerido)</span></th>
+      <th><label for='revision'>Revisi&oacute;n</label> &nbsp; <span class='grey'>(requerido)</span></th>
+      <th><label for='fecha_revision'>Fecha</label> &nbsp; <span class='grey'>(requerido)</span></th>
+    </tr>
+    <tr>
+      <td><label for='codigo'>{$proceso->codigo}</label></td>
+      <td><label for='revision'>{$proceso->revision}</label></td>
+      <td><label for='fecha_revision'>{$proceso->fecha_revision|date_format:"%d/%m/%Y"}</label></td>
+    </tr>
+   </table>
+  </p>                
+  <p>
+  <table width="100%">
+    <tr>
+      <th><label for='nombre'>Nombre proceso</label> &nbsp; <span class='grey'>(requerido)</span></th>
+      <th><label for="id_propietario">Propietario</label></th>
+    </tr>
+    <tr>
+      <td><label for='nombre'>{$proceso->nombre}</label></td>
+      <td><label for='id_propietario'>{$propietario->nombre} {$propietario->apellidos}</label></td>
+    </tr>
+  </table>
+  </p>
+  <p><label for="mision">Misi&oacute;n: {$proceso->mision}</label></p>
+  <p><label for="equipo_de_proceso">Equipo de proceso: {$proceso->equipo_de_proceso}</label></p>
+  <p><label for="resultados_clave">Resultados clave: {$proceso->resultados_clave}</label></p>
+  <p>
+  <table width="100%">
+    <tr>
+      <th><label for='entradas'>Entradas</label></th>
+      <th><label for='proveedores'>Proveedores</label></th>
+    </tr>
+    <tr>
+      <td><label for='entradas'>{$proceso->entradas}</label></td>
+      <td><label for='proveedores'>{$proceso->proveedores}</label></td>
+    </tr>
+  </table>
+  </p>
+  <p>
+  <table width="100%">
+    <tr>
+      <th><label for='salidas'>Salidas</label></th>
+      <th><label for='clientes'>Clientes</label></th>
+    </tr>
+    <tr>
+      <td><label for='salidas'>{$proceso->salidas}</label></td>
+      <td><label for='clientes'>{$proceso->clientes}</label></td>
+    </tr>
+  </table>
+  </p>
+  <p><label for="actividades">Actividades: {$proceso->actividades}</label></p>
+  <p><label for="documentacion">Documentaci&oacute;n: {$proceso->documentacion}</label></p>
+  <p><label for="mediciones">Mediciones: {$proceso->mediciones}</label></p>
+  <p><label for="registros">Registros: {$proceso->registros}</label></p>
+  <p><label for="alcance">Tipo de proceso: {$proceso->alcance}</label></p>
 <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'><img 
 	src='/icons/ff16/cog_edit.png' alt='icono' /> Editar proceso</a> &nbsp; 
 <a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'><img 
