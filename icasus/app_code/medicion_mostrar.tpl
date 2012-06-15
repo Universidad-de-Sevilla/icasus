@@ -1,5 +1,6 @@
 <p>
-  <a href='index.php?page=indicador_datos&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al indicador</a> &nbsp;
+  <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Volver a las mediciones</a> &nbsp;
+  <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al indicador</a> &nbsp;
 </p>
 
 <h3>Datos de la medición</h3>
@@ -32,6 +33,8 @@
       {/foreach}
     </tbody>
   </table>
+  
+  <img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}" width="600" height="550" alt="Valores del indicador recogidos en cada subunidad para esta medición" />
 {else}
   <p class="error">Error: no existen valores pendientes ni recogidos para esta medición</p>
 {/if}

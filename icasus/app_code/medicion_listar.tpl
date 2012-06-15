@@ -1,4 +1,7 @@
-<a href="index.php?page=medicion_crear&id_indicador={$indicador->id}"><img src="" /> Agregar medición</a>
+<p>
+  <a href="index.php?page=medicion_crear&id_indicador={$indicador->id}"><img src='/icons/ff32/time.png' /> Agregar medición</a> &nbsp; &nbsp;
+  <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff32/chart_curve.png' /> Volver al indicador</a> &nbsp;
+</p>
 
 {if $mediciones}
   <table>
@@ -25,6 +28,8 @@
       {/foreach}
     </tbody>
   </table>
+
+  <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" />
 {else}
   <p class="aviso">Todavía no se han establecido mediciones para este indicador</p>
 {/if}
