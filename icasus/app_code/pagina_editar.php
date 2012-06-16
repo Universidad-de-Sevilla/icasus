@@ -1,15 +1,11 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Proyecto: Icasus 
 // Archivo: pagina_editar.php
-// Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Edita una pagina existente, en principio para la ayuda
+// Edita una pagina existente, en principio para la ayuda
 //---------------------------------------------------------------------------------------------------
-
 global $smarty;
-global $adodb;
 global $plantilla;
 
 if (isset($_REQUEST['id_pagina'])) 
@@ -34,12 +30,12 @@ if (isset($_REQUEST['id_pagina']))
 		$plantilla = 'pagina_editar.tpl';
 	}
 	$smarty->assign('pagina',$pagina);
-	$smarty->assign('_nombre_pagina','Manual: ' . $pagina->titulo);
+	$smarty->assign('_nombre_pagina','Ayuda: ' . $pagina->titulo);
 }
 else
 {
 	// Si no vienen datos suficientes en el post ni el get lanzamos error
-	$smarty->assign('error' , 'Faltan datos para editar pagina');
-	$plantilla = 'error.tpl';
+	$error = "Faltan datos para editar una pagina";
+  header("location:index.php?page=error&error=$error");
 }
 ?>

@@ -1,15 +1,11 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Proyecto: Icasus 
 // Archivo: pagina_crear.php
-// Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Crea una nueva pagina en icasus, en principio para la ayuda
+// Crea una nueva pagina en icasus, en principio para la ayuda
 //---------------------------------------------------------------------------------------------------
-
 global $smarty;
-global $adodb;
 global $plantilla;
 
 if (isset($_POST['alias']) && isset($_POST['titulo']) && isset($_POST['contenido'])) 
@@ -29,6 +25,7 @@ if (isset($_POST['alias']) && isset($_POST['titulo']) && isset($_POST['contenido
 else
 {
 	// Mostramos el formulario
+	$smarty->assign('_nombre_pagina', 'Nueva página de ayuda');
 	$plantilla = 'pagina_crear.tpl';
 }
 

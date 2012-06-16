@@ -20,9 +20,10 @@ class usuario_entidad extends ADOdb_Active_Record
 			foreach ($usuarios_entidades as& $usuario_entidad) 
 			{ 
 				$entidad = new entidad(); 
-				$id = $usuario_entidad->id_entidad; 
-				$entidad->load("id = $id"); 
+				$entidad->load("id = $usuario_entidad->id_entidad"); 
         $usuario_entidad->entidad = $entidad;
+        $usuario_entidad->rol = new rol();
+        $usuario_entidad->rol->load("id = $usuario_entidad->id_rol");
 			}
       return $usuarios_entidades;
     }
