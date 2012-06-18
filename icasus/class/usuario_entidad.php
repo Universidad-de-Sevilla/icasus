@@ -2,7 +2,8 @@
 //----------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Fichero: class/usuario_entidad.php
-// Descripcion: gestiona las entidades de un usuario y los usuarios de una entidad
+//----------------------------------------------------------------------------------
+// Gestiona las entidades de un usuario y los usuarios de una entidad
 //----------------------------------------------------------------------------------
 
 class usuario_entidad extends ADOdb_Active_Record

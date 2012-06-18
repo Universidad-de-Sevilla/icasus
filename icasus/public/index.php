@@ -58,10 +58,10 @@ if(!@session_id())
     @session_start();
 }
 // Hay que haber iniciado sesión y haber pedido pagina
-if (isset($_GET['page']) && isset($_SESSION['usuario'])) 
+if (isset($_SESSION['usuario'])) 
 {
-	$page = sanitize($_GET['page'],2);
 	// Si viene id_entidad le asignamos su valor, si no, asignamos cero.
+  // Quitarlo cuando se aclare lo de los permisos
 	$id_entidad = isset($_REQUEST['id_entidad'])?sanitize($_REQUEST['id_entidad'],16):0;
 	$usuario = new usuario();
 	$usuario = $_SESSION['usuario'];
@@ -74,6 +74,14 @@ if (isset($_GET['page']) && isset($_SESSION['usuario']))
 		$page = "error";
 	}
   */
+  if (isset($_GET['page']))
+  {
+	  $page = sanitize($_GET['page'],2);
+  }
+  else
+  {
+    $page = "inicio";
+  }
 }
 else
 {
