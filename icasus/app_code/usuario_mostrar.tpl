@@ -1,5 +1,4 @@
 <h3>Datos del usuario</h3>
-<a href='index->php?page=usuario_editar&id_usuario={$persona->id_usuario}&id_entidad={$id_operario}'><img src='theme/usevilla/iconos/user_edit.gif' /> Editar usuario</a>
 
 <table>
 <thead></thead>
@@ -9,6 +8,8 @@
 	<tr><th>Login</th><td>{$persona->login}</td></tr>
 	<tr><th>Correo</th><td>{$persona->correo}</td></tr>
 	<tr><th>Tel&eacute;fono</th><td>{$persona->telefono}</td></tr>
+	<tr><th>Unidad de destino</th><td>{$persona->unidad_hominis}</td></tr>
+	<tr><th>Puesto de trabajo</th><td>{$persona->puesto}</td></tr>
 </tbody>
 </table>
 

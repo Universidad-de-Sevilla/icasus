@@ -36,7 +36,7 @@
 			<td>{$usuario->usuario->apellidos}</td>
 			<td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
 			<td>{$usuario->usuario->telefono}</td>
-			<td><a href='index.php?page=usuario_datos&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>Detalle</a></td>
+			<td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>Detalle</a></td>
 		</tr>
    {/foreach}
 	</tbody>

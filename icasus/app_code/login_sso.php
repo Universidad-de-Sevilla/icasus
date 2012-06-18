@@ -43,7 +43,7 @@ if (isset($_GET["autenticar"]))
 					$_SESSION['usuario'] = $usuario;
 					//$log = new $log;
 					//$log->add('login',0,$usuario->id);
-					header("location:index.php?page=entidad_listar");
+					header("location:index.php");
 				}
 				else
 				{
@@ -55,13 +55,13 @@ if (isset($_GET["autenticar"]))
 					if($usuario->save())
 					{
 						$_SESSION['usuario'] = $usuario;
-						header("location:index.php?page=entidad_listar");
+						header("location:index.php");
 					}
 					else
 					{
 						$error="El usuario pertenece al colectivo que tiene permiso para utilizar esta herramienta pero no se ha podido dar de alta en la herramienta. Contactar con icasus@us.es";
 						$smarty->assign('error',$error);
-						header("location:index.php?page=entidad_listar&error=$error");
+						header("location:index.php?error=" . $error);
 					}
 				}
 		}
@@ -69,7 +69,7 @@ if (isset($_GET["autenticar"]))
 		{
 			$error="La relacion de este usuario con la Universidad no es la definida para utilizar esta herramienta. Contactar con icasus@us.es";
 			$smarty->assign('error',$error);
-			header("location:index.php?page=entidad_listar&error=$error");
+			header("location:index.php?error=" . $error);
 		}
 	}
 }
