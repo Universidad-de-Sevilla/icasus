@@ -16,6 +16,21 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
 {
   $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
   $medicion = sanitize($_REQUEST["medicion"], SQL);
+  if (isset($_REQUEST["referencia"])
+  {
+    foreach($referencias as $referencia)
+    {
+      $referencia = sanitize($referencia), INT;
+      $query = "SELECT vr.etiqueta AS etiqueta, vrm.valor AS valor FROM valores_referencia vr INNER JOIN valores_referencia_mediciones vrm ON vr.id = vrm.id_valor_referencia WHERE vr.id_indicador = $id_indicador";
+      $resultado = $db->getAll($query);
+      $nombre_referencia = $resultado[0]["etiqueta"];
+      foreach($resultado as $registro)
+      {
+        $valores[] = $registro["valor"];
+        $myData->AddPoints($valores,"$nombre_referencia");
+      }
+    }
+  }
 
   $indicador = new indicador();
   $indicador->load("id = $id_indicador");
