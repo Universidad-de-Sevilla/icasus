@@ -5,10 +5,10 @@
 
 <h3>Datos de la medición</h3>
 <p><b>Etiqueta: </b>{$medicion->etiqueta}</b></p>
-<p><b>Inicio del periodo: </b>{$medicion->periodo_inicio}</b></p>
-<p><b>Fin del periodo: </b>{$medicion->periodo_fin}</b></p>
-<p><b>Inicio grabación: </b>{$medicion->grabacion_inicio}</b></p>
-<p><b>Fin grabación: </b>{$medicion->grabacion_fin}</b></p>
+<p><b>Inicio del periodo: </b>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</b></p>
+<p><b>Fin del periodo: </b>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</b></p>
+<p><b>Inicio grabación: </b>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</b></p>
+<p><b>Fin grabación: </b>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</b></p>
 
 
 <h3>Valores</h3>
@@ -27,7 +27,7 @@
         <tr>
           <td>{$valor->entidad->nombre}</td>
           <td>{$valor->valor}</td>
-          <td>{$valor->fecha_recogida}</td>
+          <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
           <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
         </tr>
       {/foreach}

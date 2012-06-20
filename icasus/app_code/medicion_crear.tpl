@@ -1,4 +1,4 @@
-<h2>Indicador: {$indicador->codigo} - {$indicador->nombre}</h2>
+ <h2>Indicador: {$indicador->codigo} - {$indicador->nombre}</h2>
 
 <form name="medicion" id="medicion" action="index.php?page=medicion_grabar" method="post">
   <input type="hidden" name="id_indicador" value="{$indicador->id}" />
@@ -7,16 +7,20 @@
   <input type="input" name="etiqueta" /></p>
   
   <p><label for="periodo_inicio">Inicio del periodo</label>
-  <input type="input" name="periodo_inicio" /></p>
+	{html_select_date field_order='DMY' prefix="pi" month_format='%m'}
+  </p>
 
   <p><label for="periodo_fin">Fin del periodo</label>
-  <input type="input" name="periodo_fin" /></p>
+	{html_select_date field_order='DMY' prefix="pf" month_format='%m'}
+ </p>
 
   <p><label for="grabacion_inicio">Inicio de grabación</label>
-  <input type="input" name="grabacion_inicio" /></p>
+	{html_select_date field_order='DMY' prefix="gi" month_format='%m'}
+  </p>
   
   <p><label for="grabacion_fin">Fin de grabación</label>
-  <input type="input" name="grabacion_fin" /></p>
+	{html_select_date field_order='DMY' prefix="gf" month_format='%m'}
+  </p>
   
   <h4>Unidades/subunidades implicadas</h4>
     <input type="checkbox" name="id_unidades[]" value="{$entidad->id}" checked /> {$entidad->nombre}<hr />
