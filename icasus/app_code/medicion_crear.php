@@ -24,9 +24,9 @@ if (isset($_REQUEST["id_indicador"]))
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign("entidad", $entidad);
 
-    $subunidad = new entidad;
-    $subunidades = $subunidad->Find("id_madre = $entidad->id");
-    $smarty->assign("subunidades",$subunidades);
+    $valor_referencia_indicador = new valor_referencia_indicador();
+    $valores_referencia_indicadores = $valor_referencia_indicador->Find_joined("id_indicador = $id_indicador");
+    $smarty->assign("valores_referencia_indicador", $valores_referencia_indicadores);
 
     $smarty->assign("_javascript", array(""));
     $smarty->assign("_nombre_pagina", "Programar medición");

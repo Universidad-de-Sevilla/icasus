@@ -22,11 +22,14 @@
 	{html_select_date field_order='DMY' prefix="gf" month_format='%m'}
   </p>
   
-  <h4>Unidades/subunidades implicadas</h4>
-    <input type="checkbox" name="id_unidades[]" value="{$entidad->id}" checked /> {$entidad->nombre}<hr />
-    {foreach $subunidades as $subunidad}
-      <input type="checkbox" name="id_unidades[]" value="{$subunidad->id}" checked /> {$subunidad->nombre}<br />
+  <fieldset >
+    <legend>Valores de Referencia</legend>
+    {foreach $indicador->valores_referencia as $valor_referencia}
+      <p><label for="{$valor_referencia->id}">{$valor_referencia->etiqueta}
+      <input type="input" name="{$valor_referencia->id}" />
+      </p>
     {/foreach}
+  </fieldset>
   
   <p><input type="submit" value="Grabar" /></p>
 </form>
