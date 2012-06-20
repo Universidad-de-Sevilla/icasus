@@ -16,21 +16,6 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
 {
   $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
   $medicion = sanitize($_REQUEST["medicion"], SQL);
-  if (isset($_REQUEST["referencia"])
-  {
-    foreach($referencias as $referencia)
-    {
-      $referencia = sanitize($referencia), INT;
-      $query = "SELECT vr.etiqueta AS etiqueta, vrm.valor AS valor FROM valores_referencia vr INNER JOIN valores_referencia_mediciones vrm ON vr.id = vrm.id_valor_referencia WHERE vr.id_indicador = $id_indicador";
-      $resultado = $db->getAll($query);
-      $nombre_referencia = $resultado[0]["etiqueta"];
-      foreach($resultado as $registro)
-      {
-        $valores[] = $registro["valor"];
-        $myData->AddPoints($valores,"$nombre_referencia");
-      }
-    }
-  }
 
   $indicador = new indicador();
   $indicador->load("id = $id_indicador");
@@ -47,13 +32,15 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
   if ($resultado)
   {
     $myData = new pData();
+    // Valores de la medición
     $myData->addPoints($valores, "Valores");
     $myData->addPoints($etiquetas, "Etiquetas");
     $myData->setAbscissa("Etiquetas");
     $myData->setSerieOnAxis("Valores", 0);
     $media = round($myData->getSerieAverage("Valores"),2);
-    $serieSettings = array("R"=>163,"G"=>38,"B"=>56,"Alpha"=>10);
-    //$MyData->setPalette("Valores",$serieSettings);
+    // Colores de la serie de datos
+    $serieSettings = array("R"=>163,"G"=>38,"B"=>56,"Alpha"=>70);
+    $myData->setPalette("Valores",$serieSettings);
     // ancho, alto
     $myPicture = new pImage(600,550,$myData);
     $myPicture->setFontProperties(array("FontName"=>"../../cascara_core/lib/pChart2/fonts/calibri.ttf","FontSize"=>9));
@@ -65,9 +52,24 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
     $myPicture->drawScale($ScaleSettings); 
     $myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>163,"G"=>38,"B"=>56,"Alpha"=>10)); 
     $myPicture->drawBarChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO)); 
-    $myPicture->drawText(20,530,"{$indicador->nombre} ({$medicion})",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
+    //$myPicture->drawBarChart(array("DisplayValues"=>TRUE, "DisplayColor"=>DISPLAY_MANUAL, "DisplayR"=>0,"DisplayG"=>0,"DisplayB"=>255)); 
+    $myPicture->drawText(20,530,"{$indicador->nombre} ({$medicion})",array("FontSize"=>13,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
     //$myPicture->drawLegend(510,205,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
-    $myPicture->drawThreshold($media,array("WriteCaption"=>TRUE));
+    // Pintamos la línea con la media 
+    $myPicture->drawThreshold($media,array("WriteCaption"=>TRUE, "Caption"=>"Media", "R"=>10, "G"=>255, "B"=>90, "Alpha"=>90));
+    // Objetivos
+    $id_medicion = 39;
+    $query = "SELECT vr.etiqueta AS etiqueta, vrm.valor AS valor FROM valores_referencia vr INNER JOIN valores_referencia_mediciones vrm ON vr.id = vrm.id_valor_referencia WHERE vrm.id_medicion = $id_medicion";      
+    $resultado = $db->getAll($query);
+    $nombre_referencia = $resultado[0]["etiqueta"];
+    foreach($resultado as $registro)
+    {
+      $etiqueta = $registro["etiqueta"];
+      $valor = $registro["valor"];
+      $myPicture->drawThreshold($valor,array("WriteCaption"=>TRUE, "Caption"=>$etiqueta, "CaptionAlign"=>CAPTION_RIGHT_BOTTOM,"R"=>0,"G"=>0,"B"=>255, "Alpha"=>90));
+    }
+
+
     
     $myPicture->Stroke();
   }
