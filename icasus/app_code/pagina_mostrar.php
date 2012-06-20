@@ -1,31 +1,28 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Proyecto: Icasus 
 // Archivo: pagina_mostrar.php
-// Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Muestra una pagina de ayuda
+// Muestra una pagina de ayuda
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
-global $adodb;
 global $plantilla;
 
-if (isset($_REQUEST['alias']) || isset($_REQUEST['id_pagina'])) 
+if (isset($_REQUEST['alias']) OR isset($_REQUEST['id_pagina'])) 
 {
-	$alias = isset($_REQUEST['alias'])?sanitize($_REQUEST['alias'],2):'';
-	$id_pagina = isset($_REQUEST['id_pagina'])?sanitize($_REQUEST['id_pagina'],16):0;
+	$alias = isset($_REQUEST['alias'])?sanitize($_REQUEST['alias'],SQL):'';
+	$id_pagina = isset($_REQUEST['id_pagina'])?sanitize($_REQUEST['id_pagina'],INT):0;
 }
 else
 {
-	// Mostramos el formulario
+	// Mostramos la página índicia
 	$alias = 'indice';
 	$id_pagina = 0;
 }
 $pagina = new pagina();
 $pagina->load("alias = '$alias' OR id=$id_pagina");
 $smarty->assign('pagina',$pagina);
-$smarty->assign('_nombre_pagina','Manual: '.$pagina->titulo);
+$smarty->assign('_nombre_pagina','Ayuda: '.$pagina->titulo);
 $plantilla = 'pagina_mostrar.tpl';
 ?>

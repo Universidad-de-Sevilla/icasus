@@ -21,7 +21,7 @@ if (isset($_REQUEST["id_indicador"]))
   $indicador = new indicador();
   $indicador->load("id = $id_indicador");
   $db = $indicador->DB();
-  $query = "SELECT etiqueta, ROUND(AVG(valor),2) AS media FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion;";
+  $query = "SELECT mediciones.etiqueta, ROUND(AVG(valor),2) AS media FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion;";
   $resultado = $db->getAll($query);
 
   foreach ($resultado as $registro)

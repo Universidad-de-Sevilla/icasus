@@ -28,6 +28,7 @@
       <h1>{$_nombre_pagina}</h1>
       {if isset($_usuario)}
         <div id='operario'>
+          <!--
           {if isset($barra_indicadores)}
             <select name='combo_indicadores' id='combo_indicadores' 
               onchange='var url=document.getElementById(this.id).value; window.location = url '>
@@ -38,12 +39,12 @@
             </select>
           {/if}
           &nbsp;
+          -->
           <a href='javascript:window.history.back();'><img src='/icons/ff16/arrow_undo.png' /> Volver</a>  
           &nbsp;
-          <a href='index.php?page=entidad_listar' accesskey='u'><img 
-          src='/icons/ff16/chart_organisation.png' /> Unidades</a> 
+          <a href='index.php?page=inicio' accesskey='h'><img src='/icons/ff16/house.png' /> Inicio</a> 
           &nbsp;
-          <a href='index.php?page=usuario_datos&id_usuario={$_usuario->id}&id_entidad=0'><img 
+          <a href='index.php?page=usuario_mostrar&id_usuario={$_usuario->id}&id_entidad=0'><img 
           src='/icons/ff16/user.png' />{$_usuario->login}</a> 
           &nbsp;
           <a href='index.php?page={$smarty.const.IC_TIPO_LOGIN}&logout=true'><img src='/icons/ff16/page_white_go.png' /> 

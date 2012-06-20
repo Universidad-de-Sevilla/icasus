@@ -1,5 +1,3 @@
-{if $aviso}<p class='aviso'> {$aviso}</p>{/if}
-{if $error}<p class='error'> {$error}</p>{/if}
 <h2>Editando página</h2>
 <form name='formpagina' id='formpagina' action='index.php?page=pagina_editar' class='datos' method='post'>
 	

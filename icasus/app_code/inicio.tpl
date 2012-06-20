@@ -1,12 +1,13 @@
 <h3>Unidades del usuario</h3>
 {if $entidades_usuario }
   <table>
-      <thead><tr><th>C&oacute;digo</th><th>Unidad</th><th>Acciones</th></tr></thead>
+      <thead><tr><th>C&oacute;digo</th><th>Unidad</th><th>Rol actual</th><th>Acciones</th></tr></thead>
       <tbody>
       {foreach from=$entidades_usuario item=entidad}
          <tr>
           <td>{$entidad->entidad->codigo}</td>
           <td>{$entidad->entidad->nombre}</td>
+          <td>{$entidad->rol->nombre}</td>
           <td>
           <a href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'>Ver</a> - 
           <a href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'>Indicadores</a> - 

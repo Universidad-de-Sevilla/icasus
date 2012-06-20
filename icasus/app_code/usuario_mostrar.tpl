@@ -1,16 +1,15 @@
-{if $error}<p class='error'>{$error}</p>{/if} 
-{if $aviso}<p class='aviso'>{$aviso}</p>{/if} 
 <h3>Datos del usuario</h3>
-<a href='index.php?page=usuario_editar&id_usuario={$usuario.id_usuario}&id_entidad={$id_operario}'><img src='theme/usevilla/iconos/user_edit.gif' /> Editar usuario</a>
 
 <table>
 <thead></thead>
 <tbody>
-	<tr><th>Nombre</th><td>{$usuario.nombre}</td></tr>
-	<tr><th>Apellidos</th><td>{$usuario.apellidos}</td></tr>
-	<tr><th>Login</th><td>{$usuario.login}</td></tr>
-	<tr><th>Correo</th><td>{$usuario.correo}</td></tr>
-	<tr><th>Tel&eacute;fono</th><td>{$usuario.telefono}</td></tr>
+	<tr><th>Nombre</th><td>{$persona->nombre}</td></tr>
+	<tr><th>Apellidos</th><td>{$persona->apellidos}</td></tr>
+	<tr><th>Login</th><td>{$persona->login}</td></tr>
+	<tr><th>Correo</th><td>{$persona->correo}</td></tr>
+	<tr><th>Tel&eacute;fono</th><td>{$persona->telefono}</td></tr>
+	<tr><th>Unidad de destino</th><td>{$persona->unidad_hominis}</td></tr>
+	<tr><th>Puesto de trabajo</th><td>{$persona->puesto}</td></tr>
 </tbody>
 </table>
 
@@ -20,8 +19,8 @@
 	<th>Unidad</th><th>Rol</th>
 </thead>
 <tbody>
-	{foreach from=$entidades item=entidad}
-	<tr><td><a href="index.php?page=entidad_datos&id_entidad={$entidad.id_entidad}">{$entidad.nombre}</a></td> <td>{$entidad.rol}</td></tr>
+	{foreach $persona->entidades as $usuario_entidad}
+    <tr><td><a href="index.php?page=entidad_datos&id_entidad={$usuario_entidad->id_entidad}">{$usuario_entidad->entidad->nombre}</a></td> <td>{$usuario_entidad->rol->nombre}</td></tr>
 	{/foreach}
 </tbody>
 </table>

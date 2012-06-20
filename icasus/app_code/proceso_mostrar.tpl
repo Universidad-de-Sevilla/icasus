@@ -86,11 +86,7 @@ onClick='return confirmar();'><img
 		  <td><a href='index.php?page=usuario_datos&id_usuario={$indicador->id_responsable}'>{$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a></td>
 		  <td nowrap>
 			<a
-			href='index.php?page=indicador_datos&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>Mostrar</a> - 
-			<!--
-      <a href='index.php?page=indicador_copiar&id_indicador={$indicador->id}'>Copiar</a> 
-			<a href='index.php?page=valor_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>Grabar valor</a> <br /> 
-			--> 
+			href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>Mostrar</a> - 
 			<a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>Editar</a>
 			</td>
 		  </tr>

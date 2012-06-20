@@ -1,11 +1,9 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://forja.rediris.es/projects/icasus/)
+// Proyecto: Icasus 
 // Archivo: clase/cuadromando.php
-// Tipo: definicion de clase
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Gestiona los cuadros de mandos o colecciones de indicadores 
+// Gestiona los cuadros de mandos o colecciones de indicadores 
 //---------------------------------------------------------------------------------------------------
 
 class cuadromando extends ADOdb_Active_Record

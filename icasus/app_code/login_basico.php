@@ -24,8 +24,7 @@ if (isset($_POST['acceso']))
 			// Registra la entrada en el log
 			$log = new log();
 		  $log->add('login',0,$usuario->id);	
-			// Reenvia a la lista de entidades
-			header("location:index.php?page=entidad_listar");
+			header("location:index.php");
 		}
 		else 
 		{
