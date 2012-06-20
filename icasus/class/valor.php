@@ -32,5 +32,22 @@ class valor extends ADOdb_Active_Record
 		}
     
   }
+	public function load_joined($id)
+	{
+		if($this->load("id = $id"))
+		{
+			$this->entidad = new entidad();
+      $this->entidad->load("id = $this->id_entidad");
+    
+      $this->usuario = new usuario();
+      $this->usuario->load("id = $this->id_usuario");
+
+			return $this;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>

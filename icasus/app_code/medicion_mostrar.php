@@ -9,6 +9,8 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
+$smarty->assign('_javascript', array('jquery142min'));
+
 if (isset($_REQUEST["id_medicion"]))
 {
   $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
@@ -27,7 +29,7 @@ if (isset($_REQUEST["id_medicion"]))
 
   $smarty->assign("_javascript", array("ordenatabla"));
   $smarty->assign("_nombre_pagina", "Indicador: $indicador->codigo - $indicador->nombre");
-  $plantilla = "medicion_mostrar.tpl";
+  $plantilla = "medicion_editar.tpl";
 }
 else
 {
