@@ -14,23 +14,29 @@ class indicador extends ADOdb_Active_Record
 	public $responsable;
 	public $ruta_imagen;
 	public $valores;
-  public $visibilidad;
+    public $visibilidad;
+    public $criterios_efqm;
 
 	public function load_joined($criterio)
 	{
 		if ($this->load($criterio))
 		{
-      $proceso = new proceso();
-      $proceso->load("id = $this->id_proceso");
-      $this->proceso = $proceso;
+      		$proceso = new proceso();
+      		$proceso->load_joined("id = $this->id_proceso");
+      		$this->proceso = $proceso;
 
-      $responsable = new usuario();
-      $responsable->load("id = $this->id_responsable");
-      $this->responsable = $responsable;
+      		$responsable = new usuario();
+      		$responsable->load("id = $this->id_responsable");
+      		$this->responsable = $responsable;
 
-      $visibilidad = new visibilidad();
-      $visibilidad->load("id = $this->id_visibilidad");
-      $this->visibilidad = $visibilidad;
+      		$visibilidad = new visibilidad();
+      		$visibilidad->load("id = $this->id_visibilidad");
+      		$this->visibilidad = $visibilidad;
+
+    		$criterio = new criterio_efqm_indicador();
+    		$criterios = $criterio->Find_joined("id_indicador = $this->id");
+    		$this->criterios_efqm = $criterios;
+
 		}
 		else
 		{
@@ -48,13 +54,14 @@ class indicador extends ADOdb_Active_Record
 				$proceso->load("id = $indicador->id_proceso");
 				$indicador->proceso = $proceso;
 
-			  $responsable = new usuario();
+			  	$responsable = new usuario();
 				$responsable->load("id = $indicador->id_responsable");
 				$indicador->responsable = $responsable;
 
-        $visibilidad = new visibilidad();
-        $visibilidad->load("id = $indicador->id_visibilidad");
-        $indicador->visibilidad = $visibilidad;
+        		$visibilidad = new visibilidad();
+        		$visibilidad->load("id = $indicador->id_visibilidad");
+        		$indicador->visibilidad = $visibilidad;
+
 			}
 			return $indicadores;
 		}

@@ -17,15 +17,13 @@ href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={
 
 <table>
 	<tr>
-		<th>C&oacute;digo proceso</th>
-		<th colspan='5'>Proceso</th>
+		<th colspan='3'>Proceso</th>
+		<th colspan='3'>Propietario</th>
 	</tr>
 	<tr>
-		<td><a href='index.php?page=proceso_mostrar&codigo={$indicador->proceso->codigo}' title='Mostrar 
-		proceso'>{$indicador->proceso->codigo}</a></td>  
-		<td colspan='5'>{$indicador->proceso->nombre}</td>
+		<td colspan='3'><a href='index.php?page=proceso_mostrar&id_proceso={$indicador->proceso->id}&id_entidad={$entidad->id}' title='Mostrar proceso'>{$indicador->proceso->codigo}</a> - {$indicador->proceso->nombre}</td>
+		<td colspan='3'>{$indicador->proceso->propietario->nombre} {$indicador->proceso->propietario->apellidos}</td>
 	</tr>
-	
 	<tr>
 		<th>Código indicador</th>
 		<th colspan='5'>Nombre</th>
@@ -34,39 +32,63 @@ href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={
 		<td>{$indicador->codigo}</td>
 		<td colspan='5'><b>{$indicador->nombre}</b></td>
 	</tr>
-	
 	<tr><th colspan='6'>Descripci&oacute;n</th></tr>
 	<tr><td colspan='6'>{$indicador->descripcion}</td></tr>
-	
 	<tr><th colspan='6'>Formulaci&oacute;n</th></tr>
 	<tr><td colspan='6'>{$indicador->formulacion}</td></tr>
-	
 	<tr>
-		<th>Objetivo</th>
-		<th colspan='2'>Objetivo pactado</th>
-		<th>Objetivo carta</th>
-		<th colspan='2'>Estándar actual</th>
+		<th>Valor de referencia</th>
+		<th colspan='5'>Valores de referencia</th>
 	</tr>
 	<tr>
-		<td>{$indicador->objetivo}</td>
-		<td colspan='2'>{$indicador->objetivo_estrategico}</td>
-		<td>{$indicador->objetivo_carta}</td>
-		<td colspan='2'>{*$indicador->estandar*}</td>
-	</tr>
-	
-	<tr>
-		<th colspan='3'>Fuente de obtenci&oacute;n</th>
-		<th>Periodicidad</th>
-		<th colspan='2'>Visibilidad</th>
+		<td>{$indicador->valor_referencia}</td>
+		<td colspan='5'>{$indicador->valores_referencia}</td>
 	</tr>
 	<tr>
-		<td colspan='3'>{$indicador->fuente}</td>	
-		<td>{$indicador->periodicidad}</td>	
-		<td colspan='2'>{$indicador->visibilidad->nombre|htmlentities}</td>
-	</tr>	
-	<tr><th colspan='6'>Responsable</tr>
-	<tr><td colspan='6'><a href='index.php?page=usuario_datos&id_usuario={$indicador->responsable->id}'>{$indicador->responsable->nombre}
-	{$indicador->responsable->apellidos}</a></td></tr>
+		<th colspan='4'>Fuente de informaci&oacute;n</th>
+		<th colspan='2'>Fuente de datos</th>
+	</tr>
+	<tr>
+		<td colspan='4'>{$indicador->fuente_informacion}</td>	
+		<td colspan='2'>{$indicador->fuente_datos}</td>	
+		
+	</tr>
+	<tr>
+		<th colspan='4'>Unidad generadora</th>
+		<th colspan='2'>Nivel de desagregacion</th>
+
+	</tr>
+	<tr>
+		<td colspan='4'>{if $indicador->unidad_generadora} {$indicador->unidad_generadora}{else}{/if}&nbsp;</td>
+		<td colspan='2'>{$indicador->nivel_desagregacion}</td>
+	</tr>
+	<tr>
+		<th colspan='3'>Metodo de comprobaci&oacute;n/Evidencia</th>
+		<th colspan='3'>Hist&oacute;rico</th>
+	</tr>
+	<tr>
+		<td colspan='3'>{if $indicador->evidencia} {$indicador->evidencia} {else}&nbsp; {/if}</td>		
+		<td colspan='3'>{$indicador->historicos}</td>
+	</tr>
+
+	<tr><th colspan='6'>Interpretaci&oacute;n</th></tr>
+	<tr><td colspan='6'>{if $indicador->interpretacion} {$indicador->interpretacion} {else}&nbsp;{/if}</td></tr>
+	<tr><th colspan='6'>Indicadores relacionados</th></tr>
+	<tr><td colspan='6'>{$indicador->indicadores_relacionados}&nbsp;</td></tr>
+	<tr><th colspan='6'>EFQM</th></tr>
+	<tr><td colspan='6'>{if $indicador->criterios_efqm}
+	{foreach $indicador->criterios_efqm as $criterio_efqm_indicador} {$criterio_efqm_indicador->criterio_efqm->codigo} - {$criterio_efqm_indicador->criterio_efqm->nombre}<br>{/foreach}{else}&nbsp;{/if}</td></tr>
+	<tr>
+		<th colspan='4'>Responsable de medici&oacute;n</td>
+		<th>Periodicidad</td>
+		<th>Visibilidad</td>	
+	</tr>
+	<tr>
+		<td colspan='4'><a href='index.php?page=usuario_datos&id_usuario={$indicador->responsable->id}'>{$indicador->responsable->nombre}
+	{$indicador->responsable->apellidos}</a></td>
+		<td>{$indicador->periodicidad}</td>
+		<td>{$indicador->visibilidad->nombre|htmlentities}</td>
+	</tr>
 </table>
 
 <h3>Mediciones</h3>
