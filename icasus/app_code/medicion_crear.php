@@ -23,12 +23,12 @@ if (isset($_REQUEST["id_indicador"]))
     $entidad = new entidad;
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign("entidad", $entidad);
+  
+    $valor_referencia = new valor_referencia();
+    $valores_referencia = $valor_referencia->Find("id_indicador = $id_indicador");
+    $smarty->assign("valores_referencia", $valores_referencia);
 
-    $valor_referencia_indicador = new valor_referencia_indicador();
-    $valores_referencia_indicadores = $valor_referencia_indicador->Find_joined("id_indicador = $id_indicador");
-    $smarty->assign("valores_referencia_indicador", $valores_referencia_indicadores);
-
-    $smarty->assign("_javascript", array(""));
+    //$smarty->assign("_javascript", array(""));
     $smarty->assign("_nombre_pagina", "Programar medición");
     $plantilla = "medicion_crear.tpl";
   }

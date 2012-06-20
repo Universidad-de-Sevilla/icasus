@@ -14,6 +14,7 @@ class indicador extends ADOdb_Active_Record
 	public $responsable;
 	public $ruta_imagen;
 	public $valores;
+  public $valores_referencia;
   public $visibilidad;
 
 	public function load_joined($criterio)
@@ -27,6 +28,10 @@ class indicador extends ADOdb_Active_Record
       $responsable = new usuario();
       $responsable->load("id = $this->id_responsable");
       $this->responsable = $responsable;
+
+      $valor_referencia = new valor_referencia();
+      $valores_referencia = $valor_referencia->Find("id_indicador = $this->id");
+      $this->valores_referencia = $valores_referencia;
 
       $visibilidad = new visibilidad();
       $visibilidad->load("id = $this->id_visibilidad");
@@ -86,6 +91,7 @@ class indicador extends ADOdb_Active_Record
 			return false;
 		}
 	}
+
 	public function indicador_publico()
 	{
 		if ($indicadores = $this->find("id_visibilidad = 2"))
@@ -116,6 +122,5 @@ class indicador extends ADOdb_Active_Record
 		//print_r($indicadores);
 		return $indicadores;
 	}
-
 }
 ?>

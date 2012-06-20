@@ -24,11 +24,15 @@
   
   <fieldset >
     <legend>Valores de Referencia</legend>
-    {foreach $indicador->valores_referencia as $valor_referencia}
-      <p><label for="{$valor_referencia->id}">{$valor_referencia->etiqueta}
-      <input type="input" name="{$valor_referencia->id}" />
-      </p>
-    {/foreach}
+    {if $valores_referencia}
+      {foreach $valores_referencia as $valor_referencia}
+        <p><label for="valor_referencia[{$valor_referencia->id}]">{$valor_referencia->etiqueta}
+        <input type="input" name="valor_referencia[{$valor_referencia->id}]" />
+        </p>
+      {/foreach}
+    {else}
+      <p>No se han definido valores de referencia para este indicador</p>
+    {/if}
   </fieldset>
   
   <p><input type="submit" value="Grabar" /></p>

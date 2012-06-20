@@ -1,14 +1,13 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: class/visibilidad.php
-// Tipo: definicion de clase
+// Archivo: class/valor_referencia.php
 //---------------------------------------------------------------------------------------------------
-// Gestiona los distintos tipo de visibilidad de un indicador
+// Gestiona los valores de referencia de los indicadores 
 //---------------------------------------------------------------------------------------------------
 
-class visibilidad extends ADOdb_Active_Record
+class valor_referencia extends ADOdb_Active_Record 
 {
-	var $_table = 'visibilidad';
+	var $_table = 'valores_referencia';
 }
 ?>
