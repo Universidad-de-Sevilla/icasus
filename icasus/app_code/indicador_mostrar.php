@@ -1,7 +1,7 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: indicador_datos.php
+// Archivo: indicador_mostrar.php
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Muestra todos los parametros de un indicador y un listado de los valores introducidos
 //---------------------------------------------------------------------------------------------------

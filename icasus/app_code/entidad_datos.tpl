@@ -32,8 +32,8 @@
 	{foreach from=$usuarios item=usuario}
 		<tr>
 			<td>{$usuario->rol->nombre}</td>
-			<td>{$usuario->usuario->nombre}</td>
-			<td>{$usuario->usuario->apellidos}</td>
+			<td>{$usuario->usuario->nombre|upper}</td>
+			<td>{$usuario->usuario->apellidos|upper}</td>
 			<td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
 			<td>{$usuario->usuario->telefono}</td>
 			<td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>Detalle</a></td>
