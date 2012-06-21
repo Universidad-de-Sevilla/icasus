@@ -61,10 +61,10 @@
 		-->
 		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher.css" media="screen">
-		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher1.php?default=layout_fixed.css" media="screen" > 
+<!-- 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher1.php?default=layout_fixed.css" media="screen" >  -->
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher2.php?default=switcher.css" media="screen" >
-		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher3.php?default=theme_blue.css" media="screen" >
-		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher4.php?default=bg_wood.css" media="screen" >
+		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher3.php?default=theme_red.css" media="screen" >
+		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher4.php?default=bg_hemerocallis.css" media="screen" >
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher5.php?default=switcher.css" media="screen" >
 		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/colours.css">
