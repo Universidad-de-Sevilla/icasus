@@ -9,8 +9,6 @@
 global $smarty;
 global $plantilla;
 
-$smarty->assign('_javascript' , array('ordenatabla','indicador_borrar'));
-
 if ($_GET['id_entidad'] > '0')
 {	
 	$id_entidad = sanitize($_GET["id_entidad"],INT);

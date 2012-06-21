@@ -1,4 +1,4 @@
-<h3>Relación de indicadores</h3>
+<h2>Relación de indicadores</h2>
 <p>	 
 	<a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'><img 
 	src='/icons/ff16/chart_curve_add.png' alt='icono' />Crear indicador</a> &nbsp;
@@ -8,7 +8,9 @@
 	src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públicos</a>
 </p>
 {if $indicadores}
-	<table class='listing' id='sortable' >
+<div class="box grid_16 single_datatable">
+  <div id="dt1" class="no_margin">
+	<table class='display datatable'>
 	<thead>
 		<tr><th>Proceso</th><th>Código</th><th>Indicador</th>
 		<th>Responsable</th><th>Acciones</th></tr>
@@ -26,12 +28,6 @@
 			  <td nowrap>
 				<a
 				href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}'>Mostrar</a><br />
-				<!--
-				<a href='index.php?page=indicador_copiar&id_indicador={$indicador->id}'>Copiar</a>
-				<a
-				href='index.php?page=valor_crear&id_indicador={$indicador->id}&id_entidad={$entidad->id}'>Grabar valor</a>
-				<br /> 
-				--> 
 				<a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$entidad->id}'>Editar</a>
         <!--
 				<br /> 
@@ -43,6 +39,8 @@
 		{/foreach}
 	</tbody>
 	</table>
+  </div>
+</div>  
 {else}
 	<p class='aviso'>No hay indicadores definidos para esta entidad.</p>
 {/if}
