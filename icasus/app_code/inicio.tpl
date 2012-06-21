@@ -1,10 +1,20 @@
 <h3>Unidades del usuario</h3>
+
 {if $entidades_usuario }
-  <table>
-      <thead><tr><th>C&oacute;digo</th><th>Unidad</th><th>Rol actual</th><th>Acciones</th></tr></thead>
+<div class="box grid_16 single_datatable">
+  <div id="dt1" class="no_margin">
+   <table class="display datatable"> 
+	<thead> 
+	 <tr>  
+	 	<th>Código</th>
+        <th>Unidad</th>
+        <th>Rol actual</th>
+        <th>Acciones</th>
+	 </tr> 
+	</thead> 
       <tbody>
       {foreach from=$entidades_usuario item=entidad}
-         <tr>
+         <tr class="gradeX">
           <td>{$entidad->entidad->codigo}</td>
           <td>{$entidad->entidad->nombre}</td>
           <td>{$entidad->rol->nombre}</td>
@@ -20,6 +30,8 @@
         </tr>
       {/foreach}
   </tbody></table>
+  </div>
+</div>  
 {else}
   <p class='aviso'>No tiene asignada ninguna unidad</p>
 {/if}
@@ -51,28 +63,35 @@
 
 {if $indicadores_subunidades}
   <h3>Indicadores a su cargo</h3>
-  <table>
-    <thead>
-      <tr>
-        <th>Código</th>
+  <div class="box grid_16 single_datatable">
+   		<div id="dt1" class="no_margin">
+  <table class="display datatable"> 
+	<thead> 
+	 <tr>  
+	 	<th>Código</th>
         <th>Nombre</th>
         <th>Pendientes</th>
-      </tr>
-    <thead>
+	 </tr> 
+	</thead> 
+	
     <tbody>
-      {foreach $indicadores_subunidades as $indicador_subunidad}
-        <tr>
-          <td>{$indicador_subunidad->indicador->codigo}</td>
-          <td><a href="index.php?page=indicador_mostrar&id_indicador={$indicador_subunidad->indicador->id}">{$indicador_subunidad->indicador->nombre}</a></td>
-          <td>{$indicador_subunidad->mediciones_pendientes}
-              {if $indicador_subunidad->mediciones_pendientes > 0}
-               | <a href="index.php?page=medicion_subunidad_listar&id_indicador={$indicador_subunidad->indicador->id}">grabar</a>
-              {/if}
-          </td>
-        </tr>
-      {/foreach}
+    
+	       {foreach $indicadores_subunidades as $indicador_subunidad}
+	        <tr class="gradeX">
+	          <td>{$indicador_subunidad->indicador->codigo}</td>
+	          <td><a href="index.php?page=indicador_mostrar&id_indicador={$indicador_subunidad->indicador->id}">{$indicador_subunidad->indicador->nombre}</a></td>
+	          <td>{$indicador_subunidad->mediciones_pendientes}
+	              {if $indicador_subunidad->mediciones_pendientes > 0}
+	               | <a href="index.php?page=medicion_subunidad_listar&id_indicador={$indicador_subunidad->indicador->id}">grabar</a>
+	              {/if}
+	          </td>
+	        </tr>
+	      {/foreach}  
+
     </tbody>
   </table>
+  </div>
+ </div> 
 {/if}
 
 
