@@ -8,7 +8,7 @@
 		<h3><a href="#">Usuario</a></h3>
 		<ul>
 			<li><a href="#">Configuraci&oacute;n</a><span class="divider">|</span></li>
-			<li><a href="login.php">Salir</a></li>
+			<li><a href="index.php?page={$smarty.const.IC_TIPO_LOGIN}">Salir</a></li>
 		</ul>
 	</div><!-- #user_box -->
 	
@@ -24,7 +24,7 @@
 		<h3><a href="#">Usuario</a></h3>
 		<ul>
 			<li><a href="#">Configuraci&oacute;n</a><span class="divider">|</span></li>
-			<li><a href="login.php">Salir</a></li>
+			<li><a href="index.php?page={$smarty.const.IC_TIPO_LOGIN}">Salir</a></li>
 		</ul>
 	</div><!-- #user_box -->
 
