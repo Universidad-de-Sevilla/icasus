@@ -74,57 +74,33 @@ function fecha_cancelar(content,medicion)
 </p>
 
 <h3>Datos de la medición</h3>
-<<<<<<< HEAD
-<p><b>Etiqueta: </b>
-	<span id="et">
-		<a href="javascript:void(0)" onclick="javascript:medicion_editar('{$medicion->id}','et')">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}----{/if}</a>
-=======
 {if $id_usuario == $indicador->id_responsable}
 <p><b>Etiqueta: </b>
 	<span id="et">
 		<a href="javascript:void(0)" onclick="javascript:etiqueta_editar('{$medicion->id}','et','etiqueta')">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}----{/if}</a>
->>>>>>> medicion_jjmc
 	</span>
 </p>
 
 <p><b>Inicio del periodo: </b>
 	<span id="pi">
-<<<<<<< HEAD
-		<a href="javascript:void(0)" onclick="medicion_editar('{$medicion->id}','pi')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
-=======
 		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','pi')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
->>>>>>> medicion_jjmc
 	</span>
 </p>
 
 <p><b>Fin del periodo: </b>
 	<span id="pf">
-<<<<<<< HEAD
-		<a href="javascript:void(0)" onclick="medicion_editar('{$medicion->id}','pf')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
-=======
 		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','pf')">{if $medicion->periodo_fin}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}{else}----{/if}</a>
->>>>>>> medicion_jjmc
 	</span>
 </p>
 
 <p><b>Inicio grabación: </b>
 	<span id="gi">
-<<<<<<< HEAD
-		<a href="javascript:void(0)" onclick="medicion_editar('{$medicion->id}','gi')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
-=======
 		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','gi')">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
->>>>>>> medicion_jjmc
 	</span>
 </p>
 
 <p><b>Fin grabación: </b>
 	<span id="gf">
-<<<<<<< HEAD
-		<a href="javascript:void(0)" onclick="medicion_editar('{$medicion->id}','gf')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
-	</span>
-</p>
-
-=======
 		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','gf')">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}----{/if}</a>
 	</span>
 </p>
@@ -135,7 +111,6 @@ function fecha_cancelar(content,medicion)
 <p><b>Inicio grabación: </b>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</p>
 <p><b>Fin grabación: </b>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</p>
 {/if}
->>>>>>> medicion_jjmc
 
 <h3>Valores</h3>
 {if $valores}
@@ -153,9 +128,6 @@ function fecha_cancelar(content,medicion)
       {foreach $valores as $valor}
         <tr id="fila_{$valor->id}">
           <td>{$valor->entidad->nombre}</td>
-<<<<<<< HEAD
-          <td><a id="td_{$valor->id}" href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{$valor->valor}</a></td>
-=======
           <td>
 							{if $valor->autorizado == 1}
 								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{$valor->valor}</a>
@@ -163,7 +135,6 @@ function fecha_cancelar(content,medicion)
 								{$valor->valor}
 							{/if}
 				</td>
->>>>>>> medicion_jjmc
           <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
           <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
         </tr>
