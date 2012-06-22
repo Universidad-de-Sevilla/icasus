@@ -5,7 +5,6 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Modifica procesos existentes
 //--------------------------------------------------------------------------------------------------- 
-
 global $smarty;                   
 global $plantilla;                
 
@@ -16,7 +15,6 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
   $id_entidad = sanitize($_REQUEST['id_entidad'],16);         
   $entidad = new entidad();
   $entidad->load("id = $id_entidad");      
-  $smarty->assign('_nombre_pagina',$entidad->nombre);
 
   // Si vienen todos los datos necesarios del formulario grabamos
   if (isset($_POST['nombre']) && isset($_POST['codigo']))     
@@ -51,9 +49,8 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
     }
     else
     {
-      $smarty->assign('error', $proceso->error); 
-      $smarty->assign('_nombre_pagina','Error');
-      $plantilla = 'error.tpl';
+      $error = "Ha ocurrido un error al grabar el proceso";
+      header("location:index.php?error=$error");
     }
   }
   // Si no vienen datos mostramos el formulario
@@ -70,6 +67,7 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
     $proceso_madre = new proceso();
     $procesos_madre = $proceso_madre->Find("id_entidad = $id_entidad AND id <> $id_proceso");
     $smarty->assign('procesos_madre', $procesos_madre);
+    $smarty->assign('_nombre_pagina',$entidad->nombre . " - Proceso ". $proceso->nombre);
     $plantilla = "proceso_editar.tpl";
   }
 }
@@ -79,4 +77,3 @@ else
   header("location:index.php?page=error&error=$error");
 }
 ?>
-

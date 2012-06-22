@@ -1,26 +1,14 @@
-<div class="flat_area grid_16">
-	<h2>Datos de la unidad</h2>
-</div>
-
-
-
-
-
+<h3> 
+  <!--<a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
+  Editar unidad</a> &nbsp; &nbsp; -->
+  <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/cog.png' />
+  Ver procesos</a> &nbsp; &nbsp; &nbsp;
+  <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve.png' />
+  Ver indicadores</a> &nbsp; &nbsp; 
+</h3>
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-			<h2 class="section">
-				<a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
-				Editar unidad</a> &nbsp;
-				 <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve.png' />
-				Ver indicadores</a> &nbsp; 
-				<a href='index.php?page=indicador_copiar&id_entidad={$entidad->id}'><img 
-				src='/icons/ff16/chart_curve_link.png' alt='icono' />Copiar indicador</a>
-				&nbsp; <a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve_add.png' />
-				Crear indicador</a>
-				&nbsp; <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/cog.png' />
-				Ver procesos</a>
-			</h2>
 			<fieldset class="label_side">
 				<label>Código</label>
 				<div class="clearfix">
@@ -49,21 +37,13 @@
 	</div>
 </div>
 
-<div class="flat_area grid_16">
-	<h2>Usuarios</h2>
-</div>
-<div class="box grid_16">
-	<div class="toggle_container">
-		<div class="block">
-			<h2 class="section">
+<h2>Usuarios</h2>
+			<h3>
 				<a href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_add.png' />
-					Vincular usuarios</a> 
+					Vincular usuarios</a> &nbsp; &nbsp; &nbsp;
 					&nbsp; <a href='index.php?page=entidad_despoblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_delete.png' />
 					Desvincular usuarios</a>
-			</h2>
-		</div>
-	</div>
-</div>			
+			</h3>
 
 {if $usuarios}
 	<div class="box grid_16">
@@ -91,13 +71,11 @@
 <p class='aviso'>No se han vinculado usuarios a esta entidad</p>
 {/if}
 
-<div class="flat_area grid_16">
-	<h2>Subunidades</h2>
-</div> 
+<h2>Subunidades</h2>
 {if $subentidades}
-	<div class="box grid_16 single_datatable">
-		<div id="dt1" class="no_margin">
-			<table class="display datatable">
+	<div class="box grid_16">
+		<div class="block">
+			<table class="static">
 				<thead>
 					<tr><th>Código</th><th>Nombre</th><th>Acciones</th></tr>
 				</thead>

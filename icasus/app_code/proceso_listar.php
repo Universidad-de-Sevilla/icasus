@@ -20,7 +20,7 @@ if (isset($_REQUEST["id_entidad"]))
   $smarty->assign('procesos',$procesos);
 
   $smarty->assign('_javascript' , array('ordenatabla','proceso_borrar'));
-  $smarty->assign('_nombre_pagina' , $entidad->nombre);
+  $smarty->assign('_nombre_pagina' , "Lista de Procesos - " . $entidad->nombre);
   $plantilla = 'proceso_listar.tpl';
 }
 else

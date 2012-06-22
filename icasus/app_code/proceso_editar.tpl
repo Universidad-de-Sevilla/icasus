@@ -1,10 +1,7 @@
-<div class="flat_area grid_16">
-	<h2><img src='/icons/ff32/cog_edit.png' alt='icono engranaje'> Editando Proceso</h2>
-</div>
+<p><a href='javascript:window.history.back();'><img src='/icons/ff16/arrow_undo.png' /> Cancelar</a></p>
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-		
 			<form method='post' action='index.php?page=proceso_editar' id='formproceso' class='datos'>
 			  <input type='hidden' name='id_entidad' id='id_entidad' value='{$proceso->id_entidad}' />
 			  <input type='hidden' name='id_proceso' id='id_proceso' value='{$proceso->id}' />
@@ -12,7 +9,7 @@
 			  <fieldset class="label_side">
 				<label>Proceso madre</label>
 				<div>
-					<select name='madre' id='madre' class='inp'>
+					<select name='madre' id='madre'>
 					  <option value="0">Es un Proceso Madre</option>
 					  {foreach from=$procesos_madre item=proceso_madre}
 					    <option value="{$proceso_madre->id}" {if $proceso_madre->id == $proceso->id_madre} selected{/if}>
@@ -66,19 +63,19 @@
 			  <fieldset class="label_side">
 				<label>Misi&oacute;n</label>
 				<div>
-					<textarea rows="2" class='inp' name='mision' id='mision'>{$proceso->mision}</textarea>
+					<textarea rows="2" name='mision' id='mision'>{$proceso->mision}</textarea>
 				</div>
 			  </fieldset>   
 			  <fieldset class="label_side">
 				<label>Equipo de proceso</label>
 				<div>
-					<textarea class='inp' name='equipo_de_proceso' id='equipo_de_proceso'>{$proceso->equipo_de_proceso}</textarea>
+					<textarea name='equipo_de_proceso' id='equipo_de_proceso'>{$proceso->equipo_de_proceso}</textarea>
 				</div>
 			  </fieldset>      
 			  <fieldset class="label_side">
 				<label>Resultados clave</label>
 				<div>
-					<textarea class='inp' name='resultados_clave' id='resultados_clave'>{$proceso->resultados_clave}</textarea>
+					<textarea name='resultados_clave' id='resultados_clave'>{$proceso->resultados_clave}</textarea>
 				</div>
 			  </fieldset>  
 			  <fieldset class="label_side">
@@ -108,7 +105,7 @@
 			  <fieldset class="label_side">
 				<label>Actividades</label>
 				<div>
-					<textarea class='inp' name='actividades' id='actividades'>{$proceso->actividades}</textarea>
+					<textarea name='actividades' id='actividades'>{$proceso->actividades}</textarea>
 			    </div>
 			  </fieldset> 
 			  <fieldset class="label_side">
@@ -120,19 +117,19 @@
 			  <fieldset class="label_side">
 				<label>Mediciones</label>
 				<div>
-					<textarea class='inp' name='mediciones' id='mediciones'>{$proceso->mediciones}</textarea>
+					<textarea name='mediciones' id='mediciones'>{$proceso->mediciones}</textarea>
 			    </div>
 			  </fieldset>   
 			  <fieldset class="label_side">
 				<label>Registros</label>
 				<div>
-					<textarea class='inp' name='registros' id='registros'>{$proceso->registros}</textarea>
+					<textarea name='registros' id='registros'>{$proceso->registros}</textarea>
 			    </div>
 			  </fieldset>    
 			  <fieldset class="label_side">
 				<label>Tipo de proceso</label>
 				<div>
-					<select name="alcance" id="alcance" class="inp">
+					<select name="alcance" id="alcance">
 					    <option value="Indefinido" {if $proceso->alcance == 'Indefinido'} selected {/if} >Indefinido ...</option>
 					    <option value="Apoyo" {if $proceso->alcance == 'Apoyo'} selected {/if}>Apoyo</option>
 					    <option value="Operativo" {if $proceso->alcance == 'Operativo'} selected {/if}>Operativo</option>
