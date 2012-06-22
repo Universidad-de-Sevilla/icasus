@@ -13,18 +13,11 @@ global $plantilla;
 
 $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
 $contenedor = sanitize($_REQUEST["contenedor"], SQL);
-$smarty->assign("contenedor",$contenedor);
 
-$medicion = new medicion();
-$medicion->load("id = $id_medicion");
-$smarty->assign("medicion",$medicion);
+$m = new medicion();
+$m->load("id = $id_medicion");
 
-if ($contenedor == 'pi' OR $contenedor == 'pf' OR $contenedor == 'gi' OR $contenedor == 'gf')
-{
-	$plantilla = 'medicion_editar_fecha_asin.tpl';
-}
-else 
-{
-	$plantilla = 'medicion_editar_etiqueta_asin.tpl';
-}
+$smarty->assign('medicion',$m);
+$smarty->assign('contenedor',$contenedor);
+$plantilla = 'medicion_editar_cancelar_asin.tpl';
 ?>

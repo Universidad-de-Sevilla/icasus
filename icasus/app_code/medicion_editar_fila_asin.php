@@ -24,9 +24,12 @@ $indicador->load("id = $medicion->id_indicador");
 $smarty->assign("indicador",$indicador);
 
 $valor = new valor();
-$valores = $valor->Find_joined("id_medicion = $id_medicion");
+$valores = $valor->Find_joined_jjmc($id_medicion,$usuario->id);
 $smarty->assign("valores",$valores);
 
+$indisub = new indicador_subunidad();
+$indisubs = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
+$smarty->assign('indisubs',$indisubs);
 /*
 $id_valor = sanitize($_REQUEST["id_valor"], INT);
 $smarty->assign("valor_edit",$id_valor);

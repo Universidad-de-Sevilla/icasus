@@ -24,7 +24,7 @@
           <td>{$medicion->periodo_fin}</td>
           <td>{$medicion->grabacion_inicio}</td>
           <td>{$medicion->grabacion_fin}</td>
-          <td><a href="index.php?page=medicion_mostrar&id_medicion={$medicion->id}">Mostrar</a> - Editar - Borrar</td>
+          <td><a href="index.php?page=medicion_editar&id_medicion={$medicion->id}">Editar</a></td>
       {/foreach}
     </tbody>
   </table>

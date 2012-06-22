@@ -31,17 +31,40 @@ function fila_cancelar(medicion)
 {
 	$('#valors').load("index2.php?page=medicion_editar_fila_cancelar_asin&id_medicion="+medicion);
 }
-function medicion_editar(medicion,content)
+
+function etiqueta_editar(medicion,content)
 {
 	$('#'+content).load("index2.php?page=medicion_editar_asin&id_medicion="+medicion+"&contenedor="+content);
-}
-function medicion_editar_grabar()
+} 
+function etiqueta_editar_grabar(content,medicion,tag)
 {
-
+	var value = $("[name="+tag+"]").val();
+	$.post("index.php?page=medicion_editar_grabar_asin",{id_medicion:medicion,contenedor:content,valor:value},function(){
+		$('#'+content).load("index2.php?page=medicion_editar_cancelar_asin&id_medicion="+medicion+"&contenedor="+content);
+	});	
 }
-function medicion_editar_cancelar()
+function etiqueta_editar_cancelar(content,medicion)
 {
-
+	$('#'+content).load("index2.php?page=medicion_editar_cancelar_asin&id_medicion="+medicion+"&contenedor="+content);
+}
+function fecha_editar(medicion,content)
+{
+	$('#'+content).load("index2.php?page=medicion_editar_asin&id_medicion="+medicion+"&contenedor="+content);
+} 
+function fecha_grabar(medicion,content)
+{
+	
+	var dia = $("[name="+content+"Day]").val();
+	var mes = $("[name="+content+"Month]").val();
+	var year = $("[name="+content+"Year]").val();
+	var value = year+"-"+mes+"-"+dia;
+	$.post("index.php?page=medicion_editar_grabar_asin",{id_medicion:medicion,contenedor:content,valor:value},function(){
+		$('#'+content).load("index2.php?page=medicion_editar_cancelar_asin&id_medicion="+medicion+"&contenedor="+content);
+	});	
+}
+function fecha_cancelar(content,medicion)
+{
+	$('#'+content).load("index2.php?page=medicion_editar_cancelar_asin&id_medicion="+medicion+"&contenedor="+content);
 }
 {/literal}
 </script>
@@ -51,36 +74,68 @@ function medicion_editar_cancelar()
 </p>
 
 <h3>Datos de la medición</h3>
+<<<<<<< HEAD
 <p><b>Etiqueta: </b>
 	<span id="et">
 		<a href="javascript:void(0)" onclick="javascript:medicion_editar('{$medicion->id}','et')">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}----{/if}</a>
+=======
+{if $id_usuario == $indicador->id_responsable}
+<p><b>Etiqueta: </b>
+	<span id="et">
+		<a href="javascript:void(0)" onclick="javascript:etiqueta_editar('{$medicion->id}','et','etiqueta')">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}----{/if}</a>
+>>>>>>> medicion_jjmc
 	</span>
 </p>
 
 <p><b>Inicio del periodo: </b>
 	<span id="pi">
+<<<<<<< HEAD
 		<a href="javascript:void(0)" onclick="medicion_editar('{$medicion->id}','pi')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+=======
+		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','pi')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+>>>>>>> medicion_jjmc
 	</span>
 </p>
 
 <p><b>Fin del periodo: </b>
 	<span id="pf">
+<<<<<<< HEAD
 		<a href="javascript:void(0)" onclick="medicion_editar('{$medicion->id}','pf')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+=======
+		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','pf')">{if $medicion->periodo_fin}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+>>>>>>> medicion_jjmc
 	</span>
 </p>
 
 <p><b>Inicio grabación: </b>
 	<span id="gi">
+<<<<<<< HEAD
 		<a href="javascript:void(0)" onclick="medicion_editar('{$medicion->id}','gi')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+=======
+		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','gi')">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+>>>>>>> medicion_jjmc
 	</span>
 </p>
 
 <p><b>Fin grabación: </b>
 	<span id="gf">
+<<<<<<< HEAD
 		<a href="javascript:void(0)" onclick="medicion_editar('{$medicion->id}','gf')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
 	</span>
 </p>
 
+=======
+		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','gf')">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+	</span>
+</p>
+{else}
+<p><b>Etiqueta: </b>{$medicion->etiqueta}</p>
+<p><b>Inicio del periodo: </b>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</p>
+<p><b>Fin del periodo: </b>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</p>
+<p><b>Inicio grabación: </b>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</p>
+<p><b>Fin grabación: </b>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</p>
+{/if}
+>>>>>>> medicion_jjmc
 
 <h3>Valores</h3>
 {if $valores}
@@ -98,7 +153,17 @@ function medicion_editar_cancelar()
       {foreach $valores as $valor}
         <tr id="fila_{$valor->id}">
           <td>{$valor->entidad->nombre}</td>
+<<<<<<< HEAD
           <td><a id="td_{$valor->id}" href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{$valor->valor}</a></td>
+=======
+          <td>
+							{if $valor->autorizado == 1}
+								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{$valor->valor}</a>
+							{else}
+								{$valor->valor}
+							{/if}
+				</td>
+>>>>>>> medicion_jjmc
           <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
           <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
         </tr>
