@@ -2,7 +2,6 @@
 {literal}
 function fila_editar(medicion,valor)
 {
-	//$('#valors').load("index2.php?page=medicion_editar_asincrona&seccion=valores&id_medicion="+medicion+"&id_valor="+valor);
 	$('#valors').load("index2.php?page=medicion_editar_fila_asin&id_medicion="+medicion+"&id_valor="+valor);
 }
 function fila_grabar(id,medicion)
@@ -131,7 +130,6 @@ function fecha_cancelar(content,medicion)
           <td>
 							{if $valor->autorizado == 1}
 								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{$valor->valor}</a>
-								<!-- <a id="td_{$valor->id}" href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{$valor->valor}</a> -->
 							{else}
 								{$valor->valor}
 							{/if}
