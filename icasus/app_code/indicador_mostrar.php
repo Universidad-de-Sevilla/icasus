@@ -32,7 +32,7 @@ if (isset($_GET['id_indicador']))
     $propietario->load("id = $indicador->proceso->id_propietario");
     $smarty->assign('propietario', $propietario);
     */
-	$smarty->assign('_nombre_pagina', $entidad->nombre); 
+	$smarty->assign('_nombre_pagina', "Datos del indicador: " . $indicador->nombre); 
 	//$smarty->assign('barra_indicadores',$entidad->barra_indicadores()); 
 	// Dibuja la grafica
 	if ($valores) 
@@ -48,6 +48,6 @@ else
 {
 	// Faltan parametros avisa error
 	$error = "No se puede mostrar el indicador por falta de parámetros.";
-	header("index.php?page=entidad_listar");
+	header("index.php?page=entidad_listar&error=$error");
 }
 ?>
