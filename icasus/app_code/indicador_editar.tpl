@@ -1,87 +1,133 @@
-{if $aviso}<p class='aviso'>{$aviso}</p>{/if}
-{if $error}<p class='error'>{$error}</p>{/if}
-<h3>Editando indicador</h3>
-<form method="post" action="index.php?page=indicador_editar" id="formindicador" name="formindicador" class="datos">
-	
-	<input type='hidden' name='id_indicador' value='{$indicador.id_indicador}' />
-	<input type='hidden' name='id_entidad' value='{$indicador.id_entidad}' />
-	
-	<p><label for="id_proceso">Proceso</label> &nbsp;<br /> 
-	<select name="id_proceso" id="id_proceso" class="inp">
-	<option value=''></option>
-	{foreach from=$procesos item=proceso}
-		<option value='{$proceso.id_proceso}' 
-			{if $indicador.id_proceso == $proceso.id_proceso}selected{/if}>{$proceso.nombre}</option>
-	{/foreach}		
-	</select> </p>
-	
-	<p><label for="id_responsable">Responsable de tomar el dato</label> &nbsp;<br /> 
-	<select name="id_responsable" id="id_responsable" class="inp">
-	<option value=''></option>
-	{foreach from=$usuarios item=usuario}
-		<option value='{$usuario.id_usuario}' 
-			{if $indicador.id_responsable == $usuario.id_usuario}selected{/if}>{$usuario.nombre} {$usuario.apellidos}</option>
-	{/foreach}		
-	</select> </p>
-	<!--
-	<p><label for="id_dimension">Dimensión</label> &nbsp; 
-	<select name="id_dimension" class="inp">
-	<option value=''></option>
-	{foreach from=$dimensiones item=dimension}
-		<option value='{$dimension.id}' 
-			{if $indicador.id_dimension == $dimension.id}selected{/if}>{$dimension.nombre|htmlentities}</option> 
-	{/foreach}
-	-->
-	</select> </p>
-	
-	<p><label for="codigo">Código </label> &nbsp; <span class="grey">(requerido)</span><br />
-	<input type="text" name="codigo" id="codigo" class="inp" value="{$indicador.codigo}"/></p>
-	
-	<p><label for="nombre">Nombre indicador </label> &nbsp; <span class="grey">(requerido)</span><br />
-	<input type="text" name="nombre" id="nombre" class="inp" value="{$indicador.nombre}"/></p>
+<h3>Editando indicador: {$indicador->nombre}</h3>
+<form method="post" action="index.php?page=indicador_grabar" id="formindicador" name="formindicador" class="datos">
+	<input type='hidden' name='id_indicador' value='{$indicador->id_indicador}' />
+	<input type='hidden' name='id_entidad' value='{$indicador->id_entidad}' />
+    <table>
+    <tr>
+      <th>Proceso</th>
+      <td>
+        <select name="id_proceso" id="id_proceso" class="inp">
+          {foreach $procesos as $proceso}
+            <option value='{$proceso->id}' {if $indicador->id_proceso == $proceso->id}selected{/if}>
+              {$proceso->nombre}
+            </option>
+          {/foreach}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Responsable de medici&oacute;n</td>
+      <td>
+        <select name="id_responsable">
+          {foreach $usuarios_entidades as $usuario_entidad}
+            <option value='{$usuario_entidad->usuario->id}' {if $indicador->id_responsable == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
+            </option>
+          {/foreach}              
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <th>Código indicador</th>
+      <td><input type='text' name='codigo' id='codigo'value='{$indicador->codigo}' /></td>
+    </tr>
+    <tr>
+      <th>Nombre indicador</th>
+      <td><b><input type='text' name='nombre' id='nombre'value='{$indicador->nombre}' /></b></td>
+    </tr>
+    <tr>
+      <th>Descripci&oacute;n</th>
+      <td><textarea rows="3" class='inp' name='descripcion' id='descripcion'>{$indicador->descripcion}</textarea></td>
+    </tr>
+    <tr>
+      <th>Formulaci&oacute;n</th>
+      <td><textarea rows="3" class='inp' name='formulacion' id='formulacion'>{$indicador->formulacion}</textarea></td>
+    </tr>
+    <tr>
+      <th>Valor de referencia</th>
+      <td><input type='text' name='valor_referencia' id='valor_referencia'value='{$indicador->valor_referencia}' /></td>
+    </tr>
+    <tr>
+      <th>Fuente de informaci&oacute;n</th>
+      <td><input type='text' name='fuente_informacion' id='fuente_informacion'value='{$indicador->fuente_informacion}' /></td>	
+    </tr>
+    <tr>
+      <th>Fuente de datos</th>
+      <td><input type='text' name='fuente_datos' id='fuente_datos'value='{$indicador->fuente_datos}' /></td>	
+    </tr>
+    <tr>
+      <th>Unidad generadora</th>
+      <td><input type='text' name='unidad_generadora' id='unidad_generadora'value='{$indicador->unidad_generadora}' /></td>
+    </tr>
+    <tr>
+      <th>Metodo de comprobaci&oacute;n/Evidencia</th>
+      <td><input type='text' name='evidencia' id='evidencia'value='{$indicador->evidencia}' /></td>		
+    </tr>
+    <tr>
+      <th>Hist&oacute;rico</th>
+      <td><input type='text' name='historicos' id='historicos'value='{$indicador->historicos}' /></td>
+    </tr>
 
-	<p><label for="visibilidad">Visibilidad </label> &nbsp; <span class="grey">(requerido)</span><br />
-        <select name="visibilidad" id="visibilidad" class="inp">
-        {foreach from=$visibilidades item=visibilidad}
-                <option value='{$visibilidad->id}' {if $indicador.id_visibilidad == $visibilidad->id} selected {/if}>{$visibilidad->nombre|htmlentities}</option>
-        {/foreach}
-        </select> </p>
+    <tr>
+      <th>Interpretaci&oacute;n</th>
+      <td><input type='text' name='interpretacion' id='interpretacion'value='{$indicador->interpretacion}' /></td>
+    </tr>
+    <tr>
+      <th>Indicadores relacionados</th>
+      <td><input type='text' name='indicadores_relacionados' id='indicadores_relacionados'value='{$indicador->indicadores_relacionados}' /></td>
+    </tr>
+    <tr>
+      <th>Criterios EFQM</th>
+      <td>
+        <select name="criterios_efqm[]" id="criterios_efqm" class="inp">
+          <option value=''></option>
+          {foreach $criterios_efqm as $criterio_efqm}
+            <option value='{$criterio_efqm->id}' 
+            {if $indicador->criterios_efqm}
+                {if $indicador->criterios_efqm[0]->criterio_efqm->id == $criterio_efqm->id}selected{/if}
+            {/if}
+            >{$criterio_efqm->codigo} - {$criterio_efqm->nombre}
+            </option>
+          {/foreach}
+        </select>
+        <select name="criterios_efqm[]" id="criterios_efqm" class="inp">
+          <option value=''></option>
+          {foreach $criterios_efqm as $criterio_efqm}
+            <option value='{$criterio_efqm->id}' 
+            {if $indicador->criterios_efqm}
+                {if $indicador->criterios_efqm[1]->criterio_efqm->id == $criterio_efqm->id}selected{/if}
+            {/if}
+            >{$criterio_efqm->codigo} - {$criterio_efqm->nombre}
+            </option>
+          {/foreach}
+        </select>
+      </td>
+    <tr>
+      <th>Periodicidad</td>
+      <td>{$indicador->periodicidad}</td>
+    </tr>
+    <tr>
+      <th>Visibilidad</td>	
+      <td>{$indicador->visibilidad->nombre|htmlentities}</td>
+    </tr>
+    <tr>
+      <th>Valores de referencia</th>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <th>Nivel de desagregacion</th>
+      <td><input type='text' name='nivel_desagregacion' id='nivel_desagregacion'value='{$indicador->nivel_desagregacion}' /></td>
+    </tr>
+    <tr>
+      <th>Subunidades afectadas</th>
+    <td>
+    <input type="checkbox" name="id_unidades[]" checked /> {$entidad->nombre}<hr />
+      {foreach $subunidades as $subunidad}
+        <input type="checkbox" name="id_unidades[]" value="{$subunidad->id}" checked /> {$subunidad->nombre}<br />
+      {/foreach}
+    </td>
+    </tr>
+  </table>
 
-
-	<p><label for="descripcion">Descripci&oacute;n </label> &nbsp; <span class="grey">(requerido)</span><br />
-	<textarea name="descripcion" id="descripcion" class="inp" rows="5" cols="50">{$indicador.descripcion}</textarea></p>
-
-	<p><label for="formulacion">Formulaci&oacute;n </label> &nbsp;<span class="grey">(requerido)</span><br />
-	<textarea name="formulacion" id="formulacion" class="inp" rows="5" cols="50">{$indicador.formulacion}</textarea></p>
-
-	<!--
-	<p><label for="umbral">Umbral </label> &nbsp;<span class="grey">(requerido)</span>
-	<input type="text" name="umbral" id="umbral" class="inp" value="{$indicador.umbral}"/></p>
-	-->
-
-	<p><label for="objetivo">Objetivo </label> &nbsp;<span class="grey">(requerido)</span><br />
-	<input type="text" name="objetivo" id="objetivo" class="inp" value="{$indicador.objetivo}"/></p>
-
-	<p><label for="objetivo_estrategico">Objetivo Estrat&eacute;gico</label> &nbsp;<br />
-	<input type="text" name="objetivo_estrategico" id="objetivo_estrategico" class="inp"
-	value="{$indicador.objetivo_estrategico}"/></p>
-
-	<p><label for="objetivo_carta">Objetivo Carta de Servicio</label> &nbsp;<br />
-	<input type="text" name="objetivo_carta" id="objetivo_carta" class="inp" value="{$indicador.objetivo_carta}"/></p>
-
-	<p><label for="fuente">Fuente de obtenci&oacute;n </label> &nbsp;<span class="grey">(requerido)</span><br />
-	<input type="text" name="fuente" id="fuente" class="inp" value="{$indicador.fuente}" /></p>
-
-	<p><label for="periodicidad">Periodicidad de medida </label> &nbsp;<span class="grey">(requerido)</span><br />
-	<select name="periodicidad" id="periodicidad" class="inp" />
-		<option value=''></option>
-		<option value='1' {if $indicador.periodicidad == 1}selected{/if}>Mensual</option>
-		<option value='3' {if $indicador.periodicidad == 3}selected{/if}>Trimestral</option>
-		<option value='4' {if $indicador.periodicidad == 4}selected{/if}>Cuatrimestral</option>
-		<option value='6' {if $indicador.periodicidad == 6}selected{/if}>Semestral</option>
-		<option value='12' {if $indicador.periodicidad == 12}selected{/if}>Anual</option>
-	</select>
-	</p>
 	<p><input type="button" class="submit-btn" value="Enviar" name="indicador_submit" onclick="javascript:indicador_validar();" /></p>
 
 </form>
