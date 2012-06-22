@@ -1,18 +1,14 @@
-<h2>Relación de indicadores</h2>
-<div class="box grid_16 no_titlebar" style="opacity: 1;">
-  <div class="toggle_container">
-    <div class="block" style="opacity: 1;">
-      <h2 class="section"><p>	 
-        <a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'><img 
-        src='/icons/ff16/chart_curve_add.png' alt='icono' />Crear indicador</a> &nbsp;
-        <a href='index.php?page=entidad_indicadores_excel&id_entidad={$entidad->id}'><img 
-        src='/icons/ff16/page_excel.png' alt='icono' />Exportar indicadores</a>&nbsp;
-        <a href='index.php?page=indicador_publico'><img 
-        src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públicos</a>
-      </h2>
-    </div>
-  </div>
-</div>
+<h3>	 
+  <a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'><img 
+  src='/icons/ff16/chart_curve_add.png' alt='icono' />Crear indicador</a> &nbsp; &nbsp;
+  <!--
+  <a href='index.php?page=entidad_indicadores_excel&id_entidad={$entidad->id}'><img 
+  src='/icons/ff16/page_excel.png' alt='icono' />Exportar indicadores</a>&nbsp; &nbsp;
+  <a href='index.php?page=indicador_publico'><img 
+  src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públicos</a>
+  -->
+</h3>
+
 {if $indicadores}
 <div class="box grid_16 single_datatable">
   <div id="dt1" class="no_margin">

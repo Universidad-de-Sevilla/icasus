@@ -23,22 +23,22 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 
   //Datos del proceso madre
 	$proceso_madre = new proceso();
-    $proceso_madre->load("id = $proceso->id_madre");
-    $smarty->assign('proceso_madre', $proceso_madre);
+  $proceso_madre->load("id = $proceso->id_madre");
+  $smarty->assign('proceso_madre', $proceso_madre);
   //Datos del propietario
-    $propietario = new usuario();
-    $propietario->load("id = $proceso->id_propietario");
-    $smarty->assign('propietario', $propietario);
+  $propietario = new usuario();
+  $propietario->load("id = $proceso->id_propietario");
+  $smarty->assign('propietario', $propietario);
 
   // Listado de subprocesos
-    $subprocesos = $proceso->Find_joined("id_madre = $id_proceso");
-    $smarty->assign('subprocesos',$subprocesos);
+  $subprocesos = $proceso->Find_joined("id_madre = $id_proceso");
+  $smarty->assign('subprocesos',$subprocesos);
   // Listado de indicadores
 	$indicador = new indicador();
 	$indicadores = $indicador->Find_joined("id_proceso = $id_proceso");
 	$smarty->assign('indicadores',$indicadores);
 	
-  	$smarty->assign('id_entidad',$id_entidad);
+  $smarty->assign('id_entidad',$id_entidad);
 	$smarty->assign('_nombre_pagina' , "Proceso: " . $proceso->nombre);
 	$smarty->assign('_javascript' , array('proceso_borrar'));
 	$plantilla = 'proceso_mostrar.tpl';

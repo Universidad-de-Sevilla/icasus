@@ -1,6 +1,3 @@
-<div class="flat_area grid_16">
-	<h2>Lista de procesos</h2>
-</div>
 <form id="grabar" name="grabar" action="index.php?page=nota_grabar" METHOD="POST" >
 	<div class="toggle_container">
 		<fieldset>

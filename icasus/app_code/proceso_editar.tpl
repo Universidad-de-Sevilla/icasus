@@ -1,10 +1,7 @@
-<div class="flat_area grid_16">
-	<h2><img src='/icons/ff32/cog_edit.png' alt='icono engranaje'> Editando Proceso</h2>
-</div>
+<p><a href='javascript:window.history.back();'><img src='/icons/ff16/arrow_undo.png' /> Cancelar</a></p>
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-		
 			<form method='post' action='index.php?page=proceso_editar' id='formproceso' class='datos'>
 			  <input type='hidden' name='id_entidad' id='id_entidad' value='{$proceso->id_entidad}' />
 			  <input type='hidden' name='id_proceso' id='id_proceso' value='{$proceso->id}' />

@@ -20,7 +20,7 @@ if ($_GET['id_entidad'] > '0')
   $indicadores = $indicador->Find_joined("id_entidad = $id_entidad");
 	$smarty->assign('indicadores',$indicadores); 
 	//$smarty->assign('barra_indicadores',$entidad->barra_indicadores()); 
-	$smarty->assign('_nombre_pagina' , $entidad->nombre);
+	$smarty->assign('_nombre_pagina' , "Lista de indicadores: " . "Lista de indicadores: " . $entidad->nombre);
 	$plantilla = 'indicador_listar.tpl';
 }
 else

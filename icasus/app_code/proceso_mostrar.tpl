@@ -1,45 +1,54 @@
+<!--
 <div id="nav_top" class="clearfix round_top">
 	<ul class="clearfix">
-    	<li>
-        	
-        </li>
-        <li>    
-        	<a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-            	<img src='/icons/ff16/cog_edit.png' alt='icono' /><span> Editar proceso </span>
-            </a> 
-         </li>  
-         <li>  
-        	<a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'>
-            	<img src='/icons/ff16/cog.png' alt='icono'/><span> Listar procesos </span>
-            </a>
-         </li>
-         <li>   
-        	<a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'>
-            	<img src='/icons/ff16/cog_add.png' alt='icono' /><span> Crear proceso</span>
-            </a>
-         </li>
-         <li>    
-        	<a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'>
-            	<img src='/icons/ff16/chart_curve_add.png' alt='icono' /><span> Crear indicador</span>
-            </a>
-         </li>
-         <li>    
-        	<a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-        onClick='return confirmar();'>
-        		<img src='/icons/ff16/cog_delete.png' alt='icono' /><span> Borrar proceso</span>
-            </a>
-         </li>    
-    </ul>
+    <li> </li>
+    <li>    
+      <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+          <img src='/icons/ff16/cog_edit.png' alt='icono' /><span> Editar proceso </span>
+        </a> 
+     </li>  
+     <li>  
+      <a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'>
+          <img src='/icons/ff16/cog.png' alt='icono'/><span> Listar procesos </span>
+        </a>
+     </li>
+     <li>   
+      <a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'>
+          <img src='/icons/ff16/cog_add.png' alt='icono' /><span> Crear proceso</span>
+        </a>
+     </li>
+     <li>    
+      <a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'>
+          <img src='/icons/ff16/chart_curve_add.png' alt='icono' /><span> Crear indicador</span>
+        </a>
+     </li>
+     <li>    
+      <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
+    onClick='return confirmar();'>
+        <img src='/icons/ff16/cog_delete.png' alt='icono' /><span> Borrar proceso</span>
+        </a>
+     </li>    
+   </ul>
     
     <div id="mobile_nav">
 		<div class="main"></div>
 		<div class="side"></div>
 	</div>
 </div> 
-
-<div class="flat_area grid_16">
-	<h2>Proceso madre: {if $proceso_madre->id > 0} {$proceso_madre->codigo} - {$proceso_madre->nombre} {else} Es un Proceso Madre {/if}</h2>
-</div>
+-->
+<h3 class="section">
+      <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+          <img src='/icons/ff16/cog_edit.png' alt='icono' /><span> Editar proceso </span> </a> &nbsp; &nbsp; &nbsp;
+      <a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'>
+          <img src='/icons/ff16/cog.png' alt='icono'/><span> Listar procesos </span> </a>&nbsp; &nbsp; &nbsp;
+      <a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'>
+          <img src='/icons/ff16/cog_add.png' alt='icono' /><span> Crear proceso</span> </a>&nbsp; &nbsp; &nbsp;
+      <a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'>
+          <img src='/icons/ff16/chart_curve_add.png' alt='icono' /><span> Crear indicador</span> </a>&nbsp; &nbsp; &nbsp;
+      <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
+    onClick='return confirmar();'>
+        <img src='/icons/ff16/cog_delete.png' alt='icono' /><span> Borrar proceso</span> </a>
+</h3>
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
@@ -47,37 +56,40 @@
 				<label>C&oacute;digo</label>
 				<div>
 					<label for='codigo'>{$proceso->codigo}</label>
-					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
 				</div>
 			</fieldset>
 			<fieldset class="label_side">
 				<label>Revisi&oacute;n</label>
 				<div>
 					<label for='revision'>{$proceso->revision}</label>
-					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
 				</div>
 			</fieldset>
 			<fieldset class="label_side">
 				<label>Fecha</label>
 				<div>
 					<label for='fecha_revision'>{$proceso->fecha_revision|date_format:"%d/%m/%Y"}</label>
-					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
 				</div>
 			</fieldset>
 			<fieldset class="label_side">
 				<label>Nombre proceso</label>
 				<div>
 					<label for='nombre'>{$proceso->nombre}</label>
-					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
 				</div>
 			</fieldset>
 			<fieldset class="label_side">
 				<label>Propietario</label>
 				<div>
 					<label for='id_propietario'>{$propietario->nombre} {$propietario->apellidos}</label>
-					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
 				</div>
 			</fieldset>
+			<fieldset class="label_side">
+				<label>Proceso madre</label>
+				<div>
+          <label for="proceso_madre">
+            {if $proceso_madre->id > 0} {$proceso_madre->codigo} - {$proceso_madre->nombre} {else} Es un Proceso Madre {/if}
+          </label>
+				</div>
+      </fieldset>
 			<fieldset class="label_side">
 				<label>Misi&oacute;n:</label>
 				<div>
