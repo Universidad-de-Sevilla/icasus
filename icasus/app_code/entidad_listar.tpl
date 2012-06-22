@@ -63,8 +63,9 @@
 	{/if}
 	
 	<div class="flat_area grid_16">
-		<h2>Buscar unidades</h2>
+		<h2>Todas las unidades</h2>
 	</div>
+  <!--
 	<div class="box grid_16">
 		<div class="block">	
 			<form action='index.php?page=entidad_listar' method="post" class="mini" name="formlogin">
@@ -74,6 +75,7 @@
 			</form>
 		</div>
 	</div>		
+  -->
 	{if isset($entidades)}
 		<div class="box grid_16">
 			<div class="block">	

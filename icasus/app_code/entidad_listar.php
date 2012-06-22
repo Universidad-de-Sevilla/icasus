@@ -18,7 +18,11 @@ $smarty->assign('entidades_usuario',$usuario->entidades);
 $grupos_usuario = ""; //Deshabilitado de momento
 $smarty->assign('grupos_usuario',$grupos_usuario);
 
-//Todas las entidades
+$entidad = new entidad;
+$entidades = $entidad->Find("1 = 1");
+$smarty->assign('entidades',$entidades);
+
+/*
 if (isset($_REQUEST['criterio']))
 {
   $criterio = sanitize($_REQUEST['criterio'], SQL);
@@ -28,5 +32,7 @@ if (isset($_REQUEST['criterio']))
   $entidades = $entidad->Find($condicion);
   $smarty->assign('entidades',$entidades);
 }
+*/
+
 $plantilla = 'entidad_listar.tpl';
 ?>
