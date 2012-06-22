@@ -21,7 +21,6 @@ $v->load("id = $id_valor");
 
 if ($v->puede_grabarse($v->id,$usuario->id))
 {
-echo $valor.$id_valor;
 	$v->id_usuario = $usuario->id;
 	$v->valor = $valor;
 	$v->fecha_recogida = date("Y-m-d");
