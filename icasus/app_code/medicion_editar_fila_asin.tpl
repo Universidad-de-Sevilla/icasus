@@ -7,9 +7,9 @@
 			<td>
 			{if $valor->autorizado == 1}
 				{if $valor->id == $valor_edit}
-					<input name="v_{$valor->id}" type="text" value="{$valor->valor}" style="width:50px"><br/> 
-					<a href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}','{$medicion->id}')">G</a> - 
-					<a href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}')">C</a>
+					<input name="v_{$valor->id}" type="text" value="{$valor->valor}" style="width:50px"> 
+					<a href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}','{$medicion->id}')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/disk.png'align="absmiddle"></a> 
+					<a href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/cross.png'align="absmiddle"></a>
 				{else}
 					<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{$valor->valor}</a>
 				{/if}
