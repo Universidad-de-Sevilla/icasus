@@ -22,7 +22,7 @@
 		{foreach from=$indicadores item=indicador} 
 		  <tr>
 			  <td><a
-			  href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$entidad->id}'>{$indicador->proceso->nombre}'</a></td>
+			  href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$entidad->id}'>{$indicador->proceso->nombre}</a></td>
 			  <td>{$indicador->codigo}</td><td><b>{$indicador->nombre}</b> <a href='#'
 			  title='{$indicador->descripcion}'>*</a></td>
 			  <td><a href='index.php?page=usuario_datos&id_usuario={$indicador->id_responsable}&id_entidad={$entidad->id}'>{$indicador->responsable->nombre} 

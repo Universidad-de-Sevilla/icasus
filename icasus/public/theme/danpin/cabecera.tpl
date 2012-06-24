@@ -98,10 +98,6 @@
 		<script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_forms.js"></script>
 		<script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_mobile.js"></script>
 		
-		<!-- Live Load (remove after development) -->
-		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-
-	</head>
 	<body>
 		<div id="wrapper">		
 			
@@ -207,6 +203,6 @@
 </div><!-- #nav_top -->
 		<div class="flat_area grid_16">
     <div>
-    <h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN WEB PARA LA GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
+    <h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
     <h2>{$_nombre_pagina}</h2>
     </div>

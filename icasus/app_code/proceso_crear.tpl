@@ -1,7 +1,3 @@
-<div class="flat_area grid_16">
-	<h2>Nuevo proceso</h2>
-</div>
-
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">

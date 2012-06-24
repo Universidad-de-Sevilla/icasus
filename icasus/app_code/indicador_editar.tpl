@@ -1,10 +1,13 @@
-<h3>Editando indicador: {$indicador->nombre}</h3>
-<p><a href='javascript:window.history.back();'><img src='/icons/ff16/arrow_undo.png' /> Cancelar</a></p>
+<h3>
+  <a href='javascript:window.history.back();'><img src='/icons/ff16/arrow_undo.png' /> Cancelar</a> &nbsp; &nbsp; &nbsp;
+  <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img 
+    src='/icons/ff16/chart_curve_delete.png' /> Borrar indicador</a>
+</h3>
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
       <form method="post" action="index.php?page=indicador_grabar" id="formindicador" name="formindicador" class="datos">
-        <input type='hidden' name='id_indicador' value='{$indicador->id_indicador}' />
+        <input type='hidden' name='id_indicador' value='{$indicador->id}' />
         <input type='hidden' name='id_entidad' value='{$indicador->id_entidad}' />
           <fieldset class="label_side">
             <label>Proceso</label>
@@ -123,7 +126,16 @@
           </fieldset>
           <fieldset class="label_side">
             <label>Visibilidad</label>	
-            <div>{$indicador->visibilidad->nombre|htmlentities}</div>
+            <div>
+              <select name="id_visibilidad" id="id_visibilidad">
+                {foreach $visibilidades as $visibilidad}
+                  <option value='{$visibilidad->id}' {if $visibilidad->id == $indicador->visibilidad->id}selected{/if}>
+                    {$visibilidad->nombre|htmlentities}
+                  </option>
+                {/foreach}
+              </select>
+            </div>
+              
           </fieldset>
           <fieldset class="label_side">
             <label>Valores de referencia</label>
@@ -136,9 +148,9 @@
           <fieldset class="label_side">
             <label>Subunidades afectadas</label>
             <div>
-              <input type="checkbox" name="id_unidades[]" checked /> {$entidad->nombre}<hr />
+              <input type="checkbox" name="subunidades[]" checked /> {$entidad->nombre}<hr />
               {foreach $subunidades as $subunidad}
-                <input type="checkbox" name="id_unidades[]" value="{$subunidad->id}" checked /> {$subunidad->nombre}<br />
+                <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" /> {$subunidad->nombre}<br />
               {/foreach}
             </div>
           </fieldset>

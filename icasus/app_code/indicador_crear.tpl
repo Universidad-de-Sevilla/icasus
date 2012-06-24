@@ -1,69 +1,150 @@
-{if $aviso}<p class='aviso'>{$aviso}</p>{/if}
-{if $error}<p class='error'>{$error}</p>{/if}
-<h3>Nuevo indicador</h3>
-<form method="post" action="index.php?page=indicador_crear" id="formindicador" name="formindicador" class="datos">
-	<input type='hidden' name='id_entidad' id='id_entidad' value='{$entidad.id_entidad}' />
+<p><a href='javascript:window.history.back();'><img src='/icons/ff16/arrow_undo.png' /> Cancelar</a></p>
 
-	<p><label for="id_proceso">Proceso</label> &nbsp; <span class="grey">(requerido)</span><br />
-	<select name="id_proceso" id="id_proceso" class="inp">
-	<option value=''></option>
-	{foreach from=$procesos item=proceso}
-		<option value='{$proceso.id_proceso}'>{$proceso.codigo} {$proceso.nombre}</option>
-	{/foreach}		
-	</select> </p>
+<div class="box grid_16">
+	<div class="toggle_container">
+		<div class="block">
+        <form method="post" action="index.php?page=indicador_grabar" id="formindicador" name="formindicador" class="datos">
+          <input type='hidden' name='id_entidad' value='{$entidad->id}' />
+          <fieldset class="label_side">
+            <label>Proceso</label>
+            <div>
+              <select name="id_proceso" id="id_proceso">
+                <option value=""></option>
+                {foreach $procesos as $proceso}
+                  <option value='{$proceso->id}'> {$proceso->nombre} </option>
+                {/foreach}
+              </select>
+            </div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Código indicador</label>
+            <div><input  type='text' name='codigo' /></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Nombre</label>
+            <div><b><input  type='text' name='nombre' /></b></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Descripci&oacute;n</label>
+            <div><textarea  class='inp' name='descripcion'></textarea></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Formulaci&oacute;n</label>
+            <div><textarea  class='inp' name='formulacion'></textarea></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Responsable de medici&oacute;n</label>
+            <div>
+              <select name="id_responsable">
+                <option value=""></option>
+                {foreach $usuarios_entidad as $usuario_entidad}
+                  <option value='{$usuario_entidad->usuario->id}'>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
+                  </option>
+                {/foreach}              
+              </select>
+            </div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Valor de referencia</label>
+            <div><input  type='text' name='valor_referencia'/></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Valores de referencia</label>
+            <div><input  type='text' name='valores_referencia'/></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Fuente de informaci&oacute;n</label>
+            <div><input  type='text' name='fuente_informacion'/></div>	
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Fuente de datos</label>
+            <div><input  type='text' name='fuente_datos'/></div>	
+            
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Unidad generadora</label>
+            <div><input  type='text' name='unidad_generadora' /></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Nivel de desagregacion</label>
+            <div><input  type='text' name='nivel_desagregacion' /></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Metodo de comprobaci&oacute;n / Evidencia</label>
+            <div><input  type='text' name='evidencia' /></div>		
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Hist&oacute;rico</label>
+            <div><input  type='text' name='historicos' /></div>
+          </fieldset>
 
-	<p><label for="id_responsable">Responsable de tomar el dato</label> &nbsp; <span class="grey">(requerido)</span><br />
-	<select name="id_responsable" id="id_responsable" class="inp">
-	<option value=''></option>
-	{foreach from=$usuarios item=usuario}
-		<option value='{$usuario.id_usuario}'>{$usuario.nombre} {$usuario.apellidos}</option>
-	{/foreach}		
-	</select> </p>
-	
-	<p><label for="codigo">Código </label> &nbsp; <span class="grey">(requerido)</span><br />
-	<input type="text" name="codigo" id="codigo" class="inp" value='{$entidad.codigo}-' /></p>
-
-	<p><label for="nombre">Nombre indicador </label> &nbsp; <span class="grey">(requerido)</span><br />
-	<input type="text" name="nombre" id="nombre" class="inp" /></p>
-
-	<p><label for="visibilidad">Visibilidad </label> &nbsp; <span class="grey">(requerido)</span><br />
-	<select name="visibilidad" id="visibilidad" class="inp">
-        <option value='0'>Elegir uno ....</option>
-        {foreach from=$visibilidades item=visibilidad}
-                <option value='{$visibilidad->id}'>{$visibilidad->nombre|htmlentities}</option>
-        {/foreach}               
-        </select> </p>
-	
-	<p><label for="descripcion">Descripci&oacute;n </label> &nbsp; <span class="grey">(requerido)</span></p>
-	<p><textarea name="descripcion" id="descripcion" class="inp" rows="5" cols="50"></textarea></p>
-
-	<p><label for="formulacion">Formulaci&oacute;n </label> &nbsp;<span class="grey">(requerido)</span></p>
-	<p><textarea name="formulacion" id="formulacion" class="inp" rows="5" cols="50"></textarea></p>
-	
-	<p><label for="objetivo">Objetivo </label> &nbsp;<span class="grey">(requerido)</span><br />
-	<input type="text" name="objetivo" id="objetivo" class="inp" value='0' /></p>
-
-	<p><label for="objetivo_estrategico">Objetivo Pactado</label> &nbsp;<br />
-	<input type="text" name="objetivo_estrategico" id="objetivo_estrategico" class="inp" value='0' /></p>
-
-	<p><label for="objetivo_carta">Objetivo Carta de Servicio</label> &nbsp;<br />
-	<input type="text" name="objetivo_carta" id="objetivo_carta" class="inp" value='0' /></p>
-
-	<p><label for="fuente">Fuente de obtenci&oacute;n </label> &nbsp;<span class="grey">(requerido)</span><br />
-	<input type="text" name="fuente" id="fuente" class="inp" /></p>
-
-	<p><label for="periodicidad">Periodicidad de medida </label> &nbsp;<span class="grey">(requerido)</span><br />
-	<select name="periodicidad" id="periodicidad" class="inp" />
-		<option value='1'>Mensual</option>
-		<option value='3'>Trimestral</option>
-		<option value='4'>Cuatrimestral</option>
-		<option value='6'>Semestral</option>
-		<option value='12' selected>Anual</option>
-	</select>
-	</p>
-
-	<p><input type="button" class="submit-btn" value="Enviar" name="indicador_submit" 
-	onclick="javascript:indicador_validar();" /></p>
-
-</form>
-
+          <fieldset class="label_side">
+            <label>Interpretaci&oacute;n</label>
+            <div><input  type='text' name='interpretacion' /></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Indicadores relacionados</label>
+            <div><input  type='text' name='indicadores_relacionados' /></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>EFQM</label>
+            <div>
+              <select name="criterios_efqm[]" id="criterios_efqm" >
+                <option value=""></option>
+                {foreach $criterios_efqm as $criterio_efqm}
+                  <option value='{$criterio_efqm->id}'>
+                    {$criterio_efqm->codigo} - {$criterio_efqm->nombre|htmlentities}
+                  </option>
+                {/foreach}
+              </select>
+              <select name="criterios_efqm[]" id="criterios_efqm" >
+                <option value=""></option>
+                 {foreach $criterios_efqm as $criterio_efqm}
+                  <option value='{$criterio_efqm->id}'>
+                    {$criterio_efqm->codigo} - {$criterio_efqm->nombre|htmlentities}
+                  </option>
+                {/foreach}
+              </select>
+            </div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Periodicidad</label>
+            <div>
+              <select name="periodicidad" id="periodicidad"  />
+                <option value='Anual' selected>Anual</option>
+                <option value='Mensual'>Mensual</option>
+                <option value='Trimestral'>Trimestral</option>
+                <option value='Cuatrimestral'>Cuatrimestral</option>
+                <option value='Semestral'>Semestral</option>
+              </select>
+            </div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Visibilidad</label>	
+            <div>
+              <select name="id_visibilidad" id="id_visibilidad">
+                {foreach $visibilidades as $visibilidad}
+                  <option value='{$visibilidad->id}'>
+                    {$visibilidad->nombre}
+                  </option>
+                {/foreach}
+              </select>
+            </div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Subunidades afectadas</label>
+            <div>
+              <input type="checkbox" name="subunidades[]" checked /> {$entidad->nombre}<hr />
+              {foreach $subunidades as $subunidad}
+                <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" checked /> {$subunidad->nombre}<br />
+              {/foreach}
+            </div>
+          </fieldset>
+          <fieldset class="label_side">
+            <div>
+            <input type="submit" value="Grabar" name="indicador_submit" />
+            </div>
+          </fieldset>
+        </form>
+    </div>
+  </div

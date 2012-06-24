@@ -31,32 +31,29 @@
 {if $indicadores_subunidades}
   <h3>Indicadores a su cargo</h3>
   <div class="box grid_16 single_datatable">
-   		<div id="dt1" class="no_margin">
-  <table class="display datatable"> 
-	<thead> 
-	 <tr>  
-	 	<th>Código</th>
-        <th>Nombre</th>
-        <th>Pendientes</th>
-	 </tr> 
-	</thead> 
-	
-    <tbody>
-    
-	       {foreach $indicadores_subunidades as $indicador_subunidad}
-	        <tr class="gradeX">
-	          <td>{$indicador_subunidad->indicador->codigo}</td>
-	          <td><a href="index.php?page=indicador_mostrar&id_indicador={$indicador_subunidad->indicador->id}">{$indicador_subunidad->indicador->nombre}</a></td>
-	          <td>{$indicador_subunidad->mediciones_pendientes}
-	              {if $indicador_subunidad->mediciones_pendientes > 0}
-	               | <a href="index.php?page=medicion_subunidad_listar&id_indicador={$indicador_subunidad->indicador->id}">grabar</a>
-	              {/if}
-	          </td>
-	        </tr>
-	      {/foreach}  
-
-    </tbody>
-  </table>
+   	<div id="dt1" class="no_margin">
+      <table class="display datatable"> 
+      <thead> 
+       <tr>  
+        <th>Código</th>
+            <th>Nombre</th>
+            <th>Pendientes</th>
+       </tr> 
+      </thead> 
+        <tbody>
+           {foreach $indicadores_subunidades as $indicador_subunidad}
+            <tr class="gradeX">
+              <td>{$indicador_subunidad->indicador->codigo}</td>
+              <td><a href="index.php?page=indicador_mostrar&id_indicador={$indicador_subunidad->indicador->id}">{$indicador_subunidad->indicador->nombre}</a></td>
+              <td>{$indicador_subunidad->mediciones_pendientes}
+                  {if $indicador_subunidad->mediciones_pendientes > 0}
+                   | <a href="index.php?page=medicion_subunidad_listar&id_indicador={$indicador_subunidad->indicador->id}">grabar</a>
+                  {/if}
+              </td>
+            </tr>
+          {/foreach}  
+        </tbody>
+      </table>
   </div>
  </div> 
 {/if}

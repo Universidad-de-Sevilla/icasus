@@ -6,30 +6,41 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra un indicador
 //---------------------------------------------------------------------------------------------------
-global $smarty;
-global $basedatos;
-global $plantilla;
+
 
 if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']) )
 {
 	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
 	$id_indicador = sanitize($_REQUEST['id_indicador'],16);
-	$indicador = new indicador($basedatos);
-
-	if ($indicador->borrar($id_indicador))
-	{
-		$aviso = 'Se ha borrado el indicador.';
-		header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
+	$indicador = new indicador();
+  	$indicador->load_joined("id = $id_indicador");
+  	if ($indicador->id_responsable == $indicador->responsable->id)
+  	{
+  		$medicion = new medicion();
+	  	$mediciones = $medicion->Find("id_indicador = $id_indicador");
+		if ($mediciones)
+		{
+			$error = 'Tiene mediciones asociadas al indicador, necesita borrar primero las mediciones';
+			header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
+		}
+		else 
+		{
+			$indicador->delete();
+			$aviso = 'Se ha borrado el indicador.';
+			header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
+		}	
 	}
 	else
 	{
-		header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$indicador->error");
+		$error = 'No tiene persimos para borrar el indicador';
+		header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");	
 	}
+
+  	
 }
 else // falta id_indicador o id_entidad
 {
-	$smarty->assign('error', 'Faltan parámetros para realizar esta acción.'); 
-	$smarty->assign('_nombre_pagina','Error');
-	$plantilla = 'error.tpl';
+	$error = 'Faltan parámetros para realizar esta acción.';
+	header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
 }
 ?>

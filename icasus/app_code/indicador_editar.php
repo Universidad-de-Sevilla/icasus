@@ -40,11 +40,15 @@ if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']))
     $criterios_efqm = $criterio_efqm->Find("1 = 1");
     $smarty->assign("criterios_efqm", $criterios_efqm);
 
+    $visibilidad = new visibilidad;
+    $visibilidades = $visibilidad->Find("1=1");
+    $smarty->assign("visibilidades", $visibilidades);
+
 		$usuario_entidad = new usuario_entidad();
     $usuarios_entidades = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
 		$smarty->assign('usuarios_entidades', $usuarios_entidades);
 
-		$smarty->assign('_nombre_pagina', $entidad->nombre); 
+		$smarty->assign('_nombre_pagina', "Editando indicador: " . $indicador->nombre); 
 		$plantilla = 'indicador_editar.tpl';
 	}
 	else

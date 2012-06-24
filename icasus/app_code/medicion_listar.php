@@ -23,7 +23,7 @@ if (isset($_REQUEST["id_indicador"]))
   $smarty->assign('mediciones',$mediciones);
 
   $smarty->assign('_javascript', array('ordenatabla'));
-  $smarty->assign('_nombre_pagina', 'Gestión de mediciones');
+  $smarty->assign('_nombre_pagina', "Gestión de mediciones: $indicador->nombre");
   $plantilla = 'medicion_listar.tpl';
 }
 else
