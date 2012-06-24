@@ -123,11 +123,15 @@
       <fieldset class="label_side">
         <label>Subunidades afectadas</label>
         <div>
-          <ul>
-          {foreach $indicador_subunidades as $indicador_subunidad}
-            <li><a href="index.php?entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->nombre}</a></li>
-          {/foreach}
-          </ul>
+          {if $indicador_subunidades}
+            <ul>
+            {foreach $indicador_subunidades as $indicador_subunidad}
+              <li><a href="index.php?entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->nombre}</a></li>
+            {/foreach}
+            </ul>
+          {else}
+            No se han asignado subunidades a este indicador (corregir)
+          {/if}
         </div>
       </fieldset>
     </div>
