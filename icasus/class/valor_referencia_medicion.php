@@ -14,9 +14,9 @@ class valor_referencia_medicion extends ADOdb_Active_Record
 
   public function Find_joined($condicion)
   {
-		if ($valores_referencia_medicion = $this->Find($condicion))
+		if ($valores_referencia_mediciones = $this->Find($condicion))
 		{
-			foreach ($valores_referencia_medicion as& $valor_referencia_medicion)
+			foreach ($valores_referencia_mediciones as& $valor_referencia_medicion)
 			{
 				$valor_referencia_medicion->valor_referencia = new valor_referencia();
 				$valor_referencia_medicion->valor_referencia->load("id = $valor_referencia_medicion->id_valor_referencia");

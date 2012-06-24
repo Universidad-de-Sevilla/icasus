@@ -68,54 +68,95 @@
 	}
 {/literal}
 </script>
-<p>
-  <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Volver a las mediciones</a> &nbsp;
+<h2>Datos de la medición</h2>
+<h3>
+  <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Volver a las mediciones</a> &nbsp; &nbsp; &nbsp;
   <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al indicador</a> &nbsp;
-</p>
+</h3>
+<div class="box grid_16">
+  <div class="toggle_container">
+    <div class="block">
+      {if $id_usuario == $indicador->id_responsable}
+        <fieldset class="label_side">
+          <label>Etiqueta</label>
+          <div>
+          <span id="et">
+            <a href="javascript:void(0)" onclick="javascript:etiqueta_editar('{$medicion->id}','et','etiqueta')">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}----{/if}</a>
+          </span>
+          </div>
+        </fieldset>
 
-<h3>Datos de la medición</h3>
-{if $id_usuario == $indicador->id_responsable}
-<p><b>Etiqueta: </b>
-	<span id="et">
-		<a href="javascript:void(0)" onclick="javascript:etiqueta_editar('{$medicion->id}','et','etiqueta')">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}----{/if}</a>
-	</span>
-</p>
+        <fieldset class="label_side">
+          <label>Inicio del periodo</label>
+          <div>
+          <span id="pi">
+            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','pi')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+          </span>
+          </div>
+        </fieldset>
 
-<p><b>Inicio del periodo: </b>
-	<span id="pi">
-		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','pi')">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
-	</span>
-</p>
+        <fieldset class="label_side">
+          <label>Fin del periodo</label>
+          <div>
+          <span id="pf">
+            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','pf')">{if $medicion->periodo_fin}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+          </span>
+          </div>
+        </fieldset>
 
-<p><b>Fin del periodo: </b>
-	<span id="pf">
-		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','pf')">{if $medicion->periodo_fin}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}{else}----{/if}</a>
-	</span>
-</p>
+        <fieldset class="label_side">
+          <label>Inicio grabación</label>
+          <div>
+          <span id="gi">
+            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','gi')">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+          </span>
+          </div>
+        </fieldset>
 
-<p><b>Inicio grabación: </b>
-	<span id="gi">
-		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','gi')">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
-	</span>
-</p>
+        <fieldset class="label_side">
+          <label>Fin grabación</label>
+          <div>
+          <span id="gf">
+            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','gf')">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+          </span>
+          </div>
+        </fieldset>
+        {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
+          <fieldset class="label_side">
+            <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+            <div>{$valor_referencia_medicion->valor}</div>
+          </fieldset>
+        {/foreach}
+      {else}
+        <fieldset class="label_side">
+          <label>Etiqueta</label>
+          <div>{$medicion->etiqueta}	</div>
+        </fieldset>
+        <fieldset class="label_side">
+          <label>Inicio del periodo</label>
+          <div>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}	</div>
+        </fieldset>
+        <fieldset class="label_side">
+          <label>Fin del periodo</label>
+          <div>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}	</div>
+        </fieldset>
+        <fieldset class="label_side">
+          <label>Inicio grabación</label>
+          <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}	</div>
+        </fieldset>
+        <fieldset class="label_side">
+          <label>Fin grabación</label>
+          <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}	</div>
+        </fieldset>
+      {/if}
+    </div>
+  </div>
+</div>
 
-<p><b>Fin grabación: </b>
-	<span id="gf">
-		<a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}','gf')">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}----{/if}</a>
-	</span>
-</p>
-{else}
-<p><b>Etiqueta: </b>{$medicion->etiqueta}</p>
-<p><b>Inicio del periodo: </b>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</p>
-<p><b>Fin del periodo: </b>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</p>
-<p><b>Inicio grabación: </b>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</p>
-<p><b>Fin grabación: </b>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</p>
-{/if}
-
-<h3>Valores</h3>
+<h2>Valores</h2>
 {if $valores}
-<div id="valors">
-  <table>
+  <div class="box grid_16">
+  <table class="static">
     <thead>
       <tr>
         <th>Unidad</th>
@@ -141,8 +182,8 @@
       {/foreach}
     </tbody>
   </table>
+  </div>
   <img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}" width="600" height="550" alt="Valores del indicador recogidos en cada subunidad para esta medición" />
-</div>
 {else}
   <p class="error">Error: no existen valores pendientes ni recogidos para esta medición</p>
 {/if}

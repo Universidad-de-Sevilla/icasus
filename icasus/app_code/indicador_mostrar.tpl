@@ -17,8 +17,7 @@
       <fieldset class="label_side">
         <label>Proceso</label>
         <div>
-          <a href="index.php?proceso_mostrar&id_indicador={$indicador->proceso->id}">{$indicador->proceso->codigo} - 
-          {$indicador->proceso->nombre}</a>
+          <a href="index.php?page=proceso_mostrar&id_proceso={$indicador->proceso->id}&id_entidad={$indicador->id_entidad}">{$indicador->proceso->codigo} - {$indicador->proceso->nombre}</a>
         </div>
       </fieldset>
       <fieldset class="label_side">
@@ -87,10 +86,10 @@
       <fieldset class="label_side">
         <label>Criterios EFQM</label>
         <div>
-          {if $indicador_criterios_efqm}
+          {if $indicador->criterios_efqm}
           <ul>
-            {foreach $indicador_criterios_efqm as $criterio_efqm}
-              <li>{$criterio_efqm->codigo} - {$criterio_efqm->nombre}</li>
+            {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
+              <li>{$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}</li>
             {/foreach}
           </ul>
           {/if}
@@ -105,7 +104,17 @@
       </fieldset>
       <fieldset class="label_side">
         <label>Valores de referencia</label>
-        <div>&nbsp;</div>
+        <div>
+          {if $indicador->valores_referencia}
+          <ul>
+            {foreach $indicador->valores_referencia as $valor_referencia}
+              <li>{$valor_referencia->nombre}</li>
+            {/foreach}
+          </ul>
+          {else}
+             No se han definido valores de referencia para este indicador
+          {/if}
+        </div>
       </fieldset>
       <fieldset class="label_side">
         <label>Nivel de desagregacion</label>
@@ -115,8 +124,8 @@
         <label>Subunidades afectadas</label>
         <div>
           <ul>
-          {foreach $indicador_subunidades as $subunidad}
-            <li><a href="index.php?entidad_datos&id_entidad={$subunidad->id}">{$subunidad->nombre}</a></li>
+          {foreach $indicador_subunidades as $indicador_subunidad}
+            <li><a href="index.php?entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->nombre}</a></li>
           {/foreach}
           </ul>
         </div>
