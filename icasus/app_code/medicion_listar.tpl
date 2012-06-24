@@ -17,7 +17,6 @@
           <th>Acciones</th>
         </tr>
       </thead>
-
       <tbody>
         {foreach $mediciones as $medicion}
           <tr class="gradeX">

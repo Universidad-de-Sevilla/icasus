@@ -16,6 +16,7 @@
       <script type='text/javascript' src="js/{$script}.js"></script>
     {/foreach}
   {/if}
+      <script type='text/javascript' src="js/jquery142min.js"></script>
 </head>
 
 <body>

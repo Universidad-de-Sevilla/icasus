@@ -24,9 +24,15 @@ if (isset($_REQUEST["id_medicion"]))
   $smarty->assign("indicador",$indicador);
 
   $valor = new valor();
-  $valores = $valor->Find_joined("id_medicion = $id_medicion");
+  $valores = $valor->Find_joined_jjmc($id_medicion,$usuario->id);
   $smarty->assign("valores",$valores);
-
+  
+	//print_r($valores);
+	$indisub = new indicador_subunidad();
+	$indisubs = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
+	$smarty->assign('indisubs',$indisubs);
+  
+  $smarty->assign("id_usuario", $usuario->id);
   $smarty->assign("_javascript", array("ordenatabla"));
   $smarty->assign("_nombre_pagina", "Indicador: $indicador->codigo - $indicador->nombre");
   $plantilla = "medicion_editar.tpl";

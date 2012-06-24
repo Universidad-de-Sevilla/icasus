@@ -11,20 +11,23 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$id_medicion = sanitize($_REQUEST["id_medicion"], INT);
-$contenedor = sanitize($_REQUEST["contenedor"], SQL);
-$smarty->assign("contenedor",$contenedor);
+$valor = sanitize($_POST["valor"],SQL);
+$contenedor = sanitize($_POST["contenedor"],SQL);
+$id_medicion = sanitize($_POST["id_medicion"],INT);
 
-$medicion = new medicion();
-$medicion->load("id = $id_medicion");
-$smarty->assign("medicion",$medicion);
+$m = new medicion();
+	
+$m->load("id = $id_medicion");
 
-if ($contenedor == 'pi' OR $contenedor == 'pf' OR $contenedor == 'gi' OR $contenedor == 'gf')
-{
-	$plantilla = 'medicion_editar_fecha_asin.tpl';
-}
-else 
-{
-	$plantilla = 'medicion_editar_etiqueta_asin.tpl';
-}
+if ($contenedor == 'et')
+{$m->etiqueta = $valor;}
+elseif ($contenedor == 'pi')
+{$m->periodo_inicio = $valor;}
+elseif ($contenedor == 'pf')
+{$m->periodo_fin = $valor;}
+elseif ($contenedor == 'gi')
+{$m->grabacion_inicio = $valor;}
+elseif ($contenedor == 'gf')
+{$m->grabacion_fin = $valor;}
+$m->save();
 ?>

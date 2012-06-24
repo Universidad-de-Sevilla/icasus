@@ -11,20 +11,19 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$id_medicion = sanitize($_REQUEST["id_medicion"], INT);
-$contenedor = sanitize($_REQUEST["contenedor"], SQL);
-$smarty->assign("contenedor",$contenedor);
+//$valor = sanitize($_GET["valor"],2);
+//$id_valor = sanitize($_GET["id2"],2);
+$valor = sanitize($_POST["valor"],2);
+$id_valor = sanitize($_POST["id2"],2);
 
-$medicion = new medicion();
-$medicion->load("id = $id_medicion");
-$smarty->assign("medicion",$medicion);
+$v = new valor();
+$v->load("id = $id_valor");
 
-if ($contenedor == 'pi' OR $contenedor == 'pf' OR $contenedor == 'gi' OR $contenedor == 'gf')
+if ($v->puede_grabarse($v->id,$usuario->id))
 {
-	$plantilla = 'medicion_editar_fecha_asin.tpl';
-}
-else 
-{
-	$plantilla = 'medicion_editar_etiqueta_asin.tpl';
+	$v->id_usuario = $usuario->id;
+	$v->valor = $valor;
+	$v->fecha_recogida = date("Y-m-d");
+	$v->save();
 }
 ?>
