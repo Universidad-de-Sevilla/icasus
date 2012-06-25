@@ -1,4 +1,6 @@
 <h3 class="section">
+  <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}'><img 
+    src='/icons/ff16/tag.png' /> Valores de referencia</a> &nbsp;
   <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
     src='/icons/ff16/chart_curve.png' /> Mostrar mediciones</a> &nbsp;
   <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img 
