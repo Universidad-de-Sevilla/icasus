@@ -27,9 +27,36 @@
   <p class='aviso'>No tiene asignada ninguna unidad</p>
 {/if}
 
+{if $indicadores}
+  <h3>Indicadores a su cargo</h3>
+  <div class="box grid_16 single_datatable">
+   	<div id="dt1" class="no_margin">
+      <table class="display datatable"> 
+      <thead> 
+       <tr>  
+        <th>Código</th>
+        <th>Nombre</th>
+        <th>Pendientes</th>
+       </tr> 
+      </thead> 
+        <tbody>
+           {foreach $indicadores as $indicador}
+            <tr class="gradeX">
+              <td>{$indicador->codigo}</td>
+              <td><a href="index.php?page=indicador_mostrar&id_indicador={$indicador->id}">{$indicador->nombre}</a></td>
+              <td>
+                No implementado aún
+              </td>
+            </tr>
+          {/foreach}  
+        </tbody>
+      </table>
+  </div>
+ </div> 
+{/if}
 
 {if $indicadores_subunidades}
-  <h3>Indicadores a su cargo</h3>
+  <h3>Mediciones a su cargo</h3>
   <div class="box grid_16 single_datatable">
    	<div id="dt1" class="no_margin">
       <table class="display datatable"> 
