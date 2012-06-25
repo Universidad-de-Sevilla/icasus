@@ -13,7 +13,12 @@ global $plantilla;
 $smarty->assign('_javascript', array('ordenatabla'));
 $smarty->assign('_nombre_pagina', 'Inicio');
 
-// Indicadores de este usuario
+// Indicadores a cargo de este usuario
+$indicador = new indicador();
+$indicadores = $indicador->Find("id_responsable = $usuario->id");
+$smarty->assign("indicadores",$indicadores);
+
+// Mediciones a cargo de este usuario
 $indicador_subunidad = new indicador_subunidad();
 $indicadores_subunidades = $indicador_subunidad->Find_indicadores_con_valores("id_usuario = $usuario->id");
 $smarty->assign("indicadores_subunidades",$indicadores_subunidades);
