@@ -139,9 +139,13 @@
   </div>
 
   <h2>Mediciones</h2>
-        <h3 class="section">
-          <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-            src='/icons/ff16/time.png' /> Mostrar Mediciones</a>						
-        </h3>
+    <h3 class="section">
+      <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+        src='/icons/ff16/time.png' /> Mostrar Mediciones</a>						
+    </h3>
     
-  <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" />
+    {if $mediciones}
+      <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" />
+    {else}
+      <p class="aviso">Todavía no se han definido mediciones para este indicador.</p>
+    {/if}

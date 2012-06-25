@@ -64,7 +64,7 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
       // Si el indicador ya existía hay que currarselo de otra forma
     }
 
-    header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
+    header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
   }
   else
   {

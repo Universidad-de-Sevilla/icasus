@@ -76,6 +76,7 @@
 <div class="box grid_16">
   <div class="toggle_container">
     <div class="block">
+      <!-- Los datos de la medición pueden ser editados solo por el responsable del indicador -->
       {if $id_usuario == $indicador->id_responsable}
         <fieldset class="label_side">
           <label>Etiqueta</label>
@@ -121,12 +122,19 @@
           </span>
           </div>
         </fieldset>
-        {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
+        {if $valores_referencia_mediciones}
+          {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
+            <fieldset class="label_side">
+              <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+              <div>{$valor_referencia_medicion->valor}</div>
+            </fieldset>
+          {/foreach}
+        {else}
           <fieldset class="label_side">
-            <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-            <div>{$valor_referencia_medicion->valor}</div>
+            <div>No se han definido valores de referencia para este indicador</div>
           </fieldset>
-        {/foreach}
+        {/if}
+          
       {else}
         <fieldset class="label_side">
           <label>Etiqueta</label>
@@ -148,6 +156,18 @@
           <label>Fin grabación</label>
           <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}	</div>
         </fieldset>
+        {if $valores_referencia_mediciones}
+          {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
+            <fieldset class="label_side">
+              <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+              <div>{$valor_referencia_medicion->valor}</div>
+            </fieldset>
+          {/foreach}
+        {else}
+          <fieldset class="label_side">
+            <div>No se han definido valores de referencia para este indicador</div>
+          </fieldset>
+        {/if}
       {/if}
     </div>
   </div>
@@ -170,7 +190,7 @@
         <tr id="fila_{$valor->id}">
           <td>{$valor->entidad->nombre}</td>
           <td>
-							{if $valor->autorizado == 1}
+							{if $valor->autorizado == 1 OR  $id_usuario == $indicador->id_responsable}
 								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{$valor->valor}</a>
 							{else}
 								{$valor->valor}

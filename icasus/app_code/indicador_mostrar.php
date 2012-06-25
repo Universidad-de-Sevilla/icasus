@@ -26,6 +26,11 @@ if (isset($_GET['id_indicador']))
   $indicador_subunidad = new indicador_subunidad();
   $indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_indicador");
   $smarty->assign("indicador_subunidades", $indicador_subunidades);
+
+  //Simplemente ver si hay mediciones
+  $medicion = new medicion();
+  $mediciones = $medicion->Find("id_indicador = $id_indicador");
+  $smarty->assign("mediciones", $mediciones);
   
 	$smarty->assign('_nombre_pagina', "Datos del indicador: " . $indicador->nombre); 
 	$plantilla = 'indicador_mostrar.tpl';
