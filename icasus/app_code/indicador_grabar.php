@@ -54,7 +54,7 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
           $indicador_subunidad = new indicador_subunidad();
           $indicador_subunidad->id_indicador = $indicador->id;
           $indicador_subunidad->id_entidad = $subunidad;
-          $indicador_subunidad->id_usuario = $usuario->id;
+          $indicador_subunidad->id_usuario = $indicador->id_responsable;
           $indicador_subunidad->save();
         }
       }

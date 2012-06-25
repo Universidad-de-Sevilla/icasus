@@ -22,7 +22,7 @@
           </fieldset>
           <fieldset class="label_side">
             <label>Nombre</label>
-            <div><b><input  type='text' name='nombre' /></b></div>
+            <div><textarea name='nombre' /></textarea></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Descripci&oacute;n</label>

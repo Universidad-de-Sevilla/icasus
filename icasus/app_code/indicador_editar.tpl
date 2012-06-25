@@ -44,7 +44,7 @@
           <fieldset class="label_side">
             <label>Nombre indicador</label>
             <div>
-              <input type='text' name='nombre' id='nombre'value='{$indicador->nombre}' />
+              <input type='text' name='nombre' class='text' id='nombre'value='{$indicador->nombre}' />
 					    <div class="required_tag tooltip hover left" title="Campo requerido"></div>
             </div>
           </fieldset>
