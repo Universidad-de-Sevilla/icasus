@@ -134,7 +134,7 @@
           <fieldset class="label_side">
             <label>Subunidades afectadas</label>
             <div>
-              <input type="checkbox" name="subunidades[]" checked /> {$entidad->nombre}<hr />
+              <input type="checkbox" name="subunidades[]" value="{$entidad->id}" checked /> {$entidad->nombre}<hr />
               {foreach $subunidades as $subunidad}
                 <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" checked /> {$subunidad->nombre}<br />
               {/foreach}
