@@ -3,7 +3,7 @@
 // Proyecto: Icasus 
 // Archivo: valor_referencia_grabar.php
 //---------------------------------------------------------------------------------------------------
-// Graba valor de referencia para un indicador
+// Graba valores de referencia para un indicador
 //---------------------------------------------------------------------------------------------------
 global $usuario;
 if (isset($_REQUEST["etiqueta"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUEST["grafica"]) AND isset($_REQUEST["id_indicador"]))

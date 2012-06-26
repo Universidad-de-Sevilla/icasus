@@ -29,6 +29,7 @@ $indisub = new indicador_subunidad();
 $indisubs = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
 $smarty->assign('indisubs',$indisubs);
 
+$smarty->assign("usuario", $usuario);
 $smarty->assign("medicion_edit",$id_medicion);
 $plantilla = 'medicion_editar_fila_cancelar_asin.tpl';
 ?>

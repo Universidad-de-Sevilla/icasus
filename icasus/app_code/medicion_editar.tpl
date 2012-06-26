@@ -66,7 +66,38 @@
 	{
 		$('#'+content).load("index2.php?page=medicion_editar_cancelar_asin&id_medicion="+medicion+"&contenedor="+content);
 	}
-{/literal}
+	function referencia_editar(id)
+	{
+		$('#referencia_'+id).load("index2.php?page=medicion_editar_referencia_asin&id_referencia="+id);
+	} 
+	function referencia_grabar(id)
+	{
+		var value = $("[name=input_referencia_"+id+"]").val();
+		value = value.replace(',','.');
+ 
+    if (value != '')
+    {
+    	if (isNaN(value)== false)
+     	{
+				$.post("index.php?page=valor_referencia_valor_grabar",{id_referencia:id,valor:value},function(){
+				$('#referencia_'+id).load("index2.php?page=medicion_editar_referencia_cancelar_asin&id="+id);
+				});	
+     	}
+     	else
+     	{
+     		alert('Está intentando introducir un dato que no es reconocido como número.');
+     	}
+    }
+    else
+   	{
+    	alert('Está intentando introducir un valor vacio.\n\nPuede restituir el valor con [cancelar].');
+   	}
+	} 
+	function referencia_cancelar(id)
+	{
+		$('#referencia_'+id).load("index2.php?page=medicion_editar_referencia_cancelar_asin&id="+id);
+	} 
+{/literal} 
 </script>
 <h2>Datos de la medición</h2>
 <h3>
@@ -77,7 +108,7 @@
   <div class="toggle_container">
     <div class="block">
       <!-- Los datos de la medición pueden ser editados solo por el responsable del indicador -->
-      {if $id_usuario == $indicador->id_responsable}
+      {if $usuario->id  == $indicador->id_responsable}
         <fieldset class="label_side">
           <label>Etiqueta</label>
           <div>
@@ -126,7 +157,8 @@
           {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
             <fieldset class="label_side">
               <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-              <div>{$valor_referencia_medicion->valor}</div>
+              <div><span id="referencia_{$valor_referencia_medicion->id}">
+							<a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}')">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor}{/if}</a></span></div>
             </fieldset>
           {/foreach}
         {else}
@@ -176,7 +208,8 @@
 <h2>Valores</h2>
 {if $valores}
   <div class="box grid_16">
-  <table class="static">
+  <div id="valors">
+		<table class="static">
     <thead>
       <tr>
         <th>Unidad</th>
@@ -187,11 +220,11 @@
     </thead>
     <tbody>
       {foreach $valores as $valor}
-        <tr id="fila_{$valor->id}">
+        <tr>
           <td>{$valor->entidad->nombre}</td>
           <td>
-							{if $valor->autorizado == 1 OR  $id_usuario == $indicador->id_responsable}
-								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{$valor->valor}</a>
+							{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id}
+								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
 							{else}
 								{$valor->valor}
 							{/if}
@@ -202,6 +235,7 @@
       {/foreach}
     </tbody>
   </table>
+  </div>
   </div>
   <img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}" width="600" height="550" alt="Valores del indicador recogidos en cada subunidad para esta medición" />
 {else}

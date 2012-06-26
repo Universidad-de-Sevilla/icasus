@@ -29,16 +29,8 @@ $smarty->assign("valores",$valores);
 
 $indisub = new indicador_subunidad();
 $indisubs = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
+
+$smarty->assign("usuario", $usuario);
 $smarty->assign('indisubs',$indisubs);
-/*
-$id_valor = sanitize($_REQUEST["id_valor"], INT);
-$smarty->assign("valor_edit",$id_valor);
-
-$valor = new valor();
-$valores = $valor->Find_joined("id_medicion = $id_medicion");
-$smarty->assign("valores",$valores);
-
-$smarty->assign("medicion_edit",$id_medicion);
-*/
 $plantilla = 'medicion_editar_fila_asin.tpl';
 ?>

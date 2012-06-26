@@ -1,13 +1,13 @@
-<table>
+<table class="static">
 	<thead><tr><th>Unidad</th><th>Valor</th><th>Fecha recogida</th><th>Usuario que graba</th></tr></thead>
 	<tbody>
 		{foreach $valores as $valor}
 		<tr>
 			<td>{$valor->entidad->nombre}</td>
 			<td>
-			{if $valor->autorizado == 1}
+			{if $valor->autorizado == 1 OR $indicador->id_responsable == $usuario->id}
 				{if $valor->id == $valor_edit}
-					<input name="v_{$valor->id}" type="text" value="{$valor->valor}" style="width:50px"> 
+					<input name="v_{$valor->id}" type="text" value="{$valor->valor}"> 
 					<a href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}','{$medicion->id}')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/disk.png'align="absmiddle"></a> 
 					<a href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/cross.png'align="absmiddle"></a>
 				{else}
@@ -23,4 +23,5 @@
 	{/foreach}
 	</tbody>
 </table>
+</div>
 <img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}" width="600" height="550" alt="Valores del indicador recogidos en cada subunidad par    a esta medición" />
