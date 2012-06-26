@@ -1,8 +1,8 @@
 <script>
 {literal}
-	function fila_editar(medicion,valor)
+	function fila_editar(medicion,id_valor)
 	{
-		$('#valors').load("index2.php?page=medicion_editar_fila_asin&id_medicion="+medicion+"&id_valor="+valor);
+		$('#valors').load("index2.php?page=medicion_editar_fila_asin&id_medicion="+medicion+"&id_valor="+id_valor);
 	}
 	function fila_grabar(id,medicion)
 	{
