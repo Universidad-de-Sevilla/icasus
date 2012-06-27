@@ -8,7 +8,7 @@
 			  <fieldset class="label_side">
 				<label>Proceso madre</label>
 				<div>
-					<select name='madre' id='madre' class='inp'>
+					<select name='madre' id='madre' class='required'>
 					  <option value="0">Es un Proceso Madre</option>
 					  {foreach from=$procesos_madre item=proceso_madre}
 					    <option value="{$proceso_madre->id}">
@@ -21,7 +21,7 @@
 			   <fieldset class="label_side">
 				<label>C&oacute;digo</label>
 				<div>
-					<input style="width:100%" type='text' name='codigo' id='codigo'  />
+					<input type='text' name='codigo' class='required'  />
 					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
 				</div>
 			  </fieldset> 

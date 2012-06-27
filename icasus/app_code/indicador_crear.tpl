@@ -18,7 +18,7 @@
           </fieldset>
           <fieldset class="label_side">
             <label>Código indicador</label>
-            <div><input  type='text' name='codigo' /></div>
+            <div><input  type='text' name='codigo' class="required"/></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Nombre</label>
