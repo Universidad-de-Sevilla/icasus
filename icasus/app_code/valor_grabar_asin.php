@@ -11,14 +11,14 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-//$valor = sanitize($_GET["valor"],2);
-//$id_valor = sanitize($_GET["id2"],2);
-$valor = sanitize($_POST["valor"],2);
-$id_valor = sanitize($_POST["id2"],2);
+$valor = sanitize($_REQUEST["valor"],2);
+$id_valor = sanitize($_REQUEST["id2"],2);
 
 $v = new valor();
 $v->load("id = $id_valor");
 
+
+$v->puede_grabarse($v->id,$usuario->id);
 if ($v->puede_grabarse($v->id,$usuario->id))
 {
 	$v->id_usuario = $usuario->id;

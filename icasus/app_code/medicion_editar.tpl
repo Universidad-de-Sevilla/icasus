@@ -99,12 +99,48 @@
 	} 
 {/literal} 
 </script>
-<h2>Datos de la medición</h2>
 <h3>
   <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Volver a las mediciones</a> &nbsp; &nbsp; &nbsp;
   <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al indicador</a> &nbsp;
 </h3>
-<div class="box grid_16">
+<h2>Valores</h2>
+{if $valores}
+  <img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}" width="600" height="550" alt="Valores del indicador recogidos en cada subunidad para esta medición" />
+  <div class="box grid_16">
+  <div id="valors">
+		<table class="static">
+    <thead>
+      <tr>
+        <th>Unidad</th>
+        <th>Valor</th>
+        <th>Fecha recogida</th>
+        <th>Usuario que graba</th>
+      </tr>
+    </thead>
+    <tbody>
+      {foreach $valores as $valor}
+        <tr>
+          <td>{$valor->entidad->nombre}</td>
+          <td>
+							{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id}
+								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
+							{else}
+								{$valor->valor}
+							{/if}
+				</td>
+          <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
+          <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
+        </tr>
+      {/foreach}
+    </tbody>
+  </table>
+  </div>
+  </div>
+{else}
+  <p class="error">Error: no existen valores pendientes ni recogidos para esta medición</p>
+{/if}<div class="box grid_16">
+
+<h2>Datos de la medición</h2>
   <div class="toggle_container">
     <div class="block">
       <!-- Los datos de la medición pueden ser editados solo por el responsable del indicador -->
@@ -205,39 +241,4 @@
   </div>
 </div>
 
-<h2>Valores</h2>
-{if $valores}
-  <div class="box grid_16">
-  <div id="valors">
-		<table class="static">
-    <thead>
-      <tr>
-        <th>Unidad</th>
-        <th>Valor</th>
-        <th>Fecha recogida</th>
-        <th>Usuario que graba</th>
-      </tr>
-    </thead>
-    <tbody>
-      {foreach $valores as $valor}
-        <tr>
-          <td>{$valor->entidad->nombre}</td>
-          <td>
-							{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id}
-								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
-							{else}
-								{$valor->valor}
-							{/if}
-				</td>
-          <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
-          <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
-        </tr>
-      {/foreach}
-    </tbody>
-  </table>
-  </div>
-  </div>
-  <img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}" width="600" height="550" alt="Valores del indicador recogidos en cada subunidad para esta medición" />
-{else}
-  <p class="error">Error: no existen valores pendientes ni recogidos para esta medición</p>
-{/if}
+
