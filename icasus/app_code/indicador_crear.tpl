@@ -33,7 +33,7 @@
             <div><textarea  class='inp' name='formulacion'></textarea></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Responsable de medici&oacute;n</label>
+            <label>Responsable de seguimiento</label>
             <div>
               <select name="id_responsable">
                 <option value=""></option>
