@@ -1,10 +1,9 @@
-<div class="flat_area grid_16">
+<div class="box grid_16">
 	<h2><img src='/icons/ff32/cog_edit.png' alt='icono engranaje'> Editando Proceso</h2>
 </div>
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-		
 			<form method='post' action='index.php?page=proceso_editar' id='formproceso' class='validate_form'>
 			  <input type='hidden' name='id_entidad' id='id_entidad' value='{$proceso->id_entidad}' />
 			  <input type='hidden' name='id_proceso' id='id_proceso' value='{$proceso->id}' />
@@ -33,7 +32,7 @@
 			  <fieldset class="label_side">
 				<label>Revisi&oacute;n</label>
 				<div>
-					<input style="width:100%" type='text' name='revision' id='revision' value='{$proceso->revision}' class="required" />					
+					<input style="width:100%" type='text' name='revision' id='revision' value='{$proceso->revision}' class="required" />
 					<div class="required_tag"></div>
 				</div>
 			  </fieldset>  

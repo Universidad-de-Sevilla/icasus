@@ -1,6 +1,8 @@
-<h3>Unidades del usuario</h3>
 {if $entidades_usuario }
   <div class="box grid_16">
+    <h2 class="box_head grad_grey_dark">Unidades del usuario</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
       <table class="static">
         <thead><tr><th>C&oacute;digo</th><th>Unidad</th><th>Rol</th><th>Acciones</th></tr></thead>
         <tbody>
@@ -24,12 +26,14 @@
       </table>
   </div>
 {else}
-  <p class='aviso'>No tiene asignada ninguna unidad</p>
+  <div class='alert alert_red'>No tiene asignada ninguna unidad</div>
 {/if}
 
 {if $indicadores}
-  <h3>Indicadores a su cargo</h3>
   <div class="box grid_16 single_datatable">
+    <h2 class="box_head grad_grey_dark">Indicadores a su cargo</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
    	<div id="dt1" class="no_margin">
       <table class="display datatable"> 
       <thead> 
@@ -56,8 +60,10 @@
 {/if}
 
 {if $indicadores_subunidades}
-  <h3>Mediciones a su cargo</h3>
   <div class="box grid_16 single_datatable">
+    <h2 class="box_head grad_grey_dark">Mediciones a su cargo</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
    	<div id="dt1" class="no_margin">
       <table class="display datatable"> 
       <thead> 
