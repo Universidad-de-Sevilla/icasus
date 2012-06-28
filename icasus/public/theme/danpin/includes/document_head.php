@@ -99,8 +99,8 @@
 		<script type="text/javascript" src="scripts/adminica/adminica_forms.js"></script>
 		<script type="text/javascript" src="scripts/adminica/adminica_mobile.js"></script>
 		
-		<!-- Live Load (remove after development) -->
+		<!-- Live Load (remove after development) 
 		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
-
+		-->
 	</head>
 	<body>

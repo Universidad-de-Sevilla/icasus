@@ -2,48 +2,48 @@
 	<div class="toggle_container">
 		<div class="block">
 		
-			<form method="post" action="index.php?page=proceso_grabar" id="formproceso" class="datos">
+			<form method="post" action="index.php?page=proceso_grabar" id="formproceso" class="validate_form">
 			  <input type="hidden" name="id_entidad" id="id_entidad" value="{$entidad->id}" />
 			
 			  <fieldset class="label_side">
 				<label>Proceso madre</label>
 				<div>
-					<select name='madre' id='madre' class='required'>
+					<select name='madre' id='madre' class="required" >
 					  <option value="0">Es un Proceso Madre</option>
 					  {foreach from=$procesos_madre item=proceso_madre}
 					    <option value="{$proceso_madre->id}">
 					    {$proceso_madre->codigo} - {$proceso_madre->nombre}</option>
 					  {/foreach} 
 					  </select>
-					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
+					<div class="required_tag"></div>
 				</div>
 			  </fieldset> 
 			   <fieldset class="label_side">
 				<label>C&oacute;digo</label>
 				<div>
-					<input type='text' name='codigo' class='required'  />
-					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
+					<input style="width:100%" type='text' name='codigo' id='codigo' class="required" />
+					<div class="required_tag"></div>
 				</div>
 			  </fieldset> 
 			  <fieldset class="label_side">
 				<label>Revisi&oacute;n</label>
 				<div>
-					<input style="width:100%" type='text' name='revision' id='revision'  />					
-					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
+					<input style="width:100%" type='text' name='revision' id='revision'  class="required" />
+					<div class="required_tag"></div>
 				</div>
 			  </fieldset>  
 			  <fieldset class="label_side">
 				<label>Fecha</label>
 				<div>
-					<input style="width:100%" type='text' name='fecha_revision' id='fecha_revision' />
-					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
+					<input style="width:100%" type='text' name='fecha_revision' id='fecha_revision' class="required" />
+					<div class="required_tag"></div>
 				</div>
 			  </fieldset>  
 			  <fieldset class="label_side">
 				<label>Nombre proceso</label>
 				<div>
-					<input style="width:100%" type='text' name='nombre' id='nombre' />
-					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
+					<input style="width:100%" type='text' name='nombre' id='nombre' class="required" />
+					<div class="required_tag"></div>
 				</div>
 			  </fieldset> 
 			  <fieldset class="label_side">
@@ -135,11 +135,12 @@
 					  </select>   
 				</div>
 			  </fieldset> 
-			  <fieldset class="label_side">
-				<div>
-					<input type='submit' class='btn' value='Grabar' name='proceso_submit' />
-				</div>
-			  </fieldset>        
+			   
+			  <div class="button_bar clearfix">
+					<button class="green" type="submit" value='Grabar' name='proceso_submit'>
+						<span>Grabar</span>
+					</button>
+				</div>    
 			</form>
 		</div>
 	</div>
