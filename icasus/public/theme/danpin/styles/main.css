@@ -706,7 +706,7 @@ div.main_container .box {
 
 div.main_container .box h2.box_head {
 	font-size: 14px;
-	font-weight: bold;
+	font-weight: normal;
 	line-height: 32px;
 	color: white;
 	margin: -1px auto 0px;
@@ -1066,7 +1066,7 @@ form {
 fieldset {
 	position: relative;
 	border-top: 1px solid #ddd;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 0.9px solid #ddd;
 	clear: both;
 }
 

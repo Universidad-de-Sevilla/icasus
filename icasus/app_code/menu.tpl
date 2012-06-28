@@ -1,14 +1,14 @@
 <div id="topbar" class="clearfix">
 	
 	<a href="index.php" class="logo"><span>iCasus</span></a>
-	
+	<!-- 
 	<div class="user_box dark_box clearfix">
 		 <img src="images/profile.jpg" width="55" alt="Profile Pic" />  
-		<h2>Bienvenido</h2>
+		<h2>A</h2>
 		<h3><a href="#">Usuario</a></h3>
 		<ul>
 			<li><a href="#">Configuraci&oacute;n</a><span class="divider">|</span></li>
-			<li><a href="index.php?page={$smarty.const.IC_TIPO_LOGIN}">Salir</a></li>
+			<li><a href="login.php">Salir</a></li>
 		</ul>
 	</div><!-- #user_box -->
 	
@@ -19,12 +19,12 @@
 	<a href="index.php" class="logo"><span>iCasus</span></a>
 	
 	<div class="user_box dark_box clearfix">
-		<img src="images/profile.jpg" width="55" alt="Profile Pic" />  
+		<img src="../public/theme/danpin/images/profile.jpg" width="55" alt="Profile Pic" />  
 		<h2>Bienvenido</h2>
 		<h3><a href="#">Usuario</a></h3>
 		<ul>
 			<li><a href="#">Configuraci&oacute;n</a><span class="divider">|</span></li>
-			<li><a href="index.php?page={$smarty.const.IC_TIPO_LOGIN}">Salir</a></li>
+			<li><a href="login.php">Salir</a></li>
 		</ul>
 	</div><!-- #user_box -->
 
