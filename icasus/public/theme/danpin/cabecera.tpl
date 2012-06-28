@@ -21,7 +21,7 @@
 	<!-- Styles -->
 
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/reset.css">
-		<link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/cssMain.css">
 		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/fancybox/jquery.fancybox-1.3.4.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/tinyeditor/style.css">
@@ -61,10 +61,10 @@
 		-->
 		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher.css" media="screen">
-<!-- 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher1.php?default=layout_fixed.css" media="screen" >  -->
+		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher1.php?default=layout_fixed.css" media="screen" > 
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher2.php?default=switcher.css" media="screen" >
-		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher3.php?default=theme_red.css" media="screen" >
-		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher4.php?default=bg_hemerocallis.css" media="screen" >
+		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher3.php?default=theme_blue.css" media="screen" >
+		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher4.php?default=bg_wood.css" media="screen" >
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher5.php?default=switcher.css" media="screen" >
 		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/colours.css">
@@ -73,10 +73,10 @@
 	<!-- Scripts -->
 
 		<!-- Load JQuery -->		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+		<script src="theme/danpin/scripts/jquery/jquery171.min.js" type="text/javascript"></script>
 
 		<!-- Load JQuery UI -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.17/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="theme/danpin/scripts/jquery/jquery-ui1817.min.js" type="text/javascript"></script>
 		
 		<!-- Global -->
 		<script src="theme/danpin/scripts/touchPunch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
@@ -98,6 +98,10 @@
 		<script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_forms.js"></script>
 		<script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_mobile.js"></script>
 		
+		<!-- Live Load (remove after development) 
+		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+		-->
+	</head>
 	<body>
 		<div id="wrapper">		
 			
@@ -201,8 +205,4 @@
 	</div>
 	
 </div><!-- #nav_top -->
-		<div class="flat_area grid_16">
-    <div>
-    <h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
-    <h2>{$_nombre_pagina}</h2>
-    </div>
+				<div class="flat_area grid_16">
