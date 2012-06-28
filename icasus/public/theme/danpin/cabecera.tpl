@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="utf-8">
 		
-		<title>{$_nombre_pagina} - Finitus - Universidad de Sevilla</title>
+		<title>{$_nombre_pagina} - Icasus - Universidad de Sevilla</title>
   	<meta name="description" content="">
   		
 	<!-- iPhone, iPad and Android specific settings -->	
