@@ -24,10 +24,11 @@ if (isset($_POST['alcance']) && isset($_POST['nombre']) && isset($_POST['codigo'
   $proceso->equipo_de_proceso = isset($_POST['equipo_de_proceso'])?sanitize($_POST['equipo_de_proceso'],2):null;    
   $proceso->resultados_clave = isset($_POST['resultados_clave'])?sanitize($_POST['resultados_clave'],2):null;
   $proceso->entradas = isset($_POST['entradas'])?sanitize($_POST['entradas'],2):null;   
-  $proceso->proveedores = isset($_POST['proveedores'])?sanitize($_POST['proveedores'],2):null;    
   $proceso->salidas = isset($_POST['salidas'])?sanitize($_POST['salidas'],2):null;    
-  $proceso->clientes = isset($_POST['clientes'])?sanitize($_POST['clientes'],2):null;
+  //$proceso->proveedores = isset($_POST['proveedores'])?sanitize($_POST['proveedores'],2):null;    
+  //$proceso->clientes = isset($_POST['clientes'])?sanitize($_POST['clientes'],2):null;
   $proceso->actividades = isset($_POST['actividades'])?sanitize($_POST['actividades'],2):null;   
+  $proceso->variables_control = isset($_POST['variables_control'])?sanitize($_POST['variables_control'],2):null;   
   $proceso->documentacion = isset($_POST['documentacion'])?sanitize($_POST['documentacion'],2):null;    
   $proceso->mediciones = isset($_POST['mediciones'])?sanitize($_POST['mediciones'],2):null;    
   $proceso->registros = isset($_POST['registros'])?sanitize($_POST['registros'],2):null;  
