@@ -3,7 +3,7 @@
 // Proyecto: Icasus 
 // Archivo: medicion_grabar.php
 //---------------------------------------------------------------------------------------------------
-// Graba una nueva medición de un indicador o actualiza una existente
+// Graba una nueva medición de un indicador
 //---------------------------------------------------------------------------------------------------
 global $smarty;
 global $usuario;
@@ -24,7 +24,10 @@ if (isset($_REQUEST["id_indicador"]) AND isset($periodo_inicio) AND isset($perio
   $medicion->grabacion_inicio = $grabacion_inicio; 
   $medicion->grabacion_fin = $grabacion_fin; 
 	$medicion->etiqueta = empty($_REQUEST["etiqueta"]) ? null : sanitize($_REQUEST["etiqueta"],SQL);
-  if (isset($_REQUEST["valor_referencia"]))
+  //se ha trasladado este trozo de codigo pq no se grababa id_medicion que es necesario y no se conoce este hasta mas
+	//adelante que ya se incluye
+	/*
+	if (isset($_REQUEST["valor_referencia"]))
   {
     foreach($_REQUEST["valor_referencia"] as $id_valor_referencia=>$valor)
     {
@@ -34,9 +37,22 @@ if (isset($_REQUEST["id_indicador"]) AND isset($periodo_inicio) AND isset($perio
       $valor_referencia_medicion->save();
     }
   }
-
+	*/
   if ($medicion->save())
   {
+		if (isset($_REQUEST["valor_referencia"]))
+		{
+			foreach($_REQUEST["valor_referencia"] as $id_valor_referencia=>$valor)
+			{
+				$valor_referencia_medicion = new valor_referencia_medicion();
+//				$valor_referencia_medicion->load("id = $id_valor_referencia");
+				$valor_referencia_medicion->id_valor_referencia = $id_valor_referencia;
+				$valor_referencia_medicion->valor = $valor;
+				$valor_referencia_medicion->id_medicion = $medicion->id;
+				$valor_referencia_medicion->save();
+			}
+		}
+
     // Grabamos un valor en blanco a cada una de las unidades asociadas al indicador
     $indicador_subunidad = new indicador_subunidad();
     $indicadores_subunidades = $indicador_subunidad->Find("id_indicador = $medicion->id_indicador"); 
