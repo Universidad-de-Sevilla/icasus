@@ -30,6 +30,7 @@ if (isset($_REQUEST["id_medicion"]))
   $valor_referencia_medicion = new valor_referencia_medicion();
   $valores_referencia_mediciones = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion");
   $smarty->assign("valores_referencia_mediciones", $valores_referencia_mediciones);
+print_r($valor_referencia_medicion);
 
 	$indisub = new indicador_subunidad();
 	$indisubs = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
