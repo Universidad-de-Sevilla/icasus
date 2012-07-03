@@ -1,11 +1,8 @@
-
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
 			<form method="post" action="index.php?page=proceso_grabar" class="validate_form">
 			  <input type="hidden" name="id_entidad" value="{$entidad->id}" />
-
-			
 			  <fieldset class="label_side">
 				<label>Proceso madre</label>
 				<div>
