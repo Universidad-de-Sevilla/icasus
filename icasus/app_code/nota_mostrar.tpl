@@ -1,3 +1,6 @@
+<div><h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN WEB PARA LA GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
+<h2>Título de p&aacute;gina</h2>
+</div>
 <h3>Notas personales</h3>
 
 <form id="grabar" name="grabar" action="index.php?page=nota_grabar" METHOD="POST" >

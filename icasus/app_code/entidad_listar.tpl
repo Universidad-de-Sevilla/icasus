@@ -1,4 +1,5 @@
-
+<div><h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN WEB PARA LA GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
+</div>
 	{if is_array($grupos_usuario)}
 		<div class="flat_area grid_16">
 			<h2>Equipos de Trabajo del usuario</h2>

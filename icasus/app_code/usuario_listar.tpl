@@ -1,8 +1,13 @@
+<div><h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN WEB PARA LA GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
+<h2>B&uacute;squeda de Usuarios</h2>
+</div>
+<!--
 <form action='index.php?page=usuario_listar' method="post" class="mini" name="formfiltro">
   <label for='criterio'>Buscar:</label> 
   <input name='criterio' type='text' class='inp' value='{if $criterio}{$criterio}{/if}'/>
   <input type='submit' name='submit-buscar' value='Aceptar' />
 </form>
+-->
 
 <div class="box grid_16 single_datatable">
 	<div id="dt1" class="no_margin">

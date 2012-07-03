@@ -5,10 +5,10 @@
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-			<h2 class="section">
+			<h4 class="section">
 				<a href="index.php?page=proceso_crear&id_entidad={$entidad->id}"><img 
 	        	src='/icons/ff16/cog_add.png' /> Crear nuevo proceso</a>								
-			</h2>
+			</h4>
 		</div>
 	</div>	
 </div>	

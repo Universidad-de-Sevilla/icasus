@@ -1,3 +1,5 @@
+<div><h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN WEB PARA LA GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
+</div>
 <div class="flat_area grid_16">
 	<h2>Datos de la unidad</h2>
 </div>
@@ -9,7 +11,7 @@
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-			<h2 class="section">
+			<h3 class="section">
 				<a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
 				Editar unidad</a> &nbsp;
 				 <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve.png' />
@@ -20,7 +22,7 @@
 				Crear indicador</a>
 				&nbsp; <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/cog.png' />
 				Ver procesos</a>
-			</h2>
+			</h3>
 			<fieldset class="label_side">
 				<label>Código</label>
 				<div class="clearfix">
@@ -55,12 +57,12 @@
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-			<h2 class="section">
+			<h4 class="section">
 				<a href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_add.png' />
 					Vincular usuarios</a> 
 					&nbsp; <a href='index.php?page=entidad_despoblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_delete.png' />
 					Desvincular usuarios</a>
-			</h2>
+			</h4>
 		</div>
 	</div>
 </div>			

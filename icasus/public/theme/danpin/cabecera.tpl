@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="utf-8">
 		
-		<title>{$_nombre_pagina} - Finitus - Universidad de Sevilla</title>
+		<title>{$_nombre_pagina} - ICASUS - Universidad de Sevilla</title>
   	<meta name="description" content="">
   		
 	<!-- iPhone, iPad and Android specific settings -->	
@@ -206,3 +206,6 @@
 	
 </div><!-- #nav_top -->
 				<div class="flat_area grid_16">
+				<div><h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN WEB PARA LA GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
+<h2>{$_nombre_pagina}</h2>
+</div>

@@ -1,3 +1,5 @@
+<div><h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN WEB PARA LA GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
+</div>
 <div class="flat_area grid_16">
 	<h2>Datos del indicador: {$indicador->nombre}</h2>
 </div>
@@ -5,7 +7,7 @@
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-			<h2 class="section">
+			<h3 class="section">
 				<a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
 					src='/icons/ff16/chart_curve.png' /> Mostrar mediciones</a> &nbsp;
 				<a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img 
@@ -22,7 +24,7 @@
 				<a href='index.php?page=indicador_datos_excel&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' title='Exportar los datos del indicador a Excel'>
 				<img src='/icons/ff16/page_excel.png'  /> Excel</a>
 								
-			</h2>
+			</h3>
 		</div>
 	</div>	
 </div>	

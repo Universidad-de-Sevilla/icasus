@@ -1,7 +1,7 @@
 <div id="sidebar">
 	<div class="cog">+</div>
 	
-	<a href="index.php" class="logo"><span>Adminica</span></a>
+	<a href="index.php" class="logo"><span>ICASUS</span></a>
 
 	<div class="user_box dark_box clearfix">
 		<img src="images/profile.jpg" width="55" alt="Profile Pic" />

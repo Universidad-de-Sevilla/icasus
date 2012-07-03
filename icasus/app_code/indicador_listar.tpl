@@ -1,3 +1,5 @@
+<div><h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN WEB PARA LA GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
+</div>
 <h2>Relación de indicadores</h2>
 <p>	 
 	<a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'><img 
