@@ -13,6 +13,7 @@ global $plantilla;
 
 $modulo = sanitize($_REQUEST["modulo"],SQL);
 $vr = new valor_referencia();
+$db = $vr->DB();
 
 if ($modulo == 'editar')
 {
@@ -23,6 +24,7 @@ if ($modulo == 'editar')
 	$vr->nombre = sanitize($_REQUEST["nombre"],SQL);
 	$vr->grafica = sanitize($_REQUEST["grafica"],INT);
 	$vr->activo = sanitize($_REQUEST["activo"],INT);
+	$db->execute("SET NAMES UTF8");
 	$vr->save();
 }
 if ($modulo == 'crear')
@@ -32,6 +34,7 @@ if ($modulo == 'crear')
 	$vr->nombre = sanitize($_REQUEST["nombre"],SQL);
 	$vr->grafica = sanitize($_REQUEST["grafica"],SQL);
 	$vr->activo = sanitize($_REQUEST["activo"],SQL);
+	$db->execute("SET NAMES UTF8");
 	$vr->save();
 }
 ?>
