@@ -14,11 +14,12 @@
 		<div class="block">	
 			<table class="static"> 
 			    <thead>                       
-			      <tr><th>Código</th><th>Nombre</th><th>Propietario</th><th>Tipo</th><th>Acciones</th></tr>
+			      <tr><th>Id proceso</th><th>Código</th><th>Nombre</th><th>Propietario</th><th>Tipo</th><th>Acciones</th></tr>
 			    </thead>                      
 			    <tbody>                       
             {foreach from=$procesos item=proceso}
-              <tr>                  
+              <tr>    
+							<td>{$proceso->id}</td>
               <td nowrap>{$proceso->codigo}</td>
               <td><a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><b>{$proceso->nombre}</b></a></td>
               <td>{$proceso->propietario->nombre} {$proceso->propietario->apellidos}</td>               
