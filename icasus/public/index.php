@@ -102,8 +102,15 @@ else
 	$smarty->assign('error', "Error 404: no encontramos la página que ha solicitado."); 
   require_once("../app_code/error.php");
 }
-// Llama a las tres plantillas que conforman la página html
-$smarty->display('theme/'.IC_THEME.'/cabecera.tpl'); 
-$smarty->display("$plantilla");
-$smarty->display('theme/'.IC_THEME.'/piecera.tpl'); 
+if (isset($_GET['ajax']) AND $_GET['ajax'] == 'true')
+{
+	$smarty->display("$plantilla");
+} 
+else
+{
+	// Llama a las tres plantillas que conforman la página html
+	$smarty->display('theme/'.IC_THEME.'/cabecera.tpl'); 
+	$smarty->display("$plantilla");
+	$smarty->display('theme/'.IC_THEME.'/piecera.tpl');
+}
 ?>
