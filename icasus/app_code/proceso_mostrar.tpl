@@ -52,124 +52,163 @@
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-			<fieldset class="label_side">
-				<label>C&oacute;digo</label>
-				<div>
-					<label for='codigo'>{$proceso->codigo}</label>
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Revisi&oacute;n</label>
-				<div>
-					<label for='revision'>{$proceso->revision}</label>
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Fecha</label>
-				<div>
-					<label for='fecha_revision'>{$proceso->fecha_revision|date_format:"%d/%m/%Y"}</label>
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Nombre proceso</label>
-				<div>
-					<label for='nombre'>{$proceso->nombre}</label>
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Propietario</label>
-				<div>
-					<label for='id_propietario'>{$propietario->nombre} {$propietario->apellidos}</label>
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
+			
+			  <fieldset class="label_side">
 				<label>Proceso madre</label>
 				<div>
-          <label for="proceso_madre">
-            {if $proceso_madre->id > 0} {$proceso_madre->codigo} - {$proceso_madre->nombre} {else} Es un Proceso Madre {/if}
-          </label>
+          {if $proceso_madre->id > 0}
+            {$proceso_madre->codigo} - {$proceso_madre->nombre} 
+            &nbsp; <a href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso->id_entidad}">(mostrar)</a>
+          {else}
+            Es un proceso madre
+          {/if}
 				</div>
-      </fieldset>
-			<fieldset class="label_side">
-				<label>Misi&oacute;n:</label>
+			  </fieldset> 
+			  <fieldset class="label_side">
+				<label>Nombre proceso</label>
 				<div>
-					<label for="mision"> {$proceso->mision}</label>					
+				  <h3>{$proceso->nombre}</h3>
 				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Equipo de proceso:</label>
-				<div>
-					<label for="equipo_de_proceso"> {$proceso->equipo_de_proceso}</label>				
+			  </fieldset> 
+        <div class="columns clearfix">
+          <div class="col_33">
+            <fieldset>
+              <label>C&oacute;digo</label>
+              <div>
+                {$proceso->codigo}
+              </div>
+            </fieldset> 
+          </div>
+          <div class="col_33">
+            <fieldset>
+            <label>Versi&oacute;n</label>
+            <div>
+              {$proceso->revision}
+            </div>
+            </fieldset>  
+          </div>
+          <div class="col_33">
+            <fieldset>
+            <label>Fecha</label>
+            <div>
+              {$proceso->fecha_revision|date_format:'%d/%m/%Y'}
+            </div>
+            </fieldset>  
+          </div>
+        </div>
+        <div class="columns clearfix">
+          <div class="col_50">
+            <fieldset>
+            <label>Propietario</label>
+              <div>
+                {$propietario->nombre} {$propietario->apellidos} 
+                {if $propietario->puesto} - {$propietario->puesto} {/if}
+            </div>
+            </fieldset> 
+          </div>
+          <div class="col_50">
+            <fieldset>
+              <label>Tipo de proceso</label>
+              <div>
+                {$proceso->alcance}
+              </div>
+            </fieldset> 
+          </div>
+        </div>
+        {if $proceso->mision}
+			  <fieldset class="label_side">
+          <label>Misi&oacute;n</label>
+          <div>
+            {$proceso->mision}
+          </div>
+			  </fieldset>   
+        {/if}
+        {if $proceso->equipo_de_proceso}
+			  <fieldset class="label_side">
+          <label>Equipo de proceso</label>
+          <div>
+					{$proceso->equipo_de_proceso}
 				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Resultados clave:</label>
-				<div>
-					<label for="resultados_clave"> {$proceso->resultados_clave}</label>			
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Entradas</label>
-				<div>
-					<label for='entradas'>{$proceso->entradas}</label>		
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Proveedores</label>
-				<div>
-					<label for='proveedores'>{$proceso->proveedores}</label>	
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Salidas</label>
-				<div>
-					<label for='salidas'>{$proceso->salidas}</label>	
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Clientes</label>
-				<div>
-					<label for='clientes'>{$proceso->clientes}</label>	
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Actividades:</label>
-				<div>
-					<label for="actividades"> {$proceso->actividades}</label>
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Documentaci&oacute;n:</label>
-				<div>
-					<label for="documentacion"> {$proceso->documentacion}</label>
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Mediciones:</label>
-				<div>
-					<label for="mediciones"> {$proceso->mediciones}</label>
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Registros:</label>
-				<div>
-					<label for="registros"> {$proceso->registros}</label>
-				</div>
-			</fieldset>
-			<fieldset class="label_side">
-				<label>Tipo de proceso:</label>
-				<div>
-					<label for="alcance"> {$proceso->alcance}</label>
-				</div>
-			</fieldset>
+			  </fieldset>      
+        {/if}
+        {if $proceso->resultados_clave}
+			  <fieldset class="label_side">
+          <label>Resultados clave</label>
+          <div>
+            {$proceso->resultados_clave}
+          </div>
+			  </fieldset>
+        {/if}
+        {if $proceso->entradas or $proceso->salidas}
+        <div class="columns clearfix">
+          <div class="col_50">
+            <fieldset>
+              <label>Entradas / Proveedores</label>
+              <div>
+                {$proceso->entradas}
+              </div>
+            </fieldset>  
+          </div>
+          <div class="col_50">
+            <fieldset>
+              <label>Salidas / Clientes</label>
+              <div>
+                {$proceso->salidas}
+              </div>
+            </fieldset>   
+          </div>
+        </div>
+        {/if}
+        {if $proceso->actividades}
+			  <fieldset class="label_side">
+          <label>Actividades</label>
+          <div>
+            {$proceso->actividades}
+			    </div>
+			  </fieldset> 
+        {/if}
+        {if $proceso->variables_control}
+			  <fieldset class="label_side">
+          <label>Variables de control</label>
+          <div>
+            {$proceso->variables_control}
+			    </div>
+			  </fieldset> 
+        {/if}
+        {if $proceso->documentacion}
+			  <fieldset class="label_side">
+          <label>Documentaci&oacute;n</label>
+          <div>
+					{$proceso->documentacion}
+			    </div>
+			  </fieldset>
+        {/if}
+        {if $proceso->mediciones}
+			  <fieldset class="label_side">
+          <label>Mediciones</label>
+          <div>
+            {$proceso->mediciones}
+			    </div>
+			  </fieldset>   
+        {/if}
+        {if $proceso->registros}
+			  <fieldset class="label_side">
+          <label>Registros</label>
+          <div>
+            {$proceso->registros}
+			    </div>
+			  </fieldset>    
+        {/if}
 		</div>
-	</div>		
-</div>		           
+	</div>
+</div>
               
 
 {if $indicadores}
-	<h3>Indicadores asociados</h3>	
 	<div class="box grid_16">
+    <h2 class="box_head grad_grey_dark">Indicadores asociados al proceso</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
 		<div class="block">	
 			<table class="static"> 
 				<thead>
@@ -197,10 +236,10 @@
 	<p class='aviso'>No hay indicadores definidos para este proceso.</p>
 {/if}
 {if $subprocesos}
-	<div class="flat_area grid_16">
-		<h2>Subprocesos</h2>
-	</div>
-    <div class="box grid_16">
+  <div class="box grid_16">
+    <h2 class="box_head grad_grey_dark">Subprocesos</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
 		<div class="block">	
 			<table class="static"> 
 			    <thead>
@@ -212,9 +251,9 @@
 			            <td>{$subproceso->codigo}</td>
 			            <td>{$subproceso->nombre}</td>
 			            <td>{$subproceso->propietario->nombre} {$subproceso->propietario->apellidos}</td>
-			            <td><a href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id_proceso}&id_entidad={$subproceso->id_entidad}">Ver</a>
-			            - <a href="index.php?page=proceso_editar&id_proceso={$subproceso->id_proceso}&id_entidad={$subproceso->id_entidad}">Editar</a>
-			            - <a href='index.php?page=proceso_borrar&id_proceso={$subproceso->id_proceso}&id_entidad={$subproceso->id_entidad}'
+			            <td><a href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">Ver</a>
+			            - <a href="index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">Editar</a>
+			            - <a href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'
 			            onClick='return confirmar();'>Borrar</a></td>
 			
 			            </tr>

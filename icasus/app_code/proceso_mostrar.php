@@ -39,7 +39,7 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 	$smarty->assign('indicadores',$indicadores);
 	
   $smarty->assign('id_entidad',$id_entidad);
-	$smarty->assign('_nombre_pagina' , "Proceso: " . $proceso->nombre);
+	$smarty->assign('_nombre_pagina' , "Ficha de Proceso: " . $proceso->nombre);
 	$smarty->assign('_javascript' , array('proceso_borrar'));
 	$plantilla = 'proceso_mostrar.tpl';
 }

@@ -31,7 +31,6 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
     $proceso->nombre = isset($_POST['nombre'])?sanitize($_POST['nombre'],2):null;    
     $proceso->alcance = isset($_POST['alcance'])?sanitize($_POST['alcance'],2):null; 
     $proceso->mision = isset($_POST['mision'])?sanitize($_POST['mision'],2):null;    
-    $proceso->equipo_de_proceso = isset($_POST['equipo_de_proceso'])?sanitize($_POST['equipo_de_proceso'],2):null;    
     $proceso->resultados_clave = isset($_POST['resultados_clave'])?sanitize($_POST['resultados_clave'],2):null;
     $proceso->entradas = isset($_POST['entradas'])?sanitize($_POST['entradas'],2):null;   
     $proceso->proveedores = isset($_POST['proveedores'])?sanitize($_POST['proveedores'],2):null;    
@@ -45,7 +44,7 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
     
     if ($proceso->save())
     {
-      header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad");
+      header("Location: index.php?page=proceso_mostrar&id_proceso=$id_proceso&id_entidad=$id_entidad");
     }
     else
     {
@@ -67,6 +66,7 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
     $proceso_madre = new proceso();
     $procesos_madre = $proceso_madre->Find("id_entidad = $id_entidad AND id <> $id_proceso");
     $smarty->assign('procesos_madre', $procesos_madre);
+    $smarty->assign('id_entidad', $id_entidad);
     $smarty->assign('_nombre_pagina', "Editando proceso: ". $proceso->nombre);
     $plantilla = "proceso_editar.tpl";
   }

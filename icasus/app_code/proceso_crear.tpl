@@ -29,16 +29,16 @@
             <fieldset>
               <label>C&oacute;digo</label>
               <div>
-                <input type="text" name="codigo" placeholder="Indique un código estándar y único" class="required" />
+                <input type="text" name="codigo" placeholder="Indique un código estandarizado y único" class="required" />
                 <div class="required_tag"></div>
               </div>
             </fieldset> 
           </div>
           <div class="col_33">
             <fieldset>
-            <label>Revisi&oacute;n</label>
+            <label>Versi&oacute;n</label>
             <div>
-              <input type="text" name="revision" placeholder="Versión actual del proceso"  class="required" />
+              <input type="text" name="revision" placeholder="Número de la versión actual de la ficha de proceso"  class="required" />
               <div class="required_tag"></div>
             </div>
             </fieldset>  
