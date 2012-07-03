@@ -17,9 +17,9 @@ como software libre</a>.</p>
 <div style='width: 250px; float:left; margin:20px;'>
 <form method="post" action="index.php?page=login_basico" id="formlogin" onsubmit="return login_validar(this)">
     <input type="hidden" name="acceso" value="1" />
-    <label for="login">Usuario</label> <br />
-    <input type="text" name="login" id="login" class="inp" />
-    <label for="clave">Clave</label> <br />
+    <label for="login"><b>Usuario</b></label> <br />
+    <input type="text" name="login" id="login" class="inp" /><br />
+    <label for="clave"><b>Clave</b></label> <br />
     <input type="password" name="clave" id="clave" class="inp" /><br />
     <input type="submit" class="submit-btn" value="Enviar" />
 </form>

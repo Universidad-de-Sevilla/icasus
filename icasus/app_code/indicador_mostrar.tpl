@@ -12,7 +12,6 @@
   <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img 
     src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp; 
 </h3>
-								
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
