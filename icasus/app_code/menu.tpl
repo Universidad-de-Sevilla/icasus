@@ -19,7 +19,7 @@
 	<a href="index.php" class="logo"><span>iCasus</span></a>
 	
 	<div class="user_box dark_box clearfix">
-		<img src="../public/theme/danpin/images/profile.jpg" width="55" alt="Profile Pic" />  
+		<img src="theme/danpin/images/profile.jpg" width="55" alt="Profile Pic" />  
 		<h2>Bienvenido</h2>
 		<h3><a href="#">Usuario</a></h3>
 		<ul>
