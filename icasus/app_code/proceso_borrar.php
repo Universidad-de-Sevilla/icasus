@@ -19,24 +19,24 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']) )
 		if ($indicadores)
 		{
 			$error = 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores';
-			header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
+			header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
 		}
 		else 
 		{
 			$proceso->delete();
 			$aviso = 'Se ha borrado el proceso.';
-			header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
+			header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&aviso=$aviso");
 		}	
 	}
 	else
 	{
 		$error = 'No tiene persimos para borrar el proceso';
-		header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");	
+		header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");	
 	} 	
 }
 else // falta id_indicador o id_entidad
 {
 	$error = 'Faltan parámetros para realizar esta acción.';
-	header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
+	header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
 }
 ?>
