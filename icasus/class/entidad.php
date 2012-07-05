@@ -11,13 +11,18 @@ class entidad extends ADOdb_Active_Record
 	public $_table = 'entidades';
 	public $indicadores;
   public $madre;
+  public $usuario;
 
-  public function load_joined($condicion)
+	public function load_joined($condicion)
   {
     if ($this->load($condicion))
     {
       $this->madre = new entidad;
       $this->madre->load("id = $this->id_madre");
+
+			$usuarios = new usuario_entidad();
+			$this->usuario = $usuarios->Find_usuarios("id_entidad = $this->id ");
+
       return true;
     }
     else
@@ -97,6 +102,22 @@ class entidad extends ADOdb_Active_Record
 			$entidad->indicadores = $code;	
 		}
 		return $entidades;
+	}
+	public function actualizar($id_entidad,$id_padre,$nombre,$web,$codigo)
+	{
+		$this->load("id = $id_entidad");
+		$this->id_madre = $id_padre;
+		$this->nombre = $nombre;
+		$this->web = $web;
+		$this->codigo = $codigo;
+		if ($this->save())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
 ?>
