@@ -8,43 +8,37 @@
 global $smarty;
 global $plantilla;
 
-$smarty->assign("_javascript", array('ordenatabla');
-
 // Si vienen datos del formulario asignamos los usuarios marcados a la entidad
 if (isset($_REQUEST['id_entidad']))
 {
-	$id_entidad = sanitize($_REQUEST['id_entidad'],INT);
-	$entidad = new entidad();
-  $entidad = $entidad->load("id = $id_entidad");
-  
+$id_entidad = sanitize($_REQUEST['id_entidad'],INT);
+
+$entidad = new entidad();
+$entidad->load("id = $id_entidad");
+$smarty->assign('entidad',$entidad);
+$smarty->assign('_nombre_pagina', $entidad->nombre);
+
+$usuario_entidad = new usuario_entidad;
+$usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
+$smarty->assign('usuarios',$usuarios);
+
+//print_r($entidad);  
+
   if (isset($_REQUEST["id_usuario"]))
   {
     $contador = 0;
     foreach ($_REQUEST['id_usuario'] as $id_usuario)
     {
       $id_usuario = sanitize($id_usuario,INT);
-      $entidad->desasignar_usuario($id_entidad,$id_usuario);
+      $usuario_entidad->desasignar_usuario($id_entidad,$id_usuario);
       $contador ++;
     }
     $smarty->assign('aviso',"Se han eliminado $contador usuarios de la entidad");	
-    $smarty->assign('entidad',$entidades));
-
-    $usuario_entidad = new usuario_entidad;
-    $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
-    $smarty->assign('usuarios', $usuarios);
-
-    $nombre_pagina = $entidad->nombre;
+		header("location:index.php?page=entidad_datos&id_entidad=$id_entidad");
     $plantilla = 'entidad_datos.tpl';
   }
   else 
   { 
-    $id_entidad = sanitize($_REQUEST['id_entidad'],INT);
-    $entidad = new entidad();
-    $usuario_entidad = new usuario_entidad;
-    $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
-    $smarty->assign('usuarios',$usuarios);
-    $smarty->assign('entidad',$entidad->obtener_datos($id_entidad));
-    $smarty->assign('_nombre_pagina', $entidad->datos['nombre']);
     $plantilla = 'entidad_despoblar.tpl';
   }
 }

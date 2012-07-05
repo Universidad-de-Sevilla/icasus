@@ -9,8 +9,6 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
-$smarty->assign('_javascript' , array('ordenatabla'));
-
 if (isset($_REQUEST['id_entidad']))
 {
 	$id_entidad = sanitize($_REQUEST['id_entidad'],INT);

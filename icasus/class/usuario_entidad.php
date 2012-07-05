@@ -59,5 +59,23 @@ class usuario_entidad extends ADOdb_Active_Record
 		$permiso = $this->load('id_usuario ='.$id_usuario.' AND id_entidad = '.$id_entidad.' AND id_rol = '.$id_rol);
 		return $permiso;
 	}
+	public function desasignar_usuario($id_entidad, $id_usuario)
+	{
+		if ($this->load("id_entidad = $id_entidad AND id_usuario = $id_usuario" ))
+		{
+			if ($this->delete())
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
+	} 
 }
 ?>

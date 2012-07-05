@@ -5,6 +5,8 @@
   Ver procesos</a> &nbsp; &nbsp; &nbsp;
   <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve.png' />
   Ver indicadores</a> &nbsp; &nbsp; 
+  <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
+  Editar Unidad</a> &nbsp; &nbsp; 
 </h3>
 <div class="box grid_16">
 	<div class="toggle_container">
