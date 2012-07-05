@@ -19,14 +19,14 @@ $indisub = new indicador_subunidad();
 //valores que se definen como filas ====================================================================
 if ($modulo == 'grabarfila')
 {
-	$valor = sanitize($_REQUEST["valor"],2);        
+	$value = sanitize($_REQUEST["valor"],2);        
 	$id_valor = sanitize($_REQUEST["id2"],2);       
 	$valor->load("id = $id_valor");                     
 	$valor->puede_grabarse($valor->id,$usuario->id);        
 	if ($valor->puede_grabarse($valor->id,$usuario->id))    
 	{
 		$valor->id_usuario = $usuario->id;                
-		$valor->valor = $valor;                           
+		$valor->valor = $value;                           
 		$valor->fecha_recogida = date("Y-m-d");           
 		$valor->save();}
 	}
