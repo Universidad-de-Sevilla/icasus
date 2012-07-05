@@ -8,7 +8,7 @@
 		<h3><a href="#">Usuario</a></h3>
 		<ul>
 			<li><a href="#">Configuraci&oacute;n</a><span class="divider">|</span></li>
-			<li><a href="login.php">Salir</a></li>
+			<li><a href="index.php?page=login_basico&logout=true">Salir</a></li>
 		</ul>
 	</div><!-- #user_box -->
 	
@@ -19,12 +19,12 @@
 	<a href="index.php" class="logo"><span>iCasus</span></a>
 	
 	<div class="user_box dark_box clearfix">
-		<img src="../public/theme/danpin/images/profile.jpg" width="55" alt="Profile Pic" />  
-		<h2>Bienvenido</h2>
-		<h3><a href="#">Usuario</a></h3>
+		<img align="left" src="theme/danpin/images/profile.jpg" width="55" alt="Profile Pic" />  
+		<h2 style="font-size:1.6em;">icasus</h2>
+		<h3><a href="#">{$_usuario->login}</a></h3>
 		<ul>
 			<li><a href="#">Configuraci&oacute;n</a><span class="divider">|</span></li>
-			<li><a href="login.php">Salir</a></li>
+			<li><a href="index.php?page=login_basico&logout=true">Salir</a></li>
 		</ul>
 	</div><!-- #user_box -->
 

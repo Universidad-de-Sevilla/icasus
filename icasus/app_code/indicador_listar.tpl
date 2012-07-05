@@ -8,7 +8,6 @@
   src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públicos</a>
   -->
 </h3>
-
 {if $indicadores}
 <div class="box grid_16 single_datatable">
   <div id="dt1" class="no_margin">

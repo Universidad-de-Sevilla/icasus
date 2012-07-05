@@ -24,7 +24,7 @@
 		  </div>
 		</div>
 	{else}
-		  <p class='aviso'>No tiene asignada ninguna unidad</p>
+		  <div class="alert alert_blue">No tiene asignada ninguna unidad</div>
 	{/if}
 	
 		<h3>Todas las unidades</h3>

@@ -204,12 +204,12 @@
 </div>
               
 
-{if $indicadores}
 	<div class="box grid_16">
     <h2 class="box_head grad_grey_dark">Indicadores asociados al proceso</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
 		<div class="block">	
+      {if $indicadores}
 			<table class="static"> 
 				<thead>
 					<tr><th>Código</th><th>Indicador</th><th>Propietario</th><th>Acciones</th></tr>
@@ -230,38 +230,44 @@
 					{/foreach}
 				</tbody>
 			</table>
+      {else}
+        <div class='alert alert_blue'>
+          <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
+          No se ha definido ningún indicador para este proceso.
+        </div>
+      {/if}
 		</div>
 	</div>		
-{else}
-	<p class='aviso'>No hay indicadores definidos para este proceso.</p>
-{/if}
-{if $subprocesos}
   <div class="box grid_16">
     <h2 class="box_head grad_grey_dark">Subprocesos</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
 		<div class="block">	
-			<table class="static"> 
-			    <thead>
-			        <tr><th>Subproceso</th><th>Nombre</th><th>Propietario</th><th>Acciones</th></tr>
-			    </thead>
-			    <tbody>
-			        {foreach from=$subprocesos item=subproceso}
-			            <tr>
-			            <td>{$subproceso->codigo}</td>
-			            <td>{$subproceso->nombre}</td>
-			            <td>{$subproceso->propietario->nombre} {$subproceso->propietario->apellidos}</td>
-			            <td><a href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">Ver</a>
-			            - <a href="index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">Editar</a>
-			            - <a href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'
-			            onClick='return confirmar();'>Borrar</a></td>
-			
-			            </tr>
-			        {/foreach}
-			    </tbody>
-			</table>
+      {if $subprocesos}
+        <table class="static"> 
+            <thead>
+                <tr><th>Subproceso</th><th>Nombre</th><th>Propietario</th><th>Acciones</th></tr>
+            </thead>
+            <tbody>
+              {foreach from=$subprocesos item=subproceso}
+                  <tr>
+                  <td>{$subproceso->codigo}</td>
+                  <td>{$subproceso->nombre}</td>
+                  <td>{$subproceso->propietario->nombre} {$subproceso->propietario->apellidos}</td>
+                  <td><a href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">Ver</a>
+                  - <a href="index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">Editar</a>
+                  - <a href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'
+                  onClick='return confirmar();'>Borrar</a></td>
+      
+                  </tr>
+              {/foreach}
+            </tbody>
+        </table>
+      {else}
+        <div class='alert alert_blue'>
+          <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
+          No se ha definido ningún subproceso para este proceso 
+        </div>
+      {/if}
 		</div>
 	</div>		
-{else}
-<p class='aviso'>No se ha definido ningún subproceso para este proceso </p>
-{/if}

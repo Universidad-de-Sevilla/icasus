@@ -70,7 +70,7 @@
 		</div>
 	</div>	
 {else}
-<p class='aviso'>No se han vinculado usuarios a esta entidad</p>
+<div class="alert alert_blue">No se han vinculado usuarios a esta entidad</div>
 {/if}
 
 <h2>Subunidades</h2>
@@ -94,5 +94,5 @@
 		</div>
 	</div>	
 {else}
-<p class='aviso'>Esta unidad no tiene subunidades</p>
+<div class="alert alert_blue">Esta unidad no tiene subunidades</div>
 {/if}

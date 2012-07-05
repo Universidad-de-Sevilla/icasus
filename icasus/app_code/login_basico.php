@@ -1,7 +1,6 @@
 <?php
 global $smarty;
 global $plantilla;
-$smarty->assign('_javascript' , array('login_validar'));
 $smarty->assign('_nombre_pagina' , 'Bienvenido a Icasus');
 
 //Carga la página de novedades para mostrar en la pantalla inicial
