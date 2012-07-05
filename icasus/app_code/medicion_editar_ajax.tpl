@@ -8,11 +8,11 @@
 				<td>
 				{if $valor->autorizado == 1 OR $indicador->id_responsable == $usuario->id}
 					{if $valor->id == $valor_edit}
-						<input name="v_{$valor->id}" type="text" value="{$valor->valor}">
-						<a href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}','{$medicion->id}')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/disk.png'align="absmiddle"></a>
-						<a href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/cross.png'align="absmiddle"></a>
+						<input name="v_{$valor->id}" type="text" value="{$valor->valor}" class="text">
+						<a href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}','{$medicion->id}')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a>
+						<a href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}')"><img title='Grabar' src='/icons/ff16/cross.png'align="absmiddle"></a>
 					{else}
-						<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{$valor->valor}</a>
+						<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
 					{/if}
 				{else}
 					{if $valor->valor == NULL}---{else}{$valor->valor}{/if}
@@ -54,35 +54,35 @@
 {/if}
 {if $modulo == 'editarvalorreferencia'} 
 	<input id="input_referencia_{$referencia->id}" name="input_referencia_{$referencia->id}" type="text" value="{$referencia->valor}" style="width:50px">
-	<a href="javascript:void(0)" onclick="javascript:referencia_grabar('{$referencia->id}')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/disk.png'align="absmiddle"></a></a>
-	<a href="javascript:void(0)" onclick="javascript:referencia_cancelar('{$referencia->id}')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/cross.png'align= "absmiddle"></a></a>
+	<a href="javascript:void(0)" onclick="javascript:referencia_grabar('{$referencia->id}')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a></a>
+	<a href="javascript:void(0)" onclick="javascript:referencia_cancelar('{$referencia->id}')"><img title='Grabar' src='/icons/ff16/cross.png'align= "absmiddle"></a></a>
 {/if}
 {if $modulo == 'editarfecha'} 
 	{if $contenedor == 'pi'}
 		{html_select_date field_order='DMY' prefix="pi" month_format='%m' start_year="-10" end_year="+2" time=$medicion->periodo_inicio}
-		<a href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}','pi')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/disk.png'align="absmiddle"></a>
-		<a href="javascript:void(0)" onclick="javascript:fecha_cancelar('pi','{$medicion->id}')"><img title='Cancelar' src='https://r2h2.us.es/comun/icons/ff16/cross.png'align="absmiddle"></a>
+		<a href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}','pi')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a>
+		<a href="javascript:void(0)" onclick="javascript:fecha_cancelar('pi','{$medicion->id}')"><img title='Cancelar' src='/icons/ff16/cross.png'align="absmiddle"></a>
 	{/if}
 	{if $contenedor == 'pf'}
 		{html_select_date field_order='DMY' prefix="pf" month_format='%m' start_year="-10" end_year="+2" time=$medicion->periodo_fin}
-		<a href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}','pf')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/disk.png'align="absmiddle"></a>
-		<a href="javascript:void(0)" onclick="javascript:fecha_cancelar('pf','{$medicion->id}')"><img title='Cancelar' src='https://r2h2.us.es/comun/icons/ff16/cross.png'align="absmiddle"></a>
+		<a href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}','pf')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a>
+		<a href="javascript:void(0)" onclick="javascript:fecha_cancelar('pf','{$medicion->id}')"><img title='Cancelar' src='/icons/ff16/cross.png'align="absmiddle"></a>
 	{/if}
 	{if $contenedor == 'gi'}                        
 		{html_select_date field_order='DMY' prefix="gi" month_format='%m' start_year="-10" end_year="+2" time=$medicion->grabacion_inicio}            
-		<a href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}','gi')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/disk.png'align="absmiddle"></a>
-		<a href="javascript:void(0)" onclick="javascript:fecha_cancelar('gi','{$medicion->id}')"><img title='Cancelar' src='https://r2h2.us.es/comun/icons/ff16/cross.png'align="absmiddle"></a>
+		<a href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}','gi')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a>
+		<a href="javascript:void(0)" onclick="javascript:fecha_cancelar('gi','{$medicion->id}')"><img title='Cancelar' src='/icons/ff16/cross.png'align="absmiddle"></a>
 	{/if}
 	{if $contenedor == 'gf'}                        
 		{html_select_date field_order='DMY' prefix="gf" month_format='%m' start_year="-10" end_year="+2" time=$medicion->grabacion_fin}               
-		<a href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}','gf')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/disk.png'align="absmiddle"></a>
-		<a href="javascript:void(0)" onclick="javascript:fecha_cancelar('gf','{$medicion->id}')"><img title='Cancelar' src='https://r2h2.us.es/comun/icons/ff16/cross.png'align="absmiddle"></a>
+		<a href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}','gf')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a>
+		<a href="javascript:void(0)" onclick="javascript:fecha_cancelar('gf','{$medicion->id}')"><img title='Cancelar' src='/icons/ff16/cross.png'align="absmiddle"></a>
 	{/if}
 {/if}
 {if $modulo == 'editaretiqueta'}
 	<input name="etiqueta" type="text" value="{$medicion->etiqueta}" style="width:50px">
-	<a href="javascript:void(0)" onclick="javascript:etiqueta_editar_grabar('et','{$medicion->id}','etiqueta')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/disk.png'align="absmiddle"></a></a>   
-	<a href="javascript:void(0)" onclick="javascript:etiqueta_editar_cancelar('et','{$medicion->id}')"><img title='Grabar' src='https://r2h2.us.es/comun/icons/ff16/cross.png'align= "absmiddle"></a></a>
+	<a href="javascript:void(0)" onclick="javascript:etiqueta_editar_grabar('et','{$medicion->id}','etiqueta')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a></a>   
+	<a href="javascript:void(0)" onclick="javascript:etiqueta_editar_cancelar('et','{$medicion->id}')"><img title='Grabar' src='/icons/ff16/cross.png'align= "absmiddle"></a></a>
 {/if}
 {if $modulo == 'cancelaretiqueta'}
 	{if $contenedor == 'et'}

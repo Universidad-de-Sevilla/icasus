@@ -12,7 +12,7 @@
 	  {
 		if (isNaN(value)== false)
 			{
-				$.post('index.php?page=valor_grabar_asin&modulo=grabarfila&ajax=true',{id2:id,valor:value},function(){
+				$.post("index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",{id2:id,valor:value},function(){
 					$('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion="+medicion);
 				});
 			}
