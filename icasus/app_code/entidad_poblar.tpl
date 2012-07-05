@@ -1,5 +1,8 @@
 {if $usuarios}
   <div class="box grid_16">
+	<h2 class="box_head grad_grey_dark">Usuarios asignados actualmente</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
     <div class="block"> 
       <table class='static'>
         <thead>
@@ -24,23 +27,15 @@
 <p class='aviso'>No se han vinculado usuarios a esta entidad</p>
 {/if}
 
-      <form action='index.php?page=entidad_poblar' method='post' name='formpoblar' class='datos'>     
-        <input type='hidden' name='id_entidad' value='{$entidad->id}' />
-        <!--<p><input type='submit' name='enviar' value='Asignar usuarios' /></p>-->
 
-        <div class="box grid_16">         
+ <div class="box grid_16">         
+	<h2 class="box_head grad_grey_dark">Usuarios disponibles</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
 	<div class="toggle_container">  
 		<div class="block">
-			<div class="button_bar clearfix">
-				<button class="green" type="submit" value="Asignar usuarios" name="enviar">
-				<span>Asignar usuarios</span>
-				</button>
-      </div>         
-			<fieldset>
-				<label>Usuarios disponibles</label>
-				<div>
-						<a href="#" class="grabber"></a>
-						<a href="#" class="toggle"></a>
+      <form action='index.php?page=entidad_poblar' method='post' name='formpoblar' class='datos'>     
+        <input type='hidden' name='id_entidad' value='{$entidad->id}' />
 						<div id="dt1" class="no_margin">
 								<table class="display datatable">
 									<thead>
@@ -60,8 +55,6 @@
 									</tbody>
 								</table>
 						</div>
-				</div>
-			</fieldset>
 			<fieldset>
           <label>Rol</label>
           <div> 
@@ -78,7 +71,7 @@
             <span>Asignar usuarios</span>
           </button>
       </div>  
-      </form>
+      </div>
     </div>
   </div>
-</div>
+</form>
