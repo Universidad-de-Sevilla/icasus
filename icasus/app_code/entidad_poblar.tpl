@@ -1,5 +1,8 @@
 {if $usuarios}
   <div class="box grid_16">
+	<h2 class="box_head grad_grey_dark">Usuarios asignados actualmente</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
     <div class="block"> 
       <table class='static'>
         <thead>
@@ -26,9 +29,11 @@
 
       <form action='index.php?page=entidad_poblar' method='post' name='formpoblar' class='validate_form'>     
         <input type='hidden' name='id_entidad' value='{$entidad->id}' />
-        <!--<p><input type='submit' name='enviar' value='Asignar usuarios' /></p>-->
 
-        <div class="box grid_16">         
+ <div class="box grid_16">         
+	<h2 class="box_head grad_grey_dark">Usuarios disponibles</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
 	<div class="toggle_container">  
 		<div class="block">
 			<fieldset>
@@ -44,7 +49,7 @@
 									<tbody>
 									{foreach from=$personas item=persona}
 										<tr>
-											<td><input type='checkbox' name='id_usuario[]' value='{$persona.id}' class=":e"/></td>
+											<td><input type='checkbox' name='id_usuario[]' value='{$persona.id}' class=""/></td>
 											<td>{$persona.nombre|upper}</td>
 											<td>{$persona.apellidos|upper}</td>
 											<td>{$persona.correo}</td>
@@ -55,8 +60,6 @@
 									</tbody>
 								</table>
 						</div>
-				</div>
-			</fieldset>
 			<fieldset>
           <label>Rol</label>
           <div> 
@@ -71,11 +74,11 @@
       </fieldset>
 
 			<div class="button_bar clearfix">
-          <button class="green" type="button" value="Asignar usuarios" name="enviar" onclick="location.reload();">
+          <button class="green" type="submit" value="Asignar usuarios" name="enviar">
             <span>Asignar usuarios</span>
           </button>
       </div>  
-      </form>
+      </div>
     </div>
   </div>
-</div>
+</form>

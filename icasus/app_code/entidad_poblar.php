@@ -18,9 +18,9 @@ if (isset($_REQUEST["id_entidad"]))
   {
     $id_rol = sanitize($_REQUEST['id_rol'],INT);
     $contador = 0;
-    $usuario_entidad = new usuario_entidad;
     foreach ($_REQUEST['id_usuario'] as $id_usuario)
     {
+			$usuario_entidad = new usuario_entidad;
       $id_usuario = sanitize($id_usuario,INT);
       $usuario_entidad->id_usuario = $id_usuario;
       $usuario_entidad->id_entidad = $id_entidad;
