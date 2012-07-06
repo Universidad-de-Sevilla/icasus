@@ -35,7 +35,6 @@
 	function etiqueta_editar(medicion,content)
 	{
 		$('#'+content).load("index.php?page=medicion_editar_ajax&modulo=editaretiqueta&ajax=true&id_medicion="+medicion+"&contenedor="+content);
-		//$('#'+content).load("index2.php?page=medicion_editar_asin&id_medicion="+medicion+"&contenedor="+content);
 	} 
 	function etiqueta_editar_grabar(content,medicion,tag)
 	{

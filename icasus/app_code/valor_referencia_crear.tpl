@@ -60,28 +60,39 @@
   <div class="box grid_16">
     <div class="toggle_container">
       <div class="block">
-        <form method="post" action="" id="formcrearreferencia" name="formcrearreferencia" class="datos">
+        <form method="post" action="" id="formcrearreferencia" name="formcrearreferencia" class="validate_form">
           <fieldset class="label_side">
             <label>Etiqueta</label>
-            <div><b><input  type='text' name='c-etiqueta' value=""/></b></div>
+            <div><b><input  type='text' name='c-etiqueta' value="" class="text required"/></b><div class="required_tag"></div></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Nombre</label>
-            <div><b><input  type='text' name='c-nombre' value=""/></b></div>
+            <div><b><input  type='text' name='c-nombre' value="" class="text required"/></b><div class="required_tag"</div>
           </fieldset>
           <fieldset class="label_side">
             <label>Visible en gráfica</label>
-            <div><b><input  type='radio' name='c-grafica' value="1" checked/> Sí <input  type='radio' name='c-grafica' value="0"/>No</b></div>
+            <div><b><input  type='radio' name='c-grafica' value="1" class="required" checked/> Sí <input  type='radio' name='c-grafica' value="0" class="required"/>No</b><div class="required_tag"></div></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Activo</label>
-            <div><b><input  type='radio' name='c-activo' value="1" checked/> Sí <input  type='radio' name='c-activo' value="0"/>No</b></div>
+            <div><b><input  type='radio' name='c-activo' value="1" checked class="required"/> Sí <input  type='radio' name='c-activo' value="0" class="required"/>No</b><div class="required_tag"></div></div>
           </fieldset>
           <fieldset class="label_side">
             <div>
             <input type="hidden"  name="c-id_indicador" value="{$indicador->id}"/>
-            <input type="button" value="Grabar" name="valor_nuevo_crear" id="valor_nuevo_crear"/>
-            <input type="button" value="Cancelar" name="valor_nuevo_cancelar" id="valor_nuevo_cancelar"/>
+					  <div class="button_bar clearfix">
+					  <button class="green" type="button" value="Grabar" name="valor_nuevo_crear" id="valor_nuevo_crear">
+					  <span>Grabar</span>
+					  </button>
+					  </div>
+					  <div class="button_bar clearfix">
+					  <button class="green" type="button" value="cancelar" name="valor_nuevo_cancelar" id="valor_nuevo_cancela">
+					  <span>Cancelar</span>
+					  </button>
+					  </div>
+
+            <!--<input type="button" value="Grabar" name="valor_nuevo_crear" id="valor_nuevo_crear"/>
+            <inpºut type="button" value="Cancelar" name="valor_nuevo_cancelar" id="valor_nuevo_cancelar"/>-->
             </div>
           </fieldset>
         </form>
@@ -95,28 +106,39 @@
   <div class="box grid_16">
     <div class="toggle_container">
       <div class="block">
-        <form method="post" action="" id="formeditarreferencia" name="formeditarreferencia" class="datos">
+        <form method="post" action="" id="formeditarreferencia" name="formeditarreferencia" class="validate_form">
           <fieldset class="label_side">
             <label>Etiqueta</label>
-            <div><b><input  type='text' id="e-etiqueta" name='e-etiqueta' value='' /></b></div>
+            <div><b><input  type='text' id="e-etiqueta" name='e-etiqueta' value='' class="text required" /></b><div class="required_tag"></div></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Nombre</label>
-            <div><b><input  type='text' id="e-nombre" name='e-nombre' value='' /></b></div>
+            <div><b><input  type='text' id="e-nombre" name='e-nombre' value='' class="text required" /></b><div class="required_tag"></div></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Visible en gráfica</label>
-            <div><b><input  type='radio' name='e-grafica' id="e-grafica-1" value="1" /> Sí <input  type='radio' name='e-grafica' id="e-grafica-0"  value="0"/>No</b></div>
+            <div><b><input  type='radio' name='e-grafica' id="e-grafica-1" value="1" class="required"/> Sí <input  type='radio' name='e-grafica' id="e-grafica-0"  value="0" class="required"/>No</b><div class="required_tag"></div></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Activo</label>
-            <div><b><input  type='radio' name='e-activo' id="e-activo-1" value="1" /> Sí <input  type='radio' name='e-activo' id="e-activo-0" value="0"/>No</b></div>
+            <div><b><input  type='radio' name='e-activo' id="e-activo-1" value="1" class="required" /> Sí <input  type='radio' name='e-activo' id="e-activo-0" value="0" class="required"/>No</b><div class="required_tag"></div></div>
           </fieldset>
           <fieldset class="label_side">
             <div>
             <input type="hidden"  name="e-id_indicador" value="{$indicador->id}"/>
-            <input type="button" value="Grabar" name="valor_editar" id="valor_editar"/>
-            <input type="button" value="Cancelar" name="valor_editar_cancelar" id="valor_editar_cancelar"/>
+             <div class="button_bar clearfix">
+					  <button class="green" type="button" value="Grabar" name="valor_editar" id="valor_editar">
+					  <span>Grabar</span>
+					  </button>
+					  </div>
+					  <div class="button_bar clearfix">
+					  <button class="green" type="button" value="cancelar" name="valor_editar_cancelar" id="valor_editar_cancelar">
+					  <span>Cancelar</span>
+					  </button>
+					  </div>
+
+						<!--<input type="button" value="Grabar" name="valor_editar" id="valor_editar"/>
+            <input type="button" value="Cancelar" name="valor_editar_cancelar" id="valor_editar_cancelar"/>-->
             </div>
           </fieldset>
         </form>

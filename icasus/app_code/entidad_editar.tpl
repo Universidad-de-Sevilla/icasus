@@ -3,18 +3,13 @@
   <div class="toggle_container">
 	   <div class="block">
 				<form method='post' action='index.php?page=entidad_editar' name='formentidad' id='formentidad' class="datos">
-				 
-				 <fieldset class="label_side">
-					<label>Nombre</label>
-					<div>
-						<input type='hidden' name='id_entidad' id='id_entidad' value='{$entidad->id}' />
-					</div>
-					</fieldset> 
+					<input type='hidden' name='id_entidad' id='id_entidad' value='{$entidad->id}' />
 				 
 				<fieldset class="label_side">
 					<label>Nombre unidad</label>
 					<div>
-						<input type='text' name='nombre' id='nombre' value='{$entidad->nombre}' /></p>
+						<input type='text' name='nombre' id='nombre' value='{$entidad->nombre}' class="required"/></p>
+						<div class="required_tag"></div>
 					</div>
 				</fieldset> 
 				 

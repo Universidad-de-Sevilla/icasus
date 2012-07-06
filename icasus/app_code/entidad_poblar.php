@@ -31,12 +31,13 @@ if (isset($_REQUEST["id_entidad"]))
       }
     }
     $aviso = "Se han agregado $contador usuarios a la entidad";
-    header("location:index.php?page=entidad_datos&id_entidad=$id_entidad&aviso=$aviso");
+    header("location:index.php?page=entidad_poblar&id_entidad=$id_entidad&aviso=$aviso");
   }
   // Si no vienen datos en el POST mostramos el formulario
   else
   { 
-    if (isset($_REQUEST['criterio']))
+    /*
+		if (isset($_REQUEST['criterio']))
     {		
       $criterio = sanitize($_REQUEST['criterio'],SQL);
       $where = "nombre LIKE '%$criterio%' OR apellidos LIKE '%$criterio%' OR correo LIKE '%$criterio%' OR login LIKE '%$criterio%' OR unidad_hominis LIKE '%criterio%' ORDER BY apellidos ";
@@ -48,9 +49,10 @@ if (isset($_REQUEST["id_entidad"]))
       $criterio = "";
     }
     $smarty->assign('criterio', $criterio);
-    
+   */ 
     $persona = new usuario();
-    $personas = $persona->Find($where);
+    $where = "1 = 1 ORDER BY apellidos";
+    $personas = $persona->Find_sql($where);
     $smarty->assign('personas',$personas);
     
     $rol = new rol();

@@ -32,5 +32,13 @@ class usuario extends ADOdb_Active_Record
   {
     $entidades = $usuario_entidad->Find_entidades("id_usuario = $this->id");
   } 
+  public function Find_sql($where)
+  {
+		$db = $this->DB();
+		$sql = "SELECT * FROM usuarios WHERE $where";
+
+		$rs = $db->getall($sql);
+		return $rs;
+	}
 }
 ?>
