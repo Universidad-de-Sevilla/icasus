@@ -23,7 +23,7 @@
                 <div>
                   <select name="id_responsable" class="required select_box">
                     <option value=""></option>
-                    {foreach $usuarios_entidad as $usuario_entidad}
+                    {foreach $usuarios_entidades as $usuario_entidad}
                       <option value="{$usuario_entidad->usuario->id}" 
                         {if $usuario_entidad->usuario->id == $dato->id_responsable}
                           selected
@@ -100,9 +100,15 @@
             </div>
           </div>
           <div class="button_bar clearfix">
-            <button class="red" type="submit" value="Grabar" name="proceso_submit">
+            <button class="green" type="submit" value="Grabar" name="entidad_submit">
+              <div class="ui-icon ui-icon-check"></div>
               <span>Grabar</span>
             </button>
+            <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" 
+              onclick="history.back()">
+              <div class="ui-icon ui-icon-closethick"></div>
+              <span>Cancelar</span>
+            </button>          
           </div>    
         </form>
     </div>

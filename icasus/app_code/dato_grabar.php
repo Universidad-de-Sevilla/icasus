@@ -14,7 +14,7 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
   {
     $id_dato = sanitize($_REQUEST["id_dato"], INT);
     $dato->load("id = $id_dato");         
-    $aviso = "Se han actualizado los datos del dato";
+    $aviso = "Se han actualizado la información del dato";
   }
   else
   {
