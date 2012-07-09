@@ -16,6 +16,7 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 {
 	$id_proceso = sanitize($_REQUEST['id_proceso'],INT);
 	$id_entidad = sanitize($_REQUEST['id_entidad'],INT);
+
   // Datos del proceso
 	$proceso = new proceso();
 	$proceso->load_joined("id = $id_proceso");
@@ -25,7 +26,8 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 	$proceso_madre = new proceso();
   $proceso_madre->load("id = $proceso->id_madre");
   $smarty->assign('proceso_madre', $proceso_madre);
-  //Datos del propietario
+
+	//Datos del propietario
   $propietario = new usuario();
   $propietario->load("id = $proceso->id_propietario");
   $smarty->assign('propietario', $propietario);
@@ -33,7 +35,8 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
   // Listado de subprocesos
   $subprocesos = $proceso->Find_joined("id_madre = $id_proceso");
   $smarty->assign('subprocesos',$subprocesos);
-  // Listado de indicadores
+
+	// Listado de indicadores
 	$indicador = new indicador();
 	$indicadores = $indicador->Find_joined("id_proceso = $id_proceso");
 	$smarty->assign('indicadores',$indicadores);
@@ -42,6 +45,10 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 	$smarty->assign('_nombre_pagina' , "Ficha de Proceso: " . $proceso->nombre);
 	$smarty->assign('_javascript' , array('proceso_borrar'));
 	$plantilla = 'proceso_mostrar.tpl';
+
+	$archivo = new fichero();
+	$archivos = $archivo->find_joined("id_objeto = $id_proceso");
+	$smarty->assign('archivos',$archivos);
 }
 else
 {
