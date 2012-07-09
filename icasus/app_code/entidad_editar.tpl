@@ -40,8 +40,14 @@
 
 				<div class="button_bar clearfix">
 					<button class="green" type="submit" value="Grabar" name="entidad_submit">
+            <div class="ui-icon ui-icon-check"></div>
 						<span>Grabar</span>
 					</button>
+          <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" 
+            onclick="history.back()">
+            <div class="ui-icon ui-icon-closethick"></div>
+            <span>Cancelar</span>
+          </button>
 			  </div>
 			</form>
 		</div>
