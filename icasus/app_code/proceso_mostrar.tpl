@@ -47,7 +47,9 @@
           <img src='/icons/ff16/chart_curve_add.png' alt='icono' /><span> Crear indicador</span> </a>&nbsp; &nbsp; &nbsp;
       <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
     onClick='return confirmar();'>
-        <img src='/icons/ff16/cog_delete.png' alt='icono' /><span> Borrar proceso</span> </a>
+        <img src='/icons/ff16/cog_delete.png' alt='icono' /><span> Borrar proceso</span> </a>&nbsp; &nbsp; &nbsp;
+      <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+          <img src='/icons/ff16/box.png' alt='icono' /><span> Gestionar archivos </span> </a> &nbsp; &nbsp; &nbsp;
 </h3>
 <div class="box grid_16">
 	<div class="toggle_container">
@@ -83,7 +85,7 @@
             <fieldset>
             <label>Versi&oacute;n</label>
             <div>
-              {$proceso->revision}
+              {$proceso->revision} &nbsp;
             </div>
             </fieldset>  
           </div>
@@ -237,8 +239,40 @@
         </div>
       {/if}
 		</div>
-	</div>		
-  <div class="box grid_16">
+	</div>
+
+	<div class="box grid_16">
+    <h2 class="box_head grad_grey_dark">Archivos asociados al proceso</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
+		<div class="block">	
+      {if $archivos}
+			<table class="static"> 
+				<thead>
+					<tr><th>Título</th><th>Usuario</th></tr>
+				</thead>
+					
+				<tbody>
+					{foreach from=$archivos item=archivo} 
+					  <tr>
+					  <td><a href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo|htmlentities}</a> 
+						{if $archivo->descripcion != NULL}<a href='#' title='{$archivo->descripcion}'><big>*</big></a>{/if}
+						</td>
+					  <td>{$archivo->usuario->nombre|htmlentities} {$archivo->usuario->apellidos|htmlentities}</td>
+					  </tr>
+					{/foreach}
+				</tbody>
+			</table>
+      {else}
+        <div class='alert alert_blue'>
+          <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
+          No se han subido archivos para este proceso.
+        </div>
+      {/if}
+		</div>
+	</div>	
+  
+	<div class="box grid_16">
     <h2 class="box_head grad_grey_dark">Subprocesos</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>

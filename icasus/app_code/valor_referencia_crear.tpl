@@ -77,24 +77,15 @@
             <label>Activo</label>
             <div><b><input  type='radio' name='c-activo' value="1" checked class="required"/> Sí <input  type='radio' name='c-activo' value="0" class="required"/>No</b><div class="required_tag"></div></div>
           </fieldset>
-          <fieldset class="label_side">
-            <div>
             <input type="hidden"  name="c-id_indicador" value="{$indicador->id}"/>
 					  <div class="button_bar clearfix">
 					  <button class="green" type="button" value="Grabar" name="valor_nuevo_crear" id="valor_nuevo_crear">
 					  <span>Grabar</span>
 					  </button>
-					  </div>
-					  <div class="button_bar clearfix">
-					  <button class="green" type="button" value="cancelar" name="valor_nuevo_cancelar" id="valor_nuevo_cancela">
+					  <button type="button" class="red dark send_right" value="cancelar" name="valor_nuevo_cancelar" id="valor_nuevo_cancela">
 					  <span>Cancelar</span>
 					  </button>
 					  </div>
-
-            <!--<input type="button" value="Grabar" name="valor_nuevo_crear" id="valor_nuevo_crear"/>
-            <inpºut type="button" value="Cancelar" name="valor_nuevo_cancelar" id="valor_nuevo_cancelar"/>-->
-            </div>
-          </fieldset>
         </form>
       </div>
     </div>
