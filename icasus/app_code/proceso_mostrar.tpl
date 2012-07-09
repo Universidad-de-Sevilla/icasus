@@ -83,7 +83,7 @@
             <fieldset>
             <label>Versi&oacute;n</label>
             <div>
-              {$proceso->revision}
+              {$proceso->revision} &nbsp;
             </div>
             </fieldset>  
           </div>
@@ -91,7 +91,7 @@
             <fieldset>
             <label>Fecha</label>
             <div>
-              {$proceso->fecha_revision|date_format:'%d/%m/%Y'}
+              {$proceso->fecha_revision|date_format:'%d/%m/%Y'} &nbsp;
             </div>
             </fieldset>  
           </div>

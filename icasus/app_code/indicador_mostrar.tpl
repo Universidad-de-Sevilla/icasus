@@ -1,20 +1,20 @@
-<h3 class="section">
-  <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}'><img 
-    src='/icons/ff16/tag.png' /> Valores de referencia</a> &nbsp;
-  <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-    src='/icons/ff16/chart_curve.png' /> Mostrar mediciones</a> &nbsp;
-  <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img 
-    src='/icons/ff16/chart_curve.png' /> Listar todos</a> &nbsp;
-  <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-    src='/icons/ff16/chart_curve_edit.png'  /> Editar</a> &nbsp; 
-  <a href='index.php?page=indicador_crear&id_entidad={$indicador->id_entidad}'><img 
-    src='/icons/ff16/chart_curve_add.png'  /> Crear</a> &nbsp; 
-  <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img 
-    src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp; 
-</h3>
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
+      <div class="button_bar clearfix">
+        <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}'><img 
+          src='/icons/ff16/tag.png' /> Valores de referencia</a> &nbsp;
+        <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+          src='/icons/ff16/chart_curve.png' /> Mostrar mediciones</a> &nbsp;
+        <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img 
+          src='/icons/ff16/chart_curve.png' /> Listar todos</a> &nbsp;
+        <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+          src='/icons/ff16/chart_curve_edit.png'  /> Editar</a> &nbsp; 
+        <a href='index.php?page=indicador_crear&id_entidad={$indicador->id_entidad}'><img 
+          src='/icons/ff16/chart_curve_add.png'  /> Crear</a> &nbsp; 
+        <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img 
+          src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp; 
+      </div>
       <fieldset class="label_side">
         <label>Proceso</label>
         <div>
