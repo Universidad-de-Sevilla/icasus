@@ -114,7 +114,7 @@ $(document).ready(function(){
 					<div class="ui-icon ui-icon-check"></div>
 					<span>Actualizar archivo</span>
 				</button>
-				<button class="red dark send_right close_dialog" type="button" value="cancelar" name="ecancelar" id="ecancelar">
+				<button class="light  send_right close_dialog" type="button" value="cancelar" name="ecancelar" id="ecancelar">
 					<div class="ui-icon ui-icon-closethick"></div>
 					<span>Cancelar</span>
 				</button>
