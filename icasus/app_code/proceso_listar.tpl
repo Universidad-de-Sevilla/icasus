@@ -1,10 +1,12 @@
 <div class="box grid_16">
   <div class="block">	
     <div class="section clearfix">
-        <span class="light">
+        <button class="light" data-link="index.php?page=proceso_crear&id_entidad={$entidad->id}">
+        Crear proceso
+        </button>
           <a href="index.php?page=proceso_crear&id_entidad={$entidad->id}"><img src='/icons/ff16/cog_add.png' /> Crear proceso</a>
         </span>
-        <span>
+        <span class="light">
           <a href="index.php?page=entidad_datos&id_entidad={$entidad->id}"><img 
           src='/icons/ff16/chart_organisation.png' /> Ficha de Unidad</a>
         </span>
