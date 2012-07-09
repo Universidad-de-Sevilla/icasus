@@ -85,7 +85,7 @@
             <fieldset>
             <label>Versi&oacute;n</label>
             <div>
-              {$proceso->revision}
+              {$proceso->revision} &nbsp;
             </div>
             </fieldset>  
           </div>
