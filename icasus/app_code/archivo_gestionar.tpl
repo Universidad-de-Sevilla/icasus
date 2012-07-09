@@ -45,10 +45,11 @@ $(document).ready(function(){
 });
 </script>
 {/literal}
-<h3 class="section">
-  <a href='javascript:window.history.back();'><img src='/icons/ff16/arrow_undo.png' /> Cancelar</a>
-  <a href='javascript:void(0)' class="dialog_button" data-dialog="dialog_crear"><img src='/icons/ff16/box_bullet_add.png' /> Subir nuevo archivo</a> &nbsp;
-</h3>		
+<div class="box grid_16 clear_fix">
+  <a href="javascript:window.history.back();"><img src="/icons/ff16/arrow_undo.png" /> Cancelar</a>&nbsp; &nbsp; &nbsp;
+  <a href="javascript:void(0)" class="dialog_button" data-dialog="dialog_crear"><img src="/icons/ff16/box_bullet_add.png" /> Subir nuevo archivo</a> &nbsp; &nbsp; &nbsp;
+  <a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}"><img src="/icons/ff16/cog.png" />Volver al proceso</a>
+</div>		
 
 <div class="display_none">
 	<div id="dialog_crear" class="dialog_content narrow no_dialog_titlebar" title="Subir archivo">
@@ -60,19 +61,19 @@ $(document).ready(function(){
 			<input type="hidden" value="{$proceso->id}" name="id_objeto" >
 			<fieldset class="label_side">
 				<label>Título</label>
-				<div><b><input  type='text' name='stitulo' value="" class="text required"/></b><div class="required_tag"></div></div>
+				<div><b><input  type="text" name="stitulo" value="" class="text required"/></b><div class="required_tag"></div></div>
 			</fieldset>
 			<fieldset class="label_side">
 				<label>Archivo</label>
-				<div><input  type='file' name='sarchivo' class="uniform required" /><div class="required_tag"></div></div>
+				<div><input  type="file" name="sarchivo" class="uniform required" /><div class="required_tag"></div></div>
 			</fieldset>
 			<fieldset class="label_side">
 				<label>Descripción</label>
-				<div><textarea  name='sdescripcion' class="autogrow"/></textarea></div>
+				<div><textarea  name="sdescripcion" class="autogrow"/></textarea></div>
 			</fieldset>
 			<fieldset class="label_side">
 				<label>Visible</label>
-				<div><input type="radio" name='svisible' value="1" class="required"/> Si <input type="radio" name='svisible' value="0" class="required"/> No</div>
+				<div><input type="radio" name="svisible" value="1" class="required"/> Si <input type="radio" name="svisible" value="0" class="required"/> No</div>
 			</fieldset>
 			<div class="button_bar clearfix">
 				<button class="green" type="submit" value="Grabar" name="sgrabar" id="sgrabar">
