@@ -26,7 +26,7 @@
       </table>
   </div>
 {else}
-  <div class='alert alert_red'>No tiene asignada ninguna unidad</div>
+  <div class="alert alert_red">No tiene asignada ninguna unidad</div>
 {/if}
 
 {if $indicadores}
@@ -44,7 +44,7 @@
        </tr> 
       </thead> 
         <tbody>
-           {foreach $indicadores as $indicador}
+          {foreach $indicadores as $indicador}
             <tr class="gradeX">
               <td>{$indicador->codigo}</td>
               <td><a href="index.php?page=indicador_mostrar&id_indicador={$indicador->id}">{$indicador->nombre}</a></td>
