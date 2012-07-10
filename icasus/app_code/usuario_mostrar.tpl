@@ -57,15 +57,19 @@
 
 <div class="box grid_16">
 	<div class="block">	
-		<table class="static"> 
-			<thead>
-				<th>Unidad</th><th>Rol</th>
-			</thead>
-			<tbody>
-				{foreach $persona->entidades as $usuario_entidad}
-			    <tr><td><a href="index.php?page=entidad_datos&id_entidad={$usuario_entidad->id_entidad}">{$usuario_entidad->entidad->nombre}</a></td> <td>{$usuario_entidad->rol->nombre}</td></tr>
-				{/foreach}
-			</tbody>
-		</table>
+    {if $persona->entidades}
+      <table class="static"> 
+        <thead>
+          <th>Unidad</th><th>Rol</th>
+        </thead>
+        <tbody>
+          {foreach $persona->entidades as $usuario_entidad}
+            <tr><td><a href="index.php?page=entidad_datos&id_entidad={$usuario_entidad->id_entidad}">{$usuario_entidad->entidad->nombre}</a></td> <td>{$usuario_entidad->rol->nombre}</td></tr>
+          {/foreach}
+        </tbody>
+      </table>
+    {else}
+      <div class="alert alert_blue">No tiene unidades asignadas</div>
+    {/if}
 	</div>
 </div>	
