@@ -1,9 +1,9 @@
-{if $usuarios}
   <div class="box grid_16">
 	<h2 class="box_head grad_grey_dark">Usuarios asignados actualmente</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
     <div class="block"> 
+    {if $usuarios}
       <table class='static'>
         <thead>
           <tr><th>Rol</th><th>Nombre</th><th>Apellidos</th><th>Correo</th><th>Teléfono</th><th>Acciones</th></tr>
@@ -21,21 +21,18 @@
          {/foreach}
         </tbody>
       </table>
+    {else}
+      <div class='alert alert_blue'>No se han vinculado usuarios a esta entidad</div>
+    {/if}
     </div>
   </div>  
-{else}
-<p class='aviso'>No se han vinculado usuarios a esta entidad</p>
-{/if}
-
 
 <div class="box grid_16">         
 	<h2 class="box_head grad_grey_dark">Usuarios disponibles</h2>
-    <a href="#" class="grabber"></a>
-    <a href="#" class="toggle"></a>
+  <a href="#" class="grabber"></a>
+  <a href="#" class="toggle"></a>
 	<div class="toggle_container">  
 		<div class="block">
-      <a href="#" class="grabber"></a>
-      <a href="#" class="toggle"></a>
       <form action='index.php?page=entidad_poblar' method='post' name='formpoblar' class='validate_form'>     
         <input type='hidden' name='id_entidad' value='{$entidad->id}' />
         <div id="dt1" class="no_margin">

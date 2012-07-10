@@ -5,23 +5,30 @@
 		<div class="block">
         <form method="post" action="index.php?page=indicador_grabar" id="formindicador" name="formindicador" class="datos">
           <input type='hidden' name='id_entidad' value='{$entidad->id}' />
-          <fieldset class="label_side">
-            <label>Proceso</label>
-            <div>
-              <select name="id_proceso" id="id_proceso">
-                <option value=""></option>
-                {foreach $procesos as $proceso}
-                  <option value='{$proceso->id}'> {$proceso->nombre} </option>
-                {/foreach}
-              </select>
+        
+          <div class="columns clearfix">
+            <div class="col_40">
+              <fieldset class="label">
+                <label>Código indicador</label>
+                <div><input  type='text' name='codigo' class="required"/></div>
+              </fieldset>
             </div>
-          </fieldset>
+            <div class="col_60">
+            <fieldset class="label">
+              <label>Proceso</label>
+              <div>
+                <select name="id_proceso" id="id_proceso">
+                  <option value=""></option>
+                  {foreach $procesos as $proceso}
+                    <option value='{$proceso->id}'> {$proceso->nombre} </option>
+                  {/foreach}
+                </select>
+              </div>
+            </fieldset>
+            </div>
+          </div>
           <fieldset class="label_side">
-            <label>Código indicador</label>
-            <div><input  type='text' name='codigo' class="required"/></div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Nombre</label>
+            <label>Nombre indicador</label>
             <div><textarea name='nombre' /></textarea></div>
           </fieldset>
           <fieldset class="label_side">
@@ -49,25 +56,12 @@
             <div><input  type='text' name='valor_referencia'/></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Valores de referencia</label>
-            <div><input  type='text' name='valores_referencia'/></div>
-          </fieldset>
-          <fieldset class="label_side">
             <label>Fuente de informaci&oacute;n</label>
             <div><input  type='text' name='fuente_informacion'/></div>	
           </fieldset>
           <fieldset class="label_side">
             <label>Fuente de datos</label>
             <div><input  type='text' name='fuente_datos'/></div>	
-            
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Unidad generadora</label>
-            <div><input  type='text' name='unidad_generadora' /></div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Nivel de desagregacion</label>
-            <div><input  type='text' name='nivel_desagregacion' /></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Metodo de comprobaci&oacute;n / Evidencia</label>
@@ -77,7 +71,6 @@
             <label>Hist&oacute;rico</label>
             <div><input  type='text' name='historicos' /></div>
           </fieldset>
-
           <fieldset class="label_side">
             <label>Interpretaci&oacute;n</label>
             <div><input  type='text' name='interpretacion' /></div>
@@ -107,30 +100,50 @@
               </select>
             </div>
           </fieldset>
-          <fieldset class="label_side">
-            <label>Periodicidad</label>
-            <div>
-              <select name="periodicidad" id="periodicidad"  />
-                <option value='Anual' selected>Anual</option>
-                <option value='Mensual'>Mensual</option>
-                <option value='Trimestral'>Trimestral</option>
-                <option value='Cuatrimestral'>Cuatrimestral</option>
-                <option value='Semestral'>Semestral</option>
-              </select>
+          <div class="columns clearfix">
+            <div class="col_50">
+              <fieldset class="label">
+                <label>Periodicidad</label>
+                <div>
+                  <select name="periodicidad" id="periodicidad"  />
+                    <option value='Anual' selected>Anual</option>
+                    <option value='Mensual'>Mensual</option>
+                    <option value='Trimestral'>Trimestral</option>
+                    <option value='Cuatrimestral'>Cuatrimestral</option>
+                    <option value='Semestral'>Semestral</option>
+                  </select>
+                </div>
+              </fieldset>
             </div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Visibilidad</label>	
-            <div>
-              <select name="id_visibilidad" id="id_visibilidad">
-                {foreach $visibilidades as $visibilidad}
-                  <option value='{$visibilidad->id}'>
-                    {$visibilidad->nombre}
-                  </option>
-                {/foreach}
-              </select>
+            <div class="col_50">
+              <fieldset class="label">
+                <label>Visibilidad</label>	
+                <div>
+                  <select name="id_visibilidad" id="id_visibilidad">
+                    {foreach $visibilidades as $visibilidad}
+                      <option value='{$visibilidad->id}'>
+                        {$visibilidad->nombre}
+                      </option>
+                    {/foreach}
+                  </select>
+                </div>
+              </fieldset>
             </div>
-          </fieldset>
+          </div>
+          <div class="columns clearfix">
+            <div class="col_50">
+              <fieldset class="label">
+                <label>Nivel de desagregacion</label>
+                <div><input  type='text' name='nivel_desagregacion' /></div>
+              </fieldset>
+            </div>
+            <div class="col_50">
+              <fieldset class="label">
+                <label>Unidad generadora</label>
+                <div><input  type='text' name='unidad_generadora' /></div>
+              </fieldset>
+            </div>
+          </div>
           <fieldset class="label_side">
             <label>Subunidades afectadas</label>
             <div>
@@ -140,11 +153,12 @@
               {/foreach}
             </div>
           </fieldset>
-          <fieldset class="label_side">
-            <div>
-            <input type="submit" value="Grabar" name="indicador_submit" />
-            </div>
-          </fieldset>
+          <div class="button_bar clearfix">
+            <button class="green" type="submit" value="Grabar" name="indicador_submit">
+              <span>Grabar</span>
+            </button>
+          </div>    
         </form>
     </div>
-  </div
+  </div>
+</div>
