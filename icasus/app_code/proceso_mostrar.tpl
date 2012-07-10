@@ -36,7 +36,9 @@
 	</div>
 </div> 
 -->
-<h3 class="section">
+<div class="box grid_16">
+  <div class="block">	
+    <div class="section clearfix" style="padding:5px;">
       <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
           <img src='/icons/ff16/cog_edit.png' alt='icono' /><span> Editar proceso </span> </a> &nbsp; &nbsp; &nbsp;
       <a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'>
@@ -45,12 +47,15 @@
           <img src='/icons/ff16/cog_add.png' alt='icono' /><span> Crear proceso</span> </a>&nbsp; &nbsp; &nbsp;
       <a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'>
           <img src='/icons/ff16/chart_curve_add.png' alt='icono' /><span> Crear indicador</span> </a>&nbsp; &nbsp; &nbsp;
+      <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+          <img src='/icons/ff16/box.png' alt='icono' /><span> Archivos </span> </a> &nbsp; &nbsp; &nbsp;
       <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
     onClick='return confirmar();'>
         <img src='/icons/ff16/cog_delete.png' alt='icono' /><span> Borrar proceso</span> </a>&nbsp; &nbsp; &nbsp;
-      <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-          <img src='/icons/ff16/box.png' alt='icono' /><span> Gestionar archivos </span> </a> &nbsp; &nbsp; &nbsp;
-</h3>
+    </div>
+  </div>
+</div>
+
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">

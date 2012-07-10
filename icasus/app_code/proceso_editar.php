@@ -66,7 +66,8 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
     $proceso_madre = new proceso();
     $procesos_madre = $proceso_madre->Find("id_entidad = $id_entidad AND id <> $id_proceso");
     $smarty->assign('procesos_madre', $procesos_madre);
-    $smarty->assign('id_entidad', $id_entidad);
+    
+    $smarty->assign("entidad", $entidad);
     $smarty->assign('_nombre_pagina', "Editando proceso: ". $proceso->nombre);
     $plantilla = "proceso_editar.tpl";
   }

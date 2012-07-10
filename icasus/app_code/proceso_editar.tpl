@@ -9,7 +9,7 @@
     </div>
   
     <form method="post" action="index.php?page=proceso_editar" class="validate_form">
-      <input type="hidden" name="id_entidad" value="{$id_entidad}" />
+      <input type="hidden" name="id_entidad" value="{$entidad->id}" />
       <input type="hidden" name="id_proceso" value="{$proceso->id}" />
     
       <fieldset class="label_side">

@@ -8,8 +8,6 @@
 
 global $smarty;
 global $plantilla;
-global $id_entidad;
-
 
 // Si vienen datos suficientes cargamos proceso con sus indicadores
 if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
@@ -41,7 +39,10 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 	$indicadores = $indicador->Find_joined("id_proceso = $id_proceso");
 	$smarty->assign('indicadores',$indicadores);
 	
-  $smarty->assign('id_entidad',$id_entidad);
+  $entidad = new entidad();
+  $entidad->load("id = $id_entidad");
+  $smarty->assign('entidad',$entidad);
+
 	$smarty->assign('_nombre_pagina' , "Ficha de Proceso: " . $proceso->nombre);
 	$smarty->assign('_javascript' , array('proceso_borrar'));
 	$plantilla = 'proceso_mostrar.tpl';
