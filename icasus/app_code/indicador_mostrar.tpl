@@ -1,6 +1,5 @@
 <div class="box grid_16">
 	<div class="toggle_container">
-		<div class="block">
       <div class="button_bar clearfix">
         <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}'><img 
           src='/icons/ff16/tag.png' /> Valores de referencia</a> &nbsp;
@@ -15,24 +14,25 @@
         <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img 
           src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp; 
       </div>
-      <fieldset class="label_side">
-        <label>Proceso</label>
-        <div>
-          <a href="index.php?page=proceso_mostrar&id_proceso={$indicador->proceso->id}&id_entidad={$indicador->id_entidad}">{$indicador->proceso->codigo} - {$indicador->proceso->nombre}</a>
+		<div class="block">
+      <div class="columns clearfix">
+        <div class="col_40">
+          <fieldset class="label">
+            <label>Código indicador</label>
+            <div>
+              {$indicador->codigo}
+            </div>
+          </fieldset>
         </div>
-      </fieldset>
-      <fieldset class="label_side">
-        <label>Responsable de medici&oacute;n</label>
-        <div>
-          {$indicador->responsable->nombre} {$indicador->responsable->apellidos} {if $indicador->responsable->puesto} - {$indicador->responsable->puesto} {/if}
+        <div class="col_60">
+          <fieldset class="label">
+            <label>Proceso</label>
+            <div>
+              <a href="index.php?page=proceso_mostrar&id_proceso={$indicador->proceso->id}&id_entidad={$indicador->id_entidad}">{$indicador->proceso->codigo} - {$indicador->proceso->nombre}</a>
+            </div>
+          </fieldset>
         </div>
-      </fieldset>
-      <fieldset class="label_side">
-        <label>Código indicador</label>
-        <div>
-          {$indicador->codigo}
-        </div>
-      </fieldset>
+      </div>
       <fieldset class="label_side">
         <label>Nombre indicador</label>
         <div>
@@ -52,6 +52,12 @@
         </div>
       </fieldset>
       <fieldset class="label_side">
+        <label>Responsable de seguimiento</label>
+        <div>
+          {$indicador->responsable->nombre} {$indicador->responsable->apellidos} {if $indicador->responsable->puesto} - {$indicador->responsable->puesto} {/if}
+        </div>
+      </fieldset>
+      <fieldset class="label_side">
         <label>Valor de referencia</label>
         <div>{$indicador->valor_referencia}</div>
       </fieldset>
@@ -64,10 +70,6 @@
         <div>{$indicador->fuente_datos}</div>	
       </fieldset>
       <fieldset class="label_side">
-        <label>Unidad generadora</label>
-        <div>{$indicador->unidad_generadora}</div>
-      </fieldset>
-      <fieldset class="label_side">
         <label>Metodo de comprobaci&oacute;n / Evidencia</label>
         <div>{$indicador->evidencia}</div>		
       </fieldset>
@@ -75,7 +77,6 @@
         <label>Hist&oacute;rico</label>
         <div>{$indicador->historicos}</div>
       </fieldset>
-
       <fieldset class="label_side">
         <label>Interpretaci&oacute;n</label>
         <div>{$indicador->interpretacion}</div>
@@ -95,32 +96,35 @@
           </ul>
           {/if}
         </div>
-      <fieldset class="label_side">
-        <label>Periodicidad</label>
-        <div>{$indicador->periodicidad}</div>
       </fieldset>
-      <fieldset class="label_side">
-        <label>Visibilidad</label>	
-        <div>{$indicador->visibilidad->nombre|htmlentities}</div>
-      </fieldset>
-      <fieldset class="label_side">
-        <label>Valores de referencia</label>
-        <div>
-          {if $indicador->valores_referencia}
-          <ul>
-            {foreach $indicador->valores_referencia as $valor_referencia}
-              <li>{$valor_referencia->nombre}</li>
-            {/foreach}
-          </ul>
-          {else}
-             No se han definido valores de referencia para este indicador
-          {/if}
+      <div class="columns clearfix">
+        <div class="col_50">
+          <fieldset class="label_side">
+            <label>Periodicidad</label>
+            <div>{$indicador->periodicidad}</div>
+          </fieldset>
         </div>
-      </fieldset>
-      <fieldset class="label_side">
-        <label>Nivel de desagregacion</label>
-        <div>{$indicador->nivel_desagregacion}</div>
-      </fieldset>
+        <div class="col_50">
+          <fieldset class="label_side">
+            <label>Visibilidad</label>	
+            <div>{$indicador->visibilidad->nombre|htmlentities}</div>
+          </fieldset>
+        </div>
+      </div>
+      <div class="columns clearfix">
+        <div class="col_50">
+          <fieldset class="label_side">
+            <label>Nivel de desagregacion</label>
+            <div>{$indicador->nivel_desagregacion}</div>
+          </fieldset>
+        </div>
+        <div class="col_50">
+          <fieldset class="label_side">
+            <label>Unidad generadora</label>
+            <div>{$indicador->unidad_generadora}</div>
+          </fieldset>
+        </div>
+      </div>
       <fieldset class="label_side">
         <label>Subunidades afectadas</label>
         <div>
