@@ -62,7 +62,7 @@ if (isset($_REQUEST["id_entidad"]))
     $entidad = new entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad',$entidad);
-    $smarty->assign('_nombre_pagina' , 'Unidad: ' . $entidad->nombre);
+    $smarty->assign('_nombre_pagina' , 'Alta de usuarios - ' . $entidad->nombre);
     $plantilla = 'entidad_poblar.tpl';
 	
 		$usuario_entidad = new usuario_entidad;

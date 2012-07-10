@@ -56,7 +56,7 @@
 				</thead>
 				<tbody>
 				{foreach from=$usuarios item=usuario}
-					<tr>
+					<tr class="gradeX">
 						<td>{$usuario->rol->nombre}</td>
 						<td>{$usuario->usuario->nombre}</td>
 						<td>{$usuario->usuario->apellidos}</td>

@@ -8,22 +8,18 @@
 <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
 		<title>{$_nombre_pagina} - ICASUS - Universidad de Sevilla</title>
-		
-  	<meta name="description" content="">
+  	<meta name="description" content="Gestión de Indicadores de Calidad">
   		
 	<!-- iPhone, iPad and Android specific settings -->	
-		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1;">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 		<link rel="apple-touch-icon" href="theme/danpin/images/iOS_icon.png">
 		<link rel="apple-touch-startup-image" href="theme/danpin/images/iOS_startup.png">
-	<!-- Styles -->
 
+	<!-- Styles -->
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/reset.css">
-		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/cssMain.css">
-		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/fancybox/jquery.fancybox-1.3.4.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/tinyeditor/style.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/slidernav/slidernav.css">
@@ -33,23 +29,19 @@
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/fullcalendar/fullcalendar.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/isotope/isotope.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/elfinder/css/elfinder.css">
-		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/tiptip/tipTip.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/uniform/css/uniform.aristo.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/multiselect/css/ui.multiselect.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/selectbox/jquery.selectBox.css">
 		<!--<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/colorpicker/css/colorpicker.css">-->
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/uistars/jquery.ui.stars.min.css">
-		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/themeroller/Aristo.css">
-		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/text.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/grid.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/main.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/theme_base.css">
 
 		<!-- Style Switcher  
-		
 		The following stylesheet links are used by the styleswitcher to allow for dynamically changing how Adminica looks and acts.
 		Styleswitcher documentation: http://style-switcher.webfactoryltd.com/documentation/
 		
@@ -58,16 +50,15 @@
 		switcher3.php : colour skin - black/grey by default.					(eg. styles/theme/switcher1.php?default=theme_red.css)
 		switcher4.php : background image - dark boxes by default.				(eg. styles/theme/switcher1.php?default=bg_honeycomb.css)
 		switcher5.php : controls the theme - dark by default.					(eg. styles/theme/switcher1.php?default=theme_light.css)
-		
 		-->
 		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher.css" media="screen">
-		<!--<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher1.php?default=layout_fixed.css" media="screen" > -->
+		<!--
+    <link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher1.php?default=layout_fixed.css" media="screen" > -->
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher2.php?default=switcher.css" media="screen" >
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher3.php?default=theme_red.css" media="screen" >
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher4.php?default=bg_hemerocallis.css" media="screen" >
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher5.php?default=switcher.css" media="screen" >
-		
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/colours.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/ie.css">
 		
@@ -114,7 +105,7 @@
         </script>
 	
         <div id="mobile_nav">
-          <div class="main"></div>
+         <!-- <div class="main"></div> -->
           <div class="side"></div>
         </div>
 
