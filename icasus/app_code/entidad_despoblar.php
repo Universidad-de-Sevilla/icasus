@@ -11,18 +11,16 @@ global $plantilla;
 // Si vienen datos del formulario asignamos los usuarios marcados a la entidad
 if (isset($_REQUEST['id_entidad']))
 {
-$id_entidad = sanitize($_REQUEST['id_entidad'],INT);
+  $id_entidad = sanitize($_REQUEST['id_entidad'],INT);
 
-$entidad = new entidad();
-$entidad->load("id = $id_entidad");
-$smarty->assign('entidad',$entidad);
-$smarty->assign('_nombre_pagina', $entidad->nombre);
+  $entidad = new entidad();
+  $entidad->load("id = $id_entidad");
+  $smarty->assign('entidad',$entidad);
+  $smarty->assign('_nombre_pagina', "Bajas de usuarios - " . $entidad->nombre);
 
-$usuario_entidad = new usuario_entidad;
-$usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
-$smarty->assign('usuarios',$usuarios);
-
-//print_r($entidad);  
+  $usuario_entidad = new usuario_entidad;
+  $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
+  $smarty->assign('usuarios',$usuarios);
 
   if (isset($_REQUEST["id_usuario"]))
   {
