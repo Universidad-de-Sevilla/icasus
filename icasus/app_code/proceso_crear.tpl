@@ -5,6 +5,13 @@
 			<form method="post" action="index.php?page=proceso_grabar" class="validate_form">
 			  <input type="hidden" name="id_entidad" value="{$entidad->id}" />
 
+    <div class="button_bar clearfix">
+      <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" 
+        onclick="history.back()">
+        <div class="ui-icon ui-icon-closethick"></div>
+        <span>Cancelar</span>
+      </button>
+    </div>
 			
 			  <fieldset class="label_side">
 				<label>Proceso madre</label>
@@ -151,8 +158,13 @@
 			   
 			  <div class="button_bar clearfix">
 					<button class="green" type="submit" value="Grabar" name="proceso_submit">
+            <div class="ui-icon ui-icon-check"></div>
 						<span>Grabar</span>
 					</button>
+          <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back()">
+            <div class="ui-icon ui-icon-closethick"></div>
+            <span>Cancelar</span>
+          </button>
 				</div>    
 			</form>
 		</div>
