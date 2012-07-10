@@ -1,0 +1,34 @@
+<?php
+//---------------------------------------------------------------------------------------------------
+// Proyecto: Icasus 
+// Archivo: config.php
+//---------------------------------------------------------------------------------------------------
+// Variables globales para la apliación Icasus
+// Modifica este archivo para que se ajuste a tus necesidades concretas
+// Siempre que sea posible comienza el nombre de las constantes con IC_
+//---------------------------------------------------------------------------------------------------
+
+// Todas las constantes declaradas en este fichero empiezan 
+// por IC (de icasus) para denotar su caracter global a toda la aplicación
+
+//Conexion a la base de datos
+define('IC_DB_HOST','localhost');           //escriba la dirección del servidor de bases de datos (BD)
+define('IC_DB_LOGIN','usuario_basedatos');  //escriba el usuario de la BD.
+define('IC_DB_CLAVE','clave_usuario');      //escriba la clave del usuario de la BD.
+define('IC_DB_DATABASE','nombre_basedatos');//escriba el nombre de la BD.
+
+// Tema que vamos a utilizar para definir la apariencia del sitio
+define('IC_THEME', 'usevilla');
+
+// Establece que configuración SSO
+// Si en servidor de desarrollo (usuarios pruebapas, pruebaalumno y pruebapdi). Descomentar 'pre_11'.
+// Si en servidor de producción ó preproducción (usuarios reales). Descomentar 'prod_1013'.
+//define('CONFIG_PACK', 'prod_1013');
+define('CONFIG_PACK', 'pre_11');
+
+// Que tipo de autenticación va a uilizarse (login_sso ó login_basico).
+define('IC_TIPO_LOGIN','login_sso');
+
+//Directorio base
+define('IC_DIR_BASE','/home/jjmc/www/icasus/icasus/');
+?>
