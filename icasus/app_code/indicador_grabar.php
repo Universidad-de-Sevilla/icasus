@@ -18,6 +18,7 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
   else
   {
     $aviso = "Se ha creado un nuevo indicador";
+    $indicador->activo = 1;
   }
   // Campos obligatorios
   $indicador->id_proceso = sanitize($_REQUEST['id_proceso'],INT);
@@ -39,7 +40,7 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
   $indicador->interpretacion = isset($_REQUEST['interpretacion'])?sanitize($_REQUEST['interpretacion'],SQL):null;
   $indicador->indicadores_relacionados = isset($_REQUEST['indicadores_relacionados'])?sanitize($_REQUEST['indicadores_relacionados'],SQL):null;    
   $indicador->valor_referencia = isset($_REQUEST['valor_referencia'])?sanitize($_REQUEST['valor_referencia'],SQL):null;
-  $indicador->activo = 1;
+
   $indicador->fecha_creacion = date("Y-m-d");
   if ($indicador->save())
   {
@@ -58,10 +59,39 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
           $indicador_subunidad->save();
         }
       }
+      if (isset($_REQUEST["criterios_efqm"]))
+      {
+        // Grabamos los criterios EFQM en los que este indicador influye (pueden ser uno o dos)
+        foreach ($_REQUEST["criterios_efqm"] as $id_criterio_efqm)
+        {
+          $criterio_efqm_indicador = new criterio_efqm_indicador();
+          $criterio_efqm_indicador->id_indicador = $indicador->id;
+          $criterio_efqm_indicador->id_criterio_efqm = $id_criterio_efqm;
+          $criterio_efqm_indicador->save();
+        }
+      }
     }
     else
     {
       // Si el indicador ya existía hay que currarselo de otra forma
+      //Primero borramos los existentes ¿no habrá otra forma más elegante?
+      $criterio_efqm_indicador = new criterio_efqm_indicador();
+      while ($criterio_efqm_indicador->load("id_indicador = $indicador->id"))
+      {
+        $criterio_efqm_indicador->delete();
+      }
+      // Ahora damos de alta los que vienen en el formulario
+      if (isset($_REQUEST["criterios_efqm"]))
+      {
+        // Grabamos los criterios EFQM en los que este indicador influye (pueden ser uno o dos)
+        foreach ($_REQUEST["criterios_efqm"] as $id_criterio_efqm)
+        {
+          $criterio_efqm_indicador = new criterio_efqm_indicador();
+          $criterio_efqm_indicador->id_indicador = $indicador->id;
+          $criterio_efqm_indicador->id_criterio_efqm = $id_criterio_efqm;
+          $criterio_efqm_indicador->save();
+        }
+      }
     }
 
     header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&aviso=$aviso");
