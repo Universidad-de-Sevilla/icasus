@@ -165,7 +165,7 @@ $(document).ready(function(){
 									{if $archivo->descripcion != NULL}<a href='#' id="l-descripcion-{$archivo->id}" title='{$archivo->descripcion|htmlentities}'><big>*</big></a>{/if}
 							</td>
 							<td><a href="javascript:void(0)" id="l-visible-{$archivo->id}" value="{$archivo->visible}" >{$archivo->visible}</a></td>
-							<td>{$archivo->usuario->nombre|htmlentities} {$archivo->usuario->apellidos|htmlentities}</td>
+							<td>{$archivo->usuario->nombre} {$archivo->usuario->apellidos}</td>
 						</tr>
 					{/foreach}
 					</tbody>
