@@ -6,7 +6,7 @@
 // Graba los datos de un indicador nuevo o existente
 //---------------------------------------------------------------------------------------------------
 global $usuario;
-if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUEST["id_responsable"]) AND isset($_REQUEST["formulacion"]) AND isset($_REQUEST["subunidades"]) AND isset($_REQUEST["id_proceso"]) AND isset($_REQUEST["id_entidad"]))
+if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUEST["id_responsable"])  AND isset($_REQUEST["id_responsable_medicion"]) AND isset($_REQUEST["formulacion"]) AND isset($_REQUEST["subunidades"]) AND isset($_REQUEST["id_proceso"]) AND isset($_REQUEST["id_entidad"]))
 {
   $indicador = new indicador();
   if (isset($_REQUEST["id_indicador"]))
@@ -23,6 +23,7 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
   // Campos obligatorios
   $indicador->id_proceso = sanitize($_REQUEST['id_proceso'],INT);
   $indicador->id_responsable = sanitize($_REQUEST['id_responsable'],INT);
+  $indicador->id_responsable_medicion = sanitize($_REQUEST['id_responsable_medicion'],INT);
   $indicador->id_entidad = sanitize($_REQUEST['id_entidad'],INT);
   $indicador->codigo = sanitize($_REQUEST['codigo'],SQL);
   $indicador->nombre = sanitize($_REQUEST['nombre'],SQL);
