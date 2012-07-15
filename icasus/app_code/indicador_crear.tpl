@@ -3,33 +3,34 @@
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-        <form method="post" action="index.php?page=indicador_grabar" id="formindicador" name="formindicador" class="datos">
+        <form method="post" action="index.php?page=indicador_grabar" id="formindicador" name="formindicador" class="validate_form">
           <input type='hidden' name='id_entidad' value='{$entidad->id}' />
         
           <div class="columns clearfix">
             <div class="col_40">
               <fieldset class="label">
                 <label>Código indicador</label>
-                <div><input  type='text' name='codigo' class="required"/></div>
+                <div><input  type='text' name='codigo' class="required"/><div class="required_tag tooltip hover left" title="Campo requerido"></div> </div>
               </fieldset>
             </div>
             <div class="col_60">
             <fieldset class="label">
               <label>Proceso</label>
               <div>
-                <select name="id_proceso" id="id_proceso">
+                <select name="id_proceso" id="id_proceso"class="required">
                   <option value=""></option>
                   {foreach $procesos as $proceso}
                     <option value='{$proceso->id}'> {$proceso->nombre} </option>
                   {/foreach}
                 </select>
+								<div class="required_tag tooltip hover left" title="Campo requerido"></div>
               </div>
             </fieldset>
             </div>
           </div>
           <fieldset class="label_side">
             <label>Nombre indicador</label>
-            <div><textarea name='nombre' /></textarea></div>
+            <div><textarea name='nombre'class="required" /></textarea><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Descripci&oacute;n</label>
@@ -37,18 +38,30 @@
           </fieldset>
           <fieldset class="label_side">
             <label>Formulaci&oacute;n</label>
-            <div><textarea  class='inp' name='formulacion'></textarea></div>
+            <div><textarea  class="required" name='formulacion'></textarea><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Responsable de seguimiento</label>
             <div>
-              <select name="id_responsable">
+              <select name="id_responsable" class="required">
                 <option value=""></option>
                 {foreach $usuarios_entidad as $usuario_entidad}
                   <option value='{$usuario_entidad->usuario->id}'>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
                   </option>
                 {/foreach}              
-              </select>
+              </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
+            </div>
+          </fieldset>
+					<fieldset class="label_side">
+            <label>Responsable de medición</label>
+            <div>
+              <select name="id_responsable_medicion" class="required">
+                <option value=""></option>
+                {foreach $usuarios_entidad as $usuario_entidad}
+                  <option value='{$usuario_entidad->usuario->id}'>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
+                  </option>
+                {/foreach}              
+              </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
             </div>
           </fieldset>
           <fieldset class="label_side">

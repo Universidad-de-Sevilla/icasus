@@ -12,6 +12,7 @@ class indicador extends ADOdb_Active_Record
 	public $entidad;
 	public $proceso;
 	public $responsable;
+	public $responsable_medicion;
 	public $ruta_imagen;
 	public $valores;
   public $valores_referencia;
@@ -25,6 +26,10 @@ class indicador extends ADOdb_Active_Record
       $proceso = new proceso();
       $proceso->load_joined("id = $this->id_proceso");
       $this->proceso = $proceso;
+
+      $responsable_medicion = new usuario();
+      $responsable_medicion->load("id = $this->id_responsable_medicion");
+      $this->responsable_medicion = $responsable_medicion;
 
       $responsable = new usuario();
       $responsable->load("id = $this->id_responsable");

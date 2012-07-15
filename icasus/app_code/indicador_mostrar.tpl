@@ -51,10 +51,17 @@
           {$indicador->formulacion}
         </div>
       </fieldset>
-      <fieldset class="label_side">
+			<fieldset class="label_side">
         <label>Responsable de seguimiento</label>
         <div>
           {$indicador->responsable->nombre} {$indicador->responsable->apellidos} {if $indicador->responsable->puesto} - {$indicador->responsable->puesto} {/if}
+        </div>
+      </fieldset>
+
+      <fieldset class="label_side">
+        <label>Responsable de medición</label>
+        <div>
+          {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos} {if $indicador->responsable_medicion->puesto} - {$indicador->responsable_medicion->puesto} {/if}
         </div>
       </fieldset>
       <fieldset class="label_side">
