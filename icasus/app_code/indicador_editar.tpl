@@ -22,12 +22,27 @@
 					    <div class="required_tag tooltip hover left" title="Campo requerido"></div>
             </div>
           </fieldset>
+					<fieldset class="label_side">
+            <label>Responsable de seguimiento</label>
+            <div>
+              <select name="id_responsable">
+                <option value=""></option>
+                {foreach $usuarios_entidades as $usuario_entidad}
+                  <option value='{$usuario_entidad->usuario->id}' {if $indicador->id_responsable == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
+                  </option>
+                {/foreach}              
+              </select>
+					    <div class="required_tag tooltip hover left" title="Campo requerido"></div>
+            </div>
+          </fieldset>
+
           <fieldset class="label_side">
             <label>Responsable de medici&oacute;n</label>
             <div>
-              <select name="id_responsable">
+              <select name="id_responsable_medicion">
+                <option value=""></option>
                 {foreach $usuarios_entidades as $usuario_entidad}
-                  <option value='{$usuario_entidad->usuario->id}' {if $indicador->id_responsable == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
+                  <option value='{$usuario_entidad->usuario->id}' {if $indicador->id_responsable_medicion == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                   </option>
                 {/foreach}              
               </select>

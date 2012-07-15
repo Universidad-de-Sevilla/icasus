@@ -76,7 +76,7 @@ if ($modulo == 'actualizar')
 		$fichero->descripcion = sanitize($_REQUEST["descripcion"],SQL);
 		$fichero->id_usuario = $usuario->id;
 		$fichero->visible = sanitize($_REQUEST["visible"]);
-		$db->execute("SET NAMES UTF8");
+		//$db->execute("SET NAMES UTF8");
 		$fichero->save();
 	}
 }
