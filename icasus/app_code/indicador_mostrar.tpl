@@ -57,7 +57,6 @@
           {$indicador->responsable->nombre} {$indicador->responsable->apellidos} {if $indicador->responsable->puesto} - {$indicador->responsable->puesto} {/if}
         </div>
       </fieldset>
-
       <fieldset class="label_side">
         <label>Responsable de medición</label>
         <div>
@@ -66,31 +65,31 @@
       </fieldset>
       <fieldset class="label_side">
         <label>Valor de referencia</label>
-        <div>{$indicador->valor_referencia}</div>
+        <div>{$indicador->valor_referencia}&nbsp;</div>
       </fieldset>
       <fieldset class="label_side">
         <label>Fuente de informaci&oacute;n</label>
-        <div>{$indicador->fuente_informacion}</div>	
+        <div>{$indicador->fuente_informacion}&nbsp;</div>	
       </fieldset>
       <fieldset class="label_side">
         <label>Fuente de datos</label>
-        <div>{$indicador->fuente_datos}</div>	
+        <div>{$indicador->fuente_datos}&nbsp;</div>	
       </fieldset>
       <fieldset class="label_side">
         <label>Metodo de comprobaci&oacute;n / Evidencia</label>
-        <div>{$indicador->evidencia}</div>		
+        <div>{$indicador->evidencia}&nbsp;</div>		
       </fieldset>
       <fieldset class="label_side">
         <label>Hist&oacute;rico</label>
-        <div>{$indicador->historicos}</div>
+        <div>{$indicador->historicos}&nbsp;</div>
       </fieldset>
       <fieldset class="label_side">
         <label>Interpretaci&oacute;n</label>
-        <div>{$indicador->interpretacion}</div>
+        <div>{$indicador->interpretacion}&nbsp;</div>
       </fieldset>
       <fieldset class="label_side">
         <label>Indicadores relacionados</label>
-        <div>{$indicador->indicadores_relacionados}</div>
+        <div>{$indicador->indicadores_relacionados}&nbsp;</div>
       </fieldset>
       <fieldset class="label_side">
         <label>Criterios EFQM</label>
@@ -108,13 +107,13 @@
         <div class="col_50">
           <fieldset class="label_side">
             <label>Periodicidad</label>
-            <div>{$indicador->periodicidad}</div>
+            <div>{$indicador->periodicidad}&nbsp;</div>
           </fieldset>
         </div>
         <div class="col_50">
           <fieldset class="label_side">
             <label>Visibilidad</label>	
-            <div>{$indicador->visibilidad->nombre|htmlentities}</div>
+            <div>{$indicador->visibilidad->nombre|htmlentities}&nbsp;</div>
           </fieldset>
         </div>
       </div>
@@ -122,13 +121,13 @@
         <div class="col_50">
           <fieldset class="label_side">
             <label>Nivel de desagregacion</label>
-            <div>{$indicador->nivel_desagregacion}</div>
+            <div>{$indicador->nivel_desagregacion}&nbsp;</div>
           </fieldset>
         </div>
         <div class="col_50">
           <fieldset class="label_side">
             <label>Unidad generadora</label>
-            <div>{$indicador->unidad_generadora}</div>
+            <div>{$indicador->unidad_generadora}&nbsp;</div>
           </fieldset>
         </div>
       </div>
