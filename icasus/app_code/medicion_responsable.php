@@ -15,7 +15,6 @@ if (isset($_REQUEST["id_indicador"]))
 {
   $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
 	$is = new indicador_subunidad();
-
 	$iss = $is->Find_entidades_responsables($id_indicador,$usuario->id);
 	//print_r($iss);
   $smarty->assign("_nombre_pagina", "Responsables de grabación");

@@ -26,9 +26,8 @@ class indicador_subunidad extends ADOdb_Active_Record
 		//solo le sale las subunidades en las que tiene responsabilidad de grabación
 		else
 		{
-			$indicadores_subunidades = $this->Find("id_usuario = $id_usuario");
+			$indicadores_subunidades = $this->Find("id_usuario = $id_usuario AND id_indicador= $id_indicador");
 		}
-		
 		if ($indicadores_subunidades)
 		{
 			foreach ($indicadores_subunidades as& $indicador_subunidad)
