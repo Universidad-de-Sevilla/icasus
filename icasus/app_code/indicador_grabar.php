@@ -55,8 +55,27 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
         {
           $indicador_subunidad = new indicador_subunidad();
           $indicador_subunidad->id_indicador = $indicador->id;
-          $indicador_subunidad->id_entidad = $subunidad;
-          $indicador_subunidad->id_usuario = $indicador->id_responsable;
+					$indicador_subunidad->id_entidad = $subunidad;
+					//comprueba si la medición va a ser centralizada o para cada responsable de subunidad
+					//si es para cada responsable de subunidad, se le asigna como responsable de la medición
+					//el reponsable de la unidad. Si no exite este se le asigna como resposable de medición
+					//el responsable de medicion de la unidad superior.
+          if ($_REQUEST["tipo_seleccion_responsable"] == 0)
+					{
+						$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+					}
+					else
+					{
+						$usuario_entidad = new usuario_entidad();
+						if ($usuario_entidad->load("id_entidad = $subunidad AND id_rol = 1"))
+						{
+							$indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;
+						}
+						else
+						{
+							$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+						}
+					}
           $indicador_subunidad->save();
         }
       }
