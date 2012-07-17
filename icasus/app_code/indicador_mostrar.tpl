@@ -4,7 +4,7 @@
         <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}'><img 
           src='/icons/ff16/tag.png' /> Valores de referencia</a> &nbsp;
         <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-          src='/icons/ff16/chart_curve.png' /> Mostrar mediciones</a> &nbsp;
+          src='/icons/ff16/time.png' /> Mostrar mediciones</a> &nbsp;
         <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img 
           src='/icons/ff16/chart_curve.png' /> Listar todos</a> &nbsp;
         <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
@@ -13,6 +13,8 @@
           src='/icons/ff16/chart_curve_add.png'  /> Crear</a> &nbsp; 
         <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img 
           src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp; 
+				<a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+					src='/icons/ff16/user_medicion.png' /> Responsables medición</a>
       </div>
 		<div class="block">
       <div class="columns clearfix">
