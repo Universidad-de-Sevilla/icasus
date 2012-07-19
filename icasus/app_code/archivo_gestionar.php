@@ -27,6 +27,7 @@ if (isset($_REQUEST["id_proceso"]))
 	$archivo = new fichero();
   $archivos = $archivo->find_joined("id_objeto = $id_proceso");
 	$smarty->assign('archivos',$archivos);
+	$smarty->assign('_javascript', array('archivo_gestionar'));
 	$plantilla = "archivo_gestionar.tpl";	
 }
 else
