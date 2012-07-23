@@ -75,16 +75,16 @@
     </div>
   </div>
 
-<div class="box grid_16 single_datatable">
+<div class="box grid_16">
   <div id="dt1" class="no_margin">
-    <table class='display datatable'>
+    <table class='static'>
       <thead>
         <tr>
         <th>Etiqueta</th><th>Valor de referencia</th><th>Mostrar en gráfica</th><th>Activo</th></tr>
       </thead>
       <tbody>
       {foreach from=$indicador->valores_referencia item=item}
-      <tr>
+      <tr class="gradeX">
         <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="Editar valor de referencia" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta}</a></td>
         <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="Editar valor de referencia" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre}</a></td>
         <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="Editar valor de referencia" id="l-grafica-{$item->id}" value="{$item->grafica}">{$item->grafica}</a></td>
