@@ -31,6 +31,9 @@
     </table>
   </div>
   {else}
-    <div class="alert blue_alert">Todavía no se han establecido mediciones para este indicador</p>
+    <div class="alert alert_blue">
+      <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+      Todavía no se han establecido mediciones para este indicador
+    </div>
   {/if}
 </div>

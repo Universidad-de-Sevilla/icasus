@@ -53,7 +53,8 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 }
 else
 {
-	//Si se llama a esta pagina si un id de proceso o de entidad se redirecciona al listado de unidades
-	header('Location:index.php?page=entidad_listar');	
+	//Si se llama a esta pagina si un id de proceso o de entidad se redirecciona a la página de inicio
+  $error = "Faltan parámetros para mostrar proceso";
+	header("Location:index.php?error=$error");	
 }
 ?>

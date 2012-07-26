@@ -56,10 +56,6 @@
             <div><input  type="text" name="unidad_generadora" /></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Nivel de desagregacion</label>
-            <div><input  type="text" name="nivel_desagregacion" /></div>
-          </fieldset>
-          <fieldset class="label_side">
             <label>Indicadores relacionados</label>
             <div><input  type="text" name="indicadores_relacionados" /></div>
           </fieldset>
@@ -93,6 +89,19 @@
               </fieldset>
             </div>
           </div>
+          <fieldset class="label_side">
+            <label>Nivel de desagregacion</label>
+            <div><input  type="text" name="nivel_desagregacion" /></div>
+          </fieldset>
+          <fieldset class="label_side">
+            <label>Subunidades afectadas</label>
+            <div>
+              <input type="checkbox" name="subunidades[]" value="{$entidad->id}" checked /> {$entidad->nombre}<hr />
+              {foreach $subunidades as $subunidad}
+                <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" checked /> {$subunidad->nombre}<br />
+              {/foreach}
+            </div>
+          </fieldset>
           <div class="button_bar clearfix">
             <button class="green" type="submit" value="Grabar" name="entidad_submit">
               <div class="ui-icon ui-icon-check"></div>

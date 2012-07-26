@@ -3,7 +3,7 @@
 // Proyecto: Icasus 
 // Archivo: class/indicador.php
 //---------------------------------------------------------------------------------------------------
-// Gestiona los indicadores
+// Gestiona los indicadores y los indicadores-dato
 //---------------------------------------------------------------------------------------------------
 
 class indicador extends ADOdb_Active_Record
@@ -46,6 +46,8 @@ class indicador extends ADOdb_Active_Record
       $valor_referencia = new valor_referencia();
       $valores_referencia = $valor_referencia->Find("id_indicador = $this->id");
       $this->valores_referencia = $valores_referencia;
+      
+      return true;
 
 		}
 		else
@@ -110,15 +112,15 @@ class indicador extends ADOdb_Active_Record
 		{
 			foreach ($indicadores as $indicador)
 			{
-			$entidad = new entidad();	
-			$entidad->load("id_entidad = $indicador->id_entidad");
-			$indicador->entidad = $entidad->nombre;
+        $entidad = new entidad();	
+        $entidad->load("id_entidad = $indicador->id_entidad");
+        $indicador->entidad = $entidad->nombre;
 			}
-		return $indicadores;
+      return $indicadores;
 		}
 		else
 		{
-		return false;
+      return false;
 		}
 	}
 //devuelve los indicadores con su valores

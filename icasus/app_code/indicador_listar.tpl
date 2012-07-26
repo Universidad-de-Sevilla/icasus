@@ -1,6 +1,8 @@
 <h3>	 
   <a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'><img 
   src='/icons/ff16/chart_curve_add.png' alt='icono' />Crear indicador</a> &nbsp; &nbsp;
+  <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
+  src='/icons/ff16/table.png' />Listar Datos</a> &nbsp; &nbsp;
   <!--
   <a href='index.php?page=entidad_indicadores_excel&id_entidad={$entidad->id}'><img 
   src='/icons/ff16/page_excel.png' alt='icono' />Exportar indicadores</a>&nbsp; &nbsp;
