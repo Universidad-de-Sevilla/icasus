@@ -2,7 +2,7 @@
   <a href='index.php?page=dato_crear&id_entidad={$entidad->id}'><img 
   src='/icons/ff16/table_add.png' />Crear dato</a> &nbsp; &nbsp;
   <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img 
-  src='/icons/ff16/chart_line.png' />Listar Indicadores</a> &nbsp; &nbsp;
+  src='/icons/ff16/chart_curve.png' />Listar Indicadores</a> &nbsp; &nbsp;
   <!--
   <a href='index.php?page=entidad_datos_excel&id_entidad={$entidad->id}'><img 
   src='/icons/ff16/page_excel.png' alt='icono' />Exportar datos</a>&nbsp; &nbsp;
