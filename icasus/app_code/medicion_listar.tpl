@@ -26,11 +26,15 @@
           <td>{$medicion->grabacion_inicio}</td>
           <td>{$medicion->grabacion_fin}</td>
           <td><a href="index.php?page=medicion_editar&id_medicion={$medicion->id}">Mostrar</a></td>
+        </tr>
       {/foreach}
     </tbody>
     </table>
   </div>
   {else}
-    <div class="alert blue_alert">Todavía no se han establecido mediciones para este indicador</p>
+    <div class="alert alert_blue">
+      <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+      Todavía no se han establecido mediciones para este indicador
+    </div>
   {/if}
 </div>

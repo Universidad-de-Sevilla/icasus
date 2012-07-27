@@ -46,25 +46,25 @@
               <select name="id_responsable" class="required">
                 <option value=""></option>
                 {foreach $usuarios_entidad as $usuario_entidad}
-                  <option value='{$usuario_entidad->usuario->id}'>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
-                  </option>
-                {/foreach}              
-              </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
-            </div>
-          </fieldset>
-					<fieldset class="label_side">
-            <label>Responsable de medición</label>
-            <div>
-              <select name="id_responsable_medicion" class="required">
-                <option value=""></option>
-                {foreach $usuarios_entidad as $usuario_entidad}
-                  <option value='{$usuario_entidad->usuario->id}'>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
+                  <option value='{$usuario_entidad->usuario->id}'>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                   </option>
                 {/foreach}              
               </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
             </div>
           </fieldset>
           <fieldset class="label_side">
+            <label>Responsable de medición</label>
+            <div>
+              <select name="id_responsable_medicion" id="id_responsable_medicion">
+                <option value=""></option>
+                {foreach $usuarios_entidad as $usuario_entidad}
+                  <option value='{$usuario_entidad->usuario->id}'>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
+                  </option>
+                {/foreach}              
+              </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
+            </div>
+          </fieldset> 
+<fieldset class="label_side">
             <label>Valor de referencia</label>
             <div><input  type='text' name='valor_referencia'/></div>
           </fieldset>
@@ -165,6 +165,10 @@
                 <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" checked /> {$subunidad->nombre}<br />
               {/foreach}
             </div>
+          </fieldset>
+					<fieldset class="label_side">
+            <label>Tipo de medición</label>
+            <div><p><input type="radio" name="tipo_seleccion_responsable" value="0"  class="required"> Centralizada por la unidad superior. </p><p><input type="radio" name="tipo_seleccion_responsable" value="1"  > Delegada a los responsables de las subunidades<p><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
           </fieldset>
           <div class="button_bar clearfix">
             <button class="green" type="submit" value="Grabar" name="indicador_submit">

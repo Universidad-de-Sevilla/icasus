@@ -89,7 +89,11 @@
 		<script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_ui.js"></script>
 		<script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_forms.js"></script>
 		<script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_mobile.js"></script>
-		
+		{if isset($_javascript)}
+			{foreach from=$_javascript item=script} 
+				<script type='text/javascript' src="js/{$script}.js"></script>
+			{/foreach}
+		{/if}
 	<body>
 		<div id="wrapper">		
 
