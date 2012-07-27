@@ -14,7 +14,38 @@ class indicador_subunidad extends ADOdb_Active_Record
   public $usuario;
   public $entidad;
 
-  public function Find_entidades($criterio)
+  public function Find_entidades_responsables($id_indicador,$id_usuario)
+  {
+		$i = new indicador();
+		$i->load("id = $id_indicador");
+
+		if ($i->id_responsable_medicion == $id_usuario)
+		{
+			$indicadores_subunidades = $this->Find("id_indicador = $id_indicador");
+		}
+		//solo le sale las subunidades en las que tiene responsabilidad de grabación
+		else
+		{
+			$indicadores_subunidades = $this->Find("id_usuario = $id_usuario AND id_indicador= $id_indicador");
+		}
+		if ($indicadores_subunidades)
+		{
+			foreach ($indicadores_subunidades as& $indicador_subunidad)
+				{
+					$indicador_subunidad->entidad = new entidad();
+					$indicador_subunidad->entidad->load_joined("id = $indicador_subunidad->id_entidad");
+
+					$indicador_subunidad->usuario = new usuario();
+					$indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
+				}
+				return $indicadores_subunidades;
+		}
+		else
+		{
+			return false;
+		}
+  }
+ public function Find_entidades($criterio)
   {
     if ($indicadores_subunidades = $this->Find($criterio))
     {
@@ -22,6 +53,9 @@ class indicador_subunidad extends ADOdb_Active_Record
       {
         $indicador_subunidad->entidad = new entidad();
         $indicador_subunidad->entidad->load("id = $indicador_subunidad->id_entidad");
+				//creo que sobran estas 2 líneas siguientes
+        //$indicador_subunidad->usuario = new usuario();
+        //$indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
       }
       return $indicadores_subunidades;
     }

@@ -36,8 +36,9 @@ if (isset($_REQUEST["id_medicion"]))
 	$smarty->assign('indisubs',$indisubs);
   
   $smarty->assign("usuario", $usuario);
-  $smarty->assign("_javascript", array("ordenatabla"));
+  //$smarty->assign("_javascript", array("ordenatabla"));
   $smarty->assign("_nombre_pagina", "$indicador->codigo - $indicador->nombre");
+	$smarty->assign('_javascript', array('medicion_editar'));
   $plantilla = "medicion_editar.tpl";
 }
 else

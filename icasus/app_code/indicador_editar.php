@@ -1,8 +1,7 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Proyecto: Icasus 
 // Archivo: indicador_editar.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín Corredera (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Formulario para modificar los datos de un indicador
 //---------------------------------------------------------------------------------------------------
@@ -10,8 +9,6 @@
 global $smarty;
 global $usuario;
 global $plantilla;
-
-$smarty->assign('_javascript' , array('indicador_validar'));
 
 // Comprobamos que vengan los datos mínimos necesarios
 if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad'])) 

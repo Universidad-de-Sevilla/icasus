@@ -1,18 +1,15 @@
-
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
+      <div class="button_bar clearfix">
+        <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" 
+          onclick="history.back()">
+          <div class="ui-icon ui-icon-closethick"></div>
+          <span>Cancelar</span>
+        </button>
+      </div>
 			<form method="post" action="index.php?page=proceso_grabar" class="validate_form">
 			  <input type="hidden" name="id_entidad" value="{$entidad->id}" />
-
-    <div class="button_bar clearfix">
-      <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" 
-        onclick="history.back()">
-        <div class="ui-icon ui-icon-closethick"></div>
-        <span>Cancelar</span>
-      </button>
-    </div>
-			
 			  <fieldset class="label_side">
 				<label>Proceso madre</label>
 				<div>

@@ -2,6 +2,8 @@
   <a href='javascript:window.history.back();'><img src='/icons/ff16/arrow_undo.png' /> Cancelar</a> &nbsp; &nbsp; &nbsp;
   <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img 
     src='/icons/ff16/chart_curve_delete.png' /> Borrar indicador</a>
+  <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+    src='/icons/ff16/user_medicion.png' /> Responsables medición</a>
 </h3>
 <div class="box grid_16">
 	<div class="toggle_container">
