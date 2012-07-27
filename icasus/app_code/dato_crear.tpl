@@ -98,7 +98,7 @@
             <div>
               <input type="checkbox" name="subunidades[]" value="{$entidad->id}" checked /> {$entidad->nombre}<hr />
               {foreach $subunidades as $subunidad}
-                <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" checked /> {$subunidad->nombre}<br />
+                <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" /> {$subunidad->nombre}<br />
               {/foreach}
             </div>
           </fieldset>
