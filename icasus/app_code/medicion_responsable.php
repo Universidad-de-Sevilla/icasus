@@ -1,11 +1,11 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: medicion_crear.php
+// Archivo: medicion_responsable.php
 //---------------------------------------------------------------------------------------------------
-// Muestra la interfaz para programar las mediciones que se van a realizar de un indicador
-// Puede hacerse manualmente o utilizando una plantilla que genera las mediciones automaticamente (porhacer)
-// Muestra un listado con la unidad y las subunidades para indicar las afectadas
+// Permite cambiar la asignación de mediciones a otros usuarios
+// Hay que ser responsable de grabación de la subunidad, responsable de grabación del indicador o
+// responsable de seguimiento del indicador
 //---------------------------------------------------------------------------------------------------
 global $smarty;
 global $usuario;
@@ -14,11 +14,10 @@ global $plantilla;
 if (isset($_REQUEST["id_indicador"]))
 {
   $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
-	$is = new indicador_subunidad();
-	$iss = $is->Find_entidades_responsables($id_indicador,$usuario->id);
-	//print_r($iss);
+	$indicador_subunidad = new indicador_subunidad();
+	$indicadores_subunidades = $indicador_subunidad->Find_entidades_responsables($id_indicador,$usuario->id);
   $smarty->assign("_nombre_pagina", "Responsables de grabación");
-	$smarty->assign("indicadores_subunidades",$iss);
+	$smarty->assign("indicadores_subunidades",$indicadores_subunidades);
 	$plantilla = "medicion_responsable.tpl";
 }
 else
