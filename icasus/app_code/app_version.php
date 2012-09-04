@@ -1,4 +1,4 @@
 <?php
-define(IC_VERSION, "2.1.3");
-define(IC_FECHA_REVISION, "27/07/2012");
+define(IC_VERSION, "2.1.4");
+define(IC_FECHA_REVISION, "04/09/2012");
 ?>
