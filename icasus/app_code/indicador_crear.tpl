@@ -168,7 +168,11 @@
           </fieldset>
 					<fieldset class="label_side">
             <label>Tipo de medición</label>
-            <div><p><input type="radio" name="tipo_seleccion_responsable" value="0"  class="required"> Centralizada por la unidad superior. </p><p><input type="radio" name="tipo_seleccion_responsable" value="1"  > Delegada a los responsables de las subunidades<p><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
+            <div>
+              <p><input type="radio" name="tipo_seleccion_responsable" value="0"  class="required"> Centralizada por la unidad superior. </p>
+              <p><input type="radio" name="tipo_seleccion_responsable" value="1"  > Delegada a los responsables de las subunidades</p>
+              <div class="required_tag tooltip hover left" title="Campo requerido"></div>
+            </div>
           </fieldset>
           <div class="button_bar clearfix">
             <button class="green" type="submit" value="Grabar" name="indicador_submit">

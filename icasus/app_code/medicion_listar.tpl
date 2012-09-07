@@ -1,7 +1,7 @@
 <div class="box grid_16 single_datatable">
   <div class="button_bar clearfix">
-    <a href="index.php?page=medicion_crear&id_indicador={$indicador->id}"><img src='/icons/ff16/time.png' /> Agregar medición</a> &nbsp; &nbsp; &nbsp;
-    <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al indicador</a> &nbsp;
+    <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time.png' /> Agregar medición</a> &nbsp; &nbsp; &nbsp;
+    <a href='index.php?page=indicador_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
   </div>
 
   {if $mediciones}
@@ -25,7 +25,7 @@
           <td>{$medicion->periodo_fin}</td>
           <td>{$medicion->grabacion_inicio}</td>
           <td>{$medicion->grabacion_fin}</td>
-          <td><a href="index.php?page=medicion_editar&id_medicion={$medicion->id}">Mostrar</a></td>
+          <td><a href="index.php?page=medicion_editar&id_medicion={$medicion->id}&tipo={$tipo}">Mostrar</a></td>
         </tr>
       {/foreach}
     </tbody>
@@ -34,7 +34,7 @@
   {else}
     <div class="alert alert_blue">
       <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-      Todavía no se han establecido mediciones para este indicador
+      Todavía no se han establecido mediciones para este {$tipo}
     </div>
   {/if}
 </div>

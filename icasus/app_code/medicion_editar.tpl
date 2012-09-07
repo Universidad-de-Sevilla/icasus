@@ -1,7 +1,7 @@
 <div class="box grid_16">
   <div class="section">
-  <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Volver a las mediciones</a> &nbsp; &nbsp; &nbsp;
-  <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al indicador</a> &nbsp;
+  <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Volver a las mediciones</a> &nbsp; &nbsp; &nbsp;
+  <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
   </div>
 </div>
 
@@ -102,18 +102,20 @@
         </span>
         </div>
       </fieldset>
-      {if $valores_referencia_mediciones}
-        {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
+      {if $tipo == "indicador"}
+        {if $valores_referencia_mediciones}
+          {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
+            <fieldset class="label_side">
+              <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+              <div><span id="referencia_{$valor_referencia_medicion->id}">
+              <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}')">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor}{/if}</a></span></div>
+            </fieldset>
+          {/foreach}
+        {else}
           <fieldset class="label_side">
-            <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-            <div><span id="referencia_{$valor_referencia_medicion->id}">
-            <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}')">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor}{/if}</a></span></div>
+            <div>No se han definido valores de referencia para este indicador</div>
           </fieldset>
-        {/foreach}
-      {else}
-        <fieldset class="label_side">
-          <div>No se han definido valores de referencia para este indicador</div>
-        </fieldset>
+        {/if}
       {/if}
     {else}
       <fieldset class="label_side">
@@ -136,17 +138,19 @@
         <label>Fin grabación</label>
         <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}	</div>
       </fieldset>
-      {if $valores_referencia_mediciones}
-        {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
+      {if $tipo == "indicador"}
+        {if $valores_referencia_mediciones}
+          {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
+            <fieldset class="label_side">
+              <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+              <div>{$valor_referencia_medicion->valor}</div>
+            </fieldset>
+          {/foreach}
+        {else}
           <fieldset class="label_side">
-            <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-            <div>{$valor_referencia_medicion->valor}</div>
+            <div>No se han definido valores de referencia para este indicador</div>
           </fieldset>
-        {/foreach}
-      {else}
-        <fieldset class="label_side">
-          <div>No se han definido valores de referencia para este indicador</div>
-        </fieldset>
+        {/if}
       {/if}
     {/if}
     </div>

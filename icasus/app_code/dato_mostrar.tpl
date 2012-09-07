@@ -1,7 +1,7 @@
 <div class="box grid_16">
 	<div class="toggle_container">
       <div class="button_bar clearfix">
-        <a href='index.php?page=medicion_listar&id_indicador={$dato->id}&id_entidad={$dato->id_entidad}'><img 
+        <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
           src='/icons/ff16/time.png' /> Mostrar mediciones</a> &nbsp;
         <a href='index.php?page=dato_listar&id_entidad={$dato->id_entidad}'><img 
           src='/icons/ff16/chart_curve.png' /> Listar todos</a> &nbsp;

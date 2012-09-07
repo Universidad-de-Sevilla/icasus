@@ -6,7 +6,7 @@
 // Graba los datos de un indicador nuevo o existente
 //---------------------------------------------------------------------------------------------------
 global $usuario;
-if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUEST["id_responsable"])  AND isset($_REQUEST["id_responsable_medicion"]) AND isset($_REQUEST["formulacion"]) AND isset($_REQUEST["subunidades"]) AND isset($_REQUEST["id_proceso"]) AND isset($_REQUEST["id_entidad"]))
+if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUEST["id_responsable"])  AND isset($_REQUEST["id_responsable_medicion"]) AND isset($_REQUEST["formulacion"]) AND isset($_REQUEST["subunidades"]) AND isset($_REQUEST["id_proceso"]) AND isset($_REQUEST["id_entidad"]) AND isset($_REQUEST["tipo_seleccion_responsable"])) 
 {
   $indicador = new indicador();
   if (isset($_REQUEST["id_indicador"]))
@@ -29,6 +29,7 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
   $indicador->nombre = sanitize($_REQUEST['nombre'],SQL);
   $indicador->formulacion = sanitize($_REQUEST['formulacion'],SQL); 
   $indicador->id_visibilidad = sanitize($_REQUEST['id_visibilidad'],SQL);
+  $tipo_seleccion_responsable = $_REQUEST["tipo_seleccion_responsable"];
   // Campos opcionales 
   $indicador->descripcion = isset($_REQUEST['descripcion'])?sanitize($_REQUEST['descripcion'],SQL):null;    
   $indicador->periodicidad = isset($_REQUEST['periodicidad'])?sanitize($_REQUEST['periodicidad'],SQL):null;    
@@ -60,13 +61,15 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
 					//si es para cada responsable de subunidad, se le asigna como responsable de la medición
 					//el reponsable de la unidad. Si no exite este se le asigna como resposable de medición
 					//el responsable de medicion de la unidad superior.
-          if ($_REQUEST["tipo_seleccion_responsable"] == 0)
+          if ($tipo_seleccion_responsable == 0)
 					{
 						$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
 					}
 					else
 					{
 						$usuario_entidad = new usuario_entidad();
+            // Cargamos al responsable de la unidad para echarle el muerto 
+            // Luego el podrá echárselo a otro
 						if ($usuario_entidad->load("id_entidad = $subunidad AND id_rol = 1"))
 						{
 							$indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;

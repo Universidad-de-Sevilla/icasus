@@ -14,9 +14,10 @@ $periodo_inicio = sanitize($_REQUEST["piYear"],INT)."-".sanitize($_REQUEST["piMo
 $periodo_fin = sanitize($_REQUEST["pfYear"],INT)."-".sanitize($_REQUEST["pfMonth"],INT)."-".sanitize($_REQUEST["pfDay"],INT);
 $grabacion_inicio = sanitize($_REQUEST["giYear"],INT)."-".sanitize($_REQUEST["giMonth"],INT)."-".sanitize($_REQUEST["giDay"],INT);
 $grabacion_fin = sanitize($_REQUEST["gfYear"],INT)."-".sanitize($_REQUEST["gfMonth"],INT)."-".sanitize($_REQUEST["gfDay"],INT);
-if (isset($_REQUEST["id_indicador"]) AND isset($periodo_inicio) AND isset($periodo_fin)AND isset($grabacion_inicio) AND isset($grabacion_fin))
+if (isset($_REQUEST["id_indicador"]) AND isset($periodo_inicio) AND isset($periodo_fin)AND isset($grabacion_inicio) 
+  AND isset($grabacion_fin) AND isset($_REQUEST["tipo"]))
 {
-	
+	$tipo = sanitize($_REQUEST["tipo"], SQL);
   $medicion = new medicion();
 	$medicion->id_indicador = sanitize($_REQUEST["id_indicador"], INT);
   $medicion->periodo_inicio = $periodo_inicio;
@@ -65,18 +66,17 @@ if (isset($_REQUEST["id_indicador"]) AND isset($periodo_inicio) AND isset($perio
       $valor->save();
     }
     $aviso = "Se ha agregado correctamente una nueva medición con $numero_subunidades unidades afectadas";
-    header("location:index.php?page=medicion_listar&id_indicador=$medicion->id_indicador&aviso=$aviso");
+    header("location:index.php?page=medicion_listar&id_{$tipo}=$medicion->id_indicador&aviso=$aviso");
   }
   else
   {
     $error = "Ha ocurrido un error al grabar la medición, inténtelo de nuevo o contacte con los administradores de Icasus";
-    header("location:index.php?page=medicion_listar&id_indicador=$medicion->id_indicador&error=$error");
+    header("location:index.php?page=medicion_listar&id_{$tipo}=$medicion->id_indicador&error=$error");
   }
 }
 else
 {
   $error = "Faltan datos para procesar la petición de creación de medición.";
-  header("location:index.php?page=indicador_mostrar&id_indicador=1977&id_entidad=14");
-  //header("location:index.php?page=entidad_listar&error=$error");
+  header("location:index.php?error=$error");
 }
 ?>
