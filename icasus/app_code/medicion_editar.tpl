@@ -39,7 +39,7 @@
 							{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id}
 								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
 							{else}
-								{if $valor->valor == NULL}---{else}{$valor->valor}{/if}
+								{if $valor->valor == NULL}---{else}{$valor->valor}.{/if}
 							{/if}
 				</td>
           <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
