@@ -1,7 +1,7 @@
 <div class="box grid_16 single_datatable">
   <div class="button_bar clearfix">
     <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time.png' /> Agregar medición</a> &nbsp; &nbsp; &nbsp;
-    <a href='index.php?page=indicador_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
+    <a href='index.php?page=dato_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
   </div>
 
   {if $mediciones}

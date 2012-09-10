@@ -7,7 +7,6 @@
 // Descripcion: Borra un indicador
 //---------------------------------------------------------------------------------------------------
 
-
 if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']) )
 {
 	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
@@ -35,8 +34,6 @@ if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']) )
 		$error = 'No tiene persimos para borrar el indicador';
 		header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");	
 	}
-
-  	
 }
 else // falta id_indicador o id_entidad
 {
