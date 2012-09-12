@@ -15,28 +15,22 @@
   <div id="dt1" class="no_margin">
 	<table class='display datatable'>
 	<thead>
-		<tr><th>ID</th><th>Código</th><th>Nombre</th><th>Responsable</th><th>Acciones</th></tr>
+		<tr><th>ID</th><th>Código</th><th>Nombre</th><th>Responsable</th></tr>
 	</thead>
-		
 	<tbody>
 		{foreach from=$datos item=dato} 
 		  <tr>
 			  <td>{$dato->id}</td>
 			  <td>{$dato->codigo}</td>
-        <td><b>{$dato->nombre}</b> <a href='#'
-			  title='{$dato->descripcion}'>*</a></td>
-			  <td><a href='index.php?page=usuario_datos&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>{$dato->responsable->nombre} 
-							{$dato->responsable->apellidos}</a></td>
+        <td>
+          <a href="index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$entidad->id}&tipo=dato"><img src="/icons/ff16/time.png" /></a>
+          <a href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}'>{$dato->nombre}</a>
+          <a href='#' title='{$dato->descripcion}'>*</a>
+        </td>
 			  <td>
-				<a
-				href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}'>Mostrar</a><br />
-				<a href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$entidad->id}'>Editar</a>
-        <!--
-				<br /> 
-				<a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$entidad->id}' 
-				onClick="return confirmar();">Borrar</a>
-				--> 
-				</td>
+          <a href='index.php?page=usuario_datos&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>{$dato->responsable->nombre}
+            {$dato->responsable->apellidos}</a>
+        </td>
 		  </tr>
 		{/foreach}
 	</tbody>

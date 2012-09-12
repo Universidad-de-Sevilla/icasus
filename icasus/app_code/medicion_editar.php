@@ -9,11 +9,13 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$smarty->assign('_javascript', array('jquery142min'));
+//$smarty->assign('_javascript', array('jquery142min'));
 
-if (isset($_REQUEST["id_medicion"]))
+if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
 {
   $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
+  $tipo = sanitize($_REQUEST["tipo"], SQL);
+  $smarty->assign("tipo",$tipo);
 
   $medicion = new medicion();
   $medicion->load("id = $id_medicion");
@@ -30,13 +32,12 @@ if (isset($_REQUEST["id_medicion"]))
   $valor_referencia_medicion = new valor_referencia_medicion();
   $valores_referencia_mediciones = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion");
   $smarty->assign("valores_referencia_mediciones", $valores_referencia_mediciones);
-//print_r($valores_referencia_mediciones);
+
 	$indisub = new indicador_subunidad();
 	$indisubs = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
 	$smarty->assign('indisubs',$indisubs);
   
   $smarty->assign("usuario", $usuario);
-  //$smarty->assign("_javascript", array("ordenatabla"));
   $smarty->assign("_nombre_pagina", "$indicador->codigo - $indicador->nombre");
 	$smarty->assign('_javascript', array('medicion_editar'));
   $plantilla = "medicion_editar.tpl";
@@ -44,7 +45,7 @@ if (isset($_REQUEST["id_medicion"]))
 else
 {
   $error = "Faltan parámetros para mostrar los datos de la medición";
-  header("location:index.php?page=entidad_listar&error=$error");
+  header("location:index.php?error=$error");
 }
 ?>
 

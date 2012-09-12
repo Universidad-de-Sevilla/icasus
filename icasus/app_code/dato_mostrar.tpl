@@ -1,7 +1,11 @@
 <div class="box grid_16">
 	<div class="toggle_container">
+    <h2 class="box_head grad_grey_dark">Parámetros del dato</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
+		<div class="block">
       <div class="button_bar clearfix">
-        <a href='index.php?page=medicion_listar&id_indicador={$dato->id}&id_entidad={$dato->id_entidad}'><img 
+        <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
           src='/icons/ff16/time.png' /> Mostrar mediciones</a> &nbsp;
         <a href='index.php?page=dato_listar&id_entidad={$dato->id_entidad}'><img 
           src='/icons/ff16/chart_curve.png' /> Listar todos</a> &nbsp;
@@ -11,23 +15,28 @@
           src='/icons/ff16/chart_curve_add.png'  /> Crear</a> &nbsp; 
         <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' onClick='return confirmar();'><img 
           src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp; 
-				<a href='index.php?page=medicion_responsable&id_indicador={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-					src='/icons/ff16/user_medicion.png' /> Responsables medición</a>
+        <a href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
+          src='/icons/ff16/user_medicion.png' /> Responsables medición</a>
       </div>
-		<div class="block">
+
       <div class="columns clearfix">
-      <fieldset class="label">
-        <label>Código dato</label>
-        <div>
-          {$dato->codigo}
+        <div class="col_40">
+          <fieldset class="label">
+            <label>Código dato</label>
+            <div>
+              {$dato->codigo}
+            </div>
+          </fieldset>
         </div>
-      </fieldset>
-      <fieldset class="label_side">
-        <label>Nombre dato</label>
-        <div>
-          {$dato->nombre}
+        <div class="col_60">
+          <fieldset class="label">
+            <label>Nombre dato</label>
+            <div>
+              {$dato->nombre}
+            </div>
+          </fieldset>
         </div>
-      </fieldset>
+      </div><!-- .colums .clearfix -->
       <fieldset class="label_side">
         <label>Descripci&oacute;n</label>
         <div>
@@ -35,15 +44,9 @@
         </div>
       </fieldset>
 			<fieldset class="label_side">
-        <label>Responsable de seguimiento</label>
+        <label>Responsable del dato</label>
         <div>
           {$dato->responsable->nombre} {$dato->responsable->apellidos} {if $dato->responsable->puesto} - {$dato->responsable->puesto} {/if}
-        </div>
-      </fieldset>
-      <fieldset class="label_side">
-        <label>Responsable de medición</label>
-        <div>
-          {$dato->responsable_medicion->nombre} {$dato->responsable_medicion->apellidos} {if $dato->responsable_medicion->puesto} - {$dato->responsable_medicion->puesto} {/if}
         </div>
       </fieldset>
       <fieldset class="label_side">
@@ -55,7 +58,7 @@
         <div>{$dato->fuente_datos}&nbsp;</div>	
       </fieldset>
       <fieldset class="label_side">
-        <label>datoes relacionados</label>
+        <label>Datos relacionados</label>
         <div>{$dato->indicadores_relacionados}&nbsp;</div>
       </fieldset>
       <div class="columns clearfix">
@@ -100,18 +103,26 @@
           {/if}
         </div>
       </fieldset>
-    </div>
-  </div>
-  </div>
+  </div><!-- .block -->
+  </div><!-- .toggle_container -->
+</div><!-- .box .grid_16 -->
 
-  <h2>Mediciones</h2>
-    <h3 class="section">
-      <a href='index.php?page=medicion_listar&id_indicador={$dato->id}&id_entidad={$dato->id_entidad}'><img 
+<div class="box grid_16">
+	<div class="toggle_container">
+    <h2 class="box_head grad_grey_dark">Mediciones del dato</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
+    <div class="block">
+    <div class="button_bar clearfix">
+      <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
         src='/icons/ff16/time.png' /> Mostrar Mediciones</a>						
-    </h3>
+    </div>
     
     {if $mediciones}
-      <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$dato->id}" alt="gráfica completa con los valores medios del dato" />
+      <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$dato->id}" alt="gráfica completa con los valores medios del dato" /></p>
     {else}
       <p class="aviso">Todavía no se han definido mediciones para este dato.</p>
     {/if}
+    </div>
+  </div><!-- toggle_container -->
+</div><!-- box grid_16 -->
