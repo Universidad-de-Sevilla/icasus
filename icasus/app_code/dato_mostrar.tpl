@@ -15,7 +15,7 @@
           src='/icons/ff16/chart_curve_add.png'  /> Crear</a> &nbsp; 
         <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' onClick='return confirmar();'><img 
           src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp; 
-        <a href='index.php?page=medicion_responsable&id_indicador={$dato->id}&id_entidad={$dato->id_entidad}'><img 
+        <a href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
           src='/icons/ff16/user_medicion.png' /> Responsables medición</a>
       </div>
 
@@ -44,15 +44,9 @@
         </div>
       </fieldset>
 			<fieldset class="label_side">
-        <label>Responsable de seguimiento</label>
+        <label>Responsable del dato</label>
         <div>
           {$dato->responsable->nombre} {$dato->responsable->apellidos} {if $dato->responsable->puesto} - {$dato->responsable->puesto} {/if}
-        </div>
-      </fieldset>
-      <fieldset class="label_side">
-        <label>Responsable de medición</label>
-        <div>
-          {$dato->responsable_medicion->nombre} {$dato->responsable_medicion->apellidos} {if $dato->responsable_medicion->puesto} - {$dato->responsable_medicion->puesto} {/if}
         </div>
       </fieldset>
       <fieldset class="label_side">

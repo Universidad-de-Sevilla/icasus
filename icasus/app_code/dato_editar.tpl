@@ -19,10 +19,9 @@
             </div>
             <div class="col_50">
               <fieldset class="label">
-                <label>Responsable de seguimiento</label>
+                <label>Responsable del dato</label>
                 <div>
                   <select name="id_responsable" class="required select_box">
-                    <option value=""></option>
                     {foreach $usuarios_entidades as $usuario_entidad}
                       <option value="{$usuario_entidad->usuario->id}" 
                         {if $usuario_entidad->usuario->id == $dato->id_responsable}
@@ -59,15 +58,15 @@
           </fieldset>
           <fieldset class="label_side">
             <label>Unidad generadora</label>
-            <div><input  type="text" name="unidad_generadora" /></div>
+            <div><input  type="text" name="unidad_generadora" value="{$dato->unidad_generadora}" /></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Nivel de desagregacion</label>
-            <div><input  type="text" name="nivel_desagregacion" /></div>
+            <div><input  type="text" name="nivel_desagregacion" value="{$dato->nivel_desagregacion}" /></div>
           </fieldset>
           <fieldset class="label_side">
             <label>Indicadores relacionados</label>
-            <div><input  type="text" name="indicadores_relacionados" /></div>
+            <div><input  type="text" name="indicadores_relacionados" value="{$dato->indicadores_relacionados}" /></div>
           </fieldset>
           <div class="columns clearfix">
             <div class="col_50">
@@ -75,11 +74,11 @@
                 <label>Periodicidad</label>
                 <div>
                   <select name="periodicidad" class="required select_box">
-                    <option value="Anual" selected>Anual</option>
-                    <option value="Mensual">Mensual</option>
-                    <option value="Trimestral">Trimestral</option>
-                    <option value="Cuatrimestral">Cuatrimestral</option>
-                    <option value="Semestral">Semestral</option>
+                    <option value="Anual" {if $dato->periodicidad == Anual}selected{/if}>Anual</option>
+                    <option value="Mensual" {if $dato->periodicidad == Mensual}selected{/if}>Mensual</option>
+                    <option value="Trimestral" {if $dato->periodicidad == Trimestral}selected{/if}>Trimestral</option>
+                    <option value="Cuatrimestral" {if $dato->periodicidad == Cuatrimestral}selected{/if}>Cuatrimestral</option>
+                    <option value="Semestral" {if $dato->periodicidad == Semestral}selected{/if}>Semestral</option>
                   </select>
                 </div>
               </fieldset>
@@ -90,8 +89,8 @@
                 <div>
                   <select name="id_visibilidad"  class="required select_box">
                     {foreach $visibilidades as $visibilidad}
-                      <option value="{$visibilidad->id}">
-                        {$visibilidad->nombre}
+                      <option value="{$visibilidad->id}" {if $dato->id_visibilidad == $visibilidad->id}selected{/if}>
+                        {$visibilidad->nombre|htmlentities}
                       </option>
                     {/foreach}
                   </select>
@@ -104,8 +103,7 @@
               <div class="ui-icon ui-icon-check"></div>
               <span>Grabar</span>
             </button>
-            <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" 
-              onclick="history.back()">
+            <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back()">
               <div class="ui-icon ui-icon-closethick"></div>
               <span>Cancelar</span>
             </button>          

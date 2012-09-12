@@ -6,7 +6,8 @@
 // Graba los datos de un indicador nuevo o existente
 //---------------------------------------------------------------------------------------------------
 global $usuario;
-if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUEST["id_responsable"])  AND isset($_REQUEST["id_responsable_medicion"]) AND isset($_REQUEST["formulacion"]) AND isset($_REQUEST["subunidades"]) AND isset($_REQUEST["id_proceso"]) AND isset($_REQUEST["id_entidad"]) AND isset($_REQUEST["tipo_seleccion_responsable"])) 
+
+if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUEST["id_responsable"])  AND isset($_REQUEST["id_responsable_medicion"]) AND isset($_REQUEST["formulacion"]) AND isset($_REQUEST["id_proceso"]) AND isset($_REQUEST["id_entidad"]) AND isset($_REQUEST["tipo_seleccion_responsable"])) 
 {
   $indicador = new indicador();
   if (isset($_REQUEST["id_indicador"]))
@@ -41,15 +42,15 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
   $indicador->unidad_generadora = isset($_REQUEST['unidad_generadora'])?sanitize($_REQUEST['unidad_generadora'],SQL):null;
   $indicador->interpretacion = isset($_REQUEST['interpretacion'])?sanitize($_REQUEST['interpretacion'],SQL):null;
   $indicador->indicadores_relacionados = isset($_REQUEST['indicadores_relacionados'])?sanitize($_REQUEST['indicadores_relacionados'],SQL):null;    
-  $indicador->valor_referencia = isset($_REQUEST['valor_referencia'])?sanitize($_REQUEST['valor_referencia'],SQL):null;
 
   $indicador->fecha_creacion = date("Y-m-d");
   if ($indicador->save())
   {
-    $subunidades = $_REQUEST["subunidades"];
     // Si el indicador es nuevo grabamos subunidades
     if (! isset($id_indicador))
     {
+    ;
+      $subunidades = isset($_REQUEST["subunidades"])?$_REQUEST["subunidades"]:array();
       if (count($subunidades) > 0)
       {
         foreach ($subunidades as $subunidad)

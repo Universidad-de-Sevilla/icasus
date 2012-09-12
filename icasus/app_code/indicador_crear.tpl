@@ -17,7 +17,7 @@
             <fieldset class="label">
               <label>Proceso</label>
               <div>
-                <select name="id_proceso" id="id_proceso"class="required">
+                <select name="id_proceso" id="id_proceso" class="required select_box">
                   <option value=""></option>
                   {foreach $procesos as $proceso}
                     <option value='{$proceso->id}'> {$proceso->nombre} </option>
@@ -43,7 +43,7 @@
           <fieldset class="label_side">
             <label>Responsable de seguimiento</label>
             <div>
-              <select name="id_responsable" class="required">
+              <select name="id_responsable" class="required select_box">
                 <option value=""></option>
                 {foreach $usuarios_entidad as $usuario_entidad}
                   <option value='{$usuario_entidad->usuario->id}'>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
@@ -55,7 +55,7 @@
           <fieldset class="label_side">
             <label>Responsable de medición</label>
             <div>
-              <select name="id_responsable_medicion" id="id_responsable_medicion">
+              <select name="id_responsable_medicion" class="required select_box">
                 <option value=""></option>
                 {foreach $usuarios_entidad as $usuario_entidad}
                   <option value='{$usuario_entidad->usuario->id}'>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
@@ -64,10 +64,6 @@
               </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
             </div>
           </fieldset> 
-<fieldset class="label_side">
-            <label>Valor de referencia</label>
-            <div><input  type='text' name='valor_referencia'/></div>
-          </fieldset>
           <fieldset class="label_side">
             <label>Fuente de informaci&oacute;n</label>
             <div><input  type='text' name='fuente_informacion'/></div>	
@@ -95,7 +91,7 @@
           <fieldset class="label_side">
             <label>EFQM</label>
             <div>
-              <select name="criterios_efqm[]" id="criterios_efqm" >
+              <select name="criterios_efqm[]" id="criterios_efqm" class="select_box" >
                 <option value=""></option>
                 {foreach $criterios_efqm as $criterio_efqm}
                   <option value='{$criterio_efqm->id}'>
@@ -103,7 +99,7 @@
                   </option>
                 {/foreach}
               </select>
-              <select name="criterios_efqm[]" id="criterios_efqm" >
+              <select name="criterios_efqm[]" id="criterios_efqm" class="select_box">
                 <option value=""></option>
                  {foreach $criterios_efqm as $criterio_efqm}
                   <option value='{$criterio_efqm->id}'>
@@ -118,7 +114,7 @@
               <fieldset class="label">
                 <label>Periodicidad</label>
                 <div>
-                  <select name="periodicidad" id="periodicidad"  />
+                  <select name="periodicidad" id="periodicidad" class="select_box">
                     <option value='Anual' selected>Anual</option>
                     <option value='Mensual'>Mensual</option>
                     <option value='Trimestral'>Trimestral</option>
@@ -132,7 +128,7 @@
               <fieldset class="label">
                 <label>Visibilidad</label>	
                 <div>
-                  <select name="id_visibilidad" id="id_visibilidad">
+                  <select name="id_visibilidad" id="id_visibilidad" class="select_box">
                     {foreach $visibilidades as $visibilidad}
                       <option value='{$visibilidad->id}'>
                         {$visibilidad->nombre}

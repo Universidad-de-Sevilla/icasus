@@ -66,10 +66,6 @@
         </div>
       </fieldset>
       <fieldset class="label_side">
-        <label>Valor de referencia</label>
-        <div>{$indicador->valor_referencia}&nbsp;</div>
-      </fieldset>
-      <fieldset class="label_side">
         <label>Fuente de informaci&oacute;n</label>
         <div>{$indicador->fuente_informacion}&nbsp;</div>	
       </fieldset>

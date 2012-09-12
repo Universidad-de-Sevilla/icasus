@@ -35,7 +35,6 @@ $medicion = new medicion();
 $mediciones = $medicion->Find("id_indicador = $id_indicador");
 $smarty->assign('mediciones',$mediciones);
 
-$smarty->assign('_javascript', array('ordenatabla'));
 $smarty->assign('_nombre_pagina', "Gestión de mediciones: $indicador->nombre");
 $plantilla = 'medicion_listar.tpl';
 ?>
