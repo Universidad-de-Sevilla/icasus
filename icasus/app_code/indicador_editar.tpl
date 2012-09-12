@@ -11,10 +11,11 @@
       <form method="post" action="index.php?page=indicador_grabar" id="formindicador" name="formindicador" class="datos">
         <input type='hidden' name='id_indicador' value='{$indicador->id}' />
         <input type='hidden' name='id_entidad' value='{$indicador->id_entidad}' />
+        <input type='hidden' name='tipo_seleccion_responsable' value='{$indicador->tipo_seleccion_responsable}' />
           <fieldset class="label_side">
             <label>Proceso</label>
             <div>
-              <select name="id_proceso" id="id_proceso" class="inp">
+              <select name="id_proceso" id="id_proceso" class="required select_box">
                 {foreach $procesos as $proceso}
                   <option value='{$proceso->id}' {if $indicador->id_proceso == $proceso->id}selected{/if}>
                     {$proceso->nombre}
@@ -27,8 +28,7 @@
 					<fieldset class="label_side">
             <label>Responsable de seguimiento</label>
             <div>
-              <select name="id_responsable">
-                <option value=""></option>
+              <select name="id_responsable" class="required select_box">
                 {foreach $usuarios_entidades as $usuario_entidad}
                   <option value='{$usuario_entidad->usuario->id}' {if $indicador->id_responsable == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                   </option>
@@ -41,8 +41,7 @@
           <fieldset class="label_side">
             <label>Responsable de medici&oacute;n</label>
             <div>
-              <select name="id_responsable_medicion">
-                <option value=""></option>
+              <select name="id_responsable_medicion" class="required select_box">
                 {foreach $usuarios_entidades as $usuario_entidad}
                   <option value='{$usuario_entidad->usuario->id}' {if $indicador->id_responsable_medicion == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                   </option>
@@ -79,10 +78,6 @@
             </div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Valor de referencia</label>
-            <div><input type='text' name='valor_referencia' id='valor_referencia'value='{$indicador->valor_referencia}' /></div>
-          </fieldset>
-          <fieldset class="label_side">
             <label>Fuente de informaci&oacute;n</label>
             <div><input type='text' name='fuente_informacion' id='fuente_informacion'value='{$indicador->fuente_informacion}' /></div>	
           </fieldset>
@@ -114,7 +109,7 @@
           <fieldset class="label_side">
             <label>Criterios EFQM</label>
             <div>
-              <select name="criterios_efqm[]" id="criterios_efqm" class="inp">
+              <select name="criterios_efqm[]" id="criterios_efqm" class="required select_box">
                 <option value=''></option>
                 {foreach $criterios_efqm as $criterio_efqm}
                   <option value='{$criterio_efqm->id}' 
@@ -125,7 +120,7 @@
                   </option>
                 {/foreach}
               </select>
-              <select name="criterios_efqm[]" id="criterios_efqm" class="inp">
+              <select name="criterios_efqm[]" id="criterios_efqm"  class="required select_box">
                 <option value=''></option>
                 {foreach $criterios_efqm as $criterio_efqm}
                   <option value='{$criterio_efqm->id}' 
@@ -139,12 +134,20 @@
             </div>
           <fieldset class="label_side">
             <label>Periodicidad</label>
-            <div>{$indicador->periodicidad}</div>
+              <div>
+                <select name="periodicidad" class="required select_box">
+                  <option value="Anual" {if {$indicador->periodicidad} == Anual}selected{/if}>Anual</option>
+                  <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if}>Mensual</option>
+                  <option value="Trimestral" {if $indicador->periodicidad == Trimestral}selected{/if}>Trimestral</option>
+                  <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if}>Cuatrimestral</option>
+                  <option value="Semestral" {if $indicador->periodicidad == Semestral}selected{/if}>Semestral</option>
+                </select>
+              </div>
           </fieldset>
           <fieldset class="label_side">
             <label>Visibilidad</label>	
             <div>
-              <select name="id_visibilidad" id="id_visibilidad">
+              <select name="id_visibilidad" id="id_visibilidad" class="select_box">
                 {foreach $visibilidades as $visibilidad}
                   <option value='{$visibilidad->id}' {if $visibilidad->id == $indicador->visibilidad->id}selected{/if}>
                     {$visibilidad->nombre|htmlentities}
@@ -162,6 +165,7 @@
             <label>Nivel de desagregacion</label>
             <div><input type='text' name='nivel_desagregacion' id='nivel_desagregacion'value='{$indicador->nivel_desagregacion}' /></div>
           </fieldset>
+          <!--
           <fieldset class="label_side">
             <label>Subunidades afectadas</label>
             <div>
@@ -171,6 +175,7 @@
               {/foreach}
             </div>
           </fieldset>
+          -->
           <fieldset class="label_side">
             <div>
               <input type="submit" class="btn" value="Grabar" name="indicador_submit" />

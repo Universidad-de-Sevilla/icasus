@@ -14,9 +14,14 @@ $(document).ready(function(){
 });
 </script>
 {/literal}
-<h3>Unidades con mediciones en el indicador</h3>
-	{if $indicadores_subunidades }
+
 		<div class="box grid_16">
+      <h3>Unidades con mediciones en el indicador</h3>
+      <div class="button_bar clearfix">
+        <a href='index.php?page=dato_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+          src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
+      </div>
+	{if $indicadores_subunidades }
 			<div class="block">	
 			  <table class="static">
 			      <thead><tr><th>Unidad</th><th>Responsable grabación</th><th>Puesto</th><th>Cambio a:</th></tr></thead>
@@ -44,5 +49,5 @@ $(document).ready(function(){
 		  </div>
 		</div>
 	{else}
-		  <div class="alert alert_blue">No tiene asignada ninguna unidad</div>
+		  <div class="alert alert_blue">No tiene asignada ninguna medición</div>
 	{/if}
