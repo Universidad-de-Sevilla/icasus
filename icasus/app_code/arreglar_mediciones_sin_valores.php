@@ -1,19 +1,21 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (https://forja.rediris.es/projects/icasus/)
+// Proyecto: Icasus 
 // Archivo: 
 // Tipo: controlador
 //---------------------------------------------------------------------------------------------------
+// Este script se utiliza para crear los valores de las mediciones que se hayan quedado sin descendencia
+// por no tener las subunidades asignadas en su momento 
+//---------------------------------------------------------------------------------------------------
 
 // Normalmente esta página está desactivada redirigiendo a inicio
-// header("location: index.php");
+header("location: index.php");
 
 $medicion = new medicion();
 $db = $medicion->DB();
 
-$query = "select id, id_indicador from mediciones where id_indicador >= 5000 AND id not in (Select id_medicion from valores) order by id_indicador;";
+$query = "select id, id_indicador from mediciones where id not in (select id_medicion from valores) order by id_indicador;";
 $huerfanitos = $db->getAll($query);
-//print_r($huerfanitos);
 foreach ($huerfanitos as $huerfanito)
 {
   $indicador_subentidad = new indicador_subunidad();

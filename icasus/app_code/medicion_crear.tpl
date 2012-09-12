@@ -1,9 +1,10 @@
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-			<h2>Indicador: {$indicador->codigo} - {$indicador->nombre}</h2>
+			<h2>{$indicador->codigo} - {$indicador->nombre}</h2>
 			<form name="medicion" id="medicion" action="index.php?page=medicion_grabar" method="post" class="validate_form">
 				<input type="hidden" name="id_indicador" value="{$indicador->id}" />
+				<input type="hidden" name="tipo" value="{$tipo}" />
 				<fieldset>
 					<label>Etiqueta</label>
 					<div>
@@ -46,19 +47,21 @@
 						</fieldset>
 					</div>
 				</div>
+        {if $tipo == "indicador"}
 				<fieldset >
 					{if $valores_referencia}
-					<label><h2>Valores de Referencia</h2></label>
-						{foreach $valores_referencia as $valor_referencia}
-							<label>{$valor_referencia->etiqueta}</label>
-							<div>
-							<input type="input" name="valor_referencia[{$valor_referencia->id}]" class="text required"/>
-							</div>
-						{/foreach}
-					{else}
-						<p>No se han definido valores de referencia para este indicador</p>
-					{/if}
-				</fieldset>
+            <label><h2>Valores de Referencia</h2></label>
+              {foreach $valores_referencia as $valor_referencia}
+                <label>{$valor_referencia->etiqueta}</label>
+                <div>
+                <input type="input" name="valor_referencia[{$valor_referencia->id}]" class="text required"/>
+                </div>
+              {/foreach}
+            {else}
+              <p>No se han definido valores de referencia para este indicador</p>
+            {/if}
+          </fieldset>
+        {/if}
 				<div class="button_bar clearfix">
 				<button class="green" type="submit" value="Grabar" name="proceso_submit">
 					<span>Grabar</span>

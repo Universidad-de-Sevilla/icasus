@@ -16,10 +16,10 @@ class indicador_subunidad extends ADOdb_Active_Record
 
   public function Find_entidades_responsables($id_indicador,$id_usuario)
   {
-		$i = new indicador();
-		$i->load("id = $id_indicador");
+		$indicador = new indicador();
+		$indicador->load("id = $id_indicador");
 
-		if ($i->id_responsable_medicion == $id_usuario)
+		if ($indicador->id_responsable_medicion == $id_usuario OR $indicador->id_responsable == $id_usuario)
 		{
 			$indicadores_subunidades = $this->Find("id_indicador = $id_indicador");
 		}
