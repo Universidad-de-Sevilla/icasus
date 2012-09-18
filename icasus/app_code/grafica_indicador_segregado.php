@@ -65,7 +65,7 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
     $myPicture->drawText(20,530,"{$indicador->nombre} ({$medicion->etiqueta})",array("FontSize"=>13,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
     //$myPicture->drawLegend(510,205,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
     // Pintamos la línea con la media 
-    $myPicture->drawThreshold($media,array("WriteCaption"=>TRUE, "Caption"=>"Media", "R"=>10, "G"=>255, "B"=>90, "Alpha"=>90));
+    $myPicture->drawThreshold($media,array("WriteCaption"=>TRUE, "Caption"=>"Media: $media_sql", "R"=>40, "G"=>55, "B"=>255, "Alpha"=>150));
     // Objetivos
     $query = "SELECT vr.etiqueta AS etiqueta, vrm.valor AS valor FROM valores_referencia vr INNER JOIN valores_referencia_mediciones vrm ON vr.id = vrm.id_valor_referencia WHERE vrm.id_medicion = $medicion->id";      
     if ($resultado = $db->getAll($query))
