@@ -36,7 +36,7 @@
         <tr>
           <td>{$valor->entidad->nombre}</td>
           <td>
-							{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id}
+							{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
 								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
 							{else}
 								{if $valor->valor == NULL}---{else}{$valor->valor}.{/if}
@@ -61,7 +61,7 @@
   <div class="toggle_container">
     <div class="block">
     <!-- Los datos de la medición pueden ser editados solo por el responsable del indicador -->
-    {if $usuario->id  == $indicador->id_responsable}
+    {if $usuario->id  == $indicador->id_responsable OR $indicador->id_responsable_medicion == $usuario->id}
       <fieldset class="label_side">
         <label>Etiqueta</label>
         <div>

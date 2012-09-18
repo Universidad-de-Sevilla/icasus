@@ -9,8 +9,6 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-//$smarty->assign('_javascript', array('jquery142min'));
-
 if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
 {
   $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
@@ -36,6 +34,10 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
 	$indisub = new indicador_subunidad();
 	$indisubs = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
 	$smarty->assign('indisubs',$indisubs);
+
+  $entidad = new entidad();
+  $entidad->load("id = $indicador->id_entidad");
+  $smarty->assign('entidad', $entidad);
   
   $smarty->assign("usuario", $usuario);
   $smarty->assign("_nombre_pagina", "$indicador->codigo - $indicador->nombre");

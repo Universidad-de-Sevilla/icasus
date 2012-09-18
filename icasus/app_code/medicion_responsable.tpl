@@ -18,7 +18,7 @@ $(document).ready(function(){
 		<div class="box grid_16">
       <h3>Unidades con mediciones en el indicador</h3>
       <div class="button_bar clearfix">
-        <a href='index.php?page=dato_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+        <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
           src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
       </div>
 	{if $indicadores_subunidades }
