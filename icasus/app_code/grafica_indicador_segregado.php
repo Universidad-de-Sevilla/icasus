@@ -26,6 +26,10 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
   $query = "SELECT entidades.etiqueta as etiqueta, valor FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador AND mediciones.etiqueta = '$medicion->etiqueta'";
   $resultado = $db->getAll($query);
 
+  $query_media = "SELECT ROUND(AVG(valor),2) AS media FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador AND mediciones.etiqueta = '$medicion->etiqueta'";
+  $media_sql = $db->getAll($query_media);
+  $media_sql = round($media_sql[0]['media'], 2);
+
   foreach ($resultado as $registro)
   {
     $valores[] = $registro['valor'];
@@ -40,7 +44,9 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
     $myData->addPoints($etiquetas, "Etiquetas");
     $myData->setAbscissa("Etiquetas");
     $myData->setSerieOnAxis("Valores", 0);
-    $media = round($myData->getSerieAverage("Valores"),2);
+    // No usamos la siguiente función porque toma como "ceros" los valores "null" y se carga la media
+    //$media = round($myData->getSerieAverage("Valores"),2);
+    $media = $media_sql;
     // Colores de la serie de datos
     $serieSettings = array("R"=>163,"G"=>38,"B"=>56,"Alpha"=>70);
     $myData->setPalette("Valores",$serieSettings);

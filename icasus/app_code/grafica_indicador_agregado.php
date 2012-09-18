@@ -21,7 +21,7 @@ if (isset($_REQUEST["id_indicador"]))
   $indicador = new indicador();
   $indicador->load("id = $id_indicador");
   $db = $indicador->DB();
-  $query = "SELECT mediciones.etiqueta, ROUND(AVG(valor),2) AS media FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion;";
+  $query = "SELECT mediciones.etiqueta, ROUND(AVG(valor),2) AS media FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion ORDER BY mediciones.periodo_inicio;";
   $resultado = $db->getAll($query);
 
   foreach ($resultado as $registro)
@@ -53,11 +53,19 @@ if (isset($_REQUEST["id_indicador"]))
   }
   else
   {
-    echo "<h2>NO HAY DATOS</h2>";
+    $myPicture = new pImage(700,200);
+    $myPicture->setFontProperties(array("FontName"=>"../../cascara_core/lib/pChart2/fonts/calibri.ttf","FontSize"=>11));
+    $myPicture->setGraphArea(60,40,670,220);
+    $myPicture->drawText(20,100,"No hay valores recogidos para este indicador",array("FontSize"=>26,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
+    $myPicture->Stroke();
   }
 }
 else
 {
-  echo "<h2>FALTAN PARAMETROS</h2>";
+  $myPicture = new pImage(700,200);
+  $myPicture->setFontProperties(array("FontName"=>"../../cascara_core/lib/pChart2/fonts/calibri.ttf","FontSize"=>11));
+  $myPicture->setGraphArea(60,40,670,220);
+  $myPicture->drawText(30,100,"Faltan parámetros para mostrar la gráfica",array("FontSize"=>26,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
+  $myPicture->Stroke();
 }
 ?>

@@ -28,6 +28,9 @@ else
 $indicador = new indicador();
 $indicador->load("id = $id_indicador");
 $smarty->assign('indicador',$indicador);
+$entidad = new entidad();
+$entidad->load("id = $indicador->id_entidad");
+$smarty->assign('entidad', $entidad);
 $smarty->assign('tipo',$tipo);
 
 
