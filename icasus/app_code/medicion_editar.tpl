@@ -1,20 +1,17 @@
 <div class="box grid_16">
-  <div class="section">
-  <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Volver a las mediciones</a> &nbsp; &nbsp; &nbsp;
-  <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
+  <div class="button_bar clearfix">
+    <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Volver a las mediciones</a> &nbsp; &nbsp; &nbsp;
+    <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
   </div>
-</div>
-
+{if $valores|@count > 1}
 <div class="box grid_16">
   <h2 class="box_head grad_grey_dark">Gráfica de la medición actual</h2>
   <a href="#" class="grabber"></a>
   <a href="#" class="toggle"></a>
-  {if $valores}
-    <img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}"     width="600" height="550" alt="Valores del indicador recogidos en cada subunidad para esta medición" />
-  {else}
-    <div class="alert alert_red">Error: no existen valores pendientes ni recogidos para esta medición</div>
-  {/if}
+    <img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}"     
+      alt="Valores del indicador recogidos en cada subunidad para esta medición" />
 </div>
+{/if}
 
 <div class="box grid_16">
   <h2 class="box_head grad_grey_dark">Valor o conjunto de valores de la medición actual</h2>

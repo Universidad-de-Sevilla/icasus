@@ -25,7 +25,6 @@
 		</tbody>
 	</table>
 	</div> 
-	<img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}" width="600" height="550" alt="Valores del indicador recogidos en cada subunidad par    a esta medición" />
 {/if}
 {if $modulo == 'cancelarfila'} 
 	<table class="static">
