@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
-global $basedatos;
+global $usuario;
 global $plantilla;
 
 // Esto es para prevenir que se cargue el script sin pasar por index.php
@@ -18,10 +18,10 @@ if (!is_object($smarty))
 	header('Location:index.php?page=cuadromando_listar');	
 }
 
-$id_usuario = $_SESSION['usuario']->id_usuario;
 $cuadromando = new cuadromando();
-$cuadromandos = $cuadromando->listar_cuadromandos_contar_indicadores("id_usuario = ".$id_usuario);
-
+//$cuadromandos = $cuadromando->listar_cuadromandos_contar_indicadores("id_usuario = ".$usuario->id);
+$cuadromandos = $cuadromando->find_joined($usuario->id);
+print_r($cuadromandos);
 $smarty->assign('cuadromandos',$cuadromandos);
 
 $plantilla = 'cuadromando_listar.tpl';
