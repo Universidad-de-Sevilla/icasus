@@ -53,7 +53,7 @@
 		</span>
 		<li>
 			<ul>
-				<li><a href='index.php?page=cuadromando_entidad&id_entidad={$entidad->id}'><img 
+				<li><a href='index.php?page=cuadrounidad&id_entidad={$entidad->id}'><img 
 					src='/icons/ff16/table_go.png' />
 					Cuadro resumen</a></li>
 				<li><a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img 

@@ -17,7 +17,7 @@ class indicador_cuadro extends ADOdb_Active_Record
 		foreach($is as $item)
 		{
 			$i = new indicador();
-			$i->load("id = $id_indicador");
+			$i->load("id = $item->id_indicador");
 			$is->indicador = $i;
 		}
 		return $is;

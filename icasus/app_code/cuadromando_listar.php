@@ -19,9 +19,8 @@ if (!is_object($smarty))
 }
 
 $cuadromando = new cuadromando();
-//$cuadromandos = $cuadromando->listar_cuadromandos_contar_indicadores("id_usuario = ".$usuario->id);
 $cuadromandos = $cuadromando->find_joined($usuario->id);
-print_r($cuadromandos);
+//print_r($cuadromandos);
 $smarty->assign('cuadromandos',$cuadromandos);
 
 $plantilla = 'cuadromando_listar.tpl';
