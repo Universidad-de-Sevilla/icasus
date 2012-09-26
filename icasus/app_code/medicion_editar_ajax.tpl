@@ -8,7 +8,9 @@
 				<td>
 				{if $valor->autorizado == 1 OR $indicador->id_responsable == $usuario->id}
 					{if $valor->id == $valor_edit}
-						<input name="v_{$valor->id}" type="text" value="{$valor->valor}" class="text">
+						<!-- <input name="v_{$valor->id}" type="text" value="{$valor->valor}" class="text"> -->
+            {$indicador->calculo} - {$valor_dato->valor} - {$id_dato}<br />
+            <input name="v_{$valor->id}" type="text" value="{$valor->valor}" />
 						<a href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}','{$medicion->id}')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a>
 						<a href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}')"><img title='Grabar' src='/icons/ff16/cross.png'align="absmiddle"></a>
 					{else}

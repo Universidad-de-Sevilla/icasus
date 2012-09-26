@@ -22,9 +22,61 @@ if ($modulo == 'grabarfila')
 	$value = sanitize($_REQUEST["valor"],2);        
 	$id_valor = sanitize($_REQUEST["id2"],2);       
 	$valor->load("id = $id_valor");                     
+	$medicion->load("id = $valor->id_medicion");
+	$indicador->load("id = $medicion->id_indicador");
 	$valor->puede_grabarse($valor->id,$usuario->id);        
 	if ($valor->puede_grabarse($valor->id,$usuario->id))    
 	{
+    $calculo = $indicador->calculo;
+    if ($calculo != "")
+    {
+      $es_variable = false;
+      $variable = array();
+      $posicion = 0;
+      $formula= "";
+      $calculo = str_split($calculo);
+      // Recorremos la cadena $calculo para sacar y calcular las variables
+      foreach ($calculo as $elemento)
+      {
+        if ($elemento == "[")
+        {
+          $variable[$posicion] = "";
+          $es_variable = true;
+          continue;
+        }
+        if ($elemento == "]")
+        {
+          if (is_numeric($variable[$posicion]))
+          {
+            $id_dato = (int)$variable[$posicion];
+            $medicion_dato = new medicion();
+            //TODO: Comprueba que el dato existe y tiene un valor para la etiqueta actual
+            $medicion_dato->load("id_indicador = $id_dato AND etiqueta = '$medicion->etiqueta'");
+            $valor_dato = new valor();
+            $valor_dato->load("id_medicion = $medicion_dato->id AND id_entidad = $valor->id_entidad");
+            $formula .= " $valor_dato->$valor ";
+          }
+          else
+          {
+            $formula .= " $valor_parcial ";
+          }
+          $es_variable = false;
+          $posicion ++;
+          continue;
+        }
+        if ($es_variable)
+        {
+          $variable[$posicion] .= $elemento; 
+        }
+        else
+        {
+          $formula .= $elemento;
+        }
+      }
+      // Calcula el resultado de la formula y guarda el valor final y el parcial
+      $valor->valor_parcial = $value;
+      $value = eval($formula);
+    }
 		$valor->id_usuario = $usuario->id;                
 		$valor->valor = $value;                           
 		$valor->fecha_recogida = date("Y-m-d");           
@@ -39,6 +91,17 @@ if ($modulo == 'editarfila')
 	$smarty->assign("medicion",$medicion);
 	$indicador->load("id = $medicion->id_indicador");
 	$smarty->assign("indicador",$indicador);
+
+  // Aquí tendriamos que pintar la formula con sus valores (o no)
+  $calculo = $indicador->calculo;
+  $smarty->assign("id_dato", $id_dato);
+  $medicion_dato = new medicion();
+  $medicion_dato->load("id_indicador = $id_dato AND etiqueta = '$medicion->etiqueta'");
+  $valor_dato = new valor();
+  $valor_dato->load("id_medicion = $medicion_dato->id AND id_entidad = $id_entidad");
+  $smarty->assign("valor_dato",$valor_dato);
+  
+
 	$valores = $valor->Find_joined_jjmc($id_medicion,$usuario->id);
 	$smarty->assign("valores",$valores);
 	$indisubs = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
