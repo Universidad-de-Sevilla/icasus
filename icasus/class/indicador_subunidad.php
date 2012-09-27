@@ -14,13 +14,20 @@ class indicador_subunidad extends ADOdb_Active_Record
   public $usuario;
   public $entidad;
 	//devuelve los indicadores en los que mide la unidad y no son propios de ella.
-  public function indicador_desagregado($id_unidad)
+  public function indicador_segregado($id_unidad,$id_proceso)
 	{
 		$db = $this->DB();
+		/*
 		$query = "SELECT * FROM indicadores_subunidades insu 
 							INNER JOIN indicadores i ON insu.id_indicador = i.id 
 							WHERE insu.id_entidad = $id_unidad AND insu.id_indicador 
 							NOT IN (SELECT id FROM indicadores  WHERE id_entidad = $id_unidad)";
+		*/
+		$query = "SELECT * FROM `indicadores_subunidades` insu
+								LEFT JOIN indicadores i
+								ON insu.id_indicador = i.id
+								WHERE insu.id_entidad = $id_unidad AND i.id_proceso = $id_proceso
+								AND insu.id_indicador NOT IN (SELECT id FROM indicadores WHERE id_entidad = $id_unidad)";
 		$indicadores = $db->getall($query);
 		return $indicadores;
 	}
