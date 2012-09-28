@@ -42,7 +42,7 @@ if (isset($_GET["id_entidad"]) AND $_GET["id_entidad"] >0)
 	$smarty->assign('procesos_indicadores_superior',$procesos_indicadores_superior);
 	
 	$plantilla = 'cuadrounidad.tpl';
-	$smarty->assign('_nombre_pagina' , 'Cuadros de mando de la unidad');
+	$smarty->assign('_nombre_pagina' , "Cuadro resumen: $entidad->nombre");
 
 }
 else

@@ -25,7 +25,7 @@
 				{foreach from=$procesos_propios item=item}
 					<li>
 					<a href="#" class="handle"></a>
-					<h3 class="bar"  tipo="propio" id="{$item->id}"><a href="javascript:void(0)">{$item->nombre}</a></h3>
+					<h3 class="bar"  tipo="propio" id="{$item->id}"><a href="javascript:void(0)">Proceso: {$item->nombre}</a></h3>
 					<div class="content" id="contenedor_propio_{$item->id}">	</div>
 					</li>
 				{/foreach}
@@ -44,7 +44,7 @@
 					{foreach from=$procesos_indicadores_segregados item=item}
 					  <li>
 					    <a href="#" class="handle"></a>
-					    <h3 class="bar" tipo="segregado" id="{$item.id_proceso}"><a href="javascript:void(0)">{$item.nombre_proceso} ({$item.nombre_entidad})</a></h3>
+					    <h3 class="bar" tipo="segregado" id="{$item.id_proceso}"><a href="javascript:void(0)">Proceso: {$item.nombre_proceso} ({$item.nombre_entidad})</a></h3>
 					    <div class="content" id="contenedor_segregado_{$item.id_proceso}"> </div>
 						</li>
 					{/foreach}
@@ -63,7 +63,7 @@
           {foreach from=$procesos_indicadores_superior item=item}
             <li>
               <a href="#" class="handle"></a>
-              <h3 class="bar"  tipo="superior" id="{$item->id}"><a href="javascript:void(0)">{$item->nombre}</a></h3>
+              <h3 class="bar"  tipo="superior" id="{$item->id}"><a href="javascript:void(0)">Proceso: {$item->nombre}</a></h3>
               <div class="content" id="contenedor_superior_{$item->id}"> </div>
             </li>
           {/foreach}

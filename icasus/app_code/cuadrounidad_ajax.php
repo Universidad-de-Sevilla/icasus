@@ -1,6 +1,6 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Proyecto: Icasus 
 // Archivo: cuadrounidad.php
 // Tipo: controlador
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
@@ -29,7 +29,6 @@ if ($modulo == 'segregado')
 {
 	$indicador_segregado = new indicador_subunidad();
 	$indicadores_segregados = $indicador_segregado->indicador_segregado($id_unidad,$id_proceso);
-	//print_r($indicadores_segregados);
 	$smarty->assign('indicadores_segregados',$indicadores_segregados);
 	$smarty->assign('modulo',$modulo);
 }
@@ -48,6 +47,6 @@ if ($modulo == 'superior')
 	$smarty->assign('modulo',$modulo);
 }
 	$plantilla = 'cuadrounidad_ajax.tpl';
-	$smarty->assign('_nombre_pagina' , 'Cuadros de mando de la unidad');
+	$smarty->assign('_nombre_pagina' , 'Cuadro Resumen');
 ?>
 
