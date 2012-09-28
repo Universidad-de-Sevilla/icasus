@@ -8,7 +8,8 @@
 				<td>
 				{if $valor->autorizado == 1 OR $indicador->id_responsable == $usuario->id}
 					{if $valor->id == $valor_edit}
-						<input name="v_{$valor->id}" type="text" value="{$valor->valor}" class="text">
+            {$indicador->calculo}<br />
+            <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}" />
 						<a href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}','{$medicion->id}')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a>
 						<a href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}')"><img title='Grabar' src='/icons/ff16/cross.png'align="absmiddle"></a>
 					{else}
@@ -25,7 +26,6 @@
 		</tbody>
 	</table>
 	</div> 
-	<img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}" width="600" height="550" alt="Valores del indicador recogidos en cada subunidad par    a esta medición" />
 {/if}
 {if $modulo == 'cancelarfila'} 
 	<table class="static">
@@ -38,7 +38,7 @@
 		{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id}
 			<a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
 		{else}
-			{if $valor->valor == NULL}---{else}{$valor->valor}{/if}
+			{if $valor->valor_parcial == NULL}---{else}{$valor->valor_parcial}{/if}
 		{/if}
 		</td>
 		<td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
