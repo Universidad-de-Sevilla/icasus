@@ -50,10 +50,6 @@
         </div>
       </fieldset>
       <fieldset class="label_side">
-        <label>Fuente de informaci&oacute;n</label>
-        <div>{$dato->fuente_informacion}&nbsp;</div>	
-      </fieldset>
-      <fieldset class="label_side">
         <label>Fuente de datos</label>
         <div>{$dato->fuente_datos}&nbsp;</div>	
       </fieldset>

@@ -49,10 +49,6 @@
             <div><textarea  class="autogrow" name="descripcion">{$dato->descripcion}</textarea></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Fuente de informaci&oacute;n</label>
-            <div><input  type="text" name="fuente_informacion" value="{$dato->fuente_informacion}" /></div>	
-          </fieldset>
-          <fieldset class="label_side">
             <label>Fuente de datos</label>
             <div><input  type="text" name="fuente_datos" value="{$dato->fuente_datos}" /></div>	
           </fieldset>

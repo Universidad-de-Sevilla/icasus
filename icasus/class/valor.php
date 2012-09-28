@@ -166,7 +166,6 @@ class valor extends ADOdb_Active_Record
         }
       }
       // Calcula el resultado de la formula y guarda el valor final 
-      print_r($formula);
       eval("\$valor_final = $formula;");
       $this->valor = $valor_final;
     }
