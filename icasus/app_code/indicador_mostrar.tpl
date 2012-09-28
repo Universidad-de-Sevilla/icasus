@@ -41,18 +41,28 @@
           {$indicador->nombre}
         </div>
       </fieldset>
+      {if $indicador->descripcion != ""}
       <fieldset class="label_side">
         <label>Descripci&oacute;n</label>
         <div>
           {$indicador->descripcion}
         </div>
       </fieldset>
+      {/if}
       <fieldset class="label_side">
         <label>Formulaci&oacute;n</label>
         <div> 
           {$indicador->formulacion}
         </div>
       </fieldset>
+      {if $indicador->calculo}
+      <fieldset class="label_side">
+        <label>Cálculo</label>
+        <div> 
+          {$indicador->calculo}
+        </div>
+      </fieldset>
+      {/if}
 			<fieldset class="label_side">
         <label>Responsable de seguimiento</label>
         <div>
@@ -65,40 +75,50 @@
           {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos} {if $indicador->responsable_medicion->puesto} - {$indicador->responsable_medicion->puesto} {/if}
         </div>
       </fieldset>
+      {if $indicador->fuente_informacion != ""}
       <fieldset class="label_side">
         <label>Fuente de informaci&oacute;n</label>
         <div>{$indicador->fuente_informacion}&nbsp;</div>	
       </fieldset>
+      {/if}
+      {if $indicador->fuente_datos != ""}
       <fieldset class="label_side">
         <label>Fuente de datos</label>
         <div>{$indicador->fuente_datos}&nbsp;</div>	
       </fieldset>
+      {/if}
+      {if $indicador->evidencia != ""}
       <fieldset class="label_side">
         <label>Metodo de comprobaci&oacute;n / Evidencia</label>
         <div>{$indicador->evidencia}&nbsp;</div>		
       </fieldset>
+      {/if}
+      {if $indicador->historicos != ""}
       <fieldset class="label_side">
         <label>Hist&oacute;rico</label>
         <div>{$indicador->historicos}&nbsp;</div>
       </fieldset>
+      {/if}
+      {if $indicador->interpretacion != ""}
       <fieldset class="label_side">
         <label>Interpretaci&oacute;n</label>
         <div>{$indicador->interpretacion}&nbsp;</div>
       </fieldset>
+      {/if}
+      {if $indicador->indicadores_relacionados != ""}
       <fieldset class="label_side">
         <label>Indicadores relacionados</label>
         <div>{$indicador->indicadores_relacionados}&nbsp;</div>
       </fieldset>
+      {/if}
       <fieldset class="label_side">
         <label>Criterios EFQM</label>
         <div>
-          {if $indicador->criterios_efqm}
           <ul>
             {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
               <li>{$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}</li>
             {/foreach}
           </ul>
-          {/if}
         </div>
       </fieldset>
       <div class="columns clearfix">

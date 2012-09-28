@@ -1,3 +1,10 @@
+<style>
+  .foco
+  {
+    border: 2px solid maroon;
+  }
+</style>
+
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
@@ -8,7 +15,7 @@
 				<fieldset>
 					<label>Etiqueta</label>
 					<div>
-						<input type="input" name="etiqueta"class="text required" /></p>
+						<input type="input" name="etiqueta" id="etiqueta" class="text required" /></p>
 						<div class="required_tag"></div>
 					</div>
 				</fieldset>
@@ -71,3 +78,12 @@
     </div>
 	</div>
 </div>
+{literal}
+<script>
+  $(document).ready(function(){
+    $("#etiqueta").focus();
+    $("select").focus(function () {$(this).toggleClass("foco");});
+    $("select").blur(function () {$(this).toggleClass("foco");});
+  });
+</script>
+{/literal}

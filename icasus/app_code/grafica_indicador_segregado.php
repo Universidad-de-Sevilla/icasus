@@ -51,18 +51,20 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
     $serieSettings = array("R"=>163,"G"=>38,"B"=>56,"Alpha"=>70);
     $myData->setPalette("Valores",$serieSettings);
     // ancho, alto
-    $myPicture = new pImage(600,550,$myData);
+    // El alto de la imgen depende del número de etiquetas
+    $alto = 95 + count($etiquetas) * 20;
+    $myPicture = new pImage(600,$alto,$myData);
     $myPicture->setFontProperties(array("FontName"=>"../../cascara_core/lib/pChart2/fonts/calibri.ttf","FontSize"=>9));
 
     // izquierda, arriba, ancho, alto
-    $myPicture->setGraphArea(180,50,580,500);
+    $myPicture->setGraphArea(180,30,580,$alto - 40);
     //$myPicture->drawFilledRectangle(0,50,230,500,array("R"=>55,"G"=>255,"B"=>255,"Surrounding"=>-200,"Alpha"=>10)); 
     $ScaleSettings = array("Pos"=>SCALE_POS_TOPBOTTOM,"XMargin"=>20,"DrawSubTicks"=>TRUE,"GridR"=>155,"GridG"=>155,"GridB"=>155,"AxisR"=>0,"AxisG"=>0,"AxisB"=>0,"GridAlpha"=>30,"CycleBackground"=>TRUE);
     $myPicture->drawScale($ScaleSettings); 
     $myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>163,"G"=>38,"B"=>56,"Alpha"=>10)); 
     $myPicture->drawBarChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO)); 
     //$myPicture->drawBarChart(array("DisplayValues"=>TRUE, "DisplayColor"=>DISPLAY_MANUAL, "DisplayR"=>0,"DisplayG"=>0,"DisplayB"=>255)); 
-    $myPicture->drawText(20,530,"{$indicador->nombre} ({$medicion->etiqueta})",array("FontSize"=>13,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
+    //$myPicture->drawText(20,530,"{$indicador->nombre} ({$medicion->etiqueta})",array("FontSize"=>13,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
     //$myPicture->drawLegend(510,205,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
     // Pintamos la línea con la media 
     $myPicture->drawThreshold($media,array("WriteCaption"=>TRUE, "Caption"=>"Media: $media_sql", "R"=>40, "G"=>55, "B"=>255, "Alpha"=>150));

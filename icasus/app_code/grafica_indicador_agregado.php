@@ -48,7 +48,7 @@ if (isset($_REQUEST["id_indicador"]))
     //$myPicture->drawBarChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO));
     $myPicture->drawLineChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO));
     $myPicture->drawPlotChart();
-    $myPicture->drawText(20,260,"{$indicador->nombre}",array("FontSize"=>15,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
+    $myPicture->drawText(20,260,"{$indicador->nombre}",array("FontSize"=>11,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
     $myPicture->Stroke();
   }
   else

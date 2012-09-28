@@ -78,6 +78,12 @@
             </div>
           </fieldset>
           <fieldset class="label_side">
+            <label>Cálculo <span style="font-size:small; color:grey;">(sólo para indicadores calculados)</span></label>
+            <div> 
+              <textarea rows="3" class='inp' name='calculo' id='calculo'>{$indicador->calculo}</textarea>
+            </div>
+          </fieldset>
+          <fieldset class="label_side">
             <label>Fuente de informaci&oacute;n</label>
             <div><input type='text' name='fuente_informacion' id='fuente_informacion'value='{$indicador->fuente_informacion}' /></div>	
           </fieldset>
