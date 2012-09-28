@@ -37,6 +37,7 @@ class valor extends ADOdb_Active_Record
 			return false;
 		}
 	}
+
  	public function Find_joined_jjmc($id_medicion,$id_usuario_activo)
   {
 		if ($valores = $this->Find("id_medicion = $id_medicion"))
@@ -72,6 +73,7 @@ class valor extends ADOdb_Active_Record
 			return false;
 		}
 	}
+  
   public function Find_joined($condicion)
   {
 		if ($valores = $this->Find($condicion))
@@ -92,6 +94,7 @@ class valor extends ADOdb_Active_Record
 		}
     
   }
+  
 	public function load_joined($id)
 	{
 		if($this->load("id = $id"))
@@ -109,5 +112,68 @@ class valor extends ADOdb_Active_Record
 			return false;
 		}
 	}
+
+  // Calcula y graba en el valor los valores parcial y final
+  public function calcular($id_valor, $valor_parcial)
+  {
+    $medicion = new medicion();
+    $indicador = new indicador();
+    $medicion->load("id = $this->id_medicion");
+    $indicador->load("id = $medicion->id_indicador");
+    $calculo = $indicador->calculo;
+    // Vemos si este indicador es calculado o directo
+    if (!is_null($calculo) AND $calculo != "")
+    {
+      // Recorremos la cadena $calculo para sacar y calcular las variables
+      // Almacenamos el resultado en $formula
+      $es_variable = false;
+      $formula= "";
+      $calculo = str_split($calculo);
+      foreach ($calculo as $elemento)
+      {
+        if ($elemento == "[")
+        {
+          $variable = "";
+          $es_variable = true;
+          continue;
+        }
+        if ($elemento == "]")
+        {
+          if (is_numeric($variable))
+          {
+            $id_dato = (int)$variable;
+            $medicion_dato = new medicion();
+            //TODO: Comprueba que el dato existe y tiene un valor para la etiqueta actual
+            $medicion_dato->load("id_indicador = $id_dato AND etiqueta = '$medicion->etiqueta'");
+            $valor_dato = new valor();
+            $valor_dato->load("id_medicion = $medicion_dato->id AND id_entidad = $this->id_entidad");
+            $formula .= "$valor_dato->valor";
+          }
+          else
+          {
+            $formula .= "$valor_parcial";
+          }
+          $es_variable = false;
+          continue;
+        }
+        if ($es_variable)
+        {
+          $variable .= $elemento; 
+        }
+        else
+        {
+          $formula .= $elemento;
+        }
+      }
+      // Calcula el resultado de la formula y guarda el valor final 
+      print_r($formula);
+      eval("\$valor_final = $formula;");
+      $this->valor = $valor_final;
+    }
+		else
+    {
+      $this->valor = $valor_parcial;                           
+    }
+  }
 }
 ?>
