@@ -11,7 +11,7 @@
             {$indicador->calculo}<br />
             <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}" />
 						<a href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}','{$medicion->id}')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a>
-						<a href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}')"><img title='Grabar' src='/icons/ff16/cross.png'align="absmiddle"></a>
+						<a href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}')"><img title='Cancelar' src='/icons/ff16/cross.png'align="absmiddle"></a>
 					{else}
 						<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
 					{/if}
@@ -38,7 +38,7 @@
 		{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id}
 			<a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
 		{else}
-			{if $valor->valor_parcial == NULL}---{else}{$valor->valor_parcial}{/if}
+			{if $valor->valor == NULL}---{else}{$valor->valor}{/if}
 		{/if}
 		</td>
 		<td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>

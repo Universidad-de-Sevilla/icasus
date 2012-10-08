@@ -13,7 +13,31 @@ class usuario_entidad extends ADOdb_Active_Record
   public $entidad;
   public $rol;
   public $usuario;
+	public $indicadores_entidad;//cuadromando_crear.php
 
+	//Devuelve todas las entidades de un usuario con sus indicadores
+	public function Find_entidades_indicadores($id_usuario) 
+	{ 
+		if ($ues = $this->Find("id_usuario = $id_usuario")) 
+		{ 
+			foreach ($ues as $item) 
+			{
+				
+				$is = new indicador_subunidad();
+				$iss = $is->find_indicadores_con_valores("id_entidad = $item->id_entidad");
+				$item->indicadores_entidad = $iss;
+
+				$e = new entidad();
+				$e->load("id = $item->id_entidad");
+				$item->entidad = $e;
+			}
+      return $ues;
+    }
+    else
+    {
+      return false;
+    }
+  }
 	public function Find_entidades($condicion) 
 	{ 
 		if ($usuarios_entidades = $this->Find($condicion)) 
