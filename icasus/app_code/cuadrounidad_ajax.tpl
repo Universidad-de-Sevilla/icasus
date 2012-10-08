@@ -29,7 +29,7 @@
           <b>Interpretación:</b> {$item.interpretacion}
         </div>
 				<div>
-					<img src="index.php?page=grafica_indicador_agregado&id_indicador={$item.id}" alt="gráfica completa con los valores medios del indicador"/>
+					<img src="index.php?page=grafica_indicador_segregado&id_indicador={$item.id}" alt="gráfica completa con los valores medios del indicador"/>
 				</div>
 			</div>
 		{/foreach}

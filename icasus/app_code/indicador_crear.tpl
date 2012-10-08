@@ -132,7 +132,7 @@
               <fieldset class="label">
                 <label>Visibilidad</label>	
                 <div>
-                  <select name="id_visibilidad" id="id_visibilidad" class="select_box">
+                  <select name="id_visibilidad" id="id_visibilidad" class="required select_box">
                     {foreach $visibilidades as $visibilidad}
                       <option value="{$visibilidad->id}">
                         {$visibilidad->nombre}

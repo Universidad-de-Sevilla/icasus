@@ -29,7 +29,6 @@ if (isset($_GET["id_entidad"]) AND $_GET["id_entidad"] >0)
 	//si la unidad mide indicadores de otras unidades, busca los procesos de estos indicadores
 	$procesos_indicadores_segregados = $proceso->procesos_indicadores_segregados($id_unidad);
 	$smarty->assign('procesos_indicadores_segregados',$procesos_indicadores_segregados);
-//print_r($procesos_indicadores_segregados);	
 	//obtiene los procesos de la unidad superior y sus indicadores
 	$procesos_indicadores_superior = $proceso->proceso_indicador_superior($id_unidad);
 	$smarty->assign('procesos_indicadores_superior',$procesos_indicadores_superior);
@@ -37,8 +36,9 @@ if (isset($_GET["id_entidad"]) AND $_GET["id_entidad"] >0)
 	//obtiene entidad superior.
 	$entidad = new entidad();
 	$entidad->load("id = $id_unidad");
-	$entidad->load("id = $entidad->id_madre");
-	$smarty->assign('entidad_superior',$entidad);
+	$entidad_madre = new entidad();
+	$entidad_madre->load("id = $entidad->id_madre");
+	$smarty->assign('entidad_superior',$entidad_madre);
 	$smarty->assign('procesos_indicadores_superior',$procesos_indicadores_superior);
 	
 	$plantilla = 'cuadrounidad.tpl';
