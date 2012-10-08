@@ -2,6 +2,9 @@
   <div class="button_bar clearfix">
     <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Volver a las mediciones</a> &nbsp; &nbsp; &nbsp;
     <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
+    {if $autorizado_borrar}
+      <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Borrar medicion</a> &nbsp;
+    {/if}
   </div>
 {if $valores|@count > 1}
 <div class="box grid_16">
@@ -153,3 +156,17 @@
     </div>
   </div>
 </div>
+{literal}
+<script>
+  $('a.confirmar').click(function(event) 
+    {
+      event.preventDefault()
+      var url = $(this).attr('href');
+      var confirm_box = confirm('Pulse "Aceptar" para borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición');
+      if (confirm_box) 
+      {
+         window.location = url;
+      }
+    });
+</script>
+{/literal}
