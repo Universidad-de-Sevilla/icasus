@@ -3,7 +3,7 @@
 // Proyecto: Icasus 
 // Archivo: app_code/grafica_indicador_agregado.php 
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Muestra una gráfica con las medias de los valores de un indicador agregado
+// Descripcion: Muestra una gráfica con las agregados de los valores de un indicador agregado
 //---------------------------------------------------------------------------------------------------
 global $usuario;
 
@@ -21,30 +21,38 @@ if (isset($_REQUEST["id_indicador"]))
   $indicador = new indicador();
   $indicador->load("id = $id_indicador");
   $db = $indicador->DB();
-  $query = "SELECT mediciones.etiqueta, ROUND(AVG(valor),2) AS media FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion ORDER BY mediciones.periodo_inicio;";
+  if ($indicador->tipo_agregacion = 2)
+  {
+    $query = "SELECT mediciones.etiqueta, SUM(valor) AS agregado FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion ORDER BY mediciones.periodo_inicio;";
+  }
+  else
+  {
+    // Por defecto suponemos que el tipo_agregado es 1
+    $query = "SELECT mediciones.etiqueta, ROUND(AVG(valor),2) AS agregado FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion ORDER BY mediciones.periodo_inicio;";
+  }
   $resultado = $db->getAll($query);
 
   foreach ($resultado as $registro)
   {
-    $medias[] = $registro['media'];
+    $agregados[] = $registro['agregado'];
     $etiquetas[] = $registro['etiqueta'];
   }
 
   if ($resultado)
   {
     $myData = new pData();
-    $myData->addPoints($medias, "Media");
+    $myData->addPoints($agregados, "Agregado");
     $myData->addPoints($etiquetas, "Periodo");
     $myData->setAbscissa("Periodo");
-    $myData->setSerieOnAxis("Media", 0);
+    $myData->setSerieOnAxis("Agregado", 0);
     $myPicture = new pImage(700,270,$myData);
     $myPicture->setFontProperties(array("FontName"=>"../../cascara_core/lib/pChart2/fonts/calibri.ttf","FontSize"=>11));
     $myPicture->setGraphArea(60,40,670,220);
     /* Draw the scale */ 
     $ScaleSettings = array("XMargin"=>35,"DrawSubTicks"=>TRUE,"GridR"=>155,"GridG"=>155,"GridB"=>155,"AxisR"=>0,"AxisG"=>0,"AxisB"=>0,"GridAlpha"=>30,"CycleBackground"=>TRUE);
     $myPicture->drawScale($ScaleSettings);
-    //$media = round($myData->getSerieAverage("Media"),2);
-    //$myPicture->drawThreshold($media,array("WriteCaption"=>TRUE));
+    //$agregado = round($myData->getSerieAverage("Agregado"),2);
+    //$myPicture->drawThreshold($agregado,array("WriteCaption"=>TRUE));
     //$myPicture->drawBarChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO));
     $myPicture->drawLineChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO));
     $myPicture->drawPlotChart();
