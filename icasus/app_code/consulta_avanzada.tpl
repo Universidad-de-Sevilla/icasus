@@ -97,7 +97,7 @@ div.operador {
   <div class = "box grid_8 no_titlebar">
 
     <div class="block">
-      <div class="section">
+      <div class="section" id="dato1">
       <h2>Resultado de la consulta</h2>
       <table class="static">
         <thead>
@@ -107,6 +107,7 @@ div.operador {
           <tr> <td>2008</td> <td>130.53</td> </tr>
           <tr> <td>2009</td> <td>133.59</td> </tr>
           <tr> <td>2010</td> <td>103.35</td> </tr>
+          <tr> <td>2011</td> <td>113.35</td> </tr>
         </tbody>
       </table>
       </div>
@@ -150,11 +151,28 @@ div.operador {
   <div class = "box grid_8 no_titlebar">
     <div class="block">
       <div class="section">
-        <div id="placeholder" style="width:600px;height:300px">
-          <img src="" alt="Imagen provisional para boceto" />
+        <div id="grafica" style="width:100%;height:300px">
         </div>
       </div>
     </div>
   </div>
   
 </div>
+
+{literal}
+<script>
+  var data = [ { label: "Libros adquiridos", color:"maroon", shadowSize:5, data: [ ['2008', 103], ['2009', 145], ['2010', 125] ] },
+               { label: "Personal investigador", yaxis:2, data: [ ['2008', 1332], ['2009', 1111], ['2010', 1192] ] }
+  ];
+  var options = {
+    series: {
+        lines: { show: true },
+        points: { show: true },
+    },
+    legend: { position:"ne" },
+    yaxis: { color:"green" },
+    xaxis: { ticks: [[2008, "2008"], [2009, "2009"], [2010, "2010"]] }
+  };
+  $.plot($("#grafica"), data, options);
+</script>
+{/literal}
