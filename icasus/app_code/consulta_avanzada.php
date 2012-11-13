@@ -12,6 +12,25 @@
 global $smarty;
 global $plantilla;
 
-$smarty->assign("_nombre_pagina", "Consulta avanzada de datos e indicadores");
-$plantilla = "consulta_avanzada.tpl";
+if (isset($_REQUEST["id_unidad"]))
+{
+  $id_unidad = sanitize($_REQUEST["id_unidad"], INT);
+  $indicador = new indicador();
+  $indicadores = $indicador->Find("id_entidad = $id_unidad");
+  $smarty->assign("indicadores", $indicadores);
+  $operaciones = array(
+    array('cotejar','= Cotejar'),
+    array('suma','+ Suma'),
+    array('cociente','/ Cociente'),
+    array('porcentaje','% Porcentaje')
+  );  
+  $smarty->assign("operaciones", $operaciones);
+  $smarty->assign("_nombre_pagina", "Consulta avanzada de datos e indicadores");
+  $plantilla = "consulta_avanzada.tpl";
+}
+else
+{
+  $error = "Parametros insuficientes para realizar la consulta";
+  header("location:index.php?page=error&error=$error");
+}
 ?>
