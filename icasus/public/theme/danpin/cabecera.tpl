@@ -84,6 +84,7 @@
 		<script src="theme/danpin/scripts/uistars/jquery.ui.stars.min.js"></script>
 		<script src="theme/danpin/scripts/tiptip/jquery.tipTip.minified.js"></script>
 		<script src="theme/danpin/scripts/validation/jquery.validate.min.js" type="text/javascript"></script>		
+		<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
 
 		<!-- Configuration Script -->
 		<script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_ui.js"></script>
