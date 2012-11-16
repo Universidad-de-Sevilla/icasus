@@ -25,7 +25,7 @@ div.operador {
 }
 
 .tabla_datos caption {
-font-size: 17px;
+font-size: 15px;
 text-align: left;
 color: #444;
 padding: 5px 5px;
@@ -72,32 +72,35 @@ border: 1px solid maroon;
       <div class="block">
         <div class="section">
 
+          <div class="receptor" data-serie="0">
+          </div>
+<!--
+          <div>
+            <select class="operador">
+              {foreach $operaciones as $operacion}
+                <option value="{$operacion.0}">{$operacion.1}</option>
+              {/foreach}
+            </select>
+          </div>
+-->
           <div class="receptor" data-serie="1">
           </div>
-
-          <div class="operador">
-            <select>
+          
+<!--
+          <div>
+            <select class="operador">
               {foreach $operaciones as $operacion}
                 <option value="{$operacion.0}">{$operacion.1}</option>
               {/foreach}
             </select>
           </div>
-
+-->          
           <div class="receptor" data-serie="2">
           </div>
-          
-          <div class="operador">
-            <select>
-              {foreach $operaciones as $operacion}
-                <option value="{$operacion.0}">{$operacion.1}</option>
-              {/foreach}
-            </select>
-          </div>
-          
-          <div class="receptor" data-serie="3">
-          </div>
 
+<!--
           <button class="pull-right" id="btn_mostrar_resultado">Mostrar resultado</button>
+-->
         </div><!-- .section -->
       </div><!-- .block -->
     </div><!-- .col_50 -->
@@ -107,25 +110,11 @@ border: 1px solid maroon;
 <!-- La tabla con los resultados obtenidos y los datos de partida -->
 <div class = "box grid_7 no_titlebar" id="tablas">
   <div class="block">
-    <div class="section tabla_datos" data-serie="1">
-    <!--
-    <table class="static">
-    <caption>Resultado de la consulta</caption>
-      <thead>
-        <tr> <th>Periodo</th> <th>Valor</th> </tr>
-      </thead>
-      <tbody>
-        <tr> <td>2008</td> <td>130.53</td> </tr>
-        <tr> <td>2009</td> <td>133.59</td> </tr>
-        <tr> <td>2010</td> <td>103.35</td> </tr>
-        <tr> <td>2011</td> <td>113.35</td> </tr>
-      </tbody>
-    </table>
-    -->
+    <div class="section tabla_datos" id="tabla0">
     </div>
-    <div class="section tabla_datos" data-serie="2">
+    <div class="section tabla_datos" id="tabla1">
     </div>
-    <div class="section tabla_datos" data-serie="3">
+    <div class="section tabla_datos" id="tabla2">
     </div>
   </div>
 </div><!-- .box .grid_8 -->
@@ -139,29 +128,32 @@ border: 1px solid maroon;
     </div>
   </div>
 </div><!-- .box .grid_8 -->
-  
 
 {literal}
 <script>
   /* --- Comienza la magia --- */ 
-  $(function () {
-    var contador_contenedor = 3; 
-    $('.receptor:first').toggleClass('activo');
-  });
+  //Están son las series iniciales que pintamos en pantalla, se agregarán más cuando se llenen
+  var contador_series = 3; 
+  var datos = [];
+  $('.receptor:first').toggleClass('activo');
 
-  var datos;
-  
   /* --- La declaración de eventos --- */
-	$('#btn_mostrar_resultado').click(crearResultado);
+  $('#btn_mostrar_resultado').click(crearResultado);
   $('.receptor').click(activarReceptor);
   $('.indicador').click(agregarIndicador);
   $('.icon-arrow-right').click(agregarIndicador);
   $('.icon-remove').click(quitarIndicador);
+  $('.operador').change(recalcularResultado);
   
   /* --- Las funciones --- */
+  function recalcularResultado()
+  {
+  alert("hola");
+  }
   function agregarIndicador()
   {
     var id_indicador = $(this).attr('id_indicador');
+    var serie = $(".activo").data("serie");
     $(".activo").empty();
     $(this).clone().appendTo('.activo').wrap("<div />").after('<b class="icon-remove pull-right">X</b>').removeClass("indicador").addClass("escogido");
     $('.icon-remove').bind('click', quitarIndicador);
@@ -175,43 +167,60 @@ border: 1px solid maroon;
       $('<select/>', {
         'class': 'subunidades',
         html: items.join('')
-      }).appendTo('.activo').addClass('.pull-right').bind('change',mostrarIndicador);
+      }).bind('change', mostrarIndicadorSubunidad).appendTo('.activo');
     });
-    mostrarIndicador();
+    mostrarIndicador(serie);
     return false;
   }
-
-  function crearResultado() {
-    var id_indicador = 5084;
-	  $.ajax({
-      url: "api_publica.php?metodo=get_valores_indicador&id=" + id_indicador,
-      success: function(datos_ajax)
-      {
-        var datos = $.parseJSON(datos_ajax);
-        datos_flot = prepararDatos(datos);
-        opciones_flot = prepararOpciones(datos);
-        $.plot($("#grafica"), datos_flot, opciones_flot);
-      }
-		}); 
-	}
   
-  function mostrarIndicador() {
+  function mostrarIndicador(serie) {
     var id_indicador = $('.activo').find('.escogido').attr('id_indicador');
     var nombre_indicador = $('.activo').find('.escogido').text();
 	  $.ajax({
       url: "api_publica.php?metodo=get_valores_indicador&id=" + id_indicador,
-      success: function(datos_ajax)
+      success: function(datos_json)
       {
-        var datos = $.parseJSON(datos_ajax);
-        datos_flot = prepararDatos(datos);
-        opciones_flot = prepararOpciones(datos);
-        $.plot($("#grafica"), datos_flot, opciones_flot);
-        generaTablaDatos(id_indicador, nombre_indicador, datos);
+        var datos_json = $.parseJSON(datos_json);
+        generaTablaDatos(id_indicador, nombre_indicador, datos_json, serie);
+        datos[serie] = prepararDatos(datos_json, serie);
+        opciones = prepararOpciones(datos_json);
+        $.plot($("#grafica"), datos, opciones);
       }
 		}); 
 	}
   
-  function prepararDatos(datos)
+  function mostrarIndicadorSubunidad() 
+  {
+    var serie = $(".activo").data("serie");
+    mostrarIndicador(serie);
+  }
+
+  function generaTablaDatos(id_indicador, nombre_indicador, datos, serie)
+  {
+    var items = [];
+    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text()
+    items.push('<caption>' + nombre_indicador + ' (' + subunidad_actual + ')</caption>');
+    items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
+    $.each(datos, function(i, dato) {
+      if(dato.unidad == subunidad_actual)
+      {
+        if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
+        items.push('<tr class="' + paridad +'"><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
+      }
+    });
+    $('#tabla'+serie).empty();
+    $('<table />', {'class': 'static', 
+                    'data-id_indicador': id_indicador, 
+                    html: items.join('')
+                   }).appendTo('#tabla'+serie);
+    
+  }
+
+  function crearResultado() {
+    alert(this);
+	}
+  
+  function prepararDatos(datos,serie)
   {
     var items = [];
     var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text()
@@ -222,7 +231,7 @@ border: 1px solid maroon;
         items.push([dato.medicion, dato.valor]);
       }
     });
-    datos_flot = [{label: nombre_indicador + '(' + subunidad_actual + ')', color:'maroon', data: items }];
+    datos_flot = {label: nombre_indicador + '(' + subunidad_actual + ')', color:serie, data: items };
     return datos_flot;
   }
 
@@ -236,15 +245,16 @@ border: 1px solid maroon;
         items.push([dato.medicion, dato.medicion.toString()]);
       }
     });
-    var opciones_flot = {
+    var opciones = {
       series: { lines: { show: true }, points: { show: true } },
       legend: { position:"ne" },
-      xaxis: { ticks: items }
+      xaxis: { ticks: items },
+      colors: ['maroon', 'darkviolet', 'orange', 'darkolivegreen']
     };
     /*
       series: { bars: { show: true, barWidth: 0.5, fill: 0.9 }},
     */
-    return opciones_flot;
+    return opciones;
   };
   
   function quitarIndicador()
@@ -258,26 +268,6 @@ border: 1px solid maroon;
   {
     $('.receptor').removeClass('activo');  
     $(this).toggleClass('activo');  
-  }
-
-  function generaTablaDatos(id_indicador, nombre_indicador, datos)
-  {
-    var items = [];
-    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text()
-    items.push('<caption>' + nombre_indicador + '</caption>');
-    items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
-    $.each(datos, function(i, dato) {
-      if(dato.unidad == subunidad_actual)
-      {
-        if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
-        items.push('<tr class="' + paridad +'"><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
-      }
-    });
-    $('<table />', {'class': 'static', 
-                    'data-id_indicador': id_indicador, 
-                    html: items.join('')
-                   }).appendTo('#tablas');
-    
   }
 </script>
 {/literal}
