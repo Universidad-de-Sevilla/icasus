@@ -1,7 +1,7 @@
 <div class="box grid_16 clear_fix">
   <a href="javascript:window.history.back();"><img src="/icons/ff16/arrow_undo.png" /> Cancelar</a>&nbsp; &nbsp; &nbsp;
   <a href="javascript:void(0)" class="dialog_button" data-dialog="dialog_crear"><img src="/icons/ff16/box_bullet_add.png" /> Subir nuevo archivo</a> &nbsp; &nbsp; &nbsp;
-  <a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}"><img src="/icons/ff16/cog.png" />Volver al proceso</a>
+  <a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><img src="/icons/ff16/cog.png" />Volver al proceso</a>
 </div>		
 
 <div class="display_none">

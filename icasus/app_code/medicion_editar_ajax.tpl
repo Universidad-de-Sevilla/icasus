@@ -6,7 +6,7 @@
 			<tr>
 				<td>{$valor->entidad->nombre}</td>
 				<td>
-				{if $valor->autorizado == 1 OR $indicador->id_responsable == $usuario->id}
+				{if $valor->autorizado == 1 OR $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
 					{if $valor->id == $valor_edit}
             {$indicador->calculo}<br />
             <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}" />
@@ -35,7 +35,7 @@
 		<tr>
 		<td>{$valor->entidad->nombre}</td>
 		<td>
-		{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id}
+		{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
 			<a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
 		{else}
 			{if $valor->valor == NULL}---{else}{$valor->valor}{/if}

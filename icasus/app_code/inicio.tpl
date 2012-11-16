@@ -14,6 +14,7 @@
             <td>
             <a href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'>Ver</a> - 
             <a href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'>Indicadores</a> - 
+            <a href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'>Datos</a> - 
             <a href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'> Procesos</a> -
             <a href='index.php?page=cuadrounidad&id_entidad={$entidad->entidad->id}'> Cuadro unidad</a> 
             <!--

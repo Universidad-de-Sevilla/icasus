@@ -31,6 +31,7 @@ class indicador_subunidad extends ADOdb_Active_Record
 		$indicadores = $db->getall($query);
 		return $indicadores;
 	}
+
   public function Find_entidades_responsables($id_indicador,$id_usuario)
   {
 		$indicador = new indicador();

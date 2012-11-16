@@ -17,6 +17,7 @@ if (isset($_REQUEST["id_indicador"]))
   // Inicio y fin marcan el rango de mediciones que vamos a tomar
   $inicio = isset($_REQUEST["inicio"])?sanitize($_REQUEST["inicio"], INT):0;
   $fin = isset($_REQUEST["fin"])?sanitize($_REQUEST["fin"], INT):0;
+  $hoy = date("d-m-Y H:i:s");
 
   $hoy = date("d-m-Y H:i:s"); 
 

@@ -1,9 +1,9 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: clase/entidad.php
+// Archivo: clase/fichero.php
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Gestiona las entidades
+// Descripcion: Gestiona los ficheros asociados a un objeto (unidad, proceso, indicador)
 //---------------------------------------------------------------------------------------------------
 
 class fichero extends ADOdb_Active_Record
@@ -13,14 +13,14 @@ class fichero extends ADOdb_Active_Record
 
 	public function find_joined($condicion)
   {
-		$lista = $this->find($condicion);
-		foreach($lista as $item)
+		$ficheros = $this->find($condicion);
+		foreach($ficheros as $fichero)
 		{
 			$usuario = new usuario();
-			$usuario->load("id = $item->id_usuario");
-			$item->usuario = $usuario;
+			$usuario->load("id = $fichero->id_usuario");
+			$fichero->usuario = $usuario;
 		}
-		return $lista;
+		return $ficheros;
 	}
 }
 ?>
