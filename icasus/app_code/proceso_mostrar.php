@@ -47,9 +47,18 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 	$smarty->assign('_javascript' , array('proceso_borrar'));
 	$plantilla = 'proceso_mostrar.tpl';
 
+  $flujograma = new fichero();
+  $condicion = "id_objeto= $id_proceso AND tipo_objeto = 'proceso' AND descripcion = 'flujograma' AND extension IN ('PNG','GIF','JPG','JPEG');";
+  if ($flujograma->load($condicion))
+  {
+	  $smarty->assign('flujograma',$flujograma);
+  }
+
 	$archivo = new fichero();
-	$archivos = $archivo->find_joined("id_objeto = $id_proceso");
-	$smarty->assign('archivos',$archivos);
+  if ($archivos = $archivo->find_joined("id_objeto = $id_proceso AND tipo_objeto = 'proceso'"))
+  {
+	  $smarty->assign('archivos',$archivos);
+  }
 }
 else
 {

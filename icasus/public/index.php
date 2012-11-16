@@ -42,6 +42,8 @@ $smarty->assign('_version', '1.1');
 // Conectamos a los datos con ADODB y ActiveRecord 
 $adodb = NewADOConnection('mysql://'.IC_DB_LOGIN.':'.IC_DB_CLAVE.'@'.IC_DB_HOST.'/'.IC_DB_DATABASE);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
+// No podemos usarlo hasta que no esté Icasus en utf8
+//$adodb->Execute("SET NAMES 'UTF8'");
 
 // Crea una sesión con un identificador encriptado para evitar ataques
 $session_key = substr(md5(IC_DIR_BASE), 0, 8);
