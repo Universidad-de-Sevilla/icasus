@@ -37,14 +37,20 @@ function get_valores_indicador($id)
   $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
             INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
             WHERE indicadores.id = $id";
-  $resultado = mysql_query($query);
-  if ($registro = mysql_fetch_assoc($resultado))
+  if ($resultado = mysql_query($query))
   {
-    $operador = $registro['operador'];
+    if ($registro = mysql_fetch_assoc($resultado))
+    {
+      $operador = $registro['operador'];
+    }
+    else
+    {
+      $operador = 'SUM';
+    }
   }
   else
   {
-    $operador = '';
+    $operador = 'SUM';
   }
 
   $query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, valores.valor, valores.observaciones 
