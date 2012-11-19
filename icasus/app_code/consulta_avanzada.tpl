@@ -9,9 +9,8 @@ div.receptor {
   font-size: 10pt;
 }
 
-.activo {
-  border: 1px dashed #08c;
-  border: 1px dashed goldenrod;
+div.activo {
+  border: 1px dashed #666;
   background: #f0f0f0;
 }
 
@@ -74,33 +73,28 @@ border: 1px solid maroon;
 
           <div class="receptor" data-serie="0">
           </div>
-<!--
           <div>
-            <select class="operador">
+            <select class="operador" data-serie="0">
               {foreach $operaciones as $operacion}
                 <option value="{$operacion.0}">{$operacion.1}</option>
               {/foreach}
             </select>
           </div>
--->
           <div class="receptor" data-serie="1">
           </div>
           
-<!--
           <div>
-            <select class="operador">
+            <select class="operador" data-serie="1">
               {foreach $operaciones as $operacion}
                 <option value="{$operacion.0}">{$operacion.1}</option>
               {/foreach}
             </select>
           </div>
--->          
           <div class="receptor" data-serie="2">
           </div>
 
-<!--
           <button class="pull-right" id="btn_mostrar_resultado">Mostrar resultado</button>
--->
+
         </div><!-- .section -->
       </div><!-- .block -->
     </div><!-- .col_50 -->
@@ -138,24 +132,20 @@ border: 1px solid maroon;
   $('.receptor:first').toggleClass('activo');
 
   /* --- La declaración de eventos --- */
-  $('#btn_mostrar_resultado').click(crearResultado);
+  $('#btn_mostrar_resultado').click(calcularResultado);
   $('.receptor').click(activarReceptor);
   $('.indicador').click(agregarIndicador);
   $('.icon-arrow-right').click(agregarIndicador);
   $('.icon-remove').click(quitarIndicador);
-  $('.operador').change(recalcularResultado);
+  //$('.operador').change(calcularResultado);
   
   /* --- Las funciones --- */
-  function recalcularResultado()
-  {
-  alert("hola");
-  }
   function agregarIndicador()
   {
     var id_indicador = $(this).attr('id_indicador');
     var serie = $(".activo").data("serie");
     $(".activo").empty();
-    $(this).clone().appendTo('.activo').wrap("<div />").after('<b class="icon-remove pull-right">X</b>').removeClass("indicador").addClass("escogido");
+    $(this).clone().appendTo('.activo').wrap("<div />").after('<b class="icon-remove pull-right">X</b>').toggleClass("indicador escogido");
     $('.icon-remove').bind('click', quitarIndicador);
     $.getJSON('api_publica.php?metodo=get_subunidades_indicador&id=' + id_indicador, function(data) {
       var items = [];
@@ -163,12 +153,21 @@ border: 1px solid maroon;
       $.each(data, function(i, subunidad) {
         items.push('<option id="' + subunidad.id + '">' + subunidad.etiqueta + '</option>');
       });
-
       $('<select/>', {
         'class': 'subunidades',
         html: items.join('')
       }).bind('change', mostrarIndicadorSubunidad).appendTo('.activo');
     });
+    // Después de añadir el indicador activamos el siguiente receptor
+    // Si era el último creamos uno nuevo
+    //if ($(".activo").nextAll(".receptor:first") == 0)
+    //{
+      //crearReceptor();
+    //}
+    //else 
+    //{
+      //$(".activo").nextAll(".receptor:first").trigger("click");
+    //}
     mostrarIndicador(serie);
     return false;
   }
@@ -198,7 +197,7 @@ border: 1px solid maroon;
   function generaTablaDatos(id_indicador, nombre_indicador, datos, serie)
   {
     var items = [];
-    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text()
+    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
     items.push('<caption>' + nombre_indicador + ' (' + subunidad_actual + ')</caption>');
     items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
     $.each(datos, function(i, dato) {
@@ -216,14 +215,10 @@ border: 1px solid maroon;
     
   }
 
-  function crearResultado() {
-    alert(this);
-	}
-  
   function prepararDatos(datos,serie)
   {
     var items = [];
-    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text()
+    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
     var nombre_indicador = $('.activo').find('.escogido').text();
     $.each(datos, function(i, dato) {
       if(dato.unidad == subunidad_actual)
@@ -238,7 +233,7 @@ border: 1px solid maroon;
   function prepararOpciones(datos)
   {
     var items = [];
-    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text()
+    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
     $.each(datos, function(i, dato) {
       if(dato.unidad == subunidad_actual)
       {
@@ -256,18 +251,50 @@ border: 1px solid maroon;
     */
     return opciones;
   };
-  
-  function quitarIndicador()
-  {
-    $(this).parent().fadeOut(500);
-    $(this).parent().remove();
-  }
 
+  function calcularResultado() 
+  {
+    var contador_totales = -1;
+    $('.operador').each(function(i)
+    {
+      var operador = $(this).find('option:selected').attr('value');
+      if ( operador != 'cotejar')
+      {
+        contador_totales ++;
+        var serie = $(this).data('serie');
+        if (datos[serie] > 0 && datos[serie + 1] > 0)
+        {
+          for(i = 0; i < datos[serie].length; i++)
+          {
+            if (operador == 'cociente')
+            {
+              total[contador_totales] = datos[serie] / datos[serie + 1];
+            }
+            else if (operador == 'suma')
+            {
+              total[contador_totales] = datos[serie] + datos[serie + 1];
+            }
+          }
+        }
+      }
+    });
+	}
+  
+  function crearReceptor()
+  {
+    alert('Pendiente de implementar');
+  }
   
   function activarReceptor()
   {
     $('.receptor').removeClass('activo');  
     $(this).toggleClass('activo');  
   }
+  
+  function quitarIndicador()
+  {
+    $(this).closest('.receptor').empty();
+  }
+
 </script>
 {/literal}

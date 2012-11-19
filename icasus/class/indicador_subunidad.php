@@ -56,14 +56,26 @@ class indicador_subunidad extends ADOdb_Active_Record
 					$indicador_subunidad->usuario = new usuario();
 					$indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
 				}
-				return $indicadores_subunidades;
+      $customsort = function ($a,$b) {
+        return $a->entidad->etiqueta > $b->entidad->etiqueta;
+      };
+      usort($indicadores_subunidades, $customsort);
+      // Define la función personalizada para ordenar
+			return $indicadores_subunidades;
 		}
 		else
 		{
 			return false;
 		}
   }
- public function Find_entidades($criterio)
+
+  // Define la función personalizada para ordenar subunidades
+  static function customsort($a,$b) 
+  {
+    return $a->entidad->etiqueta > $b->entidad->etiqueta;
+  }
+  
+  public function Find_entidades($criterio)
   {
     if ($indicadores_subunidades = $this->Find($criterio))
     {
@@ -71,10 +83,11 @@ class indicador_subunidad extends ADOdb_Active_Record
       {
         $indicador_subunidad->entidad = new entidad();
         $indicador_subunidad->entidad->load("id = $indicador_subunidad->id_entidad");
-				//creo que sobran estas 2 líneas siguientes
-        //$indicador_subunidad->usuario = new usuario();
-        //$indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
       }
+      $customsort = function ($a,$b) {
+        return $a->entidad->etiqueta > $b->entidad->etiqueta;
+      };
+      usort($indicadores_subunidades, $customsort);
       return $indicadores_subunidades;
     }
     else
