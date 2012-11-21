@@ -254,30 +254,37 @@ border: 1px solid maroon;
 
   function calcularResultado() 
   {
-    var contador_totales = -1;
-    $('.operador').each(function(i)
+    var resultado = [];
+    //var resultados = [];
+    $('.operador').each(function(indice, operador)
     {
-      var operador = $(this).find('option:selected').attr('value');
-      if ( operador != 'cotejar')
+      var operacion = $(operador).find('option:selected').attr('value');
+      if ( operacion != 'cotejar')
       {
-        contador_totales ++;
-        var serie = $(this).data('serie');
-        if (datos[serie] > 0 && datos[serie + 1] > 0)
+        var serie = $(operador).data('serie');
+        if (datos[serie].data.length > 0 && datos[serie + 1].data.length > 0)
         {
-          for(i = 0; i < datos[serie].length; i++)
+          for(i = 0; i < datos[serie].data.length; i++)
           {
-            if (operador == 'cociente')
+            if (operacion == 'cociente')
             {
-              total[contador_totales] = datos[serie] / datos[serie + 1];
+              resultado[i] = [ parseInt(datos[serie].data[i][0]), parseFloat(datos[serie].data[i][1]) / parseFloat(datos[serie + 1].data[i][1]) ];
             }
-            else if (operador == 'suma')
+            else if (operacion == 'suma')
             {
-              total[contador_totales] = datos[serie] + datos[serie + 1];
+              resultado[i] = [ parseInt(datos[serie].data[i][0]), parseFloat(datos[serie].data[i][1]) + parseFloat(datos[serie + 1].data[i][1]) ];
             }
           }
         }
       }
     });
+    console.log(resultado);
+    resultados = [{label: 'Resultado', color:'darkolivegreen', data: resultado}];
+    opciones_res = { xaxis: { tickDecimals: 0 }, legend: { position: 'ne' } };
+    
+    console.log(resultados);
+    $.plot($("#grafica"), resultados, opciones_res);
+  
 	}
   
   function crearReceptor()

@@ -15,7 +15,7 @@ $smarty->assign('_nombre_pagina', 'Inicio');
 
 // Indicadores a cargo de este usuario
 $indicador = new indicador();
-$indicadores = $indicador->Find("id_responsable = $usuario->id");
+$indicadores = $indicador->Find("id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id");
 $smarty->assign("indicadores",$indicadores);
 
 // Mediciones a cargo de este usuario
