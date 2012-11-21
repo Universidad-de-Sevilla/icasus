@@ -13,6 +13,8 @@ class indicador_subunidad extends ADOdb_Active_Record
   public $indicador;
   public $usuario;
   public $entidad;
+  //DEPRECATED public $valores_pendientes; 
+
 	//devuelve los indicadores en los que mide la unidad y no son propios de ella.
   public function indicador_segregado($id_unidad,$id_proceso)
 	{
@@ -91,7 +93,8 @@ class indicador_subunidad extends ADOdb_Active_Record
     }
   }
 
-  public function Find_indicadores_con_valores($criterio)
+  // Este método se ha pasado a la clase indicador
+  public function Find_indicadores_con_valores_DEPRECATED($criterio)
   {
     if ($indicadores_subunidades = $this->Find($criterio))
     {
@@ -102,10 +105,15 @@ class indicador_subunidad extends ADOdb_Active_Record
             AND insu.id_usuario  = 1 
             AND va.valor_parcial is NULL 
             AND insu.id_indicador = ";
+
+      $adodb = $this->DB();
+
       foreach ($indicadores_subunidades as& $indicador_subunidad)
       {
         $indicador_subunidad->indicador = new indicador();
         $indicador_subunidad->indicador->load("id = $indicador_subunidad->id_indicador");
+        $resultset = $adodb->Execute($query . $indicador_subunidad->id_indicador);
+        $indicador_subunidad->valores_pendientes = $resultset->fields[0];
       }
       return $indicadores_subunidades;
     }

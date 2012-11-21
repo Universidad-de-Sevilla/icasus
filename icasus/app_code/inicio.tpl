@@ -61,7 +61,7 @@
  </div> 
 {/if}
 
-{if $indicadores_subunidades}
+{if $mediciones_usuario}
   <div class="box grid_16 single_datatable">
     <h2 class="box_head grad_grey_dark">Mediciones a su cargo</h2>
     <a href="#" class="grabber"></a>
@@ -76,13 +76,13 @@
        </tr> 
       </thead> 
         <tbody>
-           {foreach $indicadores_subunidades as $indicador_subunidad}
+           {foreach $mediciones_usuario as $medicion_usuario}
             <tr class="gradeX">
-              <td>{$indicador_subunidad->indicador->codigo}</td>
-              <td><a href="index.php?page=indicador_mostrar&id_indicador={$indicador_subunidad->indicador->id}">{$indicador_subunidad->indicador->nombre}</a></td>
-              <td>{$indicador_subunidad->mediciones_pendientes}
-                  {if $indicador_subunidad->mediciones_pendientes > 0}
-                   | <a href="index.php?page=medicion_subunidad_listar&id_indicador={$indicador_subunidad->indicador->id}">grabar</a>
+              <td>{$medicion_usuario->codigo}</td>
+              <td><a href="index.php?page=indicador_mostrar&id_indicador={$medicion_usuario->id}">{$medicion_usuario->nombre}</a></td>
+              <td>{$medicion_usuario->valores_pendientes}
+                  {if $medicion_usuario->valores_pendientes > 0}
+                   | <a href="index.php?page=medicion_listar&id_indicador={$medicion_usuario->id}&id_entidad={$medicion_usuario->id_entidad}">grabar</a>
                   {/if}
               </td>
             </tr>

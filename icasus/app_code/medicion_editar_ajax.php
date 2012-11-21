@@ -71,10 +71,11 @@ if ($modulo == 'editarfila')
 }
 if ($modulo == 'cancelarfila')
 {
+	$id_medicion = sanitize($_REQUEST["id_medicion"], INT);
+
 	$smarty->assign("medicion_edit",$id_medicion);
 	$smarty->assign("usuario", $usuario);
   
-	$id_medicion = sanitize($_REQUEST["id_medicion"], INT);
 	$medicion->load("id = $id_medicion");
 	$smarty->assign("medicion",$medicion);
   

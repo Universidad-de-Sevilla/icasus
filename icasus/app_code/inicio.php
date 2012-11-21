@@ -19,9 +19,12 @@ $indicadores = $indicador->Find("id_responsable = $usuario->id OR id_responsable
 $smarty->assign("indicadores",$indicadores);
 
 // Mediciones a cargo de este usuario
-$indicador_subunidad = new indicador_subunidad();
-$indicadores_subunidades = $indicador_subunidad->Find_indicadores_con_valores("id_usuario = $usuario->id");
-$smarty->assign("indicadores_subunidades",$indicadores_subunidades);
+$indicador= new indicador();
+$mediciones_usuario = $indicador->Find_con_pendientes("id IN (SELECT id_indicador FROM indicadores_subunidades WHERE id_usuario=$usuario->id)");
+$smarty->assign("mediciones_usuario",$mediciones_usuario);
+//$indicador_subunidad = new indicador_subunidad();
+//$indicadores_subunidades = $indicador_subunidad->Find_indicadores_con_valores("id_usuario = $usuario->id");
+//$smarty->assign("indicadores_subunidades",$indicadores_subunidades);
 
 // Entidades de este usuario
 $smarty->assign('entidades_usuario',$usuario->entidades);
