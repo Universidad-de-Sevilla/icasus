@@ -121,4 +121,21 @@ function get_subunidades_indicador($id)
   $datos = json_encode($datos);
   echo $datos;
 }
+
+// Devuelves las etiquetas de las mediciones existentes para este indicador por ordenadas por su fecha de inicio
+function get_mediciones_indicador($id)
+{
+  $query = "SELECT mediciones.etiqueta
+            FROM mediciones INNER JOIN indicadores 
+            ON indicadores.id = mediciones.id_indicador
+            WHERE mediciones.id_indicador = $id 
+            ORDER BY mediciones.periodo_inicio"; 
+  $resultado = mysql_query($query);
+  while ($registro = mysql_fetch_assoc($resultado))
+  {
+    $datos[] = $registro;
+  }
+  $datos = json_encode($datos);
+  echo $datos;
+}
 ?>

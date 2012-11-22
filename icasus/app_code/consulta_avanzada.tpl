@@ -135,8 +135,6 @@ border: 1px solid maroon;
   $('#btn_mostrar_resultado').click(calcularResultado);
   $('.receptor').click(activarReceptor);
   $('.indicador').click(agregarIndicador);
-  $('.icon-arrow-right').click(agregarIndicador);
-  $('.icon-remove').click(quitarIndicador);
   //$('.operador').change(calcularResultado);
   
   /* --- Las funciones --- */
@@ -145,8 +143,8 @@ border: 1px solid maroon;
     var id_indicador = $(this).attr('id_indicador');
     var serie = $(".activo").data("serie");
     $(".activo").empty();
-    $(this).clone().appendTo('.activo').wrap("<div />").after('<b class="icon-remove pull-right">X</b>').toggleClass("indicador escogido");
-    $('.icon-remove').bind('click', quitarIndicador);
+    $(this).clone().appendTo('.activo').wrap("<div />").after('<b id="borra' + serie +'" class="icon-remove pull-right">X</b>').toggleClass("indicador escogido");
+    $('#borra' + serie).bind('click', quitarIndicador);
     $.getJSON('api_publica.php?metodo=get_subunidades_indicador&id=' + id_indicador, function(data) {
       var items = [];
       items.push('<option id="total">Total</option>');
@@ -157,6 +155,17 @@ border: 1px solid maroon;
         'class': 'subunidades',
         html: items.join('')
       }).bind('change', mostrarIndicadorSubunidad).appendTo('.activo');
+    });
+    $.getJSON('api_publica.php?metodo=get_mediciones_indicador&id=' + id_indicador, function(data) {
+      var items = [];
+      items.push('<option id="todos">Todos</option>');
+      $.each(data, function(i, medicion) {
+        items.push('<option id="' + medicion.etiqueta + '">' + medicion.etiqueta + '</option>');
+      });
+      $('<select/>', {
+        'class': 'mediciones',
+        html: items.join('')
+      }).bind('change', mostrarMedicion).appendTo('.activo');
     });
     // Después de añadir el indicador activamos el siguiente receptor
     // Si era el último creamos uno nuevo
@@ -212,7 +221,10 @@ border: 1px solid maroon;
                     'data-id_indicador': id_indicador, 
                     html: items.join('')
                    }).appendTo('#tabla'+serie);
-    
+  }
+
+  function mostrarMedicion()
+  {
   }
 
   function prepararDatos(datos,serie)
@@ -232,6 +244,7 @@ border: 1px solid maroon;
 
   function prepararOpciones(datos)
   {
+    /*
     var items = [];
     var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
     $.each(datos, function(i, dato) {
@@ -240,13 +253,15 @@ border: 1px solid maroon;
         items.push([dato.medicion, dato.medicion.toString()]);
       }
     });
+    */
     var opciones = {
       series: { lines: { show: true }, points: { show: true } },
       legend: { position:"ne" },
-      xaxis: { ticks: items },
-      colors: ['maroon', 'darkviolet', 'orange', 'darkolivegreen']
+      xaxis: { tickDecimals: 0 },
+      colors: ['maroon', 'darkviolet', 'orange', 'deepblue', 'pink', 'yellow', 'brown']
     };
     /*
+      xaxis: { ticks: items },
       series: { bars: { show: true, barWidth: 0.5, fill: 0.9 }},
     */
     return opciones;
@@ -255,7 +270,6 @@ border: 1px solid maroon;
   function calcularResultado() 
   {
     var resultado = [];
-    //var resultados = [];
     $('.operador').each(function(indice, operador)
     {
       var operacion = $(operador).find('option:selected').attr('value');
@@ -278,12 +292,11 @@ border: 1px solid maroon;
         }
       }
     });
-    console.log(resultado);
     resultados = [{label: 'Resultado', color:'darkolivegreen', data: resultado}];
-    opciones_res = { xaxis: { tickDecimals: 0 }, legend: { position: 'ne' } };
+    opciones_resultado = { xaxis: { tickDecimals: 0 }, legend: { position: 'ne' } };
     
     console.log(resultados);
-    $.plot($("#grafica"), resultados, opciones_res);
+    $.plot($("#grafica"), resultados, opciones_resultado);
   
 	}
   
@@ -300,7 +313,12 @@ border: 1px solid maroon;
   
   function quitarIndicador()
   {
+    serie = $(this).closest(".receptor").data("serie");
+    datos[serie] = 0;
     $(this).closest('.receptor').empty();
+    $("#tabla"+serie).empty();
+    console.log(datos);
+    $.plot($("#grafica"), datos, opciones);
   }
 
 </script>
