@@ -150,18 +150,25 @@
         </div>
       </div>
       <fieldset class="label_side">
-        <label>Subunidades afectadas</label>
-        <div>
-          {if $indicador_subunidades}
-            <ul>
-            {foreach $indicador_subunidades as $indicador_subunidad}
-              <li><a href="index.php?entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->nombre}</a></li>
-            {/foreach}
-            </ul>
-          {else}
-            No se han asignado subunidades a este indicador (corregir)
-          {/if}
-        </div>
+      <label>Subunidades afectadas</label>
+      <div>
+      <input type="checkbox" class="subunidades" data-entidad="{$entidad->id}" data-indicador="{$indicador->id}" 
+					{foreach $indicador_subunidades as $indicador_subunidad}
+						{if $indicador_subunidad->id_entidad == $entidad->id} checked{/if}
+					{/foreach}
+			/> {$entidad->nombre}<hr />
+			<div style="float:left;width:50%">
+			{assign var="mitad" value=($subunidades|@count)/2}
+      {foreach $subunidades as $subunidad name="subunidades"}
+				<input type="checkbox" class="subunidades" data-entidad="{$subunidad->id}" data-indicador="{$indicador->id}" 
+					{foreach $indicador_subunidades as $indicador_subunidad}
+						{if $indicador_subunidad->id_entidad == $subunidad->id} checked{/if}
+					{/foreach}
+				 />{$subunidad->nombre}<br />
+				 {if $smarty.foreach.subunidades.iteration == $mitad}</div><div style="float:left:width:50%">{/if}
+      {/foreach}
+			</div>
+      </div>
       </fieldset>
     </div>
   </div>
@@ -178,3 +185,14 @@
     {else}
       <p class="aviso">Todavía no se han definido mediciones para este indicador.</p>
     {/if}
+{literal}
+<script>
+$(function(){
+	$('.subunidades').on('click',function(){
+		var entidad = $(this).data('entidad');
+		var indicador = $(this).data('indicador');
+		$.post("index.php?page=indicador_mostrar_ajax",{id_indicador:indicador,id_entidad:entidad});
+	});
+});
+</script>
+{/literal}

@@ -38,6 +38,7 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
   $indicador->fuente_informacion = isset($_REQUEST['fuente_informacion'])?sanitize($_REQUEST['fuente_informacion'],SQL):null;    
   $indicador->nivel_desagregacion = isset($_REQUEST['nivel_desagregacion'])?sanitize($_REQUEST['nivel_desagregacion'],SQL):null;
   $indicador->fuente_datos = isset($_REQUEST['fuente_datos'])?sanitize($_REQUEST['fuente_datos'],SQL):null;   
+  $indicador->desagregado = isset($_REQUEST['tipo_seleccion_responsable'])?sanitize($_REQUEST['tipo_seleccion_responsable'],SQL):null;   
   $indicador->evidencia = isset($_REQUEST['evidencia'])?sanitize($_REQUEST['evidencia'],SQL):null;    
   $indicador->historicos = isset($_REQUEST['historicos'])?sanitize($_REQUEST['historicos'],SQL):null;    
   $indicador->unidad_generadora = isset($_REQUEST['unidad_generadora'])?sanitize($_REQUEST['unidad_generadora'],SQL):null;
@@ -63,7 +64,32 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
 					//si es para cada responsable de subunidad, se le asigna como responsable de la medición
 					//el reponsable de la unidad. Si no exite este se le asigna como resposable de medición
 					//el responsable de medicion de la unidad superior.
-          if ($tipo_seleccion_responsable == 0)
+          switch ($tipo_seleccion_responsable)
+					{
+						case 0:
+							$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+						break;
+						case 1:
+							$usuario_entidad = new usuario_entidad();
+							// Cargamos al responsable de la unidad para echarle el muerto 
+							// Luego el podrá echárselo a otro
+							if ($usuario_entidad->load("id_entidad = $subunidad AND id_rol = 1"))
+							{
+								$indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;
+							}
+							else
+							{
+								$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+							}
+						break;
+						case 2:
+							$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+						break;
+						default:
+							$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+					}
+					/*
+					if ($tipo_seleccion_responsable == 0)
 					{
 						$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
 					}
@@ -81,6 +107,7 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
 							$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
 						}
 					}
+					*/
           $indicador_subunidad->save();
         }
       }

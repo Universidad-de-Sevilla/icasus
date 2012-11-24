@@ -28,6 +28,8 @@ if (isset($_REQUEST['id_indicador']))
 	$entidad = new entidad();
  	$entidad->load("id = $indicador->id_entidad");
 	$smarty->assign('entidad', $entidad);
+	$subunidades = $entidad->Find("id_madre = $entidad->id");
+  $smarty->assign('subunidades', $subunidades);
 
   //Subunidades asignadas a la medicion de este indicador
   $indicador_subunidad = new indicador_subunidad();

@@ -169,8 +169,9 @@
 					<fieldset class="label_side">
             <label>Tipo de medición</label>
             <div>
-              <p><input type="radio" name="tipo_seleccion_responsable" value="0"  class="required"> Centralizada por la unidad superior. </p>
-              <p><input type="radio" name="tipo_seleccion_responsable" value="1"  > Delegada a los responsables de las subunidades</p>
+              <p><input type="radio" name="tipo_seleccion_responsable" value="0"  class="required"> Centralizada por la unidad superior. Cumplimenta el responsable de medición.</p>
+              <p><input type="radio" name="tipo_seleccion_responsable" value="1"  > Delegada a los responsables de las subunidades. Cumplimentan los responsables de centro.</p>
+              <p><input type="radio" name="tipo_seleccion_responsable" value="2"  > Delegada a los responsables de las subunidades pero cumplimenta el responsable de medición.</p>
               <div class="required_tag tooltip hover left" title="Campo requerido"></div>
             </div>
           </fieldset>
