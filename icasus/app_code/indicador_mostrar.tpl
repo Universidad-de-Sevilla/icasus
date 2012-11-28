@@ -152,19 +152,19 @@
       <fieldset class="label_side">
       <label>Subunidades afectadas</label>
       <div>
-      <input type="checkbox" class="subunidades" data-entidad="{$entidad->id}" data-indicador="{$indicador->id}" 
+      <input type="checkbox" class="subunidad_vincular" data-entidad="{$entidad->id}" data-indicador="{$indicador->id}" 
 					{foreach $indicador_subunidades as $indicador_subunidad}
 						{if $indicador_subunidad->id_entidad == $entidad->id} checked{/if}
 					{/foreach}
-			/> {$entidad->nombre}<hr />
+			/><a href="javascript:void(0)" class="subunidad_editar dialog_button" data-dialog="editar_subunidad" data-entidad="{$entidad->id}" data-indicador="{$indicador->id}">{$entidad->nombre}</a><hr />
 			<div style="float:left;width:50%">
 			{assign var="mitad" value=($subunidades|@count)/2}
       {foreach $subunidades as $subunidad name="subunidades"}
-				<input type="checkbox" class="subunidades" data-entidad="{$subunidad->id}" data-indicador="{$indicador->id}" 
+				<input type="checkbox" class="subunidad_vincular" data-entidad="{$subunidad->id}" data-indicador="{$indicador->id}" 
 					{foreach $indicador_subunidades as $indicador_subunidad}
 						{if $indicador_subunidad->id_entidad == $subunidad->id} checked{/if}
 					{/foreach}
-				 />{$subunidad->nombre}<br />
+				 /><a href="#" class="subunidad_editar dialog_button" data-dialog="editar_subunidad" data-entidad="{$subunidad->id}" data-indicador="{$indicador->id}"> {$subunidad->nombre}</a><br />
 				 {if $smarty.foreach.subunidades.iteration == $mitad}</div><div style="float:left:width:50%">{/if}
       {/foreach}
 			</div>
@@ -185,13 +185,32 @@
     {else}
       <p class="aviso">Todavía no se han definido mediciones para este indicador.</p>
     {/if}
+<div class=""><!-- Modal oculto -->
+	<div id="editar_subunidad" class="dialog_content narrow " title="Editar subunidad">
+		<div class="block">
+			<div id="contenido_modal"></div>
+		</div>
+	</div>
+</div><!-- fin modal -->
 {literal}
 <script>
 $(function(){
-	$('.subunidades').on('click',function(){
+	$('.subunidad_editar').on('click',function(event){
+		event.preventDefault();
 		var entidad = $(this).data('entidad');
 		var indicador = $(this).data('indicador');
-		$.post("index.php?page=indicador_mostrar_ajax",{id_indicador:indicador,id_entidad:entidad});
+		$.ajax({
+			url:"index.php?page=indicador_mostrar_ajax&ajax=true&modulo=editar&id_indicador="+indicador+"&id_entidad="+entidad,
+			success: function(data)
+			{
+				$("#contenido_modal").html(data);			
+			}
+		});
+	});
+	$('.subunidad_vincular').on('click',function(){
+		var entidad = $(this).data('entidad');
+		var indicador = $(this).data('indicador');
+		$.post("index.php?page=indicador_mostrar_ajax",{ajax:'true',modulo:'vincular',id_indicador:indicador,id_entidad:entidad});
 	});
 });
 </script>
