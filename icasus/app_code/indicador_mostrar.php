@@ -13,7 +13,7 @@ if (isset($_REQUEST['id_indicador']))
 {
 	$id_indicador = sanitize($_REQUEST['id_indicador'],16); 
 	$indicador = new indicador();
- 	if ($indicador->load_joined("id = $id_indicador"))
+	if ($indicador->load_joined("id = $id_indicador"))
   {
     $smarty->assign('indicador', $indicador);
   }
@@ -22,14 +22,12 @@ if (isset($_REQUEST['id_indicador']))
     $error = "No se puede mostrar el indicador, el identificador no existe en la base de datos.";
     header("location:index.php?error=$error");
   }
- 	$indicador->load_joined("id = $id_indicador");
+	$indicador->load_joined("id = $id_indicador");
 	$smarty->assign('indicador', $indicador);
   
 	$entidad = new entidad();
- 	$entidad->load("id = $indicador->id_entidad");
+	$entidad->load("id = $indicador->id_entidad");
 	$smarty->assign('entidad', $entidad);
-	$subunidades = $entidad->Find("id_madre = $entidad->id");
-  $smarty->assign('subunidades', $subunidades);
 
   //Subunidades asignadas a la medicion de este indicador
   $indicador_subunidad = new indicador_subunidad();
@@ -50,3 +48,4 @@ else
 	header("location:index.php?error=$error");
 }
 ?>
+
