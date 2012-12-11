@@ -6,8 +6,17 @@
 // Graba los datos de un indicador nuevo o existente
 //---------------------------------------------------------------------------------------------------
 global $usuario;
-
-if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUEST["id_responsable"])  AND isset($_REQUEST["id_responsable_medicion"]) AND isset($_REQUEST["formulacion"]) AND isset($_REQUEST["id_proceso"]) AND isset($_REQUEST["id_entidad"]) AND isset($_REQUEST["tipo_seleccion_responsable"])) 
+//print_r($_REQUEST);
+if (
+	!empty($_REQUEST["codigo"]) 
+	AND !empty($_REQUEST["nombre"]) 
+	AND !empty($_REQUEST["id_responsable"])  
+	AND !empty($_REQUEST["id_responsable_medicion"]) 
+	AND !empty($_REQUEST["formulacion"]) 
+	AND !empty($_REQUEST["id_proceso"]) 
+	AND !empty($_REQUEST["id_entidad"]) 
+	AND isset($_REQUEST["tipo_seleccion_responsable"])
+) 
 {
   $indicador = new indicador();
   if (isset($_REQUEST["id_indicador"]))
@@ -51,7 +60,6 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
     // Si el indicador es nuevo grabamos subunidades
     if (! isset($id_indicador))
     {
-    ;
       $subunidades = isset($_REQUEST["subunidades"])?$_REQUEST["subunidades"]:array();
       if (count($subunidades) > 0)
       {
@@ -88,26 +96,6 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
 						default:
 							$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
 					}
-					/*
-					if ($tipo_seleccion_responsable == 0)
-					{
-						$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
-					}
-					else
-					{
-						$usuario_entidad = new usuario_entidad();
-            // Cargamos al responsable de la unidad para echarle el muerto 
-            // Luego el podrá echárselo a otro
-						if ($usuario_entidad->load("id_entidad = $subunidad AND id_rol = 1"))
-						{
-							$indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;
-						}
-						else
-						{
-							$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
-						}
-					}
-					*/
           $indicador_subunidad->save();
         }
       }
@@ -144,8 +132,47 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
           $criterio_efqm_indicador->save();
         }
       }
+			//lo mismo pero para las subunidades afectadas
+			$indicador_subunidad = new indicador_subunidad();
+			while ($indicador_subunidad->load("id_indicador = $id_indicador"))
+      {
+        $indicador_subunidad->delete();
+      }
+			if (isset($_REQUEST["subunidades"]))
+      {
+        foreach ($_REQUEST["subunidades"] as $id_subunidad)
+        {
+          $indicador_subunidad = new indicador_subunidad();
+          $indicador_subunidad->id_indicador = $id_indicador;
+          $indicador_subunidad->id_entidad = $id_subunidad;
+          switch ($indicador->desagregado)
+					{
+						case 0:
+							$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+						break;
+						case 1:
+							$usuario_entidad = new usuario_entidad();
+							// Cargamos al responsable de la unidad para echarle el muerto 
+							// Luego el podrá echárselo a otro
+							if ($usuario_entidad->load("id_entidad = $id_subunidad AND id_rol = 1"))
+							{
+								$indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;
+							}
+							else
+							{
+								$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+							}
+						break;
+						case 2:
+							$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+						break;
+						default:
+							$indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+					}
+          $indicador_subunidad->save();
+        }
+      }
     }
-
     header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&aviso=$aviso");
   }
   else
