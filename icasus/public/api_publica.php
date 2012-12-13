@@ -53,7 +53,7 @@ function get_valores_indicador($id)
     $operador = 'SUM';
   }
 
-  $query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, valores.valor, valores.observaciones 
+  $query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, valores.observaciones 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL 

@@ -84,7 +84,6 @@
 		<script src="theme/danpin/scripts/uistars/jquery.ui.stars.min.js"></script>
 		<script src="theme/danpin/scripts/tiptip/jquery.tipTip.minified.js"></script>
 		<script src="theme/danpin/scripts/validation/jquery.validate.min.js" type="text/javascript"></script>		
-		<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
 
 		<!-- Configuration Script -->
 		<script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_ui.js"></script>
@@ -119,8 +118,6 @@
       <div class="flat_area grid_16">
         
       <div>
-        <h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS 
-          DE LA UNIVERSIDAD DE SEVILLA</h1>
         <h2>{$_nombre_pagina}</h2>
       </div>
 

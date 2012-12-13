@@ -102,7 +102,6 @@ class indicador extends ADOdb_Active_Record
       foreach ($indicadores as& $indicador)
       {
         $resultset = $adodb->Execute($query . $indicador->id);
-        echo $resultset->fields[0];
         $indicador->valores_pendientes = $resultset->fields[0];
       }
       return $indicadores;
