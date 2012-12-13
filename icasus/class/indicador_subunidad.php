@@ -13,6 +13,8 @@ class indicador_subunidad extends ADOdb_Active_Record
   public $indicador;
   public $usuario;
   public $entidad;
+  //DEPRECATED public $valores_pendientes; 
+
 	//devuelve los indicadores en los que mide la unidad y no son propios de ella.
   public function indicador_segregado($id_unidad,$id_proceso)
 	{
@@ -49,21 +51,27 @@ class indicador_subunidad extends ADOdb_Active_Record
 		if ($indicadores_subunidades)
 		{
 			foreach ($indicadores_subunidades as& $indicador_subunidad)
-				{
-					$indicador_subunidad->entidad = new entidad();
-					$indicador_subunidad->entidad->load_joined("id = $indicador_subunidad->id_entidad");
+      {
+        $indicador_subunidad->entidad = new entidad();
+        $indicador_subunidad->entidad->load_joined("id = $indicador_subunidad->id_entidad");
 
-					$indicador_subunidad->usuario = new usuario();
-					$indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
-				}
-				return $indicadores_subunidades;
+        $indicador_subunidad->usuario = new usuario();
+        $indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
+      }
+      // Define la función personalizada para ordenar
+      $reordenar = function ($a,$b) {
+        return $a->entidad->etiqueta > $b->entidad->etiqueta;
+      };
+      usort($indicadores_subunidades, $reordenar);
+			return $indicadores_subunidades;
 		}
 		else
 		{
 			return false;
 		}
   }
- public function Find_entidades($criterio)
+
+  public function Find_entidades($criterio)
   {
     if ($indicadores_subunidades = $this->Find($criterio))
     {
@@ -71,10 +79,12 @@ class indicador_subunidad extends ADOdb_Active_Record
       {
         $indicador_subunidad->entidad = new entidad();
         $indicador_subunidad->entidad->load("id = $indicador_subunidad->id_entidad");
-				//creo que sobran estas 2 líneas siguientes
-        //$indicador_subunidad->usuario = new usuario();
-        //$indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
       }
+      // Define la función personalizada para ordenar
+      $reordenar = function ($a,$b) {
+        return $a->entidad->etiqueta > $b->entidad->etiqueta;
+      };
+      usort($indicadores_subunidades, $reordenar);
       return $indicadores_subunidades;
     }
     else
@@ -83,15 +93,27 @@ class indicador_subunidad extends ADOdb_Active_Record
     }
   }
 
-  // No recuerdo ni entiendo epara porque se llama "con_valores" (Juanan)
-  public function Find_indicadores_con_valores($criterio)
+  // Este método se ha pasado a la clase indicador
+  public function Find_indicadores_con_valores_DEPRECATED($criterio)
   {
     if ($indicadores_subunidades = $this->Find($criterio))
     {
+      $query = "SELECT count(*) FROM indicadores_subunidades insu 
+            INNER JOIN mediciones me ON insu.id_indicador = me.id_indicador 
+            INNER JOIN valores va ON me.id = va.id_medicion 
+            WHERE insu.id_entidad = va.id_entidad 
+            AND insu.id_usuario  = 1 
+            AND va.valor_parcial is NULL 
+            AND insu.id_indicador = ";
+
+      $adodb = $this->DB();
+
       foreach ($indicadores_subunidades as& $indicador_subunidad)
       {
         $indicador_subunidad->indicador = new indicador();
         $indicador_subunidad->indicador->load("id = $indicador_subunidad->id_indicador");
+        $resultset = $adodb->Execute($query . $indicador_subunidad->id_indicador);
+        $indicador_subunidad->valores_pendientes = $resultset->fields[0];
       }
       return $indicadores_subunidades;
     }

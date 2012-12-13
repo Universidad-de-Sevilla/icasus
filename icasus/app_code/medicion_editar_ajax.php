@@ -14,7 +14,7 @@ $medicion = new medicion();
 $indicador = new indicador();
 $valor = new valor();
 $valor_referencia_medicion = new valor_referencia_medicion();
-$indisub = new indicador_subunidad();
+$indicador_subunidad = new indicador_subunidad();
 
 //valores que se definen como filas ====================================================================
 if ($modulo == 'anularvalor')
@@ -52,32 +52,42 @@ if ($modulo == 'editarfila')
 	$id_medicion = sanitize($_REQUEST["id_medicion"], INT);
 	$id_valor = sanitize($_REQUEST["id_valor"], INT);
 	$smarty->assign("valor_edit",$id_valor);
+	$smarty->assign("usuario", $usuario);
+  
 	$medicion->load("id = $id_medicion");
 	$smarty->assign("medicion",$medicion);
+  
 	$indicador->load("id = $medicion->id_indicador");
 	$smarty->assign("indicador",$indicador);
-  $calculo = $indicador->calculo;
+
 	$valores = $valor->Find_joined_jjmc($id_medicion,$usuario->id);
 	$smarty->assign("valores",$valores);
-	$indisubs = $indisub->Find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
-	$smarty->assign("usuario", $usuario);
-	$smarty->assign('indisubs',$indisubs);
+
+	//$indicador_subunidades = $indicador_subunidad->Find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
+	//$smarty->assign('indicador_subunidades',$indicador_subunidades);
+
 	$smarty->assign("modulo","editarfila");              
 	$plantilla = 'medicion_editar_ajax.tpl';
 }
 if ($modulo == 'cancelarfila')
 {
 	$id_medicion = sanitize($_REQUEST["id_medicion"], INT);
+
+	$smarty->assign("medicion_edit",$id_medicion);
+	$smarty->assign("usuario", $usuario);
+  
 	$medicion->load("id = $id_medicion");
 	$smarty->assign("medicion",$medicion);
+  
 	$indicador->load("id = $medicion->id_indicador");
 	$smarty->assign("indicador",$indicador);
+
 	$valores = $valor->Find_joined_jjmc($id_medicion,$usuario->id);
 	$smarty->assign("valores",$valores);
-	$indisubs = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
-	$smarty->assign('indisubs',$indisubs);
-	$smarty->assign("usuario", $usuario);
-	$smarty->assign("medicion_edit",$id_medicion);
+
+	//$indicador_subunidades = $indicador_subunidad->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
+	//$smarty->assign('indicador_subunidades',$indicador_subunidades);
+
 	$smarty->assign("modulo","cancelarfila");              
 	$plantilla = 'medicion_editar_ajax.tpl';
 }
