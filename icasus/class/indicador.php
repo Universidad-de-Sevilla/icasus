@@ -49,7 +49,6 @@ class indicador extends ADOdb_Active_Record
       $this->valores_referencia = $valores_referencia;
       
       return true;
-
 		}
 		else
 		{

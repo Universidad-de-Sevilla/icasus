@@ -159,6 +159,7 @@ a.actual {
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.stack.min.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.categories.js" type="text/javascript"></script>		
 <script>
   /* --- Comienza la magia --- */ 
   //Están son las series iniciales que pintamos en pantalla, se agregarán más cuando se llenen
@@ -263,36 +264,36 @@ a.actual {
         $.each(serie.data, function(i, dato) {
           if(dato.medicion == medicion_actual && dato.unidad != "Total")
           {
-            items.push([dato.valor, dato.id_unidad]);
-            if ($.inArray(dato.unidad,subunidades) < 0) { subunidades.push([dato.id_unidad, dato.unidad]); }
+            items.push([dato.valor, dato.unidad]);
+            //if (indexOfArray([dato.id_unidad, dato.unidad],subunidades) < 0) { subunidades.push([dato.id_unidad, dato.unidad]); }
+            if ($.inArray(dato.unidad, subunidades) < 0) { subunidades.push(dato.unidad); }
           }
         });
-        items.sort(sortByOrder);
-        function sortByOrder(item1,item2){
-          var x = item1[1];
-          var y = item2[1];
-          return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-        }
+        console.log(subunidades);
         datos_flot.push({label: nombre_indicador + '(' + medicion_actual + ')', color:s, data: items });
       });
-      subunidades.sort(sortByOrder);
-      function sortByOrder(subunidad1,subunidad2){
-        var x = subunidad1[1];
-        var y = subunidad2[1];
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-      }
-      console.log(subunidades);
+      // Cambia los id de las subunidades por una secuencia ordenada 1,2,3...
+      //for (i = 0; i < subunidades.length; i ++)
+      //{
+      //  subunidades[i][0] = i;
+      //}
       var opciones = {
         series: { bars: { order:1, show: true, barWidth: 0.1, fill: 0.7, align:"center", horizontal: true }},
         legend: { position:"ne" },
-        yaxis: { ticks: subunidades },
+        //yaxis: { ticks: subunidades },
+        yaxis: { mode:"categories", categories: subunidades },
         colors: ['maroon', 'darkviolet', 'orange', 'deepblue', 'pink', 'yellow', 'brown']
       };
 
-      alto = opciones.yaxis.ticks.length * 20 + 100 + "px";
+      alto = subunidades.length * 25 + 20 + "px";
       $("#grafica").css("height", alto);
       $.plot($("#grafica"), datos_flot, opciones);
     }
+  }
+
+  function mostrarTablaMedicion()
+  {
+  
   }
 
   function solo_una_mostrarMedicion(e)
@@ -411,6 +412,20 @@ a.actual {
     $.plot($("#grafica"), datos, opciones);
   }
   
+  // devuelve la posición si un array contiene a otro o -1 si no lo contiene 
+  function indexOfArray(val, array)
+  {
+    var
+      hash = {},
+      indexes = {},
+      i, j;
+    for(i = 0; i < array.length; i++)
+    {
+      hash[array[i]] = i;
+    }
+    return (hash.hasOwnProperty(val)) ? hash[val] : -1;
+  };
+
   /*
     $.getJSON('api_publica.php?metodo=get_mediciones_indicador&id=' + id_indicador, function(data) {
       var items = [];
