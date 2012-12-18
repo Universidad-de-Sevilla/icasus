@@ -192,15 +192,18 @@
 							{/foreach}
 						/> {$entidad->nombre}<hr />
 					</div>
-					<div id="div_subunidades" style="display:">
-						{foreach $subunidades as $subunidad}
+					<div id="div_subunidades" class="column clearfix" style="display:{if $indicador->desagregado == 0}none{/if}">
+					<div class="col_50">
+						{foreach name="subunidad" from=$subunidades item="subunidad"}
+							{if $smarty.foreach.subunidad.iteration == $subunidades|@count/2+1}</div><div class="col_50">{/if}
 							<input type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad"
-							{foreach $indicador_subunidades as $indicador_subunidad}
-								{if $indicador_subunidad->id_entidad == $subunidad->id} checked{/if}
-							{/foreach}
+								{foreach $indicador_subunidades as $indicador_subunidad}
+									{if $indicador_subunidad->id_entidad == $subunidad->id} checked{/if}
+								{/foreach}
 							/> {$subunidad->nombre}<br />
 						{/foreach}
 					</div>
+					</div><!-- div_subunidades -->
 				</div>
 			</fieldset>
 			<div class="button_bar clearfix" id="footer_tabs">
@@ -221,14 +224,14 @@ $(document).ready(function(){
 		{
 			$('#div_unidad').css('display','inline');
 			$('#div_subunidades').css('display','inline');
-			//$(".subunidad").attr("checked","checked");
+			$(".subunidad").attr("checked","checked");
 		}
 		else if(valor == 0)
 		{
 			$('#div_unidad').css('display','inline');
 			$('#div_subunidades').css('display','none');
-			//$(".subunidad").removeAttr("checked");
-			//$(".unidad").attr("checked","checked");
+			$(".subunidad").removeAttr("checked");
+			$(".unidad").attr("checked","checked");
 		}	
 	});
 	//validar formulario

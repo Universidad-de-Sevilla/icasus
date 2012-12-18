@@ -6,7 +6,6 @@
 // Graba los datos de un indicador nuevo o existente
 //---------------------------------------------------------------------------------------------------
 global $usuario;
-//print_r($_REQUEST);
 if (
 	!empty($_REQUEST["codigo"]) 
 	AND !empty($_REQUEST["nombre"]) 

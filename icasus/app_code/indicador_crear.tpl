@@ -181,10 +181,13 @@
 					<div id="div_unidad" style="display:none">
 						<input type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad" /> {$entidad->nombre}<hr />
 					</div>
-					<div id="div_subunidades" style="display:none">
-						{foreach $subunidades as $subunidad}
+					<div id="div_subunidades" class="column clearfix" style="display:none">
+					<div class="col_50">
+						{foreach name="subunidad" from=$subunidades item="subunidad"}
+							{if $smarty.foreach.subunidad.iteration == $subunidades|@count/2+1}</div><div class="col_50">{/if}
 							<input type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad"/> {$subunidad->nombre}<br />
 						{/foreach}
+					</div>
 					</div>
 				</div>
 			</fieldset>

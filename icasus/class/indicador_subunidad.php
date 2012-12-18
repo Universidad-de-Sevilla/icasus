@@ -100,5 +100,56 @@ class indicador_subunidad extends ADOdb_Active_Record
       return false;
     }
   }
+	//actuliza los registros de la tabla indicador_subunidad de manera asincrona
+	//desde el controlador medicion_crear
+	public function actualizar_subunidades($id_indicador,$id_entidad)
+	{
+		$indicator = new indicador();
+		$indicator->load("id = $id_indicador");
+
+		//si existe el registro lo borra
+		if ($this->load("id_indicador = $id_indicador AND id_entidad = $id_entidad"))
+		{
+			$this->delete();
+		}
+		else//si no existe lo crea
+		{
+			$this->id_indicador = $id_indicador;
+			$this->id_entidad = $id_entidad;
+
+			switch ($indicator->desagregado)
+			{
+				case 0:
+					$this->id_usuario = $indicator->id_responsable_medicion;
+				break;
+				case 1:
+					$usuario_entidad = new usuario_entidad();
+					// Cargamos al responsable de la unidad para echarle el muerto 
+					// Luego el podrá echárselo a otro
+					if ($usuario_entidad->load("id_entidad = $id_entidad AND id_rol = 1"))
+					{
+						$this->id_usuario = $usuario_entidad->id_usuario;
+					}
+					else
+					{
+						$this->id_usuario = $indicator->id_responsable_medicion;
+					}
+				break;
+				case 2:
+					$this->id_usuario = $indicator->id_responsable_medicion;
+				break;
+				default:
+					$this->id_usuario = $indicator->id_responsable_medicion;
+			}
+			if ($this->save())
+			{
+				//escribir log de exito;
+			}
+			else
+			{
+				//escribir log de error
+			}
+		}
+	}
 }
 ?>

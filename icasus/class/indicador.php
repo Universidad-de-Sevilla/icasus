@@ -136,5 +136,17 @@ class indicador extends ADOdb_Active_Record
 		//print_r($indicadores);
 		return $indicadores;
 	}
+	//permiso del usuario para asignar una subunidad a un indicador desde medicion_crear_ajax.php
+	public function permiso_crear_medicion($id_usuario,$id_indicador)
+	{
+		if ($this->load("id = $id_indicador AND (id_responsable = $id_usuario OR id_responsable_medicion = $id_usuario)"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>
