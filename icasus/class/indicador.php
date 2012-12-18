@@ -18,6 +18,7 @@ class indicador extends ADOdb_Active_Record
   public $valores_referencia;
   public $visibilidad;
   public $criterios_efqm;
+  public $valores_pendientes;
 
 	public function load_joined($criterio)
 	{
@@ -82,6 +83,34 @@ class indicador extends ADOdb_Active_Record
 			return false;
 		}
 	}	
+
+
+  public function Find_con_pendientes($condicion)
+  {
+    if ($indicadores= $this->Find($condicion))
+    {
+      $query = "SELECT count(*) FROM indicadores_subunidades insu 
+            INNER JOIN mediciones me ON insu.id_indicador = me.id_indicador 
+            INNER JOIN valores va ON me.id = va.id_medicion 
+            WHERE insu.id_entidad = va.id_entidad 
+            AND insu.id_usuario  = 1 
+            AND va.valor_parcial is NULL 
+            AND insu.id_indicador = ";
+
+      $adodb = $this->DB();
+
+      foreach ($indicadores as& $indicador)
+      {
+        $resultset = $adodb->Execute($query . $indicador->id);
+        $indicador->valores_pendientes = $resultset->fields[0];
+      }
+      return $indicadores;
+    }
+    else
+    {
+      return false;
+    }
+  }
 
 	// Obtiene los valores introducidos en este indicador con la fecha de recogida como campo clave
 	public function obtener_valores()

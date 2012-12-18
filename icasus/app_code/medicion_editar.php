@@ -32,8 +32,8 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
   $smarty->assign("valores_referencia_mediciones", $valores_referencia_mediciones);
 
 	$indisub = new indicador_subunidad();
-	$indisubs = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
-	$smarty->assign('indisubs',$indisubs);
+	$indicador_subunidades = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
+	$smarty->assign('indicador_subunidades',$indicador_subunidades);
 
   $entidad = new entidad();
   $entidad->load("id = $indicador->id_entidad");

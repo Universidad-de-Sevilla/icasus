@@ -23,7 +23,7 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
   $indicador = new indicador();
   $indicador->load("id = $id_indicador");
   $db = $indicador->DB();
-  $query = "SELECT entidades.etiqueta as etiqueta, valor FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador AND mediciones.etiqueta = '$medicion->etiqueta'";
+  $query = "SELECT entidades.etiqueta as etiqueta, valor FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador AND mediciones.etiqueta = '$medicion->etiqueta' ORDER BY entidades.etiqueta";
   $resultado = $db->getAll($query);
 
   $query_media = "SELECT ROUND(AVG(valor),2) AS media FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador AND mediciones.etiqueta = '$medicion->etiqueta'";

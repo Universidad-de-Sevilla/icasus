@@ -52,14 +52,6 @@ class valor extends ADOdb_Active_Record
 			  $valor->usuario = new usuario();
 				$valor->usuario->load("id = $valor->id_usuario");
 
-        /*
-        $medicion = new medicion();
-        $medicion->load("id = $id_medicion");
-
-        $indicador = new indicador();
-        $indicador->load("id = $medicion->id_indicador");
-        */
-				
 				$db = $this->DB();
 				$sql = "SELECT * FROM valores v 
 								LEFT JOIN mediciones m ON v.id_medicion = m.id 
@@ -76,6 +68,11 @@ class valor extends ADOdb_Active_Record
 					$valor->autorizado = false;
 				}
 			}
+      // Define la función personalizada para ordenar
+      $customsort = function ($a,$b) {
+        return $a->entidad->etiqueta > $b->entidad->etiqueta;
+      };
+      usort($valores, $customsort);
 			return $valores;
 		}
 		else
@@ -96,6 +93,11 @@ class valor extends ADOdb_Active_Record
 			  $valor->usuario = new usuario();
 				$valor->usuario->load("id = $valor->id_usuario");
 			}
+      // Define la función personalizada para ordenar
+      $customsort = function ($a,$b) {
+        return $a->entidad->etiqueta > $b->entidad->etiqueta;
+      };
+      usort($valores, $customsort);
 			return $valores;
 		}
 		else
