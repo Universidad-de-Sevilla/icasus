@@ -1,193 +1,280 @@
-<h3>
-  <a href='javascript:window.history.back();'><img src='/icons/ff16/arrow_undo.png' /> Cancelar</a> &nbsp; &nbsp; &nbsp;
-  <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img 
-    src='/icons/ff16/chart_curve_delete.png' /> Borrar indicador</a>
-  <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-    src='/icons/ff16/user_medicion.png' /> Responsables medición</a>
-</h3>
-<div class="box grid_16">
-	<div class="toggle_container">
-		<div class="block">
-      <form method="post" action="index.php?page=indicador_grabar" id="formindicador" name="formindicador" class="datos">
-        <input type='hidden' name='id_indicador' value='{$indicador->id}' />
-        <input type='hidden' name='id_entidad' value='{$indicador->id_entidad}' />
-        <input type='hidden' name='tipo_seleccion_responsable' value='{$indicador->tipo_seleccion_responsable}' />
-          <fieldset class="label_side">
-            <label>Proceso</label>
-            <div>
-              <select name="id_proceso" id="id_proceso" class="required select_box">
-                {foreach $procesos as $proceso}
-                  <option value='{$proceso->id}' {if $indicador->id_proceso == $proceso->id}selected{/if}>
-                    {$proceso->nombre}
-                  </option>
-                {/foreach}
-              </select>
-					    <div class="required_tag tooltip hover left" title="Campo requerido"></div>
-            </div>
-          </fieldset>
-					<fieldset class="label_side">
+<form method="post" action="index.php?page=indicador_grabar&id_indicador={$indicador->id}" id="formindicador" name="formindicador">
+<input type="hidden" name="id_entidad" value="{$entidad->id}" />
+<div style="opacity: 1;" class="box tabs" id="tab_editar_indicador">
+	<ul class="tab_header">
+		<li ><a  href="#indicador" >Indicador</a></li>
+		<li ><a  href="#otros" >Otros datos</a></li>
+		<li ><a  href="#subunidades" >Subunidades afectadas</a></li>
+	</ul>
+		<div style="opacity: 1;" id="indicador" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
+			<p>&nbsp;</p>
+			<div class="columns clearfix">
+				<div class="col_40">
+					<fieldset class="label">
+					<label>Código indicador</label>
+				<div><input  type="text" name="codigo" value="{$indicador->codigo}" /><div class="required_tag tooltip hover left" title="Campo requerido"></div> </div>
+					</fieldset>
+				</div>
+				<div class="col_60">
+					<fieldset class="label">
+					<label>Proceso</label>
+					<div>
+						<select name="id_proceso" id="id_proceso" class="required2 select_box">
+						<option value="">Seleccionar uno ...</option>
+						{foreach $procesos as $proceso}
+						<option value="{$proceso->id}" {if $indicador->id_proceso == $proceso->id}selected{/if}> {$proceso->nombre} </option>
+						{/foreach}
+						</select>
+					<div class="required_tag tooltip hover left" title="Campo requerido"></div>
+					</div>
+					</fieldset>
+				</div>
+			</div>
+			<fieldset class="label_side">
+				<label>Nombre indicador</label>
+				<div><textarea name="nombre" />{$indicador->nombre}</textarea><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
+			</fieldset>
+			<fieldset class="label_side">
+				<label>Formulaci&oacute;n</label>
+				<div><textarea   name="formulacion">{$indicador->formulacion}</textarea><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
+			</fieldset>
+			          <fieldset class="label_side">
             <label>Responsable de seguimiento</label>
             <div>
-              <select name="id_responsable" class="required select_box">
+              <select name="id_responsable" class="required2 select_box">
+                <option value="">Seleccionar uno ...</option>
                 {foreach $usuarios_entidades as $usuario_entidad}
-                  <option value='{$usuario_entidad->usuario->id}' {if $indicador->id_responsable == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
+                  <option value="{$usuario_entidad->usuario->id}"{if $indicador->id_responsable == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                   </option>
                 {/foreach}              
-              </select>
-					    <div class="required_tag tooltip hover left" title="Campo requerido"></div>
+              </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
             </div>
           </fieldset>
-
           <fieldset class="label_side">
-            <label>Responsable de medici&oacute;n</label>
+            <label>Responsable de medición</label>
             <div>
-              <select name="id_responsable_medicion" class="required select_box">
+              <select name="id_responsable_medicion" class="required2 select_box">
+                <option value="">Seleccionar uno ...</option>
                 {foreach $usuarios_entidades as $usuario_entidad}
-                  <option value='{$usuario_entidad->usuario->id}' {if $indicador->id_responsable_medicion == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
+                  <option value="{$usuario_entidad->usuario->id}"{if $indicador->id_responsable_medicion == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                   </option>
                 {/foreach}              
-              </select>
-					    <div class="required_tag tooltip hover left" title="Campo requerido"></div>
+              </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
             </div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Código indicador</label>
-            <div>
-              <input type='text' name='codigo' id='codigo'value='{$indicador->codigo}' />
-					    <div class="required_tag tooltip hover left" title="Campo requerido"></div>
-            </div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Nombre indicador</label>
-            <div>
-              <input type='text' name='nombre' class='text' id='nombre'value='{$indicador->nombre}' />
-					    <div class="required_tag tooltip hover left" title="Campo requerido"></div>
-            </div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Descripci&oacute;n</label>
-            <div>
-              <textarea rows="3" class='inp' name='descripcion' id='descripcion'>{$indicador->descripcion}</textarea>
-            </div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Formulaci&oacute;n</label>
-            <div> 
-              <textarea rows="3" class='inp' name='formulacion' id='formulacion'>{$indicador->formulacion}</textarea>
-					    <div class="required_tag tooltip hover left" title="Campo requerido"></div>
-            </div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Cálculo <span style="font-size:small; color:grey;">(sólo para indicadores calculados)</span></label>
-            <div> 
-              <textarea rows="3" class='inp' name='calculo' id='calculo'>{$indicador->calculo}</textarea>
-            </div>
-          </fieldset>
-          <fieldset class="label_side">
+          </fieldset> 
+			<div class="button_bar clearfix" id="footer_tabs">
+					<button class="btnNext dark send_right img_icon has_text" type="button"><span>Siguiente</span></button>
+			</div>
+            	</div><!-- fin tab 1 --> 
+		<div style="opacity: 1;" id="otros" class="block ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+			<p>&nbsp;</p>
+			<fieldset class="label_side">
+				<label>Descripci&oacute;n</label>
+				<div><textarea  class="inp" name="descripcion">{$indicador->descripcion}</textarea></div>
+			</fieldset>
+					<fieldset class="label_side">
+									<label>Cálculo</label>
+									<div><textarea  class="" name="calculo" placeholder="Sólo si es un indicador calculado">{$indicador->calculo}</textarea></div>
+							</fieldset>
+					<fieldset class="label_side">
             <label>Fuente de informaci&oacute;n</label>
-            <div><input type='text' name='fuente_informacion' id='fuente_informacion'value='{$indicador->fuente_informacion}' /></div>	
+            <div><input  type="text" name="fuente_informacion" value="{$indicador->fuente_informacion}"/></div>	
           </fieldset>
           <fieldset class="label_side">
             <label>Fuente de datos</label>
-            <div><input type='text' name='fuente_datos' id='fuente_datos'value='{$indicador->fuente_datos}' /></div>	
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Unidad generadora</label>
-            <div><input type='text' name='unidad_generadora' id='unidad_generadora'value='{$indicador->unidad_generadora}' /></div>
+            <div><input  type="text" name="fuente_datos" value="{$indicador->fuente_datos}"/></div>	
           </fieldset>
           <fieldset class="label_side">
             <label>Metodo de comprobaci&oacute;n / Evidencia</label>
-            <div><input type='text' name='evidencia' id='evidencia'value='{$indicador->evidencia}' /></div>		
+            <div><input  type="text" name="evidencia" value="{$indicador->evidencia}" /></div>		
           </fieldset>
           <fieldset class="label_side">
             <label>Hist&oacute;rico</label>
-            <div><input type='text' name='historicos' id='historicos'value='{$indicador->historicos}' /></div>
+            <div><input  type="text" name="historicos"value="{$indicador->historicos}" /></div>
           </fieldset>
-
           <fieldset class="label_side">
             <label>Interpretaci&oacute;n</label>
-            <div><input type='text' name='interpretacion' id='interpretacion'value='{$indicador->interpretacion}' /></div>
+            <div><input  type="text" name="interpretacion"value="{$indicador->interpretacion}" /></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Indicadores relacionados</label>
-            <div><input type='text' name='indicadores_relacionados' id='indicadores_relacionados'value='{$indicador->indicadores_relacionados}' /></div>
+            <label>Indidores relacionados</label>
+            <div><input  type="text" name="indicadores_relacionados"value="{$indicador->indicadores_relacionados}" /></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Criterios EFQM</label>
-            <div>
-              <select name="criterios_efqm[]" id="criterios_efqm" class="required select_box">
-                <option value=''></option>
+            <label>EFQM</label>
+            <div class="columns clearfix">
+            <div class="col_50">
+              <select name="criterios_efqm[]" id="criterios_efqm" class="select_box" >
+                <option value="">Elegir uno si procede</option>
                 {foreach $criterios_efqm as $criterio_efqm}
-                  <option value='{$criterio_efqm->id}' 
-                  {if $indicador->criterios_efqm}
+                  <option value="{$criterio_efqm->id}"
+									{if $indicador->criterios_efqm}
                       {if $indicador->criterios_efqm[0]->criterio_efqm->id == $criterio_efqm->id}selected{/if}
                   {/if}
-                  >{$criterio_efqm->codigo} - {$criterio_efqm->nombre}
+									>{$criterio_efqm->codigo} - {$criterio_efqm->nombre|htmlentities}
                   </option>
                 {/foreach}
               </select>
-              <select name="criterios_efqm[]" id="criterios_efqm"  class="required select_box">
-                <option value=''></option>
-                {foreach $criterios_efqm as $criterio_efqm}
-                  <option value='{$criterio_efqm->id}' 
-                  {if $indicador->criterios_efqm}
+							</div>
+							<div class="col_50">
+              <select name="criterios_efqm[]" id="criterios_efqm" class="select_box">
+                <option value="">Elegir uno si procede</option>
+                 {foreach $criterios_efqm as $criterio_efqm}
+                  <option value="{$criterio_efqm->id}"
+									{if $indicador->criterios_efqm}
                       {if $indicador->criterios_efqm[1]->criterio_efqm->id == $criterio_efqm->id}selected{/if}
                   {/if}
-                  >{$criterio_efqm->codigo} - {$criterio_efqm->nombre}
+									>
+                    {$criterio_efqm->codigo} - {$criterio_efqm->nombre|htmlentities}
                   </option>
                 {/foreach}
               </select>
             </div>
-          <fieldset class="label_side">
-            <label>Periodicidad</label>
-              <div>
-                <select name="periodicidad" class="required select_box">
-                  <option value="Anual" {if {$indicador->periodicidad} == Anual}selected{/if}>Anual</option>
-                  <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if}>Mensual</option>
-                  <option value="Trimestral" {if $indicador->periodicidad == Trimestral}selected{/if}>Trimestral</option>
-                  <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if}>Cuatrimestral</option>
-                  <option value="Semestral" {if $indicador->periodicidad == Semestral}selected{/if}>Semestral</option>
-                </select>
-              </div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Visibilidad</label>	
-            <div>
-              <select name="id_visibilidad" id="id_visibilidad" class="select_box">
-                {foreach $visibilidades as $visibilidad}
-                  <option value='{$visibilidad->id}' {if $visibilidad->id == $indicador->visibilidad->id}selected{/if}>
-                    {$visibilidad->nombre|htmlentities}
-                  </option>
-                {/foreach}
-              </select>
-            </div>
-              
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Valores de referencia</label>
-            <div>&nbsp;</div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Nivel de desagregacion</label>
-            <div><input type='text' name='nivel_desagregacion' id='nivel_desagregacion'value='{$indicador->nivel_desagregacion}' /></div>
-          </fieldset>
-          <!--
-          <fieldset class="label_side">
-            <label>Subunidades afectadas</label>
-            <div>
-              <input type="checkbox" name="subunidades[]" checked /> {$entidad->nombre}<hr />
-              {foreach $subunidades as $subunidad}
-                <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" /> {$subunidad->nombre}<br />
-              {/foreach}
             </div>
           </fieldset>
-          -->
-          <fieldset class="label_side">
-            <div>
-              <input type="submit" class="btn" value="Grabar" name="indicador_submit" />
+          <div class="columns clearfix">
+            <div class="col_25">
+              <fieldset class="label">
+                <label>Periodicidad</label>
+                <div>
+                  <select name="periodicidad" id="periodicidad" class="select_box">
+                    <option value="Anual"{if {$indicador->periodicidad} == Anual}selected{/if} >Anual</option>
+                    <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if} >Mensual</option>
+                    <option value="Trimestral" {if $indicador->periodicidad == Trimestral}selected{/if} >Trimestral</option>
+                    <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if} >Cuatrimestral</option>
+                    <option value="Semestral"{if $indicador->periodicidad == Semestral}selected{/if} >Semestral</option>
+                  </select>
+                </div>
+              </fieldset>
             </div>
-          </fieldset>
-      </form>
-    </div>
-  </div>
-  </div>
+            <div class="col_25">
+              <fieldset class="label">
+                <label>Visibilidad</label>	
+                <div>
+                  <select name="id_visibilidad" id="id_visibilidad" class="required select_box">
+                    {foreach $visibilidades as $visibilidad}
+                      <option value="{$visibilidad->id}" {if $visibilidad->id == $indicador->visibilidad->id}selected{/if} >
+                        {$visibilidad->nombre}
+                      </option>
+                    {/foreach}
+                  </select>
+                </div>
+              </fieldset>
+            </div>
+            <div class="col_50">
+              <fieldset class="label">
+                <label>Unidad generadora</label>
+                <div><input  type="text" name="unidad_generadora" {$indicador->unidad_generadora} /></div>
+              </fieldset>
+            </div>
+          </div>
+			<div class="button_bar clearfix" id="footer_tabs">
+					<button class="btnNext dark send_right img_icon has_text" type="button"><span>Siguiente</span></button>
+					<button class="btnPrev dark send_right img_icon has_text" type="button"><span>Anterior</span></button>
+			</div>
+	 	</div><!-- fin tab otros datos -->
+		<div style="opacity: 1;" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
+			<p>&nbsp;</p>
+			<fieldset class="label_side">
+				<label>Tipo de medición</label>
+				<div>
+					<p><input type="radio" name="tipo_seleccion_responsable" value="0" class="medicion"{if $indicador->desagregado == 0}checked="checked"{/if}> Medición única en la unidad actual.</p>
+					<p><input type="radio" name="tipo_seleccion_responsable" value="1" class="medicion"{if $indicador->desagregado == 1}checked="checked"{/if}> Medición desagregada en las subunidades y cumplimentada por los responsables de las subunidades, o persona delegada.</p>
+					<p><input type="radio" name="tipo_seleccion_responsable" value="2" class="medicion"{if $indicador->desagregado == 2}checked="checked"{/if}> Medición desagregada en las subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.</p>
+				</div>
+			</fieldset>
+			<fieldset class="label_side">
+				<div>
+					<div id="div_unidad" style="display:">
+						<input type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad" 
+							{foreach $indicador_subunidades as $indicador_subunidad}
+								{if $indicador_subunidad->id_entidad == $entidad->id} checked{/if}
+							{/foreach}
+						/> {$entidad->nombre}<hr />
+					</div>
+					<div id="div_subunidades" class="column clearfix" style="display:{if $indicador->desagregado == 0}none{/if}">
+					<div class="col_50">
+						{foreach name="subunidad" from=$subunidades item="subunidad"}
+							{if $smarty.foreach.subunidad.iteration == $subunidades|@count/2+1}</div><div class="col_50">{/if}
+							<input type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad"
+								{foreach $indicador_subunidades as $indicador_subunidad}
+									{if $indicador_subunidad->id_entidad == $subunidad->id} checked{/if}
+								{/foreach}
+							/> {$subunidad->nombre}<br />
+						{/foreach}
+					</div>
+					</div><!-- div_subunidades -->
+				</div>
+			</fieldset>
+			<div class="button_bar clearfix" id="footer_tabs">
+					<button class="dark send_right img_icon has_text" type="submit"><span>Grabar</span></button>
+					<button class="btnPrev dark send_right img_icon has_text" type="button"><span>Anterior</span></button>
+			</div>
+	 	</div><!-- fin tab subunidades afectadas --> 
+</div>
+</form>
+{literal}
+<script>
+$(document).ready(function(){
+	$('#tab_editar_indicador').tabs({disabled: [1,2]});
+	//mostrar tipo de medición
+	$('.medicion').on('click',function(){
+		var valor = $(this).attr('value');
+		if (valor == 1 || valor == 2)
+		{
+			$('#div_unidad').css('display','inline');
+			$('#div_subunidades').css('display','inline');
+			$(".subunidad").attr("checked","checked");
+		}
+		else if(valor == 0)
+		{
+			$('#div_unidad').css('display','inline');
+			$('#div_subunidades').css('display','none');
+			$(".subunidad").removeAttr("checked");
+			$(".unidad").attr("checked","checked");
+		}	
+	});
+	//validar formulario
+	var validator = $('#formindicador').validate({
+		rules:{
+			codigo:{required:true},
+			id_proceso:{required:true},
+			nombre:{required:true},
+			formulacion:{required:true},
+			id_responsable:{required:true},
+			id_responsable_medicion:{required:true},
+			tipo_seleccion_responsable:{required:true}
+		},
+		ignore: ':hidden',
+		messages:{
+			codigo:'Debe insertar un código',
+			id_proceso:'Debe seleccionar un proceso',  
+			nombre:'Debe dar un nombre',
+			formulacion:'Debe indidr su formulación',
+			id_responsable:'Seleccionar un responsable',
+			id_responsable_medicion:'Seleccionar el responsable de medición',
+			tipo_seleccion_responsable:'Seleccionar el tipo de medición'
+		},
+	});
+	//Boton previo
+	$('button.btnPrev').on('click',function(){
+		var actualTab = $('#tab_editar_indicador').tabs('option', 'selected');
+		$('#tab_editar_indicador').tabs('enable',actualTab-1).tabs('select',actualTab-1).tabs('disable',actualTab);
+	});
+	//Boton next
+	$('button.btnNext').on('click',function(){
+		var actualTab = $('#tab_editar_indicador').tabs('option', 'selected');
+		var  estavalidado = $('#formindicador').valid();
+		if (estavalidado == true)
+		{	
+			$('#tab_editar_indicador').tabs('enable',actualTab+1).tabs('select',actualTab+1).tabs('disable',actualTab);
+		}
+		else
+		{
+			validator.focusInvalid(); 
+		}
+		return false;
+	});
+});
+</script>
+{/literal}
