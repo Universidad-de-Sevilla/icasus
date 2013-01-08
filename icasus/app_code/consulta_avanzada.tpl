@@ -157,13 +157,16 @@ a.actual {
 
 {literal}
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<!--
 <script src="theme/danpin/scripts/flot/jquery.flot.stack.min.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>		
+-->
 <script>
   /* --- Comienza la magia --- */ 
   //Están son las series iniciales que pintamos en pantalla, se agregarán más cuando se llenen
   var contador_series = 3; 
   var datos = []; //Los datos de cada serie ya procesados
+  var opciones; //Las opciones para mostrar los gráficos
   var datos_json = []; //Contiene los valores de los indicadores tal como vienen de la petición a la API
   $('.receptor:first').toggleClass('activo');
 
@@ -251,79 +254,58 @@ a.actual {
     var medicion_actual = $(this).text();
     if (medicion_actual === "Todos")
     {
-      mostrarIndicador();
+      opciones = {colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']};
+      $("#grafica").css("height", "400px");
+      $.plot($("#grafica"), datos, opciones);
+    console.log(opciones);
     }
     else
     {
       var subunidades = [];
+      var ejeY = [];
       var datos_flot = [];
       $.each(datos_json, function(s, serie) {
-        var items = [];
-        nombre_indicador = serie.nombre;
-        $.each(serie.data, function(i, dato) {
-          if(dato.medicion == medicion_actual && dato.unidad != "Total")
-          {
-            items.push([dato.valor, dato.id_unidad]);
-            if ($.inArray(dato.unidad,subunidades) < 0) { subunidades.push([dato.id_unidad, dato.unidad]); }
-          }
-        });
-        items.sort(sortByOrder);
-        function sortByOrder(item1,item2){
-          var x = item1[1];
-          var y = item2[1];
-          return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-        }
-        datos_flot.push({label: nombre_indicador + '(' + medicion_actual + ')', color:s, data: items });
-      });
-      subunidades.sort(sortByOrder);
-      function sortByOrder(subunidad1,subunidad2){
-        var x = subunidad1[1];
-        var y = subunidad2[1];
-        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-      }
-      console.log(subunidades);
-      var opciones = {
-        series: { bars: { order:1, show: true, barWidth: 0.1, fill: 0.7, align:"center", horizontal: true }},
-        legend: { position:"ne" },
-        yaxis: { ticks: subunidades },
-        colors: ['maroon', 'darkviolet', 'orange', 'deepblue', 'pink', 'yellow', 'brown']
-      };
-
-      alto = opciones.yaxis.ticks.length * 20 + 100 + "px";
-      $("#grafica").css("height", alto);
-      $.plot($("#grafica"), datos_flot, opciones);
-    }
-  }
-
-  function solo_una_mostrarMedicion(e)
-  {
-    e.preventDefault();
-    var medicion_actual = $(this).text();
-    if (medicion_actual === "Todos")
-    {
-      mostrarIndicador(0);
-    }
-    else
-    {
-      var serie = 0;
-      var subunidades = [];
-      var items = [];
-      $.each(datos_json[serie].data, function(i, dato) {
-        if(dato.medicion == medicion_actual && dato.unidad != "Total")
+        if (serie.data)
         {
-          items.push([dato.valor, i]);
-          subunidades.push([i, dato.unidad]);
+          $.each(serie.data, function(i, dato) {
+            if(dato.medicion == medicion_actual && dato.unidad != "Total")
+            {
+              if (subunidades.indexOf(dato.unidad) < 0) { subunidades.push(dato.unidad); }
+            }
+          });
         }
       });
-      items.reverse();
+      subunidades.sort();
       subunidades.reverse();
-      var datos_flot = [{label: nombre_indicador + '(' + medicion_actual + ')', color:serie, data: items }];
-      var opciones = {
-        series: { bars: { order:true, show: true, barWidth: 0.2, fill: 0.7, align:"center", horizontal: true }},
+      $.each(subunidades, function(s, subunidad) {
+        ejeY.push([s, subunidad]);
+      });
+        
+      $.each(datos_json, function(s, serie) {
+        if (serie.data)
+        {
+          var items = [];
+          nombre_indicador = serie.nombre;
+          $.each(serie.data, function(i, dato) {
+            if(dato.medicion == medicion_actual && dato.unidad != "Total")
+            {
+              // Incrementa el valor orden en función de la serie para que las barras no se solapen
+              orden = subunidades.indexOf(dato.unidad) + serie.serie / 5;
+              items.push([dato.valor, orden]);
+            }
+          });
+          datos_flot.push({label: nombre_indicador + '(' + medicion_actual + ')', color:s, data: items });
+        }
+      });
+
+      opciones = {
+        series: { bars: {  show: true, barWidth: 0.1, fill: 0.7, align:"center", horizontal: true }},
         legend: { position:"ne" },
-        yaxis: { ticks: subunidades },
-        colors: ['maroon', 'darkviolet', 'orange', 'deepblue', 'pink', 'yellow', 'brown']
+        yaxis: { ticks: ejeY },
+        colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
       };
+      alto = opciones.yaxis.ticks.length * 30 + 50 + "px";
+      $("#grafica").css("height", alto);
       $.plot($("#grafica"), datos_flot, opciones);
     }
   }
@@ -349,7 +331,7 @@ a.actual {
       series: { lines: { show: true }, points: { show: true } },
       legend: { position:"ne" },
       xaxis: { tickDecimals: 0 },
-      colors: ['maroon', 'darkviolet', 'orange', 'deepblue', 'pink', 'yellow', 'brown']
+      colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
     };
     return opciones;
   };
@@ -384,7 +366,7 @@ a.actual {
       series: { lines: { show: true }, points: { show: true } },
       xaxis: { tickDecimals: 0 }, 
       legend: { position: 'ne' },
-      colors: ['darkolivegreen','black']
+      colors: ['blue','black']
     };
     $.plot($("#grafica"), resultados, opciones_resultado);
   
@@ -408,21 +390,24 @@ a.actual {
     datos_json[serie] = 0;
     $(this).closest('.receptor').empty();
     $("#tabla"+serie).empty();
+    $("#grafica").css("height", "400px");
     $.plot($("#grafica"), datos, opciones);
+    console.log(opciones);
   }
   
-  /*
-    $.getJSON('api_publica.php?metodo=get_mediciones_indicador&id=' + id_indicador, function(data) {
-      var items = [];
-      items.push('<option id="todos">Todos</option>');
-      $.each(data, function(i, medicion) {
-        items.push('<option id="' + medicion.etiqueta + '">' + medicion.etiqueta + '</option>');
-      });
-      $('<select/>', {
-        'class': 'mediciones',
-        html: items.join('')
-      }).bind('change', mostrarMedicion).appendTo('.activo');
-    });
-  */
+  // devuelve la posición si un array contiene a otro o -1 si no lo contiene 
+  function indexOfArray(val, array)
+  {
+    var
+      hash = {},
+      indexes = {},
+      i, j;
+    for(i = 0; i < array.length; i++)
+    {
+      hash[array[i]] = i;
+    }
+    return (hash.hasOwnProperty(val)) ? hash[val] : -1;
+  };
+  
 </script>
 {/literal}
