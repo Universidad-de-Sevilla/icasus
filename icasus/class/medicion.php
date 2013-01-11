@@ -42,5 +42,13 @@ class medicion extends ADOdb_Active_Record
 		}
 		return $mediciones;
 	}
+	//medicion_listar.php
+	public function cuadro_mando($id_indicador,$id_entidad)
+	{
+		$entidad = new entidad();
+		$subunidades = $entidad->find_subunidades("id_madre = $id_entidad");		
+		
+		return $subunidades;
+	}
 }
 ?>

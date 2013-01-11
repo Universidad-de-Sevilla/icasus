@@ -12,6 +12,40 @@ class entidad extends ADOdb_Active_Record
 	public $indicadores;
   public $madre;
   public $usuario;
+	public $mediciones;
+
+	//obtener subunidades de una unidad con sus valores.
+	public function find_subunidades_mediciones($id_indicador,$id_entidad)
+	{
+		$medicion = new medicion();
+		$ms = $medicion->find("id_indicador = $id_indicador");
+
+		$subunidades = $this->find("id_madre = $id_entidad");
+		foreach($subunidades as $subunidad)
+		{
+			foreach($ms as $medi)
+			{
+				/*
+				$valor = new valor();
+				$valor->load("id_entidad = $subunidad->id AND id_medicion = $medicion->id");
+				//$valor->load("id_entidad = $id_entidad AND id_medicion = $medicion->id");
+				//bug al buscar siempre en la misma unidad
+				if ($valor->_saved == 1)
+				{
+					$valor = $valor ;
+				}
+				else
+				{
+					$valor= '--';
+				}
+				$medicion->medicion_valor = $valor;
+				*/
+				$medi->medicion_valor = 1;
+			}
+			$subunidad->mediciones = $ms;
+		}
+		return $subunidades;
+	}
 
 	public function load_joined($condicion)
   {
