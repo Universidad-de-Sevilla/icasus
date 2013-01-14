@@ -101,5 +101,17 @@ class usuario_entidad extends ADOdb_Active_Record
 			return false;
 		}
 	} 
+	//persmisos de usuarios
+	public function permiso_crear_medicion($id_usuario,$id_entidad)
+	{
+		if ($this->load("id_usuario=$id_usuario AND id_entidad=$id_entidad AND (id_rol = 1 OR id_rol =2)"))
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
 ?>

@@ -15,8 +15,10 @@ if (isset($_REQUEST["id_indicador"]))
 {
   $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
   $tipo = "indicador";
-  $valor_referencia = new valor_referencia();
+
+	$valor_referencia = new valor_referencia();
   $valores_referencia = $valor_referencia->Find("id_indicador = $id_indicador");
+
   $smarty->assign("valores_referencia", $valores_referencia);
 }
 else if (isset($_REQUEST["id_dato"]))
@@ -33,16 +35,33 @@ else
 $indicador = new indicador;
 if ($indicador->load("id = $id_indicador"))
 {
-  $smarty->assign("indicador", $indicador);
-  $smarty->assign("tipo", $tipo);
+  $id_entidad = $indicador->id_entidad;
+	$indicador = new indicador();
+	if ($indicador->permiso_crear_medicion($usuario->id,$id_indicador))
+	{
+		$smarty->assign("indicador", $indicador);
+		$smarty->assign("tipo", $tipo);
 
-  $entidad = new entidad;
-  $entidad->load("id = $indicador->id_entidad");
-  $smarty->assign("entidad", $entidad);
+		$entidad = new entidad;
+		$entidad->load("id = $indicador->id_entidad");
+		$smarty->assign("entidad", $entidad);
+		$subunidades = $entidad->Find("id_madre = $id_entidad");
+		$smarty->assign('subunidades', $subunidades);
 
-  //$smarty->assign("_javascript", array(""));
-  $smarty->assign("_nombre_pagina", "Programar medición");
-  $plantilla = "medicion_crear.tpl";
+		$indicador_subunidad = new indicador_subunidad();
+		$indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_indicador");
+		$smarty->assign("indicador_subunidades", $indicador_subunidades);
+
+		//$smarty->assign("_javascript", array(""));
+		$smarty->assign("_nombre_pagina", "Programar medición");
+		$plantilla = "medicion_crear.tpl";
+	}
+	else
+	{
+		// El usuario no tiene permisos avisamos error
+		$error = 'No tiene permisos suficientes para editar indicadores de esta unidad';
+		header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
+	}
 }
 else
 {

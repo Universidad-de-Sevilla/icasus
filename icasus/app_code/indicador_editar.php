@@ -45,6 +45,10 @@ if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']))
     $usuarios_entidades = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
 		$smarty->assign('usuarios_entidades', $usuarios_entidades);
 
+		$indicador_subunidad = new indicador_subunidad();
+		$indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_indicador");
+		$smarty->assign("indicador_subunidades", $indicador_subunidades);
+
 		$smarty->assign('_nombre_pagina', "Editando indicador: " . $indicador->nombre); 
 		$plantilla = 'indicador_editar.tpl';
 	}

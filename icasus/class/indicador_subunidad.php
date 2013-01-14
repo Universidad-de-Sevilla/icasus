@@ -13,6 +13,8 @@ class indicador_subunidad extends ADOdb_Active_Record
   public $indicador;
   public $usuario;
   public $entidad;
+  //DEPRECATED public $valores_pendientes; 
+
 	//devuelve los indicadores en los que mide la unidad y no son propios de ella.
   public function indicador_segregado($id_unidad,$id_proceso)
 	{
@@ -49,21 +51,27 @@ class indicador_subunidad extends ADOdb_Active_Record
 		if ($indicadores_subunidades)
 		{
 			foreach ($indicadores_subunidades as& $indicador_subunidad)
-				{
-					$indicador_subunidad->entidad = new entidad();
-					$indicador_subunidad->entidad->load_joined("id = $indicador_subunidad->id_entidad");
+      {
+        $indicador_subunidad->entidad = new entidad();
+        $indicador_subunidad->entidad->load_joined("id = $indicador_subunidad->id_entidad");
 
-					$indicador_subunidad->usuario = new usuario();
-					$indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
-				}
-				return $indicadores_subunidades;
+        $indicador_subunidad->usuario = new usuario();
+        $indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
+      }
+      // Define la función personalizada para ordenar
+      $reordenar = function ($a,$b) {
+        return $a->entidad->etiqueta > $b->entidad->etiqueta;
+      };
+      usort($indicadores_subunidades, $reordenar);
+			return $indicadores_subunidades;
 		}
 		else
 		{
 			return false;
 		}
   }
- public function Find_entidades($criterio)
+
+  public function Find_entidades($criterio)
   {
     if ($indicadores_subunidades = $this->Find($criterio))
     {
@@ -71,10 +79,12 @@ class indicador_subunidad extends ADOdb_Active_Record
       {
         $indicador_subunidad->entidad = new entidad();
         $indicador_subunidad->entidad->load("id = $indicador_subunidad->id_entidad");
-				//creo que sobran estas 2 líneas siguientes
-        //$indicador_subunidad->usuario = new usuario();
-        //$indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
       }
+      // Define la función personalizada para ordenar
+      $reordenar = function ($a,$b) {
+        return $a->entidad->etiqueta > $b->entidad->etiqueta;
+      };
+      usort($indicadores_subunidades, $reordenar);
       return $indicadores_subunidades;
     }
     else
@@ -83,15 +93,27 @@ class indicador_subunidad extends ADOdb_Active_Record
     }
   }
 
-  // No recuerdo ni entiendo epara porque se llama "con_valores" (Juanan)
-  public function Find_indicadores_con_valores($criterio)
+  // Este método se ha pasado a la clase indicador
+  public function Find_indicadores_con_valores_DEPRECATED($criterio)
   {
     if ($indicadores_subunidades = $this->Find($criterio))
     {
+      $query = "SELECT count(*) FROM indicadores_subunidades insu 
+            INNER JOIN mediciones me ON insu.id_indicador = me.id_indicador 
+            INNER JOIN valores va ON me.id = va.id_medicion 
+            WHERE insu.id_entidad = va.id_entidad 
+            AND insu.id_usuario  = 1 
+            AND va.valor_parcial is NULL 
+            AND insu.id_indicador = ";
+
+      $adodb = $this->DB();
+
       foreach ($indicadores_subunidades as& $indicador_subunidad)
       {
         $indicador_subunidad->indicador = new indicador();
         $indicador_subunidad->indicador->load("id = $indicador_subunidad->id_indicador");
+        $resultset = $adodb->Execute($query . $indicador_subunidad->id_indicador);
+        $indicador_subunidad->valores_pendientes = $resultset->fields[0];
       }
       return $indicadores_subunidades;
     }
@@ -100,5 +122,56 @@ class indicador_subunidad extends ADOdb_Active_Record
       return false;
     }
   }
+	//actuliza los registros de la tabla indicador_subunidad de manera asincrona
+	//desde el controlador medicion_crear
+	public function actualizar_subunidades($id_indicador,$id_entidad)
+	{
+		$indicator = new indicador();
+		$indicator->load("id = $id_indicador");
+
+		//si existe el registro lo borra
+		if ($this->load("id_indicador = $id_indicador AND id_entidad = $id_entidad"))
+		{
+			$this->delete();
+		}
+		else//si no existe lo crea
+		{
+			$this->id_indicador = $id_indicador;
+			$this->id_entidad = $id_entidad;
+
+			switch ($indicator->desagregado)
+			{
+				case 0:
+					$this->id_usuario = $indicator->id_responsable_medicion;
+				break;
+				case 1:
+					$usuario_entidad = new usuario_entidad();
+					// Cargamos al responsable de la unidad para echarle el muerto 
+					// Luego el podrá echárselo a otro
+					if ($usuario_entidad->load("id_entidad = $id_entidad AND id_rol = 1"))
+					{
+						$this->id_usuario = $usuario_entidad->id_usuario;
+					}
+					else
+					{
+						$this->id_usuario = $indicator->id_responsable_medicion;
+					}
+				break;
+				case 2:
+					$this->id_usuario = $indicator->id_responsable_medicion;
+				break;
+				default:
+					$this->id_usuario = $indicator->id_responsable_medicion;
+			}
+			if ($this->save())
+			{
+				//escribir log de exito;
+			}
+			else
+			{
+				//escribir log de error
+			}
+		}
+	}
 }
 ?>

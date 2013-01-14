@@ -37,17 +37,23 @@ function get_valores_indicador($id)
   $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
             INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
             WHERE indicadores.id = $id";
-  $resultado = mysql_query($query);
-  if ($registro = mysql_fetch_assoc($resultado))
+  if ($resultado = mysql_query($query))
   {
-    $operador = $registro['operador'];
+    if ($registro = mysql_fetch_assoc($resultado))
+    {
+      $operador = $registro['operador'];
+    }
+    else
+    {
+      $operador = 'SUM';
+    }
   }
   else
   {
-    $operador = '';
+    $operador = 'SUM';
   }
 
-  $query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, valores.valor, valores.observaciones 
+  $query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, valores.observaciones 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL 
@@ -107,6 +113,23 @@ function get_subunidades_indicador($id)
             FROM entidades INNER JOIN indicadores_subunidades ON entidades.id = indicadores_subunidades.id_entidad
             WHERE indicadores_subunidades.id_indicador = $id 
             ORDER BY entidades.etiqueta"; 
+  $resultado = mysql_query($query);
+  while ($registro = mysql_fetch_assoc($resultado))
+  {
+    $datos[] = $registro;
+  }
+  $datos = json_encode($datos);
+  echo $datos;
+}
+
+// Devuelves las etiquetas de las mediciones existentes para este indicador por ordenadas por su fecha de inicio
+function get_mediciones_indicador($id)
+{
+  $query = "SELECT mediciones.etiqueta
+            FROM mediciones INNER JOIN indicadores 
+            ON indicadores.id = mediciones.id_indicador
+            WHERE mediciones.id_indicador = $id 
+            ORDER BY mediciones.periodo_inicio"; 
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
