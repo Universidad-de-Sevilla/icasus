@@ -57,7 +57,7 @@ if (
   if ($indicador->save())
   {
     // Si el indicador es nuevo grabamos subunidades
-    if (! isset($id_indicador))
+    if (!isset($id_indicador))
     {
       $subunidades = isset($_REQUEST["subunidades"])?$_REQUEST["subunidades"]:array();
       if (count($subunidades) > 0)
