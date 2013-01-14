@@ -36,3 +36,6 @@
     </div>
   {/if}
 </div>
+<div class="box grid_16">
+  <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" />
+</div>

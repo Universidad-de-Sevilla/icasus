@@ -6,8 +6,13 @@
 // Graba un nuevo dato o actualiza uno existente
 //---------------------------------------------------------------------------------------------------
 global $usuario;
-
-if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUEST["id_responsable"]) AND isset($_REQUEST["id_entidad"]))
+if (
+	isset($_REQUEST['tipo_seleccion_responsable']) 
+	AND !empty($_REQUEST["codigo"]) 
+	AND !empty($_REQUEST["nombre"]) 
+	AND !empty($_REQUEST["id_responsable_medicion"]) 
+	AND !empty($_REQUEST["id_entidad"])
+)
 {
   $dato = new indicador();
   if (isset($_REQUEST["id_dato"]))
@@ -27,9 +32,9 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
   $dato->id_entidad = sanitize($_REQUEST['id_entidad'],INT);
   $dato->codigo = sanitize($_REQUEST['codigo'],SQL);
   $dato->nombre = sanitize($_REQUEST['nombre'],SQL);
-  $dato->id_responsable = sanitize($_REQUEST["id_responsable"],INT);
+  $dato->id_responsable_medicion = sanitize($_REQUEST["id_responsable_medicion"],INT);
+	$dato->desagregado = sanitize($_REQUEST['tipo_seleccion_responsable'],INT);
   // Campos opcionales 
-  $tipo_seleccion_responsable = isset($_REQUEST["tipo_seleccion_responsable"])?sanitize($_REQUEST['tipo_seleccion_responsable'],INT):NULL;
   $dato->id_visibilidad = isset($_REQUEST['id_visibilidad'])?sanitize($_REQUEST['id_visibilidad'],SQL):NULL;
   $dato->descripcion = isset($_REQUEST['descripcion'])?sanitize($_REQUEST['descripcion'],SQL):null;    
   $dato->periodicidad = isset($_REQUEST['periodicidad'])?sanitize($_REQUEST['periodicidad'],SQL):null;    
@@ -37,9 +42,10 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
   $dato->fuente_datos = isset($_REQUEST['fuente_datos'])?sanitize($_REQUEST['fuente_datos'],SQL):null;   
   $dato->unidad_generadora = isset($_REQUEST['unidad_generadora'])?sanitize($_REQUEST['unidad_generadora'],SQL):null;
   $dato->indicadores_relacionados = isset($_REQUEST['indicadores_relacionados'])?sanitize($_REQUEST['indicadores_relacionados'],SQL):null;    
+  $dato->id_responsable = $_REQUEST["id_responsable_medicion"];
   $dato->activo = 1;
   $dato->fecha_creacion = date("Y-m-d");
-  
+
   // Una vez grabado el dato vamos a asignar a los responsables de medicion
   // Esto sólo se hace si se trata de un nuevo dato
   if ($dato->save())
@@ -59,7 +65,7 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
           // si es para cada responsable de subunidad, se le asigna como responsable de la medición
           // el reponsable de la unidad. Si no exite este se le asigna como resposable de medición
           // el responsable de medicion de la unidad superior.
-          if ($tipo_seleccion_responsable == 0)
+          if ($dato->desagregado == 0)
           {
             $indicador_subunidad->id_usuario = $dato->id_responsable;
           }
@@ -79,6 +85,48 @@ if (isset($_REQUEST["codigo"]) AND isset($_REQUEST["nombre"]) AND isset($_REQUES
         }
       }
     }
+		else
+		{
+			$indicador_subunidad = new indicador_subunidad();
+			while ($indicador_subunidad->load("id_indicador = $id_dato"))
+      {
+        $indicador_subunidad->delete();
+      }
+			if (isset($_REQUEST["subunidades"]))
+      {
+        foreach ($_REQUEST["subunidades"] as $id_subunidad)
+        {
+          $indicador_subunidad = new indicador_subunidad();
+          $indicador_subunidad->id_indicador = $id_dato;
+          $indicador_subunidad->id_entidad = $id_subunidad;
+          switch ($dato->desagregado)
+					{
+						case 0:
+							$indicador_subunidad->id_usuario = $dato->id_responsable_medicion;
+						break;
+						case 1:
+							$usuario_entidad = new usuario_entidad();
+							// Cargamos al responsable de la unidad para echarle el muerto 
+							// Luego el podrá echárselo a otro
+							if ($usuario_entidad->load("id_entidad = $id_subunidad AND id_rol = 1"))
+							{
+								$indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;
+							}
+							else
+							{
+								$indicador_subunidad->id_usuario = $dato->id_responsable_medicion;
+							}
+						break;
+						case 2:
+							$indicador_subunidad->id_usuario = $dato->id_responsable_medicion;
+						break;
+						default:
+							$indicador_subunidad->id_usuario = $dato->id_responsable_medicion;
+					}
+          $indicador_subunidad->save();
+        }
+      }
+		}
     // Si ha ido bien mostramos la ficha del dato absoluto
     header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&aviso=$aviso");
   }

@@ -1,7 +1,7 @@
 							</div>
 							<div id="tabs-3" class="block">
 								<div class="section">
-									<p>&nbsp;</p>
+        <h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
 								</div>
 							</div>
 						</div>
