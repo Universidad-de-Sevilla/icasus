@@ -74,12 +74,6 @@
       <div class="columns clearfix">
         <div class="col_50">
           <fieldset class="label_side">
-            <label>Nivel de desagregacion</label>
-            <div>{$dato->nivel_desagregacion}&nbsp;</div>
-          </fieldset>
-        </div>
-        <div class="col_50">
-          <fieldset class="label_side">
             <label>Unidad generadora</label>
             <div>{$dato->unidad_generadora}&nbsp;</div>
           </fieldset>
