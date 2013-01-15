@@ -68,11 +68,7 @@ class valor extends ADOdb_Active_Record
 					$valor->autorizado = false;
 				}
 			}
-      // Define la función personalizada para ordenar
-      $customsort = function ($a,$b) {
-        return $a->entidad->etiqueta > $b->entidad->etiqueta;
-      };
-      usort($valores, $customsort);
+      usort($valores, array( $this, "compara_por_etiquetas"));
 			return $valores;
 		}
 		else
@@ -93,11 +89,7 @@ class valor extends ADOdb_Active_Record
 			  $valor->usuario = new usuario();
 				$valor->usuario->load("id = $valor->id_usuario");
 			}
-      // Define la función personalizada para ordenar
-      $customsort = function ($a,$b) {
-        return $a->entidad->etiqueta > $b->entidad->etiqueta;
-      };
-      usort($valores, $customsort);
+      usort($valores, array( $this, "compara_por_etiquetas"));
 			return $valores;
 		}
 		else
@@ -185,6 +177,12 @@ class valor extends ADOdb_Active_Record
     {
       $this->valor = $valor_parcial;                           
     }
+  }
+
+  // Define la función personalizada para ordenar
+  static function compara_por_etiquetas($a,$b) 
+  {
+    return $a->entidad->etiqueta > $b->entidad->etiqueta;
   }
 }
 ?>
