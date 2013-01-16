@@ -35,13 +35,14 @@ if (
   $dato->id_responsable_medicion = sanitize($_REQUEST["id_responsable_medicion"],INT);
 	$dato->desagregado = sanitize($_REQUEST['tipo_seleccion_responsable'],INT);
   // Campos opcionales 
-  $dato->id_visibilidad = isset($_REQUEST['id_visibilidad'])?sanitize($_REQUEST['id_visibilidad'],SQL):NULL;
-  $dato->descripcion = isset($_REQUEST['descripcion'])?sanitize($_REQUEST['descripcion'],SQL):null;    
-  $dato->periodicidad = isset($_REQUEST['periodicidad'])?sanitize($_REQUEST['periodicidad'],SQL):null;    
-  $dato->nivel_desagregacion = isset($_REQUEST['nivel_desagregacion'])?sanitize($_REQUEST['nivel_desagregacion'],SQL):null;
-  $dato->fuente_datos = isset($_REQUEST['fuente_datos'])?sanitize($_REQUEST['fuente_datos'],SQL):null;   
-  $dato->unidad_generadora = isset($_REQUEST['unidad_generadora'])?sanitize($_REQUEST['unidad_generadora'],SQL):null;
-  $dato->indicadores_relacionados = isset($_REQUEST['indicadores_relacionados'])?sanitize($_REQUEST['indicadores_relacionados'],SQL):null;    
+  $dato->id_visibilidad = isset($_REQUEST['id_visibilidad'])?sanitize($_REQUEST['id_visibilidad'], SQL):NULL;
+  $dato->descripcion = isset($_REQUEST['descripcion'])?sanitize($_REQUEST['descripcion'], SQL):null;    
+  $dato->periodicidad = isset($_REQUEST['periodicidad'])?sanitize($_REQUEST['periodicidad'], SQL):null;    
+  $dato->nivel_desagregacion = isset($_REQUEST['nivel_desagregacion'])?sanitize($_REQUEST['nivel_desagregacion'], SQL):null;
+  $dato->id_tipo_agregacion = isset($_REQUEST['id_tipo_agregacion'])?sanitize($_REQUEST['id_tipo_agregacion'], INT):0;
+  $dato->fuente_datos = isset($_REQUEST['fuente_datos'])?sanitize($_REQUEST['fuente_datos'], SQL):null;   
+  $dato->unidad_generadora = isset($_REQUEST['unidad_generadora'])?sanitize($_REQUEST['unidad_generadora'], SQL):null;
+  $dato->indicadores_relacionados = isset($_REQUEST['indicadores_relacionados'])?sanitize($_REQUEST['indicadores_relacionados'], SQL):null;    
   $dato->id_responsable = $_REQUEST["id_responsable_medicion"];
   $dato->activo = 1;
   $dato->fecha_creacion = date("Y-m-d");
