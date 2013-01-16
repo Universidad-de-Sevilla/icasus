@@ -45,6 +45,7 @@ if (
   $indicador->calculo = isset($_REQUEST['calculo'])?sanitize($_REQUEST['calculo'],SQL):null;    
   $indicador->fuente_informacion = isset($_REQUEST['fuente_informacion'])?sanitize($_REQUEST['fuente_informacion'],SQL):null;    
   $indicador->nivel_desagregacion = isset($_REQUEST['nivel_desagregacion'])?sanitize($_REQUEST['nivel_desagregacion'],SQL):null;
+  $indicador->id_tipo_agregacion = isset($_REQUEST['id_tipo_agregacion'])?sanitize($_REQUEST['id_tipo_agregacion'], INT):0;
   $indicador->fuente_datos = isset($_REQUEST['fuente_datos'])?sanitize($_REQUEST['fuente_datos'],SQL):null;   
   $indicador->desagregado = isset($_REQUEST['tipo_seleccion_responsable'])?sanitize($_REQUEST['tipo_seleccion_responsable'],SQL):null;   
   $indicador->evidencia = isset($_REQUEST['evidencia'])?sanitize($_REQUEST['evidencia'],SQL):null;    

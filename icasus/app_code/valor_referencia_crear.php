@@ -1,10 +1,10 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
-// Archivo: valor_crear.php
+// Proyecto: Icasus (https://gestionproyectos.us.es/projects/r2h2-icasus)
+// Archivo: valor_referencia_crear.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es) 
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Prepara los datos del formulario que permite agregar un nuevo valor a un indicador 
+// Descripcion: 
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;

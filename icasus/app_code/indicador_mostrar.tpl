@@ -111,16 +111,30 @@
         <div>{$indicador->indicadores_relacionados}&nbsp;</div>
       </fieldset>
       {/if}
-      <fieldset class="label_side">
-        <label>Criterios EFQM</label>
-        <div>
-          <ul>
-            {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
-              <li>{$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}</li>
-            {/foreach}
-          </ul>
+      <div class="columns clearfix">
+        <div class="col_50">
+          <fieldset class="label_side">
+            <label>Criterios EFQM</label>
+            <div>
+              <ul>
+                {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
+                  <li>{$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}</li>
+                {/foreach}
+              </ul>
+            </div>
+          </fieldset>
         </div>
-      </fieldset>
+        <div class="col_50">
+          <fieldset class="label_side">
+            <label>Cálculo del total</label>
+            <div>
+              {if $indicador->id_tipo_agregacion == 0}Indefinido{/if}
+              {if $indicador->id_tipo_agregacion == 1}Promedio{/if}
+              {if $indicador->id_tipo_agregacion == 2}Suma{/if}
+            </div>
+          </fieldset>
+        </div>
+      </div>
       <div class="columns clearfix">
         <div class="col_50">
           <fieldset class="label_side">
