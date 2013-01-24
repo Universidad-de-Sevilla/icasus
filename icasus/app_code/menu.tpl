@@ -63,6 +63,9 @@
 				<li><a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img 
 					src='/icons/ff16/chart_curve.png' />
 					Listar indicadores</a></li>
+				<li><a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
+					src='/icons/ff16/chart_bar.png' />
+					Listar datos</a></li>
 				<li><a href='index.php?page=entidad_datos&id_entidad={$entidad->id}'><img 
 					src='/icons/ff16/chart_organisation.png' alt='icono' /> Ver unidad</a></li>
 			</ul>
