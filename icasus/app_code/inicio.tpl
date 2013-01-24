@@ -12,17 +12,16 @@
             <td><a href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'>{$entidad->entidad->nombre}</a></td>
             <td>{$entidad->rol->nombre}</td>
             <td>
-            Ver</a> - 
-            <a href='index.php?page=cuadrounidad&id_entidad={$entidad->entidad->id}'> Cuadro resumen</a> - 
-            <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'> Consultas</a> -
-            <a href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'> Procesos</a> -
-            <a href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'>Indicadores</a> - 
-            <a href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'>Datos</a>
-            <!--
-            <a href="index.php?page=plan_estrategico/plan_listar&id_entidad={$entidad->entidad->id}&entidad={$entidad->entidad->nombre|htmlentities}">Planificaci&oacute;n</a> -
-            <a href='index.php?page=grupo/acta_listar&id_entidad={$entidad->entidad->id}' title="Ver las actas de este equipo">Actas</a> 
-            -->
-          </td>
+              <a href='index.php?page=cuadrounidad&id_entidad={$entidad->entidad->id}'> Cuadro resumen</a> - 
+              <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'> Consultas</a> -
+              <a href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'> Procesos</a> -
+              <a href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'>Indicadores</a> - 
+              <a href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'>Datos</a>
+              <!--
+              <a href="index.php?page=plan_estrategico/plan_listar&id_entidad={$entidad->entidad->id}&entidad={$entidad->entidad->nombre|htmlentities}">Planificaci&oacute;n</a> -
+              <a href='index.php?page=grupo/acta_listar&id_entidad={$entidad->entidad->id}' title="Ver las actas de este equipo">Actas</a> 
+              -->
+            </td>
           </tr>
         {/foreach}
         </tbody>
