@@ -14,35 +14,66 @@ class entidad extends ADOdb_Active_Record
   public $usuario;
 	public $mediciones;
 
-	//obtener subunidades de una unidad con sus valores.
+	//obtener subunidades de una unidad con sus valores de las mediciones del indicador elegidas por el usuario.
+	//indicador_subunidad_valor_ajax.php
+	public function find_subunidades_mediciones_periodos($id_indicador,$id_entidad,$inicio,$fin)
+	{
+		$subunidades = $this->find("id_madre = $id_entidad");
+		foreach($subunidades as $subunidad)
+		{
+			$medition = new medicion();
+			$meditions = $medition->find("id_indicador = $id_indicador AND date_format(periodo_inicio,'%Y') between '$inicio' AND '$fin' ORDER BY periodo_inicio");
+			foreach($meditions as $medi)
+			{
+				$valor = new valor();
+				$valor->load("id_entidad = $subunidad->id AND id_medicion = $medi->id");
+				/*
+				if ($valor->_saved != 1)
+				{
+					$valor->valor  =  '';
+				}
+				elseif ($valor->valor ==  '')
+				{
+						$valor->valor  =  '---';
+				}
+				$medi->medicion_valor = $valor->valor;
+			*/
+				$medi->medicion_valor = $valor;
+			}
+			$subunidad->mediciones = $meditions;
+		}
+		return $subunidades;
+	}
+	//obtener subunidades de una unidad con sus valores de todas las mediciones del indicador.
+	//indicador_subunidad_valor.php
 	public function find_subunidades_mediciones($id_indicador,$id_entidad)
 	{
-		$medicion = new medicion();
-		$ms = $medicion->find("id_indicador = $id_indicador");
+		//$medicion = new medicion();
+		//$ms = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
 
 		$subunidades = $this->find("id_madre = $id_entidad");
 		foreach($subunidades as $subunidad)
 		{
-			foreach($ms as $medi)
+			$medition = new medicion();
+			$meditions = $medition->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+			foreach($meditions as $medi)
 			{
-				/*
 				$valor = new valor();
-				$valor->load("id_entidad = $subunidad->id AND id_medicion = $medicion->id");
-				//$valor->load("id_entidad = $id_entidad AND id_medicion = $medicion->id");
-				//bug al buscar siempre en la misma unidad
-				if ($valor->_saved == 1)
+				$valor->load("id_entidad = $subunidad->id AND id_medicion = $medi->id");
+				/*
+				if ($valor->_saved != 1)
 				{
-					$valor = $valor ;
+					$valor->valor  =  '';
 				}
-				else
+				elseif ($valor->valor ==  '')
 				{
-					$valor= '--';
+						$valor->valor  =  '---';
 				}
-				$medicion->medicion_valor = $valor;
-				*/
-				$medi->medicion_valor = 1;
+				$medi->medicion_valor = $valor->valor;
+			*/
+				$medi->medicion_valor = $valor;
 			}
-			$subunidad->mediciones = $ms;
+			$subunidad->mediciones = $meditions;
 		}
 		return $subunidades;
 	}

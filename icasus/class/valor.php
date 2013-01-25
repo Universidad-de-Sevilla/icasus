@@ -13,6 +13,18 @@ class valor extends ADOdb_Active_Record
   public $usuario;
   public $autorizado;
 	
+	//Activa/desactiva los valores de una subunidad según parametros
+	public function valores_activar($id_indicador,$id_subunidad,$activar)
+	{
+		$medicion = new medicion();
+		$mediciones = $medicion->find("id_indicador = $id_indicador");
+		foreach($mediciones as $medicion)
+		{
+			$this->load("id_medicion = $medicion->id AND id_entidad = $id_subunidad");
+			$this->activo = $activar;
+			$this->save();
+		}
+	}
 	public function puede_grabarse($id_valor,$id_usuario_activo)
 	{
 		$db = $this->DB();
