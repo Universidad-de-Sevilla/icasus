@@ -19,10 +19,12 @@ if (isset($_REQUEST["id_indicador"]))
   $fin = isset($_REQUEST["fin"])?sanitize($_REQUEST["fin"], INT):0;
   $hoy = date("d-m-Y H:i:s");
 
+  $hoy = date("d-m-Y H:i:s"); 
+
   $indicador = new indicador();
   $indicador->load("id = $id_indicador");
   $db = $indicador->DB();
-  if ($indicador->tipo_agregacion == 2)
+  if ($indicador->id_tipo_agregacion == 2)
   {
     $query = "SELECT mediciones.etiqueta, SUM(valor) AS agregado FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion ORDER BY mediciones.periodo_inicio;";
   }
@@ -58,7 +60,7 @@ if (isset($_REQUEST["id_indicador"]))
     $myPicture->drawLineChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO));
     $myPicture->drawPlotChart();
     $myPicture->drawText(20,260,"{$indicador->nombre}",array("FontSize"=>11,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
-    $myPicture->drawText(20,270,"{$hoy}",array("FontSize"=>11,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
+    $myPicture->drawText(20,270,"{$hoy}",array("FontSize"=>9,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
     $myPicture->Stroke();
   }
   else

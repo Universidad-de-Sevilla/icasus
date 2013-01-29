@@ -36,6 +36,7 @@
     </div>
   {/if}
 </div>
+<<<<<<< HEAD
 <div style="opacity: 1;" class="box grid_16">
 		<h2 class="box_head">Regular Table with Form Inputs</h2>
 	<div style="opacity: 1;" class="block">	
@@ -59,3 +60,8 @@
 		</tbody>
 	</table>
 	</div>
+=======
+<div class="box grid_16">
+  <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" />
+</div>
+>>>>>>> 398f26c45aedf0791d6413c5f9846d1089aa5f8e

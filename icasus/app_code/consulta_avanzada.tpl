@@ -304,10 +304,35 @@ a.actual {
         yaxis: { ticks: ejeY },
         colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
       };
+      //generaTablaMedicion(medicion_actual);
       alto = opciones.yaxis.ticks.length * 30 + 50 + "px";
       $("#grafica").css("height", alto);
       $.plot($("#grafica"), datos_flot, opciones);
     }
+  }
+
+  // Tabla de datos de las mediciones, de momento no funciona ni se usa
+  function generaTablaMedicion(medicion_actual)
+  {
+    var contenido_tabla = [];
+    $.each(datos_json, function(s, serie) {
+      if (serie.data)
+      {
+        nombre_indicador = serie.nombre;
+        if (s%2 == 0) {paridad = "odd";} else {paridad = "even";}
+        contenido_tabla.push('<tr class="' + paridad +'"><td>' + serie.nombre + '</td>');
+        $.each(datos_json, function(i, dato) {
+          if(dato.medicion == medicion_actual && dato.unidad != "Total")
+          {
+            contenido_tabla.push('<td>' + dato.valor + '</td>');
+          }
+        });
+      }
+    });
+    $('#tabla_medicion').empty();
+    $('<table />', {'class': 'static', 
+                    html: contenido_tabla.join('')
+                   }).appendTo('#tabla_medicion');
   }
 
   function prepararDatos(datos,serie)

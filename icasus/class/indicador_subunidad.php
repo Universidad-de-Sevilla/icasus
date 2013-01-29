@@ -59,10 +59,8 @@ class indicador_subunidad extends ADOdb_Active_Record
         $indicador_subunidad->usuario->load("id = $indicador_subunidad->id_usuario");
       }
       // Define la función personalizada para ordenar
-      $reordenar = function ($a,$b) {
-        return $a->entidad->etiqueta > $b->entidad->etiqueta;
-      };
-      usort($indicadores_subunidades, $reordenar);
+      
+      usort($indicadores_subunidades, array($this, "compara_por_etiquetas"));
 			return $indicadores_subunidades;
 		}
 		else
@@ -80,11 +78,7 @@ class indicador_subunidad extends ADOdb_Active_Record
         $indicador_subunidad->entidad = new entidad();
         $indicador_subunidad->entidad->load("id = $indicador_subunidad->id_entidad");
       }
-      // Define la función personalizada para ordenar
-      $reordenar = function ($a,$b) {
-        return $a->entidad->etiqueta > $b->entidad->etiqueta;
-      };
-      usort($indicadores_subunidades, $reordenar);
+      usort($indicadores_subunidades, array( $this, "compara_por_etiquetas"));
       return $indicadores_subunidades;
     }
     else
@@ -93,35 +87,6 @@ class indicador_subunidad extends ADOdb_Active_Record
     }
   }
 
-  // Este método se ha pasado a la clase indicador
-  public function Find_indicadores_con_valores_DEPRECATED($criterio)
-  {
-    if ($indicadores_subunidades = $this->Find($criterio))
-    {
-      $query = "SELECT count(*) FROM indicadores_subunidades insu 
-            INNER JOIN mediciones me ON insu.id_indicador = me.id_indicador 
-            INNER JOIN valores va ON me.id = va.id_medicion 
-            WHERE insu.id_entidad = va.id_entidad 
-            AND insu.id_usuario  = 1 
-            AND va.valor_parcial is NULL 
-            AND insu.id_indicador = ";
-
-      $adodb = $this->DB();
-
-      foreach ($indicadores_subunidades as& $indicador_subunidad)
-      {
-        $indicador_subunidad->indicador = new indicador();
-        $indicador_subunidad->indicador->load("id = $indicador_subunidad->id_indicador");
-        $resultset = $adodb->Execute($query . $indicador_subunidad->id_indicador);
-        $indicador_subunidad->valores_pendientes = $resultset->fields[0];
-      }
-      return $indicadores_subunidades;
-    }
-    else
-    {
-      return false;
-    }
-  }
 	//actuliza los registros de la tabla indicador_subunidad de manera asincrona
 	//desde el controlador medicion_crear
 	public function actualizar_subunidades($id_indicador,$id_entidad)
@@ -173,5 +138,12 @@ class indicador_subunidad extends ADOdb_Active_Record
 			}
 		}
 	}
+
+  // Define la función personalizada para ordenar
+  static function compara_por_etiquetas($a,$b) 
+  { 
+    return $a->entidad->etiqueta > $b->entidad->etiqueta; 
+  }
+
 }
 ?>

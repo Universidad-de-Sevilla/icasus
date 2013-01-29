@@ -128,6 +128,18 @@
 					<p><input type="radio" name="tipo_seleccion_responsable" value="2" class="medicion"{if $dato->desagregado == 2}checked="checked"{/if} > Medición desagregada en las subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.</p>
 				</div>
 			</fieldset>
+
+      <fieldset class="label_side" id="total" style="display:{if $dato->desagregado == 0}none{else}block{/if}">
+        <label>Cálculo del total</label>
+        <div>
+          <select name="id_tipo_agregacion" id="id_tipo_agregacion">
+            <option value="0" {if $dato->id_tipo_agregacion == 0}selected{/if}>Indefinido</option>
+            <option value="1" {if $dato->id_tipo_agregacion == 1}selected{/if}>Promedio</option>
+            <option value="2" {if $dato->id_tipo_agregacion == 2}selected{/if}>Suma</option>
+          </select>
+        </div>
+      </fieldset>
+
 			<fieldset class="label_side">
 				<div>
 					<div id="div_unidad" style="display:">
@@ -137,7 +149,7 @@
 							{/foreach}
 						/> {$entidad->nombre}<hr />
 					</div>
-					<div id="div_subunidades" class="column clearfix" style="display:{if $dato->desagregado == 0}none{/if}">
+					<div id="div_subunidades" class="column clearfix" style="display:{if $dato->desagregado == 0}none{else}block{/if}">
 					<div class="col_50">
 						{foreach name="subunidad" from=$subunidades item="subunidad"}
 							{if $smarty.foreach.subunidad.iteration == $subunidades|@count/2+1}</div><div class="col_50">{/if}
@@ -168,12 +180,14 @@ $(document).ready(function(){
 		var valor = $(this).attr('value');
 		if (valor == 1 || valor == 2)
 		{
+			$('#total').css('display','block');
 			$('#div_unidad').css('display','inline');
 			$('#div_subunidades').css('display','inline');
 			$(".subunidad").attr("checked","checked");
 		}
 		else if(valor == 0)
 		{
+			$('#total').css('display','none');
 			$('#div_unidad').css('display','inline');
 			$('#div_subunidades').css('display','none');
 			$(".subunidad").removeAttr("checked");

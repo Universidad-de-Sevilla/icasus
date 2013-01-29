@@ -54,15 +54,18 @@
 				<li><a href='index.php?page=cuadrounidad&id_entidad={$entidad->id}'><img 
 					src='/icons/ff16/table_go.png' />
 					Cuadro resumen</a></li>
+				<li><a href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'><img 
+					src='/icons/ff16/chart_curve_add.png' />
+					Consulta avanzada</a></li>
 				<li><a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img 
 					src='/icons/ff16/cog.png' />
 					Listar procesos</a></li>
 				<li><a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img 
 					src='/icons/ff16/chart_curve.png' />
 					Listar indicadores</a></li>
-				<li><a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'><img 
-					src='/icons/ff16/chart_curve_add.png' />
-					Crear indicador</a></li>
+				<li><a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
+					src='/icons/ff16/chart_bar.png' />
+					Listar datos</a></li>
 				<li><a href='index.php?page=entidad_datos&id_entidad={$entidad->id}'><img 
 					src='/icons/ff16/chart_organisation.png' alt='icono' /> Ver unidad</a></li>
 			</ul>

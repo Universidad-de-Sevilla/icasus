@@ -12,11 +12,14 @@
 global $smarty;
 global $plantilla;
 
-if (isset($_REQUEST["id_unidad"]))
+if (isset($_REQUEST["id_entidad"]))
 {
-  $id_unidad = sanitize($_REQUEST["id_unidad"], INT);
+  $id_entidad = sanitize($_REQUEST["id_entidad"], INT);
+  $entidad = new entidad();
+  $entidad->load("id = $id_entidad");
+  $smarty->assign("entidad", $entidad);
   $indicador = new indicador();
-  $indicadores = $indicador->Find("id_entidad = $id_unidad");
+  $indicadores = $indicador->Find("id_entidad = $id_entidad");
   $smarty->assign("indicadores", $indicadores);
   $operaciones = array(
     array('cotejar','= Cotejar'),

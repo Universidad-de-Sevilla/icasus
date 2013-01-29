@@ -78,7 +78,18 @@
             <div>{$dato->unidad_generadora}&nbsp;</div>
           </fieldset>
         </div>
+        <div class="col_50">
+          <fieldset class="label_side">
+            <label>Cálculo del total</label>
+            <div>
+              {if $dato->id_tipo_agregacion == 0}Indefinido{/if}
+              {if $dato->id_tipo_agregacion == 1}Promedio{/if}
+              {if $dato->id_tipo_agregacion == 2}Suma{/if}
+            </div>
+          </fieldset>
+        </div>
       </div>
+
       <fieldset class="label_side">
         <label>Subunidades afectadas</label>
         <div>

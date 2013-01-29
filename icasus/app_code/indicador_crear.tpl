@@ -176,6 +176,18 @@
 					<p><input type="radio" name="tipo_seleccion_responsable" value="2" class="medicion"> Medición desagregada en las subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.</p>
 				</div>
 			</fieldset>
+
+      <fieldset class="label_side" id="total" style="display:none">
+        <label>Cálculo del total</label>
+        <div>
+          <select name="id_tipo_agregacion" id="id_tipo_agregacion">
+            <option value="0" selected>Indefinido</option>
+            <option value="1">Promedio</option>
+            <option value="2">Suma</option>
+          </select>
+        </div>
+      </fieldset>
+
 			<fieldset class="label_side">
 				<div>
 					<div id="div_unidad" style="display:none">
@@ -207,13 +219,15 @@ $(document).ready(function(){
 		var valor = $(this).attr('value');
 		if (valor == 1 || valor == 2)
 		{
-			$('#div_unidad').css('display','inline');
-			$('#div_subunidades').css('display','inline');
+			$('#total').css('display','block');
+			$('#div_unidad').css('display','block');
+			$('#div_subunidades').css('display','block');
 			$(".subunidad").attr("checked","checked");
 		}
 		else if(valor == 0)
 		{
-			$('#div_unidad').css('display','inline');
+			$('#total').css('display','none');
+			$('#div_unidad').css('display','block');
 			$('#div_subunidades').css('display','none');
 			$(".subunidad").removeAttr("checked");
 			$(".unidad").attr("checked","checked");

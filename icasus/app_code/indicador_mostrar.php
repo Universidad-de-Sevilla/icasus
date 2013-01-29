@@ -48,4 +48,3 @@ else
 	header("location:index.php?error=$error");
 }
 ?>
-
