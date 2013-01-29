@@ -24,6 +24,60 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 	{
 		switch ($modulo)
 		{
+			case 'activar_individualmente':
+				if(isset($_REQUEST["id_subunidad"]) AND isset($_REQUEST["id_medicion"]))
+				{
+					$id_subunidad = sanitize($_REQUEST["id_subunidad"],INT);
+					$id_medicion = sanitize($_REQUEST["id_medicion"],INT);
+					$asignada = sanitize($_REQUEST["asignada"],INT);
+					$inicio = sanitize($_REQUEST["inicio"],SQL);
+					$fin = sanitize($_REQUEST["fin"],SQL);
+					if ($asignada == 1)
+					{
+						$valor = new valor();
+						$valor->load("id_medicion = $id_medicion AND id_entidad = $id_subunidad");
+						if ($valor->activo == 1)
+						{
+							$valor->activo = 0;
+						}
+						else
+						{
+							$valor->activo = 1;
+						}
+						$valor->save();
+					}
+					else
+					{
+						$valor= new valor();
+						$valor->id_medicion = $id_medicion;
+						$valor->id_entidad = $id_subunidad;
+						$valor->save();
+					}
+					if ($_REQUEST["inicio"] == 0)
+					{
+						$medicion= new medicion();
+						$cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+						$smarty->assign('mediciones',$cabeceras);
+						$subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador,$entidad->id);
+						$smarty->assign('subunidades_mediciones',$subunidades_mediciones);
+					}
+					else
+					{
+						$inicio = sanitize($_REQUEST["inicio"],INT);
+						$fin = sanitize($_REQUEST["fin"],INT);
+						$medicion= new medicion();
+						$cabeceras = $medicion->mediciones_periodos($id_indicador,$inicio,$fin);
+						$smarty->assign('mediciones',$cabeceras);
+						$subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador,$id_entidad,$inicio,$fin);
+						$smarty->assign('subunidades_mediciones',$subunidades_mediciones);
+					}
+				}
+				else
+				{
+					//escribe un error de falta de parametros en log para poder tener registro del error 
+					//ya que ajax no lo muestra al estar en segundo plano
+				}
+			break;
 			case 'seleccionar_años':
 				$medicion= new medicion();
 				$years = $medicion->find_year_mediciones($id_indicador);
@@ -31,19 +85,7 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 				$smarty->assign('year_inicio',sanitize($_REQUEST["inicio"], SQL));
 				break;
 			case 'mostrar_valores':
-				if (isset($_REQUEST["inicio"]) AND isset($_REQUEST["fin"]))
-				{
-					$inicio = sanitize($_REQUEST["inicio"],INT);
-					$fin = sanitize($_REQUEST["fin"],INT);
-					//ejecuta la accion de activar/desactivar los valores de las mediciones seleccionadas por inicio y fin del indicador
-
-					$medicion= new medicion();
-					$cabeceras = $medicion->mediciones_periodos($id_indicador,$inicio,$fin);
-					$smarty->assign('mediciones',$cabeceras);
-					$subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador,$id_entidad,$inicio,$fin);
-					$smarty->assign('subunidades_mediciones',$subunidades_mediciones);
-				}
-				else
+				if ($_REQUEST["inicio"] == 0)
 				{
 					//ejecuta la accion de activar/desactivar los valores de las mediciones de la subunidad en el indicador
 					if (isset($_REQUEST["activar"]) AND isset($_REQUEST["id_subunidad"]))
@@ -53,10 +95,38 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 						$valores = new valor();
 						$valores->valores_activar($id_indicador,$id_subunidad,$activar);
 					}
+					else
+					{
+						//escribe un error de falta de parametros en log para poder tener registro del error 
+						//ya que ajax no lo muestra al estar en segundo plano
+					}
 					$medicion= new medicion();
 					$cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
 					$smarty->assign('mediciones',$cabeceras);
 					$subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador,$entidad->id);
+					$smarty->assign('subunidades_mediciones',$subunidades_mediciones);
+				}
+				else
+				{
+					$inicio = sanitize($_REQUEST["inicio"],INT);
+					$fin = sanitize($_REQUEST["fin"],INT);
+					//ejecuta la accion de activar/desactivar los valores de las mediciones seleccionadas por inicio y fin del indicador
+					if (isset($_REQUEST["activar"]) AND isset($_REQUEST["id_subunidad"]))
+					{
+						$id_subunidad = sanitize($_REQUEST["id_subunidad"],INT);
+						$activar = sanitize($_REQUEST["activar"],INT);
+						$valores = new valor();
+						$v = $valores->valores_activar_periodos($id_indicador,$id_subunidad,$activar,$inicio,$fin);
+					}
+					else
+					{
+						//escribe un error de falta de parametros en log para poder tener registro del error 
+						//ya que ajax no lo muestra al estar en segundo plano
+					}
+					$medicion= new medicion();
+					$cabeceras = $medicion->mediciones_periodos($id_indicador,$inicio,$fin);
+					$smarty->assign('mediciones',$cabeceras);
+					$subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador,$id_entidad,$inicio,$fin);
 					$smarty->assign('subunidades_mediciones',$subunidades_mediciones);
 				}
 			break;
