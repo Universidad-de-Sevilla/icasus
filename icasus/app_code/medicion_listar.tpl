@@ -36,3 +36,26 @@
     </div>
   {/if}
 </div>
+<div style="opacity: 1;" class="box grid_16">
+		<h2 class="box_head">Regular Table with Form Inputs</h2>
+	<div style="opacity: 1;" class="block">	
+	<table class="static">
+		<thead>
+		<tr>
+			<th></th>
+			{foreach from=$mediciones item=medicion}
+				<th>{$medicion->etiqueta}</th>
+			{/foreach}
+		</tr>
+		</thead>
+		<tbody>
+		{foreach from=$subunidades_mediciones item=subunidades}
+			<tr><td>{$subunidades->nombre}</td>
+			{foreach from=$subunidades->mediciones item=medicion}
+				<td>{if $medicion->medicion_valor == '--'} -- {else}{$medicion->medicion_valor->valor}{/if}</td>
+			{/foreach}
+			</tr>
+		{/foreach}
+		</tbody>
+	</table>
+	</div>
