@@ -51,6 +51,7 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 						$valor= new valor();
 						$valor->id_medicion = $id_medicion;
 						$valor->id_entidad = $id_subunidad;
+						$valor->activo = 1;
 						$valor->save();
 					}
 					if ($_REQUEST["inicio"] == 0)

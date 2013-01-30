@@ -81,7 +81,7 @@
     <tr>
       <th></th><th>Subunidades</th>
       {foreach from=$mediciones item=medicion}
-        <th>{$medicion->etiqueta} ({$medicion->id})</th>
+        <th>{$medicion->etiqueta}</th>
       {/foreach}
     </tr>
     </thead>
@@ -94,7 +94,7 @@
 					data-id_subunidad="{$subunidades->id}" 
 					data-subunidad="{$subunidades->nombre}" 
 					data-activar="0">
-					<img src="/icons/ff16/chart_curve_add.png" alt="icono desactivar" title="Desactivar todas las mediciones de {$subunidades->nombre} ">
+					<img src="/icons/ff16/tick_grey.png" alt="icono desactivar" title="Desactivar todas las mediciones de {$subunidades->nombre} ">
 				</a> 
 				<a class="modal" 
 					data-id_indicador="{$indicador->id}" 
@@ -102,11 +102,11 @@
 					data-id_subunidad="{$subunidades->id}" 
 					data-subunidad="{$subunidades->nombre}" 
 					data-activar="1">
-				<img src="/icons/ff16/chart_curve_add.png" alt="icono activar" title="Activar todas las mediciones de {$subunidades->nombre} ">
-				</a></td><td>{$subunidades->nombre} ->{$subunidades->id}</td>
+				<img src="/icons/ff16/tick.png" alt="icono activar" title="Activar todas las mediciones de {$subunidades->nombre} ">
+				</a></td><td>{$subunidades->nombre}</td>
       {foreach from=$subunidades->mediciones item=medicion}
         <td class="{if $medicion->medicion_valor->activo == 0}valor_inactivo{else}valor_activo{/if}">
-          <span class="modal_activar_una_medicion" data-id_indicador="{$indicador->id}" data-id_entidad="{$entidad->id}" data-activo="{$medicion->medicion_valor->activo}" data-subunidad="{$subunidades->nombre}" data-id_medicion="{$medicion->id}" data-id_subunidad="{$subunidades->id}" data-asignada="{$medicion->medicion_valor->_saved}">
+          <span class="modal_activar_una_medicion" data-etiqueta="{$medicion->etiqueta}" data-id_indicador="{$indicador->id}" data-id_entidad="{$entidad->id}" data-activo="{$medicion->medicion_valor->activo}" data-subunidad="{$subunidades->nombre}" data-id_medicion="{$medicion->id}" data-id_subunidad="{$subunidades->id}" data-asignada="{$medicion->medicion_valor->_saved}">
 						{if $medicion->medicion_valor->_saved == 1}  
 							{if $medicion->medicion_valor->valor == ''}---{else}{$medicion->medicion_valor->valor}{/if}
 						{else}
@@ -132,6 +132,7 @@ $(function() {
 		var id_subunidad = $(this).data('id_subunidad');
 		var id_medicion = $(this).data('id_medicion');
 		var asignada = $(this).data('asignada');
+		var etiqueta = $(this).data('etiqueta');
 		var subunidad = $(this).data('subunidad');
 		var activo = $(this).data('activo');
 		var inicio = $("#inicio").val();
@@ -150,7 +151,7 @@ $(function() {
 		}
 		else
 		{
-			$('#modal_content_activar_una_medicion').html('No esta asignada');
+			$('#modal_content_activar_una_medicion').html('<p>No esta asignada.</p><p>Si confirma se asignará "'+etiqueta+'" a la '+subunidad+'.</p>');
 		}
 		var parametros = "&id_subunidad="+id_subunidad+"&id_medicion="+id_medicion+"&asignada="+asignada+"&inicio="+inicio+"&fin="+fin+"&id_entidad="+id_entidad+"&id_indicador="+id_indicador;
 		$("#modal_activar_una_medicion" ).dialog({
