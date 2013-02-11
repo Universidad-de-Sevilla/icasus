@@ -56,7 +56,7 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
   $smarty->assign("autorizado_borrar", $autorizado_borrar);
   
   $smarty->assign("usuario", $usuario);
-  $smarty->assign("_nombre_pagina", "$indicador->codigo - $indicador->nombre");
+  $smarty->assign("_nombre_pagina", "Medición $medicion->etiqueta - $indicador->nombre");
 	$smarty->assign('_javascript', array('medicion_editar'));
   $plantilla = "medicion_editar.tpl";
 }
