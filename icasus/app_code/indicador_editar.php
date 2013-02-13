@@ -15,7 +15,7 @@ if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']))
 {
 	$id_indicador = sanitize($_REQUEST['id_indicador'],16);
 	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
-	$usuario_entidad = new usuario_entidad;
+	$usuario_entidad = new usuario_entidad();
 	// Comprobamos permisos 
 	if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)"))
 	{	
