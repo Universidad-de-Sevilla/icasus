@@ -69,6 +69,7 @@ class usuario_entidad extends ADOdb_Active_Record
         $usuario_entidad->rol = new rol();
         $usuario_entidad->rol->load("id = $usuario_entidad->id_rol");
       }
+      usort( $usuarios_entidades, array( $this, "compara_por_apellidos") );
       return $usuarios_entidades;
     }
     else
@@ -77,6 +78,19 @@ class usuario_entidad extends ADOdb_Active_Record
     }
   }
     
+  // Función auxiliar para devolver un listado de usuarios ordenados por apellidos
+  // Se usa en: Find_usuarios()
+  function compara_por_apellidos($a, $b)
+  {
+    $al = strtolower($a->usuario->apellidos);
+    $bl = strtolower($b->usuario->apellidos);
+    if ($al == $bl) 
+    {
+      return 0;
+    }
+    return ($al > $bl) ? +1 : -1;
+  }
+      
 	//funcion para comprobrar los permisos de las actas
 	public function acta_permisos($id_usuario,$id_entidad,$id_rol)
 	{

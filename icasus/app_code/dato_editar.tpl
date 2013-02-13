@@ -32,7 +32,7 @@
                         {if $usuario_entidad->usuario->id == $dato->id_responsable_medicion}
                           selected
                         {/if}>
-									{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos}
+									{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre}
 									{if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
 									</option>
 								{/foreach}              
