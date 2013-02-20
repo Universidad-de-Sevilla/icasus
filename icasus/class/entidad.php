@@ -10,6 +10,7 @@ class entidad extends ADOdb_Active_Record
 {
 	public $_table = 'entidades';
 	public $indicadores;
+  public $valores;
   public $madre;
   public $usuario;
 

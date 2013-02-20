@@ -28,7 +28,7 @@
 								<option value="">Seleccionar uno ...</option>
 								{foreach $usuarios_entidad as $usuario_entidad}
 									<option value="{$usuario_entidad->usuario->id}">
-									{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos}
+									{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre}
 									{if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
 									</option>
 								{/foreach}              

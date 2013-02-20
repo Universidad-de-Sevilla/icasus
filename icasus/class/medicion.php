@@ -9,6 +9,7 @@ class medicion extends ADOdb_Active_Record
 {
 	public $_table='mediciones'; 
 	public $medicion_valor;
+  public $indicador;
 
   // ESTA FUNCION ¿SE USA?
 	public function find_joined_subunidad_valor($id_indicador,$id_entidad)

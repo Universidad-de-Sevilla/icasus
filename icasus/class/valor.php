@@ -11,6 +11,8 @@ class valor extends ADOdb_Active_Record
 	public $_table = 'valores';
   public $entidad;
   public $usuario;
+  public $medicion;
+  public $indicador;
   public $autorizado;
 	
 	public function puede_grabarse($id_valor,$id_usuario_activo)
@@ -97,6 +99,26 @@ class valor extends ADOdb_Active_Record
 			return false;
 		}
     
+  }
+  
+  public function Find_joined_indicador($condicion)
+  {
+    if ($valores = $this->Find($condicion))
+    {
+      foreach ($valores as& $valor)
+      {
+        $valor->medicion = new medicion();
+        $valor->medicion->load("id = $valor->id_medicion");
+        $id_indicador = $valor->medicion->id_indicador;
+        $valor->indicador = new indicador();
+        $valor->indicador->load("id = $id_indicador");
+      }
+      return $valores;
+    }
+    else
+    {
+      return false;
+    }
   }
   
 	public function load_joined($id)
