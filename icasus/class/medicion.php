@@ -9,6 +9,7 @@ class medicion extends ADOdb_Active_Record
 {
 	public $_table='mediciones'; 
 	public $medicion_valor;
+  public $indicador;
 
 	public function find_joined_subunidad_valor($id_indicador,$id_entidad)
 	{
@@ -43,6 +44,7 @@ class medicion extends ADOdb_Active_Record
 		}
 		return $mediciones;
 	}
+
 	//medicion_listar.php
 	public function cuadro_mando($id_indicador,$id_entidad)
 	{
@@ -51,6 +53,7 @@ class medicion extends ADOdb_Active_Record
 		
 		return $subunidades;
 	}
+
 	//obtener array de los años selecionados por el usuario para mostrar los valores
 	//indicador_subunidad_valor.php 
 	public function mediciones_periodos($id_indicador,$inicio,$fin)
@@ -58,6 +61,7 @@ class medicion extends ADOdb_Active_Record
 		$periodo = $this->find("id_indicador = $id_indicador AND date_format(periodo_inicio,'%Y') between '$inicio' AND '$fin' ORDER BY periodo_inicio");
 		return $periodo;
 	}
+
 	//obtener registros únicos de fechas de medición para el selector de periodos en	
 	//indicador_subunidad_valor.php 
 	public function find_year_mediciones($id_indicador)
@@ -65,5 +69,16 @@ class medicion extends ADOdb_Active_Record
 		$years_mediciones = $this->find("id_indicador = $id_indicador  GROUP BY date_format(periodo_inicio,'%Y') ORDER BY periodo_inicio");
 		return $years_mediciones;
 	}
+
+  public function find_joined_indicador($condicion)
+  {
+    $mediciones = $this->Find($condicion);
+    foreach($mediciones as& $medicion)
+    {
+      $medicion->indicador = new indicador();
+      $medicion->indicador->load("id = $medicion->id_indicador");
+    }
+    return $mediciones;
+  }
 }
 ?>

@@ -7,16 +7,14 @@ grupos de calidad de la Universidad de Sevilla y solicitar autorización de acce
 al responsable de su grupo de calidad.</p>
 
 <p>Icasus ha sido desarrollado por el <a href="http://www.r2h2.us.es/">Área de Recursos Humanos</a> 
-de la Universidad de Sevilla y <a href="http://forja.rediris.es/projects/icasus/">puede utilizarse 
+de la Universidad de Sevilla y <a href="https://gestionproyectos.us.es/projects/r2h2-icasus/">puede utilizarse 
 como software libre</a>.</p>
-<p>Puede bajar una primera versión del <a href="http://icasus.us.es/upload/ayuda/icasus_manual_breve.pdf">Manual de referencia rápida de Icasus</a> en formato PDF. Revisión disponible: 26 mayo
-2010</p>
 
 
 </div>
 <div style='width: 250px; float:left; margin:20px;'>
-<div id="formlogin" class="text-align:center"><a href="index.php?page=entidad_listar&autenticar">Iniciar sesión</a></div>
+<div id="formlogin" class="text-align:center"><h3><a href="index.php?page=entidad_listar&autenticar">Iniciar sesión</a></h3></div>
 </div>
 <!-- Novedades Icasus -->
 <p style="clear:both;">&nbsp;</p>
-{$pagina->contenido}
+{*$pagina->contenido*}

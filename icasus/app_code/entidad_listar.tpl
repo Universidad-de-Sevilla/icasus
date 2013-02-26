@@ -50,7 +50,7 @@
           {foreach from=$entidades item=entidad}
              <tr class="gradeX">
               <td>{$entidad->codigo}</td>
-              <td><a href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'>{$entidad->nombre}</a></td>
+              <td><a href='index.php?page=entidad_datos&id_entidad={$entidad->id}'>{$entidad->nombre}</a></td>
               <td>
                 <a href='index.php?page=cuadrounidad&id_entidad={$entidad->id}'> Cuadro resumen</a> - 
                 <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'> Consultas</a> -
