@@ -9,7 +9,7 @@ global $usuario;
 global $plantilla;
 
 define('ENTIDAD_MADRE', 14);
-define('MEDICIONES', '(795,796,799)');
+define('MEDICIONES', '(819,977,978,979,980,981,982,983,984)');
 $entidades_autorizadas = array();
 
 $entidad = new entidad();

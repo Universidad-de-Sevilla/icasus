@@ -55,7 +55,7 @@ $(document).ready(function(){
       data: {ajax:true, valor_parcial:valor_parcial, id_valor:id_valor, id_entidad:id_entidad, id_usuario:id_usuario},
 			url: "index.php?page=datos_rebiun_grabar",
       success: function(exito){
-          if (exito) console.log(exito); 
+          if (exito == "ok") console.log(exito); 
           console.log(id_valor + "-" + id_entidad + "-" + id_usuario + "-" + valor_parcial);
         }
 		});
