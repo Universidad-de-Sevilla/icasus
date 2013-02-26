@@ -45,7 +45,7 @@ $smarty->assign('mediciones',$mediciones);
 $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador,$entidad->id);
 $smarty->assign('subunidades_mediciones',$subunidades_mediciones);
 
-print_r($subunidades_mediciones);
+//print_r($subunidades_mediciones);
 
 $mediciones = $medicion->Find("id_indicador = $id_indicador");
 $smarty->assign('mediciones',$mediciones);
