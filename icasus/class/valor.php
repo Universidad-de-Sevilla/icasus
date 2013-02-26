@@ -11,8 +11,35 @@ class valor extends ADOdb_Active_Record
 	public $_table = 'valores';
   public $entidad;
   public $usuario;
+  public $medicion;
+  public $indicador;
   public $autorizado;
 	
+	//Activa/desactiva los valores de una subunidad según parametros
+	public function valores_activar_periodos($id_indicador,$id_subunidad,$activar,$inicio,$fin)
+	{
+		$medicion = new medicion();
+		$mediciones = $medicion->find("id_indicador = $id_indicador AND date_format(periodo_inicio,'%Y') between '$inicio' AND '$fin' ORDER BY periodo_inicio");
+		foreach($mediciones as $medicion)
+		{
+			$valor = new valor();
+			$valor->load("id_medicion = $medicion->id AND id_entidad = $id_subunidad");
+			$valor->activo = $activar;
+			$valor->save();
+		}
+	}
+	public function valores_activar($id_indicador,$id_subunidad,$activar)
+	{
+		$medicion = new medicion();
+		$mediciones = $medicion->find("id_indicador = $id_indicador");
+		foreach($mediciones as $medicion)
+		{
+			$valor = new valor();
+			$valor->load("id_medicion = $medicion->id AND id_entidad = $id_subunidad");
+			$valor->activo = $activar;
+			$valor->save();
+		}
+	}
 	public function puede_grabarse($id_valor,$id_usuario_activo)
 	{
 		$db = $this->DB();
@@ -97,6 +124,26 @@ class valor extends ADOdb_Active_Record
 			return false;
 		}
     
+  }
+  
+  public function Find_joined_indicador($condicion)
+  {
+    if ($valores = $this->Find($condicion))
+    {
+      foreach ($valores as& $valor)
+      {
+        $valor->medicion = new medicion();
+        $valor->medicion->load("id = $valor->id_medicion");
+        $id_indicador = $valor->medicion->id_indicador;
+        $valor->indicador = new indicador();
+        $valor->indicador->load("id = $id_indicador");
+      }
+      return $valores;
+    }
+    else
+    {
+      return false;
+    }
   }
   
 	public function load_joined($id)

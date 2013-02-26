@@ -28,22 +28,27 @@ function __autoload($class_name)
 	}
 }
 
-// Variables globales
-$smarty = new Smarty();
-//$smarty->cache = false; 
-$smarty->template_dir = '../app_code'; 
-$smarty->compile_dir = '../templates_c'; 
-$smarty->config_dir = '../configs'; 
-$smarty->cache_dir = '../cache'; 
-
-//Versión actual de icasus
-$smarty->assign('_version', '1.1');
-
 // Conectamos a los datos con ADODB y ActiveRecord 
 $adodb = NewADOConnection('mysql://'.IC_DB_LOGIN.':'.IC_DB_CLAVE.'@'.IC_DB_HOST.'/'.IC_DB_DATABASE);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
 // No podemos usarlo hasta que no esté Icasus en utf8
 //$adodb->Execute("SET NAMES 'UTF8'");
+
+// Variables globales
+$smarty = new Smarty();
+$usuario = new usuario();
+$plantilla = '';
+$redirige= '';
+
+// Configuramos parámetros $smarty
+$smarty->template_dir = '../app_code'; 
+$smarty->compile_dir = '../templates_c'; 
+$smarty->config_dir = '../configs'; 
+$smarty->cache_dir = '../cache'; 
+//$smarty->cache = false; 
+
+//Versión actual de icasus
+$smarty->assign('_version', '1.1');
 
 // Crea una sesión con un identificador encriptado para evitar ataques
 $session_key = substr(md5(IC_DIR_BASE), 0, 8);
@@ -59,13 +64,21 @@ if(!@session_id())
 	//@ini_set("session.gc_maxlifetime",10);
     @session_start();
 }
-// Hay que haber iniciado sesión y haber pedido pagina
+
+if (isset($_GET['page']))
+{
+  $page = sanitize($_GET['page'],2);
+}
+else
+{
+  $page = "inicio";
+}
+
 if (isset($_SESSION['usuario'])) 
 {
 	// Si viene id_entidad le asignamos su valor, si no, asignamos cero.
   // Quitarlo cuando se aclare lo de los permisos
 	$id_entidad = isset($_REQUEST['id_entidad'])?sanitize($_REQUEST['id_entidad'],16):0;
-	$usuario = new usuario();
 	$usuario = $_SESSION['usuario'];
 	$smarty->assign('_usuario',$usuario);
   /*
@@ -76,32 +89,21 @@ if (isset($_SESSION['usuario']))
 		$page = "error";
 	}
   */
-  if (isset($_GET['page']))
-  {
-	  $page = sanitize($_GET['page'],2);
-  }
-  else
-  {
-    $page = "inicio";
-  }
 }
 else
 {
-	// Si no se ha pedido ninguna página o no se ha iniciado sesión cargamos la de login  
-	$page = IC_TIPO_LOGIN;
+	// Si no se ha iniciado sesión cargamos la de login  
+	$page = IC_TIPO_LOGIN; 
 }
 
-// Definimos $plantilla en blanco para que se comporte como variable global
-$plantilla = '';
-
-// Carga la página solicitada ($_GET['page']) o la pagina por defecto ('login' en nuestro caso)
+// Carga la página solicitada
 if(file_exists("../app_code/$page.php"))
 {
 	require_once("../app_code/$page.php");
 }
 else
 {
-	$smarty->assign('error', "Error 404: no encontramos la página que ha solicitado."); 
+	$smarty->assign('error', "Error 404: no encontramos la página que ha solicitado: $page"); 
   require_once("../app_code/error.php");
 }
 if (isset($_GET['ajax']) AND $_GET['ajax'] == 'true')

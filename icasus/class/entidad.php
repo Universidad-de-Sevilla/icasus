@@ -10,8 +10,74 @@ class entidad extends ADOdb_Active_Record
 {
 	public $_table = 'entidades';
 	public $indicadores;
+  public $valores;
   public $madre;
   public $usuario;
+	public $mediciones;
+
+	//obtener subunidades de una unidad con sus valores de las mediciones del indicador elegidas por el usuario.
+	//indicador_subunidad_valor_ajax.php
+	public function find_subunidades_mediciones_periodos($id_indicador,$id_entidad,$inicio,$fin)
+	{
+		$subunidades = $this->find("id_madre = $id_entidad");
+		foreach($subunidades as $subunidad)
+		{
+			$medition = new medicion();
+			$meditions = $medition->find("id_indicador = $id_indicador AND date_format(periodo_inicio,'%Y') between '$inicio' AND '$fin' ORDER BY periodo_inicio");
+			foreach($meditions as $medi)
+			{
+				$valor = new valor();
+				$valor->load("id_entidad = $subunidad->id AND id_medicion = $medi->id");
+				/*
+				if ($valor->_saved != 1)
+				{
+					$valor->valor  =  '';
+				}
+				elseif ($valor->valor ==  '')
+				{
+						$valor->valor  =  '---';
+				}
+				$medi->medicion_valor = $valor->valor;
+			*/
+				$medi->medicion_valor = $valor;
+			}
+			$subunidad->mediciones = $meditions;
+		}
+		return $subunidades;
+	}
+	//obtener subunidades de una unidad con sus valores de todas las mediciones del indicador.
+	//indicador_subunidad_valor.php
+	public function find_subunidades_mediciones($id_indicador,$id_entidad)
+	{
+		//$medicion = new medicion();
+		//$ms = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+
+		$subunidades = $this->find("id_madre = $id_entidad");
+		foreach($subunidades as $subunidad)
+		{
+			$medition = new medicion();
+			$meditions = $medition->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+			foreach($meditions as $medi)
+			{
+				$valor = new valor();
+				$valor->load("id_entidad = $subunidad->id AND id_medicion = $medi->id");
+				/*
+				if ($valor->_saved != 1)
+				{
+					$valor->valor  =  '';
+				}
+				elseif ($valor->valor ==  '')
+				{
+						$valor->valor  =  '---';
+				}
+				$medi->medicion_valor = $valor->valor;
+			*/
+				$medi->medicion_valor = $valor;
+			}
+			$subunidad->mediciones = $meditions;
+		}
+		return $subunidades;
+	}
 
 	public function load_joined($condicion)
   {
