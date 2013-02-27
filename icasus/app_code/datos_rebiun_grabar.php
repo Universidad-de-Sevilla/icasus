@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------------------------------
 global $usuario;
 global $plantilla;
-$plantilla = "plantilla_blanca.tpl";
+$plantilla = "datos_rebiun_grabar.tpl";
 
 $autorizado = false;
 
@@ -29,7 +29,10 @@ if (isset($_REQUEST['id_valor']) &&  isset($_REQUEST['id_entidad']) && isset($_R
     $valor->valor_parcial = sanitize($_REQUEST['valor_parcial'], FLOAT); 
     $valor->id_usuario = $usuario->id;
     $valor->fecha_recogida = date("Y-m-d");           
-    $valor->save();
+    if ($valor->save())
+    {
+      $smarty->assign("resultado", $valor->valor_parcial);
+    }
   }
 }
 ?>

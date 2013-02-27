@@ -37,7 +37,7 @@
       </div><!-- fin div entidad->etiqueta -->
     {/foreach}
 			<div class="button_bar clearfix" id="footer_tabs">
-        <button class="dark send_right img_icon has_text" type="button"><span>Salir</span></button>
+        <button class="dark send_right img_icon has_text" type="button"><a href="index.php?page=inicio"><span>Salir</span></a></button>
 			</div>
 	</div><!--fin #tab_entidades -->
 </form>
@@ -46,17 +46,29 @@
 <script>
 $(document).ready(function(){
 	$('.entrada_valor').on('keyup',function(){
-		var id_valor = $(this).data('id_valor');
-		var id_entidad = $(this).data('id_entidad');
-		var id_usuario = $(this).data('id_usuario');
-		var valor_parcial = $(this).val();
+    var entrada= $(this);
+		var id_valor = entrada.data('id_valor');
+		var id_entidad = entrada.data('id_entidad');
+		var id_usuario = entrada.data('id_usuario');
+		var valor_parcial = entrada.val();
 		$.ajax({
       type: "GET",
       data: {ajax:true, valor_parcial:valor_parcial, id_valor:id_valor, id_entidad:id_entidad, id_usuario:id_usuario},
 			url: "index.php?page=datos_rebiun_grabar",
-      success: function(exito){
-          if (exito == "ok") console.log(exito); 
+      success: function(resultado){
+          if (resultado === valor_parcial) 
+          {
+            entrada.css("color","#02A202");
+            entrada.css("border", "1px solid #02A202");
+            console.log("OK"); 
+          }
+          else
+          {
+            entrada.css("color", "red");
+            entrada.css("border", "1px solid red");
+          }
           console.log(id_valor + "-" + id_entidad + "-" + id_usuario + "-" + valor_parcial);
+          console.log(resultado);
         }
 		});
 	});
