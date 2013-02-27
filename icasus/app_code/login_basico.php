@@ -7,7 +7,6 @@ $smarty->assign('_nombre_pagina' , 'Bienvenido a Icasus');
 $pagina = new pagina();
 $pagina->load("alias = 'noticias'");
 $smarty->assign('pagina',$pagina);
- 
 // Comprueba que vengan los datos
 if (isset($_POST["login"]) && isset($_POST["clave"]))
 {
@@ -22,6 +21,12 @@ if (isset($_POST["login"]) && isset($_POST["clave"]))
     $log = new log();
     $log->add('login',0,$usuario->id);	
     header("location:index.php");
+  }
+  else
+  {
+    $error = "Usuario o password incorrecto";
+    $smarty->assign('error',$error);
+    $plantilla = "login_basico.tpl";
   }
 }
 else if(isset($_GET["logout"]))

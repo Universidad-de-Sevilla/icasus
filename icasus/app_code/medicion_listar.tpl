@@ -37,7 +37,7 @@
   {/if}
 </div>
 <div style="opacity: 1;" class="box grid_16">
-		<h2 class="box_head">Tabla resumen de valores</h2>
+		<h2 class="box_head">Tabla de valores</h2>
 	<div style="opacity: 1;" class="block">	
 	<table class="static">
 		<thead>
