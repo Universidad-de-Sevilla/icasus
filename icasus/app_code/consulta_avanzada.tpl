@@ -143,6 +143,8 @@ a.actual {
 <!-- La tabla con los resultados obtenidos y los datos de partida -->
 <div class = "box grid_6 no_titlebar" id="tablas" style="margin-left: 0.9%; margin-right: 0.9%;">
   <div class="block">
+    <div class="section tabla_datos" id="tablar">
+    </div>
     <div class="section tabla_datos" id="tabla0">
     </div>
     <div class="section tabla_datos" id="tabla1">
@@ -270,6 +272,22 @@ a.actual {
                     'data-id_indicador': id_indicador, 
                     html: items.join('')
                    }).appendTo('#tabla'+serie);
+  }
+
+  function generaTablaResultados(datos)
+  {
+    var items = [];
+    items.push('<caption>Resultados</caption>');
+    items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
+    $.each(datos, function(i, dato) {
+      if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
+      items.push('<tr class="' + paridad +'"><td>' + dato[0] + '</td><td>' + dato[1] + '</td></tr>');
+    });
+    $('#tablar').empty();
+    $('<table />', {'class': 'static', 
+                    'data-id_indicador': 0, 
+                    html: items.join('')
+                   }).appendTo('#tablar');
   }
 
   function mostrarMedicion(e)
@@ -420,6 +438,10 @@ a.actual {
             }
           }
         }
+        else
+        {
+          alert("No puedo calcular con los parámetros actuales");
+        }
         console.log(resultado);
       }
     });
@@ -430,6 +452,9 @@ a.actual {
       legend: { position: 'ne' },
       colors: ['blue','black']
     };
+    // Generamos la tabla de resultados a partir del array 'resultado'
+    generaTablaResultados(resultado)
+    // Generamos la grafica con los resultados a partir del objeto 'resultados'
     $.plot($("#grafica"), resultados, opciones_resultado);
   
 	}
@@ -448,13 +473,14 @@ a.actual {
   function quitarIndicador()
   {
     serie = $(this).closest(".receptor").data("serie");
-    datos[serie] = 0;
-    datos_json[serie] = 0;
+    //datos[serie] = 0;
+    //datos_json[serie] = 0;
+    delete datos.serie;
+    delete datos_json.serie;
     $(this).closest('.receptor').empty();
     $("#tabla"+serie).empty();
     $("#grafica").css("height", "400px");
     $.plot($("#grafica"), datos, opciones);
-    console.log(opciones);
   }
   
   // devuelve la posición si un array contiene a otro o -1 si no lo contiene 
