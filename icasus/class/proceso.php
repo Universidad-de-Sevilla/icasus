@@ -11,7 +11,8 @@ class proceso extends ADOdb_Active_Record
 	public $propietario;
  	public $error; //propiedad de uso interno para almacenar los errores
  	public $madre;
- 	public $indicadores;
+ 	public $indicadores = array();
+
 	//devuelve los procesos de los indicadores de la unidad superior
 	public function proceso_indicador_superior($id_unidad)
 	{
@@ -22,6 +23,7 @@ class proceso extends ADOdb_Active_Record
 
 		return $procesos;
 	}
+
 	//devuelve los procesos de los indicadores segregados los cuales son medidos por una subunidad
 	public function procesos_indicadores_segregados($id_unidad)
 	{
@@ -36,18 +38,20 @@ class proceso extends ADOdb_Active_Record
 
 		return $procesos;
 	}
+
 	//devuelve los procesos de un entidad con los indicadores propios.
 	public function find_joined_indicadores($condicion)
 	{
-		$p = $this->find($condicion);
-		foreach($p as $item)
+    $procesos = array();
+		$procesos = $this->find($condicion);
+		foreach($procesos as& $proceso)
 		{
-			$i = new indicador();
-			$is = $i->find("id_entidad = $item->id_entidad AND id_proceso= $item->id");
-			$item->indicadores = $is;
+			$indicador = new indicador();
+			$proceso->indicadores = $indicador->find("id_proceso = $proceso->id");
 		}
-		return $p;
+		return $procesos;
 	}
+
 	public function load_joined($condition)
 	{
 		if ($this->load($condition))

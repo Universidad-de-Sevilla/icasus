@@ -90,8 +90,8 @@ a.actual {
       <div class="block">
         <div class="section">
 
-          <div class="receptor" data-serie="0">
-          </div>
+          <div class="receptor" data-serie="0"> </div>
+          
           <div>
             <select class="operador" data-serie="0">
               {foreach $operaciones as $operacion}
@@ -99,8 +99,8 @@ a.actual {
               {/foreach}
             </select>
           </div>
-          <div class="receptor" data-serie="1">
-          </div>
+
+          <div class="receptor" data-serie="1"> </div>
           
           <div>
             <select class="operador" data-serie="1">
@@ -109,8 +109,28 @@ a.actual {
               {/foreach}
             </select>
           </div>
-          <div class="receptor" data-serie="2">
+
+          <div class="receptor" data-serie="2"> </div>
+
+          <div>
+            <select class="operador" data-serie="2">
+              {foreach $operaciones as $operacion}
+                <option value="{$operacion.0}">{$operacion.1}</option>
+              {/foreach}
+            </select>
           </div>
+
+          <div class="receptor" data-serie="3"> </div>
+
+          <div>
+            <select class="operador" data-serie="3">
+              {foreach $operaciones as $operacion}
+                <option value="{$operacion.0}">{$operacion.1}</option>
+              {/foreach}
+            </select>
+          </div>
+
+          <div class="receptor" data-serie="4"> </div>
 
           <button class="pull-right" id="btn_mostrar_resultado">Mostrar resultado</button>
 
@@ -123,11 +143,17 @@ a.actual {
 <!-- La tabla con los resultados obtenidos y los datos de partida -->
 <div class = "box grid_6 no_titlebar" id="tablas" style="margin-left: 0.9%; margin-right: 0.9%;">
   <div class="block">
+    <div class="section tabla_datos" id="tablar">
+    </div>
     <div class="section tabla_datos" id="tabla0">
     </div>
     <div class="section tabla_datos" id="tabla1">
     </div>
     <div class="section tabla_datos" id="tabla2">
+    </div>
+    <div class="section tabla_datos" id="tabla3">
+    </div>
+    <div class="section tabla_datos" id="tabla4">
     </div>
   </div>
 </div><!-- .box .grid_6 -->
@@ -164,7 +190,7 @@ a.actual {
 <script>
   /* --- Comienza la magia --- */ 
   //Están son las series iniciales que pintamos en pantalla, se agregarán más cuando se llenen
-  var contador_series = 3; 
+  var contador_series = 5; 
   var datos = []; //Los datos de cada serie ya procesados
   var opciones; //Las opciones para mostrar los gráficos
   var datos_json = []; //Contiene los valores de los indicadores tal como vienen de la petición a la API
@@ -248,9 +274,27 @@ a.actual {
                    }).appendTo('#tabla'+serie);
   }
 
+  function generaTablaResultados(datos)
+  {
+    var items = [];
+    items.push('<caption>Resultados</caption>');
+    items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
+    $.each(datos, function(i, dato) {
+      if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
+      items.push('<tr class="' + paridad +'"><td>' + dato[0] + '</td><td>' + dato[1] + '</td></tr>');
+    });
+    $('#tablar').empty();
+    $('<table />', {'class': 'static', 
+                    'data-id_indicador': 0, 
+                    html: items.join('')
+                   }).appendTo('#tablar');
+  }
+
   function mostrarMedicion(e)
   {
     e.preventDefault();
+    $('.medicion.actual').removeClass('actual'); 
+    $(this).addClass('actual');
     var medicion_actual = $(this).text();
     if (medicion_actual === "Todos")
     {
@@ -370,20 +414,35 @@ a.actual {
       if ( operacion != 'cotejar')
       {
         var serie = $(operador).data('serie');
+        // Si es el primer operando inicializamos el array resultado con sus datos
+        if (resultado.length == 0)
+        {
+          // Recorremos cada una de las mediciones de la serie
+          for(i = 0; i < datos[serie].data.length; i++)
+          {
+              resultado[i] = [ parseInt(datos[serie].data[i][0]), parseFloat(datos[serie].data[i][1]) ];
+          }
+        }
+        // Comprobamos que ninguna de las dos series que operan esté vacia
         if (datos[serie].data.length > 0 && datos[serie + 1].data.length > 0)
         {
           for(i = 0; i < datos[serie].data.length; i++)
           {
             if (operacion == 'cociente')
             {
-              resultado[i] = [ parseInt(datos[serie].data[i][0]), parseFloat(datos[serie].data[i][1]) / parseFloat(datos[serie + 1].data[i][1]) ];
+              resultado[i][1] /=  parseFloat(datos[serie + 1].data[i][1]);
             }
             else if (operacion == 'suma')
             {
-              resultado[i] = [ parseInt(datos[serie].data[i][0]), parseFloat(datos[serie].data[i][1]) + parseFloat(datos[serie + 1].data[i][1]) ];
+              resultado[i][1] +=  parseFloat(datos[serie + 1].data[i][1]);
             }
           }
         }
+        else
+        {
+          alert("No puedo calcular con los parámetros actuales");
+        }
+        console.log(resultado);
       }
     });
     resultados = [{label: 'Resultado', data: resultado}];
@@ -393,6 +452,9 @@ a.actual {
       legend: { position: 'ne' },
       colors: ['blue','black']
     };
+    // Generamos la tabla de resultados a partir del array 'resultado'
+    generaTablaResultados(resultado)
+    // Generamos la grafica con los resultados a partir del objeto 'resultados'
     $.plot($("#grafica"), resultados, opciones_resultado);
   
 	}
@@ -411,13 +473,14 @@ a.actual {
   function quitarIndicador()
   {
     serie = $(this).closest(".receptor").data("serie");
-    datos[serie] = 0;
-    datos_json[serie] = 0;
+    //datos[serie] = 0;
+    //datos_json[serie] = 0;
+    delete datos.serie;
+    delete datos_json.serie;
     $(this).closest('.receptor').empty();
     $("#tabla"+serie).empty();
     $("#grafica").css("height", "400px");
     $.plot($("#grafica"), datos, opciones);
-    console.log(opciones);
   }
   
   // devuelve la posición si un array contiene a otro o -1 si no lo contiene 
