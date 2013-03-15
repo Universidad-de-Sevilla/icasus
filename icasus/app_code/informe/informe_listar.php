@@ -1,22 +1,24 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
-// Archivo: cuadromando_entidad.php
-// Tipo: controlador
+// Proyecto: Icasus
+// Archivo: informe/informe_listar.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Cuadro de mando de indicadores para una entidad determinada
+// Descripcion: lista de informes disponibles en el sistema
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
-global $basedatos;
 global $plantilla;
 
-// Esto es para prevenir que se cargue el script sin pasar por index.php
-if (!is_object($smarty))
-{
-	header('Location:index.php');	
+if (isset($_REQUEST['id_entidad']))
+{ 
+  $id_entidad = sanitize($_REQUEST['id_entidad'], INT);
+  $smarty->assign('id_entidad' , $id_entidad);
+  $smarty->assign('_nombre_pagina' , "Lista de informes disponibles");
+  $plantilla = 'informe/informe_listar.tpl';
 }
-$plantilla = 'informes/informe_listar.tpl';
-$smarty->assign('_nombre_pagina' , "Listado de informes disponibles");
+else
+{
+  header("location: index.php");
+}
 ?>
