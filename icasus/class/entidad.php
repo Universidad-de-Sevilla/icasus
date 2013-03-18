@@ -28,17 +28,6 @@ class entidad extends ADOdb_Active_Record
 			{
 				$valor = new valor();
 				$valor->load("id_entidad = $subunidad->id AND id_medicion = $medi->id");
-				/*
-				if ($valor->_saved != 1)
-				{
-					$valor->valor  =  '';
-				}
-				elseif ($valor->valor ==  '')
-				{
-						$valor->valor  =  '---';
-				}
-				$medi->medicion_valor = $valor->valor;
-			*/
 				$medi->medicion_valor = $valor;
 			}
 			$subunidad->mediciones = $meditions;

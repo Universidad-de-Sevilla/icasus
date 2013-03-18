@@ -51,8 +51,8 @@
       <tbody>
       {foreach from=$subunidades_mediciones item=subunidad}
         <tr><td>{$subunidad->nombre}</td>
-        {foreach from=$subunidades->mediciones item=medicion}
-          <td>{if $medicion->medicion_valor == '--'} -- {else}{$medicion->medicion_valor->valor}{/if}</td>
+        {foreach from=$subunidades_mediciones item=medicion}
+          <td>{if $medicion->medicion_valor->valor == '--'} -- {else}{$medicion->medicion_valor->valor}{/if}</td>
         {/foreach}
         </tr>
       {/foreach}
