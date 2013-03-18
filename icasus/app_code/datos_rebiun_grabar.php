@@ -27,6 +27,7 @@ if (isset($_REQUEST['id_valor']) &&  isset($_REQUEST['id_entidad']) && isset($_R
     $id_valor = sanitize($_REQUEST['id_valor'], INT);
     $valor->load("id = $id_valor");
     $valor->valor_parcial = sanitize($_REQUEST['valor_parcial'], FLOAT); 
+    $valor->valor = $valor->valor_parcial;
     $valor->id_usuario = $usuario->id;
     $valor->fecha_recogida = date("Y-m-d");           
     if ($valor->save())

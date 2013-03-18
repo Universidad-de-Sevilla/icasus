@@ -1,25 +1,26 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: class/indicador.php
+// Archivo: class/cuadro.php
 //---------------------------------------------------------------------------------------------------
-// Gestiona los indicadores y los indicadores-dato
+// Gestiona los cuadros de mando de un usuario
 //---------------------------------------------------------------------------------------------------
 
-class cuadromando extends ADOdb_Active_Record
+class cuadro extends ADOdb_Active_Record
 {
-	public $_table = 'cuadromandos';
-	public $indicadores;
+	public $_table = 'cuadro';
+	public $indicadores_cuadros;
 
+  //No se si está función será útil
 	public function find_joined($id_usuario)
 	{
-		$cs = $this->find("id_usuario = $id_usuario");
-		foreach($cs as $item)
+		$cuadros = $this->find("id_usuario = $id_usuario");
+		foreach($cuadros as& $cuadro)
 		{
-			$ic = new indicador_cuadro();
-			$ics = $ic->find_joined("id_cuadromando = $item->id");
-			$item->indicadores = $ics;
+			$indicador_cuadro = new indicador_cuadro();
+			$indicadores_cuadros = $indicador_cuadro->find_joined("id_cuadro = $cuadro->id");
+			$cuadro->indicadores_cuadros = $indicadores_cuadros;
 		}
-		return $cs;
+		return $cuadros;
 	}
 }
