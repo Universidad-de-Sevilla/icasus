@@ -45,40 +45,28 @@ class entidad extends ADOdb_Active_Record
 		}
 		return $subunidades;
 	}
+
 	//obtener subunidades de una unidad con sus valores de todas las mediciones del indicador.
-	//indicador_subunidad_valor.php
+	//indicador_subunidad_valor.php 
 	public function find_subunidades_mediciones($id_indicador,$id_entidad)
 	{
-		//$medicion = new medicion();
-		//$ms = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
-
 		$subunidades = $this->find("id_madre = $id_entidad");
 		foreach($subunidades as $subunidad)
 		{
-			$medition = new medicion();
-			$meditions = $medition->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
-			foreach($meditions as $medi)
+			$medicion = new medicion();
+			$mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+			foreach($mediciones as $medicion)
 			{
 				$valor = new valor();
-				$valor->load("id_entidad = $subunidad->id AND id_medicion = $medi->id");
-				/*
-				if ($valor->_saved != 1)
-				{
-					$valor->valor  =  '';
-				}
-				elseif ($valor->valor ==  '')
-				{
-						$valor->valor  =  '---';
-				}
-				$medi->medicion_valor = $valor->valor;
-			*/
-				$medi->medicion_valor = $valor;
+				$valor->load("id_entidad = $subunidad->id AND id_medicion = $medicion->id");
+				$medicion->medicion_valor = $valor;
 			}
-			$subunidad->mediciones = $meditions;
+			$subunidad->mediciones = $mediciones;
 		}
 		return $subunidades;
 	}
 
+  // Devuelve los datos de una entidad con los de su entidad madre y con los usuarios vinculados
 	public function load_joined($condicion)
   {
     if ($this->load($condicion))
