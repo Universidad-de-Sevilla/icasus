@@ -33,6 +33,19 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 	{
 		switch ($modulo)
 		{
+			case 'actualizar_dato':
+			echo 'ssss';	
+				$id_valor = sanitize($_REQUEST["id_valor"],INT);
+				$value = sanitize($_REQUEST["valor"],SQL);
+				$valor = new valor();
+				$valor->Load("id = $id_valor");
+				$valor->id_usuario = $usuario->id;
+				$valor->valor = $value;
+				$valor->valor_parcial = $value;
+				$valor->fecha_recogida = date();
+				$valor->save();
+			break;
+
 			case 'asignar_una_medicion':
 
 				$valor = new valor();

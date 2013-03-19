@@ -85,6 +85,8 @@ $(function() {
 	var id_entidad = $('table').data('id_entidad');
 	var id_medicion = 'null';
 	var id_subunidad = 'null';
+	var subunidad = 'null';
+	var inicio = 'null';
 	var fin = 'null';
 	var activo = 'null';
 
@@ -218,6 +220,20 @@ $("#modal_activar_uno" ).dialog({
 			}
 		}); 
 	});
+	$('#main_container').on('keyup','.actualizar_dato',function(){
+		var actualizar_dato = $(this);
+		var id_valor = $(this).data('id_valor');
+		var valor = $(this).val();
+		//alert(valor);
+		var parametros = "&id_entidad="+id_entidad+"&id_indicador="+id_indicador+"&id_medicion="+id_medicion+"&id_subunidad="+id_subunidad+"&inicio="+inicio+"&fin="+fin+"&activo="+activo+"&id_valor="+id_valor+"&valor="+valor;
+		$.ajax({
+			url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato"+parametros,
+			success: function(datos){
+				actualizar_dato.css("color","green");
+			}
+		});
+	});
+
 });
  </script>
 {/literal}
