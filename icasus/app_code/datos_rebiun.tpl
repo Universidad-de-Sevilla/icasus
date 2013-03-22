@@ -37,7 +37,7 @@
       </div><!-- fin div entidad->etiqueta -->
     {/foreach}
 			<div class="button_bar clearfix" id="footer_tabs">
-        <button class="dark send_right img_icon has_text" type="button"><a href="index.php?page=inicio"><span>Salir</span></a></button>
+        <button class="dark send_right img_icon has_text" type="button"><a href="index.php?page=inicio" style="color:white;"><span>Salir</span></a></button>
 			</div>
 	</div><!--fin #tab_entidades -->
 </form>
