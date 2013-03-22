@@ -35,22 +35,22 @@ function expandir(id)
 {/literal}
 
 <h2><img src='iconos/32x32/table_edit.png' alt='icono tabla lapiz' /> Edición del cuadro de mando</h2>
-<form action='index.php?page=cuadromando_grabar' method='post' id='formcuadro' 
+<form action='index.php?page=cuadro_grabar' method='post' id='formcuadro' 
 	name='formcuadro' class='datos'>
 	<input type='hidden' name='privado' value='1' />
-        <input type='hidden' name='id' value='{$cuadromando->id}' />
+        <input type='hidden' name='id' value='{$cuadro->id}' />
 	<p><input type='submit' name='enviar' value='Grabar cambios y mostrar' class='submit'/></p>
 	<div class='marcosimple'>
 		<h3>Cambiar datos del cuadro de mando</h3>
 		<input type='hidden' name='privado' value='1' />
-		<input type='hidden' name='id' value='{$cuadromando->id}' />
+		<input type='hidden' name='id' value='{$cuadro->id}' />
 		
 		<p><label for="nombre">Denominaci&oacute;n </label> &nbsp; <span class="grey">(requerido)</span>
-		<input type="text" name="nombre" id="nombre" class="inp" value="{$cuadromando->nombre}"/></p>
+		<input type="text" name="nombre" id="nombre" class="inp" value="{$cuadro->nombre}"/></p>
 
 		<p><label for="comentarios">Comentarios </label> &nbsp; <span class="grey"></span><br />
 		<textarea name="comentarios" id="comentarios" class="inp" rows="4" 
-		cols="50">{$cuadromando->comentarios}
+		cols="50">{$cuadro->comentarios}
 		</textarea></p>
 	</div>
 

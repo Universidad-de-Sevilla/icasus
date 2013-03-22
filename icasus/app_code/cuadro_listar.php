@@ -7,10 +7,10 @@
 // Descripcion: Lista los cuadros de mando definidos por este usuario
 //---------------------------------------------------------------------------------------------------
 
-$cuadromando = new cuadromando();
-$cuadromandos = $cuadromando->find_joined($usuario->id);
-$smarty->assign('cuadromandos',$cuadromandos);
+$cuadro = new cuadro();
+$cuadros = $cuadro->find_joined($usuario->id);
+$smarty->assign('cuadros',$cuadros);
 
-$plantilla = 'cuadromando_listar.tpl';
+$plantilla = 'cuadro_listar.tpl';
 $smarty->assign('_nombre_pagina' , 'Tus cuadros de mando');
 ?>

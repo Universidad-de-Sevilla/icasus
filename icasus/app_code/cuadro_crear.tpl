@@ -1,7 +1,7 @@
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
-			<form action='index.php?page=cuadromando_grabar' method='post' id='formcuadro' name='formcuadro' class='validate_form'>
+			<form action='index.php?page=cuadro_grabar' method='post' id='formcuadro' name='formcuadro' class='validate_form'>
 				<fieldset class="label_side">
 					<label>Nombre cuadro de mandor</label>
 					<div><input name='nombre'class="required" type="text" /><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
