@@ -43,8 +43,6 @@ $smarty->assign('mediciones',$mediciones);
 $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador,$entidad->id);
 $smarty->assign('subunidades_mediciones',$subunidades_mediciones);
 
-//print_r($subunidades_mediciones);
-
 $smarty->assign('_nombre_pagina', "Gestión de mediciones: $indicador->nombre");
 $plantilla = 'medicion_listar.tpl';
 ?>
