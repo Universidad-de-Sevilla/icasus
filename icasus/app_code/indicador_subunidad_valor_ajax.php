@@ -100,6 +100,8 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 				$years = $medicion->find_year_mediciones($id_indicador);
 				$smarty->assign('years',$years);
 				$smarty->assign('year_inicio',sanitize($_REQUEST["inicio"], SQL));
+				$cabeceras = '';
+				$subunidades_mediciones = '';
 				break;
 			
 			case 'activar_all':
