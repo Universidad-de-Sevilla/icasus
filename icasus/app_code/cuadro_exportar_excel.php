@@ -1,7 +1,7 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
-// Archivo: cuadromando_exportar_excel.php
+// Archivo: cuadro_exportar_excel.php
 // Tipo: controlador
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
@@ -21,13 +21,13 @@ if (isset($_REQUEST['id']))
 {
 	$smarty->assign('_javascript' , array('confirmar_borrar'));
 	$id = sanitize($_REQUEST['id'],16);
-	$cuadromando = new cuadromando();
-	$cuadromando->Load("id = $id");
-	$smarty->assign('cuadromando',$cuadromando);
-	$indicadores = $cuadromando->carga_indicadores();
+	$cuadro = new cuadro();
+	$cuadro->Load("id = $id");
+	$smarty->assign('cuadro',$cuadro);
+	$indicadores = $cuadro->carga_indicadores();
 	$smarty->assign('indicadores',$indicadores);
-	$plantilla = 'cuadromando_mostrar.tpl';
-	$smarty->assign('_nombre_pagina' , "Cuadro de Mando: $cuadromando->nombre");
+	$plantilla = 'cuadro_mostrar.tpl';
+	$smarty->assign('_nombre_pagina' , "Cuadro de Mando: $cuadro->nombre");
 
 //º:print_r($ado_indicador);
 //Librerias necesarias
@@ -76,18 +76,18 @@ foreach($indicadores as $indicador)
 }
 
   $excelBinaryWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
-  $excelBinaryWriter->save('informes/cuadromando'.$id.'.xls');
+  $excelBinaryWriter->save('informes/cuadro'.$id.'.xls');
 
-  header('Content-Disposition:attachment;filename=informes/cuadromando'.$id.'.xls');
+  header('Content-Disposition:attachment;filename=informes/cuadro'.$id.'.xls');
   header("Content-Type:application/vnd.ms-excel");
   //header("Content-Length:".filesize($Fichero));
   header("Content-Transfer-Encoding: binary");
-  readfile('informes/cuadromando'.$id.'.xls');
+  readfile('informes/cuadro'.$id.'.xls');
 
 }
 else
 {
-	//Si se llama a esta pagina si un id de cuadromando se redirecciona al listado
-	header('Location:index.php?page=cuadromando_listar');	
+	//Si se llama a esta pagina si un id de cuadro se redirecciona al listado
+	header('Location:index.php?page=cuadro_listar');	
 }
 ?>

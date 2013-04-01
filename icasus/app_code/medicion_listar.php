@@ -36,19 +36,13 @@ $smarty->assign('tipo',$tipo);
 
 
 $medicion = new medicion();
-$mediciones = $medicion->Find("id_indicador = $id_indicador");
+$mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio ASC");
 $smarty->assign('mediciones',$mediciones);
 
 //array de subunidades con las mediciones y sus valores
-//$subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador,$entidad->id);
-//$smarty->assign('subunidades_mediciones',$subunidades_mediciones);
 $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador,$entidad->id);
 $smarty->assign('subunidades_mediciones',$subunidades_mediciones);
 
-//print_r($subunidades_mediciones);
-
-$mediciones = $medicion->Find("id_indicador = $id_indicador");
-$smarty->assign('mediciones',$mediciones);
 $smarty->assign('_nombre_pagina', "Gestión de mediciones: $indicador->nombre");
 $plantilla = 'medicion_listar.tpl';
 ?>

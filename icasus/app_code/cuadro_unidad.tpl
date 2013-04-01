@@ -7,7 +7,7 @@
 		var tipo = $(this).attr('tipo');
 		//alert(id_proceso+'--'+tipo);
 		$.ajax({
-			url: "index.php?page=cuadrounidad_ajax&ajax=true&id_entidad="+id_entidad+"&id_proceso="+id_proceso+"&modulo="+tipo,
+			url: "index.php?page=cuadro_unidad_ajax&ajax=true&id_entidad="+id_entidad+"&id_proceso="+id_proceso+"&modulo="+tipo,
 			success: function(datos)
 			{
 		    $('#contenedor_'+tipo+'_'+id_proceso).html(datos);
