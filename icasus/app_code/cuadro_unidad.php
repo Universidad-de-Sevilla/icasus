@@ -1,7 +1,7 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
-// Archivo: cuadrounidad.php
+// Archivo: cuadro_unidad.php
 // Tipo: controlador
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
@@ -15,7 +15,7 @@ global $plantilla;
 // Esto es para prevenir que se cargue el script sin pasar por index.php
 if (!is_object($smarty))
 {
-	header('Location:index.php?page=cuadromando_listar');	
+	header('Location:index.php?page=cuadro_listar');	
 }
 if (isset($_GET["id_entidad"]) AND $_GET["id_entidad"] >0)
 {
@@ -42,7 +42,7 @@ if (isset($_GET["id_entidad"]) AND $_GET["id_entidad"] >0)
 	$smarty->assign('entidad_superior',$entidad_madre);
 	$smarty->assign('procesos_indicadores_superior',$procesos_indicadores_superior);
 	
-	$plantilla = 'cuadrounidad.tpl';
+	$plantilla = 'cuadro_unidad.tpl';
 	$smarty->assign('_nombre_pagina' , "Cuadro resumen: $entidad->nombre");
 
 }
