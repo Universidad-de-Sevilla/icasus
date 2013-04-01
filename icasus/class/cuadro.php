@@ -8,7 +8,7 @@
 
 class cuadro extends ADOdb_Active_Record
 {
-	public $_table = 'cuadro';
+	public $_table = 'cuadros';
 	public $indicadores_cuadros;
 
   //No se si está función será útil

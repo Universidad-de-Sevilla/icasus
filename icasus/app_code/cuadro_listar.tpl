@@ -2,7 +2,7 @@
   <img	src="/icons/ff16/table_add.png" alt="icono" /> Crear nuevo cuadro de mando</a>
 </p>
 
-{if $cuadros.count > 0}
+{if $cuadros|count > 0}
 
    <div class="box grid_16 single_datatable">
       <div id="dt1" class="no_margin">
@@ -13,9 +13,8 @@
         <tbody>
           {foreach from=$cuadros item=cuadro}
             <tr>
-            <td><a href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td> 
-            <td>{$cuadro->indicadores|@count}</td>
-            <!-- <td><a href="index.php?page=cuadro_mostrar&id={$cuadro->id}">Ver</a> - <a href="index.php?page=cuadro_editar&id={$cuadro->id}">Editar</a></td>-->
+              <td><a href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td> 
+              <td>{$cuadro->comentarios}</td>
             </tr>
           {/foreach}
         </tbody>	
