@@ -1,3 +1,29 @@
+{literal}
+<script>
+ $(document).ready(function() {
+var table0 = $('#listado_mediciones').dataTable( {
+				"bJQueryUI": true,
+				"sScrollX": "",
+				"bSortClasses": false,
+				"aaSorting": [[1,'asc']],
+				"bAutoWidth": true,
+				"bInfo": true,
+				"sScrollX": "101%",
+				"bScrollCollapse": true,
+				"sPaginationType": "full_numbers",
+				"bRetrieve": true,
+				"fnInitComplete": function () {
+				
+					$("#dt1 .dataTables_length > label > select").uniform();
+					$("#dt1 .dataTables_filter input[type=text]").addClass("text");
+					$(".datatable").css("visibility","visible");
+				
+				}
+	});
+	table0.fnSort([1,'asc']);
+} );
+</script>
+{/literal}
 <div class="box grid_16 single_datatable">
   <div class="button_bar clearfix">
     <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time.png' /> Agregar medición</a> &nbsp; &nbsp; &nbsp;
@@ -6,7 +32,7 @@
 
   {if $mediciones}
   <div id="dt1" class="no_margin">
-    <table class="display datatable"> 
+    <table class="display datatable" id="listado_mediciones"> 
     <thead>
       <tr>
         <th>Etiqueta</th>
