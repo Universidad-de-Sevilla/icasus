@@ -1,7 +1,7 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
-// Archivo: cuadromando_exportar_word.php
+// Archivo: cuadro_exportar_word.php
 // Tipo: controlador
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
@@ -21,9 +21,9 @@ if (isset($_REQUEST['id']))
 {
 	$smarty->assign('_javascript' , array('confirmar_borrado'));
 	$id = sanitize($_REQUEST['id'],16);
-	$cuadromando = new cuadromando();
-	$cuadromando->Load("id = $id");
-	$indicadores = $cuadromando->carga_indicadores();
+	$cuadro = new cuadro();
+	$cuadro->Load("id = $id");
+	$indicadores = $cuadro->carga_indicadores();
 /************** generar informe ***************/
  $null = null;
 //defino los tips de letra
@@ -38,7 +38,7 @@ if (isset($_REQUEST['id']))
 //cabecera de las paginas
  $header = &$rtf->addHeader('all');
  $header->addImage('/var/www/wiki/icasus/theme/usevilla/logo.jpg', $null);
- $header->writeText('<tab>Cuadro de mando '.$cuadromando->nombre.'<tab><chdate>', new Font(), new ParFormat('right'));
+ $header->writeText('<tab>Cuadro de mando '.$cuadro->nombre.'<tab><chdate>', new Font(), new ParFormat('right'));
 //Creo la seccion
  $sect = &$rtf->addSection();
 //Configuracion de la seccion creada para mostrar en word y tamaño pagina
@@ -78,17 +78,17 @@ $table->writeToCell(4,1,'5gagag',new Font(), new ParFormat());*/
    $sect->addImage('/var/www/wiki/icasus/'.$elemento->ruta_imagen,$null);
    $sect->writetext('<br /><br />');
  }
- if ($cuadromando->comentarios)
+ if ($cuadro->comentarios)
  {
-   $sect->writeText('<strong>Comentarios:       </strong><br /><tab>'.$cuadromando->comentarios.'<br />');
+   $sect->writeText('<strong>Comentarios:       </strong><br /><tab>'.$cuadro->comentarios.'<br />');
  }
  $footer = &$rtf->addFooter('all');
  $footer->writeText('Informe generado por ICASUS 0.5<tab><tab>pagina <pagenum>',new Font(), new ParFormat('right'));
- $rtf->sendRtf('cuadromando_'.$id);
+ $rtf->sendRtf('cuadro_'.$id);
 }
 else
 {
-	//Si se llama a esta pagina si un id de cuadromando se redirecciona al listado
-	header('Location:index.php?page=cuadromando_listar');	
+	//Si se llama a esta pagina si un id de cuadro se redirecciona al listado
+	header('Location:index.php?page=cuadro_listar');	
 }
 ?>

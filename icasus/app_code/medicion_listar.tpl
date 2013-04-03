@@ -65,6 +65,7 @@ var table0 = $('#listado_mediciones').dataTable( {
 <div style="opacity: 1;" class="box grid_16">
 		<h2 class="box_head">Tabla de valores</h2>
 	<div style="opacity: 1;" class="block">	
+<<<<<<< HEAD
 	<table class="static">
 		<thead>
 		<tr>
@@ -84,6 +85,27 @@ var table0 = $('#listado_mediciones').dataTable( {
 		{/foreach}
 		</tbody>
 	</table>
+=======
+    <table class="static">
+      <thead>
+      <tr>
+        <th></th>
+        {foreach from=$mediciones item=medicion}
+          <th>{$medicion->etiqueta}</th>
+        {/foreach}
+      </tr>
+      </thead>
+      <tbody>
+      {foreach from=$subunidades_mediciones item=subunidad}
+        <tr><td>{$subunidad->nombre}</td>
+        {foreach from=$subunidad->mediciones item=medicion}
+          <td>{if $medicion->medicion_valor->valor == '--'} -- {else}{$medicion->medicion_valor->valor}{/if}</td>
+        {/foreach}
+        </tr>
+      {/foreach}
+      </tbody>
+    </table>
+>>>>>>> b999494aa4cfe40c219cb6ba37f75b72ffd60a63
 	</div>
 <div class="box grid_16">
   <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" />
