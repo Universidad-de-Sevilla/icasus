@@ -1,8 +1,7 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: cuadrounidad.php
-// Tipo: controlador
+// Archivo: cuadro_unidad.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Lista los indicadores de la unidad
@@ -46,7 +45,7 @@ if ($modulo == 'superior')
 
 	$smarty->assign('modulo',$modulo);
 }
-	$plantilla = 'cuadrounidad_ajax.tpl';
+	$plantilla = 'cuadro_unidad_ajax.tpl';
 	$smarty->assign('_nombre_pagina' , 'Cuadro Resumen');
 ?>
 
