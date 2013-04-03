@@ -50,7 +50,7 @@
 		</thead>
 		<tbody>
 		{foreach from=$subunidades_mediciones item=subunidades}
-			<tr><td>{$subunidades->nombre}</td>
+			<tr><td>{$subunidades->etiqueta}</td>
 			{foreach from=$subunidades->mediciones item=medicion}
 				<td>{if $medicion->medicion_valor == '--'} -- {else}{$medicion->medicion_valor->valor}{/if}</td>
 			{/foreach}
