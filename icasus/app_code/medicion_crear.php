@@ -59,8 +59,8 @@ if ($indicador->load("id = $id_indicador"))
 	else
 	{
 		// El usuario no tiene permisos avisamos error
-		$error = 'No tiene permisos suficientes para editar indicadores de esta unidad';
-		header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
+		$error = "No tiene permisos suficientes para agregar mediciones a este $tipo";
+		header("Location:index.php?page=".$tipo."_mostrar&id_$tipo=$id_indicador&error=$error");
 	}
 }
 else
