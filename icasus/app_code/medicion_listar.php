@@ -36,11 +36,7 @@ $smarty->assign('tipo',$tipo);
 
 
 $medicion = new medicion();
-<<<<<<< HEAD
 $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio");
-=======
-$mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio ASC");
->>>>>>> b999494aa4cfe40c219cb6ba37f75b72ffd60a63
 $smarty->assign('mediciones',$mediciones);
 
 //array de subunidades con las mediciones y sus valores
