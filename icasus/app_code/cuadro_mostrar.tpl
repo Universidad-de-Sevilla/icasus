@@ -33,7 +33,7 @@
 
 {foreach $paneles as $panel}
   <div class="box grid_{$panel->ancho}">
-    <div class="block" style="height:250px">
+    <div class="block" style="height:300px">
       <h2>{$panel->nombre}</h2>
       <div class="section">
         <div class="{$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}">
@@ -44,44 +44,44 @@
 {/foreach}
 
 <div class = "box grid_4" id="tablas">
-  <div class="block" style="height:250px">
+  <div class="block" style="height:300px">
     <h2>Titulo h2</h2>
     <div class="section tabla_datos" id="tabla0" date>
     </div>
   </div>
 </div>
 
-<div class = "box grid_6">
-  <div class="block" style="height:250px">
-    <h2>Indicador de prueba</h2>
-    <div class="section">
-      <div id="grafica1" data-indicadores="5055">
-      </div>
-    </div>
-  </div>
-</div>
 
 {literal}
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
 <script>
   // No hace falta llamar a jquery, ya lo hace "alguien" por nosotros
   /* --- Comienza la magia --- */ 
+  // Damos alcance global a datos_flot para 
+  //var datos_flot = [];
   
   $(".panel_linea").each(function(index) {
-    datos_flot = [];
+    var datos_flot = [];
     id_panel = $(this).data("idpanel");
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
-        var valores_indicador = {};
-        getValoresIndicador(id_panel, index, indicador.id, indicador.nombre).done(function(data) {
-          console.log(data);
-        });
-        datos_flot.push(valores_indicador);
-        });
+        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
+          items = [];
+          subunidad_actual = "Total";
+          $.each(datos, function(i, dato) {
+            if(dato.unidad == subunidad_actual)
+            {
+              items.push([dato.medicion, dato.valor]);
+            }
+          });
+          datos_flot[index] = {label: indicador.nombre, color: index, data: items };
+          var opciones = prepararOpciones();
+          $("#panel_" + id_panel).css("height", "250px");
+          $.plot($("#panel_" + id_panel), datos_flot, opciones);
+          console.log(datos_flot)
+        }); 
+      });
     });
-    opciones = prepararOpciones();
-    $("#panel_" + id_panel).css("height", "200px");
-    $.plot($("#panel_" + id_panel), datos_flot, opciones);
   });
 
 
@@ -94,46 +94,7 @@
     });
   });
 
-  var flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-  $.getJSON( flickerAPI)
-  .done(function( data ) {
-    $.each( data.items, function( i, item ) {
-      $( "<img/>" ).attr( "src", item.media.m ).appendTo( "#images" );
-      if ( i === 3 ) {
-        return false;
-      }
-    });
-  });
-
   /* --- Las funciones --- */
-  
-  function getValoresIndicador(id_panel, index, id_indicador, nombre_indicador) {
-	  $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + id_indicador) 
-    .done(function( datos ) {
-      items = [];
-      subunidad_actual = "Total";
-      $.each(datos, function(i, dato) {
-        if(dato.unidad == subunidad_actual)
-        {
-          items.push([dato.medicion, dato.valor]);
-        }
-      });
-      datos_formateados = {label: nombre_indicador, color: index, data: items };
-      return datos_formateados;
-    });
-	}
-
-  function mostrarIndicador(id_panel, index, id_indicador, nombre_indicador) {
-	  $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + id_indicador, function(valores) {
-      //var valores_json = {'serie': index, 'nombre': nombre_indicador, 'data':valores};
-      var valores_flot = prepararDatos(index, nombre_indicador, valores);
-      var opciones = prepararOpciones(valores_flot);
-      $("#panel_" + id_panel).css("height", "200px");
-      $.plot($("#panel_" + id_panel), valores_flot, opciones);
-		}); 
-	}
-
-  
   function mostrarTabla(id_panel, id_indicador, nombre_indicador, datos)
   {
     var items = [];
@@ -150,23 +111,6 @@
                     html: items.join('')
                    }).appendTo('#panel_' + id_panel);
   }
-
-
-  // Prepara los datos para crear un gráfico con flot
-  function prepararDatos(serie, nombre_indicador, datos)
-  {
-    var items = [];
-    var subunidad_actual = "Total";
-    $.each(datos, function(i, dato) {
-      if(dato.unidad == subunidad_actual)
-      {
-        items.push([dato.medicion, dato.valor]);
-      }
-    });
-    var datos_flot = {label: nombre_indicador, color:serie, data: items };
-    return datos_flot;
-  }
-
 
   // Prepara las opciones para crear un gráfico con flot
   function prepararOpciones(datos)
@@ -191,7 +135,6 @@
         colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
       };
   }
-
 
   // Función para hacer búsquedas dentro de un array
   // devuelve la posición si un array contiene a otro o -1 si no lo contiene 

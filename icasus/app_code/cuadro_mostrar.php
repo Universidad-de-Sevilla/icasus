@@ -14,7 +14,7 @@ if (isset($_REQUEST))
   $smarty->assign("cuadro", $cuadro);
 
   $panel = new panel();
-  $paneles = $panel->Find_joined("id_cuadro = $id_cuadro");
+  $paneles = $panel->Find_joined("id_cuadro = $id_cuadro ORDER BY orden");
   $smarty->assign("paneles", $paneles);
 
   $smarty->assign("_nombre_pagina", "$cuadro->nombre");
