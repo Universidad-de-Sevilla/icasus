@@ -13,12 +13,12 @@
     <tbody>
     {foreach from=$subunidades_mediciones item=subunidades}
       <tr
-				data-subunidad="{$subunidades->nombre}" 
+				data-subunidad="{$subunidades->etiqueta}" 
 				data-id_subunidad="{$subunidades->id}">
 				<td>
 					<img align="left" src="theme/danpin/images/nav_plus.gif" alt="Activar y desactivar" class="activar_all">
 				</td>
-				<td>{$subunidades->nombre}</td>
+				<td>{$subunidades->etiqueta}</td>
       {foreach from=$subunidades->mediciones item=medicion}
         <td 
 					data-etiqueta="{$medicion->etiqueta}" 

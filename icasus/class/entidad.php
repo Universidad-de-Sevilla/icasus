@@ -19,7 +19,7 @@ class entidad extends ADOdb_Active_Record
 	//indicador_subunidad_valor_ajax.php
 	public function find_subunidades_mediciones_periodos($id_indicador,$id_entidad,$inicio,$fin)
 	{
-		$subunidades = $this->find("id_madre = $id_entidad");
+		$subunidades = $this->find("id = $id_entidad OR id_madre = $id_entidad ORDER BY etiqueta");
 		foreach($subunidades as $subunidad)
 		{
 			$medition = new medicion();
@@ -39,7 +39,8 @@ class entidad extends ADOdb_Active_Record
 	//indicador_subunidad_valor.php 
 	public function find_subunidades_mediciones($id_indicador,$id_entidad)
 	{
-		$subunidades = $this->find("id_madre = $id_entidad");
+
+		$subunidades = $this->find("id = $id_entidad OR id_madre = $id_entidad ORDER BY etiqueta");
 		foreach($subunidades as $subunidad)
 		{
 			$medicion = new medicion();
