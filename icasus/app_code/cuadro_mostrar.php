@@ -1,37 +1,28 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://wiki.us.es/icasus/)
-// Archivo: cuadro_listar.php
-// Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
+// Proyecto: Icasus 
+// Archivo: cuadro_mostrar.php
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Muestra los indicadores y las gráficas de un cuadro de mando 
+// Muestra un cuadro de mando con todos sus paneles
 //---------------------------------------------------------------------------------------------------
 
-global $smarty;
-global $basedatos;
-global $plantilla;
+if (isset($_REQUEST))
+{
+  $id_cuadro = 1;
+  $cuadro = new cuadro();
+  $cuadro->load("id = $id_cuadro");
+  $smarty->assign("cuadro", $cuadro);
 
-// Esto es para prevenir que se cargue el script sin pasar por index.php
-if (!is_object($smarty))
-{
-	header('Location:index.php');	
-}
-if (isset($_REQUEST['id']))
-{
-	$smarty->assign('_javascript' , array('confirmar_borrado'));
-	$id = sanitize($_REQUEST['id'],16);
-	$cuadro = new cuadro();
-	$cuadro->Load("id = $id");
-	$smarty->assign('cuadro',$cuadro);
-	$indicadores = $cuadro->carga_indicadores();
-	$smarty->assign('indicadores',$indicadores);
-	$plantilla = 'cuadro_mostrar.tpl';
-	$smarty->assign('_nombre_pagina' , "Cuadro de Mando: $cuadro->nombre");
+  $panel = new panel();
+  $paneles = $panel->Find_joined("id_cuadro = $id_cuadro ORDER BY orden");
+  $smarty->assign("paneles", $paneles);
+
+  $smarty->assign("_nombre_pagina", "$cuadro->nombre");
+  $plantilla = "cuadro_mostrar.tpl";
 }
 else
 {
-	//Si se llama a esta pagina si un id de cuadro se redirecciona al listado
-	header('Location:index.php?page=cuadro_listar');	
+  $error = "Parametros insuficientes para mostrar el widget";
+  header("location:index.php?page=error&error=$error");
 }
 ?>

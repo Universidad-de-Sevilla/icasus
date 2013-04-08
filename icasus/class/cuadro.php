@@ -30,3 +30,4 @@ class cuadro extends ADOdb_Active_Record
     }
 	}
 }
+?>
