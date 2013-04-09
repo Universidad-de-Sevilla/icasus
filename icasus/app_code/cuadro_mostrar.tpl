@@ -3,6 +3,14 @@
   display: none;
 }
 
+.pietiqueta {
+  border: 1px solid #058DC7;
+  border: 1px solid #D8DCDE;
+  background: #E6F4FA;
+  background: #EDF1F3;
+  padding: 4px 6px;
+}
+
 .flat_area h2 {
   padding: 2px 6px 2px;
   margin: 0px;
@@ -70,9 +78,15 @@
             }
           });
           datos_flot[index] = {label: indicador.nombre, color: index, data: items };
-          var opciones = prepararOpciones();
+          var opciones = {
+            series: { lines: { show: true }, points: { show: true } },
+            legend: { position:"ne" },
+            xaxis: { tickDecimals: 0 },
+            colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
+          };
           $("#panel_" + id_panel).css("height", "250px");
           $.plot($("#panel_" + id_panel), datos_flot, opciones);
+          console.log(datos_flot)
         }); 
       });
     });
@@ -97,6 +111,7 @@
           opciones = {
             series: { bars: {  show: true, barWidth: 0.3, fill: 0.8, align:"center", horizontal: false }},
             legend: { position:"ne" },
+            xaxis: { tickDecimals: 0 },
             colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
           };
           $("#panel_" + id_panel).css("height", "250px");
@@ -109,29 +124,35 @@
 
   $(".panel_tarta").each(function(index) {
     var datos_flot = [];
+    var total;
     var id_panel = $(this).data("idpanel");
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
-      indicador = indicadores[0];
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
-          items = [];
-          medicion = "2010";
-          $.each(datos, function(i, dato) {
-            if(dato.medicion == medicion)
+      var indicador = indicadores[0];
+      $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
+        items = [];
+        medicion = "2010";
+        $.each(datos, function(i, dato) {
+          if(dato.medicion == medicion) 
+          {
+            if (dato.unidad != "Total")
             {
               datos_flot.push({label:dato.unidad, data: parseFloat(dato.valor)});
-              //items.push([dato.unidad, dato.valor]);
             }
-          });
-     //datos_flot = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 70}, { label: "Series5",  data: 80}, { label: "Series6",  data: 110} ];
-          datos_flot[index] = {label: indicador.nombre, color: index, data: items };
-          opciones = {
-            series: { pie: {  show: true }},
-            legend: { position:"ne" },
-          };
-          $("#panel_" + id_panel).css("height", "250px");
-          $.plot($("#panel_" + id_panel), datos_flot, opciones);
-          console.log(datos_flot)
-        }); 
+            else
+            { 
+              total = dato.valor;
+            }
+          }
+        });
+        //opciones = { series: { pie: {  show: true }}, legend: { show:"false" } };
+        //opciones =  { series: { pie: { show: true, radius: 1, label: { show: true, radius: 2/3, threshold: 0.05 } } }, legend: { show: false } };
+        opciones= { series: { pie: { show: true, label:{threshold: 0.04} } }, legend: { show: false } };
+        $("#panel_" + id_panel).css("height", "200px");
+        $.plot($("#panel_" + id_panel), datos_flot, opciones);
+        $('#panel_' + id_panel).parent('.section').append('<p class="pietiqueta">' + indicador.nombre + 
+                                                          ' - Medición: <strong>' + medicion + 
+                                                          '</strong> - Total: <strong>' + total + '</strong></p>');
+      }); 
     });
   });
  
@@ -160,7 +181,7 @@
       }); 
     });
   });
-
+/*
   // Prepara las opciones para crear un gráfico con flot
   function prepararOpciones(datos)
   {
@@ -172,18 +193,7 @@
     };
     return opciones;
   };
-
-
-  // Esto no es una funcion sino un recordatorio de como se ponen las barras en horizontal
-  function opcionesBarras(e)
-  {
-      opciones = {
-        series: { bars: {  show: true, barWidth: 0.1, fill: 0.7, align:"center", horizontal: true }},
-        legend: { position:"ne" },
-        yaxis: { ticks: ejeY },
-        colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
-      };
-  }
+  */
 
   // Función para hacer búsquedas dentro de un array
   // devuelve la posición si un array contiene a otro o -1 si no lo contiene 
