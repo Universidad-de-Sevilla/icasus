@@ -93,12 +93,13 @@
 				<div id="div_subunidades" class="column clearfix" style="display:">
 				<div class="col_50">
 					{foreach name="subunidad" from=$subunidades item=subunidad}
-						{if $smarty.foreach.subunidad.iteration == $subunidades|@count/2+1}</div><div class="col_50">{/if}
+						{assign var="total" value=$subunidades|@count/2+2}
+						{if $smarty.foreach.subunidad.iteration == $total|floor}</div><div class="col_50">{/if}
 						<input type="checkbox" name="subunidades[]" data-indicador="{$indicador->id}" value="{$subunidad->id}" class="subunidad"
 					{foreach $indicador_subunidades as $indicador_subunidad}
 					{if $indicador_subunidad->id_entidad == $subunidad->id} checked{/if}
 					{/foreach}
-					/> {$subunidad->nombre}<br />
+					/> {$subunidad->etiqueta}<br />
 					{/foreach}
 				</div>
 				</div>

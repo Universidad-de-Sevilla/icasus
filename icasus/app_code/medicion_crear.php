@@ -45,7 +45,7 @@ if ($indicador->load("id = $id_indicador"))
 		$entidad = new entidad;
 		$entidad->load("id = $indicador->id_entidad");
 		$smarty->assign("entidad", $entidad);
-		$subunidades = $entidad->Find("id_madre = $id_entidad");
+		$subunidades = $entidad->Find("id = $id_entidad OR id_madre = $id_entidad ORDER BY etiqueta");
 		$smarty->assign('subunidades', $subunidades);
 
 		$indicador_subunidad = new indicador_subunidad();
