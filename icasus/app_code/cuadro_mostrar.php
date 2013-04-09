@@ -6,11 +6,11 @@
 // Muestra un cuadro de mando con todos sus paneles
 //---------------------------------------------------------------------------------------------------
 
-if (isset($_REQUEST))
+if (isset($_REQUEST["id"]))
 {
-  $id_cuadro = 1;
+  $id_cuadro = sanitize($_REQUEST["id"], INT);
   $cuadro = new cuadro();
-  $cuadro->load("id = $id_cuadro");
+  $cuadro->load("id = $id_cuadro AND (id_usuario = $usuario->id OR privado = 0)");
   $smarty->assign("cuadro", $cuadro);
 
   $panel = new panel();

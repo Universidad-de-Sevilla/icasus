@@ -1,4 +1,8 @@
 <style>
+.hidden {
+  display: none;
+}
+
 .flat_area h2 {
   padding: 2px 6px 2px;
   margin: 0px;
@@ -35,6 +39,7 @@
   <div class="box grid_{$panel->ancho}">
     <div class="block" style="height:300px">
       <h2>{$panel->nombre}</h2>
+      <h2 class="hidden edita"><img src="" alt="editar"></h2>
       <div class="section">
         <div class="{$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}">
         </div>
@@ -43,23 +48,13 @@
   </div>
 {/foreach}
 
-<div class = "box grid_4" id="tablas">
-  <div class="block" style="height:300px">
-    <h2>Titulo h2</h2>
-    <div class="section tabla_datos" id="tabla0" date>
-    </div>
-  </div>
-</div>
-
-
 {literal}
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.pie.min.js" type="text/javascript"></script>		
 <script>
   // No hace falta llamar a jquery, ya lo hace "alguien" por nosotros
-  /* --- Comienza la magia --- */ 
-  // Damos alcance global a datos_flot para 
-  //var datos_flot = [];
   
+  /* --- Comienza la magia --- */ 
   $(".panel_linea").each(function(index) {
     var datos_flot = [];
     id_panel = $(this).data("idpanel");
@@ -78,7 +73,6 @@
           var opciones = prepararOpciones();
           $("#panel_" + id_panel).css("height", "250px");
           $.plot($("#panel_" + id_panel), datos_flot, opciones);
-          console.log(datos_flot)
         }); 
       });
     });
@@ -86,31 +80,86 @@
 
 
   $(".panel_barra").each(function(index) {
+    var datos_flot = [];
     var id_panel = $(this).data("idpanel");
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
-        mostrarIndicador(id_panel, index, indicador.id, indicador.nombre);
-        });
+        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
+          items = [];
+          subunidad_actual = "Total";
+          $.each(datos, function(i, dato) {
+            if(dato.unidad == subunidad_actual)
+            {
+              items.push([dato.medicion, dato.valor]);
+            }
+          });
+          datos_flot[index] = {label: indicador.nombre, color: index, data: items };
+          opciones = {
+            series: { bars: {  show: true, barWidth: 0.3, fill: 0.8, align:"center", horizontal: false }},
+            legend: { position:"ne" },
+            colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
+          };
+          $("#panel_" + id_panel).css("height", "250px");
+          $.plot($("#panel_" + id_panel), datos_flot, opciones);
+        }); 
+      });
     });
   });
+ 
 
-  /* --- Las funciones --- */
-  function mostrarTabla(id_panel, id_indicador, nombre_indicador, datos)
-  {
-    var items = [];
-    var subunidad_actual = "Total";
-    $.each(datos, function(i, dato) {
-      if(dato.unidad == subunidad_actual)
-      {
-        if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
-        items.push('<tr class="' + paridad +'"><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
-      }
+  $(".panel_tarta").each(function(index) {
+    var datos_flot = [];
+    var id_panel = $(this).data("idpanel");
+    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
+      indicador = indicadores[0];
+        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
+          items = [];
+          medicion = "2010";
+          $.each(datos, function(i, dato) {
+            if(dato.medicion == medicion)
+            {
+              datos_flot.push({label:dato.unidad, data: dato.valor});
+              //items.push([dato.unidad, dato.valor]);
+            }
+          });
+     datos_flot = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 70}, { label: "Series5",  data: 80}, { label: "Series6",  data: 110} ];
+          //datos_flot[index] = {label: indicador.nombre, color: index, data: items };
+          opciones = {
+            series: { pie: {  show: true }},
+            legend: { position:"ne" },
+          };
+          $("#panel_" + id_panel).css("height", "250px");
+          $.plot($("#panel_" + id_panel), datos_flot, opciones);
+          console.log(datos_flot)
+        }); 
     });
-    $('<table />', {'class': 'static', 
-                    'data-id_indicador': id_indicador, 
-                    html: items.join('')
-                   }).appendTo('#panel_' + id_panel);
-  }
+  });
+ 
+
+  $(".panel_tabla").each(function(index) {
+    var datos_flot = [];
+    var id_panel = $(this).data("idpanel");
+    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
+      // De momento cogemos solo el primer indicador por si viene mas de uno 
+      indicador = indicadores[0];
+      $('<h3 />', {html: indicador.nombre}).appendTo('#panel_' + id_panel);
+      $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
+        items = [];
+        subunidad_actual = "Total";
+        $.each(datos, function(i, dato) {
+          if(dato.unidad == subunidad_actual)
+          {
+            if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
+            items.push('<tr class="' + paridad +'"><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
+          }
+        });
+        $('<table />', {'class': 'static', 
+                        'data-id_indicador': indicador.id, 
+                        html: items.join('')
+                       }).appendTo('#panel_' + id_panel);
+      }); 
+    });
+  });
 
   // Prepara las opciones para crear un gráfico con flot
   function prepararOpciones(datos)
