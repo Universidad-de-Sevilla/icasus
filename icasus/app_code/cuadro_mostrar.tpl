@@ -118,12 +118,12 @@
           $.each(datos, function(i, dato) {
             if(dato.medicion == medicion)
             {
-              datos_flot.push({label:dato.unidad, data: dato.valor});
+              datos_flot.push({label:dato.unidad, data: parseFloat(dato.valor)});
               //items.push([dato.unidad, dato.valor]);
             }
           });
-     datos_flot = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 70}, { label: "Series5",  data: 80}, { label: "Series6",  data: 110} ];
-          //datos_flot[index] = {label: indicador.nombre, color: index, data: items };
+     //datos_flot = [ { label: "Series1",  data: 10}, { label: "Series2",  data: 30}, { label: "Series3",  data: 90}, { label: "Series4",  data: 70}, { label: "Series5",  data: 80}, { label: "Series6",  data: 110} ];
+          datos_flot[index] = {label: indicador.nombre, color: index, data: items };
           opciones = {
             series: { pie: {  show: true }},
             legend: { position:"ne" },
