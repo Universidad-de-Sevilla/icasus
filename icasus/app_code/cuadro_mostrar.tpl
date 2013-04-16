@@ -3,21 +3,22 @@
   display: none;
 }
 
-.pietiqueta {
-  border: 1px solid #058DC7;
-  border: 1px solid #D8DCDE;
-  background: #E6F4FA;
-  background: #EDF1F3;
-  padding: 4px 6px;
-}
-
 .leyenda {
-  /*display: none;*/
+  line-height: 14px;
   border: 1px solid #D8DCDE;
   background: #EDF1F3;
   padding: 2px 4px;
   margin-bottom: 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
 }
+
+.leyenda p{
+  color: #545454;
+  font-size: 10px;
+  line-height: 14px;
+  }
 
 .leyenda table {
   margin-bottom: 0;
@@ -144,33 +145,53 @@
   $(".panel_tarta").each(function(index) {
     var datos_flot = [];
     var total;
+    var id_medicion;
     var id_panel = $(this).data("idpanel");
     var leyenda = $(this).next('.leyenda');
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       var indicador = indicadores[0];
       $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
         var items = [];
-        var medicion = "2010";
+        var id_medicion = "535";
         $.each(datos, function(i, dato) {
-          if(dato.medicion == medicion) 
+          if(dato.id_medicion == id_medicion) 
           {
             if (dato.unidad != "Total")
             {
               datos_flot.push({label:dato.unidad, data: parseFloat(dato.valor)});
+              medicion = dato.medicion;
             }
             else
             { 
               total = dato.valor;
+              medicion = dato.medicion;
             }
           }
         });
         //opciones = { series: { pie: {  show: true }}, legend: { show:"false" } };
         //opciones =  { series: { pie: { show: true, radius: 1, label: { show: true, radius: 2/3, threshold: 0.05 } } }, legend: { show: false } };
         var opciones= { 
-          series: { pie: { show: true, label: {threshold: 0.03} } },
+          series: { pie: { show: true, label: {threshold: 0.04} } },
           grid: { hoverable: true },
           legend: { show: false } 
         };
+
+        $("#panel_" + id_panel).bind("plothover", function (event, pos, item) {
+          // alert("You clicked at " + pos.x + ", " + pos.y);
+          // axis coordinates for other axes, if present, are in pos.x2, pos.x3, ...
+          // if you need global screen coordinates, they are pos.pageX, pos.pageY
+
+          if (item) 
+          {
+            //highlight(item.series, item.datapoint);
+            leyenda.html("<div style='width:4px;height:0;border:5px solid " + item.series.color + ";float:left'></div> <h4>" + item.series.label + ": " + item.series.data[0][1] + " (" + Math.round(item.series.percent) + "%)</h4>");
+          }
+          else
+          {
+            leyenda.html('<p>' + indicador.nombre + ' - Medición: <strong>' + medicion + 
+                     '</strong> - Total: <strong>' + total + '</strong></p>');
+          }
+        });
 
         $("#panel_" + id_panel).css("height", "200px");
         $.plot($("#panel_" + id_panel), datos_flot, opciones);
@@ -208,52 +229,33 @@
     });
   });
 
-/*
-  // Prepara las opciones para crear un gráfico con flot
-  function prepararOpciones(datos)
-  {
-    var opciones = {
-      series: { lines: { show: true }, points: { show: true } },
-      legend: { position:"ne" },
-      xaxis: { tickDecimals: 0 },
-      colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
-    };
-    return opciones;
-  };
-*/
-  /*
-  $(".panel_linea").each(function(index) {
+  $(".panel_metrica").each(function(index) {
     var datos_flot = [];
-    id_panel = $(this).data("idpanel");
-    console.log(id_panel);
-    console.log(datos_flot[0]);
+    var id_panel = $(this).data("idpanel");
+    var leyenda = $(this).next('.leyenda');
+    leyenda.insertBefore($(this));
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
-      $.each(indicadores, function(index, indicador) {
-        //$.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id).done(function(datos) {
-          items = [];
-          subunidad_actual = "Total";
-          $.each(datos, function(i, dato) {
-            if(dato.unidad == subunidad_actual)
-            {
-              items.push([dato.medicion, dato.valor]);
-            }
-          });
-          datos_flot[index] = {label: indicador.nombre, color: index, data: items };
-          var opciones = {
-            series: { lines: { show: true }, points: { show: true } },
-            legend: { position:"ne" },
-            xaxis: { tickDecimals: 0 },
-            colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
-          };
-          $("#panel_" + id_panel).css("height", "250px");
-          $.plot($("#panel_" + id_panel), datos_flot, opciones);
-          console.log(index + ":" + datos_flot[0].label)
-        }); 
-      });
+      // De momento cogemos solo el primer indicador por si viene mas de uno 
+      indicador = indicadores[0];
+      leyenda.html('<h4>' + indicador.nombre + '</h4>');
+      $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
+        items = [];
+        subunidad_actual = "Total";
+        $.each(datos, function(i, dato) {
+          if(dato.unidad == subunidad_actual)
+          {
+            if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
+            items.push('<tr class="' + paridad +'"><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
+          }
+        });
+        $('<table />', {'class': 'static', 
+                        'data-id_indicador': indicador.id, 
+                        html: items.join('')
+                       }).appendTo('#panel_' + id_panel);
+      }); 
     });
   });
-  */
+
 
   // Función para hacer búsquedas dentro de un array
   // devuelve la posición si un array contiene a otro o -1 si no lo contiene 

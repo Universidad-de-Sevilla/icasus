@@ -22,7 +22,7 @@ if (isset($_REQUEST["id"]))
 }
 else
 {
-  $error = "Parametros insuficientes para mostrar el widget";
+  $error = "Parametros insuficientes para mostrar el cuadro de mando";
   header("location:index.php?page=error&error=$error");
 }
 ?>
