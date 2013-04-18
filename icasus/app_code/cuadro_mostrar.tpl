@@ -62,7 +62,8 @@
       <h2>{$panel->nombre}</h2>
       <h2 class="hidden edita"><img src="" alt="editar"></h2>
       <div class="section">
-        <div class="{$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}"></div>
+        <div class="{$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
+          data-id_medicion_inicio="{$panel->id_medicion_inicio}" data-id_medicion_fin="{$panel->id_medicion_fin}"></div>
         <div class="leyenda"></div>
       </div>
     </div>
@@ -81,14 +82,16 @@
   $(".panel_linea").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
+    console.log("Soy el " + id_panel);
     var leyenda = $(this).next(".leyenda");
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function(indicadores) {
       $.each(indicadores, function(index, indicador) {
         $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id).done(function(datos) {
           var items = [];
-          var subunidad_actual = "Total";
+          // Tomamos la entidad a mostrar del panel_indicador actual
+          var id_entidad = indicador.id_entidad;
           $.each(datos, function(i, dato) {
-            if(dato.unidad == subunidad_actual)
+            if(dato.id_unidad == id_entidad)
             {
               items.push([dato.medicion, dato.valor]);
             }
@@ -113,6 +116,7 @@
   $(".panel_barra").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
+    console.log("Soy el " + id_panel);
     var leyenda = $(this).next(".leyenda");
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
@@ -145,30 +149,30 @@
   $(".panel_tarta").each(function(index) {
     var datos_flot = [];
     var total;
-    var id_medicion;
+    var id_medicion = $(this).data("id_medicion_inicio");
     var id_panel = $(this).data("idpanel");
+    console.log("Soy el " + id_panel);
     var leyenda = $(this).next('.leyenda');
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       var indicador = indicadores[0];
       $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
         var items = [];
-        var id_medicion = "535";
         $.each(datos, function(i, dato) {
           if(dato.id_medicion == id_medicion) 
           {
-            if (dato.unidad != "Total")
+            // Si id_unidad es 0 se trata del valor total, en otro caso es el parcial de una subunidad
+            if (dato.id_unidad == 0)
             {
-              datos_flot.push({label:dato.unidad, data: parseFloat(dato.valor)});
+              total = dato.valor;
               medicion = dato.medicion;
             }
             else
             { 
-              total = dato.valor;
+              datos_flot.push({label:dato.unidad, data: parseFloat(dato.valor)});
               medicion = dato.medicion;
             }
           }
         });
-        //opciones = { series: { pie: {  show: true }}, legend: { show:"false" } };
         //opciones =  { series: { pie: { show: true, radius: 1, label: { show: true, radius: 2/3, threshold: 0.05 } } }, legend: { show: false } };
         var opciones= { 
           series: { pie: { show: true, label: {threshold: 0.04} } },
@@ -176,14 +180,11 @@
           legend: { show: false } 
         };
 
+        // Cuando se pase el cursor sobre la tarta aparecerán los valores de cada porción
         $("#panel_" + id_panel).bind("plothover", function (event, pos, item) {
           // alert("You clicked at " + pos.x + ", " + pos.y);
-          // axis coordinates for other axes, if present, are in pos.x2, pos.x3, ...
-          // if you need global screen coordinates, they are pos.pageX, pos.pageY
-
           if (item) 
           {
-            //highlight(item.series, item.datapoint);
             leyenda.html("<div style='width:4px;height:0;border:5px solid " + item.series.color + ";float:left'></div> <h4>" + item.series.label + ": " + item.series.data[0][1] + " (" + Math.round(item.series.percent) + "%)</h4>");
           }
           else
@@ -192,7 +193,6 @@
                      '</strong> - Total: <strong>' + total + '</strong></p>');
           }
         });
-
         $("#panel_" + id_panel).css("height", "200px");
         $.plot($("#panel_" + id_panel), datos_flot, opciones);
         leyenda.html('<p style="font-size:10px;">' + indicador.nombre + ' - Medición: <strong>' + medicion + 
@@ -205,6 +205,7 @@
   $(".panel_tabla").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
+    console.log("Soy el " + id_panel);
     var leyenda = $(this).next('.leyenda');
     leyenda.insertBefore($(this));
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
@@ -232,6 +233,7 @@
   $(".panel_metrica").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
+    console.log("Soy el " + id_panel);
     var leyenda = $(this).next('.leyenda');
     leyenda.insertBefore($(this));
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {

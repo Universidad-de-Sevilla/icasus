@@ -36,7 +36,7 @@ else
 // Se utiliza en cuadro_mostrar
 function get_indicadores_panel($id)
 {
-  $query = "SELECT indicadores.id, indicadores.codigo, indicadores.nombre FROM indicadores 
+  $query = "SELECT indicadores.id, indicadores.codigo, indicadores.nombre, panel_indicadores.id_entidad FROM indicadores 
 INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador 
 WHERE panel_indicadores.id_panel = $id";
 
@@ -121,7 +121,7 @@ function get_valores_indicador($id)
     $datos[] = $registro;
   }
   // Aquí van los totales
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, $operador(valores.valor) as valor 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL
             GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
