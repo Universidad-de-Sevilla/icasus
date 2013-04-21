@@ -2,15 +2,18 @@
 <fieldset class="label_side top">
 	<label>Nombre</label>
 	<div>
-		<input class="required text error" type="text" name="nombre"></input>
+		<input class="required text" type="text" name="nombre"></input>
 		<div class="required_tag tooltip hover left"></div>
 	</div>
 </fieldset>
 
 <fieldset class="label_side top">
 	<label>Orden</label>
-	<div>
-		<input class="text" type="text" name="orden"></input>
+	<div class="clearfix">
+	<div class="col_25">
+		<input class="text required" type="text" name="orden"></input>
+	</div>
+		<div class="required_tag tooltip hover left"></div>
 	</div>
 </fieldset>
 
@@ -67,11 +70,13 @@ sub
 	<div class="col_50">
 	{foreach name=subunidades from=$indicador_subunidades item=item}
 	{if $smarty.foreach.subunidades.iteration == floor($indicador_subunidades|@count/2)+1 }</div><div class="col_50 no_border">{/if}
-		<input data-id_indicador="{$id_indicador}"class="subunidad_seleccionada"  name="subunidad_seleccionada[]"type="checkbox" value="{$item->id_entidad}"> {$item->entidad->etiqueta}<br /> 
+		<input data-id_indicador="{$id_indicador}"class="subunidad_seleccionada"  name="id_subunidades[]"type="checkbox" value="{$item->id_entidad}"> {$item->entidad->etiqueta}<br /> 
 	{/foreach}
 	</div>
 	<div class="required_tag tooltip hover left"></div>
 </div>
+<input type="hidden" name="id_medicion_inicio" value="0">
+<input type="hidden" name="id_medicion_fin" value="0">
 {/if}
 {literal}
 <script>

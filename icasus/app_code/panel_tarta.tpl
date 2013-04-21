@@ -9,8 +9,11 @@
 
 <fieldset class="label_side top">
 	<label>Orden</label>
-	<div>
-		<input class="text" type="text" name="orden"></input>
+	<div class="clearfix">
+	<div class="col_25">
+		<input class="text required" type="text" name="orden"></input>
+	</div>
+		<div class="required_tag tooltip hover left"></div>
 	</div>
 </fieldset>
 
@@ -71,6 +74,7 @@
 	</div>
 	<div class="required_tag tooltip hover left"></div>
 	</div>
+	<input name="id_medicion_fin" type="hidden" value="0"> 
 {/if}
 {literal}
 	<script>

@@ -4,16 +4,16 @@
 <div style="opacity: 1;" class="box tabs" id="tab_crear_panel">
 		<ul class="tab_header">
 			<li>
-				<a  class="tipo" data-tipo="panel_tarta"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_pie.png"style="padding-top:5px"><br /> Tarta</a>
+				<a class="tipo" data-tipo="panel_metrica"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/date.png"style="padding-top:5px"><br /> Métrica</a>
 			</li>
 			<li>
 				<a class="tipo" data-tipo="panel_linea"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_curve.png"style="padding-top:5px"><br /> Líneas</a>
 			</li>
 			<li>
-				<a class="tipo" data-tipo="panel_barra"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_bar.png"style="padding-top:5px"><br /> Barras</a>
+				<a  class="tipo" data-tipo="panel_tarta"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_pie.png"style="padding-top:5px"><br /> Tarta</a>
 			</li>
 			<li>
-				<a class="tipo" data-tipo="panel_metrica"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/date.png"style="padding-top:5px"><br /> Métrica</a>
+				<a class="tipo" data-tipo="panel_barra"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_bar.png"style="padding-top:5px"><br /> Barras</a>
 			</li>
 			<li>
 				<a class="tipo" data-tipo="panel_tabla" href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/table.png" style="padding-top:5px"><br /> Tabla</a>
