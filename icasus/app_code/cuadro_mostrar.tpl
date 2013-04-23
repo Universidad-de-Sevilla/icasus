@@ -24,7 +24,8 @@
   margin-bottom: 0;
 }
 
-.flat_area h2 {
+.flat_area h3 {
+  background: #EDF1F3;
   padding: 2px 6px 2px;
   margin: 0px;
   font-weight: normal;
@@ -52,15 +53,24 @@
 }
 </style>
 
-<div class="section">
-  <p>{$cuadro->comentarios}</p>
+  <div class="button_bar clearfix">
+    <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
+      src='/icons/ff16/application_add.png' /> Agregar Panel</a> &nbsp;
+    <a href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
+      src='/icons/ff16/table_edit.png' /> Editar propiedades</a> &nbsp;
+  </div>
+
+<div class="box grid_16">
+  <div class="section">
+    <p>{$cuadro->comentarios}</p>
+  </div>
 </div>
 
 {foreach $paneles as $panel}
   <div class="box grid_{$panel->ancho}" style="float:left;">
     <div class="block" style="height:300px">
-      <h2>{$panel->nombre}</h2>
-      <h2 class="hidden edita"><img src="" alt="editar"></h2>
+      <h3>{$panel->nombre}</h3>
+      <h3 class="hidden edita"><img src="" alt="editar"></h3>
       <div class="section">
         <div class="{$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
           data-id_medicion_inicio="{$panel->id_medicion_inicio}" data-id_medicion_fin="{$panel->id_medicion_fin}"></div>
