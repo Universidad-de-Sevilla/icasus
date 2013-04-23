@@ -51,7 +51,7 @@
 		</span>
 		<li>
 			<ul>
-				<li><a href='index.php?page=cuadrounidad&id_entidad={$entidad->id}'><img 
+				<li><a href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'><img 
 					src='/icons/ff16/table_go.png' />
 					Cuadro resumen</a></li>
 				<li><a href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'><img 
