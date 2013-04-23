@@ -90,6 +90,7 @@
           var items = [];
           // Tomamos la entidad a mostrar del panel_indicador actual
           var id_entidad = indicador.id_entidad;
+          console.log(datos);
           $.each(datos, function(i, dato) {
             if(dato.id_unidad == id_entidad)
             {
