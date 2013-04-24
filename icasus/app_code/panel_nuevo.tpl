@@ -3,6 +3,7 @@
 	<input type="hidden" name="id_cuadro" value="{$id_cuadro}" id="id_cuadro">
 <div style="opacity: 1;" class="box tabs" id="tab_crear_panel">
 		<ul class="tab_header">
+<<<<<<< HEAD
 			<li>
 				<a class="tipo" data-tipo="panel_metrica"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/date.png"style="padding-top:5px"><br /> Métrica</a>
 			</li>
@@ -24,6 +25,20 @@
 <a class="tipo" data-tipo="panel_informacion" href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/information.png"style="padding-top:5px" ><br /> Ayuda</a>
 -->
 			</li>
+=======
+			<li> <a class="tipo" data-tipo="panel_metrica"href="#datos_panel">
+        <img src="/icons/ff32/date.png"style="padding-top:5px"><br> Métrica</a> </li>
+			<li> <a class="tipo" data-tipo="panel_linea"href="#datos_panel">
+        <img src="/icons/ff32/chart_curve.png"style="padding-top:5px"><br> Líneas</a> </li>
+			<li> <a  class="tipo" data-tipo="panel_tarta"href="#datos_panel">
+        <img src="/icons/ff32/chart_pie.png"style="padding-top:5px"><br> Tarta</a> </li>
+			<li> <a class="tipo" data-tipo="panel_barra"href="#datos_panel">
+        <img src="/icons/ff32/chart_bar.png"style="padding-top:5px"><br> Barras</a> </li>
+			<li> <a class="tipo" data-tipo="panel_tabla" href="#datos_panel">
+        <img src="/icons/ff32/table.png" style="padding-top:5px"><br> Tabla</a> </li>
+			<li> <a class="tipo" data-tipo="panel_informacion" href="#datos_panel">
+        <img src="/icons/ff32/information.png"style="padding-top:5px"><br> Ayuda</a> </li>
+>>>>>>> ba1f00791bea9ccbe880e818627afb0efb6f6f62
 		</ul>
 		<div style="opacity: 1;" id="datos_panel" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
 			<p>&nbsp;</p>
@@ -42,27 +57,26 @@
 	</div><!-- id tab_crear_panel -->
 </form>
 {literal}
-<script>
-var id_entidad = $('#id_entidad').val();
-$(function() {
-	$('#panel_nuevo').validate();
-	$('#tab_crear_panel').tabs({selected:5});
-	$('.tipo').on('click',function(){
-		var tipo = $(this).data('tipo');
-		if (tipo != 'panel_informacion')
-		{
-			$('#footer_tabs').show();
-		}
-		else
-		{
-			$('#footer_tabs').hide();
-		}
-		$.ajax({
-			url: "index.php?page="+tipo+"&ajax=true&modulo=inicio&id_entidad="+id_entidad,
-				success: function(datos){$("#datos").html(datos);}
-		});
-	});
-});
- </script>
+  <script>
+    $(function() {
+      $('#panel_nuevo').validate();
+      $('#tab_crear_panel').tabs({selected:5});
+      $('.tipo').on('click',function(){
+        var id_entidad = $('#id_entidad').val();
+        var tipo = $(this).data('tipo');
+        if (tipo != 'panel_informacion')
+        {
+          $('#footer_tabs').show();
+        }
+        else
+        {
+          $('#footer_tabs').hide();
+        }
+        $.ajax({
+          url: "index.php?page="+tipo+"&ajax=true&modulo=inicio&id_entidad="+id_entidad,
+            success: function(datos){$("#datos").html(datos);}
+        });
+      });
+    });
+  </script>
 {/literal}
-

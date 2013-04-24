@@ -63,6 +63,7 @@ if (isset($_REQUEST["id_indicador"]) AND isset($periodo_inicio) AND isset($perio
       $valor = new valor();
       $valor->id_entidad = $indicador_subunidad->id_entidad;
       $valor->id_medicion = $medicion->id;
+      $valor->activo = 1;
       $valor->save();
     }
     $aviso = "Se ha agregado correctamente una nueva medición con $numero_subunidades unidades afectadas";
