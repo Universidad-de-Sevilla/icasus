@@ -24,7 +24,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 				$panel_indicador->mostrar_referencias = 1;
 				if ($panel_indicador->save())
 				{
-					//header("location:index.php?page=cuadro_listar");
+					header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
 				}
 				else
 				{
@@ -45,6 +45,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 						echo 'error no se grabó correctamente';
 					}
 				}
+					header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
 			break;
 			case 3:
 				$panel_indicador = new panel_indicador();
@@ -54,7 +55,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 				$panel_indicador->mostrar_referencias = 1;
 				if ($panel_indicador->save())
 				{
-					//header("location:index.php?page=cuadro_listar");
+					header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
 				}
 				else
 				{
@@ -75,6 +76,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 						echo 'error no se grabó correctamente';
 					}
 				}
+					header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
 			break;
 			case 5:
 				foreach($_REQUEST["id_subunidades"] as $subunidad)
@@ -89,7 +91,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 						//error no se ha grabado
 					}
 				}
-				//header("location:index.php?page=cuadro_listar");
+					header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
 			break;
 		}
 	}
