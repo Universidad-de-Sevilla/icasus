@@ -20,12 +20,15 @@
 			</li>
 			<li>
 				<a class="tipo" data-tipo="panel_informacion" href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/information.png"style="padding-top:5px" ><br /> Ayuda</a>
+				<!--
+<a class="tipo" data-tipo="panel_informacion" href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/information.png"style="padding-top:5px" ><br /> Ayuda</a>
+-->
 			</li>
 		</ul>
 		<div style="opacity: 1;" id="datos_panel" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
 			<p>&nbsp;</p>
 			<div id="datos" class="columns clearfix">
-
+{include file="panel_informacion.tpl"}
 			</div>
 			<div class="button_bar clearfix" id="footer_tabs" style="display:none">
 				<button class="dark send_right img_icon has_text" type="submit">

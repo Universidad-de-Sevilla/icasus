@@ -16,14 +16,21 @@ if ($modulo == 'inicio')
 
 	$smarty->assign('id_entidad' , $id_entidad);
 }
-if ($modulo == 'mediciones')
+if ($modulo == 'fecha_fin')
 {
-		$id_indicador = sanitize($_REQUEST["id_indicador"],2);
-		
-		$medicion = new medicion();
-		$mediciones = $medicion->find("id_indicador = $id_indicador");
-		$smarty->assign('mediciones' , $mediciones);
+	$fecha_inicio = sanitize($_REQUEST["fecha_inicio"],2);
+	$smarty->assign('fecha_inicio' , $fecha_inicio);
+}
+if ($modulo == 'subunidades')
+{
+	$id_indicador = sanitize($_REQUEST["id_indicador"],2);
+	$nombre_indicador = sanitize($_REQUEST["nombre_indicador"],SQL);
 
+	$indicador_subunidad = new indicador_subunidad();
+	$indicador_subunidades = $indicador_subunidad->find_entidades("id_indicador = $id_indicador");
+	$smarty->assign("indicador_subunidades",$indicador_subunidades);
+	$smarty->assign("id_indicador",$id_indicador);
+	$smarty->assign("nombre_indicador",$nombre_indicador);
 }
 	$smarty->assign('modulo' , $modulo);
 	$smarty->assign('_nombre_pagina' , "Nuevo panel");
