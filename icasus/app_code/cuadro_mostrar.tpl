@@ -130,6 +130,7 @@
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
     var leyenda = $(this).next(".leyenda");
+
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
         $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
