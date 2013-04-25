@@ -51,7 +51,6 @@
   border: 0;
 }
 </style>
-
 <div class="button_bar clearfix">
   <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
     src='/icons/ff16/application_add.png' /> Agregar Panel</a> &nbsp;
@@ -130,7 +129,6 @@
   $(".panel_barra").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
-    console.log("Soy el " + id_panel);
     var leyenda = $(this).next(".leyenda");
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
@@ -261,17 +259,28 @@
       var indicador = indicadores[0];
 
       $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
-        var html;
+        var html = "";
         // Tomamos la entidad a mostrar del panel_indicador actual
         var id_entidad = indicador.id_entidad;
         $.each(datos, function(i, dato) {
-          if((dato.id_unidad == id_entidad || dato.id_unidad == 0) && dato.id_medicion == id_medicion )
+          if((dato.id_unidad == id_entidad || dato.id_unidad == '0') && dato.id_medicion == id_medicion )
           {
-            html = "<p style='font-size:" + (ancho * 20 - dato.valor.length * 2) +"px; padding: 20px 0px; text-align: center;'>" + dato.valor + "</p>";
             if (id_entidad != '0') 
             {
-              html += "<p style='text-align: center;'><strong>Unidad: </strong>" + dato.unidad + "</p>";
-              if (dato.id_unidad == '0') {}
+              if (dato.id_unidad != '0') 
+              {
+                html += "<p style='font-size:" + (ancho * 2 - dato.valor.length * 0.4) +"em; padding: 20px 0 5px 0; text-align: center;'>" + dato.valor + "</p>";
+                html += "<p style='text-align: center; line-height: 10px;'><strong>Unidad: </strong>" + dato.unidad + "</p>";
+              }
+              else
+              {
+                html += "<p style='font-size:2em; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + dato.valor + "</p>";
+                html += "<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>Valor total</strong></p>";
+              }
+            }
+            else
+            {
+              html += "<p style='font-size:" + (ancho * 2 - dato.valor.length * 0.4) +"em; padding: 30px 0px; text-align: center;'>" + dato.valor + "</p>";
             }
             medicion = dato.medicion;
           }
