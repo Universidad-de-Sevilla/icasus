@@ -19,7 +19,19 @@ class indicador extends ADOdb_Active_Record
   public $visibilidad;
   public $criterios_efqm;
   public $valores_pendientes;
+  public $medicion;
 
+	public function find_medicion_joined($criterio)
+	{
+		$indicadores = $this->find($criterio);
+		foreach($indicadores as $indicador)
+		{
+			$medicion = new medicion();
+			$mediciones = $medicion->find("id_indicador = $indicador->id");
+			$indicador->medicion = $mediciones;
+		}
+		return $indicadores;
+	}
 	public function load_joined($criterio)
 	{
 		if ($this->load($criterio))

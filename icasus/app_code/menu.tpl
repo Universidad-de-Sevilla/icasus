@@ -32,7 +32,7 @@
 		</span>
 		<ul class="side_accordion">
      		<li><a href='index.php?page=inicio' accesskey='h'><img src='/icons/ff16/house.png' /> Inicio</a> 
-				<!-- <li><a href='index.php?page=cuadromando_listar'><img src='/icons/ff16/table.png' /> Cuadros de Mando</a></li> -->
+				<li><a href='index.php?page=cuadro_listar'><img src='/icons/ff16/table.png' /> Cuadros de Mando</a></li>
 				<li><a href='index.php?page=entidad_listar'><img src='/icons/ff16/chart_organisation.png' /> Unidades</a></li>
 				<li><a href='index.php?page=usuario_listar'><img src='/icons/ff16/user.png' /> Usuarios</a></li>
 				<li><a href='index.php?page=pagina_mostrar&alias=indice'><img src='/icons/ff16/user_comment.png' /> Ayuda</a></li>
@@ -51,7 +51,7 @@
 		</span>
 		<li>
 			<ul>
-				<li><a href='index.php?page=cuadrounidad&id_entidad={$entidad->id}'><img 
+				<li><a href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'><img 
 					src='/icons/ff16/table_go.png' />
 					Cuadro resumen</a></li>
 				<li><a href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'><img 

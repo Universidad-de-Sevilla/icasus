@@ -13,7 +13,17 @@
 				</fieldset>
 
 				<fieldset class="label_side">
-					<label>Público / Privado</label>
+					<label>Visibilidad</label>
+          <div>
+            <label class="radio">
+              <input type="radio" name="privado" id="privado1" value="0" checked>
+              Público
+            </label>
+            <label class="radio">
+              <input type="radio" name="privado" id="privado2" value="1">
+              Privado
+            </label>
+          </div>
 				</fieldset>
 
         <div class="button_bar clearfix">

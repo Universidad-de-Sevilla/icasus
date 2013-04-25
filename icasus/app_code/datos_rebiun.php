@@ -18,17 +18,21 @@ $subentidades = $entidad->Find("id_madre = ". ENTIDAD_MADRE);
 // Recorre las unidades que tiene asignadas el usuario para encontrar las que tiene con rol de responsable
 foreach($usuario->entidades as $usuario_entidad)
 {
+  //Solamente entro en aquellas en las que es responsable 
   if($usuario_entidad->id_rol == 1)
   {
-    //Comprueba si se trata de una de las subunidades de la unidad ENTIDAD_MADRE
+    //Recorre las subunidades de la unidad ENTIDAD_MADRE
     foreach($subentidades as $subentidad)
     {
+      print_r($usuario_entidad->id_entidad . "-" . $subentidad->id . "\r");
+      // Comprueba si el usuario es miembro de la subunidad actual 
       if($usuario_entidad->id_entidad == $subentidad->id)
       {
+        // Añade la subunidad actual al array de entidades autorizadas
+        $entidades_autorizadas[] = $subentidad;
         $valor = new valor();
         $valores = $valor->Find_joined_indicador("id_entidad = $subentidad->id AND id_medicion IN " . MEDICIONES);
         $subentidad->valores = $valores;
-        $entidades_autorizadas[] = $subentidad;
       }
     }
   }
@@ -36,7 +40,6 @@ foreach($usuario->entidades as $usuario_entidad)
 
 if (count($entidades_autorizadas) > 0)
 {
-
   $smarty->assign("id_usuario", $usuario->id);
   $smarty->assign("entidades", $entidades_autorizadas);
   $smarty->assign("valores", $valores);
