@@ -1,4 +1,10 @@
 {if $modulo == 'inicio'}
+<input type="hidden" name="id_medicion" value="0">
+<input type="hidden" name="tipo" value="{$panel->id}">
+<input type="hidden" name="inicioDay" value="01">
+<input type="hidden" name="inicioMonth" value="01">
+<input type="hidden" name="finDay" value="31">
+<input type="hidden" name="finMonth" value="12">
 <fieldset class="label_side top">
 	<label>Nombre</label>
 	<div>
@@ -18,14 +24,6 @@
 </fieldset>
 
 <fieldset class="label_side top">
-	<label>Panel<span></span></label>
-	<div class="clearfix">
-		<input type="hidden" value="{$panel->id}" name="tipo" class="required text error">
-		{$panel->nombre|htmlentities|@ucfirst}
-	</div>
-</fieldset>
-
-<fieldset class="label_side top">
 	<label>Ancho<span></span></label>
 	<div class="clearfix">
 		<select name="ancho" class="required">
@@ -39,6 +37,18 @@
 	</div>
 </fieldset>
 
+<fieldset class="label_side top">
+	<label>Periódo<span></span></label>
+	<div class="clearfix">
+		<div class="col_50">
+		{html_select_date prefix="inicio" class="required" year_empty="Fecha de incio" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 end_year=$smarty.now|date_format:"%Y"}
+		<div class="required_tag tooltip hover left"></div>
+		</div>
+		<div class="col_50" id="div_fecha_fin">
+		</div>
+	</div>
+</fieldset>
+
 <fieldset class="label_side top fieldset_indicadores">
 	<label>Indicadores<span></span></label>
 	<div class="clearfix">
@@ -46,28 +56,22 @@
 		<input data-id_entidad="{$id_entidad}"class="text" placeholder="Buscar ..." name="buscar_indicador" id="buscar_indicador" type="text">
 		</div>
 	</div>
-	<div id="listado_indicadores" class="clearfix">
-							<ul id="listado_indicadores" style="list-style:none">
-							{foreach from=$indicadores item=item}
-							<li><input data-id_entidad="{$id_entidad}" data-id_indicador="{$item->id}"
-									class="required indicador_seleccionado" type="radio" 
-									name="indicador_seleccionado" value="{$item->id}"> 
-									{$item->nombre}</li>
-						{/foreach}
-						</ul>
-		<div id="paginacion" class="box clearfix">Paginación</div>
-		<div class="required_tag tooltip hover left"></div>
+	<div id="listado_indicadores">
 	</div>
 </fieldset>
 
 <fieldset id="subunidades" class="label_side top">
-sub
 </fieldset>
+{/if}
+{if $modulo == 'fecha_fin'}
+		{html_select_date prefix="fin" class="required" display_months=FALSE display_days=FALSE start_year=$fecha_inicio end_year=$smarty.now|date_format:"%Y"}
+
 {/if}
 {if $modulo == 'subunidades'}
 <label>Subunidades<span></span></label>
 <div class="clearfix">
 	<div class="col_50">
+	<input data-id_indicador="{$id_indicador}"class="required subunidad_seleccionada"  name="id_subunidades[]"type="checkbox" value="0"> Total<br /> 
 	{foreach name=subunidades from=$indicador_subunidades item=item}
 	{if $smarty.foreach.subunidades.iteration == floor($indicador_subunidades|@count/2)+1 }</div><div class="col_50 no_border">{/if}
 		<input data-id_indicador="{$id_indicador}"class="subunidad_seleccionada"  name="id_subunidades[]"type="checkbox" value="{$item->id_entidad}"> {$item->entidad->etiqueta}<br /> 
@@ -75,19 +79,16 @@ sub
 	</div>
 	<div class="required_tag tooltip hover left"></div>
 </div>
-<input type="hidden" name="id_medicion_inicio" value="0">
-<input type="hidden" name="id_medicion_fin" value="0">
 {/if}
 {literal}
 <script>
 var page = {/literal}"{$panel->clase_css}"{literal};
 $(document).ready(function() {
-	$('.indicador_seleccionado').on('click',function(){
-		var id_indicador = $(this).data('id_indicador');
+	$('select[name="inicioYear"]').on('change',function(){
+		var fecha_inicio = $(this).val();
 		$.ajax({
-			url: "index.php?page="+page+"&ajax=true&modulo=subunidades&id_indicador="
-			+id_indicador,
-			success: function(datos){$("#subunidades").html(datos);}
+			url: "index.php?page="+page+"&ajax=true&modulo=fecha_fin&fecha_inicio="+fecha_inicio,
+			success: function(datos){$("#div_fecha_fin").html(datos);}
 		});
 	});
 	$('#buscar_indicador').on('keyup',function () {

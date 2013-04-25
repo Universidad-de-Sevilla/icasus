@@ -137,7 +137,7 @@
 				success: function(datos){$("#div_fecha_fin").html(datos);}
 			});
 		});
-		$('#main_container').on('click','.indicador_seleccionado_linea',function(){
+		$('#main_container').on('click','.indicador_seleccionado_barra',function(){
 			var id_indicador = $(this).data('id_indicador');
 			var nombre_indicador = $(this).data('nombre_indicador');
 			$.ajax({
@@ -154,7 +154,7 @@
 		var id_entidad = $(this).data('id_entidad');
 		$('#subunidades').html('');
 		$.ajax({
-			url: "index.php?page=panel_buscador&ajax=true&modulo=indicadores_linea&id_entidad="+id_entidad+"&cadena="+cadena,
+			url: "index.php?page=panel_buscador&ajax=true&modulo=indicadores_barra&id_entidad="+id_entidad+"&cadena="+cadena,
 			success: function(datos){$('#listado_indicadores').html(datos);}
 		}); 
 	});

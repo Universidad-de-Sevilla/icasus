@@ -3,23 +3,29 @@
 	<input type="hidden" name="id_cuadro" value="{$id_cuadro}" id="id_cuadro">
 <div style="opacity: 1;" class="box tabs" id="tab_crear_panel">
 		<ul class="tab_header">
-			<li> <a class="tipo" data-tipo="panel_metrica"href="#datos_panel">
-        <img src="/icons/ff32/date.png"style="padding-top:5px"><br> Métrica</a> </li>
-			<li> <a class="tipo" data-tipo="panel_linea"href="#datos_panel">
-        <img src="/icons/ff32/chart_curve.png"style="padding-top:5px"><br> Líneas</a> </li>
-			<li> <a  class="tipo" data-tipo="panel_tarta"href="#datos_panel">
-        <img src="/icons/ff32/chart_pie.png"style="padding-top:5px"><br> Tarta</a> </li>
-			<li> <a class="tipo" data-tipo="panel_barra"href="#datos_panel">
-        <img src="/icons/ff32/chart_bar.png"style="padding-top:5px"><br> Barras</a> </li>
-			<li> <a class="tipo" data-tipo="panel_tabla" href="#datos_panel">
-        <img src="/icons/ff32/table.png" style="padding-top:5px"><br> Tabla</a> </li>
-			<li> <a class="tipo" data-tipo="panel_informacion" href="#datos_panel">
-        <img src="/icons/ff32/information.png"style="padding-top:5px"><br> Ayuda</a> </li>
+			<li>
+				<a class="tipo" data-tipo="panel_metrica"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/date.png"style="padding-top:5px"><br /> Métrica</a>
+			</li>
+			<li>
+				<a class="tipo" data-tipo="panel_linea"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_curve.png"style="padding-top:5px"><br /> Líneas</a>
+			</li>
+			<li>
+				<a  class="tipo" data-tipo="panel_tarta"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_pie.png"style="padding-top:5px"><br /> Tarta</a>
+			</li>
+			<li>
+				<a class="tipo" data-tipo="panel_barra"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_bar.png"style="padding-top:5px"><br /> Barras</a>
+			</li>
+			<li>
+				<a class="tipo" data-tipo="panel_tabla" href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/table.png" style="padding-top:5px"><br /> Tabla</a>
+			</li>
+			<li>
+				<a class="tipo" data-tipo="panel_informacion" href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/information.png"style="padding-top:5px" ><br /> Ayuda</a>
+			</li>
 		</ul>
 		<div style="opacity: 1;" id="datos_panel" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
 			<p>&nbsp;</p>
 			<div id="datos" class="columns clearfix">
-
+{include file="panel_informacion.tpl"}
 			</div>
 			<div class="button_bar clearfix" id="footer_tabs" style="display:none">
 				<button class="dark send_right img_icon has_text" type="submit">
