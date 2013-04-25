@@ -26,4 +26,3 @@ class panel_indicador extends ADOdb_Active_Record
 	}
 }
 ?>
-
