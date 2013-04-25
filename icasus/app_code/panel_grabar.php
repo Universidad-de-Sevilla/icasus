@@ -1,5 +1,11 @@
 <?php
-print_r($_POST);
+//---------------------------------------------------------------------------------------------------
+// Proyecto: Icasus (http://wiki.us.es/icasus/)
+// Archivo: panel_grabar.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es) 
+//---------------------------------------------------------------------------------------------------
+// Descripcion: Graba los paneles nuevos
+//---------------------------------------------------------------------------------------------------
 if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty($_REQUEST["nombre"])  OR !empty($_REQUEST["orden"])OR !empty($_REQUEST["tipo"]) OR !empty($_REQUEST["ancho"]) OR !empty($_REQUEST["id_indicador"]))
 {
 	$panel = new panel();
