@@ -10,7 +10,6 @@
   padding: 2px 4px;
   margin-bottom: 5px;
   -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
   border-radius: 3px;
 }
 
@@ -53,12 +52,12 @@
 }
 </style>
 
-  <div class="button_bar clearfix">
-    <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
-      src='/icons/ff16/application_add.png' /> Agregar Panel</a> &nbsp;
-    <a href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
-      src='/icons/ff16/table_edit.png' /> Editar propiedades</a> &nbsp;
-  </div>
+<div class="button_bar clearfix">
+  <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
+    src='/icons/ff16/application_add.png' /> Agregar Panel</a> &nbsp;
+  <a href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
+    src='/icons/ff16/table_edit.png' /> Editar propiedades</a> &nbsp;
+</div>
 
 <div class="box grid_16">
   <div class="section">
@@ -66,19 +65,25 @@
   </div>
 </div>
 
-{foreach $paneles as $panel}
-  <div class="box grid_{$panel->ancho}" style="float:left;">
-    <div class="block" style="height:300px">
-      <h3>{$panel->nombre}</h3>
-      <h3 class="hidden edita"><img src="" alt="editar"></h3>
-      <div class="section">
-        <div class="{$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
-          data-id_medicion_inicio="{$panel->id_medicion_inicio}" data-id_medicion_fin="{$panel->id_medicion_fin}"></div>
-        <div class="leyenda"></div>
+{if $paneles}
+  {foreach $paneles as $panel}
+    <div class="box grid_{$panel->ancho}" style="float:left;">
+      <div class="block" style="height:300px">
+        <h3>{$panel->nombre}</h3>
+        <h3 class="hidden edita"><img src="" alt="editar"></h3>
+        <div class="section">
+          <div class="{$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
+            data-id_medicion="{$panel->id_medicion}" data-id_fecha_inicio="{$panel->id_fecha_inicio}" 
+            data-id_fecha_fin="{$panel->id_fecha_fin}" data-ancho="{$panel->ancho}"></div>
+          <div class="leyenda"></div>
+        </div>
       </div>
     </div>
-  </div>
-{/foreach}
+  {/foreach}
+{else}
+  <p class="aviso">Aún no se han añadido paneles a este cuadro de mando. 
+  <a href="index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14">¿A qué esperas?</a></p>
+{/if}
 
 {literal}
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
@@ -92,7 +97,6 @@
   $(".panel_linea").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
-    console.log("Soy el " + id_panel);
     var leyenda = $(this).next(".leyenda");
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function(indicadores) {
       $.each(indicadores, function(index, indicador) {
@@ -100,7 +104,6 @@
           var items = [];
           // Tomamos la entidad a mostrar del panel_indicador actual
           var id_entidad = indicador.id_entidad;
-          console.log(datos);
           $.each(datos, function(i, dato) {
             if(dato.id_unidad == id_entidad)
             {
@@ -133,11 +136,13 @@
       $.each(indicadores, function(index, indicador) {
         $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
           var items = [];
-          var subunidad_actual = "Total";
+          // Tomamos la entidad a mostrar del panel_indicador actual
+          var id_entidad = indicador.id_entidad;
           $.each(datos, function(i, dato) {
-            if(dato.unidad == subunidad_actual)
+            if(dato.id_unidad == id_entidad)
             {
-              var medicion = dato.medicion + index / 5;
+              //var medicion = dato.medicion + index / 5;
+              var medicion = dato.medicion;
               items.push([medicion, dato.valor]);
             }
           });
@@ -159,10 +164,10 @@
 
   $(".panel_tarta").each(function(index) {
     var datos_flot = [];
-    var total;
-    var id_medicion = $(this).data("id_medicion_inicio");
+    var total; // valor total del indicador para esta medición
+    var medicion; //etiqueta de la medición que vamos a mostrar
+    var id_medicion = $(this).data("id_medicion");
     var id_panel = $(this).data("idpanel");
-    console.log("Soy el " + id_panel);
     var leyenda = $(this).next('.leyenda');
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       var indicador = indicadores[0];
@@ -216,18 +221,19 @@
   $(".panel_tabla").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
-    console.log("Soy el " + id_panel);
     var leyenda = $(this).next('.leyenda');
     leyenda.insertBefore($(this));
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       // De momento cogemos solo el primer indicador por si viene mas de uno 
-      indicador = indicadores[0];
+      var indicador = indicadores[0];
       leyenda.html('<h4>' + indicador.nombre + '</h4>');
       $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
-        items = [];
-        subunidad_actual = "Total";
+        var items = [];
+        // Tomamos la entidad a mostrar del panel_indicador actual
+        var id_entidad = indicador.id_entidad;
         $.each(datos, function(i, dato) {
-          if(dato.unidad == subunidad_actual)
+          var paridad;
+          if(dato.id_unidad == id_entidad)
           {
             if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
             items.push('<tr class="' + paridad +'"><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
@@ -241,30 +247,39 @@
     });
   });
 
+
   $(".panel_metrica").each(function(index) {
     var datos_flot = [];
+    var medicion; //etiqueta de la medición a mostrar
     var id_panel = $(this).data("idpanel");
-    console.log("Soy el " + id_panel);
+    var ancho = $(this).data("ancho");
     var leyenda = $(this).next('.leyenda');
-    leyenda.insertBefore($(this));
+    var id_medicion = $(this).data("id_medicion");
+
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       // De momento cogemos solo el primer indicador por si viene mas de uno 
-      indicador = indicadores[0];
-      leyenda.html('<h4>' + indicador.nombre + '</h4>');
+      var indicador = indicadores[0];
+
       $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
-        items = [];
-        subunidad_actual = "Total";
+        var html;
+        // Tomamos la entidad a mostrar del panel_indicador actual
+        var id_entidad = indicador.id_entidad;
         $.each(datos, function(i, dato) {
-          if(dato.unidad == subunidad_actual)
+          if((dato.id_unidad == id_entidad || dato.id_unidad == 0) && dato.id_medicion == id_medicion )
           {
-            if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
-            items.push('<tr class="' + paridad +'"><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
+            html = "<p style='font-size:" + (ancho * 20 - dato.valor.length * 2) +"px; padding: 20px 0px; text-align: center;'>" + dato.valor + "</p>";
+            if (id_entidad != '0') 
+            {
+              html += "<p style='text-align: center;'><strong>Unidad: </strong>" + dato.unidad + "</p>";
+              if (dato.id_unidad == '0') {}
+            }
+            medicion = dato.medicion;
           }
         });
-        $('<table />', {'class': 'static', 
-                        'data-id_indicador': indicador.id, 
-                        html: items.join('')
-                       }).appendTo('#panel_' + id_panel);
+        $('<div/>', {'class': 'centrado', 
+                      html: html
+                    }).appendTo('#panel_' + id_panel);
+        leyenda.html('<p style="font-size:10px">' + indicador.nombre + ' - <strong>Medición:</strong> ' + medicion + '</p>');
       }); 
     });
   });
