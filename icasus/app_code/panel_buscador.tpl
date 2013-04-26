@@ -5,7 +5,7 @@
 		{foreach from=$indicadores item=item}
 		<li>
 			<input data-id_entidad="{$id_entidad}" data-nombre_indicador="{$item->nombre}" 
-					data-id_indicador="{$item->id}"	class="indicador_seleccionado_barra" 
+					data-id_indicador="{$item->id}"	class="required indicador_seleccionado_barra" 
 					type="radio" 	name="id_indicador" value="{$item->id}"> 
 					{$item->nombre}
 	</li>
@@ -23,7 +23,7 @@
 		{foreach from=$indicadores item=item}
 		<li>
 			<input data-id_entidad="{$id_entidad}" data-nombre_indicador="{$item->nombre}" 
-					data-id_indicador="{$item->id}"	class="indicador_seleccionado_linea" 
+					data-id_indicador="{$item->id}"	class="required indicador_seleccionado_linea" 
 					type="radio" 	name="id_indicador" value="{$item->id}"> 
 					{$item->nombre}
 	</li>
