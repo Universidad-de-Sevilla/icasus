@@ -130,6 +130,7 @@
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
     var leyenda = $(this).next(".leyenda");
+
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
         $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
@@ -146,7 +147,7 @@
           });
           datos_flot[index] = {label: indicador.nombre, color: index, data: items };
           var opciones = {
-            series: { bars: {  show: true, barWidth: 0.9, fill: 0.8, align:"center", horizontal: false }},
+            series: { bars: {  show: true, barWidth: 0.5, fill: 0.8, align:"center", horizontal: false }},
             legend: { container: leyenda },
             xaxis: { tickDecimals: 0 },
             grid: { hoverable: true },

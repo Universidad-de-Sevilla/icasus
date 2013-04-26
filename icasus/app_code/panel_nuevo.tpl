@@ -1,25 +1,27 @@
+<!-- panel_nuevo.tpl -->
+
 <form method="post" action="index.php?page=panel_grabar" id="panel_nuevo" name="panel_nuevo">
 	<input type="hidden" name="id_entidad" value="{$id_entidad}" id="id_entidad">
 	<input type="hidden" name="id_cuadro" value="{$id_cuadro}" id="id_cuadro">
-<div style="opacity: 1;" class="box tabs" id="tab_crear_panel">
+  <div style="opacity: 1;" class="box tabs" id="tab_crear_panel">
 		<ul class="tab_header">
 			<li>
-				<a class="tipo" data-tipo="panel_metrica"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/date.png"style="padding-top:5px"><br /> Métrica</a>
+				<a class="tipo" data-tipo="panel_metrica"href="#datos_panel"><img src="/icons/ff32/date.png"style="padding-top:5px"><br /> Métrica</a>
 			</li>
 			<li>
-				<a class="tipo" data-tipo="panel_linea"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_curve.png"style="padding-top:5px"><br /> Líneas</a>
+				<a class="tipo" data-tipo="panel_linea"href="#datos_panel"><img src="/icons/ff32/chart_curve.png"style="padding-top:5px"><br /> Líneas</a>
 			</li>
 			<li>
-				<a  class="tipo" data-tipo="panel_tarta"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_pie.png"style="padding-top:5px"><br /> Tarta</a>
+				<a  class="tipo" data-tipo="panel_tarta"href="#datos_panel"><img src="/icons/ff32/chart_pie.png"style="padding-top:5px"><br /> Tarta</a>
 			</li>
 			<li>
-				<a class="tipo" data-tipo="panel_barra"href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/chart_bar.png"style="padding-top:5px"><br /> Barras</a>
+				<a class="tipo" data-tipo="panel_barra"href="#datos_panel"><img src="/icons/ff32/chart_bar.png"style="padding-top:5px"><br /> Barras</a>
 			</li>
 			<li>
-				<a class="tipo" data-tipo="panel_tabla" href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/table.png" style="padding-top:5px"><br /> Tabla</a>
+				<a class="tipo" data-tipo="panel_tabla" href="#datos_panel"><img src="/icons/ff32/table.png" style="padding-top:5px"><br /> Tabla</a>
 			</li>
 			<li>
-				<a class="tipo" data-tipo="panel_informacion" href="#datos_panel"><img src="http://localhost/icasus/icons/ff32/information.png"style="padding-top:5px" ><br /> Ayuda</a>
+				<a class="tipo" data-tipo="panel_informacion" href="#datos_panel"><img src="/icons/ff32/information.png"style="padding-top:5px" ><br /> Ayuda</a>
 			</li>
 		</ul>
 		<div style="opacity: 1;" id="datos_panel" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
@@ -38,6 +40,7 @@
 		</div><!-- fin tab 1 --> 
 	</div><!-- id tab_crear_panel -->
 </form>
+
 {literal}
   <script>
     $(function() {
