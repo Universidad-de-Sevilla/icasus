@@ -50,13 +50,22 @@
   margin: 10px;
   border: 0;
 }
+
+.icon-remove {
+  float: right;
+}
+
 </style>
-<div class="button_bar clearfix">
-  <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
-    src='/icons/ff16/application_add.png' /> Agregar Panel</a> &nbsp;
-  <a href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
-    src='/icons/ff16/table_edit.png' /> Editar propiedades</a> &nbsp;
-</div>
+{if $cuadro->id_usuario == $_usuario->id}
+  <div class="button_bar clearfix">
+    <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
+      src='/icons/ff16/application_add.png' /> Agregar Panel</a> &nbsp;
+    <a href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
+      src='/icons/ff16/table_edit.png' /> Editar propiedades</a> &nbsp;
+    <a href='index.php?page=cuadro_listar&id_entidad=14'><img 
+      src='/icons/ff16/table.png' /> Volver al listado</a> &nbsp;
+  </div>
+{/if}
 
 <div class="box grid_16">
   <div class="section">
@@ -68,10 +77,10 @@
   {foreach $paneles as $panel}
     <div class="box grid_{$panel->ancho}" style="float:left;">
       <div class="block" style="height:300px">
-        <h3>{$panel->nombre}</h3>
+        <h3>{$panel->nombre} <a class="icon-remove" href="#">X</a></h3>
         <h3 class="hidden edita"><img src="" alt="editar"></h3>
         <div class="section">
-          <div class="{$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
+          <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
             data-id_medicion="{$panel->id_medicion}" data-id_fecha_inicio="{$panel->id_fecha_inicio}" 
             data-id_fecha_fin="{$panel->id_fecha_fin}" data-ancho="{$panel->ancho}"></div>
           <div class="leyenda"></div>
@@ -92,6 +101,14 @@
 <script>
   // No hace falta llamar a jquery, ya lo hace "alguien" por nosotros
   
+  $(".icon-remove").on('click', function(event) {
+    var boton_borrar, idpanel;
+    boton_borrar = $(this);
+    id_panel = boton_borrar.parents().find(".panel").data("idpanel");
+    boton_borrar.parents(".box").remove();
+    evento.preventDefault();
+  });
+
   /* --- Comienza la magia --- */ 
   $(".panel_linea").each(function(index) {
     var datos_flot = [];

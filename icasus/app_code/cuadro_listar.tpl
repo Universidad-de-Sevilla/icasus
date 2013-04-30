@@ -8,13 +8,14 @@
       <div id="dt1" class="no_margin">
         <table class="display datatable"> 
         <thead>
-          <tr><th>Nombre</th><th>Indicadores</th><!--<th>Acciones</th>--></tr>
+          <tr><th>Nombre</th><th>Visibilidad</th><th>Comentario</th><!--<th>Acciones</th>--></tr>
         </thead>
         <tbody>
           {foreach from=$cuadros item=cuadro}
             <tr>
               <td><a href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td> 
-              <td>{$cuadro->comentarios}</td>
+              <td>{if $cuadro->privado == 0}Público{else}Privado{/if}</td>
+              <td width="70%">{$cuadro->comentarios}</td>
             </tr>
           {/foreach}
         </tbody>	

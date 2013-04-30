@@ -9,20 +9,24 @@
 //---------------------------------------------------------------------------------------------------
 
 // Comprueba que vienen los datos mínimos
-if (isset($_POST['nombre']) && isset($_POST['privado'])) 
+if (isset($_REQUEST['nombre'])) 
 {
 	// Guardamos los datos que vienen del formulario
 	$cuadro = new cuadro();
   // Si viene el id es que estamos editando uno existente
-	if (isset($_POST['id']))
+	if (isset($_REQUEST['id']))
 	{
-		$id = sanitize($_POST['id'],16);
-		$cuadro->load("id = $id");
+		$id = sanitize($_REQUEST['id'],16);
+		if ($cuadro->load("id = $id AND id_usuario = $usuario->id") == false)
+    {
+	    $error = "El cuadro de mando no existe o no tiene permisos para editarlo";
+      header("Location: index.php?page=cuadro_listar&error=error");
+    }
 	}
 	$cuadro->id_usuario = $usuario->id;
-	$cuadro->nombre = sanitize($_POST['nombre'],2);
-	$cuadro->privado = sanitize($_POST['privado'],16);
-	$cuadro->comentarios = isset($_POST['comentarios'])?sanitize($_POST['comentarios'],2):'';
+	$cuadro->nombre = sanitize($_REQUEST['nombre'],2);
+	$cuadro->privado = sanitize($_REQUEST['privado'],16);
+	$cuadro->comentarios = isset($_REQUEST['comentarios'])?sanitize($_REQUEST['comentarios'],2):'';
 	$cuadro->save();
 	header("Location: index.php?page=cuadro_mostrar&id=$cuadro->id");
 }
@@ -30,7 +34,7 @@ else
 {
 	// Avisamos de error por falta de parametros
 	$error = 'Faltan parámetros necesarios para crear un cuadro de mando';
-	header("Location: index.php?page=cuadro_listar");
+	header("Location: index.php?page=cuadro_listar&error=error");
 }
 
 ?>
