@@ -6,7 +6,7 @@
 // Muestra un cuadro de mando con todos sus paneles
 //---------------------------------------------------------------------------------------------------
 
-if (isset($_REQUEST["id"]))
+if (!empty($_REQUEST["id"]))
 {
   $id_cuadro = sanitize($_REQUEST["id"], INT);
   $cuadro = new cuadro();

@@ -105,6 +105,7 @@
 	{literal}
 	<script>
 		$('#main_container').on('click','.remove_seleccion',function(e){
+			if ($('.remove_seleccion').length < 1){$('#footer_tabs').hide();}
 			e.preventDefault();
 			$(this).parents('.fila_borrar').remove();
 		});
@@ -122,6 +123,7 @@
 			'<td><input type="hidden" name="id_subunidades[]" value="'+id_subunidad+'">'+subunidad+
 			'</td></tr>');
 			$('#dialog_subunidades').dialog('close');
+			$('#footer_tabs').show();
 		});
 	</script>
 	{/literal}

@@ -49,7 +49,9 @@
       $('.tipo').on('click',function(){
         var id_entidad = $('#id_entidad').val();
         var tipo = $(this).data('tipo');
-        if (tipo != 'panel_informacion')
+        $('#footer_tabs').hide();
+        /*
+				if (tipo != 'panel_informacion')
         {
           $('#footer_tabs').show();
         }
@@ -57,6 +59,7 @@
         {
           $('#footer_tabs').hide();
         }
+				*/
         $.ajax({
           url: "index.php?page="+tipo+"&ajax=true&modulo=inicio&id_entidad="+id_entidad,
             success: function(datos){$("#datos").html(datos);}
