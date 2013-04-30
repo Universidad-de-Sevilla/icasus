@@ -105,9 +105,9 @@
 	{literal}
 	<script>
 		$('#main_container').on('click','.remove_seleccion',function(e){
-			if ($('.remove_seleccion').length < 1){$('#footer_tabs').hide();}
 			e.preventDefault();
 			$(this).parents('.fila_borrar').remove();
+			if ($('.remove_seleccion').length == 0){$('#footer_tabs').hide();}
 		});
 		$('.subunidad_seleccionada').on('click',function(){
 			var id_subunidad = $(this).val();	
