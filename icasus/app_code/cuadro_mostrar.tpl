@@ -66,7 +66,16 @@
       src='/icons/ff16/table.png' /> Volver al listado</a> &nbsp;
   </div>
 {/if}
+<!-- dialogo para borrar paneles -->
+<div id="dialogo_borrar_panel" class="dialog_content narrow ui-dialog-content ui-widget-content">
+	<div class="block" style="opacity: 1;" >
+		<div class="section" style="padding:20px">
+			<p>Va a borrar el panel "<b><span id="nombre_panel"></span></b>" de este cuadro de mando.</p>
+		</div>
+	</div>
+</div>
 
+<!-- fin dialogo para borrar paneles -->
 <div class="box grid_16">
   <div class="section">
     <p>{$cuadro->comentarios}</p>
@@ -77,7 +86,7 @@
   {foreach $paneles as $panel}
     <div class="box grid_{$panel->ancho}" style="float:left;">
       <div class="block" style="height:300px">
-        <h3>{$panel->nombre} <a class="icon-remove" href="#">X</a></h3>
+        <h3>{$panel->nombre} <a data-nombre_panel="{$panel->nombre}" class="icon-remove" href="#">X</a></h3>
         <h3 class="hidden edita"><img src="" alt="editar"></h3>
         <div class="section">
           <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
@@ -101,11 +110,39 @@
 <script>
   // No hace falta llamar a jquery, ya lo hace "alguien" por nosotros
   
-  $(".icon-remove").on('click', function(event) {
+  $(".icon-remove").on('click', function(evento) {
     var boton_borrar, idpanel;
     boton_borrar = $(this);
-    id_panel = boton_borrar.parents().find(".panel").data("idpanel");
-    boton_borrar.parents(".box").remove();
+		id_panel = boton_borrar.parents().find(".panel").data("idpanel");
+		$('#nombre_panel').html(boton_borrar.data('nombre_panel'));
+		$("#dialogo_borrar_panel").dialog({
+		autoOpen: true,modal: true,
+		buttons:[
+		{
+			text:"Confirmar",
+			"class":'green',
+			click:function(){
+				$(this).dialog("close");	
+				$.ajax({
+					url:"index.php?page=panel_borrar&id_panel="+id_panel,
+					success:function(datos){
+						$(boton_borrar).parent().siblings('.section').html('<h4>Borrando ...</h4>');
+						boton_borrar.parents(".box").remove();
+					}
+				})
+			}
+		},
+		{
+			text:"Cancelar",
+			"class":'red text_only has_text',
+			click:function(){
+				$(this).dialog("close");	
+			}
+		}
+		]
+		});
+		/*
+		*/
     evento.preventDefault();
   });
 

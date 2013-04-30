@@ -32,5 +32,18 @@ class panel extends ADOdb_Active_Record
       return false;
     }
 	}
+	public function borrar_panel($condicion)
+	{
+		$this->load($condicion);
+		if ($this->delete())
+		{
+			$indicadores = new panel_indicador();
+			$indicadores->borrar_indicadores("id_panel = $this->id ");
+		}
+		else
+		{
+			//escribir error en log
+		}
+	}
 }
 ?>
