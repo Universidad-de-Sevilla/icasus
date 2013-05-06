@@ -124,8 +124,20 @@
 			click:function(){
 				$(this).dialog("close");	
 				$.ajax({
-					url:"index.php?page=panel_borrar&id_panel="+id_panel,
+					url:"index.php?page=panel_borrar&ajax=true&id_panel="+id_panel,
 					success:function(datos){
+						/*
+					alert(datos);
+						if (datos == 'Siparametros')
+						{
+						$(boton_borrar).parent().siblings('.section').html(datos);
+						}
+						else
+						{
+						$(boton_borrar).parent().siblings('.section').html('no ahya datsodatos');
+						}
+						$(boton_borrar).parent().siblings('.section').html('{literal}gggggg{/literal}');
+						*/
 						$(boton_borrar).parent().siblings('.section').html('<h4>Borrando ...</h4>');
 						boton_borrar.parents(".box").remove();
 					}

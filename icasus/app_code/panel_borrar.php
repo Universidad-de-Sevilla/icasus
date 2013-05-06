@@ -6,15 +6,22 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra paneles 
 //---------------------------------------------------------------------------------------------------
+$id_usuario = $usuario->id;
 $id_panel = sanitize($_REQUEST["id_panel"],INT);
-$panel = new panel();
-if ($panel->borrar_panel("id = $id_panel"))
+if (!empty($id_panel))
 {
-	echo 'hola';
+	$panel = new panel();
+	if($panel->permiso_panel($id_usuario,$id_panel))
+	{
+		$panel->borrar_panel("id = $id_panel");
+	}
+	else
+	{
+			//escribir error de permiso en log
+	}
 }
 else
 {
-	//escribir error de borrado en log
-}
-
+	echo 'NOparametros';
+}	
 ?>

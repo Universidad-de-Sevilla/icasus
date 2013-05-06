@@ -32,6 +32,23 @@ class panel extends ADOdb_Active_Record
       return false;
     }
 	}
+	public function permiso_panel($id_usuario,$id_panel)
+	{
+		$db = $this->db();
+		$sql = "SELECT * FROM cuadros c LEFT JOIN paneles p 
+						ON p.id_cuadro = c.id 
+						WHERE c.id_usuario = $id_usuario  AND p.id= $id_panel";
+	
+		$l =  $db->execute($sql);
+		if ($l->_numOfRows == 1)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 	public function borrar_panel($condicion)
 	{
 		$this->load($condicion);
