@@ -24,5 +24,11 @@ class panel_indicador extends ADOdb_Active_Record
       return false;
     }
 	}
+	public function borrar_indicadores($condicion)
+	{
+		$db = $this->DB();
+		$sql = "DELETE FROM panel_indicadores WHERE $condicion";
+		$db->execute($sql);
+	}
 }
 ?>

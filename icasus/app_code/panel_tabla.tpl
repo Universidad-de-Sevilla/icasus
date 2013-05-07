@@ -84,6 +84,10 @@
 <script>
 var page = {/literal}"{$panel->clase_css}"{literal};
 $(document).ready(function() {
+	$('.subunidad_seleccionada').on('click',function(){
+		if ($('.subunidad_seleccionada:checked').length < 1){$('#footer_tabs').hide();}
+		else{$('#footer_tabs').show();}
+	});
 	$('select[name="inicioYear"]').on('change',function(){
 		var fecha_inicio = $(this).val();
 		$.ajax({
