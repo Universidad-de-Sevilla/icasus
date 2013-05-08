@@ -3,6 +3,8 @@ $modulo = sanitize($_REQUEST["modulo"],SQL);
 $id_entidad = sanitize($_REQUEST["id_entidad"],SQL);
 
 $entidad = new entidad();
+$entidad->load("id = $id_entidad");
+
 $subunidades = $entidad->find("id_madre = $id_entidad");
 $num_subunidades = count($subunidades);
 if ($num_subunidades == 0)
@@ -14,6 +16,7 @@ else
 	$cadena = "AND e.id_madre = $id_entidad ";
 }
 $fecha = date("Y");
+
 
 //------------------------------------------------------------------------------
 //---- Muestra todos los valores NULL al inicio con el año actual    -----------
@@ -38,6 +41,6 @@ if ($modulo == 'filtrOnlyear')
   $smarty->assign("valores", $valores);
 }
 $smarty->assign("modulo", $modulo);
-$smarty->assign("_nombre_pagina", "Control de sus entidades");
+$smarty->assign("_nombre_pagina", "Control:  $entidad->nombre");
 $plantilla = "control.tpl";
 ?>
