@@ -167,15 +167,18 @@
       $.each(indicadores, function(index, indicador) {
         $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id).done(function(datos) {
           var items = [];
-          // Tomamos la entidad a mostrar del panel_indicador actual
+          var unidad;
+          var etiqueta;
           var id_entidad = indicador.id_entidad;
           $.each(datos, function(i, dato) {
             if(dato.id_unidad == id_entidad)
             {
+              unidad = dato.unidad; //guarrerida española
               items.push([dato.medicion, dato.valor]);
             }
           });
-          datos_flot[index] = {label: indicador.nombre, color: index, data: items };
+          etiqueta = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
+          datos_flot[index] = {label: etiqueta, color: index, data: items };
           var opciones = {
             series: { lines: { show: true }, points: { show: true } },
             label: { show: true },
@@ -201,17 +204,20 @@
       $.each(indicadores, function(index, indicador) {
         $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
           var items = [];
-          // Tomamos la entidad a mostrar del panel_indicador actual
+          var unidad;
+          var etiqueta;
           var id_entidad = indicador.id_entidad;
           $.each(datos, function(i, dato) {
             if(dato.id_unidad == id_entidad)
             {
               //var medicion = dato.medicion + index / 5;
               var medicion = dato.medicion;
+              unidad = dato.unidad; //guarrerida española
               items.push([medicion, dato.valor]);
             }
           });
-          datos_flot[index] = {label: indicador.nombre, color: index, data: items };
+          etiqueta = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
+          datos_flot[index] = {label: etiqueta, color: index, data: items };
           var opciones = {
             series: { bars: {  show: true, barWidth: 0.5, fill: 0.8, align:"center", horizontal: false }},
             legend: { container: leyenda },
