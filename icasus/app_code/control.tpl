@@ -18,16 +18,7 @@
 </div>
 <div class="box grid_16 single_datatable">
 	<div id="dt1" class="no_margin">
-		<table class="display datatable"> 
-			<thead>
-				<tr><th>Unidad</th><th>Indicador</th><th>Fecha</th><th>Valor</th></tr>
-			</thead>
-			<tbody>
-				{foreach from=$valores item=valor}
-				<tr><td>{$valor.unidad}</td><td>{$valor.indicador}</td><td>{$valor.fecha}</td><td>{if $valor.valor == NULL}NULL{/if}</td></tr>
-				{/foreach}
-			</tbody>	
-		</table>
+	{include file="control_valores.tpl"}
 	</div><!-- #dt1 .no_margin -->
 </div><!-- .box grid16 single_datatable -->	
 	{literal}
@@ -46,14 +37,5 @@
 
 {if $modulo == 'filtrOnlyear'}
 		<script src="theme/danpin/scripts/DataTables/jquery.dataTables.js" type="text/javascript"></script><script src="theme/danpin/scripts/adminica/adminica_datatables.js" type="text/javascript"></script>
-		<table class="display datatable"> 
-			<thead>
-				<tr><th>Unidad</th><th>Indicador</th><th>Fecha</th><th>Valor</th></tr>
-			</thead>
-			<tbody>
-				{foreach from=$valores item=valor}
-				<tr><td>{$valor.unidad}</td><td>{$valor.indicador}</td><td>{$valor.fecha}</td><td>{if $valor.valor == NULL}NULL{/if}</td></tr>
-				{/foreach}
-			</tbody>	
-		</table>
+{include file="control_valores.tpl"}
 {/if}

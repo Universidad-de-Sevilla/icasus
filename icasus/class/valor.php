@@ -231,14 +231,16 @@ class valor extends ADOdb_Active_Record
   {
     return $a->entidad->etiqueta > $b->entidad->etiqueta;
   }
+	//función para mostrar los datos en control
 	public function filtro_onlyear($fecha,$cadena)
 	{
 		$db = $this->DB();
-		$sql = "SELECT  e.etiqueta as unidad, i.nombre as indicador, m.etiqueta as fecha, v.valor
+		$sql = "SELECT  m.id as id_medicion,p.nombre as proceso,p.codigo as cod_proceso,e.etiqueta as unidad, i.nombre as indicador, i.id_entidad as entidad_del_indicador,i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, v.valor
 			FROM `valores` v
 			LEFT JOIN mediciones m ON v.id_medicion = m.id
 			LEFT JOIN entidades e ON v.id_entidad = e.id
 			LEFT JOIN indicadores i ON m.id_indicador = i.id
+			LEFT JOIN procesos p ON p.id = i.id_proceso
 			WHERE v.valor IS NULL
 			$cadena 
 			AND v.activo = 1 
