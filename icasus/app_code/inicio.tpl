@@ -16,11 +16,14 @@
               <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'> Consultas</a> -
               <a href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'> Procesos</a> -
               <a href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'>Indicadores</a> - 
-              <a href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'>Datos</a>
+              <a href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'>Datos</a> 
               <!--
               <a href="index.php?page=plan_estrategico/plan_listar&id_entidad={$entidad->entidad->id}&entidad={$entidad->entidad->nombre|htmlentities}">Planificaci&oacute;n</a> -
               <a href='index.php?page=grupo/acta_listar&id_entidad={$entidad->entidad->id}' title="Ver las actas de este equipo">Actas</a> 
               -->
+							{if $entidad->rol->id == 1 OR $entidad->rol->id == 2}
+              - <a href='index.php?page=control&modulo=inicio&id_entidad={$entidad->entidad->id}'> Control</a>
+							{/if}
             </td>
           </tr>
         {/foreach}
