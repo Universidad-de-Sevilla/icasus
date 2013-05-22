@@ -76,7 +76,7 @@ if (isset($_GET["autenticar"]))
 else if (isset($_GET["logout"]))
 {
 	session_unset();
-	header("location:https://opensso.us.es/opensso/UI/Logout?goto=". IC_URL_BASE);
+	header("location:https://sso.us.es/opensso/UI/Logout?goto=". IC_URL_BASE);
 }
 else
 {

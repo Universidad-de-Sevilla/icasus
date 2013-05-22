@@ -26,15 +26,24 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
   $query = "SELECT entidades.etiqueta as etiqueta, valor FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador AND mediciones.etiqueta = '$medicion->etiqueta' ORDER BY entidades.etiqueta";
   $resultado = $db->getAll($query);
 
-  $query_media = "SELECT ROUND(AVG(valor),2) AS media FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador AND mediciones.etiqueta = '$medicion->etiqueta'";
-  $media_sql = $db->getAll($query_media);
-  $media_sql = round($media_sql[0]['media'], 2);
-
   foreach ($resultado as $registro)
   {
     $valores[] = $registro['valor'];
     $etiquetas[] = $registro['etiqueta'];
   }
+
+  // Obtiene la media de todos los valores utilizando las funciones de SQL
+  $query_media = "SELECT ROUND(AVG(valor),2) AS media FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador AND mediciones.etiqueta = '$medicion->etiqueta'";
+  $media_sql = $db->getAll($query_media);
+  $media_sql = round($media_sql[0]['media'], 2);
+
+  // Obtiene los valores de referencia asociados a esta medición
+  // Dichas referencias han de estar activas y con grafica = 1
+  $query_referencias = "SELECT etiqueta, valor 
+    FROM valores_referencia_mediciones 
+    INNER JOIN valores_referencia ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
+    WHERE activo = 1 AND grafica = 1 AND id_medicion = $medicion->id";
+  $referencias = $db->getAll($query_referencias); 
 
   if ($resultado)
   {
@@ -62,27 +71,22 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
     $ScaleSettings = array("Pos"=>SCALE_POS_TOPBOTTOM,"XMargin"=>20,"DrawSubTicks"=>TRUE,"GridR"=>155,"GridG"=>155,"GridB"=>155,"AxisR"=>0,"AxisG"=>0,"AxisB"=>0,"GridAlpha"=>30,"CycleBackground"=>TRUE);
     $myPicture->drawScale($ScaleSettings); 
     $myPicture->setShadow(TRUE,array("X"=>1,"Y"=>1,"R"=>163,"G"=>38,"B"=>56,"Alpha"=>10)); 
+    $myPicture->drawThreshold("185", array("WriteCaption"=>TRUE, "Caption"=>"Prueba: 200", "R"=>80, "G"=>55, "B"=>25, "Alpha"=>150));
     $myPicture->drawBarChart(array("DisplayValues"=>TRUE,"DisplayColor"=>DISPLAY_AUTO)); 
-    //$myPicture->drawBarChart(array("DisplayValues"=>TRUE, "DisplayColor"=>DISPLAY_MANUAL, "DisplayR"=>0,"DisplayG"=>0,"DisplayB"=>255)); 
     //$myPicture->drawText(20,530,"{$indicador->nombre} ({$medicion->etiqueta})",array("FontSize"=>13,"Align"=>TEXT_ALIGN_BOTTOMLEFT));
     //$myPicture->drawLegend(510,205,array("Style"=>LEGEND_NOBORDER,"Mode"=>LEGEND_HORIZONTAL));
     // Pintamos la línea con la media 
     $myPicture->drawThreshold($media,array("WriteCaption"=>TRUE, "Caption"=>"Media: $media_sql", "R"=>40, "G"=>55, "B"=>255, "Alpha"=>150));
-    // Objetivos
-    $query = "SELECT vr.etiqueta AS etiqueta, vrm.valor AS valor FROM valores_referencia vr INNER JOIN valores_referencia_mediciones vrm ON vr.id = vrm.id_valor_referencia WHERE vrm.id_medicion = $medicion->id";      
-    if ($resultado = $db->getAll($query))
+
+    // Pinta los valores de referencia
+    // Atención: estos valores no se pintan cuando se salen del rango de valores de las mediciones
+    foreach ($referencias as $referencia)
     {
-      $nombre_referencia = $resultado[0]["etiqueta"];
-      foreach($resultado as $registro)
-      {
-        $etiqueta = $registro["etiqueta"];
-        $valor = $registro["valor"];
-        $myPicture->drawThreshold($valor,array("WriteCaption"=>TRUE, "Caption"=>$etiqueta, "CaptionAlign"=>CAPTION_RIGHT_BOTTOM,"R"=>0,"G"=>0,"B"=>255, "Alpha"=>90));
-      }
-    }
-
-
-    
+      $valor = $referencia["valor"];
+      $etiqueta = $referencia["etiqueta"];
+      $myPicture->drawThreshold("$valor", array("WriteCaption"=>TRUE, "Caption"=>"$etiqueta: $valor", "R"=>80, "G"=>55, "B"=>75, "Alpha"=>150));
+    } 
+    // Finalmente planta el dibujo en el lienzo
     $myPicture->Stroke();
   }
   else
