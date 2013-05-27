@@ -116,42 +116,30 @@
 		id_panel = boton_borrar.parents().find(".panel").data("idpanel");
 		$('#nombre_panel').html(boton_borrar.data('nombre_panel'));
 		$("#dialogo_borrar_panel").dialog({
-		autoOpen: true,modal: true,
-		buttons:[
-		{
-			text:"Confirmar",
-			"class":'green',
-			click:function(){
-				$(this).dialog("close");	
-				$.ajax({
-					url:"index.php?page=panel_borrar&ajax=true&id_panel="+id_panel,
-					success:function(datos){
-						/*
-					alert(datos);
-						if (datos == 'Siparametros')
-						{
-						$(boton_borrar).parent().siblings('.section').html(datos);
-						}
-						else
-						{
-						$(boton_borrar).parent().siblings('.section').html('no ahya datsodatos');
-						}
-						$(boton_borrar).parent().siblings('.section').html('{literal}gggggg{/literal}');
-						*/
-						$(boton_borrar).parent().siblings('.section').html('<h4>Borrando ...</h4>');
-						boton_borrar.parents(".box").remove();
-					}
-				})
-			}
-		},
-		{
-			text:"Cancelar",
-			"class":'red text_only has_text',
-			click:function(){
-				$(this).dialog("close");	
-			}
-		}
-		]
+      autoOpen: true,modal: true,
+      buttons:[
+      {
+        text:"Confirmar",
+        "class":'green',
+        click:function(){
+          $(this).dialog("close");	
+          $.ajax({
+            url:"index.php?page=panel_borrar&ajax=true&id_panel="+id_panel,
+            success:function(datos){
+              $(boton_borrar).parent().siblings('.section').html('<h4>Borrando ...</h4>');
+              boton_borrar.parents(".box").remove();
+            }
+          })
+        }
+      },
+      {
+        text:"Cancelar",
+        "class":'red text_only has_text',
+        click:function(){
+          $(this).dialog("close");	
+        }
+      }
+      ]
 		});
 		/*
 		*/
@@ -159,7 +147,7 @@
   });
 
   /* --- Comienza la magia --- */ 
-  $(".panel_linea").each(function(index) {
+  $(".panel_linea_espera").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
     var leyenda = $(this).next(".leyenda");
@@ -194,8 +182,106 @@
     });
   });
 
-
   $(".panel_barra").each(function(index) {
+    var datos_flot = [];
+    var id_panel = $(this).data("idpanel");
+    var leyenda = $(this).next(".leyenda");
+
+    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
+      $.each(indicadores, function(index, indicador) {
+        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
+          var items = [];
+          var unidad;
+          var etiqueta;
+          var opciones = {};
+          var serie_tipo;
+          var id_entidad = indicador.id_entidad;
+
+          $.each(datos, function(i, dato) {
+            if(dato.id_unidad == id_entidad)
+            {
+              //var medicion = dato.medicion + index / 5;
+              var medicion = dato.medicion;
+              unidad = dato.unidad; //guarrerida española
+              items.push([medicion, dato.valor]);
+            }
+          });
+          // Si el tipo de serie es 1 se trata de una línea
+          if (indicador.id_serietipo == 4)
+          {
+            datos_flot[index] = { label: etiqueta, color: index, data: items, 
+              lines:{ show: true }, points:{ show: true }};
+          }
+          else // por defecto ponemos una barra
+          {
+            datos_flot[index] = { label: etiqueta, color: index, data: items, 
+              bars: { show: true, order: 1, barWidth: 0.25, fill: 0.8, align:'center', horizontal: false }};
+          }
+
+          etiqueta = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
+          //datos_flot[index] = { label: etiqueta, color: index, data: items, serie_tipo };
+          //datos_flot[index] = { label: etiqueta, color: index, data: items,  bars: { show: true, order: 1, barWidth: 0.25, fill: 0.8, align:'center', horizontal: false }};
+          //datos_flot[2] = { label: etiqueta, color: index, data: items,  points:{ show: true }, lines: {show: true} };
+          console.log(datos_flot);
+
+          opciones = {
+            legend: { container: leyenda },
+            xaxis: { tickDecimals: 0 },
+            grid: { hoverable: true },
+            colors: ['maroon', 'darkolivegreen', 'orange', 'DarkKhaki', 'pink', 'yellow', 'green', 'brown']
+          };
+
+          $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
+          $.plot($("#panel_" + id_panel), datos_flot,  opciones );
+        }); //fin llamada api get_valores_indicador
+      });
+    });
+  });
+ 
+  $(".panel_linea").each(function(index) {
+    var datos_flot = [];
+    var id_panel = $(this).data("idpanel");
+    var leyenda = $(this).next(".leyenda");
+
+    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
+      $.each(indicadores, function(index, indicador) {
+        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
+          var items = [];
+          var unidad;
+          var etiqueta;
+          var id_entidad = indicador.id_entidad;
+          $.each(datos, function(i, dato) {
+            if(dato.id_unidad == id_entidad)
+            {
+              //var medicion = dato.medicion + index / 5;
+              var medicion = dato.medicion;
+              unidad = dato.unidad; //guarrerida española
+              items.push([medicion, dato.valor]);
+            }
+          });
+          etiqueta = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
+          datos_flot[index] = { label: etiqueta, color: index, data: items, 
+            bars: { show: true, order: 1, barWidth: 0.3, fill: 0.8, align:"center", horizontal: false } };
+          var opciones = {
+            legend: { container: leyenda },
+            xaxis: { tickDecimals: 0 },
+            grid: { hoverable: true },
+            colors: ['maroon', 'darkolivegreen', 'orange', 'DarkKhaki', 'pink', 'yellow', 'green', 'brown']
+          };
+
+          var d5 = [[2008,3],[2009,4],[2010,5],[2011,6]];
+          var lineamia = {label: 'Mia', color: 'pink', data: d5, series:{lines:{ show: true }, points:{ show: true }}};
+          datos_flot.push(lineamia);
+          $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
+          console.log(datos_flot);
+          $.plot($("#panel_" + id_panel), datos_flot,  opciones );
+        }); 
+      });
+    });
+  });
+ 
+
+  $(".panel_barra_old").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
     var leyenda = $(this).next(".leyenda");
