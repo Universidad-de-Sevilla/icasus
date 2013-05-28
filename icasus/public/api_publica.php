@@ -12,7 +12,14 @@ if (@mysql_select_db(IC_DB_DATABASE))
     $metodo = $_REQUEST["metodo"];
     if (function_exists($metodo))
     {
-      if (isset($_REQUEST["id"]))
+      if (isset($_REQUEST["id"]) AND isset($_REQUEST["fecha_inicio"]) AND isset($_REQUEST["fecha_fin"])) 
+      {
+        $id = sanitize($_REQUEST["id"],INT);
+        $fecha_inicio = sanitize($_REQUEST["fecha_inicio"],SQL);
+        $fecha_fin = sanitize($_REQUEST["fecha_fin"],SQL);
+        $metodo($id, $fecha_inicio, $fecha_fin);
+      }
+      else if (isset($_REQUEST["id"]))
       {
         $id = sanitize($_REQUEST["id"],INT);
         $metodo($id);
@@ -88,7 +95,7 @@ function get_subunidades_indicador($id)
 // Devuleve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
 // También devuelve los totales de dichos valores en función del operador definido en el indicador
 // Se utiliza en consulta_avanzada
-function get_valores_indicador($id)
+function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
 {
   $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
             INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
@@ -114,9 +121,18 @@ function get_valores_indicador($id)
   $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
-            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL 
-            ORDER BY mediciones.periodo_inicio";
+            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL"; 
+  if ($fecha_inicio > 0)
+  {
+    $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
+  }
+  if ($fecha_fin > 0)
+  {
+    $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
+  }
+  $query .= " ORDER BY mediciones.periodo_inicio";
   $resultado = mysql_query($query);
+
   while ($registro = mysql_fetch_assoc($resultado))
   {
     $datos[] = $registro;
@@ -124,8 +140,16 @@ function get_valores_indicador($id)
   // Aquí van los totales
   $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
-            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL
-            GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
+            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
+  if ($fecha_inicio > 0)
+  {
+    $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
+  }
+  if ($fecha_fin > 0)
+  {
+    $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
+  }
+  $query .= " GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {

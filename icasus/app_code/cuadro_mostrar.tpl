@@ -4,13 +4,11 @@
 }
 
 .leyenda {
-  line-height: 14px;
-  border: 1px solid #D8DCDE;
+  border-top: 1px solid #D8DCDE;
   background: #EDF1F3;
-  padding: 2px 4px;
-  margin-bottom: 5px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
+  background: transparent;
+  padding: 7px 4px;
+  margin-top: 5px;
 }
 
 .leyenda p{
@@ -21,6 +19,11 @@
 
 .leyenda table {
   margin-bottom: 0;
+}
+
+.legendLabel {
+  vertical-align: middle;
+  padding-left: 4px;
 }
 
 .flat_area h3 {
@@ -85,13 +88,13 @@
 {if $paneles}
   {foreach $paneles as $panel}
     <div class="box grid_{$panel->ancho}" style="float:left;">
-      <div class="block" style="height:300px">
+      <div class="block" style="height:320px">
         <h3>{$panel->nombre} <a data-nombre_panel="{$panel->nombre}" class="icon-remove" href="#">X</a></h3>
         <h3 class="hidden edita"><img src="" alt="editar"></h3>
         <div class="section">
           <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
-            data-id_medicion="{$panel->id_medicion}" data-id_fecha_inicio="{$panel->id_fecha_inicio}" 
-            data-id_fecha_fin="{$panel->id_fecha_fin}" data-ancho="{$panel->ancho}"></div>
+            data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" 
+            data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}"></div>
           <div class="leyenda"></div>
         </div>
       </div>
@@ -109,7 +112,7 @@
 
 <script>
   // No hace falta llamar a jquery, ya lo hace "alguien" por nosotros
-  
+   
   $(".icon-remove").on('click', function(evento) {
     var boton_borrar, idpanel;
     boton_borrar = $(this);
@@ -141,22 +144,23 @@
       }
       ]
 		});
-		/*
-		*/
     evento.preventDefault();
   });
 
   /* --- Comienza la magia --- */ 
-  $(".panel_linea_espera").each(function(index) {
+  $(".panel_linea").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
     var leyenda = $(this).next(".leyenda");
+    var fecha_inicio = $(this).data("fecha_inicio");
+    var fecha_fin = $(this).data("fecha_fin");
+
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function(indicadores) {
       $.each(indicadores, function(index, indicador) {
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id).done(function(datos) {
+        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
           var items = [];
           var unidad;
-          var etiqueta;
+          var etiqueta_indicador;
           var id_entidad = indicador.id_entidad;
           $.each(datos, function(i, dato) {
             if(dato.id_unidad == id_entidad)
@@ -165,8 +169,8 @@
               items.push([dato.medicion, dato.valor]);
             }
           });
-          etiqueta = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
-          datos_flot[index] = {label: etiqueta, color: index, data: items };
+          etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
+          datos_flot[index] = {label: etiqueta_indicador, color: index, data: items };
           var opciones = {
             series: { lines: { show: true }, points: { show: true } },
             label: { show: true },
@@ -175,6 +179,7 @@
             grid: { hoverable: true },
             colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
           };
+          console.log(datos_flot);
           $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
           $.plot($("#panel_" + id_panel), datos_flot, opciones);
         }); 
@@ -186,13 +191,16 @@
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
     var leyenda = $(this).next(".leyenda");
+    var fecha_inicio = $(this).data("fecha_inicio");
+    var fecha_fin = $(this).data("fecha_fin");
 
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
+        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin, 
+        function(datos) {
           var items = [];
           var unidad;
-          var etiqueta;
+          var etiqueta_indicador;
           var opciones = {};
           var serie_tipo;
           var id_entidad = indicador.id_entidad;
@@ -200,120 +208,34 @@
           $.each(datos, function(i, dato) {
             if(dato.id_unidad == id_entidad)
             {
-              //var medicion = dato.medicion + index / 5;
               var medicion = dato.medicion;
               unidad = dato.unidad; //guarrerida española
               items.push([medicion, dato.valor]);
             }
           });
-          // Si el tipo de serie es 1 se trata de una línea
-          if (indicador.id_serietipo == 4)
+          
+          etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
+          // Si el tipo de serie es 4 se trata de una línea con puntos
+          if (indicador.id_serietipo == 4 || id_entidad == 0)
           {
-            datos_flot[index] = { label: etiqueta, color: index, data: items, 
+            datos_flot[index] = { label: etiqueta_indicador, color: index, data: items, 
               lines:{ show: true }, points:{ show: true }};
           }
           else // por defecto ponemos una barra
           {
-            datos_flot[index] = { label: etiqueta, color: index, data: items, 
+            datos_flot[index] = { label: etiqueta_indicador, color: index, data: items, 
               bars: { show: true, order: 1, barWidth: 0.25, fill: 0.8, align:'center', horizontal: false }};
           }
 
-          etiqueta = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
-          //datos_flot[index] = { label: etiqueta, color: index, data: items, serie_tipo };
-          //datos_flot[index] = { label: etiqueta, color: index, data: items,  bars: { show: true, order: 1, barWidth: 0.25, fill: 0.8, align:'center', horizontal: false }};
-          //datos_flot[2] = { label: etiqueta, color: index, data: items,  points:{ show: true }, lines: {show: true} };
-          console.log(datos_flot);
-
           opciones = {
             legend: { container: leyenda },
-            xaxis: { tickDecimals: 0 },
+            xaxis: { tickDecimals: 2 },
             grid: { hoverable: true },
             colors: ['maroon', 'darkolivegreen', 'orange', 'DarkKhaki', 'pink', 'yellow', 'green', 'brown']
           };
-
           $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
           $.plot($("#panel_" + id_panel), datos_flot,  opciones );
         }); //fin llamada api get_valores_indicador
-      });
-    });
-  });
- 
-  $(".panel_linea").each(function(index) {
-    var datos_flot = [];
-    var id_panel = $(this).data("idpanel");
-    var leyenda = $(this).next(".leyenda");
-
-    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
-      $.each(indicadores, function(index, indicador) {
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
-          var items = [];
-          var unidad;
-          var etiqueta;
-          var id_entidad = indicador.id_entidad;
-          $.each(datos, function(i, dato) {
-            if(dato.id_unidad == id_entidad)
-            {
-              //var medicion = dato.medicion + index / 5;
-              var medicion = dato.medicion;
-              unidad = dato.unidad; //guarrerida española
-              items.push([medicion, dato.valor]);
-            }
-          });
-          etiqueta = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
-          datos_flot[index] = { label: etiqueta, color: index, data: items, 
-            bars: { show: true, order: 1, barWidth: 0.3, fill: 0.8, align:"center", horizontal: false } };
-          var opciones = {
-            legend: { container: leyenda },
-            xaxis: { tickDecimals: 0 },
-            grid: { hoverable: true },
-            colors: ['maroon', 'darkolivegreen', 'orange', 'DarkKhaki', 'pink', 'yellow', 'green', 'brown']
-          };
-
-          var d5 = [[2008,3],[2009,4],[2010,5],[2011,6]];
-          var lineamia = {label: 'Mia', color: 'pink', data: d5, series:{lines:{ show: true }, points:{ show: true }}};
-          datos_flot.push(lineamia);
-          $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
-          console.log(datos_flot);
-          $.plot($("#panel_" + id_panel), datos_flot,  opciones );
-        }); 
-      });
-    });
-  });
- 
-
-  $(".panel_barra_old").each(function(index) {
-    var datos_flot = [];
-    var id_panel = $(this).data("idpanel");
-    var leyenda = $(this).next(".leyenda");
-
-    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
-      $.each(indicadores, function(index, indicador) {
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
-          var items = [];
-          var unidad;
-          var etiqueta;
-          var id_entidad = indicador.id_entidad;
-          $.each(datos, function(i, dato) {
-            if(dato.id_unidad == id_entidad)
-            {
-              //var medicion = dato.medicion + index / 5;
-              var medicion = dato.medicion;
-              unidad = dato.unidad; //guarrerida española
-              items.push([medicion, dato.valor]);
-            }
-          });
-          etiqueta = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
-          datos_flot[index] = {label: etiqueta, color: index, data: items };
-          var opciones = {
-            series: { bars: {  show: true, barWidth: 0.5, fill: 0.8, align:"center", horizontal: false }},
-            legend: { container: leyenda },
-            xaxis: { tickDecimals: 0 },
-            grid: { hoverable: true },
-            colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
-          };
-          $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
-          $.plot($("#panel_" + id_panel), datos_flot, opciones);
-        }); 
       });
     });
   });
@@ -349,6 +271,8 @@
         //opciones =  { series: { pie: { show: true, radius: 1, label: { show: true, radius: 2/3, threshold: 0.05 } } }, legend: { show: false } };
         var opciones= { 
           series: { pie: { show: true, label: {threshold: 0.04} } },
+          /*series: { pie: { show: true, label: {show: true, formatter: function(label, series){
+                        return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';},threshold: 0.04 } },*/
           grid: { hoverable: true },
           legend: { show: false } 
         };
@@ -428,8 +352,8 @@
             {
               if (dato.id_unidad != '0') 
               {
-                html += "<p style='font-size:" + (ancho * 2 - dato.valor.length * 0.4) +"em; padding: 20px 0 5px 0; text-align: center;'>" + dato.valor + "</p>";
-                html += "<p style='text-align: center; line-height: 10px;'><strong>Unidad: </strong>" + dato.unidad + "</p>";
+                html += "<p style='font-size:" + (ancho * 2 - dato.valor.length * 0.4) +"em; padding: 20px 0 10px 0; text-align: center;'>" + dato.valor + "</p>";
+                html += "<p style='text-align: center; line-height: 10px;'>" + dato.unidad + "</p>";
               }
               else
               {
@@ -447,7 +371,8 @@
         $('<div/>', {'class': 'centrado', 
                       html: html
                     }).appendTo('#panel_' + id_panel);
-        leyenda.html('<p style="font-size:10px">' + indicador.nombre + ' - <strong>Medición:</strong> ' + medicion + '</p>');
+        leyenda.html('<p style="font-size:0.9em"><a href="index.php?page=medicion_listar&id_indicador=' + indicador.id 
+                      + '" target="_blank" style="border:0">' + indicador.nombre + '</a> - <strong>Medición:</strong> ' + medicion + '</p>');
       }); 
     });
   });
