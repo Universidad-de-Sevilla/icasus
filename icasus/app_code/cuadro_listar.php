@@ -9,8 +9,11 @@
 
 $cuadro = new cuadro();
 $cuadros = $cuadro->Find("id_usuario = $usuario->id");
-$smarty->assign('cuadros',$cuadros);
+$smarty->assign('cuadros_propios',$cuadros);
+
+$cuadros = $cuadro->Find("privado = 0");
+$smarty->assign('cuadros_publicos',$cuadros);
 
 $plantilla = 'cuadro_listar.tpl';
-$smarty->assign('_nombre_pagina' , 'Tus cuadros de mando');
+$smarty->assign('_nombre_pagina' , 'Cuadros de mando');
 ?>
