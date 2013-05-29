@@ -14,7 +14,7 @@ include_once("../../cascara_core/lib/libopensso-1.0.7/lib/US/OpenSSO/User.php");
 if (isset($_GET["autenticar"]))
 {
   // A este nivel se decide si usamos entorno de producción o preproducción
-  $usuario_sso = new \US\OpenSSO\User(CC_SSO_URL);
+  $usuario_sso = new User(CC_SSO_URL);
   if ($usuario_sso->enforceAuthentication())
   { 
     //$dni = $usuario_sso->irispersonaluniqueid;
