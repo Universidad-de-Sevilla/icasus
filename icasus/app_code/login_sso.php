@@ -6,8 +6,7 @@
 // Controlador que autentica a los usuarios para entrar al sistema usando el SSO de la US 
 //-------------------------------------------------------------------------------------------
 
-//include_once("../../cascara_core/lib/libopensso-php-0.4.2/OpenSSO.php");
-include_once("../../cascara_core/lib/libopensso-php-viejita/OpenSSO.php");
+include_once("../../cascara_core/lib/libopensso-php/OpenSSO.php");
 // Este controlador puede hacer tres cosas: autenticar, logout o mostrar la página inicial
 
 $usuario_ldap = new OpenSSO(TRUE);
