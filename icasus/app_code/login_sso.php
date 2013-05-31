@@ -6,19 +6,23 @@
 // Controlador que autentica a los usuarios para entrar al sistema usando el SSO de la US 
 //-------------------------------------------------------------------------------------------
 
-include_once("../../cascara_core/lib/libopensso-1.0.7/lib/US/OpenSSO/InternalHandler.php");
-include_once("../../cascara_core/lib/libopensso-1.0.7/lib/US/OpenSSO/User.php");
-
+//include_once("../../cascara_core/lib/libopensso-php-0.4.2/OpenSSO.php");
+include_once("../../cascara_core/lib/libopensso-php-viejita/OpenSSO.php");
 // Este controlador puede hacer tres cosas: autenticar, logout o mostrar la página inicial
+
+$usuario_ldap = new OpenSSO(TRUE);
+
+  $smarty->assign("_nombre_pagina", "Bienvenido a Icasus");
 
 if (isset($_GET["autenticar"]))
 {
   // A este nivel se decide si usamos entorno de producción o preproducción
-  $usuario_sso = new \US\OpenSSO\User(CC_SSO_URL);
-  if ($usuario_sso->enforceAuthentication())
+  //$usuario_sso = new \US\OpenSSO\User(CC_SSO_URL);
+  $usuario_sso = new OpenSSO(TRUE);
+  if ($usuario_sso->check_and_force_sso())
   { 
     //$dni = $usuario_sso->irispersonaluniqueid;
-    $usesrelacion = $usuario_sso->attributeAsArray('usesrelacion');
+    $usesrelacion = $usuario_sso->attribute('usesrelacion');
     $acceso_autorizado = false;
 
     // Recorremos el array que contiene los distintos tipos de perfiles que puede tener una persona en el ldap de la US
@@ -34,7 +38,7 @@ if (isset($_GET["autenticar"]))
     if ($acceso_autorizado)
     {
       $usuario = new usuario();
-      if ($usuario->load_joined("login = '" . $usuario_sso->uid . "'"))
+      if ($usuario->load_joined("login = '" . $usuario_sso->attribute('uid') . "'"))
       {
         // Si el usuario existe en icasus cargamos sus datos
         $_SESSION['usuario'] = $usuario;
@@ -45,11 +49,11 @@ if (isset($_GET["autenticar"]))
       else
       {
         // Si el usuario no existe en su caso lo damos de alta con los datos de ldap
-        $usuario->login = $usuario_sso->uid;
-        $usuario->nombre = $usuario_sso->givenname;
-        $usuario->nif = $usuario_sso->irispersonaluniqueid;
-        $usuario->apellidos = $usuario_sso->sn;
-        $usuario->correo = $usuario_sso->mail;
+        $usuario->login = $usuario_sso->attribute('uid');
+        $usuario->nombre = $usuario_sso->attribute('givenname');
+        $usuario->nif = $usuario_sso->attribute('irispersonaluniqueid');
+        $usuario->apellidos = $usuario_sso->attribute('sn');
+        $usuario->correo = $usuario_sso->attribute('mail');
         if($usuario->save())
         {
           $_SESSION['usuario'] = $usuario;
