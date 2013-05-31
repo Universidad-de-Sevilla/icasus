@@ -270,9 +270,23 @@
         });
         //opciones =  { series: { pie: { show: true, radius: 1, label: { show: true, radius: 2/3, threshold: 0.05 } } }, legend: { show: false } };
         var opciones= { 
-          series: { pie: { show: true, label: {threshold: 0.04} } },
-          /*series: { pie: { show: true, label: {show: true, formatter: function(label, series){
-                        return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';},threshold: 0.04 } },*/
+        //series: { pie: { show: true, label: {threshold: 0.04} } },
+          series: 
+          { 
+            pie: { 
+              show: true, 
+              label: {
+                show: true, 
+                formatter: function(label, series)
+                {
+                  console.log(series);
+                  return '<div style="font-size:x-small;text-align:center;padding:2px;color:' 
+                        + series.color + ';">' + label + '<br/>' + series.data[0][1] + '</div>';
+                },
+                threshold: 0.05 
+              } 
+            } 
+          },
           grid: { hoverable: true },
           legend: { show: false } 
         };
@@ -282,7 +296,7 @@
           // alert("You clicked at " + pos.x + ", " + pos.y);
           if (item) 
           {
-            leyenda.html("<div style='width:4px;height:0;border:5px solid " + item.series.color + ";float:left'></div> <h4>" + item.series.label + ": " + item.series.data[0][1] + " (" + Math.round(item.series.percent) + "%)</h4>");
+            leyenda.html("<div style='width:4px;height:0;border:5px solid " + item.series.color + ";float:left'></div> <h4>" + item.series.label + ": " + Math.round(item.series.percent)+ "% (" + item.series.data[0][1] + ")</h4>");
           }
           else
           {
