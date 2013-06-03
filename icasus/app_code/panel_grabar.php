@@ -18,6 +18,9 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 	$panel->orden = sanitize($_REQUEST["orden"],SQL);
 	$panel->ancho = sanitize($_REQUEST["ancho"],SQL);
 
+	//No usamos periodicidad de momento
+  //$panel->periodicidad = sanitize($_REQUEST["periodicidad"],SQL);
+
 	if ($panel->save())
 	{
 		switch($panel->id_paneltipo)

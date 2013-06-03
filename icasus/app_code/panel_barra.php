@@ -6,6 +6,10 @@ $panel_tipo = new panel_tipo();
 $panel_tipo->load("clase_css = '$tipo'");
 $smarty->assign('panel' , $panel_tipo);
 
+$periodo = new periodo();
+$periodos = $periodo->Find("1 = 1");
+$smarty->assign("periodos", $periodos);
+
 if ($modulo == 'inicio')
 {
 	$id_entidad = sanitize($_REQUEST["id_entidad"],2);

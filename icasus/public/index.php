@@ -13,7 +13,6 @@ error_reporting(E_ALL);
 include_once('../app_code/app_config.php');
 include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
 include_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
-include_once('../../cascara_core/lib/libopensso-php/OpenSSO.php');
 include_once('../../cascara_core/lib/smarty/Smarty.class.php');
 include_once('../../cascara_core/function/sanitize.php');
 include_once('../../cascara_core/function/caracteres.php');
@@ -32,7 +31,7 @@ function __autoload($class_name)
 $adodb = NewADOConnection('mysql://'.IC_DB_LOGIN.':'.IC_DB_CLAVE.'@'.IC_DB_HOST.'/'.IC_DB_DATABASE);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
 // No podemos usarlo hasta que no esté Icasus en utf8
-//$adodb->Execute("SET NAMES 'UTF8'");
+//$adodb->Execute("SET NAMES UTF8");
 
 // Variables globales
 $smarty = new Smarty();

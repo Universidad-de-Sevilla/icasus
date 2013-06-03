@@ -2,14 +2,32 @@
 /**
  * OpenSSO integration library for PHP
  *
- * Jorge López Pérez <jorgelp@us.es>
- *
- *  v0.3.4 , 20/jul/2011
+ * Copyright (c) 2012, Jorge López Pérez <jorge@adobo.org>
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
-require_once('config.php');
+require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config.php');
 
 class OpenSSO {
+	const version = '0.4.2';
+
 	private $cookiename;
 	private $token;
 	private $error;
@@ -18,7 +36,7 @@ class OpenSSO {
 	// To be used on certificate validation
 	private $context;
 
-	function OpenSSO($fetch_cookie_name = FALSE) {
+	public function OpenSSO($fetch_cookie_name = FALSE) {
 		// Initialization
 		$package = CONFIG_PACK;
 		if (!is_dir(PACK_DIR . CONFIG_PACK)) {
@@ -26,7 +44,7 @@ class OpenSSO {
 			return;
 		}
 
-		include(PACK_DIR . CONFIG_PACK . '/config.php');
+		include(PACK_DIR . CONFIG_PACK . DIRECTORY_SEPARATOR . 'config.php');
 
 		$this->context = stream_context_create();
 
@@ -34,7 +52,7 @@ class OpenSSO {
 			$options = array('ssl' =>
 					array(
 						'verify_peer' => TRUE,
-						'cafile' => PACK_DIR . CONFIG_PACK . '/ca.crt',
+						'cafile' => PACK_DIR . CONFIG_PACK . DIRECTORY_SEPARATOR . 'ca.crt',
 						'capture_peer_cert' => TRUE,
 						));
 
@@ -91,7 +109,7 @@ class OpenSSO {
 	/**
 	 * Check for errors
 	 */
-	function check_error() {
+	public function check_error() {
 		if (!empty($this->error)) {
 			return $this->error;
 		} else {
@@ -104,7 +122,7 @@ class OpenSSO {
 	 *
 	 * @param string	Return URL. If not specified, current URL is used
 	 */
-	function check_and_force_sso($gotourl = '') {
+	public function check_and_force_sso($gotourl = '') {
 		/*
 		 * 1. Look for current token
 		 * 2. If not present, redirect user
@@ -134,7 +152,7 @@ class OpenSSO {
 	 * Fetchs user attributes if a valid session is found
 	 */
 
-	function check_sso() {
+	public function check_sso() {
 		if (empty($this->token)) {
 			return FALSE;
 		}
@@ -235,7 +253,7 @@ class OpenSSO {
 	 * ->data:  Data answered from server
 	 */
 
-	function identity_query($url, $method = 'GET', $query = '') {
+	protected function identity_query($url, $method = 'GET', $query = '') {
 		$result = new stdClass();
 		$uri = parse_url($url);
 
@@ -294,7 +312,8 @@ class OpenSSO {
 		// Create HTTP request.
 		$defaults = array(
 				'Host' => "Host: " . $uri['host'],
-				'User-Agent' => 'User-Agent: libopensso-php 0.3.4',
+				'User-Agent' => 'User-Agent: libopensso-php ' 
+					. self::version,
 		);
 
 		$request = $method .' '. $path ." HTTP/1.0\r\n";
@@ -328,7 +347,7 @@ class OpenSSO {
 	 * Returns an attribute value/values
 	 */
 
-	function attribute($atr, $force_array = FALSE) {
+	public function attribute($atr, $force_array = FALSE) {
 		if (empty($atr)) {
 			$this->error = 'attribute(): empty attribute name';
 			return FALSE;
@@ -351,7 +370,7 @@ class OpenSSO {
 	 * 
 	 * @param boolean	Force use of arrays even on single valued attributes
 	 */
-	function all_attributes($force_arrays = FALSE) {
+	public function all_attributes($force_arrays = FALSE) {
 		$atr = array();
 		if ($force_arrays === TRUE) {
 			foreach ($this->attributes as $a => $v) {
@@ -371,10 +390,11 @@ class OpenSSO {
 	/**
 	 * Logs out user from OpenSSO
 	 * 
-	 * @param boolean	Use OpenSSO logout page
-	 * @param string	Back logout URL
+	 * @param boolean	Back logout URL (accepts boolean for backwards
+						compatibility)
+	 * @param string	Back logout URL (only if $logout_page was boolean)
 	 */
-	function logout($use_logout_page = FALSE, $gotourl = '') {
+	public function logout($gotourl = '', $old_gotourl = '') {
 		// IE bug. If testExplorerBug cookie is not set, it means
 		// it didn't store any cookies for *.xx.tld, so
 		// unset cookie for current hostname
@@ -382,18 +402,14 @@ class OpenSSO {
 			setcookie($this->cookiename, "", time() - 3600, "/");
 		}
 
-		if ($use_logout_page) {
-			$gotourl = empty($gotourl) ? $this->current_url() : $gotourl;
-			header("Location: " . OPENSSO_LOGOUT_URL . "?goto=" 
-					. urlencode($gotourl));
-		} else {
-			$this->identity_query(OPENSSO_LOGOUT_SERVICE, 'GET', 'subjectid=' .
-					urlencode($this->token));
-			// Borrado de cookie
-			unset($_COOKIE[$this->cookiename]);
-			setcookie($this->cookiename, "", time() - 3600, "/",
-					OPENSSO_DOMAIN);
+		if (is_bool($gotourl)) {
+			$gotourl = $old_gotourl;
 		}
+
+
+		$gotourl = empty($gotourl) ? $this->current_url() : $gotourl;
+		header("Location: " . OPENSSO_LOGOUT_URL . "?goto="
+				. urlencode($gotourl));
 	}
 
 
@@ -410,5 +426,3 @@ class OpenSSO {
 	}
 
 }
-
-?>

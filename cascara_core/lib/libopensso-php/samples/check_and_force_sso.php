@@ -15,7 +15,7 @@ echo "</pre>";
 
 if ($res1 === TRUE) {
 	echo '<pre>';
-	$class = $o->attribute('objectClass');
+	$class = $o->attribute('cn');
 	var_dump($class);
 	echo '</pre>';
 }
