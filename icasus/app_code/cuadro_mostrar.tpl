@@ -94,7 +94,8 @@
         <div class="section">
           <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
             data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" 
-            data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}"></div>
+            data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}"
+            data-periodicidad="{$panel->periodicidad}"></div>
           <div class="leyenda"></div>
         </div>
       </div>
@@ -179,7 +180,6 @@
             grid: { hoverable: true },
             colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
           };
-          console.log(datos_flot);
           $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
           $.plot($("#panel_" + id_panel), datos_flot, opciones);
         }); 
@@ -193,6 +193,7 @@
     var leyenda = $(this).next(".leyenda");
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
+    var periodicidad = $(this).data("periodicidad");
 
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
@@ -227,9 +228,10 @@
               bars: { show: true, order: 1, barWidth: 0.25, fill: 0.8, align:'center', horizontal: false }};
           }
 
+
           opciones = {
             legend: { container: leyenda },
-            xaxis: { tickDecimals: 2 },
+            xaxis: { tickDecimals: 0 },
             grid: { hoverable: true },
             colors: ['maroon', 'darkolivegreen', 'orange', 'DarkKhaki', 'pink', 'yellow', 'green', 'brown']
           };
@@ -270,9 +272,22 @@
         });
         //opciones =  { series: { pie: { show: true, radius: 1, label: { show: true, radius: 2/3, threshold: 0.05 } } }, legend: { show: false } };
         var opciones= { 
-          series: { pie: { show: true, label: {threshold: 0.04} } },
-          /*series: { pie: { show: true, label: {show: true, formatter: function(label, series){
-                        return '<div style="font-size:8pt;text-align:center;padding:2px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';},threshold: 0.04 } },*/
+        //series: { pie: { show: true, label: {threshold: 0.04} } },
+          series: 
+          { 
+            pie: { 
+              show: true, 
+              label: {
+                show: true, 
+                formatter: function(label, series)
+                {
+                  return '<div style="font-size:x-small;text-align:center;padding:2px;color:' 
+                        + series.color + ';">' + label + '<br/>' + series.data[0][1] + '</div>';
+                },
+                threshold: 0.05 
+              } 
+            } 
+          },
           grid: { hoverable: true },
           legend: { show: false } 
         };
@@ -282,7 +297,7 @@
           // alert("You clicked at " + pos.x + ", " + pos.y);
           if (item) 
           {
-            leyenda.html("<div style='width:4px;height:0;border:5px solid " + item.series.color + ";float:left'></div> <h4>" + item.series.label + ": " + item.series.data[0][1] + " (" + Math.round(item.series.percent) + "%)</h4>");
+            leyenda.html("<div style='width:4px;height:0;border:5px solid " + item.series.color + ";float:left'></div> <h4>" + item.series.label + ": " + Math.round(item.series.percent)+ "% (" + item.series.data[0][1] + ")</h4>");
           }
           else
           {

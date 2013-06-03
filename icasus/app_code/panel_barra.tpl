@@ -59,6 +59,19 @@
 	</fieldset>
 	</div>
 
+<!-- De momento no lo usamos
+<fieldset class="label_side">
+	<label>Periodicidad<span></span></label>
+	<div class="clearfix">
+		<select name="periodicidad" class="required">
+			{foreach $periodos as $periodo}
+				<option value="{$periodo->id}">{$periodo->nombre}</option>
+			{/foreach}
+		</select>
+	</div>
+</fieldset>
+-->
+
 <fieldset class="label_side">
 	<label>Indicadores<span></span></label>
 		<div class="clearfix">
