@@ -210,6 +210,7 @@
 				border: "1px solid #fdd",
 				padding: "2px",
 				"background-color": "#fee",
+        "z-index": 1000,
 				opacity: 0.80
 			}).appendTo("body").fadeIn(200);
 		}
@@ -419,21 +420,5 @@
       }); 
     });
   });
-
-
-  // Función para hacer búsquedas dentro de un array
-  // devuelve la posición si un array contiene a otro o -1 si no lo contiene 
-  function indexOfArray(val, array)
-  {
-    var
-      hash = {},
-      indexes = {},
-      i, j;
-    for(i = 0; i < array.length; i++)
-    {
-      hash[array[i]] = i;
-    }
-    return (hash.hasOwnProperty(val)) ? hash[val] : -1;
-  };
 </script>
 {/literal}
