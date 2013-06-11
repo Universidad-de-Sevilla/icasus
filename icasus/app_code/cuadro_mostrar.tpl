@@ -26,7 +26,7 @@
   padding-left: 4px;
 }
 
-.flat_area h3 {
+.titulo-panel {
   background: #EDF1F3;
   padding: 2px 6px 2px;
   margin: 0px;
@@ -54,11 +54,8 @@
   border: 0;
 }
 
-.icon-remove {
-  float: right;
-}
-
 </style>
+
 {if $cuadro->id_usuario == $_usuario->id}
   <div class="button_bar clearfix">
     <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
@@ -89,8 +86,12 @@
   {foreach $paneles as $panel}
     <div class="box grid_{$panel->ancho}" style="float:left;">
       <div class="block" style="height:320px">
-        <h3>{$panel->nombre} <a data-nombre_panel="{$panel->nombre}" class="icon-remove" href="#">X</a></h3>
-        <h3 class="hidden edita"><img src="" alt="editar"></h3>
+        <div class="titulo-panel">
+          <strong>{$panel->nombre}</strong> 
+          <a class="borrar pull-right ihidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/cancel.png" /></a>
+          &nbsp; 
+          <a class="editar pull-right hidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/application_add.png" /></a>
+        </div>
         <div class="section">
           <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
             data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" 
@@ -112,9 +113,9 @@
 <script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>		
 
 <script>
-  // No hace falta llamar a jquery, ya lo hace "alguien" por nosotros
-   
-  $(".icon-remove").on('click', function(evento) {
+  //$(".titulo-panel").on('mouseover', function(evento) { });
+
+  $(".borrar").on('click', function(evento) {
     var boton_borrar, idpanel;
     boton_borrar = $(this);
 		id_panel = boton_borrar.parents().find(".panel").data("idpanel");
@@ -191,9 +192,14 @@
                 $("#tooltip").remove();
                 var x = item.datapoint[0].toFixed(2),
                 y = item.datapoint[1].toFixed(2);
-                showTooltip(item.pageX, item.pageY, item.series.label + " of " + x + " = " + y);
+                showTooltip(item.pageX, item.pageY, x + " - " + y + " - " + item.series.label);
               }
             }
+            else 
+            {
+              $("#tooltip").remove();
+              previousPoint = null;            
+				    }
           });
           //--------------------------------------------------
         }); 
@@ -207,6 +213,7 @@
 				display: "none",
 				top: y + 5,
 				left: x + 5,
+        width: "200 px",
 				border: "1px solid #fdd",
 				padding: "2px",
 				"background-color": "#fee",
