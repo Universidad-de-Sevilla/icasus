@@ -37,7 +37,7 @@ if (@mysql_select_db(IC_DB_DATABASE))
         $etiqueta = sanitize($_REQUEST['etiqueta'],SQL);
         $valor = sanitize($_REQUEST['valor'],SQL);
 
-        $metodo($indicador_id, $fecha_inicio, $fecha_fin);
+        $metodo($id_indicador, $fecha_inicio, $fecha_fin);
       */
     }
     else
@@ -59,7 +59,12 @@ function graba_medicion_con_valor($id_indicador, $periodo_inicio, $periodo_fin, 
 {
   if (isset($id_indicador, $periodo_inicio, $periodo_fin, $etiqueta, $valor))
   {
+    //begin transaction
+    $query = "INSERT INTO mediciones (id_indicador, etiqueta, periodo_inicio, periodo_fin) VALUES ($id_indicador, '$etiqueta', $periodo_inicio, $periodo_fin);";
+    $adodb->Execute();
+    $medicion_id = $adodb->getLastID();
     $query = "";
+    //end transaction
   }
   else
   {
