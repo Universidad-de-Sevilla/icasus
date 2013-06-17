@@ -1,46 +1,48 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: volcado_grabar.php
+// Archivo: csv_grabar.php
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Graba el contenido de un  fichero (en principio CSV) en la base de datos
+// Descripcion: Graba el contenido de un  fichero CSV en la base de datos
 //---------------------------------------------------------------------------------------------------
 
 if (isset($_FILES))
 {
-  
-  $row = 1;
-  $manejador = fopen($_FILES[0], "r");
-
-  if ($manejador !== FALSE) 
+  //print_r($_FILES['fichero_csv']);
+  foreach ($_FILES["fichero_csv"]["error"] as $key => $error)
   {
-    while (($data = fgetcsv($manejador, 1000, ",")) !== FALSE) 
+    // Esto es una guarrería pero está sacada del manual oficial de php.net
+    // así que es una "guarrerida oficial"
+    if ($error == UPLOAD_ERR_OK) 
     {
-      $num = count($data);
-      echo "<p> $num fields in line $row: <br /></p>\n";
-      $row++;
-      for ($c=0; $c < $num; $c++) 
+      $tmp_name = $_FILES["fichero_csv"]["tmp_name"][$key];
+      $name= $_FILES["fichero_csv"]["name"][$key];
+      $linea = 1;
+      $manejador = fopen($tmp_name, "r");
+
+      if ($manejador !== FALSE) 
       {
-        echo $data[$c] . "<br />\n";
+        while (($datos = fgetcsv($manejador, 1000, ",")) !== FALSE) 
+        {
+          $num = count($datos);
+          echo "<p> $num campos en linea $linea: <br /></p>\n";
+          $linea++;
+          for ($campo=0; $campo < $num; $campo++) 
+          {
+            echo $datos[$campo] . "<br />\n";
+          }
+        }
+        fclose($manejador);
       }
+      $indicador = new indicador();
     }
-    fclose($manejador);
   }
-  $indicador = new indicador();
+  $error = 'Hola';
+  header("Location: index.php?page=csv_importar&error=$error");
 }
 else
 {
   $error = 'No se ha especificado ningún archivo para subir';
-  header("Location: index.php?page=volcado_subir&error=$error");
+  header("Location: index.php?page=csv_importar&error=$error");
 }
-
-
-//global $DB;
-//print_r($DB);
-//$DB = $indicador->DB();
-//echo $DB->Insert_ID();
-//echo $DB->date();
-//echo $DB->Date();
-//print_r($DB);
 ?>
-

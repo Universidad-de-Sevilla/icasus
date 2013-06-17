@@ -1,7 +1,32 @@
-<form name="subida_ficheros" action="index.php?page=volcado_grabar">
-  <label for="fichero">
-    Elija un fichero para subir
-  </label>
-  <input name="fichero" type="file">
-  <input type="submit" value="Subir fichero e importar valores">
-</form>
+<div class="box grid_16">
+  <div class="toggle_container">
+	  <div class="block">
+      <!-- enctype='text/csv' -->
+      <form name='subida_ficheros' class='datos' enctype='multipart/form-data' action='index.php?page=csv_grabar' method='post'>
+        <fieldset class="label_side">
+          <label for='fichero'>
+            Elija un archivo para importar
+          </label>
+          <div>
+            <input name='fichero_csv[]' type='file'>
+						<div class="required_tag"></div>
+          </div>
+        </fieldset>
+        <fieldset class="label_side">
+          <label for='fichero'>
+            Elija un archivo para importar
+          </label>
+          <div>
+            <input name='fichero_csv[]' type='file'>
+          </div>
+        </fieldset>
+				<div class="button_bar clearfix">
+					<button class="green" type="submit" value="Procesar fichero" name="csv_submit">
+            <div class="ui-icon ui-icon-check"></div>
+						<span>Procesar fichero</span>
+					</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
