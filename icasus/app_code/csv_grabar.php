@@ -21,7 +21,7 @@ if (isset($_FILES, $_REQUEST['id_entidad']))
 
       if ($manejador !== FALSE) 
       {
-        while (($datos = fgetcsv($manejador, 1000, ",")) !== FALSE) 
+        while (($datos = fgetcsv($manejador, 1000, ",", "'")) !== FALSE) 
         {
           $num = count($datos);
           $medicion = new medicion();
