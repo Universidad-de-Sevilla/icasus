@@ -9,6 +9,11 @@ global $usuario;
 
 if (isset($_FILES, $_REQUEST['id_entidad']))
 {
+	$id_entidad = sanitize($_REQUEST['id_entidad'],INT);
+  // Comprobamos que el usuario esté autorizado
+  $persona = new persona();
+  //TODO: permisos
+
   $ficheros_procesados = 0;
   $registros_grabados = 0;
   $registros_totales = 0;
