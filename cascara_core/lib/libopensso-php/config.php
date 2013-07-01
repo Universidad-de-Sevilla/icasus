@@ -1,5 +1,6 @@
 <?php
 // Configuration package used
+// Juanan: comentamos esta constante porque usaremos la nuestra, ver en login_sso.php
 // define('CONFIG_PACK', 'pre_11');
 
 
