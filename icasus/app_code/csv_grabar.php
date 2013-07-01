@@ -18,9 +18,10 @@ if (isset($_FILES, $_REQUEST['id_entidad']))
   if ($usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad))
   {
     $ficheros_procesados = 0;
-    $registros_grabados = 0; //los que realmente se graban 
-    $registros_ajenos = 0; // los que no pertenecen a la entidad actual
-    $registros_totales = 0;
+    $registros_grabados = 0;  //los que realmente se graban 
+    $registros_ajenos = 0;    // los que no pertenecen a la entidad actual
+    $lineas_totales = 0;      // total de líneas procesadas en todos los ficheros
+    $lineas_fallidas = 0;     // líneas que no hacen referencia a ningún indicador
 
     foreach ($_FILES["fichero_csv"]["error"] as $indice => $error)
     {
@@ -37,46 +38,60 @@ if (isset($_FILES, $_REQUEST['id_entidad']))
           $ficheros_procesados ++;
           while (($datos = fgetcsv($manejador, 1000, ",", "'")) !== FALSE) 
           {
-            $registros_totales ++;
+            $lineas_totales ++;
             $medicion = new medicion();
             $medicion->id_indicador = $datos[0];
             $medicion->periodo_inicio = $datos[1];
             $medicion->periodo_fin = $datos[2];
             $medicion->etiqueta = $datos[3];
-            // Comprobamos que el indicador pertenece a la entidad actual o a su madre
-            // Podría optimizarse comprobando si el indicador a cambiado respecto al anterior
             $indicador = new indicador();
             $entidad = new entidad();
-            $indicador->load("id = $medicion->id_indicador");
-            $entidad->load("id = $indicador->id_entidad");
-            if ($indicador->id_entidad == $id_entidad OR $entidad->id_madre == $id_entidad)
-            {         
-              if ($medicion->save())
-              {
-                $valor = new valor();
-                $valor->id_medicion = $medicion->id;
-                $valor->id_usuario = $usuario->id;
-                $valor->id_entidad = $id_entidad;
-                $valor->fecha_recogida = date('Y-m-d h:m:i');
-                $valor->valor_parcial = $datos[4];
-                $valor->valor = $datos[4];
-                if ($valor->save())
+            if ($indicador->load("id = $medicion->id_indicador"))
+            {
+              $entidad->load("id = $indicador->id_entidad");
+              // Comprobamos que el indicador pertenece a la entidad actual o a su madre
+              // Podría optimizarse comprobando si el indicador a cambiado respecto al anterior
+              if ($indicador->id_entidad == $id_entidad OR $entidad->id_madre == $id_entidad)
+              {         
+                if ($medicion->save())
                 {
-                  $registros_grabados ++;
+                  $valor = new valor();
+                  $valor->id_medicion = $medicion->id;
+                  $valor->id_usuario = $usuario->id;
+                  $valor->id_entidad = $id_entidad;
+                  $valor->fecha_recogida = date('Y-m-d h:m:i');
+                  $valor->valor_parcial = $datos[4];
+                  $valor->valor = $datos[4];
+                  if ($valor->save())
+                  {
+                    $registros_grabados ++;
+                  }
                 }
+              }
+              else
+              {
+                $registros_ajenos ++;
               }
             }
             else
             {
-              $registros_ajenos ++;
+              $lineas_fallidas ++;
             }
-          }
+          } // termina el while
           fclose($manejador);
         }
         // $indicador = new indicador();
       }
     }
-    $aviso = "Se han procesado $ficheros_procesados ficheros y $registros_totales mediciones. Se han grabado $registros_grabados mediciones."; 
+    $aviso = "Se han grabado $registros_grabados mediciones. Se han procesado $ficheros_procesados ficheros y un total  de $lineas_totales líneas.";
+    if ($registros_ajenos > 0)
+    {
+      $aviso .= " En la muestra había $registros_ajenos mediciones de indicadores que no pertenecen a la unidad actual.";
+    }
+    if ($lineas_fallidas >0)
+    {
+      $aviso .= " Ha habido $lineas_fallidas líneas que no referenciaban a ningún indicador.";  
+    }
     header("Location: index.php?page=csv_importar&id_entidad=$id_entidad&aviso=$aviso");
   }
   else

@@ -3,7 +3,7 @@
 	  <div class="block">
       <!-- enctype='text/csv' -->
       <form name='subida_ficheros' class='datos' enctype='multipart/form-data' action='index.php?page=csv_grabar' method='post'>
-        <input type='hidden' name='id_entidad' value='56'>
+        <input type='hidden' name='id_entidad' value='{$id_entidad}'>
         <fieldset class="label_side">
           <label for='fichero'>
             Elija un archivo para importar
