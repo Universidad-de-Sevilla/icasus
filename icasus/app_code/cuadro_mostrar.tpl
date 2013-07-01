@@ -168,6 +168,7 @@
             if(dato.id_unidad == id_entidad)
             {
               unidad = dato.unidad; //guarrerida española
+              fecha = new Date; //??
               items.push([dato.medicion, dato.valor]);
             }
           });
@@ -177,7 +178,7 @@
             series: { lines: { show: true }, points: { show: true } },
             label: { show: true },
             legend: { container: leyenda },
-            xaxis: { tickDecimals: 0 },
+            xaxis: { mode: "time" },
             grid: { hoverable: true },
             colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
           };
