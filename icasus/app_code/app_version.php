@@ -1,4 +1,5 @@
 <?php
-define(IC_VERSION, "2.4.4");
-define(IC_FECHA_REVISION, "3/06/2013");
+// 2.5.0 - Importación de datos desde con CSV
+define(IC_VERSION, "2.5.0");
+define(IC_FECHA_REVISION, "1/07/2013");
 ?>

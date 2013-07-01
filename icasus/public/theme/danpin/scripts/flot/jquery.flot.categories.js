@@ -1,6 +1,6 @@
 /* Flot plugin for plotting textual data or categories.
 
-Copyright (c) 2007-2012 IOLA and Ole Laursen.
+Copyright (c) 2007-2013 IOLA and Ole Laursen.
 Licensed under the MIT license.
 
 Consider a dataset like [["February", 34], ["March", 20], ...]. This plugin
@@ -74,7 +74,8 @@ as "categories" on the axis object, e.g. plot.getAxes().xaxis.categories.
             format.push({ y: true, number: true, required: true });
 
             if (s.bars.show || (s.lines.show && s.lines.fill)) {
-                format.push({ y: true, number: true, required: false, defaultValue: 0 });
+                var autoscale = !!((s.bars.show && s.bars.zero) || (s.lines.show && s.lines.zero));
+                format.push({ y: true, number: true, required: false, defaultValue: 0, autoscale: autoscale });
                 if (s.bars.horizontal) {
                     delete format[format.length - 1].y;
                     format[format.length - 1].x = true;
