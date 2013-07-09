@@ -40,23 +40,6 @@ if (isset($_REQUEST["id_indicador"]))
     $agregados[] = $registro['agregado'];
     $etiquetas[] = $registro['etiqueta'];
   }
-  // Obtiene los valores de referencia asociados a este indicador
-  // Dichas referencias han de estar activas y con grafica = 1
-  $query_referencias = "SELECT valores_referencia.id, valores_referencia.etiqueta     
-    FROM valores_referencia 
-    WHERE activo = 1 AND grafica = 1 AND id_indicador = $id_indicador;";
-  $referencias = $db->getAll($query_referencias); 
-  foreach ($referencias as $referencia)
-  {
-    $id_referencia = $referencia["id"];
-    $query_valores = "SELECT valores_referencia_mediciones.valor, mediciones.etiqueta 
-      FROM valores_referencia_mediciones
-      INNER JOIN valores_referencia ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
-      INNER JOIN mediciones ON mediciones.id = valores_referencia_mediciones.id_medicion
-      WHERE valores_referencia.activo = 1 AND valores_referencia.grafica = 1 AND valores_referencia.id = $id_referencia"; 
-    $referencia_valores = $db->getAll($query_valores); 
-  }
-
 
   if ($resultado)
   {
@@ -65,10 +48,30 @@ if (isset($_REQUEST["id_indicador"]))
     $myData->addPoints($etiquetas, "Periodo");
     $myData->setAbscissa("Periodo");
     $myData->setSerieOnAxis("Agregado", 0);
+    // Pinta los valores de referencia
+    // Atención: estos valores no se pintan cuando se salen del rango de valores de las mediciones
+    // Dichas referencias han de estar activas y con grafica = 1
+    $query_referencias = "SELECT valores_referencia.id, valores_referencia.etiqueta     
+      FROM valores_referencia 
+      WHERE activo = 1 AND grafica = 1 AND id_indicador = $id_indicador;";
+    $referencias = $db->getAll($query_referencias); 
     foreach ($referencias as $referencia)
     {
-      $myData->addPoints($referencia , "Periodo");
+      $id_referencia = $referencia["id"];
+      $query_valores = "SELECT valores_referencia_mediciones.valor, mediciones.etiqueta 
+        FROM valores_referencia_mediciones
+        INNER JOIN valores_referencia ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
+        INNER JOIN mediciones ON mediciones.id = valores_referencia_mediciones.id_medicion
+        WHERE valores_referencia.activo = 1 AND valores_referencia.grafica = 1 AND valores_referencia.id = $id_referencia"; 
+      $referencia_valores = $db->getAll($query_valores); 
+      foreach ($referencia_valoress as $referencia)
+      {
+        $valor = $referencia["valor"];
+        $etiqueta = $referencia["etiqueta"];
+        $myPicture->drawThreshold("$valor", array("WriteCaption"=>TRUE, "Caption"=>"$etiqueta: $valor", "R"=>80, "G"=>55, "B"=>75, "Alpha"=>150));
+      } 
     }
+
     $myPicture = new pImage(700,270,$myData);
     $myPicture->setFontProperties(array("FontName"=>"../../cascara_core/lib/pChart2/fonts/calibri.ttf","FontSize"=>11));
     $myPicture->setGraphArea(60,40,670,220);
