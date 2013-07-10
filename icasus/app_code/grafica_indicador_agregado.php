@@ -19,8 +19,6 @@ if (isset($_REQUEST["id_indicador"]))
   $fin = isset($_REQUEST["fin"])?sanitize($_REQUEST["fin"], INT):0;
   $hoy = date("d-m-Y H:i:s");
 
-  $hoy = date("d-m-Y H:i:s"); 
-
   $indicador = new indicador();
   $indicador->load("id = $id_indicador");
   $db = $indicador->DB();
@@ -64,12 +62,13 @@ if (isset($_REQUEST["id_indicador"]))
         INNER JOIN mediciones ON mediciones.id = valores_referencia_mediciones.id_medicion
         WHERE valores_referencia.activo = 1 AND valores_referencia.grafica = 1 AND valores_referencia.id = $id_referencia"; 
       $referencia_valores = $db->getAll($query_valores); 
-      foreach ($referencia_valoress as $referencia)
+      foreach ($referencia_valores as $valor)
       {
-        $valor = $referencia["valor"];
-        $etiqueta = $referencia["etiqueta"];
-        $myPicture->drawThreshold("$valor", array("WriteCaption"=>TRUE, "Caption"=>"$etiqueta: $valor", "R"=>80, "G"=>55, "B"=>75, "Alpha"=>150));
+        $valores[] = $valor["valor"];
       } 
+      $etiqueta = $referencia["etiqueta"];
+      $myData->addPoints($valores, $etiqueta);
+      //$myPicture->drawThreshold("$valor", array("WriteCaption"=>TRUE, "Caption"=>"$etiqueta", "R"=>80, "G"=>55, "B"=>75, "Alpha"=>150));
     }
 
     $myPicture = new pImage(700,270,$myData);
