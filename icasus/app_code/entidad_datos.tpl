@@ -8,7 +8,9 @@
   <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/table.png' />
   Ver datos</a> &nbsp; &nbsp; 
   <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
-  Editar Unidad</a> &nbsp; &nbsp; 
+  Editar unidad</a> &nbsp; &nbsp; 
+  <a href='index.php?page=csv_importar&id_entidad={$entidad->id}'><img src='/icons/ff16/lorry.png' />
+  Importar valores</a> &nbsp; &nbsp; 
 </h3>
 <div class="box grid_16">
 	<div class="toggle_container">

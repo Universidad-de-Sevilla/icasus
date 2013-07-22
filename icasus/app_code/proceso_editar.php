@@ -40,6 +40,8 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
     $proceso->documentacion = isset($_POST['documentacion'])?sanitize($_POST['documentacion'],2):null;    
     $proceso->mediciones = isset($_POST['mediciones'])?sanitize($_POST['mediciones'],2):null;    
     $proceso->registros = isset($_POST['registros'])?sanitize($_POST['registros'],2):null;  
+    $proceso->equipo_de_proceso = isset($_POST['equipo_de_proceso'])?sanitize($_POST['equipo_de_proceso'],2):null;    
+    $proceso->variables_control = isset($_POST['variables_control'])?sanitize($_POST['variables_control'],2):null;  
     $proceso->id_propietario = isset($_POST['id_propietario'])?sanitize($_POST['id_propietario'],2):null;
     
     if ($proceso->save())

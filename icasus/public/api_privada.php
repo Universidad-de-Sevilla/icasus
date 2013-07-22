@@ -1,44 +1,79 @@
 <?php
+//---------------------------------------------------------------------------------------------------
+//  Proyecto: Icasus 
+//  Archivo: api_privada.php
+//---------------------------------------------------------------------------------------------------
+//  Permite añadir datos al sistema desde una url
+//---------------------------------------------------------------------------------------------------
 
+// Para limpiar y asegurar la entrada de datos
+require_once('../../cascara_core/function/sanitize.php');
 // Conexión a datos
-require_once("../app_code/app_config.php");
+require_once('../app_code/app_config.php');
+
 @mysql_connect(IC_DB_HOST , IC_DB_LOGIN , IC_DB_CLAVE);
+
 if (@mysql_select_db(IC_DB_DATABASE))
 {
   // Capturamos y procesamos los datos de la petición
-  require_once("../../cascara_core/function/sanitize.php");
-  if (isset($_REQUEST["metodo"]) AND !empty($_REQUEST["metodo"]))
+  if (isset($_REQUEST['metodo'], $_REQUEST['apikey']))
   {
-    $metodo = $_REQUEST["metodo"];
+    $metodo = sanitize($_REQUEST['metodo'], PARANOID);
+    //$apikey = sanitize($_REQUEST['apikey'], PARANOID);
+
     if (function_exists($metodo))
     {
-      if (isset($_REQUEST["id"]) AND isset($_REQUEST["fecha_inicio"]) AND isset($_REQUEST["fecha_fin"])) 
+      foreach ($_REQUEST as $variable => $valor)
       {
-        $id = sanitize($_REQUEST["id"],INT);
-        $fecha_inicio = sanitize($_REQUEST["fecha_inicio"],SQL);
-        $fecha_fin = sanitize($_REQUEST["fecha_fin"],SQL);
-        $metodo($id, $fecha_inicio, $fecha_fin);
+        if (!empty($valor))
+        {
+          $$variable = sanitize($valor, SQL);
+        }
       }
-      else if (isset($_REQUEST["id"]))
-      {
-        $id = sanitize($_REQUEST["id"],INT);
-        $metodo($id);
-      }
-      else
-      {
-        $metodo();
-      }
+      /*
+        $id_indicador = sanitize($_REQUEST['id_indicador'],INT);
+        $periodo_inicio = sanitize($_REQUEST['periodo_inicio'],SQL);
+        $periodo_fin = sanitize($_REQUEST['periodo_fin'],SQL);
+        $etiqueta = sanitize($_REQUEST['etiqueta'],SQL);
+        $valor = sanitize($_REQUEST['valor'],SQL);
+
+        $metodo($id_indicador, $fecha_inicio, $fecha_fin);
+      */
+    }
+    else
+    {
+      echo 'No existe el método solicitado';
     }
   }
 }
 else
 {
-  echo "Error de conexion a la base de datos";
+  echo 'Error de conexion a la base de datos';
 }
 
-/*             Métodos 
-------------------------------------- */
+//------------------------------------------ 
+//  Métodos 
+//------------------------------------------
 
+function graba_medicion_con_valor($id_indicador, $periodo_inicio, $periodo_fin, $etiqueta, $valor)
+{
+  if (isset($id_indicador, $periodo_inicio, $periodo_fin, $etiqueta, $valor))
+  {
+    //begin transaction
+    $query = "INSERT INTO mediciones (id_indicador, etiqueta, periodo_inicio, periodo_fin) VALUES ($id_indicador, '$etiqueta', $periodo_inicio, $periodo_fin);";
+    $adodb->Execute();
+    $medicion_id = $adodb->getLastID();
+    $query = "";
+    //end transaction
+  }
+  else
+  {
+    echo 'Faltan parámetros para ejecutar el método '  . $metodo;
+  }
+}
+
+
+/*
 // Devuelve los indicadores asociados a un panel de un cuadro de mando
 // Se utiliza en cuadro_mostrar
 function get_indicadores_panel($id)
@@ -83,74 +118,6 @@ function get_subunidades_indicador($id)
             FROM entidades INNER JOIN indicadores_subunidades ON entidades.id = indicadores_subunidades.id_entidad
             WHERE indicadores_subunidades.id_indicador = $id 
             ORDER BY entidades.etiqueta"; 
-  $resultado = mysql_query($query);
-  while ($registro = mysql_fetch_assoc($resultado))
-  {
-    $datos[] = $registro;
-  }
-  $datos = json_encode($datos);
-  echo $datos;
-}
-
-// Es una nueva función que devuelve las fechas de las mediciones en formato timestamp de javascript
-// Devuelve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
-// También devuelve los totales de dichos valores en función del operador definido en el indicador
-// Se utiliza en consulta_avanzada
-function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0)
-{
-  $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
-            INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
-            WHERE indicadores.id = $id";
-  if ($resultado = mysql_query($query))
-  {
-    if ($registro = mysql_fetch_assoc($resultado))
-    {
-      $operador = $registro['operador'];
-    }
-    else
-    {
-      $operador = 'SUM';
-    }
-  }
-  else
-  {
-    $operador = 'SUM';
-  }
-
-  //He quitado valores.observaciones porque da un molesto error en javascript cuando el contenido es null (casi siempre)
-  //$query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, valores.observaciones 
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
-            INNER JOIN entidades ON entidades.id = valores.id_entidad
-            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL"; 
-  if ($fecha_inicio > 0)
-  {
-    $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
-  }
-  if ($fecha_fin > 0)
-  {
-    $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
-  }
-  $query .= " ORDER BY mediciones.periodo_inicio";
-  $resultado = mysql_query($query);
-
-  while ($registro = mysql_fetch_assoc($resultado))
-  {
-    $datos[] = $registro;
-  }
-  // Aquí van los totales
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
-            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
-  if ($fecha_inicio > 0)
-  {
-    $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
-  }
-  if ($fecha_fin > 0)
-  {
-    $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
-  }
-  $query .= " GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
@@ -258,5 +225,6 @@ function get_valores_indicador_suma($id)
   $datos = json_encode($datos);
   echo $datos;
 }
+*/
 
 ?>
