@@ -51,6 +51,7 @@
 
 {literal}
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.pie.min.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>		
 
@@ -101,7 +102,7 @@
 
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function(indicadores) {
       $.each(indicadores, function(index, indicador) {
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
+        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
           var items = [];
           var unidad;
           var etiqueta_indicador;
@@ -110,11 +111,11 @@
             if(dato.id_unidad == id_entidad)
             {
               unidad = dato.unidad; //guarrerida española
-              fecha = new Date; //??
-              items.push([dato.medicion, dato.valor]);
+              items.push([dato.periodo_fin, dato.valor]);
             }
           });
           etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
+          console.log(items);
           datos_flot[index] = {label: etiqueta_indicador, color: index, data: items };
           var opciones = {
             series: { lines: { show: true }, points: { show: true } },

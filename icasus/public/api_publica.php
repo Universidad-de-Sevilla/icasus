@@ -119,7 +119,9 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0)
 
   //He quitado valores.observaciones porque da un molesto error en javascript cuando el contenido es null (casi siempre)
   //$query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, valores.observaciones 
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+            UNIX_TIMESTAMP(mediciones.periodo_fin)*1000 as periodo_fin, 
+            entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL"; 
@@ -139,7 +141,9 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0)
     $datos[] = $registro;
   }
   // Aquí van los totales
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+            UNIX_TIMESTAMP(mediciones.periodo_fin)*1000 as periodo_fin, 
+            'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
   if ($fecha_inicio > 0)
@@ -160,7 +164,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0)
   echo $datos;
 }
 
-// Devuleve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
+// Devuelve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
 // También devuelve los totales de dichos valores en función del operador definido en el indicador
 // Se utiliza en consulta_avanzada
 function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
