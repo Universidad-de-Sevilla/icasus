@@ -51,7 +51,7 @@
 
 {literal}
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
-<script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script src="theme/danpin/scripts/flot/jquery.flot.pie.min.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>		
 
@@ -99,7 +99,8 @@
     var leyenda = $(this).next(".leyenda");
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
-
+    console.log(new Date(fecha_inicio).getTime());
+    console.log(new Date(2013,1,1).getTime());
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function(indicadores) {
       $.each(indicadores, function(index, indicador) {
         $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
@@ -121,7 +122,11 @@
             series: { lines: { show: true }, points: { show: true } },
             label: { show: true },
             legend: { container: leyenda },
-            xaxis: { mode: "time" },
+            xaxis: { mode: "time",
+					          minTickSize: [1, "month"],
+                    min: (new Date(fecha_inicio)).getTime(),
+                    max: (new Date(fecha_fin)).getTime()  
+                    },
             grid: { hoverable: true },
             colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
           };
@@ -136,7 +141,7 @@
                 $("#tooltip").remove();
                 var x = item.datapoint[0].toFixed(2),
                 y = item.datapoint[1].toFixed(2);
-                showTooltip(item.pageX, item.pageY, x + " - " + y + " - " + item.series.label);
+                showTooltip((new Date(item.pageX)).toISOString, item.pageY, x + " - " + y + " - " + item.series.label);
               }
             }
             else 
@@ -371,5 +376,51 @@
       }); 
     });
   });
+</script>
+<!-- CSS -->
+<style type="text/css">
+#flotcontainer {
+    width: 600px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto;
+}
+</style>
+
+<!-- Javascript -->
+<script type="text/javascript">
+var data5 = [];
+
+function DoSeries5(){
+    var data = [];
+    var start = 1364586000000;
+
+    for(i=1;i<=10;i++){                
+        data.push([start, Math.cos(i)]);
+        start+= 2900000000;
+    }
+
+    return data;
+}
+
+$(function () {    
+    data5 = DoSeries5();
+    
+    $.plot($("#flotcontainer"),
+        [
+            {data: data5}
+        ],
+        {            
+            grid: {
+                backgroundColor: { colors: ["#75A7E0", "#1F77DB"]  }
+            },
+            series: { lines: { show: true }, points: { show: true } },
+            xaxis: {
+                mode: "time"
+            }
+        }
+    );
+
+});
 </script>
 {/literal}
