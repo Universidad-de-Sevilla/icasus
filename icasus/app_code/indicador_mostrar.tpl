@@ -191,6 +191,79 @@
     
     {if $mediciones}
       <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" />
+
+      <div id="grafica_totales" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}"></div>
+
     {else}
       <p class="aviso">Todavía no se han definido mediciones para este indicador.</p>
     {/if}
+
+{literal}
+<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script>
+  var id_indicador = $('#grafica_totales').data('id_indicador');
+  var nombre_indicador = $('#grafica_totales').data('nombre_indicador');
+  var datos_flot = [];
+  var leyenda = $(this).next(".leyenda");
+  var fecha_inicio = '2008-01-01';
+  var fecha_fin = '2024-01-01';
+
+  $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
+    var items = [];
+    var etiqueta_indicador;
+    $.each(datos, function(i, dato) {
+      //Queremos los totales de todas las subunidades, su id es 0, viene establecido en la api_publica
+      if(dato.id_unidad == 0)
+      {
+        items.push([dato.medicion, dato.valor]);
+      }
+    });
+    etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + id_indicador + '" target="_blank">' + nombre_indicador + '</a>';
+    datos_flot[0] = {label: etiqueta_indicador, color: 0, data: items };
+    var opciones = {
+      series: { lines: { show: true }, points: { show: true } },
+      label: { show: true },
+      legend: { container: leyenda },
+      xaxis: { tickDecimals: 0 },
+      grid: { hoverable: true },
+      colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
+    };
+    $("#grafica_totales").css("height", "300px");
+    $.plot($("#grafica_totales"), datos_flot, opciones);
+    //--------------------------------------------------
+    var previousPoint = null;
+    $("#grafica_totales").bind("plothover", function (event, pos, item) {
+      if (item) {
+        if (previousPoint != item.dataIndex) {
+          previousPoint = item.dataIndex;
+          $("#tooltip").remove();
+          var x = item.datapoint[0].toFixed(2),
+          y = item.datapoint[1].toFixed(2);
+          showTooltip(item.pageX, item.pageY, x + " - " + y + " - " + item.series.label);
+        }
+      }
+      else 
+      {
+        $("#tooltip").remove();
+        previousPoint = null;            
+      }
+    });
+    //--------------------------------------------------
+  }); 
+
+  function showTooltip(x, y, contents) {
+    $("<div id='tooltip'>" + contents + "</div>").css({
+      position: "absolute",
+      display: "none",
+      top: y + 5,
+      left: x + 5,
+      width: "200 px",
+      border: "1px solid #fdd",
+      padding: "2px",
+      "background-color": "#fee",
+      "z-index": 1000,
+      opacity: 0.80
+    }).appendTo("body").fadeIn(200);
+  }
+</script>
+{/literal}
