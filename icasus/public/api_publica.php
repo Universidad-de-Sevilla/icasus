@@ -120,7 +120,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0)
   //He quitado valores.observaciones porque da un molesto error en javascript cuando el contenido es null (casi siempre)
   //$query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, valores.observaciones 
   $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-            UNIX_TIMESTAMP(mediciones.periodo_fin)*1000 as periodo_fin, 
+            UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
             entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
@@ -142,13 +142,13 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0)
   }
   // Aquí van los totales
   $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-            UNIX_TIMESTAMP(mediciones.periodo_fin)*1000 as periodo_fin, 
+            UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
             'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
   if ($fecha_inicio > 0)
   {
-    $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
+    $query .= " AND mediciones.periodo_inicio >=  '$fecha_inicio'";
   }
   if ($fecha_fin > 0)
   {
