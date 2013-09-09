@@ -40,6 +40,7 @@
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/grid.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/main.css">
 		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/theme_base.css">
+		<link rel="stylesheet" type="text/css" href="theme/danpin/styles/graficas.css">
 
 		<!-- Style Switcher  
 		The following stylesheet links are used by the styleswitcher to allow for dynamically changing how Adminica looks and acts.
