@@ -1,61 +1,3 @@
-<style>
-.hidden {
-  display: none;
-}
-
-.leyenda {
-  border-top: 1px solid #D8DCDE;
-  background: #EDF1F3;
-  background: transparent;
-  padding: 7px 4px;
-  margin-top: 5px;
-}
-
-.leyenda p{
-  color: #545454;
-  font-size: 10px;
-  line-height: 14px;
-  }
-
-.leyenda table {
-  margin-bottom: 0;
-}
-
-.legendLabel {
-  vertical-align: middle;
-  padding-left: 4px;
-}
-
-.titulo-panel {
-  background: #EDF1F3;
-  padding: 2px 6px 2px;
-  margin: 0px;
-  font-weight: normal;
-  font-size: 14px;
-  border: 1px solid #FFF;
-  border-left: 1px solid #F8F8F8;
-  border-right: 1px solid #F8F8F8;
-  line-height: 24px;
-  text-indent: 0px;
-  text-shadow: 0 0 0 #FFF !important;
-}
-
-.pull-right {
-  float: right;
-}
-
-.block > .section > ul.mediciones {
-  list-style: none;
-}
-
-.block > .section > ul.mediciones > li {
-  display: inline;
-  margin: 10px;
-  border: 0;
-}
-
-</style>
-
 {if $cuadro->id_usuario == $_usuario->id}
   <div class="button_bar clearfix">
     <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
@@ -109,6 +51,7 @@
 
 {literal}
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script src="theme/danpin/scripts/flot/jquery.flot.pie.min.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>		
 
@@ -136,7 +79,7 @@
             }
           })
         }
-      },
+     },
       {
         text:"Cancelar",
         "class":'red text_only has_text',
@@ -149,6 +92,22 @@
     evento.preventDefault();
   });
 
+  // Función para pintar los tooltips en las gráficas
+  function showTooltip(x, y, contents) {
+    $("<div id='tooltip'>" + contents + "</div>").css({
+      position: "absolute",
+      display: "none",
+      top: y + 5,
+      left: x + 5,
+      width: "200 px",
+      border: "1px solid #fdd",
+      padding: "2px",
+      "background-color": "#fee",
+      "z-index": 1000,
+      opacity: 0.80
+    }).appendTo("body").fadeIn(200);
+  }
+    
   /* --- Comienza la magia --- */ 
   $(".panel_linea").each(function(index) {
     var datos_flot = [];
@@ -159,7 +118,7 @@
 
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function(indicadores) {
       $.each(indicadores, function(index, indicador) {
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
+        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
           var items = [];
           var unidad;
           var etiqueta_indicador;
@@ -168,7 +127,7 @@
             if(dato.id_unidad == id_entidad)
             {
               unidad = dato.unidad; //guarrerida española
-              items.push([dato.medicion, dato.valor]);
+              items.push([dato.periodo_fin, dato.valor]);
             }
           });
           etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
@@ -177,13 +136,19 @@
             series: { lines: { show: true }, points: { show: true } },
             label: { show: true },
             legend: { container: leyenda },
-            xaxis: { tickDecimals: 0 },
+            xaxis: { mode: "time",
+					          minTickSize: [1, "year"],
+                    /* Restamos y sumamos 2 días para que la escala de tiempo esté completa*/ 
+                    min: (new Date(fecha_inicio)).getTime() - 172800000,
+                    max: (new Date(fecha_fin)).getTime() + 172800000  
+                    },
             grid: { hoverable: true },
             colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
           };
           $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
           $.plot($("#panel_" + id_panel), datos_flot, opciones);
-          //--------------------------------------------------
+
+          // Pinta el tooltip cuando pasamos el cursor sobre un punto de la gráfica
           var previousPoint = null;
           $("#panel_" + id_panel).bind("plothover", function (event, pos, item) {
             if (item) {
@@ -191,8 +156,10 @@
                 previousPoint = item.dataIndex;
                 $("#tooltip").remove();
                 var x = item.datapoint[0].toFixed(2),
-                y = item.datapoint[1].toFixed(2);
-                showTooltip(item.pageX, item.pageY, x + " - " + y + " - " + item.series.label);
+                y = item.datapoint[1].toFixed(2),
+                fecha = new Date(item.datapoint[0]),
+                fecha_espania = fecha.getDate() + "/" + (fecha.getMonth()+1) + "/" + fecha.getFullYear();
+                showTooltip(item.pageX, item.pageY, fecha_espania +  " - " + y + " - " + item.series.label);
               }
             }
             else 
@@ -200,29 +167,12 @@
               $("#tooltip").remove();
               previousPoint = null;            
 				    }
-          });
-          //--------------------------------------------------
+          }); // termina código para tooltip
         }); 
       });
     });
   });
 
-		function showTooltip(x, y, contents) {
-			$("<div id='tooltip'>" + contents + "</div>").css({
-				position: "absolute",
-				display: "none",
-				top: y + 5,
-				left: x + 5,
-        width: "200 px",
-				border: "1px solid #fdd",
-				padding: "2px",
-				"background-color": "#fee",
-        "z-index": 1000,
-				opacity: 0.80
-			}).appendTo("body").fadeIn(200);
-		}
-
-    
   $(".panel_barra").each(function(index) {
     var datos_flot = [];
     var id_panel = $(this).data("idpanel");
@@ -233,24 +183,24 @@
 
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin, 
+        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin, 
         function(datos) {
           var items = [];
           var unidad;
           var etiqueta_indicador;
-          var opciones = {};
           var serie_tipo;
           var id_entidad = indicador.id_entidad;
-
+          
+          // Recorre los datos que vienen de la api y los mete en el array items 
+          // si son de la entidad seleccionada para este indicador
           $.each(datos, function(i, dato) {
             if(dato.id_unidad == id_entidad)
             {
               var medicion = dato.medicion;
               unidad = dato.unidad; //guarrerida española
-              items.push([medicion, dato.valor]);
+              items.push([dato.periodo_fin, dato.valor]);
             }
           });
-          
           etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
           // Si el tipo de serie es 4 se trata de una línea con puntos
           if (indicador.id_serietipo == 4 || id_entidad == 0)
@@ -261,18 +211,44 @@
           else // por defecto ponemos una barra
           {
             datos_flot[index] = { label: etiqueta_indicador, color: index, data: items, 
-              bars: { show: true, order: 1, barWidth: 0.25, fill: 0.8, align:'center', horizontal: false }};
+              bars: { show: true, order: 1, barWidth: 1, fill: 0.8, align:'center', horizontal: false }};
           }
 
-
-          opciones = {
+          var opciones = {
             legend: { container: leyenda },
-            xaxis: { tickDecimals: 0 },
+            xaxis: { mode: "time",
+					           minTickSize: [1, "year"],
+                     /* Restamos y sumamos 2 días para que la escala de tiempo esté completa*/ 
+                     min: (new Date(fecha_inicio)).getTime() - 172800000,
+                     max: (new Date(fecha_fin)).getTime() + 172800000  
+                    },
             grid: { hoverable: true },
             colors: ['maroon', 'darkolivegreen', 'orange', 'DarkKhaki', 'pink', 'yellow', 'green', 'brown']
           };
+          console.log((new Date(fecha_fin)).getTime());
           $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
           $.plot($("#panel_" + id_panel), datos_flot,  opciones );
+
+          // Pinta el tooltip cuando pasamos el cursor sobre un punto de la gráfica
+          var previousPoint = null;
+          $("#panel_" + id_panel).bind("plothover", function (event, pos, item) {
+            if (item) {
+              if (previousPoint != item.dataIndex) {
+                previousPoint = item.dataIndex;
+                $("#tooltip").remove();
+                var x = item.datapoint[0].toFixed(2),
+                y = item.datapoint[1].toFixed(2),
+                z = item.datapoint[0];
+                var fecha = (new Date(z)).getDate() + "/" + (new Date(z)).getMonth() + "/" + (new Date(z)).getFullYear();
+                showTooltip(item.pageX, item.pageY, fecha  + " - " + y + " - " + item.series.label);
+              }
+            }
+            else 
+            {
+              $("#tooltip").remove();
+              previousPoint = null;            
+				    }
+          }); // termina código para tooltip
         }); //fin llamada api get_valores_indicador
       });
     });
@@ -427,5 +403,51 @@
       }); 
     });
   });
+</script>
+<!-- CSS -->
+<style type="text/css">
+#flotcontainer {
+    width: 600px;
+    height: 200px;
+    text-align: center;
+    margin: 0 auto;
+}
+</style>
+
+<!-- Javascript -->
+<script type="text/javascript">
+var data5 = [];
+
+function DoSeries5(){
+    var data = [];
+    var start = 1364586000000;
+
+    for(i=1;i<=10;i++){                
+        data.push([start, Math.cos(i)]);
+        start+= 2900000000;
+    }
+
+    return data;
+}
+
+$(function () {    
+    data5 = DoSeries5();
+    
+    $.plot($("#flotcontainer"),
+        [
+            {data: data5}
+        ],
+        {            
+            grid: {
+                backgroundColor: { colors: ["#75A7E0", "#1F77DB"]  }
+            },
+            series: { lines: { show: true }, points: { show: true } },
+            xaxis: {
+                mode: "time"
+            }
+        }
+    );
+
+});
 </script>
 {/literal}
