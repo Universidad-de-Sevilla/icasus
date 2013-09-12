@@ -17,15 +17,14 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 	$panel->fecha_fin = sanitize($_REQUEST["finYear"],INT).'-'.sanitize($_REQUEST["finMonth"],INT).'-'.sanitize($_REQUEST["finDay"],INT);
 	$panel->orden = sanitize($_REQUEST["orden"],SQL);
 	$panel->ancho = sanitize($_REQUEST["ancho"],SQL);
-
-	//No usamos periodicidad de momento
-  //$panel->periodicidad = sanitize($_REQUEST["periodicidad"],SQL);
+  $panel->periodicidad = sanitize($_REQUEST["periodicidad"],SQL);
 
 	if ($panel->save())
 	{
 		switch($panel->id_paneltipo)
 		{
 			case 1:
+        // Panel Métrica
 				$panel_indicador = new panel_indicador();
 				$panel_indicador->id_panel = $panel->id;
 				$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicador"],INT);
@@ -40,7 +39,9 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 					//error no se grabó correctamente
 				}
 			break;
+
 			case 2:
+        // Panel Línea
 				$elementos = count($_REQUEST["id_indicadores"]);
 				for($i=0;$i < $elementos;$i++)
 				{
@@ -56,7 +57,9 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 				}
 					header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
 			break;
+
 			case 3:
+        // Panel Tarta
 				$panel_indicador = new panel_indicador();
 				$panel_indicador->id_panel = $panel->id;
 				$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicador"],INT);
@@ -71,7 +74,9 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 					//error no se grabó correctamente
 				}
 			break;
+
 			case 4:
+        // Panel Barras
 				$elementos = count($_REQUEST["id_indicadores"]);
 				for($i=0;$i < $elementos;$i++)
 				{
@@ -87,7 +92,9 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 				}
 					header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
 			break;
+
 			case 5:
+        // Panel Tabla
 				foreach($_REQUEST["id_subunidades"] as $subunidad)
 				{
 					$panel_indicador = new panel_indicador();

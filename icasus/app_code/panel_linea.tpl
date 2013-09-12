@@ -39,9 +39,10 @@
 			{section start=2 loop=17 name="size"}
 				<option value="{$smarty.section.size.index}"
 				{if $smarty.section.size.index == $panel->ancho_pred}selected="selected"{/if} >
-				{$smarty.section.size.index}</option>
+				{$smarty.section.size.index}</option> 
 			{/section}
 		</select>
+    / 16
 		<div class="required_tag tooltip hover left"></div>
 	</div>
 </fieldset>

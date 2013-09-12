@@ -17,7 +17,8 @@ if (@mysql_select_db(IC_DB_DATABASE))
         $id = sanitize($_REQUEST["id"],INT);
         $fecha_inicio = sanitize($_REQUEST["fecha_inicio"],SQL);
         $fecha_fin = sanitize($_REQUEST["fecha_fin"],SQL);
-        $metodo($id, $fecha_inicio, $fecha_fin);
+        $periodicidad = sanitize($_REQUEST["periodicidad"],SQL);
+        $metodo($id, $fecha_inicio, $fecha_fin, $periodicidad);
       }
       else if (isset($_REQUEST["id"]))
       {
@@ -95,9 +96,10 @@ function get_subunidades_indicador($id)
 // Es una nueva función que devuelve las fechas de las mediciones en formato timestamp de javascript
 // Devuelve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
 // También devuelve los totales de dichos valores en función del operador definido en el indicador
-// Se utiliza en consulta_avanzada
-function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0)
+// Se utiliza en consulta_avanzada y en cuadro_mostrar
+function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todo")
 {
+  // Preparamos el tipo de operador que vamos a usar para calcular totales y agrupados
   $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
             INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
             WHERE indicadores.id = $id";
@@ -117,10 +119,9 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0)
     $operador = 'SUM';
   }
 
-  //He quitado valores.observaciones porque da un molesto error en javascript cuando el contenido es null (casi siempre)
-  //$query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, valores.observaciones 
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-            UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
+  // Devuelve los valores recogidos para todas las subunidades
+  // mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+  $query = "SELECT UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
             entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
@@ -133,7 +134,16 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0)
   {
     $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
   }
+  if ($periodicidad == "anual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), unidad, id_unidad";
+  }
+  else if ($periodicidad == "mensual")
+  {
+    $query .= " GROUP BY MONTH(mediciones.periodo_inicio), unidad, id_unidad";
+  }
   $query .= " ORDER BY mediciones.periodo_inicio";
+  //print($query);
   $resultado = mysql_query($query);
 
   while ($registro = mysql_fetch_assoc($resultado))
@@ -155,6 +165,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0)
     $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
   }
   $query .= " GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
+  //print($query);
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {

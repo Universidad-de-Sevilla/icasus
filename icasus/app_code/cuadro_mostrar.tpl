@@ -115,10 +115,13 @@
     var leyenda = $(this).next(".leyenda");
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
+    var periodicidad = $(this).data("periodicidad");
 
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function(indicadores) {
       $.each(indicadores, function(index, indicador) {
-        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
+        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + 
+                                  "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + 
+                                  "&periodicidad=" + periodicidad).done(function(datos) {
           var items = [];
           var unidad;
           var etiqueta_indicador;
