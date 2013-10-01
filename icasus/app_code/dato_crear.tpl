@@ -2,42 +2,20 @@
 	<input type="hidden" name="id_entidad" value="{$entidad->id}" />
 	<div style="opacity: 1;" class="box tabs" id="tab_crear_dato">
 		<ul class="tab_header">
-		<li><a href="#dato" >Dato</a></li>
-		<li><a href="#otras" >Otras propiedades</a></li>
-		<li><a href="#subunidades" >Subunidades afectadas</a></li>
+      <li><a href="#dato" >Dato</a></li>
+      <li><a href="#otras" >Otras propiedades</a></li>
+      <li><a href="#subunidades" >Subunidades afectadas</a></li>
 		</ul>
 
 		<div style="opacity: 1;" id="dato" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
 			<p>&nbsp;</p>
-			<div class="columns clearfix">
-				<div class="col_50">
-					<fieldset class="label">
-						<label>Identificador</label>
-						<div>
-							<input type="text" name="codigo" placeholder="Único, fácil de recordar y sin espacios" />
-							<div class="required_tag"></div>
-						</div>
-					</fieldset>
-				</div>
-
-				<div class="col_50">
-					<fieldset class="label">
-						<label>Responsable de medición</label>
-						<div>
-							<select name="id_responsable_medicion" class="select_box">
-								<option value="">Seleccionar uno ...</option>
-								{foreach $usuarios_entidad as $usuario_entidad}
-									<option value="{$usuario_entidad->usuario->id}">
-									{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre}
-									{if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
-									</option>
-								{/foreach}              
-							</select>
-							<div class="required_tag"></div>
-						</div>
-					</fieldset>
-				</div>
-			</div><!-- fin class="columns clearfix -->
+      <fieldset class="label_side">
+        <label>Identificador</label>
+        <div>
+          <input type="text" name="codigo" placeholder="Único, fácil de recordar y sin espacios" />
+          <div class="required_tag"></div>
+        </div>
+      </fieldset>
 
 			<fieldset class="label_side">
 				<label>Nombre</label>
@@ -46,6 +24,38 @@
 					<div class="required_tag"></div>
 				</div>
 			</fieldset>
+
+      <fieldset class="label_side">
+        <label>Responsable de seguimiento</label>
+        <div>
+          <select name="id_responsable" class="required2 select_box">
+            <option value="">Seleccionar uno ...</option>
+            {foreach $usuarios_entidad as $usuario_entidad}
+              <option value="{$usuario_entidad->usuario->id}">
+                {$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} 
+                {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
+              </option>
+            {/foreach}              
+          </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
+        </div>
+      </fieldset>
+      
+      <fieldset class="label_side">
+        <label>Responsable de medición</label>
+        <div>
+          <select name="id_responsable_medicion" class="select_box">
+            <option value="">Seleccionar uno ...</option>
+            {foreach $usuarios_entidad as $usuario_entidad}
+              <option value="{$usuario_entidad->usuario->id}">
+                {$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre}
+                {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
+              </option>
+            {/foreach}              
+          </select>
+          <div class="required_tag"></div>
+        </div>
+      </fieldset>
+
 			<div class="button_bar clearfix" id="footer_tabs">
 				<button class="dark send_left" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back()"><span>Cancelar</span></button>          
 				<button class="btnNext dark send_right img_icon has_text" type="button"><span>Siguiente</span></button>
@@ -54,10 +64,16 @@
 		 
 		<div style="opacity: 1;" id="otras" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
 
+      <p>&nbsp;</p>
 			<fieldset class="label_side">
 				<label>Descripci&oacute;n</label>
 				<div><textarea  class="autogrow" name="descripcion"></textarea></div>
 			</fieldset>
+
+      <fieldset class="label_side">
+        <label>Cálculo</label>
+        <div><textarea  class="" name="lculo" placeholder="Sólo si es un indicador calculado"></textarea></div>
+      </fieldset>
 
 			<fieldset class="label_side">
 				<label>Fuente de datos</label>
@@ -70,7 +86,7 @@
 			</fieldset>
 
 			<fieldset class="label_side">
-				<label>Indicadores relacionados</label>
+				<label>Indicadores/datos relacionados</label>
 				<div><input  type="text" name="indicadores_relacionados" /></div>
 			</fieldset>
 
@@ -112,7 +128,7 @@
 				<button class="btnNext dark send_right img_icon has_text" type="button"><span>Siguiente</span></button>
 				<button class="btnPrev dark send_right img_icon has_text" type="button"><span>Anterior</span></button>
 			</div>
-		</div><!-- fin id=otros -->
+		</div><!-- fin tab id=otros -->
 
 		<div style="opacity: 1;" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
 			<p>&nbsp;</p>
@@ -156,7 +172,7 @@
 				<button class="dark send_right img_icon has_text" type="submit"><span>Grabar</span></button>
 				<button class="btnPrev dark send_right img_icon has_text" type="button"><span>Anterior</span></button>
 			</div>
-</div><!-- id=subunidades -->    
+</div><!-- tab id=subunidades -->    
 </form>
 {literal}
 <script>
@@ -187,6 +203,7 @@ $(document).ready(function(){
 		rules:{
 			codigo:{required:true},
 			id_responsable:{required:true},
+			id_responsable_medicion:{required:true},
 			nombre:{required:true}
 		},
 		ignore: ':hidden',
@@ -204,8 +221,8 @@ $(document).ready(function(){
 	//Boton next
 	$('button.btnNext').on('click',function(){
 		var actualTab = $('#tab_crear_dato').tabs('option', 'selected');
-		var  estavalidado = $('#formdato').valid();
-		if (estavalidado == true)
+		var estaValidado = $('#formdato').valid();
+		if (estaValidado == true)
 		{	
 			$('#tab_crear_dato').tabs('enable',actualTab+1).tabs('select',actualTab+1).tabs('disable',actualTab);
 		}

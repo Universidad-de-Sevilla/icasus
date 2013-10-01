@@ -45,10 +45,24 @@
           {$dato->descripcion}
         </div>
       </fieldset>
+      <fieldset class="label_side">
+        <label>Cálculo</label>
+        <div>
+          {$dato->calculo}
+        </div>
+      </fieldset>
 			<fieldset class="label_side">
         <label>Responsable del dato</label>
         <div>
-          {$dato->responsable->nombre} {$dato->responsable->apellidos} {if $dato->responsable->puesto} - {$dato->responsable->puesto} {/if}
+          {$dato->responsable->nombre} {$dato->responsable->apellidos} 
+          {if $dato->responsable->puesto} - {$dato->responsable->puesto} {/if}
+        </div>
+      </fieldset>
+			<fieldset class="label_side">
+        <label>Responsable de medición</label>
+        <div>
+          {$dato->responsable_medicion->nombre} {$dato->responsable_medicion->apellidos} 
+          {if $dato->responsable_medicion->puesto} - {$dato->responsable_medicion->puesto} {/if}
         </div>
       </fieldset>
       <fieldset class="label_side">
