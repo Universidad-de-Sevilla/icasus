@@ -1,12 +1,22 @@
 <?php
+// ---------------------------------------------------------------
+// Proyecto: Icasus
+// Archivo: public/api_publica.php
+// ---------------------------------------------------------------
+// Acceso público a los dato de Icasus
+// Devuelve el resultado en formato JSON
+// ---------------------------------------------------------------
 
-// Conexión a datos
+require_once("../../cascara_core/function/sanitize.php");
+
+// Carga el app_config y conecta a la base de datos
+// Es necesario porque este fichero no depende del controlador principal index.php
 require_once("../app_code/app_config.php");
 @mysql_connect(IC_DB_HOST , IC_DB_LOGIN , IC_DB_CLAVE);
+
 if (@mysql_select_db(IC_DB_DATABASE))
 {
   // Capturamos y procesamos los datos de la petición
-  require_once("../../cascara_core/function/sanitize.php");
   if (isset($_REQUEST["metodo"]) AND !empty($_REQUEST["metodo"]))
   {
     $metodo = $_REQUEST["metodo"];
@@ -97,6 +107,8 @@ function get_subunidades_indicador($id)
 // Devuelve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
 // También devuelve los totales de dichos valores en función del operador definido en el indicador
 // Se utiliza en consulta_avanzada y en cuadro_mostrar
+// Ejemplo de llamada:
+// http://URL_APLICACION/api_publica.php?metodo=get_valores_con_timestamp&id=5018&fecha_inicio=2012-01-01&fecha_fin=2012-12-31&periodicidad=anual
 function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todo")
 {
   // Preparamos el tipo de operador que vamos a usar para calcular totales y agrupados
@@ -152,7 +164,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   }
   // Aquí van los totales
   $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-            UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
+            UNIX_TIMESTAMP(MAX(mediciones.periodo_inicio))*1000 as periodo_fin, 
             'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
@@ -164,8 +176,23 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   {
     $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
   }
-  $query .= " GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
-  //print($query);
+  if ($periodicidad == "anual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio)";
+  }
+  else if ($periodicidad == "mensual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
+  }
+  else if ($periodicidad == "todos")
+  {
+    // Es un truco para agrupar sin agrupar cuando se quieren todas las mediciones
+    // Funciona siempre que icasus no tenga mediciones intradiarias
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+  }
+
+  $query .= " ORDER BY mediciones.periodo_inicio";
+  print($query);
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
