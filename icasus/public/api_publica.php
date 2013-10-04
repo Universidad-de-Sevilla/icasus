@@ -154,6 +154,12 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   {
     $query .= " GROUP BY MONTH(mediciones.periodo_inicio), unidad, id_unidad";
   }
+  else if ($periodicidad == "todos")
+  {
+    // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
+    // Funcionará mientras icasus no tenga mediciones intradiarias
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+  }
   $query .= " ORDER BY mediciones.periodo_inicio";
   //print($query);
   $resultado = mysql_query($query);
@@ -186,13 +192,12 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   }
   else if ($periodicidad == "todos")
   {
-    // Es un truco para agrupar sin agrupar cuando se quieren todas las mediciones
-    // Funciona siempre que icasus no tenga mediciones intradiarias
+    // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
+    // Funcionará mientras icasus no tenga mediciones intradiarias
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
-
   $query .= " ORDER BY mediciones.periodo_inicio";
-  print($query);
+  //print($query);
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
