@@ -133,7 +133,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
 
   // Devuelve los valores recogidos para todas las subunidades
   // mediciones.id as id_medicion, mediciones.etiqueta as medicion,
-  $query = "SELECT UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
+  $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
             entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
@@ -148,20 +148,20 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   }
   if ($periodicidad == "anual")
   {
-    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), unidad, id_unidad";
+    $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio)";
   }
   else if ($periodicidad == "mensual")
   {
-    $query .= " GROUP BY MONTH(mediciones.periodo_inicio), unidad, id_unidad";
+    $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
   }
   else if ($periodicidad == "todos")
   {
     // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
     // Funcionará mientras icasus no tenga mediciones intradiarias
-    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+    $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
-  //print($query);
+  // print($query);
   $resultado = mysql_query($query);
 
   while ($registro = mysql_fetch_assoc($resultado))
@@ -170,7 +170,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   }
   // Aquí van los totales
   $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-            UNIX_TIMESTAMP(MAX(mediciones.periodo_inicio))*1000 as periodo_fin, 
+            UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
             'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
@@ -197,7 +197,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
-  //print($query);
+  // print($query);
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
