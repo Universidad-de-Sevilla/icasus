@@ -6,6 +6,18 @@
 // Acceso público a los dato de Icasus
 // Devuelve el resultado en formato JSON
 // ---------------------------------------------------------------
+// Métodos definidos:
+//
+// get_indicadores_panel($id)
+// get_mediciones_indicador($id)
+// get_subunidades_indicador($id)
+// get_subunidades_indicador($id)
+// get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todo")
+// get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
+// get_valores_indicador_media($id)
+// get_valores_indicador_suma($id)
+// get_valores_medicion($id)
+
 
 require_once("../../cascara_core/function/sanitize.php");
 
@@ -13,7 +25,6 @@ require_once("../../cascara_core/function/sanitize.php");
 // Es necesario porque este fichero no depende del controlador principal index.php
 require_once("../app_code/app_config.php");
 @mysql_connect(IC_DB_HOST , IC_DB_LOGIN , IC_DB_CLAVE);
-
 if (@mysql_select_db(IC_DB_DATABASE))
 {
   // Capturamos y procesamos los datos de la petición
@@ -22,7 +33,7 @@ if (@mysql_select_db(IC_DB_DATABASE))
     $metodo = $_REQUEST["metodo"];
     if (function_exists($metodo))
     {
-      if (isset($_REQUEST["id"]) AND isset($_REQUEST["fecha_inicio"]) AND isset($_REQUEST["fecha_fin"])) 
+      if (isset($_REQUEST["id"]) AND isset($_REQUEST["fecha_inicio"]) AND isset($_REQUEST["fecha_fin"]) AND isset($_REQUEST["periodicidad"])) 
       {
         $id = sanitize($_REQUEST["id"],INT);
         $fecha_inicio = sanitize($_REQUEST["fecha_inicio"],SQL);
@@ -108,7 +119,7 @@ function get_subunidades_indicador($id)
 // También devuelve los totales de dichos valores en función del operador definido en el indicador
 // Se utiliza en consulta_avanzada y en cuadro_mostrar
 // Ejemplo de llamada:
-// http://URL_APLICACION/api_publica.php?metodo=get_valores_con_timestamp&id=5018&fecha_inicio=2012-01-01&fecha_fin=2012-12-31&periodicidad=anual
+// http://localhost/icasus/api_publica.php?metodo=get_valores_con_timestamp&id=5018&fecha_inicio=2012-01-01&fecha_fin=2012-12-31&periodicidad=anual
 function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todo")
 {
   // Preparamos el tipo de operador que vamos a usar para calcular totales y agrupados
@@ -161,7 +172,6 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
-  // print($query);
   $resultado = mysql_query($query);
 
   while ($registro = mysql_fetch_assoc($resultado))
@@ -197,7 +207,6 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
-  // print($query);
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
@@ -209,7 +218,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
 
 // Devuelve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
 // También devuelve los totales de dichos valores en función del operador definido en el indicador
-// Se utiliza en consulta_avanzada
+// Se utiliza en consulta_avanzada y en cuadro_mostrar
 function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
 {
   $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
@@ -231,8 +240,7 @@ function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
     $operador = 'SUM';
   }
 
-  //He quitado valores.observaciones porque da un molesto error en javascript cuando el contenido es null (casi siempre)
-  //$query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, valores.observaciones 
+  //Aquí van los valores de todas las subunidades
   $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
@@ -274,6 +282,98 @@ function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
   echo $datos;
 }
 
+// Parecido al anterior pero con agrupamiento anual, mensual, etc
+// Se usa en cuadro_mostrar para los gráficos de barra
+function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad="todo")
+{
+  $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
+            INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
+            WHERE indicadores.id = $id";
+  if ($resultado = mysql_query($query))
+  {
+    if ($registro = mysql_fetch_assoc($resultado))
+    {
+      $operador = $registro['operador'];
+    }
+    else
+    {
+      $operador = 'SUM';
+    }
+  }
+  else
+  {
+    $operador = 'SUM';
+  }
+
+  //Aquí van los valores de todas las subunidades
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            INNER JOIN entidades ON entidades.id = valores.id_entidad
+            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL"; 
+  if ($fecha_inicio > 0)
+  {
+    $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
+  }
+  if ($fecha_fin > 0)
+  {
+    $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
+  }
+  if ($periodicidad == "anual")
+  {
+    $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio)";
+  }
+  else if ($periodicidad == "mensual")
+  {
+    $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
+  }
+  else if ($periodicidad == "todos")
+  {
+    // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
+    // Funcionará mientras icasus no tenga mediciones intradiarias
+    $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+  }
+  $resultado = mysql_query($query);
+
+  while ($registro = mysql_fetch_assoc($resultado))
+  {
+    $datos[] = $registro;
+  }
+  // Aquí van los totales
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
+  if ($fecha_inicio > 0)
+  {
+    $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
+  }
+  if ($fecha_fin > 0)
+  {
+    $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
+  }
+  if ($periodicidad == "anual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio)";
+  }
+  else if ($periodicidad == "mensual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
+  }
+  else if ($periodicidad == "todos")
+  {
+    // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
+    // Funcionará mientras icasus no tenga mediciones intradiarias
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+  }
+  //$query .= " GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
+  $resultado = mysql_query($query);
+  while ($registro = mysql_fetch_assoc($resultado))
+  {
+    $datos[] = $registro;
+  }
+  $datos = json_encode($datos);
+  echo $datos;
+}
+
 // Devuelve las medias de los valores de un indicador ordenadas por su periodo de inicio
 // Se utiliza en consulta_avanzada
 function get_valores_indicador_media($id)
@@ -297,6 +397,60 @@ function get_valores_indicador_suma($id)
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL
             GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
+  $resultado = mysql_query($query);
+  while ($registro = mysql_fetch_assoc($resultado))
+  {
+    $datos[] = $registro;
+  }
+  $datos = json_encode($datos);
+  echo $datos;
+}
+
+// Devuelve todos los valores recogidos para una medicion concreta de un indicador 
+// Es útil sólo en aquellos indicadores que se midan por subunidades
+// También devuelve el total de dichos valores en función del operador definido en el indicador
+// Se utiliza en cuadro_mostrar
+// Ejemplo:
+// http://localhost/icasus/api_publica.php?metodo=api_publica.php&metodo=get_valores_medicion&id=218
+function get_valores_medicion($id_medicion)
+{
+  // Vamos a ver que tipo de agregación tiene este indicador
+  $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
+            INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
+            INNER JOIN mediciones ON mediciones.id_indicador = indicadores.id
+            WHERE mediciones.id = $id_medicion";
+  if ($resultado = mysql_query($query))
+  {
+    if ($registro = mysql_fetch_assoc($resultado))
+    {
+      $operador = $registro['operador'];
+    }
+    else
+    {
+      $operador = 'SUM';
+    }
+  }
+  else
+  {
+    $operador = 'SUM';
+  }
+
+  $query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            INNER JOIN entidades ON entidades.id = valores.id_entidad
+            WHERE mediciones.id = $id_medicion AND valor IS NOT NULL
+            ORDER BY unidad";
+  $resultado = mysql_query($query);
+
+  while ($registro = mysql_fetch_assoc($resultado))
+  {
+    $datos[] = $registro;
+  }
+  // Aquí van los totales
+  $query = "SELECT mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            WHERE mediciones.id = $id_medicion AND valor IS NOT NULL 
+            GROUP BY mediciones.id";
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
