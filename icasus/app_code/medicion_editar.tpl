@@ -60,8 +60,7 @@
   <a href="#" class="toggle"></a>
   <div class="toggle_container">
     <div class="block">
-    <!-- Los datos de la medición pueden ser editados solo por el responsable del indicador -->
-    {if $usuario->id  == $indicador->id_responsable OR $indicador->id_responsable_medicion == $usuario->id}
+    {if $permiso_editar == true}
       <fieldset class="label_side">
         <label>Etiqueta</label>
         <div>
