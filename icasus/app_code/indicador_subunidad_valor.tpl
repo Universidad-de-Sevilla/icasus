@@ -28,7 +28,14 @@
 </div>
 </div>
 
-<!-- división seleccio nar periodos a consultar -->
+<!-- división seleccionar periodos a consultar -->
+<div>
+  <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+    src='/icons/ff16/time.png' /> Mostrar mediciones</a> &nbsp; &nbsp;
+  <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+  src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
+</div>
+
 <div style="opacity: 1;" class="box grid_16">
 	<h2 class="box_head">Rango de fechas</h2>
 	<div class="controls">

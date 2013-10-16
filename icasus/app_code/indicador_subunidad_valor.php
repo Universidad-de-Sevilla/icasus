@@ -1,18 +1,33 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: medicion_listar.php
+// Archivo: indicador_subunidad_valor.php
 //---------------------------------------------------------------------------------------------------
-// Muestra un listado de las mediciones establecidas para un indicador
+// Muestra una tabla con todas las mediciones de un indicador y sus valores, para poder editarlos
 //---------------------------------------------------------------------------------------------------
 global $smarty;
 global $usuario;
 global $plantilla;
 
-$id_indicador = sanitize($_REQUEST["id_indicador"], INT);
 $id_entidad = sanitize($_REQUEST["id_entidad"], INT);
 
-if(isset($id_indicador) AND isset($id_entidad))
+if (isset($_REQUEST["id_indicador"]))
+{
+  $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
+  $tipo = "indicador";
+}
+else if (isset($_REQUEST["id_dato"]))
+{
+  $id_indicador = sanitize($_REQUEST["id_dato"], INT);
+  $tipo = "dato";
+}
+else
+{
+  $error = "Faltan parámetros para mostrar la lista de mediciones";
+  header("location:index.php?page=entidad_listar&error=$error");
+}
+
+if(isset($id_entidad))
 {
 
 	$usuario_entidad = new usuario_entidad();
@@ -36,6 +51,7 @@ if(isset($id_indicador) AND isset($id_entidad))
 		$subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador,$entidad->id);
 		$smarty->assign('subunidades_mediciones',$subunidades_mediciones);
 
+    $smarty->assign("tipo", $tipo);
 		$smarty->assign('_nombre_pagina', "Valores de las subunidades para: $indicador->nombre");
 		$plantilla = 'indicador_subunidad_valor.tpl';
 	}
@@ -51,5 +67,4 @@ else
   $error = "Faltan parámetros para mostrar las subunidades y los valores";
   header("location:index.php?page=entidad_listar&error=$error");
 }
-//print_r($subunidades_mediciones);
 ?>

@@ -16,9 +16,9 @@
         <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' onClick='return confirmar();'><img 
           src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp; 
         <a href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-          src='/icons/ff16/user_medicion.png' /> Responsables medición</a>
-<a href='index.php?page=indicador_subunidad_valor&id_indicador={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-					src='/icons/ff16/tag_blue.png' /> Valores por subunidad</a>
+          src='/icons/ff16/user_medicion.png' /> Responsables medición</a> &nbsp;
+<a href='index.php?page=indicador_subunidad_valor&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
+					src='/icons/ff16/tag_blue.png' /> Editar Valores</a>
       </div>
 
       <div class="columns clearfix">

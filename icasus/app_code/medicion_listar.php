@@ -9,6 +9,8 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
+//print_r($usuario);
+
 if (isset($_REQUEST["id_indicador"]))
 {
   $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
