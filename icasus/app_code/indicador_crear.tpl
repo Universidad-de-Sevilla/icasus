@@ -38,7 +38,7 @@
 				<label>Formulaci&oacute;n</label>
 				<div><textarea  class="required2" name="formulacion"></textarea><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
 			</fieldset>
-			          <fieldset class="label_side">
+      <fieldset class="label_side">
             <label>Responsable de seguimiento</label>
             <div>
               <select name="id_responsable" class="required2 select_box">
@@ -72,95 +72,95 @@
 				<label>Descripci&oacute;n</label>
 				<div><textarea  class="inp" name="descripcion"></textarea></div>
 			</fieldset>
-					<fieldset class="label_side">
-									<label>Cálculo</label>
-									<div><textarea  class="" name="lculo" placeholder="Sólo si es un indicador calculado"></textarea></div>
-							</fieldset>
-					<fieldset class="label_side">
-            <label>Fuente de informaci&oacute;n</label>
-            <div><input  type="text" name="fuente_informacion"/></div>	
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Fuente de datos</label>
-            <div><input  type="text" name="fuente_datos"/></div>	
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Metodo de comprobaci&oacute;n / Evidencia</label>
-            <div><input  type="text" name="evidencia" /></div>		
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Hist&oacute;rico</label>
-            <div><input  type="text" name="historicos" /></div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Interpretaci&oacute;n</label>
-            <div><input  type="text" name="interpretacion" /></div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>Indidores relacionados</label>
-            <div><input  type="text" name="indicadores_relacionados" /></div>
-          </fieldset>
-          <fieldset class="label_side">
-            <label>EFQM</label>
-            <div class="columns clearfix">
-            <div class="col_50">
-              <select name="criterios_efqm[]" id="criterios_efqm" class="select_box" >
-                <option value="">Elegir uno si procede</option>
-                {foreach $criterios_efqm as $criterio_efqm}
-                  <option value="{$criterio_efqm->id}">
-                    {$criterio_efqm->codigo} - {$criterio_efqm->nombre|htmlentities}
-                  </option>
-                {/foreach}
-              </select>
-							</div>
-							<div class="col_50">
-              <select name="criterios_efqm[]" id="criterios_efqm" class="select_box">
-                <option value="">Elegir uno si procede</option>
-                 {foreach $criterios_efqm as $criterio_efqm}
-                  <option value="{$criterio_efqm->id}">
-                    {$criterio_efqm->codigo} - {$criterio_efqm->nombre|htmlentities}
-                  </option>
-                {/foreach}
-              </select>
-            </div>
-            </div>
-          </fieldset>
-          <div class="columns clearfix">
-            <div class="col_25">
-              <fieldset class="label">
-                <label>Periodicidad</label>
-                <div>
-                  <select name="periodicidad" id="periodicidad" class="select_box">
-                    <option value="Anual" selected>Anual</option>
-                    <option value="Mensual">Mensual</option>
-                    <option value="Trimestral">Trimestral</option>
-                    <option value="Cuatrimestral">Cuatrimestral</option>
-                    <option value="Semestral">Semestral</option>
-                  </select>
-                </div>
-              </fieldset>
-            </div>
-            <div class="col_25">
-              <fieldset class="label">
-                <label>Visibilidad</label>	
-                <div>
-                  <select name="id_visibilidad" id="id_visibilidad" class="required select_box">
-                    {foreach $visibilidades as $visibilidad}
-                      <option value="{$visibilidad->id}">
-                        {$visibilidad->nombre}
-                      </option>
-                    {/foreach}
-                  </select>
-                </div>
-              </fieldset>
-            </div>
-            <div class="col_50">
-              <fieldset class="label">
-                <label>Unidad generadora</label>
-                <div><input  type="text" name="unidad_generadora" /></div>
-              </fieldset>
-            </div>
+      <fieldset class="label_side">
+        <label>Cálculo</label>
+        <div><textarea  class="" name="lculo" placeholder="Sólo si es un indicador calculado"></textarea></div>
+      </fieldset>
+      <fieldset class="label_side">
+        <label>Fuente de informaci&oacute;n</label>
+        <div><input  type="text" name="fuente_informacion"/></div>	
+      </fieldset>
+      <fieldset class="label_side">
+        <label>Fuente de datos</label>
+        <div><input  type="text" name="fuente_datos"/></div>	
+      </fieldset>
+      <fieldset class="label_side">
+        <label>Metodo de comprobaci&oacute;n / Evidencia</label>
+        <div><input  type="text" name="evidencia" /></div>		
+      </fieldset>
+      <fieldset class="label_side">
+        <label>Hist&oacute;rico</label>
+        <div><input  type="text" name="historicos" /></div>
+      </fieldset>
+      <fieldset class="label_side">
+        <label>Interpretaci&oacute;n</label>
+        <div><input  type="text" name="interpretacion" /></div>
+      </fieldset>
+      <fieldset class="label_side">
+        <label>Indidores relacionados</label>
+        <div><input  type="text" name="indicadores_relacionados" /></div>
+      </fieldset>
+      <fieldset class="label_side">
+        <label>EFQM</label>
+        <div class="columns clearfix">
+        <div class="col_50">
+          <select name="criterios_efqm[]" id="criterios_efqm" class="select_box" >
+            <option value="">Elegir uno si procede</option>
+            {foreach $criterios_efqm as $criterio_efqm}
+              <option value="{$criterio_efqm->id}">
+                {$criterio_efqm->codigo} - {$criterio_efqm->nombre|htmlentities}
+              </option>
+            {/foreach}
+          </select>
           </div>
+          <div class="col_50">
+          <select name="criterios_efqm[]" id="criterios_efqm" class="select_box">
+            <option value="">Elegir uno si procede</option>
+             {foreach $criterios_efqm as $criterio_efqm}
+              <option value="{$criterio_efqm->id}">
+                {$criterio_efqm->codigo} - {$criterio_efqm->nombre|htmlentities}
+              </option>
+            {/foreach}
+          </select>
+        </div>
+        </div>
+      </fieldset>
+      <div class="columns clearfix">
+        <div class="col_25">
+          <fieldset class="label">
+            <label>Periodicidad</label>
+            <div>
+              <select name="periodicidad" id="periodicidad" class="select_box">
+                <option value="Anual" selected>Anual</option>
+                <option value="Mensual">Mensual</option>
+                <option value="Trimestral">Trimestral</option>
+                <option value="Cuatrimestral">Cuatrimestral</option>
+                <option value="Semestral">Semestral</option>
+              </select>
+            </div>
+          </fieldset>
+        </div>
+        <div class="col_25">
+          <fieldset class="label">
+            <label>Visibilidad</label>	
+            <div>
+              <select name="id_visibilidad" id="id_visibilidad" class="required select_box">
+                {foreach $visibilidades as $visibilidad}
+                  <option value="{$visibilidad->id}">
+                    {$visibilidad->nombre}
+                  </option>
+                {/foreach}
+              </select>
+            </div>
+          </fieldset>
+        </div>
+        <div class="col_50">
+          <fieldset class="label">
+            <label>Unidad generadora</label>
+            <div><input  type="text" name="unidad_generadora" /></div>
+          </fieldset>
+        </div>
+      </div>
 			<div class="button_bar clearfix" id="footer_tabs">
 					<button class="btnNext dark send_right img_icon has_text" type="button"><span>Siguiente</span></button>
 					<button class="btnPrev dark send_right img_icon has_text" type="button"><span>Anterior</span></button>

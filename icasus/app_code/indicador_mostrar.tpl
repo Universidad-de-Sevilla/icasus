@@ -44,12 +44,12 @@
         </div>
       </fieldset>
       {if $indicador->descripcion != ""}
-      <fieldset class="label_side">
-        <label>Descripci&oacute;n</label>
-        <div>
-          {$indicador->descripcion}
-        </div>
-      </fieldset>
+        <fieldset class="label_side">
+          <label>Descripci&oacute;n</label>
+          <div>
+            {$indicador->descripcion}
+          </div>
+        </fieldset>
       {/if}
       <fieldset class="label_side">
         <label>Formulaci&oacute;n</label>
@@ -58,30 +58,32 @@
         </div>
       </fieldset>
       {if $indicador->calculo}
-      <fieldset class="label_side">
-        <label>Cálculo</label>
-        <div> 
-          {$indicador->calculo}
-        </div>
-      </fieldset>
+        <fieldset class="label_side">
+          <label>Cálculo</label>
+          <div> 
+            {$indicador->calculo}
+          </div>
+        </fieldset>
       {/if}
 			<fieldset class="label_side">
         <label>Responsable de seguimiento</label>
         <div>
-          {$indicador->responsable->nombre} {$indicador->responsable->apellidos} {if $indicador->responsable->puesto} - {$indicador->responsable->puesto} {/if}
+          {$indicador->responsable->nombre} {$indicador->responsable->apellidos} 
+          {if $indicador->responsable->puesto} - {$indicador->responsable->puesto} {/if}
         </div>
       </fieldset>
       <fieldset class="label_side">
         <label>Responsable de medición</label>
         <div>
-          {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos} {if $indicador->responsable_medicion->puesto} - {$indicador->responsable_medicion->puesto} {/if}
+          {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos} 
+          {if $indicador->responsable_medicion->puesto} - {$indicador->responsable_medicion->puesto} {/if}
         </div>
       </fieldset>
       {if $indicador->fuente_informacion != ""}
-      <fieldset class="label_side">
-        <label>Fuente de informaci&oacute;n</label>
-        <div>{$indicador->fuente_informacion}&nbsp;</div>	
-      </fieldset>
+        <fieldset class="label_side">
+          <label>Fuente de informaci&oacute;n</label>
+          <div>{$indicador->fuente_informacion}&nbsp;</div>	
+        </fieldset>
       {/if}
       {if $indicador->fuente_datos != ""}
       <fieldset class="label_side">
@@ -205,8 +207,9 @@
   var nombre_indicador = $('#grafica_totales').data('nombre_indicador');
   var datos_flot = [];
   var leyenda = $(this).next(".leyenda");
-  var fecha_inicio = '2008-01-01';
-  var fecha_fin = '2024-01-01';
+  // Pongo dos fechas de locura para que entren todas
+  var fecha_inicio = '1970-01-01';
+  var fecha_fin = '2222-01-01';
 
   $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
     var items = [];
