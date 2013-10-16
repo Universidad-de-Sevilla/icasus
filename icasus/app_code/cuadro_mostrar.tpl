@@ -260,7 +260,8 @@ console.log(datos_flot);
               y = item.datapoint[1].toFixed(2),
               z = item.datapoint[0];
               var fecha = (new Date(z)).getDate() + "/" + (new Date(z)).getMonth() + "/" + (new Date(z)).getFullYear();
-              showTooltip(item.pageX, item.pageY, " - " + y + " - " + item.series.label);
+              showTooltip(item.pageX, item.pageY, y + " - " + item.series.label);
+              console.log(item);
             }
           }
           else 
