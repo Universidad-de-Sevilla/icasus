@@ -5,14 +5,15 @@
 <input type="hidden" name="finMonth" value="12">
 <input type="hidden" name="inicioDay" value="01">
 <input type="hidden" name="finDay" value="31">
-<!-- división  -->
+
+<!-- popup subunidades  -->
 <div id="dialog_subunidades" style="display:none">
 	<div class="block" style="opacity: 1;" >
 		<div id="lista_subunidades" class="section" style="padding:20px">
 		</div>
 	</div>
 </div>
-<!--fin dialog -->
+
 <fieldset class="label_side">
 	<label>Nombre</label>
 	<div>
@@ -23,10 +24,10 @@
 
 <fieldset class="label_side">
 	<label>Orden</label>
-<div class="clearfix">
-	<div class="col_25">
-		<input class="text required" type="text" name="orden"></input>
-	</div>
+  <div class="clearfix">
+    <div class="col_25">
+      <input class="text required" type="text" name="orden"></input>
+    </div>
 		<div class="required_tag tooltip hover left"></div>
 	</div>
 </fieldset>
@@ -38,26 +39,35 @@
 			{section start=2 loop=17 name="size"}
 				<option value="{$smarty.section.size.index}"
 				{if $smarty.section.size.index == $panel->ancho_pred}selected="selected"{/if} >
-				{$smarty.section.size.index}</option>
+				{$smarty.section.size.index}</option> 
 			{/section}
 		</select>
+    / 16
 		<div class="required_tag tooltip hover left"></div>
 	</div>
 </fieldset>
 
-		<fieldset class="label_side">
-			<label>Fecha inicio<span></span></label>
-			<div>
-				{html_select_date prefix="inicio" class="required" year_empty=" "
-				display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10
-				end_year=$smarty.now|date_format:"%Y"}
-			<div class="required_tag tooltip hover left"></div>
-			</div>
-		</fieldset>
-	</div>
-	<fieldset class="label_side" id="div_fecha_fin">
-	</fieldset>
-	</div>
+<fieldset class="label_side">
+  <label>Periodicidad (nivel de detalle)</label>
+  <div>
+    <select name="periodicidad">
+      <option value="anual">Anual</option>
+      <option value="mensual">Mensual</option>
+    </select>
+  </div>
+</fieldset>
+
+<fieldset class="label_side">
+  <label>Fecha inicio<span></span></label>
+  <div>
+    {html_select_date prefix="inicio" class="required" year_empty=" "
+    display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10
+    end_year=$smarty.now|date_format:"%Y"}
+    <div class="required_tag tooltip hover left"></div>
+  </div>
+</fieldset>
+
+<fieldset class="label_side" id="div_fecha_fin"> </fieldset>
 
 <fieldset class="label_side">
 	<label>Indicadores<span></span></label>
@@ -75,10 +85,10 @@
 			<input data-id_entidad="{$id_entidad}"class="text" placeholder="Buscar ..." name="buscar_indicador" id="buscar_indicador" type="text">
 		</div>
 	</div>
-	<div id="listado_indicadores" >
-	</div>
+	<div id="listado_indicadores" > </div>
 </fieldset>
-{/if}
+{/if} <!-- modulo == inicio -->
+
 {if $modulo == 'fecha_fin'}
 	<label>Fecha fin<span></span></label>
 	<div>
@@ -86,6 +96,7 @@
 		<div class="required_tag tooltip hover left"></div>
 	</div>
 {/if}
+
 {if $modulo == 'subunidades'}
 	<div class="clearfix">
 		<div class="col_50">
@@ -127,7 +138,8 @@
 		});
 	</script>
 	{/literal}
-{/if}
+{/if} <!-- modulo == subunidades -->
+
 {literal}
 	<script>
 		var page = {/literal}"{$panel->clase_css}"{literal};
@@ -137,30 +149,31 @@
 				$.ajax({
 				url: "index.php?page="+page+"&ajax=true&modulo=fecha_fin&fecha_inicio="+fecha_inicio,
 				success: function(datos){$("#div_fecha_fin").html(datos);}
-			});
-		});
-		$('#main_container').on('click','.indicador_seleccionado_linea',function(){
-			var id_indicador = $(this).data('id_indicador');
-			var nombre_indicador = $(this).data('nombre_indicador');
-			$.ajax({
-				url: "index.php?page="+page+"&ajax=true&modulo=subunidades&id_indicador="
-				+id_indicador+"&nombre_indicador="+nombre_indicador,
-				success: function(datos){$("#lista_subunidades").html(datos);}
-			});
-			$('#dialog_subunidades').dialog({
-				autoOpen: true,modal: true,title:nombre_indicador,width:500
-			});
-		});
-	$('#buscar_indicador').on('keyup',function () {
-		var cadena = $(this).val();
-		var id_entidad = $(this).data('id_entidad');
-		$('#subunidades').html('');
-		$.ajax({
-			url: "index.php?page=panel_buscador&ajax=true&modulo=indicadores_linea&id_entidad="+id_entidad+"&cadena="+cadena,
-			success: function(datos){$('#listado_indicadores').html(datos);}
-		}); 
-	});
-});
-</script>
-{/literal}
+        });
+      });
+      
+      $('#main_container').on('click','.indicador_seleccionado_linea',function(){
+        var id_indicador = $(this).data('id_indicador');
+        var nombre_indicador = $(this).data('nombre_indicador');
+        $.ajax({
+          url: "index.php?page="+page+"&ajax=true&modulo=subunidades&id_indicador="
+          +id_indicador+"&nombre_indicador="+nombre_indicador,
+          success: function(datos){$("#lista_subunidades").html(datos);}
+        });
+        $('#dialog_subunidades').dialog({
+          autoOpen: true,modal: true,title:nombre_indicador,width:500
+        });
+      });
 
+      $('#buscar_indicador').on('keyup',function () {
+        var cadena = $(this).val();
+        var id_entidad = $(this).data('id_entidad');
+        $('#subunidades').html('');
+        $.ajax({
+          url: "index.php?page=panel_buscador&ajax=true&modulo=indicadores_linea&id_entidad="+id_entidad+"&cadena="+cadena,
+          success: function(datos){$('#listado_indicadores').html(datos);}
+        }); 
+      });
+    });
+  </script>
+{/literal}

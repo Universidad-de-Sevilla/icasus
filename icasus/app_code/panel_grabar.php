@@ -17,15 +17,14 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 	$panel->fecha_fin = sanitize($_REQUEST["finYear"],INT).'-'.sanitize($_REQUEST["finMonth"],INT).'-'.sanitize($_REQUEST["finDay"],INT);
 	$panel->orden = sanitize($_REQUEST["orden"],SQL);
 	$panel->ancho = sanitize($_REQUEST["ancho"],SQL);
-
-	//No usamos periodicidad de momento
-  //$panel->periodicidad = sanitize($_REQUEST["periodicidad"],SQL);
+  $panel->periodicidad = isset($_REQUEST["periodicidad"])?sanitize($_REQUEST["periodicidad"],SQL):"todo";
 
 	if ($panel->save())
 	{
 		switch($panel->id_paneltipo)
 		{
 			case 1:
+        // Panel Métrica
 				$panel_indicador = new panel_indicador();
 				$panel_indicador->id_panel = $panel->id;
 				$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicador"],INT);
@@ -39,8 +38,10 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 				{
 					//error no se grabó correctamente
 				}
-			break;
+        break;
+
 			case 2:
+        // Panel Línea
 				$elementos = count($_REQUEST["id_indicadores"]);
 				for($i=0;$i < $elementos;$i++)
 				{
@@ -49,14 +50,19 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 					$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicadores"][$i],INT);
 					$panel_indicador->id_entidad = sanitize($_REQUEST["id_subunidades"][$i],INT);
 					$panel_indicador->mostrar_referencias = 1;
-					if (!$panel_indicador->save())
+					if ($panel_indicador->save())
 					{
-						echo 'error no se grabó correctamente';
+					  header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
 					}
+          else
+          { 
+            //error, no se grabó correctamente
+          }
 				}
-					header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
-			break;
+        break;
+
 			case 3:
+        // Panel Tarta
 				$panel_indicador = new panel_indicador();
 				$panel_indicador->id_panel = $panel->id;
 				$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicador"],INT);
@@ -70,8 +76,10 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 				{
 					//error no se grabó correctamente
 				}
-			break;
+        break;
+
 			case 4:
+        // Panel Barras
 				$elementos = count($_REQUEST["id_indicadores"]);
 				for($i=0;$i < $elementos;$i++)
 				{
@@ -80,14 +88,19 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 					$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicadores"][$i],INT);
 					$panel_indicador->id_entidad = sanitize($_REQUEST["id_subunidades"][$i],INT);
 					$panel_indicador->mostrar_referencias = 1;
-					if (!$panel_indicador->save())
+					if ($panel_indicador->save())
 					{
-						echo 'error no se grabó correctamente';
+            header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
 					}
+          else
+          {
+            //error no se grabó correctamente
+          }
 				}
-					header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
-			break;
+        break;
+
 			case 5:
+        // Panel Tabla
 				foreach($_REQUEST["id_subunidades"] as $subunidad)
 				{
 					$panel_indicador = new panel_indicador();
@@ -95,22 +108,21 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 					$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicador"],INT);
 					$panel_indicador->id_entidad = sanitize($subunidad,INT);
 					$panel_indicador->mostrar_referencias = 1;
-					if (!$panel_indicador->save())
-					{
-						//error no se ha grabado
-					}
+					$panel_indicador->save();
 				}
-					header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
-			break;
-		}
+				header("location:index.php?page=cuadro_mostrar&id=$panel->id_cuadro");
+		  	break;
+        
+		} //switch
 	}
-	else
-	{
-		//error no se grabó correctamente
-	}
+  else
+  {
+    // No se ha podido grabar el panel
+    // TODO: Tratar error
+  }
 }
 else
-{
-	//faltan parámetros
+{ 
+  // TODO: gestionar errores
 }
 ?>

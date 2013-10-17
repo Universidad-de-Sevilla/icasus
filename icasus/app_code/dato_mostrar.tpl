@@ -6,19 +6,18 @@
 		<div class="block">
       <div class="button_bar clearfix">
         <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-          src='/icons/ff16/time.png' /> Mostrar mediciones</a> &nbsp;
+          src='/icons/ff16/time.png' /> Mostrar mediciones</a> &nbsp; &nbsp;
         <a href='index.php?page=dato_listar&id_entidad={$dato->id_entidad}'><img 
-          src='/icons/ff16/chart_curve.png' /> Listar todos</a> &nbsp;
+          src='/icons/ff16/chart_curve.png' /> Listar todos</a> &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
         <a href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-          src='/icons/ff16/chart_curve_edit.png'  /> Editar</a> &nbsp; 
-        <a href='index.php?page=dato_crear&id_entidad={$dato->id_entidad}'><img 
-          src='/icons/ff16/chart_curve_add.png'  /> Crear</a> &nbsp; 
+          src='/icons/ff16/chart_curve_edit.png'  /> Editar</a> &nbsp;  &nbsp;
         <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' onClick='return confirmar();'><img 
-          src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp; 
+          src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp;  &nbsp;
         <a href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-          src='/icons/ff16/user_medicion.png' /> Responsables medición</a>
-<a href='index.php?page=indicador_subunidad_valor&id_indicador={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-					src='/icons/ff16/tag_blue.png' /> Valores por subunidad</a>
+          src='/icons/ff16/user_medicion.png' /> Responsables medición</a> &nbsp; &nbsp;
+<a href='index.php?page=indicador_subunidad_valor&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
+					src='/icons/ff16/tag_blue.png' /> Editar Valores</a>
       </div>
 
       <div class="columns clearfix">
@@ -45,10 +44,24 @@
           {$dato->descripcion}
         </div>
       </fieldset>
+      <fieldset class="label_side">
+        <label>Cálculo</label>
+        <div>
+          {$dato->calculo}
+        </div>
+      </fieldset>
 			<fieldset class="label_side">
         <label>Responsable del dato</label>
         <div>
-          {$dato->responsable->nombre} {$dato->responsable->apellidos} {if $dato->responsable->puesto} - {$dato->responsable->puesto} {/if}
+          {$dato->responsable->nombre} {$dato->responsable->apellidos} 
+          {if $dato->responsable->puesto} - {$dato->responsable->puesto} {/if}
+        </div>
+      </fieldset>
+			<fieldset class="label_side">
+        <label>Responsable de medición</label>
+        <div>
+          {$dato->responsable_medicion->nombre} {$dato->responsable_medicion->apellidos} 
+          {if $dato->responsable_medicion->puesto} - {$dato->responsable_medicion->puesto} {/if}
         </div>
       </fieldset>
       <fieldset class="label_side">
