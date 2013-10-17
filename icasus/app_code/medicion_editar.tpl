@@ -2,7 +2,7 @@
   <div class="button_bar clearfix">
     <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Volver a las mediciones</a> &nbsp; &nbsp; &nbsp;
     <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
-    {if $autorizado_borrar}
+    {if $permiso_editar}
       <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Borrar medicion</a> &nbsp;
     {/if}
   </div>
@@ -60,8 +60,7 @@
   <a href="#" class="toggle"></a>
   <div class="toggle_container">
     <div class="block">
-    <!-- Los datos de la medición pueden ser editados solo por el responsable del indicador -->
-    {if $usuario->id  == $indicador->id_responsable OR $indicador->id_responsable_medicion == $usuario->id}
+    {if $permiso_editar == true}
       <fieldset class="label_side">
         <label>Etiqueta</label>
         <div>

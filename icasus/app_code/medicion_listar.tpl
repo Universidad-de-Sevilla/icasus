@@ -26,10 +26,11 @@ var table0 = $('#listado_mediciones').dataTable( {
 {/literal}
 <div class="box grid_16 single_datatable">
   <div class="button_bar clearfix">
-    <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time.png' /> Agregar medición</a> &nbsp; &nbsp; &nbsp;
+    <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time.png' /> Agregar medición</a> &nbsp; &nbsp;
+    <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+      src='/icons/ff16/tag_blue.png' /> Edición valores </a> &nbsp; &nbsp;
     <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> Volver al {$tipo}</a> &nbsp;
   </div>
-
   {if $mediciones}
   <div id="dt1" class="no_margin">
     <table class="display datatable" id="listado_mediciones"> 
