@@ -5,6 +5,8 @@
 <input type="hidden" name="finMonth" value="12">
 <input type="hidden" name="inicioDay" value="01">
 <input type="hidden" name="finDay" value="31">
+<input type="hidden" name="periodicidad" value="anual">
+
 <!-- división  -->
 <div id="dialog_subunidades" style="display:none">
 	<div class="block" style="opacity: 1;" >
@@ -46,7 +48,7 @@
 </fieldset>
 
 		<fieldset class="label_side">
-			<label>Fecha inicio<span></span></label>
+			<label>Año<span></span></label>
 			<div>
 				{html_select_date prefix="inicio" class="required" year_empty=" "
 				display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10
@@ -54,23 +56,12 @@
 			<div class="required_tag tooltip hover left"></div>
 			</div>
 		</fieldset>
+
+    <fieldset class="label_side" id="div_fecha_fin">
+		</fieldset>
 	</div>
-	<fieldset class="label_side" id="div_fecha_fin">
-	</fieldset>
 	</div>
 
-<!-- De momento no lo usamos
-<fieldset class="label_side">
-	<label>Periodicidad<span></span></label>
-	<div class="clearfix">
-		<select name="periodicidad" class="required">
-			{foreach $periodos as $periodo}
-				<option value="{$periodo->id}">{$periodo->nombre}</option>
-			{/foreach}
-		</select>
-	</div>
-</fieldset>
--->
 
 <fieldset class="label_side">
 	<label>Indicadores<span></span></label>
@@ -92,13 +83,11 @@
 	</div>
 </fieldset>
 {/if}
+
 {if $modulo == 'fecha_fin'}
-	<label>Fecha fin<span></span></label>
-	<div>
-		{html_select_date prefix="fin" class="required" display_months=FALSE display_days=FALSE start_year=$fecha_inicio end_year=$smarty.now|date_format:"%Y"}
-		<div class="required_tag tooltip hover left"></div>
-	</div>
+  <input type="hidden" name="finYear" value="{$fecha_inicio}">
 {/if}
+
 {if $modulo == 'subunidades'}
 	<div class="clearfix">
 		<div class="col_50">
