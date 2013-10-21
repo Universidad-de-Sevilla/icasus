@@ -1,15 +1,17 @@
 {if $modulo == 'periodicidad'}
 	<span id="periodicidad_etiquetas" style="display:none">
-		Por etiquetas:
-		<select name="id_medicion">
+		Por medición:
+		<select required name="id_medicion">
+			<option value="">Elegir uno ...</option>
 			{foreach from=$mediciones item=medicion}
-			<option value="{$medicion->etiqueta}">{$medicion->etiqueta}</option>
+			<option value="{$medicion->id}">{$medicion->etiqueta}</option>
 			{/foreach}
 		</select>
 	</span>
 	<span id="periodicidad_años" style="display:none">
 		Por años:
-		<select  name="fecha">
+		<select required  name="fecha">
+			<option value="">Elegir uno ...</option>
 		{foreach from=$anos item=ano}
 		<option value="{$ano->periodo_inicio|date_format:"%Y"}">{$ano->periodo_inicio|date_format:"%Y"}</option>
 		{/foreach}

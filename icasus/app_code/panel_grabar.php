@@ -18,16 +18,13 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 	$panel->fecha_fin = sanitize($_REQUEST["finYear"],INT).'-'.sanitize($_REQUEST["finMonth"],INT).'-'.sanitize($_REQUEST["finDay"],INT);
 	$panel->orden = sanitize($_REQUEST["orden"],SQL);
 	$panel->ancho = sanitize($_REQUEST["ancho"],SQL);
-<<<<<<< HEAD
   $panel->periodicidad = isset($_REQUEST["periodicidad"])?sanitize($_REQUEST["periodicidad"],SQL):"todo";
-=======
 
 	if (isset($_REQUEST["fecha"]))
 	{
 		$panel->fecha_inicio = $_REQUEST['fecha']."-01-01";
 		$panel->fecha_fin = $_REQUEST['fecha']."-12-31";
 	}
->>>>>>> barra
 
 	if ($panel->save())
 	{

@@ -6,12 +6,8 @@
 <input type="hidden" name="finYear" value="12">
 <input type="hidden" name="finMonth" value="12">
 <input type="hidden" name="finDay" value="31">
-<<<<<<< HEAD
 <input type="hidden" name="periodicidad" value="anual">
-
-=======
 <input type="hidden" name="id_medicion" value="0">
->>>>>>> barra
 <!-- división  -->
 <div id="dialog_subunidades" style="display:none">
 	<div class="block" style="opacity: 1;" >
@@ -75,30 +71,21 @@
 <div class="columns clearfix" id="fila_periodicidad" style="display:none">
 	<div class="col_50">
 		<fieldset class="label_side">
-<<<<<<< HEAD
-			<label>Año<span></span></label>
-=======
 			<label>Periodicidad indicador base</label>
->>>>>>> barra
 			<div>
-			<input type="radio" class="periodicidad" name="periodicidad" data-periodicidad="medicion" value="1" > Medición. 
-			<input type="radio" class="periodicidad" name="periodicidad" data-periodicidad="años" value="2" > Años.
+			<input type="radio" class="tipo_periodicidad required" name="tipo_periodicidad" data-periodicidad="medicion" value="1" > Medición. 
+			<input type="radio" class="tipo_periodicidad required" name="tipo_periodicidad" data-periodicidad="años" value="2" > Años.
 			</div>
 		</fieldset>
 
     <fieldset class="label_side" id="div_fecha_fin">
 		</fieldset>
 	</div>
-<<<<<<< HEAD
-	</div>
-
-=======
 	<div class="col_50">
 		<fieldset class="label_side" id="content_periodicidad">
 		</fieldset>
 	</div>
 </div>
->>>>>>> barra
 
 <fieldset class="label_side" id="indicadores_complementarios" style="display:none">
 	<label>Indicadores complementarios<span></span></label>
@@ -174,19 +161,17 @@ $('#buscar_indicador_base').on('keyup',function () {
 	//elimina el indicador complementario. Si no quedan complementarios se borra el pie
 	$('#main_container').on('click','.remove_indicador_complementario',function(){
 			var complementario = $(this).parent('.ric');
-			if (complementario.remove())
-			{
-				$('#footer_tabs').hide('slow');
-			}
+			complementario.remove();
 	});
 	//elimina el indicador base seleccionado
 	$('#main_container').on('click','.remove_indicador_base',function(){
 			$('#content_indicador_base').html('');
 			$('#content_buscador_indicador_base').show('slow');
 			$('#fila_periodicidad').hide('slow');
+			$('#footer_tabs').hide();
 	});
 
-$('.periodicidad').on('change',function(){
+$('.tipo_periodicidad').on('change',function(){
 	var tipo_periodo = $(this).val();
 	if (tipo_periodo == 1)
 	{
