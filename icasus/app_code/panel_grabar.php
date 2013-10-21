@@ -6,6 +6,7 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Graba los paneles nuevos
 //---------------------------------------------------------------------------------------------------
+
 if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty($_REQUEST["nombre"])  OR !empty($_REQUEST["orden"])OR !empty($_REQUEST["tipo"]) OR !empty($_REQUEST["ancho"]) OR !empty($_REQUEST["id_indicador"]))
 {
 	$panel = new panel();
@@ -17,7 +18,16 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 	$panel->fecha_fin = sanitize($_REQUEST["finYear"],INT).'-'.sanitize($_REQUEST["finMonth"],INT).'-'.sanitize($_REQUEST["finDay"],INT);
 	$panel->orden = sanitize($_REQUEST["orden"],SQL);
 	$panel->ancho = sanitize($_REQUEST["ancho"],SQL);
+<<<<<<< HEAD
   $panel->periodicidad = isset($_REQUEST["periodicidad"])?sanitize($_REQUEST["periodicidad"],SQL):"todo";
+=======
+
+	if (isset($_REQUEST["fecha"]))
+	{
+		$panel->fecha_inicio = $_REQUEST['fecha']."-01-01";
+		$panel->fecha_fin = $_REQUEST['fecha']."-12-31";
+	}
+>>>>>>> barra
 
 	if ($panel->save())
 	{
@@ -84,9 +94,11 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 				for($i=0;$i < $elementos;$i++)
 				{
 					$panel_indicador = new panel_indicador();
+					$panel_indicador->id_entidad = 0;
 					$panel_indicador->id_panel = $panel->id;
 					$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicadores"][$i],INT);
-					$panel_indicador->id_entidad = sanitize($_REQUEST["id_subunidades"][$i],INT);
+					//se utiliza en el antiguo.
+					//$panel_indicador->id_entidad = sanitize($_REQUEST["id_subunidades"][$i],INT);
 					$panel_indicador->mostrar_referencias = 1;
 					if ($panel_indicador->save())
 					{
