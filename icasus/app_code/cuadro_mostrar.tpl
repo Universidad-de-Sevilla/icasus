@@ -219,7 +219,7 @@
             };
 
             // La línea con el total
-            var marcas = [ { color: "#000", yaxis: { from: total, to: total } } ];
+            var marcas = [ { color: "maroon", yaxis: { from: total, to: total } } ];
 
             opciones = {
               legend: { container: leyenda },
