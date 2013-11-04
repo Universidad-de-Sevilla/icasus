@@ -36,8 +36,31 @@ $indicador = new indicador;
 if ($indicador->load("id = $id_indicador"))
 {
   $id_entidad = $indicador->id_entidad;
-	$indicador = new indicador();
-	if ($indicador->permiso_crear_medicion($usuario->id,$id_indicador))
+
+	//comprobar permisos para cambiar mediciones tanto para responsables del indicador como
+	//de la medición o responsables de la unidad
+	$responsable_unidad = false;
+	foreach($usuario->entidades AS $usuario_entidad)
+	{
+    //print_r($usuario_entidad);
+    //print_r($indicador->id_entidad);
+		if (($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2) AND $usuario_entidad->id_entidad == $indicador->id_entidad)
+		{
+			$responsable_unidad = true;
+		}
+	}
+	if ($responsable_unidad == true
+			OR $indicador->id_responsable == $usuario->id 
+			OR $indicador->id_responsable_medicion == $usuario->id)
+	{ 
+		$permiso_crear = true;
+	}
+	else
+	{ 
+		$permiso_crear = false;
+	}
+
+	if ($permiso_crear)
 	{
 		$smarty->assign("indicador", $indicador);
 		$smarty->assign("tipo", $tipo);
