@@ -10,38 +10,14 @@
 
 		<div style="opacity: 1;" id="dato" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
 			<p>&nbsp;</p>
-			<div class="columns clearfix">
-				<div class="col_50">
-					<fieldset class="label">
-						<label>Identificador</label>
-						<div>
-							<input type="text" name="codigo" value="{$dato->codigo}" />
-							<div class="required_tag"></div>
-						</div>
-					</fieldset>
-				</div>
 
-				<div class="col_50">
-					<fieldset class="label">
-						<label>Responsable de medición</label>
-						<div>
-							<select name="id_responsable_medicion" class="select_box">
-								<option value="">Seleccionar uno ...</option>
-								{foreach $usuarios_entidades as $usuario_entidad}
-									<option value="{$usuario_entidad->usuario->id}"
-                        {if $usuario_entidad->usuario->id == $dato->id_responsable_medicion}
-                          selected
-                        {/if}>
-									{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre}
-									{if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
-									</option>
-								{/foreach}              
-							</select>
-							<div class="required_tag"></div>
-						</div>
-					</fieldset>
-				</div>
-			</div><!-- fin class="columns clearfix -->
+      <fieldset class="label_side">
+        <label>Identificador</label>
+        <div>
+          <input type="text" name="codigo" value="{$dato->codigo}" />
+          <div class="required_tag"></div>
+        </div>
+      </fieldset>
 
 			<fieldset class="label_side">
 				<label>Nombre</label>
@@ -50,6 +26,45 @@
 					<div class="required_tag"></div>
 				</div>
 			</fieldset>
+
+      <fieldset class="label_side">
+        <label>Responsable de seguimiento</label>
+        <div>
+          <select name="id_responsable" class="select_box">
+            <option value="">Seleccionar uno ...</option>
+            {foreach $usuarios_entidades as $usuario_entidad}
+              <option value="{$usuario_entidad->usuario->id}"
+                    {if $usuario_entidad->usuario->id == $dato->id_responsable}
+                      selected
+                    {/if}>
+              {$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre}
+              {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
+              </option>
+            {/foreach}              
+          </select>
+          <div class="required_tag"></div>
+        </div>
+      </fieldset>
+
+      <fieldset class="label_side">
+        <label>Responsable de medición</label>
+        <div>
+          <select name="id_responsable_medicion" class="select_box">
+            <option value="">Seleccionar uno ...</option>
+            {foreach $usuarios_entidades as $usuario_entidad}
+              <option value="{$usuario_entidad->usuario->id}"
+                    {if $usuario_entidad->usuario->id == $dato->id_responsable_medicion}
+                      selected
+                    {/if}>
+              {$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre}
+              {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto|htmlentities} {/if}
+              </option>
+            {/foreach}              
+          </select>
+          <div class="required_tag"></div>
+        </div>
+      </fieldset>
+
 			<div class="button_bar clearfix" id="footer_tabs">
 				<button class="dark send_left" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back()"><span>Cancelar</span></button>          
 				<button class="btnNext dark send_right img_icon has_text" type="button"><span>Siguiente</span></button>
@@ -62,6 +77,11 @@
 				<label>Descripci&oacute;n</label>
 				<div><textarea  class="autogrow" name="descripcion">{$dato->descripcion}</textarea></div>
 			</fieldset>
+
+      <fieldset class="label_side">
+        <label>Cálculo</label>
+        <div><textarea  class="" name="calculo" placeholder="Sólo si es un indicador calculado">{$dato->calculo}</textarea></div>
+      </fieldset>
 
 			<fieldset class="label_side">
 				<label>Fuente de datos</label>

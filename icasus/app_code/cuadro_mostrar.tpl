@@ -281,7 +281,6 @@ console.log(datos_flot);
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
     var periodicidad = $(this).data("periodicidad");
-
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
         $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin, 
@@ -354,7 +353,6 @@ console.log(datos_flot);
     });
   });
  
-
   $(".panel_tarta").each(function(index) {
     var datos_flot = [];
     var total; // valor total del indicador para esta medición
