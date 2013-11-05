@@ -33,12 +33,12 @@ if (@mysql_select_db(IC_DB_DATABASE))
     $metodo = $_REQUEST["metodo"];
     if (function_exists($metodo))
     {
-      if (isset($_REQUEST["id"]) AND isset($_REQUEST["fecha_inicio"]) AND isset($_REQUEST["fecha_fin"]) AND isset($_REQUEST["periodicidad"])) 
+      if (isset($_REQUEST["id"], $_REQUEST["fecha_inicio"], $_REQUEST["fecha_fin"])) 
       {
         $id = sanitize($_REQUEST["id"],INT);
         $fecha_inicio = sanitize($_REQUEST["fecha_inicio"],SQL);
         $fecha_fin = sanitize($_REQUEST["fecha_fin"],SQL);
-        $periodicidad = sanitize($_REQUEST["periodicidad"],SQL);
+        $periodicidad = isset($_REQUEST["periodicidad"])?sanitize($_REQUEST["periodicidad"],SQL):"todos";
         $metodo($id, $fecha_inicio, $fecha_fin, $periodicidad);
       }
       else if (isset($_REQUEST["id"]))

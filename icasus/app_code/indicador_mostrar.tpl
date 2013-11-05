@@ -191,10 +191,19 @@
     </h3>
     
     {if $mediciones}
-      <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" />
+      <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /> -->
 
-      <div id="grafica_totales" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}"></div>
+      <h3>Gráfico histórico por años</h3>
+      <div class="panel_flot" id="grafica_anual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="1970-01-01" data-fecha_fin="2012-12-31"></div>
 
+      {if $indicador->periodicidad != "Anual"} 
+        <h3>Gráfico año anterior</h3>
+        <div class="panel_flot" id="grafica_anio_anterior" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="{$indicador->periodicidad}" data-fecha_inicio="2011-01-01" data-fecha_fin="2011-12-31"></div>
+
+        <h3>Gráfico año actual</h3>
+        <div class="panel_flot" id="grafica_anio_actual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="{$indicador->periodicidad}"  data-fecha_inicio="2012-01-01" data-fecha_fin="2012-12-31"></div>
+      {/if}
+      
     {else}
       <p class="aviso">Todavía no se han definido mediciones para este indicador.</p>
     {/if}
@@ -202,13 +211,14 @@
 {literal}
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
 <script>
-  var id_indicador = $('#grafica_totales').data('id_indicador');
-  var nombre_indicador = $('#grafica_totales').data('nombre_indicador');
+  var id_indicador = $('#grafica_anual').data('id_indicador');
+  var nombre_indicador = $('#grafica_anual').data('nombre_indicador');
   var datos_flot = [];
   var leyenda = $(this).next(".leyenda");
   // Pongo dos fechas de locura para que entren todas
   var fecha_inicio = '1970-01-01';
-  var fecha_fin = '2222-01-01';
+  var fecha_fin = new Date();
+  fecha_fin = fecha_fin.toISOString();
 
   $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
     var items = [];
@@ -230,11 +240,11 @@
       grid: { hoverable: true },
       colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
     };
-    $("#grafica_totales").css("height", "300px");
-    $.plot($("#grafica_totales"), datos_flot, opciones);
+    $("#grafica_anual").css("height", "200px");
+    $.plot($("#grafica_anual"), datos_flot, opciones);
     //--------------------------------------------------
     var previousPoint = null;
-    $("#grafica_totales").bind("plothover", function (event, pos, item) {
+    $("#grafica_anual").bind("plothover", function (event, pos, item) {
       if (item) {
         if (previousPoint != item.dataIndex) {
           previousPoint = item.dataIndex;
@@ -252,6 +262,67 @@
     });
     //--------------------------------------------------
   }); 
+
+  $(".panel_flot").each(function(index) {
+    var datos_flot = [];
+    var id_panel = $(this).attr('id');
+    var id_indicador = $(this).data('id_indicador');
+    var nombre_indicador = $(this).data('nombre_indicador');
+    alert(id_panel);
+    var leyenda = $(this).next(".leyenda");
+    var fecha_inicio = $(this).data("fecha_inicio");
+    var fecha_fin = $(this).data("fecha_fin");
+    var periodicidad = $(this).data("periodicidad");
+
+    $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad).done(function(datos) {
+      var items = [];
+      var etiqueta_indicador;
+      $.each(datos, function(i, dato) {
+        if(dato.id_unidad == 0)
+        {
+          items.push([dato.periodo_fin, dato.valor]);
+        }
+      });
+      etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + id_indicador + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
+      datos_flot[index] = {label: etiqueta_indicador, color: index, data: items };
+      var opciones = {
+        series: { lines: { show: true }, points: { show: true } },
+        label: { show: true },
+        legend: { container: leyenda },
+        xaxis: { mode: "time",
+                minTickSize: [1, "year"],
+                /* Restamos y sumamos 2 días para que la escala de tiempo esté completa*/ 
+                min: (new Date(fecha_inicio)).getTime() - 172800000,
+                max: (new Date(fecha_fin)).getTime() + 172800000  
+                },
+        grid: { hoverable: true },
+        colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
+      };
+      $("#" + id_panel).css("height", 200 - index * 12 + "px");
+      $.plot($("#" + id_panel), datos_flot, opciones);
+
+      // Pinta el tooltip cuando pasamos el cursor sobre un punto de la gráfica
+      var previousPoint = null;
+      $("#" + id_panel).bind("plothover", function (event, pos, item) {
+        if (item) {
+          if (previousPoint != item.dataIndex) {
+            previousPoint = item.dataIndex;
+            $("#tooltip").remove();
+            var x = item.datapoint[0].toFixed(2),
+            y = item.datapoint[1].toFixed(2),
+            fecha = new Date(item.datapoint[0]),
+            fecha_espania = fecha.getDate() + "/" + (fecha.getMonth()+1) + "/" + fecha.getFullYear();
+            showTooltip(item.pageX, item.pageY, fecha_espania +  " - " + y + " - " + item.series.label);
+          }
+        }
+        else 
+        {
+          $("#tooltip").remove();
+          previousPoint = null;            
+        }
+      }); // termina código para tooltip
+    }); 
+  });
 
   function showTooltip(x, y, contents) {
     $("<div id='tooltip'>" + contents + "</div>").css({
