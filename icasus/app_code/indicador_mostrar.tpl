@@ -268,7 +268,6 @@
     var id_panel = $(this).attr('id');
     var id_indicador = $(this).data('id_indicador');
     var nombre_indicador = $(this).data('nombre_indicador');
-    alert(id_panel);
     var leyenda = $(this).next(".leyenda");
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");

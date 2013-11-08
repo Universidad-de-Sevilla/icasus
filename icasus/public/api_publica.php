@@ -184,6 +184,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
             'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
+
   if ($fecha_inicio > 0)
   {
     $query .= " AND mediciones.periodo_inicio >=  '$fecha_inicio'";
@@ -207,6 +208,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
+print($query);
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
