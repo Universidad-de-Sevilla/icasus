@@ -193,15 +193,18 @@
     {if $mediciones}
       <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /> -->
 
-      <h3>Gráfico histórico por años</h3>
-      <div class="panel_flot" id="grafica_anual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="1970-01-01" data-fecha_fin="2012-12-31"></div>
+      <h3>Histórico anual</h3>
+      <div class="panel_flot" id="grafica_anual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"></div>
+      <div class="leyenda"></div>
 
       {if $indicador->periodicidad != "Anual"} 
-        <h3>Gráfico año anterior</h3>
-        <div class="panel_flot" id="grafica_anio_anterior" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="{$indicador->periodicidad}" data-fecha_inicio="2011-01-01" data-fecha_fin="2011-12-31"></div>
+        <h3>Dos últimos años ({$smarty.now|date_format:'%Y' - 1}/{$smarty.now|date_format:'%Y'})</h3>
+        <div class="panel_flot" id="grafica_anio_anterior" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="2012-01-02" data-fecha_fin="{$smarty.now|date_format:'%Y' + 1}-{$smarty.now|date_format:'%m-%d'}" data-periodicidad="mensual"></div>
+        <div class="leyenda"></div>
 
-        <h3>Gráfico año actual</h3>
-        <div class="panel_flot" id="grafica_anio_actual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="{$indicador->periodicidad}"  data-fecha_inicio="2012-01-01" data-fecha_fin="2012-12-31"></div>
+        <h3>Año en curso</h3>
+        <div class="panel_flot" id="grafica_anio_actual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos"  data-fecha_inicio="2013-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' + 1}-{$smarty.now|date_format:'%m-%d'}" data-periodicidad="todos"></div>
+        <div class="leyenda"></div>
       {/if}
       
     {else}
@@ -210,61 +213,9 @@
 
 {literal}
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script>
-  var id_indicador = $('#grafica_anual').data('id_indicador');
-  var nombre_indicador = $('#grafica_anual').data('nombre_indicador');
-  var datos_flot = [];
-  var leyenda = $(this).next(".leyenda");
-  // Pongo dos fechas de locura para que entren todas
-  var fecha_inicio = '1970-01-01';
-  var fecha_fin = new Date();
-  fecha_fin = fecha_fin.toISOString();
-
-  $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin).done(function(datos) {
-    var items = [];
-    var etiqueta_indicador;
-    $.each(datos, function(i, dato) {
-      //Queremos los totales de todas las subunidades, su id es 0, viene establecido en la api_publica
-      if(dato.id_unidad == 0)
-      {
-        items.push([dato.medicion, dato.valor]);
-      }
-    });
-    etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + id_indicador + '" target="_blank">' + nombre_indicador + '</a>';
-    datos_flot[0] = {label: etiqueta_indicador, color: 0, data: items };
-    var opciones = {
-      series: { lines: { show: true }, points: { show: true } },
-      label: { show: true },
-      legend: { container: leyenda },
-      xaxis: { tickDecimals: 0 },
-      grid: { hoverable: true },
-      colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
-    };
-    $("#grafica_anual").css("height", "200px");
-    $.plot($("#grafica_anual"), datos_flot, opciones);
-    //--------------------------------------------------
-    var previousPoint = null;
-    $("#grafica_anual").bind("plothover", function (event, pos, item) {
-      if (item) {
-        if (previousPoint != item.dataIndex) {
-          previousPoint = item.dataIndex;
-          $("#tooltip").remove();
-          var x = item.datapoint[0].toFixed(2),
-          y = item.datapoint[1].toFixed(2);
-          showTooltip(item.pageX, item.pageY, x + " - " + y + " - " + item.series.label);
-        }
-      }
-      else 
-      {
-        $("#tooltip").remove();
-        previousPoint = null;            
-      }
-    });
-    //--------------------------------------------------
-  }); 
-
   $(".panel_flot").each(function(index) {
-    var datos_flot = [];
     var id_panel = $(this).attr('id');
     var id_indicador = $(this).data('id_indicador');
     var nombre_indicador = $(this).data('nombre_indicador');
@@ -274,6 +225,7 @@
     var periodicidad = $(this).data("periodicidad");
 
     $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad).done(function(datos) {
+      var datos_flot = []; // Atención: tiene que ser siempre un array aunque sólo tenga un elemento
       var items = [];
       var etiqueta_indicador;
       $.each(datos, function(i, dato) {
@@ -282,17 +234,17 @@
           items.push([dato.periodo_fin, dato.valor]);
         }
       });
-      etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + id_indicador + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
-      datos_flot[index] = {label: etiqueta_indicador, color: index, data: items };
+      etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + id_indicador + '" target="_blank">' + nombre_indicador + '</a>';
+      datos_flot[0] = {label: etiqueta_indicador, color: index, data: items };
       var opciones = {
         series: { lines: { show: true }, points: { show: true } },
         label: { show: true },
         legend: { container: leyenda },
         xaxis: { mode: "time",
-                minTickSize: [1, "year"],
-                /* Restamos y sumamos 2 días para que la escala de tiempo esté completa*/ 
-                min: (new Date(fecha_inicio)).getTime() - 172800000,
-                max: (new Date(fecha_fin)).getTime() + 172800000  
+                minTickSize: [1, "month"],
+                /* Restamos días para ajustar la escala de tiempo */ 
+                min: (new Date(fecha_inicio)).getTime() - 2000000000, 
+                max: (new Date(fecha_fin)).getTime() - 29500000000  
                 },
         grid: { hoverable: true },
         colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']

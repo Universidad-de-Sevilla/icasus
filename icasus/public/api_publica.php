@@ -208,7 +208,6 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
-print($query);
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
