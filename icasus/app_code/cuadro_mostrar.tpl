@@ -281,7 +281,6 @@ console.log(datos_flot);
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
     var periodicidad = $(this).data("periodicidad");
-
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
       $.each(indicadores, function(index, indicador) {
         $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin, 
@@ -354,7 +353,6 @@ console.log(datos_flot);
     });
   });
  
-
   $(".panel_tarta").each(function(index) {
     var datos_flot = [];
     var total; // valor total del indicador para esta medición
@@ -503,51 +501,5 @@ console.log(datos_flot);
       }); 
     });
   });
-</script>
-<!-- CSS -->
-<style type="text/css">
-#flotcontainer {
-    width: 600px;
-    height: 200px;
-    text-align: center;
-    margin: 0 auto;
-}
-</style>
-
-<!-- Javascript -->
-<script type="text/javascript">
-var data5 = [];
-
-function DoSeries5(){
-    var data = [];
-    var start = 1364586000000;
-
-    for(i=1;i<=10;i++){                
-        data.push([start, Math.cos(i)]);
-        start+= 2900000000;
-    }
-
-    return data;
-}
-
-$(function () {    
-    data5 = DoSeries5();
-    
-    $.plot($("#flotcontainer"),
-        [
-            {data: data5}
-        ],
-        {            
-            grid: {
-                backgroundColor: { colors: ["#75A7E0", "#1F77DB"]  }
-            },
-            series: { lines: { show: true }, points: { show: true } },
-            xaxis: {
-                mode: "time"
-            }
-        }
-    );
-
-});
 </script>
 {/literal}

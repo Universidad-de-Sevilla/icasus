@@ -33,12 +33,12 @@ if (@mysql_select_db(IC_DB_DATABASE))
     $metodo = $_REQUEST["metodo"];
     if (function_exists($metodo))
     {
-      if (isset($_REQUEST["id"]) AND isset($_REQUEST["fecha_inicio"]) AND isset($_REQUEST["fecha_fin"]) AND isset($_REQUEST["periodicidad"])) 
+      if (isset($_REQUEST["id"], $_REQUEST["fecha_inicio"], $_REQUEST["fecha_fin"])) 
       {
         $id = sanitize($_REQUEST["id"],INT);
         $fecha_inicio = sanitize($_REQUEST["fecha_inicio"],SQL);
         $fecha_fin = sanitize($_REQUEST["fecha_fin"],SQL);
-        $periodicidad = sanitize($_REQUEST["periodicidad"],SQL);
+        $periodicidad = isset($_REQUEST["periodicidad"])?sanitize($_REQUEST["periodicidad"],SQL):"todos";
         $metodo($id, $fecha_inicio, $fecha_fin, $periodicidad);
       }
       else if (isset($_REQUEST["id"]))
@@ -184,6 +184,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
             'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
+
   if ($fecha_inicio > 0)
   {
     $query .= " AND mediciones.periodo_inicio >=  '$fecha_inicio'";

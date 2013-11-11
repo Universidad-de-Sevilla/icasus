@@ -72,7 +72,7 @@
 
       <fieldset class="label_side">
         <label>Cálculo</label>
-        <div><textarea  class="" name="lculo" placeholder="Sólo si es un indicador calculado"></textarea></div>
+        <div><textarea  class="" name="calculo" placeholder="Sólo si es un indicador calculado"></textarea></div>
       </fieldset>
 
 			<fieldset class="label_side">

@@ -10,6 +10,7 @@ if (
 	isset($_REQUEST['tipo_seleccion_responsable']) 
 	AND !empty($_REQUEST["codigo"]) 
 	AND !empty($_REQUEST["nombre"]) 
+	AND !empty($_REQUEST["id_responsable"]) 
 	AND !empty($_REQUEST["id_responsable_medicion"]) 
 	AND !empty($_REQUEST["id_entidad"])
 )

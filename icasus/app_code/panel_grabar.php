@@ -20,11 +20,21 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 	$panel->ancho = sanitize($_REQUEST["ancho"],SQL);
   $panel->periodicidad = isset($_REQUEST["periodicidad"])?sanitize($_REQUEST["periodicidad"],SQL):"todo";
 
+  // Cuando se trata de un año completamos meses y días para coger el año completo 
 	if (isset($_REQUEST["fecha"]))
 	{
 		$panel->fecha_inicio = $_REQUEST['fecha']."-01-01";
 		$panel->fecha_fin = $_REQUEST['fecha']."-12-31";
 	}
+
+  // Si se trata de una medición concreta cogemos las fechas de la propia medición
+  if ($panel->id_medicion > 0)
+  {
+    $medicion = new medicion();
+    $medicion->load("id = $panel->id_medicion");
+    $panel->fecha_inicio = $medicion->periodo_inicio;
+    $panel->fecha_fin = $medicion->periodo_fin;
+  }
 
 	if ($panel->save())
 	{
