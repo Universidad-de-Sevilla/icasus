@@ -1,7 +1,8 @@
 <?php
-define(IC_VERSION, "2.5.6");
-define(IC_FECHA_REVISION, "22/10/2013");
+define(IC_VERSION, "2.6.0");
+define(IC_FECHA_REVISION, "11/11/2013");
 
+// 2.6.0 - Los gráficos de los indicadores van con flot y se pintan mediciones anuales e intraanuales si las hay
 // 2.5.6 - Creación de paneles de barra mejorada
 // 2.5.5 - Cambio de los paneles de barra para que muestren subunidades, cambios en permisos sobre mediciones
 // 2.5.4 - Mejoras sustanciales en series temporales cuadros de mando

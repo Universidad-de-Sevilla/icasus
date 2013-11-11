@@ -1761,7 +1761,7 @@ DataTable
 
 .dataTables_wrapper .dataTables_filter input {
 	display: inline;
-	width: 120px !important;
+	width: 130px !important;
 	height: 28px;
 	line-height: 28px;
 }
@@ -1769,7 +1769,8 @@ DataTable
 .single_datatable .dataTables_filter input {
 	border: 0px solid #000;
 	margin-left: 5px;
-	color: #000;
+	color: #fff;
+	font-size: 14px;
 
 	-webkit-box-shadow: inset 0px 0px 2px rgba(0,0,0,0.5);
 	-moz-box-shadow: inset 0px 0px 2px rgba(0,0,0,0.5);
