@@ -198,13 +198,15 @@
       <div class="leyenda"></div>
 
       {if $indicador->periodicidad != "Anual"} 
-        <h3>Dos últimos años ({$smarty.now|date_format:'%Y' - 1}/{$smarty.now|date_format:'%Y'})</h3>
-        <div class="panel_flot" id="grafica_anio_anterior" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="2012-01-02" data-fecha_fin="{$smarty.now|date_format:'%Y' + 1}-{$smarty.now|date_format:'%m-%d'}" data-periodicidad="mensual"></div>
+        <h3>Dos últimos años ({$smarty.now|date_format:'%Y' - 1} / {$smarty.now|date_format:'%Y'})</h3>
+        <div class="panel_flot" id="grafica_anio_anterior" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 1}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="mensual"></div>
         <div class="leyenda"></div>
 
+        <!--
         <h3>Año en curso</h3>
         <div class="panel_flot" id="grafica_anio_actual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos"  data-fecha_inicio="2013-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' + 1}-{$smarty.now|date_format:'%m-%d'}" data-periodicidad="todos"></div>
         <div class="leyenda"></div>
+        -->
       {/if}
       
     {else}
@@ -223,11 +225,14 @@
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
     var periodicidad = $(this).data("periodicidad");
+    var peticion_api = "api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
+console.log(peticion_api);
 
-    $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad).done(function(datos) {
+    $.getJSON(peticion_api).done(function(datos) {
       var datos_flot = []; // Atención: tiene que ser siempre un array aunque sólo tenga un elemento
       var items = [];
       var etiqueta_indicador;
+      var escala_tiempo;
       $.each(datos, function(i, dato) {
         if(dato.id_unidad == 0)
         {
@@ -236,15 +241,16 @@
       });
       etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + id_indicador + '" target="_blank">' + nombre_indicador + '</a>';
       datos_flot[0] = {label: etiqueta_indicador, color: index, data: items };
+      escala_tiempo = (periodicidad == "anual")?"year":"month";
       var opciones = {
         series: { lines: { show: true }, points: { show: true } },
         label: { show: true },
         legend: { container: leyenda },
         xaxis: { mode: "time",
-                minTickSize: [1, "month"],
-                /* Restamos días para ajustar la escala de tiempo */ 
+                minTickSize: [1, escala_tiempo],
+                /* Restamos días para ajustar la escala gráfica de tiempo */ 
                 min: (new Date(fecha_inicio)).getTime() - 2000000000, 
-                max: (new Date(fecha_fin)).getTime() - 29500000000  
+                max: (new Date(fecha_fin)).getTime() - 2500000000  
                 },
         grid: { hoverable: true },
         colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
