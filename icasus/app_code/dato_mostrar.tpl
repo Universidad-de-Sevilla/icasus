@@ -135,10 +135,28 @@
     </div>
     
     {if $mediciones}
-      <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$dato->id}" alt="gráfica completa con los valores medios del dato" /></p>
+      <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$dato->id}" alt="gráfica completa con los valores medios del indicador" /> -->
+      <div style="background: white; padding:20px 40px; margin:10px;">
+        <h3 style="margin: 0 0 20px 0;">Histórico anual</h3>
+        <div class="panel_flot" id="grafica_anual" data-id_indicador="{$dato->id}" data-nombre_indicador="{$dato->nombre}" data-fecha_inicio="{$dato->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"></div>
+        <div class="leyenda"></div>
+      </div>
+
+      {if $dato->periodicidad != "Anual"} 
+        <div style="background: white; padding:20px 40px; margin:10px;">
+          <h3 style="margin: 0 0 20px 0;">Dos últimos años ({$smarty.now|date_format:'%Y' - 1} / {$smarty.now|date_format:'%Y'})</h3>
+          <div class="panel_flot" id="grafica_anio_anterior" data-id_indicador="{$dato->id}" data-nombre_indicador="{$dato->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 1}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="mensual"></div>
+          <div class="leyenda"></div>
+        </div>
+      {/if}
+      
     {else}
-      <p class="aviso">Todavía no se han definido mediciones para este dato.</p>
+      <p class="aviso">Todavía no se han definido mediciones para este indicador.</p>
     {/if}
     </div>
   </div><!-- toggle_container -->
 </div><!-- box grid_16 -->
+
+<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
+<script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
