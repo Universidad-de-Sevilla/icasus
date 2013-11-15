@@ -14,6 +14,8 @@ console.log(peticion_api);
     $.getJSON(peticion_api).done(function(datos) {
       var datos_flot = []; // Atención: tiene que ser siempre un array aunque sólo tenga un elemento
       var items = [];
+      var referencias = [];
+      var referencia_nombre;
       var etiqueta_indicador;
       var escala_tiempo;
       $.each(datos, function(i, dato) {
@@ -21,12 +23,29 @@ console.log(peticion_api);
         {
           items.push([dato.periodo_fin, dato.valor]);
         }
+        // Comprobamos si es valor referencia AND capturamos el nombre de esta
+        // TODO: puede haber más de una referencia
+        else if(dato.referencia == true)
+        {
+          referencias.push([dato.periodo_fin, dato.valor]);
+          referencia_nombre = dato.unidad;
+        }
       });
+
+      // Prepara los datos del indicador
       etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + id_indicador + '" target="_blank">' + nombre_indicador + '</a>';
-      datos_flot[0] = {label: etiqueta_indicador, color: index, data: items };
+      datos_flot[0] = {label: etiqueta_indicador, color: index, data: items, points: { show: true } };
+
+      // Prepara los datos de referencia
+      if (referencias.length > 0)
+      {
+        datos_flot[1] = {label: referencia_nombre, color: "green", data:referencias};
+      }
+
       escala_tiempo = (periodicidad == "anual")?"year":"month";
+
       var opciones = {
-        series: { lines: { show: true }, points: { show: true } },
+        series: { lines: { show: true }},
         label: { show: true },
         legend: { container: leyenda },
         xaxis: { mode: "time",

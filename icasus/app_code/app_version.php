@@ -1,7 +1,8 @@
 <?php
-define(IC_VERSION, "2.6.1");
-define(IC_FECHA_REVISION, "11/11/2013");
+define(IC_VERSION, "2.6.2");
+define(IC_FECHA_REVISION, "15/11/2013");
 
+// 2.6.2 - 15/11/2013 - Valores de referencia en gráficos de indicador y mediciones
 // 2.6.1 - 11/11/2013 - Faltaban los gráficos de la ficha de dato y de la de medición
 // 2.6.0 - 11/11/2013 - Los gráficos de los indicadores van con flot y se pintan mediciones anuales e intraanuales si las hay
 // 2.5.6 - Creación de paneles de barra mejorada

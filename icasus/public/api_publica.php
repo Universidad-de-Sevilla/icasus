@@ -179,8 +179,8 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     $datos[] = $registro;
   }
   // Aquí van los totales
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-            UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
+  // No hace falta: mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+  $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
             'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
@@ -213,6 +213,24 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   {
     $datos[] = $registro;
   }
+  
+  // TODO
+  // Valores de referencia: objetivos, mínimos, etc.
+  $query = "SELECT UNIX_TIMESTAMP(m.periodo_inicio)*1000 as periodo_fin, 
+            r.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia 
+            FROM valores_referencia r
+            INNER JOIN `valores_referencia_mediciones` rm ON rm.`id_valor_referencia` = r.id
+            INNER JOIN mediciones m ON rm.`id_medicion` = m.`id`
+            WHERE m.`id_indicador` = $id AND grafica = 1
+            ORDER BY periodo_inicio";
+  
+  $resultado = mysql_query($query);
+  while ($registro = mysql_fetch_assoc($resultado))
+  {
+    $datos[] = $registro;
+  }
+  
+  // Convertimos las tres 'tacadas' de datos a json y lo lanzamos a la red
   $datos = json_encode($datos);
   echo $datos;
 }
@@ -241,7 +259,7 @@ function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
     $operador = 'SUM';
   }
 
-  //Aquí van los valores de todas las subunidades
+  //Aquí van los valores de cada una de las subunidades
   $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
