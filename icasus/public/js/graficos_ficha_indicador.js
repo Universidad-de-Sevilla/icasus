@@ -23,7 +23,7 @@ console.log(peticion_api);
         {
           items.push([dato.periodo_fin, dato.valor]);
         }
-        // Comprobamos si es valor referencia AND capturamos el nombre de esta
+        // Comprobamos si es valor referencia 
         // TODO: puede haber más de una referencia
         else if(dato.referencia == true)
         {
@@ -55,7 +55,7 @@ console.log(peticion_api);
                 max: (new Date(fecha_fin)).getTime() - 2500000000  
                 },
         grid: { hoverable: true },
-        colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
+        colors: ['maroon', 'darkblue', 'orange', 'goldenrod', 'pink', 'yellow', 'brown']
       };
       $("#" + id_panel).css("height", 200 - index * 12 + "px");
       $.plot($("#" + id_panel), datos_flot, opciones);

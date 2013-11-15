@@ -132,6 +132,13 @@
               unidad = dato.unidad; //guarrerida española
               items.push([dato.periodo_fin, dato.valor]);
             }
+            // Comprobamos si es valor referencia 
+            // TODO: puede haber más de una referencia
+            else if(dato.referencia == true)
+            {
+              referencias.push([dato.periodo_fin, dato.valor]);
+              referencia_nombre = dato.unidad;
+            }
           });
           etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
           datos_flot[index] = {label: etiqueta_indicador, color: index, data: items };
