@@ -101,20 +101,18 @@
         </span>
         </div>
       </fieldset>
-      {if $tipo == "indicador"}
-        {if $valores_referencia_mediciones}
-          {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
-            <fieldset class="label_side">
-              <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-              <div><span id="referencia_{$valor_referencia_medicion->id}">
-              <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}')">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor}{/if}</a></span></div>
-            </fieldset>
-          {/foreach}
-        {else}
+      {if $valores_referencia_mediciones}
+        {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
           <fieldset class="label_side">
-            <div>No se han definido valores de referencia para este indicador</div>
+            <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+            <div><span id="referencia_{$valor_referencia_medicion->id}">
+            <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}')">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor}{/if}</a></span></div>
           </fieldset>
-        {/if}
+        {/foreach}
+      {else}
+        <fieldset class="label_side">
+          <div>No se han definido valores de referencia para este indicador</div>
+        </fieldset>
       {/if}
     {else}
       <fieldset class="label_side">
@@ -137,19 +135,17 @@
         <label>Fin grabación</label>
         <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}	</div>
       </fieldset>
-      {if $tipo == "indicador"}
-        {if $valores_referencia_mediciones}
-          {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
-            <fieldset class="label_side">
-              <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-              <div>{$valor_referencia_medicion->valor}</div>
-            </fieldset>
-          {/foreach}
-        {else}
+      {if isset($valores_referencia_mediciones)}
+        {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
           <fieldset class="label_side">
-            <div>No se han definido valores de referencia para este indicador</div>
+            <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+            <div>{$valor_referencia_medicion->valor}</div>
           </fieldset>
-        {/if}
+        {/foreach}
+      {else}
+        <fieldset class="label_side">
+          <div>No se han definido valores de referencia para este indicador</div>
+        </fieldset>
       {/if}
     {/if}
     </div>

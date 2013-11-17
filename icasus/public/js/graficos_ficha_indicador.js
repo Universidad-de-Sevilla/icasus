@@ -9,8 +9,7 @@
     var fecha_fin = $(this).data("fecha_fin");
     var periodicidad = $(this).data("periodicidad");
     var peticion_api = "api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
-console.log(peticion_api);
-
+    //console.log(peticion_api);
     $.getJSON(peticion_api).done(function(datos) {
       var datos_flot = []; // Atención: tiene que ser siempre un array aunque sólo tenga un elemento
       var items = [];
