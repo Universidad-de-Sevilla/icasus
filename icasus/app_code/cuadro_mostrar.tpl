@@ -116,6 +116,7 @@
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
     var periodicidad = $(this).data("periodicidad");
+    var indice = 0; //Lo he puesto a mano porque no se como evitar el problema con el index del each para agregar las referencias cuando existan
 
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function(indicadores) {
       $.each(indicadores, function(index, indicador) {
@@ -123,6 +124,8 @@
                                   "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + 
                                   "&periodicidad=" + periodicidad).done(function(datos) {
           var items = [];
+          var referencias = [];
+          var referencia_nombre;
           var unidad;
           var etiqueta_indicador;
           var id_entidad = indicador.id_entidad;
@@ -132,11 +135,25 @@
               unidad = dato.unidad; //guarrerida española
               items.push([dato.periodo_fin, dato.valor]);
             }
+            // Comprobamos si es valor referencia 
+            // TODO: puede haber más de una referencia
+            else if(dato.referencia == true)
+            {
+              referencias.push([dato.periodo_fin, dato.valor]);
+              referencia_nombre = dato.unidad;
+            }
           });
           etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
-          datos_flot[index] = {label: etiqueta_indicador, color: index, data: items };
+          datos_flot[indice] = {label: etiqueta_indicador, color: index, data: items, points: { show: true } };
+          indice ++;
+          // Prepara los datos de referencia
+          if (referencias.length > 0)
+          {
+            datos_flot[indice] = {label: referencia_nombre, color: "green", data:referencias};
+            indice ++;
+          }
           var opciones = {
-            series: { lines: { show: true }, points: { show: true } },
+            series: { lines: { show: true }},
             label: { show: true },
             legend: { container: leyenda },
             xaxis: { mode: "time",
@@ -146,8 +163,9 @@
                     max: (new Date(fecha_fin)).getTime() + 172800000  
                     },
             grid: { hoverable: true },
-            colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
+            colors: ['maroon', 'darkblue', 'orange', 'goldenrod', 'pink', 'yellow', 'brown']
           };
+          console.log(datos_flot);
           $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
           $.plot($("#panel_" + id_panel), datos_flot, opciones);
 
@@ -243,7 +261,7 @@
               points:{ show: true }};
           }
 
-console.log(datos_flot);
+          console.log(datos_flot);
           $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
           $.plot($("#panel_" + id_panel), datos_flot,  opciones );
 

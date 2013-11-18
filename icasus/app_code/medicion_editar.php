@@ -68,8 +68,24 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
   $smarty->assign("valores",$valores);
   
   $valor_referencia_medicion = new valor_referencia_medicion();
-  $valores_referencia_mediciones = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion");
-  $smarty->assign("valores_referencia_mediciones", $valores_referencia_mediciones);
+  $valor_referencia = new valor_referencia();
+  if ($valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion"))
+  {
+    $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
+  }
+  // Si hay valores de referencia pero no se han definido en esta medición los creamos
+  elseif ($valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id"))
+  {
+    foreach($valores_referencia as& $valor_referencia)
+    {
+      $valor_referencia_medicion = new valor_referencia_medicion();
+      $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
+      $valor_referencia_medicion->id_medicion = $id_medicion;
+      $valor_referencia_medicion->save();
+    }
+    $valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion");
+    $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
+  }
 
 	$indisub = new indicador_subunidad();
 	$indicador_subunidades = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
@@ -78,7 +94,6 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
   $entidad = new entidad();
   $entidad->load("id = $indicador->id_entidad");
   $smarty->assign('entidad', $entidad);
-  
   
   $smarty->assign("usuario", $usuario);
   $smarty->assign("_nombre_pagina", "Medición $medicion->etiqueta - $indicador->nombre");
@@ -91,4 +106,3 @@ else
   header("location:index.php?error=$error");
 }
 ?>
-

@@ -9,8 +9,7 @@
     var fecha_fin = $(this).data("fecha_fin");
     var periodicidad = $(this).data("periodicidad");
     var peticion_api = "api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
-console.log(peticion_api);
-
+    //console.log(peticion_api);
     $.getJSON(peticion_api).done(function(datos) {
       var datos_flot = []; // Atención: tiene que ser siempre un array aunque sólo tenga un elemento
       var items = [];
@@ -23,7 +22,7 @@ console.log(peticion_api);
         {
           items.push([dato.periodo_fin, dato.valor]);
         }
-        // Comprobamos si es valor referencia AND capturamos el nombre de esta
+        // Comprobamos si es valor referencia 
         // TODO: puede haber más de una referencia
         else if(dato.referencia == true)
         {
@@ -52,10 +51,10 @@ console.log(peticion_api);
                 minTickSize: [1, escala_tiempo],
                 /* Restamos días para ajustar la escala gráfica de tiempo */ 
                 min: (new Date(fecha_inicio)).getTime() - 2000000000, 
-                max: (new Date(fecha_fin)).getTime() - 2500000000  
+                max: (new Date(fecha_fin)).getTime() + 2500000000  
                 },
         grid: { hoverable: true },
-        colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
+        colors: ['maroon', 'darkblue', 'orange', 'goldenrod', 'pink', 'yellow', 'brown']
       };
       $("#" + id_panel).css("height", 200 - index * 12 + "px");
       $.plot($("#" + id_panel), datos_flot, opciones);

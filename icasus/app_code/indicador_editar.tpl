@@ -191,6 +191,7 @@
             <option value="0" {if $indicador->id_tipo_agregacion == 0}selected{/if}>Indefinido</option>
             <option value="1" {if $indicador->id_tipo_agregacion == 1}selected{/if}>Promedio</option>
             <option value="2" {if $indicador->id_tipo_agregacion == 2}selected{/if}>Suma</option>
+            <option value="3" {if $indicador->id_tipo_agregacion == 3}selected{/if}>Máximo</option>
           </select>
         </div>
       </fieldset>
