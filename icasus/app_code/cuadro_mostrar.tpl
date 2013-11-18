@@ -149,7 +149,7 @@
           // Prepara los datos de referencia
           if (referencias.length > 0)
           {
-            datos_flot[indice] = {label: referencia_nombre, color: "green", data:referencias};
+            datos_flot[indice] = {label: referencia_nombre, color: "green", data:referencias, points: { show: true }};
             indice ++;
           }
           var opciones = {
