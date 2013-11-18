@@ -101,8 +101,8 @@
         </span>
         </div>
       </fieldset>
-      {if $valores_referencia_mediciones}
-        {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
+      {if $valores_referencia_medicion}
+        {foreach $valores_referencia_medicion as $valor_referencia_medicion}
           <fieldset class="label_side">
             <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
             <div><span id="referencia_{$valor_referencia_medicion->id}">
@@ -135,8 +135,8 @@
         <label>Fin grabación</label>
         <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}	</div>
       </fieldset>
-      {if isset($valores_referencia_mediciones)}
-        {foreach $valores_referencia_mediciones as $valor_referencia_medicion}
+      {if $valores_referencia_medicion}
+        {foreach $valores_referencia_medicion as $valor_referencia_medicion}
           <fieldset class="label_side">
             <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
             <div>{$valor_referencia_medicion->valor}</div>

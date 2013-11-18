@@ -51,7 +51,7 @@
                 minTickSize: [1, escala_tiempo],
                 /* Restamos días para ajustar la escala gráfica de tiempo */ 
                 min: (new Date(fecha_inicio)).getTime() - 2000000000, 
-                max: (new Date(fecha_fin)).getTime() - 2500000000  
+                max: (new Date(fecha_fin)).getTime() + 2500000000  
                 },
         grid: { hoverable: true },
         colors: ['maroon', 'darkblue', 'orange', 'goldenrod', 'pink', 'yellow', 'brown']

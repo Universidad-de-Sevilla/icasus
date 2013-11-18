@@ -69,20 +69,22 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
   
   $valor_referencia_medicion = new valor_referencia_medicion();
   $valor_referencia = new valor_referencia();
-  if ($valores_referencia_mediciones = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion"))
+  if ($valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion"))
   {
-    $smarty->assign("valores_referencia_mediciones", $valores_referencia_mediciones);
+    $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
   }
   // Si hay valores de referencia pero no se han definido en esta medición los creamos
-  elseif ($referencias = $valor_referencia->Find("id_indicador = $indicador->id"))
+  elseif ($valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id"))
   {
-    foreach($referencias as& $referencia)
+    foreach($valores_referencia as& $valor_referencia)
     {
-      $valor_referencia_medicion->id_valor_referencia = $referencia->id;
+      $valor_referencia_medicion = new valor_referencia_medicion();
+      $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
       $valor_referencia_medicion->id_medicion = $id_medicion;
-      $valor_referencia->save();
+      $valor_referencia_medicion->save();
     }
-    $smarty->assign("valores_referencia_mediciones", $referencias);
+    $valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion");
+    $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
   }
 
 	$indisub = new indicador_subunidad();
