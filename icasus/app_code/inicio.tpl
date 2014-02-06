@@ -45,7 +45,6 @@
        <tr>  
         <th>Código</th>
         <th>Nombre</th>
-        <th>Pendientes</th>
        </tr> 
       </thead> 
         <tbody>
@@ -53,9 +52,6 @@
             <tr class="gradeX">
               <td>{$indicador->codigo}</td>
               <td><a href="index.php?page=indicador_mostrar&id_indicador={$indicador->id}">{$indicador->nombre}</a></td>
-              <td>
-                No implementado aún
-              </td>
             </tr>
           {/foreach}  
         </tbody>
