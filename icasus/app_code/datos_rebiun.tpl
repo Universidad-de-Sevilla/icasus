@@ -1,13 +1,11 @@
 <style>
-  table.static tbody tr td input 
-  {
-    margin: 0.3em;
-    height: 1.5em;
-    line-height: 1.2em;
-    float: none;
-  }
+table.static tbody tr td input {
+  margin: 10px 0;
+  height: 20px;
+  line-height: 20px;
+  float:none;
+}
 </style>
-
 <form name="datos_directos" id="datos_directos" action="index.php?page=datos_rebiun_grabar" method="post" class="validate_form">
   <input type="hidden" name="id_usuario" value="{$id_usuario}" />
 	<div style="opacity: 1;" class="box tabs" id="tab_entidades">
@@ -22,13 +20,16 @@
           <tbody>
           {foreach $entidad->valores as $valor}
             <tr>
-              <td>{$valor->indicador->nombre} ({$valor->medicion->etiqueta})</td>
               <td>
-                <input type="input" name="valor" id="valor" class="entrada_valor number" 
-                  value="{$valor->valor_parcial}"
-                  data-id_valor = "{$valor->id}"
-                  data-id_entidad = "{$entidad->id}"
-                  data-id_usuario = "{$id_usuario}" />
+                  <input type="input" name="valor" id="valor" class="entrada_valor number" 
+                    value="{$valor->valor_parcial}"
+                    data-id_valor = "{$valor->id}"
+                    data-id_entidad = "{$entidad->id}"
+                    data-id_usuario = "{$id_usuario}"  
+                    style="width:40px;" />
+              </td>
+              <td><b>{$valor->indicador->nombre}</b> ({$valor->medicion->etiqueta})
+              <br><span style="font-size:0.9em;">{$valor->indicador->descripcion|htmlentities}</span>
               </td>
             </tr>
           {/foreach}

@@ -42,7 +42,7 @@
 				</div>
 			</fieldset>	
 			<fieldset class="label_side">
-				<label>Pueto de trabajo</label>
+				<label>Puesto de trabajo</label>
 				<div class="clearfix">
 						<span>{$persona->puesto}</span>
 				</div>
