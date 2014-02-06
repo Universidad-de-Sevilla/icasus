@@ -38,7 +38,7 @@
       // Prepara los datos de referencia
       if (referencias.length > 0)
       {
-        datos_flot[1] = {label: referencia_nombre, color: "green", data:referencias};
+        datos_flot[1] = {label: referencia_nombre, color: "green", data:referencias, points: { show: true }};
       }
 
       escala_tiempo = (periodicidad == "anual")?"year":"month";
