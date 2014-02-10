@@ -3,6 +3,8 @@
   src='/icons/ff16/chart_curve_add.png' alt='icono' />Crear indicador</a> &nbsp; &nbsp;
   <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
   src='/icons/ff16/table.png' />Listar Datos</a> &nbsp; &nbsp;
+  {if $entidad->id == 14}<a href='index.php?page=datos_rebiun'><img 
+  src='/icons/ff16/basket.png' />Recogida Datos Rebiun</a> &nbsp; &nbsp;{/if}
   <!--
   <a href='index.php?page=entidad_indicadores_excel&id_entidad={$entidad->id}'><img 
   src='/icons/ff16/page_excel.png' alt='icono' />Exportar indicadores</a>&nbsp; &nbsp;
