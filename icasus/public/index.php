@@ -1,11 +1,11 @@
 <?php 
-//---------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
 // Archivo: index.php
 // Desarrolladores: Juanan Ruiz <juanan@us.es>, Jesús Martin <jjmc@us.es>
-//---------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 // Descripcion: Esta es la página que carga a todas las demas en su seno maternal 
-//---------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 // Esto es para que se vean los errores
 ini_set('display_errors', '1');
 error_reporting(E_ALL);
@@ -30,8 +30,13 @@ function __autoload($class_name)
 // Conectamos a los datos con ADODB y ActiveRecord 
 $adodb = NewADOConnection('mysql://'.IC_DB_LOGIN.':'.IC_DB_CLAVE.'@'.IC_DB_HOST.'/'.IC_DB_DATABASE);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
+
 // No podemos usarlo hasta que no esté Icasus en utf8
 //$adodb->Execute("SET NAMES UTF8");
+
+date_default_timezone_set('Europe/Madrid');
+setlocale(LC_ALL, 'es-ES');
+
 
 // Variables globales
 $smarty = new Smarty();

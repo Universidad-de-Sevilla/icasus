@@ -1,15 +1,15 @@
 <?php
-//---------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: datos_rebiun.php
-//---------------------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 global $smarty;
 global $usuario;
 global $plantilla;
 
 define('ENTIDAD_MADRE', 14);
-define('MEDICIONES', '(819,977,978,979,980,981,982,983,984)');
+define('MEDICIONES', '(1506,1507,1508,1474,1471,1515,1485,1482,1541,1501,1504)');
 $entidades_autorizadas = array();
 
 $entidad = new entidad();
@@ -19,12 +19,12 @@ $subentidades = $entidad->Find("id_madre = ". ENTIDAD_MADRE);
 foreach($usuario->entidades as $usuario_entidad)
 {
   //Solamente entro en aquellas en las que es responsable 
-  if($usuario_entidad->id_rol == 1)
+  if($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2)
   {
     //Recorre las subunidades de la unidad ENTIDAD_MADRE
     foreach($subentidades as $subentidad)
     {
-      print_r($usuario_entidad->id_entidad . "-" . $subentidad->id . "\r");
+      //print_r($usuario_entidad->id_entidad . "-" . $subentidad->id . "\r");
       // Comprueba si el usuario es miembro de la subunidad actual 
       if($usuario_entidad->id_entidad == $subentidad->id)
       {
