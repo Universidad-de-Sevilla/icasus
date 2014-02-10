@@ -29,7 +29,7 @@ table.static tbody tr td input {
                     style="width:40px;" />
               </td>
               <td><b>{$valor->indicador->nombre}</b> ({$valor->medicion->etiqueta})
-              <br><span style="font-size:0.9em;">{$valor->indicador->descripcion|htmlentities}</span>
+              <br><span style="font-size:0.9em;">{$valor->indicador->descripcion}</span>
               </td>
             </tr>
           {/foreach}
