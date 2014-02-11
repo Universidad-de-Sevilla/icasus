@@ -13,6 +13,10 @@ define('MEDICIONES', '(1649,1648,1508,1474,1471,1515,1482,1541,1646,1647,1686)')
 $entidades_autorizadas = array();
 
 $entidad = new entidad();
+// Para no perder la pista de la unidad actual
+$entidad->load("id = 14");
+$smarty->assign('entidad', $entidad);
+
 $subentidades = $entidad->Find("id_madre = ". ENTIDAD_MADRE);
 
 // Recorre las unidades que tiene asignadas el usuario para encontrar las que tiene con rol de responsable
