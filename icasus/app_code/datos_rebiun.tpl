@@ -6,6 +6,9 @@ table.static tbody tr td input {
   float:none;
 }
 </style>
+<div class="button_bar clearfix">
+  <a href="index.php?page=dato_listar&id_entidad=14">Volver a la lista de datos</a>
+</div>
 <form name="datos_directos" id="datos_directos" action="index.php?page=datos_rebiun_grabar" method="post" class="validate_form">
   <input type="hidden" name="id_usuario" value="{$id_usuario}" />
 	<div style="opacity: 1;" class="box tabs" id="tab_entidades">
@@ -38,7 +41,7 @@ table.static tbody tr td input {
       </div><!-- fin div entidad->etiqueta -->
     {/foreach}
 			<div class="button_bar clearfix" id="footer_tabs">
-        <button class="dark send_right img_icon has_text" type="button"><a href="index.php?page=inicio" style="color:white;"><span>Salir</span></a></button>
+        <a href="index.php?page=dato_listar&id_entidad=14">Volver a la lista de datos</a>
 			</div>
 	</div><!--fin #tab_entidades -->
 </form>
