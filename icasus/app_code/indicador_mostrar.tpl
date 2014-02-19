@@ -119,11 +119,15 @@
           <fieldset class="label_side">
             <label>Criterios EFQM</label>
             <div>
+              {if is_array($indicador->criterios_efqm)}
               <ul>
                 {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
                   <li>{$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}</li>
                 {/foreach}
               </ul>
+              {else}
+                No se han definido
+              {/if}
             </div>
           </fieldset>
         </div>

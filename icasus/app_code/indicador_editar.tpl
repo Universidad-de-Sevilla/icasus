@@ -184,14 +184,13 @@
 				</div>
 			</fieldset>
 
-      <fieldset class="label_side" id="total" style="display:{if $dato->desagregado == 0}none{else}block{/if}">
+      <fieldset class="label_side" id="total" style="display:{if $indicador->desagregado == 0}none{else}block{/if}">
         <label>Cálculo del total</label>
         <div>
           <select name="id_tipo_agregacion" id="id_tipo_agregacion">
-            <option value="0" {if $indicador->id_tipo_agregacion == 0}selected{/if}>Indefinido</option>
-            <option value="1" {if $indicador->id_tipo_agregacion == 1}selected{/if}>Promedio</option>
-            <option value="2" {if $indicador->id_tipo_agregacion == 2}selected{/if}>Suma</option>
-            <option value="3" {if $indicador->id_tipo_agregacion == 3}selected{/if}>Máximo</option>
+            {foreach $tipos_agregacion as $tipo_agregacion}
+              <option value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+            {/foreach}
           </select>
         </div>
       </fieldset>
@@ -226,6 +225,7 @@
 	 	</div><!-- fin tab subunidades afectadas --> 
 </div>
 </form>
+
 {literal}
 <script>
 $(document).ready(function(){

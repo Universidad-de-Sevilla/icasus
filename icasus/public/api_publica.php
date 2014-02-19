@@ -123,7 +123,8 @@ function get_subunidades_indicador($id)
 function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todo")
 {
   // Preparamos el tipo de operador que vamos a usar para calcular totales y agrupados
-  $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
+  // También cogemos el id de la entidad para devolver la mediana (mediana con trampa que se coge directamente de la unidad madre)
+  $query = "SELECT tipo_agregacion.operador as operador, indicadores.id_entidad as id_entidad FROM tipo_agregacion
             INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
             WHERE indicadores.id = $id";
   if ($resultado = mysql_query($query))
@@ -131,6 +132,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     if ($registro = mysql_fetch_assoc($resultado))
     {
       $operador = $registro['operador'];
+      $id_entidad = $registro['id_entidad'];
     }
     else
     {
@@ -180,11 +182,21 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   }
   // Aquí van los totales
   // No hace falta: mediciones.id as id_medicion, mediciones.etiqueta as medicion,
-  $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
+  // Si el operador de agregado es 'mediana' cogemos del tirón los valores de la unidad madre
+  if ($operador == 'MEDIANA')
+  {
+    $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
+            'Total' as unidad, 0 as id_unidad, valores.valor as valor 
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            WHERE valores.id_entidad = $id_entidad AND mediciones.id_indicador = $id AND valor IS NOT NULL";
+  }
+  else
+  {
+    $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
             'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
-
+  } 
   if ($fecha_inicio > 0)
   {
     $query .= " AND mediciones.periodo_inicio >=  '$fecha_inicio'";
@@ -208,6 +220,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
+
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {

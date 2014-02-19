@@ -51,7 +51,7 @@
           {foreach $indicadores as $indicador}
             <tr class="gradeX">
               <td>{$indicador->codigo}</td>
-              <td><a href="index.php?page=indicador_mostrar&id_indicador={$indicador->id}">{$indicador->nombre}</a></td>
+              <td><a href="index.php?page={if $indicador->id_proceso > 0}indicador{else}dato{/if}_mostrar&id_{if $indicador->id_proceso > 0}indicador{else}dato{/if}={$indicador->id}">{$indicador->nombre}</a></td>
             </tr>
           {/foreach}  
         </tbody>
@@ -78,10 +78,10 @@
            {foreach $mediciones_usuario as $medicion_usuario}
             <tr class="gradeX">
               <td>{$medicion_usuario->codigo}</td>
-              <td><a href="index.php?page=indicador_mostrar&id_indicador={$medicion_usuario->id}">{$medicion_usuario->nombre}</a></td>
+              <td><a href="index.php?page={if $medicion_usuario->id_proceso > 0}indicador{else}dato{/if}_mostrar&id_{if $medicion_usuario->id_proceso > 0}indicador{else}dato{/if}={$medicion_usuario->id}">{$medicion_usuario->nombre}</a></td>
               <td>{$medicion_usuario->valores_pendientes}
                   {if $medicion_usuario->valores_pendientes > 0}
-                   | <a href="index.php?page=medicion_listar&id_indicador={$medicion_usuario->id}&id_entidad={$medicion_usuario->id_entidad}">grabar</a>
+                   | <a href="index.php?page=medicion_listar&id_{if $medicion_usuario->id_proceso > 0}indicador{else}dato{/if}={$medicion_usuario->id}&id_entidad={$medicion_usuario->id_entidad}">grabar</a>
                   {/if}
               </td>
             </tr>

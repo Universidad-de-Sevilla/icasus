@@ -39,7 +39,7 @@ if (isset($_REQUEST['id_indicador']))
   $mediciones = $medicion->Find("id_indicador = $id_indicador");
   $smarty->assign("mediciones", $mediciones);
   
-	$smarty->assign('_nombre_pagina', "Datos del indicador: " . $indicador->nombre); 
+	$smarty->assign('_nombre_pagina', "Ficha del indicador: " . $indicador->nombre); 
 	$plantilla = 'indicador_mostrar.tpl';
 }
 else

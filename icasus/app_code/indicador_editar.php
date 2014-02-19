@@ -1,10 +1,10 @@
 <?php
-//---------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: indicador_editar.php
-//---------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 // Descripcion: Formulario para modificar los datos de un indicador
-//---------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------
 
 global $smarty;
 global $usuario;
@@ -40,6 +40,11 @@ if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']))
     $visibilidad = new visibilidad;
     $visibilidades = $visibilidad->Find("1=1");
     $smarty->assign("visibilidades", $visibilidades);
+
+    $tipo_agregacion = new tipo_agregacion();
+    $tipos_agregacion = $tipo_agregacion->Find("true ORDER BY id");
+    $smarty->assign("tipos_agregacion", $tipos_agregacion);
+
 
 		$usuario_entidad = new usuario_entidad();
     $usuarios_entidades = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
