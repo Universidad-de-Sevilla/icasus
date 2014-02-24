@@ -206,7 +206,9 @@
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
 
       $.each(indicadores, function(index, indicador) {
-        $.getJSON("api_publica.php?metodo=get_valores_indicador_agrupado&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad, function(datos) {
+        var url = "api_publica.php?metodo=get_valores_indicador_agrupado&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
+        console.log(url);
+        $.getJSON(url, function(datos) {
           var items = []; // valores que hay que pintar en la gráfica
           var unidades = []; //array con las subunidades que vienen en los datos para pintar el eje X
           var total; // valor medio o suma de todas las subunidades
