@@ -1,7 +1,8 @@
 <?php
-define(IC_VERSION, "2.6.3");
-define(IC_FECHA_REVISION, "18/11/2013");
+define(IC_VERSION, "2.6.4");
+define(IC_FECHA_REVISION, "24/02/2014");
 
+// 2.6.4 - 24/02/2014 - Falso cálculo de mediana y algún errorcillo suelto
 // 2.6.3 - 18/11/2013 - Valores de referencia en cuadros de mando
 // 2.6.2 - 15/11/2013 - Valores de referencia en gráficos de indicador y mediciones
 // 2.6.1 - 11/11/2013 - Faltaban los gráficos de la ficha de dato y de la de medición

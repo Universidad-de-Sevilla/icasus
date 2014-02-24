@@ -318,7 +318,7 @@ function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
 // Se usa en cuadro_mostrar para los gráficos de barra
 function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad="todo")
 {
-  $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
+  $query = "SELECT tipo_agregacion.operador as operador, indicadores.id_entidad as id_entidad FROM tipo_agregacion
             INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
             WHERE indicadores.id = $id";
   if ($resultado = mysql_query($query))
@@ -326,6 +326,7 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
     if ($registro = mysql_fetch_assoc($resultado))
     {
       $operador = $registro['operador'];
+      $id_entidad = $registro['id_entidad'];
     }
     else
     {
@@ -371,9 +372,19 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
     $datos[] = $registro;
   }
   // Aquí van los totales
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
+  if ($operador == 'MEDIANA')
+  {
+    $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad,  valores.valor
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            WHERE mediciones.id_indicador = $id AND id_entidad = $id_entidad AND valor IS NOT NULL"; 
+  }
+  else
+  {
+    $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
+  }
+
   if ($fecha_inicio > 0)
   {
     $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
@@ -396,7 +407,7 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
     // Funcionará mientras icasus no tenga mediciones intradiarias
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
-  //$query .= " GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
+
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
