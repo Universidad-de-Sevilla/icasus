@@ -220,7 +220,7 @@
             if (dato.unidad != "Total")
             {
               items.push([i, dato.valor]);
-              unidades.push([i, dato.unidad.substring(0,8)]);
+              unidades.push([i, dato.etiqueta_mini]);
             }
             else
             {
@@ -294,85 +294,6 @@
     });
   });
 
-  $(".panel_barra_antigua").each(function(index) {
-    var datos_flot = [];
-    var id_panel = $(this).data("idpanel");
-    var leyenda = $(this).next(".leyenda");
-    var fecha_inicio = $(this).data("fecha_inicio");
-    var fecha_fin = $(this).data("fecha_fin");
-    var periodicidad = $(this).data("periodicidad");
-    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
-      $.each(indicadores, function(index, indicador) {
-        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin, 
-        function(datos) {
-          var items = [];
-          var unidad;
-          var etiqueta_indicador;
-          var serie_tipo;
-          var id_entidad = indicador.id_entidad;
-          
-          // Recorre los datos que vienen de la api y los mete en el array items 
-          // si son de la entidad seleccionada para este indicador
-          $.each(datos, function(i, dato) {
-            if(dato.id_unidad == id_entidad)
-            {
-              var medicion = dato.medicion;
-              unidad = dato.unidad; //guarrerida española
-              items.push([dato.periodo_fin, dato.valor]);
-            }
-          });
-          etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a> (' + unidad + ')';
-          // Si el tipo de serie es 4 se trata de una línea con puntos
-          if (indicador.id_serietipo == 4 || id_entidad == 0)
-          {
-            datos_flot[index] = { label: etiqueta_indicador, color: index, data: items, 
-              lines:{ show: true }, points:{ show: true }};
-          }
-          else // por defecto ponemos una barra
-          {
-            datos_flot[index] = { label: etiqueta_indicador, color: index, data: items, 
-              bars: { show: true, order: 1, barWidth: 1, fill: 0.8, align:'center', horizontal: false }};
-          }
-
-          var opciones = {
-            legend: { container: leyenda },
-            xaxis: { mode: "time",
-					           minTickSize: [1, "year"],
-                     /* Restamos y sumamos 2 días para que la escala de tiempo esté completa*/ 
-                     min: (new Date(fecha_inicio)).getTime() - 172800000,
-                     max: (new Date(fecha_fin)).getTime() + 172800000  
-                    },
-            grid: { hoverable: true },
-            colors: ['maroon', 'darkolivegreen', 'orange', 'DarkKhaki', 'pink', 'yellow', 'green', 'brown']
-          };
-          $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
-          $.plot($("#panel_" + id_panel), datos_flot,  opciones );
-
-          // Pinta el tooltip cuando pasamos el cursor sobre un punto de la gráfica
-          var previousPoint = null;
-          $("#panel_" + id_panel).bind("plothover", function (event, pos, item) {
-            if (item) {
-              if (previousPoint != item.dataIndex) {
-                previousPoint = item.dataIndex;
-                $("#tooltip").remove();
-                var x = item.datapoint[0].toFixed(2),
-                y = item.datapoint[1].toFixed(2),
-                z = item.datapoint[0];
-                var fecha = (new Date(z)).getDate() + "/" + (new Date(z)).getMonth() + "/" + (new Date(z)).getFullYear();
-                showTooltip(item.pageX, item.pageY, fecha  + " - " + y + " - " + item.series.label);
-              }
-            }
-            else 
-            {
-              $("#tooltip").remove();
-              previousPoint = null;            
-				    }
-          }); // termina código para tooltip
-        }); //fin llamada api get_valores_indicador
-      });
-    });
-  });
- 
   $(".panel_tarta").each(function(index) {
     var datos_flot = [];
     var total; // valor total del indicador para esta medición

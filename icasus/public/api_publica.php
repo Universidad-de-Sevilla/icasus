@@ -101,10 +101,10 @@ function get_mediciones_indicador($id)
 // Se utiliza en consulta_avanzada
 function get_subunidades_indicador($id)
 {
-  $query = "SELECT entidades.id, entidades.etiqueta, entidades.nombre 
+  $query = "SELECT entidades.id, entidades.etiqueta, entidades.nombre, entidades.etiqueta_mini as etiqueta_mini
             FROM entidades INNER JOIN indicadores_subunidades ON entidades.id = indicadores_subunidades.id_entidad
             WHERE indicadores_subunidades.id_indicador = $id 
-            ORDER BY entidades.etiqueta"; 
+            ORDER BY entidades.orden"; 
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
@@ -147,7 +147,8 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   // Devuelve los valores recogidos para todas las subunidades
   // mediciones.id as id_medicion, mediciones.etiqueta as medicion,
   $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
-            entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
+            entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, 
+            entidades.etiqueta_mini as etiqueta_mini
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL"; 
@@ -273,7 +274,9 @@ function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
   }
 
   //Aquí van los valores de cada una de las subunidades
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+            entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
+            entidades.etiqueta_mini as etiqueta_mini
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL"; 
@@ -339,10 +342,12 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
   }
 
   //Aquí van los valores de todas las subunidades
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+            entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
+            entidades.etiqueta_mini as etiqueta_mini
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
-            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL"; 
+            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
   if ($fecha_inicio > 0)
   {
     $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
@@ -353,18 +358,19 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
   }
   if ($periodicidad == "anual")
   {
-    $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio)";
+    $query .= " GROUP BY id_unidad, etiqueta_mini, YEAR(mediciones.periodo_inicio)";
   }
   else if ($periodicidad == "mensual")
   {
-    $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
+    $query .= " GROUP BY id_unidad, etiqueta_mini, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
   }
   else if ($periodicidad == "todos")
   {
     // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
     // Funcionará mientras icasus no tenga mediciones intradiarias
-    $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+    $query .= " GROUP BY id_unidad, etiqueta_mini, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
+  $query .= " ORDER BY entidades.orden"; 
   $resultado = mysql_query($query);
 
   while ($registro = mysql_fetch_assoc($resultado))
@@ -478,7 +484,9 @@ function get_valores_medicion($id_medicion)
     $operador = 'SUM';
   }
 
-  $query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor
+  $query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, 
+            entidades.id as id_unidad, valores.valor,
+            entidades.etiqueta_mini as etiqueta_mini
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             INNER JOIN entidades ON entidades.id = valores.id_entidad
             WHERE mediciones.id = $id_medicion AND valor IS NOT NULL
