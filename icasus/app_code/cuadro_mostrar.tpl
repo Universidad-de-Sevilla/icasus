@@ -220,7 +220,7 @@
             if (dato.unidad != "Total")
             {
               items.push([i, dato.valor]);
-              unidades.push([i, dato.etiqueta_mini.substring(0,11)]);
+              unidades.push([i, dato.etiqueta_mini]);
             }
             else
             {
