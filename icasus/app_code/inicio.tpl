@@ -12,7 +12,7 @@
             <td><a href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'>{$entidad->entidad->nombre}</a></td>
             <td>{$entidad->rol->nombre}</td>
             <td>
-              <a href='index.php?page=cuadrounidad&id_entidad={$entidad->entidad->id}'> Cuadro resumen</a> - 
+              <a href='index.php?page=cuadro_unidad&id_entidad={$entidad->entidad->id}'> Cuadro resumen</a> - 
               <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'> Consultas</a> -
               <a href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'> Procesos</a> -
               <a href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'>Indicadores</a> - 
