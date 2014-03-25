@@ -394,6 +394,79 @@
     });
   });
 
+  $(".panel_tabla_multi_old").each(function(index) {
+    var datos_flot = [];
+    var fecha_inicio = $(this).attr("data-fecha_inicio");
+    var fecha_fin = $(this).attr("data-fecha_fin");
+    var id_panel = $(this).data("idpanel");
+    var leyenda = $(this).next('.leyenda');
+
+    leyenda.insertBefore($(this));
+    leyenda.html('<h4>Poner algo aquí</h4>');
+    var items = [];
+    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
+      items.push('<tr><th></th><th>2010</th><th>2011</th></tr>');
+      // Recorremos los indicadores asociados al panel
+      // y vamos pidiendo los datos a la API
+      $.each(indicadores, function (i, indicador) {
+        var paridad;
+        var apiUrl;
+        var id_entidad = indicador.id_entidad;
+        if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
+        items.push('<tr class="' + paridad + '"><td>' + indicador.nombre + '</td><td></td></tr>');
+
+        apiUrl = "api_publica.php?metodo=get_valores_indicador_por_fecha&id=" 
+              + indicador.id + "&id_entidad=" + id_entidad + "&fecha_inicio=" 
+              + fecha_inicio + "&fecha_fin=" + fecha_fin;
+
+        $.getJSON(apiUrl, function(datos) {
+          items.push('<tr>');
+          $.each(datos, function(j, dato) {
+            items.push('<td>' + dato.valor + '</td>');
+          });
+          items.push('</tr>');
+        });
+      }); 
+    });
+    console.log(items);
+    $('<table />', {'class': 'static', 
+                    html: items.join('')
+                   }).appendTo('#panel_' + id_panel);
+  });
+
+  $(".panel_tabla_multi").each(function(index) {
+    var datos_flot = [];
+    var fecha_inicio = $(this).attr("data-fecha_inicio");
+    var fecha_fin = $(this).attr("data-fecha_fin");
+    var id_panel = $(this).data("idpanel");
+    var leyenda = $(this).next('.leyenda');
+
+    leyenda.insertBefore($(this));
+    leyenda.html('<h4>Poner algo aquí</h4>');
+    var htmlTabla = "";
+    htmlTabla = "<tr><th></th><th>2010</th><th>2011</th></tr>');
+    var apiUrl = "api_publica.php?metodo=get_indicadores_panel_con_datos&id=" + id_panel 
+              + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin;
+    
+    console.log(apiURL);
+    $.getJSON(apiUrl, function(indicadores) {
+      $.each(indicadores, function (i, indicador) {
+        var paridad;
+        if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
+        items.push('<tr class="' + paridad + '"><td>' + indicador.nombre + '</td><td></td></tr>');
+        $.each(indicador.datos, function(j, dato) {
+          items.push('<td>' + dato.valor + '</td>');
+        });
+        items.push('</tr>');
+      }); 
+    }); 
+  });
+  console.log(items);
+  $('<table />', {'class': 'static', 
+                  html: items.join('')
+                 }).appendTo('#panel_' + id_panel);
+  });
+
 
   $(".panel_metrica").each(function(index) {
     var datos_flot = [];
