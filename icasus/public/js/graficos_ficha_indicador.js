@@ -66,8 +66,7 @@
           if (previousPoint != item.dataIndex) {
             previousPoint = item.dataIndex;
             $("#tooltip").remove();
-            var x = item.datapoint[0].toFixed(2),
-            y = item.datapoint[1].toFixed(2),
+            var y = item.datapoint[1].toFixed(2),
             fecha = new Date(item.datapoint[0]),
             fecha_espania = fecha.getDate() + "/" + (fecha.getMonth()+1) + "/" + fecha.getFullYear();
             showTooltip(item.pageX, item.pageY, fecha_espania +  " - " + y + " - " + item.series.label);
