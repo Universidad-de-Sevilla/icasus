@@ -13,9 +13,9 @@
 
 //Conexion a la base de datos
 define('IC_DB_HOST','localhost');           //escriba la dirección del servidor de bases de datos (BD)
-define('IC_DB_LOGIN','usuario_basedatos');  //escriba el usuario de la BD.
-define('IC_DB_CLAVE','clave_usuario');      //escriba la clave del usuario de la BD.
-define('IC_DB_DATABASE','nombre_basedatos');//escriba el nombre de la BD.
+define('IC_DB_LOGIN','icasus');  //escriba el usuario de la BD.
+define('IC_DB_CLAVE','tarrupa25b');      //escriba la clave del usuario de la BD.
+define('IC_DB_DATABASE','icasus');//escriba el nombre de la BD.
 
 // Tema que vamos a utilizar para definir la apariencia del sitio
 define('IC_THEME', 'usevilla');

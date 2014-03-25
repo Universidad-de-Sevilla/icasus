@@ -8,7 +8,7 @@
 //--------------------------------------------------------------------------
 // Esto es para que se vean los errores
 ini_set('display_errors', '1');
-error_reporting(E_ALL);
+error_reporting(E_ALL & ~E_DEPRECATED);
 
 include_once('../app_code/app_config.php');
 include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
