@@ -11,9 +11,9 @@
 // get_indicadores_panel($id)
 // get_mediciones_indicador($id)
 // get_subunidades_indicador($id)
-// get_subunidades_indicador($id)
-// get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todo")
-// get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
+// get_valores_con_timestamp($id, $fecha_inicio, $fecha_fin, $periodicidad)
+// get_valores_indicador($id, $fecha_inicio, $fecha_fin)
+// get_valores_indicador_agrupado($id, $fecha_inicio, $fecha_fin, $periodicidad)
 // get_valores_indicador_media($id)
 // get_valores_indicador_suma($id)
 // get_valores_medicion($id)
@@ -50,6 +50,10 @@ if (@mysql_select_db(IC_DB_DATABASE))
       {
         $metodo();
       }
+    }
+    else
+    {
+      echo "No existe la funcion $metodo";
     }
   }
 }
@@ -511,4 +515,80 @@ function get_valores_medicion($id_medicion)
   echo $datos;
 }
 
+function get_valores_indicador_por_fecha($id, $id_entidad, $fecha_inicio = 0, $fecha_fin = 0)
+{
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+            entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
+            entidades.etiqueta_mini as etiqueta_mini
+            FROM mediciones 
+            INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            INNER JOIN entidades ON entidades.id = valores.id_entidad
+            WHERE mediciones.id_indicador = $id 
+            AND entidades.id = $id_entidad
+            AND valor IS NOT NULL"; 
+  if ($fecha_inicio > 0)
+  {
+    $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
+  }
+  if ($fecha_fin > 0)
+  {
+    $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
+  }
+  $query .= " GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
+  $resultado = mysql_query($query);
+  while ($registro = mysql_fetch_assoc($resultado))
+  {
+    $datos[] = $registro;
+  }
+  $datos = json_encode($datos);
+  echo $datos;
+}
+
+// El id es el id del panel
+// Se usa en las tablas múltiples de los cuadros de mando
+function get_indicadores_panel_con_datos($id, $fecha_inicio = 0, $fecha_fin = 0)
+{
+  $indicadores = array();
+  $valores = array();
+
+  $query = "SELECT indicadores.id as id_indicador, indicadores.codigo as codigo, indicadores.nombre as nombre, 
+            panel_indicadores.id_entidad as entidad, panel_indicadores.id_serietipo as id_serietipo
+            FROM indicadores 
+            INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador 
+            WHERE panel_indicadores.id_panel = $id";
+
+  $resultado = mysql_query($query);
+  while ($indicador = mysql_fetch_assoc($resultado))
+  {
+    $id_indicador = $indicador['id_indicador'];
+    $id_entidad = $indicador['entidad'];
+    $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+              entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
+              entidades.etiqueta_mini as etiqueta_mini
+              FROM mediciones 
+              INNER JOIN valores ON mediciones.id = valores.id_medicion 
+              INNER JOIN entidades ON entidades.id = valores.id_entidad
+              WHERE mediciones.id_indicador = $id_indicador 
+              AND entidades.id = $id_entidad
+              AND valor IS NOT NULL"; 
+    if ($fecha_inicio > 0)
+    {
+      $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
+    }
+    if ($fecha_fin > 0)
+    {
+      $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
+    }
+    $query .= " GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
+    $resultado2 = mysql_query($query);
+    
+    while ($valor = mysql_fetch_assoc($resultado2))
+    {
+      $valores[] = $valor;
+    }
+    $indicadores[] = array('indicador' => $indicador, 'valores' => $valores);
+  }
+  $datos = json_encode($indicadores);
+  echo $datos;
+}
 ?>

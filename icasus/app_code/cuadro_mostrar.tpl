@@ -444,7 +444,7 @@
     leyenda.insertBefore($(this));
     leyenda.html('<h4>Poner algo aquí</h4>');
     var htmlTabla = "";
-    htmlTabla = "<tr><th></th><th>2010</th><th>2011</th></tr>');
+    htmlTabla = "<tr><th></th><th>2010</th><th>2011</th></tr>";
     var apiUrl = "api_publica.php?metodo=get_indicadores_panel_con_datos&id=" + id_panel 
               + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin;
     
@@ -460,7 +460,6 @@
         items.push('</tr>');
       }); 
     }); 
-  });
   console.log(items);
   $('<table />', {'class': 'static', 
                   html: items.join('')
