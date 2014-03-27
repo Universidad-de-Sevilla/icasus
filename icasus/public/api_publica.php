@@ -553,7 +553,6 @@ function get_valores_indicador_por_fecha($id, $id_entidad, $fecha_inicio = 0, $f
 function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fin = 0)
 {
   $indicadores = array();
-  $valores = array();
 
   $query = "SELECT indicadores.id as id_indicador, indicadores.codigo as codigo, indicadores.nombre as nombre, 
             panel_indicadores.id_entidad as entidad, panel_indicadores.id_serietipo as id_serietipo
@@ -586,6 +585,7 @@ function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fi
     $query .= " GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
     $resultado2 = mysql_query($query);
     
+    $valores = array();
     while ($valor = mysql_fetch_assoc($resultado2))
     {
       $valores[] = $valor;
@@ -595,4 +595,3 @@ function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fi
   $datos = json_encode($indicadores);
   echo $datos;
 }
-?>

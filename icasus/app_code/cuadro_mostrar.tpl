@@ -429,7 +429,7 @@
       }); 
     });
     console.log(items);
-    $('<table />', {'class': 'static', 
+    $('<table />', {'class': 'table-bordered table-striped', 
                     html: items.join('')
                    }).appendTo('#panel_' + id_panel);
   });
@@ -445,7 +445,17 @@
 
     leyenda.insertBefore($(this));
     leyenda.html('<h4>Poner algo aquí</h4>');
-    htmlTabla = "<tr><th></th><th>2010</th><th>2011</th></tr>";
+
+    fecha = new Date(fecha_inicio);
+    anio_inicio = fecha.getFullYear();
+    fecha = new Date(fecha_fin);
+    anio_fin = fecha.getFullYear();
+    htmlTabla += "<thead><tr><th></th>";
+    for (anio = anio_inicio; anio <= anio_fin; anio++){
+      htmlTabla += "<th>" + anio + "</th>";
+    }
+    htmlTabla += "</tr></thead>";
+
     apiURL = "api_publica.php?metodo=get_indicadores_panel_con_datos&id=" + id_panel 
               + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin;
     
@@ -457,7 +467,7 @@
         htmlTabla += '<tr class="' + paridad + '"><td>' + indicador.nombre + '</td>';
         console.log(datos.valores);
         $.each(datos.valores, function(j, valor) {
-          htmlTabla += '<td>' + j + '-' + valor.valor + '</td>';
+          htmlTabla += '<td>' + valor.valor + '</td>';
         });
         htmlTabla += '</tr>';
       }); 
