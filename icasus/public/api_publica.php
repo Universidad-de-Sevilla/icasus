@@ -16,7 +16,9 @@
 // get_valores_indicador_agrupado($id, $fecha_inicio, $fecha_fin, $periodicidad)
 // get_valores_indicador_media($id)
 // get_valores_indicador_suma($id)
-// get_valores_medicion($id)
+// get_valores_medicion($id_medicion)
+// get_valores_indicador_por_fecha($id, $id_entidad, $fecha_inicio, $fecha_fin)
+// get_indicadores_panel_con_datos($id_panel, $fecha_inicio, $fecha_fin)
 
 
 require_once("../../cascara_core/function/sanitize.php");
@@ -546,7 +548,9 @@ function get_valores_indicador_por_fecha($id, $id_entidad, $fecha_inicio = 0, $f
 
 // El id es el id del panel
 // Se usa en las tablas múltiples de los cuadros de mando
-function get_indicadores_panel_con_datos($id, $fecha_inicio = 0, $fecha_fin = 0)
+// Ejemplo: http://localhost/icasus/api_publica.php?metodo=api_publica.php&metodo=get_indicadores_panel_con_datos&id_panel=748
+
+function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fin = 0)
 {
   $indicadores = array();
   $valores = array();
@@ -555,7 +559,7 @@ function get_indicadores_panel_con_datos($id, $fecha_inicio = 0, $fecha_fin = 0)
             panel_indicadores.id_entidad as entidad, panel_indicadores.id_serietipo as id_serietipo
             FROM indicadores 
             INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador 
-            WHERE panel_indicadores.id_panel = $id";
+            WHERE panel_indicadores.id_panel = $id_panel";
 
   $resultado = mysql_query($query);
   while ($indicador = mysql_fetch_assoc($resultado))

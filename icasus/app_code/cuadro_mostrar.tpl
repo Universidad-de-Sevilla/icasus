@@ -440,30 +440,31 @@
     var fecha_fin = $(this).attr("data-fecha_fin");
     var id_panel = $(this).data("idpanel");
     var leyenda = $(this).next('.leyenda');
+    var apiURL;
+    var htmlTabla;
 
     leyenda.insertBefore($(this));
     leyenda.html('<h4>Poner algo aquí</h4>');
-    var htmlTabla = "";
     htmlTabla = "<tr><th></th><th>2010</th><th>2011</th></tr>";
-    var apiUrl = "api_publica.php?metodo=get_indicadores_panel_con_datos&id=" + id_panel 
+    apiURL = "api_publica.php?metodo=get_indicadores_panel_con_datos&id=" + id_panel 
               + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin;
     
-    console.log(apiURL);
-    $.getJSON(apiUrl, function(indicadores) {
-      $.each(indicadores, function (i, indicador) {
+    $.getJSON(apiURL, function(indicadores) {
+      $.each(indicadores, function (i, datos) {
+        var indicador = datos.indicador;
         var paridad;
         if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
-        items.push('<tr class="' + paridad + '"><td>' + indicador.nombre + '</td><td></td></tr>');
-        $.each(indicador.datos, function(j, dato) {
-          items.push('<td>' + dato.valor + '</td>');
+        htmlTabla += '<tr class="' + paridad + '"><td>' + indicador.nombre + '</td>';
+        console.log(datos.valores);
+        $.each(datos.valores, function(j, valor) {
+          htmlTabla += '<td>' + j + '-' + valor.valor + '</td>';
         });
-        items.push('</tr>');
+        htmlTabla += '</tr>';
       }); 
+      $('<table />', {'class': 'static', 
+                      html: htmlTabla
+                     }).appendTo('#panel_' + id_panel);
     }); 
-  console.log(items);
-  $('<table />', {'class': 'static', 
-                  html: items.join('')
-                 }).appendTo('#panel_' + id_panel);
   });
 
 
