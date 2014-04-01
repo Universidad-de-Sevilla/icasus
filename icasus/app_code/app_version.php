@@ -1,7 +1,8 @@
 <?php
-define(IC_VERSION, "2.6.5");
-define(IC_FECHA_REVISION, "06/03/2014");
+define(IC_VERSION, "2.6.6");
+define(IC_FECHA_REVISION, "01/04/2014");
 
+// 2.6.6 - 01/04/2014 - Tablas con múltiples indicadores y pantalla inicio con mediciones pendientes
 // 2.6.5 - 06/03/2014 - Nuevo campo etiqueta_mini agregado a consultas API y cambio en color de fondo de dataTables
 // 2.6.4 - 24/02/2014 - Falso cálculo de mediana y algún errorcillo suelto
 // 2.6.3 - 18/11/2013 - Valores de referencia en cuadros de mando

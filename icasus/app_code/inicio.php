@@ -20,7 +20,7 @@ $smarty->assign("indicadores",$indicadores);
 
 // Mediciones a cargo de este usuario
 $indicador= new indicador();
-$mediciones_usuario = $indicador->Find_con_pendientes("id IN (SELECT id_indicador FROM indicadores_subunidades WHERE id_usuario=$usuario->id)");
+$mediciones_usuario = $indicador->Find_con_pendientes("id IN (SELECT id_indicador FROM indicadores_subunidades WHERE id_usuario=$usuario->id)", $usuario->id);
 $smarty->assign("mediciones_usuario",$mediciones_usuario);
 //$indicador_subunidad = new indicador_subunidad();
 //$indicadores_subunidades = $indicador_subunidad->Find_indicadores_con_valores("id_usuario = $usuario->id");
@@ -32,4 +32,3 @@ $grupos_usuario = ""; //Deshabilitado de momento
 $smarty->assign('grupos_usuario',$grupos_usuario);
 
 $plantilla = 'inicio.tpl';
-?>

@@ -40,4 +40,3 @@ else
   // Si no viene del formulario, ni de logout, mostramos el formulario
   $plantilla = "login_basico.tpl";
 }
-?>

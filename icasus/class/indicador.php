@@ -96,7 +96,7 @@ class indicador extends ADOdb_Active_Record
 	}	
 
 
-  public function Find_con_pendientes($condicion)
+  public function Find_con_pendientes($condicion, $usuario_id)
   {
     if ($indicadores= $this->Find($condicion))
     {
@@ -104,7 +104,7 @@ class indicador extends ADOdb_Active_Record
             INNER JOIN mediciones me ON insu.id_indicador = me.id_indicador 
             INNER JOIN valores va ON me.id = va.id_medicion 
             WHERE insu.id_entidad = va.id_entidad 
-            AND insu.id_usuario  = 1 
+            AND insu.id_usuario  = {$usuario_id} 
             AND va.valor_parcial is NULL 
             AND insu.id_indicador = ";
 
