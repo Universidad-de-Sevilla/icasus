@@ -1950,11 +1950,11 @@ table.static tbody tr td {
 }
 
 table.static tbody tr td {
-	border-bottom: 1px solid #E1E5E7;
+	border: 1px solid #E1E5E7;
 }
 
 table.static tbody tr:last-child td {
-	border-bottom: 0px;
+	/*border-bottom: 0px;*/
 }
 
 table.static tbody tr.even td {
