@@ -9,6 +9,7 @@
     var fecha_fin = $(this).data("fecha_fin");
     var periodicidad = $(this).data("periodicidad");
     var peticion_api = "api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
+	var colores = ['maroon',  'goldenrod', 'black', 'red', 'blue', 'blueviolet', 'crimson', 'darkorange', 'midnightblue', 'royalblue'];
     //console.log(peticion_api);
     $.getJSON(peticion_api).done(function(datos) {
       var datos_flot = []; // Atención: tiene que ser siempre un array aunque sólo tenga un elemento
@@ -33,7 +34,7 @@
 
       // Prepara los datos del indicador
       etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + id_indicador + '" target="_blank">' + nombre_indicador + '</a>';
-      datos_flot[0] = {label: etiqueta_indicador, color: index, data: items, points: { show: true } };
+      datos_flot[0] = {label: etiqueta_indicador, color: colores[index%colores.length], data: items, points: { show: true } };
 
       // Prepara los datos de referencia
       if (referencias.length > 0)
@@ -54,7 +55,7 @@
                 max: (new Date(fecha_fin)).getTime() + 2500000000  
                 },
         grid: { hoverable: true },
-        colors: ['maroon', 'darkblue', 'orange', 'goldenrod', 'pink', 'yellow', 'brown']
+        colors: colores
       };
       $("#" + id_panel).css("height", "200px");
       $.plot($("#" + id_panel), datos_flot, opciones);
