@@ -558,7 +558,7 @@ function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fi
             panel_indicadores.id_entidad as entidad, panel_indicadores.id_serietipo as id_serietipo
             FROM indicadores 
             INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador 
-            WHERE panel_indicadores.id_panel = $id_panel";
+            WHERE panel_indicadores.id_panel = $id_panel ORDER BY panel_indicadores.id";
 
   $resultado = mysql_query($query);
   while ($indicador = mysql_fetch_assoc($resultado))
