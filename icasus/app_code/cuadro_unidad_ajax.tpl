@@ -31,7 +31,7 @@
           <b>Interpretación:</b> {$item.interpretacion}
         </div>
 				<div>
-					<!--<img src="index.php?page=grafica_indicador_segregado&id_indicador={$item.id}" alt="gráfica completa con los valores medios del indicador"/> -->
+					<img src="index.php?page=grafica_indicador_segregado&id_indicador={$item.id}" alt="gráfica completa con los valores medios del indicador"/>
 				</div>
 			</div>
 		{/foreach}
@@ -52,6 +52,10 @@
           <b>Interpretación:</b> {$item->interpretacion}
         </div>
 				<div>
+<div style="background: white; padding:20px 40px; margin:10px;">
+    <div class="panel_flot" id="{$item->id}" data-id_indicador="{$item->id}" data-nombre_indicador="{$item->nombre}" data-fecha_inicio="{$item->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"></div>
+    <div class="leyenda"></div>
+  </div>
 					<!-- <img src="index.php?page=grafica_indicador_agregado&id_indicador={$item->id}" alt="gráfica completa con los valores medios del indicador"/> -->
 				</div>
 			</div>
