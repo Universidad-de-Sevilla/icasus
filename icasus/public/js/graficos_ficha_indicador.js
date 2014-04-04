@@ -56,7 +56,7 @@
         grid: { hoverable: true },
         colors: ['maroon', 'darkblue', 'orange', 'goldenrod', 'pink', 'yellow', 'brown']
       };
-      $("#" + id_panel).css("height", 200 - index * 12 + "px");
+      $("#" + id_panel).css("height", "200px");
       $.plot($("#" + id_panel), datos_flot, opciones);
 
       // Pinta el tooltip cuando pasamos el cursor sobre un punto de la gráfica
