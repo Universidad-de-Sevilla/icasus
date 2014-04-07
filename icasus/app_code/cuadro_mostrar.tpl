@@ -27,7 +27,7 @@
 {if $paneles}
   {foreach $paneles as $panel}
     <div class="box grid_{$panel->ancho}" style="float:left;">
-      <div class="block" style="height:320px">
+      <div class="block alturo" style="height:320px">
         <div class="titulo-panel">
           <strong>{$panel->nombre}</strong> 
           <a class="borrar pull-right ihidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/cancel.png" /></a>
@@ -394,54 +394,16 @@
     });
   });
 
-  $(".panel_tabla_multi_old").each(function(index) {
-    var datos_flot = [];
-    var fecha_inicio = $(this).attr("data-fecha_inicio");
-    var fecha_fin = $(this).attr("data-fecha_fin");
-    var id_panel = $(this).data("idpanel");
-    var leyenda = $(this).next('.leyenda');
-
-    leyenda.insertBefore($(this));
-    leyenda.html('<h4>Poner algo aquí</h4>');
-    var items = [];
-    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function(indicadores) {
-      items.push('<tr><th></th><th>2010</th><th>2011</th></tr>');
-      // Recorremos los indicadores asociados al panel
-      // y vamos pidiendo los datos a la API
-      $.each(indicadores, function (i, indicador) {
-        var paridad;
-        var apiUrl;
-        var id_entidad = indicador.id_entidad;
-        if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
-        items.push('<tr class="' + paridad + '"><td>' + indicador.nombre + '</td><td></td></tr>');
-
-        apiUrl = "api_publica.php?metodo=get_valores_indicador_por_fecha&id=" 
-              + indicador.id + "&id_entidad=" + id_entidad + "&fecha_inicio=" 
-              + fecha_inicio + "&fecha_fin=" + fecha_fin;
-
-        $.getJSON(apiUrl, function(datos) {
-          items.push('<tr>');
-          $.each(datos, function(j, dato) {
-            items.push('<td>' + dato.valor + '</td>');
-          });
-          items.push('</tr>');
-        });
-      }); 
-    });
-    console.log(items);
-    $('<table />', {'class': 'table-bordered table-striped', 
-                    html: items.join('')
-                   }).appendTo('#panel_' + id_panel);
-  });
-
   $(".panel_tabla_multi").each(function(index) {
     var datos_flot = [];
     var fecha_inicio = $(this).attr("data-fecha_inicio");
     var fecha_fin = $(this).attr("data-fecha_fin");
     var id_panel = $(this).data("idpanel");
     var leyenda = $(this).next('.leyenda');
+    var altura;
     var apiURL;
     var htmlTabla;
+    var cuenta_indicadores;
 
     leyenda.insertBefore($(this));
     leyenda.html('<h4>Poner algo aquí</h4>');
@@ -465,15 +427,17 @@
         var paridad;
         if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
         htmlTabla += '<tr class="' + paridad + '"><td>' + indicador.nombre + '</td>';
-        console.log(datos.valores);
         $.each(datos.valores, function(j, valor) {
           htmlTabla += '<td>' + valor.valor + '</td>';
         });
         htmlTabla += '</tr>';
+        cuenta_indicadores = i;
       }); 
-      $('<table />', {'class': 'static', 
-                      html: htmlTabla
-                     }).appendTo('#panel_' + id_panel);
+      $('<table />', {'class': 'static', html: htmlTabla }).appendTo('#panel_' + id_panel);
+      altura = (200 + (25 * cuenta_indicadores));
+      console.log(altura);
+      $("#panel_" + id_panel).css("height", altura + "px");
+      $("#panel_" + id_panel).closest(".alturo").css("height", altura + "px");
     }); 
   });
 
