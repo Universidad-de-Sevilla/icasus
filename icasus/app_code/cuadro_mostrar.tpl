@@ -394,6 +394,9 @@
     });
   });
 
+  // Se usa en "la biblioteca en cifras"
+  // Solo pinta años completos de momento
+  // Es una función "digna de mejora"
   $(".panel_tabla_multi").each(function(index) {
     var datos_flot = [];
     var fecha_inicio = $(this).attr("data-fecha_inicio");
@@ -421,21 +424,28 @@
     apiURL = "api_publica.php?metodo=get_indicadores_panel_con_datos&id=" + id_panel 
               + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin;
     
+    console.log(apiURL);
     $.getJSON(apiURL, function(indicadores) {
       $.each(indicadores, function (i, datos) {
         var indicador = datos.indicador;
         var paridad;
         if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
         htmlTabla += '<tr class="' + paridad + '"><td>' + indicador.nombre + '</td>';
+        anio = anio_inicio
         $.each(datos.valores, function(j, valor) {
+          // Comprueba que el valor corresponde a la columna del año 
+          while (valor.anio > anio + j){
+            htmlTabla += '<td>&nbsp;</td>';
+            anio++;
+          }
           htmlTabla += '<td>' + valor.valor + '</td>';
         });
         htmlTabla += '</tr>';
         cuenta_indicadores = i;
       }); 
       $('<table />', {'class': 'static', html: htmlTabla }).appendTo('#panel_' + id_panel);
+      //Ajustamos la altura de la gráfica y del contenedor según el número de indicadores del panel
       altura = (200 + (25 * cuenta_indicadores));
-      console.log(altura);
       $("#panel_" + id_panel).css("height", altura + "px");
       $("#panel_" + id_panel).closest(".alturo").css("height", altura + "px");
     }); 

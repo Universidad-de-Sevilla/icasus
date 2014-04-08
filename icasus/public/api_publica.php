@@ -547,17 +547,20 @@ function get_valores_indicador_por_fecha($id, $id_entidad, $fecha_inicio = 0, $f
 }
 
 // El id es el id del panel
-// Se usa en las tablas múltiples de los cuadros de mando
+// Se usa en las tablas múltiples de los cuadros de mando (la biblioteca en cifras)
+// IMPORTANTE: De momento agrupa por años
 // Ejemplo: http://localhost/icasus/api_publica.php?metodo=api_publica.php&metodo=get_indicadores_panel_con_datos&id_panel=748
 
 function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fin = 0)
 {
   $indicadores = array();
 
-  $query = "SELECT indicadores.id as id_indicador, indicadores.codigo as codigo, indicadores.nombre as nombre, 
-            panel_indicadores.id_entidad as entidad, panel_indicadores.id_serietipo as id_serietipo
+  $query = "SELECT indicadores.id as id_indicador, indicadores.codigo as codigo, 
+            indicadores.nombre as nombre, panel_indicadores.id_entidad as entidad, 
+            panel_indicadores.id_serietipo as id_serietipo, tipo_agregacion.operador as operador
             FROM indicadores 
             INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador 
+            INNER JOIN tipo_agregacion ON tipo_agregacion.id = indicadores.id_tipo_agregacion
             WHERE panel_indicadores.id_panel = $id_panel ORDER BY panel_indicadores.id";
 
   $resultado = mysql_query($query);
@@ -565,9 +568,12 @@ function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fi
   {
     $id_indicador = $indicador['id_indicador'];
     $id_entidad = $indicador['entidad'];
+    $operador = $indicador['operador'];
     $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-              entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
-              entidades.etiqueta_mini as etiqueta_mini
+              entidades.etiqueta as unidad, entidades.id as id_unidad, 
+              $operador(valores.valor) as valor,
+              entidades.etiqueta_mini as etiqueta_mini,
+              YEAR(mediciones.periodo_inicio) as anio
               FROM mediciones 
               INNER JOIN valores ON mediciones.id = valores.id_medicion 
               INNER JOIN entidades ON entidades.id = valores.id_entidad
@@ -582,7 +588,9 @@ function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fi
     {
       $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
     }
-    $query .= " GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
+    // Agrupamos por año 
+    // TODO: agrupar por otros periodos cuando se agregue la variables periodicidad a la función 
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio) ORDER BY mediciones.periodo_inicio";
     $resultado2 = mysql_query($query);
     
     $valores = array();
