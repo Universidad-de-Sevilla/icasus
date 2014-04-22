@@ -738,3 +738,100 @@ function get_valores_calculados($id, $fecha_inicio = 0, $fecha_fin = 0, $periodi
   echo $datos;
 }
 
+function prueba_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+{
+  $datos =obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodo);
+  $datos = json_encode($datos);
+  echo $datos;
+}
+
+// Calcula el total de la medicion de un indicador, ya sea calculado o simple
+function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+{
+  $elementos_calculo = array();
+  $query = "SELECT calculo FROM indicadores WHERE id = $id_indicador";
+  $resultado = mysql_query($query);
+  $registro = mysql_fetch_assoc($resultado);
+  $calculo = $registro['calculo'];
+
+  // Recorremos la cadena $calculo para sacar y calcular las variables
+  // Almacenamos el resultado en $formula
+  $es_variable = false;
+  $formula= "";
+  $elementos_calculo = str_split($calculo);
+  foreach ($elementos_calculo as $elemento)
+  {
+    if ($elemento == "[")
+    {
+      $variable = "";
+      $es_variable = true;
+      continue; //esto es para saltarnos el resto del bucle y volver al foreach
+    }
+    if ($elemento == "]")
+    {
+      // Si el contenido de la variable es un número
+      // nos indica que se trata de un indicador existente
+      // en caso contrario sería un valor a introducir y en este 
+      // contexto no tiene sentido por lo que ponemos cero
+      // (en realidad en un futuro no lo tendrá en ninguno)
+      if (is_numeric($variable))
+      {
+        $id_indicador_parcial = (int)$variable;
+        $total_simple = obtener_total_simple($id_indicador_parcial, $fecha_inicio, $fecha_fin, $periodo);
+        $formula .= "$total_simple";
+      }
+      else
+      {
+        $formula .= '0';
+      }
+      $es_variable = false;
+      continue; //esto es para saltarnos el resto del bucle y volver al foreach
+    }
+    if ($es_variable)
+    {
+      $variable .= $elemento; 
+    }
+    else
+    {
+      $formula .= $elemento;
+    }
+  }
+  // Calcula el resultado de la formula y guarda el valor final 
+  print($formula);
+  eval("\$valor_final = $formula;");
+  return $valor_final;
+}
+
+function obtener_total_simple($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+{
+  $operador = "SUM";
+  $query = "SELECT $operador(valores.valor) as valor 
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            WHERE mediciones.id_indicador = $id_indicador AND valor IS NOT NULL"; 
+  if ($fecha_inicio > 0)
+  {
+    $query .= " AND mediciones.periodo_inicio >=  '$fecha_inicio'";
+  }
+  if ($fecha_fin > 0)
+  {
+    $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
+  }
+  if ($periodo == "anual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio)";
+  }
+  else if ($periodo == "mensual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
+  }
+  else if ($periodo == "todos")
+  {
+    // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
+    // Funcionará mientras icasus no tenga mediciones intradiarias
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+  }
+  $query .= " ORDER BY mediciones.periodo_inicio";
+  $resultado = mysql_query($query);
+  $registro = mysql_fetch_assoc($resultado);
+  return $registro['valor'];
+}
