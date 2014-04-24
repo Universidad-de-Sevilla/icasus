@@ -749,10 +749,12 @@ function prueba_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
 function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
 {
   $elementos_calculo = array();
-  $query = "SELECT calculo FROM indicadores WHERE id = $id_indicador";
+  $query = "SELECT i.calculo, ta.operador FROM indicadores i INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  WHERE i.id = $id_indicador";
+  print($query);
   $resultado = mysql_query($query);
   $registro = mysql_fetch_assoc($resultado);
   $calculo = $registro['calculo'];
+  $operador = $registro['operador'];
 
   // Recorremos la cadena $calculo para sacar y calcular las variables
   // Almacenamos el resultado en $formula
@@ -777,8 +779,8 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
       if (is_numeric($variable))
       {
         $id_indicador_parcial = (int)$variable;
-        $total_simple = obtener_total_simple($id_indicador_parcial, $fecha_inicio, $fecha_fin, $periodo);
-        $formula .= "$total_simple";
+        $totales[$id_indicador_parcial] = obtener_totales_simples($id_indicador_parcial, $operador, $fecha_inicio, $fecha_fin, $periodo);
+        $formula .= "\$totales[$id_indicador_parcial][\$i]";
       }
       else
       {
@@ -798,14 +800,20 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
   }
   // Calcula el resultado de la formula y guarda el valor final 
   print($formula);
-  eval("\$valor_final = $formula;");
-  return $valor_final;
+  print($id_indicador_parcial);
+  print_r($totales);
+  foreach ($totales[$id_indicador_parcial] as $i => $total)
+  {
+    eval("\$total_calculado = $formula;");
+    $totales_calculados[] = $total;
+  }
+  return $totales_calculados;
 }
 
-function obtener_total_simple($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+function obtener_totales_simples($id_indicador, $operador='SUM', $fecha_inicio='0', $fecha_fin='0', $periodo='todos')
 {
-  $operador = "SUM";
-  $query = "SELECT $operador(valores.valor) as valor 
+  $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
+            $operador(valores.valor) as valor  
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id_indicador AND valor IS NOT NULL"; 
   if ($fecha_inicio > 0)
@@ -831,6 +839,7 @@ function obtener_total_simple($id_indicador, $fecha_inicio, $fecha_fin, $periodo
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
+  print($query);
   $resultado = mysql_query($query);
   $registro = mysql_fetch_assoc($resultado);
   return $registro['valor'];

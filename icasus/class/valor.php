@@ -269,7 +269,20 @@ class valor extends ADOdb_Active_Record
     }
     // Calcula el resultado de la formula y guarda el valor final 
     eval("\$valor_final = $formula;");
-    $this->valor = $valor_final;
+    return $valor_final;
+  }
+
+  public function obtener_total_simple($id_indicador, $id_medicion)
+  {
+    $operador = "SUM";
+    $db = $this->DB();
+    $query = "SELECT $operador(valores.valor) as valor 
+              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+              WHERE mediciones.id = $id_medicion AND valor IS NOT NULL 
+              GROUP BY mediciones.id";
+    $resultado = mysql_query($query);
+    $registro = mysql_fetch_assoc($resultado))
+    return $registro['valor'];
   }
 
   // Define la función personalizada para ordenar
@@ -277,6 +290,7 @@ class valor extends ADOdb_Active_Record
   {
     return $a->entidad->etiqueta > $b->entidad->etiqueta;
   }
+
 	//función para mostrar los datos en control
 	public function filtro_onlyear($fecha,$cadena)
 	{
