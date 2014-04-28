@@ -127,11 +127,11 @@ function get_subunidades_indicador($id)
 // Es una nueva función que devuelve las fechas de las mediciones en formato timestamp de javascript
 // Devuelve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
 // También devuelve los totales de dichos valores en función del operador definido en el indicador
-// Se utiliza en consulta_avanzada y en cuadro_mostrar
+// Se utiliza en consulta_avanzada, en ficha indicador, en mediciones y en cuadro_mostrar
 // Ejemplo de llamada:
 // http://localhost/icasus/api_publica.php?metodo=get_valores_con_timestamp&id=5018&fecha_inicio=2012-01-01&fecha_fin=2012-12-31&periodicidad=anual
 // --------------------------------------------------------------------------- 
-function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodo = "todo")
+function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodo = "todos")
 {
   // Preparamos el tipo de operador que vamos a usar para calcular totales y agrupados
   // También cogemos el id de la entidad para devolver la mediana (mediana con trampa que se coge directamente de la unidad madre)
@@ -152,7 +152,8 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
 
   // Devuelve los valores recogidos para todas las subunidades
   // mediciones.id as id_medicion, mediciones.etiqueta as medicion,
-  $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+            UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
             entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, 
             entidades.etiqueta_mini as etiqueta_mini
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
@@ -197,14 +198,16 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     if ($operador == 'MEDIANA')
     {
       // Si el operador de agregado es 'mediana' cogemos del tirón los valores de la unidad madre
-      $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
+      $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+              UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
               'Total' as unidad, 0 as id_unidad, valores.valor as valor 
               FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
               WHERE valores.id_entidad = $id_entidad AND mediciones.id_indicador = $id AND valor IS NOT NULL";
     }
     else
     {
-      $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
+      $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+              UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
               'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
               FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
               WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
@@ -242,7 +245,8 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   
   // TODO
   // Valores de referencia: objetivos, mínimos, etc.
-  $query = "SELECT UNIX_TIMESTAMP(m.periodo_inicio)*1000 as periodo_fin, 
+  $query = "SELECT m.id as id_medicion, m.etiqueta as medicion, 
+            UNIX_TIMESTAMP(m.periodo_inicio)*1000 as periodo_fin, 
             r.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia 
             FROM valores_referencia r
             INNER JOIN `valores_referencia_mediciones` rm ON rm.`id_valor_referencia` = r.id
@@ -263,26 +267,19 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
 // --------------------------------------------------------------------------- 
 // Devuelve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
 // También devuelve los totales de dichos valores en función del operador definido en el indicador
-// Se utiliza en consulta_avanzada y en cuadro_mostrar
+// En desuso, eliminar cuando se pueda
 function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
 {
   $query = "SELECT tipo_agregacion.operador as operador FROM tipo_agregacion
             INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
             WHERE indicadores.id = $id";
+  $operador = 'SUM';
   if ($resultado = mysql_query($query))
   {
     if ($registro = mysql_fetch_assoc($resultado))
     {
       $operador = $registro['operador'];
     }
-    else
-    {
-      $operador = 'SUM';
-    }
-  }
-  else
-  {
-    $operador = 'SUM';
   }
 
   //Aquí van los valores de cada una de las subunidades
@@ -691,7 +688,12 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
   for ($i = 0; $i < count($totales[$id_indicador_parcial]); $i++)
   {
     eval("\$total_calculado = $formula;");
-    $totales_calculados[] = array("periodo_fin" => (int)$totales[$id_indicador_parcial][$i]['periodo_fin'], "unidad" => "Total", "id_unidad" => 0, "valor" => $total_calculado);
+    $totales_calculados[] = array(
+                              "id_medicion" => (int)$totales[$id_indicador_parcial][$i]['id_medicion'], 
+                              "medicion" => (int)$totales[$id_indicador_parcial][$i]['medicion'], 
+                              "periodo_fin" => (int)$totales[$id_indicador_parcial][$i]['periodo_fin'], 
+                              "unidad" => "Total", "id_unidad" => 0, 
+                              "valor" => $total_calculado);
   }
   return $totales_calculados;
 }
@@ -700,7 +702,8 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
 
 function obtener_totales_simples($id_indicador, $operador='SUM', $fecha_inicio='0', $fecha_fin='0', $periodo='todos')
 {
-  $query = "SELECT UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+            UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
             $operador(valores.valor) as valor  
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
             WHERE mediciones.id_indicador = $id_indicador AND valor IS NOT NULL"; 

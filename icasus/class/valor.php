@@ -281,7 +281,7 @@ class valor extends ADOdb_Active_Record
               WHERE mediciones.id = $id_medicion AND valor IS NOT NULL 
               GROUP BY mediciones.id";
     $resultado = mysql_query($query);
-    $registro = mysql_fetch_assoc($resultado))
+    $registro = mysql_fetch_assoc($resultado);
     return $registro['valor'];
   }
 
