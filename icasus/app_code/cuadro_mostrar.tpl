@@ -374,7 +374,7 @@
       // De momento cogemos solo el primer indicador por si viene mas de uno 
       var indicador = indicadores[0];
       leyenda.html('<h4>' + indicador.nombre + '</h4>');
-      $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function(datos) {
+      $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id, function(datos) {
         var items = [];
         // Tomamos la entidad a mostrar del panel_indicador actual
         var id_entidad = indicador.id_entidad;
