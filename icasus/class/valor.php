@@ -226,11 +226,71 @@ class valor extends ADOdb_Active_Record
     }
   }
 
+  // Calcula el total de la medicion de un indicador, ya sea calculado o simple
+  public function obtener_total_calculado($id_medicion, $calculo)
+  {
+    $elementos_calculo = array();
+    // Recorremos la cadena $calculo para sacar y calcular las variables
+    // Almacenamos el resultado en $formula
+    $es_variable = false;
+    $formula= "";
+    $elementos_calculo = str_split($calculo);
+    foreach ($elementos_calculo as $elemento)
+    {
+      if ($elemento == "[")
+      {
+        $variable = "";
+        $es_variable = true;
+        //continue;
+      }
+      if ($elemento == "]")
+      {
+        // Si el contenido de la variable es un número
+        // nos indica que se trata de un indicador existente
+        // en caso contrario sería un valor a introducir y en este 
+        // contexto no tiene sentido (en realidad en un futuro no lo tendrá en ninguno)
+        if (is_numeric($variable))
+        {
+          $id_indicador = (int)$variable;
+          $total_simple = $this->obtener_total_simple($id_indicador, $id_medicion);
+          $formula .= "$total_simple";
+        }
+        $es_variable = false;
+        //continue;
+      }
+      if ($es_variable)
+      {
+        $variable .= $elemento; 
+      }
+      else
+      {
+        $formula .= $elemento;
+      }
+    }
+    // Calcula el resultado de la formula y guarda el valor final 
+    eval("\$valor_final = $formula;");
+    return $valor_final;
+  }
+
+  public function obtener_total_simple($id_indicador, $id_medicion)
+  {
+    $operador = "SUM";
+    $db = $this->DB();
+    $query = "SELECT $operador(valores.valor) as valor 
+              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+              WHERE mediciones.id = $id_medicion AND valor IS NOT NULL 
+              GROUP BY mediciones.id";
+    $resultado = mysql_query($query);
+    $registro = mysql_fetch_assoc($resultado);
+    return $registro['valor'];
+  }
+
   // Define la función personalizada para ordenar
   static function compara_por_etiquetas($a,$b) 
   {
     return $a->entidad->etiqueta > $b->entidad->etiqueta;
   }
+
 	//función para mostrar los datos en control
 	public function filtro_onlyear($fecha,$cadena)
 	{

@@ -7,9 +7,11 @@
       <b>{$item->nombre}</b><br />
       <b>Interpretación:</b> {$item->interpretacion}
     </div>
-		<div>
-			<img src="index.php?page=grafica_indicador_agregado&id_indicador={$item->id}" alt="gráfica completa con los valores medios del indicador"/>
-		</div>
+		<div style="background: white; padding:20px 40px; margin:10px;">
+    <div class="panel_flot" id="{$item->id}" data-id_indicador="{$item->id}" data-nombre_indicador="{$item->nombre}" data-fecha_inicio="{$item->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"></div>
+    <div class="leyenda"></div>
+  </div>
+			<!-- <img src="index.php?page=grafica_indicador_agregado&id_indicador={$item->id}" alt="gráfica completa con los valores medios del indicador"/> -->
 	</div>
 	{/foreach}
 	{else}
@@ -50,7 +52,11 @@
           <b>Interpretación:</b> {$item->interpretacion}
         </div>
 				<div>
-					<img src="index.php?page=grafica_indicador_agregado&id_indicador={$item->id}" alt="gráfica completa con los valores medios del indicador"/>
+<div style="background: white; padding:20px 40px; margin:10px;">
+    <div class="panel_flot" id="{$item->id}" data-id_indicador="{$item->id}" data-nombre_indicador="{$item->nombre}" data-fecha_inicio="{$item->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"></div>
+    <div class="leyenda"></div>
+  </div>
+					<!-- <img src="index.php?page=grafica_indicador_agregado&id_indicador={$item->id}" alt="gráfica completa con los valores medios del indicador"/> -->
 				</div>
 			</div>
 		{/foreach}
@@ -60,3 +66,7 @@
 			</p>
 	{/if}
 {/if}
+
+<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
+<script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>

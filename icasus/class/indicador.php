@@ -13,7 +13,6 @@ class indicador extends ADOdb_Active_Record
 	public $proceso;
 	public $responsable;
 	public $responsable_medicion;
-	public $ruta_imagen;
 	public $valores;
   public $valores_referencia;
   public $visibilidad;
