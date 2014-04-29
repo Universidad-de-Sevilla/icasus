@@ -1,7 +1,9 @@
 <?php
-define(IC_VERSION, "2.6.6");
-define(IC_FECHA_REVISION, "01/04/2014");
+define(IC_VERSION, "2.7.1");
+define(IC_FECHA_REVISION, "29/04/2014");
 
+// 2.7.1 - 29/04/2014 - Corregido un fallo grave al tomar los operadores de agregado de los indicadores que forman parte de indicadores calculados
+// 2.7.0 - 28/04/2014 - Los totales de los indicadores calculados se calculan ahora desde los datos de origen
 // 2.6.6 - 01/04/2014 - Tablas con múltiples indicadores y pantalla inicio con mediciones pendientes
 // 2.6.5 - 06/03/2014 - Nuevo campo etiqueta_mini agregado a consultas API y cambio en color de fondo de dataTables
 // 2.6.4 - 24/02/2014 - Falso cálculo de mediana y algún errorcillo suelto
