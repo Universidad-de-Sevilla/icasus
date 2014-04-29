@@ -665,7 +665,7 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
       if (is_numeric($variable))
       {
         $id_indicador_parcial = (int)$variable;
-        $totales[$id_indicador_parcial] = obtener_totales_simples($id_indicador_parcial, $operador, $fecha_inicio, $fecha_fin, $periodo);
+        $totales[$id_indicador_parcial] = obtener_totales_simples($id_indicador_parcial, $fecha_inicio, $fecha_fin, $periodo);
         $formula .= "\$totales['$id_indicador_parcial'][\$i]['valor']";
       }
       else
@@ -700,8 +700,15 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
 
 // --------------------------------------------------------------------------- 
 
-function obtener_totales_simples($id_indicador, $operador='SUM', $fecha_inicio='0', $fecha_fin='0', $periodo='todos')
-{
+function obtener_totales_simples($id_indicador, $fecha_inicio='0', $fecha_fin='0', $periodo='todos')
+{ 
+  // Obtenemos el operador o tipo de agregación del indicador
+  $query = "SELECT ta.operador FROM indicadores i INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  WHERE i.id = $id_indicador";
+  $resultado = mysql_query($query);
+  $registro = mysql_fetch_assoc($resultado);
+  $operador = $registro['operador'];
+
+  // Aquí vienen los totales
   $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
             UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
             $operador(valores.valor) as valor  
@@ -737,3 +744,48 @@ function obtener_totales_simples($id_indicador, $operador='SUM', $fecha_inicio='
   }
   return $datos;
 }
+
+//Repite partes de obtener_totales_calculados pero devuelve los subtotales
+function subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+{
+  $elementos_calculo = array();
+  $totales = array();
+  $query = "SELECT calculo FROM indicadores WHERE id = $id_indicador";
+  $resultado = mysql_query($query);
+  $registro = mysql_fetch_assoc($resultado);
+  $calculo = $registro['calculo'];
+
+  // Recorremos la cadena $calculo para sacar y calcular las variables
+  // Almacenamos el resultado en $formula
+  $es_variable = false;
+  $elementos_calculo = str_split($calculo);
+  foreach ($elementos_calculo as $elemento)
+  {
+    if ($elemento == "[")
+    {
+      $variable = "";
+      $es_variable = true;
+      continue; //esto es para saltarnos el resto del bucle y volver al foreach
+    }
+    if ($elemento == "]")
+    {
+      if (is_numeric($variable))
+      {
+        $id_indicador_parcial = (int)$variable;
+        $totales[$id_indicador_parcial] = obtener_totales_simples($id_indicador_parcial, $fecha_inicio, $fecha_fin, $periodo);
+      }
+      continue; //esto es para saltarnos el resto del bucle y volver al foreach
+    }
+    if ($es_variable)
+    {
+      $variable .= $elemento; 
+    }
+    else
+    {
+      $formula .= $elemento;
+    }
+
+  }
+  print_r($totales);
+}
+ 
