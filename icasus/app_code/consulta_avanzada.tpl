@@ -238,7 +238,7 @@ a.actual {
   function mostrarIndicador(serie) {
     var id_indicador = $('.activo').find('.escogido').attr('id_indicador');
     var nombre_indicador = $('.activo').find('.escogido').text();
-	  $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + id_indicador, function(data) {
+	  $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador, function(data) {
       generaTablaDatos(id_indicador, nombre_indicador, data, serie);
       datos_json[serie] = {'serie': serie, 'nombre': nombre_indicador, 'data':data};
       datos[serie] = prepararDatos(data, serie);
