@@ -436,6 +436,11 @@ a.actual {
             {
               resultado[i][1] +=  parseFloat(datos[serie + 1].data[i][1]);
             }
+	    else if (operacion == 'porcentaje')
+            {
+              	//no funciona el operando *= como queremos, de ahi que se vuelva a dividir
+		resultado[i][1] /= parseFloat(datos[serie + 1].data[i][1]/100);
+            }
           }
         }
         else
