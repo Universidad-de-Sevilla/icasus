@@ -281,7 +281,7 @@ a.actual {
     items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
     $.each(datos, function(i, dato) {
       if (i%2 == 0) {paridad = "odd";} else {paridad = "even";}
-      items.push('<tr class="' + paridad +'"><td>' + dato[0] + '</td><td>' + dato[1] + '</td></tr>');
+      items.push('<tr class="' + paridad +'"><td>' + dato[0] + '</td><td>' + dato[1].toFixed(2) + '</td></tr>');
     });
     $('#tablar').empty();
     $('<table />', {'class': 'static', 
