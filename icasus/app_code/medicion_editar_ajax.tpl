@@ -13,10 +13,10 @@
 						<a href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}','{$medicion->id}')"><img title='Grabar' src='/icons/ff16/disk.png'align="absmiddle"></a>
 						<a href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}')"><img title='Cancelar' src='/icons/ff16/cross.png'align="absmiddle"></a>
 					{else}
-						<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
+						<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor|string_format:"%.2f"}{/if}</a>
 					{/if}
 				{else}
-					{if $valor->valor == NULL}---{else}{$valor->valor}{/if}
+					{if $valor->valor == NULL}---{else}{$valor->valor|string_format:"%.2f"}{/if}
 				{/if}
 			</td>
 			<td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
@@ -36,9 +36,9 @@
 		<td>{$valor->entidad->nombre}</td>
 		<td>
 		{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
-			<a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
+			<a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor|string_format:"%.2f"}{/if}</a>
 		{else}
-			{if $valor->valor == NULL}---{else}{$valor->valor}{/if}
+			{if $valor->valor == NULL}---{else}{$valor->valor|string_format:"%.2f"}{/if}
 		{/if}
 		</td>
 		<td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
@@ -50,7 +50,7 @@
 	</div>
 {/if}
 {if $modulo == 'cancelarvalorreferencia'} 
-	<a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}')">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor}{/if}</a>
+	<a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}')">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor|string_format:"%.2f"}{/if}</a>
 {/if}
 {if $modulo == 'editarvalorreferencia'} 
 	<input id="input_referencia_{$referencia->id}" name="input_referencia_{$referencia->id}" type="text" value="{$referencia->valor}" style="width:50px">
