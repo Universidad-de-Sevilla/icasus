@@ -1,4 +1,10 @@
-{if $cuadro->id_usuario == $_usuario->id}
+{if $cuadro->id_usuario == NULL}
+	<div class="alert dissmisible alert_red">
+	Sentimos informarle que el cuadro de mando solicitado no existe.</div>
+{else if $cuadro->id_usuario != $_usuario->id}
+	<div class="alert dissmisible alert_red">
+	Sentimos informarle que no tiene permisos para acceder a este cuadro de mando.</div>
+{else}
   <div class="button_bar clearfix">
     <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
       src='/icons/ff16/application_add.png' /> Agregar Panel</a> &nbsp;
@@ -7,7 +13,7 @@
     <a href='index.php?page=cuadro_listar&id_entidad=14'><img 
       src='/icons/ff16/table.png' /> Volver al listado</a> &nbsp;
   </div>
-{/if}
+
 <!-- dialogo para borrar paneles -->
 <div id="dialogo_borrar_panel" class="dialog_content narrow ui-dialog-content ui-widget-content">
 	<div class="block" style="opacity: 1;" >
@@ -44,9 +50,7 @@
       </div>
     </div>
   {/foreach}
-{else}
-  <p class="aviso">Aún no se han añadido paneles a este cuadro de mando. 
-  <a href="index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14">¿A qué esperas?</a></p>
+{/if}
 {/if}
 
 {literal}
