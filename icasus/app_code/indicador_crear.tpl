@@ -90,7 +90,7 @@
       </fieldset>
       <fieldset class="label_side">
         <label>Hist&oacute;rico</label>
-        <div><input  type="text" name="historicos" /></div>
+        <div><input  type="number" name="historicos" /></div>
       </fieldset>
       <fieldset class="label_side">
         <label>Interpretaci&oacute;n</label>
