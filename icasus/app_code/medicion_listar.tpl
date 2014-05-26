@@ -53,7 +53,7 @@
 		{foreach from=$subunidades_mediciones item=subunidades}
 			<tr><td>{$subunidades->etiqueta}</td>
 			{foreach from=$subunidades->mediciones item=medicion}
-				<td>{if $medicion->medicion_valor == '--'} -- {else}{$medicion->medicion_valor->valor}{/if}</td>
+				<td>{if $medicion->medicion_valor == '--'} -- {else}{if $medicion->medicion_valor->valor != NULL}{$medicion->medicion_valor->valor|round:"2"}{/if}{/if}</td>
 			{/foreach}
 			</tr>
 		{/foreach}

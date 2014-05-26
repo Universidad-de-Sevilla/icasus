@@ -20,6 +20,11 @@
 // get_valores_indicador_por_fecha($id, $id_entidad, $fecha_inicio, $fecha_fin)
 // get_indicadores_panel_con_datos($id_panel, $fecha_inicio, $fecha_fin)
 // ---------------------------------------------------------------
+// Funciones auxiliares
+//
+// obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+// subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+// ---------------------------------------------------------------
 
 require_once("../../cascara_core/function/sanitize.php");
 
@@ -754,6 +759,7 @@ function subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
   $resultado = mysql_query($query);
   $registro = mysql_fetch_assoc($resultado);
   $calculo = $registro['calculo'];
+  $formula = "";
 
   // Recorremos la cadena $calculo para sacar y calcular las variables
   // Almacenamos el resultado en $formula
@@ -788,4 +794,3 @@ function subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
   }
   print_r($totales);
 }
- 

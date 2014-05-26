@@ -37,9 +37,9 @@
           <td>{$valor->entidad->etiqueta}</td>
           <td>
 							{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
-								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor}{/if}</a>
+								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
 							{else}
-								{if $valor->valor == NULL}---{else}{$valor->valor}.{/if}
+								{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
 							{/if}
 				</td>
           <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
@@ -106,7 +106,7 @@
           <fieldset class="label_side">
             <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
             <div><span id="referencia_{$valor_referencia_medicion->id}">
-            <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}')">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor}{/if}</a></span></div>
+            <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}')">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor|round:"2"}{/if}</a></span></div>
           </fieldset>
         {/foreach}
       {else}
@@ -139,7 +139,7 @@
         {foreach $valores_referencia_medicion as $valor_referencia_medicion}
           <fieldset class="label_side">
             <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-            <div>{$valor_referencia_medicion->valor}</div>
+            <div>{$valor_referencia_medicion->valor|round:"2"}</div>
           </fieldset>
         {/foreach}
       {else}
