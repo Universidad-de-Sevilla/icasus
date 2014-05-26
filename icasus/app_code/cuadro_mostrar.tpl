@@ -1,15 +1,10 @@
-{if $cuadro->id_usuario == NULL}
-	<div class="alert dissmisible alert_red">
-	Sentimos informarle que el cuadro de mando solicitado no existe.</div>
-{else if $cuadro->id_usuario != $_usuario->id}
-	<div class="alert dissmisible alert_red">
-	Sentimos informarle que no tiene permisos para acceder a este cuadro de mando.</div>
-{else}
-  <div class="button_bar clearfix">
+<div class="button_bar clearfix">
+  {if $cuadro->id_usuario == $_usuario->id}
     <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
       src='/icons/ff16/application_add.png' /> Agregar Panel</a> &nbsp;
     <a href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
       src='/icons/ff16/table_edit.png' /> Editar propiedades</a> &nbsp;
+  {/if}
     <a href='index.php?page=cuadro_listar&id_entidad=14'><img 
       src='/icons/ff16/table.png' /> Volver al listado</a> &nbsp;
   </div>
@@ -50,7 +45,6 @@
       </div>
     </div>
   {/foreach}
-{/if}
 {/if}
 
 {literal}
