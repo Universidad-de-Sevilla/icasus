@@ -1,7 +1,8 @@
 <?php
-define(IC_VERSION, "2.7.1");
-define(IC_FECHA_REVISION, "29/04/2014");
+define(IC_VERSION, "2.7.2");
+define(IC_FECHA_REVISION, "26/05/2014");
 
+// 2.7.2 - 26/05/2014 - Históricos en datos, redondeo a dos decimales en salida, operador % funcionando en consulta avanzada
 // 2.7.1 - 29/04/2014 - Corregido un fallo grave al tomar los operadores de agregado de los indicadores que forman parte de indicadores calculados
 // 2.7.0 - 28/04/2014 - Los totales de los indicadores calculados se calculan ahora desde los datos de origen
 // 2.6.6 - 01/04/2014 - Tablas con múltiples indicadores y pantalla inicio con mediciones pendientes
@@ -18,4 +19,3 @@ define(IC_FECHA_REVISION, "29/04/2014");
 // 2.5.2 - Error: no grababa variable_control en ficha de procesos
 // 2.5.1 - Corregido error en tratamiento fichero CSV
 // 2.5.0 - Importación de datos desde ficheros CSV
-?>
