@@ -72,6 +72,10 @@
         <label>Datos relacionados</label>
         <div>{$dato->indicadores_relacionados}&nbsp;</div>
       </fieldset>
+      <fieldset class="label_side">
+        <label>Hist&oacute;rico</label>
+        <div>{$dato->historicos}&nbsp;</div>
+      </fieldset>
       <div class="columns clearfix">
         <div class="col_50">
           <fieldset class="label_side">

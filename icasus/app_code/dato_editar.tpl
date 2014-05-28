@@ -94,6 +94,11 @@
 			</fieldset>
 
 			<fieldset class="label_side">
+            	<label>Hist&oacute;rico</label>
+            	<div><input  type="text" name="historicos"value="{$dato->historicos}" /></div>
+         	</fieldset>
+
+			<fieldset class="label_side">
 				<label>Indicadores relacionados</label>
 				<div><input  type="text" name="indicadores_relacionados" value="{$dato->indicadores_relacionados}" /></div>
 			</fieldset>
