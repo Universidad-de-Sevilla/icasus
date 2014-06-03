@@ -14,7 +14,7 @@
 					src='/icons/ff16/user_medicion.png' /> Responsables medición</a> &nbsp; &nbsp;
 				<a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
 					src='/icons/ff16/tag_blue.png' /> Edición valores</a> &nbsp; &nbsp; &nbsp;
-        <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}'><img 
+        <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
           src='/icons/ff16/tag.png' /> Valores de referencia</a> &nbsp;
       </div>
 		<div class="block">
