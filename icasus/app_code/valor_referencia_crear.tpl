@@ -64,7 +64,7 @@
 
 <div class="box grid_16">
   <div class="button_bar clearfix">
-    <a href="index.php?page=indicador_mostrar&id_indicador={$indicador->id}"><img src ="/icons/ff16/chart_curve.png"> Volver al indicador</a>
+    <a href="index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}"><img src ="/icons/ff16/chart_curve.png"> Volver al {$tipo}</a>
     <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" ><img src='/icons/ff16/tag.png' /> Crear nuevos valores de referencia</a> &nbsp;
   </div>
   <div id="dt1" class="no_margin">

@@ -11,17 +11,15 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-if (isset($_REQUEST['id_indicador']))
+if (isset($_REQUEST["id_indicador"]))
 {
-	$id_indicador = sanitize($_REQUEST['id_indicador'],16);
-
-	$indicador = new indicador();
-	$indicador->load_joined("id=$id_indicador");
-
-	$smarty->assign('_javascript', array('valor_referencia_crear'));
-	$smarty->assign('indicador', $indicador);
-	$smarty->assign('_nombre_pagina', $indicador->nombre);
-	$plantilla = 'valor_referencia_crear.tpl';
+  $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
+  $tipo = "indicador";
+}
+else if (isset($_REQUEST["id_dato"]))
+{
+  $id_indicador = sanitize($_REQUEST["id_dato"], INT);
+  $tipo = "dato";
 }
 else // falta id_indicador o id_entidad
 {
@@ -29,4 +27,14 @@ else // falta id_indicador o id_entidad
 	$smarty->assign('_nombre_pagina','Error');
 	$plantilla = 'error.tpl';
 }
+
+$indicador = new indicador();
+$indicador->load_joined("id=$id_indicador");
+
+$smarty->assign('_javascript', array('valor_referencia_crear'));
+$smarty->assign('indicador', $indicador);
+$smarty->assign('_nombre_pagina', $indicador->nombre);
+
+$smarty->assign('tipo',$tipo);
+$plantilla = 'valor_referencia_crear.tpl';
 ?>

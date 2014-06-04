@@ -17,7 +17,9 @@
         <a href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
           src='/icons/ff16/user_medicion.png' /> Responsables medición</a> &nbsp; &nbsp;
 <a href='index.php?page=indicador_subunidad_valor&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-					src='/icons/ff16/tag_blue.png' /> Editar Valores</a>
+					src='/icons/ff16/tag_blue.png' /> Editar Valores</a> &nbsp; &nbsp; &nbsp;
+        <a href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
+          src='/icons/ff16/tag.png' /> Valores de referencia</a> &nbsp;
       </div>
 
       <div class="columns clearfix">
@@ -71,6 +73,10 @@
       <fieldset class="label_side">
         <label>Datos relacionados</label>
         <div>{$dato->indicadores_relacionados}&nbsp;</div>
+      </fieldset>
+      <fieldset class="label_side">
+        <label>Hist&oacute;rico</label>
+        <div>{$dato->historicos}&nbsp;</div>
       </fieldset>
       <div class="columns clearfix">
         <div class="col_50">

@@ -43,7 +43,8 @@ if (
   $dato->periodicidad = isset($_REQUEST['periodicidad'])?sanitize($_REQUEST['periodicidad'], SQL):null;    
   $dato->nivel_desagregacion = isset($_REQUEST['nivel_desagregacion'])?sanitize($_REQUEST['nivel_desagregacion'], SQL):null;
   $dato->id_tipo_agregacion = isset($_REQUEST['id_tipo_agregacion'])?sanitize($_REQUEST['id_tipo_agregacion'], INT):0;
-  $dato->fuente_datos = isset($_REQUEST['fuente_datos'])?sanitize($_REQUEST['fuente_datos'], SQL):null;   
+  $dato->fuente_datos = isset($_REQUEST['fuente_datos'])?sanitize($_REQUEST['fuente_datos'], SQL):null;
+	$dato->historicos = isset($_REQUEST['historicos'])?sanitize($_REQUEST['historicos'],SQL):null;
   $dato->unidad_generadora = isset($_REQUEST['unidad_generadora'])?sanitize($_REQUEST['unidad_generadora'], SQL):null;
   $dato->indicadores_relacionados = isset($_REQUEST['indicadores_relacionados'])?sanitize($_REQUEST['indicadores_relacionados'], SQL):null;    
   $dato->activo = 1;
