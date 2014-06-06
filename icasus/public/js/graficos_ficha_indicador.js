@@ -9,12 +9,13 @@
     var fecha_fin = $(this).data("fecha_fin");
     var periodicidad = $(this).data("periodicidad");
     var peticion_api = "api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
-	var colores = ['maroon',  'goldenrod', 'black', 'red', 'blue', 'blueviolet', 'crimson', 'darkorange', 'midnightblue', 'royalblue'];
+	var colores = [ 'maroon',  'goldenrod', 'black', 'blue', 'blueviolet', 'crimson', 'darkorange', 'midnightblue', 'royalblue'];
+	var colors = {Objetivo: "rgba(0, 255, 0, 0.4)", Limite: "rgba(255, 0, 0, 0.4)"};
     //console.log(peticion_api);
     $.getJSON(peticion_api).done(function(datos) {
       var datos_flot = []; // Atención: tiene que ser siempre un array aunque sólo tenga un elemento
       var items = [];
-      var referencias = [];
+      var referencias = {};
       var referencia_nombre;
       var etiqueta_indicador;
       var escala_tiempo;
@@ -27,19 +28,26 @@
         // TODO: puede haber más de una referencia
         else if(dato.referencia == true)
         {
-          referencias.push([dato.periodo_fin, dato.valor]);
+          if(dato.unidad in referencias)
+            referencias[dato.unidad].push([dato.periodo_fin, dato.valor]);
+          else
+          {
+            referencias[dato.unidad] = new Array();
+            referencias[dato.unidad].push([dato.periodo_fin, dato.valor]);
+          }
           referencia_nombre = dato.unidad;
         }
       });
-
       // Prepara los datos del indicador
       etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + id_indicador + '" target="_blank">' + nombre_indicador + '</a>';
       datos_flot[0] = {label: etiqueta_indicador, color: colores[index%colores.length], data: items, points: { show: true } };
 
       // Prepara los datos de referencia
-      if (referencias.length > 0)
+      if (referencias)
       {
-        datos_flot[1] = {label: referencia_nombre, color: "green", data:referencias, points: { show: true }};
+        for (key in referencias){
+          datos_flot.push({label: key, color:  colors[key], data:referencias[key], points: { show: true}});
+	}
       }
 
       escala_tiempo = (periodicidad == "anual")?"year":"month";
