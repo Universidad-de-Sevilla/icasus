@@ -1,10 +1,11 @@
 <?php
-define(IC_VERSION, "2.7.3");
-define(IC_FECHA_REVISION, "04/06/2014");
+define(IC_VERSION, "2.7.4");
+define(IC_FECHA_REVISION, "06/06/2014");
 
-// 2.7.3 - 04/06/2014 - Valores de referencia en datos, corregido error id_unidad en url
-// 2.7.2 - 26/05/2014 - Históricos en datos, redondeo a dos decimales en salida, operador % funcionando en consulta avanzada
-// 2.7.1 - 29/04/2014 - Corregido un fallo grave al tomar los operadores de agregado de los indicadores que forman parte de indicadores calculados
+// 2.7.4 - 06/06/2014 - Corrige error al mostrar valores de referencia en gráficas, atenua su color para distinguirlos de indicadores
+// 2.7.3 - 04/06/2014 - Permite crear valores de referencia en datos, corrige error id_unidad en url
+// 2.7.2 - 26/05/2014 - Permite rellenar campo 'Históricos' en datos, redondeo a dos decimales en salida, operador % funcionando en consulta avanzada
+// 2.7.1 - 29/04/2014 - Corrige un fallo grave al tomar los operadores de agregado de los indicadores que forman parte de indicadores calculados
 // 2.7.0 - 28/04/2014 - Los totales de los indicadores calculados se calculan ahora desde los datos de origen
 // 2.6.6 - 01/04/2014 - Tablas con múltiples indicadores y pantalla inicio con mediciones pendientes
 // 2.6.5 - 06/03/2014 - Nuevo campo etiqueta_mini agregado a consultas API y cambio en color de fondo de dataTables
