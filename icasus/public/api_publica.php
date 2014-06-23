@@ -48,6 +48,12 @@ if (@mysql_select_db(IC_DB_DATABASE))
         $periodo = isset($_REQUEST["periodicidad"])?sanitize($_REQUEST["periodicidad"], SQL):"todos";
         $metodo($id, $fecha_inicio, $fecha_fin, $periodo);
       }
+      else if (isset($_REQUEST["id"], $_REQUEST["periodicidad"]))
+      {
+        $id = sanitize($_REQUEST["id"], INT);
+        $periodo = sanitize($_REQUEST["periodicidad"], SQL);
+        $metodo($id, 0, 0, $periodo);
+      }
       else if (isset($_REQUEST["id"]))
       {
         $id = sanitize($_REQUEST["id"], INT);
@@ -157,6 +163,8 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
 
   // Devuelve los valores recogidos para todas las subunidades
   // mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+  // TRAMPA GORDA: uso el periodo de inicio como periodo de fin
+  // para que las gráficas anuales sean más coherentes
   $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
             UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
             entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, 
@@ -636,7 +644,7 @@ function prueba_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
 // --------------------------------------------------------------------------- 
 // Realiza los cálculos para obtener los totales de un indicador calculado
 // Ejemplo de llamada:
-// http://localhost/icasus/api_publica.php?metodo=get_valores_calculados&id=5035&fecha_inicio=2010-01-01&fecha_fin=2013-12-31&periodicidad=anual
+// http://localhost/icasus/api_publica.php?metodo=obtener_total_calculado&id=5035&fecha_inicio=2010-01-01&fecha_fin=2013-12-31&periodicidad=anual
 // --------------------------------------------------------------------------- 
 function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
 {
