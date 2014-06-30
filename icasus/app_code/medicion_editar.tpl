@@ -6,15 +6,6 @@
       <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Borrar medicion</a> &nbsp;
     {/if}
   </div>
-{if $valores|@count > 1}
-<div class="box grid_16">
-  <h2 class="box_head grad_grey_dark">Gráfica de la medición actual</h2>
-  <a href="#" class="grabber"></a>
-  <a href="#" class="toggle"></a>
-    <img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}"     
-      alt="Valores del indicador recogidos en cada subunidad para esta medición" />
-</div>
-{/if}
 
 <div class="box grid_16">
   <h2 class="box_head grad_grey_dark">Valor o conjunto de valores de la medición actual</h2>

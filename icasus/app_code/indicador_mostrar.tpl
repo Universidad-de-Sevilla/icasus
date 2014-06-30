@@ -197,10 +197,8 @@
 
 {if $mediciones}
   <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /> -->
-  <div style="background: white; padding:20px 40px; margin:10px;">
-    <h3 style="margin: 0 0 20px 0;">Histórico anual</h3>
-    <div class="panel_flot" id="grafica_anual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"></div>
-    <div class="leyenda"></div>
+  <div style="background: white; padding:20px 40px; margin:10px; height:300px;">
+	<div id="lineal" style="width:100%;" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"> </div>
   </div>
 
   {if $indicador->periodicidad != "Anual"} 
@@ -222,4 +220,82 @@
 
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
+<script src="js/highcharts.js" type="text/javascript"></script>
+<script src="js/set.js" type="text/javascript"></script>
+
 <script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	var idIndicador = $("#lineal").data("id_indicador");
+	var nomIndicador = $("#lineal").data("nombre_indicador");
+	var periodicidad = $("#lineal").data("periodicidad");
+	var serie = [];
+	$.ajax({
+		url: "http://localhost/icasus/api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&periodicidad=" + periodicidad,
+		type: "GET",
+		dataType: "json",
+		success: onDataReceived
+	});
+
+	function onDataReceived(datos) {
+		var categories = new Set();
+		var map = [];
+
+		//Guarda los datos en forma de Map
+		//Año -> Unidad -> Valor
+		datos.forEach(function(d){
+			var medicion;
+			var unidad;
+			var valor;
+			medicion=(new Date(parseInt(d.periodo_fin))).getFullYear();
+			valor = parseFloat(d.valor);
+			unidad = d.etiqueta_mini?d.etiqueta_mini:d.unidad;
+			!parseInt(d.id_unidad)?categories.add(unidad):false;	
+			if(map[medicion]){
+				map[medicion][unidad]=valor;
+			}else{
+				map[medicion]=new Object();
+				map[medicion][unidad]=valor;
+			}
+		});
+
+		categories.data.forEach(function (cat) {
+			var data = [];
+			for(var key in map){
+				if(map[key][cat])
+					data.push([key,map[key][cat]]);
+				else
+					data.push([key,null]);
+			}
+			serie.push({
+				name:cat,
+				type:'spline',
+				data:data,
+			});
+		});
+	}
+	
+	$(document).ajaxComplete(function(){
+		var chart1 = new Highcharts.Chart({
+		    chart: {
+			height: 300,
+		        renderTo: 'lineal',
+		    },
+		    title: {
+		        text: 'Histórico anual de ' + nomIndicador
+		    },
+		    xAxis: {
+		        type: 'category'
+		    },
+		    yAxis: {
+		        title: {
+		            text: ''
+		        }
+		    },
+			series: serie,
+		});
+	});
+});
+	
+</script>
