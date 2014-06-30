@@ -16,9 +16,19 @@ function fila_grabar(id_valor,medicion)
   {
     if (isNaN(value)== false)
     {
-      $.post("index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",{id_valor:id_valor, valor:value},function(){
+      $.ajax({
+        type: "POST",
+        url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+        data: {"id_valor":id_valor, "valor":value},
+        success: function(response){
+          $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion="+medicion);
+        }
+      });
+      /*
+       * $.post("index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",{id_valor:id_valor, valor:value},function(){
         $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion="+medicion);
       });
+      */
     }
     else if (value == "---")
     {
