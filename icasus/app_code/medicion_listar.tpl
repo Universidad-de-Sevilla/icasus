@@ -39,29 +39,29 @@
 </div>
 <div style="opacity: 1;" class="box grid_16">
 <div id="container" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="" data-fecha_fin="" data-periodicidad="anual" style="margin:0px"></div>
-	
-		<h2 class="box_head">Tabla de valores</h2>
-	<div style="opacity: 1;" class="block">	
-	<table class="static">
-		<thead>
-		<tr>
-			<th></th>
-			{foreach from=$mediciones item=medicion}
-				<th>{$medicion->etiqueta}</th>
-			{/foreach}
-		</tr>
-		</thead>
-		<tbody>
-		{foreach from=$subunidades_mediciones item=subunidades}
-			<tr><td>{$subunidades->etiqueta}</td>
-			{foreach from=$subunidades->mediciones item=medicion}
-				<td>{if $medicion->medicion_valor == '--'} -- {else}{if $medicion->medicion_valor->valor != NULL}{$medicion->medicion_valor->valor|round:"2"}{/if}{/if}</td>
-			{/foreach}
-			</tr>
-		{/foreach}
-		</tbody>
-	</table>
-	</div>
+
+  <h2 class="box_head">Tabla de valores</h2>
+  <div style="opacity: 1;" class="block"> 
+  <table class="static">
+    <thead>
+    <tr>
+      <th></th>
+      {foreach from=$mediciones item=medicion}
+        <th>{$medicion->etiqueta}</th>
+      {/foreach}
+    </tr>
+    </thead>
+    <tbody>
+    {foreach from=$subunidades_mediciones item=subunidades}
+      <tr><td>{$subunidades->etiqueta}</td>
+      {foreach from=$subunidades->mediciones item=medicion}
+        <td>{if $medicion->medicion_valor == '--'} -- {else}{if $medicion->medicion_valor->valor != NULL}{$medicion->medicion_valor->valor|round:"2"}{/if}{/if}</td>
+      {/foreach}
+      </tr>
+    {/foreach}
+    </tbody>
+  </table>
+  </div>
 <div class="box grid_16">
   {if $mediciones}
     <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /> -->
@@ -90,7 +90,7 @@
   <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /></p> -->
 </div>
 
-<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>   
 <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
 <script src="js/highcharts.js" type="text/javascript"></script>
@@ -100,146 +100,141 @@
 
 <script>
 $(document).ready(function() {
-	var idIndicador = $("#container").data("id_indicador");
-	var nomIndicador = $("#container").data("nombre_indicador");
-	var serie = [];
-	var totales = [];
-	$.ajax({
-		url: "http://localhost/icasus/api_publica.php?metodo=get_valores_con_timestamp&id="+idIndicador,
-		type: "GET",
-		dataType: "json",
-		success: onDataReceived
-	});
+  var idIndicador = $("#container").data("id_indicador");
+  var nomIndicador = $("#container").data("nombre_indicador");
+  var serie = [];
+  var totales = [];
+  $.ajax({
+    url: "api_publica.php?metodo=get_valores_con_timestamp&id="+idIndicador,
+    type: "GET",
+    dataType: "json",
+    success: onDataReceived
+  });
 
-	function onDataReceived(datos) {
-		var categories = new Set();
-		var map = [];
-		var medicion;
-		var unidad;
-		var valor;
-		
-		//Guarda los datos en forma de Map
-		//Año -> Unidad -> Valor
-		datos.forEach(function(d){
-			medicion=d.medicion;
-			valor = parseFloat(d.valor);
-			if(unidad = d.etiqueta_mini){
-				categories.add(unidad);	
-				if(map[medicion]){
-					map[medicion][unidad]=valor;
-				}else{
-					map[medicion]=new Object();
-					map[medicion][unidad]=valor;
-				}
-			}else if(d.id_unidad == "0"){
-				totales[medicion] = valor;
-			}
-		});
+  function onDataReceived(datos) {
+    var categories = new Set();
+    var map = [];
+    var medicion;
+    var unidad;
+    var valor;
 
-		//Recorre el Mapa 
-		for(var key in map){
-			var data = [];
-			categories.data.forEach(function (cat) {
-				if(map[key][cat])
-					data.push([cat,map[key][cat]]);
-				else
-					data.push([cat,undefined]);
-			});
-			serie.push({
-				name:key,
-				type:'column',
-				data:data.sort(),
-				visible:false,
-			});
-		};
-		serie.sort();
-		serie[serie.length -1].visible = true;
-		serie[serie.length -1].selected = true;
-	};
-	//Pintamos el gráfico
-	$(document).ajaxComplete(function(){
-		var chart1 = new Highcharts.Chart({
-		    chart: {
-				height: 400,
-		        renderTo: 'container',
-		    },
-		    title: {
-		        text: nomIndicador,
-		    },
-		    xAxis: {
-		        type: 'category'
-		    },
-		    yAxis: {
-		        title: {
-		            text: ""
-		        }
-		    },
-			plotOptions: {
-		        series: {
-		            events: {
-		                legendItemClick: function(event) {
-							if(this.visible){
-								chart1.yAxis[0].removePlotLine(this.name);
-							}else{
-								chart1.yAxis[0].addPlotLine({
-									value: totales[this.name],
-									color: this.color,
-									width: 2,
-									id: this.name
-		        				});
-							}
-		                }
-		            }
-		        },
-				column: {
-                    dataLabels: {
-                        enabled: true,
-						formatter: function() { return this.y?((Math.round(this.y*100))/100):null }
-                    }
-                }
-		    },
-		    series: serie,
-			exporting: {
-		        enabled: true
-		    },
-			credits: {
-		        enabled: false
-		    }
-		});
-		//Pintamos la media
-		chart1.getSelectedSeries().forEach( function (selected){
-			chart1.yAxis[0].addPlotLine({
-				value: totales[selected.name],
-				color: selected.color,
-				width: 2,
-				id: selected.name
-			});
-		});	
-	});
-});
-</script>
-
-{literal}
-<script>
-  $(document).ready(function() {
-    var table0 = $('#listado_mediciones').dataTable( {
-      "bJQueryUI": true,
-      "sScrollX": "",
-      "bSortClasses": false,
-      "aaSorting": [[1,'asc']],
-      "bAutoWidth": true,
-      "bInfo": true,
-      "sScrollX": "101%",
-      "bScrollCollapse": true,
-      "sPaginationType": "full_numbers",
-      "bRetrieve": true,
-      "fnInitComplete": function () {
-        $("#dt1 .dataTables_length > label > select").uniform();
-        $("#dt1 .dataTables_filter input[type=text]").addClass("text");
-        $(".datatable").css("visibility","visible");
+    //Guarda los datos en forma de Map
+    //Año -> Unidad -> Valor
+    datos.forEach(function(d){
+      medicion=d.medicion;
+      valor = parseFloat(d.valor);
+      if(unidad = d.etiqueta_mini){
+        categories.add(unidad); 
+        if(map[medicion]){
+          map[medicion][unidad]=valor;
+        }else{
+          map[medicion]=new Object();
+          map[medicion][unidad]=valor;
+        }
+      }else if(d.id_unidad == '0'){
+        totales[medicion] = valor;
       }
     });
-    table0.fnSort([1,'asc']);
-  } );
+
+    //Recorre el Mapa 
+    for(var key in map){
+      var data = [];
+      categories.data.forEach(function (cat) {
+        if(map[key][cat])
+          data.push([cat,map[key][cat]]);
+        else
+          data.push([cat,undefined]);
+      });
+      serie.push({
+        name:key,
+        type:'column',
+        data:data.sort(),
+        visible:false,
+      });
+    };
+    serie.sort();
+    serie[serie.length -1].visible = true;
+    serie[serie.length -1].selected = true;
+  };
+
+  //Pintamos el gráfico
+  $(document).ajaxComplete(function(){
+    var chart1 = new Highcharts.Chart({
+      chart: {
+        height: 400,
+        renderTo: 'container',
+      },
+      title: {
+        text: nomIndicador,
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: ''
+        }
+      },
+      plotOptions: {
+        series: {
+          events: {
+            legendItemClick: function(event) {
+              if(this.visible){
+                chart1.yAxis[0].removePlotLine(this.name);
+              }else{
+                chart1.yAxis[0].addPlotLine({
+                  value: totales[this.name],
+                  color: this.color,
+                  width: 1,
+                  id: this.name
+                });
+              }
+            }
+          }
+        },
+        column: {
+          dataLabels: {
+            enabled: true,
+            formatter: function() { return this.y?((Math.round(this.y*100))/100):null }
+          }
+        }
+      },
+      series: serie,
+      exporting: {
+        enabled: true
+      },
+      credits: {
+        enabled: false
+      }
+    });
+    //Pintamos la media
+    chart1.getSelectedSeries().forEach( function (selected){
+      chart1.yAxis[0].addPlotLine({
+        value: totales[selected.name],
+        color: selected.color,
+        width: 1,
+        id: selected.name
+      });
+    }); 
+  });
+
+  var table0 = $('#listado_mediciones').dataTable( {
+    'bJQueryUI': true,
+    'sScrollX': '',
+    'bSortClasses': false,
+    'aaSorting': [[1,'asc']],
+    'bAutoWidth': true,
+    'bInfo': true,
+    'sScrollX': '101%',
+    'bScrollCollapse': true,
+    'sPaginationType': 'full_numbers',
+    'bRetrieve': true,
+    'fnInitComplete': function () {
+      $('#dt1 .dataTables_length > label > select').uniform();
+      $('#dt1 .dataTables_filter input[type=text]').addClass('text');
+      $('.datatable').css('visibility','visible');
+    }
+  });
+  table0.fnSort([1,'asc']);
+} );
 </script>
-{/literal}

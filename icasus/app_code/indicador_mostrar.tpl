@@ -1,5 +1,5 @@
 <div class="box grid_16">
-	<div class="toggle_container">
+  <div class="toggle_container">
       <div class="button_bar clearfix">
         <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
           src='/icons/ff16/time.png' /> Mostrar mediciones</a> &nbsp; &nbsp;
@@ -10,14 +10,14 @@
           src='/icons/ff16/chart_curve_edit.png'  /> Editar</a> &nbsp; 
         <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img 
           src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp;  &nbsp;
-				<a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-					src='/icons/ff16/user_medicion.png' /> Responsables medición</a> &nbsp; &nbsp;
-				<a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-					src='/icons/ff16/tag_blue.png' /> Edición valores</a> &nbsp; &nbsp; &nbsp;
+        <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+          src='/icons/ff16/user_medicion.png' /> Responsables medición</a> &nbsp; &nbsp;
+        <a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+          src='/icons/ff16/tag_blue.png' /> Edición valores</a> &nbsp; &nbsp; &nbsp;
         <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
           src='/icons/ff16/tag.png' /> Valores de referencia</a> &nbsp;
       </div>
-		<div class="block">
+    <div class="block">
       <div class="columns clearfix">
         <div class="col_40">
           <fieldset class="label">
@@ -64,7 +64,7 @@
           </div>
         </fieldset>
       {/if}
-			<fieldset class="label_side">
+      <fieldset class="label_side">
         <label>Responsable de seguimiento</label>
         <div>
           {$indicador->responsable->nombre} {$indicador->responsable->apellidos} 
@@ -81,19 +81,19 @@
       {if $indicador->fuente_informacion != ""}
         <fieldset class="label_side">
           <label>Fuente de informaci&oacute;n</label>
-          <div>{$indicador->fuente_informacion}&nbsp;</div>	
+          <div>{$indicador->fuente_informacion}&nbsp;</div> 
         </fieldset>
       {/if}
       {if $indicador->fuente_datos != ""}
       <fieldset class="label_side">
         <label>Fuente de datos</label>
-        <div>{$indicador->fuente_datos}&nbsp;</div>	
+        <div>{$indicador->fuente_datos}&nbsp;</div> 
       </fieldset>
       {/if}
       {if $indicador->evidencia != ""}
       <fieldset class="label_side">
         <label>Metodo de comprobaci&oacute;n / Evidencia</label>
-        <div>{$indicador->evidencia}&nbsp;</div>		
+        <div>{$indicador->evidencia}&nbsp;</div>    
       </fieldset>
       {/if}
       {if $indicador->historicos != ""}
@@ -152,7 +152,7 @@
         </div>
         <div class="col_50">
           <fieldset class="label_side">
-            <label>Visibilidad</label>	
+            <label>Visibilidad</label>  
             <div>{$indicador->visibilidad->nombre|htmlentities}&nbsp;</div>
           </fieldset>
         </div>
@@ -192,13 +192,13 @@
 <h2>Mediciones del indicador</h2>
 <div class="button_bar clearfix">
   <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-    src='/icons/ff16/time.png' /> Mostrar Mediciones</a>						
+    src='/icons/ff16/time.png' /> Mostrar Mediciones</a>            
 </div>
 
 {if $mediciones}
   <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /> -->
   <div style="background: white; padding:20px 40px; margin:10px; height:300px;">
-	<div id="lineal" style="width:100%;" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"> </div>
+  <div id="lineal" style="width:100%;" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"> </div>
   </div>
 
   {if $indicador->periodicidad != "Anual"} 
@@ -207,18 +207,13 @@
       <div class="panel_flot" id="grafica_anio_anterior" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 1}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="mensual"></div>
       <div class="leyenda"></div>
     </div>
-    <!--
-    <h3>Año en curso</h3>
-    <div class="panel_flot" id="grafica_anio_actual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos"  data-fecha_inicio="2013-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' + 1}-{$smarty.now|date_format:'%m-%d'}" data-periodicidad="todos"></div>
-    <div class="leyenda"></div>
-    -->
   {/if}
-  
+
 {else}
   <p class="aviso">Todavía no se han definido mediciones para este indicador.</p>
 {/if}
 
-<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>   
 <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script src="js/highcharts.js" type="text/javascript"></script>
 <script src="js/set.js" type="text/javascript"></script>
@@ -227,75 +222,75 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-	var idIndicador = $("#lineal").data("id_indicador");
-	var nomIndicador = $("#lineal").data("nombre_indicador");
-	var periodicidad = $("#lineal").data("periodicidad");
-	var serie = [];
-	$.ajax({
-		url: "http://localhost/icasus/api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&periodicidad=" + periodicidad,
-		type: "GET",
-		dataType: "json",
-		success: onDataReceived
-	});
+  var idIndicador = $("#lineal").data("id_indicador");
+  var nomIndicador = $("#lineal").data("nombre_indicador");
+  var periodicidad = $("#lineal").data("periodicidad");
+  var serie = [];
+  $.ajax({
+    url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&periodicidad=" + periodicidad,
+    type: "GET",
+    dataType: "json",
+    success: onDataReceived
+  });
 
-	function onDataReceived(datos) {
-		var categories = new Set();
-		var map = [];
+  function onDataReceived(datos) {
+    var categories = new Set();
+    var map = [];
 
-		//Guarda los datos en forma de Map
-		//Año -> Unidad -> Valor
-		datos.forEach(function(d){
-			var medicion;
-			var unidad;
-			var valor;
-			medicion=(new Date(parseInt(d.periodo_fin))).getFullYear();
-			valor = parseFloat(d.valor);
-			unidad = d.etiqueta_mini?d.etiqueta_mini:d.unidad;
-			!parseInt(d.id_unidad)?categories.add(unidad):false;	
-			if(map[medicion]){
-				map[medicion][unidad]=valor;
-			}else{
-				map[medicion]=new Object();
-				map[medicion][unidad]=valor;
-			}
-		});
+    //Guarda los datos en forma de Map
+    //Año -> Unidad -> Valor
+    datos.forEach(function(d){
+      var medicion;
+      var unidad;
+      var valor;
+      medicion=(new Date(parseInt(d.periodo_fin))).getFullYear();
+      valor = parseFloat(d.valor);
+      unidad = d.etiqueta_mini?d.etiqueta_mini:d.unidad;
+      !parseInt(d.id_unidad)?categories.add(unidad):false;  
+      if(map[medicion]){
+        map[medicion][unidad]=valor;
+      }else{
+        map[medicion]=new Object();
+        map[medicion][unidad]=valor;
+      }
+    });
 
-		categories.data.forEach(function (cat) {
-			var data = [];
-			for(var key in map){
-				if(map[key][cat])
-					data.push([key,map[key][cat]]);
-				else
-					data.push([key,null]);
-			}
-			serie.push({
-				name:cat,
-				type:'spline',
-				data:data,
-			});
-		});
-	}
-	
-	$(document).ajaxComplete(function(){
-		var chart1 = new Highcharts.Chart({
-		    chart: {
-			height: 300,
-		        renderTo: 'lineal',
-		    },
-		    title: {
-		        text: 'Histórico anual de ' + nomIndicador
-		    },
-		    xAxis: {
-		        type: 'category'
-		    },
-		    yAxis: {
-		        title: {
-		            text: ''
-		        }
-		    },
-			series: serie,
-		});
-	});
+    categories.data.forEach(function (cat) {
+      var data = [];
+      for(var key in map){
+        if(map[key][cat])
+          data.push([key,map[key][cat]]);
+        else
+          data.push([key,null]);
+      }
+      serie.push({
+        name:cat,
+        type:'spline',
+        data:data,
+      });
+    });
+  }
+
+  $(document).ajaxComplete(function(){
+    var chart1 = new Highcharts.Chart({
+      chart: {
+        height: 300,
+        renderTo: 'lineal',
+      },
+      title: {
+        text: 'Histórico anual de ' + nomIndicador
+      },
+      xAxis: {
+       type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: ''
+        }
+      },
+      series: serie,
+    });
+  });
 });
-	
+
 </script>
