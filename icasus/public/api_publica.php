@@ -758,6 +758,7 @@ function obtener_totales_simples($id_indicador, $fecha_inicio='0', $fecha_fin='0
   return $datos;
 }
 
+//Función para depuración y comprobaciones
 //Repite partes de obtener_totales_calculados pero devuelve los subtotales
 function subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
 {
