@@ -221,6 +221,7 @@
 <script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+// Tendremos que recorrer cada uno de los paneles que albergarán los gráficos
 $(document).ready(function() {
   var idIndicador = $("#lineal").data("id_indicador");
   var nomIndicador = $("#lineal").data("nombre_indicador");
