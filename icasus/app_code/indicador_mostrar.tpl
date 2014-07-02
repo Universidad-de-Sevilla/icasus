@@ -204,7 +204,8 @@
   {if $indicador->periodicidad != "Anual"} 
     <div style="background: white; padding:20px 40px; margin:10px;">
       <h3 style="margin: 0 0 20px 0;">Dos últimos años ({$smarty.now|date_format:'%Y' - 1} / {$smarty.now|date_format:'%Y'})</h3>
-      <div class="panel_flot" id="grafica_anio_anterior" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 1}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="todos"></div>
+      <div class="lineal" id="grafica_anio_anterior" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 1}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="todos"></div>
+      <div class="panel_flot" id="grafica_anio_anterior" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 1}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="todos"></div>
       <div class="leyenda"></div>
     </div>
   {/if}
@@ -225,9 +226,8 @@ $(document).ready(function() {
   var idIndicador = $("#lineal").data("id_indicador");
   var nomIndicador = $("#lineal").data("nombre_indicador");
   var periodicidad = $("#lineal").data("periodicidad");
-  var milisegundosAnio = 31540000000;
-
   var serie = [];
+
   $.ajax({
     url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&periodicidad=" + periodicidad,
     type: "GET",
@@ -273,14 +273,20 @@ $(document).ready(function() {
     });
   }
 
-  $(document).ajaxComplete(function(){
-    var chart1 = new Highcharts.Chart({
+    console.log(serie);
+  var idIndicador = $("#lineal").data("id_indicador");
+  var texto = 'Histórico anual de ' + nomIndicador;
+  $(document).ajaxComplete(pintaGrafica('lineal', serie, texto));
+
+  function pintaGrafica(contenedor, serie, texto){
+    var milisegundosAnio = 31540000000;
+    new Highcharts.Chart({
       chart: {
         height: 300,
-        renderTo: 'lineal',
+        renderTo: contenedor,
       },
       title: {
-        text: 'Histórico anual de ' + nomIndicador
+        text: texto
       },
       xAxis: {
         type: 'datetime',
@@ -295,9 +301,9 @@ $(document).ready(function() {
           text: ''
         }
       },
-      series: serie,
+      series: serie
     });
-  });
+  };
 });
 
 </script>
