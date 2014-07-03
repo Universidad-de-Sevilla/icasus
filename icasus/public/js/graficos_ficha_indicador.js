@@ -9,8 +9,8 @@
     var fecha_fin = $(this).data("fecha_fin");
     var periodicidad = $(this).data("periodicidad");
     var peticion_api = "api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
-	var colores = [ 'maroon',  'goldenrod', 'black', 'blue', 'blueviolet', 'crimson', 'darkorange', 'midnightblue', 'royalblue'];
-	var colors = {Objetivo: "rgba(0, 255, 0, 0.4)", Limite: "rgba(255, 0, 0, 0.4)"};
+  var colores = [ 'maroon',  'goldenrod', 'black', 'blue', 'blueviolet', 'crimson', 'darkorange', 'midnightblue', 'royalblue'];
+  var colors = {Objetivo: "rgba(0, 255, 0, 0.4)", Limite: "rgba(255, 0, 0, 0.4)"};
     //console.log(peticion_api);
     $.getJSON(peticion_api).done(function(datos) {
       var datos_flot = []; // Atención: tiene que ser siempre un array aunque sólo tenga un elemento
@@ -47,7 +47,7 @@
       {
         for (key in referencias){
           datos_flot.push({label: key, color:  colors[key], data:referencias[key], points: { show: true}});
-	}
+  }
       }
 
       escala_tiempo = (periodicidad == "anual")?"year":"month";
