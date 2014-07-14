@@ -204,7 +204,7 @@
   {if $indicador->periodicidad != "Anual"} 
     <div style="background: white; padding:20px 40px; margin:10px;">
       <h3 style="margin: 0 0 20px 0;">Dos últimos años ({$smarty.now|date_format:'%Y' - 1} / {$smarty.now|date_format:'%Y'})</h3>
-      <div class="highchart" id="ultimas" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 1}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="todos"></div>
+      <div class="highchart" id="ultimas" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 2}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="todos"></div>
     </div>
   {/if}
 
@@ -226,10 +226,35 @@ $(document).ready(function() {
     var idIndicador = $(this).data("id_indicador");
     var nomIndicador = $(this).data("nombre_indicador");
     var periodicidad = $(this).data("periodicidad");
+    var fecha_inicio = $(this).data("fecha_inicio");
+    var fecha_fin = $(this).data("fecha_fin");
+    var milisegundosAnio = 31540000000;
+    var chart1 = new Highcharts.Chart({
+      chart: {
+        height: 300,
+        renderTo: idPanel,
+      },
+      title: {
+        text: nomIndicador + '(' + fecha_inicio + " a " + fecha_fin + ")",
+        style: { "color": "grey", "fontSize": "12px"}
+      },
+      xAxis: {
+        type: 'datetime',
+        tickInterval: milisegundosAnio,
+        dateTimeLabelFormats: {
+          month: "%b %y",
+          year:"%Y"
+        }
+      },
+      yAxis: {
+        title: {
+          text: ''
+        }
+      },
+    });
 
-    var serie = [];
     $.ajax({
-      url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&periodicidad=" + periodicidad,
+      url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad,
       type: "GET",
       dataType: "json",
       success: onDataReceived
@@ -240,7 +265,7 @@ $(document).ready(function() {
       var map = [];
 
       //Guarda los datos en forma de Map
-      //Año -> Unidad -> Valor
+      //Año/Medición -> Unidad -> Valor
       datos.forEach(function(d){
         var medicion;
         var unidad;
@@ -248,7 +273,7 @@ $(document).ready(function() {
         medicion=d.periodo_fin;
         valor = parseFloat(d.valor);
         unidad = d.etiqueta_mini?d.etiqueta_mini:d.unidad;
-        !parseInt(d.id_unidad)?categories.add(unidad):false;  
+        !parseInt(d.id_unidad)?categories.add(unidad):false;
         if(map[medicion]){
           map[medicion][unidad]=valor;
         }else{
@@ -257,48 +282,21 @@ $(document).ready(function() {
         }
       });
 
-      categories.data.forEach(function (cat) {
+      categories.data.forEach(function (category) {
         var data = [];
         for(var key in map){
-          if(map[key][cat])
-            data.push([parseInt(key),map[key][cat]]);
+          if(map[key][category])
+            data.push([parseInt(key),map[key][category]]);
           else
             data.push([parseInt(key),null]);
         }
-        serie.push({
-          name:cat,
+        chart1.addSeries({
+          name:category,
           type:'line',
           data:data,
         });
       });
     }
-
-    $(document).ajaxComplete(function(){
-      var milisegundosAnio = 31540000000;
-      var chart1 = new Highcharts.Chart({
-        chart: {
-          height: 300,
-          renderTo: idPanel,
-        },
-        title: {
-          text: 'Histórico anual de ' + nomIndicador
-        },
-        xAxis: {
-          type: 'datetime',
-          tickInterval: milisegundosAnio,
-          dateTimeLabelFormats: {
-            month: "%b %y",
-            year:"%Y"
-          }
-        },
-        yAxis: {
-          title: {
-            text: ''
-          }
-        },
-        series: serie,
-      });
-    });
   });
 });
 
