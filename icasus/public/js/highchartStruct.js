@@ -1,10 +1,16 @@
-/**
-*
-*
-*
-*
-*
-*/
+//--------------------------------------------------------------------------
+// Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+// Archivo: public/js/highchartStruct.js
+// Desarrolladores: Fran A.R. Vivas (@pacobo)
+//--------------------------------------------------------------------------
+// Estructuras para acomodar los datos que devuelve la API de icasus a los 
+// requisitos de la librería Highchart
+//
+// No obstante algunas funciones como Set pueden ser utiles en otros contextos
+//--------------------------------------------------------------------------
+
+// Un Set define una colección de elementos únicos que no tienen porqué
+// estar ordenados
 
 function Set(){
 	this.data= [];
