@@ -20,7 +20,7 @@
 * + integer function position (element)
 * + element function get (integer)
 * + array<element> function getAll ()
-* + array<element> function subSet (integer, integer)
+* + array<element> function set (element, element)
 * + void function show()
 *
 */
@@ -59,7 +59,7 @@ function Set(){
 		return this.data;
 	}
 
-	this.subSet = function (older, newer) {
+	this.set = function (older, newer) {
 		var pos = this.data.indexOf(older);
 		if (pos > -1) {
 			this.data.splice(pos, 1, newer);
