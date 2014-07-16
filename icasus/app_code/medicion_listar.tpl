@@ -94,73 +94,44 @@
 <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
 <script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/set.js" type="text/javascript"></script>
+<script src="js/highchartStruct.js" type="text/javascript"></script>
 
 <script src="js/exporting.js"></script>
 
 <script>
 $(document).ready(function() {
+  /**VARIABLES**/
   var idIndicador = $("#container").data("id_indicador");
   var nomIndicador = $("#container").data("nombre_indicador");
-  var serie = [];
+  var chartSerie = new highchartSerie();
   var totales = [];
+  /**CONSULTA A LA BASE DE DATOS**/
   $.ajax({
     url: "api_publica.php?metodo=get_valores_con_timestamp&id="+idIndicador,
     type: "GET",
     dataType: "json",
     success: onDataReceived
   });
-
+  /**GUARDADO DE DATOS EN HIGHCHARTSTRUCT y TOTALES PARA LAS MEDIAS**/
   function onDataReceived(datos) {
     var categories = new Set();
-    var map = [];
-    var medicion;
-    var unidad;
-    var valor;
-
-    //Guarda los datos en forma de Map
-    //Año -> Unidad -> Valor
     datos.forEach(function(d){
-      medicion=d.medicion;
-      valor = parseFloat(d.valor);
-      if(unidad = d.etiqueta_mini){
-        categories.add(unidad); 
-        if(map[medicion]){
-          map[medicion][unidad]=valor;
-        }else{
-          map[medicion]=new Object();
-          map[medicion][unidad]=valor;
-        }
+      if(d.etiqueta_mini){
+        chartSerie.add(d);
       }else if(d.id_unidad == '0'){
-        totales[medicion] = valor;
+        totales[d.medicion] = parseFloat(d.valor);
       }
     });
-
-    //Recorre el Mapa 
-    for(var key in map){
-      var data = [];
-      categories.data.forEach(function (cat) {
-        if(map[key][cat])
-          data.push([cat,map[key][cat]]);
-        else
-          data.push([cat,undefined]);
-      });
-      serie.push({
-        name:key,
-        type:'column',
-        data:data.sort(),
-        visible:false,
-      });
-    };
-    serie.sort();
-    serie[serie.length -1].visible = true;
-    serie[serie.length -1].selected = true;
   };
 
-  //Pintamos el gráfico
+  /**PINTADO & CONFIGURACIÓN DEL GRÁFICO**/
   $(document).ajaxComplete(function(){
+    var serie = chartSerie.getBarSerie();
+    serie[serie.length-1].visible = true;
+    serie[serie.length-1].selected = true;
     var chart1 = new Highcharts.Chart({
       chart: {
+	type: 'column',
         height: 400,
         renderTo: 'container',
       },
@@ -178,6 +149,7 @@ $(document).ready(function() {
       plotOptions: {
         series: {
           events: {
+	//Pintamos la media al hacer click en él.
             legendItemClick: function(event) {
               if(this.visible){
                 chart1.yAxis[0].removePlotLine(this.name);
@@ -185,7 +157,7 @@ $(document).ready(function() {
                 chart1.yAxis[0].addPlotLine({
                   value: totales[this.name],
                   color: this.color,
-                  width: 1,
+                  width: 2,
                   id: this.name
                 });
               }
@@ -207,12 +179,12 @@ $(document).ready(function() {
         enabled: false
       }
     });
-    //Pintamos la media
+    //Pintamos la media del último grupo de datos (último periodo)
     chart1.getSelectedSeries().forEach( function (selected){
       chart1.yAxis[0].addPlotLine({
         value: totales[selected.name],
         color: selected.color,
-        width: 1,
+        width: 2,
         id: selected.name
       });
     }); 
