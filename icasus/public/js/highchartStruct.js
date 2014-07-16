@@ -1,6 +1,18 @@
-/** Set copiado de "Estructuras de Datos en Javascript
+//--------------------------------------------------------------------------
+// Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+// Archivo: public/js/highchartStruct.js
+// Desarrolladores: Fran A.R. Vivas (@pacobo)
+//--------------------------------------------------------------------------
+// Estructuras para acomodar los datos que devuelve la API de icasus a los 
+// requisitos de la librería Highchart
+//
+// No obstante algunas funciones como Set pueden ser utiles en otros contextos
+//--------------------------------------------------------------------------
+
+/** Set copiado de "Estructuras de Datos en Javascript"
 *
 * Definición: Lista en la que no se pueden repetir elementos.
+* No tiene porque estar ordenado.
 *
 * Funciones:
 * + void function add (element)
