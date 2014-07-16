@@ -1,13 +1,20 @@
-/**
+/** Set copiado de "Estructuras de Datos en Javascript
 *
+* Definición: Lista en la que no se pueden repetir elementos.
 *
-*
-*
+* Funciones:
+* + void function add (element)
+* + boolean function remove (element)
+* + integer function position (element)
+* + element function get (integer)
+* + array<element> function getAll ()
+* + array<element> function subSet (integer, integer)
+* + void function show()
 *
 */
 
 function Set(){
-	this.data= [];
+	this.data = [];
 
 	this.add = function (elem) {
 		if(this.data.indexOf(elem) < 0){
@@ -40,7 +47,7 @@ function Set(){
 		return this.data;
 	}
 
-	this.set = function (older, newer) {
+	this.subSet = function (older, newer) {
 		var pos = this.data.indexOf(older);
 		if (pos > -1) {
 			this.data.splice(pos, 1, newer);
@@ -63,12 +70,20 @@ function Set(){
 * + array function getBarSerie()
 * + array function getLinealSerie()
 * 
-* SerieObject:
+* Used objects:
+* + SerieObject:
   {
-	name:
-	visible:
-	selected:
-	data
+	name: string
+	visible: boolean
+	selected: boolean
+	data: array <DataObject>
+  }
+* + DataObject:
+  {
+    id: string
+    name: string
+    y: integer
+    x: integer
   }
 */
 
@@ -89,6 +104,7 @@ function highchartSerie(){
 			this.serie[elem.medicion] = [data];
 		}
 	};
+
 	this.getBarSerie = function(){
 		var ser = [];
 		this.categories.data.sort();
@@ -103,5 +119,12 @@ function highchartSerie(){
 			});
 		}
 		return ser;
+	};
+	
+	this.getLinealSerie = function(){
+		var ser = [];
+		for(unidad in this.serie){
+			
+		}
 	};
 };
