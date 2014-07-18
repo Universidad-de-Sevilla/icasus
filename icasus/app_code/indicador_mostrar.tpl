@@ -264,7 +264,7 @@ console.log("api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador
           map[medicion][unidad]=valor;
         }
       });
-	console.log(chartSerie);
+	console.log(chartSerie.getLinealSerie());
       categories.data.forEach(function (category) {
         var data = [];
         for(var key in map){
@@ -281,6 +281,7 @@ console.log("api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador
       });
     var chart1 = new Highcharts.Chart({
       chart: {
+        type: 'line',
         height: 300,
         renderTo: idPanel,
       },
@@ -289,12 +290,7 @@ console.log("api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador
         style: { "color": "grey", "fontSize": "12px"}
       },
       xAxis: {
-        type: 'datetime',
-        tickInterval: milisegundosAnio,
-        dateTimeLabelFormats: {
-          month: "%b %y",
-          year:"%Y"
-        }
+        type: 'category',
       },
       yAxis: {
         title: {
@@ -308,7 +304,7 @@ console.log("api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador
           }
         }
       },
-      series: serie,
+      series: chartSerie.getLinealSerie()
     });
     }
   });
