@@ -150,6 +150,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
             FROM tipo_agregacion
             INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
             WHERE indicadores.id = $id";
+
   $operador = 'SUM'; // valor por defecto
   if ($resultado = mysql_query($query))
   {
@@ -158,8 +159,12 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
       $operador = $registro['operador'];
       $id_entidad = $registro['id_entidad'];
       $calculo = $registro['calculo'];
-    }
-  }
+    }else{
+	echo("Fallo en la consulta getOperador");
+	}
+  }else{
+	echo("Fallo en la consulta ejecucion");
+	}
 
   // Devuelve los valores recogidos para todas las subunidades
   // mediciones.id as id_medicion, mediciones.etiqueta as medicion,
@@ -194,12 +199,15 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
-  $resultado = mysql_query($query);
+  if(!$resultado = mysql_query($query)){
+	echo("Fallo en la consulta ejecucion");
+	}
 
   while ($registro = mysql_fetch_assoc($resultado))
   {
     $datos[] = $registro;
   }
+
   // Aquí van los totales, si el indicador es calculado usamos obtener_total_calculado
   if ($calculo)
   {
@@ -248,14 +256,12 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
       $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
     }
     $query .= " ORDER BY mediciones.periodo_inicio";
-
     $resultado = mysql_query($query);
     while ($registro = mysql_fetch_assoc($resultado))
     {
       $datos[] = $registro;
     }
   }
-  
   // TODO
   // Valores de referencia: objetivos, mínimos, etc.
   $query = "SELECT m.id as id_medicion, m.etiqueta as medicion, 
@@ -266,7 +272,6 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
             INNER JOIN mediciones m ON rm.`id_medicion` = m.`id`
             WHERE m.`id_indicador` = $id AND grafica = 1
             ORDER BY periodo_inicio";
-  
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
@@ -274,8 +279,10 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   }
   
   // Convertimos las tres 'tacadas' de datos a json 
-  $datos = json_encode($datos);
-  echo $datos;
+  if($datos = json_encode($datos))
+    echo $datos;
+  else
+    echo json_last_error_msg();
 }
 // --------------------------------------------------------------------------- 
 // Devuelve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
