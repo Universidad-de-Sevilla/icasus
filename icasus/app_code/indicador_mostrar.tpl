@@ -229,6 +229,56 @@ $(document).ready(function() {
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
     var milisegundosAnio = 31540000000;
+    var serie = [];
+    var chartSerie = new highchartSerie();
+console.log("api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad);
+    $.ajax({
+      url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad,
+      type: "GET",
+      dataType: "json",
+      success: onDataReceived
+    });
+
+    function onDataReceived(datos) {
+      var categories = new Set();
+      var map = [];
+
+      //Guarda los datos en forma de Map
+      //Año/Medición -> Unidad -> Valor
+      datos.forEach(function(d){
+        var medicion;
+        var unidad;
+        var valor;
+        medicion=d.periodo_fin;
+        valor = parseFloat(d.valor);
+        unidad = d.etiqueta_mini?d.etiqueta_mini:d.unidad;
+        !parseInt(d.id_unidad)?categories.add(unidad):false;
+
+	if(!d.etiqueta_mini)
+		chartSerie.add(d);
+
+        if(map[medicion]){
+          map[medicion][unidad]=valor;
+        }else{
+          map[medicion]=new Object();
+          map[medicion][unidad]=valor;
+        }
+      });
+	console.log(chartSerie);
+      categories.data.forEach(function (category) {
+        var data = [];
+        for(var key in map){
+          if(map[key][category])
+            data.push([parseInt(key),map[key][category]]);
+          else
+            data.push([parseInt(key),null]);
+        }
+        serie.push({
+          name:category,
+          type:'line',
+          data:data,
+        });
+      });
     var chart1 = new Highcharts.Chart({
       chart: {
         height: 300,
@@ -251,51 +301,15 @@ $(document).ready(function() {
           text: ''
         }
       },
-    });
-
-    $.ajax({
-      url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad,
-      type: "GET",
-      dataType: "json",
-      success: onDataReceived
-    });
-
-    function onDataReceived(datos) {
-      var categories = new Set();
-      var map = [];
-
-      //Guarda los datos en forma de Map
-      //Año/Medición -> Unidad -> Valor
-      datos.forEach(function(d){
-        var medicion;
-        var unidad;
-        var valor;
-        medicion=d.periodo_fin;
-        valor = parseFloat(d.valor);
-        unidad = d.etiqueta_mini?d.etiqueta_mini:d.unidad;
-        !parseInt(d.id_unidad)?categories.add(unidad):false;
-        if(map[medicion]){
-          map[medicion][unidad]=valor;
-        }else{
-          map[medicion]=new Object();
-          map[medicion][unidad]=valor;
+      plotOptions: {
+        series: {
+          dataLabels: {
+            enabled: true
+          }
         }
-      });
-
-      categories.data.forEach(function (category) {
-        var data = [];
-        for(var key in map){
-          if(map[key][category])
-            data.push([parseInt(key),map[key][category]]);
-          else
-            data.push([parseInt(key),null]);
-        }
-        chart1.addSeries({
-          name:category,
-          type:'line',
-          data:data,
-        });
-      });
+      },
+      series: serie,
+    });
     }
   });
 });

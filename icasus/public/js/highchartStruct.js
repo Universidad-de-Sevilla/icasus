@@ -106,8 +106,8 @@ function highchartSerie(){
 	this.add = function(elem){
 		this.categories.add(elem.etiqueta_mini);
 		var data = {
-			id:elem.etiqueta_mini,
-			name:elem.etiqueta_mini,
+			id:elem.etiqueta_mini?elem.etiqueta_mini:elem.unidad,
+			name:elem.etiqueta_mini?elem.etiqueta_mini:elem.unidad,
 			y:parseFloat(elem.valor)
 		};
 		if(this.serie[elem.medicion]){
