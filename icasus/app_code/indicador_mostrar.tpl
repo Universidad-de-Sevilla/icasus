@@ -196,7 +196,6 @@
 </div>
 
 {if $mediciones}
-  <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /> -->
   <div style="background: white; padding:20px 40px; margin:10px; height:300px;">
   <div class="highchart" id="anuales" style="width:100%;" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"> </div>
   </div>
@@ -207,9 +206,51 @@
       <div class="highchart" id="ultimas" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 2}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="todos"></div>
     </div>
   {/if}
-
+{if $paneles}
+  {foreach $paneles as $panel}
+    <div class="box grid_{$panel->ancho}" style="float:left;">
+      <div class="block alturo" style="height:320px">
+        <div class="titulo-panel">
+          <strong>{$panel->nombre}</strong> 
+          <a class="borrar pull-right ihidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/cancel.png" /></a>
+          &nbsp; 
+          <a class="editar pull-right hidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/application_add.png" /></a>
+        </div>
+        <div class="section">
+          <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
+            data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" 
+            data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}"
+            data-periodicidad="{$panel->periodicidad}"></div>
+          <div class="leyenda"></div>
+        </div>
+      </div>
+    </div>
+  {/foreach}
+{/if}
 {else}
-  <p class="aviso">Todavía no se han definido mediciones para este indicador.</p>
+  <p class="aviso">Todavía no se han recogido valores para este indicador.</p>
+{/if}
+
+{if $paneles}
+  {foreach $paneles as $panel}
+    <div class="box grid_{$panel->ancho}" style="float:left;">
+      <div class="block alturo" style="height:320px">
+        <div class="titulo-panel">
+          <strong>{$panel->nombre}</strong> 
+          <a class="borrar pull-right ihidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/cancel.png" /></a>
+          &nbsp; 
+          <a class="editar pull-right hidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/application_add.png" /></a>
+        </div>
+        <div class="section">
+          <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
+            data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" 
+            data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}"
+            data-periodicidad="{$panel->periodicidad}"></div>
+          <div class="leyenda"></div>
+        </div>
+      </div>
+    </div>
+  {/foreach}
 {/if}
 
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>   
@@ -221,6 +262,7 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+  // Para cada contenedor de clase higchart vamos a pintar el gráfico
   $('.highchart').each(function() {
     var idPanel = $(this).attr('id');
     var idIndicador = $(this).data("id_indicador");
