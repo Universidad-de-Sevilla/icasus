@@ -106,9 +106,9 @@ function highchartSerie(){
 	this.add = function(element){
 		this.categories.add(element.etiqueta_mini);
 		var data = {
-			id:element.etiqueta_mini,
-			name:element.etiqueta_mini,
-			y:parseFloat(element.valor)
+			id:elem.etiqueta_mini?elem.etiqueta_mini:elem.unidad,
+			name:elem.etiqueta_mini?elem.etiqueta_mini:elem.unidad,
+			y:parseFloat(elem.valor)
 		};
 		if(this.serie[element.medicion]){
 			this.serie[element.medicion].push(data);

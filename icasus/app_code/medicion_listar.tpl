@@ -127,6 +127,7 @@ $(document).ready(function() {
   /**PINTADO & CONFIGURACIÓN DEL GRÁFICO**/
   $(document).ajaxComplete(function(){
     var serie = chartSerie.getBarSerie();
+    console.log(serie);
     serie[serie.length-1].visible = true;
     serie[serie.length-1].selected = true;
     var chart1 = new Highcharts.Chart({
@@ -155,6 +156,14 @@ $(document).ready(function() {
                 chart1.yAxis[0].removePlotLine(this.name);
               }else{
                 chart1.yAxis[0].addPlotLine({
+                  label: {
+                    text: totales[this.name],
+                    x:-28,
+                    y:5,
+                    style:{
+                      color:this.color
+                    }
+                  },
                   value: totales[this.name],
                   color: this.color,
                   width: 2,
@@ -182,6 +191,14 @@ $(document).ready(function() {
     //Pintamos la media del último grupo de datos (último periodo)
     chart1.getSelectedSeries().forEach( function (selected){
       chart1.yAxis[0].addPlotLine({
+        label: {
+                    text: totales[this.name],
+                    x:-28,
+                    y:5,
+                    style:{
+                      color:this.color
+                    }
+        },
         value: totales[selected.name],
         color: selected.color,
         width: 2,
