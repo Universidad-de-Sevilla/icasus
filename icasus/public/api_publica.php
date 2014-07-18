@@ -258,15 +258,37 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   
   // TODO
   // Valores de referencia: objetivos, mínimos, etc.
-  $query = "SELECT m.id as id_medicion, m.etiqueta as medicion, 
-            UNIX_TIMESTAMP(m.periodo_inicio)*1000 as periodo_fin, 
-            r.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia 
-            FROM valores_referencia r
-            INNER JOIN `valores_referencia_mediciones` rm ON rm.`id_valor_referencia` = r.id
-            INNER JOIN mediciones m ON rm.`id_medicion` = m.`id`
-            WHERE m.`id_indicador` = $id AND grafica = 1
-            ORDER BY periodo_inicio";
-  
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+            UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
+            valores_referencia.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia 
+            FROM valores_referencia
+            INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
+            INNER JOIN mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
+            WHERE mediciones.id_indicador = $id AND grafica = 1";
+  if ($fecha_inicio > 0)
+  {
+    $query .= " AND mediciones.periodo_inicio >=  '$fecha_inicio'";
+  }
+  if ($fecha_fin > 0)
+  {
+    $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
+  }
+  if ($periodicidad == "anual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio)";
+  }
+  else if ($periodicidad == "mensual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
+  }
+  else if ($periodicidad == "todos")
+  {
+    // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
+    // Funcionará mientras icasus no tenga mediciones intradiarias
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+  }
+  $query .= " ORDER BY mediciones.periodo_inicio";
+
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {

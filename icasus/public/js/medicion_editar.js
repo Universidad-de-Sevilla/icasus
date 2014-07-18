@@ -110,6 +110,12 @@ function referencia_grabar(id)
       $('#referencia_'+id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id="+id);
       });	
     }
+    else if (value == "---")
+    {
+      $.post("index.php?page=medicion_editar_ajax&modulo=anularvalorreferencia&ajax=true",{id_referencia:id_referencia},function(){
+        $('#referencia_'+id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id="+id);
+      });
+    }
     else
     {
       alert('Está intentando introducir un dato que no es reconocido como número.');
