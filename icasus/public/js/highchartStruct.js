@@ -28,17 +28,17 @@
 function Set(){
 	this.data = [];
 
-	this.add = function (elem) {
-		if(this.data.indexOf(elem) < 0){
-			this.data.push(elem);
+	this.add = function (element) {
+		if(this.data.indexOf(element) < 0){
+			this.data.push(element);
 			return true;
 		}else{
 			return false;
 		}
 	};
 
-	this.remove = function (elem) {
-		var pos = this.data.indexOf(elem);
+	this.remove = function (element) {
+		var pos = this.data.indexOf(element);
 		if (pos > -1) {
 			this.data.splice(pos,1);
 			return true;
@@ -47,8 +47,8 @@ function Set(){
 		}
 	};
 
-	this.position = function (elem) {
-		return this.data.indexOf(elem);
+	this.position = function (element) {
+		return this.data.indexOf(element);
 	};
 
 	this.get = function (position) {
@@ -120,20 +120,20 @@ function highchartSerie(){
 	};
 
 	this.getBarSerie = function(){
-		var ser = [];
+		var serieHighchart = [];
 		this.categories.data.sort();
 		for(medicion in this.serie){
 			var arrayMedicion = this.serie[medicion];
 			for(m in arrayMedicion){
 				arrayMedicion[m].x = this.categories.position(arrayMedicion[m].id);
 			}
-			ser.push({
+			serieHighchart.push({
 				name: medicion,
 				data: arrayMedicion,
 				visible: false
 			});
 		}
-		return ser;
+		return serieHighchart;
 	};
 	
 	this.getLinealSerie = function(){
