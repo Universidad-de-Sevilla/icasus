@@ -229,6 +229,7 @@
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>   
 <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script src="js/highcharts.js" type="text/javascript"></script>
+<script src="js/exporting.js" type="text/javascript"></script>
 <script src="js/highchartStruct.js" type="text/javascript"></script>
 
 <script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
@@ -246,7 +247,7 @@ $(document).ready(function() {
     var milisegundosAnio = 31540000000;
     var serie = [];
     var chartSerie = new highchartSerie();
-console.log("api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad);
+
     $.ajax({
       url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad,
       type: "GET",
@@ -279,7 +280,7 @@ console.log("api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador
           map[medicion][unidad]=valor;
         }
       });
-	console.log(chartSerie);
+	console.log(chartSerie.getLinealSerie());
       categories.data.forEach(function (category) {
         var data = [];
         for(var key in map){
@@ -296,20 +297,23 @@ console.log("api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador
       });
     var chart1 = new Highcharts.Chart({
       chart: {
+        type: 'line',
         height: 300,
-        renderTo: idPanel,
+        renderTo: idPanel
       },
       title: {
         text: nomIndicador + '(' + fecha_inicio + " a " + fecha_fin + ")",
         style: { "color": "grey", "fontSize": "12px"}
       },
+      credits: {
+        text: "ESTO LO PROGRAMARON Juanan y Fran ;)",
+	style: { "color": "black", "fontSize": "24px"}
+      },
+      exporting: {
+        enabled: true
+      },
       xAxis: {
-        type: 'datetime',
-        tickInterval: milisegundosAnio,
-        dateTimeLabelFormats: {
-          month: "%b %y",
-          year:"%Y"
-        }
+        type: 'category'
       },
       yAxis: {
         title: {
@@ -319,11 +323,12 @@ console.log("api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador
       plotOptions: {
         series: {
           dataLabels: {
-            enabled: true
+            enabled: true,
+            formatter: function() { return this.y?((Math.round(this.y*100))/100):null }
           }
         }
       },
-      series: serie,
+      series: chartSerie.getLinealSerie()
     });
     }
   });

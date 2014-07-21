@@ -103,17 +103,20 @@ function highchartSerie(){
 	this.serie = [];
 	this.categories = new Set();
 
-	this.add = function(element){
-		this.categories.add(element.etiqueta_mini);
+	this.add = function(elem){
+		
+		var etiquetaOmedicion = elem.etiqueta_mini?elem.etiqueta_mini:elem.medicion;
+		var medicionOunidad = elem.etiqueta_mini?elem.medicion:elem.unidad;
 		var data = {
-			id:elem.etiqueta_mini?elem.etiqueta_mini:elem.unidad,
-			name:elem.etiqueta_mini?elem.etiqueta_mini:elem.unidad,
-			y:parseFloat(elem.valor)
+			id:etiquetaOmedicion,
+			name:etiquetaOmedicion,
+			y:parseFloat(elem.valor)//?parseFloat(elem.valor):null //para no mostrar los 0, descomentar
 		};
-		if(this.serie[element.medicion]){
-			this.serie[element.medicion].push(data);
+		this.categories.add(etiquetaOmedicion);
+		if(this.serie[medicionOunidad]){
+			this.serie[medicionOunidad].push(data);
 		}else{
-			this.serie[element.medicion] = [data];
+			this.serie[medicionOunidad] = [data];
 		}
 	};
 
@@ -121,12 +124,13 @@ function highchartSerie(){
 		var serieHighchart = [];
 		this.categories.data.sort();
 		for(medicion in this.serie){
-			for(m in this.serie[medicion]){
-				this.serie[medicion][m].x = this.categories.position(this.serie[medicion][m].id);
+			var arrayMedicion = this.serie[medicion];
+			for(m in arrayMedicion){
+				arrayMedicion[m].x = this.categories.position(arrayMedicion[m].id);
 			}
 			serieHighchart.push({
 				name: medicion,
-				data: this.serie[medicion],
+				data: arrayMedicion,
 				visible: false
 			});
 		}
@@ -134,9 +138,18 @@ function highchartSerie(){
 	};
 	
 	this.getLinealSerie = function(){
-		var serieHighchart = [];
+		var ser = [];
+		this.categories.data.sort();
 		for(unidad in this.serie){
-			
+			var arrayUnidad = this.serie[unidad];
+			for(u in arrayUnidad){
+				arrayUnidad[u].x = this.categories.position(arrayUnidad[u].id);
+			}
+			ser.push({
+				name: unidad,
+				data: arrayUnidad,
+			});
 		}
+		return ser;
 	};
 };
