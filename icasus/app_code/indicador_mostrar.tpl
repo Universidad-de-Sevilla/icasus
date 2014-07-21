@@ -332,10 +332,6 @@ $(document).ready(function() {
         text: nomIndicador + '(' + fecha_inicio + " a " + fecha_fin + ")",
         style: { "color": "grey", "fontSize": "12px"}
       },
-      credits: {
-        text: "ESTO LO PROGRAMARON Juanan y Fran ;)",
-	style: { "color": "black", "fontSize": "24px"}
-      },
       exporting: {
         enabled: true
       },

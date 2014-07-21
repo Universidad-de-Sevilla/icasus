@@ -142,9 +142,6 @@ $(document).ready(function() {
       exporting: {
         enabled: true
       },
-      credits: {
-        enabled: false
-      },
       xAxis: {
         type: 'category'
       },
