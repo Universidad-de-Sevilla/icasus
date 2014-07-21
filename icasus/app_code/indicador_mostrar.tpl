@@ -210,18 +210,13 @@
   {foreach $paneles as $panel}
     <div class="box grid_{$panel->ancho}" style="float:left;">
       <div class="block alturo" style="height:320px">
+        <!--
         <div class="titulo-panel">
           <strong>{$panel->nombre}</strong> 
-          <a class="borrar pull-right ihidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/cancel.png" /></a>
-          &nbsp; 
-          <a class="editar pull-right hidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/application_add.png" /></a>
         </div>
+        -->
         <div class="section">
-          <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
-            data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" 
-            data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}"
-            data-periodicidad="{$panel->periodicidad}"></div>
-          <div class="leyenda"></div>
+          <div class="highchart {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}" data-periodicidad="{$panel->periodicidad}"></div>
         </div>
       </div>
     </div>
@@ -229,28 +224,6 @@
 {/if}
 {else}
   <p class="aviso">Todavía no se han recogido valores para este indicador.</p>
-{/if}
-
-{if $paneles}
-  {foreach $paneles as $panel}
-    <div class="box grid_{$panel->ancho}" style="float:left;">
-      <div class="block alturo" style="height:320px">
-        <div class="titulo-panel">
-          <strong>{$panel->nombre}</strong> 
-          <a class="borrar pull-right ihidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/cancel.png" /></a>
-          &nbsp; 
-          <a class="editar pull-right hidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/application_add.png" /></a>
-        </div>
-        <div class="section">
-          <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
-            data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" 
-            data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}"
-            data-periodicidad="{$panel->periodicidad}"></div>
-          <div class="leyenda"></div>
-        </div>
-      </div>
-    </div>
-  {/foreach}
 {/if}
 
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>   
