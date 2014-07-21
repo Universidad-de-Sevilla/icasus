@@ -104,18 +104,19 @@ function highchartSerie(){
 	this.categories = new Set();
 
 	this.add = function(elem){
+		
 		var etiquetaOmedicion = elem.etiqueta_mini?elem.etiqueta_mini:elem.medicion;
-		var etiquetaOunidad = elem.etiqueta_mini?elem.etiqueta_mini:elem.unidad;
+		var medicionOunidad = elem.etiqueta_mini?elem.medicion:elem.unidad;
 		var data = {
 			id:etiquetaOmedicion,
 			name:etiquetaOmedicion,
 			y:parseFloat(elem.valor)//?parseFloat(elem.valor):null //para no mostrar los 0, descomentar
 		};
 		this.categories.add(etiquetaOmedicion);
-		if(this.serie[etiquetaOunidad]){
-			this.serie[etiquetaOunidad].push(data);
+		if(this.serie[medicionOunidad]){
+			this.serie[medicionOunidad].push(data);
 		}else{
-			this.serie[etiquetaOunidad] = [data];
+			this.serie[medicionOunidad] = [data];
 		}
 	};
 
