@@ -11,9 +11,9 @@
 // get_indicadores_panel($id)
 // get_mediciones_indicador($id)
 // get_subunidades_indicador($id)
-// get_valores_con_timestamp($id, $fecha_inicio, $fecha_fin, $periodo)
+// get_valores_con_timestamp($id, $fecha_inicio, $fecha_fin, $periodicidad)
 // get_valores_indicador($id, $fecha_inicio, $fecha_fin)
-// get_valores_indicador_agrupado($id, $fecha_inicio, $fecha_fin, $periodo)
+// get_valores_indicador_agrupado($id, $fecha_inicio, $fecha_fin, $periodicidad)
 // get_valores_indicador_media($id)
 // get_valores_indicador_suma($id)
 // get_valores_medicion($id_medicion)
@@ -22,8 +22,8 @@
 // ---------------------------------------------------------------
 // Funciones auxiliares
 //
-// obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
-// subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+// obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
+// subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 // ---------------------------------------------------------------
 
 require_once("../../cascara_core/function/sanitize.php");
@@ -45,14 +45,14 @@ if (@mysql_select_db(IC_DB_DATABASE))
         $id = sanitize($_REQUEST["id"],INT);
         $fecha_inicio = sanitize($_REQUEST["fecha_inicio"], SQL);
         $fecha_fin = sanitize($_REQUEST["fecha_fin"], SQL);
-        $periodo = isset($_REQUEST["periodicidad"])?sanitize($_REQUEST["periodicidad"], SQL):"todos";
-        $metodo($id, $fecha_inicio, $fecha_fin, $periodo);
+        $periodicidad = isset($_REQUEST["periodicidad"])?sanitize($_REQUEST["periodicidad"], SQL):"todos";
+        $metodo($id, $fecha_inicio, $fecha_fin, $periodicidad);
       }
       else if (isset($_REQUEST["id"], $_REQUEST["periodicidad"]))
       {
         $id = sanitize($_REQUEST["id"], INT);
-        $periodo = sanitize($_REQUEST["periodicidad"], SQL);
-        $metodo($id, 0, 0, $periodo);
+        $periodicidad = sanitize($_REQUEST["periodicidad"], SQL);
+        $metodo($id, 0, 0, $periodicidad);
       }
       else if (isset($_REQUEST["id"]))
       {
@@ -142,7 +142,7 @@ function get_subunidades_indicador($id)
 // Ejemplo de llamada:
 // http://localhost/icasus/api_publica.php?metodo=get_valores_con_timestamp&id=5018&fecha_inicio=2012-01-01&fecha_fin=2012-12-31&periodicidad=anual
 // --------------------------------------------------------------------------- 
-function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodo = "todos")
+function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todos")
 {
   // Preparamos el tipo de operador que vamos a usar para calcular totales y agrupados
   // También cogemos el id de la entidad para devolver la mediana (mediana con trampa que se coge directamente de la unidad madre)
@@ -180,15 +180,15 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   {
     $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
   }
-  if ($periodo == "anual")
+  if ($periodicidad == "anual")
   {
     $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio)";
   }
-  else if ($periodo == "mensual")
+  else if ($periodicidad == "mensual")
   {
     $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
   }
-  else if ($periodo == "todos")
+  else if ($periodicidad == "todos")
   {
     // Funcionará mientras icasus no tenga mediciones intradiarias
     $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
@@ -203,7 +203,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   // Aquí van los totales, si el indicador es calculado usamos obtener_total_calculado
   if ($calculo)
   {
-    $totales = obtener_total_calculado($id, $fecha_inicio, $fecha_fin, $periodo);
+    $totales = obtener_total_calculado($id, $fecha_inicio, $fecha_fin, $periodicidad);
     $datos = array_merge($datos, $totales);
   }
   else
@@ -233,15 +233,15 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     {
       $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
     }
-    if ($periodo == "anual")
+    if ($periodicidad == "anual")
     {
       $query .= " GROUP BY YEAR(mediciones.periodo_inicio)";
     }
-    else if ($periodo == "mensual")
+    else if ($periodicidad == "mensual")
     {
       $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
     }
-    else if ($periodo == "todos")
+    else if ($periodicidad == "todos")
     {
       // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
       // Funcionará mientras icasus no tenga mediciones intradiarias
@@ -258,15 +258,37 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   
   // TODO
   // Valores de referencia: objetivos, mínimos, etc.
-  $query = "SELECT m.id as id_medicion, m.etiqueta as medicion, 
-            UNIX_TIMESTAMP(m.periodo_inicio)*1000 as periodo_fin, 
-            r.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia 
-            FROM valores_referencia r
-            INNER JOIN `valores_referencia_mediciones` rm ON rm.`id_valor_referencia` = r.id
-            INNER JOIN mediciones m ON rm.`id_medicion` = m.`id`
-            WHERE m.`id_indicador` = $id AND grafica = 1
-            ORDER BY periodo_inicio";
-  
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+            UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
+            valores_referencia.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia 
+            FROM valores_referencia
+            INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
+            INNER JOIN mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
+            WHERE mediciones.id_indicador = $id AND grafica = 1";
+  if ($fecha_inicio > 0)
+  {
+    $query .= " AND mediciones.periodo_inicio >=  '$fecha_inicio'";
+  }
+  if ($fecha_fin > 0)
+  {
+    $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
+  }
+  if ($periodicidad == "anual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio)";
+  }
+  else if ($periodicidad == "mensual")
+  {
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
+  }
+  else if ($periodicidad == "todos")
+  {
+    // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
+    // Funcionará mientras icasus no tenga mediciones intradiarias
+    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+  }
+  $query .= " ORDER BY mediciones.periodo_inicio";
+
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
@@ -341,8 +363,8 @@ function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
 
 // Parecido al anterior pero con agrupamiento anual, mensual, etc
 // Se usa en cuadro_mostrar para los gráficos de barra
-// http://icasus.dev/api_publica.php?metodo=get_valores_indicador_agrupado&id=5035&fecha_inicio=2010-01-01&fecha_fin=2013-12-31&periodo=anual
-function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, $periodo="todo")
+// http://icasus.dev/api_publica.php?metodo=get_valores_indicador_agrupado&id=5035&fecha_inicio=2010-01-01&fecha_fin=2013-12-31&periodicidad=anual
+function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad="todo")
 {
   $query = "SELECT tipo_agregacion.operador as operador, indicadores.id_entidad as id_entidad, indicadores.calculo as calculo
             FROM tipo_agregacion
@@ -381,15 +403,15 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
   {
     $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
   }
-  if ($periodo == "anual")
+  if ($periodicidad == "anual")
   {
     $query .= " GROUP BY id_unidad, etiqueta_mini, YEAR(mediciones.periodo_inicio)";
   }
-  else if ($periodo == "mensual")
+  else if ($periodicidad == "mensual")
   {
     $query .= " GROUP BY id_unidad, etiqueta_mini, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
   }
-  else if ($periodo == "todos")
+  else if ($periodicidad == "todos")
   {
     // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
     // Funcionará mientras icasus no tenga mediciones intradiarias
@@ -405,7 +427,7 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
   // Aquí van los totales, si el indicador es calculado usamos obtener_total_calculado
   if ($calculo)
   {
-    $totales = obtener_total_calculado($id, $fecha_inicio, $fecha_fin, $periodo);
+    $totales = obtener_total_calculado($id, $fecha_inicio, $fecha_fin, $periodicidad);
     $datos = array_merge($datos, $totales);
   }
   else
@@ -431,15 +453,15 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
     {
       $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
     }
-    if ($periodo == "anual")
+    if ($periodicidad == "anual")
     {
       $query .= " GROUP BY YEAR(mediciones.periodo_inicio)";
     }
-    else if ($periodo == "mensual")
+    else if ($periodicidad == "mensual")
     {
       $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
     }
-    else if ($periodo == "todos")
+    else if ($periodicidad == "todos")
     {
       // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
       // Funcionará mientras icasus no tenga mediciones intradiarias
@@ -634,9 +656,9 @@ function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fi
 // --------------------------------------------------------------------------- 
 // Función para probar el funcionamiento de las dos siguientes
 // --------------------------------------------------------------------------- 
-function prueba_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+function prueba_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 {
-  $datos =obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodo);
+  $datos =obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad);
   $datos = json_encode($datos);
   echo $datos;
 }
@@ -646,7 +668,7 @@ function prueba_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
 // Ejemplo de llamada:
 // http://localhost/icasus/api_publica.php?metodo=obtener_total_calculado&id=5035&fecha_inicio=2010-01-01&fecha_fin=2013-12-31&periodicidad=anual
 // --------------------------------------------------------------------------- 
-function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 {
   $elementos_calculo = array();
   $query = "SELECT i.calculo, ta.operador FROM indicadores i INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  WHERE i.id = $id_indicador";
@@ -678,7 +700,7 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
       if (is_numeric($variable))
       {
         $id_indicador_parcial = (int)$variable;
-        $totales[$id_indicador_parcial] = obtener_totales_simples($id_indicador_parcial, $fecha_inicio, $fecha_fin, $periodo);
+        $totales[$id_indicador_parcial] = obtener_totales_simples($id_indicador_parcial, $fecha_inicio, $fecha_fin, $periodicidad);
         $formula .= "\$totales['$id_indicador_parcial'][\$i]['valor']";
       }
       else
@@ -713,7 +735,7 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
 
 // --------------------------------------------------------------------------- 
 
-function obtener_totales_simples($id_indicador, $fecha_inicio='0', $fecha_fin='0', $periodo='todos')
+function obtener_totales_simples($id_indicador, $fecha_inicio='0', $fecha_fin='0', $periodicidad='todos')
 { 
   // Obtenemos el operador o tipo de agregación del indicador
   $query = "SELECT ta.operador FROM indicadores i INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  WHERE i.id = $id_indicador";
@@ -735,15 +757,15 @@ function obtener_totales_simples($id_indicador, $fecha_inicio='0', $fecha_fin='0
   {
     $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
   }
-  if ($periodo == "anual")
+  if ($periodicidad == "anual")
   {
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio)";
   }
-  else if ($periodo == "mensual")
+  else if ($periodicidad == "mensual")
   {
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
   }
-  else if ($periodo == "todos")
+  else if ($periodicidad == "todos")
   {
     // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
     // Funcionará mientras icasus no tenga mediciones intradiarias
@@ -758,8 +780,9 @@ function obtener_totales_simples($id_indicador, $fecha_inicio='0', $fecha_fin='0
   return $datos;
 }
 
+//Función para depuración y comprobaciones
 //Repite partes de obtener_totales_calculados pero devuelve los subtotales
-function subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
+function subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 {
   $elementos_calculo = array();
   $totales = array();
@@ -786,7 +809,7 @@ function subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodo)
       if (is_numeric($variable))
       {
         $id_indicador_parcial = (int)$variable;
-        $totales[$id_indicador_parcial] = obtener_totales_simples($id_indicador_parcial, $fecha_inicio, $fecha_fin, $periodo);
+        $totales[$id_indicador_parcial] = obtener_totales_simples($id_indicador_parcial, $fecha_inicio, $fecha_fin, $periodicidad);
       }
       continue; //esto es para saltarnos el resto del bucle y volver al foreach
     }

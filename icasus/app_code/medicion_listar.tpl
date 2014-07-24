@@ -38,28 +38,30 @@
   {/if}
 </div>
 <div style="opacity: 1;" class="box grid_16">
-		<h2 class="box_head">Tabla de valores</h2>
-	<div style="opacity: 1;" class="block">	
-	<table class="static">
-		<thead>
-		<tr>
-			<th></th>
-			{foreach from=$mediciones item=medicion}
-				<th>{$medicion->etiqueta}</th>
-			{/foreach}
-		</tr>
-		</thead>
-		<tbody>
-		{foreach from=$subunidades_mediciones item=subunidades}
-			<tr><td>{$subunidades->etiqueta}</td>
-			{foreach from=$subunidades->mediciones item=medicion}
-				<td>{if $medicion->medicion_valor == '--'} -- {else}{if $medicion->medicion_valor->valor != NULL}{$medicion->medicion_valor->valor|round:"2"}{/if}{/if}</td>
-			{/foreach}
-			</tr>
-		{/foreach}
-		</tbody>
-	</table>
-	</div>
+<div id="container" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="" data-fecha_fin="" data-periodicidad="anual" style="margin:0px"></div>
+
+  <h2 class="box_head">Tabla de valores</h2>
+  <div style="opacity: 1;" class="block"> 
+  <table class="static">
+    <thead>
+    <tr>
+      <th></th>
+      {foreach from=$mediciones item=medicion}
+        <th>{$medicion->etiqueta}</th>
+      {/foreach}
+    </tr>
+    </thead>
+    <tbody>
+    {foreach from=$subunidades_mediciones item=subunidades}
+      <tr><td>{$subunidades->etiqueta}</td>
+      {foreach from=$subunidades->mediciones item=medicion}
+        <td>{if $medicion->medicion_valor == '--'} -- {else}{if $medicion->medicion_valor->valor != NULL}{$medicion->medicion_valor->valor|round:"2"}{/if}{/if}</td>
+      {/foreach}
+      </tr>
+    {/foreach}
+    </tbody>
+  </table>
+  </div>
 <div class="box grid_16">
   {if $mediciones}
     <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /> -->
@@ -88,31 +90,123 @@
   <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /></p> -->
 </div>
 
-<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>   
 <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
+<script src="js/highcharts.js" type="text/javascript"></script>
+<script src="js/highchartStruct.js" type="text/javascript"></script>
 
-{literal}
+<script src="js/exporting.js"></script>
+
 <script>
-  $(document).ready(function() {
-    var table0 = $('#listado_mediciones').dataTable( {
-      "bJQueryUI": true,
-      "sScrollX": "",
-      "bSortClasses": false,
-      "aaSorting": [[1,'asc']],
-      "bAutoWidth": true,
-      "bInfo": true,
-      "sScrollX": "101%",
-      "bScrollCollapse": true,
-      "sPaginationType": "full_numbers",
-      "bRetrieve": true,
-      "fnInitComplete": function () {
-        $("#dt1 .dataTables_length > label > select").uniform();
-        $("#dt1 .dataTables_filter input[type=text]").addClass("text");
-        $(".datatable").css("visibility","visible");
+$(document).ready(function() {
+  /**VARIABLES**/
+  var idIndicador = $("#container").data("id_indicador");
+  var nomIndicador = $("#container").data("nombre_indicador");
+  var chartSerie = new highchartSerie();
+  var totales = [];
+  /**CONSULTA A LA BASE DE DATOS**/
+  $.ajax({
+    url: "api_publica.php?metodo=get_valores_con_timestamp&id="+idIndicador,
+    type: "GET",
+    dataType: "json",
+    success: onDataReceived
+  });
+  /**GUARDADO DE DATOS EN HIGHCHARTSTRUCT y TOTALES PARA LAS MEDIAS**/
+  function onDataReceived(datos) {
+    var categories = new Set();
+    datos.forEach(function(d){
+      if(d.etiqueta_mini){
+        chartSerie.add(d);
+      }else if(d.id_unidad == '0'){
+        totales[d.medicion] = parseFloat(d.valor);
       }
     });
-    table0.fnSort([1,'asc']);
-  } );
+  };
+
+  /**PINTADO & CONFIGURACIÓN DEL GRÁFICO**/
+  $(document).ajaxComplete(function(){
+    var serie = chartSerie.getBarSerie();
+    serie[serie.length-1].visible = true;
+    serie[serie.length-1].selected = true;
+    var chart1 = new Highcharts.Chart({
+      chart: {
+	type: 'column',
+        height: 400,
+        renderTo: 'container',
+      },
+      title: {
+        text: nomIndicador,
+      },
+      xAxis: {
+        type: 'category'
+      },
+      yAxis: {
+        title: {
+          text: ''
+        }
+      },
+      plotOptions: {
+        series: {
+          events: {
+	//Pintamos la media al hacer click en él.
+            legendItemClick: function(event) {
+              if(this.visible){
+                chart1.yAxis[0].removePlotLine(this.name);
+              }else{
+                chart1.yAxis[0].addPlotLine({
+                  value: totales[this.name],
+                  color: this.color,
+                  width: 2,
+                  id: this.name
+                });
+              }
+            }
+          }
+        },
+        column: {
+          dataLabels: {
+            enabled: true,
+            formatter: function() { return this.y?((Math.round(this.y*100))/100):null }
+          }
+        }
+      },
+      series: serie,
+      exporting: {
+        enabled: true
+      },
+      credits: {
+        enabled: false
+      }
+    });
+    //Pintamos la media del último grupo de datos (último periodo)
+    chart1.getSelectedSeries().forEach( function (selected){
+      chart1.yAxis[0].addPlotLine({
+        value: totales[selected.name],
+        color: selected.color,
+        width: 2,
+        id: selected.name
+      });
+    }); 
+  });
+
+  var table0 = $('#listado_mediciones').dataTable( {
+    'bJQueryUI': true,
+    'sScrollX': '',
+    'bSortClasses': false,
+    'aaSorting': [[1,'asc']],
+    'bAutoWidth': true,
+    'bInfo': true,
+    'sScrollX': '101%',
+    'bScrollCollapse': true,
+    'sPaginationType': 'full_numbers',
+    'bRetrieve': true,
+    'fnInitComplete': function () {
+      $('#dt1 .dataTables_length > label > select').uniform();
+      $('#dt1 .dataTables_filter input[type=text]').addClass('text');
+      $('.datatable').css('visibility','visible');
+    }
+  });
+  table0.fnSort([1,'asc']);
+} );
 </script>
-{/literal}
