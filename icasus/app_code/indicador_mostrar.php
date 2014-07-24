@@ -45,7 +45,7 @@ if (isset($_REQUEST['id_indicador']))
     $anio_inicio = $indicador->historicos;
     $anio_fin = date('Y') - 1;
     $panel->id = 1;
-    $panel->ancho = 16;
+    $panel->ancho = 8;
     $panel->tipo->clase_css = "lineal";
     $panel->nombre = $indicador->nombre . " (" . $anio_inicio . " - " . $anio_fin . ")";
     $panel->fecha_inicio = $indicador->historicos . "-01-01";
@@ -59,7 +59,7 @@ if (isset($_REQUEST['id_indicador']))
       $anio_fin = date('Y');
       $panel->id = 2;
       $panel->tipo->clase_css = "lineal";
-      $panel->ancho = 16;
+      $panel->ancho = 8;
       $panel->nombre = $indicador->nombre . " (" . $anio_inicio . " - " . $anio_fin . ")";
       $panel->fecha_inicio = $anio_inicio. "-01-01";
       $panel->fecha_fin = date("Y-m-d");

@@ -232,10 +232,7 @@
 <script src="js/exporting.js" type="text/javascript"></script>
 <script src="js/highchartStruct.js" type="text/javascript"></script>
 
-<script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
-
 <script type="text/javascript">
-$(document).ready(function() {
   // Para cada contenedor de clase higchart vamos a pintar el gráfico
   $('.highchart').each(function() {
     var idPanel = $(this).attr('id');
@@ -246,88 +243,62 @@ $(document).ready(function() {
     var fecha_fin = $(this).data("fecha_fin");
     var milisegundosAnio = 31540000000;
     var serie = [];
-    var chartSerie = new highchartSerie();
+    var chartSerie = new highchartSerie(); // contenedor para los datos del gráfico
+    if (periodicidad == "anual") {
+      chartSerie.categoryType = "año";
+    }
+    else {
+      chartSerie.categoryType = "medicion";
+    }
+    var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
 
     $.ajax({
-      url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad,
+      url: urlApi,
       type: "GET",
       dataType: "json",
       success: onDataReceived
     });
 
     function onDataReceived(datos) {
-      var categories = new Set();
-      var map = [];
-
-      //Guarda los datos en forma de Map
-      //Año/Medición -> Unidad -> Valor
-      datos.forEach(function(d){
-        var medicion;
-        var unidad;
-        var valor;
-        medicion=d.periodo_fin;
-        valor = parseFloat(d.valor);
-        unidad = d.etiqueta_mini?d.etiqueta_mini:d.unidad;
-        !parseInt(d.id_unidad)?categories.add(unidad):false;
-
-	if(!d.etiqueta_mini)
-		chartSerie.add(d);
-
-        if(map[medicion]){
-          map[medicion][unidad]=valor;
-        }else{
-          map[medicion]=new Object();
-          map[medicion][unidad]=valor;
+      datos.forEach(function(dato){
+        // Agrega los que no tienen etiqueta_mini (total y referencias)
+        // descarta las mediciones de unidades (no sirven aquí)
+        if(!dato.etiqueta_mini){
+          chartSerie.add(dato);
         }
       });
-	console.log(chartSerie.getLinealSerie());
-      categories.data.forEach(function (category) {
-        var data = [];
-        for(var key in map){
-          if(map[key][category])
-            data.push([parseInt(key),map[key][category]]);
-          else
-            data.push([parseInt(key),null]);
-        }
-        serie.push({
-          name:category,
-          type:'line',
-          data:data,
-        });
-      });
-    var chart1 = new Highcharts.Chart({
-      chart: {
-        type: 'line',
-        height: 300,
-        renderTo: idPanel
-      },
-      title: {
-        text: nomIndicador + '(' + fecha_inicio + " a " + fecha_fin + ")",
-        style: { "color": "grey", "fontSize": "12px"}
-      },
-      exporting: {
-        enabled: true
-      },
-      xAxis: {
-        type: 'category'
-      },
-      yAxis: {
+      var chart1 = new Highcharts.Chart({
+        chart: {
+          type: 'line',
+          height: 300,
+          renderTo: idPanel
+        },
         title: {
-          text: ''
-        }
-      },
-      plotOptions: {
-        series: {
-          dataLabels: {
-            enabled: true,
-            formatter: function() { return this.y?((Math.round(this.y*100))/100):null }
+          text: nomIndicador + '(' + fecha_inicio + " a " + fecha_fin + ")",
+          style: { "color": "grey", "fontSize": "12px"}
+        },
+        exporting: {
+          enabled: true
+        },
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          title: {
+            text: 'valores'
           }
-        }
-      },
-      series: chartSerie.getLinealSerie()
-    });
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              formatter: function() { return this.y?((Math.round(this.y*100))/100):null }
+            }
+          }
+        },
+        series: chartSerie.getLinealSerie()
+      });
     }
   });
-});
 
 </script>

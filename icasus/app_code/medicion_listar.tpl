@@ -134,10 +134,13 @@ $(document).ready(function() {
       chart: {
 	type: 'column',
         height: 400,
-        renderTo: 'container',
+        renderTo: 'container'
       },
       title: {
-        text: nomIndicador,
+        text: nomIndicador
+      },
+      tooltip: {
+        shared: false
       },
       exporting: {
         enabled: true
@@ -204,6 +207,7 @@ $(document).ready(function() {
     }); 
   });
 
+  //Esto es código más antiguo para el datatable
   var table0 = $('#listado_mediciones').dataTable( {
     'bJQueryUI': true,
     'sScrollX': '',
