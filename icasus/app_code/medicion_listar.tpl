@@ -127,16 +127,23 @@ $(document).ready(function() {
   /**PINTADO & CONFIGURACIÓN DEL GRÁFICO**/
   $(document).ajaxComplete(function(){
     var serie = chartSerie.getBarSerie();
+    console.log(serie);
     serie[serie.length-1].visible = true;
     serie[serie.length-1].selected = true;
     var chart1 = new Highcharts.Chart({
       chart: {
 	type: 'column',
         height: 400,
-        renderTo: 'container',
+        renderTo: 'container'
       },
       title: {
-        text: nomIndicador,
+        text: nomIndicador
+      },
+      tooltip: {
+        shared: false
+      },
+      exporting: {
+        enabled: true
       },
       xAxis: {
         type: 'category'
@@ -155,6 +162,14 @@ $(document).ready(function() {
                 chart1.yAxis[0].removePlotLine(this.name);
               }else{
                 chart1.yAxis[0].addPlotLine({
+                  label: {
+                    text: Math.round(totales[this.name]*100)/100,
+                    x:-28,
+                    y:5,
+                    style:{
+                      color:this.color
+                    }
+                  },
                   value: totales[this.name],
                   color: this.color,
                   width: 2,
@@ -171,17 +186,19 @@ $(document).ready(function() {
           }
         }
       },
-      series: serie,
-      exporting: {
-        enabled: true
-      },
-      credits: {
-        enabled: false
-      }
+      series: serie
     });
     //Pintamos la media del último grupo de datos (último periodo)
     chart1.getSelectedSeries().forEach( function (selected){
       chart1.yAxis[0].addPlotLine({
+        label: {
+          text: Math.round(totales[selected.name]*100)/100,
+          x:-28,
+          y:5,
+          style:{
+            color:selected.color
+          }
+        },
         value: totales[selected.name],
         color: selected.color,
         width: 2,
@@ -190,6 +207,7 @@ $(document).ready(function() {
     }); 
   });
 
+  //Esto es código más antiguo para el datatable
   var table0 = $('#listado_mediciones').dataTable( {
     'bJQueryUI': true,
     'sScrollX': '',

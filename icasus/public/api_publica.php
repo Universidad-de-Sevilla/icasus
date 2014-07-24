@@ -40,7 +40,7 @@ if (@mysql_select_db(IC_DB_DATABASE))
     $metodo = $_REQUEST["metodo"];
     if (function_exists($metodo))
     {
-      if (isset($_REQUEST["id"], $_REQUEST["fecha_inicio"], $_REQUEST["fecha_fin"])) 
+      if (isset($_REQUEST["id"], $_REQUEST["fecha_inicio"], $_REQUEST["fecha_fin"]))
       {
         $id = sanitize($_REQUEST["id"],INT);
         $fecha_inicio = sanitize($_REQUEST["fecha_inicio"], SQL);
@@ -75,15 +75,15 @@ else
   echo "Error de conexion a la base de datos";
 }
 
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 
 // Devuelve los indicadores asociados a un panel de un cuadro de mando
 // Se utiliza en cuadro_mostrar
 function get_indicadores_panel($id)
 {
   $query = "SELECT indicadores.id, indicadores.codigo, indicadores.nombre, panel_indicadores.id_entidad, panel_indicadores.id_serietipo
-  FROM indicadores 
-  INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador 
+  FROM indicadores
+  INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador
   WHERE panel_indicadores.id_panel = $id";
 
   $resultado = mysql_query($query);
@@ -95,17 +95,17 @@ function get_indicadores_panel($id)
   echo $datos;
 }
 
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 
 // Devuelves las etiquetas de las mediciones existentes para este indicador por ordenadas por su fecha de inicio
 // Se utiliza en consulta_avanzada
 function get_mediciones_indicador($id)
 {
   $query = "SELECT mediciones.etiqueta
-            FROM mediciones INNER JOIN indicadores 
+            FROM mediciones INNER JOIN indicadores
             ON indicadores.id = mediciones.id_indicador
-            WHERE mediciones.id_indicador = $id 
-            ORDER BY mediciones.periodo_inicio"; 
+            WHERE mediciones.id_indicador = $id
+            ORDER BY mediciones.periodo_inicio";
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
@@ -115,7 +115,7 @@ function get_mediciones_indicador($id)
   echo $datos;
 }
 
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 
 // Devuelve una lista de subunidades asosciadas a la medición de un indicador
 // Se utiliza en consulta_avanzada
@@ -123,8 +123,8 @@ function get_subunidades_indicador($id)
 {
   $query = "SELECT entidades.id, entidades.etiqueta, entidades.nombre, entidades.etiqueta_mini as etiqueta_mini
             FROM entidades INNER JOIN indicadores_subunidades ON entidades.id = indicadores_subunidades.id_entidad
-            WHERE indicadores_subunidades.id_indicador = $id 
-            ORDER BY entidades.orden"; 
+            WHERE indicadores_subunidades.id_indicador = $id
+            ORDER BY entidades.orden";
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
@@ -134,22 +134,23 @@ function get_subunidades_indicador($id)
   echo $datos;
 }
 
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 // Es una nueva función que devuelve las fechas de las mediciones en formato timestamp de javascript
 // Devuelve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
 // También devuelve los totales de dichos valores en función del operador definido en el indicador
 // Se utiliza en consulta_avanzada, en ficha indicador, en mediciones y en cuadro_mostrar
 // Ejemplo de llamada:
 // http://localhost/icasus/api_publica.php?metodo=get_valores_con_timestamp&id=5018&fecha_inicio=2012-01-01&fecha_fin=2012-12-31&periodicidad=anual
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todos")
 {
   // Preparamos el tipo de operador que vamos a usar para calcular totales y agrupados
   // También cogemos el id de la entidad para devolver la mediana (mediana con trampa que se coge directamente de la unidad madre)
-  $query = "SELECT tipo_agregacion.operador as operador, indicadores.id_entidad as id_entidad , indicadores.calculo as calculo 
+  $query = "SELECT tipo_agregacion.operador as operador, indicadores.id_entidad as id_entidad , indicadores.calculo as calculo
             FROM tipo_agregacion
             INNER JOIN indicadores ON tipo_agregacion.id = indicadores.id_tipo_agregacion
             WHERE indicadores.id = $id";
+
   $operador = 'SUM'; // valor por defecto
   if ($resultado = mysql_query($query))
   {
@@ -158,20 +159,24 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
       $operador = $registro['operador'];
       $id_entidad = $registro['id_entidad'];
       $calculo = $registro['calculo'];
-    }
-  }
+    }else{
+	echo("Fallo en la consulta getOperador");
+	}
+  }else{
+	echo("Fallo en la consulta ejecucion");
+	}
 
   // Devuelve los valores recogidos para todas las subunidades
   // mediciones.id as id_medicion, mediciones.etiqueta as medicion,
   // TRAMPA GORDA: uso el periodo de inicio como periodo de fin
   // para que las gráficas anuales sean más coherentes
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-            UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
-            entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor, 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+            UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin,
+            entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
             entidades.etiqueta_mini as etiqueta_mini
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
             INNER JOIN entidades ON entidades.id = valores.id_entidad
-            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL"; 
+            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
   if ($fecha_inicio > 0)
   {
     $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
@@ -194,12 +199,15 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
-  $resultado = mysql_query($query);
+  if(!$resultado = mysql_query($query)){
+	echo("Fallo en la consulta ejecucion");
+	}
 
   while ($registro = mysql_fetch_assoc($resultado))
   {
     $datos[] = $registro;
   }
+
   // Aquí van los totales, si el indicador es calculado usamos obtener_total_calculado
   if ($calculo)
   {
@@ -211,20 +219,20 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     if ($operador == 'MEDIANA')
     {
       // Si el operador de agregado es 'mediana' cogemos del tirón los valores de la unidad madre
-      $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-              UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
-              'Total' as unidad, 0 as id_unidad, valores.valor as valor 
-              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+      $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+              UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin,
+              'Total' as unidad, 0 as id_unidad, valores.valor as valor
+              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
               WHERE valores.id_entidad = $id_entidad AND mediciones.id_indicador = $id AND valor IS NOT NULL";
     }
     else
     {
-      $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-              UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
-              'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
-              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+      $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+              UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin,
+              'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor
+              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
               WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
-    } 
+    }
     if ($fecha_inicio > 0)
     {
       $query .= " AND mediciones.periodo_inicio >=  '$fecha_inicio'";
@@ -248,19 +256,17 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
       $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
     }
     $query .= " ORDER BY mediciones.periodo_inicio";
-
     $resultado = mysql_query($query);
     while ($registro = mysql_fetch_assoc($resultado))
     {
       $datos[] = $registro;
     }
   }
-  
-  // TODO
+
   // Valores de referencia: objetivos, mínimos, etc.
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-            UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
-            valores_referencia.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+            UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin,
+            valores_referencia.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia
             FROM valores_referencia
             INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
             INNER JOIN mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
@@ -275,31 +281,32 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
   }
   if ($periodicidad == "anual")
   {
-    $query .= " GROUP BY YEAR(mediciones.periodo_inicio)";
+    $query .= " GROUP BY unidad, YEAR(mediciones.periodo_inicio)";
   }
   else if ($periodicidad == "mensual")
   {
-    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
+    $query .= " GROUP BY unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
   }
   else if ($periodicidad == "todos")
   {
     // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
     // Funcionará mientras icasus no tenga mediciones intradiarias
-    $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+    $query .= " GROUP BY unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
   $query .= " ORDER BY mediciones.periodo_inicio";
-
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
   {
     $datos[] = $registro;
   }
-  
-  // Convertimos las tres 'tacadas' de datos a json 
-  $datos = json_encode($datos);
-  echo $datos;
+
+  // Convertimos las tres 'tacadas' de datos a json
+  if($datos = json_encode($datos))
+    echo $datos;
+  else
+    echo json_last_error_msg();
 }
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 // Devuelve todos los valores recogidos para un indicador incluyendo los recogidos a nivel de subunidad (cuando exista)
 // También devuelve los totales de dichos valores en función del operador definido en el indicador
 // En desuso, eliminar cuando se pueda
@@ -318,12 +325,12 @@ function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
   }
 
   //Aquí van los valores de cada una de las subunidades
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
             entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
             entidades.etiqueta_mini as etiqueta_mini
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
             INNER JOIN entidades ON entidades.id = valores.id_entidad
-            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL"; 
+            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
   if ($fecha_inicio > 0)
   {
     $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
@@ -340,8 +347,8 @@ function get_valores_indicador($id, $fecha_inicio = 0, $fecha_fin = 0)
     $datos[] = $registro;
   }
   // Aquí van los totales
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
   if ($fecha_inicio > 0)
   {
@@ -389,10 +396,10 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
   }
 
   //Aquí van los valores de todas las subunidades
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
             entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
             entidades.etiqueta_mini as etiqueta_mini
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
             INNER JOIN entidades ON entidades.id = valores.id_entidad
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
   if ($fecha_inicio > 0)
@@ -417,7 +424,7 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
     // Funcionará mientras icasus no tenga mediciones intradiarias
     $query .= " GROUP BY id_unidad, etiqueta_mini, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
   }
-  $query .= " ORDER BY entidades.orden"; 
+  $query .= " ORDER BY entidades.orden";
   $resultado = mysql_query($query);
 
   while ($registro = mysql_fetch_assoc($resultado))
@@ -435,13 +442,13 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
     if ($operador == 'MEDIANA')
     {
       $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad,  valores.valor
-              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
-              WHERE mediciones.id_indicador = $id AND id_entidad = $id_entidad AND valor IS NOT NULL"; 
+              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
+              WHERE mediciones.id_indicador = $id AND id_entidad = $id_entidad AND valor IS NOT NULL";
     }
     else
     {
-      $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
-              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+      $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor
+              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
               WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
     }
 
@@ -482,8 +489,8 @@ function get_valores_indicador_agrupado($id, $fecha_inicio = 0, $fecha_fin = 0, 
 // Se utiliza en consulta_avanzada
 function get_valores_indicador_media($id)
 {
-  $query = "SELECT mediciones.etiqueta as medicion, AVG(valores.valor) 
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+  $query = "SELECT mediciones.etiqueta as medicion, AVG(valores.valor)
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL
             GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
   $resultado = mysql_query($query);
@@ -497,8 +504,8 @@ function get_valores_indicador_media($id)
 
 function get_valores_indicador_suma($id)
 {
-  $query = "SELECT mediciones.etiqueta as medicion, SUM(valores.valor) 
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+  $query = "SELECT mediciones.etiqueta as medicion, SUM(valores.valor)
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL
             GROUP BY mediciones.id ORDER BY mediciones.periodo_inicio";
   $resultado = mysql_query($query);
@@ -510,7 +517,7 @@ function get_valores_indicador_suma($id)
   echo $datos;
 }
 
-// Devuelve todos los valores recogidos para una medicion concreta de un indicador 
+// Devuelve todos los valores recogidos para una medicion concreta de un indicador
 // Es útil sólo en aquellos indicadores que se midan por subunidades
 // También devuelve el total de dichos valores en función del operador definido en el indicador
 // Se utiliza en cuadro_mostrar
@@ -539,10 +546,10 @@ function get_valores_medicion($id_medicion)
     $operador = 'SUM';
   }
 
-  $query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad, 
+  $query = "SELECT mediciones.etiqueta as medicion, entidades.etiqueta as unidad,
             entidades.id as id_unidad, valores.valor,
             entidades.etiqueta_mini as etiqueta_mini
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
             INNER JOIN entidades ON entidades.id = valores.id_entidad
             WHERE mediciones.id = $id_medicion AND valor IS NOT NULL
             ORDER BY unidad";
@@ -553,9 +560,9 @@ function get_valores_medicion($id_medicion)
     $datos[] = $registro;
   }
   // Aquí van los totales
-  $query = "SELECT mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor 
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
-            WHERE mediciones.id = $id_medicion AND valor IS NOT NULL 
+  $query = "SELECT mediciones.etiqueta as medicion, 'Total' as unidad, 0 as id_unidad, $operador(valores.valor) as valor
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
+            WHERE mediciones.id = $id_medicion AND valor IS NOT NULL
             GROUP BY mediciones.id";
   $resultado = mysql_query($query);
   while ($registro = mysql_fetch_assoc($resultado))
@@ -568,15 +575,15 @@ function get_valores_medicion($id_medicion)
 
 function get_valores_indicador_por_fecha($id, $id_entidad, $fecha_inicio = 0, $fecha_fin = 0)
 {
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
             entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
             entidades.etiqueta_mini as etiqueta_mini
-            FROM mediciones 
-            INNER JOIN valores ON mediciones.id = valores.id_medicion 
+            FROM mediciones
+            INNER JOIN valores ON mediciones.id = valores.id_medicion
             INNER JOIN entidades ON entidades.id = valores.id_entidad
-            WHERE mediciones.id_indicador = $id 
+            WHERE mediciones.id_indicador = $id
             AND entidades.id = $id_entidad
-            AND valor IS NOT NULL"; 
+            AND valor IS NOT NULL";
   if ($fecha_inicio > 0)
   {
     $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
@@ -604,11 +611,11 @@ function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fi
 {
   $indicadores = array();
 
-  $query = "SELECT indicadores.id as id_indicador, indicadores.codigo as codigo, 
-            indicadores.nombre as nombre, panel_indicadores.id_entidad as entidad, 
+  $query = "SELECT indicadores.id as id_indicador, indicadores.codigo as codigo,
+            indicadores.nombre as nombre, panel_indicadores.id_entidad as entidad,
             panel_indicadores.id_serietipo as id_serietipo, tipo_agregacion.operador as operador
-            FROM indicadores 
-            INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador 
+            FROM indicadores
+            INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador
             INNER JOIN tipo_agregacion ON tipo_agregacion.id = indicadores.id_tipo_agregacion
             WHERE panel_indicadores.id_panel = $id_panel ORDER BY panel_indicadores.id";
 
@@ -618,17 +625,17 @@ function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fi
     $id_indicador = $indicador['id_indicador'];
     $id_entidad = $indicador['entidad'];
     $operador = $indicador['operador'];
-    $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-              entidades.etiqueta as unidad, entidades.id as id_unidad, 
+    $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+              entidades.etiqueta as unidad, entidades.id as id_unidad,
               $operador(valores.valor) as valor,
               entidades.etiqueta_mini as etiqueta_mini,
               YEAR(mediciones.periodo_inicio) as anio
-              FROM mediciones 
-              INNER JOIN valores ON mediciones.id = valores.id_medicion 
+              FROM mediciones
+              INNER JOIN valores ON mediciones.id = valores.id_medicion
               INNER JOIN entidades ON entidades.id = valores.id_entidad
-              WHERE mediciones.id_indicador = $id_indicador 
+              WHERE mediciones.id_indicador = $id_indicador
               AND entidades.id = $id_entidad
-              AND valor IS NOT NULL"; 
+              AND valor IS NOT NULL";
     if ($fecha_inicio > 0)
     {
       $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
@@ -637,11 +644,11 @@ function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fi
     {
       $query .= " AND mediciones.periodo_fin <= '$fecha_fin'";
     }
-    // Agrupamos por año 
-    // TODO: agrupar por otros periodos cuando se agregue la variables periodicidad a la función 
+    // Agrupamos por año
+    // TODO: agrupar por otros periodos cuando se agregue la variables periodicidad a la función
     $query .= " GROUP BY YEAR(mediciones.periodo_inicio) ORDER BY mediciones.periodo_inicio";
     $resultado2 = mysql_query($query);
-    
+
     $valores = array();
     while ($valor = mysql_fetch_assoc($resultado2))
     {
@@ -653,9 +660,9 @@ function get_indicadores_panel_con_datos($id_panel, $fecha_inicio = 0, $fecha_fi
   echo $datos;
 }
 
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 // Función para probar el funcionamiento de las dos siguientes
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 function prueba_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 {
   $datos =obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad);
@@ -663,11 +670,11 @@ function prueba_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
   echo $datos;
 }
 
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 // Realiza los cálculos para obtener los totales de un indicador calculado
 // Ejemplo de llamada:
 // http://localhost/icasus/api_publica.php?metodo=obtener_total_calculado&id=5035&fecha_inicio=2010-01-01&fecha_fin=2013-12-31&periodicidad=anual
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 {
   $elementos_calculo = array();
@@ -694,7 +701,7 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
     {
       // Si el contenido de la variable es un número
       // nos indica que se trata de un indicador existente
-      // en caso contrario sería un valor a introducir y en este 
+      // en caso contrario sería un valor a introducir y en este
       // contexto no tiene sentido por lo que ponemos cero
       // (en realidad en un futuro no lo tendrá en ninguno)
       if (is_numeric($variable))
@@ -712,31 +719,31 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
     }
     if ($es_variable)
     {
-      $variable .= $elemento; 
+      $variable .= $elemento;
     }
     else
     {
       $formula .= $elemento;
     }
   }
-  // Calcula el resultado de la formula y guarda el valor final 
+  // Calcula el resultado de la formula y guarda el valor final
   for ($i = 0; $i < count($totales[$id_indicador_parcial]); $i++)
   {
     eval("\$total_calculado = $formula;");
     $totales_calculados[] = array(
-                              "id_medicion" => (int)$totales[$id_indicador_parcial][$i]['id_medicion'], 
-                              "medicion" => (int)$totales[$id_indicador_parcial][$i]['medicion'], 
-                              "periodo_fin" => (int)$totales[$id_indicador_parcial][$i]['periodo_fin'], 
-                              "unidad" => "Total", "id_unidad" => 0, 
+                              "id_medicion" => (int)$totales[$id_indicador_parcial][$i]['id_medicion'],
+                              "medicion" => (int)$totales[$id_indicador_parcial][$i]['medicion'],
+                              "periodo_fin" => (int)$totales[$id_indicador_parcial][$i]['periodo_fin'],
+                              "unidad" => "Total", "id_unidad" => 0,
                               "valor" => $total_calculado);
   }
   return $totales_calculados;
 }
 
-// --------------------------------------------------------------------------- 
+// ---------------------------------------------------------------------------
 
 function obtener_totales_simples($id_indicador, $fecha_inicio='0', $fecha_fin='0', $periodicidad='todos')
-{ 
+{
   // Obtenemos el operador o tipo de agregación del indicador
   $query = "SELECT ta.operador FROM indicadores i INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  WHERE i.id = $id_indicador";
   $resultado = mysql_query($query);
@@ -744,11 +751,11 @@ function obtener_totales_simples($id_indicador, $fecha_inicio='0', $fecha_fin='0
   $operador = $registro['operador'];
 
   // Aquí vienen los totales
-  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion, 
-            UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin, 
-            $operador(valores.valor) as valor  
-            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
-            WHERE mediciones.id_indicador = $id_indicador AND valor IS NOT NULL"; 
+  $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+            UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin,
+            $operador(valores.valor) as valor
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
+            WHERE mediciones.id_indicador = $id_indicador AND valor IS NOT NULL";
   if ($fecha_inicio > 0)
   {
     $query .= " AND mediciones.periodo_inicio >=  '$fecha_inicio'";
@@ -815,7 +822,7 @@ function subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodici
     }
     if ($es_variable)
     {
-      $variable .= $elemento; 
+      $variable .= $elemento;
     }
     else
     {

@@ -196,7 +196,6 @@
 </div>
 
 {if $mediciones}
-  <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /> -->
   <div style="background: white; padding:20px 40px; margin:10px; height:300px;">
   <div class="highchart" id="anuales" style="width:100%;" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"> </div>
   </div>
@@ -207,20 +206,34 @@
       <div class="highchart" id="ultimas" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 2}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="todos"></div>
     </div>
   {/if}
-
+{if $paneles}
+  {foreach $paneles as $panel}
+    <div class="box grid_{$panel->ancho}" style="float:left;">
+      <div class="block alturo" style="height:320px">
+        <!--
+        <div class="titulo-panel">
+          <strong>{$panel->nombre}</strong> 
+        </div>
+        -->
+        <div class="section">
+          <div class="highchart {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}" data-periodicidad="{$panel->periodicidad}"></div>
+        </div>
+      </div>
+    </div>
+  {/foreach}
+{/if}
 {else}
-  <p class="aviso">Todavía no se han definido mediciones para este indicador.</p>
+  <p class="aviso">Todavía no se han recogido valores para este indicador.</p>
 {/if}
 
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>   
 <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script src="js/highcharts.js" type="text/javascript"></script>
+<script src="js/exporting.js" type="text/javascript"></script>
 <script src="js/highchartStruct.js" type="text/javascript"></script>
 
-<script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
-
 <script type="text/javascript">
-$(document).ready(function() {
+  // Para cada contenedor de clase higchart vamos a pintar el gráfico
   $('.highchart').each(function() {
     var idPanel = $(this).attr('id');
     var idIndicador = $(this).data("id_indicador");
@@ -229,75 +242,63 @@ $(document).ready(function() {
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
     var milisegundosAnio = 31540000000;
-    var chart1 = new Highcharts.Chart({
-      chart: {
-        height: 300,
-        renderTo: idPanel,
-      },
-      title: {
-        text: nomIndicador + '(' + fecha_inicio + " a " + fecha_fin + ")",
-        style: { "color": "grey", "fontSize": "12px"}
-      },
-      xAxis: {
-        type: 'datetime',
-        tickInterval: milisegundosAnio,
-        dateTimeLabelFormats: {
-          month: "%b %y",
-          year:"%Y"
-        }
-      },
-      yAxis: {
-        title: {
-          text: ''
-        }
-      },
-    });
+    var serie = [];
+    var chartSerie = new highchartSerie(); // contenedor para los datos del gráfico
+    if (periodicidad == "anual") {
+      chartSerie.categoryType = "año";
+    }
+    else {
+      chartSerie.categoryType = "medicion";
+    }
+    var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
 
     $.ajax({
-      url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad,
+      url: urlApi,
       type: "GET",
       dataType: "json",
       success: onDataReceived
     });
 
     function onDataReceived(datos) {
-      var categories = new Set();
-      var map = [];
-
-      //Guarda los datos en forma de Map
-      //Año/Medición -> Unidad -> Valor
-      datos.forEach(function(d){
-        var medicion;
-        var unidad;
-        var valor;
-        medicion=d.periodo_fin;
-        valor = parseFloat(d.valor);
-        unidad = d.etiqueta_mini?d.etiqueta_mini:d.unidad;
-        !parseInt(d.id_unidad)?categories.add(unidad):false;
-        if(map[medicion]){
-          map[medicion][unidad]=valor;
-        }else{
-          map[medicion]=new Object();
-          map[medicion][unidad]=valor;
+      datos.forEach(function(dato){
+        // Agrega los que no tienen etiqueta_mini (total y referencias)
+        // descarta las mediciones de unidades (no sirven aquí)
+        if(!dato.etiqueta_mini){
+          chartSerie.add(dato);
         }
       });
-
-      categories.data.forEach(function (category) {
-        var data = [];
-        for(var key in map){
-          if(map[key][category])
-            data.push([parseInt(key),map[key][category]]);
-          else
-            data.push([parseInt(key),null]);
-        }
-        chart1.addSeries({
-          name:category,
-          type:'line',
-          data:data,
-        });
+      var chart1 = new Highcharts.Chart({
+        chart: {
+          type: 'line',
+          height: 300,
+          renderTo: idPanel
+        },
+        title: {
+          text: nomIndicador + '(' + fecha_inicio + " a " + fecha_fin + ")",
+          style: { "color": "grey", "fontSize": "12px"}
+        },
+        exporting: {
+          enabled: true
+        },
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          title: {
+            text: 'valores'
+          }
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: true,
+              formatter: function() { return this.y?((Math.round(this.y*100))/100):null }
+            }
+          }
+        },
+        series: chartSerie.getLinealSerie()
       });
     }
   });
-});
 
 </script>
