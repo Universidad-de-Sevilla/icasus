@@ -1,12 +1,13 @@
 <?php
-//---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus 
+//------------------------------------------------------------------------------
+// Proyecto: Icasus
 // Archivo: medicion_crear.php
-//---------------------------------------------------------------------------------------------------
-// Muestra la interfaz para programar las mediciones que se van a realizar de un indicador
-// Puede hacerse manualmente o utilizando una plantilla que genera las mediciones automaticamente (porhacer)
+//------------------------------------------------------------------------------
+// Muestra la interfaz para programar las mediciones que se van a realizar
+// Puede hacerse manualmente o utilizando una plantilla que genera las
+// mediciones automaticamente (TODO)
 // Muestra un listado con la unidad y las subunidades para indicar las afectadas
-//---------------------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------
 global $smarty;
 global $usuario;
 global $plantilla;
@@ -37,8 +38,8 @@ if ($indicador->load("id = $id_indicador"))
 {
   $id_entidad = $indicador->id_entidad;
 
-  //comprobar permisos para cambiar mediciones tanto para responsables del indicador como
-  //de la medición o responsables de la unidad
+  //comprobar permisos para cambiar mediciones tanto para responsables del
+  //indicador como de la medición o responsables de la unidad
   $responsable_unidad = false;
   foreach($usuario->entidades AS $usuario_entidad)
   {
@@ -48,13 +49,13 @@ if ($indicador->load("id = $id_indicador"))
     }
   }
   if ($responsable_unidad == true
-      OR $indicador->id_responsable == $usuario->id 
+      OR $indicador->id_responsable == $usuario->id
       OR $indicador->id_responsable_medicion == $usuario->id)
-  { 
+  {
     $permiso_crear = true;
   }
   else
-  { 
+  {
     $permiso_crear = false;
   }
 
