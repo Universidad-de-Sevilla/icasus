@@ -263,7 +263,7 @@
       datos.forEach(function(dato){
         // Agrega los que no tienen etiqueta_mini (total y referencias)
         // descarta las mediciones de unidades (no sirven aquí)
-        if(!dato.etiqueta_mini){
+        if(!dato.etiqueta_mini && (dato.valor != null)){
           chartSerie.add(dato);
         }
       });
