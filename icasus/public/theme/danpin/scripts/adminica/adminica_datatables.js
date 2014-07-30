@@ -9,6 +9,7 @@ $(document).ready(function() {
 				"bInfo": true,
 				"sScrollX": "101%",
 				"bScrollCollapse": true,
+        "iDisplayLength": 25,
 				"sPaginationType": "full_numbers",
 				"bRetrieve": true,
 				"fnInitComplete": function () {

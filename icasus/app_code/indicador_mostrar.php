@@ -1,6 +1,6 @@
 <?php
 //-------------------------------------------------------------------------------
-// Proyecto: Icasus 
+// Proyecto: Icasus
 // Archivo: indicador_mostrar.php
 //-------------------------------------------------------------------------------
 // Muestra la ficha del indicador y los gráficos con los valores
@@ -11,7 +11,7 @@ global $plantilla;
 
 if (isset($_REQUEST['id_indicador']))
 {
-  $id_indicador = sanitize($_REQUEST['id_indicador'],16); 
+  $id_indicador = sanitize($_REQUEST['id_indicador'],16);
   $indicador = new indicador();
   if ($indicador->load_joined("id = $id_indicador"))
   {
@@ -24,7 +24,7 @@ if (isset($_REQUEST['id_indicador']))
   }
   $indicador->load_joined("id = $id_indicador");
   $smarty->assign('indicador', $indicador);
-  
+
   $entidad = new entidad();
   $entidad->load("id = $indicador->id_entidad");
   $smarty->assign('entidad', $entidad);
@@ -41,17 +41,7 @@ if (isset($_REQUEST['id_indicador']))
     $paneles = array();
     $panel = new panel();
     $panel->tipo = new panel_tipo();
-    // Prepara el panel anual
-    $anio_inicio = $indicador->historicos;
-    $anio_fin = date('Y') - 1;
-    $panel->id = 1;
-    $panel->ancho = 8;
-    $panel->tipo->clase_css = "lineal";
-    $panel->nombre = $indicador->nombre . " (" . $anio_inicio . " - " . $anio_fin . ")";
-    $panel->fecha_inicio = $indicador->historicos . "-01-01";
-    $panel->fecha_fin = $anio_fin . "-12-31";
-    $panel->periodicidad = "anual";
-    $paneles[] = clone($panel);
+    $panel->ancho = 16;
     if ($indicador->periodicidad != "Anual")
     {
       // Prepara el panel intraanual
@@ -66,11 +56,21 @@ if (isset($_REQUEST['id_indicador']))
       $panel->periodicidad = "todos";
       $paneles[] = clone($panel);
     }
+    // Prepara el panel anual
+    $anio_inicio = $indicador->historicos;
+    $anio_fin = date('Y') - 1;
+    $panel->id = 1;
+    $panel->tipo->clase_css = "lineal";
+    $panel->nombre = $indicador->nombre . " (" . $anio_inicio . " - " . $anio_fin . ")";
+    $panel->fecha_inicio = $indicador->historicos . "-01-01";
+    $panel->fecha_fin = $anio_fin . "-12-31";
+    $panel->periodicidad = "anual";
+    $paneles[] = clone($panel);
     $smarty->assign("paneles", $paneles);
     $smarty->assign("mediciones", $mediciones);
   }
-  
-  $smarty->assign('_nombre_pagina', "Ficha del indicador: " . $indicador->nombre); 
+
+  $smarty->assign('_nombre_pagina', "Ficha del indicador: " . $indicador->nombre);
   $plantilla = 'indicador_mostrar.tpl';
 }
 else
