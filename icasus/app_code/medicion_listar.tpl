@@ -65,7 +65,7 @@
   </div>
 <div class="box grid_16">
   {if $mediciones}
-    <!-- <p><img src="index.php?page=grafica_indicador_agregado&id_indicador={$indicador->id}" alt="gráfica completa con los valores medios del indicador" /> -->
+    <!--
     <div style="background: white; padding:20px 40px; margin:10px;">
       <h3 style="margin: 0 0 20px 0;">Histórico anual</h3>
       <div class="panel_flot" id="grafica_anual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"></div>
@@ -78,13 +78,22 @@
         <div class="panel_flot" id="grafica_anio_anterior" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 1}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="mensual"></div>
         <div class="leyenda"></div>
       </div>
-      <!--
-      <h3>Año en curso</h3>
-      <div class="panel_flot" id="grafica_anio_actual" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos"  data-fecha_inicio="2013-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' + 1}-{$smarty.now|date_format:'%m-%d'}" data-periodicidad="todos"></div>
-      <div class="leyenda"></div>
       -->
     {/if}
-
+    {if isset($paneles)}
+      {foreach $paneles as $panel}
+        <div class="box grid_{$panel->ancho}" style="float:left;">
+          <div class="block alturo" style="height:320px">
+            <!--
+            <div class="titulo-panel">
+              <strong>{$panel->nombre}</strong>
+            </div>
+            -->
+              <div class="highchart {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre} "data-idpanel="{$panel->id}" data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}" data-periodicidad="{$panel->periodicidad}"></div>
+          </div>
+        </div>
+      {/foreach}
+    {/if}
   {else}
     <p class="aviso">Todavía no se han definido mediciones para este indicador.</p>
   {/if}
@@ -99,20 +108,19 @@
 <script src="js/exporting.js"></script>
 
 <script>
-$(document).ready(function() {
-  /**VARIABLES**/
+  // Variables
   var idIndicador = $("#container").data("id_indicador");
   var nomIndicador = $("#container").data("nombre_indicador");
   var chartSerie = new highchartSerie();
   var totales = [];
-  /**CONSULTA A LA BASE DE DATOS**/
+  // Consulta a la base de dato
   $.ajax({
     url: "api_publica.php?metodo=get_valores_con_timestamp&id="+idIndicador,
     type: "GET",
     dataType: "json",
     success: onDataReceived
   });
-  /**GUARDADO DE DATOS EN HIGHCHARTSTRUCT y TOTALES PARA LAS MEDIAS**/
+  // Guardado de datos en highchartstruct y totales para las medias
   function onDataReceived(datos) {
     var categories = new Set();
     datos.forEach(function(d){
@@ -124,10 +132,9 @@ $(document).ready(function() {
     });
   };
 
-  /**PINTADO & CONFIGURACIÓN DEL GRÁFICO**/
+  // Pinta y configura el gráfico
   $(document).ajaxComplete(function(){
     var serie = chartSerie.getBarSerie();
-    console.log(serie);
     serie[serie.length-1].visible = true;
     serie[serie.length-1].selected = true;
     var chart1 = new Highcharts.Chart({
@@ -188,7 +195,7 @@ $(document).ready(function() {
       },
       series: serie
     });
-    //Pintamos la media del último grupo de datos (último periodo)
+    // Pinta la media del último grupo de datos (último periodo)
     chart1.getSelectedSeries().forEach( function (selected){
       chart1.yAxis[0].addPlotLine({
         label: {
@@ -206,5 +213,85 @@ $(document).ready(function() {
       });
     });
   });
-} );
+
+  // Pinta las gráficas con los totales anuales e intraanuales
+  $('.highchart').each(function() {
+    var idPanel = $(this).attr('id');
+    var idIndicador = $(this).data("id_indicador");
+    var nomIndicador = $(this).data("nombre_indicador");
+    var periodicidad = $(this).data("periodicidad");
+    var fecha_inicio = $(this).data("fecha_inicio");
+    var fecha_fin = $(this).data("fecha_fin");
+    var milisegundosAnio = 31540000000;
+    //var dataseries = [];
+    var chartSerie = new highchartSerie(); // contenedor para los datos del gráfico
+    if (periodicidad == "anual") {
+      chartSerie.categoryType = "año";
+    }
+    else {
+      chartSerie.categoryType = "medicion";
+    }
+    var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
+
+    $.ajax({
+      url: urlApi,
+      type: "GET",
+      dataType: "json",
+      success: onDataReceived
+    });
+
+    function onDataReceived(datos) {
+      datos.forEach(function(dato){
+        // Agrega los que no tienen etiqueta_mini (total y referencias)
+        // descarta las mediciones de unidades (no sirven aquí)
+        if(!dato.etiqueta_mini && (dato.valor != null)){
+          chartSerie.add(dato);
+        }
+      });
+
+      // Pide las series de datos a chartSerie
+      // A saber: Totales y Valores de referencia
+      dataseries = chartSerie.getLinealSerie();
+      // Si no es anual ocultamos valores de referencia
+      if (chartSerie.categoryType != "año") {
+        dataseries.forEach(function (dataserie, index) {
+          if (index != 0) {
+            dataserie.visible = false;
+          }
+        });
+      }
+
+      var chart1 = new Highcharts.Chart({
+        chart: {
+          type: 'line',
+          height: 300,
+          renderTo: idPanel
+        },
+        title: {
+          text: nomIndicador + '(' + fecha_inicio + " a " + fecha_fin + ")",
+          style: { "color": "grey", "fontSize": "12px"}
+        },
+        exporting: {
+          enabled: true
+        },
+        xAxis: {
+          type: 'category'
+        },
+        yAxis: {
+          title: {
+            text: 'valores'
+          }
+        },
+        plotOptions: {
+          series: {
+            dataLabels: {
+              enabled: false,
+              formatter: function() { return this.y?((Math.round(this.y*100))/100):null }
+            }
+          }
+        },
+        series: dataseries
+      });
+    }
+  });
 </script>

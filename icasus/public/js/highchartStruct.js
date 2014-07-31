@@ -161,7 +161,7 @@ function highchartSerie(){
       }
       serieHighchart.push({
         name: unidad,
-        data: arrayUnidad,
+        data: arrayUnidad
       });
     }
     return serieHighchart;

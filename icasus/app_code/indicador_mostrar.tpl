@@ -240,7 +240,7 @@
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
     var milisegundosAnio = 31540000000;
-    var serie = [];
+    var dataseries = [];
     var chartSerie = new highchartSerie(); // contenedor para los datos del gráfico
     if (periodicidad == "anual") {
       chartSerie.categoryType = "año";
@@ -265,6 +265,17 @@
           chartSerie.add(dato);
         }
       });
+      // Pide las series de datos a chartSerie
+      // A saber: Totales y Valores de referencia
+      dataseries = chartSerie.getLinealSerie();
+      // Si no es anual ocultamos valores de referencia
+      if (chartSerie.categoryType != "año") {
+        dataseries.forEach(function (dataserie, index) {
+          if (index != 0) {
+            dataserie.visible = false;
+          }
+        });
+      }
       var chart1 = new Highcharts.Chart({
         chart: {
           type: 'line',
@@ -294,7 +305,7 @@
             }
           }
         },
-        series: chartSerie.getLinealSerie()
+        series: dataseries
       });
     }
   });
