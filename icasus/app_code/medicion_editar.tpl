@@ -6,15 +6,6 @@
       <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> Borrar medicion</a> &nbsp;
     {/if}
   </div>
-{if $valores|@count > 1}
-<div class="box grid_16">
-  <h2 class="box_head grad_grey_dark">Gráfica de la medición actual</h2>
-  <a href="#" class="grabber"></a>
-  <a href="#" class="toggle"></a>
-    <img src="index.php?page=grafica_indicador_segregado&id_indicador={$indicador->id}&medicion={$medicion->etiqueta}"     
-      alt="Valores del indicador recogidos en cada subunidad para esta medición" />
-</div>
-{/if}
 
 <div class="box grid_16">
   <h2 class="box_head grad_grey_dark">Valor o conjunto de valores de la medición actual</h2>
@@ -22,7 +13,7 @@
   <a href="#" class="toggle"></a>
   {if $valores}
   <div id="valors">
-		<table class="static">
+    <table class="static">
     <thead>
       <tr>
         <th>Unidad</th>
@@ -36,12 +27,12 @@
         <tr>
           <td>{$valor->entidad->etiqueta}</td>
           <td>
-							{if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
-								<a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
-							{else}
-								{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
-							{/if}
-				</td>
+              {if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
+                <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}','{$valor->id}')">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
+              {else}
+                {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
+              {/if}
+        </td>
           <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
           <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
         </tr>
@@ -117,23 +108,23 @@
     {else}
       <fieldset class="label_side">
         <label>Etiqueta</label>
-        <div>{$medicion->etiqueta}	</div>
+        <div>{$medicion->etiqueta}  </div>
       </fieldset>
       <fieldset class="label_side">
         <label>Inicio del periodo</label>
-        <div>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}	</div>
+        <div>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"} </div>
       </fieldset>
       <fieldset class="label_side">
         <label>Fin del periodo</label>
-        <div>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}	</div>
+        <div>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}  </div>
       </fieldset>
       <fieldset class="label_side">
         <label>Inicio grabación</label>
-        <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}	</div>
+        <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"} </div>
       </fieldset>
       <fieldset class="label_side">
         <label>Fin grabación</label>
-        <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}	</div>
+        <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}  </div>
       </fieldset>
       {if isset($valores_referencia_medicion)}
         {foreach $valores_referencia_medicion as $valor_referencia_medicion}
@@ -153,12 +144,12 @@
 </div>
 {literal}
 <script>
-  $('a.confirmar').click(function(event) 
+  $('a.confirmar').click(function(event)
     {
       event.preventDefault()
       var url = $(this).attr('href');
       var confirm_box = confirm('Pulse "Aceptar" para borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición');
-      if (confirm_box) 
+      if (confirm_box)
       {
          window.location = url;
       }

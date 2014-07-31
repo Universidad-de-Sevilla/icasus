@@ -24,7 +24,15 @@
     var nombre = $('[name=e-nombre]').val();
     var grafica = $("input:radio[name=e-grafica]:checked").val();
     var activo = $('input:radio[name=e-activo]:checked').val();
-    $.post('index.php?page=valor_referencia_ajax&ajax=true&modulo=editar',{id_valor:id,id_indicador:id_indicador,etiqueta:etiqueta,nombre:nombre,grafica:grafica,activo:activo},function(){location.reload();});
+    //$.post('index.php?page=valor_referencia_ajax&ajax=true&modulo=editar',{id_valor:id,id_indicador:id_indicador,etiqueta:etiqueta,nombre:nombre,grafica:grafica,activo:activo},function(){location.reload();});
+    $.ajax({
+      type: 'post',
+      url :'index.php?page=valor_referencia_ajax&ajax=true&modulo=editar',
+      data:{'id_valor':id,'id_indicador':id_indicador,'etiqueta':etiqueta,'nombre':nombre,'grafica':grafica,'activo':activo},
+      success: function(){
+        location.reload();
+        }
+      });
   });
 //editar datos cancelar
   $("#valor_editar_cancelar").click(function(){

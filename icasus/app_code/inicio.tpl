@@ -12,14 +12,14 @@
             <td><a href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'>{$entidad->entidad->nombre}</a></td>
             <td>{$entidad->rol->nombre}</td>
             <td>
-              <a href='index.php?page=cuadro_unidad&id_entidad={$entidad->entidad->id}'> Cuadro resumen</a> - 
+              <a href='index.php?page=cuadro_unidad&id_entidad={$entidad->entidad->id}'> Cuadro resumen</a> -
               <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'> Consultas</a> -
               <a href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'> Procesos</a> -
-              <a href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'>Indicadores</a> - 
-              <a href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'>Datos</a> 
+              <a href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'>Indicadores</a> -
+              <a href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'>Datos</a>
               <!--
               <a href="index.php?page=plan_estrategico/plan_listar&id_entidad={$entidad->entidad->id}&entidad={$entidad->entidad->nombre|htmlentities}">Planificaci&oacute;n</a> -
-              <a href='index.php?page=grupo/acta_listar&id_entidad={$entidad->entidad->id}' title="Ver las actas de este equipo">Actas</a> 
+              <a href='index.php?page=grupo/acta_listar&id_entidad={$entidad->entidad->id}' title="Ver las actas de este equipo">Actas</a>
               -->
 							{if $entidad->rol->id == 1 OR $entidad->rol->id == 2}
               - <a href='index.php?page=control&modulo=inicio&id_entidad={$entidad->entidad->id}'> Control</a>
@@ -40,24 +40,24 @@
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
    	<div id="dt1" class="no_margin">
-      <table class="display datatable"> 
-      <thead> 
-       <tr>  
+      <table class="display datatable" id="tabla_indicadores">
+      <thead>
+       <tr>
         <th>Código</th>
         <th>Nombre</th>
-       </tr> 
-      </thead> 
+       </tr>
+      </thead>
         <tbody>
           {foreach $indicadores as $indicador}
             <tr class="gradeX">
               <td>{$indicador->codigo}</td>
               <td><a href="index.php?page={if $indicador->id_proceso > 0}indicador{else}dato{/if}_mostrar&id_{if $indicador->id_proceso > 0}indicador{else}dato{/if}={$indicador->id}">{$indicador->nombre}</a></td>
             </tr>
-          {/foreach}  
+          {/foreach}
         </tbody>
       </table>
   </div>
- </div> 
+ </div>
 {/if}
 
 {if $mediciones_usuario}
@@ -66,14 +66,14 @@
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
    	<div id="dt1" class="no_margin">
-      <table class="display datatable"> 
-      <thead> 
-       <tr>  
+      <table class="display datatable" id="tabla_mediciones">
+      <thead>
+       <tr>
         <th>Código</th>
             <th>Nombre</th>
             <th>Pendientes</th>
-       </tr> 
-      </thead> 
+       </tr>
+      </thead>
         <tbody>
            {foreach $mediciones_usuario as $medicion_usuario}
             <tr class="gradeX">
@@ -85,9 +85,9 @@
                   {/if}
               </td>
             </tr>
-          {/foreach}  
+          {/foreach}
         </tbody>
       </table>
   </div>
- </div> 
+ </div>
 {/if}
