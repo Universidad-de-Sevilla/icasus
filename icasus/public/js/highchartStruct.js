@@ -159,6 +159,7 @@ function highchartSerie(){
       for(u in arrayUnidad){
         arrayUnidad[u].x = this.categories.position(arrayUnidad[u].id);
       }
+      arrayUnidad.sort(function(a,b){return a.x-b.x});
       serieHighchart.push({
         name: unidad,
         data: arrayUnidad
