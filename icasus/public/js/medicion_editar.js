@@ -104,7 +104,7 @@ function referencia_grabar(id)
 
   if (value != '')
   {
-    if (isNaN(value)== false)
+    if (isNaN(value) == false)
     {
       $.post("index.php?page=medicion_editar_ajax&modulo=grabarvalorreferencia&ajax=true",{id_referencia:id,valor:value},function(){
       $('#referencia_'+id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id="+id);
