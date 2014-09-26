@@ -166,6 +166,5 @@ if ($modulo == 'editarvalorreferencia')
   $valor_referencia_medicion->load("id = $id_referencia");
   $smarty->assign("referencia",$valor_referencia_medicion);
   $smarty->assign("modulo","editarvalorreferencia");
-  $smarty->assign("modulo","editarvalorreferencia");
   $plantilla = 'medicion_editar_ajax.tpl';
 }
