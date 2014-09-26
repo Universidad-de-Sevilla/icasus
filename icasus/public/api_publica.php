@@ -798,7 +798,7 @@ function subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodici
   $registro = mysql_fetch_assoc($resultado);
   $calculo = $registro['calculo'];
   $formula = "";
-
+  print($calculo);
   // Recorremos la cadena $calculo para sacar y calcular las variables
   // Almacenamos el resultado en $formula
   $es_variable = false;
@@ -830,5 +830,6 @@ function subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodici
     }
 
   }
+  print($formula);
   print_r($totales);
 }
