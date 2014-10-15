@@ -127,6 +127,9 @@ function highchartSerie(){
       y:parseFloat(elem.valor)//?parseFloat(elem.valor):null //para no mostrar los 0, descomentar
     };
     this.categories.add(category);
+    // Si ya existe una serie con el nombre medicionOunidad 
+    // agregamos el dato a la serie
+    // si no creamos la serie y agregamos el dato
     if(this.serie[medicionOunidad]){
       this.serie[medicionOunidad].push(data);
     }else{

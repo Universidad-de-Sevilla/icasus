@@ -231,7 +231,7 @@
 <script src="js/highchartStruct.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-  // Para cada contenedor de clase higchart vamos a pintar el gráfico
+  // Para cada contenedor de clase highchart vamos a pintar el gráfico
   $('.highchart').each(function() {
     var idPanel = $(this).attr('id');
     var idIndicador = $(this).data("id_indicador");
