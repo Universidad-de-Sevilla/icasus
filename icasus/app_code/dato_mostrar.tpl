@@ -103,10 +103,7 @@
           <fieldset class="label_side">
             <label>Cálculo del total</label>
             <div>
-              {if $dato->id_tipo_agregacion == 0}Indefinido{/if}
-              {if $dato->id_tipo_agregacion == 1}Promedio{/if}
-              {if $dato->id_tipo_agregacion == 2}Suma{/if}
-              {if $dato->id_tipo_agregacion == 3}Máximo{/if}
+              {$dato->tipo_agregacion->descripcion}
             </div>
           </fieldset>
         </div>
