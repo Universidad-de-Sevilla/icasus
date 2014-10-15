@@ -170,10 +170,7 @@
           <fieldset class="label_side">
             <label>Cálculo del total</label>
             <div>
-              {if $indicador->id_tipo_agregacion == 0}Indefinido{/if}
-              {if $indicador->id_tipo_agregacion == 1}Promedio{/if}
-              {if $indicador->id_tipo_agregacion == 2}Suma{/if}
-              {if $indicador->id_tipo_agregacion == 3}Máximo{/if}
+              {$indicador->tipo_agregacion->descripcion}
             </div>
           </fieldset>
         </div>
