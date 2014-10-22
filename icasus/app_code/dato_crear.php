@@ -31,7 +31,6 @@ if (isset($_REQUEST["id_entidad"]))
 }
 else
 {
-  $error = "Faltan parámetros para crear un nuevo dato";
+  $error = "Faltan parámetros para crear un nuevo dato"; 
   header("location:index.php?error=$error");
 }
-?>

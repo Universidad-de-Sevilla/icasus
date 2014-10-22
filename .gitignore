@@ -2,3 +2,6 @@
 *~
 .DS_Store
 icasus/app_code/app_config.php
+/nbproject/private/
+/nbproject/project.properties
+/nbproject/project.xml

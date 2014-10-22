@@ -1,7 +1,7 @@
 <?php
 
 // Version: 0.4.1
-if (isset($_POST['database'] && isset($_POST['usuario'] && isset($_POST['password'] && isset($_POST['servidor'])
+if (isset($_POST['database']) && isset($_POST['usuario']) && isset($_POST['password']) && isset($_POST['servidor']))
 {
 	$database = $_POST['database']; 
 	$usuario = $_POST['usuario']; 
