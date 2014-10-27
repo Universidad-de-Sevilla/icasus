@@ -11,6 +11,7 @@ ini_set('display_errors', '1');
 error_reporting(E_ALL & ~E_DEPRECATED);
 
 include_once('../app_code/app_config.php');
+include_once('../app_code/app_version.php');
 include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
 include_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
 include_once('../../cascara_core/lib/smarty/Smarty.class.php');
@@ -53,7 +54,7 @@ $smarty->cache_dir = '../cache';
 //$smarty->cache = false; 
 
 //Versión actual de icasus
-$smarty->assign('_version', '1.1');
+//$smarty->assign('_version', '1.1');
 
 // Crea una sesión con un identificador encriptado para evitar ataques
 $session_key = substr(md5(IC_DIR_BASE), 0, 8);
@@ -122,4 +123,3 @@ else
 	$smarty->display("$plantilla");
 	$smarty->display('theme/'.IC_THEME.'/piecera.tpl');
 }
-?>

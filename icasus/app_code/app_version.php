@@ -1,7 +1,8 @@
 <?php
-define(IC_VERSION, "2.8.2");
-define(IC_FECHA_REVISION, "15/10/2014");
+define('IC_VERSION', "2.8.3");
+define('IC_FECHA_REVISION', "27/10/2014");
 
+// 2.8.3 - 27/10/2014 - Corrige errores y muestra versión en pie. Corrige errores en edición de datos e indicadores (#787 y #2725)
 // 2.8.2 - 15/10/2014 - Muestra correctamente el tipo de agregación (cálculo del total) de indicadores y datos
 // 2.8.1 - 17/09/2014 - Agrupa las gráficas en mediciones_mostrar
 // 2.8.0 - 31/07/2014 - Implementa Highchart para representar los gráficos con javascript, corrige errores en valores de referencia y permisos

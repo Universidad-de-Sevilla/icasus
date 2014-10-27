@@ -56,7 +56,7 @@
               <select name="id_responsable_medicion" class="select_box">
                 <option value="">Seleccionar uno ...</option>
                 {foreach $usuarios_entidades as $usuario_entidad}
-                  <option value="{$usuario_entidad->usuario->id}"{if $indicador->id_responsable_medicion == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->nombre} {$usuario_entidad->usuario->apellidos} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
+                  <option value="{$usuario_entidad->usuario->id}"{if $indicador->id_responsable_medicion == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                   </option>
                 {/foreach}
               </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
