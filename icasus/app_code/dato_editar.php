@@ -62,4 +62,4 @@ else
   $error = 'Faltan parametros para editar el dato';
   header("Location:index.php?error=$error");
 }
-?>
+

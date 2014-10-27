@@ -73,7 +73,7 @@
 		 
 		<div style="opacity: 1;" id="otras" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
       <div class="button_bar clearfix" id="footer_tabs">
-        <button class="dark send_left" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back()"><span>Cancelar</span></button>
+        <button class="dark send_left" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back();"><span>Cancelar</span></button>
         <button class="btnNext dark send_right img_icon has_text" type="button"><span>Siguiente</span></button>
       </div>
     </div><!-- fin tab id=dato -->
@@ -144,7 +144,7 @@
       </div><!-- fin class="columns clearfix" -->
 
       <div class="button_bar clearfix" id="footer_tabs">
-        <button class="dark send_left" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back()"><span>Cancelar</span></button>
+        <button class="dark send_left" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back();"><span>Cancelar</span></button>
         <button class="btnNext dark send_right img_icon has_text" type="button"><span>Siguiente</span></button>
         <button class="btnPrev dark send_right img_icon has_text" type="button"><span>Anterior</span></button>
       </div>
