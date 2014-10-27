@@ -27,10 +27,7 @@
 			<li><a href="index.php?page={$smarty.const.IC_TIPO_LOGIN}&logout=true">Cerrar sesión</a></li>
 		</ul>
 	</div><!-- #user_box -->
-
-		<span>
-			<a href="#"><strong>Navegaci&oacute;n</strong></a>
-		</span>
+        
 		<ul class="side_accordion">
      		<li><a href='index.php?page=inicio' accesskey='h'><img src='/icons/ff16/house.png' /> Inicio</a> 
 				<li><a href='index.php?page=cuadro_listar'><img src='/icons/ff16/table.png' /> Cuadros de Mando</a></li>
@@ -73,6 +70,7 @@
 		</li>	
 	</ul>	
 	{/if}
+        <!--
 	<ul id="side_links" class="side_links" style="margin-bottom:0;">
 		<span>
 				<a href="#"><strong>Enlaces externos</strong></a>
@@ -86,5 +84,5 @@
 				<li><a href='http://www.google.es/'>Google</a></li>
 			</ul>
 		</li>
-	</ul>
+	</ul>-->
 </div><!-- #sidebar -->

@@ -137,4 +137,4 @@ $db->Execute("CREATE TABLE `valor` (
   KEY `Index_indicador` (`id_indicador`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;");
 
-?>
+
