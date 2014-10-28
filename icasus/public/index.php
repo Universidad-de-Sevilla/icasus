@@ -64,8 +64,8 @@ if (!session_id()) {
     //Trans SID sucks also...
     ini_set('url_rewriter.tags', '');
     ini_set('session.use_trans_sid', 0);
-    //ini_set("session.cookie_lifetime", 10);
-    //ini_set("session.gc_maxlifetime",10);
+    //@ini_set("session.cookie_lifetime", 10);
+    //@ini_set("session.gc_maxlifetime",10);
     session_start();
 }
 
@@ -101,11 +101,22 @@ if (file_exists("../app_code/$page.php")) {
     $smarty->assign('error', "Error 404: no encontramos la página que ha solicitado: $page");
     require_once("../app_code/error.php");
 }
+//if (isset($_GET['ajax']) AND $_GET['ajax'] == 'true')
+//{
+//	$smarty->display("$plantilla");
+//} 
+//else
+//{
+//	// Llama a las tres plantillas que conforman la página html
+//	$smarty->display('theme/'.IC_THEME.'/cabecera.tpl'); 
+//	$smarty->display("$plantilla");
+//	$smarty->display('theme/'.IC_THEME.'/piecera.tpl');
+//}
+
 if (isset($_GET['ajax']) AND $_GET['ajax'] == 'true') {
-    $smarty->display("$plantilla");
+    $template = $plantilla;
 } else {
-    // Llama a las tres plantillas que conforman la página html
-    $smarty->display('theme/' . IC_THEME . '/cabecera.tpl');
-    $smarty->display("$plantilla");
-    $smarty->display('theme/' . IC_THEME . '/piecera.tpl');
+    $smarty->assign("plantilla",$plantilla);
+    $template = 'index.tpl';
 }
+$smarty->display($template);
