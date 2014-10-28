@@ -13,6 +13,7 @@ error_reporting(E_ALL & ~E_DEPRECATED);
 
 include_once('../app_code/app_config.php');
 include_once('../app_code/app_version.php');
+include_once('../app_code/string_es.php');
 include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
 include_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
 include_once('../../cascara_core/lib/smarty/Smarty.class.php');
@@ -68,17 +69,30 @@ if (!session_id()) {
     //@ini_set("session.gc_maxlifetime",10);
     session_start();
 }
+//
+//if (isset($_GET['page'])) {
+//    $page = sanitize($_GET['page'], 2);
+//} else {
+//    $page = "inicio";
+//}
 
-if (isset($_GET['page'])) {
-    $page = sanitize($_GET['page'], 2);
-} else {
+$page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_URL);
+
+if ($page == null || $page == false) {
     $page = "inicio";
 }
 
 if (isset($_SESSION['usuario'])) {
     // Si viene id_entidad le asignamos su valor, si no, asignamos cero.
     // Quitarlo cuando se aclare lo de los permisos
-    $id_entidad = isset($_REQUEST['id_entidad']) ? sanitize($_REQUEST['id_entidad'], 16) : 0;
+    //$id_entidad = isset($_REQUEST['id_entidad']) ? sanitize($_REQUEST['id_entidad'], 16) : 0;
+
+    $id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+
+    if ($id_entidad == null || $id_entidad == false) {
+        $id_entidad = 0;
+    }
+
     $usuario = $_SESSION['usuario'];
     $smarty->assign('_usuario', $usuario);
     /*
@@ -101,22 +115,20 @@ if (file_exists("../app_code/$page.php")) {
     $smarty->assign('error', "Error 404: no encontramos la página que ha solicitado: $page");
     require_once("../app_code/error.php");
 }
-//if (isset($_GET['ajax']) AND $_GET['ajax'] == 'true')
-//{
-//	$smarty->display("$plantilla");
-//} 
-//else
-//{
-//	// Llama a las tres plantillas que conforman la página html
-//	$smarty->display('theme/'.IC_THEME.'/cabecera.tpl'); 
-//	$smarty->display("$plantilla");
-//	$smarty->display('theme/'.IC_THEME.'/piecera.tpl');
+
+//if (isset($_GET['ajax']) AND $_GET['ajax'] == 'true') {
+//    $template = $plantilla;
+//} else {
+//    $smarty->assign("plantilla", $plantilla);
+//    $template = 'index.tpl';
 //}
 
-if (isset($_GET['ajax']) AND $_GET['ajax'] == 'true') {
+$ajax = filter_input(INPUT_GET,'ajax',FILTER_VALIDATE_BOOLEAN);
+
+if ($ajax) {
     $template = $plantilla;
 } else {
-    $smarty->assign("plantilla",$plantilla);
+    $smarty->assign("plantilla", $plantilla);
     $template = 'index.tpl';
 }
 $smarty->display($template);
