@@ -97,13 +97,17 @@
         {/if}
     </head>
     <body>
-        {if isset($_usuario)}
-        {include file='menu.tpl'}{/if}
-        {include file='header.tpl'}
+        <div id="wrapper">	
+            {if isset($_usuario)}
+            {include file='menu.tpl'}{/if}
+            <div id="main_container" class="main_container container_16 clearfix">
+                {include file='header.tpl'}
 
-        {* el cuerpo del template va aqui *}
-        {include file="$plantilla"}
+                {* el cuerpo del template va aqui *}
+                {include file="$plantilla"}
 
-        {include file='footer.tpl'}
+                {include file='footer.tpl'}
+            </div>
+        </div>
     </body>
 </html>
