@@ -13,7 +13,7 @@ define('ENTIDAD_MADRE', 14);
 define('MEDICIONES', '(1649,1648,1508,1515,1541,1646,1647,1686)');
 $entidades_autorizadas = array();
 
-$entidad = new entidad();
+$entidad = new Entidad();
 // Para no perder la pista de la unidad actual
 $entidad->load("id = 14");
 $smarty->assign('entidad', $entidad);
@@ -31,7 +31,7 @@ foreach ($usuario->entidades as $usuario_entidad) {
             if ($usuario_entidad->id_entidad == $subentidad->id) {
                 // Añade la subunidad actual al array de entidades autorizadas
                 $entidades_autorizadas[] = $subentidad;
-                $valor = new valor();
+                $valor = new Valor();
                 $valores = $valor->Find_joined_indicador("id_entidad = $subentidad->id AND id_medicion IN " . MEDICIONES);
                 $subentidad->valores = $valores;
             }

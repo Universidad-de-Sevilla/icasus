@@ -13,7 +13,7 @@ global $smarty;
 global $basedatos;
 global $plantilla;
 
-$dimension = new dimension();
+$dimension = new Dimension();
 // Si vienen los datos necesarios del formulario grabamos
 
 if (isset($_POST['nombre'])) {

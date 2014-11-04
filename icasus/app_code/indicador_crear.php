@@ -16,25 +16,25 @@ $id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE
 if ($id_entidad)
 {
 //  $id_entidad = sanitize($_REQUEST["id_entidad"],INT);
-    $entidad = new entidad();
+    $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign("entidad", $entidad);
     $subunidades = $entidad->Find("id_madre = $id_entidad");
     $smarty->assign('subunidades', $subunidades);
 
-    $usuario_entidad = new usuario_entidad;
+    $usuario_entidad = new Usuario_entidad;
     $usuarios_entidad = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
     $smarty->assign("usuarios_entidad", $usuarios_entidad);
 
-    $proceso = new proceso();
+    $proceso = new Proceso();
     $procesos = $proceso->Find("id_entidad = $id_entidad");
     $smarty->assign('procesos', $procesos);
 
-    $criterio = new criterio_efqm();
+    $criterio = new Criterio_efqm();
     $criterios_efqm = $criterio->Find('1=1');
     $smarty->assign('criterios_efqm', $criterios_efqm);
 
-    $visibilidad = new visibilidad;
+    $visibilidad = new Visibilidad;
     $visibilidades = $visibilidad->Find("1=1");
     $smarty->assign("visibilidades", $visibilidades);
 

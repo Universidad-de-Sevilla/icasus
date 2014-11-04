@@ -33,7 +33,7 @@ if ($tarea == 'linea')
 echo $orden.$estado.$titulo.$descripcion.$fechac.$id_entidad;
         //crear un objeto o instanciar la clase
         
-        $linea = new linea();
+        $linea = new Linea();
         $linea->id_entidad=$id_entidad;
         $linea->idorden=$orden;
         $linea->estado=$estado;

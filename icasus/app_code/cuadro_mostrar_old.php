@@ -20,7 +20,7 @@ if (!is_object($smarty)) {
 if (isset($_REQUEST['id'])) {
     $smarty->assign('_javascript', array('confirmar_borrado'));
     $id = sanitize($_REQUEST['id'], 16);
-    $cuadro = new cuadro();
+    $cuadro = new Cuadro();
     $cuadro->Load("id = $id");
     $smarty->assign('cuadro', $cuadro);
     $indicadores = $cuadro->carga_indicadores();

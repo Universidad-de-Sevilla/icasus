@@ -46,7 +46,7 @@ setlocale(LC_ALL, 'es-ES');
 
 // Variables globales
 $smarty = new Smarty();
-$usuario = new usuario();
+$usuario = new Usuario();
 $plantilla = '';
 $redirige = '';
 

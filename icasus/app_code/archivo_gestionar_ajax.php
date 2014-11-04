@@ -13,7 +13,7 @@ global $usuario;
 global $plantilla;
 
 $modulo = sanitize($_REQUEST["modulo"], SQL);
-$fichero = new fichero();
+$fichero = new Fichero();
 $db = $fichero->DB();
 
 if ($modulo == 'subir') {

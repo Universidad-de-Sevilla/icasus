@@ -15,10 +15,10 @@ $id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE
 if ($id_entidad && $id_indicador) {
 //	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
 //	$id_indicador = sanitize($_REQUEST['id_indicador'],16);
-    $indicador = new indicador();
+    $indicador = new Indicador();
     $indicador->load_joined("id = $id_indicador");
     if ($usuario->id == $indicador->id_responsable OR $usuario->id == $indicador->id_responsable_medicion) {
-        $medicion = new medicion();
+        $medicion = new Medicion();
         $mediciones = $medicion->Find("id_indicador = $id_indicador");
         if ($mediciones) {
             $error = ERR_BORRAR_INDIC_MED;

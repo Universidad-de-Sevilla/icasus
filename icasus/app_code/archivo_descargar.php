@@ -15,7 +15,7 @@ if (isset($_REQUEST["id"]))
 {
 	$id = sanitize($_REQUEST["id"],2);
 
-	$a = new fichero();
+	$a = new Fichero();
 	if ($a->load("id = $id"))
 	{
 		$file = IC_DIR_BASE."upload/$a->tipo_objeto/$a->id_objeto/archivo_$a->id.$a->extension";

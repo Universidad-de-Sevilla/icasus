@@ -10,7 +10,7 @@ global $plantilla;
 
 if (isset($_REQUEST['id_pagina'])) 
 {
-	$pagina = new pagina();
+	$pagina = new Pagina();
 	if (isset($_POST['titulo']) && isset($_POST['alias']) && isset($_POST['contenido']))
 	{
 		$id = sanitize($_REQUEST['id_pagina'],16);

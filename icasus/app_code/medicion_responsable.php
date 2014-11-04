@@ -27,15 +27,15 @@ else
   header("location:index.php?error=$error");
 }
 
-$indicador_subunidad = new indicador_subunidad();
+$indicador_subunidad = new Indicador_subunidad();
 $indicadores_subunidades = $indicador_subunidad->Find_entidades_responsables($id_indicador,$usuario->id);
 $smarty->assign("_nombre_pagina", "Responsables de grabación");
 $smarty->assign("indicadores_subunidades",$indicadores_subunidades);
 
-$indicador = new indicador();
+$indicador = new Indicador();
 $indicador->load("id = $id_indicador");
 $smarty->assign('indicador',$indicador);
-$entidad = new entidad();
+$entidad = new Entidad();
 $entidad->load("id = $indicador->id_entidad");
 $smarty->assign('entidad', $entidad);
 $smarty->assign('tipo',$tipo);

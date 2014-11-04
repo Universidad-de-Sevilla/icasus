@@ -13,19 +13,19 @@ $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
 $id_entidad = sanitize($_REQUEST["id_entidad"], INT);
 if(isset($id_indicador))
 {
-	$usuario_entidad = new usuario_entidad();
+	$usuario_entidad = new Usuario_entidad();
 	if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)"))
 	{	
-		$indicador = new indicador();
+		$indicador = new Indicador();
 		$indicador->load("id = $id_indicador");
 		$smarty->assign('indicador', $indicador);
 
-		$entidad = new entidad();
+		$entidad = new Entidad();
 		$entidad->load("id = $indicador->id_entidad");
 		$smarty->assign('entidad', $entidad);
 
 		//devuelve el literal del año de cada medicion para los <th> de la tabla
-		$medicion= new medicion();
+		$medicion= new Medicion();
 		$year = $medicion->find_year_mediciones($id_indicador);
 		$smarty->assign('years',$year);
 

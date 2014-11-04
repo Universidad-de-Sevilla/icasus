@@ -24,7 +24,7 @@ if (isset($_POST["nombre"]) && isset($_POST["apellidos"]) && isset($_POST["login
 	$nif = isset($_POST["nif"])?sanitize($_POST["nif"],2):'';
 	$correo = isset($_POST["correo"])?sanitize($_POST["correo"],2):'';
 	$telefono =  isset($_POST["telefono"])?sanitize($_POST["telefono"],2):'';
-	$usuario = new usuario($basedatos);
+	$usuario = new Usuario($basedatos);
 	if ($id_usuario = $usuario->crear($login,$clave,$nombre,$apellidos,$nif,$correo,$telefono)) 
 	{
 		$smarty->assign('aviso' , 'Se ha creado un nuevo usuario en el sistema');

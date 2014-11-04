@@ -8,7 +8,7 @@
 // Descripcion: Lista los cuadros de mando definidos por este usuario
 //---------------------------------------------------------------------------------------------------
 
-$cuadro = new cuadro();
+$cuadro = new Cuadro();
 $cuadros = $cuadro->find_joined($usuario->id);
 $smarty->assign('cuadros', $cuadros);
 

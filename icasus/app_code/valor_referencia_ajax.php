@@ -12,7 +12,7 @@ global $usuario;
 global $plantilla;
 
 $modulo = sanitize($_REQUEST["modulo"],SQL);
-$vr = new valor_referencia();
+$vr = new Valor_referencia();
 $db = $vr->DB();
 
 if ($modulo == 'editar')

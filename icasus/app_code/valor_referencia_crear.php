@@ -28,7 +28,7 @@ else // falta id_indicador o id_entidad
 	$plantilla = 'error.tpl';
 }
 
-$indicador = new indicador();
+$indicador = new Indicador();
 $indicador->load_joined("id=$id_indicador");
 
 $smarty->assign('_javascript', array('valor_referencia_crear'));

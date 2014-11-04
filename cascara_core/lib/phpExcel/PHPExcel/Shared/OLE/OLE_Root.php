@@ -189,7 +189,7 @@ class PHPExcel_Shared_OLE_PPS_Root extends PHPExcel_Shared_OLE_PPS
 	*/
 	public function _adjust2($i2)
 	{
-		$iWk = log($i2)/log(2);
+		$iWk = Log($i2)/Log(2);
 		return ($iWk > floor($iWk))? floor($iWk)+1:$iWk;
 	}
 

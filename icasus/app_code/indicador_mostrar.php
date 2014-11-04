@@ -15,7 +15,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador') || filter_has_var(INPUT_POST, 'id_
 {
 //  $id_indicador = sanitize($_REQUEST['id_indicador'],16);
     $id_indicador = filter_input(INPUT_GET | INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
-    $indicador = new indicador();
+    $indicador = new Indicador();
     if ($indicador->load_joined("id = $id_indicador"))
     {
         $smarty->assign('indicador', $indicador);
@@ -28,23 +28,23 @@ if (filter_has_var(INPUT_GET, 'id_indicador') || filter_has_var(INPUT_POST, 'id_
     $indicador->load_joined("id = $id_indicador");
     $smarty->assign('indicador', $indicador);
 
-    $entidad = new entidad();
+    $entidad = new Entidad();
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign('entidad', $entidad);
 
     //Subunidades asignadas a la medicion de este indicador
-    $indicador_subunidad = new indicador_subunidad();
+    $indicador_subunidad = new Indicador_subunidad();
     $indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_indicador");
     $smarty->assign("indicador_subunidades", $indicador_subunidades);
 
     //Simplemente ver si hay mediciones
-    $medicion = new medicion();
+    $medicion = new Medicion();
     $mediciones = $medicion->Find("id_indicador = $id_indicador");
     if ($mediciones)
     {
         $paneles = array();
-        $panel = new panel();
-        $panel->tipo = new panel_tipo();
+        $panel = new Panel();
+        $panel->tipo = new Panel_tipo();
         $panel->ancho = 16;
         if ($indicador->periodicidad != "Anual")
         {

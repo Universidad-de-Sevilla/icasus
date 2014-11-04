@@ -19,33 +19,33 @@ $id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE
 if ($id_dato && $id_entidad) {
 //  $id_dato = sanitize($_REQUEST['id_dato'],16);
 //  $id_entidad = sanitize($_REQUEST['id_entidad'],16);
-    $usuario_entidad = new usuario_entidad;
+    $usuario_entidad = new Usuario_entidad;
     // Comprobamos permisos
     if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)")) {
-        $dato = new indicador();
+        $dato = new Indicador();
         $dato->load_joined("id = $id_dato");
         $smarty->assign('dato', $dato);
 
-        $entidad = new entidad();
+        $entidad = new Entidad();
         $entidad->load("id = $dato->id_entidad");
         $smarty->assign('entidad', $entidad);
 
         $subunidades = $entidad->Find("id_madre = $dato->id_entidad");
         $smarty->assign('subunidades', $subunidades);
 
-        $visibilidad = new visibilidad;
+        $visibilidad = new Visibilidad;
         $visibilidades = $visibilidad->Find("1=1");
         $smarty->assign("visibilidades", $visibilidades);
 
-        $tipo_agregacion = new tipo_agregacion();
+        $tipo_agregacion = new Tipo_agregacion();
         $tipos_agregacion = $tipo_agregacion->Find("true ORDER BY id");
         $smarty->assign("tipos_agregacion", $tipos_agregacion);
 
-        $usuario_entidad = new usuario_entidad();
+        $usuario_entidad = new Usuario_entidad();
         $usuarios_entidades = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
         $smarty->assign('usuarios_entidades', $usuarios_entidades);
 
-        $indicador_subunidad = new indicador_subunidad();
+        $indicador_subunidad = new Indicador_subunidad();
         $indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_dato");
         $smarty->assign("indicador_subunidades", $indicador_subunidades);
 

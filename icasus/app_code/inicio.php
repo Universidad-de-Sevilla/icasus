@@ -14,12 +14,12 @@ $smarty->assign('_javascript', array('ordenatabla'));
 $smarty->assign('_nombre_pagina', 'Inicio');
 
 // Indicadores a cargo de este usuario
-$indicador = new indicador();
+$indicador = new Indicador();
 $indicadores = $indicador->Find("id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id");
 $smarty->assign("indicadores",$indicadores);
 
 // Mediciones a cargo de este usuario
-$indicador= new indicador();
+$indicador= new Indicador();
 $mediciones_usuario = $indicador->Find_con_pendientes("id IN (SELECT id_indicador FROM indicadores_subunidades WHERE id_usuario=$usuario->id)", $usuario->id);
 $smarty->assign("mediciones_usuario",$mediciones_usuario);
 //$indicador_subunidad = new indicador_subunidad();

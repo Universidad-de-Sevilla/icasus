@@ -15,15 +15,15 @@ $id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE
 //if (isset($_REQUEST['id_entidad']))
 if ($id_entidad) {
 //	$id_entidad = sanitize($_REQUEST['id_entidad'],INT);
-    $entidad = new entidad();
+    $entidad = new Entidad();
     $entidad->load_joined("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    $subentidad = new entidad();
+    $subentidad = new Entidad();
     $subentidades = $subentidad->Find("id_madre = $id_entidad ORDER by codigo");
     $smarty->assign('subentidades', $subentidades);
 
-    $usuario_entidad = new usuario_entidad;
+    $usuario_entidad = new Usuario_entidad;
     $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
     $smarty->assign('usuarios', $usuarios);
     $smarty->assign('_nombre_pagina', TXT_UNID.': ' . $entidad->nombre);

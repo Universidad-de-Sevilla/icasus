@@ -11,7 +11,7 @@
 // Comprueba que vienen los datos mínimos
 if (isset($_REQUEST['nombre'])) {
     // Guardamos los datos que vienen del formulario
-    $cuadro = new cuadro();
+    $cuadro = new Cuadro();
     // Si viene el id es que estamos editando uno existente
     if (isset($_REQUEST['id'])) {
         $id = sanitize($_REQUEST['id'], 16);

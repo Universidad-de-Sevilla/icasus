@@ -13,7 +13,7 @@ global $smarty;
 global $basedatos;
 global $plantilla;
 
-$entidad = new entidad($basedatos);
+$entidad = new Entidad($basedatos);
 
 // Si vienen todos los datos necesarios del formulario grabamos
 if (isset($_POST['nombre']) && isset($_POST['id_padre'])) {

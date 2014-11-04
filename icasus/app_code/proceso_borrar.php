@@ -10,11 +10,11 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']) )
 {
 	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
 	$id_proceso = sanitize($_REQUEST['id_proceso'],16);
-	$proceso = new proceso();
+	$proceso = new Proceso();
   	$proceso->load_joined("id = $id_proceso");
   	if ($proceso->id_propietario == $proceso->propietario->id)
   	{
-  		$indicador = new indicador();
+  		$indicador = new Indicador();
 	  	$indicadores = $indicador->Find("id_proceso = $id_proceso");
 		if ($indicadores)
 		{

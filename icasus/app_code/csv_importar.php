@@ -10,7 +10,7 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
-$usuario_entidad = new usuario_entidad();
+$usuario_entidad = new Usuario_entidad();
 $id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 //if (isset($_REQUEST['id_entidad']))

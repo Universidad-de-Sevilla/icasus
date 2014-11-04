@@ -11,11 +11,11 @@ global $plantilla;
 if (isset($_REQUEST["id_entidad"]))
 {
   $id_entidad = sanitize($_REQUEST["id_entidad"], INT);
-  $entidad = new entidad();
+  $entidad = new Entidad();
   $entidad->load("id =  $id_entidad");
   $smarty->assign('entidad', $entidad);
 
-  $proceso = new proceso();
+  $proceso = new Proceso();
   $procesos = $proceso->Find_joined("id_entidad = $id_entidad");
   $smarty->assign('procesos',$procesos);
 

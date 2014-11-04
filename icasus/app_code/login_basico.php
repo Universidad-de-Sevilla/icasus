@@ -9,11 +9,11 @@ if (isset($_POST["login"]) && isset($_POST["clave"])) {
     $login = sanitize($_POST["login"], 2);
     $clave = sanitize($_POST["clave"], 2);
 
-    $usuario = new usuario();
+    $usuario = new Usuario();
     if ($usuario->load_joined("login = '$login' AND clave = '$clave'")) {
         $_SESSION['usuario'] = $usuario;
         // Registra la entrada en el log
-        $log = new log();
+        $log = new Log();
         $log->add('login', 0, $usuario->id);
         header("location:index.php");
     } else {

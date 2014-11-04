@@ -17,24 +17,24 @@ $id_dato = filter_input(INPUT_GET | INPUT_POST, 'id_dato', FILTER_SANITIZE_NUMBE
 //if (isset($_REQUEST['id_dato']))
 if ($id_dato) {
 //	$id_dato = sanitize($_REQUEST['id_dato'],16); 
-    $dato = new indicador();
+    $dato = new Indicador();
     if ($dato->load_joined("id = $id_dato")) {
         $smarty->assign('dato', $dato);
     } else {
         $error = ERR_DATO_MOSTRAR;
         header("location:index.php?error=$error");
     }
-    $entidad = new entidad();
+    $entidad = new Entidad();
     $entidad->load("id = $dato->id_entidad");
     $smarty->assign('entidad', $entidad);
 
     //Subunidades asignadas a la medicion de este dato
-    $dato_subunidad = new indicador_subunidad();
+    $dato_subunidad = new Indicador_subunidad();
     $dato_subunidades = $dato_subunidad->Find_entidades("id_indicador = $id_dato");
     $smarty->assign("dato_subunidades", $dato_subunidades);
 
     //Simplemente ver si hay mediciones
-    $medicion = new medicion();
+    $medicion = new Medicion();
     $mediciones = $medicion->Find("id_indicador = $id_dato");
     $smarty->assign("mediciones", $mediciones);
 

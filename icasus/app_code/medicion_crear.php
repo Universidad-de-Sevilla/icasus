@@ -17,7 +17,7 @@ if (isset($_REQUEST["id_indicador"]))
   $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
   $tipo = "indicador";
 
-  $valor_referencia = new valor_referencia();
+  $valor_referencia = new Valor_referencia();
   $valores_referencia = $valor_referencia->Find("id_indicador = $id_indicador");
 
   $smarty->assign("valores_referencia", $valores_referencia);
@@ -33,7 +33,7 @@ else
   header("location:index.php?page=entidad_listar&error=$error");
 }
 
-$indicador = new indicador;
+$indicador = new Indicador;
 if ($indicador->load("id = $id_indicador"))
 {
   $id_entidad = $indicador->id_entidad;
@@ -63,12 +63,12 @@ if ($indicador->load("id = $id_indicador"))
   {
     $smarty->assign("indicador", $indicador);
     $smarty->assign("tipo", $tipo);
-    $entidad = new entidad;
+    $entidad = new Entidad;
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign("entidad", $entidad);
     $subunidades = $entidad->Find("id = $id_entidad OR id_madre = $id_entidad ORDER BY etiqueta");
     $smarty->assign('subunidades', $subunidades);
-    $indicador_subunidad = new indicador_subunidad();
+    $indicador_subunidad = new Indicador_subunidad();
     $indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_indicador");
     $smarty->assign("indicador_subunidades", $indicador_subunidades);
     $smarty->assign("_nombre_pagina", "Programar medición");

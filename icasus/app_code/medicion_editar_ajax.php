@@ -11,11 +11,11 @@ global $usuario;
 global $plantilla;
 
 $modulo = sanitize($_REQUEST["modulo"],SQL);
-$medicion = new medicion();
-$indicador = new indicador();
-$valor = new valor();
-$valor_referencia_medicion = new valor_referencia_medicion();
-$indicador_subunidad = new indicador_subunidad();
+$medicion = new Medicion();
+$indicador = new Indicador();
+$valor = new Valor();
+$valor_referencia_medicion = new Valor_referencia_medicion();
+$indicador_subunidad = new Indicador_subunidad();
 
 //valores que se definen como filas --------------------------------------------
 if ($modulo == 'anularvalor')

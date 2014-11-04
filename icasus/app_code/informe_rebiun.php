@@ -8,7 +8,7 @@
 //  - Permite elegir subunidades
 //  - Permite acotar los periodos de medición deseados
 //---------------------------------------------------------------------------------------------------
-$indicador = new indicador();
+$indicador = new Indicador();
 $rebiun_detalle = $indicador->rebiun_2012_detalle();
 $smarty->assign("informe",$rebiun_detalle);
 

@@ -17,7 +17,7 @@ if($id_cuadro)
 {
 //	$id_cuadro = sanitize($_REQUEST['id'],16);
 	$id_usuario = $operario->id_usuario;
-	$cuadro = new cuadro();
+	$cuadro = new Cuadro();
 	$cuadro->Load("id = $id_cuadro AND id_usuario = $id_usuario");
 	if ($cuadro->delete())
 	{

@@ -13,9 +13,9 @@ global $plantilla;
 if (isset($_REQUEST['id_entidad']))
 { 
   $id_entidad = sanitize($_REQUEST['id_entidad'], INT);
-  $entidad = new entidad();
+  $entidad = new Entidad();
   $entidad->load_joined("id = $id_entidad");
-  $proceso = new proceso();
+  $proceso = new Proceso();
   $procesos_madre = $proceso->find_joined_indicadores("id_entidad = $entidad->id_madre");
   $procesos_propios = $proceso->find_joined_indicadores("id_entidad = $id_entidad");
   $smarty->assign("entidad", $entidad);

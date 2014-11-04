@@ -25,7 +25,7 @@ if ($id_entidad) {
 //        $id_rol = sanitize($_REQUEST['id_rol'], INT);
         $contador = 0;
         foreach ($_REQUEST['id_usuario'] as $id_usuario) {
-            $usuario_entidad = new usuario_entidad;
+            $usuario_entidad = new Usuario_entidad;
             $id_usuario = sanitize($id_usuario, INT);
             $usuario_entidad->id_usuario = $id_usuario;
             $usuario_entidad->id_entidad = $id_entidad;
@@ -53,22 +53,22 @@ if ($id_entidad) {
           }
           $smarty->assign('criterio', $criterio);
          */
-        $persona = new usuario();
+        $persona = new Usuario();
         $where = "1 = 1 ORDER BY apellidos";
         $personas = $persona->Find_sql($where);
         $smarty->assign('personas', $personas);
 
-        $rol = new rol();
+        $rol = new Rol();
         $roles = $rol->Find("objeto = 'entidad' ORDER BY orden");
         $smarty->assign('roles', $roles);
 
-        $entidad = new entidad();
+        $entidad = new Entidad();
         $entidad->load("id = $id_entidad");
         $smarty->assign('entidad', $entidad);
         $smarty->assign('_nombre_pagina', TXT_ALTA_USERS . ' - ' . $entidad->nombre);
         $plantilla = 'entidad_poblar.tpl';
 
-        $usuario_entidad = new usuario_entidad;
+        $usuario_entidad = new Usuario_entidad;
         $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
         $smarty->assign('usuarios', $usuarios);
     }

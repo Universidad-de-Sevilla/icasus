@@ -17,7 +17,7 @@ $smarty->assign('_javascript' , array('ordenatabla'));
 if ($_GET['id_entidad'] >= '0')
 {	
 	$id_entidad = sanitize($_GET["id_entidad"],16);
-	$entidad = new entidad($basedatos);
+	$entidad = new Entidad($basedatos);
 	$smarty->assign('entidad', $entidad->obtener_datos($id_entidad));
     $indicadores = $entidad->indicadores_subentidad($id_entidad); 
 	$smarty->assign('indicadores', $indicadores);

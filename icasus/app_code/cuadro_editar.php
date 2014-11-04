@@ -11,7 +11,7 @@ $id_cuadro = filter_input(INPUT_GET | INPUT_POST, 'id_cuadro', FILTER_SANITIZE_N
 //if (isset($_REQUEST['id_cuadro']))
 if ($id_cuadro) {
 //	$id_cuadro = sanitize($_REQUEST['id_cuadro'],16);
-    $cuadro = new cuadro();
+    $cuadro = new Cuadro();
     $cuadro->load("id = $id_cuadro");
     $smarty->assign('cuadro', $cuadro);
     $smarty->assign('_nombre_pagina', 'Editando cuadro de mando');

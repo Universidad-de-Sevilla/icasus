@@ -25,23 +25,23 @@ else
   header("location:index.php?page=entidad_listar&error=$error");
 }
 
-$indicador = new indicador();
+$indicador = new Indicador();
 $indicador->load("id = $id_indicador");
 $smarty->assign('indicador',$indicador);
 
-$entidad = new entidad();
+$entidad = new Entidad();
 $entidad->load("id = $indicador->id_entidad");
 $smarty->assign('entidad', $entidad);
 $smarty->assign('tipo',$tipo);
 
 
-$medicion = new medicion();
+$medicion = new Medicion();
 if ($mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio"))
 {
   $smarty->assign('mediciones',$mediciones);
   $paneles = array();
-  $panel = new panel();
-  $panel->tipo = new panel_tipo();
+  $panel = new Panel();
+  $panel->tipo = new Panel_tipo();
   $panel->ancho = 16;
   if ($indicador->periodicidad != "Anual")
   {

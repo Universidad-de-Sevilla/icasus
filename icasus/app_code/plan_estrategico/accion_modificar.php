@@ -33,7 +33,7 @@ if (isset($_POST["modaccion"]) && $_POST["modaccion"]=='modaccion')
 		$fecha = sanitize($_POST["fecha"],2);
 		$fecha = cambiafecha($fecha);
                 
-		$accion = new accion();
+		$accion = new Accion();
                 $accion->load('id='.$id);
 
                 //crear un objeto o instanciar la clase

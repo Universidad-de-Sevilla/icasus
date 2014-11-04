@@ -19,7 +19,7 @@ if (!is_object($smarty))
 }
 
 $id_usuario = $_SESSION['usuario']->id_usuario;
-$log = new log();
+$log = new Log();
 $logs = $log->Find_joined("true ORDER BY fecha desc");
 $smarty->assign('logs',$logs);
 

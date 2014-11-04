@@ -27,7 +27,7 @@ if ($id_entidad > 1) {
         foreach ($_POST['indicadores'] as $id_indicador) {
             $id_indicador = sanitize($id_indicador, 16);
             //echo 'copiando'.$id_entidad;
-            $indicador = new indicador($basedatos);
+            $indicador = new Indicador($basedatos);
             if ($indicador->copiar($id_indicador, $id_entidad)) {
                 $contador ++;
             }
@@ -35,7 +35,7 @@ if ($id_entidad > 1) {
         $smarty->assign('aviso', $contador . ' ' . MSG_INDIC_COPY);
     }
     // Si no vienen indicadores o hemos terminado de grabar mostramos el formulario con el listado
-    $entidad = new entidad($basedatos);
+    $entidad = new Entidad($basedatos);
     //Obtengo los datos de la entidad actual
     $datos = $entidad->obtener_datos($id_entidad);
     // Cargo la entidad padre para obtener sus indicadores

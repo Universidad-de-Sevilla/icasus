@@ -13,13 +13,13 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
 {
   $id_proceso = sanitize($_REQUEST['id_proceso'],16);         
   $id_entidad = sanitize($_REQUEST['id_entidad'],16);         
-  $entidad = new entidad();
+  $entidad = new Entidad();
   $entidad->load("id = $id_entidad");      
 
   // Si vienen todos los datos necesarios del formulario grabamos
   if (isset($_POST['nombre']) && isset($_POST['codigo']))     
   {
-    $proceso = new proceso();
+    $proceso = new Proceso();
     $proceso->load("id = $id_proceso");         
     $proceso->id_madre = isset($_POST['madre'])?sanitize($_POST['madre'],2):0;   
     $proceso->codigo = isset($_POST['codigo'])?sanitize($_POST['codigo'],2):null;
@@ -57,15 +57,15 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
   // Si no vienen datos mostramos el formulario
   else
   {
-    $proceso = new proceso();
+    $proceso = new Proceso();
     $proceso->load_joined("id = $id_proceso");
     $smarty->assign('proceso', $proceso);
     
-    $usuario_entidad = new usuario_entidad();
+    $usuario_entidad = new Usuario_entidad();
     $usuarios_entidad = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
     $smarty->assign('usuarios_entidad', $usuarios_entidad);
     
-    $proceso_madre = new proceso();
+    $proceso_madre = new Proceso();
     $procesos_madre = $proceso_madre->Find("id_entidad = $id_entidad AND id <> $id_proceso");
     $smarty->assign('procesos_madre', $procesos_madre);
     

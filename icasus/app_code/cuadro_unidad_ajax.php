@@ -21,7 +21,7 @@ $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
 $modulo = sanitize($_GET["modulo"], SQL);
 //Módulo de propio
 if ($modulo == 'propio') {
-    $i = new indicador();
+    $i = new Indicador();
     $indicadores = $i->find("id_proceso = $id_proceso AND id_entidad = $id_entidad");
     $smarty->assign('indicadores', $indicadores);
     $smarty->assign('modulo', $modulo);
@@ -29,7 +29,7 @@ if ($modulo == 'propio') {
 
 //Módulo de segregado
 if ($modulo == 'segregado') {
-    $indicador_segregado = new indicador_subunidad();
+    $indicador_segregado = new Indicador_subunidad();
     $indicadores_segregados = $indicador_segregado->indicador_segregado($id_unidad, $id_proceso);
     $smarty->assign('indicadores_segregados', $indicadores_segregados);
     $smarty->assign('modulo', $modulo);
@@ -37,11 +37,11 @@ if ($modulo == 'segregado') {
 
 //Módulo de unidad superior
 if ($modulo == 'superior') {
-    $entidad = new entidad();
+    $entidad = new Entidad();
     $entidad->load("id = $id_unidad");
     $entidad->load("id = $entidad->id_madre");
 
-    $indicador = new indicador();
+    $indicador = new Indicador();
     $indicadores = $indicador->find("id_entidad = $entidad->id AND id_proceso = $id_proceso");
     $smarty->assign('indicadores_superior', $indicadores);
 

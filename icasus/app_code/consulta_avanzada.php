@@ -41,10 +41,10 @@ global $plantilla;
 $id_entidad = filter_input(INPUT_POST | INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 if ($id_entidad) {
-    $entidad = new entidad();
+    $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign("entidad", $entidad);
-    $indicador = new indicador();
+    $indicador = new Indicador();
     $indicadores = $indicador->Find("id_entidad = $id_entidad");
     $smarty->assign("indicadores", $indicadores);
     $operaciones = array(

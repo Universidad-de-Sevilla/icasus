@@ -16,17 +16,17 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 	$id_entidad = sanitize($_REQUEST['id_entidad'],INT);
 
   // Datos del proceso
-	$proceso = new proceso();
+	$proceso = new Proceso();
 	$proceso->load_joined("id = $id_proceso");
 	$smarty->assign('proceso',$proceso);
 
   //Datos del proceso madre
-	$proceso_madre = new proceso();
+	$proceso_madre = new Proceso();
   $proceso_madre->load("id = $proceso->id_madre");
   $smarty->assign('proceso_madre', $proceso_madre);
 
 	//Datos del propietario
-  $propietario = new usuario();
+  $propietario = new Usuario();
   $propietario->load("id = $proceso->id_propietario");
   $smarty->assign('propietario', $propietario);
 
@@ -35,11 +35,11 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
   $smarty->assign('subprocesos',$subprocesos);
 
 	// Listado de indicadores
-	$indicador = new indicador();
+	$indicador = new Indicador();
 	$indicadores = $indicador->Find_joined("id_proceso = $id_proceso");
 	$smarty->assign('indicadores',$indicadores);
 	
-  $entidad = new entidad();
+  $entidad = new Entidad();
   $entidad->load("id = $id_entidad");
   $smarty->assign('entidad',$entidad);
 
@@ -47,14 +47,14 @@ if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
 	$smarty->assign('_javascript' , array('proceso_borrar'));
 	$plantilla = 'proceso_mostrar.tpl';
 
-  $flujograma = new fichero();
+  $flujograma = new Fichero();
   $condicion = "id_objeto= $id_proceso AND tipo_objeto = 'proceso' AND descripcion = 'flujograma' AND extension IN ('PNG','GIF','JPG','JPEG');";
   if ($flujograma->load($condicion))
   {
 	  $smarty->assign('flujograma',$flujograma);
   }
 
-	$archivo = new fichero();
+	$archivo = new Fichero();
   if ($archivos = $archivo->find_joined("id_objeto = $id_proceso AND tipo_objeto = 'proceso'"))
   {
 	  $smarty->assign('archivos',$archivos);

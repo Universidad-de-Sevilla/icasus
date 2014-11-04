@@ -10,7 +10,7 @@
 // Si vienen todos los datos necesarios del formulario grabamos     
 if (isset($_POST['alcance']) && isset($_POST['nombre']) && isset($_POST['codigo']) && isset($_POST['id_propietario']) && isset($_POST['madre']) )
 {
-  $proceso = new proceso();        
+  $proceso = new Proceso();        
   $proceso->id_madre = isset($_POST['madre'])?sanitize($_POST['madre'],2):0;   
   $proceso->codigo = isset($_POST['codigo'])?sanitize($_POST['codigo'],2):null;
   $proceso->revision = isset($_POST['revision'])?sanitize($_POST['revision'],2):null;

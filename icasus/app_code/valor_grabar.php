@@ -42,7 +42,7 @@ if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad'])
 	if ($valor->save()) 
 	{
 		// Se ha grabado bien, reenviamos al indicador
-		$log = new log(); // registra la accion en el log
+		$log = new Log(); // registra la accion en el log
 		$log->add('nuevo valor', $id_indicador,$operario->id_usuario);	
 		$aviso = 'El valor se ha grabado correctamente.';
 		header("Location: index.php?page=indicador_datos&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");

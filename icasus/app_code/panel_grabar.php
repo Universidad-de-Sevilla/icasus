@@ -9,7 +9,7 @@
 
 if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty($_REQUEST["nombre"])  OR !empty($_REQUEST["orden"])OR !empty($_REQUEST["tipo"]) OR !empty($_REQUEST["ancho"]) OR !empty($_REQUEST["id_indicador"]))
 {
-	$panel = new panel();
+	$panel = new Panel();
 	$panel->id_cuadro =sanitize($_REQUEST["id_cuadro"],INT); 
 	$panel->nombre = sanitize($_REQUEST["nombre"],SQL);
 	$panel->id_paneltipo = sanitize($_REQUEST["tipo"],INT);
@@ -30,7 +30,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
   // Si se trata de una medición concreta cogemos las fechas de la propia medición
   if ($panel->id_medicion > 0)
   {
-    $medicion = new medicion();
+    $medicion = new Medicion();
     $medicion->load("id = $panel->id_medicion");
     $panel->fecha_inicio = $medicion->periodo_inicio;
     $panel->fecha_fin = $medicion->periodo_fin;
@@ -42,7 +42,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 		{
 			case 1:
         // Panel Métrica
-				$panel_indicador = new panel_indicador();
+				$panel_indicador = new Panel_indicador();
 				$panel_indicador->id_panel = $panel->id;
 				$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicador"],INT);
 				$panel_indicador->id_entidad = sanitize($_REQUEST["id_subunidad"],INT);
@@ -62,7 +62,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 				$elementos = count($_REQUEST["id_indicadores"]);
 				for($i=0;$i < $elementos;$i++)
 				{
-					$panel_indicador = new panel_indicador();
+					$panel_indicador = new Panel_indicador();
 					$panel_indicador->id_panel = $panel->id;
 					$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicadores"][$i],INT);
 					$panel_indicador->id_entidad = sanitize($_REQUEST["id_subunidades"][$i],INT);
@@ -80,7 +80,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 
 			case 3:
         // Panel Tarta
-				$panel_indicador = new panel_indicador();
+				$panel_indicador = new Panel_indicador();
 				$panel_indicador->id_panel = $panel->id;
 				$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicador"],INT);
 				$panel_indicador->id_entidad = sanitize($_REQUEST["id_entidad"],INT);
@@ -100,7 +100,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
 				$elementos = count($_REQUEST["id_indicadores"]);
 				for($i=0;$i < $elementos;$i++)
 				{
-					$panel_indicador = new panel_indicador();
+					$panel_indicador = new Panel_indicador();
 					$panel_indicador->id_entidad = 0;
 					$panel_indicador->id_panel = $panel->id;
 					$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicadores"][$i],INT);
@@ -122,7 +122,7 @@ if (!empty($_REQUEST["id_cuadro"]) OR !empty($_REQUEST["id_entidad"]) OR !empty(
         // Panel Tabla
 				foreach($_REQUEST["id_subunidades"] as $subunidad)
 				{
-					$panel_indicador = new panel_indicador();
+					$panel_indicador = new Panel_indicador();
 					$panel_indicador->id_panel = $panel->id;
 					$panel_indicador->id_indicador = sanitize($_REQUEST["id_indicador"],INT);
 					$panel_indicador->id_entidad = sanitize($subunidad,INT);

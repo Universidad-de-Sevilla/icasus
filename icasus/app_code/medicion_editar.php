@@ -16,11 +16,11 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
   $tipo = sanitize($_REQUEST["tipo"], SQL);
   $smarty->assign("tipo",$tipo);
 
-  $medicion = new medicion();
+  $medicion = new Medicion();
   $medicion->load("id = $id_medicion");
   $smarty->assign("medicion",$medicion);
 
-  $indicador = new indicador();
+  $indicador = new Indicador();
   $indicador->load("id = $medicion->id_indicador");
   $smarty->assign("indicador",$indicador);
 
@@ -63,12 +63,12 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
   }
   */
 
-  $valor = new valor();
+  $valor = new Valor();
   $valores = $valor->Find_joined_jjmc($id_medicion,$usuario->id);
   $smarty->assign("valores",$valores);
   
-  $valor_referencia_medicion = new valor_referencia_medicion();
-  $valor_referencia = new valor_referencia();
+  $valor_referencia_medicion = new Valor_referencia_medicion();
+  $valor_referencia = new Valor_referencia();
   if ($valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion"))
   {
     $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
@@ -78,7 +78,7 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
   {
     foreach($valores_referencia as& $valor_referencia)
     {
-      $valor_referencia_medicion = new valor_referencia_medicion();
+      $valor_referencia_medicion = new Valor_referencia_medicion();
       $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
       $valor_referencia_medicion->id_medicion = $id_medicion;
       $valor_referencia_medicion->save();
@@ -87,11 +87,11 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
     $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
   }
 
-	$indisub = new indicador_subunidad();
+	$indisub = new Indicador_subunidad();
 	$indicador_subunidades = $indisub->find("id_usuario = $usuario->id AND id_indicador = $indicador->id");
 	$smarty->assign('indicador_subunidades',$indicador_subunidades);
 
-  $entidad = new entidad();
+  $entidad = new Entidad();
   $entidad->load("id = $indicador->id_entidad");
   $smarty->assign('entidad', $entidad);
   

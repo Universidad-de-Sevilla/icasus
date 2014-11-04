@@ -18,7 +18,7 @@ $grabacion_fin = sanitize($_REQUEST["gfYear"],INT)."-".sanitize($_REQUEST["gfMon
 if (isset($_REQUEST["id_indicador"], $_REQUEST["tipo"], $periodo_inicio, $periodo_fin, $grabacion_inicio, $grabacion_fin))
 {
   $tipo = sanitize($_REQUEST["tipo"], SQL);
-  $medicion = new medicion();
+  $medicion = new Medicion();
   $medicion->id_indicador = sanitize($_REQUEST["id_indicador"], INT);
   $medicion->periodo_inicio = $periodo_inicio;
   $medicion->periodo_fin =  $periodo_fin;
@@ -31,7 +31,7 @@ if (isset($_REQUEST["id_indicador"], $_REQUEST["tipo"], $periodo_inicio, $period
     {
       foreach($_REQUEST["valor_referencia"] as $id_valor_referencia=>$valor)
       {
-        $valor_referencia_medicion = new valor_referencia_medicion();
+        $valor_referencia_medicion = new Valor_referencia_medicion();
 //        $valor_referencia_medicion->load("id = $id_valor_referencia");
         $valor_referencia_medicion->id_valor_referencia = $id_valor_referencia;
         $valor_referencia_medicion->valor = $valor;
@@ -41,12 +41,12 @@ if (isset($_REQUEST["id_indicador"], $_REQUEST["tipo"], $periodo_inicio, $period
     }
 
     // Grabamos un valor en blanco a cada una de las unidades asociadas al indicador
-    $indicador_subunidad = new indicador_subunidad();
+    $indicador_subunidad = new Indicador_subunidad();
     $indicadores_subunidades = $indicador_subunidad->Find("id_indicador = $medicion->id_indicador");
     $numero_subunidades = count($indicadores_subunidades);
     foreach($indicadores_subunidades as $indicador_subunidad)
     {
-      $valor = new valor();
+      $valor = new Valor();
       $valor->id_entidad = $indicador_subunidad->id_entidad;
       $valor->id_medicion = $medicion->id;
       $valor->activo = 1;

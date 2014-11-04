@@ -18,7 +18,7 @@ $id_dimension = filter_input(INPUT_GET|INPUT_POST,'id',FILTER_SANITIZE_NUMBER_IN
 if($id_dimension)
 {	
 //	$id_dimension = sanitize($_REQUEST['id'],16);
-	$dimension = new dimension();
+	$dimension = new Dimension();
 	$dimension->load("id = $id_dimension");
 
 	// Si vienen los datos necesarios del formulario grabamos

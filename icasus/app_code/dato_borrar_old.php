@@ -11,11 +11,11 @@ if (isset($_REQUEST['id_dato']) && isset($_REQUEST['id_entidad']) )
 {
 	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
 	$id_dato = sanitize($_REQUEST['id_dato'],16);
-	$dato = new indicador();
+	$dato = new Indicador();
   	$dato->load_joined("id = $id_dato");
   	if ($dato->id_responsable == $usuario->id)
   	{
-  		$medicion = new medicion();
+  		$medicion = new Medicion();
 	  	$mediciones = $medicion->Find("id_indicador = $id_dato");
 		if ($mediciones)
 		{

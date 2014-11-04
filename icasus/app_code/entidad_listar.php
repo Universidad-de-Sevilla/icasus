@@ -19,7 +19,7 @@ $smarty->assign('entidades_usuario', $usuario->entidades);
 $grupos_usuario = ""; //Deshabilitado de momento
 $smarty->assign('grupos_usuario', $grupos_usuario);
 
-$entidad = new entidad;
+$entidad = new Entidad;
 $entidades = $entidad->Find("es_organica = 1");
 $smarty->assign('entidades', $entidades);
 

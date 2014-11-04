@@ -19,7 +19,7 @@ $id_entidad=sanitize($_GET['id_entidad'],2);
 
 if (isset($_POST["crearlinea"]) && $_POST["crearlinea"]=='crearlinea')
 {
-	$linea = new linea();
+	$linea = new Linea();
 	$linea->id_entidad = sanitize($_GET['id_entidad'],2);
 	$linea->idorden = sanitize($_POST["orden"],2);
 	//$linea->estado = sanitize($_POST["estado"],2);

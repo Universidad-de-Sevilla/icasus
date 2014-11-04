@@ -30,7 +30,7 @@ if ($id_indicador) {
     }
     $hoy = date("d-m-Y H:i:s");
 
-    $indicador = new indicador();
+    $indicador = new Indicador();
     $indicador->load("id = $id_indicador");
     $db = $indicador->DB();
     if ($indicador->id_tipo_agregacion == 2) {

@@ -11,12 +11,12 @@ global $plantilla;
 //parametros que son comunes a todos los módulos
 $modulo = sanitize($_REQUEST["modulo"],SQL);
 $id_entidad = sanitize($_REQUEST["id_entidad"],INT);
-$entidad = new entidad();
+$entidad = new Entidad();
 $entidad->load("id = $id_entidad");
 $smarty->assign('entidad', $entidad);
 
 $id_indicador = sanitize($_REQUEST["id_indicador"],INT);
-$indicador = new indicador();
+$indicador = new Indicador();
 $indicador->load("id = $id_indicador");
 $smarty->assign('indicador', $indicador);
 
@@ -28,7 +28,7 @@ $activo = sanitize($_REQUEST["activo"],INT);
 
 if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 {
-	$usuario_entidad = new usuario_entidad();
+	$usuario_entidad = new Usuario_entidad();
 	if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)"))
 	{
 		switch ($modulo)
@@ -36,7 +36,7 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 			case 'actualizar_dato':
 				$id_valor = sanitize($_REQUEST["id_valor"],INT);
 				$value = sanitize($_REQUEST["valor"],SQL);
-				$valor = new valor();
+				$valor = new Valor();
 				$valor->Load("id = $id_valor");
 				$valor->id_usuario = $usuario->id;
 				$valor->valor = $value;
@@ -47,12 +47,12 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 
 			case 'asignar_una_medicion':
 
-				$valor = new valor();
+				$valor = new Valor();
 				$valor->id_medicion = $id_medicion;	
 				$valor->id_entidad = $id_subunidad;	
 				$valor->activo = $activo;
 				$valor->save();
-				$medicion= new medicion();
+				$medicion= new Medicion();
 				if ($_REQUEST["inicio"] == 0)
 				{
 					$cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
@@ -65,12 +65,12 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 				}
 			break;
 			case 'activar_uno':
-				$valor = new valor();
+				$valor = new Valor();
 				$valor->load("id_medicion = $id_medicion AND id_entidad = $id_subunidad");
 				$valor->activo = $activo;
 				$valor->save();
 
-				$medicion= new medicion();
+				$medicion= new Medicion();
 				if ($_REQUEST["inicio"] == 0)
 				{
 					$cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
@@ -83,7 +83,7 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 				}
 			break;
 			case 'mostrar_valores':
-				$medicion= new medicion();
+				$medicion= new Medicion();
 				if ($_REQUEST["inicio"] == 0)
 					{
 						$cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
@@ -96,7 +96,7 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 					}
 			break;
 			case 'seleccionar_años':
-				$medicion= new medicion();
+				$medicion= new Medicion();
 				$years = $medicion->find_year_mediciones($id_indicador);
 				$smarty->assign('years',$years);
 				$smarty->assign('year_inicio',sanitize($_REQUEST["inicio"], SQL));
@@ -105,17 +105,17 @@ if(isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 				break;
 			
 			case 'activar_all':
-				$medicion= new medicion();
+				$medicion= new Medicion();
 				if ($_REQUEST["inicio"] == 0)
 				{
-					$valores = new valor();
+					$valores = new Valor();
 					$valores->valores_activar($id_indicador,$id_subunidad,$activo);
 					$cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
 					$subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador,$entidad->id);
 				}
 				else
 				{
-					$valores = new valor();
+					$valores = new Valor();
 					$v = $valores->valores_activar_periodos($id_indicador,$id_subunidad,$activo,$inicio,$fin);
 					$cabeceras = $medicion->mediciones_periodos($id_indicador,$inicio,$fin);
 					$subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador,$id_entidad,$inicio,$fin);

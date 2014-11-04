@@ -9,7 +9,7 @@
 global $smarty;
 global $plantilla;
 global $usuario;
-$usuario_entidad = new usuario_entidad();
+$usuario_entidad = new Usuario_entidad();
 
 $id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
@@ -36,20 +36,20 @@ if ($id_entidad) {
                     $ficheros_procesados ++;
                     while (($datos = fgetcsv($manejador, 1000, ",", "'")) !== FALSE) {
                         $lineas_totales ++;
-                        $medicion = new medicion();
+                        $medicion = new Medicion();
                         $medicion->id_indicador = $datos[0];
                         $medicion->periodo_inicio = $datos[1];
                         $medicion->periodo_fin = $datos[2];
                         $medicion->etiqueta = $datos[3];
-                        $indicador = new indicador();
-                        $entidad = new entidad();
+                        $indicador = new Indicador();
+                        $entidad = new Entidad();
                         if ($indicador->load("id = $medicion->id_indicador")) {
                             $entidad->load("id = $indicador->id_entidad");
                             // Comprobamos que el indicador pertenece a la entidad actual o a su madre
                             // Podría optimizarse comprobando si el indicador a cambiado respecto al anterior
                             if ($indicador->id_entidad == $id_entidad OR $entidad->id_madre == $id_entidad) {
                                 if ($medicion->save()) {
-                                    $valor = new valor();
+                                    $valor = new Valor();
                                     $valor->id_medicion = $medicion->id;
                                     $valor->id_usuario = $usuario->id;
                                     $valor->id_entidad = $id_entidad;

@@ -20,7 +20,7 @@ $smarty-> assign('plan',true);
 $id_entidad=sanitize($_GET['id_entidad'],2);
 $id=sanitize($_GET['id'],2);
 
-$linea = new linea();
+$linea = new Linea();
 $linea->load('id='.$id);
 $smarty->assign('linea',$linea);
 

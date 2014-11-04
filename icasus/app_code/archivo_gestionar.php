@@ -19,12 +19,12 @@ if (isset($_REQUEST["id_proceso"]))
 	//$id_entidad = sanitize($_REQUEST["id_entidad"],2);
 
 	// Datos del proceso
-  $proceso = new proceso();
+  $proceso = new Proceso();
   $proceso->load_joined("id = $id_proceso");
   $smarty->assign('_nombre_pagina' , TXT_ARCHIVOS_PROC.$proceso->nombre);
 	$smarty->assign('proceso',$proceso);
 
-	$archivo = new fichero();
+	$archivo = new Fichero();
   $archivos = $archivo->find_joined("id_objeto = $id_proceso");
 	$smarty->assign('archivos',$archivos);
 	$smarty->assign('_javascript', array('archivo_gestionar'));

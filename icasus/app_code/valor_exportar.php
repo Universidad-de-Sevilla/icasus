@@ -15,11 +15,11 @@ global $plantilla;
 
 $id_entidad = sanitize($_REQUEST['id_entidad'],16);
 
-$entidad = new entidad($base_datos);
+$entidad = new Entidad($base_datos);
 $entidad->obtener_datos($id_entidad);
 $indicadores = $entidad->listar_indicadores();
     
-$indicador = new indicador($base_datos);
+$indicador = new Indicador($base_datos);
 $indicador->obtener_datos($id_indicador);
 $valores = $indicador->listar_valores($identificador);
 

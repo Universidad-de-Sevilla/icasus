@@ -15,7 +15,7 @@ global $plantilla;
 
 //$id_entidad = sanitize($_REQUEST['id_entidad'],16);
 $id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-$entidad = new entidad();
+$entidad = new Entidad();
 
 $entidad->load_joined("id = $id_entidad");
 $smarty->assign('entidad', $entidad);

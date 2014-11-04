@@ -23,7 +23,7 @@ if (isset($_POST["modobjetivo"]) && $_POST["modobjetivo"]=='modobjetivo')
         {
                 //crear un objeto o instanciar la clase
                 //$linea = new linea();
-		$objetivo = new objetivo();
+		$objetivo = new Objetivo();
 		$objetivo->load('id='.$id);
 
                 $objetivo->idorden=sanitize($_POST["orden"],2);

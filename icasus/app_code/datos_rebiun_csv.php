@@ -9,7 +9,7 @@
 //  - Permite acotar los periodos de medición deseados
 //---------------------------------------------------------------------------------------------------
 $modulo = sanitize($_REQUEST["modulo"],SQL);
-$indicador = new indicador();
+$indicador = new Indicador();
 
 require_once ('../../cascara_core/lib/phpExcel/PHPExcel/Writer/Excel5.php');
 require_once('../../cascara_core/lib/phpExcel/PHPExcel/IOFactory.php');

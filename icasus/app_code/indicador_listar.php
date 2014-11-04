@@ -16,11 +16,11 @@ $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 if ($id_entidad > 0)
 {
 //	$id_entidad = sanitize($_GET["id_entidad"],INT);
-    $entidad = new entidad();
+    $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    $indicador = new indicador();
+    $indicador = new Indicador();
     $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
     $smarty->assign('indicadores', $indicadores);
     //$smarty->assign('barra_indicadores',$entidad->barra_indicadores()); 

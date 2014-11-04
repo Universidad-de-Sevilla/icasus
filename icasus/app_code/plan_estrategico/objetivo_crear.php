@@ -20,7 +20,7 @@ $id_entidad=$_GET['id_entidad'];
 if (isset($_POST["crearobjetivo"]) && $_POST["crearobjetivo"]=='crearobjetivo')
         {
 	//crear un objeto o instanciar la clase
-        $objetivo = new objetivo();
+        $objetivo = new Objetivo();
         $objetivo->idorden=sanitize($_POST["orden"],2);
         $objetivo->id_entidad=$id_entidad;
         $objetivo->idlinea=sanitize($_POST["linea"],2);

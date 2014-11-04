@@ -12,7 +12,7 @@ global $usuario;
 if ($_REQUEST['id_usuario'])
 {
 	$id_usuario = sanitize($_REQUEST['id_usuario'],INT);
-	$persona = new usuario();
+	$persona = new Usuario();
   $persona->load_joined("id = $id_usuario");
 	$smarty->assign('persona', $persona);
 

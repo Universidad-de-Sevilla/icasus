@@ -15,10 +15,10 @@ $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_I
 //if (isset($_GET['id_indicador']))
 if ($id_indicador) {
 //	$id_indicador = sanitize($_GET['id_indicador'],16); 
-    $indicador = new indicador($basedatos);
+    $indicador = new Indicador($basedatos);
     $indicador->obtener_datos($id_indicador);
     $valores = $indicador->listar_valores($id_indicador);
-    $entidad = new entidad($basedatos);
+    $entidad = new Entidad($basedatos);
     $entidad->obtener_datos($indicador->datos['id_entidad']);
     $_nombre_pagina = utf8_encode($entidad->datos['nombre']);
 //empezamos el rtf

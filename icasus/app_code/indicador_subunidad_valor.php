@@ -30,22 +30,22 @@ else
 if(isset($id_entidad))
 {
 
-  $indicador = new indicador();
+  $indicador = new Indicador();
   $indicador->load("id = $id_indicador");
   $smarty->assign('indicador', $indicador);
 
   // Comprueba permisos para el usuario: responsable unidad, responsable delegado, 
   // responsable indicador, responsable medicion
-  $usuario_entidad = new usuario_entidad();
+  $usuario_entidad = new Usuario_entidad();
   if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)")
       || $indicador->id_responsable == $usuario->id
       || $indicador->id_responsable_medicion == $usuario->id)
   {
-    $entidad = new entidad();
+    $entidad = new Entidad();
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    $medicion= new medicion();
+    $medicion= new Medicion();
     $years = $medicion->find_year_mediciones($id_indicador);
     $smarty->assign('years',$years);
 

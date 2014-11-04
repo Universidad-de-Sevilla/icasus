@@ -10,7 +10,7 @@ $id_usuario = $usuario->id;
 $id_panel = sanitize($_REQUEST["id_panel"],INT);
 if (!empty($id_panel))
 {
-	$panel = new panel();
+	$panel = new Panel();
 	if($panel->permiso_panel($id_usuario,$id_panel))
 	{
 		$panel->borrar_panel("id = $id_panel");

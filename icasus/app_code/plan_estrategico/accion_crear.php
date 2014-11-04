@@ -31,7 +31,7 @@ if (isset($_POST["crearaccion"]) && $_POST["crearaccion"]=='crearaccion')
         {
         $fecha=cambiafecha(sanitize($_POST["fecha"],2));
         //crear un objeto o instanciar la clase
-        $accion = new accion();
+        $accion = new Accion();
         $accion->id_entidad=$id_entidad;
         $accion->meta=sanitize($_POST["meta"],2);
         $accion->responsable= sanitize($_POST["responsable"],2);

@@ -18,7 +18,7 @@ if (
         AND isset($_REQUEST["tipo_seleccion_responsable"])
 )
 {
-    $indicador = new indicador();
+    $indicador = new Indicador();
     if (isset($_REQUEST["id_indicador"]))
     {
         $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
@@ -66,7 +66,7 @@ if (
             {
                 foreach ($subunidades as $subunidad)
                 {
-                    $indicador_subunidad = new indicador_subunidad();
+                    $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $indicador->id;
                     $indicador_subunidad->id_entidad = $subunidad;
                     //comprueba si la medición va a ser centralizada o para cada responsable de subunidad
@@ -79,7 +79,7 @@ if (
                             $indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
                             break;
                         case 1:
-                            $usuario_entidad = new usuario_entidad();
+                            $usuario_entidad = new Usuario_entidad();
                             // Cargamos al responsable de la unidad para echarle el muerto 
                             // Luego el podrá echárselo a otro
                             if ($usuario_entidad->load("id_entidad = $subunidad AND id_rol = 1"))
@@ -105,7 +105,7 @@ if (
                 // Grabamos los criterios EFQM en los que este indicador influye (pueden ser uno o dos)
                 foreach ($_REQUEST["criterios_efqm"] as $id_criterio_efqm)
                 {
-                    $criterio_efqm_indicador = new criterio_efqm_indicador();
+                    $criterio_efqm_indicador = new Criterio_efqm_indicador();
                     $criterio_efqm_indicador->id_indicador = $indicador->id;
                     $criterio_efqm_indicador->id_criterio_efqm = $id_criterio_efqm;
                     $criterio_efqm_indicador->save();
@@ -116,7 +116,7 @@ if (
         {
             // Si el indicador ya existía hay que currarselo de otra forma
             //Primero borramos los existentes ¿no habrá otra forma más elegante?
-            $criterio_efqm_indicador = new criterio_efqm_indicador();
+            $criterio_efqm_indicador = new Criterio_efqm_indicador();
             while ($criterio_efqm_indicador->load("id_indicador = $indicador->id"))
             {
                 $criterio_efqm_indicador->delete();
@@ -127,14 +127,14 @@ if (
                 // Grabamos los criterios EFQM en los que este indicador influye (pueden ser uno o dos)
                 foreach ($_REQUEST["criterios_efqm"] as $id_criterio_efqm)
                 {
-                    $criterio_efqm_indicador = new criterio_efqm_indicador();
+                    $criterio_efqm_indicador = new Criterio_efqm_indicador();
                     $criterio_efqm_indicador->id_indicador = $indicador->id;
                     $criterio_efqm_indicador->id_criterio_efqm = $id_criterio_efqm;
                     $criterio_efqm_indicador->save();
                 }
             }
             //lo mismo pero para las subunidades afectadas
-            $indicador_subunidad = new indicador_subunidad();
+            $indicador_subunidad = new Indicador_subunidad();
             while ($indicador_subunidad->load("id_indicador = $id_indicador"))
             {
                 $indicador_subunidad->delete();
@@ -143,7 +143,7 @@ if (
             {
                 foreach ($_REQUEST["subunidades"] as $id_subunidad)
                 {
-                    $indicador_subunidad = new indicador_subunidad();
+                    $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $id_indicador;
                     $indicador_subunidad->id_entidad = $id_subunidad;
                     switch ($indicador->desagregado)
@@ -152,7 +152,7 @@ if (
                             $indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
                             break;
                         case 1:
-                            $usuario_entidad = new usuario_entidad();
+                            $usuario_entidad = new Usuario_entidad();
                             // Cargamos al responsable de la unidad para echarle el muerto 
                             // Luego el podrá echárselo a otro
                             if ($usuario_entidad->load("id_entidad = $id_subunidad AND id_rol = 1"))

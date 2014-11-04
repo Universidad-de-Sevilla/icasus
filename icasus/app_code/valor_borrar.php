@@ -16,7 +16,7 @@ if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_valor']) && isset($_
 	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
 	$id_indicador = sanitize($_REQUEST['id_indicador'],16);
 	$id_valor = sanitize($_REQUEST['id_valor'],16);
-	$valor = new valor($basedatos);
+	$valor = new Valor($basedatos);
 
 	// Borra el valor
 	if ($valor->borrar($id_valor))

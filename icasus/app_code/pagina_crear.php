@@ -11,7 +11,7 @@ global $plantilla;
 if (isset($_POST['alias']) && isset($_POST['titulo']) && isset($_POST['contenido'])) 
 {
 	// Guardamos los datos que vienen del formulario
-	$pagina = new pagina();
+	$pagina = new Pagina();
 	$pagina->alias = $pagina->alieniza($_POST['alias']);
 	$pagina->titulo = $_POST['titulo'];
 	$pagina->contenido = $_POST['contenido'];

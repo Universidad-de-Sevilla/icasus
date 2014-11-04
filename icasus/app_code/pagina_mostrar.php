@@ -20,7 +20,7 @@ else
 	$alias = 'indice';
 	$id_pagina = 0;
 }
-$pagina = new pagina();
+$pagina = new Pagina();
 $pagina->load("alias = '$alias' OR id=$id_pagina");
 $smarty->assign('pagina',$pagina);
 $smarty->assign('_nombre_pagina','Ayuda: '.$pagina->titulo);

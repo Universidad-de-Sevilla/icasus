@@ -18,7 +18,7 @@ if (isset($_REQUEST['id_usuario']) && isset($_REQUEST['id_entidad']) )
 {
 	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
 	$id_usuario = sanitize($_REQUEST['id_usuario'],16);
-	$usuario = new usuario($basedatos);
+	$usuario = new Usuario($basedatos);
 	$criterio = " WHERE 1 = 1 ";
 	$smarty->assign('lista_usuarios' , $usuario->listar($criterio));
 	$smarty->assign('_nombre_pagina' , 'Relación de usuarios'); 

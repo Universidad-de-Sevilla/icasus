@@ -26,7 +26,7 @@ if ($id_valor && $id_entidad && $valor_parcial) {
     }
 
     if ($autorizado) {
-        $valor = new valor();
+        $valor = new Valor();
 //        $id_valor = sanitize($_REQUEST['id_valor'], INT);
         $valor->load("id = $id_valor");
 //        $valor->valor_parcial = sanitize($_REQUEST['valor_parcial'], FLOAT);

@@ -38,14 +38,14 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $smarty->assign('valores', $valores);
     // Datos de la entidad
-    $entidad = new entidad($basedatos);
+    $entidad = new Entidad($basedatos);
     $smarty->assign('entidad', $entidad->obtener_datos($indicador->datos['id_entidad']));
     $smarty->assign('_nombre_pagina', $entidad->datos['nombre']);
     $smarty->assign('barra_indicadores', $entidad->barra_indicadores());
     // Dibuja la grafica
     if ($valores)
     {
-        $grafica = new grafica();
+        $grafica = new Grafica();
         $ruta_imagen = 'cache/indicador' . $id_indicador . '.png';
         $grafica->dibuja_indicador($ruta_imagen, $valores);
         $smarty->assign('ruta_imagen', $ruta_imagen);

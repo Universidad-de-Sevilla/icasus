@@ -2,7 +2,7 @@
 $modulo = sanitize($_REQUEST["modulo"],SQL);
 $id_entidad = sanitize($_REQUEST["id_entidad"],SQL);
 
-$entidad = new entidad();
+$entidad = new Entidad();
 $entidad->load("id = $id_entidad");
 
 $subunidades = $entidad->find("id_madre = $id_entidad");
@@ -23,7 +23,7 @@ $fecha = date("Y");
 //------------------------------------------------------------------------------
 if ($modulo == 'inicio')
 {
-	$valor = new valor();
+	$valor = new Valor();
 	$valores = $valor->filtro_onlyear($fecha,$cadena);
   $smarty->assign("valores", $valores);
   $smarty->assign("id_entidad", $id_entidad);
@@ -36,7 +36,7 @@ if ($modulo == 'filtrOnlyear')
 {
 //	$fecha = sanitize($_REQUEST["fecha"],INT);
 	$fecha = filter_input(INPUT_GET|INPUT_POST,'fecha',FILTER_SANITIZE_NUMBER_INT);
-	$valor = new valor();
+	$valor = new Valor();
 	$valores = $valor->filtro_onlyear($fecha,$cadena);
   $smarty->assign("valores", $valores);
 }

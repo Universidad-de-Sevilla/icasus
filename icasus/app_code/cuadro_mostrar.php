@@ -12,11 +12,11 @@ $id_cuadro = filter_input(INPUT_GET | INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_I
 //if (!empty($_REQUEST["id"]))
 if ($id_cuadro) {
 //  $id_cuadro = sanitize($_REQUEST["id"], INT);
-    $cuadro = new cuadro();
+    $cuadro = new Cuadro();
     if ($cuadro->load("id = $id_cuadro AND (id_usuario = $usuario->id OR privado = 0)")) {
         $smarty->assign("cuadro", $cuadro);
 
-        $panel = new panel();
+        $panel = new Panel();
         $paneles = $panel->Find_joined("id_cuadro = $id_cuadro ORDER BY orden");
         $smarty->assign("paneles", $paneles);
 

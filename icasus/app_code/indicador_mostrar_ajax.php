@@ -16,10 +16,10 @@ if (isset($_REQUEST["id_entidad"]) AND isset($_REQUEST["id_indicador"]))
 	//modulo para editar las mediciones que tiene vinculadas la entidad al indicador
 	if ($_REQUEST["modulo"] == 'editar')
 	{
-		$medicion = new medicion();
+		$medicion = new Medicion();
 		$mediciones= $medicion->find_joined_subunidad_valor($id_indicador,$id_entidad);
 
-		$entidad = new entidad();
+		$entidad = new Entidad();
 		$entidad->load("id = $id_entidad");
 		//print_r($mediciones);
 
@@ -30,13 +30,13 @@ if (isset($_REQUEST["id_entidad"]) AND isset($_REQUEST["id_indicador"]))
 	//si el modulo es para vincular y desvincular subunidades de manera rápida
 	if ($_REQUEST["modulo"] == 'vincular')
 	{
-		$indicador = new indicador();
+		$indicador = new Indicador();
 		$indicador->load ("id = $id_indicador");
 
-		$entidad = new entidad();
+		$entidad = new Entidad();
 		$entidad->load("id = $id_entidad");
 
-		$usuario_entidad = new usuario_entidad();
+		$usuario_entidad = new Usuario_entidad();
 		$usuario_entidad->load("id_entidad = $id_entidad AND rol = 1");
 
 		//vemos cual es el usuairo que debe cumplimentar las mediciones segun campo segregado
@@ -53,7 +53,7 @@ if (isset($_REQUEST["id_entidad"]) AND isset($_REQUEST["id_indicador"]))
 			$id_usuario = $indicador->id_responsable_medicion;
 		}
 
-		$indicador_subunidad = new indicador_subunidad();
+		$indicador_subunidad = new Indicador_subunidad();
 		if ($indicador_subunidad->load("id_indicador= $id_indicador AND id_entidad = $id_entidad"))
 		{
 			$indicador_subunidad->delete();

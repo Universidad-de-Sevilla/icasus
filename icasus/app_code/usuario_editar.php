@@ -32,7 +32,7 @@ if (isset($_POST['id_usuario']) || isset($_POST['nif']) || isset($_POST["nombre"
 		$clave = sanitize($_POST["clave"],2);
 		$correo = isset($_POST["correo"])?sanitize($_POST["correo"],2):'';
 		$telefono = isset($_POST["correo"])?sanitize($_POST["telefono"],2):'';
-		$usuario = new usuario($basedatos);
+		$usuario = new Usuario($basedatos);
 		if ($usuario->modificar($id_usuario,$nombre,$apellidos,$nif,$correo,$telefono,$login,$clave)) 
 		{	
 				$smarty->assign('aviso', 'El usuario se ha modificado correctamente');
@@ -65,7 +65,7 @@ else if (isset($_GET['id_usuario']))
   if ($operario->id_usuario == $_GET['id_usuario'])
   {
 		$id_usuario = sanitize($_GET['id_usuario'],16);
-		$usuario = new usuario($basedatos);
+		$usuario = new Usuario($basedatos);
 		$smarty->assign('usuario',$usuario->obtener_datos($id_usuario));
 		$smarty->assign('entidades' , $usuario->obtener_entidades($id_usuario));
 		$smarty->assign('id_operario' , $operario->id_usuario);

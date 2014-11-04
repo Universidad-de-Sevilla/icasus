@@ -23,10 +23,10 @@ $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 //if (isset($_GET["id_entidad"]) AND $_GET["id_entidad"] >0)
 if ($id_entidad != 0) {
 //	$id_entidad = sanitize($_GET["id_entidad"],2);
-    $entidad = new entidad();
+    $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
-    $proceso = new proceso();
+    $proceso = new Proceso();
 
     //obtiene los procesos de la unidad y sus indicadores
     $procesos_propios = $proceso->find("id_entidad = $id_entidad");
@@ -40,7 +40,7 @@ if ($id_entidad != 0) {
     $smarty->assign('procesos_indicadores_superior', $procesos_indicadores_superior);
 
     //obtiene entidad superior.
-    $entidad_madre = new entidad();
+    $entidad_madre = new Entidad();
     $entidad_madre->load("id = $entidad->id_madre");
     $smarty->assign('entidad_superior', $entidad_madre);
     $smarty->assign('procesos_indicadores_superior', $procesos_indicadores_superior);

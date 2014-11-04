@@ -15,7 +15,7 @@ if (
         AND ! empty($_REQUEST["id_responsable_medicion"])
         AND ! empty($_REQUEST["id_entidad"])
 ) {
-    $dato = new indicador();
+    $dato = new Indicador();
     if (isset($_REQUEST["id_dato"])) {
         $id_dato = sanitize($_REQUEST["id_dato"], INT);
         $dato->load("id = $id_dato");
@@ -54,7 +54,7 @@ if (
             $subunidades = $_REQUEST["subunidades"];
             if (count($subunidades) > 0) {
                 foreach ($subunidades as $subunidad) {
-                    $indicador_subunidad = new indicador_subunidad();
+                    $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $dato->id;
                     $indicador_subunidad->id_entidad = $subunidad;
 
@@ -65,7 +65,7 @@ if (
                     if ($dato->desagregado == 0) {
                         $indicador_subunidad->id_usuario = $dato->id_responsable;
                     } else {
-                        $usuario_entidad = new usuario_entidad();
+                        $usuario_entidad = new Usuario_entidad();
                         if ($usuario_entidad->load("id_entidad = $subunidad AND id_rol = 1")) {
                             $indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;
                         } else {
@@ -76,13 +76,13 @@ if (
                 }
             }
         } else {
-            $indicador_subunidad = new indicador_subunidad();
+            $indicador_subunidad = new Indicador_subunidad();
             while ($indicador_subunidad->load("id_indicador = $id_dato")) {
                 $indicador_subunidad->delete();
             }
             if (isset($_REQUEST["subunidades"])) {
                 foreach ($_REQUEST["subunidades"] as $id_subunidad) {
-                    $indicador_subunidad = new indicador_subunidad();
+                    $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $id_dato;
                     $indicador_subunidad->id_entidad = $id_subunidad;
                     switch ($dato->desagregado) {
@@ -90,7 +90,7 @@ if (
                             $indicador_subunidad->id_usuario = $dato->id_responsable_medicion;
                             break;
                         case 1:
-                            $usuario_entidad = new usuario_entidad();
+                            $usuario_entidad = new Usuario_entidad();
                             // Cargamos al responsable de la unidad para echarle el muerto 
                             // Luego el podrá echárselo a otro
                             if ($usuario_entidad->load("id_entidad = $id_subunidad AND id_rol = 1")) {

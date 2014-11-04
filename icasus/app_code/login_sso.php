@@ -43,7 +43,7 @@ if (isset($_GET["autenticar"]))
     // En caso contrario avisamos al usuario (else)
     if ($acceso_autorizado)
     {
-      $usuario = new usuario();
+      $usuario = new Usuario();
       if ($usuario->load_joined("login = '" . $usuario_sso->attribute('uid') . "'"))
       {
         // Si el usuario existe en icasus cargamos sus datos

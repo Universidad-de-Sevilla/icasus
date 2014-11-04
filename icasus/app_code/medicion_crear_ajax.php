@@ -16,10 +16,10 @@ $id_entidad = sanitize($_GET['id_entidad'],INT);
 
 if (!empty($id_indicador) AND !empty($id_entidad))
 {
-	$indicador = new indicador();
+	$indicador = new Indicador();
 	if ($indicador->permiso_crear_medicion($usuario->id,$id_indicador))
 	{
-		$indicador_subunidad = new indicador_subunidad();
+		$indicador_subunidad = new Indicador_subunidad();
 		if ($indicador_subunidad->actualizar_subunidades($id_indicador,$id_entidad))
 		{
 			//deberia escribir en el log un regitro de exito de actualizacion

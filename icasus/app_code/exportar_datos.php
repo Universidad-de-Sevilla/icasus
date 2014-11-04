@@ -28,13 +28,13 @@ if (!isset($_SESSION["usuario"]) OR ! $identificador OR ! $tipo_datos) {
 
 switch ($tipo_datos) {
     case "indicadores":
-        $entidad = new entidad($base_datos);
+        $entidad = new Entidad($base_datos);
         $entidad->obtener_datos($identificador);
         $datos = $entidad->listar_indicadores();
         break;
 
     case "valores":
-        $indicador = new indicador($base_datos);
+        $indicador = new Indicador($base_datos);
         $indicador->obtener_datos($identificador);
         $datos = $indicador->listar_valores($identificador);
         break;

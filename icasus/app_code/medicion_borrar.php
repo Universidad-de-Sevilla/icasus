@@ -14,13 +14,13 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]) AND isset($_REQ
   $id_entidad = sanitize($_REQUEST["id_entidad"], INT);
   $tipo = sanitize($_REQUEST["tipo"], SQL);
 
-  $medicion = new medicion();
+  $medicion = new Medicion();
   $medicion->load("id = $id_medicion");
-  $indicador = new indicador();
+  $indicador = new Indicador();
   $indicador->load("id = $medicion->id_indicador");
   
   // Comprobamos si el usuario tiene autorización
-  $usuario_entidad = new usuario_entidad();
+  $usuario_entidad = new Usuario_entidad();
   if ($usuario_entidad->load("id_usuario=$usuario->id AND id_entidad=$indicador->id_entidad AND (id_rol = 1 OR id_rol =2)"))
   {
     $autorizado = true;

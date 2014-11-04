@@ -12,7 +12,7 @@ global $usuario;
 global $plantilla;
 
 $modulo = sanitize($_REQUEST["modulo"],SQL);
-$indicador_subunidad = new indicador_subunidad();
+$indicador_subunidad = new Indicador_subunidad();
 //$db = $vr->DB();
 
 if ($modulo == 'grabar')

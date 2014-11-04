@@ -10,9 +10,9 @@
  $MyData = new pData();
  for($i=0; $i<=10;$i=$i+.2)
   {
-   $MyData->addPoints(log($i+1)*10,"Bounds 1");
-   $MyData->addPoints(log($i+3)*10+rand(0,2)-1,"Probe 1");
-   $MyData->addPoints(log($i+6)*10,"Bounds 2");
+   $MyData->addPoints(Log($i+1)*10,"Bounds 1");
+   $MyData->addPoints(Log($i+3)*10+rand(0,2)-1,"Probe 1");
+   $MyData->addPoints(Log($i+6)*10,"Bounds 2");
    $MyData->addPoints($i*10,"Labels");
   }
  $MyData->setAxisName(0,"Size (cm)");

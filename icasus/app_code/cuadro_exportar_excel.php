@@ -23,7 +23,7 @@ $id = filter_input(INPUT_GET | INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 if ($id) {
     $smarty->assign('_javascript', array('confirmar_borrar'));
 //	$id = sanitize($_REQUEST['id'],16);
-    $cuadro = new cuadro();
+    $cuadro = new Cuadro();
     $cuadro->Load("id = $id");
     $smarty->assign('cuadro', $cuadro);
     $indicadores = $cuadro->carga_indicadores();
