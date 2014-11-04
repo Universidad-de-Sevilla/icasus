@@ -8,7 +8,7 @@
     <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <title>{$_nombre_pagina} - ICASUS - Universidad de Sevilla</title>
+        <title>{$_nombre_pagina} - {$smarty.const.TXT_TITULO}</title>
         <meta name="description" content="Gestión de Indicadores de Calidad">
 
         <!-- iPhone, iPad and Android specific settings -->	

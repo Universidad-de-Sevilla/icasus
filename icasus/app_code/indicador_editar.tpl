@@ -2,25 +2,25 @@
 <input type="hidden" name="id_entidad" value="{$entidad->id}" />
 <div style="opacity: 1;" class="box tabs" id="tab_editar_indicador">
   <ul class="tab_header">
-    <li ><a  href="#indicador" >Indicador</a></li>
-    <li ><a  href="#otros" >Otros datos</a></li>
-    <li ><a  href="#subunidades" >Subunidades afectadas</a></li>
+    <li ><a  href="#indicador" >{$smarty.const.FIELD_INDIC}</a></li>
+    <li ><a  href="#otros" >{$smarty.const.TXT_OTROS_DAT}</a></li>
+    <li ><a  href="#subunidades" >{$smarty.const.TXT_SUBUNID_AFECT}</a></li>
   </ul>
     <div style="opacity: 1;" id="indicador" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
       <p>&nbsp;</p>
       <div class="columns clearfix">
         <div class="col_40">
           <fieldset class="label">
-          <label>Código indicador</label>
+          <label>{$smarty.const.FIELD_COD}</label>
         <div><input  type="text" name="codigo" value="{$indicador->codigo}" /><div class="required_tag tooltip hover left" title="Campo requerido"></div> </div>
           </fieldset>
         </div>
         <div class="col_60">
           <fieldset class="label">
-          <label>Proceso</label>
+          <label>{$smarty.const.FIELD_PROC}</label>
           <div>
             <select name="id_proceso" id="id_proceso" class="required2 select_box">
-            <option value="">Seleccionar uno ...</option>
+            <option value="">{$smarty.const.TXT_SEL_UNO}</option>
             {foreach $procesos as $proceso}
             <option value="{$proceso->id}" {if $indicador->id_proceso == $proceso->id}selected{/if}> {$proceso->nombre} </option>
             {/foreach}
@@ -31,18 +31,18 @@
         </div>
       </div>
       <fieldset class="label_side">
-        <label>Nombre indicador</label>
+        <label>{$smarty.const.FIELD_NAME}</label>
         <div><textarea name="nombre" />{$indicador->nombre}</textarea><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
       </fieldset>
       <fieldset class="label_side">
-        <label>Formulaci&oacute;n</label>
+        <label>{$smarty.const.FIELD_FORM}</label>
         <div><textarea   name="formulacion">{$indicador->formulacion}</textarea><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
       </fieldset>
                 <fieldset class="label_side">
-            <label>Responsable de seguimiento</label>
+            <label>{$smarty.const.FIELD_RESP_SEG}</label>
             <div>
               <select name="id_responsable" class="required2 select_box">
-                <option value="">Seleccionar uno ...</option>
+                <option value="">{$smarty.const.TXT_SEL_UNO}</option>
                 {foreach $usuarios_entidades as $usuario_entidad}
                   <option value="{$usuario_entidad->usuario->id}"{if $indicador->id_responsable == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                   </option>
@@ -51,10 +51,10 @@
             </div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Responsable de medición</label>
+            <label>{$smarty.const.FIELD_RESP_MED}</label>
             <div>
               <select name="id_responsable_medicion" class="select_box">
-                <option value="">Seleccionar uno ...</option>
+                <option value="">{$smarty.const.TXT_SEL_UNO}</option>
                 {foreach $usuarios_entidades as $usuario_entidad}
                   <option value="{$usuario_entidad->usuario->id}"{if $indicador->id_responsable_medicion == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                   </option>
@@ -63,49 +63,49 @@
             </div>
           </fieldset>
       <div class="button_bar clearfix" id="footer_tabs">
-          <button class="btnNext dark send_right img_icon has_text" type="button"><span>Siguiente</span></button>
+          <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
       </div>
               </div><!-- fin tab 1 -->
     <div style="opacity: 1;" id="otros" class="block ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
       <p>&nbsp;</p>
       <fieldset class="label_side">
-        <label>Descripci&oacute;n</label>
+        <label>{$smarty.const.FIELD_DESC}</label>
         <div><textarea  class="inp" name="descripcion">{$indicador->descripcion}</textarea></div>
       </fieldset>
           <fieldset class="label_side">
-                  <label>Cálculo</label>
+                  <label>{$smarty.const.FIELD_CALCULO}</label>
                   <div><textarea  class="" name="calculo" placeholder="Sólo si es un indicador calculado">{$indicador->calculo}</textarea></div>
               </fieldset>
           <fieldset class="label_side">
-            <label>Fuente de informaci&oacute;n</label>
+            <label>{$smarty.const.FIELD_FUENTE_INFO}</label>
             <div><input  type="text" name="fuente_informacion" value="{$indicador->fuente_informacion}"/></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Fuente de datos</label>
+            <label>{$smarty.const.FIELD_FUENTE_DAT}</label>
             <div><input  type="text" name="fuente_datos" value="{$indicador->fuente_datos}"/></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Metodo de comprobaci&oacute;n / Evidencia</label>
+            <label>{$smarty.const.FIELD_MET}</label>
             <div><input  type="text" name="evidencia" value="{$indicador->evidencia}" /></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Hist&oacute;rico</label>
+            <label>{$smarty.const.FIELD_HISTORICO}</label>
             <div><input  type="text" name="historicos"value="{$indicador->historicos}" /></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Interpretaci&oacute;n</label>
+            <label>{$smarty.const.FIELD_INTERP}</label>
             <div><input  type="text" name="interpretacion"value="{$indicador->interpretacion}" /></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>Indidores relacionados</label>
+            <label>{$smarty.const.FIELD_INDIC_REL}</label>
             <div><input  type="text" name="indicadores_relacionados"value="{$indicador->indicadores_relacionados}" /></div>
           </fieldset>
           <fieldset class="label_side">
-            <label>EFQM</label>
+            <label>{$smarty.const.FIELD_EFQM}</label>
             <div class="columns clearfix">
             <div class="col_50">
               <select name="criterios_efqm[]" id="criterios_efqm" class="select_box" >
-                <option value="">Elegir uno si procede</option>
+                <option value="">{$smarty.const.TXT_ELEG_UNO}</option>
                 {foreach $criterios_efqm as $criterio_efqm}
                   <option value="{$criterio_efqm->id}"
                   {if $indicador->criterios_efqm}
@@ -118,7 +118,7 @@
               </div>
               <div class="col_50">
               <select name="criterios_efqm[]" id="criterios_efqm" class="select_box">
-                <option value="">Elegir uno si procede</option>
+                <option value="">{$smarty.const.TXT_ELEG_UNO}</option>
                  {foreach $criterios_efqm as $criterio_efqm}
                   <option value="{$criterio_efqm->id}"
                   {if $indicador->criterios_efqm}
@@ -135,21 +135,21 @@
           <div class="columns clearfix">
             <div class="col_25">
               <fieldset class="label">
-                <label>Periodicidad</label>
+                <label>{$smarty.const.FIELD_PERIOD}</label>
                 <div>
                   <select name="periodicidad" id="periodicidad" class="select_box">
-                    <option value="Anual"{if {$indicador->periodicidad} == Anual}selected{/if} >Anual</option>
-                    <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if} >Mensual</option>
-                    <option value="Trimestral" {if $indicador->periodicidad == Trimestral}selected{/if} >Trimestral</option>
-                    <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if} >Cuatrimestral</option>
-                    <option value="Semestral"{if $indicador->periodicidad == Semestral}selected{/if} >Semestral</option>
+                    <option value="Anual"{if {$indicador->periodicidad} == Anual}selected{/if} >{$smarty.const.TXT_ANUAL}</option>
+                    <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if} >{$smarty.const.TXT_MENSUAL}</option>
+                    <option value="Trimestral" {if $indicador->periodicidad == Trimestral}selected{/if} >{$smarty.const.TXT_TRIMESTRAL}</option>
+                    <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if} >{$smarty.const.TXT_CUATRIMESTRAL}</option>
+                    <option value="Semestral"{if $indicador->periodicidad == Semestral}selected{/if} >{$smarty.const.TXT_SEMESTRAL}</option>
                   </select>
                 </div>
               </fieldset>
             </div>
             <div class="col_25">
               <fieldset class="label">
-                <label>Visibilidad</label>
+                <label>{$smarty.const.FIELD_VISIBILIDAD}</label>
                 <div>
                   <select name="id_visibilidad" id="id_visibilidad" class="required select_box">
                     {foreach $visibilidades as $visibilidad}
@@ -163,29 +163,29 @@
             </div>
             <div class="col_50">
               <fieldset class="label">
-                <label>Unidad generadora</label>
+                <label>{$smarty.const.FIELD_UNID_GEN}</label>
                 <div><input  type="text" name="unidad_generadora" {$indicador->unidad_generadora} /></div>
               </fieldset>
             </div>
           </div>
       <div class="button_bar clearfix" id="footer_tabs">
-          <button class="btnNext dark send_right img_icon has_text" type="button"><span>Siguiente</span></button>
-          <button class="btnPrev dark send_right img_icon has_text" type="button"><span>Anterior</span></button>
+          <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
+          <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
       </div>
     </div><!-- fin tab otros datos -->
     <div style="opacity: 1;" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
       <p>&nbsp;</p>
       <fieldset class="label_side">
-        <label>Tipo de medición</label>
+        <label>{$smarty.const.FIELD_TIP_MED}</label>
         <div>
-          <p><input type="radio" name="tipo_seleccion_responsable" value="0" class="medicion"{if $indicador->desagregado == 0}checked="checked"{/if}> Medición única en la unidad actual.</p>
-          <p><input type="radio" name="tipo_seleccion_responsable" value="1" class="medicion"{if $indicador->desagregado == 1}checked="checked"{/if}> Medición desagregada en las subunidades y cumplimentada por los responsables de las subunidades, o persona delegada.</p>
-          <p><input type="radio" name="tipo_seleccion_responsable" value="2" class="medicion"{if $indicador->desagregado == 2}checked="checked"{/if}> Medición desagregada en las subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.</p>
+          <p><input type="radio" name="tipo_seleccion_responsable" value="0" class="medicion"{if $indicador->desagregado == 0}checked="checked"{/if}> {$smarty.const.TXT_MED_UNICA}</p>
+          <p><input type="radio" name="tipo_seleccion_responsable" value="1" class="medicion"{if $indicador->desagregado == 1}checked="checked"{/if}> {$smarty.const.TXT_MED_DES}</p>
+          <p><input type="radio" name="tipo_seleccion_responsable" value="2" class="medicion"{if $indicador->desagregado == 2}checked="checked"{/if}> {$smarty.const.TXT_MED_DES_CEN}</p>
         </div>
       </fieldset>
 
       <fieldset class="label_side" id="total" style="display:{if $indicador->desagregado == 0}none{else}block{/if}">
-        <label>Cálculo del total</label>
+        <label>{$smarty.const.FIELD_CALC_TOTAL}</label>
         <div>
           <select name="id_tipo_agregacion" id="id_tipo_agregacion">
             {foreach $tipos_agregacion as $tipo_agregacion}
@@ -219,8 +219,8 @@
         </div>
       </fieldset>
       <div class="button_bar clearfix" id="footer_tabs">
-          <button class="dark send_right img_icon has_text" type="submit"><span>Grabar</span></button>
-          <button class="btnPrev dark send_right img_icon has_text" type="button"><span>Anterior</span></button>
+          <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
+          <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
       </div>
     </div><!-- fin tab subunidades afectadas -->
 </div>

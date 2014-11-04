@@ -16,7 +16,7 @@
 	{/foreach}
 	{else}
 		<p>
-			Este proceso no tiene indicadores.
+		{$smarty.const.MSG_PROC_NO_INDIC}
 		</p>
 	{/if}
 {/if}
@@ -37,7 +37,7 @@
 		{/foreach}
 	{else}
 		 <p> 
-			Este proceso no tiene indicadores.
+			{$smarty.const.MSG_PROC_NO_INDIC}
 		 </p>
 	{/if}
 {/if}
@@ -62,7 +62,7 @@
 		{/foreach}
 	{else}
 			<p> 
-				Este proceso no tiene indicadores.
+				{$smarty.const.MSG_PROC_NO_INDIC}
 			</p>
 	{/if}
 {/if}

@@ -1,8 +1,7 @@
-
-    <div class="section">
-        <h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
-        <h1 style="color: #999999; font-weight: normal;">VERSI&Oacute;N: {$smarty.const.IC_VERSION} - FECHA DE REVISI&Oacute;N: {$smarty.const.IC_FECHA_REVISION}</h1>
-    </div>
+<div class="section">
+    <h1 style="color: #999999; font-weight: normal;">{$smarty.const.TXT_FOOTER}</h1>
+    <h1 style="color: #999999; font-weight: normal;">{$smarty.const.FIELD_VERSION}: {$smarty.const.IC_VERSION} - {$smarty.const.FIELD_FECHA_REV}: {$smarty.const.IC_FECHA_REVISION}</h1>
+</div>
 
 {literal}
     <script type="text/javascript" src="theme/danpin/scripts/DataTables/jquery.dataTables.js"></script>

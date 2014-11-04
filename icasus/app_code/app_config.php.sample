@@ -31,4 +31,6 @@ define('IC_TIPO_LOGIN','login_sso');
 
 //Directorio base
 define('IC_DIR_BASE','/home/jjmc/www/icasus/icasus/');
-?>
+
+//Idioma base
+define('IC_LANG_FILE','strings_es.php');

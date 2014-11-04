@@ -6,7 +6,7 @@
         <input type='hidden' name='id_entidad' value='{$id_entidad}'>
         <fieldset class="label_side">
           <label for='fichero'>
-            Elija un archivo para importar
+           {$smarty.const.TXT_SEL_FILE_TO_IMPORT}
           </label>
           <div>
             <input name='fichero_csv[]' type='file'>
@@ -15,7 +15,7 @@
         </fieldset>
         <fieldset class="label_side">
           <label for='fichero'>
-            Elija un archivo para importar
+           {$smarty.const.TXT_SEL_FILE_TO_IMPORT}
           </label>
           <div>
             <input name='fichero_csv[]' type='file'>
@@ -23,7 +23,7 @@
         </fieldset>
         <fieldset class="label_side">
           <label for='fichero'>
-            Elija un archivo para importar
+           {$smarty.const.TXT_SEL_FILE_TO_IMPORT}
           </label>
           <div>
             <input name='fichero_csv[]' type='file'>
@@ -31,7 +31,7 @@
         </fieldset>
         <fieldset class="label_side">
           <label for='fichero'>
-            Elija un archivo para importar
+            {$smarty.const.TXT_SEL_FILE_TO_IMPORT}
           </label>
           <div>
             <input name='fichero_csv[]' type='file'>
@@ -40,7 +40,7 @@
 				<div class="button_bar clearfix">
 					<button class="green" type="submit" value="Procesar fichero" name="csv_submit">
             <div class="ui-icon ui-icon-check"></div>
-						<span>Procesar ficheros</span>
+						<span>{$smarty.const.TXT_PROC_FILES}</span>
 					</button>
         </div>
       </form>

@@ -13,12 +13,14 @@ error_reporting(E_ALL & ~E_DEPRECATED);
 
 include_once('../app_code/app_config.php');
 include_once('../app_code/app_version.php');
-include_once('../app_code/strings_es.php');
 include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
 include_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
 include_once('../../cascara_core/lib/smarty/Smarty.class.php');
 include_once('../../cascara_core/function/sanitize.php');
 include_once('../../cascara_core/function/caracteres.php');
+
+//Fichero de idioma
+include_once('../app_code/' . IC_LANG_FILE);
 
 // Carga las clases necesarias automaticamente
 spl_autoload_register('__autoload');
@@ -87,7 +89,7 @@ if (isset($_SESSION['usuario'])) {
     // Quitarlo cuando se aclare lo de los permisos
     //$id_entidad = isset($_REQUEST['id_entidad']) ? sanitize($_REQUEST['id_entidad'], 16) : 0;
 
-    $id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    $id_entidad = filter_input(INPUT_POST | INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
     if ($id_entidad == null || $id_entidad == false) {
         $id_entidad = 0;
@@ -112,7 +114,7 @@ if (isset($_SESSION['usuario'])) {
 if (file_exists("../app_code/$page.php")) {
     require_once("../app_code/$page.php");
 } else {
-    $smarty->assign('error', "Error 404: no encontramos la página que ha solicitado: $page");
+    $smarty->assign('error', ERR_404 . " $page");
     require_once("../app_code/error.php");
 }
 
@@ -122,9 +124,9 @@ if (file_exists("../app_code/$page.php")) {
 //    $smarty->assign("plantilla", $plantilla);
 //    $template = 'index.tpl';
 //}
-
-$ajax = filter_input(INPUT_GET,'ajax',FILTER_VALIDATE_BOOLEAN);
-
+//Comprobamos si hay una petición AJAX
+$ajax = filter_input(INPUT_GET, 'ajax', FILTER_VALIDATE_BOOLEAN);
+//Si es asi sólo recargaremos la sección afectada
 if ($ajax) {
     $template = $plantilla;
 } else {

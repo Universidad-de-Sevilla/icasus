@@ -7,4 +7,4 @@ function limpiar_nombre($cadena)
     //static $validos =   "aeiouAEIOUaeiouAEIOU";
     //return strtr($cadena, $invalidos, $validos);
   }
-?>
+

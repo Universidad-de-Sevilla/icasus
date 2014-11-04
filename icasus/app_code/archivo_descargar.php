@@ -11,7 +11,6 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
-
 if (isset($_REQUEST["id"]))
 {
 	$id = sanitize($_REQUEST["id"],2);
@@ -35,13 +34,13 @@ if (isset($_REQUEST["id"]))
 	}
 	else
 	{
-		$error = "No existe el archivo con identificdor $id.";
+		$error = ERR_NO_FILE." $id.";
 		header("location:index.php?error=$error");
 	}
 }
 else
 {
-  $error = "Faltan parámetros para realizar esta acción.";
+  $error = ERR_PARAM;
   header("location:index.php?error=$error");
 }
-?>
+

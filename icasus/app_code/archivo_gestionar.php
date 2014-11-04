@@ -21,7 +21,7 @@ if (isset($_REQUEST["id_proceso"]))
 	// Datos del proceso
   $proceso = new proceso();
   $proceso->load_joined("id = $id_proceso");
-  $smarty->assign('_nombre_pagina' , 'Archivos del proceso '.$proceso->nombre);
+  $smarty->assign('_nombre_pagina' , TXT_ARCHIVOS_PROC.$proceso->nombre);
 	$smarty->assign('proceso',$proceso);
 
 	$archivo = new fichero();
@@ -35,4 +35,4 @@ else
 	//Si se llama a esta pagina si un id de proceso o de entidad se redirecciona al listado de unidades
 	header('Location:index.php?page=entidad_listar');	
 }
-?>
+

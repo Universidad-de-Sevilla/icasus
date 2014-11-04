@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: cuadromando_listar.php
@@ -9,8 +10,8 @@
 
 $cuadro = new cuadro();
 $cuadros = $cuadro->find_joined($usuario->id);
-$smarty->assign('cuadros',$cuadros);
+$smarty->assign('cuadros', $cuadros);
 
 $plantilla = 'cuadro_listar.tpl';
-$smarty->assign('_nombre_pagina' , 'Tus cuadros de mando');
-?>
+$smarty->assign('_nombre_pagina', TXT_TU_CUADROS_MANDO);
+

@@ -54,7 +54,7 @@ a.actual {
 </style>
 
 <div class="box grid_16 single_datatable">
-  <h2 class="box_head grad_grey_dark">Parámetros de la consulta</h2>
+  <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_CONSULT_PARAM}</h2>
   <a href="#" class="grabber"></a>
   <a href="#" class="toggle"></a>
 
@@ -67,8 +67,8 @@ a.actual {
             <table class="display datatable"> 
             <thead> 
              <tr>  
-              <th>Código</th>
-              <th>Nombre</th>
+              <th>{$smarty.const.FIELD_COD}</th>
+              <th>{$smarty.const.FIELD_NAME}</th>
              </tr> 
             </thead> 
               <tbody>
@@ -132,7 +132,7 @@ a.actual {
 
           <div class="receptor" data-serie="4"> </div>
 
-          <button class="pull-right" id="btn_mostrar_resultado">Mostrar resultado</button>
+          <button class="pull-right" id="btn_mostrar_resultado">{$smarty.const.TXT_SHOW_RESUL}</button>
 
         </div><!-- .section -->
       </div><!-- .block -->
@@ -164,13 +164,13 @@ a.actual {
 
     <div class="section">
       <ul class="mediciones">
-        <li><a href="#" class="medicion actual">Todos</a></li>
-        <li><a href="#" class="medicion">2008</a></li>
-        <li><a href="#" class="medicion">2009</a></li>
-        <li><a href="#" class="medicion">2010</a></li>
-        <li><a href="#" class="medicion">2011</a></li>
-        <li><a href="#" class="medicion">2012</a></li>
-      <ul>
+        <li><a href="#" class="medicion actual">{$smarty.const.TXT_TODOS}</a></li>
+        <li><a href="#" class="medicion">{$smarty.const.TXT_2008}</a></li>
+        <li><a href="#" class="medicion">{$smarty.const.TXT_2009}</a></li>
+        <li><a href="#" class="medicion">{$smarty.const.TXT_2010}</a></li>
+        <li><a href="#" class="medicion">{$smarty.const.TXT_2011}</a></li>
+        <li><a href="#" class="medicion">{$smarty.const.TXT_2012}</a></li>
+      </ul>
     </div>
 
     <div class="section">
@@ -458,7 +458,7 @@ a.actual {
       colors: ['blue','black']
     };
     // Generamos la tabla de resultados a partir del array 'resultado'
-    generaTablaResultados(resultado)
+    generaTablaResultados(resultado);
     // Generamos la grafica con los resultados a partir del objeto 'resultados'
     $.plot($("#grafica"), resultados, opciones_resultado);
   

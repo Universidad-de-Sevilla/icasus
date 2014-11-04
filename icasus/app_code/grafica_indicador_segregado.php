@@ -91,11 +91,11 @@ if (isset($_REQUEST["id_indicador"]) & isset($_REQUEST["medicion"]))
   }
   else
   {
-    echo "<h2>NO HAY DATOS</h2>";
+    echo "<h2>".MSG_INDIC_NO_DATOS."</h2>";
   }
 }
 else
 {
-  echo "<h2>FALTAN PARAMETROS</h2>";
+  echo "<h2>".ERR_PARAM."</h2>";
 }
-?>
+

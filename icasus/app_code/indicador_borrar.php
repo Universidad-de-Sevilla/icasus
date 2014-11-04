@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: indicador_borrar.php
@@ -7,37 +8,32 @@
 // Descripcion: Borra un indicador
 //---------------------------------------------------------------------------------------------------
 
-if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']) )
-{
-	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
-	$id_indicador = sanitize($_REQUEST['id_indicador'],16);
-	$indicador = new indicador();
-  $indicador->load_joined("id = $id_indicador");
-  if ($usuario->id == $indicador->id_responsable OR $usuario->id == $indicador->id_responsable_medicion)
-  {
-    $medicion = new medicion();
-    $mediciones = $medicion->Find("id_indicador = $id_indicador");
-    if ($mediciones)
-    {
-      $error = 'Tiene mediciones asociadas al indicador, necesita borrar primero las mediciones';
-      header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
+$id_indicador = filter_input(INPUT_GET | INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
+$id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+
+//if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']) )
+if ($id_entidad && $id_indicador) {
+//	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
+//	$id_indicador = sanitize($_REQUEST['id_indicador'],16);
+    $indicador = new indicador();
+    $indicador->load_joined("id = $id_indicador");
+    if ($usuario->id == $indicador->id_responsable OR $usuario->id == $indicador->id_responsable_medicion) {
+        $medicion = new medicion();
+        $mediciones = $medicion->Find("id_indicador = $id_indicador");
+        if ($mediciones) {
+            $error = ERR_BORRAR_INDIC_MED;
+            header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
+        } else {
+            $indicador->delete();
+            $aviso = MSG_INDIC_BORRADO;
+            header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
+        }
+    } else {
+        $error = ERR_BORRAR_INDIC_NO_AUT;
+        header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
     }
-    else 
-    {
-      $indicador->delete();
-      $aviso = 'Se ha borrado el indicador.';
-      header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
-    }	
-	}
-	else
-	{
-		$error = 'No tiene persimos para borrar el indicador';
-		header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");	
-	}
+} else { // falta id_indicador o id_entidad
+    $error = ERR_PARAM;
+    header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
 }
-else // falta id_indicador o id_entidad
-{
-	$error = 'Faltan parámetros para realizar esta acción.';
-	header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
-}
-?>
+

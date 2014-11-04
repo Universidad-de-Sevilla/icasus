@@ -12,9 +12,12 @@ global $smarty;
 global $basedatos;
 global $plantilla;
 
-if (isset($_REQUEST['id']))
+$id_dimension = filter_input(INPUT_GET|INPUT_POST,'id',FILTER_SANITIZE_NUMBER_INT);
+
+//if (isset($_REQUEST['id']))
+if($id_dimension)
 {	
-	$id_dimension = sanitize($_REQUEST['id'],16);
+//	$id_dimension = sanitize($_REQUEST['id'],16);
 	$dimension = new dimension();
 	$dimension->load("id = $id_dimension");
 
@@ -25,24 +28,24 @@ if (isset($_REQUEST['id']))
 		//$dimension->codigo = sanitize($_POST['codigo'],2);
 		$adodb->execute("SET NAMES utf8");
 		$dimension->save();
-		$smarty->assign('aviso' , 'Se ha modificado una dimensi&oacute;n.');
+		$smarty->assign('aviso' , MSG_DIM_EDITED);
 
 		// Array de dimensiones que pasamos a la vista para ver las existentes
 		$dimensiones = $dimension->find('1 = 1 ORDER BY nombre');
 		$smarty->assign('dimensiones', $dimensiones);
 		$plantilla = "dimension_crear.tpl";
-		$smarty->assign('_nombre_pagina','Relaci&oacuten de dimensiones');
+		$smarty->assign('_nombre_pagina',TXT_REL_DIM);
 	}
 	else
 	{
 		$smarty->assign('dimension',$dimension);
-		$smarty->assign('_nombre_pagina','Edici&oacute;n de dimensiones');
+		$smarty->assign('_nombre_pagina',TXT_EDIT_DIMS);
 		$plantilla = "dimension_editar.tpl";
 	}
 }
 else
 {
-	$smarty->assign('error','Faltan parámetros');
+	$smarty->assign('error',ERR_PARAM);
 	$plantilla = "error.tpl";
 }
-?>
+

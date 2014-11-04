@@ -27,6 +27,6 @@ if (isset($_GET['fichero']) && isset($_GET['dir']))
 }
 else
 {
-    $error = "Faltan datos para procesar la solicitud de borrado de archivo";
+    $error = ERR_DEL_FILE;
     header("Location:index.php?page=error&error=$error");
 }

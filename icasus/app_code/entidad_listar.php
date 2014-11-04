@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: entidad_listar.php
@@ -11,28 +12,28 @@ global $usuario;
 global $plantilla;
 
 $smarty->assign('_javascript', array('ordenatabla'));
-$smarty->assign('_nombre_pagina', 'Lista de Unidades');
+$smarty->assign('_nombre_pagina', TXT_LIST_UNID);
 
 // Entidades de este usuario
-$smarty->assign('entidades_usuario',$usuario->entidades);
+$smarty->assign('entidades_usuario', $usuario->entidades);
 $grupos_usuario = ""; //Deshabilitado de momento
-$smarty->assign('grupos_usuario',$grupos_usuario);
+$smarty->assign('grupos_usuario', $grupos_usuario);
 
 $entidad = new entidad;
 $entidades = $entidad->Find("es_organica = 1");
-$smarty->assign('entidades',$entidades);
+$smarty->assign('entidades', $entidades);
 
 /*
-if (isset($_REQUEST['criterio']))
-{
+  if (isset($_REQUEST['criterio']))
+  {
   $criterio = sanitize($_REQUEST['criterio'], SQL);
   $smarty->assign('criterio', $criterio);
   $condicion = "nombre LIKE '%$criterio%' OR codigo LIKE '%$criterio%'";
   $entidad = new entidad;
   $entidades = $entidad->Find($condicion);
   $smarty->assign('entidades',$entidades);
-}
-*/
+  }
+ */
 
 $plantilla = 'entidad_listar.tpl';
-?>
+

@@ -1,9 +1,9 @@
 {if $aviso}<p class='aviso'>{$aviso}</p>{/if}
 {if $error}<p class='error'>{$error}</p>{/if}
-<h2>Crear dimensi&oacute;n</h2>
+<h2>{$smarty.const.TXT_CREAR_DIM}</h2>
 
 <form action='index.php?page=dimension_crear' method="post" class="datos" name="formcrear">
-	<p><label for='nombre'>Nombre</label> 
+	<p><label for='nombre'>{$smarty.const.FIELD_NAME}</label> 
 	<input name='nombre' type='text' class='inp' /></p>
 	<p><input type='submit' name='submitcrear' value='Aceptar' /></p>
 </form>
@@ -16,16 +16,16 @@
 <input type='submit' name='submit-buscar' value='Aceptar' />
 </form></p>
 -->
-<h2>Lista de dimensiones</h2>
+<h2>{$smarty.const.TXT_LIST_DIM}</h2>
 <table class='listing' id='sortable'>
 	<thead>
-		<tr><th>Nombre</th><th>Acciones</th></tr>
+		<tr><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
 	</thead>
 	<tbody>
 	{foreach from=$dimensiones item=dimension}
 		<tr>
 			<td>{$dimension->nombre}</td>
-			<td><a href='index.php?page=dimension_editar&id={$dimension->id}'>Editar</a>
+			<td><a href='index.php?page=dimension_editar&id={$dimension->id}'>{$smarty.const.TXT_EDIT}</a>
 				<!--| <a href='index.php?page=dimension_borrar&id={$dimension->id}&id_entidad=0'>Borrar</a>--></td>
 		</tr>
    {/foreach}

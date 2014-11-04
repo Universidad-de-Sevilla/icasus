@@ -81,4 +81,4 @@ class medicion extends ADOdb_Active_Record
     return $mediciones;
   }
 }
-?>
+

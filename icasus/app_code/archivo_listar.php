@@ -1,4 +1,5 @@
 <?php
+
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 */
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
@@ -14,32 +15,26 @@ global $plantilla;
 global $usuario;
 
 // Esto es para prevenir que se cargue el script sin pasar por index.php
-if (!is_object($smarty))
-{
+if (!is_object($smarty)) {
     header('Location:index.php?page=archivo_listar');
 }
 
-if (isset($_GET['dir']))
-{
+if (isset($_GET['dir'])) {
     //directorio de trabajo
-    $dir = sanitize($_GET['dir'],PARANOID);
+    $dir = sanitize($_GET['dir'], PARANOID);
 
     //Creamos el array con los ficheros del directorio
-    $directorio = opendir(IC_DIR_BASE . '/upload/' . $dir); 
-    while ($archivo = readdir($directorio))
-    {
-        $fecha = date ("d-m-Y", filemtime(IC_DIR_BASE . '/upload/' . $dir . "/" . $archivo));
+    $directorio = opendir(IC_DIR_BASE . '/upload/' . $dir);
+    while ($archivo = readdir($directorio)) {
+        $fecha = date("d-m-Y", filemtime(IC_DIR_BASE . '/upload/' . $dir . "/" . $archivo));
         $archivos[] = array($archivo, $fecha);
     }
     closedir($directorio);
 
-    $smarty->assign('archivos',$archivos);
-    $smarty->assign('directorio',$dir);
-}
-else
-{
-    $error = "No se ha proporcionado un nombre de directorio";
+    $smarty->assign('archivos', $archivos);
+    $smarty->assign('directorio', $dir);
+} else {
+    $error = ERR_NO_DIR_NAME;
     $smarty->assign('error', $error);
 }
 $plantilla = "archivo_listar.tpl";
-?>

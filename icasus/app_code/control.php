@@ -34,8 +34,8 @@ if ($modulo == 'inicio')
 //------------------------------------------------------------------------------
 if ($modulo == 'filtrOnlyear')
 {
-	$fecha = sanitize($_REQUEST["fecha"],INT);
-		
+//	$fecha = sanitize($_REQUEST["fecha"],INT);
+	$fecha = filter_input(INPUT_GET|INPUT_POST,'fecha',FILTER_SANITIZE_NUMBER_INT);
 	$valor = new valor();
 	$valores = $valor->filtro_onlyear($fecha,$cadena);
   $smarty->assign("valores", $valores);
@@ -43,4 +43,4 @@ if ($modulo == 'filtrOnlyear')
 $smarty->assign("modulo", $modulo);
 $smarty->assign("_nombre_pagina", "Control:  $entidad->nombre");
 $plantilla = "control.tpl";
-?>
+

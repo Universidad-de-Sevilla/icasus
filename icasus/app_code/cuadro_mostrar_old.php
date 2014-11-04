@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: cuadro_listar.php
@@ -13,25 +14,21 @@ global $basedatos;
 global $plantilla;
 
 // Esto es para prevenir que se cargue el script sin pasar por index.php
-if (!is_object($smarty))
-{
-	header('Location:index.php');	
+if (!is_object($smarty)) {
+    header('Location:index.php');
 }
-if (isset($_REQUEST['id']))
-{
-	$smarty->assign('_javascript' , array('confirmar_borrado'));
-	$id = sanitize($_REQUEST['id'],16);
-	$cuadro = new cuadro();
-	$cuadro->Load("id = $id");
-	$smarty->assign('cuadro',$cuadro);
-	$indicadores = $cuadro->carga_indicadores();
-	$smarty->assign('indicadores',$indicadores);
-	$plantilla = 'cuadro_mostrar.tpl';
-	$smarty->assign('_nombre_pagina' , "Cuadro de Mando: $cuadro->nombre");
+if (isset($_REQUEST['id'])) {
+    $smarty->assign('_javascript', array('confirmar_borrado'));
+    $id = sanitize($_REQUEST['id'], 16);
+    $cuadro = new cuadro();
+    $cuadro->Load("id = $id");
+    $smarty->assign('cuadro', $cuadro);
+    $indicadores = $cuadro->carga_indicadores();
+    $smarty->assign('indicadores', $indicadores);
+    $plantilla = 'cuadro_mostrar.tpl';
+    $smarty->assign('_nombre_pagina', "Cuadro de Mando: $cuadro->nombre");
+} else {
+    //Si se llama a esta pagina si un id de cuadro se redirecciona al listado
+    header('Location:index.php?page=cuadro_listar');
 }
-else
-{
-	//Si se llama a esta pagina si un id de cuadro se redirecciona al listado
-	header('Location:index.php?page=cuadro_listar');	
-}
-?>
+

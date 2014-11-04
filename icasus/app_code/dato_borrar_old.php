@@ -31,7 +31,7 @@ if (isset($_REQUEST['id_dato']) && isset($_REQUEST['id_entidad']) )
 	}
 	else
 	{
-		$error = 'No tiene persimos para borrar el dato';
+		$error = 'No tiene permisos para borrar el dato';
 		header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&error=$error");	
 	}
 
@@ -39,7 +39,7 @@ if (isset($_REQUEST['id_dato']) && isset($_REQUEST['id_entidad']) )
 }
 else // falta id_dato o id_entidad
 {
-	$error = 'Faltan parámetros para realizar esta acción.';
+	$error = ERR_PARAM;
 	header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&error=$error");
 }
-?>
+

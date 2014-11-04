@@ -13,7 +13,7 @@ require_once('../app_code/app_config.php');
 
 @mysql_connect(IC_DB_HOST , IC_DB_LOGIN , IC_DB_CLAVE);
 
-if (@mysql_select_db(IC_DB_DATABASE))
+if (mysql_select_db(IC_DB_DATABASE))
 {
   // Capturamos y procesamos los datos de la petición
   if (isset($_REQUEST['metodo'], $_REQUEST['apikey']))
@@ -42,13 +42,13 @@ if (@mysql_select_db(IC_DB_DATABASE))
     }
     else
     {
-      echo 'No existe el método solicitado';
+      echo MSG_NO_MET_SOL;
     }
   }
 }
 else
 {
-  echo 'Error de conexion a la base de datos';
+  echo ERR_CON_BD;
 }
 
 //------------------------------------------ 
@@ -68,7 +68,7 @@ function graba_medicion_con_valor($id_indicador, $periodo_inicio, $periodo_fin, 
   }
   else
   {
-    echo 'Faltan parámetros para ejecutar el método '  . $metodo;
+    echo MSG_FALTAN_PARAM_MET.': '.$metodo;
   }
 }
 

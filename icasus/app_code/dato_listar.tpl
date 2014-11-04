@@ -1,10 +1,10 @@
 <h3>	 
   <a href='index.php?page=dato_crear&id_entidad={$entidad->id}'><img 
-  src='/icons/ff16/table_add.png' />Crear dato</a> &nbsp; &nbsp;
+  src='/icons/ff16/table_add.png' />{$smarty.const.TXT_CREAR_DATO}</a> &nbsp; &nbsp;
   <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img 
-  src='/icons/ff16/chart_curve.png' />Listar Indicadores</a> &nbsp; &nbsp;
+  src='/icons/ff16/chart_curve.png' />{$smarty.const.TXT_LIST_INDIC}</a> &nbsp; &nbsp;
   {if $entidad->id == 14}<a href='index.php?page=datos_rebiun'><img 
-  src='/icons/ff16/basket.png' />Recogida Datos Rebiun</a> &nbsp; &nbsp;{/if}
+  src='/icons/ff16/basket.png' />{$smarty.const.TXT_RECOG_DAT_REBIUN}</a> &nbsp; &nbsp;{/if}
   <!--
   <a href='index.php?page=entidad_datos_excel&id_entidad={$entidad->id}'><img 
   src='/icons/ff16/page_excel.png' alt='icono' />Exportar datos</a>&nbsp; &nbsp;
@@ -17,7 +17,7 @@
   <div id="dt1" class="no_margin">
 	<table class='display datatable'>
 	<thead>
-		<tr><th>ID</th><th>Código</th><th>Nombre</th><th>Responsable</th></tr>
+		<tr><th>{$smarty.const.FIELD_ID}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_RESP}</th></tr>
 	</thead>
 	<tbody>
 		{foreach from=$datos item=dato} 
@@ -40,5 +40,5 @@
   </div>
 </div>  
 {else}
-	<p class='aviso'>No hay datos definidos para esta entidad.</p>
+	<p class='aviso'>{$smarty.const.MSG_UNID_NO_DATOS}</p>
 {/if}

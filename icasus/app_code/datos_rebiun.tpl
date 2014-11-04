@@ -7,7 +7,7 @@ table.static tbody tr td input {
 }
 </style>
 <div class="button_bar clearfix">
-  <a href="index.php?page=dato_listar&id_entidad=14">Volver a la lista de datos</a>
+  <a href="index.php?page=dato_listar&id_entidad=14">{$smarty.const.TXT_VOLVER_LIST}</a>
 </div>
 <form name="datos_directos" id="datos_directos" action="index.php?page=datos_rebiun_grabar" method="post" class="validate_form">
   <input type="hidden" name="id_usuario" value="{$id_usuario}" />
@@ -41,7 +41,7 @@ table.static tbody tr td input {
       </div><!-- fin div entidad->etiqueta -->
     {/foreach}
 			<div class="button_bar clearfix" id="footer_tabs">
-        <a href="index.php?page=dato_listar&id_entidad=14">Volver a la lista de datos</a>
+        <a href="index.php?page=dato_listar&id_entidad=14">{$smarty.const.TXT_VOLVER_LIST}</a>
 			</div>
 	</div><!--fin #tab_entidades -->
 </form>

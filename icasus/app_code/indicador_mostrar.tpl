@@ -1,19 +1,19 @@
 <div class="button_bar clearfix">
   <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-    src='/icons/ff16/time.png' /> Mostrar mediciones</a> &nbsp; &nbsp;
+    src='/icons/ff16/time.png' />{$smarty.const.TXT_SHOW_MED}</a> &nbsp; &nbsp;
   <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img
-    src='/icons/ff16/chart_curve.png' /> Listar todos</a> &nbsp; &nbsp;
+    src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_LIST_TODOS}</a> &nbsp; &nbsp;
   &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
   <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-    src='/icons/ff16/chart_curve_edit.png'  /> Editar</a> &nbsp;
+    src='/icons/ff16/chart_curve_edit.png'  />{$smarty.const.TXT_EDIT}</a> &nbsp;
   <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img
-    src='/icons/ff16/chart_curve_delete.png'  /> Borrar</a> &nbsp;  &nbsp;
+    src='/icons/ff16/chart_curve_delete.png'  />{$smarty.const.TXT_BORRAR}</a> &nbsp;  &nbsp;
   <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-    src='/icons/ff16/user_medicion.png' /> Responsables medición</a> &nbsp; &nbsp;
+    src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a> &nbsp; &nbsp;
   <a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-    src='/icons/ff16/tag_blue.png' /> Edición valores</a> &nbsp; &nbsp; &nbsp;
+    src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VAL_EDIT}</a> &nbsp; &nbsp; &nbsp;
   <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-    src='/icons/ff16/tag.png' /> Valores de referencia</a> &nbsp;
+    src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> &nbsp;
 </div>
 
 {if $mediciones}
@@ -47,7 +47,7 @@
     {/foreach}
   {/if}
 {else}
-  <p class="aviso">Todavía no se han recogido valores para este indicador.</p>
+  <p class="aviso">Todavía no se han recogido valores para este indicador.{$smarty.const.TXT_DAT_LISTAR}</p>
 {/if}
 
 <div class="box grid_16">
@@ -56,7 +56,7 @@
       <div class="columns clearfix">
         <div class="col_40">
           <fieldset class="label">
-            <label>Código indicador</label>
+            <label>Código indicador{$smarty.const.TXT_DAT_LISTAR}</label>
             <div>
               {$indicador->codigo}
             </div>
@@ -72,42 +72,42 @@
         </div>
       </div>
       <fieldset class="label_side">
-        <label>Nombre indicador</label>
+        <label>Nombre indicador{$smarty.const.TXT_DAT_LISTAR}</label>
         <div>
           {$indicador->nombre}
         </div>
       </fieldset>
       {if $indicador->descripcion != ""}
         <fieldset class="label_side">
-          <label>Descripci&oacute;n</label>
+          <label>Descripci&oacute;n{$smarty.const.TXT_DAT_LISTAR}</label>
           <div>
             {$indicador->descripcion}
           </div>
         </fieldset>
       {/if}
       <fieldset class="label_side">
-        <label>Formulaci&oacute;n</label>
+        <label>Formulaci&oacute;n{$smarty.const.TXT_DAT_LISTAR}</label>
         <div>
           {$indicador->formulacion}
         </div>
       </fieldset>
       {if $indicador->calculo}
         <fieldset class="label_side">
-          <label>Cálculo</label>
+          <label>Cálculo{$smarty.const.TXT_DAT_LISTAR}</label>
           <div>
             {$indicador->calculo}
           </div>
         </fieldset>
       {/if}
       <fieldset class="label_side">
-        <label>Responsable de seguimiento</label>
+        <label>Responsable de seguimiento{$smarty.const.TXT_DAT_LISTAR}</label>
         <div>
           {$indicador->responsable->nombre} {$indicador->responsable->apellidos}
           {if $indicador->responsable->puesto} - {$indicador->responsable->puesto} {/if}
         </div>
       </fieldset>
       <fieldset class="label_side">
-        <label>Responsable de medición</label>
+        <label>Responsable de medición{$smarty.const.TXT_DAT_LISTAR}</label>
         <div>
           {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}
           {if $indicador->responsable_medicion->puesto} - {$indicador->responsable_medicion->puesto} {/if}
@@ -115,44 +115,44 @@
       </fieldset>
       {if $indicador->fuente_informacion != ""}
         <fieldset class="label_side">
-          <label>Fuente de informaci&oacute;n</label>
+          <label>Fuente de informaci&oacute;n{$smarty.const.TXT_DAT_LISTAR}</label>
           <div>{$indicador->fuente_informacion}&nbsp;</div>
         </fieldset>
       {/if}
       {if $indicador->fuente_datos != ""}
       <fieldset class="label_side">
-        <label>Fuente de datos</label>
+        <label>Fuente de datos{$smarty.const.TXT_DAT_LISTAR}</label>
         <div>{$indicador->fuente_datos}&nbsp;</div>
       </fieldset>
       {/if}
       {if $indicador->evidencia != ""}
       <fieldset class="label_side">
-        <label>Metodo de comprobaci&oacute;n / Evidencia</label>
+        <label>Metodo de comprobaci&oacute;n / Evidencia{$smarty.const.TXT_DAT_LISTAR}</label>
         <div>{$indicador->evidencia}&nbsp;</div>
       </fieldset>
       {/if}
       {if $indicador->historicos != ""}
       <fieldset class="label_side">
-        <label>Hist&oacute;rico</label>
+        <label>Hist&oacute;rico{$smarty.const.TXT_DAT_LISTAR}</label>
         <div>{$indicador->historicos}&nbsp;</div>
       </fieldset>
       {/if}
       {if $indicador->interpretacion != ""}
       <fieldset class="label_side">
-        <label>Interpretaci&oacute;n</label>
+        <label>Interpretaci&oacute;n{$smarty.const.TXT_DAT_LISTAR}</label>
         <div>{$indicador->interpretacion}&nbsp;</div>
       </fieldset>
       {/if}
       {if $indicador->indicadores_relacionados != ""}
       <fieldset class="label_side">
-        <label>Indicadores relacionados</label>
+        <label>Indicadores relacionados{$smarty.const.TXT_DAT_LISTAR}</label>
         <div>{$indicador->indicadores_relacionados}&nbsp;</div>
       </fieldset>
       {/if}
       <div class="columns clearfix">
         <div class="col_50">
           <fieldset class="label_side">
-            <label>Criterios EFQM</label>
+            <label>Criterios EFQM{$smarty.const.TXT_DAT_LISTAR}</label>
             <div>
               {if is_array($indicador->criterios_efqm)}
               <ul>
@@ -161,14 +161,14 @@
                 {/foreach}
               </ul>
               {else}
-                No se han definido
+                No se han definido{$smarty.const.TXT_DAT_LISTAR}
               {/if}
             </div>
           </fieldset>
         </div>
         <div class="col_50">
           <fieldset class="label_side">
-            <label>Cálculo del total</label>
+            <label>Cálculo del total{$smarty.const.TXT_DAT_LISTAR}</label>
             <div>
               {$indicador->tipo_agregacion->descripcion}
             </div>
@@ -178,13 +178,13 @@
       <div class="columns clearfix">
         <div class="col_50">
           <fieldset class="label_side">
-            <label>Periodicidad</label>
+            <label>Periodicidad{$smarty.const.TXT_DAT_LISTAR}</label>
             <div>{$indicador->periodicidad}&nbsp;</div>
           </fieldset>
         </div>
         <div class="col_50">
           <fieldset class="label_side">
-            <label>Visibilidad</label>
+            <label>Visibilidad{$smarty.const.TXT_DAT_LISTAR}</label>
             <div>{$indicador->visibilidad->nombre|htmlentities}&nbsp;</div>
           </fieldset>
         </div>
@@ -192,19 +192,19 @@
       <div class="columns clearfix">
         <div class="col_50">
           <fieldset class="label_side">
-            <label>Nivel de desagregacion</label>
+            <label>Nivel de desagregacion{$smarty.const.TXT_DAT_LISTAR}</label>
             <div>{$indicador->nivel_desagregacion}&nbsp;</div>
           </fieldset>
         </div>
         <div class="col_50">
           <fieldset class="label_side">
-            <label>Unidad generadora</label>
+            <label>Unidad generadora{$smarty.const.TXT_DAT_LISTAR}</label>
             <div>{$indicador->unidad_generadora}&nbsp;</div>
           </fieldset>
         </div>
       </div>
       <fieldset class="label_side">
-        <label>Subunidades afectadas</label>
+        <label>Subunidades afectadas{$smarty.const.TXT_DAT_LISTAR}</label>
         <div>
           {if $indicador_subunidades}
             <ul>
@@ -213,7 +213,7 @@
             {/foreach}
             </ul>
           {else}
-            No se han asignado subunidades a este indicador (corregir)
+            No se han asignado subunidades a este indicador (corregir){$smarty.const.TXT_DAT_LISTAR}
           {/if}
         </div>
       </fieldset>
@@ -298,7 +298,7 @@
           series: {
             dataLabels: {
               enabled: true,
-              formatter: function() { return this.y?((Math.round(this.y*100))/100):null }
+              formatter: function() { return this.y?((Math.round(this.y*100))/100):null; }
             }
           }
         },

@@ -1,8 +1,8 @@
 <ul id="panel-tipo">
-  <li><a href="#">Líneas</a></li>
-  <li><a href="#">Barras</a></li>
-  <li><a href="#">Tabla</a></li>
-  <li><a href="#">Métrica</a></li>
+  <li><a href="#">{$smarty.const.TXT_LINEAS}</a></li>
+  <li><a href="#">{$smarty.const.TXT_BARRAS}</a></li>
+  <li><a href="#">{$smarty.const.TXT_TABLA}</a></li>
+  <li><a href="#">{$smarty.const.TXT_METRICA}</a></li>
 </ul>
 
 <ul class="indicador" id="1">
