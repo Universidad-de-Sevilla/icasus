@@ -136,4 +136,4 @@ else
 {
 	//escribe un error de falta de parámetroe en log para poder tener registro del error ya que ajax no lo muestra al estar en segundo plano
 }
-?>
+

@@ -84,4 +84,4 @@ else
 	escribir el error en el log ya que al ser ajax no se ve en la página
 */	
 }
-?>
+

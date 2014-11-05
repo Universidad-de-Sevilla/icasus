@@ -8,9 +8,12 @@
  * FIELD_[Nombre]--> Campos de las tablas
  */
 
+//---------------------------------------------------------------------------------
 //TEXTOS: TXT_[Nombre]
+//---------------------------------------------------------------------------------
 
 define('TXT_TITULO', 'ICASUS - Universidad de Sevilla');
+define('TXT_ICASUS', 'ICASUS');
 define('TXT_INDIC_PROP','Indicadores propios de la Unidad');
 define('TXT_INDIC_UNID_SUP','Indicadores de la Unidad superior');
 define('TXT_INDIC_SEG_UNID','Indicadores segregados en los que mide la Unidad');
@@ -29,16 +32,17 @@ define('TXT_USERS_DISP','Usuarios disponibles');
 define('TXT_VINC_USERS','Vincular usuarios');
 define('TXT_DESVINC_USERS','Desvincular usuarios');
 define('TXT_ARCHIVOS_PROC', 'Archivos del proceso: ');
+define('TXT_SEL','Seleccionar...');
 define('TXT_SEL_UNO','Seleccionar uno...');
-define('TXT_DATOS', 'Datos');
+define('TXT_DATOS', 'Datos');//También existe como FIELD_DATOS
 define('TXT_MED_DATO', 'Mediciones del dato');
+define('TXT_MED_ACARGO', 'Mediciones a su cargo');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
-
 define('TXT_DATO', 'Dato');
 define('TXT_FICHA_DATO', 'Ficha del dato: ');
 define('TXT_OTRAS_PROP', 'Otras propiedades');
-define('TXT_SUBUNIDS','Subunidades');
-define('TXT_SUBUNID_AFECT', 'Subunidades afectadas');
+define('TXT_SUBUNIDS','Subunidades');//También existe como FIELD_SUBUNIDS
+define('TXT_SUBUNID_AFECT', 'Subunidades afectadas');//También existe como FIELD_SUBUNID_AFECT
 define('TXT_NULL', 'NULO');
 define('TXT_CANCEL', 'Cancelar');
 define('TXT_NEW_FILE_UP', 'Subir nuevo archivo');
@@ -77,7 +81,6 @@ define('TXT_CREAR_DIM','Crear dimensión');
 define('TXT_CREAR_INDIC','Crear indicador');
 define('TXT_EDIT_DIMS','Edición de dimensiones');
 define('TXT_VAL_EDIT','Edición de valores');
-
 define('TXT_LIST_UNID','Lista de unidades');
 define('TXT_INDIC_LISTAR','Listar indicadores');
 define('TXT_LIST_DIM','Lista de dimensiones');
@@ -93,6 +96,7 @@ define('TXT_EDIT_PROP','Editar propiedades');
 define('TXT_EDIT_VAL','Editar valores');
 define('TXT_EDIT_DIM','Editar dimensión');
 define('TXT_IMPORT_VAL','Importar valores');
+define('TXT_VOLVER','Volver al');
 define('TXT_VOLVER_LIST','Volver al listado');
 define('TXT_VAL_REF','Valores de referencia');
 define('TXT_VAL_REC','Valores recogidos');
@@ -148,18 +152,53 @@ define('TXT_FOOTER','ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIO
 define('TXT_OTROS_DAT','Otros datos');
 define('TXT_ELEG_UNO','Elegir uno si procede');
 define('TXT_INFORME_IC','Informe generado por ICASUS');
+define('TXT_INFORME_REB','Informe Rebiun');//2012??
 define('TXT_GRAFIC_INDIC_VAL','Gráfica con los valores del indicador');
 define('TXT_DAT_INDIC','Datos del indicador');
 define('TXT_GEN_INFO_WORD_INDIC','Generar un informe en Word de este indicador');
 define('TXT_RTF','Rtf');
 define('TXT_EXCEL','Excel');
 define('TXT_EXPORT_EXCEL_INDIC','Exportar los datos del indicador a Excel');
+define('TXT_INDIC_PUBLIC','Indicadores públicos');
+define('TXT_INDIC_SUBUNID_VAL','Valores de las subunidades para');
+define('TXT_CONFIRM','Por favor, confirme que desea');
+define('TXT_INDIC_CONFIRM_ASIG_MED','Por favor, confirme si desea asignar esta medición.');
+define('TXT_INDIC_ACT_MED','Marque la casilla si además quiere activarla');
+define('TXT_MED_ACT_TODAS','Activar todas las mediciones.');
+define('TXT_MED_DESACT_TODAS',' Desactivar todas las mediciones.');
+define('TXT_RANGO_FECHAS','Rango de fechas');
+define('TXT_NO_ASIG','No asignado');
+define('TXT_DET_DAT_REBIUN','Detalle datos Rebiun');//2012
+define('TXT_SUMA_DAT_REB','Suma Datos Rebiun');
+define('TXT_PROMEDIO_DAT_REB','Promedio Datos Rebiun');
+define('TXT_EXPORT_CSV_DET_DAT_REBIUN','Exportar en CSV detalle datos Rebiun');
+define('TXT_EXPORT_CSV_SUM_DAT_REBIUN','Exportar en CSV suma datos Rebiun');
+define('TXT_EXPORT_CSV_PROM_DAT_REBIUN','Exportar en CSV promedio datos Rebiun');
+define('TXT_INICIO','Inicio');
+define('TXT_INDIC_ACARGO','Indicadores a su cargo');
+define('TXT_REG_EVENTOS','Registro de eventos');
+define('TXT_BIENVENIDO','Bienvenido a Icasus');
+define('TXT_UNIVERSIDAD','Universidad de Sevilla');
+define('TXT_LOGIN_BASICO_PARTE1','es una aplicación web para la gestión de la calidad en la');
+define('TXT_LOGIN_BASICO_PARTE2','Para acceder al sistema es necesario ser miembro activo de alguno de los grupos de calidad de la Universidad de Sevilla y solicitar autorización de acceso al responsable de su grupo de calidad.');
+define('TXT_LOGIN_BASICO_PARTE3','Icasus ha sido desarrollado por el');
+define('TXT_LOGIN_BASICO_PARTE4','y puede utilizarse como');
+define('TXT_LOGIN_BASICO_PARTE5','Puede bajar una primera versión del');
+define('TXT_LOGIN_BASICO_PARTE6','en formato PDF. Revisión disponible: 26 mayo 2010');
+define('TXT_AREA_REC_HUM','Área de Recursos Humanos de la Universidad de Sevilla');
+define('TXT_SOFT_LIBRE','Software Libre');
+define('TXT_MANUAL','Manual de referencia rápida de Icasus');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_REP_GRAFIC','Representación gráfica del indicador');
+define('TXT_EXPORT_CSV','Exportar en CSV');
 
+//Texto botones
+define('TXT_BTN_ENVIAR','Enviar');
 
+//-------------------------------------------------------------------------------------
 //NOTIFICACIONES/AVISOS: MSG_[Nombre]
+//-------------------------------------------------------------------------------------
 
 define('MSG_UNID_NO_PROC','No hay procesos definidos para esta Unidad.');
 define('MSG_INDIC_NO_UNID_SUP','No hay indicadores definidos en la unidad superior.');
@@ -169,11 +208,12 @@ define('MSG_UNID_MOD','La unidad se ha modificado con los datos que aparecen a c
 define('MSG_UNID_NO_USERS','No se han vinculado usuarios a esta Unidad.');
 define('MSG_UNID_NO_DATOS','No hay datos definidos para esta Unidad.');
 define('MSG_UNID_NO_INDIC','No hay indicadores definidos para esta Unidad.');
-
+define('MSG_NO_DEF','No se han definido.');
 define('MSG_UNID_SUP_NO_PROC','La Unidad madre no tiene procesos.');
 define('MSG_UNID_NO_SEG','Esta Unidad no mide indicadores segregados.');
 define('MSG_UNID_NO_SUBUNIDS','Esta unidad no tiene subunidades.');
 define('MSG_NO_SUBUNID_DATO_ASIG','No se han asignado subunidades a este dato (corregir)');
+define('MSG_INDIC_NO_SUBUNID_ASIG','No se han asignado subunidades a este indicador (corregir)');
 define('MSG_INDIC_NO_VAL','No hay valores recogidos para este indicador.');
 define('MSG_INDIC_NO_DATOS','No hay datos.');
 define('MSG_PROC_NO_INDIC','Este proceso no tiene indicadores.');
@@ -202,7 +242,9 @@ define('MSG_EXPORT_OK','Los datos se han exportado correctamente: ');
 define('MSG_INDIC_COPY','Indicadores copiados.');
 define('MSG_INDIC_NO_PUBLIC','Este indicador no está definido como público.');
 
+//----------------------------------------------------------------------------------
 //MENSAJES DE ERROR: ERR_[Nombre]
+//----------------------------------------------------------------------------------
 
 define('ERR_ERR', 'Error');
 define('ERR_404', 'Error 404: no encontramos la página que ha solicitado:');
@@ -242,12 +284,16 @@ define('ERR_GRABAR','No se ha podido grabar el dato.');
 define('ERR_INDIC_GRABAR','No se ha podido grabar el indicador.');
 define('ERR_DATO_MOSTRAR','No se puede mostrar el dato, el identificador no existe en la base de datos.');
 define('ERR_INDIC_MOSTRAR','No se puede mostrar el indicador, el identificador no existe en la base de datos.');
-
 define('ERR_NO_AUT_MOD','No tiene permisos para acceder a este módulo de la aplicación.');
 define('ERR_CREA_DIM','No se ha podido crear la dimensión.');
 define('ERR_INFORM_INDIC','No se puede generar el informe del indicador por falta de parámetros.');
+define('ERR_LOGIN','Usuario o clave incorrecta.');
+define('ERR_LOGIN_SSO','El usuario pertenece al colectivo que tiene permiso para utilizar esta herramienta pero no se ha podido dar de alta en la herramienta. Contactar con icasus@us.es');
+define('ERR_LOGIN_SSO_AUT','La relacion de este usuario con la Universidad no es la definida para utilizar esta herramienta. Contactar con icasus@us.es');
 
+//-----------------------------------------------------------------------------------
 //CAMPOS EN LAS TABLAS: FIELD_[Nombre]
+//-----------------------------------------------------------------------------------
 
 define('FIELD_ID','Identificador');
 define('FIELD_ACCIONES','Acciones');
@@ -270,6 +316,7 @@ define('FIELD_PUESTO', 'Puesto');
 define('FIELD_UNID_SUP', 'Unidad superior');
 define('FIELD_INDIC', 'Indicador');
 define('FIELD_FECHA', 'Fecha');
+define('FIELD_FECHA_HORA', 'Fecha/Hora');
 define('FIELD_VAL', 'Valor');
 define('FIELD_CALCULO','Cálculo');
 define('FIELD_WEB', 'Sitio web');
@@ -279,7 +326,7 @@ define('FIELD_TEL', 'Teléfono');
 define('FIELD_FUENTE','Fuente');
 define('FIELD_FUENTE_DAT','Fuente de datos');
 define('FIELD_FUENTE_INFO','Fuente de información');
-define('FIELD_DATOS', 'Datos');
+define('FIELD_DATOS', 'Datos');//También existe como TXT_DATOS
 define('FIELD_DAT_REL','Datos relacionados');
 define('FIELD_UNID_GEN','Unidad generadora');
 define('FIELD_HISTORICO','Histórico');
@@ -304,6 +351,18 @@ define('FIELD_AGREG','Agregado');
 define('FIELD_MET','Método de comprobación/evidencia');
 define('FIELD_INTERP','Interpretación');
 define('FIELD_INDIC_REL','Indicadores relacionados');
-define('FIELD_EFQM','EFQM');
+define('FIELD_EFQM','Criterios EFQM');
 define('FIELD_STANDARD','Estándar');
 define('FIELD_INFORM','Informe');
+define('FIELD_NIVEL_DES','Nivel de desagregación');
+define('FIELD_SUBUNID','Subunidad');
+define('FIELD_SUBUNIDS','Subunidades');//También existe como TXT_SUBUNIDS
+define('FIELD_SUBUNID_AFECT', 'Subunidades afectadas');//También existe como TXT_SUBUNID_AFECT
+define('FIELD_INICIO_PERIODO','Inicio del periodo');
+define('FIELD_FIN_PERIODO','Fin del periodo');
+define('FIELD_MEDIDOR','Medidor');
+define('FIELD_ETIQUETA','Etiqueta');
+define('FIELD_PENDIENTES','Pendientes');
+define('FIELD_EVENTO','Evento');
+define('FIELD_OBJETO','Objeto');
+define('FIELD_CLAVE','Clave');

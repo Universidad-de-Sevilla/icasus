@@ -18,6 +18,6 @@ $smarty->assign("suma",$rebiun_suma);
 $rebiun_promedio = $indicador->rebiun_2012_promedio();
 $smarty->assign("promedio",$rebiun_promedio);
 
-$smarty->assign("_nombre_pagina", "Informe Rebiun 2012");
+$smarty->assign("_nombre_pagina", TXT_INFORME_REB);
 $plantilla = "informe_rebiun.tpl";
-?>
+

@@ -8,10 +8,10 @@
 
 /**
  * Description of Util
- *
+ * Clase que contiene métodos estáticos de utilidad para la aplicación
  * @author joaquin
  */
-//Clase que contiene métodos estáticos de utilidad para la aplicación
+
 class Util
 {
 
