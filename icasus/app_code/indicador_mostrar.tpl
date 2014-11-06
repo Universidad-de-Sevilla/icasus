@@ -226,7 +226,7 @@
     <script src="js/highcharts.js" type="text/javascript"></script>
     <script src="js/exporting.js" type="text/javascript"></script>
     <script src="js/highchartStruct.js" type="text/javascript"></script>
-
+{literal}
     <script type="text/javascript">
         // Para cada contenedor de clase highchart vamos a pintar el gráfico
         $('.highchart').each(function () {
@@ -309,3 +309,4 @@
             }
         });
     </script>
+{/literal}
