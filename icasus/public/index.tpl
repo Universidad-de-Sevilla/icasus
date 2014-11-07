@@ -8,7 +8,7 @@
     <!--<![endif]-->
     <head>
         <meta charset="utf-8">
-        <title>{$_nombre_pagina} - {$smarty.const.TXT_TITULO}</title>
+        <title>{$_nombre_pagina} - {$smarty.const.TXT_ICASUS} - {$smarty.const.TXT_UNIVERSIDAD}</title>
         <meta name="description" content="Gestión de Indicadores de Calidad">
 
         <!-- iPhone, iPad and Android specific settings -->	
@@ -99,7 +99,8 @@
     <body>
         <div id="wrapper">	
             {if isset($_usuario)}
-            {include file='menu.tpl'}{/if}
+                {include file='menu.tpl'}
+            {/if}
             <div id="main_container" class="main_container container_16 clearfix">
                 <div id="nav_top" class="clearfix round_top">
 
@@ -148,7 +149,7 @@
 
                     {* el cuerpo del template va aqui *}
                     {include file=$plantilla}
-                    
+
                     {*footer*}
                     {include file='footer.tpl'}
                 </div>

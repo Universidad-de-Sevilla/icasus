@@ -21,7 +21,7 @@ else if (isset($_REQUEST["id_dato"]))
 }
 else
 {
-  $error = "Faltan parámetros para mostrar la lista de mediciones";
+  $error = ERR_PARAM;
   header("location:index.php?page=entidad_listar&error=$error");
 }
 
@@ -36,7 +36,8 @@ $smarty->assign('tipo',$tipo);
 
 
 $medicion = new Medicion();
-if ($mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio"))
+$mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+if ($mediciones)
 {
   $smarty->assign('mediciones',$mediciones);
   $paneles = array();
@@ -74,5 +75,5 @@ if ($mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo
 $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador,$entidad->id);
 $smarty->assign('subunidades_mediciones',$subunidades_mediciones);
 
-$smarty->assign('_nombre_pagina', "Gestión de mediciones: $indicador->nombre");
+$smarty->assign('_nombre_pagina', TXT_MED_GESTION.": $indicador->nombre");
 $plantilla = 'medicion_listar.tpl';

@@ -12,7 +12,6 @@
 //TEXTOS: TXT_[Nombre]
 //---------------------------------------------------------------------------------
 
-define('TXT_TITULO', 'ICASUS - Universidad de Sevilla');
 define('TXT_ICASUS', 'ICASUS');
 define('TXT_INDIC_PROP','Indicadores propios de la Unidad');
 define('TXT_INDIC_UNID_SUP','Indicadores de la Unidad superior');
@@ -53,14 +52,20 @@ define('TXT_UPDATE_FILE', 'Actualizar archivo');
 define('TXT_NEW_FILE', 'Nuevo archivo');
 define('TXT_NEW_UNID', 'Nueva unidad');
 define('TXT_NEW_INDIC', 'Nuevo indicador');
+define('TXT_NEW_PAGE', 'Nueva página');
+define('TXT_NEW_HELP_PAGE', 'Nueva página de ayuda');
 define('TXT_NEW_DATO', 'Nuevo dato');
 define('TXT_DELETE_FILE', 'Borrar archivo');
+define('TXT_VER_UNID', 'Ver unidad');
 define('TXT_VER_PROC', 'Ver procesos');
 define('TXT_VER_INDIC', 'Ver indicadores');
 define('TXT_VER_DATOS', 'Ver datos');
 define('TXT_VOLVER_PROC', 'Volver al proceso');
+define('TXT_VOLVER_MED', 'Volver a las mediciones');
+define('TXT_VOLVER_INDICE', 'Volver al índice');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
 define('TXT_DATO_PARAM', 'Parámetros del dato');
+define('TXT_CONSULT', 'Consulta avanzada');
 define('TXT_CONSULT_AVAN', 'Consulta avanzada de datos e indicadores');
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CONTENT_OF', 'Contenido de');
@@ -74,6 +79,7 @@ define('TXT_PROC_FILES','Procesar archivos');
 define('TXT_CUADROS_MANDO','Cuadros de mando');
 define('TXT_CUADROS_MANDO_PUBLIC','Cuadros de mando públicos');
 define('TXT_NEW_CUADRO','Nuevo cuadro de mando');
+define('TXT_NEW_PANEL','Nuevo panel');
 define('TXT_CREAR_CUAD_MANDO','Crear nuevo cuadro de mando');
 define('TXT_TU_CUADROS_MANDO','Tus cuadros de mando');
 define('TXT_CREAR_DATO','Crear dato');
@@ -82,6 +88,7 @@ define('TXT_CREAR_INDIC','Crear indicador');
 define('TXT_EDIT_DIMS','Edición de dimensiones');
 define('TXT_VAL_EDIT','Edición de valores');
 define('TXT_LIST_UNID','Lista de unidades');
+define('TXT_PROC_LISTAR','Listar procesos');
 define('TXT_INDIC_LISTAR','Listar indicadores');
 define('TXT_LIST_DIM','Lista de dimensiones');
 define('TXT_DAT_LISTAR','Listar datos');
@@ -98,7 +105,7 @@ define('TXT_EDIT_DIM','Editar dimensión');
 define('TXT_IMPORT_VAL','Importar valores');
 define('TXT_VOLVER','Volver al');
 define('TXT_VOLVER_LIST','Volver al listado');
-define('TXT_VAL_REF','Valores de referencia');
+define('TXT_VAL_REF','Valores de referencia');//También existe como FIELD_VAL_REF
 define('TXT_VAL_REC','Valores recogidos');
 define('TXT_REL_DIM','Relación de dimensiones');
 define('TXT_BARRAS','Barras');
@@ -128,6 +135,7 @@ define('TXT_MED_DES','Medición desagregada en las subunidades y cumplimentada p
 define('TXT_MED_DES_CEN','Medición desagregada en las subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
 define('TXT_BORRAR','Borrar');
 define('TXT_BORRAR_INDIC','Borrar indicador');
+define('TXT_MED_BORRAR','Borrar medición');
 define('TXT_EDIT','Editar');
 define('TXT_INDEF','Indefinido');
 define('TXT_PROMED','Promedio');
@@ -179,15 +187,37 @@ define('TXT_INDIC_ACARGO','Indicadores a su cargo');
 define('TXT_REG_EVENTOS','Registro de eventos');
 define('TXT_BIENVENIDO','Bienvenido a Icasus');
 define('TXT_UNIVERSIDAD','Universidad de Sevilla');
-define('TXT_LOGIN_BASICO_PARTE1','es una aplicación web para la gestión de la calidad en la');
-define('TXT_LOGIN_BASICO_PARTE2','Para acceder al sistema es necesario ser miembro activo de alguno de los grupos de calidad de la Universidad de Sevilla y solicitar autorización de acceso al responsable de su grupo de calidad.');
-define('TXT_LOGIN_BASICO_PARTE3','Icasus ha sido desarrollado por el');
-define('TXT_LOGIN_BASICO_PARTE4','y puede utilizarse como');
-define('TXT_LOGIN_BASICO_PARTE5','Puede bajar una primera versión del');
-define('TXT_LOGIN_BASICO_PARTE6','en formato PDF. Revisión disponible: 26 mayo 2010');
+define('TXT_LOGIN','Iniciar sesión');
+define('TXT_LOGIN_PARTE1','es una aplicación web para la gestión de la calidad en la');
+define('TXT_LOGIN_PARTE2','Para acceder al sistema es necesario ser miembro activo de alguno de los grupos de calidad de la Universidad de Sevilla y solicitar autorización de acceso al responsable de su grupo de calidad.');
+define('TXT_LOGIN_PARTE3','Icasus ha sido desarrollado por el');
+define('TXT_LOGIN_PARTE4','y puede utilizarse como');
+define('TXT_LOGIN_PARTE5','Puede bajar una primera versión del');
+define('TXT_LOGIN_PARTE6','en formato PDF. Revisión disponible: 26 mayo 2010');
 define('TXT_AREA_REC_HUM','Área de Recursos Humanos de la Universidad de Sevilla');
 define('TXT_SOFT_LIBRE','Software Libre');
 define('TXT_MANUAL','Manual de referencia rápida de Icasus');
+define('TXT_MED_PROGRAM','Programar medición');
+define('TXT_MED_VALORES','Valor o conjunto de valores de la medición actual');
+define('TXT_MED_DATOS','Datos de la medición');
+define('TXT_MED_GESTION','Gestión de mediciones');
+define('TXT_MED_AGREGAR','Agregar medición');
+define('TXT_TABLA_VAL','Tabla de valores');
+define('TXT_RESPONSABLES_GRABAR','Responsables de grabación');
+define('TXT_UNIDS_MEDS_INDIC','Unidades con mediciones en el indicador');
+define('TXT_MED_SEL_RESP','Elegir nuevo responsable grabación ...');
+define('TXT_CERRAR_SESION','Cerrar sesión');
+define('TXT_AYUDA','Ayuda');
+define('TXT_MIS_NOTAS','Mis notas');
+define('TXT_USER_NOTAS','Notas del usuario');
+define('TXT_UNID_ACTUAL','Unidad actual');
+define('TXT_INTRO_TEXTO','Introduce texto');
+define('TXT_MANUAL','Manual');
+define('TXT_PAGE_EDIT','Editar página');
+define('TXT_PAGE_TITULO','Título de página');
+define('TXT_BUSCAR_INDIC_BASE','Buscar Indicador base');
+define('TXT_BUSCAR_INDIC_COMPLEMENT','Buscar Indicadores complementarios');
+
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_REP_GRAFIC','Representación gráfica del indicador');
@@ -195,6 +225,8 @@ define('TXT_EXPORT_CSV','Exportar en CSV');
 
 //Texto botones
 define('TXT_BTN_ENVIAR','Enviar');
+define('TXT_BTN_GUARDAR','Guardar');
+define('TXT_BTN_GRABAR_NOTA','Grabar nota');
 
 //-------------------------------------------------------------------------------------
 //NOTIFICACIONES/AVISOS: MSG_[Nombre]
@@ -224,6 +256,7 @@ define('MSG_EXITO_OP', 'Operación realizada con éxito.');
 define('MSG_NO_MET_SOL', 'No existe el método solicitado.');
 define('MSG_NO_MED_INDIC','Todavía no se han definido mediciones para este indicador.');
 define('MSG_NO_DAT_INDIC','Todavía no se han introducido datos en este indicador.');
+define('MSG_NO_MED_TIPO','Todavía no se han establecido mediciones para este');
 define('MSG_FALTAN_PARAM_MET', 'Faltan parámetros para ejecutar el método');
 define('MSG_CONFIRM_DEL_FILE', 'Por favor, confirme si desea borrar el archivo.');
 define('MSG_FILE_CORRECT_UPLOAD', 'Se ha subido correctamente el archivo.');
@@ -236,11 +269,20 @@ define('MSG_DIM_CREADA','Se ha creado una dimensión.');
 define('MSG_DIM_EDITED','Se ha modificado una dimensión.');
 define('MSG_UNID_CREADA','La unidad se ha creado correctamente con los datos que aparecen a continuación: ');
 define('MSG_UNID_NO_ASIG','No tiene asignada ninguna unidad.');
+define('MSG_MED_NO_ASIG','No tiene asignada ninguna medición.');
 define('MSG_ERR','Por favor inténtelo de nuevo, si el problema persiste póngase en contacto con nosotros en la dirección: ');
 define('MSG_NO_SESION','Debe iniciar sesión.');
 define('MSG_EXPORT_OK','Los datos se han exportado correctamente: ');
 define('MSG_INDIC_COPY','Indicadores copiados.');
 define('MSG_INDIC_NO_PUBLIC','Este indicador no está definido como público.');
+define('MSG_MED_BORRADA','La medición se ha borrado con éxito.');
+define('MSG_INDIC_NO_VAL_REF','No se han definido valores de referencia para este indicador.');
+define('MSG_DAT_NO_VAL_REF','Es un dato y éstos no tienen asociados valores de referencia.');
+define('MSG_MED_CREADA','Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
+define('MSG_GUARDAR_OK','Se han guardado los cambios correctamente.');
+define('MSG_FIELD_REQ','Campo requerido');
+define('MSG_NEW_PAGE_OK','La página se ha creado correctamente.');
+define('MSG_PAGE_EDIT_OK','La página se ha modificado correctamente.');
 
 //----------------------------------------------------------------------------------
 //MENSAJES DE ERROR: ERR_[Nombre]
@@ -248,6 +290,11 @@ define('MSG_INDIC_NO_PUBLIC','Este indicador no está definido como público.');
 
 define('ERR_ERR', 'Error');
 define('ERR_404', 'Error 404: no encontramos la página que ha solicitado:');
+define('ERR_AUT', 'No está autorizado para realizar esta operación.');
+define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de creación de medición.');
+define('ERR_MED_AUT', 'No tiene permisos suficientes para agregar mediciones a este');
+define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
+define('ERR_OP_BD', 'No ha podido realizarse la operación por un error en la base de datos.');
 define('ERR_CON_BD', 'Error de conexión a la base de datos.');
 define('ERR_CONSULTA_OP', 'Fallo en la consulta getOperador.');
 define('ERR_CONSULTA_EXE', 'Fallo en la consulta ejecución');
@@ -290,6 +337,10 @@ define('ERR_INFORM_INDIC','No se puede generar el informe del indicador por falt
 define('ERR_LOGIN','Usuario o clave incorrecta.');
 define('ERR_LOGIN_SSO','El usuario pertenece al colectivo que tiene permiso para utilizar esta herramienta pero no se ha podido dar de alta en la herramienta. Contactar con icasus@us.es');
 define('ERR_LOGIN_SSO_AUT','La relacion de este usuario con la Universidad no es la definida para utilizar esta herramienta. Contactar con icasus@us.es');
+define('ERR_MED_NO_VAL','Error: no existen valores pendientes ni recogidos para esta medición.');
+define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la medición, inténtelo de nuevo o contacte con los administradores de Icasus.');
+define('ERR_GUARDAR','Hubo un problema, no se han podido guardar los cambios.');
+
 
 //-----------------------------------------------------------------------------------
 //CAMPOS EN LAS TABLAS: FIELD_[Nombre]
@@ -301,6 +352,7 @@ define('FIELD_RESP','Responsable');
 define('FIELD_RESP_SEG','Responsable de seguimiento');
 define('FIELD_RESP_MED','Responsable de medición');
 define('FIELD_RESP_DATO','Responsable del dato');
+define('FIELD_RESP_GRABAR','Responsable de grabación');
 define('FIELD_TITULO', 'Título');
 define('FIELD_FILE', 'Archivo');
 define('FIELD_DESC', 'Descripción');
@@ -347,6 +399,7 @@ define('FIELD_CREAC','Creación');
 define('FIELD_MOD','Modificación');
 define('FIELD_VERSION','Versión');
 define('FIELD_FECHA_REV','Fecha de revisión');
+define('FIELD_FECHA_RECOGIDA','Fecha recogida');
 define('FIELD_AGREG','Agregado');
 define('FIELD_MET','Método de comprobación/evidencia');
 define('FIELD_INTERP','Interpretación');
@@ -360,9 +413,23 @@ define('FIELD_SUBUNIDS','Subunidades');//También existe como TXT_SUBUNIDS
 define('FIELD_SUBUNID_AFECT', 'Subunidades afectadas');//También existe como TXT_SUBUNID_AFECT
 define('FIELD_INICIO_PERIODO','Inicio del periodo');
 define('FIELD_FIN_PERIODO','Fin del periodo');
+define('FIELD_INICIO_GRABACION','Inicio de grabación');
+define('FIELD_FIN_GRABACION','Fin de grabación');
 define('FIELD_MEDIDOR','Medidor');
 define('FIELD_ETIQUETA','Etiqueta');
 define('FIELD_PENDIENTES','Pendientes');
 define('FIELD_EVENTO','Evento');
 define('FIELD_OBJETO','Objeto');
 define('FIELD_CLAVE','Clave');
+define('FIELD_MED','Medición');
+define('FIELD_VAL_REF','Valores de referencia');
+define('FIELD_USER_GRABA','Usuario que graba');
+define('FIELD_CAMBIO_A','Cambio a:');
+define('FIELD_ALIAS','Alias');
+define('FIELD_PAGE_CONTENT','Contenido de la página');
+define('FIELD_ORDEN','Orden');
+define('FIELD_ANCHO','Ancho');
+define('FIELD_ANYOS','Años');
+define('FIELD_INDIC_BASE','Indicador base');
+define('FIELD_INDIC_COMPLEMENT','Indicadores complementarios');
+define('FIELD_TOTAL','Total');

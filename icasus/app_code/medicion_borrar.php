@@ -53,12 +53,12 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]) AND isset($_REQ
     $adodb->Execute($query3);
     if ($adodb->HasFailedTrans())
     {
-      $error = "No ha podido realizarse la operación por un error en la base de datos.";
+      $error = ERR_OP_BD;
       $estado = "error=$error";
     }
     else
     {
-      $aviso = "La medición se ha borrado con éxito.";
+      $aviso = MSG_MED_BORRADA;
       $estado = "aviso=$aviso";
     }
     $adodb->CompleteTrans();
@@ -67,13 +67,13 @@ if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]) AND isset($_REQ
   }
   else
   {
-    $error = "No está autorizado para realizar esta operación.";
+    $error = ERR_AUT;
     header("location:index.php?page=medicion_editar&id_medicion=$id_medicion&id_entidad=$id_entidad&tipo=$tipo&error=$error");
   }
 }
 else
 {
-  $error = "Faltan parámetros para borrar la medición";
+  $error = ERR_PARAM;
   header("location:index.php?error=$error");
 }
-?>
+

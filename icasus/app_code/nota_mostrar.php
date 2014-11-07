@@ -9,6 +9,6 @@
 global $smarty;
 global $plantilla;
 
-$smarty->assign('_nombre_pagina', 'Notas del usuario');
+$smarty->assign('_nombre_pagina', TXT_USER_NOTAS);
 $plantilla = 'nota_mostrar.tpl';
-?>
+

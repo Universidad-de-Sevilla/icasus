@@ -27,7 +27,7 @@
 //           UTF8
 ///////////////////////////////////////
 define("PARANOID", 1); //FILTER_SANITIZE_STRING
-define("SQL", 2); //FILTER_CALLBACK:function mysqlCleaner($data)
+define("SQL", 2); //FILTER_CALLBACK,array("options"=>"Util::mysqlCleaner")
 define("SYSTEM", 4); //No se usa
 define("HTML", 8); //FILTER_SANITIZE_SPECIAL_CHARS
 define("INT", 16); //FILTER_SANITIZE_NUMBER_INT

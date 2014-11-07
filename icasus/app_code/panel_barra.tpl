@@ -17,7 +17,7 @@
 </div>
 <!--fin dialog -->
 <fieldset class="label_side">
-	<label>Nombre</label>
+	<label>{$smarty.const.FIELD_NAME}</label>
 	<div>
 		<input class="required text" type="text" name="nombre"></input>
 		<div class="required_tag tooltip hover left"></div>
@@ -25,7 +25,7 @@
 </fieldset>
 
 <fieldset class="label_side">
-	<label>Orden</label>
+	<label>{$smarty.const.FIELD_ORDEN}</label>
 	<div class="clearfix">
 		<div class="col_25">
 			<input class="text required" type="text" name="orden"></input>
@@ -35,7 +35,7 @@
 </fieldset>
 
 <fieldset class="label_side">
-	<label>Ancho<span></span></label>
+	<label>{$smarty.const.FIELD_ANCHO}<span></span></label>
 	<div class="clearfix">
 		<select name="ancho" class="required">
 			{section start=2 loop=17 name="size"}
@@ -50,7 +50,7 @@
 
 
 <fieldset class="label_side" id="indicador_base">
-	<label>Indicador Base<span></span></label>
+	<label>{$smarty.const.FIELD_INDIC_BASE}<span></span></label>
 		<div class="clearfix" >
 			<ul id="content_indicador_base" style="list-style:none"></ul>
 			<div class="required_tag tooltip hover left"></div>
@@ -61,7 +61,7 @@
 	<label><span></span></label>
 	<div class="clearfix">
 		<div class="col_25">
-			<input data-id_entidad="{$id_entidad}"class="text" placeholder="Buscar Indicador Base" name="buscar_indicador_base" id="buscar_indicador_base" type="text">
+			<input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_BUSCAR_INDIC_BASE}" name="buscar_indicador_base" id="buscar_indicador_base" type="text">
 		</div>
 	</div>
 	<div id="listado_indicadores_base" >
@@ -71,10 +71,10 @@
 <div class="columns clearfix" id="fila_periodicidad" style="display:none">
 	<div class="col_50">
 		<fieldset class="label_side">
-			<label>Periodicidad indicador base</label>
+			<label>{$smarty.const.FIELD_PERIOD} {$smarty.const.FIELD_INDIC_BASE}</label>
 			<div>
-			<input type="radio" class="tipo_periodicidad required" name="tipo_periodicidad" data-periodicidad="medicion" value="1" > Medición. 
-			<input type="radio" class="tipo_periodicidad required" name="tipo_periodicidad" data-periodicidad="años" value="2" > Años.
+			<input type="radio" class="tipo_periodicidad required" name="tipo_periodicidad" data-periodicidad="medicion" value="1" > {$smarty.const.FIELD_MED}
+			<input type="radio" class="tipo_periodicidad required" name="tipo_periodicidad" data-periodicidad="años" value="2" > {$smarty.const.FIELD_ANYOS}
 			</div>
 		</fieldset>
 
@@ -88,7 +88,7 @@
 </div>
 
 <fieldset class="label_side" id="indicadores_complementarios" style="display:none">
-	<label>Indicadores complementarios<span></span></label>
+	<label>{$smarty.const.FIELD_INDIC_COMPLEMENT}<span></span></label>
 		<div class="clearfix" >
 			<ul id="content_indicadores_complementarios" style="list-style:none"></ul>
 			<div class="required_tag tooltip hover left"></div>
@@ -99,7 +99,7 @@
 	<label><span></span></label>
 	<div class="clearfix">
 		<div class="col_25">
-			<input data-id_entidad="{$id_entidad}"class="text" placeholder="Buscar Indicadores Complementarios" name="buscar_indicador_complementario" id="buscar_indicador_complementario" type="text">
+			<input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_BUSCAR_INDIC_COMPLEMENT}" name="buscar_indicador_complementario" id="buscar_indicador_complementario" type="text">
 		</div>
 	</div>
 	<div id="listado_indicadores_complementarios" >
@@ -198,7 +198,7 @@ $('.tipo_periodicidad').on('change',function(){
 	<div class="clearfix">
 		<div class="col_50">
 				<input data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
-				name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}"data-nombre_subunidad="Total"> Total<br /> 
+				name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}"data-nombre_subunidad="Total"> {$smarty.const.FIELD_TOTAL}<br /> 
 			{foreach name=subunidades from=$indicador_subunidades item=item}
 				{if $smarty.foreach.subunidades.iteration == floor($indicador_subunidades|@count/2)+1 }
 					</div><div class="col_50 no_border">

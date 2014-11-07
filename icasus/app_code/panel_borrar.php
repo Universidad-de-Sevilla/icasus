@@ -22,6 +22,6 @@ if (!empty($id_panel))
 }
 else
 {
-	echo 'NOparametros';
+	echo ERR_PARAM;
 }	
-?>
+

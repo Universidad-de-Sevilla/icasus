@@ -73,4 +73,4 @@ if ($modulo == 'indicador_subunidades')
 }
 $smarty->assign('modulo' , $modulo);
 $plantilla = "panel_buscador.tpl";
-?>
+
