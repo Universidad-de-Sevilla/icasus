@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: usuario_listar.php
@@ -9,21 +10,21 @@ global $smarty;
 global $plantilla;
 
 $smarty->assign('_javascript', array('ordenatabla'));
-$smarty->assign('_nombre_pagina', 'Lista de usuarios');
+$smarty->assign('_nombre_pagina', TXT_USER_LIST);
 
 $usuario = new Usuario();
 if (isset($_REQUEST['criterio']))
 {
-  $criterio = sanitize($_REQUEST['criterio'],SQL);
-  $smarty->assign('criterio', $criterio);
-  $where = "nombre LIKE '%$criterio%' OR apellidos LIKE '%$criterio%' OR correo LIKE '%$criterio%' OR login LIKE '%$criterio%' ";
+    $criterio = sanitize($_REQUEST['criterio'], SQL);
+    $smarty->assign('criterio', $criterio);
+    $where = "nombre LIKE '%$criterio%' OR apellidos LIKE '%$criterio%' OR correo LIKE '%$criterio%' OR login LIKE '%$criterio%' ";
 }
 else
 {
-  $where = "1 = 1 ";
+    $where = "1 = 1 ";
 }
 $usuarios = $usuario->Find($where);
 
-$smarty->assign('usuarios',$usuarios);
+$smarty->assign('usuarios', $usuarios);
 $plantilla = 'usuario_listar.tpl';
-?>
+

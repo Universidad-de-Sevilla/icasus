@@ -20,12 +20,12 @@ if (isset($_REQUEST["id_entidad"]))
   $smarty->assign('procesos',$procesos);
 
   $smarty->assign('_javascript' , array('ordenatabla','proceso_borrar'));
-  $smarty->assign('_nombre_pagina' , "Lista de Procesos - " . $entidad->nombre);
+  $smarty->assign('_nombre_pagina' , TXT_PROC_LIST." - " . $entidad->nombre);
   $plantilla = 'proceso_listar.tpl';
 }
 else
 {
-  $error = "Faltan parámetros para mostrar el listado de procesos";
+  $error = ERR_PARAM;
   header("location:index.php?page=entidad_listar&error=$error");
 }
-?>
+

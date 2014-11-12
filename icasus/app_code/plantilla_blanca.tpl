@@ -1,1 +1,0 @@
-{if $resultado}{$resultado}{/if}

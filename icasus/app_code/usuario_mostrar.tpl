@@ -1,48 +1,48 @@
 <div class="flat_area grid_16">
-	<h2>Datos del usuario</h2>
+	<h2>{$smarty.const.TXT_USER_DAT}</h2>
 </div>
 
 <div class="box grid_16">
 	<div class="toggle_container">
 		<div class="block">
 			<fieldset class="label_side">
-				<label>Nombre</label>
+				<label>{$smarty.const.FIELD_NAME}</label>
 				<div class="clearfix">
 						<span>{$persona->nombre}</span>
 				</div>
 			</fieldset>	
 			<fieldset class="label_side">
-				<label>Apellidos</label>
+				<label>{$smarty.const.FIELD_APEL}</label>
 				<div class="clearfix">
 						<span>{$persona->apellidos}</span>
 				</div>
 			</fieldset>	
 			<fieldset class="label_side">
-				<label>Login</label>
+				<label>{$smarty.const.FIELD_LOGIN}</label>
 				<div class="clearfix">
 						<span>{$persona->login}</span>
 				</div>
 			</fieldset>	
 			<fieldset class="label_side">
-				<label>Correo</label>
+				<label>{$smarty.const.FIELD_CORREO}</label>
 				<div class="clearfix">
 						<span>{$persona->correo}</span>
 				</div>
 			</fieldset>	
 			<fieldset class="label_side">
-				<label>Tel&eacute;fono</label>
+				<label>{$smarty.const.FIELD_TEL}</label>
 				<div class="clearfix">
 						<span>{$persona->telefono}</span>
 				</div>
 			</fieldset>	
 			<fieldset class="label_side">
-				<label>Unidad de destino</label>
+				<label>{$smarty.const.FIELD_UNID_DEST}</label>
 				<div class="clearfix">
 						<span>{$persona->unidad_hominis}</span>
 				</div>
 			</fieldset>	
 			<fieldset class="label_side">
-				<label>Puesto de trabajo</label>
+				<label>{$smarty.const.FIELD_PUESTO}</label>
 				<div class="clearfix">
 						<span>{$persona->puesto}</span>
 				</div>
@@ -52,7 +52,7 @@
 </div>			
 
 <div class="flat_area grid_16">
-	<h2>Unidades asignadas</h2>
+	<h2>{$smarty.const.TXT_USER_UNIDS}</h2>
 </div>
 
 <div class="box grid_16">
@@ -60,7 +60,7 @@
     {if $persona->entidades}
       <table class="static"> 
         <thead>
-          <th>Unidad</th><th>Rol</th>
+          <th>{$smarty.const.TXT_UNID}</th><th>{$smarty.const.FIELD_ROL}</th>
         </thead>
         <tbody>
           {foreach $persona->entidades as $usuario_entidad}
@@ -69,7 +69,7 @@
         </tbody>
       </table>
     {else}
-      <div class="alert alert_blue">No tiene unidades asignadas</div>
+      <div class="alert alert_blue">{$smarty.const.MSG_UNID_NO_ASIG}</div>
     {/if}
 	</div>
 </div>	

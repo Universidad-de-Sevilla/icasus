@@ -33,6 +33,5 @@ if ($modulo == 'subunidades')
 	$smarty->assign("nombre_indicador",$nombre_indicador);
 }
 	$smarty->assign('modulo' , $modulo);
-	$smarty->assign('_nombre_pagina' , "Nuevo panel");
+	$smarty->assign('_nombre_pagina' , TXT_NEW_PANEL);
 	$plantilla = "$tipo.tpl";
-?>

@@ -2,7 +2,7 @@
   <div class="block">
     <div class="button_bar clearfix">
       <button class="light send_right" type="reset" value="Cancelar" name="proceso_cancel" 
-        onclick="history.back()">
+        onclick="history.back();">
         <div class="ui-icon ui-icon-closethick"></div>
         <span>Cancelar</span>
       </button>

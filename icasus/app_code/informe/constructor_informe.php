@@ -9,4 +9,4 @@
 //---------------------------------------------------------------------------------------------------
 $smarty->assign('_nombre_pagina' , "Constructor de informes");
 $plantilla = 'informes/constructor_informe.tpl';
-?>
+

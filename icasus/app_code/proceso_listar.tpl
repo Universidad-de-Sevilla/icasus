@@ -1,9 +1,9 @@
 <div class="box grid_16">
   <div class="block">	
     <div class="section clearfix" style="padding:5px;">
-        <a href="index.php?page=proceso_crear&id_entidad={$entidad->id}"><img src='/icons/ff16/cog_add.png' /> Crear proceso</a> 
+        <a href="index.php?page=proceso_crear&id_entidad={$entidad->id}"><img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}</a> 
         &nbsp; &nbsp; &nbsp;
-        <a href="index.php?page=entidad_datos&id_entidad={$entidad->id}"><img src='/icons/ff16/chart_organisation.png' /> Ficha de Unidad</a>
+        <a href="index.php?page=entidad_datos&id_entidad={$entidad->id}"><img src='/icons/ff16/chart_organisation.png' /> {$smarty.const.TXT_UNID_FICHA}</a>
     </div>
   </div>
 </div>
@@ -12,7 +12,7 @@
     {if $procesos}                   
       <table class="static"> 
         <thead>                       
-          <tr class="gradeX"><th>ID</th><th>Código</th><th>Nombre</th><th>Propietario</th></tr>
+          <tr class="gradeX"><th>{$smarty.const.FIELD_ID}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_PROPIETARIO}</th></tr>
         </thead>                      
         <tbody>                       
           {foreach from=$procesos item=proceso}
@@ -31,7 +31,7 @@
       </table>
     {else}
         <div class="section">
-          <p>No se ha definido ningún proceso para esta entidad</p>
+          <p>{$smarty.const.MSG_UNID_NO_PROC}</p>
         </div>
     {/if}
    </div>
@@ -39,7 +39,7 @@
 {if $entidad->id == 14}
 <div class="box grid_16">
   <div style="border:1px solid silver; padding:5px;">
-    <img src="images/mapa_procesos_biblioteca.png" border="0" usemap="#Map" style="align:center;" />
+    <img src="images/mapa_procesos_biblioteca.png" border="0" usemap="#Map" style="text-align:center;" />
     <map name="Map" id="Map">
       <area shape="rect" coords="96,66,263,94" href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1920" />
       <area shape="rect" coords="355,66,475,93" href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1921" />

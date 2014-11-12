@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: valor_borrar.php
@@ -11,31 +12,31 @@ global $smarty;
 global $basedatos;
 global $plantilla;
 
-if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_valor']) && isset($_REQUEST['id_entidad']) )
+if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_valor']) && isset($_REQUEST['id_entidad']))
 {
-	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
-	$id_indicador = sanitize($_REQUEST['id_indicador'],16);
-	$id_valor = sanitize($_REQUEST['id_valor'],16);
-	$valor = new Valor($basedatos);
+    $id_entidad = sanitize($_REQUEST['id_entidad'], 16);
+    $id_indicador = sanitize($_REQUEST['id_indicador'], 16);
+    $id_valor = sanitize($_REQUEST['id_valor'], 16);
+    $valor = new Valor($basedatos);
 
-	// Borra el valor
-	if ($valor->borrar($id_valor))
-	{
-		$aviso = 'Se ha borrado un valor.';
-		header("Location: index.php?page=indicador_datos&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
-	}
-	else
-	{
-		$error = $valor->error; 
-		$smarty->assign('_nombre_pagina','Error');
-		$smarty->assign('error', $error);
-		$plantilla = 'error.tpl';
-	}
-} 
+    // Borra el valor
+    if ($valor->borrar($id_valor))
+    {
+        $aviso = MSG_VAL_BORRADO;
+        header("Location: index.php?page=indicador_datos&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
+    }
+    else
+    {
+        $error = $valor->error;
+        $smarty->assign('_nombre_pagina', ERR);
+        $smarty->assign('error', $error);
+        $plantilla = 'error.tpl';
+    }
+}
 else // falta id_indicador o id_entidad
 {
-	$smarty->assign('error', 'Faltan parámetros para realizar esta acción.'); 
-	$smarty->assign('_nombre_pagina','Error');
-	$plantilla = 'error.tpl';
+    $smarty->assign('error', ERR_PARAM);
+    $smarty->assign('_nombre_pagina', ERR);
+    $plantilla = 'error.tpl';
 }
-?>
+

@@ -17,7 +17,7 @@
                 <a href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a> &nbsp; &nbsp;
                 <a href='index.php?page=indicador_subunidad_valor&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-                        src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_EDIT_VAL}</a> &nbsp; &nbsp; &nbsp;
+                        src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_EDIT_VALS}</a> &nbsp; &nbsp; &nbsp;
                 <a href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> &nbsp;
             </div>
