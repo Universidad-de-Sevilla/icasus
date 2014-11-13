@@ -18,11 +18,11 @@ $entidades = $ado_entidad->informe_entidad_indicador('UE01-');
 //inicio y titulo de la hoja 
 $excel = new PHPExcel();
 
-$excel->getActiveSheet()->setTitle("Indicadores ".date("d-m-Y"));
-$excel->getActiveSheet()->setCellValue('A1','Unidad');
-$excel->getActiveSheet()->setCellValue('B1','Indicador');
-$excel->getActiveSheet()->setCellValue('C1','Valor');
-$excel->getActiveSheet()->setCellValue('D1','Fecha');
+$excel->getActiveSheet()->setTitle(FIELD_INDICS." ".date("d-m-Y"));
+$excel->getActiveSheet()->setCellValue('A1',FIELD_UNID);
+$excel->getActiveSheet()->setCellValue('B1',FIELD_INDIC);
+$excel->getActiveSheet()->setCellValue('C1',FIELD_VAL);
+$excel->getActiveSheet()->setCellValue('D1',FIELD_FECHA);
 
 $i = 2;
 foreach($entidades as $entidad)
@@ -68,4 +68,4 @@ header('Content-Length: ' . filesize($archivo));
 ob_clean();
 flush();
 readfile($archivo);
-?>
+

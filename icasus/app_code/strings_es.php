@@ -19,7 +19,7 @@ define('TXT_INDIC_SEG_UNID', 'Indicadores segregados en los que mide la Unidad')
 define('TXT_ASIGNAR_USERS', 'Asignar usuarios');
 define('TXT_DESASIGNAR_USERS', 'Desasignar usuarios marcados');
 define('TXT_ALL_UNIDS', 'Todas las unidades');
-define('TXT_UNIDS', 'Unidades');
+define('TXT_UNIDS', 'Unidades');//También existe como FIELD_UNIDS
 define('TXT_UNID', 'Unidad');
 define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la unidad a la que se copiará el indicador.');
 define('TXT_ALTA_USERS', 'Alta de usuarios');
@@ -79,6 +79,7 @@ define('TXT_PROC_FICHA', 'Ficha del Proceso');
 define('TXT_ARCHIVOS', 'Archivos');
 define('TXT_SEL_FILE_TO_IMPORT', 'Elija un archivo para importar');
 define('TXT_PROC_FILES', 'Procesar archivos');
+define('TXT_CUADRO_MANDO', 'Cuadro de mando');
 define('TXT_CUADROS_MANDO', 'Cuadros de mando');
 define('TXT_CUADROS_MANDO_PUBLIC', 'Cuadros de mando públicos');
 define('TXT_NEW_CUADRO', 'Nuevo cuadro de mando');
@@ -110,9 +111,8 @@ define('TXT_EDIT_DIM', 'Editar dimensión');
 define('TXT_IMPORT_VAL', 'Importar valores');
 define('TXT_VOLVER', 'Volver al');
 define('TXT_VOLVER_LIST', 'Volver al listado');
-define('TXT_VAL_REF', 'Valores de referencia'); //También existe como FIELD_VAL_REF
+define('TXT_VAL_REF', 'Valores de referencia');
 define('TXT_VAL_REC', 'Valores recogidos');
-define('TXT_VAL_EDIT', 'Editar valor');
 define('TXT_REL_DIM', 'Relación de dimensiones');
 define('TXT_BARRAS', 'Barras');
 define('TXT_BARRAS_DESC', 'Puede mostrar varios grupos de indicadores para una subunidad determinada en forma de barras');
@@ -255,6 +255,23 @@ define('TXT_USER_DAT', 'Datos del usuario');
 define('TXT_REF_NEW', 'Nueva referencia');
 define('TXT_REF_EDIT', 'Editar valor de referencia');
 define('TXT_REF_CREAR', 'Crear nuevos valores de referencia');
+define('TXT_CONSTRUCTOR_INFORMES', 'Constructor de informes');
+define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
+define('TXT_DEPARTAMENTOS', 'Departamentos');
+define('TXT_BIBLIOTECAS', 'Bibliotecas');
+define('TXT_INFORM_SEL_INDIC', 'Seleccionar los indicadores que contendrá el informe:');
+define('TXT_NUM_CONVOCATORIAS', 'Número de convocatorias');
+define('TXT_PLAZO_CONVOCATORIAS', 'Plazo convocatorias');
+define('TXT_INDICE_PARTICIPACION', 'Índice de participación');
+define('TXT_INDICE_SATISFACCION', 'Índice de satisfacción general');
+define('TXT_VOL_TRAMITACION', 'Volumen tramitación');
+define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Volumen tramitación');
+define('TXT_PRESTAMO_USER', 'Préstamo por usuario potencial');
+define('TXT_INFORM_SEL_ANYO', 'Seleccionar los años que se reflejarán en el informe:');
+define('TXT_SEG_INDIC_DEPART', 'Seguimiento Indicadores de los Departamentos');
+define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, valores y fecha');
+define('TXT_INDIC_SUBUNID', 'Relación de indicadores de subentidades');
+
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_REP_GRAFIC', 'Representación gráfica del indicador');
@@ -264,6 +281,7 @@ define('TXT_ICON', 'Icono');
 //Texto botones
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CANCEL', 'Cancelar');
+define('TXT_GEN_INFO', 'Generar informe');
 define('TXT_BTN_ENVIAR', 'Enviar');
 define('TXT_BTN_GUARDAR', 'Guardar');
 define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');
@@ -486,7 +504,7 @@ define('FIELD_OBJETO', 'Objeto');
 define('FIELD_CLAVE', 'Clave de acceso');
 define('FIELD_REP_CLAVE', 'Repetir clave de acceso');
 define('FIELD_MED', 'Medición');
-define('FIELD_VAL_REF', 'Valores de referencia');
+define('FIELD_VAL_REF', 'Valor de referencia');
 define('FIELD_USER_GRABA', 'Usuario que graba');
 define('FIELD_CAMBIO_A', 'Cambio a:');
 define('FIELD_ALIAS', 'Alias');
@@ -514,4 +532,4 @@ define('FIELD_DET', 'Detalle');//También existe como TXT_DET
 define('FIELD_OBSERV', 'Observaciones');
 define('FIELD_VISIB_GRAFIC', 'Visible en gráfica');
 define('FIELD_ACTIVO', 'Activo');
-define('FIELD_VAL_REF', 'Valor de referencia');
+define('FIELD_UNIDS', 'Unidades');//También existe como TXT_UNIDS

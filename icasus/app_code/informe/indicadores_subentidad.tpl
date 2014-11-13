@@ -3,13 +3,13 @@
 {if $error}<p class='error'>{$error}</p>{/if}
 {if $smarty.get.error}<p class='error'>{$smarty.get.error}</p>{/if}
 
-<h3>Entidad: {$entidad.nombre_entidad}</h3>
-<h3>Relación de indicadores de subentidades</h3>
+<h3>{$smarty.const.FIELD_UNID}: {$entidad.nombre_entidad}</h3>
+<h3>{$smarty.const.TXT_INDIC_SUBUNID}</h3>
 {if $indicadores}
 	<table class='listing' id='sortable'>
 	<thead>
-		<tr><th>Unidad</th><th>Proceso</th><th>Código</th><th>Indicador</th>
-		<th>Formulaci&oacute;n</th><th>Formulación</th><th>Objetivo</th><th>Periodicidad</th><th>Fuente</th></tr>
+		<tr><th>{$smarty.const.FIELD_UNID}</th><th>Proceso{$smarty.const.FIELD_PROC}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_INDIC}</th>
+		<th>{$smarty.const.FIELD_FORM}</th><th>{$smarty.const.FIELD_FORM}</th><th>{$smarty.const.FIELD_OBJ}</th><th>{$smarty.const.FIELD_PERIOD}</th><th>{$smarty.const.FIELD_FUENTE}</th></tr>
 	</thead>
 		
 	<tbody>
@@ -29,5 +29,5 @@
 	</tbody>
 	</table>
 {else}
-	<p class='aviso'>No hay indicadores definidos para las subentidades de esta entidad.</p>
+	<p class='aviso'>No hay indicadores definidos para las subentidades de esta entidad.{$smarty.const.FIELD_VAL}</p>
 {/if}
