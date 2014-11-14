@@ -8,7 +8,7 @@
 {if $indicadores}
 	<table class='listing' id='sortable'>
 	<thead>
-		<tr><th>{$smarty.const.FIELD_UNID}</th><th>Proceso{$smarty.const.FIELD_PROC}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_INDIC}</th>
+		<tr><th>{$smarty.const.FIELD_UNID}</th><th>{$smarty.const.FIELD_PROC}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_INDIC}</th>
 		<th>{$smarty.const.FIELD_FORM}</th><th>{$smarty.const.FIELD_FORM}</th><th>{$smarty.const.FIELD_OBJ}</th><th>{$smarty.const.FIELD_PERIOD}</th><th>{$smarty.const.FIELD_FUENTE}</th></tr>
 	</thead>
 		
@@ -29,5 +29,5 @@
 	</tbody>
 	</table>
 {else}
-	<p class='aviso'>No hay indicadores definidos para las subentidades de esta entidad.{$smarty.const.FIELD_VAL}</p>
+	<p class='aviso'>{$smarty.const.MSG_UNID_SUBUNIDS_NO_INDIC}</p>
 {/if}

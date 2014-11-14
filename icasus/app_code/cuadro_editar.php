@@ -14,7 +14,7 @@ if ($id_cuadro) {
     $cuadro = new Cuadro();
     $cuadro->load("id = $id_cuadro");
     $smarty->assign('cuadro', $cuadro);
-    $smarty->assign('_nombre_pagina', 'Editando cuadro de mando');
+    $smarty->assign('_nombre_pagina', TXT_CUADRO_EDIT);
     $plantilla = 'cuadro_editar.tpl';
 } else {
     header("Location: index.php?page=cuadro_listar");

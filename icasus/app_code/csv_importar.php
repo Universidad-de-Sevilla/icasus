@@ -19,7 +19,7 @@ if ($id_entidad) {
     if ($usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad)) {
         $smarty->assign('id_entidad', $id_entidad);
         $plantilla = 'csv_importar.tpl';
-        $smarty->assign('_nombre_pagina', 'Importar fichero CSV');
+        $smarty->assign('_nombre_pagina', TXT_FILE_IMPORT_CSV);
     } else {
         $error = ERR_AUT_IMPORT_DAT_UNID;
         header('location:index.php?error=' . $error);

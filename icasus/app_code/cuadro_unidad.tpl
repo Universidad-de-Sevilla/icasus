@@ -63,7 +63,7 @@
                 {foreach from=$procesos_indicadores_superior item=item}
                     <li>
                         <a href="#" class="handle"></a>
-                        <h3 class="bar"  tipo="superior" id="{$item->id}"><a href="javascript:void(0)">Proceso: {$item->nombre}</a></h3>
+                        <h3 class="bar"  tipo="superior" id="{$item->id}"><a href="javascript:void(0)">{$smarty.const.FIELD_PROC}: {$item->nombre}</a></h3>
                         <div class="content" id="contenedor_superior_{$item->id}"> </div>
                     </li>
                 {/foreach}

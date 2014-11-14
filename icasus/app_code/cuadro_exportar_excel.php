@@ -14,13 +14,15 @@ global $basedatos;
 global $plantilla;
 
 // Esto es para prevenir que se cargue el script sin pasar por index.php
-if (!is_object($smarty)) {
+if (!is_object($smarty))
+{
     header('Location:index.php');
 }
 
 $id = filter_input(INPUT_GET | INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 //if (isset($_REQUEST['id']))
-if ($id) {
+if ($id)
+{
     $smarty->assign('_javascript', array('confirmar_borrar'));
 //	$id = sanitize($_REQUEST['id'],16);
     $cuadro = new Cuadro();
@@ -29,7 +31,7 @@ if ($id) {
     $indicadores = $cuadro->carga_indicadores();
     $smarty->assign('indicadores', $indicadores);
     $plantilla = 'cuadro_mostrar.tpl';
-    $smarty->assign('_nombre_pagina', "Cuadro de Mando: $cuadro->nombre");
+    $smarty->assign('_nombre_pagina', TXT_CUADRO_MANDO . ": $cuadro->nombre");
 
 //º:print_r($ado_indicador);
 //Librerias necesarias
@@ -41,14 +43,17 @@ if ($id) {
 
 //$i para que cada indicador vaya en hojas distintas.
     $i = 0;
-    foreach ($indicadores as $indicador) {
+    foreach ($indicadores as $indicador)
+    {
         $excel->setActiveSheetIndex($i);
         $excel->getActiveSheet()->setTitle($indicador->codigo);
         include ('exportar_excel_estilo.php');
-        if ($indicador->valores) {
+        if ($indicador->valores)
+        {
             //$j fila en la que debe empezar a escribir los datos.
             $j = 8;
-            foreach ($indicador->valores as $valor) {
+            foreach ($indicador->valores as $valor)
+            {
 
                 $excel->getActiveSheet()->setCellValue('B' . $j, date("m/Y", $valor['fecha_recogida']));
                 $excel->getActiveSheet()->setCellValue('C' . $j, $valor['valor']);
@@ -64,9 +69,11 @@ if ($id) {
             //Descomentar aqui, y comentar abajo, si queremos que solo salgan los indicadores que tenga valores.
             //$i=$i+1;
             //$excel->createSheet();
-        } else {
+        }
+        else
+        {
 
-            $excel->getActiveSheet()->setCellValue('B10', 'Este indicador no tiene valores');
+            $excel->getActiveSheet()->setCellValue('B10', MSG_INDIC_NO_VAL);
         }
         $i = $i + 1;
         $excel->createSheet();
@@ -80,7 +87,9 @@ if ($id) {
     //header("Content-Length:".filesize($Fichero));
     header("Content-Transfer-Encoding: binary");
     readfile('informes/cuadro' . $id . '.xls');
-} else {
+}
+else
+{
     //Si se llama a esta pagina si un id de cuadro se redirecciona al listado
     header('Location:index.php?page=cuadro_listar');
 }

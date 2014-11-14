@@ -13,5 +13,5 @@ $cuadros = $cuadro->find_joined($usuario->id);
 $smarty->assign('cuadros', $cuadros);
 
 $plantilla = 'cuadro_listar.tpl';
-$smarty->assign('_nombre_pagina', TXT_TU_CUADROS_MANDO);
+$smarty->assign('_nombre_pagina', TXT_CUADRO_MANDO_PROPIOS);
 

@@ -10,7 +10,7 @@
 
 <form class="datos" method="post" action="index.php?page=archivo_subir&dir={$directorio}" enctype="multipart/form-data" > 
     <input type="file" name="archivo" class="inp"/>
-    <input name="enviar" type="submit" value="Subir archivo" />
+    <input name="enviar" type="submit" value="{$smarty.const.TXT_FILE_UP}" />
 </form>
 
 <p>{$smarty.const.MSG_REN_FILE}</p>
@@ -27,7 +27,7 @@
         <td>{$archivo[1]}</td>
         <td><a href="index.php?page=archivo_borrar&fichero={$archivo[0]}&dir={$directorio}" 
             onclick="javascript: return confirm('{$smarty.const.MSG_CONFIRM_DEL_FILE} : {$archivo[0]}');"><img 
-            src='iconos/16x16/cross.png' title ='Borrar' alt='Borrar' /></a></td>
+            src='iconos/16x16/cross.png' title ='{$smarty.const.TXT_BORRAR}' alt='{$smarty.const.TXT_BORRAR}' /></a></td>
         </tr>
     {/if}
 {/foreach}

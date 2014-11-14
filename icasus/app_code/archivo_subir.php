@@ -19,8 +19,11 @@ if (!is_object($usuario)) {
 }
 
 //subir archivos
-if (isset($_FILES) && isset($_GET['dir'])) {
-    $dir = $_GET['dir'];
+//if (isset($_FILES) && isset($_GET['dir'])) 
+    if (isset($_FILES) && filter_has_var(INPUT_GET,'dir'))
+    {
+//    $dir = $_GET['dir'];
+    $dir = filter_input(INPUT_GET,'dir');
     if (move_uploaded_file($_FILES['archivo']['tmp_name'], 'upload' . '/' . $dir . '/' . $_FILES ['archivo']['name'])) {
         $aviso = MSG_EXITO_OP;
         header("Location: index.php?page=archivo_listar&dir=$dir&aviso=$aviso");

@@ -40,7 +40,7 @@ if ($id) {
 //cabecera de las paginas
     $header = &$rtf->addHeader('all');
     $header->addImage('/var/www/wiki/icasus/theme/usevilla/logo.jpg', $null);
-    $header->writeText('<tab>Cuadro de mando ' . $cuadro->nombre . '<tab><chdate>', new Font(), new ParFormat('right'));
+    $header->writeText('<tab>'.TXT_CUADRO_MANDO. ' '. $cuadro->nombre . '<tab><chdate>', new Font(), new ParFormat('right'));
 //Creo la seccion
     $sect = &$rtf->addSection();
 //Configuracion de la seccion creada para mostrar en word y tamaño pagina
@@ -73,18 +73,18 @@ if ($id) {
 
         $sect->writetext('<br /><br />');
         $sect->writetext('<strong>' . $elemento->codigo . '   ' . $elemento->nombre . '  </strong><br /><br />', $arial14, $null);
-        $sect->writetext('<strong>Proceso:      </strong>' . $elemento->proceso->nombre . '<br />');
-        $sect->writetext('<strong>Descripción:  </strong>' . $elemento->descripcion . '<br />');
-        $sect->writetext('<strong>Formulación:  </strong>' . $elemento->formulacion . '<br />');
+        $sect->writetext('<strong>'.FIELD_PROC.': </strong>' . $elemento->proceso->nombre . '<br />');
+        $sect->writetext('<strong>'.FIELD_DESC.': </strong>' . $elemento->descripcion . '<br />');
+        $sect->writetext('<strong>'.FIELD_FORM.': </strong>' . $elemento->formulacion . '<br />');
         $sect->addImage('/var/www/wiki/icasus/theme/usevilla/leyenda500.png', $null);
         $sect->addImage('/var/www/wiki/icasus/' . $elemento->ruta_imagen, $null);
         $sect->writetext('<br /><br />');
     }
     if ($cuadro->comentarios) {
-        $sect->writeText('<strong>Comentarios:       </strong><br /><tab>' . $cuadro->comentarios . '<br />');
+        $sect->writeText('<strong>'.FIELD_COMENTARIOS.': </strong><br /><tab>' . $cuadro->comentarios . '<br />');
     }
     $footer = &$rtf->addFooter('all');
-    $footer->writeText('Informe generado por ICASUS 0.5<tab><tab>pagina <pagenum>', new Font(), new ParFormat('right'));
+    $footer->writeText(TXT_INFORME_IC.'<tab><tab>'.TXT_PAGINA.'<pagenum>', new Font(), new ParFormat('right'));
     $rtf->sendRtf('cuadro_' . $id);
 } else {
     //Si se llama a esta pagina si un id de cuadro se redirecciona al listado

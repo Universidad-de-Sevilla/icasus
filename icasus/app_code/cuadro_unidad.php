@@ -21,7 +21,7 @@ if (!is_object($smarty)) {
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 //if (isset($_GET["id_entidad"]) AND $_GET["id_entidad"] >0)
-if ($id_entidad != 0) {
+if ($id_entidad > 0) {
 //	$id_entidad = sanitize($_GET["id_entidad"],2);
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
@@ -46,7 +46,7 @@ if ($id_entidad != 0) {
     $smarty->assign('procesos_indicadores_superior', $procesos_indicadores_superior);
 
     $plantilla = 'cuadro_unidad.tpl';
-    $smarty->assign('_nombre_pagina', "Cuadro resumen: $entidad->nombre");
+    $smarty->assign('_nombre_pagina', TXT_CUAD_RES.": $entidad->nombre");
 } else {
     $error = ERR_ENTIDAD;
     header("location:index.php?page=error&error=$error");

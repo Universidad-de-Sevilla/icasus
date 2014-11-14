@@ -4,7 +4,7 @@
             <div style="opacity: 1;" class="block">
                 <form>
                     <fieldset class="label_side">
-                        <label>Fecha</label>
+                        <label>{$smarty.const.FIELD_FECHA}</label>
                         <div>
                             {html_select_date id="Year" prefix="" class="required" year_empty="Seleccinar un año ..."
 					display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10

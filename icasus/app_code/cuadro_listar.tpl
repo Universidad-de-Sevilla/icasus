@@ -1,11 +1,11 @@
-<p><a href="index.php?page=cuadro_crear" title="Crear nuevo cuadro de mando">
-        <img	src="/icons/ff16/table_add.png" alt="icono" />{$smarty.const.TXT_CREAR_CUAD_MANDO}</a>
+<p><a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_NEW_CUADRO}">
+        <img	src="/icons/ff16/table_add.png" alt="{$smarty.const.TXT_ICON}" />{$smarty.const.TXT_NEW_CUADRO}</a>
 </p>
 
 {if $cuadros_propios|count > 0}
 
     <div class="box grid_16 single_datatable">
-        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_TU_CUADROS_MANDO}</h2>
+        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</h2>
         <div id="dt1" class="no_margin">
             <table class="display datatable"> 
                 <thead>
@@ -25,7 +25,7 @@
     </div><!-- .box grid16 single_datatable -->
 
 {else}
-    <h3>{$smarty.const.MSG_NO_DEF_CUADRO}<a href="index.php?page=cuadro_crear" title="Crear nuevo cuadro de mando">{$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
+    <h3>{$smarty.const.MSG_NO_DEF_CUADRO}<a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_NEW_CUADRO}">{$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
     {/if}
 
 {if $cuadros_publicos|count > 0}
@@ -51,5 +51,5 @@
     </div><!-- .box grid16 single_datatable -->
 
 {else}
-    <h3>{$smarty.const.MSG_NO_CUADRO_PUBLIC}<a href="index.php?page=cuadro_crear" title="Crear nuevo cuadro de mando">{$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
+    <h3>{$smarty.const.MSG_NO_CUADRO_PUBLIC}<a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_NEW_CUADRO}">{$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
     {/if}

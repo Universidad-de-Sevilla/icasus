@@ -8,7 +8,7 @@
                     <label>{$smarty.const.FIELD_NOMBRE_CUADRO}</label>
                     <div>
                         <input name="nombre"class="required" type="text" value="{$cuadro->nombre}">
-                        <div class="required_tag tooltip hover left" title="Campo requerido"></div>
+                        <div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
                     </div>
                 </fieldset>
 
@@ -22,17 +22,17 @@
                     <div>
                         <label class="radio">
                             <input type="radio" name="privado" id="privado1" value="0" {if $cuadro->privado == 0}checked{/if}>
-                           {$smarty.const.TXT_PUBLIC}
+                            {$smarty.const.TXT_PUBLIC}
                         </label>
                         <label class="radio">
                             <input type="radio" name="privado" id="privado2" value="1" {if $cuadro->privado == 1}checked{/if}>
-                             {$smarty.const.TXT_PRIVATE}
+                            {$smarty.const.TXT_PRIVATE}
                         </label>
                     </div>
                 </fieldset>
 
                 <div class="button_bar clearfix">
-                    <button class="green" type="submit" value="Grabar" name="indicador_submit">
+                    <button class="green" type="submit" value="{$smarty.const.TXT_GRABAR}" name="indicador_submit">
                         <span>{$smarty.const.TXT_GRABAR}</span>
                     </button>
                 </div>

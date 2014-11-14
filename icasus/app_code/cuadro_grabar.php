@@ -16,7 +16,7 @@ if (isset($_REQUEST['nombre'])) {
     if (isset($_REQUEST['id'])) {
         $id = sanitize($_REQUEST['id'], 16);
         if ($cuadro->load("id = $id AND id_usuario = $usuario->id") == false) {
-            $error = "El cuadro de mando no existe o no tiene permisos para editarlo";
+            $error = ERR_CUAD_MANDO_EDIT;
             header("Location: index.php?page=cuadro_listar&error=error");
         }
     }
@@ -28,7 +28,7 @@ if (isset($_REQUEST['nombre'])) {
     header("Location: index.php?page=cuadro_mostrar&id=$cuadro->id");
 } else {
     // Avisamos de error por falta de parametros
-    $error = 'Faltan parámetros necesarios para crear un cuadro de mando';
+    $error = ERR_PARAM;
     header("Location: index.php?page=cuadro_listar&error=error");
 }
 

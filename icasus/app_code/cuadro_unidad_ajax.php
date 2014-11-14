@@ -18,9 +18,12 @@ global $plantilla;
 $id_unidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
 
-$modulo = sanitize($_GET["modulo"], SQL);
+//$modulo = sanitize($_GET["modulo"], SQL);
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+
 //Módulo de propio
-if ($modulo == 'propio') {
+if ($modulo == 'propio')
+{
     $i = new Indicador();
     $indicadores = $i->find("id_proceso = $id_proceso AND id_entidad = $id_entidad");
     $smarty->assign('indicadores', $indicadores);
@@ -28,7 +31,8 @@ if ($modulo == 'propio') {
 }
 
 //Módulo de segregado
-if ($modulo == 'segregado') {
+if ($modulo == 'segregado')
+{
     $indicador_segregado = new Indicador_subunidad();
     $indicadores_segregados = $indicador_segregado->indicador_segregado($id_unidad, $id_proceso);
     $smarty->assign('indicadores_segregados', $indicadores_segregados);
@@ -36,7 +40,8 @@ if ($modulo == 'segregado') {
 }
 
 //Módulo de unidad superior
-if ($modulo == 'superior') {
+if ($modulo == 'superior')
+{
     $entidad = new Entidad();
     $entidad->load("id = $id_unidad");
     $entidad->load("id = $entidad->id_madre");
@@ -48,6 +53,6 @@ if ($modulo == 'superior') {
     $smarty->assign('modulo', $modulo);
 }
 $plantilla = 'cuadro_unidad_ajax.tpl';
-$smarty->assign('_nombre_pagina', 'Cuadro Resumen');
+$smarty->assign('_nombre_pagina', TXT_CUAD_RES);
 
 

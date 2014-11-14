@@ -15,17 +15,22 @@ global $plantilla;
 global $usuario;
 
 // Esto es para prevenir que se cargue el script sin pasar por index.php
-if (!is_object($smarty)) {
+if (!is_object($smarty))
+{
     header('Location:index.php?page=archivo_listar');
 }
 
-if (isset($_GET['dir'])) {
+//if (isset($_GET['dir']))
+if (filter_has_var(INPUT_GET, 'dir'))
+{
     //directorio de trabajo
-    $dir = sanitize($_GET['dir'], PARANOID);
+//    $dir = sanitize($_GET['dir'], PARANOID);
+    $dir = filter_input(INPUT_GET, 'dir', FILTER_SANITIZE_STRING);
 
     //Creamos el array con los ficheros del directorio
     $directorio = opendir(IC_DIR_BASE . '/upload/' . $dir);
-    while ($archivo = readdir($directorio)) {
+    while ($archivo = readdir($directorio))
+    {
         $fecha = date("d-m-Y", filemtime(IC_DIR_BASE . '/upload/' . $dir . "/" . $archivo));
         $archivos[] = array($archivo, $fecha);
     }
@@ -33,7 +38,9 @@ if (isset($_GET['dir'])) {
 
     $smarty->assign('archivos', $archivos);
     $smarty->assign('directorio', $dir);
-} else {
+}
+else
+{
     $error = ERR_NO_DIR_NAME;
     $smarty->assign('error', $error);
 }
