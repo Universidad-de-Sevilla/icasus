@@ -14,17 +14,21 @@ if (
         AND ! empty($_REQUEST["id_responsable"])
         AND ! empty($_REQUEST["id_responsable_medicion"])
         AND ! empty($_REQUEST["id_entidad"])
-) {
+)
+{
     $dato = new Indicador();
-    if (isset($_REQUEST["id_dato"])) {
+    if (isset($_REQUEST["id_dato"]))
+    {
         $id_dato = sanitize($_REQUEST["id_dato"], INT);
         $dato->load("id = $id_dato");
         $es_dato_nuevo = false;
         // Preparamos el aviso para lanzarlo al final
-        $aviso = "Se ha actualizado el dato";
-    } else {
+        $aviso = MSG_DAT_UPDATE;
+    }
+    else
+    {
         $es_dato_nuevo = true;
-        $aviso = "Se ha creado un nuevo dato";
+        $aviso = MSG_DAT_CREADO;
     }
     // Campos obligatorios
     $dato->id_entidad = sanitize($_REQUEST['id_entidad'], INT);
@@ -49,11 +53,15 @@ if (
 
     // Una vez grabado el dato vamos a asignar a los responsables de medicion
     // Esto sólo se hace si se trata de un nuevo dato
-    if ($dato->save()) {
-        if ($es_dato_nuevo == true) {
+    if ($dato->save())
+    {
+        if ($es_dato_nuevo == true)
+        {
             $subunidades = $_REQUEST["subunidades"];
-            if (count($subunidades) > 0) {
-                foreach ($subunidades as $subunidad) {
+            if (count($subunidades) > 0)
+            {
+                foreach ($subunidades as $subunidad)
+                {
                     $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $dato->id;
                     $indicador_subunidad->id_entidad = $subunidad;
@@ -62,30 +70,42 @@ if (
                     // si es para cada responsable de subunidad, se le asigna como responsable de la medición
                     // el reponsable de la unidad. Si no exite este se le asigna como resposable de medición
                     // el responsable de medicion de la unidad superior.
-                    if ($dato->desagregado == 0) {
+                    if ($dato->desagregado == 0)
+                    {
                         $indicador_subunidad->id_usuario = $dato->id_responsable;
-                    } else {
+                    }
+                    else
+                    {
                         $usuario_entidad = new Usuario_entidad();
-                        if ($usuario_entidad->load("id_entidad = $subunidad AND id_rol = 1")) {
+                        if ($usuario_entidad->load("id_entidad = $subunidad AND id_rol = 1"))
+                        {
                             $indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;
-                        } else {
+                        }
+                        else
+                        {
                             $indicador_subunidad->id_usuario = $dato->id_responsable;
                         }
                     }
                     $indicador_subunidad->save();
                 }
             }
-        } else {
+        }
+        else
+        {
             $indicador_subunidad = new Indicador_subunidad();
-            while ($indicador_subunidad->load("id_indicador = $id_dato")) {
+            while ($indicador_subunidad->load("id_indicador = $id_dato"))
+            {
                 $indicador_subunidad->delete();
             }
-            if (isset($_REQUEST["subunidades"])) {
-                foreach ($_REQUEST["subunidades"] as $id_subunidad) {
+            if (isset($_REQUEST["subunidades"]))
+            {
+                foreach ($_REQUEST["subunidades"] as $id_subunidad)
+                {
                     $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $id_dato;
                     $indicador_subunidad->id_entidad = $id_subunidad;
-                    switch ($dato->desagregado) {
+                    switch ($dato->desagregado)
+                    {
                         case 0:
                             $indicador_subunidad->id_usuario = $dato->id_responsable_medicion;
                             break;
@@ -93,9 +113,12 @@ if (
                             $usuario_entidad = new Usuario_entidad();
                             // Cargamos al responsable de la unidad para echarle el muerto 
                             // Luego el podrá echárselo a otro
-                            if ($usuario_entidad->load("id_entidad = $id_subunidad AND id_rol = 1")) {
+                            if ($usuario_entidad->load("id_entidad = $id_subunidad AND id_rol = 1"))
+                            {
                                 $indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;
-                            } else {
+                            }
+                            else
+                            {
                                 $indicador_subunidad->id_usuario = $dato->id_responsable_medicion;
                             }
                             break;
@@ -111,13 +134,17 @@ if (
         }
         // Si ha ido bien mostramos la ficha del dato 
         header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&aviso=$aviso");
-    } else {
+    }
+    else
+    {
         // Error de grabación en la base de datos
         $error = ERR_GRABAR;
         header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&error=$error");
     }
-} else {
-    // Avisamos de error por falta de parametros
+}
+else
+{
+    // Avisamos de error por falta de parámetros
     $error = ERR_PARAM;
     header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&error=$error");
 }

@@ -15,12 +15,16 @@ global $plantilla;
 $id_dato = filter_input(INPUT_GET | INPUT_POST, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
 
 //if (isset($_REQUEST['id_dato']))
-if ($id_dato) {
+if ($id_dato)
+{
 //	$id_dato = sanitize($_REQUEST['id_dato'],16); 
     $dato = new Indicador();
-    if ($dato->load_joined("id = $id_dato")) {
+    if ($dato->load_joined("id = $id_dato"))
+    {
         $smarty->assign('dato', $dato);
-    } else {
+    }
+    else
+    {
         $error = ERR_DATO_MOSTRAR;
         header("location:index.php?error=$error");
     }
@@ -38,9 +42,11 @@ if ($id_dato) {
     $mediciones = $medicion->Find("id_indicador = $id_dato");
     $smarty->assign("mediciones", $mediciones);
 
-    $smarty->assign('_nombre_pagina', TXT_FICHA_DATO . $dato->nombre);
+    $smarty->assign('_nombre_pagina', TXT_FICHA_DATO . ": $dato->nombre");
     $plantilla = 'dato_mostrar.tpl';
-} else {
+}
+else
+{
     $error = ERR_PARAM;
     header("location:index.php?error=$error");
 }

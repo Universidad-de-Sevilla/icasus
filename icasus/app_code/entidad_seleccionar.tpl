@@ -8,5 +8,5 @@
 		<option value='{$entidad.id_entidad}'>{$entidad.nombre}</option>
 	{/foreach}
         </select>
-	<input type='submit' class='submit-btn' value='Enviar' />
+	<input type='submit' class='submit-btn' value='{$smarty.const.TXT_BTN_ENVIAR}' />
 </form>

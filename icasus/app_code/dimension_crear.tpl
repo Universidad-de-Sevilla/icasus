@@ -5,7 +5,7 @@
 <form action='index.php?page=dimension_crear' method="post" class="datos" name="formcrear">
 	<p><label for='nombre'>{$smarty.const.FIELD_NAME}</label> 
 	<input name='nombre' type='text' class='inp' /></p>
-	<p><input type='submit' name='submitcrear' value='Aceptar' /></p>
+	<p><input type='submit' name='submitcrear' value='{$smarty.const.TXT_BTN_Aceptar}' /></p>
 </form>
 
 <!--

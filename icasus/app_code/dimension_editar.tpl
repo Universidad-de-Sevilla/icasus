@@ -6,5 +6,5 @@
 	<input type='hidden' name='id' value='{$dimension->id}' />
 	<p><label for='nombre'>{$smarty.const.FIELD_NAME}</label> 
 	<input name='nombre' class='inp' value='{$dimension->nombre}' /></p>
-	<p><input type='submit' name='submitcrear' value='Aceptar' /></p>
+	<p><input type='submit' name='submitcrear' value='{$smarty.const.TXT_BTN_Aceptar}' /></p>
 </form>

@@ -20,5 +20,5 @@
     <p><label for='web'>{$smarty.const.FIELD_WEB}</label> &nbsp; <br />
         <input type='text' name='web' id='web' class='inp' value='{$entidad.web}' /></p>
 
-    <p><input type='submit' class='submit' value='Grabar' name='entidad_submit' /></p>
+    <p><input type='submit' class='submit' value='{$smarty.const.TXT_GRABAR}' name='entidad_submit' /></p>
 </form>

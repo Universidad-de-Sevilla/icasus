@@ -12,7 +12,7 @@
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_ID}</label>
                 <div>
-                    <input type="text" name="codigo" placeholder="Único, fácil de recordar y sin espacios" />
+                    <input type="text" name="codigo" placeholder="{$smarty.const.TXT_CODIGO}" />
                     <div class="required_tag"></div>
                 </div>
             </fieldset>
@@ -36,7 +36,7 @@
                                 {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                             </option>
                         {/foreach}              
-                    </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
+                    </select><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
                 </div>
             </fieldset>
 
@@ -57,7 +57,7 @@
             </fieldset>
 
             <div class="button_bar clearfix" id="footer_tabs">
-                <button class="dark send_left" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>          
+                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>          
                 <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
             </div>
         </div><!-- fin tab id=dato -->
@@ -72,7 +72,7 @@
 
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_CALCULO}</label>
-                <div><textarea  class="" name="calculo" placeholder="Sólo si es un indicador calculado"></textarea></div>
+                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}"></textarea></div>
             </fieldset>
 
             <fieldset class="label_side">
@@ -129,7 +129,7 @@
             </div><!-- fin class="columns clearfix" -->
 
             <div class="button_bar clearfix" id="footer_tabs">
-                <button class="dark send_left" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>          
+                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>          
                 <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
                 <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
             </div>
@@ -173,7 +173,7 @@
                 </div>
             </fieldset>
             <div class="button_bar clearfix" id="footer_tabs">
-                <button class="dark send_left" type="reset" value="Cancelar" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>          
+                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>          
                 <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
                 <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
             </div>
