@@ -22,7 +22,7 @@
                             <a href='index.php?page=grupo/acta_listar&id_entidad={$entidad->entidad->id}' title="Ver las actas de este equipo">Actas</a>
                             -->
                             {if $entidad->rol->id == 1 OR $entidad->rol->id == 2}
-                                - <a href='index.php?page=control&modulo=inicio&id_entidad={$entidad->entidad->id}'> Control</a>
+                                - <a href='index.php?page=control&modulo=inicio&id_entidad={$entidad->entidad->id}'> {$smarty.const.TXT_CONTROL}</a>
                             {/if}
                         </td>
                     </tr>

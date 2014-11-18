@@ -10,11 +10,11 @@
 //---------------------------------------------------------------------------------------------------
 global $basedatos;
 
-$id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
-
 //if (isset($_GET['id_indicador']))
-if ($id_indicador) {
+if (filter_has_var(INPUT_GET, 'id_indicador'))
+{
 //	$id_indicador = sanitize($_GET['id_indicador'],16); 
+    $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $indicador = new Indicador($basedatos);
     $indicador->obtener_datos($id_indicador);
     $valores = $indicador->listar_valores($id_indicador);
@@ -96,7 +96,9 @@ if ($id_indicador) {
     $footer->writeText(TXT_INFORME_IC . '<tab><tab>página <pagenum>', new Font(), new ParFormat('right'));
 
     $rtf->sendRtf(FIELD_INFORM . '_' . FIELD_INDIC . $id_indicador);
-} else {
+}
+else
+{
     echo ERR_INFORM_INDIC;
 }
 

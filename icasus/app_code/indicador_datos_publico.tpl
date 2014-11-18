@@ -64,7 +64,7 @@
 
     <h3>{$smarty.const.TXT_VAL_REC}</h3>
     {if $valores}
-        <p><img src='theme/usevilla/leyenda650.png' alt='Leyenda' /><br />
+        <p><img src='theme/usevilla/leyenda650.png' alt='{$smarty.const.TXT_LEYENDA}' /><br />
             <img src='{$ruta_imagen}' alt={$smarty.const.TXT_REP_GRAFIC} iwidth="630" iheight="240"/></p>
 
         <table class='listing' id='sortable'>

@@ -12,7 +12,7 @@
                 <div class="col_40">
                     <fieldset class="label">
                         <label>{$smarty.const.FIELD_COD}</label>
-                        <div><input  type="text" name="codigo" class="required2"/><div class="required_tag tooltip hover left" title="Campo requerido"></div> </div>
+                        <div><input  type="text" name="codigo" class="required2"/><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div> </div>
                     </fieldset>
                 </div>
                 <div class="col_60">
@@ -25,18 +25,18 @@
                                     <option value="{$proceso->id}"> {$proceso->nombre} </option>
                                 {/foreach}
                             </select>
-                            <div class="required_tag tooltip hover left" title="Campo requerido"></div>
+                            <div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
                         </div>
                     </fieldset>
                 </div>
             </div>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_NAME}</label>
-                <div><textarea name="nombre"class="required2" /></textarea><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
+                <div><textarea name="nombre"class="required2" /></textarea><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div></div>
             </fieldset>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_FORM}</label>
-                <div><textarea  class="required2" name="formulacion"></textarea><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
+                <div><textarea  class="required2" name="formulacion"></textarea><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div></div>
             </fieldset>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_RESP_SEG}</label>
@@ -47,7 +47,7 @@
                             <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                             </option>
                         {/foreach}              
-                    </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
+                    </select><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
                 </div>
             </fieldset>
             <fieldset class="label_side">
@@ -59,7 +59,7 @@
                             <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
                             </option>
                         {/foreach}              
-                    </select><div class="required_tag tooltip hover left" title="Campo requerido"></div>
+                    </select><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
                 </div>
             </fieldset> 
             <div class="button_bar clearfix" id="footer_tabs">
@@ -74,7 +74,7 @@
             </fieldset>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_CALCULO}</label>
-                <div><textarea  class="" name="lculo" placeholder="Sólo si es un indicador calculado"></textarea></div>
+                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}"></textarea></div>
             </fieldset>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_FUENTE_INFO}</label>

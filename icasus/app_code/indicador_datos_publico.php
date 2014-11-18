@@ -57,6 +57,6 @@ else
     // Faltan parametros avisa error
     $error = ERR_PARAM;
     $smarty->assign('error', $error);
-    $smarty->assign('_nombre_pagina', 'Error');
+    $smarty->assign('_nombre_pagina', ERR);
     $plantilla = "error.tpl";
 }

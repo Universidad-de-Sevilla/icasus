@@ -15,7 +15,7 @@
                 data-subunidad="{$subunidades->etiqueta}" 
                 data-id_subunidad="{$subunidades->id}">
                 <td>
-                    <img align="left" src="theme/danpin/images/nav_plus.gif" alt="Activar y desactivar" class="activar_all">
+                    <img align="left" src="theme/danpin/images/nav_plus.gif" alt="{$smarty.const.TXT_ACT_DESACT}" class="activar_all">
                 </td>
                 <td>{$subunidades->etiqueta}</td>
                 {foreach from=$subunidades->mediciones item=medicion}

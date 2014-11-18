@@ -59,7 +59,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $table->writeToCell(2, 2, $indicador->datos['proceso'], $arial8, $null);
 
     $table->writeToCell(3, 1, FIELD_COD . ' ' . FIELD_INDIC . ':', $arial8azul, $null);
-    ;
+
     $table->writeToCell(3, 2, $indicador->datos['codigo'], $arial8, $null);
 
     $table->writeToCell(4, 1, FIELD_DATOS . ' ' . FIELD_INDIC . ':', $arial8azul, $null);

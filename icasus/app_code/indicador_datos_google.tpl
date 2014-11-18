@@ -9,15 +9,15 @@
             data.addColumn('number', 'Objetivo');
             data.addRows(6);
     {/literal}
-        {foreach from=$valores item=valor}
-                        data.setCell({$valor.valor}, 0, '{$valor.fecha_recogida|date_format:"%m/%Y"}');
-                        data.setCell({$valor.valor}, 1,{$valor.valor});
-                        data.setCell({$valor.valor}, 2,{$valor.objetivo});
+    {foreach from=$valores item=valor}
+            data.setCell({$valor.valor}, 0, '{$valor.fecha_recogida|date_format:"%m/%Y"}');
+            data.setCell({$valor.valor}, 1,{$valor.valor});
+            data.setCell({$valor.valor}, 2,{$valor.objetivo});
     {/foreach}
     {literal}
-               var table = new google.visualization.Table(document.getElementById('table_div'));
-               table.draw(data, {showRowNumber: true});
-           }
+            var table = new google.visualization.Table(document.getElementById('table_div'));
+            table.draw(data, {showRowNumber: true});
+        }
     </script>
 {/literal}
 
@@ -32,16 +32,16 @@
             data.addColumn('number', 'Objetivo');
             data.addColumn('number', 'Valor');
     {/literal}
-        {foreach name=indicador from=$valores item=valor}
-                        data.setValue({$smarty.foreach.indicador.iteration-1}, 0, '{$indicador.nombre}');
-                        data.setValue({$smarty.foreach.indicador.iteration-1}, 1, new Date({$valor.fecha_recogida|date_format:"%Y,1,%m"}));
-                        data.setValue({$smarty.foreach.indicador.iteration-1}, 2,{$valor.objetivo});
-                        data.setValue({$smarty.foreach.indicador.iteration-1}, 3,{$valor.valor});
+    {foreach name=indicador from=$valores item=valor}
+            data.setValue({$smarty.foreach.indicador.iteration-1}, 0, '{$indicador.nombre}');
+            data.setValue({$smarty.foreach.indicador.iteration-1}, 1, new Date({$valor.fecha_recogida|date_format:"%Y,1,%m"}));
+            data.setValue({$smarty.foreach.indicador.iteration-1}, 2,{$valor.objetivo});
+            data.setValue({$smarty.foreach.indicador.iteration-1}, 3,{$valor.valor});
     {/foreach}
     {literal}
-               var chart = new google.visualization.MotionChart(document.getElementById('chart_div'));
-               chart.draw(data, {width: 600, height: 300});
-           }
+            var chart = new google.visualization.MotionChart(document.getElementById('chart_div'));
+            chart.draw(data, {width: 600, height: 300});
+        }
     </script>
 {/literal}
 <!--data.setValue({$smarty.foreach.indicador.iteration-1},0,'{$valor.fecha_recogida|date_format:"%m/%Y"}');-->
@@ -54,13 +54,13 @@
 <div id='table_div'></div>
 
 <a href='index.php?page=indicador_editar&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}'><img 
-        src='theme/usevilla/iconos/chart_bar_edit.gif' alt='icono' />{$smarty.const.TXT_EDIT_INDIC}</a> &nbsp; 
+        src='theme/usevilla/iconos/chart_bar_edit.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_EDIT_INDIC}</a> &nbsp; 
 <a href='index.php?page=indicador_listar&id_entidad={$indicador.id_entidad}'><img 
-        src='theme/usevilla/iconos/chart_bar.gif' alt='icono'/>{$smarty.const.TXT_LIST_INDIC}</a> &nbsp;
+        src='theme/usevilla/iconos/chart_bar.gif' alt='{$smarty.const.TXT_ICON}'/>{$smarty.const.TXT_LIST_INDIC}</a> &nbsp;
 <a href='index.php?page=indicador_crear&id_entidad={$indicador.id_entidad}'><img 
-        src='theme/usevilla/iconos/chart_bar_add.gif' alt='icono' />{$smarty.const.TXT_CREAR_INDIC}</a> &nbsp; 
+        src='theme/usevilla/iconos/chart_bar_add.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_CREAR_INDIC}</a> &nbsp; 
 <a href='index.php?page=indicador_borrar&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}'><img 
-        src='theme/usevilla/iconos/chart_bar_delete.gif' alt='icono' />{$smarty.const.TXT_BORRAR_INDIC}</a> &nbsp; 
+        src='theme/usevilla/iconos/chart_bar_delete.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_BORRAR_INDIC}</a> &nbsp; 
 <table>
     <tr><th colspan='2'>{$smarty.const.FIELD_COD} {$smarty.const.FIELD_PROC}</th><th colspan='4'>{$smarty.const.FIELD_PROC}</th></tr>
     <tr><td colspan='2'><a href='index.php?page=proceso_mostrar&codigo={$indicador.codigo_proceso}' title='Mostrar 
@@ -84,7 +84,7 @@
 </table>	
 <h3>{$smarty.const.TXT_VAL_REC}</h3>
 <a href='index.php?page=valor_crear&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}'><img 
-        src='theme/usevilla/iconos/tag_blue_add.gif' alt='icono' />{$smarty.const.TXT_ADD_VAL}</a>
+        src='theme/usevilla/iconos/tag_blue_add.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_ADD_VAL}</a>
     {if $valores}
     <table class='listing' id='sortable'>
         <thead><tr><th>{$smarty.const.FIELD_PERIODO}</th><th>{$smarty.const.FIELD_VAL}</th><th>{$smarty.const.FIELD_OBJ}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr></thead>

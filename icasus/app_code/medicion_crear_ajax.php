@@ -42,4 +42,3 @@ else
 {
     //deberia escribir en el log un regitro de error por falta de párametros
 }
-
