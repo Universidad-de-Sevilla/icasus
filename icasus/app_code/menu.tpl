@@ -20,7 +20,7 @@
     <a href="index.php" class="logo"><span>{$smarty.const.TXT_ICASUS}</span></a>
 
     <div class="user_box dark_box clearfix">
-        <img align="left" src="theme/danpin/images/profile.jpg" width="55" alt="Profile Pic" />  
+        <img align="left" src="theme/danpin/images/profile.jpg" width="55" alt="{$smarty.const.TXT_FOTO_PERFIL}" />  
         <h2 style="font-size:1.6em;">{$smarty.const.TXT_ICASUS}</h2>
         <h3><a href="#">{$_usuario->login}</a></h3>
         <ul>
@@ -50,7 +50,7 @@
             <li>
                 <ul>
                     <li><a href='index.php?page=entidad_datos&id_entidad={$entidad->id}'><img 
-                                src='/icons/ff16/chart_organisation.png' alt='icono' /> {$smarty.const.TXT_VER_UNID}</a></li>
+                                src='/icons/ff16/chart_organisation.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_VER_UNID}</a></li>
                     <li><a href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'><img 
                                 src='/icons/ff16/table_go.png' />
                             {$smarty.const.TXT_CUAD_RES}</a></li>

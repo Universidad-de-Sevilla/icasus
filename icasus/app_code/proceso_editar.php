@@ -18,7 +18,8 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
     $entidad->load("id = $id_entidad");
 
     // Si vienen todos los datos necesarios del formulario grabamos
-    if (isset($_POST['nombre']) && isset($_POST['codigo']))
+//    if (isset($_POST['nombre']) && isset($_POST['codigo']))
+    if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'codigo'))
     {
         $proceso = new Proceso();
         $proceso->load("id = $id_proceso");
@@ -71,7 +72,7 @@ if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
         $smarty->assign('procesos_madre', $procesos_madre);
 
         $smarty->assign("entidad", $entidad);
-        $smarty->assign('_nombre_pagina', TXT_PROC_EDIT.": " . $proceso->nombre);
+        $smarty->assign('_nombre_pagina', TXT_PROC_EDIT . ": " . $proceso->nombre);
         $plantilla = "proceso_editar.tpl";
     }
 }

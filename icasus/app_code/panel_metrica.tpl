@@ -42,7 +42,7 @@
         <label>{$smarty.const.FIELD_INDIC}<span></span></label>
         <div class="clearfix">
             <div class="col_25">
-                <input data-id_entidad="{$id_entidad}"class="text" placeholder="Buscar ..." name="buscar_indicador" id="buscar_indicador" type="text">
+                <input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_BUSCAR}" name="buscar_indicador" id="buscar_indicador" type="text">
             </div>
         </div>
         <div id="listado_indicadores">

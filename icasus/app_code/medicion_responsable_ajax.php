@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: valor_referencia_ajax.php
@@ -11,19 +12,19 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$modulo = sanitize($_REQUEST["modulo"],SQL);
+$modulo = sanitize($_REQUEST["modulo"], SQL);
 $indicador_subunidad = new Indicador_subunidad();
 //$db = $vr->DB();
 
 if ($modulo == 'grabar')
 {
-	$id = sanitize($_REQUEST["id"],INT);
-	$id_usuario = sanitize($_REQUEST["id_usuario"],INT);
+    $id = sanitize($_REQUEST["id"], INT);
+    $id_usuario = sanitize($_REQUEST["id_usuario"], INT);
 
-	if($indicador_subunidad->load("id = $id"))
-	{
-		$indicador_subunidad->id_usuario = $id_usuario;
-		$indicador_subunidad->save();
-	}
+    if ($indicador_subunidad->load("id = $id"))
+    {
+        $indicador_subunidad->id_usuario = $id_usuario;
+        $indicador_subunidad->save();
+    }
 }
 

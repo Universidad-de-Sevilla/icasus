@@ -1,5 +1,4 @@
 <!-- panel_nuevo.tpl -->
-
 <form method="post" action="index.php?page=panel_grabar" id="panel_nuevo" name="panel_nuevo">
     <input type="hidden" name="id_entidad" value="{$id_entidad}" id="id_entidad">
     <input type="hidden" name="id_cuadro" value="{$id_cuadro}" id="id_cuadro">

@@ -11,6 +11,7 @@
 //---------------------------------------------------------------------------------
 //TEXTOS: TXT_[Nombre]
 //---------------------------------------------------------------------------------
+
 //Archivos
 define('TXT_ARCHIVOS_PROC', 'Archivos del proceso: ');
 define('TXT_NEW_FILE_UP', 'Subir nuevo archivo');
@@ -30,15 +31,10 @@ define('TXT_FILE_IMPORT_CSV', 'Importar archivo CSV');
 
 //Cuadros de Mando
 define('TXT_CUADRO_MANDO', 'Cuadro de Mando');
-define('TXT_CUADROS_MANDO', 'Cuadros de Mando');
 define('TXT_CUADROS_MANDO_PUBLIC', 'Cuadros de Mando públicos');
 define('TXT_NEW_CUADRO', 'Nuevo Cuadro de Mando');
-define('TXT_NEW_PANEL', 'Nuevo Panel');
 define('TXT_CUADRO_MANDO_PROPIOS', 'Tus Cuadros de Mando');
-define('TXT_CUAD_RES', 'Cuadro resumen');
 define('TXT_CUADRO_EDIT', 'Editar Cuadro de Mando');
-define('TXT_ADD_PANEL', 'Agregar Panel');
-define('TXT_PANELES_INFO', 'Información sobre los Paneles');
 
 //Datos
 define('TXT_DATOS', 'Datos'); //También existe como FIELD_DATOS
@@ -50,7 +46,6 @@ define('TXT_NEW_DATO', 'Nuevo Dato');
 define('TXT_VER_DATOS', 'Ver Datos');
 define('TXT_DATO_PARAM', 'Parámetros del Dato');
 define('TXT_CREAR_DATO', 'Crear Dato');
-define('TXT_DAT_LISTAR', 'Listar Datos');
 define('TXT_DAT_LIST', 'Lista de Datos');
 define('TXT_DAT_REBIUN', 'Datos Rebiun');
 define('TXT_RECOG_DAT_REBIUN', 'Recogida Datos Rebiun');
@@ -89,7 +84,6 @@ define('TXT_LIST_UNID', 'Lista de unidades');
 define('TXT_PROC_INDIC_LIST', 'Lista de procesos de la Unidad con sus indicadores');
 define('TXT_EDIT_UNID', 'Editar unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
-define('TXT_UNID_ACTUAL', 'Unidad actual');
 define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, valores y fecha');
 
 //Gráficas
@@ -104,7 +98,6 @@ define('TXT_VOLVER_INDIC', 'Volver al Indicador');
 define('TXT_INDIC_SHOW', 'Mostrar ficha del Indicador');
 define('TXT_INDIC_FICHA', 'Ficha del Indicador');
 define('TXT_CREAR_INDIC', 'Crear Indicador');
-define('TXT_INDIC_LISTAR', 'Listar Indicadores');
 define('TXT_INDIC_LIST', 'Lista de Indicadores');
 define('TXT_EDIT_INDIC', 'Editar Indicador');
 define('TXT_BORRAR_INDIC', 'Borrar Indicador');
@@ -140,49 +133,106 @@ define('TXT_MED_DATOS', 'Datos de la Medición');
 define('TXT_MED_GESTION', 'Gestión de Mediciones');
 define('TXT_MED_AGREGAR', 'Agregar Medición');
 
-
-define('TXT_ICASUS', 'ICASUS');
-define('TXT_ASIGNAR_USERS', 'Asignar usuarios');
-define('TXT_DESASIGNAR_USERS', 'Desasignar usuarios marcados');
-define('TXT_ALTA_USERS', 'Alta de usuarios');
-define('TXT_USER_UNIDS', 'Unidades del usuario');
+//Menú Principal
+define('TXT_INICIO', 'Inicio');
+define('TXT_CUADROS_MANDO', 'Cuadros de Mando');
+define('TXT_UNIDS', 'Unidades'); //También existe como FIELD_UNIDS
 define('TXT_USERS', 'Usuarios');
-define('TXT_BAJA_USERS', 'Baja de usuarios');
+define('TXT_AYUDA', 'Ayuda');
+define('TXT_MIS_NOTAS', 'Mis notas');
+
+//Menu de Unidades
+define('TXT_UNID_ACTUAL', 'Unidad actual');
+define('TXT_CUAD_RES', 'Cuadro resumen');
+define('TXT_CONSULT', 'Consulta avanzada');
+define('TXT_PROC_LISTAR', 'Listar procesos');
+define('TXT_INDIC_LISTAR', 'Listar Indicadores');
+define('TXT_DAT_LISTAR', 'Listar Datos');
+
+//Páginas
+define('TXT_NEW_PAGE', 'Nueva página');
+define('TXT_NEW_HELP_PAGE', 'Nueva página de ayuda');
+define('TXT_PAGE_EDIT', 'Editar página');
+define('TXT_PAGE_TITULO', 'Título de página');
+define('TXT_PAGINA', 'página');
+
+//Paneles
+define('TXT_NEW_PANEL', 'Nuevo Panel');
+define('TXT_ADD_PANEL', 'Agregar Panel');
+define('TXT_PANELES_INFO', 'Información sobre los Paneles');
+
+//Procesos
+define('TXT_VER_PROC', 'Ver Procesos');
+define('TXT_VOLVER_PROC', 'Volver al Proceso');
+define('TXT_PROC_FICHA', 'Ficha del Proceso');
+define('TXT_NEW_PROC', 'Nuevo Proceso');
+define('TXT_PROC_LIST', 'Lista de Procesos');
+define('TXT_PROCESOS', 'Procesos de la Unidad');
+define('TXT_ES_PROC_MADRE', 'Es un Proceso Madre');
+define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha de Proceso');
+define('TXT_PROC_EDIT', 'Editar Proceso');
+define('TXT_PROC_CREAR', 'Crear Proceso');
+define('TXT_PROC_BORRAR', 'Borrar Proceso');
+define('TXT_PROC_INDICS', 'Indicadores asociados al Proceso');
+define('TXT_PROC_FLUJO', 'Flujograma del Proceso');
+define('TXT_PROC_ARCHIVOS', 'Archivos asociados al Proceso');
+
+//Tipos de Proceso
+define('TXT_APOYO', 'Apoyo');
+define('TXT_OPERATIVO', 'Operativo/Clave');
+define('TXT_DIR_GES', 'Directivo/Estratégico/Gestión');
+
+//Usuarios
+define('TXT_ASIGNAR_USERS', 'Asignar Usuarios');
+define('TXT_DESASIGNAR_USERS', 'Desasignar Usuarios marcados');
+define('TXT_ALTA_USERS', 'Alta de Usuarios');
+define('TXT_USER_UNIDS', 'Unidades del Usuario');
+define('TXT_BAJA_USERS', 'Baja de Usuarios');
 define('TXT_USERS_ASIG', 'Usuarios asignados actualmente');
 define('TXT_USERS_DISP', 'Usuarios disponibles');
-define('TXT_VINC_USERS', 'Vincular usuarios');
-define('TXT_DESVINC_USERS', 'Desvincular usuarios');
+define('TXT_VINC_USERS', 'Vincular Usuarios');
+define('TXT_DESVINC_USERS', 'Desvincular Usuarios');
+define('TXT_USER_GESTION', 'Gestión de Usuarios');
+define('TXT_USER_NOTAS', 'Notas del Usuario');
+define('TXT_USER_REL', 'Relación de Usuarios');
+define('TXT_USER_CREAR', 'Crear Usuario');
+define('TXT_USER_EDIT', 'Editar Usuario');
+define('TXT_USER_LIST', 'Lista de Usuarios');
+define('TXT_USER_DAT', 'Datos del Usuario');
+define('TXT_PRESTAMO_USER', 'Préstamo por Usuario potencial');
+
+//Valores
+define('TXT_VAL_EDIT', 'Edición de Valores');
+define('TXT_ADD_VAL', 'Agregar Valor');
+define('TXT_EDIT_VALS', 'Editar Valores');
+define('TXT_IMPORT_VAL', 'Importar Valores');
+define('TXT_VAL_REF', 'Valores de referencia');
+define('TXT_VAL_REC', 'Valores recogidos');
+define('TXT_INDIC_SUBUNID_VAL', 'Valores de las subunidades para');
+define('TXT_TABLA_VAL', 'Tabla de Valores');
+define('TXT_REF_EDIT', 'Editar Valor de referencia');
+define('TXT_REF_CREAR', 'Crear nuevos Valores de referencia');
+
+
+
+define('TXT_ICASUS', 'ICASUS');
 define('TXT_SEL', 'Seleccionar...');
 define('TXT_SEL_UNO', 'Seleccionar uno...');
 define('TXT_OTRAS_PROP', 'Otras propiedades');
 define('TXT_NULL', 'NULO');
-define('TXT_NEW_PAGE', 'Nueva página');
-define('TXT_NEW_HELP_PAGE', 'Nueva página de ayuda');
 define('TXT_VER', 'Ver');
-define('TXT_VER_PROC', 'Ver procesos');
-define('TXT_VOLVER_PROC', 'Volver al proceso');
 define('TXT_VOLVER_INDICE', 'Volver al índice');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
-define('TXT_CONSULT', 'Consulta avanzada');
 define('TXT_CONSULT_AVAN', 'Consulta avanzada de datos e indicadores');
 define('TXT_CONTENT_OF', 'Contenido de');
 define('TXT_SHOW', 'Mostrar');
 define('TXT_SHOW_RESUL', 'Mostrar resultado');
-define('TXT_PROC_FICHA', 'Ficha del Proceso');
-define('TXT_NEW_PROC', 'Nuevo proceso');
-define('TXT_VAL_EDIT', 'Edición de valores');
-define('TXT_PROC_LISTAR', 'Listar procesos');
-define('TXT_PROC_LIST', 'Lista de Procesos');
 define('TXT_INFO_LIST', 'Lista de informes disponibles');
 define('TXT_A_Q_ESPERAS', '¿A que esperas?');
-define('TXT_ADD_VAL', 'Agregar valor');
 define('TXT_EDIT_PROP', 'Editar propiedades');
-define('TXT_EDIT_VALS', 'Editar valores');
-define('TXT_IMPORT_VAL', 'Importar valores');
 define('TXT_VOLVER', 'Volver al');
 define('TXT_VOLVER_LIST', 'Volver al listado');
-define('TXT_VAL_REF', 'Valores de referencia');
-define('TXT_VAL_REC', 'Valores recogidos');
+
 
 //Tipos de gráficos y representaciones
 define('TXT_BARRAS', 'Barras');
@@ -195,6 +245,7 @@ define('TXT_TARTA', 'Tarta');
 define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador entre las subunidades afectadas como gráfica de tarta');
 define('TXT_METRICA', 'Métrica');
 define('TXT_METRICA_DESC', 'Muestra una medición puntual para una unidad y un indicador en forma de dígitos.');
+
 
 
 define('TXT_DET', 'Detalle'); //También existe como FIELD_DET
@@ -226,30 +277,17 @@ define('TXT_ANT', 'Anterior');
 define('TXT_REQ', '(Requerido)'); //También existe MSG_FIELD_REQ
 define('TXT_CONTROL', 'Control');
 define('TXT_CONSULTAS', 'Consultas');
-define('TXT_PROCESOS', 'Procesos de la Unidad');
-
-
-
-
 define('TXT_OTRO_OFIMATICA', 'Microsoft Office o cualquier otro programa de ofimática.');
 define('TXT_FOOTER', 'ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA');
-
 define('TXT_ELEG_UNO', 'Elegir uno si procede');
 define('TXT_INFORME_IC', 'Informe generado por ICASUS');
 define('TXT_INFORME_REB', 'Informe Rebiun'); //2012??
-
-
 define('TXT_RTF', 'Rtf');
 define('TXT_EXCEL', 'Excel');
 
-define('TXT_INDIC_SUBUNID_VAL', 'Valores de las subunidades para');
 define('TXT_CONFIRM', 'Por favor, confirme que desea');
-
 define('TXT_RANGO_FECHAS', 'Rango de fechas');
 define('TXT_NO_ASIG', 'No asignado');
-
-define('TXT_INICIO', 'Inicio');
-
 define('TXT_REG_EVENTOS', 'Registro de eventos');
 define('TXT_BIENVENIDO', 'Bienvenido a Icasus');
 define('TXT_UNIVERSIDAD', 'Universidad de Sevilla');
@@ -264,47 +302,17 @@ define('TXT_AREA_REC_HUM', 'Área de Recursos Humanos de la Universidad de Sevil
 define('TXT_SOFT_LIBRE', 'Software Libre');
 define('TXT_MANUAL', 'Manual de referencia rápida de Icasus');
 
-define('TXT_USER_GESTION', 'Gestión de usuarios');
-
-define('TXT_TABLA_VAL', 'Tabla de valores');
 define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
-
 define('TXT_MED_SEL_RESP', 'Elegir nuevo responsable grabación ...');
 define('TXT_CERRAR_SESION', 'Cerrar sesión');
-define('TXT_AYUDA', 'Ayuda');
-define('TXT_MIS_NOTAS', 'Mis notas');
-define('TXT_USER_NOTAS', 'Notas del usuario');
-
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_MAN', 'Manual');
-define('TXT_PAGE_EDIT', 'Editar página');
-define('TXT_PAGE_TITULO', 'Título de página');
-
 define('TXT_POR_MEDICION', 'Por medición');
 define('TXT_POR_ANYOS', 'Por años');
-define('TXT_BUSCAR', 'Buscar...');
 
-define('TXT_ES_PROC_MADRE', 'Es un Proceso Madre');
-define('TXT_INDICAR_COD', 'Indique un código estandarizado y único');
-define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha de proceso');
-define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
-define('TXT_APOYO', 'Apoyo');
-define('TXT_OPERATIVO', 'Operativo');
-define('TXT_DIR_GES', 'Directivo/Gestión');
-define('TXT_PROC_EDIT', 'Editar proceso');
-define('TXT_PROC_CREAR', 'Crear proceso');
-define('TXT_PROC_BORRAR', 'Borrar proceso');
-define('TXT_PROC_INDICS', 'Indicadores asociados al proceso');
-define('TXT_PROC_FLUJO', 'Flujograma del proceso');
-define('TXT_PROC_ARCHIVOS', 'Archivos asociados al proceso');
-define('TXT_USER_REL', 'Relación de usuarios');
-define('TXT_USER_CREAR', 'Crear usuario');
-define('TXT_USER_EDIT', 'Editar usuario');
-define('TXT_USER_LIST', 'Lista de usuarios');
-define('TXT_USER_DAT', 'Datos del usuario');
+
 define('TXT_REF_NEW', 'Nueva referencia');
-define('TXT_REF_EDIT', 'Editar valor de referencia');
-define('TXT_REF_CREAR', 'Crear nuevos valores de referencia');
+
 define('TXT_CONSTRUCTOR_INFORMES', 'Constructor de informes');
 define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
 define('TXT_DEPARTAMENTOS', 'Departamentos');
@@ -316,9 +324,7 @@ define('TXT_INDICE_PARTICIPACION', 'Índice de participación');
 define('TXT_INDICE_SATISFACCION', 'Índice de satisfacción general');
 define('TXT_VOL_TRAMITACION', 'Volumen tramitación');
 define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Volumen tramitación');
-define('TXT_PRESTAMO_USER', 'Préstamo por usuario potencial');
 define('TXT_INFORM_SEL_ANYO', 'Seleccionar los años que se reflejarán en el informe:');
-define('TXT_PAGINA', 'página');
 
 //Propiedades HTML: Titles, placeholders, values de botones...
 define('TXT_CODIGO', 'Único, fácil de recordar y sin espacios');
@@ -330,8 +336,12 @@ define('TXT_BTN_Aceptar', 'Aceptar');
 define('TXT_BTN_GUARDAR', 'Guardar');
 define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');
 define('TXT_SOLO_INDIC_CALC', 'Sólo si es un indicador calculado');
+define('TXT_BUSCAR', 'Buscar...');
+define('TXT_INDICAR_COD', 'Indique un código estandarizado y único');
+define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
 
 //Accesibilidad (atributo alt de las imágenes)
+define('TXT_FOTO_PERFIL', 'Foto de perfil');
 define('TXT_REP_GRAFIC', 'Representación gráfica del indicador');
 define('TXT_EXPORT_CSV', 'Exportar en CSV');
 define('TXT_ICON', 'Icono');
@@ -403,6 +413,24 @@ define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna Medición.');
 define('MSG_MED_BORRADA', 'La Medición se ha borrado con éxito.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva Medición. Unidades afectadas: ');
 
+//Páginas
+define('MSG_NEW_PAGE_OK', 'La página se ha creado correctamente.');
+define('MSG_PAGE_EDIT_OK', 'La página se ha modificado correctamente.');
+
+//Procesos
+define('MSG_PROC_BORRADO', 'Se ha borrado el Proceso.');
+define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo Proceso para esta unidad.');
+define('MSG_PROC_NO_INDIC', 'No se ha definido ningún indicador para este Proceso.');
+
+//Usuarios
+define('MSG_USER_BORRADO', 'Se ha borrado el Usuario.');
+define('MSG_USER_CREADO', 'Se ha creado un nuevo Usuario en el sistema.');
+define('MSG_USER_EDITED', 'El Usuario se ha modificado correctamente.');
+
+//Valores
+define('MSG_VAL_BORRADO', 'Se ha borrado un Valor.');
+define('MSG_VAL_EXPORT', 'Exportando Valores para:');
+define('MSG_VAL_GRABAR', 'El Valor se ha grabado correctamente.');
 
 
 define('MSG_NO_DEF', 'No se han definido.');
@@ -412,25 +440,15 @@ define('MSG_NO_DAT_INDIC', 'Todavía no se han introducido datos en este indicad
 define('MSG_FALTAN_PARAM_MET', 'Faltan parámetros para ejecutar el método');
 define('MSG_ERR', 'Por favor inténtelo de nuevo, si el problema persiste póngase en contacto con nosotros en la dirección: ');
 define('MSG_NO_SESION', 'Debe iniciar sesión.');
-
-
 define('MSG_GUARDAR_OK', 'Se han guardado los cambios correctamente.');
 define('MSG_FIELD_REQ', '(Campo requerido)'); //También existe TXT_REQ
-define('MSG_NEW_PAGE_OK', 'La página se ha creado correctamente.');
-define('MSG_PAGE_EDIT_OK', 'La página se ha modificado correctamente.');
-define('MSG_PROC_BORRADO', 'Se ha borrado el proceso.');
-define('MSG_USER_BORRADO', 'Se ha borrado el usuario.');
-define('MSG_USER_CREADO', 'Se ha creado un nuevo usuario en el sistema.');
-define('MSG_USER_EDITED', 'El usuario se ha modificado correctamente.');
-define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo proceso para esta unidad.');
-define('MSG_PROC_NO_INDIC', 'No se ha definido ningún indicador para este proceso.');
-define('MSG_VAL_BORRADO', 'Se ha borrado un valor.');
-define('MSG_VAL_EXPORT', 'Exportando valores para:');
-define('MSG_VAL_GRABAR', 'El valor se ha grabado correctamente.');
+
+
 
 //----------------------------------------------------------------------------------
 //ERRORES: ERR_[Nombre]
 //----------------------------------------------------------------------------------
+
 //Archivos
 define('ERR_DEL_FILE', "Faltan datos para procesar la solicitud de borrado del archivo.");
 define('ERR_NO_FILE', 'No existe el archivo con el identificador:');
@@ -479,6 +497,20 @@ define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
 define('ERR_MED_NO_VAL', 'Error: no existen valores pendientes ni recogidos para esta Medición.');
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la Medición, inténtelo de nuevo o contacte con los administradores de Icasus.');
 
+//Procesos
+define('ERR_PROC_BORRAR', 'Tiene Indicadores asociados al Proceso, necesita borrar primero los Indicadores.');
+define('ERR_PROC_BORRAR_NO_AUT', 'No tiene persimos para borrar el Proceso.');
+define('ERR_PROC_GRABAR', 'Ha ocurrido un error al grabar el Proceso.');
+
+//Usuarios
+define('ERR_LOGIN', 'Usuario o clave incorrecta.');
+define('ERR_LOGIN_SSO', 'El Usuario pertenece al colectivo que tiene permiso para utilizar esta herramienta pero no se ha podido dar de alta en la herramienta. Contactar con icasus@us.es');
+define('ERR_LOGIN_SSO_AUT', 'La relacion de este Usuario con la Universidad no es la definida para utilizar esta herramienta. Contactar con icasus@us.es');
+define('ERR_USER_EDIT_NO_AUT', 'No tiene permiso para editar a este Usuario.');
+
+//Valores
+define('ERR_VAL_GRABAR', 'Se ha producido un error, no se ha grabado el Valor.');
+
 
 define('ERR', 'Error');
 define('ERR_PERMISOS', 'No tiene permisos para relizar esta acción.');
@@ -496,22 +528,13 @@ define('ERR_PARAM', 'Faltan parámetros para realizar esta acción.');
 define('ERR_PARAM_INC', 'Parámetros incorrectos.');
 define('ERR_FALTAN_PAR_IMPORT', 'Faltan parámetros para la importación.');
 define('ERR_PARAM_PAG', 'Faltan parámetros para mostrar la página solicitada.');
-
 define('ERR_FALTAN_PARAM_CONSULTA', 'Parámetros insuficientes para realizar la consulta.');
-
-
 define('ERR_NO_AUT_MOD', 'No tiene permisos para acceder a este módulo de la aplicación.');
 define('ERR_INFORM_INDIC', 'No se puede generar el informe del indicador por falta de parámetros.');
-define('ERR_LOGIN', 'Usuario o clave incorrecta.');
-define('ERR_LOGIN_SSO', 'El usuario pertenece al colectivo que tiene permiso para utilizar esta herramienta pero no se ha podido dar de alta en la herramienta. Contactar con icasus@us.es');
-define('ERR_LOGIN_SSO_AUT', 'La relacion de este usuario con la Universidad no es la definida para utilizar esta herramienta. Contactar con icasus@us.es');
 
 define('ERR_GUARDAR', 'Hubo un problema, no se han podido guardar los cambios.');
-define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores.');
-define('ERR_PROC_BORRAR_NO_AUT', 'No tiene persimos para borrar el proceso.');
-define('ERR_PROC_GRABAR', 'Ha ocurrido un error al grabar el proceso.');
-define('ERR_VAL_GRABAR', 'Se ha producido un error, no se ha grabado el valor.');
-define('ERR_USER_EDIT_NO_AUT', 'No tiene permiso para editar a este usuario.');
+
+
 
 //-----------------------------------------------------------------------------------
 //CAMPOS EN LAS TABLAS: FIELD_[Nombre]
@@ -554,6 +577,24 @@ define('FIELD_MEDICIONES', 'Mediciones');
 define('FIELD_RESP_MED', 'Responsable de Medición');
 define('FIELD_TIP_MED', 'Tipo de Medición');
 
+//Páginas
+define('FIELD_PAGE_CONTENT', 'Contenido de la página');
+
+//Procesos
+define('FIELD_PROC', 'Proceso');
+define('FIELD_PROC_MADRE', 'Proceso Madre');
+define('FIELD_TIPO_PROC', 'Tipo de Proceso');
+define('FIELD_SUBPROCS', 'Subprocesos');
+define('FIELD_SUBPROC', 'Subproceso');
+define('FIELD_EQUIP_PROC', 'Equipo de Proceso');
+
+//Usuarios
+define('FIELD_USER', 'Usuario');
+define('FIELD_USER_GRABA', 'Usuario que graba');
+
+//Valores
+define('FIELD_VAL', 'Valor');
+define('FIELD_VAL_REF', 'Valor de referencia');
 
 
 
@@ -566,17 +607,14 @@ define('FIELD_TITULO', 'Título');
 define('FIELD_FILE', 'Archivo');
 define('FIELD_DESC', 'Descripción');
 define('FIELD_VISIB', 'Visible');
-define('FIELD_USER', 'Usuario');
 define('FIELD_COD', 'Código');
 define('FIELD_NAME', 'Nombre');
 define('FIELD_APEL', 'Apellidos');
-define('FIELD_PROC', 'Proceso');
-define('FIELD_PROC_MADRE', 'Proceso Madre');
 define('FIELD_PROPIETARIO', 'Propietario');
 define('FIELD_PUESTO', 'Puesto de trabajo');
 define('FIELD_FECHA', 'Fecha');
 define('FIELD_FECHA_HORA', 'Fecha/Hora');
-define('FIELD_VAL', 'Valor');
+
 define('FIELD_CALCULO', 'Cálculo');
 define('FIELD_WEB', 'Sitio web');
 define('FIELD_ROL', 'Rol');
@@ -589,7 +627,6 @@ define('FIELD_PERIOD', 'Periodicidad');
 define('FIELD_PERIODO', 'Periodo');
 define('FIELD_COMENTARIOS', 'Comentarios');
 define('FIELD_VISIBILIDAD', 'Visibilidad');
-define('FIELD_TIPO_PROC', 'Tipo de proceso');
 define('FIELD_CALC_TOTAL', 'Cálculo del total');
 define('FIELD_FORM', 'Formulación');
 define('FIELD_UMBRAL', 'Umbral');
@@ -611,8 +648,6 @@ define('FIELD_EFQM', 'Criterios EFQM');
 define('FIELD_STANDARD', 'Estándar');
 define('FIELD_INFORM', 'Informe');
 define('FIELD_NIVEL_DES', 'Nivel de desagregación');
-define('FIELD_SUBPROCS', 'Subprocesos');
-define('FIELD_SUBPROC', 'Subproceso');
 define('FIELD_INICIO_PERIODO', 'Inicio del periodo');
 define('FIELD_FIN_PERIODO', 'Fin del periodo');
 define('FIELD_INICIO_GRABACION', 'Inicio de grabación');
@@ -624,18 +659,15 @@ define('FIELD_EVENTO', 'Evento');
 define('FIELD_OBJETO', 'Objeto');
 define('FIELD_CLAVE', 'Clave de acceso');
 define('FIELD_REP_CLAVE', 'Repetir clave de acceso');
-define('FIELD_VAL_REF', 'Valor de referencia');
-define('FIELD_USER_GRABA', 'Usuario que graba');
+
 define('FIELD_CAMBIO_A', 'Cambio a:');
 define('FIELD_ALIAS', 'Alias');
-define('FIELD_PAGE_CONTENT', 'Contenido de la página');
 define('FIELD_ORDEN', 'Orden');
 define('FIELD_ANCHO', 'Ancho');
 define('FIELD_ANYOS', 'Años');
 define('FIELD_TOTAL', 'Total');
 define('FIELD_MISION', 'Misión');
-define('FIELD_EQUIP_PROC', 'Equipo de proceso');
-define('FIELD_RESULTS_CLAVE', 'Resultados clave');
+define('FIELD_RESULTS_CLAVE', 'Resultados Clave');
 define('FIELD_ENTRADAS_PROV', 'Entradas/Proveedores');
 define('FIELD_SALIDAS_CLIENTS', 'Salidas/Clientes');
 define('FIELD_ACTIVIDADES', 'Actividades');
