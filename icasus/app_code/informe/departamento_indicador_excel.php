@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: cuadromando_crear.php
@@ -7,7 +8,6 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Prepara los datos para mostrar el formulario que permite crear un nuevo cuadro de mando
 //---------------------------------------------------------------------------------------------------
-
 //require_once("/var/www/cascara/cascara_core/lib/phpExcel/PHPExcel.php");
 require_once("/var/www/wiki/icasus/lib/phpExcel/PHPExcel/IOFactory.php");
 require_once("/var/www/wiki/icasus/lib/phpExcel/PHPExcel/RichText.php");
@@ -18,30 +18,30 @@ $entidades = $ado_entidad->informe_entidad_indicador('UE01-');
 //inicio y titulo de la hoja 
 $excel = new PHPExcel();
 
-$excel->getActiveSheet()->setTitle(FIELD_INDICS." ".date("d-m-Y"));
-$excel->getActiveSheet()->setCellValue('A1',FIELD_UNID);
-$excel->getActiveSheet()->setCellValue('B1',FIELD_INDIC);
-$excel->getActiveSheet()->setCellValue('C1',FIELD_VAL);
-$excel->getActiveSheet()->setCellValue('D1',FIELD_FECHA);
+$excel->getActiveSheet()->setTitle(FIELD_INDICS . " " . date("d-m-Y"));
+$excel->getActiveSheet()->setCellValue('A1', FIELD_UNID);
+$excel->getActiveSheet()->setCellValue('B1', FIELD_INDIC);
+$excel->getActiveSheet()->setCellValue('C1', FIELD_VAL);
+$excel->getActiveSheet()->setCellValue('D1', FIELD_FECHA);
 
 $i = 2;
-foreach($entidades as $entidad)
+foreach ($entidades as $entidad)
 {
-	$excel->getActiveSheet()->setCellValue('A'.$i,$entidad->nombre);
-	$i = $i + 1;
-	foreach($entidad->indicadores as $indicador)
-	{
-		$excel->getActiveSheet()->setCellValue('B'.$i,$indicador->nombre);
-		$i = $i +1;
-		foreach($indicador->valores as $valor)
-		{
-		$excel->getActiveSheet()->setCellValue('C'.$i,$valor->valor);
-		$excel->getActiveSheet()->setCellValue('D'.$i,date("d-m-Y",$valor->fecha_entrada));
-		$i = $i +1;
-		}
-	$i = $i +1;
-	}	
-$i = $i +1;
+    $excel->getActiveSheet()->setCellValue('A' . $i, $entidad->nombre);
+    $i = $i + 1;
+    foreach ($entidad->indicadores as $indicador)
+    {
+        $excel->getActiveSheet()->setCellValue('B' . $i, $indicador->nombre);
+        $i = $i + 1;
+        foreach ($indicador->valores as $valor)
+        {
+            $excel->getActiveSheet()->setCellValue('C' . $i, $valor->valor);
+            $excel->getActiveSheet()->setCellValue('D' . $i, date("d-m-Y", $valor->fecha_entrada));
+            $i = $i + 1;
+        }
+        $i = $i + 1;
+    }
+    $i = $i + 1;
 }
 $excel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
 $excel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
@@ -59,7 +59,7 @@ $excelBinaryWriter->save($archivo);
 
 header('Content-Description: File Transfer');
 header('Content-Type: application/octet-stream');
-header('Content-Disposition: attachment; filename='.basename($archivo));
+header('Content-Disposition: attachment; filename=' . basename($archivo));
 header('Content-Transfer-Encoding: binary');
 header('Expires: 0');
 header('Cache-Control: must-revalidate, post-check=0, pre-check=0');

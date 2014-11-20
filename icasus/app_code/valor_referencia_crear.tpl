@@ -76,10 +76,10 @@
             <tbody>
                 {foreach from=$indicador->valores_referencia item=item}
                     <tr class="gradeX">
-                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="Editar valor de referencia{$smarty.const.TXT_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
-                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="Editar valor de referencia{$smarty.const.TXT_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
-                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="Editar valor de referencia{$smarty.const.TXT_REF_EDIT}" id="l-grafica-{$item->id}" value="{$item->grafica}">{$item->grafica}</a></td>
-                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="Editar valor de referencia{$smarty.const.TXT_REF_EDIT}" id="l-activo-{$item->id}" value="{$item->activo}">{$item->activo}</a></td>
+                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
+                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
+                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_REF_EDIT}" id="l-grafica-{$item->id}" value="{$item->grafica}">{$item->grafica}</a></td>
+                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_REF_EDIT}" id="l-activo-{$item->id}" value="{$item->activo}">{$item->activo}</a></td>
                     </tr>
                 {/foreach}
             </tbody>

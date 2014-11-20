@@ -12,6 +12,121 @@
 //TEXTOS: TXT_[Nombre]
 //---------------------------------------------------------------------------------
 
+define('TXT_ICASUS', 'ICASUS');
+define('TXT_BIENVENIDO', 'Bienvenido a Icasus');
+define('TXT_UNIVERSIDAD', 'Universidad de Sevilla');
+define('TXT_DEPARTAMENTOS', 'Departamentos');
+define('TXT_BIBLIOTECAS', 'Bibliotecas');
+define('TXT_FOOTER', 'ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA');
+define('TXT_NUM_CONVOCATORIAS', 'Número de convocatorias');
+define('TXT_PLAZO_CONVOCATORIAS', 'Plazo convocatorias');
+define('TXT_INDICE_PARTICIPACION', 'Índice de participación');
+define('TXT_INDICE_SATISFACCION', 'Índice de satisfacción general');
+define('TXT_VOL_TRAMITACION', 'Volumen tramitación');
+define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Volumen tramitación');
+define('TXT_REQ', '(Requerido)'); //También existe MSG_FIELD_REQ
+define('TXT_CONTROL', 'Control');
+define('TXT_OTRO_OFIMATICA', 'Microsoft Office o cualquier otro programa de ofimática.');
+define('TXT_RTF', 'Rtf');
+define('TXT_EXCEL', 'Excel');
+define('TXT_CONFIRM', 'Por favor, confirme que desea');
+define('TXT_NO_ASIG', 'No asignado');
+define('TXT_REG_EVENTOS', 'Registro de eventos');
+define('TXT_NULL', 'NULO');
+define('TXT_CONTENT_OF', 'Contenido de');
+define('TXT_A_Q_ESPERAS', '¿A que esperas?');
+define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
+define('TXT_INTRO_TEXTO', 'Introduce texto');
+define('TXT_MAN', 'Manual');
+
+//Navegación
+define('TXT_VER', 'Ver');
+define('TXT_DET', 'Detalle'); //También existe como FIELD_DET
+define('TXT_SI', 'Si');
+define('TXT_NO', 'No');
+define('TXT_SIG', 'Siguiente');
+define('TXT_ANT', 'Anterior');
+define('TXT_EDIT', 'Editar');
+define('TXT_BORRAR', 'Borrar');
+
+//Cálculo
+define('TXT_INDEF', 'Indefinido');
+define('TXT_PROMED', 'Promedio');
+define('TXT_SUMA', 'Suma');
+
+//Clasificación
+define('TXT_POR_MEDICION', 'Por medición');
+define('TXT_POR_ANYOS', 'Por años');
+
+//Selecciones
+define('TXT_SEL', 'Seleccionar...');
+define('TXT_SEL_UNO', 'Seleccionar uno...');
+define('TXT_ELEG_UNO', 'Elegir uno si procede');
+define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
+define('TXT_MED_SEL_RESP', 'Elegir nuevo responsable grabación ...');
+
+//Visibilidad, permisos
+define('TXT_TODOS', 'Todos');
+define('TXT_PUBLIC', 'Público');
+define('TXT_PRIVATE', 'Privado');
+
+//Volver
+define('TXT_VOLVER', 'Volver al');
+define('TXT_VOLVER_INDICE', 'Volver al índice');
+define('TXT_VOLVER_LIST', 'Volver al listado');
+
+//Mostrar
+define('TXT_SHOW', 'Mostrar');
+define('TXT_SHOW_RESUL', 'Mostrar resultado');
+
+//Consultas
+define('TXT_CONSULTAS', 'Consultas');
+define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
+define('TXT_CONSULT_AVAN', 'Consulta avanzada de datos e indicadores');
+
+//Informes
+define('TXT_INFORME_IC', 'Informe generado por ICASUS');
+define('TXT_INFORME_REB', 'Informe Rebiun'); //2012??
+define('TXT_CONSTRUCTOR_INFORMES', 'Constructor de informes');
+define('TXT_INFORM_SEL_INDIC', 'Seleccionar los indicadores que contendrá el informe:');
+define('TXT_INFORM_SEL_ANYO', 'Seleccionar los años que se reflejarán en el informe:');
+
+//Listas
+define('TXT_LIST_TODOS', 'Listar todos');
+define('TXT_INFO_LIST', 'Lista de informes disponibles');
+
+//Propiedades
+define('TXT_EDIT_PROP', 'Editar propiedades');
+define('TXT_OTRAS_PROP', 'Otras propiedades');
+
+//Tiempo
+define('TXT_HISTORICO', 'Histórico anual');
+define('TXT_RANGO_FECHAS', 'Rango de fechas');
+define('TXT_ANUAL', 'Anual');
+define('TXT_MENSUAL', 'Mensual');
+define('TXT_TRIMESTRAL', 'Trimestral');
+define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
+define('TXT_SEMESTRAL', 'Semestral');
+define('TXT_2_ULT_ANYO', 'Dos últimos años');
+define('TXT_2008', '2008');
+define('TXT_2009', '2009');
+define('TXT_2010', '2010');
+define('TXT_2011', '2011');
+define('TXT_2012', '2012');
+
+//Login
+define('TXT_LOGIN', 'Iniciar sesión');
+define('TXT_LOGIN_PARTE1', 'es una aplicación web para la gestión de la calidad en la');
+define('TXT_LOGIN_PARTE2', 'Para acceder al sistema es necesario ser miembro activo de alguno de los grupos de calidad de la Universidad de Sevilla y solicitar autorización de acceso al responsable de su grupo de calidad.');
+define('TXT_LOGIN_PARTE3', 'Icasus ha sido desarrollado por el');
+define('TXT_LOGIN_PARTE4', 'y puede utilizarse como');
+define('TXT_LOGIN_PARTE5', 'Puede bajar una primera versión del');
+define('TXT_LOGIN_PARTE6', 'en formato PDF. Revisión disponible: 26 mayo 2010');
+define('TXT_AREA_REC_HUM', 'Área de Recursos Humanos de la Universidad de Sevilla');
+define('TXT_SOFT_LIBRE', 'Software Libre');
+define('TXT_MANUAL', 'Manual de referencia rápida de Icasus');
+define('TXT_CERRAR_SESION', 'Cerrar sesión');
+
 //Archivos
 define('TXT_ARCHIVOS_PROC', 'Archivos del proceso: ');
 define('TXT_NEW_FILE_UP', 'Subir nuevo archivo');
@@ -69,7 +184,6 @@ define('TXT_REL_DIM', 'Relación de Dimensiones');
 define('TXT_INDIC_SUBUNID', 'Relación de indicadores de subentidades');
 define('TXT_INDIC_UNID_SUP', 'Indicadores de la Unidad superior');
 define('TXT_INDIC_SEG_UNID', 'Indicadores segregados en los que mide la Unidad');
-define('TXT_UNIDS', 'Unidades'); //También existe como FIELD_UNIDS
 define('TXT_UNID', 'Unidad');
 define('TXT_ALL_UNIDS', 'Todas las unidades');
 define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la unidad a la que se copiará el indicador.');
@@ -85,9 +199,6 @@ define('TXT_PROC_INDIC_LIST', 'Lista de procesos de la Unidad con sus indicadore
 define('TXT_EDIT_UNID', 'Editar unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
 define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, valores y fecha');
-
-//Gráficas
-define('TXT_GRAFIC_INDIC_VAL', 'Gráfica con los valores del indicador');
 
 //Indicadores
 define('TXT_INDIC_PROP', 'Indicadores propios de la Unidad');
@@ -212,29 +323,10 @@ define('TXT_INDIC_SUBUNID_VAL', 'Valores de las subunidades para');
 define('TXT_TABLA_VAL', 'Tabla de Valores');
 define('TXT_REF_EDIT', 'Editar Valor de referencia');
 define('TXT_REF_CREAR', 'Crear nuevos Valores de referencia');
+define('TXT_REF_NEW', 'Nueva referencia');
 
-
-
-define('TXT_ICASUS', 'ICASUS');
-define('TXT_SEL', 'Seleccionar...');
-define('TXT_SEL_UNO', 'Seleccionar uno...');
-define('TXT_OTRAS_PROP', 'Otras propiedades');
-define('TXT_NULL', 'NULO');
-define('TXT_VER', 'Ver');
-define('TXT_VOLVER_INDICE', 'Volver al índice');
-define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
-define('TXT_CONSULT_AVAN', 'Consulta avanzada de datos e indicadores');
-define('TXT_CONTENT_OF', 'Contenido de');
-define('TXT_SHOW', 'Mostrar');
-define('TXT_SHOW_RESUL', 'Mostrar resultado');
-define('TXT_INFO_LIST', 'Lista de informes disponibles');
-define('TXT_A_Q_ESPERAS', '¿A que esperas?');
-define('TXT_EDIT_PROP', 'Editar propiedades');
-define('TXT_VOLVER', 'Volver al');
-define('TXT_VOLVER_LIST', 'Volver al listado');
-
-
-//Tipos de gráficos y representaciones
+//Tipos de representaciones gráficas
+define('TXT_GRAFIC_INDIC_VAL', 'Gráfica con los valores del indicador');
 define('TXT_BARRAS', 'Barras');
 define('TXT_BARRAS_DESC', 'Puede mostrar varios grupos de indicadores para una subunidad determinada en forma de barras');
 define('TXT_LINEAS', 'Líneas');
@@ -245,86 +337,6 @@ define('TXT_TARTA', 'Tarta');
 define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador entre las subunidades afectadas como gráfica de tarta');
 define('TXT_METRICA', 'Métrica');
 define('TXT_METRICA_DESC', 'Muestra una medición puntual para una unidad y un indicador en forma de dígitos.');
-
-
-
-define('TXT_DET', 'Detalle'); //También existe como FIELD_DET
-define('TXT_TODOS', 'Todos');
-define('TXT_LIST_TODOS', 'Listar todos');
-define('TXT_PUBLIC', 'Público');
-define('TXT_PRIVATE', 'Privado');
-define('TXT_HISTORICO', 'Histórico anual');
-define('TXT_ANUAL', 'Anual');
-define('TXT_MENSUAL', 'Mensual');
-define('TXT_TRIMESTRAL', 'Trimestral');
-define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
-define('TXT_SEMESTRAL', 'Semestral');
-define('TXT_2_ULT_ANYO', 'Dos últimos años');
-define('TXT_2008', '2008');
-define('TXT_2009', '2009');
-define('TXT_2010', '2010');
-define('TXT_2011', '2011');
-define('TXT_2012', '2012');
-define('TXT_BORRAR', 'Borrar');
-define('TXT_EDIT', 'Editar');
-define('TXT_INDEF', 'Indefinido');
-define('TXT_PROMED', 'Promedio');
-define('TXT_SUMA', 'Suma');
-define('TXT_SI', 'Si');
-define('TXT_NO', 'No');
-define('TXT_SIG', 'Siguiente');
-define('TXT_ANT', 'Anterior');
-define('TXT_REQ', '(Requerido)'); //También existe MSG_FIELD_REQ
-define('TXT_CONTROL', 'Control');
-define('TXT_CONSULTAS', 'Consultas');
-define('TXT_OTRO_OFIMATICA', 'Microsoft Office o cualquier otro programa de ofimática.');
-define('TXT_FOOTER', 'ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA');
-define('TXT_ELEG_UNO', 'Elegir uno si procede');
-define('TXT_INFORME_IC', 'Informe generado por ICASUS');
-define('TXT_INFORME_REB', 'Informe Rebiun'); //2012??
-define('TXT_RTF', 'Rtf');
-define('TXT_EXCEL', 'Excel');
-
-define('TXT_CONFIRM', 'Por favor, confirme que desea');
-define('TXT_RANGO_FECHAS', 'Rango de fechas');
-define('TXT_NO_ASIG', 'No asignado');
-define('TXT_REG_EVENTOS', 'Registro de eventos');
-define('TXT_BIENVENIDO', 'Bienvenido a Icasus');
-define('TXT_UNIVERSIDAD', 'Universidad de Sevilla');
-define('TXT_LOGIN', 'Iniciar sesión');
-define('TXT_LOGIN_PARTE1', 'es una aplicación web para la gestión de la calidad en la');
-define('TXT_LOGIN_PARTE2', 'Para acceder al sistema es necesario ser miembro activo de alguno de los grupos de calidad de la Universidad de Sevilla y solicitar autorización de acceso al responsable de su grupo de calidad.');
-define('TXT_LOGIN_PARTE3', 'Icasus ha sido desarrollado por el');
-define('TXT_LOGIN_PARTE4', 'y puede utilizarse como');
-define('TXT_LOGIN_PARTE5', 'Puede bajar una primera versión del');
-define('TXT_LOGIN_PARTE6', 'en formato PDF. Revisión disponible: 26 mayo 2010');
-define('TXT_AREA_REC_HUM', 'Área de Recursos Humanos de la Universidad de Sevilla');
-define('TXT_SOFT_LIBRE', 'Software Libre');
-define('TXT_MANUAL', 'Manual de referencia rápida de Icasus');
-
-define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
-define('TXT_MED_SEL_RESP', 'Elegir nuevo responsable grabación ...');
-define('TXT_CERRAR_SESION', 'Cerrar sesión');
-define('TXT_INTRO_TEXTO', 'Introduce texto');
-define('TXT_MAN', 'Manual');
-define('TXT_POR_MEDICION', 'Por medición');
-define('TXT_POR_ANYOS', 'Por años');
-
-
-define('TXT_REF_NEW', 'Nueva referencia');
-
-define('TXT_CONSTRUCTOR_INFORMES', 'Constructor de informes');
-define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
-define('TXT_DEPARTAMENTOS', 'Departamentos');
-define('TXT_BIBLIOTECAS', 'Bibliotecas');
-define('TXT_INFORM_SEL_INDIC', 'Seleccionar los indicadores que contendrá el informe:');
-define('TXT_NUM_CONVOCATORIAS', 'Número de convocatorias');
-define('TXT_PLAZO_CONVOCATORIAS', 'Plazo convocatorias');
-define('TXT_INDICE_PARTICIPACION', 'Índice de participación');
-define('TXT_INDICE_SATISFACCION', 'Índice de satisfacción general');
-define('TXT_VOL_TRAMITACION', 'Volumen tramitación');
-define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Volumen tramitación');
-define('TXT_INFORM_SEL_ANYO', 'Seleccionar los años que se reflejarán en el informe:');
 
 //Propiedades HTML: Titles, placeholders, values de botones...
 define('TXT_CODIGO', 'Único, fácil de recordar y sin espacios');
@@ -353,6 +365,17 @@ define('TXT_ACT_DESACT', 'Activar y desactivar');
 //NOTIFICACIONES/AVISOS: MSG_[Nombre]
 //-------------------------------------------------------------------------------------
 
+define('MSG_NO_DEF', 'No se han definido.');
+define('MSG_TOTAL_LINEAS', 'Total de líneas');
+define('MSG_LINEAS_NO_REF_INDIC', 'líneas que no referenciaban a ningún indicador.');
+define('MSG_EXITO_OP', 'Operación realizada con éxito.');
+define('MSG_NO_MET_SOL', 'No existe el método solicitado.');
+define('MSG_FALTAN_PARAM_MET', 'Faltan parámetros para ejecutar el método');
+define('MSG_ERR', 'Por favor inténtelo de nuevo, si el problema persiste póngase en contacto con nosotros en la dirección: ');
+define('MSG_NO_SESION', 'Debe iniciar sesión.');
+define('MSG_GUARDAR_OK', 'Se han guardado los cambios correctamente.');
+define('MSG_FIELD_REQ', '(Campo requerido)'); //También existe TXT_REQ
+
 //Archivos
 define('MSG_CONFIRM_DEL_FILE', 'Por favor, confirme si desea borrar el archivo.');
 define('MSG_FILE_CORRECT_UPLOAD', 'Se ha subido correctamente el archivo.');
@@ -360,6 +383,7 @@ define('MSG_NO_FILE_PROC', 'No se han subido archivos para este proceso.');
 define('MSG_REN_FILE', 'Recuerda que el nombre del archivo es el que se verá en la relación inferior, por ello renombra tu archivo antes de subirlo para que sea clarificador para los que vayan a descargarlos.');
 define('MSG_FILE_NAME', 'IMPORTANTE: los nombres de los archivos no deben contener caracteres como ñ, acentos o espacios en blanco.');
 define('MSG_ARCHIVO_BORRADO', 'Se ha borrado el archivo.');
+define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Cuadros de Mando
 define('MSG_CUADRO_BORRADO', 'Se ha eliminado un Cuadro de Mando.');
@@ -405,12 +429,15 @@ define('MSG_INDIC_COPY', 'Indicadores copiados.');
 define('MSG_INDIC_NO_PUBLIC', 'Este Indicador no está definido como público.');
 define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para este Indicador.');
 define('MSG_INDIC_NO_MED', 'Este Indicador no tiene definidas Mediciones.');
+define('MSG_NO_DAT_INDIC', 'Todavía no se han introducido datos en este indicador.');
 
 //Mediciones
 define('MSG_NO_MED_INDIC', 'Todavía no se han definido Mediciones para este Indicador.');
 define('MSG_NO_MED_TIPO', 'Todavía no se han establecido Mediciones para este');
 define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna Medición.');
 define('MSG_MED_BORRADA', 'La Medición se ha borrado con éxito.');
+define('MSG_MEDS_GRABADAS', 'Mediciones grabadas');
+define('MSG_MEDS_INDIC_NO_UNID', 'mediciones en la muestra, de indicadores que no pertenecen a la unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva Medición. Unidades afectadas: ');
 
 //Páginas
@@ -432,22 +459,30 @@ define('MSG_VAL_BORRADO', 'Se ha borrado un Valor.');
 define('MSG_VAL_EXPORT', 'Exportando Valores para:');
 define('MSG_VAL_GRABAR', 'El Valor se ha grabado correctamente.');
 
-
-define('MSG_NO_DEF', 'No se han definido.');
-define('MSG_EXITO_OP', 'Operación realizada con éxito.');
-define('MSG_NO_MET_SOL', 'No existe el método solicitado.');
-define('MSG_NO_DAT_INDIC', 'Todavía no se han introducido datos en este indicador.');
-define('MSG_FALTAN_PARAM_MET', 'Faltan parámetros para ejecutar el método');
-define('MSG_ERR', 'Por favor inténtelo de nuevo, si el problema persiste póngase en contacto con nosotros en la dirección: ');
-define('MSG_NO_SESION', 'Debe iniciar sesión.');
-define('MSG_GUARDAR_OK', 'Se han guardado los cambios correctamente.');
-define('MSG_FIELD_REQ', '(Campo requerido)'); //También existe TXT_REQ
-
-
-
 //----------------------------------------------------------------------------------
 //ERRORES: ERR_[Nombre]
 //----------------------------------------------------------------------------------
+
+define('ERR', 'Error');
+define('ERR_PERMISOS', 'No tiene permisos para relizar esta acción.');
+define('ERR_ERR', 'Error');
+define('ERR_404', 'Error 404: no encontramos la página que ha solicitado:');
+define('ERR_AUT', 'No está autorizado para realizar esta operación.');
+define('ERR_OP_BD', 'No ha podido realizarse la operación por un error en la base de datos.');
+define('ERR_CON_BD', 'Error de conexión a la base de datos.');
+define('ERR_CONSULTA_OP', 'Fallo en la consulta getOperador.');
+define('ERR_CONSULTA_EXE', 'Fallo en la consulta ejecución');
+define('ERR_DIR', 'Error no se ha podido crear el directorio tipo objeto.');
+define('ERR_SUBDIR', 'Error no se ha podido crear el subdirectorio objeto.');
+define('ERR_NO_DIR_NAME', 'No se ha proporcionado un nombre de directorio.');
+define('ERR_PARAM', 'Faltan parámetros para realizar esta acción.');
+define('ERR_PARAM_INC', 'Parámetros incorrectos.');
+define('ERR_FALTAN_PAR_IMPORT', 'Faltan parámetros para la importación.');
+define('ERR_PARAM_PAG', 'Faltan parámetros para mostrar la página solicitada.');
+define('ERR_FALTAN_PARAM_CONSULTA', 'Parámetros insuficientes para realizar la consulta.');
+define('ERR_NO_AUT_MOD', 'No tiene permisos para acceder a este módulo de la aplicación.');
+define('ERR_INFORM_INDIC', 'No se puede generar el informe del indicador por falta de parámetros.');
+define('ERR_GUARDAR', 'Hubo un problema, no se han podido guardar los cambios.');
 
 //Archivos
 define('ERR_DEL_FILE', "Faltan datos para procesar la solicitud de borrado del archivo.");
@@ -511,34 +546,81 @@ define('ERR_USER_EDIT_NO_AUT', 'No tiene permiso para editar a este Usuario.');
 //Valores
 define('ERR_VAL_GRABAR', 'Se ha producido un error, no se ha grabado el Valor.');
 
-
-define('ERR', 'Error');
-define('ERR_PERMISOS', 'No tiene permisos para relizar esta acción.');
-define('ERR_ERR', 'Error');
-define('ERR_404', 'Error 404: no encontramos la página que ha solicitado:');
-define('ERR_AUT', 'No está autorizado para realizar esta operación.');
-define('ERR_OP_BD', 'No ha podido realizarse la operación por un error en la base de datos.');
-define('ERR_CON_BD', 'Error de conexión a la base de datos.');
-define('ERR_CONSULTA_OP', 'Fallo en la consulta getOperador.');
-define('ERR_CONSULTA_EXE', 'Fallo en la consulta ejecución');
-define('ERR_DIR', 'Error no se ha podido crear el directorio tipo objeto.');
-define('ERR_SUBDIR', 'Error no se ha podido crear el subdirectorio objeto.');
-define('ERR_NO_DIR_NAME', 'No se ha proporcionado un nombre de directorio.');
-define('ERR_PARAM', 'Faltan parámetros para realizar esta acción.');
-define('ERR_PARAM_INC', 'Parámetros incorrectos.');
-define('ERR_FALTAN_PAR_IMPORT', 'Faltan parámetros para la importación.');
-define('ERR_PARAM_PAG', 'Faltan parámetros para mostrar la página solicitada.');
-define('ERR_FALTAN_PARAM_CONSULTA', 'Parámetros insuficientes para realizar la consulta.');
-define('ERR_NO_AUT_MOD', 'No tiene permisos para acceder a este módulo de la aplicación.');
-define('ERR_INFORM_INDIC', 'No se puede generar el informe del indicador por falta de parámetros.');
-
-define('ERR_GUARDAR', 'Hubo un problema, no se han podido guardar los cambios.');
-
-
-
 //-----------------------------------------------------------------------------------
-//CAMPOS EN LAS TABLAS: FIELD_[Nombre]
+//CAMPOS DE LAS TABLAS: FIELD_[Nombre]
 //-----------------------------------------------------------------------------------
+
+define('FIELD_ID', 'Identificador');
+define('FIELD_ACCIONES', 'Acciones');
+define('FIELD_TITULO', 'Título');
+define('FIELD_DESC', 'Descripción');
+define('FIELD_VISIB', 'Visible');
+define('FIELD_COD', 'Código');
+define('FIELD_NAME', 'Nombre');
+define('FIELD_PROPIETARIO', 'Propietario');
+define('FIELD_FECHA', 'Fecha');
+define('FIELD_FECHA_HORA', 'Fecha/Hora');
+define('FIELD_CALCULO', 'Cálculo');
+define('FIELD_WEB', 'Sitio web');
+define('FIELD_FUENTE', 'Fuente');
+define('FIELD_HISTORICO', 'Histórico');
+define('FIELD_PERIODO', 'Periodo');
+define('FIELD_COMENTARIOS', 'Comentarios');
+define('FIELD_VISIBILIDAD', 'Visibilidad');
+define('FIELD_CALC_TOTAL', 'Cálculo del total');
+define('FIELD_UMBRAL', 'Umbral');
+define('FIELD_OBJ', 'Objetivo');
+define('FIELD_OBJP', 'Objetivo Pactado');
+define('FIELD_OBJC', 'Objetivo Carta de Servicio');
+define('FIELD_CREAC', 'Creación');
+define('FIELD_MOD', 'Modificación');
+define('FIELD_FECHA_INIC', 'Fecha inicio');
+define('FIELD_FECHA_FIN', 'Fecha fin');
+define('FIELD_FECHA_REV', 'Fecha de revisión');
+define('FIELD_FECHA_OBTENCION', 'Fecha de obtención');
+define('FIELD_FECHA_RECOGIDA', 'Fecha recogida');
+define('FIELD_AGREG', 'Agregado');
+define('FIELD_MET', 'Método de comprobación/evidencia');
+define('FIELD_INTERP', 'Interpretación');
+define('FIELD_EFQM', 'Criterios EFQM');
+define('FIELD_STANDARD', 'Estándar');
+define('FIELD_INFORM', 'Informe');
+define('FIELD_NIVEL_DES', 'Nivel de desagregación');
+define('FIELD_INICIO_PERIODO', 'Inicio del periodo');
+define('FIELD_FIN_PERIODO', 'Fin del periodo');
+define('FIELD_INICIO_GRABACION', 'Inicio de grabación');
+define('FIELD_FIN_GRABACION', 'Fin de grabación');
+define('FIELD_MEDIDOR', 'Medidor');
+define('FIELD_ETIQUETA', 'Etiqueta');
+define('FIELD_PENDIENTES', 'Pendientes');
+define('FIELD_EVENTO', 'Evento');
+define('FIELD_OBJETO', 'Objeto');
+define('FIELD_CAMBIO_A', 'Cambio a:');
+define('FIELD_ALIAS', 'Alias');
+define('FIELD_ORDEN', 'Orden');
+define('FIELD_ANCHO', 'Ancho');
+define('FIELD_ANYOS', 'Años');
+define('FIELD_TOTAL', 'Total');
+define('FIELD_MISION', 'Misión');
+define('FIELD_RESULTS_CLAVE', 'Resultados Clave');
+define('FIELD_ENTRADAS_PROV', 'Entradas/Proveedores');
+define('FIELD_SALIDAS_CLIENTS', 'Salidas/Clientes');
+define('FIELD_ACTIVIDADES', 'Actividades');
+define('FIELD_VARS_CONTROL', 'Variables de control');
+define('FIELD_DOCUMENTACION', 'Documentación');
+define('FIELD_REGISTROS', 'Registros');
+define('FIELD_DET', 'Detalle'); //También existe como TXT_DET
+define('FIELD_OBSERV', 'Observaciones');
+define('FIELD_ACTIVO', 'Activo');
+define('FIELD_VERSION', 'Versión');
+
+//Responsables
+define('FIELD_RESP', 'Responsable');
+define('FIELD_RESP_SEG', 'Responsable de seguimiento');
+define('FIELD_RESP_GRABAR', 'Responsable de grabación');
+
+//Archivos
+define('FIELD_FILE', 'Archivo');
 
 //Cuadros de Mando
 define('FIELD_NOMBRE_CUADRO', 'Nombre del Cuadro de Mando');
@@ -570,6 +652,10 @@ define('FIELD_INDIC_REL', 'Indicadores relacionados');
 define('FIELD_INDIC_BASE', 'Indicador base');
 define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
 define('FIELD_INDICS', 'Indicadores'); //También existe como TXT_INDICS
+define('FIELD_FORM', 'Formulación');
+define('FIELD_FUENTE_INFO', 'Fuente de información');
+define('FIELD_PERIOD', 'Periodicidad');
+
 
 //Mediciones
 define('FIELD_MED', 'Medición');
@@ -589,93 +675,18 @@ define('FIELD_SUBPROC', 'Subproceso');
 define('FIELD_EQUIP_PROC', 'Equipo de Proceso');
 
 //Usuarios
+define('FIELD_LOGIN', 'Login');
 define('FIELD_USER', 'Usuario');
+define('FIELD_CLAVE', 'Clave de acceso');
+define('FIELD_REP_CLAVE', 'Repetir clave de acceso');
+define('FIELD_APEL', 'Apellidos');
+define('FIELD_TEL', 'Teléfono');
+define('FIELD_CORREO', 'Correo electrónico');
+define('FIELD_DNI', 'DNI o NIE (con letra)');
 define('FIELD_USER_GRABA', 'Usuario que graba');
+define('FIELD_ROL', 'Rol');
+define('FIELD_PUESTO', 'Puesto de trabajo');
 
 //Valores
 define('FIELD_VAL', 'Valor');
 define('FIELD_VAL_REF', 'Valor de referencia');
-
-
-
-define('FIELD_ID', 'Identificador');
-define('FIELD_ACCIONES', 'Acciones');
-define('FIELD_RESP', 'Responsable');
-define('FIELD_RESP_SEG', 'Responsable de seguimiento');
-define('FIELD_RESP_GRABAR', 'Responsable de grabación');
-define('FIELD_TITULO', 'Título');
-define('FIELD_FILE', 'Archivo');
-define('FIELD_DESC', 'Descripción');
-define('FIELD_VISIB', 'Visible');
-define('FIELD_COD', 'Código');
-define('FIELD_NAME', 'Nombre');
-define('FIELD_APEL', 'Apellidos');
-define('FIELD_PROPIETARIO', 'Propietario');
-define('FIELD_PUESTO', 'Puesto de trabajo');
-define('FIELD_FECHA', 'Fecha');
-define('FIELD_FECHA_HORA', 'Fecha/Hora');
-
-define('FIELD_CALCULO', 'Cálculo');
-define('FIELD_WEB', 'Sitio web');
-define('FIELD_ROL', 'Rol');
-define('FIELD_CORREO', 'Correo electrónico');
-define('FIELD_TEL', 'Teléfono');
-define('FIELD_FUENTE', 'Fuente');
-define('FIELD_FUENTE_INFO', 'Fuente de información');
-define('FIELD_HISTORICO', 'Histórico');
-define('FIELD_PERIOD', 'Periodicidad');
-define('FIELD_PERIODO', 'Periodo');
-define('FIELD_COMENTARIOS', 'Comentarios');
-define('FIELD_VISIBILIDAD', 'Visibilidad');
-define('FIELD_CALC_TOTAL', 'Cálculo del total');
-define('FIELD_FORM', 'Formulación');
-define('FIELD_UMBRAL', 'Umbral');
-define('FIELD_OBJ', 'Objetivo');
-define('FIELD_OBJP', 'Objetivo Pactado');
-define('FIELD_OBJC', 'Objetivo Carta de Servicio');
-define('FIELD_CREAC', 'Creación');
-define('FIELD_MOD', 'Modificación');
-define('FIELD_VERSION', 'Versión');
-define('FIELD_FECHA_INIC', 'Fecha inicio');
-define('FIELD_FECHA_FIN', 'Fecha fin');
-define('FIELD_FECHA_REV', 'Fecha de revisión');
-define('FIELD_FECHA_OBTENCION', 'Fecha de obtención');
-define('FIELD_FECHA_RECOGIDA', 'Fecha recogida');
-define('FIELD_AGREG', 'Agregado');
-define('FIELD_MET', 'Método de comprobación/evidencia');
-define('FIELD_INTERP', 'Interpretación');
-define('FIELD_EFQM', 'Criterios EFQM');
-define('FIELD_STANDARD', 'Estándar');
-define('FIELD_INFORM', 'Informe');
-define('FIELD_NIVEL_DES', 'Nivel de desagregación');
-define('FIELD_INICIO_PERIODO', 'Inicio del periodo');
-define('FIELD_FIN_PERIODO', 'Fin del periodo');
-define('FIELD_INICIO_GRABACION', 'Inicio de grabación');
-define('FIELD_FIN_GRABACION', 'Fin de grabación');
-define('FIELD_MEDIDOR', 'Medidor');
-define('FIELD_ETIQUETA', 'Etiqueta');
-define('FIELD_PENDIENTES', 'Pendientes');
-define('FIELD_EVENTO', 'Evento');
-define('FIELD_OBJETO', 'Objeto');
-define('FIELD_CLAVE', 'Clave de acceso');
-define('FIELD_REP_CLAVE', 'Repetir clave de acceso');
-
-define('FIELD_CAMBIO_A', 'Cambio a:');
-define('FIELD_ALIAS', 'Alias');
-define('FIELD_ORDEN', 'Orden');
-define('FIELD_ANCHO', 'Ancho');
-define('FIELD_ANYOS', 'Años');
-define('FIELD_TOTAL', 'Total');
-define('FIELD_MISION', 'Misión');
-define('FIELD_RESULTS_CLAVE', 'Resultados Clave');
-define('FIELD_ENTRADAS_PROV', 'Entradas/Proveedores');
-define('FIELD_SALIDAS_CLIENTS', 'Salidas/Clientes');
-define('FIELD_ACTIVIDADES', 'Actividades');
-define('FIELD_VARS_CONTROL', 'Variables de control');
-define('FIELD_DOCUMENTACION', 'Documentación');
-define('FIELD_REGISTROS', 'Registros');
-define('FIELD_DNI', 'DNI o NIE (con letra)');
-define('FIELD_LOGIN', 'Login');
-define('FIELD_DET', 'Detalle'); //También existe como TXT_DET
-define('FIELD_OBSERV', 'Observaciones');
-define('FIELD_ACTIVO', 'Activo');
