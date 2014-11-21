@@ -7,7 +7,7 @@
             <tr>
                 <td>
                     {if $valor.cod_proceso == ''}
-                        {$smarty.const.TXT_DATOS}
+                        {$smarty.const.FIELD_DATOS}
                     {else}
                         <span style="display:none">{$valor.proceso}</span> {$valor.cod_proceso}
                     {/if}
@@ -17,7 +17,7 @@
                     <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="Ir al indicador">{$valor.indicador}</a>
                 </td>
                 <td>{$valor.fecha}</td>
-                <td>{if $valor.valor == NULL}<a href="index.php?page=medicion_editar&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}">{$smarty.const.TXT_NULL}</a>{/if}</td>
+                <td>{if $valor.valor == NULL}<a href="index.php?page=medicion_editar&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}">{$smarty.const.TXT_NULO}</a>{/if}</td>
             </tr>
         {/foreach}
     </tbody>	

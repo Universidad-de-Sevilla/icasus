@@ -34,7 +34,7 @@
                             <td>
                                 {if $indicador_subunidad->entidad->usuario}
                                     <select id="{$indicador_subunidad->id}" name="responsable" class="identificador">
-                                        <option value="0">{$smarty.const.TXT_MED_SEL_RESP}</option>
+                                        <option value="0">{$smarty.const.TXT_SEL_RESP_GRABAR}</option>
                                         {foreach from=$indicador_subunidad->entidad->usuario item=item}
                                             {if $item->id_usuario != $indicador_subunidad->id_usuario}
                                                 <option value="{$item->usuario->id}">{$item->usuario->nombre} {$item->usuario->apellidos}</option>

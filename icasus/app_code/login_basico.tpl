@@ -7,7 +7,7 @@
     <p>{$smarty.const.TXT_LOGIN_PARTE3} <a href="http://www.r2h2.us.es/">{$smarty.const.TXT_AREA_REC_HUM} </a> 
         {$smarty.const.TXT_LOGIN_PARTE4} <a href="http://forja.rediris.es/projects/icasus/">{$smarty.const.TXT_SOFT_LIBRE}</a>.</p>
 
-    <p>{$smarty.const.TXT_LOGIN_PARTE5}<a href="http://icasus.us.es/upload/ayuda/icasus_manual_breve.pdf"> {$smarty.const.TXT_MANUAL} </a>
+    <p>{$smarty.const.TXT_LOGIN_PARTE5}<a href="http://icasus.us.es/upload/ayuda/icasus_manual_breve.pdf"> {$smarty.const.TXT_IC_MANUAL} </a>
         {$smarty.const.TXT_LOGIN_PARTE6}</p>
 
 

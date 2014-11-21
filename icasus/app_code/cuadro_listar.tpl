@@ -1,5 +1,5 @@
-<p><a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_NEW_CUADRO}">
-        <img	src="/icons/ff16/table_add.png" alt="{$smarty.const.TXT_ICON}" />{$smarty.const.TXT_NEW_CUADRO}</a>
+<p><a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_CUADRO_NUEVO}">
+        <img	src="/icons/ff16/table_add.png" alt="{$smarty.const.TXT_ICON}" />{$smarty.const.TXT_CUADRO_NUEVO}</a>
 </p>
 
 {if $cuadros_propios|count > 0}
@@ -15,7 +15,7 @@
                     {foreach from=$cuadros_propios item=cuadro}
                         <tr>
                             <td><a href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td> 
-                            <td>{if $cuadro->privado == 0}{$smarty.const.TXT_PUBLIC}{else}{$smarty.const.TXT_PRIVATE}{/if}</td>
+                            <td>{if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}{else}{$smarty.const.TXT_PRIVADO}{/if}</td>
                             <td width="70%">{$cuadro->comentarios}</td>
                         </tr>
                     {/foreach}
@@ -25,7 +25,7 @@
     </div><!-- .box grid16 single_datatable -->
 
 {else}
-    <h3>{$smarty.const.MSG_NO_DEF_CUADRO}<a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_NEW_CUADRO}">{$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
+    <h3>{$smarty.const.MSG_NO_DEF_CUADRO}<a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_CUADRO_NUEVO}">{$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
     {/if}
 
 {if $cuadros_publicos|count > 0}
@@ -41,7 +41,7 @@
                     {foreach from=$cuadros_publicos item=cuadro}
                         <tr>
                             <td><a href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td> 
-                            <td>{if $cuadro->privado == 0}{$smarty.const.TXT_PUBLIC}{else}{$smarty.const.TXT_PRIVATE}{/if}</td>
+                            <td>{if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}{else}{$smarty.const.TXT_PRIVADO}{/if}</td>
                             <td width="70%">{$cuadro->comentarios}</td>
                         </tr>
                     {/foreach}
@@ -51,5 +51,5 @@
     </div><!-- .box grid16 single_datatable -->
 
 {else}
-    <h3>{$smarty.const.MSG_NO_CUADRO_PUBLIC}<a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_NEW_CUADRO}">{$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
+    <h3>{$smarty.const.MSG_NO_CUADRO_PUBLIC}<a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_CUADRO_NUEVO}">{$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
     {/if}

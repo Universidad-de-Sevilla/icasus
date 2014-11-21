@@ -18,7 +18,7 @@ require_once('../../cascara_core/lib/phpExcel/PHPExcel/RichText.php');
 //Creamos una instancia de la clase
 $excel = new PHPExcel();
 $excel->setActiveSheetIndex(0);
-$excel->getActiveSheet()->setTitle(TXT_DAT_REBIUN . " - $modulo");
+$excel->getActiveSheet()->setTitle(TXT_DATOS_REBIUN . " - $modulo");
 $styleThinWhiteBorderOutline = array(
     'borders' => array(
         'allborders' => array(

@@ -31,7 +31,7 @@
     <ul class="side_accordion">
         <li><a href='index.php?page=inicio' accesskey='h'><img src='/icons/ff16/house.png' /> {$smarty.const.TXT_INICIO}</a> 
         <li><a href='index.php?page=cuadro_listar'><img src='/icons/ff16/table.png' /> {$smarty.const.TXT_CUADROS_MANDO}</a></li>
-        <li><a href='index.php?page=entidad_listar'><img src='/icons/ff16/chart_organisation.png' />{$smarty.const.TXT_UNIDS}</a></li>
+        <li><a href='index.php?page=entidad_listar'><img src='/icons/ff16/chart_organisation.png' />{$smarty.const.FIELD_UNIDS}</a></li>
         <li><a href='index.php?page=usuario_listar'><img src='/icons/ff16/user.png' /> {$smarty.const.TXT_USERS}</a></li>
         <li><a href='index.php?page=pagina_mostrar&alias=indice'><img src='/icons/ff16/user_comment.png' />{$smarty.const.TXT_AYUDA}</a></li>
         <li><a href='index.php?page=nota_mostrar'><img src='/icons/ff16/note_edit.png' /> {$smarty.const.TXT_MIS_NOTAS}</a></li>
@@ -65,7 +65,7 @@
                             {$smarty.const.TXT_INDIC_LISTAR}</a></li>
                     <li><a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
                                 src='/icons/ff16/chart_bar.png' />
-                            {$smarty.const.TXT_DAT_LISTAR}</a></li>
+                            {$smarty.const.TXT_DATOS_LIST}</a></li>
 
                 </ul>
             </li>	

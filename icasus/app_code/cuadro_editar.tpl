@@ -22,11 +22,11 @@
                     <div>
                         <label class="radio">
                             <input type="radio" name="privado" id="privado1" value="0" {if $cuadro->privado == 0}checked{/if}>
-                            {$smarty.const.TXT_PUBLIC}
+                            {$smarty.const.TXT_PUBLICO}
                         </label>
                         <label class="radio">
                             <input type="radio" name="privado" id="privado2" value="1" {if $cuadro->privado == 1}checked{/if}>
-                            {$smarty.const.TXT_PRIVATE}
+                            {$smarty.const.TXT_PRIVADO}
                         </label>
                     </div>
                 </fieldset>

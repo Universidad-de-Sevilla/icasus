@@ -3,8 +3,8 @@
     <div style="opacity: 1;" class="box tabs" id="tab_crear_indicador">
         <ul class="tab_header">
             <li ><a  href="#indicador" >{$smarty.const.FIELD_INDIC}</a></li>
-            <li ><a  href="#otros" >{$smarty.const.TXT_OTROS_DAT}</a></li>
-            <li ><a  href="#subunidades" >{$smarty.const.TXT_SUBUNID_AFECT}</a></li>
+            <li ><a  href="#otros" >{$smarty.const.TXT_DATOS_OTROS}</a></li>
+            <li ><a  href="#subunidades" >{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
         </ul>
         <div style="opacity: 1;" id="indicador" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>

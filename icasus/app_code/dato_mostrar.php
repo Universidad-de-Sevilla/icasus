@@ -42,7 +42,7 @@ if ($id_dato)
     $mediciones = $medicion->Find("id_indicador = $id_dato");
     $smarty->assign("mediciones", $mediciones);
 
-    $smarty->assign('_nombre_pagina', TXT_FICHA_DATO . ": $dato->nombre");
+    $smarty->assign('_nombre_pagina', TXT_DATO_FICHA . ": $dato->nombre");
     $plantilla = 'dato_mostrar.tpl';
 }
 else

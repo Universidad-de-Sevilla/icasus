@@ -14,13 +14,13 @@
         <input type='text' name='calculo' id='calculo' class='inp' 
                value='{$valor->calculo}' onchange='calcular();' /></p>
 
-    <p><label for='dato_valor'>{$smarty.const.FIELD_VAL}</label> &nbsp; <span class='grey'>{$smarty.const.TXT_REQ}</span></p>
+    <p><label for='dato_valor'>{$smarty.const.FIELD_VAL}</label> &nbsp; <span class='grey'>{$smarty.const.MSG_FIELD_REQ}</span></p>
     <p><input type='text' name='dato_valor' id='dato_valor' class='inp' value='' /></p>
 
     <p><label for='periodo'>{$smarty.const.FIELD_PERIODO}</label> &nbsp;<span class='grey'></span></p>
     <p>{html_select_date field_order='MY' month_format='%m' start_year='-9'}</p>
 
-    <p><label for='objetivo'>{$smarty.const.FIELD_OBJ} </label> &nbsp; <span class='grey'>{$smarty.const.TXT_REQ}</span></p>
+    <p><label for='objetivo'>{$smarty.const.FIELD_OBJ} </label> &nbsp; <span class='grey'>{$smarty.const.MSG_FIELD_REQ}</span></p>
     <p><input type='text' name='objetivo' id='objetivo' class='inp' value='{$indicador->objetivo}' /></p>
 
     <p><label for='objetivo'>{$smarty.const.FIELD_OBJP}</label></p>

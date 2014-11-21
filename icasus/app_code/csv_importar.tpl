@@ -6,7 +6,7 @@
                 <input type='hidden' name='id_entidad' value='{$id_entidad}'>
                 <fieldset class="label_side">
                     <label for='fichero'>
-                        {$smarty.const.TXT_SEL_FILE_TO_IMPORT}
+                        {$smarty.const.TXT_ARCHIVO_SEL_IMPORT}
                     </label>
                     <div>
                         <input name='fichero_csv[]' type='file'>
@@ -15,7 +15,7 @@
                 </fieldset>
                 <fieldset class="label_side">
                     <label for='fichero'>
-                        {$smarty.const.TXT_SEL_FILE_TO_IMPORT}
+                        {$smarty.const.TXT_ARCHIVO_SEL_IMPORT}
                     </label>
                     <div>
                         <input name='fichero_csv[]' type='file'>
@@ -23,7 +23,7 @@
                 </fieldset>
                 <fieldset class="label_side">
                     <label for='fichero'>
-                        {$smarty.const.TXT_SEL_FILE_TO_IMPORT}
+                        {$smarty.const.TXT_ARCHIVO_SEL_IMPORT}
                     </label>
                     <div>
                         <input name='fichero_csv[]' type='file'>
@@ -31,16 +31,16 @@
                 </fieldset>
                 <fieldset class="label_side">
                     <label for='fichero'>
-                        {$smarty.const.TXT_SEL_FILE_TO_IMPORT}
+                        {$smarty.const.TXT_ARCHIVO_SEL_IMPORT}
                     </label>
                     <div>
                         <input name='fichero_csv[]' type='file'>
                     </div>
                 </fieldset>
                 <div class="button_bar clearfix">
-                    <button class="green" type="submit" value="{$smarty.const.TXT_PROC_FILE}" name="csv_submit">
+                    <button class="green" type="submit" value="{$smarty.const.TXT_ARCHIVO_PROCESAR}" name="csv_submit">
                         <div class="ui-icon ui-icon-check"></div>
-                        <span>{$smarty.const.TXT_PROC_FILES}</span>
+                        <span>{$smarty.const.TXT_ARCHIVOS_PROCESAR}</span>
                     </button>
                 </div>
             </form>

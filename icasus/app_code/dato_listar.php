@@ -23,7 +23,7 @@ if ($id_entidad != 0)
     $dato = new Indicador();
     $datos = $dato->Find_joined("id_entidad = $id_entidad AND id_proceso IS NULL");
     $smarty->assign('datos', $datos);
-    $smarty->assign('_nombre_pagina', TXT_DAT_LIST . ": " . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', TXT_DATOS_LIST . ": " . $entidad->nombre);
     $plantilla = 'dato_listar.tpl';
 }
 else

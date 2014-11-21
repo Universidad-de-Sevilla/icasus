@@ -6,17 +6,17 @@
 {elseif $error}<p class='error'>{$error}</p>
 {/if}
 
-<h3>{$smarty.const.TXT_FILES_UP}</h3>
+<h3>{$smarty.const.TXT_ARCHIVOS_SUBIR}</h3>
 
 <form class="datos" method="post" action="index.php?page=archivo_subir&dir={$directorio}" enctype="multipart/form-data" > 
     <input type="file" name="archivo" class="inp"/>
-    <input name="enviar" type="submit" value="{$smarty.const.TXT_FILE_UP}" />
+    <input name="enviar" type="submit" value="{$smarty.const.TXT_ARCHIVO_SUBIR}" />
 </form>
 
 <p>{$smarty.const.MSG_REN_FILE}</p>
 <p style="color:red">{$smarty.const.MSG_FILE_NAME}</p>
 
-<h3>{$smarty.const.TXT_CONTENT_OF} {$directorio}</h3>
+<h3>{$smarty.const.TXT_CONTENIDO} {$directorio}</h3>
 <table class="datos">
 {foreach from=$archivos item=archivo }
     {* Evitamos que se ven los directorios ".", ".." y cualquier archivo o directorio que empiece por "." *}

@@ -15,7 +15,7 @@ if (isset($_REQUEST['id_entidad']))
 {
     $id_entidad = sanitize($_REQUEST['id_entidad'], INT);
     $smarty->assign('id_entidad', $id_entidad);
-    $smarty->assign('_nombre_pagina', TXT_INFO_LIST);
+    $smarty->assign('_nombre_pagina', TXT_INFORME_LIST);
     $plantilla = 'informe/informe_listar.tpl';
 }
 else

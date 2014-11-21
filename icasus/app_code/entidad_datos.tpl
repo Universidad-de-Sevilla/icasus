@@ -6,7 +6,7 @@
     <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve.png' />
         {$smarty.const.TXT_VER_INDIC}</a> &nbsp; &nbsp; 
     <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/table.png' />
-        {$smarty.const.TXT_VER_DATOS}</a> &nbsp; &nbsp; 
+        {$smarty.const.TXT_DATOS_VER}</a> &nbsp; &nbsp; 
     <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
         {$smarty.const.TXT_EDIT_UNID}</a> &nbsp; &nbsp; 
     <a href='index.php?page=csv_importar&id_entidad={$entidad->id}'><img src='/icons/ff16/lorry.png' />
@@ -66,7 +66,7 @@
                             <td>{$usuario->usuario->apellidos}</td>
                             <td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
                             <td>{$usuario->usuario->telefono}</td>
-                            <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>{$smarty.const.TXT_DET}</a></td>
+                            <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DET}</a></td>
                         </tr>
                     {/foreach}
                 </tbody>
@@ -77,7 +77,7 @@
     <div class="alert alert_blue">{$smarty.const.MSG_UNID_NO_USERS}</div>
 {/if}
 
-<h2>{$smarty.const.TXT_SUBUNIDS}</h2>
+<h2>{$smarty.const.FIELD_SUBUNIDS}</h2>
 {if $subentidades}
     <div class="box grid_16">
         <div class="block">
@@ -90,7 +90,7 @@
                         <tr class="gradeX">
                             <td>{$subentidad->codigo}</td>
                             <td>{$subentidad->nombre}</td>
-                            <td><a href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'>{$smarty.const.TXT_SHOW}</a></td>
+                            <td><a href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'>{$smarty.const.TXT_MOSTRAR}</a></td>
                         </tr>
                     {/foreach}
                 </tbody>
@@ -98,5 +98,5 @@
         </div>
     </div>	
 {else}
-    <div class="alert alert_blue">{$smarty.const.TXT_SHOW}</div>
+    <div class="alert alert_blue">{$smarty.const.TXT_MOSTRAR}</div>
 {/if}

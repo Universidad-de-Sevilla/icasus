@@ -43,7 +43,7 @@ if (count($entidades_autorizadas) > 0) {
     $smarty->assign("id_usuario", $usuario->id);
     $smarty->assign("entidades", $entidades_autorizadas);
     $smarty->assign("valores", $valores);
-    $smarty->assign("_nombre_pagina", TXT_RECOG_DAT_REBIUN);
+    $smarty->assign("_nombre_pagina", TXT_DATOS_REBIUN_RECOGIDA);
     $plantilla = "datos_rebiun.tpl";
 } else {
     $error = ERR_NO_AUT_MOD;

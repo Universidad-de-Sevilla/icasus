@@ -31,7 +31,7 @@
 <!-- división seleccionar periodos a consultar -->
 <div>
     <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-            src='/icons/ff16/time.png' />{$smarty.const.TXT_SHOW_MED}</a> &nbsp; &nbsp;
+            src='/icons/ff16/time.png' />{$smarty.const.TXT_MOSTRAR_MED}</a> &nbsp; &nbsp;
     <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
             src='/icons/ff16/chart_curve.png' />{$smarty.const.TXT_VOLVER} {$tipo}</a> &nbsp;
 </div>
@@ -71,7 +71,7 @@
                         data-id_indicador="{$indicador->id}"
                         data-id_entidad="{$entidad->id}"
                         class="green send_right text_only has_text">
-                    <span>{$smarty.const.TXT_SHOW}</span>
+                    <span>{$smarty.const.TXT_MOSTRAR}</span>
                 </button>
             </div>
         </div>

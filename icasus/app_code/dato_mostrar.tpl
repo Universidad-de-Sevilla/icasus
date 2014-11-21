@@ -6,7 +6,7 @@
         <div class="block">
             <div class="button_bar clearfix">
                 <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_SHOW_MED}</a> &nbsp; &nbsp;
+                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_MOSTRAR_MED}</a> &nbsp; &nbsp;
                 <a href='index.php?page=dato_listar&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_LIST_TODOS}</a> &nbsp; &nbsp;
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -110,7 +110,7 @@
             </div>
 
             <fieldset class="label_side">
-                <label>{$smarty.const.TXT_SUBUNID_AFECT}</label>
+                <label>{$smarty.const.FIELD_SUBUNID_AFECT}</label>
                 <div>
                     {if $dato_subunidades}
                         <ul>
@@ -129,13 +129,13 @@
 
 <div class="box grid_16">
     <div class="toggle_container">
-        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_DATO}</h2>
+        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_DATO_MEDICIONES}</h2>
         <a href="#" class="grabber"></a>
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
                 <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_SHOW_MED}</a>						
+                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_MOSTRAR_MED}</a>						
             </div>
 
             {if $mediciones}

@@ -29,7 +29,7 @@ if ($id_entidad) {
     $visibilidades = $visibilidad->Find("1=1");
     $smarty->assign("visibilidades", $visibilidades);
 
-    $smarty->assign("_nombre_pagina", TXT_NEW_DATO." - " . $entidad->nombre);
+    $smarty->assign("_nombre_pagina", TXT_DATO_NUEVO." - " . $entidad->nombre);
     $plantilla = "dato_crear.tpl";
 } else {
     $error = ERR_PARAM_CREA_DAT;

@@ -27,7 +27,7 @@
                 <div>
                     {if $proceso_madre->id > 0}
                         {$proceso_madre->codigo} - {$proceso_madre->nombre} 
-                        &nbsp; <a href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso->id_entidad}">{$smarty.const.TXT_SHOW}</a>
+                        &nbsp; <a href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso->id_entidad}">{$smarty.const.TXT_MOSTRAR}</a>
                     {else}
                         {$smarty.const.TXT_ES_PROC_MADRE}
                     {/if}

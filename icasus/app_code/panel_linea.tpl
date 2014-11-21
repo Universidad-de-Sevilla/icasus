@@ -69,7 +69,7 @@
     <fieldset class="label_side" id="div_fecha_fin"> </fieldset>
 
     <fieldset class="label_side">
-        <label>{$smarty.const.TXT_INDICS}<span></span></label>
+        <label>{$smarty.const.FIELD_INDICS}<span></span></label>
         <div class="clearfix">
             <table class="static" id="indicadores_subunidades_seleccionados">
             </table>

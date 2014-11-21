@@ -8,6 +8,6 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Prepara los datos para mostrar el formulario que permite crear un nuevo cuadro de mando
 //---------------------------------------------------------------------------------------------------
-$smarty->assign('_nombre_pagina', TXT_CONSTRUCTOR_INFORMES);
+$smarty->assign('_nombre_pagina', TXT_INFORMES_CONSTRUCTOR);
 $plantilla = 'informes/constructor_informe.tpl';
 

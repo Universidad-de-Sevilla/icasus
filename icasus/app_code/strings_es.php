@@ -18,30 +18,24 @@ define('TXT_UNIVERSIDAD', 'Universidad de Sevilla');
 define('TXT_DEPARTAMENTOS', 'Departamentos');
 define('TXT_BIBLIOTECAS', 'Bibliotecas');
 define('TXT_FOOTER', 'ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA');
-define('TXT_NUM_CONVOCATORIAS', 'Número de convocatorias');
-define('TXT_PLAZO_CONVOCATORIAS', 'Plazo convocatorias');
-define('TXT_INDICE_PARTICIPACION', 'Índice de participación');
-define('TXT_INDICE_SATISFACCION', 'Índice de satisfacción general');
-define('TXT_VOL_TRAMITACION', 'Volumen tramitación');
-define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Volumen tramitación');
-define('TXT_REQ', '(Requerido)'); //También existe MSG_FIELD_REQ
 define('TXT_CONTROL', 'Control');
 define('TXT_OTRO_OFIMATICA', 'Microsoft Office o cualquier otro programa de ofimática.');
-define('TXT_RTF', 'Rtf');
-define('TXT_EXCEL', 'Excel');
-define('TXT_CONFIRM', 'Por favor, confirme que desea');
 define('TXT_NO_ASIG', 'No asignado');
 define('TXT_REG_EVENTOS', 'Registro de eventos');
-define('TXT_NULL', 'NULO');
-define('TXT_CONTENT_OF', 'Contenido de');
-define('TXT_A_Q_ESPERAS', '¿A que esperas?');
+define('TXT_NULO', 'NULO');
+define('TXT_CONTENIDO', 'Contenido de');
+define('TXT_A_Q_ESPERAS', '¿A qué esperas?');
 define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
-define('TXT_MAN', 'Manual');
+define('TXT_MANUAL', 'Manual');
+
+//Exportar
+define('TXT_RTF', 'Rtf');
+define('TXT_EXCEL', 'Excel');
 
 //Navegación
 define('TXT_VER', 'Ver');
-define('TXT_DET', 'Detalle'); //También existe como FIELD_DET
+define('TXT_LIST_TODOS', 'Listar todos');
 define('TXT_SI', 'Si');
 define('TXT_NO', 'No');
 define('TXT_SIG', 'Siguiente');
@@ -63,12 +57,13 @@ define('TXT_SEL', 'Seleccionar...');
 define('TXT_SEL_UNO', 'Seleccionar uno...');
 define('TXT_ELEG_UNO', 'Elegir uno si procede');
 define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
-define('TXT_MED_SEL_RESP', 'Elegir nuevo responsable grabación ...');
+define('TXT_SEL_RESP_GRABAR', 'Elegir nuevo responsable de grabación ...');
+define('TXT_CONFIRM', 'Por favor, confirme que desea');
 
 //Visibilidad, permisos
 define('TXT_TODOS', 'Todos');
-define('TXT_PUBLIC', 'Público');
-define('TXT_PRIVATE', 'Privado');
+define('TXT_PUBLICO', 'Público');
+define('TXT_PRIVADO', 'Privado');
 
 //Volver
 define('TXT_VOLVER', 'Volver al');
@@ -76,8 +71,8 @@ define('TXT_VOLVER_INDICE', 'Volver al índice');
 define('TXT_VOLVER_LIST', 'Volver al listado');
 
 //Mostrar
-define('TXT_SHOW', 'Mostrar');
-define('TXT_SHOW_RESUL', 'Mostrar resultado');
+define('TXT_MOSTRAR', 'Mostrar');
+define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
 
 //Consultas
 define('TXT_CONSULTAS', 'Consultas');
@@ -86,14 +81,17 @@ define('TXT_CONSULT_AVAN', 'Consulta avanzada de datos e indicadores');
 
 //Informes
 define('TXT_INFORME_IC', 'Informe generado por ICASUS');
-define('TXT_INFORME_REB', 'Informe Rebiun'); //2012??
-define('TXT_CONSTRUCTOR_INFORMES', 'Constructor de informes');
-define('TXT_INFORM_SEL_INDIC', 'Seleccionar los indicadores que contendrá el informe:');
-define('TXT_INFORM_SEL_ANYO', 'Seleccionar los años que se reflejarán en el informe:');
-
-//Listas
-define('TXT_LIST_TODOS', 'Listar todos');
-define('TXT_INFO_LIST', 'Lista de informes disponibles');
+define('TXT_INFORME_REBIUN', 'Informe Rebiun'); //2012
+define('TXT_INFORME_LIST', 'Lista de informes disponibles');
+define('TXT_INFORMES_CONSTRUCTOR', 'Constructor de informes');
+define('TXT_INFORME_SEL_INDIC', 'Seleccionar los indicadores que contendrá el informe:');
+define('TXT_INFORME_SEL_ANYO', 'Seleccionar los años que se reflejarán en el informe:');
+define('TXT_NUM_CONVOCATORIAS', 'Número de convocatorias');
+define('TXT_PLAZO_CONVOCATORIAS', 'Plazo convocatorias');
+define('TXT_INDICE_PARTICIPACION', 'Índice de participación');
+define('TXT_INDICE_SATISFACCION', 'Índice de satisfacción general');
+define('TXT_VOL_TRAMITACION', 'Volumen tramitación');
+define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Fiabilidad tramitación expedientes');
 
 //Propiedades
 define('TXT_EDIT_PROP', 'Editar propiedades');
@@ -124,54 +122,53 @@ define('TXT_LOGIN_PARTE5', 'Puede bajar una primera versión del');
 define('TXT_LOGIN_PARTE6', 'en formato PDF. Revisión disponible: 26 mayo 2010');
 define('TXT_AREA_REC_HUM', 'Área de Recursos Humanos de la Universidad de Sevilla');
 define('TXT_SOFT_LIBRE', 'Software Libre');
-define('TXT_MANUAL', 'Manual de referencia rápida de Icasus');
+define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
 define('TXT_CERRAR_SESION', 'Cerrar sesión');
 
 //Archivos
 define('TXT_ARCHIVOS_PROC', 'Archivos del proceso: ');
-define('TXT_NEW_FILE_UP', 'Subir nuevo archivo');
-define('TXT_FILE_UP', 'Subir archivo');
-define('TXT_FILES_UP', 'Subir archivos');
-define('TXT_UPDATE_FILE_DATA', 'Actualizar datos del archivo');
-define('TXT_UPDATE_FILE', 'Actualizar archivo');
-define('TXT_NEW_FILE', 'Nuevo archivo');
-define('TXT_DELETE_FILE', 'Borrar archivo');
+define('TXT_ARCHIVO_SUBIR_NUEVO', 'Subir nuevo archivo');
+define('TXT_ARCHIVO_SUBIR', 'Subir archivo');
+define('TXT_ARCHIVOS_SUBIR', 'Subir archivos');
+define('TXT_ARCHIVO_ACTUALIZAR_DATOS', 'Actualizar datos del archivo');
+define('TXT_ARCHIVO_ACTUALIZAR', 'Actualizar archivo');
+define('TXT_ARCHIVO_NUEVO', 'Nuevo archivo');
+define('TXT_ARCHIVO_BORRAR', 'Borrar archivo');
 define('TXT_ARCHIVOS', 'Archivos');
-define('TXT_SEL_FILE_TO_IMPORT', 'Elija un archivo para importar');
-define('TXT_PROC_FILE', 'Procesa archivo');
-define('TXT_PROC_FILES', 'Procesar archivos');
-define('TXT_DESCARGA', 'Descargar archivo');
-define('TXT_ABRIR_CSV', 'El archivo .csv generado puede abrirse con: ');
-define('TXT_FILE_IMPORT_CSV', 'Importar archivo CSV');
+define('TXT_ARCHIVO_SEL_IMPORT', 'Elija un archivo para importar');
+define('TXT_ARCHIVO_PROCESAR', 'Procesa archivo');
+define('TXT_ARCHIVOS_PROCESAR', 'Procesar archivos');
+define('TXT_ARCHIVO_DESCARGA', 'Descargar archivo');
+define('TXT_ARCHIVO_ABRIR_CSV', 'El archivo .csv generado puede abrirse con: ');
+define('TXT_ARCHIVO_IMPORT_CSV', 'Importar archivo CSV');
 
 //Cuadros de Mando
 define('TXT_CUADRO_MANDO', 'Cuadro de Mando');
 define('TXT_CUADROS_MANDO_PUBLIC', 'Cuadros de Mando públicos');
-define('TXT_NEW_CUADRO', 'Nuevo Cuadro de Mando');
+define('TXT_CUADRO_NUEVO', 'Nuevo Cuadro de Mando');
 define('TXT_CUADRO_MANDO_PROPIOS', 'Tus Cuadros de Mando');
 define('TXT_CUADRO_EDIT', 'Editar Cuadro de Mando');
 
 //Datos
-define('TXT_DATOS', 'Datos'); //También existe como FIELD_DATOS
-define('TXT_MED_DATO', 'Mediciones del Dato');
+define('TXT_DATO_MEDICIONES', 'Mediciones del Dato');
 define('TXT_DATO', 'Dato');
 define('TXT_DATO_EDIT', 'Editar Dato');
-define('TXT_FICHA_DATO', 'Ficha del Dato');
-define('TXT_NEW_DATO', 'Nuevo Dato');
-define('TXT_VER_DATOS', 'Ver Datos');
+define('TXT_DATO_FICHA', 'Ficha del Dato');
+define('TXT_DATO_NUEVO', 'Nuevo Dato');
+define('TXT_DATOS_VER', 'Ver Datos');
 define('TXT_DATO_PARAM', 'Parámetros del Dato');
-define('TXT_CREAR_DATO', 'Crear Dato');
-define('TXT_DAT_LIST', 'Lista de Datos');
-define('TXT_DAT_REBIUN', 'Datos Rebiun');
-define('TXT_RECOG_DAT_REBIUN', 'Recogida Datos Rebiun');
-define('TXT_EXPORT_DAT', 'Exportar Datos');
-define('TXT_OTROS_DAT', 'Otros Datos');
-define('TXT_DET_DAT_REBIUN', 'Detalle Datos Rebiun'); //2012
-define('TXT_SUMA_DAT_REB', 'Suma Datos Rebiun');
-define('TXT_PROMEDIO_DAT_REB', 'Promedio Datos Rebiun');
-define('TXT_EXPORT_CSV_DET_DAT_REBIUN', 'Exportar en CSV detalle Datos Rebiun');
-define('TXT_EXPORT_CSV_SUM_DAT_REBIUN', 'Exportar en CSV suma Datos Rebiun');
-define('TXT_EXPORT_CSV_PROM_DAT_REBIUN', 'Exportar en CSV promedio Datos Rebiun');
+define('TXT_DATO_CREAR', 'Crear Dato');
+define('TXT_DATOS_LIST', 'Lista de Datos');
+define('TXT_DATOS_REBIUN', 'Datos Rebiun');
+define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida Datos Rebiun');
+define('TXT_DATOS_EXPORT', 'Exportar Datos');
+define('TXT_DATOS_OTROS', 'Otros Datos');
+define('TXT_DATOS_REBIUN_DET', 'Detalle Datos Rebiun'); //2012
+define('TXT_DATOS_REBIUN_SUMA', 'Suma Datos Rebiun');
+define('TXT_DATOS_REBIUN_PROMEDIO', 'Promedio Datos Rebiun');
+define('TXT_DATOS_REBIUN_DET_EXPORT_CSV', 'Exportar en CSV detalle Datos Rebiun');
+define('TXT_DATOS_REBIUN_SUMA_EXPORT_CSV', 'Exportar en CSV suma Datos Rebiun');
+define('TXT_DATOS_REBIUN_PROMEDIO_EXPORT_CSV', 'Exportar en CSV promedio Datos Rebiun');
 
 //Dimensiones
 define('TXT_CREAR_DIM', 'Crear Dimensión');
@@ -187,8 +184,6 @@ define('TXT_INDIC_SEG_UNID', 'Indicadores segregados en los que mide la Unidad')
 define('TXT_UNID', 'Unidad');
 define('TXT_ALL_UNIDS', 'Todas las unidades');
 define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la unidad a la que se copiará el indicador.');
-define('TXT_SUBUNIDS', 'Subunidades'); //También existe como FIELD_SUBUNIDS
-define('TXT_SUBUNID_AFECT', 'Subunidades afectadas'); //También existe como FIELD_SUBUNID_AFECT
 define('TXT_SUBUNID', 'La Subunidad');
 define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes mediciones con los correspondientes valores');
 define('TXT_NEW_UNID', 'Nueva unidad');
@@ -212,7 +207,6 @@ define('TXT_CREAR_INDIC', 'Crear Indicador');
 define('TXT_INDIC_LIST', 'Lista de Indicadores');
 define('TXT_EDIT_INDIC', 'Editar Indicador');
 define('TXT_BORRAR_INDIC', 'Borrar Indicador');
-define('TXT_INDICS', 'Indicadores'); //También existe como FIELD_INDICS
 define('TXT_INDICS_COPY', 'Copiar Indicadores');
 define('TXT_INDICS_DIC', 'Diccionario de Indicadores');
 define('TXT_INDICS_MIO', 'Mis Indicadores');
@@ -232,7 +226,7 @@ define('TXT_MED_DES_CEN', 'Medición desagregada en las Subunidades y cumpliment
 define('TXT_MED_ESTA', 'esta Medición');
 define('TXT_MED_ACARGO', 'Mediciones a su cargo');
 define('TXT_VOLVER_MED', 'Volver a las Mediciones');
-define('TXT_SHOW_MED', 'Mostrar Mediciones');
+define('TXT_MOSTRAR_MED', 'Mostrar Mediciones');
 define('TXT_MED_BORRAR', 'Borrar Medición');
 define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta Medición.');
 define('TXT_INDIC_ACT_MED', 'Marque la casilla si además quiere activarla');
@@ -247,7 +241,6 @@ define('TXT_MED_AGREGAR', 'Agregar Medición');
 //Menú Principal
 define('TXT_INICIO', 'Inicio');
 define('TXT_CUADROS_MANDO', 'Cuadros de Mando');
-define('TXT_UNIDS', 'Unidades'); //También existe como FIELD_UNIDS
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
 define('TXT_MIS_NOTAS', 'Mis notas');
@@ -374,7 +367,7 @@ define('MSG_FALTAN_PARAM_MET', 'Faltan parámetros para ejecutar el método');
 define('MSG_ERR', 'Por favor inténtelo de nuevo, si el problema persiste póngase en contacto con nosotros en la dirección: ');
 define('MSG_NO_SESION', 'Debe iniciar sesión.');
 define('MSG_GUARDAR_OK', 'Se han guardado los cambios correctamente.');
-define('MSG_FIELD_REQ', '(Campo requerido)'); //También existe TXT_REQ
+define('MSG_FIELD_REQ', '(Campo requerido)');
 
 //Archivos
 define('MSG_CONFIRM_DEL_FILE', 'Por favor, confirme si desea borrar el archivo.');
@@ -609,7 +602,7 @@ define('FIELD_ACTIVIDADES', 'Actividades');
 define('FIELD_VARS_CONTROL', 'Variables de control');
 define('FIELD_DOCUMENTACION', 'Documentación');
 define('FIELD_REGISTROS', 'Registros');
-define('FIELD_DET', 'Detalle'); //También existe como TXT_DET
+define('FIELD_DET', 'Detalle');
 define('FIELD_OBSERV', 'Observaciones');
 define('FIELD_ACTIVO', 'Activo');
 define('FIELD_VERSION', 'Versión');
@@ -628,7 +621,7 @@ define('FIELD_NOMBRE_CUADRO', 'Nombre del Cuadro de Mando');
 //Datos
 define('FIELD_RESP_DATO', 'Responsable del dato');
 define('FIELD_FUENTE_DAT', 'Fuente de datos');
-define('FIELD_DATOS', 'Datos'); //También existe como TXT_DATOS
+define('FIELD_DATOS', 'Datos');
 define('FIELD_DAT_REL', 'Datos relacionados');
 
 //Entidades (Unidades)
@@ -638,20 +631,20 @@ define('FIELD_UNID_SUP', 'Unidad superior');
 define('FIELD_UNID_GEN', 'Unidad generadora');
 define('FIELD_UNID_DEST', 'Unidad de destino');
 define('FIELD_SUBUNID', 'Subunidad');
-define('FIELD_SUBUNIDS', 'Subunidades'); //También existe como TXT_SUBUNIDS
-define('FIELD_SUBUNID_AFECT', 'Subunidades afectadas'); //También existe como TXT_SUBUNID_AFECT
-define('FIELD_UNIDS', 'Unidades'); //También existe como TXT_UNIDS
+define('FIELD_SUBUNIDS', 'Subunidades');
+define('FIELD_SUBUNID_AFECT', 'Subunidades afectadas');
+define('FIELD_UNIDS', 'Unidades');
 
 //Gráficas
 define('FIELD_VISIB_GRAFIC', 'Visible en gráfica');
 
 //Indicadores
 define('FIELD_INDIC', 'Indicador');
-define('FIELD_INDI_DAT_REL', 'Indicadores/datos relacionados');
+define('FIELD_INDIC_DAT_REL', 'Indicadores/datos relacionados');
 define('FIELD_INDIC_REL', 'Indicadores relacionados');
 define('FIELD_INDIC_BASE', 'Indicador base');
 define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
-define('FIELD_INDICS', 'Indicadores'); //También existe como TXT_INDICS
+define('FIELD_INDICS', 'Indicadores');
 define('FIELD_FORM', 'Formulación');
 define('FIELD_FUENTE_INFO', 'Fuente de información');
 define('FIELD_PERIOD', 'Periodicidad');

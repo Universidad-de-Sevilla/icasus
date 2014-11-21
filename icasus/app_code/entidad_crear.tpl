@@ -3,7 +3,7 @@
 <h3>{$smarty.const.TXT_NEW_UNID}</h3>
 <form method='post' action='index.php?page=entidad_crear' id='formentidad' class='datos'>
     <input type='hidden' name='id_entidad' id='id_entidad' value=1 />
-    <p><label for='nombre'>{$smarty.const.FIELD_NAME}</label> &nbsp; <span class='grey'>{$smarty.const.TXT_REQ}</span>
+    <p><label for='nombre'>{$smarty.const.FIELD_NAME}</label> &nbsp; <span class='grey'>{$smarty.const.MSG_FIELD_REQ}</span>
         <input type='text' name='nombre' id='nombre' class='inp' value='{$entidad.nombre}' /></p>
 
     <p><label for='codigo'>{$smarty.const.FIELD_COD}</label> &nbsp;<br /> 

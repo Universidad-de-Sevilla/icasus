@@ -17,11 +17,11 @@
                     <div>
                         <label class="radio">
                             <input type="radio" name="privado" id="privado1" value="0" checked>
-                            {$smarty.const.TXT_PUBLIC}
+                            {$smarty.const.TXT_PUBLICO}
                         </label>
                         <label class="radio">
                             <input type="radio" name="privado" id="privado2" value="1">
-                            {$smarty.const.TXT_PRIVATE}
+                            {$smarty.const.TXT_PRIVADO}
                         </label>
                     </div>
                 </fieldset>

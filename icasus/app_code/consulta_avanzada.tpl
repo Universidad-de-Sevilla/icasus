@@ -132,7 +132,7 @@
 
                     <div class="receptor" data-serie="4"> </div>
 
-                    <button class="pull-right" id="btn_mostrar_resultado">{$smarty.const.TXT_SHOW_RESUL}</button>
+                    <button class="pull-right" id="btn_mostrar_resultado">{$smarty.const.TXT_MOSTRAR_RESUL}</button>
 
                 </div><!-- .section -->
             </div><!-- .block -->

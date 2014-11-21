@@ -5,7 +5,7 @@
         <ul class="tab_header">
             <li ><a  href="#dato" {$smarty.const.TXT_DATO}</a></li>
             <li ><a  href="#otras" >{$smarty.const.TXT_OTRAS_PROP}</a></li>
-            <li ><a  href="#subunidades" >{$smarty.const.TXT_SUBUNID_AFECT}</a></li>
+            <li ><a  href="#subunidades" >{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
         </ul>
 
         <div style="opacity: 1;" id="dato" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
@@ -106,7 +106,7 @@
             </fieldset>
 
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_INDI_DAT_REL}</label>
+                <label>{$smarty.const.FIELD_INDIC_DAT_REL}</label>
                 <div><input  type="text" name="indicadores_relacionados" value="{$dato->indicadores_relacionados}" /></div>
             </fieldset>
 

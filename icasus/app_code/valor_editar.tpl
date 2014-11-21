@@ -13,21 +13,21 @@
         <input type='text' name='calculo' id='calculo' class='inp' 
                value='{$valor->calculo}' onchange='calcular();' /></p>
 
-    <p><label for='dato_valor'>{$smarty.const.FIELD_VAL} </label> &nbsp; <span class='grey'>{$smarty.const.TXT_REQ}</span><br />
+    <p><label for='dato_valor'>{$smarty.const.FIELD_VAL} </label> &nbsp; <span class='grey'>{$smarty.const.MSG_FIELD_REQ}</span><br />
         <input type='text' name='dato_valor' id='dato_valor' class='inp' value='{$valor->valor}' /></p>
 
-    <p><label for='fecha_recogida'> {$smarty.const.FIELD_FECHA_OBTENCION}</label> &nbsp;<span class='grey'>{$smarty.const.TXT_REQ}</span><br />
+    <p><label for='fecha_recogida'> {$smarty.const.FIELD_FECHA_OBTENCION}</label> &nbsp;<span class='grey'>{$smarty.const.MSG_FIELD_REQ}</span><br />
         {html_select_date field_order='MY' month_format='%m' start_year='-9' time=$valor->fecha_recogida}</p>
 
-    <p><label for='objetivo'>{$smarty.const.FIELD_OBJ}</label> &nbsp; <span class='grey'>{$smarty.const.TXT_REQ}</span><br />
+    <p><label for='objetivo'>{$smarty.const.FIELD_OBJ}</label> &nbsp; <span class='grey'>{$smarty.const.MSG_FIELD_REQ}</span><br />
         <input type='text' name='objetivo' id='objetivo' class='inp' value='{$valor->objetivo}' /></p>
 
-    <p><label for='objetivo_estrategico'>{$smarty.const.FIELD_OBJP}</label> &nbsp; <span class='grey'>{$smarty.const.TXT_REQ}</span><br />
+    <p><label for='objetivo_estrategico'>{$smarty.const.FIELD_OBJP}</label> &nbsp; <span class='grey'>{$smarty.const.MSG_FIELD_REQ}</span><br />
         <input type='text' name='objetivo_estrategico' id='objetivo_estrategico' class='inp'
                value='{$valor->objetivo_estrategico}' /></p>
 
     <p><label for='objetivo_carta'>{$smarty.const.FIELD_OBJC}</label> &nbsp; 
-        <span class='grey'>{$smarty.const.TXT_REQ}</span><br />
+        <span class='grey'>{$smarty.const.MSG_FIELD_REQ}</span><br />
         <input type='text' name='objetivo_carta' id='objetivo' class='inp' value='{$valor->objetivo_carta}' /></p>
 
     <p><label for='observaciones'>{$smarty.const.FIELD_OBSERV}</label><br />

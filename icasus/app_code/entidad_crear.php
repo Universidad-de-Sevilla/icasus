@@ -53,6 +53,6 @@ else
     $entidades = $entidad->listar(' WHERE 1 = 1 ');
     $smarty->assign('entidades', $entidades);
     $plantilla = "entidad_crear.tpl";
-    $smarty->assign('_nombre_pagina', TXT_UNIDS);
+    $smarty->assign('_nombre_pagina', FIELD_UNIDS);
 }
 
