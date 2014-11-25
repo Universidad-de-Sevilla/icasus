@@ -64,13 +64,13 @@
             <div class="block no_border">
                 <div class="section">
                     <div id="dt1">
-                        <table class="display datatable"> 
-                            <thead> 
-                                <tr>  
+                        <table class="display datatable">
+                            <thead>
+                                <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
                                     <th>{$smarty.const.FIELD_NAME}</th>
-                                </tr> 
-                            </thead> 
+                                </tr>
+                            </thead>
                             <tbody>
                                 {foreach $indicadores as $indicador}
                                     <tr class="gradeX">
@@ -145,16 +145,10 @@
     <div class="block">
         <div class="section tabla_datos" id="tablar">
         </div>
-        <div class="section tabla_datos" id="tabla0">
-        </div>
-        <div class="section tabla_datos" id="tabla1">
-        </div>
-        <div class="section tabla_datos" id="tabla2">
-        </div>
-        <div class="section tabla_datos" id="tabla3">
-        </div>
-        <div class="section tabla_datos" id="tabla4">
-        </div>
+        {for $i = 0 to 4}
+            <div class="section tabla_datos" id="tabla{$i}">
+            </div>
+        {/for}
     </div>
 </div><!-- .box .grid_6 -->
 
@@ -165,11 +159,10 @@
         <div class="section">
             <ul class="mediciones">
                 <li><a href="#" class="medicion actual">{$smarty.const.TXT_TODOS}</a></li>
-                <li><a href="#" class="medicion">{$smarty.const.TXT_2008}</a></li>
-                <li><a href="#" class="medicion">{$smarty.const.TXT_2009}</a></li>
-                <li><a href="#" class="medicion">{$smarty.const.TXT_2010}</a></li>
-                <li><a href="#" class="medicion">{$smarty.const.TXT_2011}</a></li>
-                <li><a href="#" class="medicion">{$smarty.const.TXT_2012}</a></li>
+                {$anyo_actual = $smarty.now|date_format:'%Y'}
+                {for $anyo = $anyo_actual - 5 to $anyo_actual}
+                    <li><a href="#" class="medicion">{$anyo}</a></li>
+                {/for}
             </ul>
         </div>
 
@@ -182,10 +175,10 @@
 </div><!-- .box .grid_10 -->
 
 {literal}
-    <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+    <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>
     <!--
-    <script src="theme/danpin/scripts/flot/jquery.flot.stack.min.js" type="text/javascript"></script>		
-    <script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>		
+    <script src="theme/danpin/scripts/flot/jquery.flot.stack.min.js" type="text/javascript"></script>
+    <script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>
     -->
     <script>
         /* --- Comienza la magia --- */
@@ -227,7 +220,7 @@
             //{
             //crearReceptor();
             //}
-            //else 
+            //else
             //{
             //$(".activo").nextAll(".receptor:first").trigger("click");
             //}
@@ -261,9 +254,9 @@
             items.push('<caption>' + nombre_indicador + ' (' + subunidad_actual + ')</caption>');
             items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
             $.each(datos, function (i, dato) {
-                if (dato.unidad == subunidad_actual)
+                if (dato.unidad === subunidad_actual)
                 {
-                    if (i % 2 == 0) {
+                    if (i % 2 === 0) {
                         paridad = "odd";
                     } else {
                         paridad = "even";
@@ -284,7 +277,7 @@
             items.push('<caption>Resultados</caption>');
             items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
             $.each(datos, function (i, dato) {
-                if (i % 2 == 0) {
+                if (i % 2 === 0) {
                     paridad = "odd";
                 } else {
                     paridad = "even";
@@ -320,7 +313,7 @@
                     if (serie.data)
                     {
                         $.each(serie.data, function (i, dato) {
-                            if (dato.medicion == medicion_actual && dato.unidad != "Total")
+                            if (dato.medicion === medicion_actual && dato.unidad !== "Total")
                             {
                                 if (subunidades.indexOf(dato.unidad) < 0) {
                                     subunidades.push(dato.unidad);
@@ -341,7 +334,7 @@
                         var items = [];
                         nombre_indicador = serie.nombre;
                         $.each(serie.data, function (i, dato) {
-                            if (dato.medicion == medicion_actual && dato.unidad != "Total")
+                            if (dato.medicion === medicion_actual && dato.unidad !== "Total")
                             {
                                 // Incrementa el valor orden en función de la serie para que las barras no se solapen
                                 orden = subunidades.indexOf(dato.unidad) + serie.serie / 5;
@@ -373,14 +366,14 @@
                 if (serie.data)
                 {
                     nombre_indicador = serie.nombre;
-                    if (s % 2 == 0) {
+                    if (s % 2 === 0) {
                         paridad = "odd";
                     } else {
                         paridad = "even";
                     }
                     contenido_tabla.push('<tr class="' + paridad + '"><td>' + serie.nombre + '</td>');
                     $.each(datos_json, function (i, dato) {
-                        if (dato.medicion == medicion_actual && dato.unidad != "Total")
+                        if (dato.medicion === medicion_actual && dato.unidad !== "Total")
                         {
                             contenido_tabla.push('<td>' + dato.valor + '</td>');
                         }
@@ -399,7 +392,7 @@
             var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
             var nombre_indicador = $('.activo').find('.escogido').text();
             $.each(datos, function (i, dato) {
-                if (dato.unidad == subunidad_actual)
+                if (dato.unidad === subunidad_actual)
                 {
                     items.push([dato.medicion, dato.valor]);
                 }
@@ -426,11 +419,11 @@
             $('.operador').each(function (indice, operador)
             {
                 var operacion = $(operador).find('option:selected').attr('value');
-                if (operacion != 'cotejar')
+                if (operacion !== 'cotejar')
                 {
                     var serie = $(operador).data('serie');
                     // Si es el primer operando inicializamos el array resultado con sus datos
-                    if (resultado.length == 0)
+                    if (resultado.length === 0)
                     {
                         // Recorremos cada una de las mediciones de la serie
                         for (i = 0; i < datos[serie].data.length; i++)
@@ -443,15 +436,15 @@
                     {
                         for (i = 0; i < datos[serie].data.length; i++)
                         {
-                            if (operacion == 'cociente')
+                            if (operacion === 'cociente')
                             {
                                 resultado[i][1] /= parseFloat(datos[serie + 1].data[i][1]);
                             }
-                            else if (operacion == 'suma')
+                            else if (operacion === 'suma')
                             {
                                 resultado[i][1] += parseFloat(datos[serie + 1].data[i][1]);
                             }
-                            else if (operacion == 'porcentaje')
+                            else if (operacion === 'porcentaje')
                             {
                                 //no funciona el operando *= como queremos, de ahi que se vuelva a dividir
                                 resultado[i][1] /= parseFloat(datos[serie + 1].data[i][1] / 100);
@@ -503,7 +496,7 @@
             $.plot($("#grafica"), datos, opciones);
         }
 
-        // devuelve la posición si un array contiene a otro o -1 si no lo contiene 
+        // devuelve la posición si un array contiene a otro o -1 si no lo contiene
         function indexOfArray(val, array)
         {
             var
