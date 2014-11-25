@@ -20,7 +20,7 @@
         </div>
         <div class="button_bar clearfix">
             <button class="green" type="submit" value="" name="enviar">
-                <span>{$smarty.const.TXT_DESASIGNAR_USERS}</span>
+                <span>{$smarty.const.TXT_USERS_DESASIGNAR}</span>
             </button>
         </div>
     </form>

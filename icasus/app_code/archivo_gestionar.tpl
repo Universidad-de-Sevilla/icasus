@@ -1,7 +1,7 @@
 <div class="box grid_16 clear_fix">
     <a href="javascript:window.history.back()"><img src="/icons/ff16/arrow_undo.png" />{$smarty.const.TXT_CANCELAR}</a>&nbsp; &nbsp; &nbsp;
     <a href="javascript:void(0)" class="dialog_button" data-dialog="dialog_crear"><img src="/icons/ff16/box_bullet_add.png" /> {$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}</a> &nbsp; &nbsp; &nbsp;
-    <a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><img src="/icons/ff16/cog.png" />{$smarty.const.TXT_VOLVER_PROC}</a>
+    <a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><img src="/icons/ff16/cog.png" />{$smarty.const.TXT_PROC_VOLVER}</a>
 </div>		
 
 <div class="display_none">

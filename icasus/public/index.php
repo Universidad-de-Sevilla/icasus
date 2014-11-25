@@ -89,7 +89,7 @@ if (isset($_SESSION['usuario'])) {
     // Quitarlo cuando se aclare lo de los permisos
     //$id_entidad = isset($_REQUEST['id_entidad']) ? sanitize($_REQUEST['id_entidad'], 16) : 0;
 
-    $id_entidad = filter_input(INPUT_POST | INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
     if ($id_entidad == null || $id_entidad == false) {
         $id_entidad = 0;

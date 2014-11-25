@@ -7,7 +7,7 @@
 </p>
 {if $indicadores}
     <form id='copia' name='copia' method='post' class='datos' action='index.php?page=indicador_copiar'>
-        <input type='submit' name='enviar' value='{$smarty.const.TXT_INDICS_COPY}' />
+        <input type='submit' name='enviar' value='{$smarty.const.TXT_INDICS_COPIAR}' />
         <input type='hidden' name='id_entidad' value='{$id_entidad}' />
         <table class='listing' id='sortable'>
             <thead>
@@ -24,7 +24,7 @@
                 {/foreach}
             </tbody>
         </table>
-        <input type='submit' name='enviar' value='{$smarty.const.TXT_INDICS_COPY}' />
+        <input type='submit' name='enviar' value='{$smarty.const.TXT_INDICS_COPIAR}' />
     </form>
 {else}
     <p class='aviso'>{$smarty.const.MSG_INDIC_NO_UNID_SUP}</p>

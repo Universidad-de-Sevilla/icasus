@@ -38,7 +38,7 @@ if ($id_entidad)
     $visibilidades = $visibilidad->Find("1=1");
     $smarty->assign("visibilidades", $visibilidades);
 
-    $smarty->assign("_nombre_pagina", TXT_NEW_INDIC . " - " . $entidad->nombre);
+    $smarty->assign("_nombre_pagina", TXT_INDIC_NUEVO . " - " . $entidad->nombre);
     $plantilla = "indicador_crear.tpl";
 }
 else

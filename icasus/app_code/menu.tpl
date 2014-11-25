@@ -50,7 +50,7 @@
             <li>
                 <ul>
                     <li><a href='index.php?page=entidad_datos&id_entidad={$entidad->id}'><img 
-                                src='/icons/ff16/chart_organisation.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_VER_UNID}</a></li>
+                                src='/icons/ff16/chart_organisation.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_UNID_VER}</a></li>
                     <li><a href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'><img 
                                 src='/icons/ff16/table_go.png' />
                             {$smarty.const.TXT_CUAD_RES}</a></li>

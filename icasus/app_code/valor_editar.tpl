@@ -2,7 +2,7 @@
 {if $error}<p class='error'>{$error}</p>{/if}
 <h2>{$smarty.const.TXT_VAL_EDIT}</h2>
 <p><a href='index.php?page=indicador_datos&id_indicador={$valor->id_indicador}'><img 
-            src='theme/usevilla/iconos/chart_bar.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_VOLVER_INDIC}</a></p> 
+            src='theme/usevilla/iconos/chart_bar.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_INDIC_VOLVER}</a></p> 
 <form method='post' action='index.php?page=valor_grabar' id='formvalor' name='formvalor' class='datos'>
     <input type='hidden' name='id_valor' id='id_valor' value='{$valor->id_valor}' /> 
     <input type='hidden' name='id_indicador' id='id_indicador' value='{$valor->id_indicador}' /> 

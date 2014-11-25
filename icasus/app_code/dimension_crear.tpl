@@ -1,6 +1,6 @@
 {if $aviso}<p class='aviso'>{$aviso}</p>{/if}
 {if $error}<p class='error'>{$error}</p>{/if}
-<h2>{$smarty.const.TXT_CREAR_DIM}</h2>
+<h2>{$smarty.const.TXT_DIM_CREAR}</h2>
 
 <form action='index.php?page=dimension_crear' method="post" class="datos" name="formcrear">
 	<p><label for='nombre'>{$smarty.const.FIELD_NAME}</label> 
@@ -16,7 +16,7 @@
 <input type='submit' name='submit-buscar' value='Aceptar' />
 </form></p>
 -->
-<h2>{$smarty.const.TXT_LIST_DIM}</h2>
+<h2>{$smarty.const.TXT_DIM_LIST}</h2>
 <table class='listing' id='sortable'>
 	<thead>
 		<tr><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>

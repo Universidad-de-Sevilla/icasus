@@ -8,7 +8,7 @@
             <a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'>
                 <img src='/icons/ff16/cog_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_CREAR}</span> </a>&nbsp; &nbsp; &nbsp;
             <a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/chart_curve_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_CREAR_INDIC}</span> </a>&nbsp; &nbsp; &nbsp;
+                <img src='/icons/ff16/chart_curve_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_INDIC_CREAR}</span> </a>&nbsp; &nbsp; &nbsp;
             <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                 <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span> </a> &nbsp; &nbsp; &nbsp;
             <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
@@ -29,7 +29,7 @@
                         {$proceso_madre->codigo} - {$proceso_madre->nombre} 
                         &nbsp; <a href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso->id_entidad}">{$smarty.const.TXT_MOSTRAR}</a>
                     {else}
-                        {$smarty.const.TXT_ES_PROC_MADRE}
+                        {$smarty.const.TXT_PROC_ES_MADRE}
                     {/if}
                 </div>
             </fieldset> 

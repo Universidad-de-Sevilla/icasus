@@ -37,12 +37,12 @@ if ($id_dimension)
         $dimensiones = $dimension->find('1 = 1 ORDER BY nombre');
         $smarty->assign('dimensiones', $dimensiones);
         $plantilla = "dimension_crear.tpl";
-        $smarty->assign('_nombre_pagina', TXT_REL_DIM);
+        $smarty->assign('_nombre_pagina', TXT_DIM_REL);
     }
     else
     {
         $smarty->assign('dimension', $dimension);
-        $smarty->assign('_nombre_pagina', TXT_EDIT_DIMS);
+        $smarty->assign('_nombre_pagina', TXT_DIM_EDIT);
         $plantilla = "dimension_editar.tpl";
     }
 }

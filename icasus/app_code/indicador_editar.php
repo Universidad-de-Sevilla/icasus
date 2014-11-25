@@ -62,7 +62,7 @@ if ((filter_has_var(INPUT_GET, 'id_indicador') || filter_has_var(INPUT_POST, 'id
         $indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_indicador");
         $smarty->assign("indicador_subunidades", $indicador_subunidades);
 
-        $smarty->assign('_nombre_pagina', TXT_EDIT_INDIC.': '. $indicador->nombre);
+        $smarty->assign('_nombre_pagina', TXT_INDIC_EDIT.': '. $indicador->nombre);
         $plantilla = 'indicador_editar.tpl';
     }
     else

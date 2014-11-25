@@ -12,7 +12,7 @@
                             <td>
                                 <a href='index.php?page=cuadro_unidad&id_entidad={$entidad->entidad->id}'>{$smarty.const.TXT_CUAD_RES}</a> - 
                                 <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'>{$smarty.const.TXT_CONSULTAS}</a> -
-                                <a href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'> {$smarty.const.TXT_PROCESOS}</a> -
+                                <a href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'> {$smarty.const.TXT_PROCS}</a> -
                                 <a href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'>{$smarty.const.FIELD_INDICS}</a> - 
                                 <a href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'>{$smarty.const.FIELD_DATOS}</a>
                                 <!--
@@ -29,7 +29,7 @@
     <div class="alert alert_blue">{$smarty.const.MSG_UNID_NO_ASIG}</div>
 {/if}
 
-<h3>{$smarty.const.TXT_ALL_UNIDS}</h3>
+<h3>{$smarty.const.TXT_UNID_TODAS}</h3>
 <!--
       <div class="box grid_16">
               <div class="block">	
@@ -54,7 +54,7 @@
                             <td>
                                 <a href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'>{$smarty.const.TXT_CUAD_RES}</a> - 
                                 <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'>{$smarty.const.TXT_CONSULTAS}</a> -
-                                <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_PROCESOS}</a> -
+                                <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_PROCS}</a> -
                                 <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_INDICS}</a> - 
                                 <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DATOS}</a>
                             </td>

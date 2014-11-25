@@ -12,7 +12,7 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$modulo = sanitize($_REQUEST["modulo"], SQL);
+$modulo = sanitize($_REQUEST["modulo"], SQL);//GET
 $fichero = new Fichero();
 $db = $fichero->DB();
 

@@ -42,7 +42,7 @@ if ($id_entidad > 1) {
     $entidad->id_entidad = $datos['id_padre'];
     $indicadores = $entidad->listar_indicadores();
     $smarty->assign('indicadores', $indicadores);
-    $smarty->assign('_nombre_pagina', TXT_INDICS_COPY);
+    $smarty->assign('_nombre_pagina', TXT_INDICS_COPIAR);
     $plantilla = 'indicador_copiar.tpl';
 } else {
     $smarty->assign('error', ERR_PARAM_INC);

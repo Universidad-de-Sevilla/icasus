@@ -2,10 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: entidad_poblar.php
-//---------------------------------------------------------------------------------------------------
-// Muestra un listado de usuarios para ser asignados a una unidad
-// Si los usuario ya vienen señalados se graban en la tabla usuario_unidad
+// Archivo: archivo_gestionar.php
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;

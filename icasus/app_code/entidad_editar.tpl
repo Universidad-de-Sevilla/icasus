@@ -1,4 +1,4 @@
-<h3>{$smarty.const.TXT_EDIT_UNID}</h3>
+<h3>{$smarty.const.TXT_UNID_EDIT}</h3>
 <div class="box grid_16">
     <div class="toggle_container">
         <div class="block">

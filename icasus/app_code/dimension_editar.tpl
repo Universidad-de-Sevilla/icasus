@@ -1,6 +1,6 @@
 {if $aviso}<p class='aviso'>{$aviso}</p>{/if}
 {if $error}<p class='error'>{$error}</p>{/if}
-<h2>{$smarty.const.TXT_EDIT_DIM}</h2>
+<h2>{$smarty.const.TXT_DIM_EDIT}</h2>
 
 <form action='index.php?page=dimension_editar' method="post" class="datos" name="formeditar">
 	<input type='hidden' name='id' value='{$dimension->id}' />

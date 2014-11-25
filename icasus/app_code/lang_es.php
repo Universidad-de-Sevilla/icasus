@@ -171,65 +171,65 @@ define('TXT_DATOS_REBIUN_SUMA_EXPORT_CSV', 'Exportar en CSV suma Datos Rebiun');
 define('TXT_DATOS_REBIUN_PROMEDIO_EXPORT_CSV', 'Exportar en CSV promedio Datos Rebiun');
 
 //Dimensiones
-define('TXT_CREAR_DIM', 'Crear Dimensión');
-define('TXT_EDIT_DIMS', 'Edición de Dimensiones');
-define('TXT_LIST_DIM', 'Lista de Dimensiones');
-define('TXT_EDIT_DIM', 'Editar Dimensión');
-define('TXT_REL_DIM', 'Relación de Dimensiones');
+define('TXT_DIM_CREAR', 'Crear Dimensión');
+define('TXT_DIM_EDIT', 'Editar Dimensión');
+define('TXT_DIM_LIST', 'Lista de Dimensiones');
+define('TXT_DIM_REL', 'Relación de Dimensiones');
 
 //Entidades (Unidades)
-define('TXT_INDIC_SUBUNID', 'Relación de indicadores de subentidades');
-define('TXT_INDIC_UNID_SUP', 'Indicadores de la Unidad superior');
-define('TXT_INDIC_SEG_UNID', 'Indicadores segregados en los que mide la Unidad');
+
+define('TXT_UNID_SUP_INDIC', 'Indicadores de la Unidad superior');
+define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la Unidad');
 define('TXT_UNID', 'Unidad');
-define('TXT_ALL_UNIDS', 'Todas las unidades');
-define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la unidad a la que se copiará el indicador.');
+define('TXT_UNID_TODAS', 'Todas las Unidades');
+define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la Unidad a la que se copiará el Indicador.');
 define('TXT_SUBUNID', 'La Subunidad');
-define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes mediciones con los correspondientes valores');
-define('TXT_NEW_UNID', 'Nueva unidad');
-define('TXT_VER_UNID', 'Ver unidad');
+define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes Mediciones con los correspondientes valores');
+define('TXT_UNID_NUEVA', 'Nueva Unidad');
+define('TXT_UNID_VER', 'Ver unidad');
 define('TXT_UNID_FICHA', 'Ficha de Unidad');
-define('TXT_LIST_UNID', 'Lista de unidades');
-define('TXT_PROC_INDIC_LIST', 'Lista de procesos de la Unidad con sus indicadores');
-define('TXT_EDIT_UNID', 'Editar unidad');
-define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
-define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, valores y fecha');
+define('TXT_UNID_LIST', 'Lista de Unidades');
+define('TXT_UNID_PROC_LIST', 'Lista de procesos de la Unidad con sus Indicadores');
+define('TXT_UNID_EDIT', 'Editar Unidad');
+define('TXT_UNIDS_MEDS_INDIC', 'Unidades con Mediciones en el Indicador');
+define('TXT_UNIDS_UE01', 'Unidades UE01 con sus Indicadores, Valores y Fecha');
 
 //Indicadores
+define('TXT_INDIC_SUBUNID', 'Relación de Indicadores de Subunidades');
 define('TXT_INDIC_PROP', 'Indicadores propios de la Unidad');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
-define('TXT_NEW_INDIC', 'Nuevo Indicador');
-define('TXT_VER_INDIC', 'Ver Indicadores');
-define('TXT_VOLVER_INDIC', 'Volver al Indicador');
-define('TXT_INDIC_SHOW', 'Mostrar ficha del Indicador');
+define('TXT_INDIC_NUEVO', 'Nuevo Indicador');
+define('TXT_INDICS_VER', 'Ver Indicadores');
+define('TXT_INDIC_VOLVER', 'Volver al Indicador');
+define('TXT_INDIC_MOSTRAR', 'Mostrar Ficha del Indicador');
 define('TXT_INDIC_FICHA', 'Ficha del Indicador');
-define('TXT_CREAR_INDIC', 'Crear Indicador');
+define('TXT_INDIC_CREAR', 'Crear Indicador');
 define('TXT_INDIC_LIST', 'Lista de Indicadores');
-define('TXT_EDIT_INDIC', 'Editar Indicador');
-define('TXT_BORRAR_INDIC', 'Borrar Indicador');
-define('TXT_INDICS_COPY', 'Copiar Indicadores');
+define('TXT_INDIC_EDIT', 'Editar Indicador');
+define('TXT_INDIC_BORRAR', 'Borrar Indicador');
+define('TXT_INDICS_COPIAR', 'Copiar Indicadores');
 define('TXT_INDICS_DIC', 'Diccionario de Indicadores');
 define('TXT_INDICS_MIO', 'Mis Indicadores');
-define('TXT_DAT_INDIC', 'Datos del Indicador');
-define('TXT_GEN_INFO_WORD_INDIC', 'Generar un informe en Word de este Indicador');
-define('TXT_EXPORT_EXCEL_INDIC', 'Exportar los datos del Indicador a Excel');
+define('TXT_INDIC_DAT', 'Datos del Indicador');
+define('TXT_INDIC_GEN_INFO_WORD', 'Generar un informe en Word de este Indicador');
+define('TXT_INDIC_EXPORT_EXCEL', 'Exportar los datos del Indicador a Excel');
 define('TXT_INDIC_PUBLIC', 'Indicadores públicos');
 define('TXT_INDIC_ACARGO', 'Indicadores a su cargo');
-define('TXT_BUSCAR_INDIC_BASE', 'Buscar Indicador base');
-define('TXT_BUSCAR_INDIC_COMPLEMENT', 'Buscar Indicadores complementarios');
-define('TXT_SEG_INDIC_DEPART', 'Seguimiento Indicadores de los Departamentos');
+define('TXT_INDIC_BUSCAR_BASE', 'Buscar Indicador Base');
+define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar Indicadores Complementarios');
+define('TXT_INDIC_SEG_DEPART', 'Seguimiento de Indicadores de los Departamentos');
+define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta Medición.');
+define('TXT_INDIC_ACT_MED', 'Marque la casilla si además quiere activarla');
 
 //Mediciones
-define('TXT_MED_UNICA', 'Medición única en la unidad actual');
+define('TXT_MED_UNICA', 'Medición única en la Unidad actual');
 define('TXT_MED_DES', 'Medición desagregada en las Subunidades y cumplimentada por los responsables de las Subunidades, o la persona delegada.');
 define('TXT_MED_DES_CEN', 'Medición desagregada en las Subunidades y cumplimentada de manera centralizada por el responsable de medición del Indicador.');
 define('TXT_MED_ESTA', 'esta Medición');
 define('TXT_MED_ACARGO', 'Mediciones a su cargo');
-define('TXT_VOLVER_MED', 'Volver a las Mediciones');
-define('TXT_MOSTRAR_MED', 'Mostrar Mediciones');
+define('TXT_MED_VOLVER', 'Volver a las Mediciones');
+define('TXT_MED_MOSTRAR', 'Mostrar Mediciones');
 define('TXT_MED_BORRAR', 'Borrar Medición');
-define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta Medición.');
-define('TXT_INDIC_ACT_MED', 'Marque la casilla si además quiere activarla');
 define('TXT_MED_ACT_TODAS', 'Activar todas las Mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las Mediciones.');
 define('TXT_MED_PROGRAM', 'Programar Medición');
@@ -261,18 +261,18 @@ define('TXT_PAGE_TITULO', 'Título de página');
 define('TXT_PAGINA', 'página');
 
 //Paneles
-define('TXT_NEW_PANEL', 'Nuevo Panel');
-define('TXT_ADD_PANEL', 'Agregar Panel');
+define('TXT_PANEL_NUEVO', 'Nuevo Panel');
+define('TXT_PANEL_AGREGAR', 'Agregar Panel');
 define('TXT_PANELES_INFO', 'Información sobre los Paneles');
 
 //Procesos
-define('TXT_VER_PROC', 'Ver Procesos');
-define('TXT_VOLVER_PROC', 'Volver al Proceso');
+define('TXT_PROCS', 'Procesos de la Unidad');
+define('TXT_PROCS_VER', 'Ver Procesos');
+define('TXT_PROC_VOLVER', 'Volver al Proceso');
 define('TXT_PROC_FICHA', 'Ficha del Proceso');
-define('TXT_NEW_PROC', 'Nuevo Proceso');
+define('TXT_PROC_NUEVO', 'Nuevo Proceso');
 define('TXT_PROC_LIST', 'Lista de Procesos');
-define('TXT_PROCESOS', 'Procesos de la Unidad');
-define('TXT_ES_PROC_MADRE', 'Es un Proceso Madre');
+define('TXT_PROC_ES_MADRE', 'Es un Proceso Madre');
 define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha de Proceso');
 define('TXT_PROC_EDIT', 'Editar Proceso');
 define('TXT_PROC_CREAR', 'Crear Proceso');
@@ -287,11 +287,11 @@ define('TXT_OPERATIVO', 'Operativo/Clave');
 define('TXT_DIR_GES', 'Directivo/Estratégico/Gestión');
 
 //Usuarios
-define('TXT_ASIGNAR_USERS', 'Asignar Usuarios');
-define('TXT_DESASIGNAR_USERS', 'Desasignar Usuarios marcados');
-define('TXT_ALTA_USERS', 'Alta de Usuarios');
+define('TXT_USERS_ASIGNAR', 'Asignar Usuarios');
+define('TXT_USERS_DESASIGNAR', 'Desasignar Usuarios marcados');
+define('TXT_USERS_ALTA', 'Alta de Usuarios');
+define('TXT_USERS_BAJA', 'Baja de Usuarios');
 define('TXT_USER_UNIDS', 'Unidades del Usuario');
-define('TXT_BAJA_USERS', 'Baja de Usuarios');
 define('TXT_USERS_ASIG', 'Usuarios asignados actualmente');
 define('TXT_USERS_DISP', 'Usuarios disponibles');
 define('TXT_VINC_USERS', 'Vincular Usuarios');
@@ -648,7 +648,6 @@ define('FIELD_INDICS', 'Indicadores');
 define('FIELD_FORM', 'Formulación');
 define('FIELD_FUENTE_INFO', 'Fuente de información');
 define('FIELD_PERIOD', 'Periodicidad');
-
 
 //Mediciones
 define('FIELD_MED', 'Medición');

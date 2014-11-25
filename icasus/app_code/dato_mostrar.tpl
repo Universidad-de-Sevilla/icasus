@@ -6,7 +6,7 @@
         <div class="block">
             <div class="button_bar clearfix">
                 <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_MOSTRAR_MED}</a> &nbsp; &nbsp;
+                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a> &nbsp; &nbsp;
                 <a href='index.php?page=dato_listar&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_LIST_TODOS}</a> &nbsp; &nbsp;
                 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -135,7 +135,7 @@
         <div class="block">
             <div class="button_bar clearfix">
                 <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_MOSTRAR_MED}</a>						
+                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a>						
             </div>
 
             {if $mediciones}

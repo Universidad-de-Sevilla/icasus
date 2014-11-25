@@ -25,7 +25,7 @@ if (isset($_REQUEST["id_entidad"]))
     $procesos_madre = $proceso_madre->find("id_entidad = $id_entidad");
     $smarty->assign('procesos_madre', $procesos_madre);
 
-    $smarty->assign("_nombre_pagina", TXT_NEW_PROC." - " . $entidad->nombre);
+    $smarty->assign("_nombre_pagina", TXT_PROC_NUEVO." - " . $entidad->nombre);
     $plantilla = "proceso_crear.tpl";
 }
 else

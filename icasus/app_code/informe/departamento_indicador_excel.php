@@ -24,24 +24,26 @@ $excel->getActiveSheet()->setCellValue('B1', FIELD_INDIC);
 $excel->getActiveSheet()->setCellValue('C1', FIELD_VAL);
 $excel->getActiveSheet()->setCellValue('D1', FIELD_FECHA);
 
-$i = 2;
+//Esta variable se usa dentro de cada iteración porque siempre empleamos una fila
+//nueva para escribir los datos
+$fila = 2;
 foreach ($entidades as $entidad)
 {
-    $excel->getActiveSheet()->setCellValue('A' . $i, $entidad->nombre);
-    $i = $i + 1;
+    $excel->getActiveSheet()->setCellValue('A' . $fila, $entidad->nombre);
+     $fila++;
     foreach ($entidad->indicadores as $indicador)
     {
-        $excel->getActiveSheet()->setCellValue('B' . $i, $indicador->nombre);
-        $i = $i + 1;
+        $excel->getActiveSheet()->setCellValue('B' . $fila, $indicador->nombre);
+        $fila++;
         foreach ($indicador->valores as $valor)
         {
-            $excel->getActiveSheet()->setCellValue('C' . $i, $valor->valor);
-            $excel->getActiveSheet()->setCellValue('D' . $i, date("d-m-Y", $valor->fecha_entrada));
-            $i = $i + 1;
+            $excel->getActiveSheet()->setCellValue('C' . $fila, $valor->valor);
+            $excel->getActiveSheet()->setCellValue('D' . $fila, date("d-m-Y", $valor->fecha_entrada));
+            $fila++;
         }
-        $i = $i + 1;
+        $fila++;
     }
-    $i = $i + 1;
+    $fila++;
 }
 $excel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
 $excel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);

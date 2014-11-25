@@ -61,7 +61,7 @@
 	<label><span></span></label>
 	<div class="clearfix">
 		<div class="col_25">
-			<input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_BUSCAR_INDIC_BASE}" name="buscar_indicador_base" id="buscar_indicador_base" type="text">
+			<input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_INDIC_BUSCAR_BASE}" name="buscar_indicador_base" id="buscar_indicador_base" type="text">
 		</div>
 	</div>
 	<div id="listado_indicadores_base" >
@@ -99,7 +99,7 @@
 	<label><span></span></label>
 	<div class="clearfix">
 		<div class="col_25">
-			<input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_BUSCAR_INDIC_COMPLEMENT}" name="buscar_indicador_complementario" id="buscar_indicador_complementario" type="text">
+			<input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_INDIC_BUSCAR_COMPLEMENT}" name="buscar_indicador_complementario" id="buscar_indicador_complementario" type="text">
 		</div>
 	</div>
 	<div id="listado_indicadores_complementarios" >

@@ -22,7 +22,7 @@ if ($id_entidad) {
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
-    $smarty->assign('_nombre_pagina', TXT_BAJA_USERS . ' - ' . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', TXT_USERS_BAJA . ' - ' . $entidad->nombre);
 
     $usuario_entidad = new Usuario_entidad;
     $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");

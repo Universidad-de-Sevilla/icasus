@@ -16,7 +16,7 @@
       <label>{$smarty.const.FIELD_PROC_MADRE}</label>
       <div>
         <select name="madre" class="required select_box">
-          <option value="0">{$smarty.const.TXT_ES_PROC_MADRE}</option>
+          <option value="0">{$smarty.const.TXT_PROC_ES_MADRE}</option>
           {foreach from=$procesos_madre item=proceso_madre}
             <option value="{$proceso_madre->id}" {if $proceso_madre->id == $proceso->id_madre} 
 selected{/if}>

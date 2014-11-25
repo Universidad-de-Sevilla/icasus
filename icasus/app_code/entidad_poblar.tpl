@@ -68,7 +68,7 @@
                 </fieldset>
                 <div class="button_bar clearfix">
                     <button class="green" type="submit" value="Asignar usuarios" name="enviar">
-                        <span>{$smarty.const.TXT_ASIGNAR_USERS}</span>
+                        <span>{$smarty.const.TXT_USERS_ASIGNAR}</span>
                     </button>
                 </div>  
             </form>
