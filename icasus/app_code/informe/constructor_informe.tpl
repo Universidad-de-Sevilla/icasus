@@ -5,18 +5,18 @@ function open_close(id)
 {
         if (document.getElementById(id).style.display == 'none')
         {
-                document.getElementById(id).style.display = ''; 
-        	if (id == 'dpto')
-		{
-	        	document.getElementById('biblioteca').style.display = 'none'; 
-		}
-		else
-		{
-	        	document.getElementById('dpto').style.display = 'none'; 
-		}
-	} 
+                document.getElementById(id).style.display = '';
+            if (id == 'dpto')
+        {
+                document.getElementById('biblioteca').style.display = 'none';
+        }
         else
-        { 
+        {
+                document.getElementById('dpto').style.display = 'none';
+        }
+    }
+        else
+        {
                 document.getElementById(id).style.display = 'none';
         }
 }
@@ -26,7 +26,7 @@ function open_close(id)
 <form action="index.php?page=informes/cuadromando_departamento_excel" method="post" onsubmit="valida_constructor();">
 <p><b>{$smarty.const.TXT_SEL_RAIZ_COD_UNID}</b><br />
 <input type="radio" name="unidad" value="UE01" onclick="open_close('dpto');"> {$smarty.const.TXT_DEPARTAMENTOS}<br />
-<input type="radio" name="unidad" value="UN03" onclick="open_close('biblioteca');"> {$smarty.const.TXT_BIBLIOTECAS}</p> 
+<input type="radio" name="unidad" value="UN03" onclick="open_close('biblioteca');"> {$smarty.const.TXT_BIBLIOTECAS}</p>
 
 <p id="dpto" style="display:none"><b>{$smarty.const.TXT_INFORME_SEL_INDIC}</b><br />
 <input type="checkbox" name="indicador[]" value="AOG-I1">{$smarty.const.TXT_NUM_CONVOCATORIAS}<br />
@@ -42,10 +42,10 @@ function open_close(id)
 </p>
 
 <p><b>{$smarty.const.TXT_INFORME_SEL_ANYO}</b><br />
-<input type="checkbox" name="periodo[]" value="2009">{$smarty.const.TXT_2009}<br />
-<input type="checkbox" name="periodo[]" value="2010">{$smarty.const.TXT_2010}<br />
-<input type="checkbox" name="periodo[]" value="2011">{$smarty.const.TXT_2011}<br />
-<input type="checkbox" name="periodo[]" value="2012">{$smarty.const.TXT_2012}<br />
+{$anyo_actual = $smarty.now|date_format:'%Y'}
+{for $anyo = $anyo_actual - 4 to $anyo_actual}
+    <input type="checkbox" name="periodo[]" value="{$anyo}">{$anyo}<br />
+{/for}
 </p>
 <p><input type="submit" value="{$smarty.const.TXT_GEN_INFO}"></p>
 </form>
