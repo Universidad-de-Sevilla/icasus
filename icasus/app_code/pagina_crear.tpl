@@ -1,5 +1,5 @@
 <div class="flat_area grid_16">
-	<h2>{$smarty.const.TXT_NEW_PAGE}</h2>
+	<h2>{$smarty.const.TXT_PAG_NUEVA}</h2>
 </div>
 <div class="toggle_container">
 	

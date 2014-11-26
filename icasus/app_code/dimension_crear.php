@@ -29,7 +29,7 @@ if (filter_has_var(INPUT_POST, 'nombre'))
     else
     {
         $error = $dimension->ErrorMsg();
-        $smarty->assign('error', ERR_CREA_DIM); //Este es el error reportado: '.$error);
+        $smarty->assign('error', ERR_DIM_CREAR); //Este es el error reportado: '.$error);
     }
 }
 

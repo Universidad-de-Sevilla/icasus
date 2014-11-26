@@ -24,13 +24,13 @@ if (filter_has_var(INPUT_POST, 'alias') && filter_has_var(INPUT_POST, 'titulo') 
     $pagina->save();
     $smarty->assign('pagina', $pagina);
     $smarty->assign('_nombre_pagina', TXT_MANUAL . ': ' . $pagina->titulo);
-    $smarty->assign('aviso', MSG_NEW_PAGE_OK);
+    $smarty->assign('aviso', MSG_PAG_NUEVA_OK);
     $plantilla = 'pagina_mostrar.tpl';
 }
 else
 {
     // Mostramos el formulario
-    $smarty->assign('_nombre_pagina', TXT_NEW_HELP_PAGE);
+    $smarty->assign('_nombre_pagina', TXT_PAG_AYUDA_NUEVA);
     $plantilla = 'pagina_crear.tpl';
 }
 

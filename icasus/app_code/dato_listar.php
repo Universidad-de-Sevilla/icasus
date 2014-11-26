@@ -28,7 +28,7 @@ if ($id_entidad != 0)
 }
 else
 {
-    $error = ERR_ENTIDAD;
+    $error = ERR_UNID;
     header("location:index.php?page=error&error=$error");
 }
 

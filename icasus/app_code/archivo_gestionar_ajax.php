@@ -49,7 +49,7 @@ if ($modulo == 'subir') {
             $fichero->load("id = $fichero->id");
             $fichero->delete();
         } else {
-            $aviso = MSG_FILE_CORRECT_UPLOAD;
+            $aviso = MSG_ARCHIVO_SUBIDA_OK;
             header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&aviso=$aviso");
         }
     } else {

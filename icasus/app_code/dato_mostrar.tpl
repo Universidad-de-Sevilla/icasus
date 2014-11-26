@@ -17,7 +17,7 @@
                 <a href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a> &nbsp; &nbsp;
                 <a href='index.php?page=indicador_subunidad_valor&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
-                        src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_EDIT_VALS}</a> &nbsp; &nbsp; &nbsp;
+                        src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VALS_EDIT}</a> &nbsp; &nbsp; &nbsp;
                 <a href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> &nbsp;
             </div>
@@ -119,7 +119,7 @@
                                 {/foreach}
                         </ul>
                     {else}
-                        {$smarty.const.MSG_NO_SUBUNID_DATO_ASIG}
+                        {$smarty.const.MSG_DATO_NO_SUBUNID_ASIG}
                     {/if}
                 </div>
             </fieldset>
@@ -155,7 +155,7 @@
                 {/if}
 
             {else}
-                <p class="aviso">{$smarty.const.MSG_NO_MED_INDIC}</p>
+                <p class="aviso">{$smarty.const.MSG_INDIC_NO_MED}</p>
             {/if}
         </div>
     </div><!-- toggle_container -->

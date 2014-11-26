@@ -37,7 +37,7 @@ if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'codigo')
     if ($entidad->actualizar($id_entidad, $id_padre, $nombre, $web, $codigo))
     {
         $smarty->assign('entidad', $entidad);
-        $smarty->assign('aviso', MSG_UNID_MOD);
+        $smarty->assign('aviso', MSG_UNID_EDITADA);
     }
     else
     {

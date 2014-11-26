@@ -23,12 +23,12 @@ if (
         $dato->load("id = $id_dato");
         $es_dato_nuevo = false;
         // Preparamos el aviso para lanzarlo al final
-        $aviso = MSG_DAT_UPDATE;
+        $aviso = MSG_DATO_ACTUALIZADO;
     }
     else
     {
         $es_dato_nuevo = true;
-        $aviso = MSG_DAT_CREADO;
+        $aviso = MSG_DATO_CREADO;
     }
     // Campos obligatorios
     $dato->id_entidad = sanitize($_REQUEST['id_entidad'], INT);

@@ -84,7 +84,7 @@ if ($id) {
         $sect->writeText('<strong>'.FIELD_COMENTARIOS.': </strong><br /><tab>' . $cuadro->comentarios . '<br />');
     }
     $footer = &$rtf->addFooter('all');
-    $footer->writeText(TXT_INFORME_IC.'<tab><tab>'.TXT_PAGINA.'<pagenum>', new Font(), new ParFormat('right'));
+    $footer->writeText(TXT_INFORME_IC.'<tab><tab>'.TXT_PAG.'<pagenum>', new Font(), new ParFormat('right'));
     $rtf->sendRtf('cuadro_' . $id);
 } else {
     //Si se llama a esta pagina si un id de cuadro se redirecciona al listado

@@ -50,13 +50,13 @@
     {else}
         <div class="alert alert_blue">
             <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-            {$smarty.const.MSG_NO_MED_TIPO} {$tipo}
+            {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
         </div>
     {/if}
 </div>
 <div style="opacity: 1;" class="box grid_16">
 
-    <h2 class="box_head">{$smarty.const.TXT_TABLA_VAL}</h2>
+    <h2 class="box_head">{$smarty.const.TXT_VAL_TABLA}</h2>
     <div style="opacity: 1;" class="block">
         <table class="static">
             <thead>

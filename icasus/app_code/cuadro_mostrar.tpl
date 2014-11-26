@@ -13,7 +13,7 @@
 <div id="dialogo_borrar_panel" class="dialog_content narrow ui-dialog-content ui-widget-content">
     <div class="block" style="opacity: 1;" >
         <div class="section" style="padding:20px">
-            <p>{$smarty.const.MSG_BORRAR_PANEL} "<b><span id="nombre_panel"></span></b>" </p>
+            <p>{$smarty.const.MSG_PANEL_BORRAR} "<b><span id="nombre_panel"></span></b>" </p>
         </div>
     </div>
 </div>

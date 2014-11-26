@@ -43,7 +43,7 @@ if ($id_entidad) {
             $usuario_entidad->desasignar_usuario($id_entidad, $id_usuario);
             $contador ++;
         }
-        $aviso= MSG_UNID_ELIM . ' ' . $contador . ' ' . TXT_USERS;
+        $aviso= MSG_UNID_USERS_BORRADOS . ' ' . $contador . ' ' . TXT_USERS;
         header("location:index.php?page=entidad_datos&id_entidad=$id_entidad&aviso=$aviso");
 //        $plantilla = 'entidad_datos.tpl';
     } else {

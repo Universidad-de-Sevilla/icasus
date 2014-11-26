@@ -48,7 +48,7 @@ if ($id_entidad > 0) {
     $plantilla = 'cuadro_unidad.tpl';
     $smarty->assign('_nombre_pagina', TXT_CUAD_RES.": $entidad->nombre");
 } else {
-    $error = ERR_ENTIDAD;
+    $error = ERR_UNID;
     header("location:index.php?page=error&error=$error");
 }
 

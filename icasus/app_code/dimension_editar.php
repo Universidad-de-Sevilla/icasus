@@ -31,7 +31,7 @@ if ($id_dimension)
         $dimension->nombre = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
         $adodb->execute("SET NAMES utf8");
         $dimension->save();
-        $smarty->assign('aviso', MSG_DIM_EDITED);
+        $smarty->assign('aviso', MSG_DIM_EDITADA);
 
         // Array de dimensiones que pasamos a la vista para ver las existentes
         $dimensiones = $dimension->find('1 = 1 ORDER BY nombre');

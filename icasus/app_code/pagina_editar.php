@@ -25,7 +25,7 @@ if (isset($_REQUEST['id_pagina']))
         $pagina->contenido = filter_input(INPUT_POST,'contenido');
         $pagina->modified = time();
         $pagina->save();
-        $smarty->assign('aviso', MSG_PAGE_EDIT_OK);
+        $smarty->assign('aviso', MSG_PAG_EDIT_OK);
         $plantilla = 'pagina_mostrar.tpl';
     }
     else

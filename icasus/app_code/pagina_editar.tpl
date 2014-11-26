@@ -1,5 +1,5 @@
 <div class="flat_area grid_16">
-	<h2>{$smarty.const.TXT_PAGE_EDIT}</h2>
+	<h2>{$smarty.const.TXT_PAG_EDIT}</h2>
 </div>
 <div class="toggle_container">
 	<form name='formpagina' id='formpagina' action='index.php?page=pagina_editar' class='datos' method='post'>

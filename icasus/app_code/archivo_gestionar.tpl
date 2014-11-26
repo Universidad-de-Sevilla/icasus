@@ -83,7 +83,7 @@
         <div class="block">
             <div class="section">
                 <h2> {$marty.const.TXT_ARCHIVO_BORRAR}</h2>
-                <p>{$marty.const.MSG_CONFIRM_DEL_FILE} <b><span id="titulo_borrar"></span></b>.</p>
+                <p>{$marty.const.MSG_ARCHIVO_BORRAR_CONFIRM} <b><span id="titulo_borrar"></span></b>.</p>
             </div>
             <div class="button_bar clearfix">
                 <input type="hidden" value="" name="id_borrar" id="id_borrar">
@@ -127,7 +127,7 @@
         {else}
             <div class='alert alert_blue'>
                 <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-                {$marty.const.MSG_NO_FILE_PROC}
+                {$marty.const.MSG_PROC_ARCHIVO_NO}
             </div>
         {/if}
     </div>

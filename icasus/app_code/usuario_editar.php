@@ -47,7 +47,7 @@ if (filter_has_var(INPUT_POST, 'id_usuario') || filter_has_var(INPUT_POST, 'nif'
         $usuario = new Usuario($basedatos);
         if ($usuario->modificar($id_usuario, $nombre, $apellidos, $nif, $correo, $telefono, $login, $clave))
         {
-            $smarty->assign('aviso', MSG_USER_EDITED);
+            $smarty->assign('aviso', MSG_USER_EDITADO);
             $smarty->assign('usuario', $usuario->obtener_datos($id_usuario));
             $smarty->assign('entidades', $usuario->obtener_entidades($id_usuario));
             $smarty->assign('id_operario', $operario->id_usuario);

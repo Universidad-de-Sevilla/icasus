@@ -34,7 +34,7 @@ if ($id_entidad) {
                 $contador ++;
             }
         }
-        $aviso = MSG_UNID_ADD . ' ' . $contador . ' ' . TXT_USERS;
+        $aviso = MSG_UNID_USERS_AGREGADOS . ' ' . $contador . ' ' . TXT_USERS;
         header("location:index.php?page=entidad_poblar&id_entidad=$id_entidad&aviso=$aviso");
     }
     // Si no vienen datos en el POST mostramos el formulario

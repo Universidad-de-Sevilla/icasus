@@ -10,7 +10,7 @@
     <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
         {$smarty.const.TXT_UNID_EDIT}</a> &nbsp; &nbsp; 
     <a href='index.php?page=csv_importar&id_entidad={$entidad->id}'><img src='/icons/ff16/lorry.png' />
-        {$smarty.const.TXT_IMPORT_VAL}</a> &nbsp; &nbsp; 
+        {$smarty.const.TXT_VAL_IMPORT}</a> &nbsp; &nbsp; 
 </h3>
 <div class="box grid_16">
     <div class="toggle_container">
@@ -46,9 +46,9 @@
 <h2>{$smarty.const.TXT_USERS}</h2>
 <h3>
     <a href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_add.png' />
-        {$smarty.const.TXT_VINC_USERS}</a> &nbsp; &nbsp; &nbsp;
+        {$smarty.const.TXT_USERS_VINC}</a> &nbsp; &nbsp; &nbsp;
     <a href='index.php?page=entidad_despoblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_delete.png' />
-        {$smarty.const.TXT_DESVINC_USERS}</a>
+        {$smarty.const.TXT_USERS_DESVINC}</a>
 </h3>
 
 {if $usuarios}

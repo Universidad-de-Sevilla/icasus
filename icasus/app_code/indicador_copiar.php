@@ -32,7 +32,7 @@ if ($id_entidad > 1) {
                 $contador ++;
             }
         }
-        $smarty->assign('aviso', $contador . ' ' . MSG_INDIC_COPY);
+        $smarty->assign('aviso', $contador . ' ' . MSG_INDIC_COPIADOS);
     }
     // Si no vienen indicadores o hemos terminado de grabar mostramos el formulario con el listado
     $entidad = new Entidad($basedatos);

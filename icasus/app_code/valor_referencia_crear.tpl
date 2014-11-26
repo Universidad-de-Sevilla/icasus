@@ -1,6 +1,6 @@
 <!-- Cuadro de dialogo oculto para crear nuevo valor de referencia -->
 <div class="display_none">
-    <div id="crear_referencia" class="dialog_content narrow " title="{$smarty.const.TXT_REF_NEW}">
+    <div id="crear_referencia" class="dialog_content narrow " title="{$smarty.const.TXT_VAL_REF_NUEVO}">
         <div class="block">
             <form method="post" action="" id="formcrearreferencia" name="formcrearreferencia" class="validate_form">
                 <fieldset class="label_side">
@@ -32,7 +32,7 @@
 
 <!-- Cuadro de dialogo oculto para editar valor de referencia -->
 <div class="display_none">
-    <div id="editar_referencia" class="dialog_content narrow " title="{$smarty.const.TXT_REF_EDIT}">
+    <div id="editar_referencia" class="dialog_content narrow " title="{$smarty.const.TXT_VAL_REF_EDIT}">
         <div class="block">
             <form method="post" action="" id="formeditarreferencia" name="formeditarreferencia" class="validate_form">
                 <fieldset class="label_side">
@@ -65,7 +65,7 @@
 <div class="box grid_16">
     <div class="button_bar clearfix">
         <a href="index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}"><img src ="/icons/ff16/chart_curve.png"> {$smarty.const.TXT_VOLVER} {$tipo}</a>
-        <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" ><img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_REF_CREAR}</a> &nbsp;
+        <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" ><img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF_CREAR}</a> &nbsp;
     </div>
     <div id="dt1" class="no_margin">
         <table class='static'>
@@ -76,10 +76,10 @@
             <tbody>
                 {foreach from=$indicador->valores_referencia item=item}
                     <tr class="gradeX">
-                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
-                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
-                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_REF_EDIT}" id="l-grafica-{$item->id}" value="{$item->grafica}">{$item->grafica}</a></td>
-                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_REF_EDIT}" id="l-activo-{$item->id}" value="{$item->activo}">{$item->activo}</a></td>
+                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
+                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
+                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-grafica-{$item->id}" value="{$item->grafica}">{$item->grafica}</a></td>
+                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-activo-{$item->id}" value="{$item->activo}">{$item->activo}</a></td>
                     </tr>
                 {/foreach}
             </tbody>

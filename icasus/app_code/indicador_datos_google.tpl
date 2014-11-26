@@ -84,7 +84,7 @@
 </table>	
 <h3>{$smarty.const.TXT_VAL_REC}</h3>
 <a href='index.php?page=valor_crear&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}'><img 
-        src='theme/usevilla/iconos/tag_blue_add.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_ADD_VAL}</a>
+        src='theme/usevilla/iconos/tag_blue_add.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_VAL_AGREGAR}</a>
     {if $valores}
     <table class='listing' id='sortable'>
         <thead><tr><th>{$smarty.const.FIELD_PERIODO}</th><th>{$smarty.const.FIELD_VAL}</th><th>{$smarty.const.FIELD_OBJ}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr></thead>
@@ -102,5 +102,5 @@
     </table>
     <p><img src='{$ruta_imagen}' alt={$smarty.const.TXT_REP_GRAFIC} width="630" height="240"/></p>
     {else} 
-    <p>{$smarty.const.MSG_NO_DAT_INDIC}</p>
+    <p>{$smarty.const.MSG_INDIC_NO_DATOS}</p>
 {/if}

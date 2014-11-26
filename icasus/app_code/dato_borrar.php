@@ -26,7 +26,7 @@ if ($id_dato && $id_entidad) {
             header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&error=$error");
         } else {
             $dato->delete();
-            $aviso = MSG_DAT_BORRADO . "$dato->nombre";
+            $aviso = MSG_DATO_BORRADO . "$dato->nombre";
             header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&aviso=$aviso");
         }
     } else {

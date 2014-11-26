@@ -88,7 +88,7 @@
             </tbody>
         </table>
     {else} 
-        <p>{$smarty.const.MSG_NO_DAT_INDIC}</p>
+        <p>{$smarty.const.MSG_INDIC_NO_DATOS}</p>
     {/if}
 {else}
     <p>{$smarty.const.MSG_INDIC_NO_PUBLIC}</p>

@@ -22,7 +22,7 @@ if ($id_cuadro)
     $cuadro->Load("id = $id_cuadro AND id_usuario = $id_usuario");
     if ($cuadro->delete())
     {
-        $aviso = MSG_CUADRO_BORRADO;
+        $aviso = MSG_CUADRO_MANDO_BORRADO;
         header("Location: index.php?page=cuadro_listar&aviso=$aviso");
     }
     else

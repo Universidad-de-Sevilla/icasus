@@ -78,7 +78,7 @@
             {else}
                 <div class="alert dismissible alert_blue">
                     <img src="images/icons/small/white/alert_2.png" height="24" width="24">
-                    {$smarty.const.MSG_DAT_NO_VAL_REF}
+                    {$smarty.const.MSG_DATO_NO_VAL_REF}
                 </div>
             {/if}
             <div class="button_bar clearfix">
