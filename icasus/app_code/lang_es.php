@@ -331,6 +331,7 @@ define('TXT_METRICA_DESC', 'Muestra una medición puntual para una unidad y un i
 
 //Propiedades HTML: Titles, placeholders, values de botones...
 define('TXT_CODIGO', 'Único, fácil de recordar y sin espacios');
+define('TXT_BORRAR_CONFIRM', 'Confirmar borrado');
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CANCEL', 'Cancelar');
 define('TXT_GEN_INFO', 'Generar informe');
@@ -475,12 +476,11 @@ define('ERR_INFORM_INDIC', 'No se puede generar el Informe del Indicador por fal
 define('ERR_GUARDAR', 'Hubo un problema, no se han podido guardar los cambios.');
 
 //Archivos
-define('ERR_DEL_FILE', "Faltan datos para procesar la solicitud de borrado del archivo.");
-define('ERR_NO_FILE', 'No existe el archivo con el identificador:');
-define('ERR_FILE_RECORD', 'Error no se han podido grabar los datos del archivo.');
-define('ERR_FILE_UPLOAD', 'No se ha podido subir el archivo, consulte al administrador del sistema.');
-define('ERR_FALTAN_PARAM_FILE_UP', 'Faltan parámetros para subir el archivo.');
-define('ERR_FILE_NO_SEL', 'No se ha especificado ningún archivo para subir.');
+define('ERR_ARCHIVO_BORRAR', "Faltan datos para procesar la solicitud de borrado del archivo.");
+define('ERR_ARCHIVO_NO', 'No existe el archivo con el identificador:');
+define('ERR_ARCHIVO_GRABAR', 'Error no se han podido grabar los datos del archivo.');
+define('ERR_ARCHIVO_SUBIR', 'No se ha podido subir el archivo, consulte al administrador del sistema.');
+define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.');
 
 //Cuadros de Mando
 define('ERR_CUAD_MANDO', 'El Cuadro de Mando no existe o no tiene permisos para consultarlo.');
@@ -488,13 +488,13 @@ define('ERR_CUAD_MANDO_PARAM', 'Parámetros insuficientes para mostrar el Cuadro
 define('ERR_CUAD_MANDO_EDIT', 'El Cuadro de Mando no existe o no tiene permisos para editarlo.');
 
 //Datos
-define('ERR_PARAM_CREA_DAT', 'Faltan parámetros para crear un nuevo Dato.');
-define('ERR_BORRAR_DAT_MED', 'Tiene mediciones asociadas al Dato, necesita borrar primero las mediciones.');
-define('ERR_BORRAR_DAT_NO_AUT', 'No tiene permisos para borrar el Dato.');
-define('ERR_GRABAR', 'No se ha podido grabar el Dato.');
+define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo Dato.');
+define('ERR_DATO_BORRAR_MED', 'Tiene Mediciones asociadas al Dato, necesita borrar primero las Mediciones.');
+define('ERR_DATO_BORRAR_NO_AUT', 'No tiene permisos para borrar el Dato.');
+define('ERR_DATO_GRABAR', 'No se ha podido grabar el Dato.');
 define('ERR_DATO_MOSTRAR', 'No se puede mostrar el Dato, el identificador no existe en la base de datos.');
-define('ERR_AUT_IMPORT_DAT_UNID', 'No tiene autorización para importar Datos en esta unidad.');
-define('ERR_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Datos de esta unidad.');
+define('ERR_DATO_IMPORT_NO_AUT', 'No tiene autorización para importar Datos en esta Unidad.');
+define('ERR_DATO_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Datos de esta Unidad.');
 
 //Dimensiones
 define('ERR_DIM_CREAR', 'No se ha podido crear la Dimensión.');
@@ -502,16 +502,16 @@ define('ERR_DIM_CREAR', 'No se ha podido crear la Dimensión.');
 //Entidades (Unidades)
 define('ERR_UNID', 'No ha especificado la Unidad.');
 define('ERR_UNID_NO_SEL', 'No se ha especificado una Unidad para asignar usuarios.');
-define('ERR_UNID_LIST_INDIC', 'No ha especificado la Unidad cuyos indicadores desea listar.');
-define('ERR_MOD_UNID', 'No se ha podido modificar la Unidad');
+define('ERR_UNID_LIST_INDIC', 'No ha especificado la Unidad cuyos Indicadores desea listar.');
+define('ERR_UNID_EDIT', 'No se ha podido modificar la Unidad');
 
 //Gráficas
 define('ERR_PARAM_GRAFIC', 'Faltan parámetros para mostrar la gráfica.');
 
 //Indicadores
-define('ERR_BORRAR_INDIC_MED', 'Tiene Mediciones asociadas al Indicador, necesita borrar primero las Mediciones.');
-define('ERR_BORRAR_INDIC_NO_AUT', 'No tiene permisos para borrar el Indicador.');
-define('ERR_EDIT_INDIC_NO_AUT', 'No tiene permisos suficientes para editar Indicadores de esta Unidad');
+define('ERR_INDIC_BORRAR_MED', 'Tiene Mediciones asociadas al Indicador, necesita borrar primero las Mediciones.');
+define('ERR_INDIC_BORRAR_NO_AUT', 'No tiene permisos para borrar el Indicador.');
+define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Indicadores de esta Unidad');
 define('ERR_INDIC_GRABAR', 'No se ha podido grabar el Indicador.');
 define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el Indicador, el identificador no existe en la base de datos.');
 
@@ -555,7 +555,6 @@ define('FIELD_WEB', 'Sitio web');
 define('FIELD_FUENTE', 'Fuente');
 define('FIELD_HISTORICO', 'Histórico');
 define('FIELD_PERIODO', 'Periodo');
-define('FIELD_COMENTARIOS', 'Comentarios');
 define('FIELD_VISIBILIDAD', 'Visibilidad');
 define('FIELD_CALC_TOTAL', 'Cálculo del total');
 define('FIELD_UMBRAL', 'Umbral');
@@ -614,6 +613,7 @@ define('FIELD_FILE', 'Archivo');
 
 //Cuadros de Mando
 define('FIELD_NOMBRE_CUADRO', 'Nombre del Cuadro de Mando');
+define('FIELD_COMENTARIOS', 'Comentarios');
 
 //Datos
 define('FIELD_RESP_DATO', 'Responsable del dato');

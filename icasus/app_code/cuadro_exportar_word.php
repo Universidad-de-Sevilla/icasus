@@ -14,15 +14,17 @@ global $basedatos;
 global $plantilla;
 
 // Esto es para prevenir que se cargue el script sin pasar por index.php
-if (!is_object($smarty)) {
+if (!is_object($smarty))
+{
     header('Location:index.php');
 }
 
-$id = filter_input(INPUT_GET | INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 //if (isset($_REQUEST['id']))
-if ($id) {
+if (filter_has_var(INPUT_GET, 'id'))
+{
     $smarty->assign('_javascript', array('confirmar_borrado'));
 //	$id = sanitize($_REQUEST['id'],16);
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     $cuadro = new Cuadro();
     $cuadro->Load("id = $id");
     $indicadores = $cuadro->carga_indicadores();
@@ -40,7 +42,7 @@ if ($id) {
 //cabecera de las paginas
     $header = &$rtf->addHeader('all');
     $header->addImage('/var/www/wiki/icasus/theme/usevilla/logo.jpg', $null);
-    $header->writeText('<tab>'.TXT_CUADRO_MANDO. ' '. $cuadro->nombre . '<tab><chdate>', new Font(), new ParFormat('right'));
+    $header->writeText('<tab>' . TXT_CUADRO_MANDO . ' ' . $cuadro->nombre . '<tab><chdate>', new Font(), new ParFormat('right'));
 //Creo la seccion
     $sect = &$rtf->addSection();
 //Configuracion de la seccion creada para mostrar en word y tamaño pagina
@@ -54,7 +56,8 @@ if ($id) {
     $sect->setMargins($marginLeft, $marginTop, $marginRight, $marginBottom);
 
 //empezamos a volcar el cuadro de mando
-    foreach ($indicadores as $elemento) {
+    foreach ($indicadores as $elemento)
+    {
         /*
           //añmos la tablaa y su margen izq
           $table = &$sect->addTable();
@@ -73,20 +76,23 @@ if ($id) {
 
         $sect->writetext('<br /><br />');
         $sect->writetext('<strong>' . $elemento->codigo . '   ' . $elemento->nombre . '  </strong><br /><br />', $arial14, $null);
-        $sect->writetext('<strong>'.FIELD_PROC.': </strong>' . $elemento->proceso->nombre . '<br />');
-        $sect->writetext('<strong>'.FIELD_DESC.': </strong>' . $elemento->descripcion . '<br />');
-        $sect->writetext('<strong>'.FIELD_FORM.': </strong>' . $elemento->formulacion . '<br />');
+        $sect->writetext('<strong>' . FIELD_PROC . ': </strong>' . $elemento->proceso->nombre . '<br />');
+        $sect->writetext('<strong>' . FIELD_DESC . ': </strong>' . $elemento->descripcion . '<br />');
+        $sect->writetext('<strong>' . FIELD_FORM . ': </strong>' . $elemento->formulacion . '<br />');
         $sect->addImage('/var/www/wiki/icasus/theme/usevilla/leyenda500.png', $null);
         $sect->addImage('/var/www/wiki/icasus/' . $elemento->ruta_imagen, $null);
         $sect->writetext('<br /><br />');
     }
-    if ($cuadro->comentarios) {
-        $sect->writeText('<strong>'.FIELD_COMENTARIOS.': </strong><br /><tab>' . $cuadro->comentarios . '<br />');
+    if ($cuadro->comentarios)
+    {
+        $sect->writeText('<strong>' . FIELD_COMENTARIOS . ': </strong><br /><tab>' . $cuadro->comentarios . '<br />');
     }
     $footer = &$rtf->addFooter('all');
-    $footer->writeText(TXT_INFORME_IC.'<tab><tab>'.TXT_PAG.'<pagenum>', new Font(), new ParFormat('right'));
+    $footer->writeText(TXT_INFORME_IC . '<tab><tab>' . TXT_PAG . '<pagenum>', new Font(), new ParFormat('right'));
     $rtf->sendRtf('cuadro_' . $id);
-} else {
+}
+else
+{
     //Si se llama a esta pagina si un id de cuadro se redirecciona al listado
     header('Location:index.php?page=cuadro_listar');
 }

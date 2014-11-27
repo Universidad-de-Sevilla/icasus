@@ -44,7 +44,7 @@
 </div>
 
 <div class="display_none">
-    <div id="dialog_editar" class="dialog_content narrow no_dialog_titlebar" title="Delete Confirmation">
+    <div id="dialog_editar" class="dialog_content narrow no_dialog_titlebar" title="{$smarty.const.TXT_BORRAR_CONFIRM}">
         <div class="block">
             <div class="section">
                 <h2>{$marty.const.TXT_ARCHIVO_ACTUALIZAR_DATOS}</h2>

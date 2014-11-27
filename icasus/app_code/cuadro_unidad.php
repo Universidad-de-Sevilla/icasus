@@ -14,14 +14,16 @@ global $usuario;
 global $plantilla;
 
 // Esto es para prevenir que se cargue el script sin pasar por index.php
-if (!is_object($smarty)) {
+if (!is_object($smarty))
+{
     header('Location:index.php?page=cuadro_listar');
 }
 
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 //if (isset($_GET["id_entidad"]) AND $_GET["id_entidad"] >0)
-if ($id_entidad > 0) {
+if ($id_entidad > 0)
+{
 //	$id_entidad = sanitize($_GET["id_entidad"],2);
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
@@ -46,8 +48,10 @@ if ($id_entidad > 0) {
     $smarty->assign('procesos_indicadores_superior', $procesos_indicadores_superior);
 
     $plantilla = 'cuadro_unidad.tpl';
-    $smarty->assign('_nombre_pagina', TXT_CUAD_RES.": $entidad->nombre");
-} else {
+    $smarty->assign('_nombre_pagina', TXT_CUAD_RES . ": $entidad->nombre");
+}
+else
+{
     $error = ERR_UNID;
     header("location:index.php?page=error&error=$error");
 }

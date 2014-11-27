@@ -1,7 +1,10 @@
 <?php
 
-$modulo = sanitize($_REQUEST["modulo"], SQL);
-$id_entidad = sanitize($_REQUEST["id_entidad"], SQL);
+//$modulo = sanitize($_REQUEST["modulo"], SQL);
+//$id_entidad = sanitize($_REQUEST["id_entidad"], SQL);
+
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 
 $entidad = new Entidad();
 $entidad->load("id = $id_entidad");
@@ -36,7 +39,7 @@ if ($modulo == 'inicio')
 if ($modulo == 'filtrOnlyear')
 {
 //	$fecha = sanitize($_REQUEST["fecha"],INT);
-    $fecha = filter_input(INPUT_GET | INPUT_POST, 'fecha', FILTER_SANITIZE_NUMBER_INT);
+    $fecha = filter_input(INPUT_GET, 'fecha', FILTER_SANITIZE_NUMBER_INT);
     $valor = new Valor();
     $valores = $valor->filtro_onlyear($fecha, $cadena);
     $smarty->assign("valores", $valores);

@@ -11,9 +11,12 @@ global $usuario;
 
 
 //if (isset($_REQUEST["id_proceso"]) AND isset($_REQUEST["id_entidad"]))
-if (isset($_REQUEST["id_proceso"]))
+//if (isset($_REQUEST["id_proceso"]))
+if (filter_has_var(INPUT_GET, 'id_proceso'))
 {
-    $id_proceso = sanitize($_REQUEST["id_proceso"], 2);
+//    $id_proceso = sanitize($_REQUEST["id_proceso"], 2);
+    $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+
     //$id_entidad = sanitize($_REQUEST["id_entidad"],2);
     // Datos del proceso
     $proceso = new Proceso();

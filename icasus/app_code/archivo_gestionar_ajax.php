@@ -12,64 +12,90 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$modulo = sanitize($_REQUEST["modulo"], SQL);//GET
+//$modulo = sanitize($_REQUEST["modulo"], SQL);
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+
 $fichero = new Fichero();
 $db = $fichero->DB();
 
-if ($modulo == 'subir') {
-    $ext = pathinfo($_FILES['sarchivo']['name']);
+if ($modulo == 'subir')
+{
+//    $ext = pathinfo($_FILES['sarchivo']['name']);
     $ext = $ext["extension"];
-    $fichero->titulo = sanitize($_REQUEST["stitulo"], SQL);
-    $fichero->descripcion = sanitize($_REQUEST["sdescripcion"], SQL);
-    $fichero->id_objeto = sanitize($_REQUEST["id_objeto"], INT);
+//    $fichero->titulo = sanitize($_REQUEST["stitulo"], SQL);
+    $fichero->titulo = filter_input(INPUT_POST, 'stitulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+//    $fichero->descripcion = sanitize($_REQUEST["sdescripcion"], SQL);
+    $fichero->descripcion = filter_input(INPUT_POST, 'sdescripcion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+//    $fichero->id_objeto = sanitize($_REQUEST["id_objeto"], INT);
+    $fichero->id_objeto = filter_input(INPUT_POST, 'id_objeto', FILTER_SANITIZE_NUMBER_INT);
     $fichero->id_usuario = $usuario->id;
-    $fichero->visible = sanitize($_REQUEST["svisible"], INT);
+//    $fichero->visible = sanitize($_REQUEST["svisible"], INT);
+    $fichero->visible = filter_input(INPUT_POST, 'svisible', FILTER_SANITIZE_NUMBER_INT);
     $fichero->tipo_objeto = 'proceso';
     $fichero->extension = $ext;
 
     $subdir = "$fichero->id_objeto";
     $dir = IC_DIR_BASE . "upload/$fichero->tipo_objeto/";
     //comprobamos si el directorio de la unidad existe.
-    if (!file_exists($dir)) {
-        if (!mkdir($dir, 0755)) {
+    if (!file_exists($dir))
+    {
+        if (!mkdir($dir, 0755))
+        {
             $error = ERR_DIR;
             header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&error=$error");
         }
     }
     //comprobamos si el subdirectorio de la unidad existe.
-    if (!file_exists($dir . $subdir)) {
-        if (!mkdir($dir . $subdir, 0755)) {
+    if (!file_exists($dir . $subdir))
+    {
+        if (!mkdir($dir . $subdir, 0755))
+        {
             $error = ERR_SUBDIR;
             header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&error=$error");
         }
     }
     //grabamos el archivo
-    if ($fichero->save()) {
-        if (!move_uploaded_file($_FILES['sarchivo']['tmp_name'], $dir . $subdir . "/archivo_" . $fichero->id . ".$ext")) {
+    if ($fichero->save())
+    {
+        if (!move_uploaded_file($_FILES['sarchivo']['tmp_name'], $dir . $subdir . "/archivo_" . $fichero->id . ".$ext"))
+        {
             $fichero->load("id = $fichero->id");
             $fichero->delete();
-        } else {
+        }
+        else
+        {
             $aviso = MSG_ARCHIVO_SUBIDA_OK;
             header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&aviso=$aviso");
         }
-    } else {
-        $error = ERR_FILE_RECORD;
+    }
+    else
+    {
+        $error = ERR_ARCHIVO_GRABAR;
         header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&error=$error");
     }
 }
 
-if ($modulo == 'actualizar') {
-    if ($fichero->load("id = " . sanitize($_REQUEST["id"], INT))) {
-        $fichero->titulo = sanitize($_REQUEST["titulo"], SQL);
-        $fichero->descripcion = sanitize($_REQUEST["descripcion"], SQL);
+if ($modulo == 'actualizar')
+{
+//    if ($fichero->load("id = " . sanitize($_REQUEST["id"], INT)))
+    if ($fichero->load("id = " . filter_input(INPUT_POST, 'id_fichero', FILTER_SANITIZE_NUMBER_INT)))
+    {
+//        $fichero->titulo = sanitize($_REQUEST["titulo"], SQL);
+        $fichero->titulo = filter_input(INPUT_POST, 'titulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+//        $fichero->descripcion = sanitize($_REQUEST["descripcion"], SQL);
+        $fichero->descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
         $fichero->id_usuario = $usuario->id;
-        $fichero->visible = sanitize($_REQUEST["visible"]);
+//        $fichero->visible = sanitize($_REQUEST["visible"]);
+        $fichero->visible = filter_input(INPUT_POST, 'evisible', FILTER_SANITIZE_NUMBER_INT);
         //$db->execute("SET NAMES UTF8");
         $fichero->save();
     }
 }
-if ($modulo == 'borrar') {
-    if ($fichero->load("id = " . sanitize($_REQUEST["id"], INT))) {
+if ($modulo == 'borrar')
+{
+//    if ($fichero->load("id = " . sanitize($_REQUEST["id"], INT)))
+    if ($fichero->load("id = " . filter_input(INPUT_POST, 'id_borrar', FILTER_SANITIZE_NUMBER_INT)))
+    {
         $fichero->delete();
     }
 }

@@ -11,12 +11,13 @@ require_once('function/sanitize.php');
 global $smarty;
 global $operario;
 
-$id_cuadro = filter_input(INPUT_GET | INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+
 
 //if (isset($_REQUEST['id']))
-if ($id_cuadro)
+if (filter_has_var(INPUT_POST, 'id'))
 {
 //	$id_cuadro = sanitize($_REQUEST['id'],16);
+    $id_cuadro = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
     $id_usuario = $operario->id_usuario;
     $cuadro = new Cuadro();
     $cuadro->Load("id = $id_cuadro AND id_usuario = $id_usuario");

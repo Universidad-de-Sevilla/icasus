@@ -7,16 +7,20 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Editar un cuadro de mandos existente
 //---------------------------------------------------------------------------------------------------
-$id_cuadro = filter_input(INPUT_GET | INPUT_POST, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
+
 //if (isset($_REQUEST['id_cuadro']))
-if ($id_cuadro) {
+if (filter_has_var(INPUT_POST,'id_cuadro'))
+{
 //	$id_cuadro = sanitize($_REQUEST['id_cuadro'],16);
+    $id_cuadro = filter_input(INPUT_POST, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
     $cuadro = new Cuadro();
     $cuadro->load("id = $id_cuadro");
     $smarty->assign('cuadro', $cuadro);
     $smarty->assign('_nombre_pagina', TXT_CUADRO_EDIT);
     $plantilla = 'cuadro_editar.tpl';
-} else {
+}
+else
+{
     header("Location: index.php?page=cuadro_listar");
 }
 

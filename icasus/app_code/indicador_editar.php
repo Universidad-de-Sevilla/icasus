@@ -68,7 +68,7 @@ if ((filter_has_var(INPUT_GET, 'id_indicador') || filter_has_var(INPUT_POST, 'id
     else
     {
         // El usuario no tiene permisos avisamos error
-        $error = ERR_EDIT_INDIC_NO_AUT;
+        $error = ERR_INDIC_EDIT_NO_AUT;
         header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
     }
 }

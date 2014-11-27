@@ -28,10 +28,10 @@ if (!is_object($usuario)) {
         $aviso = MSG_EXITO_OP;
         header("Location: index.php?page=archivo_listar&dir=$dir&aviso=$aviso");
     } else {
-        $error = ERR_FILE_UPLOAD;
+        $error = ERR_ARCHIVO_SUBIR;
         header("Location: index.php?page=error&error=$error");
     }
 } else {
-    $error = ERR_FALTAN_PARAM_FILE_UP;
+    $error = ERR_PARAM;
     header("Location: index.php?page=error&error=$error");
 }

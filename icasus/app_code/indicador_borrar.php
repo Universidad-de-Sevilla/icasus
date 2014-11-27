@@ -21,7 +21,7 @@ if ($id_entidad && $id_indicador) {
         $medicion = new Medicion();
         $mediciones = $medicion->Find("id_indicador = $id_indicador");
         if ($mediciones) {
-            $error = ERR_BORRAR_INDIC_MED;
+            $error = ERR_INDIC_BORRAR_MED;
             header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
         } else {
             $indicador->delete();
@@ -29,7 +29,7 @@ if ($id_entidad && $id_indicador) {
             header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
         }
     } else {
-        $error = ERR_BORRAR_INDIC_NO_AUT;
+        $error = ERR_INDIC_BORRAR_NO_AUT;
         header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
     }
 } else { // falta id_indicador o id_entidad

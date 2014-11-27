@@ -41,7 +41,7 @@ if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'codigo')
     }
     else
     {
-        $smarty->assign('error', ERR_MOD_UNID);
+        $smarty->assign('error', ERR_UNID_EDIT);
     }
     $plantilla = "entidad_datos.tpl";
     header("location:index.php?page=entidad_datos&id_entidad=$entidad->id");

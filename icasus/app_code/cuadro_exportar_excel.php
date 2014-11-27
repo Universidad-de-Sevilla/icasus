@@ -19,12 +19,13 @@ if (!is_object($smarty))
     header('Location:index.php');
 }
 
-$id = filter_input(INPUT_GET | INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+
 //if (isset($_REQUEST['id']))
-if ($id)
+if (filter_has_var(INPUT_GET, 'id'))
 {
     $smarty->assign('_javascript', array('confirmar_borrar'));
 //	$id = sanitize($_REQUEST['id'],16);
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     $cuadro = new Cuadro();
     $cuadro->Load("id = $id");
     $smarty->assign('cuadro', $cuadro);

@@ -38,7 +38,7 @@ global $plantilla;
 //  header("location:index.php?page=error&error=$error");
 //}
 
-$id_entidad = filter_input(INPUT_POST | INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 if ($id_entidad) {
     $entidad = new Entidad();
