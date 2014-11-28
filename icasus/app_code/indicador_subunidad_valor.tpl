@@ -2,7 +2,7 @@
 <div id="modal_activar_uno" class="dialog_content narrow ui-dialog-content ui-widget-content">
     <div class="block" style="opacity: 1;" >
         <div class="section" style="padding:20px">
-            <p>{$smarty.const.TXT_CONFIRM}<b><span id="msg_activacion_uno"></span></b> {$smarty.const.esta Medición}.</p>
+            <p>{$smarty.const.TXT_CONFIRM}<b><span id="msg_activacion_uno"></span></b> {$smarty.const.TXT_MED_ESTA}.</p>
         </div>
     </div>
 </div>

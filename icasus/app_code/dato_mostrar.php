@@ -12,12 +12,11 @@
 global $smarty;
 global $plantilla;
 
-$id_dato = filter_input(INPUT_GET | INPUT_POST, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
-
 //if (isset($_REQUEST['id_dato']))
-if ($id_dato)
+if (filter_has_var(INPUT_GET, 'id_dato'))
 {
 //	$id_dato = sanitize($_REQUEST['id_dato'],16); 
+    $id_dato = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
     $dato = new Indicador();
     if ($dato->load_joined("id = $id_dato"))
     {

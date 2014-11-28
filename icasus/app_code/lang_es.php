@@ -107,11 +107,6 @@ define('TXT_TRIMESTRAL', 'Trimestral');
 define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
 define('TXT_SEMESTRAL', 'Semestral');
 define('TXT_2_ULT_ANYO', 'Dos últimos años');
-define('TXT_2008', '2008');
-define('TXT_2009', '2009');
-define('TXT_2010', '2010');
-define('TXT_2011', '2011');
-define('TXT_2012', '2012');
 
 //Login
 define('TXT_LOGIN', 'Iniciar sesión');
@@ -414,12 +409,13 @@ define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna Unidad.');
 define('MSG_INDIC_NO_UNID_SUP', 'No hay Indicadores definidos en la Unidad superior.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado Subunidades a este Indicador (corregir)');
 define('MSG_INDIC_NO_VAL', 'No hay Valores recogidos para este Indicador.');
+define('MSG_INDIC_CREADO', 'Se ha creado un nuevo Indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado Indicadores.');
 define('MSG_INDIC_BORRADO', 'Se ha borrado el Indicador.');
 define('MSG_INDIC_COPIADOS', 'Indicadores copiados.');
+define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los Datos del Indicador.');
 define('MSG_INDIC_NO_PUBLIC', 'Este Indicador no está definido como público.');
 define('MSG_INDIC_NO_VAL_REF', 'No se han definido Valores de referencia para este Indicador.');
-define('MSG_INDIC_NO_MED', 'Este Indicador no tiene definidas Mediciones.');
 define('MSG_INDIC_NO_DATOS', 'Todavía no se han introducido Datos en este Indicador.');
 define('MSG_INDIC_NO_MED', 'Todavía no se han definido Mediciones para este Indicador.');
 

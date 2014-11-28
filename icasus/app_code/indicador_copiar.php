@@ -15,20 +15,26 @@ global $plantilla;
 
 $smarty->assign('_javascript', array('ordenatabla'));
 
-$id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+$id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 //if (isset($_REQUEST['id_entidad']) && $_REQUEST['id_entidad'] > 1)
-if ($id_entidad > 1) {
+if ($id_entidad > 1)
+{
 //	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
     $smarty->assign('id_entidad', $id_entidad);
     // Si vienen indicadores del formulario los asignamos a la entidad
-    if (isset($_POST['indicadores'])) {
+//    if (isset($_POST['indicadores']))
+    if (filter_has_var(INPUT_POST, 'indicadores'))
+    {
         $contador = 0;
-        foreach ($_POST['indicadores'] as $id_indicador) {
+        $indicadores = filter_input(INPUT_POST, 'indicadores');
+        foreach ($indicadores as $id_indicador)
+        {
             $id_indicador = sanitize($id_indicador, 16);
             //echo 'copiando'.$id_entidad;
             $indicador = new Indicador($basedatos);
-            if ($indicador->copiar($id_indicador, $id_entidad)) {
+            if ($indicador->copiar($id_indicador, $id_entidad))
+            {
                 $contador ++;
             }
         }
@@ -44,7 +50,9 @@ if ($id_entidad > 1) {
     $smarty->assign('indicadores', $indicadores);
     $smarty->assign('_nombre_pagina', TXT_INDICS_COPIAR);
     $plantilla = 'indicador_copiar.tpl';
-} else {
+}
+else
+{
     $smarty->assign('error', ERR_PARAM_INC);
     $plantilla = 'error.tpl';
 }

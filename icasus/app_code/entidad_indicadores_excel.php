@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: indicador_datos_excel.php
@@ -26,7 +27,7 @@ require_once('function/limpiar_nombre.php');
 
 $excel = new PHPExcel();
 
-$excel->setActiveSheetIndex(0); 
+$excel->setActiveSheetIndex(0);
 $excel->getActiveSheet()->setTitle($entidad->codigo);
 //Nombre de unidad en varias celdas
 $excel->getActiveSheet()->mergeCells('B3:F3');
@@ -64,37 +65,36 @@ $excel->getActiveSheet()->getStyle('B5:M5')->getFont()->getColor()->setARGB(PHPE
 $indice = 6;
 foreach ($indicadores as $indicador)
 {
-$excel->getActiveSheet()->setCellValue('B'.$indice, $indicador->codigo);
-$excel->getActiveSheet()->setCellValue('C'.$indice, $indicador->nombre);
-$excel->getActiveSheet()->setCellValue('D'.$indice, $indicador->descripcion);
-$excel->getActiveSheet()->setCellValue('E'.$indice, $indicador->formulacion);
-$excel->getActiveSheet()->setCellValue('F'.$indice, $indicador->umbral);
-$excel->getActiveSheet()->setCellValue('G'.$indice, $indicador->responsable->nombre." ".$indicador->responsable->apellidos);
-$excel->getActiveSheet()->setCellValue('H'.$indice, $indicador->periodicidad);
-$excel->getActiveSheet()->setCellValue('I'.$indice, $indicador->fuente);
-$excel->getActiveSheet()->setCellValue('J'.$indice, $indicador->objetivo);
-$excel->getActiveSheet()->setCellValue('K'.$indice, $indicador->proceso);
-$excel->getActiveSheet()->setCellValue('L'.$indice, $indicador->fecha_creacion);
-$excel->getActiveSheet()->setCellValue('M'.$indice, $indicador->fecha_modificacion);
-$indice = $indice +1;
-
+    $excel->getActiveSheet()->setCellValue('B' . $indice, $indicador->codigo);
+    $excel->getActiveSheet()->setCellValue('C' . $indice, $indicador->nombre);
+    $excel->getActiveSheet()->setCellValue('D' . $indice, $indicador->descripcion);
+    $excel->getActiveSheet()->setCellValue('E' . $indice, $indicador->formulacion);
+    $excel->getActiveSheet()->setCellValue('F' . $indice, $indicador->umbral);
+    $excel->getActiveSheet()->setCellValue('G' . $indice, $indicador->responsable->nombre . " " . $indicador->responsable->apellidos);
+    $excel->getActiveSheet()->setCellValue('H' . $indice, $indicador->periodicidad);
+    $excel->getActiveSheet()->setCellValue('I' . $indice, $indicador->fuente);
+    $excel->getActiveSheet()->setCellValue('J' . $indice, $indicador->objetivo);
+    $excel->getActiveSheet()->setCellValue('K' . $indice, $indicador->proceso);
+    $excel->getActiveSheet()->setCellValue('L' . $indice, $indicador->fecha_creacion);
+    $excel->getActiveSheet()->setCellValue('M' . $indice, $indicador->fecha_modificacion);
+    $indice = $indice + 1;
 }
 
 
 //$archivo = "indicadores_entidad_$id_entidad.xls";
 $archivo = limpiar_nombre($entidad->nombre);
-$archivo = $archivo.".xls";
+$archivo = $archivo . ".xls";
 
 $excelBinaryWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
-$excelBinaryWriter->save("informes/".$archivo);
+$excelBinaryWriter->save("informes/" . $archivo);
 
 
 
-header("Content-Disposition:attachment;filename=".$archivo);
+header("Content-Disposition:attachment;filename=" . $archivo);
 header("Content-Type:application/vnd.ms-excel");
 //header("Content-Length:".filesize($Fichero));
 header("Content-Transfer-Encoding: binary");
-readfile("informes/".$archivo);
+readfile("informes/" . $archivo);
 
 
 

@@ -16,7 +16,7 @@
                             <td>{$usuario->usuario->apellidos}</td>
                             <td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
                             <td>{$usuario->usuario->telefono}</td>
-                            <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>Detalle</a></td>
+                            <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DET}</a></td>
                         </tr>
                     {/foreach}
                 </tbody>
@@ -67,7 +67,7 @@
                     </div>
                 </fieldset>
                 <div class="button_bar clearfix">
-                    <button class="green" type="submit" value="Asignar usuarios" name="enviar">
+                    <button class="green" type="submit" value="{$smarty.const.TXT_USERS_ASIGNAR}" name="enviar">
                         <span>{$smarty.const.TXT_USERS_ASIGNAR}</span>
                     </button>
                 </div>  

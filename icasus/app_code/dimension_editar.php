@@ -13,12 +13,11 @@ global $smarty;
 global $basedatos;
 global $plantilla;
 
-$id_dimension = filter_input(INPUT_GET | INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-
 //if (isset($_REQUEST['id']))
-if ($id_dimension)
+if (filter_has_var(INPUT_POST, 'id'))
 {
 //	$id_dimension = sanitize($_REQUEST['id'],16);
+    $id_dimension = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
     $dimension = new Dimension();
     $dimension->load("id = $id_dimension");
 
