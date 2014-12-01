@@ -4,7 +4,7 @@
             $('select.identificador').change(function () {
                 var id_usuario = this.value;
                 var id_indsub = $(this).attr('id');
-                if (id_usuario != 0)
+                if (id_usuario !== 0)
                 {
                     $.post("index.php?page=medicion_responsable_ajax&modulo=grabar&ajax=true", {id: id_indsub, id_usuario: id_usuario}, function () {
                         location.reload();

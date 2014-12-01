@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: proceso_borrar.php
@@ -6,37 +7,40 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra un proceso
 //---------------------------------------------------------------------------------------------------
-if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']) )
+//if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']) )
+if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
-	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
-	$id_proceso = sanitize($_REQUEST['id_proceso'],16);
-	$proceso = new Proceso();
-  	$proceso->load_joined("id = $id_proceso");
-  	if ($proceso->id_propietario == $proceso->propietario->id)
-  	{
-  		$indicador = new Indicador();
-	  	$indicadores = $indicador->Find("id_proceso = $id_proceso");
-		if ($indicadores)
-		{
-			$error = ERR_PROC_BORRAR;
-			header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
-		}
-		else 
-		{
-			$proceso->delete();
-			$aviso = MSG_PROC_BORRADO;
-			header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&aviso=$aviso");
-		}	
-	}
-	else
-	{
-		$error = ERR_PROC_BORRAR_NO_AUT;
-		header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");	
-	} 	
+//    $id_entidad = sanitize($_REQUEST['id_entidad'], 16);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+//    $id_proceso = sanitize($_REQUEST['id_proceso'], 16);
+    $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
+    $proceso = new Proceso();
+    $proceso->load_joined("id = $id_proceso");
+    if ($proceso->id_propietario == $proceso->propietario->id)
+    {
+        $indicador = new Indicador();
+        $indicadores = $indicador->Find("id_proceso = $id_proceso");
+        if ($indicadores)
+        {
+            $error = ERR_PROC_BORRAR;
+            header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
+        }
+        else
+        {
+            $proceso->delete();
+            $aviso = MSG_PROC_BORRADO;
+            header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&aviso=$aviso");
+        }
+    }
+    else
+    {
+        $error = ERR_PROC_BORRAR_NO_AUT;
+        header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
+    }
 }
 else // falta id_indicador o id_entidad
 {
-	$error = ERR_PARAM;
-	header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
+    $error = ERR_PARAM;
+    header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
 }
 

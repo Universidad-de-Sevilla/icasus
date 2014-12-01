@@ -117,7 +117,7 @@
             $('#main_container').on('click', '.remove_seleccion', function (e) {
                 e.preventDefault();
                 $(this).parents('.fila_borrar').remove();
-                if ($('.remove_seleccion').length == 0) {
+                if ($('.remove_seleccion').length === 0) {
                     $('#footer_tabs').hide();
                 }
             });

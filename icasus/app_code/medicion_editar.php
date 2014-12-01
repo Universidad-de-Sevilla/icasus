@@ -10,11 +10,14 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
+//if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
+if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'))
 {
 
-    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
-    $tipo = sanitize($_REQUEST["tipo"], SQL);
+//    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
+    $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
+//    $tipo = sanitize($_REQUEST["tipo"], SQL);
+    $tipo = filter_input(INPUT_GET, 'tipo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $smarty->assign("tipo", $tipo);
 
     $medicion = new Medicion();
