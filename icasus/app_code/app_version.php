@@ -1,8 +1,9 @@
 <?php
-define('IC_VERSION', "2.8.6");
-define('IC_FECHA_REVISION', "14/11/2014");
+define('IC_VERSION', "2.8.7");
+define('IC_FECHA_REVISION', "02/12/2014");
 
-// 2.8.6 - 04/11/2014 - Todas las cadenas de textos pasadas a constantes 
+// 2.8.7 - 02/12/2014 - Filtrados todos los campos de las peticiones GET y POST con las funciones que proporciona PHP 
+// 2.8.6 - 14/11/2014 - Todas las cadenas de textos pasadas a constantes 
 // 2.8.5 - 04/11/2014 - Refactorizadas todas las clases PHP a nombres con mayúsculas
 // 2.8.4 - 28/10/2014 - Nueva plantilla autocontenida
 // 2.8.3 - 27/10/2014 - Corrige errores y muestra versión en pie. Corrige errores en edición de datos e indicadores (#787 y #2725)

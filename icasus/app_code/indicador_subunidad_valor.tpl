@@ -102,7 +102,7 @@
                 var id_medicion = $(this).parent().data('id_medicion');
                 var id_subunidad = $(this).parent().parent().data('id_subunidad');
                 var inicio = $("#inicio").val();
-                if (inicio == 0) {
+                if (inicio === 0) {
                     var fin = 0;
                 } else {
                     var fin = $("#fin").val();
@@ -115,7 +115,7 @@
                             text: "Confirmar",
                             "class": 'green',
                             click: function () {
-                                if ($('#activo:checked').val() == 1) {
+                                if ($('#activo:checked').val() === 1) {
                                     var activo = 1;
                                 } else {
                                     var activo = 0;
@@ -147,7 +147,7 @@
                 var id_medicion = $(this).parent().data('id_medicion');
                 var subunidad = $(this).parent().parent().data('subunidad');
                 var inicio = $("#inicio").val();
-                if (inicio == 0) {
+                if (inicio === 0) {
                     var fin = 0;
                 } else {
                     var fin = $("#fin").val();
@@ -184,7 +184,7 @@
                             "class": 'red text_only has_text',
                             click: function () {
                                 $(this).dialog("close");
-                                if (activo == 1) {
+                                if (activo === 1) {
                                     activar_uno.removeAttr("checked");
                                 } else {
                                     activar_uno.attr("checked", "checked");
@@ -200,7 +200,7 @@
                 var id_subunidad = $(this).parent().parent().data('id_subunidad');
                 var subunidad = $(this).parent().parent().data('subunidad');
                 var inicio = $("#inicio").val();
-                if (inicio == 0) {
+                if (inicio === 0) {
                     var fin = 0;
                 } else {
                     var fin = $("#fin").val();
@@ -237,7 +237,7 @@
             });
             $('#main_container').on('click', '#btn_mostrar', function () {
                 var inicio = $("#inicio").val();
-                if (inicio == 0) {
+                if (inicio === 0) {
                     var fin = 0;
                 } else {
                     var fin = $("#fin").val();
@@ -255,7 +255,7 @@
             $('#inicio').on('change', function () {
                 $("#inicio option:selected").each(function () {
                     elegido = $(this).val();
-                    if (elegido == 0) {
+                    if (elegido === 0) {
                         $("#end_year").html(' ');
                     }
                     else

@@ -15,10 +15,13 @@ global $page;
 global $plantilla;
 $smarty->assign('_javascript', array('confirmar_borrar'));
 
-if (isset($_REQUEST['id_usuario']) && isset($_REQUEST['id_entidad']))
+//if (isset($_REQUEST['id_usuario']) && isset($_REQUEST['id_entidad']))
+if (filter_has_var(INPUT_GET, 'id_usuario') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
-    $id_entidad = sanitize($_REQUEST['id_entidad'], 16);
-    $id_usuario = sanitize($_REQUEST['id_usuario'], 16);
+//    $id_entidad = sanitize($_REQUEST['id_entidad'], 16);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+//    $id_usuario = sanitize($_REQUEST['id_usuario'], 16);
+    $id_usuario = filter_input(INPUT_GET, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
     $usuario = new Usuario($basedatos);
     $criterio = " WHERE 1 = 1 ";
     $smarty->assign('lista_usuarios', $usuario->listar($criterio));

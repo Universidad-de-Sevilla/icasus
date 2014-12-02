@@ -118,7 +118,7 @@ $('#buscar_indicador_complementario').on('keyup',function () {
 		url: "index.php?page=panel_buscador&ajax=true&modulo=indicadores_barra_complementarios&id_entidad="+id_entidad+"&cadena="+cadena,
 		success: function(datos){
 			$('#listado_indicadores_complementarios').html(datos);
-		},
+		}
 	}); 
 });
 //lista los indicadores para seleccionar el indicador base
@@ -129,7 +129,7 @@ $('#buscar_indicador_base').on('keyup',function () {
 		url: "index.php?page=panel_buscador&ajax=true&modulo=indicador_barra_base&id_entidad="+id_entidad+"&cadena="+cadena,
 		success: function(datos){
 			$('#listado_indicadores_base').html(datos);
-		},
+		}
 	}); 
 });
 	//incrementa los indicadores complementarios
@@ -173,12 +173,12 @@ $('#buscar_indicador_base').on('keyup',function () {
 
 $('.tipo_periodicidad').on('change',function(){
 	var tipo_periodo = $(this).val();
-	if (tipo_periodo == 1)
+	if (tipo_periodo === 1)
 	{
 		$('#periodicidad_etiquetas').show('slow');
 		$('#periodicidad_años').hide('slow');
 	}
-	else if (tipo_periodo == 2)
+	else if (tipo_periodo === 2)
 	{
 		$('#periodicidad_etiquetas').hide('slow');
 		$('#periodicidad_años').show('slow');
@@ -215,7 +215,7 @@ $('.tipo_periodicidad').on('change',function(){
 		$('#main_container').on('click','.remove_seleccion',function(e){
 			e.preventDefault();
 			$(this).parents('.fila_borrar').remove();
-			if ($('.remove_seleccion').length == 0){$('#footer_tabs').hide();}
+			if ($('.remove_seleccion').length === 0){$('#footer_tabs').hide();}
 		});
 		$('.subunidad_seleccionada').on('click',function(){
 			var id_subunidad = $(this).val();	

@@ -162,7 +162,7 @@ selected{/if}>
           <span>{$smarty.const.TXT_GRABAR}</span>
         </button>
         <button class="light send_right" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
-          onclick="history.back()">
+          onclick="history.back();">
           <div class="ui-icon ui-icon-closethick"></div>
           <span>{$smarty.const.TXT_CANCEL}</span>
         </button>

@@ -10,9 +10,11 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
-if ($_REQUEST['id_usuario'])
+//if ($_REQUEST['id_usuario'])
+if (filter_has_var(INPUT_GET, 'id_usuario'))
 {
-    $id_usuario = sanitize($_REQUEST['id_usuario'], INT);
+//    $id_usuario = sanitize($_REQUEST['id_usuario'], INT);
+    $id_usuario = filter_input(INPUT_GET, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
     $persona = new Usuario();
     $persona->load_joined("id = $id_usuario");
     $smarty->assign('persona', $persona);

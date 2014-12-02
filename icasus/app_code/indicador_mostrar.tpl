@@ -239,7 +239,7 @@
                 var milisegundosAnio = 31540000000;
                 var dataseries = [];
                 var chartSerie = new highchartSerie(); // contenedor para los datos del gráfico
-                if (periodicidad == "anual") {
+                if (periodicidad === "anual") {
                     chartSerie.categoryType = "año";
                 }
                 else {
@@ -258,7 +258,7 @@
                     datos.forEach(function (dato) {
                         // Agrega los que no tienen etiqueta_mini (total y referencias)
                         // descarta las mediciones de unidades (no sirven aquí)
-                        if (!dato.etiqueta_mini && (dato.valor != null)) {
+                        if (!dato.etiqueta_mini && (dato.valor !== null)) {
                             chartSerie.add(dato);
                         }
                     });
@@ -266,9 +266,9 @@
                     // A saber: Totales y Valores de referencia
                     dataseries = chartSerie.getLinealSerie();
                     // Si no es anual ocultamos valores de referencia
-                    if (chartSerie.categoryType != "año") {
+                    if (chartSerie.categoryType !== "año") {
                         dataseries.forEach(function (dataserie, index) {
-                            if (index != 0) {
+                            if (index !== 0) {
                                 dataserie.visible = false;
                             }
                         });
