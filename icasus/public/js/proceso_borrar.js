@@ -1,5 +1,5 @@
 function confirmar()
 {
-	return confirm('¿Realmente quiere borrar este proceso?')
+	return confirm('¿Realmente quiere borrar este proceso?');
 }
 

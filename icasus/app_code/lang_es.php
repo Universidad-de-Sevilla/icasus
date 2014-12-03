@@ -1,6 +1,6 @@
 <?php
 
-/* Este fichero contiene constantes para todos los textos de la aplicación Icasus:
+/* Este fichero contiene constantes para todos los textos de la aplicación Icasus en español:
  * Clasificación:
  * TXT_[Nombre]--> Textos en general
  * MSG_[Nombre]--> Avisos/Notificaciones
@@ -29,97 +29,14 @@ define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_MANUAL', 'Manual');
 
-//Tipos de exportación
-define('TXT_RTF', 'Rtf');
-define('TXT_EXCEL', 'Excel');
-
-//Navegación
-define('TXT_VER', 'Ver');
-define('TXT_LIST_TODOS', 'Listar todos');
-define('TXT_SI', 'Si');
-define('TXT_NO', 'No');
-define('TXT_SIG', 'Siguiente');
-define('TXT_ANT', 'Anterior');
-define('TXT_EDIT', 'Editar');
-define('TXT_BORRAR', 'Borrar');
-
-//Cálculo
-define('TXT_INDEF', 'Indefinido');
-define('TXT_PROMED', 'Promedio');
-define('TXT_SUMA', 'Suma');
-
-//Clasificación
-define('TXT_POR_MEDICION', 'Por medición');
-define('TXT_POR_ANYOS', 'Por años');
-
-//Selecciones
-define('TXT_SEL', 'Seleccionar...');
-define('TXT_SEL_UNO', 'Seleccionar uno...');
-define('TXT_ELEG_UNO', 'Elegir uno si procede');
-define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
-define('TXT_SEL_RESP_GRABAR', 'Elegir nuevo responsable de grabación ...');
-define('TXT_CONFIRM', 'Por favor, confirme que desea');
-
-//Visibilidad, permisos
-define('TXT_TODOS', 'Todos');
-define('TXT_PUBLICO', 'Público');
-define('TXT_PRIVADO', 'Privado');
-
-//Volver
-define('TXT_VOLVER', 'Volver al');
-define('TXT_VOLVER_INDICE', 'Volver al índice');
-define('TXT_VOLVER_LIST', 'Volver al listado');
-
-//Mostrar
-define('TXT_MOSTRAR', 'Mostrar');
-define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
-
-//Consultas
-define('TXT_CONSULTAS', 'Consultas');
-define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
-define('TXT_CONSULT_AVAN', 'Consulta avanzada de datos e indicadores');
-
-//Informes
-define('TXT_INFORME_IC', 'Informe generado por ICASUS');
-define('TXT_INFORME_REBIUN', 'Informe Rebiun'); //2012
-define('TXT_INFORME_LIST', 'Lista de informes disponibles');
-define('TXT_INFORMES_CONSTRUCTOR', 'Constructor de informes');
-define('TXT_INFORME_SEL_INDIC', 'Seleccionar los indicadores que contendrá el informe:');
-define('TXT_INFORME_SEL_ANYO', 'Seleccionar los años que se reflejarán en el informe:');
-define('TXT_NUM_CONVOCATORIAS', 'Número de convocatorias');
-define('TXT_PLAZO_CONVOCATORIAS', 'Plazo convocatorias');
-define('TXT_INDICE_PARTICIPACION', 'Índice de participación');
-define('TXT_INDICE_SATISFACCION', 'Índice de satisfacción general');
-define('TXT_VOL_TRAMITACION', 'Volumen tramitación');
-define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Fiabilidad tramitación expedientes');
-define('TXT_PRESTAMO_USER', 'Préstamo por Usuario potencial');
-
-//Propiedades
-define('TXT_EDIT_PROP', 'Editar propiedades');
-define('TXT_OTRAS_PROP', 'Otras propiedades');
-
-//Tiempo
-define('TXT_HISTORICO', 'Histórico anual');
-define('TXT_RANGO_FECHAS', 'Rango de fechas');
-define('TXT_ANUAL', 'Anual');
-define('TXT_MENSUAL', 'Mensual');
-define('TXT_TRIMESTRAL', 'Trimestral');
-define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
-define('TXT_SEMESTRAL', 'Semestral');
-define('TXT_2_ULT_ANYO', 'Dos últimos años');
-
-//Login
-define('TXT_LOGIN', 'Iniciar sesión');
-define('TXT_LOGIN_PARTE1', 'es una aplicación web para la gestión de la calidad en la');
-define('TXT_LOGIN_PARTE2', 'Para acceder al sistema es necesario ser miembro activo de alguno de los grupos de calidad de la Universidad de Sevilla y solicitar autorización de acceso al responsable de su grupo de calidad.');
-define('TXT_LOGIN_PARTE3', 'Icasus ha sido desarrollado por el');
-define('TXT_LOGIN_PARTE4', 'y puede utilizarse como');
-define('TXT_LOGIN_PARTE5', 'Puede bajar una primera versión del');
-define('TXT_LOGIN_PARTE6', 'en formato PDF. Revisión disponible: 26 mayo 2010');
-define('TXT_AREA_REC_HUM', 'Área de Recursos Humanos de la Universidad de Sevilla');
-define('TXT_SOFT_LIBRE', 'Software Libre');
-define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
-define('TXT_CERRAR_SESION', 'Cerrar sesión');
+//Accesibilidad (atributo alt de las imágenes)
+define('TXT_FOTO_PERFIL', 'Foto de perfil');
+define('TXT_REP_GRAFIC', 'Representación gráfica del indicador');
+define('TXT_EXPORT_CSV', 'Exportar en CSV');
+define('TXT_ICON', 'Icono');
+define('TXT_ICON_GRAF_LINEAL', 'Icono gráfica lineal');
+define('TXT_LEYENDA', 'Leyenda');
+define('TXT_ACT_DESACT', 'Activar y desactivar');
 
 //Archivos
 define('TXT_ARCHIVOS_PROC', 'Archivos del proceso: ');
@@ -137,6 +54,15 @@ define('TXT_ARCHIVOS_PROCESAR', 'Procesar archivos');
 define('TXT_ARCHIVO_DESCARGA', 'Descargar archivo');
 define('TXT_ARCHIVO_ABRIR_CSV', 'El archivo .csv generado puede abrirse con: ');
 define('TXT_ARCHIVO_IMPORT_CSV', 'Importar archivo CSV');
+
+//Clasificación
+define('TXT_POR_MEDICION', 'Por medición');
+define('TXT_POR_ANYOS', 'Por años');
+
+//Consultas
+define('TXT_CONSULTAS', 'Consultas');
+define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
+define('TXT_CONSULT_AVAN', 'Consulta avanzada de datos e indicadores');
 
 //Cuadros de Mando
 define('TXT_CUADRO_MANDO', 'Cuadro de Mando');
@@ -177,7 +103,7 @@ define('TXT_DIM_LIST', 'Lista de Dimensiones');
 define('TXT_DIM_REL', 'Relación de Dimensiones');
 
 //Entidades (Unidades)
-define('TXT_UNID_SUP_INDIC', 'Indicadores de la Unidad superior');
+define('TXT_UNID_SUP_INDIC', 'Indicadores de la Unidad Superior');
 define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la Unidad');
 define('TXT_UNID', 'Unidad');
 define('TXT_UNID_TODAS', 'Todas las Unidades');
@@ -221,6 +147,34 @@ define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta 
 define('TXT_INDIC_ACT_MED', 'Marque la casilla si además quiere activarla');
 define('TXT_INDIC_SUBUNID_VAL', 'Valores de las subunidades para');
 
+//Informes
+define('TXT_INFORME_IC', 'Informe generado por ICASUS');
+define('TXT_INFORME_REBIUN', 'Informe Rebiun'); //2012
+define('TXT_INFORME_LIST', 'Lista de informes disponibles');
+define('TXT_INFORMES_CONSTRUCTOR', 'Constructor de informes');
+define('TXT_INFORME_SEL_INDIC', 'Seleccionar los indicadores que contendrá el informe:');
+define('TXT_INFORME_SEL_ANYO', 'Seleccionar los años que se reflejarán en el informe:');
+define('TXT_NUM_CONVOCATORIAS', 'Número de convocatorias');
+define('TXT_PLAZO_CONVOCATORIAS', 'Plazo convocatorias');
+define('TXT_INDICE_PARTICIPACION', 'Índice de participación');
+define('TXT_INDICE_SATISFACCION', 'Índice de satisfacción general');
+define('TXT_VOL_TRAMITACION', 'Volumen tramitación');
+define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Fiabilidad tramitación expedientes');
+define('TXT_PRESTAMO_USER', 'Préstamo por Usuario potencial');
+
+//Login
+define('TXT_LOGIN', 'Iniciar sesión');
+define('TXT_LOGIN_PARTE1', 'es una aplicación web para la gestión de la calidad en la');
+define('TXT_LOGIN_PARTE2', 'Para acceder al sistema es necesario ser miembro activo de alguno de los grupos de calidad de la Universidad de Sevilla y solicitar autorización de acceso al responsable de su grupo de calidad.');
+define('TXT_LOGIN_PARTE3', 'Icasus ha sido desarrollado por el');
+define('TXT_LOGIN_PARTE4', 'y puede utilizarse como');
+define('TXT_LOGIN_PARTE5', 'Puede bajar una primera versión del');
+define('TXT_LOGIN_PARTE6', 'en formato PDF. Revisión disponible: 26 mayo 2010');
+define('TXT_AREA_REC_HUM', 'Área de Recursos Humanos de la Universidad de Sevilla');
+define('TXT_SOFT_LIBRE', 'Software Libre');
+define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
+define('TXT_CERRAR_SESION', 'Cerrar sesión');
+
 //Mediciones
 define('TXT_MED_UNICA', 'Medición única en la Unidad actual');
 define('TXT_MED_DES', 'Medición desagregada en las Subunidades y cumplimentada por los responsables de las Subunidades, o la persona delegada.');
@@ -244,14 +198,27 @@ define('TXT_CUADROS_MANDO', 'Cuadros de Mando');
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
 define('TXT_MIS_NOTAS', 'Mis notas');
-
-//Menu de Unidades
+//Menú de Unidades
 define('TXT_UNID_ACTUAL', 'Unidad actual');
-define('TXT_CUAD_RES', 'Cuadro resumen');
-define('TXT_CONSULT', 'Consulta avanzada');
-define('TXT_PROC_LISTAR', 'Listar procesos');
+define('TXT_CUAD_RES', 'Cuadro Resumen');
+define('TXT_CONSULT', 'Consulta Avanzada');
+define('TXT_PROC_LISTAR', 'Listar Procesos');
 define('TXT_INDIC_LISTAR', 'Listar Indicadores');
 define('TXT_DAT_LISTAR', 'Listar Datos');
+
+//Mostrar
+define('TXT_MOSTRAR', 'Mostrar');
+define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
+
+//Navegación
+define('TXT_VER', 'Ver');
+define('TXT_LIST_TODOS', 'Listar todos');
+define('TXT_SI', 'Si');
+define('TXT_NO', 'No');
+define('TXT_SIG', 'Siguiente');
+define('TXT_ANT', 'Anterior');
+define('TXT_EDIT', 'Editar');
+define('TXT_BORRAR', 'Borrar');
 
 //Páginas
 define('TXT_PAG', 'Página');
@@ -276,10 +243,69 @@ define('TXT_PROC_INDICS', 'Indicadores asociados al Proceso');
 define('TXT_PROC_FLUJO', 'Flujograma del Proceso');
 define('TXT_PROC_ARCHIVOS', 'Archivos asociados al Proceso');
 
+//Propiedades
+define('TXT_EDIT_PROP', 'Editar propiedades');
+define('TXT_OTRAS_PROP', 'Otras propiedades');
+
+//Propiedades HTML: Titles, placeholders, values de botones...
+define('TXT_CODIGO', 'Único, fácil de recordar y sin espacios');
+define('TXT_BORRAR_CONFIRM', 'Confirmar borrado');
+define('TXT_GRABAR', 'Grabar');
+define('TXT_CANCEL', 'Cancelar');
+define('TXT_GEN_INFO', 'Generar informe');
+define('TXT_BTN_ENVIAR', 'Enviar');
+define('TXT_BTN_Aceptar', 'Aceptar');
+define('TXT_BTN_GUARDAR', 'Guardar');
+define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');
+define('TXT_SOLO_INDIC_CALC', 'Sólo si es un indicador calculado');
+define('TXT_BUSCAR', 'Buscar...');
+define('TXT_INDICAR_COD', 'Indique un código estandarizado y único');
+define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
+
+//Selecciones
+define('TXT_SEL', 'Seleccionar...');
+define('TXT_SEL_UNO', 'Seleccionar uno...');
+define('TXT_ELEG_UNO', 'Elegir uno si procede');
+define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
+define('TXT_SEL_RESP_GRABAR', 'Elegir nuevo responsable de grabación ...');
+define('TXT_CONFIRM', 'Por favor, confirme que desea');
+
+//Tiempo
+define('TXT_HISTORICO', 'Histórico anual');
+define('TXT_RANGO_FECHAS', 'Rango de fechas');
+define('TXT_ANUAL', 'Anual');
+define('TXT_MENSUAL', 'Mensual');
+define('TXT_TRIMESTRAL', 'Trimestral');
+define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
+define('TXT_SEMESTRAL', 'Semestral');
+define('TXT_2_ULT_ANYO', 'Dos últimos años');
+
+//Tipos de Cálculo
+define('TXT_INDEF', 'Indefinido');
+define('TXT_PROMED', 'Promedio');
+define('TXT_SUMA', 'Suma');
+
+//Tipos de Exportación
+define('TXT_RTF', 'Rtf');
+define('TXT_EXCEL', 'Excel');
+
 //Tipos de Proceso
 define('TXT_APOYO', 'Apoyo');
 define('TXT_OPERATIVO', 'Operativo/Clave');
 define('TXT_DIR_GES', 'Directivo/Estratégico/Gestión');
+
+//Tipos de Representaciones Gráficas
+define('TXT_GRAFIC_INDIC_VAL', 'Gráfica con los valores del indicador');
+define('TXT_BARRAS', 'Barras');
+define('TXT_BARRAS_DESC', 'Puede mostrar varios grupos de indicadores para una subunidad determinada en forma de barras');
+define('TXT_LINEAS', 'Líneas');
+define('TXT_LINEAS_DESC', 'Muestra varios indicadores para distintas subunidades como gráfica de líneas.');
+define('TXT_TABLA', 'Tabla');
+define('TXT_TABLA_DESC', 'Puede mostrar un indicador con sus mediciones para una o más subunidades en forma de tabla de datos');
+define('TXT_TARTA', 'Tarta');
+define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador entre las subunidades afectadas como gráfica de tarta');
+define('TXT_METRICA', 'Métrica');
+define('TXT_METRICA_DESC', 'Muestra una medición puntual para una unidad y un indicador en forma de dígitos.');
 
 //Usuarios
 define('TXT_USERS_ASIGNAR', 'Asignar Usuarios');
@@ -311,42 +337,15 @@ define('TXT_VAL_REF_EDIT', 'Editar Valor de referencia');
 define('TXT_VAL_REF_CREAR', 'Crear nuevos Valores de referencia');
 define('TXT_VAL_REF_NUEVO', 'Nueva referencia');
 
-//Tipos de representaciones gráficas
-define('TXT_GRAFIC_INDIC_VAL', 'Gráfica con los valores del indicador');
-define('TXT_BARRAS', 'Barras');
-define('TXT_BARRAS_DESC', 'Puede mostrar varios grupos de indicadores para una subunidad determinada en forma de barras');
-define('TXT_LINEAS', 'Líneas');
-define('TXT_LINEAS_DESC', 'Muestra varios indicadores para distintas subunidades como gráfica de líneas.');
-define('TXT_TABLA', 'Tabla');
-define('TXT_TABLA_DESC', 'Puede mostrar un indicador con sus mediciones para una o más subunidades en forma de tabla de datos');
-define('TXT_TARTA', 'Tarta');
-define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador entre las subunidades afectadas como gráfica de tarta');
-define('TXT_METRICA', 'Métrica');
-define('TXT_METRICA_DESC', 'Muestra una medición puntual para una unidad y un indicador en forma de dígitos.');
+//Visibilidad, permisos
+define('TXT_TODOS', 'Todos');
+define('TXT_PUBLICO', 'Público');
+define('TXT_PRIVADO', 'Privado');
 
-//Propiedades HTML: Titles, placeholders, values de botones...
-define('TXT_CODIGO', 'Único, fácil de recordar y sin espacios');
-define('TXT_BORRAR_CONFIRM', 'Confirmar borrado');
-define('TXT_GRABAR', 'Grabar');
-define('TXT_CANCEL', 'Cancelar');
-define('TXT_GEN_INFO', 'Generar informe');
-define('TXT_BTN_ENVIAR', 'Enviar');
-define('TXT_BTN_Aceptar', 'Aceptar');
-define('TXT_BTN_GUARDAR', 'Guardar');
-define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');
-define('TXT_SOLO_INDIC_CALC', 'Sólo si es un indicador calculado');
-define('TXT_BUSCAR', 'Buscar...');
-define('TXT_INDICAR_COD', 'Indique un código estandarizado y único');
-define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
-
-//Accesibilidad (atributo alt de las imágenes)
-define('TXT_FOTO_PERFIL', 'Foto de perfil');
-define('TXT_REP_GRAFIC', 'Representación gráfica del indicador');
-define('TXT_EXPORT_CSV', 'Exportar en CSV');
-define('TXT_ICON', 'Icono');
-define('TXT_ICON_GRAF_LINEAL', 'Icono gráfica lineal');
-define('TXT_LEYENDA', 'Leyenda');
-define('TXT_ACT_DESACT', 'Activar y desactivar');
+//Volver
+define('TXT_VOLVER', 'Volver al');
+define('TXT_VOLVER_INDICE', 'Volver al índice');
+define('TXT_VOLVER_LIST', 'Volver al listado');
 
 //-------------------------------------------------------------------------------------
 //NOTIFICACIONES/AVISOS: MSG_[Nombre]
@@ -599,11 +598,6 @@ define('FIELD_OBSERV', 'Observaciones');
 define('FIELD_ACTIVO', 'Activo');
 define('FIELD_VERSION', 'Versión');
 
-//Responsables
-define('FIELD_RESP', 'Responsable');
-define('FIELD_RESP_SEG', 'Responsable de seguimiento');
-define('FIELD_RESP_GRABAR', 'Responsable de grabación');
-
 //Archivos
 define('FIELD_FILE', 'Archivo');
 
@@ -658,6 +652,11 @@ define('FIELD_TIPO_PROC', 'Tipo de Proceso');
 define('FIELD_SUBPROCS', 'Subprocesos');
 define('FIELD_SUBPROC', 'Subproceso');
 define('FIELD_EQUIP_PROC', 'Equipo de Proceso');
+
+//Responsables
+define('FIELD_RESP', 'Responsable');
+define('FIELD_RESP_SEG', 'Responsable de seguimiento');
+define('FIELD_RESP_GRABAR', 'Responsable de grabación');
 
 //Usuarios
 define('FIELD_LOGIN', 'Login');

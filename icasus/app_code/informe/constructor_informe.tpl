@@ -3,10 +3,10 @@
 //mostrar y esconder bloques html
 function open_close(id)
 {
-        if (document.getElementById(id).style.display == 'none')
+        if (document.getElementById(id).style.display === 'none')
         {
                 document.getElementById(id).style.display = '';
-            if (id == 'dpto')
+            if (id === 'dpto')
         {
                 document.getElementById('biblioteca').style.display = 'none';
         }

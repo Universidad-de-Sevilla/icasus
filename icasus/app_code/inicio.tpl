@@ -14,7 +14,7 @@
                         <td>
                             <a href='index.php?page=cuadro_unidad&id_entidad={$entidad->entidad->id}'> {$smarty.const.TXT_CUAD_RES}</a> -
                             <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'> {$smarty.const.TXT_CONSULTAS}</a> -
-                            <a href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'> {$smarty.const.TXT_PROC}</a> -
+                            <a href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'> {$smarty.const.TXT_PROCS}</a> -
                             <a href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'>{$smarty.const.FIELD_INDICS}</a> -
                             <a href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'>{$smarty.const.FIELD_DATOS}</a>
                             <!--

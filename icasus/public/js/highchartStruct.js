@@ -3,8 +3,8 @@
 // Archivo: public/js/highchartStruct.js
 // Desarrolladores: Fran A.R. Vivas (@pacobo)
 //--------------------------------------------------------------------------
-// Estructuras para acomodar los datos que devuelve la API de icasus a los 
-// requisitos de la librería Highchart
+// Estructuras para acomodar los datos que devuelve la API de Icasus a los 
+// requisitos de la librería Highcharts
 //
 // No obstante algunas funciones como Set pueden ser utiles en otros contextos
 //--------------------------------------------------------------------------
@@ -57,7 +57,7 @@ function Set(){
 
   this.getAll = function () {
     return this.data;
-  }
+  };
 
   this.set = function (older, newer) {
     var pos = this.data.indexOf(older);
@@ -107,13 +107,13 @@ function highchartSerie(){
   this.add = function(elem){
     var category;
     // Escoge la información que usaremos como eje de las x
-    if (this.categoryType == "año") {
+    if (this.categoryType === "año") {
       category = new Date(parseInt(elem.periodo_fin)).getFullYear();
     }
-    else if (this.categoryType == "medicion") {
+    else if (this.categoryType === "medicion") {
       category = elem.medicion;
     }
-    else if (this.categoryType == "unidad") {
+    else if (this.categoryType === "unidad") {
       category = elem.etiqueta_mini;
     }
     else {
@@ -162,7 +162,7 @@ function highchartSerie(){
       for(u in arrayUnidad){
         arrayUnidad[u].x = this.categories.position(arrayUnidad[u].id);
       }
-      arrayUnidad.sort(function(a,b){return a.x-b.x});
+      arrayUnidad.sort(function(a,b){return a.x-b.x;});
       serieHighchart.push({
         name: unidad,
         data: arrayUnidad

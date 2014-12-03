@@ -52,13 +52,13 @@ var allMonth=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 	}
 
-	function setMonth(ele){month=parseInt(ele.value);calender()}
+	function setMonth(ele){month=parseInt(ele.value);calender();}
 
-	function setYear(ele){year=parseInt(ele.value);calender()}
+	function setYear(ele){year=parseInt(ele.value);calender();}
 
 	function setValue(ele) {
 
-		if(ele.parentNode.className=='week' && ele.firstChild){
+		if(ele.parentNode.className==='week' && ele.firstChild){
 
 			var dayOut=ele.firstChild.nodeValue;
 
@@ -94,7 +94,7 @@ var allMonth=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 			var ele=setTarget(e);
 
-			if(ele.parentNode.className=='week' && ele.firstChild && ele!=hoverEle) {
+			if(ele.parentNode.className==='week' && ele.firstChild && ele!==hoverEle) {
 
 				if(hoverEle) hoverEle.className=hoverEle.className.replace(/hoverEle ?/,'');
 
@@ -114,27 +114,27 @@ var allMonth=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 			}
 
-		}
+		};
 
 		while(parentEle.firstChild) parentEle.removeChild(parentEle.firstChild);
 
 		function check(){
 
-			if(year%4==0&&(year%100!=0||year%400==0))allMonth[1]=29;
+			if(year%4===0&&(year%100!==0||year%400===0))allMonth[1]=29;
 
 			else allMonth[1]=28;
 
 		}
 
-		function addClass (name) { if(!currentClass){currentClass=name} else {currentClass+=' '+name} };
+		function addClass (name) { if(!currentClass){currentClass===name;} else {currentClass+=' '+name;} };
 
-		if(month < 0){month+=12; year-=1}
+		if(month < 0){month+=12; year-=1;}
 
-		if(month > 11){month-=12; year+=1}
+		if(month > 11){month-=12; year+=1;}
 
-		if(year==yearMax-1) yearMax+=1;
+		if(year===yearMax-1) yearMax+=1;
 
-		if(year==yearMin) yearMin-=1;
+		if(year===yearMin) yearMin-=1;
 
 		check();
 
@@ -142,13 +142,13 @@ var allMonth=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 		var controlPlus=newElement('a', [['href','javascript:month--;calender()',1],['className','controlPlus',1]], '<', control);
 
-		var select=newElement('select', [['onchange',function(){setMonth(this)}]], false, control);
+		var select=newElement('select', [['onchange',function(){setMonth(this);}]], false, control);
 
 		for(var i=0; i<allNameOfMonths.length; i++) newElement('option', [['value',i,1]], allNameOfMonths[i], select);
 
 		select.selectedIndex=month;
 
-		select=newElement('select', [['onchange',function(){setYear(this)}]], false, control);
+		select=newElement('select', [['onchange',function(){setYear(this);}]], false, control);
 
 		for(var i=yearMin; i<yearMax; i++) newElement('option', [['value',i,1]], i, select);
 
@@ -164,7 +164,7 @@ var allMonth=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 		currentDayZero=currentDay;
 
-		var newMonth=newElement('table',[['cellSpacing',0,1],['onclick',function(e){setValue(setTarget(e))}]], false, parentEle);
+		var newMonth=newElement('table',[['cellSpacing',0,1],['onclick',function(e){setValue(setTarget(e));}]], false, parentEle);
 
 		var newMonthBody=newElement('tbody', false, false, newMonth);
 
@@ -182,29 +182,29 @@ var allMonth=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 			currentDay++;
 
-			if(currentDay==day && month==monthZero && year==yearZero) addClass ('today');
+			if(currentDay===day && month===monthZero && year===yearZero) addClass ('today');
 
 			if(currentDay <= 0 ) {
 
-				if(currentDayZero!=-7) td=newElement('td', false, false, tr);
+				if(currentDayZero!==-7) td=newElement('td', false, false, tr);
 
 			}
 
 			else {
 
-				if((currentDay-currentDayZero)%7==0) addClass ('holiday');
+				if((currentDay-currentDayZero)%7===0) addClass ('holiday');
 
 				td=newElement('td', (!currentClass ? false : [['className',currentClass,1]] ), currentDay, tr);
 
-				if((currentDay-currentDayZero)%7==0) tr=newElement('tr', [['className','week',1]], false, newMonthBody);
+				if((currentDay-currentDayZero)%7===0) tr=newElement('tr', [['className','week',1]], false, newMonthBody);
 
 			}
 
-			if(i==allMonth[month]-currentDayZero-1){
+			if(i===allMonth[month]-currentDayZero-1){
 
 				i++;
 
-				while(i%7!=0){i++;td=newElement('td', false, false, tr)};
+				while(i%7!==0){i++;td=newElement('td', false, false, tr);};
 
 			}
 
@@ -214,7 +214,7 @@ var allMonth=[31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 	function showCalender(ele) {
 
-		if(document.getElementById('basis')) { removeCalender() }
+		if(document.getElementById('basis')) { removeCalender(); }
 
 		else {
 

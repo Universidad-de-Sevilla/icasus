@@ -8,7 +8,7 @@ function objetoAjax(){
         } catch (E) {
             xmlhttp = false;          }    }
 
-    if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+    if (!xmlhttp && typeof XMLHttpRequest!=='undefined') {
         xmlhttp = new XMLHttpRequest();
     }   
     return xmlhttp;
@@ -19,7 +19,7 @@ function activarTAB(tab)
 var tabs = ["acta", "convocatoria", "asunto", "asistente", "acuerdo", "tarea", "nota"];       
     for (i = 0;i<tabs.length;i++)
     {
-        if ( tabs[i] != tab)
+        if ( tabs[i] !== tab)
         {document.getElementById(tabs[i]).className = tabs[i];}
         else
         {document.getElementById(tabs[i]).className = tabs[i]+'-s';}
@@ -33,7 +33,7 @@ function mostrarDIV(php,cadena,cajon)
 	ajax.open("POST", "grupo/"+php,true);
 	ajax.onreadystatechange=function() 
 	{
-		if (ajax.readyState==4) 
+		if (ajax.readyState===4) 
 			{	
 				document.getElementById(cajon).innerHTML = ajax.responseText;
 					tinyMCE.init({
@@ -49,7 +49,7 @@ function mostrarDIV(php,cadena,cajon)
 					content_css : "http://localhost/icasus/js/tiny_mce/themes/advanced/skins/default/editorstyles.css"
 					});
 			}	
-		}
+		};
 	ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 	ajax.send(cadena);
 }

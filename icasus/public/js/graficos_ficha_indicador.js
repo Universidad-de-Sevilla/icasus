@@ -20,13 +20,13 @@
       var etiqueta_indicador;
       var escala_tiempo;
       $.each(datos, function(i, dato) {
-        if(dato.id_unidad == 0)
+        if(dato.id_unidad === 0)
         {
           items.push([dato.periodo_fin, dato.valor]);
         }
         // Comprobamos si es valor referencia 
         // TODO: puede haber más de una referencia
-        else if(dato.referencia == true)
+        else if(dato.referencia === true)
         {
           if(dato.unidad in referencias)
             referencias[dato.unidad].push([dato.periodo_fin, dato.valor]);
@@ -50,7 +50,7 @@
   }
       }
 
-      escala_tiempo = (periodicidad == "anual")?"year":"month";
+      escala_tiempo = (periodicidad === "anual")?"year":"month";
 
       var opciones = {
         series: { lines: { show: true }},
@@ -72,7 +72,7 @@
       var previousPoint = null;
       $("#" + id_panel).bind("plothover", function (event, pos, item) {
         if (item) {
-          if (previousPoint != item.dataIndex) {
+          if (previousPoint !== item.dataIndex) {
             previousPoint = item.dataIndex;
             $("#tooltip").remove();
             var y = item.datapoint[1].toFixed(2),

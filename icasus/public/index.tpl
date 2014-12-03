@@ -10,6 +10,7 @@
         <meta charset="utf-8">
         <title>{$_nombre_pagina} - {$smarty.const.TXT_ICASUS} - {$smarty.const.TXT_UNIVERSIDAD}</title>
         <meta name="description" content="Gestión de Indicadores de Calidad">
+        <link rel=icon href=favicon.ico sizes="32x32 48x48" type="image/vnd.microsoft.icon">
 
         <!-- iPhone, iPad and Android specific settings -->	
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">

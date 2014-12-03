@@ -1,19 +1,18 @@
 <div class="button_bar clearfix">
     <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/time.png' />{$smarty.const.TXT_MED_MOSTRAR}</a> &nbsp; &nbsp;
+            src='/icons/ff16/time.png' />{$smarty.const.TXT_MED_MOSTRAR}</a>&nbsp;&nbsp;
     <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_LIST_TODOS}</a> &nbsp; &nbsp;
-    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_LIST_TODOS}</a>&nbsp;&nbsp;
     <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/chart_curve_edit.png'  />{$smarty.const.TXT_EDIT}</a> &nbsp;
+            src='/icons/ff16/chart_curve_edit.png'  />{$smarty.const.TXT_EDIT}</a>&nbsp;&nbsp;
     <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img
-            src='/icons/ff16/chart_curve_delete.png'  />{$smarty.const.TXT_BORRAR}</a> &nbsp;  &nbsp;
+            src='/icons/ff16/chart_curve_delete.png'  />{$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
     <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a> &nbsp; &nbsp;
+            src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a>&nbsp;&nbsp;
     <a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VAL_EDIT}</a> &nbsp; &nbsp; &nbsp;
+            src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp; 
     <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> &nbsp;
+            src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> 
 </div>
 
 {if $mediciones}
@@ -221,8 +220,6 @@
         </div>
     </div>
 
-    <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>
-    <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
     <script src="js/highcharts.js" type="text/javascript"></script>
     <script src="js/exporting.js" type="text/javascript"></script>
     <script src="js/highchartStruct.js" type="text/javascript"></script>
