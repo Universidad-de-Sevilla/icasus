@@ -15,6 +15,7 @@
             src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> 
 </div>
 
+<!-- GRÁFICAS -->
 {if $mediciones}
     <div style="margin:10px;">
         <!--
@@ -48,6 +49,7 @@
     {else}
         <p class="aviso">{$smarty.const.MSG_INDIC_NO_VAL}</p>
     {/if}
+    <!-- //GRÁFICAS -->
 
     <div class="box grid_16">
         <div class="toggle_container">
@@ -71,7 +73,7 @@
                     </div>
                 </div>
                 <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_NAME}</label>
+                    <label>{$smarty.const.FIELD_NOMBRE}</label>
                     <div>
                         {$indicador->nombre}
                     </div>

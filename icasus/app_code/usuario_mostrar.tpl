@@ -6,7 +6,7 @@
 	<div class="toggle_container">
 		<div class="block">
 			<fieldset class="label_side">
-				<label>{$smarty.const.FIELD_NAME}</label>
+				<label>{$smarty.const.FIELD_NOMBRE}</label>
 				<div class="clearfix">
 						<span>{$persona->nombre}</span>
 				</div>

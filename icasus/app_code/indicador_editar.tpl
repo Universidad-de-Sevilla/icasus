@@ -31,7 +31,7 @@
                 </div>
             </div>
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_NAME}</label>
+                <label>{$smarty.const.FIELD_NOMBRE}</label>
                 <div><textarea name="nombre" />{$indicador->nombre}</textarea><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div></div>
             </fieldset>
             <fieldset class="label_side">

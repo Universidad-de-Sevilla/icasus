@@ -17,7 +17,7 @@
   <div id="dt1" class="no_margin">
 	<table class='display datatable'>
 	<thead>
-		<tr><th>{$smarty.const.FIELD_ID}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_RESP}</th></tr>
+		<tr><th>{$smarty.const.FIELD_ID}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_RESP}</th></tr>
 	</thead>
 	<tbody>
 		{foreach from=$datos item=dato} 

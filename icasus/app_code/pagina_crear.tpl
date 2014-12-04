@@ -21,7 +21,7 @@
 				
 			</fieldset>
 			<fieldset class="label_side">
-				<label>{$smarty.const.FIELD_PAGE_CONTENT}</label>
+				<label>{$smarty.const.FIELD_PAG_CONTENIDO}</label>
 				<div class="clearfix">
 					<textarea name='contenido' class='inp' rows='25'></textarea>
 					<div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>

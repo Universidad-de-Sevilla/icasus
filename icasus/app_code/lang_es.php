@@ -541,7 +541,7 @@ define('FIELD_TITULO', 'Título');
 define('FIELD_DESC', 'Descripción');
 define('FIELD_VISIB', 'Visible');
 define('FIELD_COD', 'Código');
-define('FIELD_NAME', 'Nombre');
+define('FIELD_NOMBRE', 'Nombre');
 define('FIELD_PROPIETARIO', 'Propietario');
 define('FIELD_FECHA', 'Fecha');
 define('FIELD_FECHA_HORA', 'Fecha/Hora');
@@ -566,7 +566,6 @@ define('FIELD_FECHA_RECOGIDA', 'Fecha recogida');
 define('FIELD_AGREG', 'Agregado');
 define('FIELD_MET', 'Método de comprobación/evidencia');
 define('FIELD_INTERP', 'Interpretación');
-define('FIELD_EFQM', 'Criterios EFQM');
 define('FIELD_STANDARD', 'Estándar');
 define('FIELD_INFORM', 'Informe');
 define('FIELD_NIVEL_DES', 'Nivel de desagregación');
@@ -599,7 +598,7 @@ define('FIELD_ACTIVO', 'Activo');
 define('FIELD_VERSION', 'Versión');
 
 //Archivos
-define('FIELD_FILE', 'Archivo');
+define('FIELD_ARCHIVO', 'Archivo');
 
 //Cuadros de Mando
 define('FIELD_NOMBRE_CUADRO', 'Nombre del Cuadro de Mando');
@@ -635,6 +634,10 @@ define('FIELD_INDICS', 'Indicadores');
 define('FIELD_FORM', 'Formulación');
 define('FIELD_FUENTE_INFO', 'Fuente de información');
 define('FIELD_PERIOD', 'Periodicidad');
+define('FIELD_RESP', 'Responsable');
+define('FIELD_RESP_SEG', 'Responsable de seguimiento');
+define('FIELD_RESP_GRABAR', 'Responsable de grabación');
+define('FIELD_EFQM', 'Criterios EFQM');
 
 //Mediciones
 define('FIELD_MED', 'Medición');
@@ -643,7 +646,7 @@ define('FIELD_RESP_MED', 'Responsable de Medición');
 define('FIELD_TIP_MED', 'Tipo de Medición');
 
 //Páginas
-define('FIELD_PAGE_CONTENT', 'Contenido de la página');
+define('FIELD_PAG_CONTENIDO', 'Contenido de la página');
 
 //Procesos
 define('FIELD_PROC', 'Proceso');
@@ -652,11 +655,6 @@ define('FIELD_TIPO_PROC', 'Tipo de Proceso');
 define('FIELD_SUBPROCS', 'Subprocesos');
 define('FIELD_SUBPROC', 'Subproceso');
 define('FIELD_EQUIP_PROC', 'Equipo de Proceso');
-
-//Responsables
-define('FIELD_RESP', 'Responsable');
-define('FIELD_RESP_SEG', 'Responsable de seguimiento');
-define('FIELD_RESP_GRABAR', 'Responsable de grabación');
 
 //Usuarios
 define('FIELD_LOGIN', 'Login');

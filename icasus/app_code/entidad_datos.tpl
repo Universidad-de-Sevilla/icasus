@@ -22,7 +22,7 @@
                 </div>
             </fieldset>	
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_NAME}</label>
+                <label>{$smarty.const.FIELD_NOMBRE}</label>
                 <div class="clearfix">
                     <span>{$entidad->nombre}</span>
                 </div>
@@ -56,7 +56,7 @@
         <div class="block">	
             <table class='static'>
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_ROL}</th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                    <tr><th>{$smarty.const.FIELD_ROL}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$usuarios item=usuario}
@@ -83,7 +83,7 @@
         <div class="block">
             <table class="static">
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$subentidades item=subentidad}

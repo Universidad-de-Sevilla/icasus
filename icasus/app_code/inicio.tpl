@@ -44,7 +44,7 @@
                 <thead>
                     <tr>
                         <th>{$smarty.const.FIELD_COD}</th>
-                        <th>{$smarty.const.FIELD_NAME}</th>
+                        <th>{$smarty.const.FIELD_NOMBRE}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -70,7 +70,7 @@
                 <thead>
                     <tr>
                         <th>{$smarty.const.FIELD_COD}</th>
-                        <th>{$smarty.const.FIELD_NAME}</th>
+                        <th>{$smarty.const.FIELD_NOMBRE}</th>
                         <th>{$smarty.const.FIELD_PENDIENTES}</th>
                     </tr>
                 </thead>

@@ -18,7 +18,7 @@
             </fieldset>
 
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_NAME}</label>
+                <label>{$smarty.const.FIELD_NOMBRE}</label>
                 <div>
                     <input type="text" name="nombre"  />
                     <div class="required_tag"></div>

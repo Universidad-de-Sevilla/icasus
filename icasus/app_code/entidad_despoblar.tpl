@@ -4,7 +4,7 @@
         <div id="dt1" class="no_margin">
             <table class="display datatable">
                 <thead>
-                    <tr><th></th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th></tr>
+                    <tr><th></th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$usuarios item=usuario}

@@ -6,7 +6,7 @@
                 <input type='hidden' name='id_entidad' id='id_entidad' value='{$entidad->id}' />
 
                 <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_NAME}</label>
+                    <label>{$smarty.const.FIELD_NOMBRE}</label>
                     <div>
                         <input type='text' name='nombre' id='nombre' value='{$entidad->nombre}' class="required"/></p>
                         <div class="required_tag"></div>

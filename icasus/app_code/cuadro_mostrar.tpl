@@ -47,12 +47,16 @@
     {/foreach}
 {/if}
 
-{literal}
-    <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
-    <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
-    <script src="theme/danpin/scripts/flot/jquery.flot.pie.min.js" type="text/javascript"></script>		
-    <script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
+<script src="theme/danpin/scripts/flot/jquery.flot.pie.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>		
 
+<script src="js/highcharts.js" type="text/javascript"></script>
+<script src="js/exporting.js" type="text/javascript"></script>
+<script src="js/highchartStruct.js" type="text/javascript"></script>
+
+{literal}
     <script>
         //$(".titulo-panel").on('mouseover', function(evento) { });
 
@@ -128,14 +132,14 @@
                         var etiqueta_indicador;
                         var id_entidad = indicador.id_entidad;
                         $.each(datos, function (i, dato) {
-                            if (dato.id_unidad == id_entidad)
+                            if (dato.id_unidad === id_entidad)
                             {
                                 unidad = dato.unidad; //guarrerida española
                                 items.push([dato.periodo_fin, dato.valor]);
                             }
                             // Comprobamos si es valor referencia 
                             // TODO: puede haber más de una referencia
-                            else if (dato.referencia == true)
+                            else if (dato.referencia === true)
                             {
                                 referencias.push([dato.periodo_fin, dato.valor]);
                                 referencia_nombre = dato.unidad;
@@ -171,7 +175,7 @@
                         var previousPoint = null;
                         $("#panel_" + id_panel).bind("plothover", function (event, pos, item) {
                             if (item) {
-                                if (previousPoint != item.dataIndex) {
+                                if (previousPoint !== item.dataIndex) {
                                     previousPoint = item.dataIndex;
                                     $("#tooltip").remove();
                                     var x = item.datapoint[0].toFixed(2),
@@ -215,7 +219,7 @@
                         // Recorre los datos que vienen de la api y los mete en el array items 
                         // a la vez que preparo las unidades para etiquetar el eje horizontal
                         $.each(datos, function (i, dato) {
-                            if (dato.unidad != "Total")
+                            if (dato.unidad !== "Total")
                             {
                                 items.push([i, dato.valor]);
                                 unidades.push([i, dato.etiqueta_mini]);
@@ -227,7 +231,7 @@
                         });
 
                         // El primer indicador lo pintamos como barra
-                        if (index == 0)
+                        if (index === 0)
                         {
                             datos_flot[index] = {
                                 label: etiqueta_indicador,
@@ -271,7 +275,7 @@
                     var previousPoint = null;
                     $("#panel_" + id_panel).bind("plothover", function (event, pos, item) {
                         if (item) {
-                            if (previousPoint != item.dataIndex) {
+                            if (previousPoint !== item.dataIndex) {
                                 previousPoint = item.dataIndex;
                                 $("#tooltip").remove();
                                 var x = item.datapoint[0].toFixed(2),
@@ -304,10 +308,10 @@
                 $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function (datos) {
                     var items = [];
                     $.each(datos, function (i, dato) {
-                        if (dato.id_medicion == id_medicion)
+                        if (dato.id_medicion === id_medicion)
                         {
                             // Si id_unidad es 0 se trata del valor total, en otro caso es el parcial de una subunidad
-                            if (dato.id_unidad == 0)
+                            if (dato.id_unidad === 0)
                             {
                                 total = dato.valor;
                                 medicion = dato.medicion;
@@ -378,9 +382,9 @@
                     var id_entidad = indicador.id_entidad;
                     $.each(datos, function (i, dato) {
                         var paridad;
-                        if (dato.id_unidad == id_entidad)
+                        if (dato.id_unidad === id_entidad)
                         {
-                            if (i % 2 == 0) {
+                            if (i % 2 === 0) {
                                 paridad = "odd";
                             } else {
                                 paridad = "even";
@@ -431,7 +435,7 @@
                 $.each(indicadores, function (i, datos) {
                     var indicador = datos.indicador;
                     var paridad;
-                    if (i % 2 == 0) {
+                    if (i % 2 === 0) {
                         paridad = "odd";
                     } else {
                         paridad = "even";
@@ -475,11 +479,11 @@
                     // Tomamos la entidad a mostrar del panel_indicador actual
                     var id_entidad = indicador.id_entidad;
                     $.each(datos, function (i, dato) {
-                        if ((dato.id_unidad == id_entidad || dato.id_unidad == '0') && dato.id_medicion == id_medicion)
+                        if ((dato.id_unidad === id_entidad || dato.id_unidad === '0') && dato.id_medicion === id_medicion)
                         {
-                            if (id_entidad != '0')
+                            if (id_entidad !== '0')
                             {
-                                if (dato.id_unidad != '0')
+                                if (dato.id_unidad !== '0')
                                 {
                                     html += "<p style='font-size:" + (ancho * 2 - dato.valor.length * 0.4) + "em; padding: 20px 0 10px 0; text-align: center;'>" + dato.valor + "</p>";
                                     html += "<p style='text-align: center; line-height: 10px;'>" + dato.unidad + "</p>";

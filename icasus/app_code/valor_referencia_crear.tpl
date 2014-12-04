@@ -8,7 +8,7 @@
                     <div><b><input  type='text' name='c-etiqueta' value="" class="text required"/></b><div class="required_tag"></div></div>
                 </fieldset>
                 <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_NAME}</label>
+                    <label>{$smarty.const.FIELD_NOMBRE}</label>
                     <div><b><input  type='text' name='c-nombre' value="" class="text required"/></b><div class="required_tag"</div>
                 </fieldset>
                 <fieldset class="label_side">
@@ -40,7 +40,7 @@
                     <div><b><input  type='text' id="e-etiqueta" name='e-etiqueta' value='' class="text required" /></b><div class="required_tag"></div></div>
                 </fieldset>
                 <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_NAME}</label>
+                    <label>{$smarty.const.FIELD_NOMBRE}</label>
                     <div><b><input  type='text' id="e-nombre" name='e-nombre' value='' class="text required" /></b><div class="required_tag"></div></div>
                 </fieldset>
                 <fieldset class="label_side">

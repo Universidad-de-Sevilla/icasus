@@ -5,7 +5,7 @@
     <input type='hidden' name='id_usuario' id='id_usuario' value='{$usuario.id_usuario}' />
     <input type='hidden' name='id_entidad' id='id_entidad' value='{$id_operario}' />
 
-    <p><label for="nombre">{$smarty.const.FIELD_NAME}</label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>
+    <p><label for="nombre">{$smarty.const.FIELD_NOMBRE}</label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>
         <input name="nombre" id="nombre" class="inp" value="{$usuario.nombre}" /></p>
 
     <p><label for="apellidos">{$smarty.const.FIELD_APEL} </label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>

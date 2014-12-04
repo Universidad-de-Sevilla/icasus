@@ -9,7 +9,7 @@
         <div id="dt1" class="no_margin">
             <table class="display datatable"> 
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_VISIBILIDAD}</th><th>{$smarty.const.FIELD_COMENTARIOS}</th><!--<th>Acciones</th>--></tr>
+                    <tr><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_VISIBILIDAD}</th><th>{$smarty.const.FIELD_COMENTARIOS}</th><!--<th>Acciones</th>--></tr>
                 </thead>
                 <tbody>
                     {foreach from=$cuadros_propios item=cuadro}
@@ -35,7 +35,7 @@
         <div id="dt1" class="no_margin">
             <table class="display datatable"> 
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_VISIBILIDAD}</th><th>{$smarty.const.FIELD_COMENTARIOS}</th><!--<th>Acciones</th>--></tr>
+                    <tr><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_VISIBILIDAD}</th><th>{$smarty.const.FIELD_COMENTARIOS}</th><!--<th>Acciones</th>--></tr>
                 </thead>
                 <tbody>
                     {foreach from=$cuadros_publicos item=cuadro}

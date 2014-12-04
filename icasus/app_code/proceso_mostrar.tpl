@@ -34,7 +34,7 @@
                 </div>
             </fieldset> 
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_NAME}</label>
+                <label>{$smarty.const.FIELD_NOMBRE}</label>
                 <div>
                     <h3>{$proceso->nombre}</h3>
                 </div>
@@ -224,7 +224,7 @@
         <div class="block">	
             <table class="static"> 
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_SUBPROC}</th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_PROPIETARIO}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                    <tr><th>{$smarty.const.FIELD_SUBPROC}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_PROPIETARIO}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$subprocesos item=subproceso}

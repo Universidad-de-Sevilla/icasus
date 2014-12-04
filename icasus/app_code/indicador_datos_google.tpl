@@ -66,7 +66,7 @@
     <tr><td colspan='2'><a href='index.php?page=proceso_mostrar&codigo={$indicador.codigo_proceso}' title='Mostrar 
                            proceso'>{$indicador.codigo_proceso}</a></td>  
         <td colspan='4'>{$indicador.proceso}</td></tr>
-    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NAME}</th><th colspan='2'>{$smarty.const.FIELD_DESC}</th>
+    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th colspan='2'>{$smarty.const.FIELD_DESC}</th>
         <th colspan='2'>{$smarty.const.FIELD_FORM}</th></tr>
     <tr>
         <td>{$indicador.codigo}</td>

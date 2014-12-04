@@ -21,7 +21,7 @@
 
         <tr>
             <th>{$smarty.const.FIELD_COD} {$smarty.const.FIELD_INDIC}</th>
-            <th colspan='5'>{$smarty.const.FIELD_NAME}</th>
+            <th colspan='5'>{$smarty.const.FIELD_NOMBRE}</th>
         </tr>
         <tr>
             <td>{$indicador.codigo}</td>

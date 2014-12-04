@@ -17,7 +17,7 @@
                     <div><b><input  type="text" name="stitulo" value="" class="text required"/></b><div class="required_tag"></div></div>
                 </fieldset>
                 <fieldset class="label_side">
-                    <label>{$marty.const.FIELD_FILE}</label>
+                    <label>{$marty.const.FIELD_ARCHIVO}</label>
                     <div><input  type="file" name="sarchivo" class="uniform required" /><div class="required_tag"></div></div>
                 </fieldset>
                 <fieldset class="label_side">

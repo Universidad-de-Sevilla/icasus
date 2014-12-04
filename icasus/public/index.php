@@ -25,8 +25,10 @@ include_once('../app_code/' . IC_LANG_FILE);
 // Carga las clases necesarias automaticamente
 spl_autoload_register('__autoload');
 
-function __autoload($class_name) {
-    if (file_exists('../class/' . $class_name . '.php')) {
+function __autoload($class_name)
+{
+    if (file_exists('../class/' . $class_name . '.php'))
+    {
         require_once('../class/' . $class_name . '.php');
     }
 }
@@ -63,7 +65,8 @@ $session_key = substr(md5(IC_DIR_BASE), 0, 8);
 session_name('IC_SESSID' . $session_key);
 ini_set('url_rewriter.tags', '');
 ini_set('session.use_trans_sid', 0);
-if (!session_id()) {
+if (!session_id())
+{
     //Trans SID sucks also...
     ini_set('url_rewriter.tags', '');
     ini_set('session.use_trans_sid', 0);
@@ -80,18 +83,21 @@ if (!session_id()) {
 
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_URL);
 
-if ($page == null || $page == false) {
+if ($page == null || $page == false)
+{
     $page = "inicio";
 }
 
-if (isset($_SESSION['usuario'])) {
+if (isset($_SESSION['usuario']))
+{
     // Si viene id_entidad le asignamos su valor, si no, asignamos cero.
     // Quitarlo cuando se aclare lo de los permisos
     //$id_entidad = isset($_REQUEST['id_entidad']) ? sanitize($_REQUEST['id_entidad'], 16) : 0;
 
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
-    if ($id_entidad == null || $id_entidad == false) {
+    if ($id_entidad == null || $id_entidad == false)
+    {
         $id_entidad = 0;
     }
 
@@ -105,15 +111,20 @@ if (isset($_SESSION['usuario'])) {
       $page = "error";
       }
      */
-} else {
+}
+else
+{
     // Si no se ha iniciado sesión cargamos la de login  
     $page = IC_TIPO_LOGIN;
 }
 
 // Carga la página solicitada
-if (file_exists("../app_code/$page.php")) {
+if (file_exists("../app_code/$page.php"))
+{
     require_once("../app_code/$page.php");
-} else {
+}
+else
+{
     $smarty->assign('error', ERR_404 . " $page");
     require_once("../app_code/error.php");
 }
@@ -127,9 +138,12 @@ if (file_exists("../app_code/$page.php")) {
 //Comprobamos si hay una petición AJAX
 $ajax = filter_input(INPUT_GET, 'ajax', FILTER_VALIDATE_BOOLEAN);
 //Si es asi sólo recargaremos la sección afectada
-if ($ajax) {
+if ($ajax)
+{
     $template = $plantilla;
-} else {
+}
+else
+{
     $smarty->assign("plantilla", $plantilla);
     $template = 'index.tpl';
 }
