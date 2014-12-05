@@ -19,14 +19,15 @@ function compare(a,b)
     au = new String(a);
     bu = new String(b);
 
-    if (au.charAt(4) != '-' && au.charAt(7) != '-')
+    if (au.charAt(4) !== '-' && au.charAt(7) !== '-')
     {
-    var an = parseFloat(au)
-    var bn = parseFloat(bu)
+    var an = parseFloat(au);
+    var bn = parseFloat(bu);
     }
     if (isNaN(an) || isNaN(bn))
-        {as = au.toLowerCase()
-         bs = bu.toLowerCase()
+        {
+            as = au.toLowerCase();
+         bs = bu.toLowerCase();
         if (as > bs)
             {return 1;}
         else
@@ -41,7 +42,7 @@ function compare(a,b)
 
 function getConcatenedTextContent(node) {
     var _result = "";
-	  if (node == null) {
+	  if (node === null) {
 		    return _result;
 	  }
     var childrens = node.childNodes;
@@ -80,7 +81,7 @@ function sort(e) {
     var a = new Array();
     // check if the image or the th is clicked. Proceed to parent id it is the image
     // NOTE THAT nodeName IS UPPERCASE
-    if (el.nodeName == 'IMG') el = el.parentNode;
+    if (el.nodeName === 'IMG') el = el.parentNode;
     //var name = el.firstChild.nodeValue;
     // This is not very robust, it assumes there is an image as first node then text
     var name = el.childNodes.item(1).nodeValue;
@@ -90,7 +91,7 @@ function sort(e) {
     // kill all arrows
     for (var im = 0; (node = dad.getElementsByTagName("th").item(im)); im++) {
         // NOTE THAT nodeName IS IN UPPERCASE
-        if (node.lastChild.nodeName == 'IMG')
+        if (node.lastChild.nodeName === 'IMG')
         {
             lastindex = node.getElementsByTagName('img').length - 1;
             node.getElementsByTagName('img').item(lastindex).setAttribute('src', 'theme/usevilla/arrowBlank.gif');
@@ -100,7 +101,7 @@ function sort(e) {
     for (var i = 0; (node = dad.getElementsByTagName("th").item(i)); i++) {
         var xre = new RegExp(/\bnosort\b/);
         // Make sure we are not messing with nosortable columns, then check second node.
-        if (!xre.exec(node.className) && node.childNodes.item(1).nodeValue == name) 
+        if (!xre.exec(node.className) && node.childNodes.item(1).nodeValue === name) 
         {
             //window.alert(node.childNodes.item(1).nodeValue;
             lastindex = node.getElementsByTagName('img').length -1;
@@ -125,8 +126,8 @@ function sort(e) {
         a.sort(compare);
 
         // not a perfect way to check, but hell, it suits me fine
-        if (a[0][0] == getConcatenedTextContent(tbody.getElementsByTagName("tr").item(0).getElementsByTagName("td").item(i))
-	       && a[1][0] == getConcatenedTextContent(tbody.getElementsByTagName("tr").item(1).getElementsByTagName("td").item(i))) 
+        if (a[0][0] === getConcatenedTextContent(tbody.getElementsByTagName("tr").item(0).getElementsByTagName("td").item(i))
+	       && a[1][0] === getConcatenedTextContent(tbody.getElementsByTagName("tr").item(1).getElementsByTagName("td").item(i))) 
         {
             a.reverse();
             lastindex = el.getElementsByTagName('img').length - 1;
@@ -145,9 +146,9 @@ function initalizeTableSort(e) {
     for (var t = 0; t < tbls.length; t++)
         {
         // elements of class="listing" can be sorted
-        var re = new RegExp(/\blisting\b/)
+        var re = new RegExp(/\blisting\b/);
         // elements of class="nosort" should not be sorted
-        var xre = new RegExp(/\bnosort\b/)
+        var xre = new RegExp(/\bnosort\b/);
         if (re.exec(tbls[t].className) && !xre.exec(tbls[t].className))
         {
             try {
@@ -185,4 +186,4 @@ function initalizeTableSort(e) {
     }
 }   
 // **** End table sort script ***
-registerPloneFunction(initalizeTableSort)
+registerPloneFunction(initalizeTableSort);

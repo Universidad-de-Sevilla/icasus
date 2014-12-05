@@ -24,7 +24,7 @@
           // Recorre los datos que vienen de la api y los mete en el array items 
           // a la vez que preparo las unidades para etiquetar el eje horizontal
           $.each(datos, function(i, dato) {
-            if (dato.unidad != "Total")
+            if (dato.unidad !== "Total")
             {
               items.push([i, dato.valor]);
               unidades.push([i, dato.etiqueta_mini]);
@@ -36,7 +36,7 @@
           });
 
           // El primer indicador lo pintamos como barra
-          if (index == 0)
+          if (index === 0)
           {
             datos_flot[index] = { 
               label: etiqueta_indicador, 
@@ -80,7 +80,7 @@
         var previousPoint = null;
         $("#panel_" + id_panel).bind("plothover", function (event, pos, item) {
           if (item) {
-            if (previousPoint != item.dataIndex) {
+            if (previousPoint !== item.dataIndex) {
               previousPoint = item.dataIndex;
               $("#tooltip").remove();
               var x = item.datapoint[0].toFixed(2),

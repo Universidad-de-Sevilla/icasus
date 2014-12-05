@@ -330,12 +330,12 @@ define('TXT_VAL_EDIT', 'Edición de Valores');
 define('TXT_VAL_AGREGAR', 'Agregar Valor');
 define('TXT_VALS_EDIT', 'Editar Valores');
 define('TXT_VAL_IMPORT', 'Importar Valores');
-define('TXT_VAL_REF', 'Valores de referencia');
+define('TXT_VAL_REF', 'Valores de Referencia');
 define('TXT_VAL_REC', 'Valores recogidos');
 define('TXT_VAL_TABLA', 'Tabla de Valores');
-define('TXT_VAL_REF_EDIT', 'Editar Valor de referencia');
-define('TXT_VAL_REF_CREAR', 'Crear nuevos Valores de referencia');
-define('TXT_VAL_REF_NUEVO', 'Nueva referencia');
+define('TXT_VAL_REF_EDIT', 'Editar Valor de Referencia');
+define('TXT_VAL_REF_CREAR', 'Crear nuevos Valores de Referencia');
+define('TXT_VAL_REF_NUEVO', 'Nueva Referencia');
 
 //Visibilidad, permisos
 define('TXT_TODOS', 'Todos');

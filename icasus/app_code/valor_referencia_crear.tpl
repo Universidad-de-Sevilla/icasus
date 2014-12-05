@@ -64,8 +64,8 @@
 
 <div class="box grid_16">
     <div class="button_bar clearfix">
-        <a href="index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}"><img src ="/icons/ff16/chart_curve.png"> {$smarty.const.TXT_VOLVER} {$tipo}</a>
-        <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" ><img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF_CREAR}</a> &nbsp;
+        <a href="index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}"><img src ="/icons/ff16/chart_curve.png"> {$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
+        <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" ><img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF_CREAR}</a> 
     </div>
     <div id="dt1" class="no_margin">
         <table class='static'>
