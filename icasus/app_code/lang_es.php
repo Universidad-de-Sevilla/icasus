@@ -125,6 +125,7 @@ define('TXT_INDIC_PROP', 'Indicadores propios de la Unidad');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_NUEVO', 'Nuevo Indicador');
 define('TXT_INDICS_VER', 'Ver Indicadores');
+define('TXT_INDIC_IR', 'Ir al Indicador');
 define('TXT_INDIC_VOLVER', 'Volver al Indicador');
 define('TXT_INDIC_MOSTRAR', 'Mostrar Ficha del Indicador');
 define('TXT_INDIC_FICHA', 'Ficha del Indicador');
@@ -445,6 +446,7 @@ define('MSG_USER_EDITADO', 'El Usuario se ha modificado correctamente.');
 define('MSG_VAL_BORRADO', 'Se ha borrado un Valor.');
 define('MSG_VAL_EXPORT', 'Exportando Valores para:');
 define('MSG_VAL_GRABAR', 'El Valor se ha grabado correctamente.');
+define('MSG_VAL_DESACT', 'Desea desactivar el Valor (control) del siguiente Indicador:');
 
 //----------------------------------------------------------------------------------
 //ERRORES: ERR_[Nombre]

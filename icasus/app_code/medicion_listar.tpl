@@ -84,7 +84,6 @@
     </div>
 </div>
 
-<script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
 <script src="js/highcharts.js" type="text/javascript"></script>
 <script src="js/highchartStruct.js" type="text/javascript"></script>
 <script src="js/exporting.js"></script>

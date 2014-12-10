@@ -44,6 +44,21 @@ if ($modulo == 'filtrOnlyear')
     $valores = $valor->filtro_onlyear($fecha, $cadena);
     $smarty->assign("valores", $valores);
 }
+
+//------------------------------------------------------------------------------
+//Desactiva un valor quitándolo de la lista de control
+//------------------------------------------------------------------------------
+
+if ($modulo == 'desactivar_valor')
+{
+//	$fecha = sanitize($_REQUEST["fecha"],INT);
+    $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
+    $valor = new Valor();
+    $valor->load("id = $id_valor");
+    $valor->activo = 0;
+    $valor->Save();
+}
+
 $smarty->assign("modulo", $modulo);
 $smarty->assign("_nombre_pagina", "Control:  $entidad->nombre");
 $plantilla = "control.tpl";

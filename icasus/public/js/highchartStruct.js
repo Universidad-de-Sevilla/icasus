@@ -99,7 +99,7 @@ function Set(){
   }
 */
 
-function highchartSerie(){
+function HighchartSerie(){
   this.serie = [];
   this.categories = new Set();
   this.categoryType = "unidad";
