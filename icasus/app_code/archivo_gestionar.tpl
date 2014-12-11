@@ -1,5 +1,5 @@
 <div class="box grid_16 clear_fix">
-    <a href="javascript:window.history.back()"><img src="/icons/ff16/arrow_undo.png" />{$smarty.const.TXT_CANCELAR}</a>&nbsp; &nbsp; &nbsp;
+    <a href="javascript:window.history.back()"><img src="/icons/ff16/arrow_undo.png" />{$smarty.const.TXT_CANCEL}</a>&nbsp; &nbsp; &nbsp;
     <a href="javascript:void(0)" class="dialog_button" data-dialog="dialog_crear"><img src="/icons/ff16/box_bullet_add.png" /> {$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}</a> &nbsp; &nbsp; &nbsp;
     <a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><img src="/icons/ff16/cog.png" />{$smarty.const.TXT_PROC_VOLVER}</a>
 </div>		
@@ -13,20 +13,20 @@
             <form action="index.php?page=archivo_gestionar_ajax&ajax=true&modulo=subir" name="subir" method="post" class="validate_form" enctype="multipart/form-data" >
                 <input type="hidden" value="{$proceso->id}" name="id_objeto" >
                 <fieldset class="label_side">
-                    <label>{$marty.const.FIELD_TITULO}</label>
+                    <label>{$smarty.const.FIELD_TITULO}</label>
                     <div><b><input  type="text" name="stitulo" value="" class="text required"/></b><div class="required_tag"></div></div>
                 </fieldset>
                 <fieldset class="label_side">
-                    <label>{$marty.const.FIELD_ARCHIVO}</label>
+                    <label>{$smarty.const.FIELD_ARCHIVO}</label>
                     <div><input  type="file" name="sarchivo" class="uniform required" /><div class="required_tag"></div></div>
                 </fieldset>
                 <fieldset class="label_side">
-                    <label>{$marty.const.FIELD_DESC}</label>
+                    <label>{$smarty.const.FIELD_DESC}</label>
                     <div><textarea  name="sdescripcion" class="autogrow"/></textarea></div>
                 </fieldset>
                 <fieldset class="label_side">
-                    <label>{$marty.const.FIELD_VISIB}</label>
-                    <div><input type="radio" name="svisible" value="1" class="required"/> {$marty.const.TXT_SI} <input type="radio" name="svisible" value="0" class="required"/> {$marty.const.TXT_NO}</div>
+                    <label>{$smarty.const.FIELD_VISIB}</label>
+                    <div><input type="radio" name="svisible" value="1" class="required"/> {$smarty.const.TXT_SI} <input type="radio" name="svisible" value="0" class="required"/> {$smarty.const.TXT_NO}</div>
                 </fieldset>
                 <div class="button_bar clearfix">
                     <button class="green" type="submit" value="{$smarty.const.TXT_GRABAR}" name="sgrabar" id="sgrabar">
@@ -35,7 +35,7 @@
                     </button>
                     <button class="red dark send_right close_dialog" type="button" value="{$smarty.const.TXT_CANCEL}" name="scancelar" id="scancelar">
                         <div class="ui-icon ui-icon-closethick"></div>
-                        <span>{$marty.const.TXT_CANCEL}</span>
+                        <span>{$smarty.const.TXT_CANCEL}</span>
                     </button>
                 </div>
             </form>
@@ -47,30 +47,30 @@
     <div id="dialog_editar" class="dialog_content narrow no_dialog_titlebar" title="{$smarty.const.TXT_BORRAR_CONFIRM}">
         <div class="block">
             <div class="section">
-                <h2>{$marty.const.TXT_ARCHIVO_ACTUALIZAR_DATOS}</h2>
+                <h2>{$smarty.const.TXT_ARCHIVO_ACTUALIZAR_DATOS}</h2>
             </div>
             <form action="" name="editar" method="post" class="validate_form" >
                 <input type="hidden" value="" name="id_fichero" id="id_fichero" >
                 <fieldset class="label_side">
-                    <label>{$marty.const.FIELD_TITULO}</label>
+                    <label>{$smarty.const.FIELD_TITULO}</label>
                     <div><b><input  type='text' id="etitulo" name='etitulo' value="ww" class="text required"/></b><div class="required_tag"></div></div>
                 </fieldset>
                 <fieldset class="label_side">
-                    <label>{$marty.const.FIELD_DESC}</label>
+                    <label>{$smarty.const.FIELD_DESC}</label>
                     <div><textarea  id="edescripcion" name='edescripcion' class="autogrow"/>ww</textarea></div>
                 </fieldset>
                 <fieldset class="label_side">
-                    <label>{$marty.const.FIELD_VISIB}</label>
-                    <div><input type="radio" name='evisible' value="1" class="required"/> {$marty.const.TXT_SI} <input type="radio" name='evisible' value="0" class="required"/>  {$marty.const.TXT_NO}</div>
+                    <label>{$smarty.const.FIELD_VISIB}</label>
+                    <div><input type="radio" name='evisible' value="1" class="required"/> {$smarty.const.TXT_SI} <input type="radio" name='evisible' value="0" class="required"/>  {$smarty.const.TXT_NO}</div>
                 </fieldset>
                 <div class="button_bar clearfix">
                     <button class="green" type="button" value="{$smarty.const.TXT_GRABAR}" name="egrabar" id="egrabar">
                         <div class="ui-icon ui-icon-check"></div>
-                        <span>{$marty.const.TXT_ARCHIVO_ACTUALIZAR}</span>
+                        <span>{$smarty.const.TXT_ARCHIVO_ACTUALIZAR}</span>
                     </button>
                     <button class="light  send_right close_dialog" type="button" value="{$smarty.const.TXT_CANCEL}" name="ecancelar" id="ecancelar">
                         <div class="ui-icon ui-icon-closethick"></div>
-                        <span> {$marty.const.TXT_CANCEL}</span>
+                        <span> {$smarty.const.TXT_CANCEL}</span>
                     </button>
                 </div>
             </form>
@@ -82,18 +82,18 @@
     <div id="dialog_delete" class="dialog_content narrow no_dialog_titlebar" title="Delete Confirmation">
         <div class="block">
             <div class="section">
-                <h2> {$marty.const.TXT_ARCHIVO_BORRAR}</h2>
-                <p>{$marty.const.MSG_ARCHIVO_BORRAR_CONFIRM} <b><span id="titulo_borrar"></span></b>.</p>
+                <h2> {$smarty.const.TXT_ARCHIVO_BORRAR}</h2>
+                <p>{$smarty.const.MSG_ARCHIVO_BORRAR_CONFIRM} <b><span id="titulo_borrar"></span></b>.</p>
             </div>
             <div class="button_bar clearfix">
                 <input type="hidden" value="" name="id_borrar" id="id_borrar">
                 <button class="delete_confirm dark green no_margin_bottom close_dialog" name="borrar" id="borrar">
                     <div class="ui-icon ui-icon-check"></div>
-                    <span>{$marty.const.TXT_BORRAR}</span>
+                    <span>{$smarty.const.TXT_BORRAR}</span>
                 </button>
                 <button class="dark send_right close_dialog">
                     <div class="ui-icon ui-icon-closethick"></div>
-                    <span>{$marty.const.TXT_CANCEL}</span>
+                    <span>{$smarty.const.TXT_CANCEL}</span>
                 </button>
             </div>
         </div>
@@ -105,7 +105,7 @@
         {if isset($archivos)}
             <table class='display datatable'>
                 <thead>
-                    <tr><th></th><th>{$marty.const.FIELD_TITULO}</th><th>{$marty.const.FIELD_VISIB}</th><th>{$marty.const.FIELD_USER}</th></tr>
+                    <tr><th></th><th>{$smarty.const.FIELD_TITULO}</th><th>{$smarty.const.FIELD_VISIB}</th><th>{$smarty.const.FIELD_USER}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$archivos item=archivo}
@@ -127,7 +127,7 @@
         {else}
             <div class='alert alert_blue'>
                 <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-                {$marty.const.MSG_PROC_ARCHIVO_NO}
+                {$smarty.const.MSG_PROC_ARCHIVO_NO}
             </div>
         {/if}
     </div>

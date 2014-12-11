@@ -9,7 +9,7 @@ $('.highchart').each(function () {
     var periodicidad = $(this).data("periodicidad");
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
-    var milisegundosAnio = 31540000000;
+    //var milisegundosAnio = 31540000000;
     var dataseries = [];
     var chartSerie = new HighchartSerie(); // contenedor para los datos del gráfico
     if (periodicidad === "anual") {

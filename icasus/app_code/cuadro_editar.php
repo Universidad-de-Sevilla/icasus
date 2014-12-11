@@ -9,10 +9,10 @@
 //---------------------------------------------------------------------------------------------------
 
 //if (isset($_REQUEST['id_cuadro']))
-if (filter_has_var(INPUT_POST,'id_cuadro'))
+if (filter_has_var(INPUT_GET,'id_cuadro'))
 {
 //	$id_cuadro = sanitize($_REQUEST['id_cuadro'],16);
-    $id_cuadro = filter_input(INPUT_POST, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
+    $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
     $cuadro = new Cuadro();
     $cuadro->load("id = $id_cuadro");
     $smarty->assign('cuadro', $cuadro);

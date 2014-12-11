@@ -14,7 +14,7 @@ if (!empty($id_cuadro) OR ! empty($id_entidad))
 {
     $smarty->assign('id_entidad', $id_entidad);
     $smarty->assign('id_cuadro', $id_cuadro);
-    $smarty->assign('_nombre_pagina', TXT_NEW_PANEL);
+    $smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
     $plantilla = "panel_nuevo.tpl";
 }
 else

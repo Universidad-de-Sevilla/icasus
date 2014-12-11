@@ -36,6 +36,6 @@ if ($modulo == 'fecha_fin')
     $smarty->assign('fecha_inicio', $fecha_inicio);
 }
 $smarty->assign('modulo', $modulo);
-$smarty->assign('_nombre_pagina', TXT_NEW_PANEL);
+$smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
 $plantilla = "$tipo.tpl";
 

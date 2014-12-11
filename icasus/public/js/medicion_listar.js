@@ -14,7 +14,7 @@ $.ajax({
 });
 // Guardado de datos en highchartstruct y totales para las medias
 function onDataReceived(datos) {
-    var categories = new Set();
+    //var categories = new Set();
     datos.forEach(function (d) {
         if (d.etiqueta_mini) {
             chartSerie.add(d);
@@ -117,7 +117,7 @@ $('.highchart').each(function () {
     var periodicidad = $(this).data("periodicidad");
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
-    var milisegundosAnio = 31540000000;
+    // var milisegundosAnio = 31540000000;
     //var dataseries = [];
     var chartSerie = new HighchartSerie(); // contenedor para los datos del gráfico
     if (periodicidad === "anual") {

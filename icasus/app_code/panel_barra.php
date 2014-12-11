@@ -14,7 +14,7 @@ $periodos = $periodo->Find("1 = 1");
 $smarty->assign("periodos", $periodos);
 
 $smarty->assign('modulo', $modulo);
-$smarty->assign('_nombre_pagina', TXT_NEW_PANEL);
+$smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
 $plantilla = "$tipo.tpl";
 
 if ($modulo == 'inicio')

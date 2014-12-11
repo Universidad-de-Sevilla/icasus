@@ -6,7 +6,7 @@
   //$(".titulo-panel").on('mouseover', function(evento) { });
 
         $(".borrar").on('click', function (evento) {
-            var boton_borrar, idpanel;
+            var boton_borrar, id_panel;
             boton_borrar = $(this);
             id_panel = boton_borrar.parents().find(".panel").data("idpanel");
             $('#nombre_panel').html(boton_borrar.data('nombre_panel'));

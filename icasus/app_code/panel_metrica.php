@@ -39,6 +39,6 @@ if ($modulo == 'mediciones_metrica')
     $smarty->assign('mediciones', $mediciones);
 }
 $smarty->assign('modulo', $modulo);
-$smarty->assign('_nombre_pagina', TXT_NEW_PANEL);
+$smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
 $plantilla = "$tipo.tpl";
 

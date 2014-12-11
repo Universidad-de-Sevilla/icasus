@@ -12,10 +12,10 @@ global $smarty;
 global $plantilla;
 
 //if (isset($_REQUEST["id_entidad"]))
-if (filter_has_var(INPUT_POST, 'id_entidad'))
+if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
 //  $id_entidad = sanitize($_REQUEST['id_entidad'],INT);
-    $id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     // Si vienen datos del formulario asignamos los usuarios marcados a la entidad
 //     if (isset($_REQUEST['id_rol']) AND isset($_REQUEST['id_usuario']))
     if (filter_has_var(INPUT_POST, 'id_rol') && filter_has_var(INPUT_POST, 'id_usuario'))
