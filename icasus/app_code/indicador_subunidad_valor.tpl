@@ -83,7 +83,6 @@
         {include file="indicador_subunidad_valor_mostrar.tpl"}
     </div>
 </div>
-</div>
 
 {literal}
     <script>

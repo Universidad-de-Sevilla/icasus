@@ -47,7 +47,7 @@
                     {/foreach}
                 </tbody></table>
         </div>
-    </div>
-{else}
-    <div class="alert alert_blue">{$smarty.const.MSG_MED_NO_ASIG}</div>
-{/if}
+    {else}
+        <div class="alert alert_blue">{$smarty.const.MSG_MED_NO_ASIG}</div>
+    {/if}
+</div>

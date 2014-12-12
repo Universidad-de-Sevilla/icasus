@@ -9,12 +9,12 @@
 global $usuario;
 
 //if (isset($_REQUEST['id_dato']) && isset($_REQUEST['id_entidad']) )
-if (filter_has_var(INPUT_POST, 'id_dato') && filter_has_var(INPUT_POST, 'id_entidad'))
+if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
 //	$id_entidad = sanitize($_REQUEST['id_entidad'],16);
 //	$id_dato = sanitize($_REQUEST['id_dato'],16);
-    $id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-    $id_dato = filter_input(INPUT_POST, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    $id_dato = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
     $dato = new Indicador();
     $dato->load_joined("id = $id_dato");
     // Comprobamos que el usuario es responsable de este indicador para permitirle borrar

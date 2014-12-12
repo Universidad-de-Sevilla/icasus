@@ -3,14 +3,13 @@
     <input type="hidden" name="id_entidad" value="{$entidad->id}" />
     <div style="opacity: 1;" class="box tabs" id="tab_crear_dato">
         <ul class="tab_header">
-            <li ><a  href="#dato" {$smarty.const.TXT_DATO}</a></li>
+            <li ><a  href="#dato"> {$smarty.const.TXT_DATO}</a></li>
             <li ><a  href="#otras" >{$smarty.const.TXT_OTRAS_PROP}</a></li>
             <li ><a  href="#subunidades" >{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
         </ul>
 
         <div style="opacity: 1;" id="dato" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
-
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_ID}</label>
                 <div>
@@ -65,13 +64,6 @@
                 </div>
             </fieldset>
 
-            <div class="button_bar clearfix" id="footer_tabs">
-                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>          
-                <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
-            </div>
-        </div><!-- fin tab id=dato -->
-
-        <div style="opacity: 1;" id="otras" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
