@@ -5,9 +5,9 @@
         {$smarty.const.TXT_PROCS_VER}</a> &nbsp; &nbsp; 
     <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve.png' />
         {$smarty.const.TXT_INDICS_VER}</a> &nbsp; &nbsp; 
-    <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/table.png' />
+    <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_bar.png' />
         {$smarty.const.TXT_DATOS_VER}</a> &nbsp; &nbsp; 
-    <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
+    <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation_edit.png' />
         {$smarty.const.TXT_UNID_EDIT}</a> &nbsp; &nbsp; 
     <a href='index.php?page=csv_importar&id_entidad={$entidad->id}'><img src='/icons/ff16/lorry.png' />
         {$smarty.const.TXT_VAL_IMPORT}</a> &nbsp; &nbsp; 
@@ -98,5 +98,5 @@
         </div>
     </div>	
 {else}
-    <div class="alert alert_blue">{$smarty.const.TXT_MOSTRAR}</div>
+    <div class="alert alert_blue">{$smarty.const.MSG_UNID_NO_SUBUNIDS}</div>
 {/if}

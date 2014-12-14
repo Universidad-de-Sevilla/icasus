@@ -26,7 +26,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $usuario_entidad = new Usuario_entidad;
     $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
     $smarty->assign('usuarios', $usuarios);
-    $smarty->assign('_nombre_pagina', TXT_UNID . ': ' . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', TXT_UNID_VER . ': ' . $entidad->nombre);
     $plantilla = "entidad_datos.tpl";
 }
 else

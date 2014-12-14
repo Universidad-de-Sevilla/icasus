@@ -2,7 +2,7 @@
   <div class="block">	
     <div class="section clearfix" style="padding:5px;">
         <a href="index.php?page=proceso_crear&id_entidad={$entidad->id}"><img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}</a> 
-        &nbsp; &nbsp; &nbsp;
+        &nbsp;&nbsp;
         <a href="index.php?page=entidad_datos&id_entidad={$entidad->id}"><img src='/icons/ff16/chart_organisation.png' /> {$smarty.const.TXT_UNID_FICHA}</a>
     </div>
   </div>

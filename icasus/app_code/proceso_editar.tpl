@@ -1,13 +1,5 @@
 <div class="box grid_16">
   <div class="block">
-    <div class="button_bar clearfix">
-      <button class="light send_right" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
-        onclick="history.back();">
-        <div class="ui-icon ui-icon-closethick"></div>
-        <span>{$smarty.const.TXT_CANCEL}</span>
-      </button>
-    </div>
-  
     <form method="post" action="index.php?page=proceso_editar" class="validate_form">
       <input type="hidden" name="id_entidad" value="{$entidad->id}" />
       <input type="hidden" name="id_proceso" value="{$proceso->id}" />
@@ -157,11 +149,11 @@ selected{/if}>
       </fieldset>    
        
       <div class="button_bar clearfix">
-        <button class="green" type="submit" value="{$smarty.const.TXT_GRABAR}" name="proceso_submit">
+        <button class="green send_right" type="submit" value="{$smarty.const.TXT_GRABAR}" name="proceso_submit">
           <div class="ui-icon ui-icon-check"></div>
           <span>{$smarty.const.TXT_GRABAR}</span>
         </button>
-        <button class="light send_right" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
+        <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
           onclick="history.back();">
           <div class="ui-icon ui-icon-closethick"></div>
           <span>{$smarty.const.TXT_CANCEL}</span>

@@ -1,12 +1,12 @@
 <div class="button_bar clearfix">
     {if $cuadro->id_usuario == $_usuario->id}
         <a href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
-                src='/icons/ff16/application_add.png' />{$smarty.const.TXT_PANEL_AGREGAR}</a>&nbsp;&nbsp;
+                src='/icons/ff16/application_add.png' /> {$smarty.const.TXT_PANEL_AGREGAR}</a>&nbsp;&nbsp;
         <a href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
-                src='/icons/ff16/table_edit.png' />{$smarty.const.TXT_EDIT_PROP}</a>&nbsp;&nbsp;
+                src='/icons/ff16/table_edit.png' /> {$smarty.const.TXT_EDIT_PROP}</a>&nbsp;&nbsp;
         {/if}
     <a href='index.php?page=cuadro_listar&id_entidad=14'><img 
-            src='/icons/ff16/table.png' />{$smarty.const.TXT_VOLVER_LIST}</a> 
+            src='/icons/ff16/arrow_undo.png' /> {$smarty.const.TXT_VOLVER_LIST}</a> 
 </div>
 
 <!-- dialogo para borrar paneles -->

@@ -31,7 +31,7 @@
                     <b>{$smarty.const.FIELD_INTERP}:</b> {$item.interpretacion}
                 </div>
                 <div>
-                    <img src="index.php?page=grafica_indicador_segregado&id_indicador={$item.id}" alt="gráfica completa con los valores medios del indicador"/>
+                    <img src="index.php?page=grafica_indicador_segregado&id_indicador={$item.id}" alt="{$smarty.const.TXT_GRAFIC_VAL_MED}"/>
                 </div>
             </div>
         {/foreach}
@@ -70,3 +70,8 @@
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script src="js/graficos_ficha_indicador.js" type="text/javascript"></script>
+
+<script src="js/highcharts.js" type="text/javascript"></script>
+<script src="js/highchartStruct.js" type="text/javascript"></script>
+<script src="js/exporting.js"></script>
+<script src="js/indicador_dato_mostrar.js" type="text/javascript"></script>

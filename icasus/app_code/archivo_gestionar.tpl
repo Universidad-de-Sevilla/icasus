@@ -1,7 +1,6 @@
 <div class="box grid_16 clear_fix">
-    <a href="javascript:window.history.back()"><img src="/icons/ff16/arrow_undo.png" />{$smarty.const.TXT_CANCEL}</a>&nbsp; &nbsp; &nbsp;
-    <a href="javascript:void(0)" class="dialog_button" data-dialog="dialog_crear"><img src="/icons/ff16/box_bullet_add.png" /> {$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}</a> &nbsp; &nbsp; &nbsp;
-    <a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><img src="/icons/ff16/cog.png" />{$smarty.const.TXT_PROC_VOLVER}</a>
+    <a href="javascript:void(0)" class="dialog_button" data-dialog="dialog_crear"><img src="/icons/ff16/box_bullet_add.png" /> {$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}</a>&nbsp;&nbsp;
+    <a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><img src="/icons/ff16/cog.png" /> {$smarty.const.TXT_PROC_VOLVER}</a>
 </div>		
 
 <div class="display_none">
@@ -29,11 +28,11 @@
                     <div><input type="radio" name="svisible" value="1" class="required"/> {$smarty.const.TXT_SI} <input type="radio" name="svisible" value="0" class="required"/> {$smarty.const.TXT_NO}</div>
                 </fieldset>
                 <div class="button_bar clearfix">
-                    <button class="green" type="submit" value="{$smarty.const.TXT_GRABAR}" name="sgrabar" id="sgrabar">
+                    <button class="green send_right" type="submit" value="{$smarty.const.TXT_GRABAR}" name="sgrabar" id="sgrabar">
                         <div class="ui-icon ui-icon-check"></div>
                         <span>{$smarty.const.TXT_ARCHIVO_SUBIR}</span>
                     </button>
-                    <button class="red dark send_right close_dialog" type="button" value="{$smarty.const.TXT_CANCEL}" name="scancelar" id="scancelar">
+                    <button class="red dark send_left close_dialog" type="button" value="{$smarty.const.TXT_CANCEL}" name="scancelar" id="scancelar">
                         <div class="ui-icon ui-icon-closethick"></div>
                         <span>{$smarty.const.TXT_CANCEL}</span>
                     </button>
@@ -64,11 +63,11 @@
                     <div><input type="radio" name='evisible' value="1" class="required"/> {$smarty.const.TXT_SI} <input type="radio" name='evisible' value="0" class="required"/>  {$smarty.const.TXT_NO}</div>
                 </fieldset>
                 <div class="button_bar clearfix">
-                    <button class="green" type="button" value="{$smarty.const.TXT_GRABAR}" name="egrabar" id="egrabar">
+                    <button class="green send_right" type="button" value="{$smarty.const.TXT_GRABAR}" name="egrabar" id="egrabar">
                         <div class="ui-icon ui-icon-check"></div>
                         <span>{$smarty.const.TXT_ARCHIVO_ACTUALIZAR}</span>
                     </button>
-                    <button class="light  send_right close_dialog" type="button" value="{$smarty.const.TXT_CANCEL}" name="ecancelar" id="ecancelar">
+                    <button class="light send_left close_dialog" type="button" value="{$smarty.const.TXT_CANCEL}" name="ecancelar" id="ecancelar">
                         <div class="ui-icon ui-icon-closethick"></div>
                         <span> {$smarty.const.TXT_CANCEL}</span>
                     </button>

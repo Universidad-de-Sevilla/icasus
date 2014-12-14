@@ -111,7 +111,7 @@ define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la Unidad a
 define('TXT_SUBUNID', 'La Subunidad');
 define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes Mediciones con los correspondientes valores');
 define('TXT_UNID_NUEVA', 'Nueva Unidad');
-define('TXT_UNID_VER', 'Ver unidad');
+define('TXT_UNID_VER', 'Ver Unidad');
 define('TXT_UNID_FICHA', 'Ficha de Unidad');
 define('TXT_UNID_LIST', 'Lista de Unidades');
 define('TXT_UNID_PROC_LIST', 'Lista de procesos de la Unidad con sus Indicadores');
@@ -226,10 +226,9 @@ define('TXT_PAG', 'Página');
 define('TXT_PAG_NUEVA', 'Nueva Página');
 define('TXT_PAG_AYUDA_NUEVA', 'Nueva Página de Ayuda');
 define('TXT_PAG_EDIT', 'Editar Página');
-define('TXT_PAG_TITULO', 'Título de Página');
 
 //Procesos
-define('TXT_PROCS', 'Procesos de la Unidad');
+define('TXT_PROCS', 'Procesos');
 define('TXT_PROCS_VER', 'Ver Procesos');
 define('TXT_PROC_VOLVER', 'Volver al Proceso');
 define('TXT_PROC_FICHA', 'Ficha del Proceso');
@@ -297,6 +296,7 @@ define('TXT_DIR_GES', 'Directivo/Estratégico/Gestión');
 
 //Tipos de Representaciones Gráficas
 define('TXT_GRAFIC_INDIC_VAL', 'Gráfica con los valores del indicador');
+define('TXT_GRAFIC_VAL_MED', 'Gráfica completa con los valores medios del indicador');
 define('TXT_BARRAS', 'Barras');
 define('TXT_BARRAS_DESC', 'Puede mostrar varios grupos de indicadores para una subunidad determinada en forma de barras');
 define('TXT_LINEAS', 'Líneas');

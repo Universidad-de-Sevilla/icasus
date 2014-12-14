@@ -1,5 +1,5 @@
 <p><a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_CUADRO_NUEVO}">
-        <img	src="/icons/ff16/table_add.png" alt="{$smarty.const.TXT_ICON}" />{$smarty.const.TXT_CUADRO_NUEVO}</a>
+        <img	src="/icons/ff16/table_add.png" alt="{$smarty.const.TXT_ICON}" /> {$smarty.const.TXT_CUADRO_NUEVO}</a>
 </p>
 
 {if $cuadros_propios|count > 0}

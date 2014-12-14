@@ -43,7 +43,7 @@
     -->
 
     {if isset($entidad)}
-        <ul id="side_links" class="side_links" style="margin-bottom:0;">
+       <!-- <ul id="side_links" class="side_links" style="margin-bottom:0;">
             <span>
                 <a href="#"><strong>{$smarty.const.TXT_UNID_ACTUAL}</strong></a>
             </span>
@@ -69,8 +69,9 @@
 
                 </ul>
             </li>	
-        </ul>	
+        </ul>	-->
     {/if}
+    
     <!--
     <ul id="side_links" class="side_links" style="margin-bottom:0;">
             <span>

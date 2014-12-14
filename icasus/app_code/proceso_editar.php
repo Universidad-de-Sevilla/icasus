@@ -11,12 +11,12 @@ global $plantilla;
 
 // Para empezar a hablar necesitamos el id del proceso              
 //if (isset($_REQUEST['id_proceso']) && isset($_REQUEST['id_entidad']))
-if (filter_has_var(INPUT_POST, 'id_proceso') && filter_has_var(INPUT_POST, 'id_entidad'))
+if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
 //    $id_proceso = sanitize($_REQUEST['id_proceso'], 16);
-    $id_proceso = filter_input(INPUT_POST, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
+    $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
 //    $id_entidad = sanitize($_REQUEST['id_entidad'], 16);
-    $id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
 

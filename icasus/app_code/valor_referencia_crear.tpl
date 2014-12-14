@@ -21,7 +21,12 @@
                 </fieldset>
                 <input type="hidden"  name="c-id_indicador" value="{$indicador->id}"/>
                 <div class="button_bar clearfix">
-                    <button class="green" type="button" value="{$smarty.const.TXT_GRABAR}" name="valor_nuevo_crear" id="valor_nuevo_crear">
+                    <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
+                            onclick="history.back();">
+                        <div class="ui-icon ui-icon-closethick"></div>
+                        <span>{$smarty.const.TXT_CANCEL}</span>
+                    </button>
+                    <button class="green send_right" type="button" value="{$smarty.const.TXT_GRABAR}" name="valor_nuevo_crear" id="valor_nuevo_crear">
                         <span>{$smarty.const.TXT_GRABAR}</span>
                     </button>
                 </div>
@@ -53,7 +58,12 @@
                 </fieldset>
                 <input type="hidden"  name="e-id_indicador" value="{$indicador->id}"/>
                 <div class="button_bar clearfix">
-                    <button class="green" type="button" value="{$smarty.const.TXT_GRABAR}" name="valor_editar" id="valor_editar">
+                    <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
+                            onclick="history.back();">
+                        <div class="ui-icon ui-icon-closethick"></div>
+                        <span>{$smarty.const.TXT_CANCEL}</span>
+                    </button>
+                    <button class="green send_right" type="button" value="{$smarty.const.TXT_GRABAR}" name="valor_editar" id="valor_editar">
                         <span>{$smarty.const.TXT_GRABAR}</span>
                     </button>
                 </div>

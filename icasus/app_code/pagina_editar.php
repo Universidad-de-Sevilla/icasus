@@ -10,14 +10,14 @@ global $smarty;
 global $plantilla;
 
 //if (isset($_REQUEST['id_pagina']))
-if (filter_has_var(INPUT_POST, 'id_pagina'))
+if (filter_has_var(INPUT_GET, 'id_pagina'))
 {
     $pagina = new Pagina();
 //	if (isset($_POST['titulo']) && isset($_POST['alias']) && isset($_POST['contenido']))
     if (filter_has_var(INPUT_POST, 'titulo') && filter_has_var(INPUT_POST, 'alias') && filter_has_var(INPUT_POST, 'contenido'))
     {
 //        $id = sanitize($_REQUEST['id_pagina'], 16);
-        $id = filter_input(INPUT_POST, 'id_pagina', FILTER_SANITIZE_NUMBER_INT);
+        $id = filter_input(INPUT_GET, 'id_pagina', FILTER_SANITIZE_NUMBER_INT);
         $pagina->load("id=$id");
 //        $pagina->titulo = $_POST['titulo'];
         $pagina->titulo = filter_input(INPUT_POST, 'titulo');
@@ -33,7 +33,7 @@ if (filter_has_var(INPUT_POST, 'id_pagina'))
     else
     {
 //        $id_pagina = sanitize($_REQUEST['id_pagina'], 16);
-        $id_pagina = filter_input(INPUT_POST, 'id_pagina', FILTER_SANITIZE_NUMBER_INT);
+        $id_pagina = filter_input(INPUT_GET, 'id_pagina', FILTER_SANITIZE_NUMBER_INT);
         $pagina->load("id=$id_pagina");
         $plantilla = 'pagina_editar.tpl';
     }
