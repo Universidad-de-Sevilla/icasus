@@ -59,10 +59,10 @@ define('TXT_ARCHIVO_IMPORT_CSV', 'Importar archivo CSV');
 define('TXT_POR_MEDICION', 'Por medición');
 define('TXT_POR_ANYOS', 'Por años');
 
-//Consultas
-define('TXT_CONSULTAS', 'Consultas');
+//Consulta
+define('TXT_CONSULT', 'Consulta');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
-define('TXT_CONSULT_AVAN', 'Consulta avanzada de datos e indicadores');
+define('TXT_CONSULT_AVAN', 'Consulta Avanzada de Indicadores y Datos');
 
 //Cuadros de Mando
 define('TXT_CUADRO_MANDO', 'Cuadro de Mando');
@@ -81,7 +81,6 @@ define('TXT_DATO', 'Dato');
 define('TXT_DATO_EDIT', 'Editar Dato');
 define('TXT_DATO_FICHA', 'Ficha del Dato');
 define('TXT_DATO_NUEVO', 'Nuevo Dato');
-define('TXT_DATOS_VER', 'Ver Datos');
 define('TXT_DATO_PARAM', 'Parámetros del Dato');
 define('TXT_DATO_CREAR', 'Crear Dato');
 define('TXT_DATOS_LIST', 'Lista de Datos');
@@ -103,15 +102,14 @@ define('TXT_DIM_LIST', 'Lista de Dimensiones');
 define('TXT_DIM_REL', 'Relación de Dimensiones');
 
 //Entidades (Unidades)
+define('TXT_UNID', 'Unidad');
 define('TXT_UNID_SUP_INDIC', 'Indicadores de la Unidad Superior');
 define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la Unidad');
-define('TXT_UNID', 'Unidad');
 define('TXT_UNID_TODAS', 'Todas las Unidades');
 define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la Unidad a la que se copiará el Indicador.');
 define('TXT_SUBUNID', 'La Subunidad');
 define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes Mediciones con los correspondientes valores');
 define('TXT_UNID_NUEVA', 'Nueva Unidad');
-define('TXT_UNID_VER', 'Ver Unidad');
 define('TXT_UNID_FICHA', 'Ficha de Unidad');
 define('TXT_UNID_LIST', 'Lista de Unidades');
 define('TXT_UNID_PROC_LIST', 'Lista de procesos de la Unidad con sus Indicadores');
@@ -124,7 +122,6 @@ define('TXT_INDIC_SUBUNID', 'Relación de Indicadores de Subunidades');
 define('TXT_INDIC_PROP', 'Indicadores propios de la Unidad');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_NUEVO', 'Nuevo Indicador');
-define('TXT_INDICS_VER', 'Ver Indicadores');
 define('TXT_INDIC_IR', 'Ir al Indicador');
 define('TXT_INDIC_VOLVER', 'Volver al Indicador');
 define('TXT_INDIC_MOSTRAR', 'Mostrar Ficha del Indicador');
@@ -200,12 +197,7 @@ define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
 define('TXT_MIS_NOTAS', 'Mis notas');
 //Menú de Unidades
-define('TXT_UNID_ACTUAL', 'Unidad actual');
 define('TXT_CUAD_RES', 'Cuadro Resumen');
-define('TXT_CONSULT', 'Consulta Avanzada');
-define('TXT_PROC_LISTAR', 'Listar Procesos');
-define('TXT_INDIC_LISTAR', 'Listar Indicadores');
-define('TXT_DAT_LISTAR', 'Listar Datos');
 
 //Mostrar
 define('TXT_MOSTRAR', 'Mostrar');
@@ -213,7 +205,6 @@ define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
 
 //Navegación
 define('TXT_VER', 'Ver');
-define('TXT_LIST_TODOS', 'Listar todos');
 define('TXT_SI', 'Si');
 define('TXT_NO', 'No');
 define('TXT_SIG', 'Siguiente');
@@ -229,7 +220,6 @@ define('TXT_PAG_EDIT', 'Editar Página');
 
 //Procesos
 define('TXT_PROCS', 'Procesos');
-define('TXT_PROCS_VER', 'Ver Procesos');
 define('TXT_PROC_VOLVER', 'Volver al Proceso');
 define('TXT_PROC_FICHA', 'Ficha del Proceso');
 define('TXT_PROC_NUEVO', 'Nuevo Proceso');

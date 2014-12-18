@@ -1,9 +1,9 @@
 <div class="box grid_16">
   <div class="button_bar clearfix">
-    <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a> &nbsp; &nbsp; &nbsp;
-    <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a> &nbsp;
+    <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
+    <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
     {if $permiso_editar}
-      <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_BORRAR}</a> &nbsp;
+      <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_BORRAR}</a>
     {/if}
   </div>
 </div>
@@ -149,7 +149,7 @@
     {
       event.preventDefault();
       var url = $(this).attr('href');
-      var confirm_box = confirm('Pulse "Aceptar" para borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición');
+      var confirm_box = confirm('Pulse "Aceptar" para borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición.');
       if (confirm_box)
       {
          window.location = url;

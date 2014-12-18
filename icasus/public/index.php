@@ -100,8 +100,12 @@ if (isset($_SESSION['usuario']))
     {
         $id_entidad = 0;
     }
-
+  
     $usuario = $_SESSION['usuario'];
+    //Control de unidades:
+    $usuario_entidad= new Usuario_entidad();
+    $control= $usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad);
+    $smarty->assign('control',$control);
     $smarty->assign('_usuario', $usuario);
     /*
       // Comprueba si el usuario tiene permiso para realizar esta acción

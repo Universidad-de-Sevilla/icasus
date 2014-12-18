@@ -2,11 +2,11 @@
   <!--<a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
   Editar unidad</a> &nbsp; &nbsp; -->
     <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/cog.png' />
-        {$smarty.const.TXT_PROCS_VER}</a> &nbsp; &nbsp; 
+        {$smarty.const.TXT_PROCS}</a> &nbsp; &nbsp; 
     <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve.png' />
-        {$smarty.const.TXT_INDICS_VER}</a> &nbsp; &nbsp; 
+        {$smarty.const.FIELD_INDICS}</a> &nbsp; &nbsp; 
     <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_bar.png' />
-        {$smarty.const.TXT_DATOS_VER}</a> &nbsp; &nbsp; 
+        {$smarty.const.FIELD_DATOS}</a> &nbsp; &nbsp; 
     <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation_edit.png' />
         {$smarty.const.TXT_UNID_EDIT}</a> &nbsp; &nbsp; 
     <a href='index.php?page=csv_importar&id_entidad={$entidad->id}'><img src='/icons/ff16/lorry.png' />

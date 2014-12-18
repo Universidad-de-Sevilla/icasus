@@ -60,6 +60,7 @@ if ($modulo == 'desactivar_valor')
 }
 
 $smarty->assign("modulo", $modulo);
+$smarty->assign("entidad", $entidad);
 $smarty->assign("_nombre_pagina", "Control:  $entidad->nombre");
 $plantilla = "control.tpl";
 

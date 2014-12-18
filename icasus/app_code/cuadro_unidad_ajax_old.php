@@ -28,48 +28,6 @@ if ($modulo == 'propio')
     $indicadores = $i->find("id_proceso = $id_proceso AND id_entidad = $id_entidad");
     $smarty->assign('indicadores', $indicadores);
     $smarty->assign('modulo', $modulo);
-
-    //Nuevos gráficos
-    //Simplemente ver si hay mediciones
-    $medicion = new Medicion();
-    $mediciones_indicador = array();
-    $paneles_indicador = array();
-    foreach ($indicadores as $indicador)
-    {
-        $mediciones_indicador[$indicador->id] = $medicion->Find("id_indicador = $indicador->id");
-        if ($mediciones_indicador[$indicador->id])
-        {
-            $panel = new Panel();
-            $panel->tipo = new Panel_tipo();
-            $panel->ancho = 16;
-            if ($indicador->periodicidad != "Anual")
-            {
-                // Prepara el panel intraanual
-                $anio_inicio = date('Y') - 2;
-                $anio_fin = date('Y');
-                $panel->id = 2;
-                $panel->tipo->clase_css = "lineal";
-                $panel->ancho = 16;
-                $panel->nombre = $indicador->nombre . " (" . $anio_inicio . " - " . $anio_fin . ")";
-                $panel->fecha_inicio = $anio_inicio . "-01-01";
-                $panel->fecha_fin = date("Y-m-d");
-                $panel->periodicidad = "todos";
-                $paneles_indicador[$indicador->id][] = clone($panel);
-            }
-            // Prepara el panel anual
-            $anio_inicio = $indicador->historicos;
-            $anio_fin = date('Y') - 1;
-            $panel->id = 1;
-            $panel->tipo->clase_css = "lineal";
-            $panel->nombre = $indicador->nombre . " (" . $anio_inicio . " - " . $anio_fin . ")";
-            $panel->fecha_inicio = $indicador->historicos . "-01-01";
-            $panel->fecha_fin = $anio_fin . "-12-31";
-            $panel->periodicidad = "anual";
-            $paneles_indicador[$indicador->id][] = clone($panel);
-        }
-    }
-    $smarty->assign("mediciones_indicador", $mediciones_indicador);
-    $smarty->assign("paneles_indicador", $paneles_indicador);
 }
 
 //Módulo de segregado

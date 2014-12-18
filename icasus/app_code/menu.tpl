@@ -45,27 +45,27 @@
     {if isset($entidad)}
        <!-- <ul id="side_links" class="side_links" style="margin-bottom:0;">
             <span>
-                <a href="#"><strong>{$smarty.const.TXT_UNID_ACTUAL}</strong></a>
+                <a href="#"><strong>{$smarty.const.TXT_UNID}</strong></a>
             </span>
             <li>
                 <ul>
                     <li><a href='index.php?page=entidad_datos&id_entidad={$entidad->id}'><img 
-                                src='/icons/ff16/chart_organisation.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_UNID_VER}</a></li>
+                                src='/icons/ff16/chart_organisation.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_UNID_FICHA}</a></li>
                     <li><a href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'><img 
                                 src='/icons/ff16/table_go.png' />
                             {$smarty.const.TXT_CUAD_RES}</a></li>
                     <li><a href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'><img 
-                                src='/icons/ff16/chart_curve_add.png' />
+                                src='/icons/ff16/book.png' />
                             {$smarty.const.TXT_CONSULT}</a></li>
                     <li><a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img 
                                 src='/icons/ff16/cog.png' />
-                            {$smarty.const.TXT_PROC_LISTAR}</a></li>
+                            {$smarty.const.TXT_PROCS}</a></li>
                     <li><a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img 
                                 src='/icons/ff16/chart_curve.png' />
-                            {$smarty.const.TXT_INDIC_LISTAR}</a></li>
+                            {$smarty.const.FIELD_INDICS}</a></li>
                     <li><a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
                                 src='/icons/ff16/chart_bar.png' />
-                            {$smarty.const.TXT_DATOS_LIST}</a></li>
+                            {$smarty.const.FIELD_DATOS}</a></li>
 
                 </ul>
             </li>	

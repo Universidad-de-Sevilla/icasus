@@ -21,7 +21,8 @@ class Usuario_entidad extends ADOdb_Active_Record
 
     public function Find_entidades_indicadores($id_usuario)
     {
-        if ($ues = $this->Find("id_usuario = $id_usuario"))
+        $ues = $this->Find("id_usuario = $id_usuario");
+        if ($ues)
         {
             foreach ($ues as $item)
             {
@@ -44,7 +45,8 @@ class Usuario_entidad extends ADOdb_Active_Record
 
     public function Find_entidades($condicion)
     {
-        if ($usuarios_entidades = $this->Find($condicion))
+        $usuarios_entidades = $this->Find($condicion);
+        if ($usuarios_entidades)
         {
             foreach ($usuarios_entidades as & $usuario_entidad)
             {
@@ -64,7 +66,8 @@ class Usuario_entidad extends ADOdb_Active_Record
 
     public function Find_usuarios($condicion)
     {
-        if ($usuarios_entidades = $this->Find($condicion))
+        $usuarios_entidades = $this->Find($condicion);
+        if ($usuarios_entidades)
         {
             foreach ($usuarios_entidades as & $usuario_entidad)
             {

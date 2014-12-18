@@ -3,7 +3,7 @@
 <h3>{$smarty.const.TXT_INDIC_DAT}: {$indicador.nombre}</h3>
 {if $indicador.id_visibilidad == 2}
     <a href='index.php?page=indicador_publico'><img 
-            src='iconos/16x16/chart_curve_world.png' /> {$smarty.const.TXT_LIST_TODOS}</a> &nbsp;
+            src='iconos/16x16/chart_curve_world.png' /> {$smarty.const.TXT_INDIC_LIST}</a> &nbsp;
     <a href='index.php?page=indicador_datos_rtf&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}' title={$smarty.const.TXT_INDIC_GEN_INFO_WORD}>
         <img src='iconos/16x16/page_word.png'  /> {$smarty.const.TXT_RTF}</a> &nbsp;
     <a href='index.php?page=indicador_datos_excel&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}' title={$smarty.const.TXT_INDIC_EXPORT_EXCEL}>
