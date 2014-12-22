@@ -1,5 +1,5 @@
 function confirmar()
 {
-	return confirm('¿Realmente quiere borrar este indicador?')
+	return confirm('¿Realmente quiere borrar este indicador?');
 }
 

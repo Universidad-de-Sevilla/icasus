@@ -3,8 +3,8 @@
 <h3>{$smarty.const.FIELD_INDIC}: {$indicador->nombre}</h3>
 <p><a
         href='index.php?page=indicador_datos&id_indicador={$indicador->id_indicador}&id_entidad={$indicador->id_entidad}'><img 
-            src='iconos/16x16/chart_curve.png' /> {$smarty.const.TXT_VOLVER_INDIC}</a></p> 
-<h3><img src='iconos/32x32/tag_blue_add.png' />{$smarty.const.TXT_ADD_VAL}</h3>
+            src='iconos/16x16/chart_curve.png' /> {$smarty.const.TXT_INDIC_VOLVER}</a></p> 
+<h3><img src='iconos/32x32/tag_blue_add.png' />{$smarty.const.TXT_VAL_AGREGAR}</h3>
 <form method='post' action='index.php?page=valor_grabar' id='formvalor' name='formvalor' class='datos'>
     <input type='hidden' name='id_indicador' id='id_indicador' value='{$indicador->id_indicador}' /> 
     <input type='hidden' name='id_entidad' id='id_entidad' value='{$indicador->id_entidad}' /> 

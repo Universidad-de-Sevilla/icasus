@@ -2,15 +2,15 @@
   <!--<a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
   Editar unidad</a> &nbsp; &nbsp; -->
     <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/cog.png' />
-        {$smarty.const.TXT_VER_PROC}</a> &nbsp; &nbsp; 
+        {$smarty.const.TXT_PROCS}</a> &nbsp; &nbsp; 
     <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve.png' />
-        {$smarty.const.TXT_VER_INDIC}</a> &nbsp; &nbsp; 
-    <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/table.png' />
-        {$smarty.const.TXT_DATOS_VER}</a> &nbsp; &nbsp; 
-    <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
-        {$smarty.const.TXT_EDIT_UNID}</a> &nbsp; &nbsp; 
+        {$smarty.const.FIELD_INDICS}</a> &nbsp; &nbsp; 
+    <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_bar.png' />
+        {$smarty.const.FIELD_DATOS}</a> &nbsp; &nbsp; 
+    <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation_edit.png' />
+        {$smarty.const.TXT_UNID_EDIT}</a> &nbsp; &nbsp; 
     <a href='index.php?page=csv_importar&id_entidad={$entidad->id}'><img src='/icons/ff16/lorry.png' />
-        {$smarty.const.TXT_IMPORT_VAL}</a> &nbsp; &nbsp; 
+        {$smarty.const.TXT_VAL_IMPORT}</a> &nbsp; &nbsp; 
 </h3>
 <div class="box grid_16">
     <div class="toggle_container">
@@ -22,7 +22,7 @@
                 </div>
             </fieldset>	
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_NAME}</label>
+                <label>{$smarty.const.FIELD_NOMBRE}</label>
                 <div class="clearfix">
                     <span>{$entidad->nombre}</span>
                 </div>
@@ -46,9 +46,9 @@
 <h2>{$smarty.const.TXT_USERS}</h2>
 <h3>
     <a href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_add.png' />
-        {$smarty.const.TXT_VINC_USERS}</a> &nbsp; &nbsp; &nbsp;
+        {$smarty.const.TXT_USERS_VINC}</a> &nbsp; &nbsp; &nbsp;
     <a href='index.php?page=entidad_despoblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_delete.png' />
-        {$smarty.const.TXT_DESVINC_USERS}</a>
+        {$smarty.const.TXT_USERS_DESVINC}</a>
 </h3>
 
 {if $usuarios}
@@ -56,7 +56,7 @@
         <div class="block">	
             <table class='static'>
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_ROL}</th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                    <tr><th>{$smarty.const.FIELD_ROL}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$usuarios item=usuario}
@@ -83,7 +83,7 @@
         <div class="block">
             <table class="static">
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$subentidades item=subentidad}
@@ -98,5 +98,5 @@
         </div>
     </div>	
 {else}
-    <div class="alert alert_blue">{$smarty.const.TXT_MOSTRAR}</div>
+    <div class="alert alert_blue">{$smarty.const.MSG_UNID_NO_SUBUNIDS}</div>
 {/if}

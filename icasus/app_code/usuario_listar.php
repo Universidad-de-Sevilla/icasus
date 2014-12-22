@@ -13,9 +13,11 @@ $smarty->assign('_javascript', array('ordenatabla'));
 $smarty->assign('_nombre_pagina', TXT_USER_LIST);
 
 $usuario = new Usuario();
-if (isset($_REQUEST['criterio']))
+//if (isset($_REQUEST['criterio']))
+if (filter_has_var(INPUT_POST, 'criterio'))
 {
-    $criterio = sanitize($_REQUEST['criterio'], SQL);
+//    $criterio = sanitize($_REQUEST['criterio'], SQL);
+    $criterio = filter_input(INPUT_POST, 'criterio', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $smarty->assign('criterio', $criterio);
     $where = "nombre LIKE '%$criterio%' OR apellidos LIKE '%$criterio%' OR correo LIKE '%$criterio%' OR login LIKE '%$criterio%' ";
 }

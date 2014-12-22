@@ -13,12 +13,11 @@ global $smarty;
 global $basedatos;
 global $plantilla;
 
-$id_dimension = filter_input(INPUT_GET | INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-
 //if (isset($_REQUEST['id']))
-if ($id_dimension)
+if (filter_has_var(INPUT_POST, 'id'))
 {
 //	$id_dimension = sanitize($_REQUEST['id'],16);
+    $id_dimension = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
     $dimension = new Dimension();
     $dimension->load("id = $id_dimension");
 
@@ -31,18 +30,18 @@ if ($id_dimension)
         $dimension->nombre = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
         $adodb->execute("SET NAMES utf8");
         $dimension->save();
-        $smarty->assign('aviso', MSG_DIM_EDITED);
+        $smarty->assign('aviso', MSG_DIM_EDITADA);
 
         // Array de dimensiones que pasamos a la vista para ver las existentes
         $dimensiones = $dimension->find('1 = 1 ORDER BY nombre');
         $smarty->assign('dimensiones', $dimensiones);
         $plantilla = "dimension_crear.tpl";
-        $smarty->assign('_nombre_pagina', TXT_REL_DIM);
+        $smarty->assign('_nombre_pagina', TXT_DIM_REL);
     }
     else
     {
         $smarty->assign('dimension', $dimension);
-        $smarty->assign('_nombre_pagina', TXT_EDIT_DIMS);
+        $smarty->assign('_nombre_pagina', TXT_DIM_EDIT);
         $plantilla = "dimension_editar.tpl";
     }
 }

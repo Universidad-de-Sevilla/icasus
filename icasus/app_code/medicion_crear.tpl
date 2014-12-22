@@ -52,7 +52,8 @@
                 </div>
             </div><!-- fin columns clearfix -->
             <div class="button_bar clearfix">
-                <button class="green" type="submit" name="proceso_submit" value='{$smarty.const.TXT_GRABAR}'>
+                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
+                <button class="green send_right" type="submit" name="proceso_submit" value='{$smarty.const.TXT_GRABAR}'>
                     <span>{$smarty.const.TXT_GRABAR}</span>
                 </button>
             </div>
@@ -78,11 +79,12 @@
             {else}
                 <div class="alert dismissible alert_blue">
                     <img src="images/icons/small/white/alert_2.png" height="24" width="24">
-                    {$smarty.const.MSG_DAT_NO_VAL_REF}
+                    {$smarty.const.MSG_DATO_NO_VAL_REF}
                 </div>
             {/if}
             <div class="button_bar clearfix">
-                <button class="green" type="submit" name="proceso_submit" value='{$smarty.const.TXT_GRABAR}' >
+                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
+                <button class="green send_right" type="submit" name="proceso_submit" value='{$smarty.const.TXT_GRABAR}' >
                     <span>{$smarty.const.TXT_GRABAR}</span>
                 </button>
             </div>
@@ -105,7 +107,8 @@
                 </div>
             </fieldset>
             <div class="button_bar clearfix">
-                <button class="green" type="submit"  name="proceso_submit" value='{$smarty.const.TXT_GRABAR}'>
+                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
+                <button class="green send_right" type="submit"  name="proceso_submit" value='{$smarty.const.TXT_GRABAR}'>
                     <span>{$smarty.const.TXT_GRABAR}</span>
                 </button>
             </div>

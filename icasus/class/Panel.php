@@ -18,7 +18,8 @@ class Panel extends ADOdb_Active_Record
     // Recibe una condición en formato WhereOrderBy
     public function Find_joined($condicion)
     {
-        if ($paneles = $this->Find($condicion))
+        $paneles = $this->Find($condicion);
+        if ($paneles)
         {
             foreach ($paneles as & $panel)
             {

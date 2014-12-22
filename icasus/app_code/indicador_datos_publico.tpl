@@ -1,12 +1,12 @@
 {if $aviso}<p class='aviso'>{$aviso}</p>{/if}
 {if $error}<p class='error'>{$error}</p>{/if}
-<h3>{$smarty.const.TXT_DAT_INDIC}: {$indicador.nombre}</h3>
+<h3>{$smarty.const.TXT_INDIC_DAT}: {$indicador.nombre}</h3>
 {if $indicador.id_visibilidad == 2}
     <a href='index.php?page=indicador_publico'><img 
-            src='iconos/16x16/chart_curve_world.png' /> {$smarty.const.TXT_LIST_TODOS}</a> &nbsp;
-    <a href='index.php?page=indicador_datos_rtf&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}' title={$smarty.const.TXT_GEN_INFO_WORD_INDIC}>
+            src='iconos/16x16/chart_curve_world.png' /> {$smarty.const.TXT_INDIC_LIST}</a> &nbsp;
+    <a href='index.php?page=indicador_datos_rtf&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}' title={$smarty.const.TXT_INDIC_GEN_INFO_WORD}>
         <img src='iconos/16x16/page_word.png'  /> {$smarty.const.TXT_RTF}</a> &nbsp;
-    <a href='index.php?page=indicador_datos_excel&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}' title={$smarty.const.TXT_EXPORT_EXCEL_INDIC}>
+    <a href='index.php?page=indicador_datos_excel&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}' title={$smarty.const.TXT_INDIC_EXPORT_EXCEL}>
         <img src='iconos/16x16/page_excel.png'  /> {$smarty.const.TXT_EXCEL}</a>
 
     <table>
@@ -21,7 +21,7 @@
 
         <tr>
             <th>{$smarty.const.FIELD_COD} {$smarty.const.FIELD_INDIC}</th>
-            <th colspan='5'>{$smarty.const.FIELD_NAME}</th>
+            <th colspan='5'>{$smarty.const.FIELD_NOMBRE}</th>
         </tr>
         <tr>
             <td>{$indicador.codigo}</td>
@@ -69,7 +69,7 @@
 
         <table class='listing' id='sortable'>
             <thead><tr><th>{$smarty.const.FIELD_PERIODO}</th><th>{$smarty.const.FIELD_VAL}</th><th>{$smarty.const.FIELD_CALCULO}</th><th>{$smarty.const.FIELD_OBJ}</th><th>{$smarty.const.FIELD_OBJP}</th>
-                    <th>{$smarty.const.TXT_DAT_INDIC}</th></tr></thead>
+                    <th>{$smarty.const.TXT_INDIC_DAT}</th></tr></thead>
             <tbody>
                 {foreach from=$valores item=valor}
                     <tr>
@@ -88,7 +88,7 @@
             </tbody>
         </table>
     {else} 
-        <p>{$smarty.const.MSG_NO_DAT_INDIC}</p>
+        <p>{$smarty.const.MSG_INDIC_NO_DATOS}</p>
     {/if}
 {else}
     <p>{$smarty.const.MSG_INDIC_NO_PUBLIC}</p>

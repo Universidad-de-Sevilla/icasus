@@ -10,12 +10,13 @@
 global $smarty;
 global $plantilla;
 
-$id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+
 
 //if (isset($_REQUEST["id_entidad"]))
-if ($id_entidad)
+if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
 //  $id_entidad = sanitize($_REQUEST["id_entidad"],INT);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign("entidad", $entidad);
@@ -38,7 +39,7 @@ if ($id_entidad)
     $visibilidades = $visibilidad->Find("1=1");
     $smarty->assign("visibilidades", $visibilidades);
 
-    $smarty->assign("_nombre_pagina", TXT_NEW_INDIC . " - " . $entidad->nombre);
+    $smarty->assign("_nombre_pagina", TXT_INDIC_NUEVO . " - " . $entidad->nombre);
     $plantilla = "indicador_crear.tpl";
 }
 else

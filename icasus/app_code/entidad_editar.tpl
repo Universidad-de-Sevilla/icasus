@@ -1,4 +1,4 @@
-<h3>{$smarty.const.TXT_EDIT_UNID}</h3>
+<h3>{$smarty.const.TXT_UNID_EDIT}</h3>
 <div class="box grid_16">
     <div class="toggle_container">
         <div class="block">
@@ -6,7 +6,7 @@
                 <input type='hidden' name='id_entidad' id='id_entidad' value='{$entidad->id}' />
 
                 <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_NAME}</label>
+                    <label>{$smarty.const.FIELD_NOMBRE}</label>
                     <div>
                         <input type='text' name='nombre' id='nombre' value='{$entidad->nombre}' class="required"/></p>
                         <div class="required_tag"></div>
@@ -39,11 +39,11 @@
                 </fieldset> 
 
                 <div class="button_bar clearfix">
-                    <button class="green" type="submit" value="{$smarty.const.TXT_GRABAR}" name="entidad_submit">
+                    <button class="green send_right" type="submit" value="{$smarty.const.TXT_GRABAR}" name="entidad_submit">
                         <div class="ui-icon ui-icon-check"></div>
                         <span>{$smarty.const.TXT_GRABAR}</span>
                     </button>
-                    <button class="light send_right" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
+                    <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
                             onclick="history.back();">
                         <div class="ui-icon ui-icon-closethick"></div>
                         <span>{$smarty.const.TXT_CANCEL}</span>

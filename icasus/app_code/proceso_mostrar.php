@@ -11,10 +11,13 @@ global $smarty;
 global $plantilla;
 
 // Si vienen datos suficientes cargamos proceso con sus indicadores
-if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
+//if (isset($_REQUEST['id_proceso']) AND isset($_REQUEST['id_entidad']))
+if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_entidad'))
 {
-    $id_proceso = sanitize($_REQUEST['id_proceso'], INT);
-    $id_entidad = sanitize($_REQUEST['id_entidad'], INT);
+//    $id_proceso = sanitize($_REQUEST['id_proceso'], INT);
+    $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
+//    $id_entidad = sanitize($_REQUEST['id_entidad'], INT);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
     // Datos del proceso
     $proceso = new Proceso();

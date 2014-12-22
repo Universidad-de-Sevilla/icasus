@@ -7,7 +7,7 @@
     <input type="hidden" name="inicioDay" value="00">
     <input type="hidden" name="finDay" value="00">
     <fieldset class="label_side top">
-        <label>{$smarty.const.FIELD_NAME}</label>
+        <label>{$smarty.const.FIELD_NOMBRE}</label>
         <div>
             <input class="required text" type="text" name="nombre"></input>
             <div class="required_tag tooltip hover left"></div>

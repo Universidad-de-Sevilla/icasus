@@ -19,7 +19,7 @@
 	{/foreach }
 	</select></p>
 -->
-	<p><label for="nombre">{$smarty.const.FIELD_NAME}</label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>
+	<p><label for="nombre">{$smarty.const.FIELD_NOMBRE}</label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>
 	<input name="nombre" id="nombre" class="inp" /></p>
 
 	<p><label for="apellidos">{$smarty.const.FIELD_APEL}</label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>

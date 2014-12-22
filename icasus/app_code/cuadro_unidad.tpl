@@ -36,7 +36,7 @@
     </div>
 </div>
 
-<h3>{$smarty.const.TXT_INDIC_SEG_UNID}</h3>
+<h3>{$smarty.const.TXT_UNID_INDIC_SEG}</h3>
 <div class="clearfix full_size accordion_box">
     <div class="box grid_16">
         {if $procesos_indicadores_segregados}
@@ -55,7 +55,7 @@
     </div>
 </div>
 
-<h3>{$smarty.const.TXT_INDIC_UNID_SUP} ({$entidad_superior->nombre})</h3>
+<h3>{$smarty.const.TXT_UNID_SUP_INDIC} ({$entidad_superior->nombre})</h3>
 <div class="clearfix full_size accordion_box">
     <div class="box grid_16">
         {if $procesos_indicadores_superior}

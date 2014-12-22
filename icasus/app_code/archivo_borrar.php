@@ -33,6 +33,6 @@ if (!is_object($smarty))
 }
 else
 {
-    $error = ERR_DEL_FILE;
+    $error = ERR_ARCHIVO_BORRAR;
     header("Location:index.php?page=error&error=$error");
 }

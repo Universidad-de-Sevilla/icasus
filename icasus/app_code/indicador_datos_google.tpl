@@ -47,26 +47,26 @@
 <!--data.setValue({$smarty.foreach.indicador.iteration-1},0,'{$valor.fecha_recogida|date_format:"%m/%Y"}');-->
 {if $aviso}<p class='aviso'>{$aviso}</p>{/if}
 {if $error}<p class='error'>{$error}</p>{/if}
-<h3>{$smarty.const.TXT_DAT_INDIC}</h3>
+<h3>{$smarty.const.TXT_INDIC_DAT}</h3>
 
 <div id="chart_div" style="width: 600px; height: 300px;"></div>
 
 <div id='table_div'></div>
 
 <a href='index.php?page=indicador_editar&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}'><img 
-        src='theme/usevilla/iconos/chart_bar_edit.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_EDIT_INDIC}</a> &nbsp; 
+        src='theme/usevilla/iconos/chart_bar_edit.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_INDIC_EDIT}</a> &nbsp; 
 <a href='index.php?page=indicador_listar&id_entidad={$indicador.id_entidad}'><img 
         src='theme/usevilla/iconos/chart_bar.gif' alt='{$smarty.const.TXT_ICON}'/>{$smarty.const.TXT_LIST_INDIC}</a> &nbsp;
 <a href='index.php?page=indicador_crear&id_entidad={$indicador.id_entidad}'><img 
-        src='theme/usevilla/iconos/chart_bar_add.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_CREAR_INDIC}</a> &nbsp; 
+        src='theme/usevilla/iconos/chart_bar_add.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_INDIC_CREAR}</a> &nbsp; 
 <a href='index.php?page=indicador_borrar&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}'><img 
-        src='theme/usevilla/iconos/chart_bar_delete.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_BORRAR_INDIC}</a> &nbsp; 
+        src='theme/usevilla/iconos/chart_bar_delete.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_INDIC_BORRAR}</a> &nbsp; 
 <table>
     <tr><th colspan='2'>{$smarty.const.FIELD_COD} {$smarty.const.FIELD_PROC}</th><th colspan='4'>{$smarty.const.FIELD_PROC}</th></tr>
     <tr><td colspan='2'><a href='index.php?page=proceso_mostrar&codigo={$indicador.codigo_proceso}' title='Mostrar 
                            proceso'>{$indicador.codigo_proceso}</a></td>  
         <td colspan='4'>{$indicador.proceso}</td></tr>
-    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NAME}</th><th colspan='2'>{$smarty.const.FIELD_DESC}</th>
+    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th colspan='2'>{$smarty.const.FIELD_DESC}</th>
         <th colspan='2'>{$smarty.const.FIELD_FORM}</th></tr>
     <tr>
         <td>{$indicador.codigo}</td>
@@ -84,7 +84,7 @@
 </table>	
 <h3>{$smarty.const.TXT_VAL_REC}</h3>
 <a href='index.php?page=valor_crear&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}'><img 
-        src='theme/usevilla/iconos/tag_blue_add.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_ADD_VAL}</a>
+        src='theme/usevilla/iconos/tag_blue_add.gif' alt='{$smarty.const.TXT_ICON}' />{$smarty.const.TXT_VAL_AGREGAR}</a>
     {if $valores}
     <table class='listing' id='sortable'>
         <thead><tr><th>{$smarty.const.FIELD_PERIODO}</th><th>{$smarty.const.FIELD_VAL}</th><th>{$smarty.const.FIELD_OBJ}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr></thead>
@@ -102,5 +102,5 @@
     </table>
     <p><img src='{$ruta_imagen}' alt={$smarty.const.TXT_REP_GRAFIC} width="630" height="240"/></p>
     {else} 
-    <p>{$smarty.const.MSG_NO_DAT_INDIC}</p>
+    <p>{$smarty.const.MSG_INDIC_NO_DATOS}</p>
 {/if}

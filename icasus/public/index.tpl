@@ -10,6 +10,7 @@
         <meta charset="utf-8">
         <title>{$_nombre_pagina} - {$smarty.const.TXT_ICASUS} - {$smarty.const.TXT_UNIVERSIDAD}</title>
         <meta name="description" content="Gestión de Indicadores de Calidad">
+        <link rel=icon href=favicon.ico sizes="32x32 48x48" type="image/vnd.microsoft.icon">
 
         <!-- iPhone, iPad and Android specific settings -->	
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
@@ -117,6 +118,35 @@
 
                 </div><!-- #nav_top -->
                 <div class="flat_area grid_16">
+
+                    {if isset($entidad)}
+                        <h2 style="text-align: center"> {$smarty.const.TXT_UNID}: {$entidad->nombre}</h2>
+                        <h2 style="text-align: center">
+                            <a href='index.php?page=entidad_datos&id_entidad={$entidad->id}'><img 
+                                    src='/icons/ff16/chart_organisation.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_UNID_FICHA}</a>&nbsp;&nbsp;
+                            <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img 
+                                    src='/icons/ff16/cog.png' />
+                                {$smarty.const.TXT_PROCS}</a>&nbsp;&nbsp;
+                            <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img 
+                                    src='/icons/ff16/chart_curve.png' />
+                                {$smarty.const.FIELD_INDICS}</a>&nbsp;&nbsp;
+                            <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
+                                    src='/icons/ff16/chart_bar.png' />
+                                {$smarty.const.FIELD_DATOS}</a>&nbsp;&nbsp;
+                            <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'><img 
+                                    src='/icons/ff16/book.png' />
+                                {$smarty.const.TXT_CONSULT}</a>&nbsp;&nbsp;
+                            <a href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'><img 
+                                    src='/icons/ff16/table_go.png' />
+                                {$smarty.const.TXT_CUAD_RES}</a>
+                                {if $control} 
+                                &nbsp;&nbsp;<a href='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}'><img 
+                                        src='/icons/ff16/eye.png' /> 
+                                    {$smarty.const.TXT_CONTROL}</a>
+                                {/if}
+                        </h2>
+                        <br>
+                    {/if}
 
                     <div>
                         <h2>{$_nombre_pagina}</h2>

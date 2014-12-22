@@ -9,7 +9,7 @@
 	<table class='listing' id='sortable'>
 	<thead>
 		<tr><th>{$smarty.const.FIELD_UNID}</th><th>{$smarty.const.FIELD_PROC}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_INDIC}</th>
-		<th>{$smarty.const.FIELD_FORM}</th><th>{$smarty.const.FIELD_FORM}</th><th>{$smarty.const.FIELD_OBJ}</th><th>{$smarty.const.FIELD_PERIOD}</th><th>{$smarty.const.FIELD_FUENTE}</th></tr>
+		<th>{$smarty.const.FIELD_FORM}</th><th>{$smarty.const.FIELD_DESC}</th><th>{$smarty.const.FIELD_OBJ}</th><th>{$smarty.const.FIELD_PERIOD}</th><th>{$smarty.const.FIELD_FUENTE}</th></tr>
 	</thead>
 		
 	<tbody>

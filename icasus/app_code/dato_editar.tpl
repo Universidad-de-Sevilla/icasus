@@ -3,14 +3,13 @@
     <input type="hidden" name="id_entidad" value="{$entidad->id}" />
     <div style="opacity: 1;" class="box tabs" id="tab_crear_dato">
         <ul class="tab_header">
-            <li ><a  href="#dato" {$smarty.const.TXT_DATO}</a></li>
+            <li ><a  href="#dato"> {$smarty.const.TXT_DATO}</a></li>
             <li ><a  href="#otras" >{$smarty.const.TXT_OTRAS_PROP}</a></li>
             <li ><a  href="#subunidades" >{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
         </ul>
 
         <div style="opacity: 1;" id="dato" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
-
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_ID}</label>
                 <div>
@@ -20,7 +19,7 @@
             </fieldset>
 
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_NAME}</label>
+                <label>{$smarty.const.FIELD_NOMBRE}</label>
                 <div>
                     <input type="text" name="nombre" value="{$dato->nombre}" />
                     <div class="required_tag"></div>
@@ -65,13 +64,6 @@
                 </div>
             </fieldset>
 
-            <div class="button_bar clearfix" id="footer_tabs">
-                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>          
-                <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
-            </div>
-        </div><!-- fin tab id=dato -->
-
-        <div style="opacity: 1;" id="otras" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
@@ -211,14 +203,14 @@
             //mostrar tipo de medición
             $('.medicion').on('click', function () {
                 var valor = $(this).attr('value');
-                if (valor == 1 || valor == 2)
+                if (valor === 1 || valor === 2)
                 {
                     $('#total').css('display', 'block');
                     $('#div_unidad').css('display', 'inline');
                     $('#div_subunidades').css('display', 'inline');
                     $(".subunidad").attr("checked", "checked");
                 }
-                else if (valor == 0)
+                else if (valor === 0)
                 {
                     $('#total').css('display', 'none');
                     $('#div_unidad').css('display', 'inline');
@@ -250,7 +242,7 @@
             $('button.btnNext').on('click', function () {
                 var actualTab = $('#tab_crear_dato').tabs('option', 'selected');
                 var estavalidado = $('#formdato').valid();
-                if (estavalidado == true)
+                if (estavalidado === true)
                 {
                     $('#tab_crear_dato').tabs('enable', actualTab + 1).tabs('select', actualTab + 1).tabs('disable', actualTab);
                 }

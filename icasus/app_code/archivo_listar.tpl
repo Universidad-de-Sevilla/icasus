@@ -13,8 +13,8 @@
     <input name="enviar" type="submit" value="{$smarty.const.TXT_ARCHIVO_SUBIR}" />
 </form>
 
-<p>{$smarty.const.MSG_REN_FILE}</p>
-<p style="color:red">{$smarty.const.MSG_FILE_NAME}</p>
+<p>{$smarty.const.MSG_ARCHIVO_RENOMBRAR}</p>
+<p style="color:red">{$smarty.const.MSG_ARCHIVO_NOMBRE}</p>
 
 <h3>{$smarty.const.TXT_CONTENIDO} {$directorio}</h3>
 <table class="datos">
@@ -26,7 +26,7 @@
         <td><a href="upload/{$directorio}/{$archivo[0]}"><img src='iconos/16x16/page.png' alt='-' /> {$archivo[0]}</a></td>
         <td>{$archivo[1]}</td>
         <td><a href="index.php?page=archivo_borrar&fichero={$archivo[0]}&dir={$directorio}" 
-            onclick="javascript: return confirm('{$smarty.const.MSG_CONFIRM_DEL_FILE} : {$archivo[0]}');"><img 
+            onclick="javascript: return confirm('{$smarty.const.MSG_ARCHIVO_BORRAR_CONFIRM} : {$archivo[0]}');"><img 
             src='iconos/16x16/cross.png' title ='{$smarty.const.TXT_BORRAR}' alt='{$smarty.const.TXT_BORRAR}' /></a></td>
         </tr>
     {/if}

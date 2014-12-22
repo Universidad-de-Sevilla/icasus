@@ -14,7 +14,7 @@ global $basedatos;
 global $plantilla;
 
 //$id_entidad = sanitize($_REQUEST['id_entidad'],16);
-$id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 $entidad = new Entidad();
 
 $entidad->load_joined("id = $id_entidad");
@@ -37,11 +37,11 @@ if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'codigo')
     if ($entidad->actualizar($id_entidad, $id_padre, $nombre, $web, $codigo))
     {
         $smarty->assign('entidad', $entidad);
-        $smarty->assign('aviso', MSG_UNID_MOD);
+        $smarty->assign('aviso', MSG_UNID_EDITADA);
     }
     else
     {
-        $smarty->assign('error', ERR_MOD_UNID);
+        $smarty->assign('error', ERR_UNID_EDIT);
     }
     $plantilla = "entidad_datos.tpl";
     header("location:index.php?page=entidad_datos&id_entidad=$entidad->id");

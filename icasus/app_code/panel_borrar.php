@@ -8,7 +8,8 @@
 // Descripcion: Borra paneles 
 //---------------------------------------------------------------------------------------------------
 $id_usuario = $usuario->id;
-$id_panel = sanitize($_REQUEST["id_panel"], INT);
+//$id_panel = sanitize($_REQUEST["id_panel"], INT);
+$id_panel = filter_input(INPUT_GET, 'id_panel', FILTER_SANITIZE_NUMBER_INT);
 if (!empty($id_panel))
 {
     $panel = new Panel();

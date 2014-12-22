@@ -14,7 +14,7 @@ function redondear(num)
 
 function calcular()
 {
-	if(document.formvalor.calculo.value != "")
+	if(document.formvalor.calculo.value !== "")
 	{
 		document.formvalor.dato_valor.value = redondear(eval(document.formvalor.calculo.value));
 	}

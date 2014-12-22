@@ -6,7 +6,7 @@
                     <fieldset class="label_side">
                         <label>{$smarty.const.FIELD_FECHA}</label>
                         <div>
-                            {html_select_date id="Year" prefix="" class="required" year_empty="Seleccinar un año ..."
+                            {html_select_date id="Year" prefix="" class="required" year_empty=$smarty.const.TXT_SEL
 					display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10
 					end_year=$smarty.now|date_format:"%Y"}
                             <div class="required_tag"></div>
@@ -40,5 +40,5 @@
 {if $modulo == 'filtrOnlyear'}
     <script src="theme/danpin/scripts/DataTables/jquery.dataTables.js" type="text/javascript"></script>
     <script src="theme/danpin/scripts/adminica/adminica_datatables.js" type="text/javascript"></script>
-        {include file="control_valores.tpl"}
-    {/if}
+    {include file="control_valores.tpl"}
+{/if}

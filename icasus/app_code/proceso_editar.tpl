@@ -1,13 +1,5 @@
 <div class="box grid_16">
   <div class="block">
-    <div class="button_bar clearfix">
-      <button class="light send_right" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
-        onclick="history.back();">
-        <div class="ui-icon ui-icon-closethick"></div>
-        <span>{$smarty.const.TXT_CANCEL}</span>
-      </button>
-    </div>
-  
     <form method="post" action="index.php?page=proceso_editar" class="validate_form">
       <input type="hidden" name="id_entidad" value="{$entidad->id}" />
       <input type="hidden" name="id_proceso" value="{$proceso->id}" />
@@ -16,7 +8,7 @@
       <label>{$smarty.const.FIELD_PROC_MADRE}</label>
       <div>
         <select name="madre" class="required select_box">
-          <option value="0">{$smarty.const.TXT_ES_PROC_MADRE}</option>
+          <option value="0">{$smarty.const.TXT_PROC_ES_MADRE}</option>
           {foreach from=$procesos_madre item=proceso_madre}
             <option value="{$proceso_madre->id}" {if $proceso_madre->id == $proceso->id_madre} 
 selected{/if}>
@@ -26,7 +18,7 @@ selected{/if}>
       </div>
       </fieldset> 
       <fieldset class="label_side">
-      <label>{$smarty.const.FIELD_NAME}</label>
+      <label>{$smarty.const.FIELD_NOMBRE}</label>
       <div>
         <input type="text" name="nombre" value="{$proceso->nombre}" class="required" />
         <div class="required_tag"></div>
@@ -157,12 +149,12 @@ selected{/if}>
       </fieldset>    
        
       <div class="button_bar clearfix">
-        <button class="green" type="submit" value="{$smarty.const.TXT_GRABAR}" name="proceso_submit">
+        <button class="green send_right" type="submit" value="{$smarty.const.TXT_GRABAR}" name="proceso_submit">
           <div class="ui-icon ui-icon-check"></div>
           <span>{$smarty.const.TXT_GRABAR}</span>
         </button>
-        <button class="light send_right" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
-          onclick="history.back()">
+        <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
+          onclick="history.back();">
           <div class="ui-icon ui-icon-closethick"></div>
           <span>{$smarty.const.TXT_CANCEL}</span>
         </button>

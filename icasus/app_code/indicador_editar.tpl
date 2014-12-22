@@ -31,7 +31,7 @@
                 </div>
             </div>
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_NAME}</label>
+                <label>{$smarty.const.FIELD_NOMBRE}</label>
                 <div><textarea name="nombre" />{$indicador->nombre}</textarea><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div></div>
             </fieldset>
             <fieldset class="label_side">
@@ -63,6 +63,7 @@
                 </div>
             </fieldset>
             <div class="button_bar clearfix" id="footer_tabs">
+                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
             </div>
         </div><!-- fin tab 1 -->
@@ -169,6 +170,7 @@
                 </div>
             </div>
             <div class="button_bar clearfix" id="footer_tabs">
+                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
                 <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
             </div>
@@ -219,6 +221,7 @@
                 </div>
             </fieldset>
             <div class="button_bar clearfix" id="footer_tabs">
+                <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
                 <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
             </div>
@@ -233,14 +236,14 @@
             //mostrar tipo de medición
             $('.medicion').on('click', function () {
                 var valor = $(this).attr('value');
-                if (valor == 1 || valor == 2)
+                if (valor === 1 || valor === 2)
                 {
                     $('#total').css('display', 'block');
                     $('#div_unidad').css('display', 'block');
                     $('#div_subunidades').css('display', 'block');
                     $(".subunidad").attr("checked", "checked");
                 }
-                else if (valor == 0)
+                else if (valor === 0)
                 {
                     $('#total').css('display', 'none');
                     $('#div_unidad').css('display', 'block');
@@ -280,7 +283,7 @@
             $('button.btnNext').on('click', function () {
                 var actualTab = $('#tab_editar_indicador').tabs('option', 'selected');
                 var estavalidado = $('#formindicador').valid();
-                if (estavalidado == true)
+                if (estavalidado === true)
                 {
                     $('#tab_editar_indicador').tabs('enable', actualTab + 1).tabs('select', actualTab + 1).tabs('disable', actualTab);
                 }

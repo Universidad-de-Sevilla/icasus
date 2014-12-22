@@ -14,7 +14,8 @@ global $smarty;
 global $basedatos;
 global $plantilla;
 
-$id_entidad = sanitize($_REQUEST['id_entidad'], 16);
+//$id_entidad = sanitize($_REQUEST['id_entidad'], 16);
+$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 $entidad = new Entidad($base_datos);
 $entidad->obtener_datos($id_entidad);

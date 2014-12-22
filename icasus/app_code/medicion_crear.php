@@ -13,9 +13,11 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-if (isset($_REQUEST["id_indicador"]))
+//if (isset($_REQUEST["id_indicador"]))
+if (filter_has_var(INPUT_GET, 'id_indicador'))
 {
-    $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
+//    $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
+    $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $tipo = "indicador";
 
     $valor_referencia = new Valor_referencia();
@@ -23,9 +25,11 @@ if (isset($_REQUEST["id_indicador"]))
 
     $smarty->assign("valores_referencia", $valores_referencia);
 }
-else if (isset($_REQUEST["id_dato"]))
+//else if (isset($_REQUEST["id_dato"]))
+else if (filter_has_var(INPUT_GET, 'id_dato'))
 {
-    $id_indicador = sanitize($_REQUEST["id_dato"], INT);
+//    $id_indicador = sanitize($_REQUEST["id_dato"], INT);
+    $id_indicador = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
     $tipo = "dato";
 }
 else

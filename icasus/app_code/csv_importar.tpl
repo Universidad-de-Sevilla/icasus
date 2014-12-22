@@ -38,7 +38,12 @@
                     </div>
                 </fieldset>
                 <div class="button_bar clearfix">
-                    <button class="green" type="submit" value="{$smarty.const.TXT_ARCHIVO_PROCESAR}" name="csv_submit">
+                  <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
+                            onclick="history.back();">
+                        <div class="ui-icon ui-icon-closethick"></div>
+                        <span>{$smarty.const.TXT_CANCEL}</span>
+                    </button>
+                    <button class="green send_right" type="submit" value="{$smarty.const.TXT_ARCHIVO_PROCESAR}" name="csv_submit">
                         <div class="ui-icon ui-icon-check"></div>
                         <span>{$smarty.const.TXT_ARCHIVOS_PROCESAR}</span>
                     </button>

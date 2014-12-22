@@ -29,7 +29,7 @@ if (filter_has_var(INPUT_POST, 'nombre'))
     else
     {
         $error = $dimension->ErrorMsg();
-        $smarty->assign('error', ERR_CREA_DIM); //Este es el error reportado: '.$error);
+        $smarty->assign('error', ERR_DIM_CREAR); //Este es el error reportado: '.$error);
     }
 }
 
@@ -37,5 +37,5 @@ if (filter_has_var(INPUT_POST, 'nombre'))
 $dimensiones = $dimension->find('1 = 1 ORDER BY nombre');
 $smarty->assign('dimensiones', $dimensiones);
 $plantilla = "dimension_crear.tpl";
-$smarty->assign('_nombre_pagina', TXT_REL_DIM);
+$smarty->assign('_nombre_pagina', TXT_DIM_REL);
 

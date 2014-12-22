@@ -2,7 +2,7 @@
 <div id="modal_activar_uno" class="dialog_content narrow ui-dialog-content ui-widget-content">
     <div class="block" style="opacity: 1;" >
         <div class="section" style="padding:20px">
-            <p>{$smarty.const.TXT_CONFIRM}<b><span id="msg_activacion_uno"></span></b> {$smarty.const.esta Medición}.</p>
+            <p>{$smarty.const.TXT_CONFIRM}<b><span id="msg_activacion_uno"></span></b> {$smarty.const.TXT_MED_ESTA}.</p>
         </div>
     </div>
 </div>
@@ -31,7 +31,7 @@
 <!-- división seleccionar periodos a consultar -->
 <div>
     <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-            src='/icons/ff16/time.png' />{$smarty.const.TXT_MOSTRAR_MED}</a> &nbsp; &nbsp;
+            src='/icons/ff16/time.png' />{$smarty.const.TXT_MED_MOSTRAR}</a> &nbsp; &nbsp;
     <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
             src='/icons/ff16/chart_curve.png' />{$smarty.const.TXT_VOLVER} {$tipo}</a> &nbsp;
 </div>
@@ -83,7 +83,6 @@
         {include file="indicador_subunidad_valor_mostrar.tpl"}
     </div>
 </div>
-</div>
 
 {literal}
     <script>
@@ -102,7 +101,7 @@
                 var id_medicion = $(this).parent().data('id_medicion');
                 var id_subunidad = $(this).parent().parent().data('id_subunidad');
                 var inicio = $("#inicio").val();
-                if (inicio == 0) {
+                if (inicio === 0) {
                     var fin = 0;
                 } else {
                     var fin = $("#fin").val();
@@ -115,7 +114,7 @@
                             text: "Confirmar",
                             "class": 'green',
                             click: function () {
-                                if ($('#activo:checked').val() == 1) {
+                                if ($('#activo:checked').val() === 1) {
                                     var activo = 1;
                                 } else {
                                     var activo = 0;
@@ -147,7 +146,7 @@
                 var id_medicion = $(this).parent().data('id_medicion');
                 var subunidad = $(this).parent().parent().data('subunidad');
                 var inicio = $("#inicio").val();
-                if (inicio == 0) {
+                if (inicio === 0) {
                     var fin = 0;
                 } else {
                     var fin = $("#fin").val();
@@ -184,7 +183,7 @@
                             "class": 'red text_only has_text',
                             click: function () {
                                 $(this).dialog("close");
-                                if (activo == 1) {
+                                if (activo === 1) {
                                     activar_uno.removeAttr("checked");
                                 } else {
                                     activar_uno.attr("checked", "checked");
@@ -200,7 +199,7 @@
                 var id_subunidad = $(this).parent().parent().data('id_subunidad');
                 var subunidad = $(this).parent().parent().data('subunidad');
                 var inicio = $("#inicio").val();
-                if (inicio == 0) {
+                if (inicio === 0) {
                     var fin = 0;
                 } else {
                     var fin = $("#fin").val();
@@ -237,7 +236,7 @@
             });
             $('#main_container').on('click', '#btn_mostrar', function () {
                 var inicio = $("#inicio").val();
-                if (inicio == 0) {
+                if (inicio === 0) {
                     var fin = 0;
                 } else {
                     var fin = $("#fin").val();
@@ -255,7 +254,7 @@
             $('#inicio').on('change', function () {
                 $("#inicio option:selected").each(function () {
                     elegido = $(this).val();
-                    if (elegido == 0) {
+                    if (elegido === 0) {
                         $("#end_year").html(' ');
                     }
                     else

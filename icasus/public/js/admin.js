@@ -1,4 +1,4 @@
-// JavaScript del area de administración del tablón
+// JavaScript del area de administraciï¿½n del tablï¿½n
 
 /*function nuevoAjax(){ 	var xmlhttp=false; 	try 	{ 		xmlhttp=new ActiveXObject("Msxml2.XMLHTTP"); 	} 	catch(e) 
 { try {xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");} catch(E){ if (!xmlhttp && typeof XMLHttpRequest!='undefined') xmlhttp=new XMLHttpRequest();} } return xmlhttp;  }
@@ -10,7 +10,7 @@ alert("hola");
 
 //valida la creacion de una linea
 function validacrearlinea(){
-	if (document.crearlinea.titulo.value == '')
+	if (document.crearlinea.titulo.value === '')
 	{ 
 		alert('Debe escribir un titulo');
 		return false;
@@ -19,124 +19,124 @@ function validacrearlinea(){
 
 //Valida crear objetivo
 function validacrearobjetivo(){
-	if (document.crearobjetivo.linea.value == '' || document.crearobjetivo.linea.value == 0  )
+	if (document.crearobjetivo.linea.value === '' || document.crearobjetivo.linea.value === 0  )
 	{ 
-		alert('Debe selecionar una Línea');
+		alert('Debe selecionar una Lï¿½nea');
 		return false;
 	}
-	if (document.crearobjetivo.titulo.value == '')
+	if (document.crearobjetivo.titulo.value === '')
 	{ 
-		alert('Debe escribir un Título');
+		alert('Debe escribir un Tï¿½tulo');
 		return false;
 	}
 }
 
 //Valida crear accion
 function validacrearaccion(){
-	if (document.crearaccion.linea.value == '' || document.crearaccion.linea.value == 0  )
+	if (document.crearaccion.linea.value === '' || document.crearaccion.linea.value === 0  )
 	{ 
-		alert('Debe selecionar una Línea');
+		alert('Debe selecionar una Lï¿½nea');
 		return false;
 	}
-	if (document.crearaccion.objetivo.value == '' || document.crearaccion.objetivo.value == 0)
+	if (document.crearaccion.objetivo.value === '' || document.crearaccion.objetivo.value === 0)
 	{ 
 		alert('Debe seleccionar un Ojetivo');
 		return false;
 	}
-	if (document.crearaccion.titulo.value == '')
+	if (document.crearaccion.titulo.value === '')
 	{ 
-		alert('Debe escribir un Título');
+		alert('Debe escribir un Tï¿½tulo');
 		return false;
 	}
 }
 
 //Valida crear indicadores
 function validacrearindicador(){
-	if (document.crearindicador.linea.value == '' || document.crearindicador.linea.value == 0  )
+	if (document.crearindicador.linea.value === '' || document.crearindicador.linea.value === 0  )
 	{ 
-		alert('Debe selecionar una Línea');
+		alert('Debe selecionar una Lï¿½nea');
 		return false;
 	}
-	if (document.crearindicador.objetivo.value == '' || document.crearindicador.objetivo.value == 0)
+	if (document.crearindicador.objetivo.value === '' || document.crearindicador.objetivo.value === 0)
 	{ 
 		alert('Debe seleccionar un Ojetivo');
 		return false;
 	}
-	if (document.crearindicador.accion.value == '' || document.crearindicador.accion.value == 0)
+	if (document.crearindicador.accion.value === '' || document.crearindicador.accion.value === 0)
 	{ 
-		alert('Debe seleccionar una Acción');
+		alert('Debe seleccionar una Acciï¿½n');
 		return false;
 	}
-	if (document.crearindicador.titulo.value == '')
+	if (document.crearindicador.titulo.value === '')
 	{ 
-		alert('Debe escribir un Título');
+		alert('Debe escribir un Tï¿½tulo');
 		return false;
 	}
 }
 
 
 function validamodlinea(){
-	if (document.modlinea.titulo.value == '' || document.modlinea.titulo.value == 0)
+	if (document.modlinea.titulo.value === '' || document.modlinea.titulo.value === 0)
 	{ 
-		alert('Debe escribir un Título');
+		alert('Debe escribir un Tï¿½tulo');
 		return false;
 	}	
 }
-//Valida modificación de objetivos
+//Valida modificaciï¿½n de objetivos
 function validamodobjetivo()
 {
-	if (document.modobjetivo.linea.value ==0 || document.modobjetivo.linea.value == '')
+	if (document.modobjetivo.linea.value ===0 || document.modobjetivo.linea.value === '')
 	{ 
-		alert('Debe seleccionar una Línea.');
+		alert('Debe seleccionar una Lï¿½nea.');
 		return false;
 	}
-	if (document.modobjetivo.titulo.value ==0 || document.modobjetivo.titulo.value == '')
+	if (document.modobjetivo.titulo.value ===0 || document.modobjetivo.titulo.value === '')
 	{ 
-		alert('Debe escribir un Título.');
+		alert('Debe escribir un Tï¿½tulo.');
 		return false;
 	}
 }
-//Valida modificación de accion
+//Valida modificaciï¿½n de accion
 function validamodaccion()
 {
-	if (document.modaccion.linea.value ==0 || document.modaccion.linea.value == '')
+	if (document.modaccion.linea.value ===0 || document.modaccion.linea.value === '')
 	{ 
-		alert('Debe seleccionar una Línea.');
+		alert('Debe seleccionar una Lï¿½nea.');
 		return false;
 	}
 	
-	if (document.modaccion.objetivo.value ==0 || document.modaccion.objetivo.value == '')
+	if (document.modaccion.objetivo.value ===0 || document.modaccion.objetivo.value === '')
 	{ 
 		alert('Debe seleccionar un Objetivo.');
 		return false;
 	}
-	if (document.modaccion.titulo.value ==0 || document.modaccion.titulo.value == '')
+	if (document.modaccion.titulo.value ===0 || document.modaccion.titulo.value === '')
 	{ 
-		alert('Debe escribir un Título.');
+		alert('Debe escribir un Tï¿½tulo.');
 		return false;
 	}
 }
 
 function validamodindicador()
 {
-	if (document.modindicador.linea.value ==0 || document.modindicador.linea.value == '')
+	if (document.modindicador.linea.value ===0 || document.modindicador.linea.value === '')
 	{ 
-		alert('Debe seleccionar una Línea.');
+		alert('Debe seleccionar una Lï¿½nea.');
 		return false;
 	}
-	if (document.modindicador.objetivo.value ==0 || document.modindicador.objetivo.value == '')
+	if (document.modindicador.objetivo.value ===0 || document.modindicador.objetivo.value === '')
 	{ 
 		alert('Debe seleccionar un Objetivo.');
 		return false;
 	}
-	if (document.modindicador.accion.value ==0 || document.modindicador.accion.value == '')
+	if (document.modindicador.accion.value ===0 || document.modindicador.accion.value === '')
 	{ 
-		alert('Debe seleccionar una Acción.');
+		alert('Debe seleccionar una Acciï¿½n.');
 		return false;
 	}
-	if (document.modindicador.titulo.value ==0 || document.modindicador.titulo.value == '')
+	if (document.modindicador.titulo.value ===0 || document.modindicador.titulo.value === '')
 	{ 
-		alert('Debe escribir un Título.');
+		alert('Debe escribir un Tï¿½tulo.');
 		return false;
 	}
 }
@@ -145,7 +145,7 @@ function validamodindicador()
 /*function validacrear(){
 if (document.crear.categoria.value == 0)
 { 
-alert('Debe seleccionar una Categoría');
+alert('Debe seleccionar una Categorï¿½a');
 return false;
 }
 if (document.crear.date.value == '00-00-0000')
@@ -165,7 +165,7 @@ return false;
 
 function valida()
 {
-if (document.formlogin.clave.value=='' || document.formlogin.usuario.value=='')
+if (document.formlogin.clave.value==='' || document.formlogin.usuario.value==='')
 { 
 alert('Indique su nombre de usuario y clave de acceso.');
 return false;

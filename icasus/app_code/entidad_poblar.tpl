@@ -6,7 +6,7 @@
         {if $usuarios}
             <table class='static'>
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_ROL}</th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                    <tr><th>{$smarty.const.FIELD_ROL}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$usuarios item=usuario}
@@ -16,7 +16,7 @@
                             <td>{$usuario->usuario->apellidos}</td>
                             <td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
                             <td>{$usuario->usuario->telefono}</td>
-                            <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>Detalle</a></td>
+                            <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DET}</a></td>
                         </tr>
                     {/foreach}
                 </tbody>
@@ -38,7 +38,7 @@
                 <div id="dt1" class="no_margin">
                     <table class="display datatable">
                         <thead>
-                            <tr><th></th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_UNID_RPT}</th><th>{$smarty.const.FIELD_PUESTO}</th></tr>
+                            <tr><th></th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_UNID_RPT}</th><th>{$smarty.const.FIELD_PUESTO}</th></tr>
                         </thead>
                         <tbody>
                             {foreach from=$personas item=persona}
@@ -67,8 +67,13 @@
                     </div>
                 </fieldset>
                 <div class="button_bar clearfix">
-                    <button class="green" type="submit" value="Asignar usuarios" name="enviar">
-                        <span>{$smarty.const.TXT_ASIGNAR_USERS}</span>
+                    <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
+                            onclick="history.back();">
+                        <div class="ui-icon ui-icon-closethick"></div>
+                        <span>{$smarty.const.TXT_CANCEL}</span>
+                    </button>
+                    <button class="green send_right" type="submit" value="{$smarty.const.TXT_USERS_ASIGNAR}" name="enviar">
+                        <span>{$smarty.const.TXT_USERS_ASIGNAR}</span>
                     </button>
                 </div>  
             </form>

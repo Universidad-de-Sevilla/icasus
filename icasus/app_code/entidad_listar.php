@@ -12,7 +12,7 @@ global $usuario;
 global $plantilla;
 
 $smarty->assign('_javascript', array('ordenatabla'));
-$smarty->assign('_nombre_pagina', TXT_LIST_UNID);
+$smarty->assign('_nombre_pagina', TXT_UNID_LIST);
 
 // Entidades de este usuario
 $smarty->assign('entidades_usuario', $usuario->entidades);

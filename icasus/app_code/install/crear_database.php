@@ -1,20 +1,24 @@
 <?php
 
 // Version: 0.4.1
-if (isset($_POST['database']) && isset($_POST['usuario']) && isset($_POST['password']) && isset($_POST['servidor']))
+//if (isset($_POST['database']) && isset($_POST['usuario']) && isset($_POST['password']) && isset($_POST['servidor']))
+if (filter_has_var(INPUT_POST, 'database') && filter_has_var(INPUT_POST, 'usuario') && filter_has_var(INPUT_POST, 'password') && filter_has_var(INPUT_POST, 'servidor'))
 {
-	$database = $_POST['database']; 
-	$usuario = $_POST['usuario']; 
-	$password = $_POST['password']; 
-	$servidor = $_POST['servidor']; 
-	
-	$adodb = NewADOConnection('mysql://'.I.':'.IC_DB_CLAVE.'@'.IC_DB_HOST.'/'.IC_DB_DATABASE);
-}
-else 
-{
-	header('install/instalar.php');
-}	
+//    $database = $_POST['database'];
+    $database = filter_input(INPUT_POST, 'database');
+//    $usuario = $_POST['usuario'];
+    $usuario = filter_input(INPUT_POST, 'usuario');
+//    $password = $_POST['password'];
+    $password = filter_input(INPUT_POST, 'password');
+//    $servidor = $_POST['servidor'];
+    $servidor = filter_input(INPUT_POST, 'servidor');
 
+    $adodb = NewADOConnection('mysql://' . I . ':' . IC_DB_CLAVE . '@' . IC_DB_HOST . '/' . IC_DB_DATABASE);
+}
+else
+{
+    header('install/instalar.php');
+}
 
 $db->Execute("USE $database;");
 

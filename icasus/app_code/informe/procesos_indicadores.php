@@ -11,9 +11,11 @@
 global $smarty;
 global $plantilla;
 
-if (isset($_REQUEST['id_entidad']))
+//if (isset($_REQUEST['id_entidad']))
+if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
-    $id_entidad = sanitize($_REQUEST['id_entidad'], INT);
+//    $id_entidad = sanitize($_REQUEST['id_entidad'], INT);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
     $entidad->load_joined("id = $id_entidad");
     $proceso = new Proceso();
@@ -23,7 +25,7 @@ if (isset($_REQUEST['id_entidad']))
     $smarty->assign("procesos_madre", $procesos_madre);
     $smarty->assign("procesos_propios", $procesos_propios);
     $plantilla = 'informe/procesos_indicadores.tpl';
-    $smarty->assign('_nombre_pagina', TXT_PROC_INDIC_LIST);
+    $smarty->assign('_nombre_pagina', TXT_UNID_PROC_LIST);
 }
 else
 {

@@ -1,19 +1,20 @@
 <div class="box grid_16">
     <div class="block">	
         <div class="section clearfix" style="padding:5px;">
-            <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT} </span> </a> &nbsp; &nbsp; &nbsp;
             <a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/><span> {$smarty.const.TXT_PROC_LISTAR}</span> </a>&nbsp; &nbsp; &nbsp;
+                <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/><span> {$smarty.const.TXT_PROC_LIST}</span></a>&nbsp;&nbsp;
             <a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/cog_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_CREAR}</span> </a>&nbsp; &nbsp; &nbsp;
-            <a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/chart_curve_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_CREAR_INDIC}</span> </a>&nbsp; &nbsp; &nbsp;
-            <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span> </a> &nbsp; &nbsp; &nbsp;
+                <img src='/icons/ff16/cog_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_CREAR}</span></a>&nbsp;&nbsp;
+            <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span></a>&nbsp;&nbsp;
             <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
                onClick='return confirmar();'>
-                <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span> </a>&nbsp; &nbsp; &nbsp;
+                <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span></a>&nbsp;&nbsp;
+            <a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'>
+                <img src='/icons/ff16/chart_curve_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_INDIC_CREAR}</span></a>&nbsp;&nbsp;
+            <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span> </a>
+
         </div>
     </div>
 </div>
@@ -29,12 +30,12 @@
                         {$proceso_madre->codigo} - {$proceso_madre->nombre} 
                         &nbsp; <a href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso->id_entidad}">{$smarty.const.TXT_MOSTRAR}</a>
                     {else}
-                        {$smarty.const.TXT_ES_PROC_MADRE}
+                        {$smarty.const.TXT_PROC_ES_MADRE}
                     {/if}
                 </div>
             </fieldset> 
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_NAME}</label>
+                <label>{$smarty.const.FIELD_NOMBRE}</label>
                 <div>
                     <h3>{$proceso->nombre}</h3>
                 </div>
@@ -224,7 +225,7 @@
         <div class="block">	
             <table class="static"> 
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_SUBPROC}</th><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_PROPIETARIO}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                    <tr><th>{$smarty.const.FIELD_SUBPROC}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_PROPIETARIO}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$subprocesos item=subproceso}

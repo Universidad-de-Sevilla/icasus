@@ -51,7 +51,7 @@ $nombre_pagina = TXT_DATOS_EXPORT;
 include_once ("inc_cabecera.php");
 
 print ("<h3><img src='iconos/page_white_go.gif'> " . $nombre_pagina . "</h3>");
-print ("<h4>" . MSG_EXPORT_OK . "<a href='" . $cvs->obtener_url_fichero() . "'><img src='iconos/page_save.gif'/>" . TXT_ARCHIVO_DESCARGA . "</a></h4>");
+print ("<h4>" . MSG_DATO_EXPORT_OK . "<a href='" . $cvs->obtener_url_fichero() . "'><img src='iconos/page_save.gif'/>" . TXT_ARCHIVO_DESCARGA . "</a></h4>");
 print ("<p>" . TXT_ARCHIVO_ABRIR_CSV . " <a href='http://es.openoffice.org/'>Open Office</a>, " . TXT_OTRO_OFIMATICA . "</p>");
 include_once ("clase_base_datos.php");
 include_once ("inc_pie.php");

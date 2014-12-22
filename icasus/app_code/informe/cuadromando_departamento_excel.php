@@ -13,7 +13,7 @@ require_once("/var/www/wiki/icasus/lib/phpExcel/PHPExcel/IOFactory.php");
 require_once("/var/www/wiki/icasus/lib/phpExcel/PHPExcel/RichText.php");
 //$tipo = sanitize($_GET["tipo"],2);
 $tipo = 'valor';
-$smarty->assign('_nombre_pagina', TXT_SEG_INDIC_DEPART);
+$smarty->assign('_nombre_pagina', TXT_INDIC_SEG_DEPART);
 $plantilla = 'informes/cuadromando_departamento.tpl';
 $ado_entidad = new ado_entidad();
 
@@ -28,7 +28,7 @@ $codigos = filter_input(INPUT_POST, 'indicador');
 //$periodos = array('2009','2010','2011');
 //$codigos = array('AOG-I2','AOG-I1','MS-I2','MS-I1','GE-I1','GE-I2');
 $entidades = $ado_entidad->seguimiento_entidad($periodos, $codigos, $cod_unidad, $tipo);
-$periods = count($periodos);
+$numperiodos = count($periodos);
 
 $excel = new PHPExcel();
 $excel->setActiveSheetIndex(0);
@@ -65,7 +65,7 @@ for ($i = 'A'; $i != 'AAA'; $i++)
 $h = 3;
 $fila = 1;
 $fila2 = $fila + 1;
-$periods = $periods - 1;
+$numperiodos--;
 //cabecera de la tabla de datos
 foreach ($codigos as $codigo)
 {
@@ -75,7 +75,7 @@ foreach ($codigos as $codigo)
     $excel->getActiveSheet()->getStyle($lettertonum[$h] . $fila)->applyFromArray($styleThinWhiteBorderOutline);
 
     $excel->getActiveSheet()->getStyle($lettertonum[$h] . $fila)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-    $excel->getActiveSheet()->mergeCells($lettertonum[$h] . $fila . ':' . $lettertonum[$h + $periods] . $fila);
+    $excel->getActiveSheet()->mergeCells($lettertonum[$h] . $fila . ':' . $lettertonum[$h + $periodos] . $fila);
     $excel->getActiveSheet()->setCellValue($lettertonum[$h] . $fila, $codigo);
     $x = $h;
     foreach ($periodos as $periodo)
@@ -87,7 +87,7 @@ foreach ($codigos as $codigo)
         $excel->getActiveSheet()->setCellValue($lettertonum[$x] . $fila2, $periodo);
         $x = $x + 1;
     }
-    $h = $h + $periods + 1;
+    $h = $h + $periodos + 1;
 }
 //datos de la tabla
 foreach ($entidades as $key => $entidad)

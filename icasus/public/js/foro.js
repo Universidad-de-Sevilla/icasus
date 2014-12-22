@@ -11,7 +11,7 @@ function objetoAjax(){
           }
     }
 
-    if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+    if (!xmlhttp && typeof XMLHttpRequest!=='undefined') {
         xmlhttp = new XMLHttpRequest();
     }
     return xmlhttp;
@@ -20,12 +20,12 @@ function objetoAjax(){
 function suma_visitas(id){
   ajax=objetoAjax();
   ajax.open("GET", "foro/ajax_suma_visita.php?id="+id,true);
-  ajax.send(null)
+  ajax.send(null);
 }
 
 //valida la publicacion de comentarios
 function publicar(id){
-	if (document.getElementById(id).value  == '')
+	if (document.getElementById(id).value  === '')
 	{ 
 		alert('El comentario esta vacio');
 		return false;
@@ -38,7 +38,7 @@ function publicar_entrada(id){
 	var ide='nuevo'+id;
 	var asunto='asunto'+id;
 	var texto='texto'+id;
-	if (document.getElementById(texto).value  == '' || document.getElementById(asunto).value  == '')
+	if (document.getElementById(texto).value  === '' || document.getElementById(asunto).value  === '')
         {
                 alert('Debe completar el Asunto y el Texto');
                 return false;

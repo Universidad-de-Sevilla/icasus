@@ -12,9 +12,9 @@ function fila_grabar(id_valor,medicion)
 {
   var value = $('[name=v_'+id_valor+']').val();
   value = value.replace(',','.');
-  if (value != '')
+  if (value !== '')
   {
-    if (isNaN(value)== false)
+    if (isNaN(value)=== false)
     {
       $.ajax({
         type: "POST",
@@ -30,7 +30,7 @@ function fila_grabar(id_valor,medicion)
       });
       */
     }
-    else if (value == "---")
+    else if (value === "---")
     {
       $.post("index.php?page=medicion_editar_ajax&modulo=anularvalor&ajax=true",{id_valor:id_valor},function(){
         $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion="+medicion);
@@ -102,15 +102,15 @@ function referencia_grabar(id)
   var value = $("[name=input_referencia_"+id+"]").val();
   value = value.replace(',','.');
 
-  if (value != '')
+  if (value !== '')
   {
-    if (isNaN(value) == false)
+    if (isNaN(value) === false)
     {
       $.post("index.php?page=medicion_editar_ajax&modulo=grabarvalorreferencia&ajax=true",{id_referencia:id,valor:value},function(){
       $('#referencia_'+id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id="+id);
       });
     }
-    else if (value == "---")
+    else if (value === "---")
     {
       $.post("index.php?page=medicion_editar_ajax&modulo=anularvalorreferencia&ajax=true",{id_referencia:id},function(){
         $('#referencia_'+id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id="+id);

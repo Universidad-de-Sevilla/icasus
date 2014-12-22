@@ -11,20 +11,26 @@ global $plantilla;
 global $usuario;
 
 $usuario_entidad = new Usuario_entidad();
-$id_entidad = filter_input(INPUT_GET | INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 //if (isset($_REQUEST['id_entidad']))
-if ($id_entidad) {
+if (filter_has_var(INPUT_GET, 'id_entidad'))
+{
 //  $id_entidad = sanitize($_REQUEST['id_entidad'], INT);
-    if ($usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad)) {
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    if ($usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad))
+    {
         $smarty->assign('id_entidad', $id_entidad);
         $plantilla = 'csv_importar.tpl';
         $smarty->assign('_nombre_pagina', TXT_ARCHIVO_IMPORT_CSV);
-    } else {
-        $error = ERR_AUT_IMPORT_DAT_UNID;
+    }
+    else
+    {
+        $error = ERR_DATO_IMPORT_NO_AUT;
         header('location:index.php?error=' . $error);
     }
-} else {
+}
+else
+{
     $error = ERR_FALTAN_PAR_IMPORT;
     header('location:index.php?error=' . $error);
 }

@@ -12,41 +12,43 @@ include("../../cascara_core/lib/pChart2/class/pDraw.class.php");
 include("../../cascara_core/lib/pChart2/class/pImage.class.php");
 include("../../cascara_core/lib/pChart2/class/pData.class.php");
 
-$id_indicador = filter_input(INPUT_GET | INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
+
 
 //if (isset($_REQUEST["id_indicador"]))
-if ($id_indicador) {
+if (filter_has_var(INPUT_GET, 'id_indicador'))
+{
 //  $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
+    $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     // Inicio y fin marcan el rango de mediciones que vamos a tomar
 //    $inicio = isset($_REQUEST["inicio"]) ? sanitize($_REQUEST["inicio"], INT) : 0;
-    $inicio = filter_input(INPUT_GET | INPUT_POST, 'inicio', FILTER_SANITIZE_NUMBER_INT);
-    if (!$inicio) {
-        $inicio = 0;
-    }
+    $inicio = filter_has_var(INPUT_GET, 'inicio') ? filter_input(INPUT_GET, 'inicio', FILTER_SANITIZE_NUMBER_INT) : 0;
 //    $fin = isset($_REQUEST["fin"]) ? sanitize($_REQUEST["fin"], INT) : 0;
-    $fin = filter_input(INPUT_GET | INPUT_POST, 'fin', FILTER_SANITIZE_NUMBER_INT);
-    if (!$fin) {
-        $fin = 0;
-    }
+    $fin = filter_has_var(INPUT_GET, 'fin') ? filter_input(INPUT_GET, 'fin', FILTER_SANITIZE_NUMBER_INT) : 0;
+
     $hoy = date("d-m-Y H:i:s");
 
     $indicador = new Indicador();
     $indicador->load("id = $id_indicador");
     $db = $indicador->DB();
-    if ($indicador->id_tipo_agregacion == 2) {
+    if ($indicador->id_tipo_agregacion == 2)
+    {
         $query = "SELECT mediciones.etiqueta, SUM(valor) AS agregado FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion ORDER BY mediciones.periodo_inicio;";
-    } else {
+    }
+    else
+    {
         // Por defecto suponemos que el tipo_agregado es 1
         $query = "SELECT mediciones.etiqueta, ROUND(AVG(valor),2) AS agregado FROM valores INNER JOIN mediciones ON valores.id_medicion = mediciones.id INNER JOIN entidades ON valores.id_entidad = entidades.id WHERE mediciones.id_indicador = $id_indicador GROUP BY id_medicion ORDER BY mediciones.periodo_inicio;";
     }
     $resultado = $db->getAll($query);
 
-    foreach ($resultado as $registro) {
+    foreach ($resultado as $registro)
+    {
         $agregados[] = $registro['agregado'];
         $etiquetas[] = $registro['etiqueta'];
     }
 
-    if ($resultado) {
+    if ($resultado)
+    {
         $myData = new pData();
         $myData->addPoints($agregados, FIELD_AGREG);
         $myData->addPoints($etiquetas, FIELD_PERIODO);
@@ -59,7 +61,8 @@ if ($id_indicador) {
       FROM valores_referencia 
       WHERE activo = 1 AND grafica = 1 AND id_indicador = $id_indicador;";
         $referencias = $db->getAll($query_referencias);
-        foreach ($referencias as $referencia) {
+        foreach ($referencias as $referencia)
+        {
             $id_referencia = $referencia["id"];
             $query_valores = "SELECT valores_referencia_mediciones.valor, mediciones.etiqueta 
         FROM valores_referencia_mediciones
@@ -67,7 +70,8 @@ if ($id_indicador) {
         INNER JOIN mediciones ON mediciones.id = valores_referencia_mediciones.id_medicion
         WHERE valores_referencia.activo = 1 AND valores_referencia.grafica = 1 AND valores_referencia.id = $id_referencia";
             $referencia_valores = $db->getAll($query_valores);
-            foreach ($referencia_valores as $valor) {
+            foreach ($referencia_valores as $valor)
+            {
                 $valores[] = $valor["valor"];
             }
             $etiqueta = $referencia["etiqueta"];
@@ -89,14 +93,18 @@ if ($id_indicador) {
         $myPicture->drawText(20, 260, "{$indicador->nombre}", array("FontSize" => 11, "Align" => TEXT_ALIGN_BOTTOMLEFT));
         $myPicture->drawText(20, 270, "{$hoy}", array("FontSize" => 9, "Align" => TEXT_ALIGN_BOTTOMLEFT));
         $myPicture->Stroke();
-    } else {
+    }
+    else
+    {
         $myPicture = new pImage(700, 200);
         $myPicture->setFontProperties(array("FontName" => "../../cascara_core/lib/pChart2/fonts/calibri.ttf", "FontSize" => 11));
         $myPicture->setGraphArea(60, 40, 670, 220);
         $myPicture->drawText(20, 100, MSG_INDIC_NO_VAL, array("FontSize" => 26, "Align" => TEXT_ALIGN_BOTTOMLEFT));
         $myPicture->Stroke();
     }
-} else {
+}
+else
+{
     $myPicture = new pImage(700, 200);
     $myPicture->setFontProperties(array("FontName" => "../../cascara_core/lib/pChart2/fonts/calibri.ttf", "FontSize" => 11));
     $myPicture->setGraphArea(60, 40, 670, 220);

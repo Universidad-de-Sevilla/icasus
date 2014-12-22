@@ -13,10 +13,13 @@ global $operario;
 global $plantilla;
 
 // Comprueba si vienen los datos necesarios para grabar un nuevo valor
-if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']) && isset($_POST['dato_valor']) && isset($_POST['id_entidad']) && isset($_POST['Date_Month']) && isset($_POST['Date_Year']))
+//if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']) && isset($_POST['dato_valor']) && isset($_POST['id_entidad']) && isset($_POST['Date_Month']) && isset($_POST['Date_Year']))
+if (filter_has_var(INPUT_POST, 'id_indicador') && filter_has_var(INPUT_POST, 'dato_valor') && filter_has_var(INPUT_POST, 'id_entidad') && filter_has_var(INPUT_POST, 'Date_Month') && filter_has_var(INPUT_POST, 'Date_Year'))
 {
-    $id_entidad = sanitize($_REQUEST['id_entidad'], 16);
-    $id_indicador = sanitize($_REQUEST['id_indicador'], 16);
+//    $id_entidad = sanitize($_REQUEST['id_entidad'], 16);
+    $id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+//    $id_indicador = sanitize($_REQUEST['id_indicador'], 16);
+    $id_indicador = filter_input(INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
 //    $year = sanitize($_POST['Date_Year'], 2);
     $year = filter_input(INPUT_POST, 'Date_Year', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 //    $month = sanitize($_POST['Date_Month'], 2);

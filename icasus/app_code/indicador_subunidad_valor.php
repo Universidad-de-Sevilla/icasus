@@ -10,16 +10,21 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$id_entidad = sanitize($_REQUEST["id_entidad"], INT);
+//$id_entidad = sanitize($_REQUEST["id_entidad"], INT);
+$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
-if (isset($_REQUEST["id_indicador"]))
+//if (isset($_REQUEST["id_indicador"]))
+if (filter_has_var(INPUT_GET, 'id_indicador'))
 {
-    $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
+//    $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
+    $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $tipo = "indicador";
 }
-else if (isset($_REQUEST["id_dato"]))
+//else if (isset($_REQUEST["id_dato"]))
+else if (filter_has_var(INPUT_GET, 'id_dato'))
 {
-    $id_indicador = sanitize($_REQUEST["id_dato"], INT);
+//    $id_indicador = sanitize($_REQUEST["id_dato"], INT);
+    $id_indicador = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
     $tipo = "dato";
 }
 else
@@ -61,7 +66,7 @@ if (isset($id_entidad))
     else
     {
         // El usuario no tiene permisos avisamos error
-        $error = ERR_EDIT_INDIC_NO_AUT;
+        $error = ERR_INDIC_EDIT_NO_AUT;
         header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
     }
 }

@@ -6,14 +6,14 @@
 //------------------------------------------------------------------------------
 // Muestra un cuadro de mando con todos sus paneles
 //------------------------------------------------------------------------------
-
-$id_cuadro = filter_input(INPUT_GET | INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-
 //if (!empty($_REQUEST["id"]))
-if ($id_cuadro) {
+if (filter_has_var(INPUT_GET, 'id'))
+{
 //  $id_cuadro = sanitize($_REQUEST["id"], INT);
+    $id_cuadro = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     $cuadro = new Cuadro();
-    if ($cuadro->load("id = $id_cuadro AND (id_usuario = $usuario->id OR privado = 0)")) {
+    if ($cuadro->load("id = $id_cuadro AND (id_usuario = $usuario->id OR privado = 0)"))
+    {
         $smarty->assign("cuadro", $cuadro);
 
         $panel = new Panel();
@@ -22,11 +22,15 @@ if ($id_cuadro) {
 
         $smarty->assign("_nombre_pagina", "$cuadro->nombre");
         $plantilla = "cuadro_mostrar.tpl";
-    } else {
+    }
+    else
+    {
         $error = ERR_CUAD_MANDO;
         header("location:index.php?page=error&error=$error");
     }
-} else {
+}
+else
+{
     $error = ERR_CUAD_MANDO_PARAM;
     header("location:index.php?page=error&error=$error");
 }

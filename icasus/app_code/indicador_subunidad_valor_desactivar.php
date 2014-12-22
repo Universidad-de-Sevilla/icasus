@@ -10,8 +10,10 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$id_indicador = sanitize($_REQUEST["id_indicador"], INT);
-$id_entidad = sanitize($_REQUEST["id_entidad"], INT);
+//$id_indicador = sanitize($_REQUEST["id_indicador"], INT);
+$id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
+//$id_entidad = sanitize($_REQUEST["id_entidad"], INT);
+$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 if (isset($id_indicador))
 {
     $usuario_entidad = new Usuario_entidad();
@@ -42,7 +44,7 @@ if (isset($id_indicador))
     else
     {
         // El usuario no tiene permisos avisamos error
-        $error = ERR_EDIT_INDIC_NO_AUT;
+        $error = ERR_INDIC_EDIT_NO_AUT;
         header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
     }
 }

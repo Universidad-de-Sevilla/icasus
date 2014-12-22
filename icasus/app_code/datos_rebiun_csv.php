@@ -8,7 +8,8 @@
 //  - Permite elegir subunidades
 //  - Permite acotar los periodos de medición deseados
 //---------------------------------------------------------------------------------------------------
-$modulo = sanitize($_REQUEST["modulo"], SQL);
+//$modulo = sanitize($_REQUEST["modulo"], SQL);
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 $indicador = new Indicador();
 
 require_once ('../../cascara_core/lib/phpExcel/PHPExcel/Writer/Excel5.php');

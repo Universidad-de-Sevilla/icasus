@@ -2,10 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: entidad_poblar.php
-//---------------------------------------------------------------------------------------------------
-// Muestra un listado de usuarios para ser asignados a una unidad
-// Si los usuario ya vienen señalados se graban en la tabla usuario_unidad
+// Archivo: archivo_gestionar.php
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
@@ -14,9 +11,12 @@ global $usuario;
 
 
 //if (isset($_REQUEST["id_proceso"]) AND isset($_REQUEST["id_entidad"]))
-if (isset($_REQUEST["id_proceso"]))
+//if (isset($_REQUEST["id_proceso"]))
+if (filter_has_var(INPUT_GET, 'id_proceso'))
 {
-    $id_proceso = sanitize($_REQUEST["id_proceso"], 2);
+    //$id_proceso = sanitize($_REQUEST["id_proceso"], 2);
+    $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+
     //$id_entidad = sanitize($_REQUEST["id_entidad"],2);
     // Datos del proceso
     $proceso = new Proceso();

@@ -10,7 +10,7 @@
     <div id="dt1" class="no_margin">
         <table class="display datatable"> 
             <thead>
-                <tr><th>{$smarty.const.FIELD_NAME}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_UNID_DEST}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                <tr><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_UNID_DEST}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
             </thead>
             <tbody>
                 {foreach from=$usuarios item=usuario}

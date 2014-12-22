@@ -298,7 +298,7 @@ class Valor extends ADOdb_Active_Record
     public function filtro_onlyear($fecha, $cadena)
     {
         $db = $this->DB();
-        $sql = "SELECT  m.id as id_medicion,p.nombre as proceso,p.codigo as cod_proceso,e.etiqueta as unidad, i.nombre as indicador, i.id_entidad as entidad_del_indicador,i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, v.valor
+        $sql = "SELECT  v.id as id_valor, m.id as id_medicion,p.nombre as proceso,p.codigo as cod_proceso,e.etiqueta as unidad, i.nombre as indicador, i.id_entidad as entidad_del_indicador,i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, v.valor
 			FROM `valores` v
 			LEFT JOIN mediciones m ON v.id_medicion = m.id
 			LEFT JOIN entidades e ON v.id_entidad = e.id
