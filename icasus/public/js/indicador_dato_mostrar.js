@@ -24,6 +24,7 @@ $('.highchart').each(function () {
         url: urlApi,
         type: "GET",
         dataType: "json",
+        async:true,
         success: onDataReceived
     });
 
