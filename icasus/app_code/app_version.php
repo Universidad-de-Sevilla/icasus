@@ -2,7 +2,7 @@
 define('IC_VERSION', "2.9.0");
 define('IC_FECHA_REVISION', "22/12/2014");
 
-// 2.8.9 - 22/12/2014 - Mejoras en la usabilidad de la aplicación.
+// 2.9.0 - 22/12/2014 - Mejoras en la usabilidad de la aplicación.
 // 2.8.7 - 02/12/2014 - Filtrados todos los campos de las peticiones GET y POST con las funciones que proporciona PHP 
 // 2.8.6 - 14/11/2014 - Todas las cadenas de textos pasadas a constantes 
 // 2.8.5 - 04/11/2014 - Refactorizadas todas las clases PHP a nombres con mayúsculas
