@@ -120,7 +120,8 @@ define('TXT_UNIDS_UE01', 'Unidades UE01 con sus Indicadores, Valores y Fecha');
 //Indicadores
 define('TXT_INDIC_SUBUNID', 'Relación de Indicadores de Subunidades');
 define('TXT_INDIC_PROP', 'Indicadores propios de la Unidad');
-define('TXT_INDIC_MED', 'Mediciones del indicador');
+define('TXT_INDIC_MED', 'Mediciones del Indicador');
+define('TXT_INDIC_PARAM', 'Parámetros del Indicador');
 define('TXT_INDIC_NUEVO', 'Nuevo Indicador');
 define('TXT_INDIC_IR', 'Ir al Indicador');
 define('TXT_INDIC_VOLVER', 'Volver al Indicador');

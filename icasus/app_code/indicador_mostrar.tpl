@@ -1,60 +1,95 @@
-<div class="button_bar clearfix">
-    <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_INDIC_LIST}</a>&nbsp;&nbsp;
-    <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/chart_curve_edit.png'  /> {$smarty.const.TXT_EDIT}</a>&nbsp;&nbsp;
-    <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img
-            src='/icons/ff16/chart_curve_delete.png'  /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
-    <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a>&nbsp;&nbsp;
-    <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a>&nbsp;&nbsp;
-    <a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp; 
-    <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-            src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> 
-</div>
+<div class="box grid_16">
+    <div class="toggle_container">
+        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_INDIC_MED}</h2>
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
+        <div class="block">
+            <div class="button_bar clearfix">
+                <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_INDIC_LIST}</a>&nbsp;
+                <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/chart_curve_edit.png'  /> {$smarty.const.TXT_EDIT}</a>&nbsp;
+                <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img
+                        src='/icons/ff16/chart_curve_delete.png'  /> {$smarty.const.TXT_BORRAR}</a>&nbsp;
+                <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a>&nbsp;
+                <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a>&nbsp;
+                <a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;
+                <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> 
+            </div>
+            <div style="margin:10px;">
+                <!-- GRÁFICAS -->
+                {if $mediciones}
 
-<!-- GRÁFICAS -->
-{if $mediciones}
-    <div style="margin:10px;">
-        <!--
-        <div class="highchart" id="anuales" style="width:100%;" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"> </div>
-        </div>
-    
-        {if $indicador->periodicidad != "Anual"}
-          <div style="background: white; padding:20px 40px; margin:10px;">
-            <h3 style="margin: 0 0 20px 0;">Dos últimos años ({$smarty.now|date_format:'%Y' - 1} / {$smarty.now|date_format:'%Y'})</h3>
-            <div class="highchart" id="ultimas" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 2}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="todos"></div>
-          </div>
-        {/if}
-        -->
-
-        {if $paneles}
-            {foreach $paneles as $panel}
-                <div class="box grid_{$panel->ancho}" style="float:left;">
-                    <div class="block alturo" style="height:320px">
-                        <!--
-                        <div class="titulo-panel">
-                          <strong>{$panel->nombre}</strong>
-                        </div>
-                        -->
-                        <div class="section">
-                            <div class="highchart {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$panel->fecha_inicio}" data-fecha_fin="{$panel->fecha_fin}" data-periodicidad="{$panel->periodicidad}"></div>
-                        </div>
+                    <!--
+                    <div class="highchart" id="anuales" style="width:100%;" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"> </div>
                     </div>
-                </div>
-            {/foreach}
-        {/if}
-    {else}
-        <p class="aviso">{$smarty.const.MSG_INDIC_NO_VAL}</p>
-    </div>
-{/if}
-<!-- //GRÁFICAS -->
+                
+                    {if $indicador->periodicidad != "Anual"}
+                      <div style="background: white; padding:20px 40px; margin:10px;">
+                        <h3 style="margin: 0 0 20px 0;">Dos últimos años ({$smarty.now|date_format:'%Y' - 1} / {$smarty.now|date_format:'%Y'})</h3>
+                        <div class="highchart" id="ultimas" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 2}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="todos"></div>
+                      </div>
+                    {/if}
+                    -->
+
+                    {if $paneles}
+                        {foreach $paneles as $panel}
+                            <div class="box grid_{$panel->ancho}" style="float:left;">
+                                <div class="block alturo" style="height:320px">
+                                    <!--
+                                    <div class="titulo-panel">
+                                      <strong>{$panel->nombre}</strong>
+                                    </div>
+                                    -->
+                                    <div class="section">
+                                        <div class="highchart {$panel->tipo->clase_css}" 
+                                             id="panel_{$panel->id}" 
+                                             data-id_indicador="{$indicador->id}" 
+                                             data-nombre_indicador="{$indicador->nombre}" 
+                                             data-fecha_inicio="{$panel->fecha_inicio}" 
+                                             data-fecha_fin="{$panel->fecha_fin}" 
+                                             data-periodicidad="{$panel->periodicidad}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        {/foreach}
+                    {/if}
+                {else}
+                    <p class="aviso">{$smarty.const.MSG_INDIC_NO_VAL}</p>
+
+                {/if}
+                <!-- //GRÁFICAS -->
+            </div>
+        </div><!-- //.block -->
+    </div><!-- //toggle_container -->
+</div><!-- //box grid_16 -->
 
 <div class="box grid_16">
     <div class="toggle_container">
+        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_INDIC_PARAM}</h2>
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
         <div class="block">
+            <div class="button_bar clearfix">
+                <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_INDIC_LIST}</a>&nbsp;
+                <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/chart_curve_edit.png'  /> {$smarty.const.TXT_EDIT}</a>&nbsp;
+                <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' onClick='return confirmar();'><img
+                        src='/icons/ff16/chart_curve_delete.png'  /> {$smarty.const.TXT_BORRAR}</a>&nbsp;
+                <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a>&nbsp;
+                <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a>&nbsp;
+                <a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;
+                <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> 
+            </div>
             <div class="columns clearfix">
                 <div class="col_40">
                     <fieldset class="label">
@@ -157,9 +192,11 @@
                         <label>{$smarty.const.FIELD_EFQM}</label>
                         <div>
                             {if is_array($indicador->criterios_efqm)}
-                                <ul>
+                                <ul> 
                                     {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
-                                        <li>{$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}</li>
+                                        {if $indicador_criterio_efqm->id_criterio_efqm != 0}
+                                            <li> {$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}</li>
+                                            {/if}  
                                         {/foreach}
                                 </ul>
                             {else}
@@ -224,6 +261,6 @@
 </div>
 
 <script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/exporting.js" type="text/javascript"></script>
 <script src="js/highchartStruct.js" type="text/javascript"></script>
+<script src="js/exporting.js" type="text/javascript"></script>
 <script src="js/indicador_dato_mostrar.js" type="text/javascript"></script>

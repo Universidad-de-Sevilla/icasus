@@ -154,7 +154,7 @@
         {if $indicadores}
             <table class="static"> 
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_INDIC}</th><th>{$smarty.const.FIELD_RESP}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_INDIC}</th><th>{$smarty.const.FIELD_RESP}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$indicadores item=indicador} 
