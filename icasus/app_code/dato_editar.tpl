@@ -66,12 +66,11 @@
 
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
-                <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
+                <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
             </div>
         </div><!-- fin tab id=dato -->
 
         <div style="opacity: 1;" id="otras" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
-
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_DESC}</label>
                 <div><textarea  class="" name="descripcion">{$dato->descripcion}</textarea></div>
@@ -137,12 +136,11 @@
 
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
-                <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
-                <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
+                <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
             </div>
         </div><!-- fin id=otros -->
 
-        <div style="opacity: 1;" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
+        <div style="opacity: 1;" name="subunidades" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_TIP_MED}</label>
@@ -190,7 +188,6 @@
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
-                <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
             </div>
         </div>
     </div><!-- id=subunidades -->
@@ -199,7 +196,7 @@
     <script>
         $(document).ready(function () {
             //desactivar inicialmente las tabs 1 y 2
-            $('#tab_crear_dato').tabs({disabled: [1, 2]});
+            //$('#tab_crear_dato').tabs({disabled: [1, 2]});
             //mostrar tipo de medición
             $('.medicion').on('click', function () {
                 var valor = $(this).attr('value');

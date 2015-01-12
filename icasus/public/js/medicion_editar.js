@@ -123,7 +123,7 @@ function referencia_grabar(id)
   }
   else
   {
-    alert('Está intentando introducir un valor vacio.\n\nPuede restituir el valor con [cancelar].');
+    alert('Está intentando introducir un valor vacio.\n\nPuede restituir el valor con [cancelar].\nPuede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---).');
   }
 }
 

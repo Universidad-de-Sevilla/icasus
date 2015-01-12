@@ -20,9 +20,9 @@ $indicador_subunidad = new Indicador_subunidad();
 if ($modulo == 'grabar')
 {
 //    $id = sanitize($_REQUEST["id"], INT);
-    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
 //    $id_usuario = sanitize($_REQUEST["id_usuario"], INT);
-    $id_usuario = filter_input(INPUT_GET, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
+    $id_usuario = filter_input(INPUT_POST, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
 
     if ($indicador_subunidad->load("id = $id"))
     {

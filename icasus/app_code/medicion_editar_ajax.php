@@ -23,7 +23,7 @@ $indicador_subunidad = new Indicador_subunidad();
 if ($modulo == 'anularvalor')
 {
 //    $id_valor = sanitize($_REQUEST["id_valor"], INT);
-    $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
+    $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
     if ($valor->puede_grabarse($valor->id, $usuario->id))
     {
@@ -38,9 +38,9 @@ if ($modulo == 'anularvalor')
 if ($modulo == 'grabarfila')
 {
 //    $valor_parcial = sanitize($_REQUEST["valor"], FLOAT);
-    $valor_parcial = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_FLOAT);
+    $valor_parcial = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_NUMBER_FLOAT);
 //    $id_valor = sanitize($_REQUEST["id_valor"], INT);
-    $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
+    $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
     if ($valor->puede_grabarse($valor->id, $usuario->id))
     {
@@ -161,7 +161,7 @@ if ($modulo == 'cancelaretiqueta')
 if ($modulo == 'anularvalorreferencia')
 {
 //    $id_referencia = sanitize($_REQUEST["id_referencia"], INT);
-    $id_referencia = filter_input(INPUT_GET, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
+    $id_referencia = filter_input(INPUT_POST, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
     $valor_referencia_medicion->load("id = $id_referencia");
     $valor_referencia_medicion->valor = NULL;
     $valor_referencia_medicion->save();
@@ -170,7 +170,7 @@ if ($modulo == 'anularvalorreferencia')
 if ($modulo == 'grabarvalorreferencia')
 {
 //    $id_referencia = sanitize($_REQUEST["id_referencia"], 2);
-    $id_referencia = filter_input(INPUT_GET, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
+    $id_referencia = filter_input(INPUT_POST, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
 //    $valor = sanitize($_REQUEST["valor"], 2);
     $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $valor_referencia_medicion->load("id =$id_referencia");

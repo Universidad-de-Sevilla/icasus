@@ -64,7 +64,7 @@
             </fieldset>
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
-                <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
+                <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
             </div>
         </div><!-- fin tab 1 -->
         <div style="opacity: 1;" id="otros" class="block ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
@@ -171,8 +171,7 @@
             </div>
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
-                <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
-                <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
+                <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
             </div>
         </div><!-- fin tab otros datos -->
         <div style="opacity: 1;" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
@@ -223,7 +222,6 @@
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
-                <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
             </div>
         </div><!-- fin tab subunidades afectadas -->
     </div>
@@ -232,7 +230,7 @@
 {literal}
     <script>
         $(document).ready(function () {
-            $('#tab_editar_indicador').tabs({disabled: [1, 2]});
+            //$('#tab_editar_indicador').tabs({disabled: [1, 2]});
             //mostrar tipo de medición
             $('.medicion').on('click', function () {
                 var valor = $(this).attr('value');
