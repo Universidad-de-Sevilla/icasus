@@ -1,9 +1,8 @@
 <h3>	 
     <a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'><img 
             src='/icons/ff16/chart_curve_add.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_INDIC_CREAR}</a>&nbsp;&nbsp;
-    <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
+   <!-- <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
             src='/icons/ff16/chart_bar.png' /> {$smarty.const.TXT_DATOS_LIST}</a>
-    <!--
     <a href='index.php?page=entidad_indicadores_excel&id_entidad={$entidad->id}'><img 
     src='/icons/ff16/page_excel.png' alt='icono' />Exportar indicadores</a>&nbsp; &nbsp;
     <a href='index.php?page=indicador_publico'><img 
@@ -26,12 +25,12 @@
                 <tbody>
                     {foreach from=$indicadores item=indicador} 
                         <tr>
-                            <td><a
-                                    href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$entidad->id}'>{$indicador->proceso->nombre}</a></td>
-                            <td>{$indicador->codigo}</td><td><a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' title="{$smarty.const.TXT_INDIC_MED} :: {$indicador->nombre}"><img 
-                                        src='/icons/ff16/time.png' align="absmiddle"/></a> <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}' title="{$smarty.const.TXT_INDIC_MOSTRAR} :: {$indicador->nombre}">{$indicador->nombre}</a> <a href='#'
-                                                                                                                                                                                                        title='{$indicador->descripcion}'>*</a></td>
-                            <td><a href='index.php?page=usuario_datos&id_usuario={$indicador->id_responsable}&id_entidad={$entidad->id}'>{$indicador->responsable->nombre} 
+                            <td><a href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$entidad->id}'>{$indicador->proceso->nombre}</a></td>
+                            <td>{$indicador->codigo}</td>
+                            <td><a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' title="{$smarty.const.TXT_INDIC_MED} :: {$indicador->nombre}">
+                                    <img src='/icons/ff16/time.png' align="absmiddle"/></a> <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}' title="{$smarty.const.TXT_INDIC_MOSTRAR} :: {$indicador->nombre}">{$indicador->nombre}</a> 
+                                <a href='#'title='{$indicador->descripcion}'>*</a></td>
+                            <td><a href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}&id_entidad={$entidad->id}'>{$indicador->responsable->nombre} 
                                     {$indicador->responsable->apellidos}</a></td>
                             <!--
                                               <td nowrap>

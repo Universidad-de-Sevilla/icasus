@@ -1,8 +1,8 @@
 <div class="box grid_16">
     <div class="block">	
         <div class="section clearfix" style="padding:5px;">
-            <a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/><span> {$smarty.const.TXT_PROC_LIST}</span></a>&nbsp;&nbsp;
+           <!--<a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'>
+                <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/><span> {$smarty.const.TXT_PROC_LIST}</span></a>&nbsp;&nbsp;-->
             <a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'>
                 <img src='/icons/ff16/cog_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_CREAR}</span></a>&nbsp;&nbsp;
             <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>

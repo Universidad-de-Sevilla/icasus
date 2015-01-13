@@ -10,7 +10,7 @@
 global $smarty;
 global $plantilla;
 
-$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+//$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 //if ($_GET['id_entidad'] > '0')
 if ($id_entidad > 0)

@@ -43,6 +43,7 @@ if ($modulo == 'filtrOnlyear')
     $valor = new Valor();
     $valores = $valor->filtro_onlyear($fecha, $cadena);
     $smarty->assign("valores", $valores);
+    
 }
 
 //------------------------------------------------------------------------------

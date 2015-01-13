@@ -2,13 +2,13 @@
  * Código JavaScript para el control de valores asociado al fichero control_valores.tpl
  */
 
-$(".borrar").on('click', function (evento) {
-    var boton_borrar;
-    boton_borrar = $(this);
-    id_valor = boton_borrar.data('id_valor');
-    $('#nombre_unid').html(boton_borrar.data('nombre_unid'));
-    $('#nombre_val').html(boton_borrar.data('nombre_val'));
-    $("#dialogo_borrar_control").dialog({
+$(".cancelar").on('click', function (evento) {
+   // var boton_cancelar;
+    boton_cancelar = $(this);
+    id_valor = boton_cancelar.data('id_valor');
+    $('#nombre_unid').html(boton_cancelar.data('nombre_unid'));
+    $('#nombre_val').html(boton_cancelar.data('nombre_val'));
+    $("#dialogo_cancelar_control").dialog({
         title: "Desactivar Valor",
         autoOpen: true, modal: true,
         buttons: [

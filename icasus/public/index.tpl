@@ -139,7 +139,7 @@
                             <a href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'><img 
                                     src='/icons/ff16/table_go.png' />
                                 {$smarty.const.TXT_CUAD_RES}</a>
-                                {if $control} 
+                                {if $_control} 
                                 &nbsp;&nbsp;<a href='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}'><img 
                                         src='/icons/ff16/eye.png' /> 
                                     {$smarty.const.TXT_CONTROL}</a>

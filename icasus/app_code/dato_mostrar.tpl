@@ -5,8 +5,8 @@
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
-                <a href='index.php?page=dato_listar&id_entidad={$dato->id_entidad}'><img 
-                        src='/icons/ff16/chart_bar.png' /> {$smarty.const.TXT_DATOS_LIST}</a>&nbsp;&nbsp;
+                <!--<a href='index.php?page=dato_listar&id_entidad={$dato->id_entidad}'><img 
+                        src='/icons/ff16/chart_bar.png' /> {$smarty.const.TXT_DATOS_LIST}</a>&nbsp;&nbsp;-->
                 <a href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/chart_bar_edit.png'  /> {$smarty.const.TXT_EDIT}</a>&nbsp;&nbsp;
                 <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' onClick='return confirmar();'><img 
@@ -71,8 +71,8 @@
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
-                <a href='index.php?page=dato_listar&id_entidad={$dato->id_entidad}'><img 
-                        src='/icons/ff16/chart_bar.png' /> {$smarty.const.TXT_DATOS_LIST}</a>&nbsp;&nbsp;
+               <!-- <a href='index.php?page=dato_listar&id_entidad={$dato->id_entidad}'><img 
+                        src='/icons/ff16/chart_bar.png' /> {$smarty.const.TXT_DATOS_LIST}</a>&nbsp;&nbsp;-->
                 <a href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/chart_bar_edit.png'  /> {$smarty.const.TXT_EDIT}</a>&nbsp;&nbsp;
                 <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' onClick='return confirmar();'><img 

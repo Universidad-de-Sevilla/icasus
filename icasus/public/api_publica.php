@@ -247,9 +247,13 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
 
     // Convertimos las tres 'tacadas' de datos a json
     if ($datos = json_encode($datos))
+    {
         echo $datos;
+    }
     else
+    {
         echo json_last_error_msg();
+    }
 }
 
 // ---------------------------------------------------------------------------

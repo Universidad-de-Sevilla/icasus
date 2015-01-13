@@ -18,7 +18,7 @@
     </div>
     <div class="box grid_16 single_datatable">
         <div id="dt1" class="no_margin">
-            {include file="control_valores.tpl"}
+                {include file="control_valores.tpl"}
         </div><!-- #dt1 .no_margin -->
     </div><!-- .box grid16 single_datatable -->	
     {literal}
@@ -26,6 +26,7 @@
             var id_entidad = {/literal}{$id_entidad}{literal};
             $('#Year').on('change', function () {
                 var fecha = $('#Year').val();
+                if (fecha===''){fecha=new Date().getFullYear();}
                 $.ajax({
                     url: "index.php?page=control&ajax=true&modulo=filtrOnlyear&id_entidad=" + id_entidad + "&fecha=" + fecha,
                     success: function (datos) {
