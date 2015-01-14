@@ -25,7 +25,7 @@
     </div><!-- .box grid16 single_datatable -->
 
 {else}
-    <h3>{$smarty.const.MSG_CUADRO_MANDO_NO_DEF}<a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_CUADRO_NUEVO}">{$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
+    <h3>{$smarty.const.MSG_CUADRO_MANDO_NO_DEF}<a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_CUADRO_NUEVO}"> {$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
     {/if}
 
 {if $cuadros_publicos|count > 0}

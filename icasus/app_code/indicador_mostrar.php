@@ -40,6 +40,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     //Simplemente ver si hay mediciones
     $medicion = new Medicion();
     $mediciones = $medicion->Find("id_indicador = $id_indicador");
+    $smarty->assign("mediciones", $mediciones);
     if ($mediciones)
     {
         $paneles = array();
@@ -71,9 +72,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
         $panel->periodicidad = "anual";
         $paneles[] = clone($panel);
         $smarty->assign("paneles", $paneles);
-        $smarty->assign("mediciones", $mediciones);
     }
-
     $smarty->assign('_nombre_pagina', TXT_INDIC_FICHA . ': ' . $indicador->nombre);
     $plantilla = 'indicador_mostrar.tpl';
 }

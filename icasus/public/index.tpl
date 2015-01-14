@@ -145,7 +145,6 @@
                                     {$smarty.const.TXT_CONTROL}</a>
                                 {/if}
                         </h2>
-                        <br>
                     {/if}
 
                     <div>

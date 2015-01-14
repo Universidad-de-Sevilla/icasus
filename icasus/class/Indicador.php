@@ -236,11 +236,10 @@ class Indicador extends ADOdb_Active_Record
         return $db->getall($sql);
     }
 
-    public function find_sin_mediciones()
+    public function find_sin_mediciones($id_entidad)
     {
-        $sql = "SELECT *
-    FROM indicadores i
-    WHERE i.id NOT IN (SELECT id_indicador FROM mediciones)";
+        $sql = "SELECT * FROM indicadores i WHERE i.id "
+                . "NOT IN (SELECT id_indicador FROM mediciones) AND i.id_entidad = {$id_entidad}";
         $db = $this->DB();
         return $db->getall($sql);
     }

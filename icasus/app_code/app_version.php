@@ -1,7 +1,8 @@
 <?php
-define('IC_VERSION', "2.9.0");
-define('IC_FECHA_REVISION', "22/12/2014");
+define('IC_VERSION', "2.9.1");
+define('IC_FECHA_REVISION', "14/01/2015");
 
+// 2.9.1 - 22/12/2014 - Control de indicadores/datos sin mediciones. Cambios en la interfaz.
 // 2.9.0 - 22/12/2014 - Mejoras en la usabilidad de la aplicación.
 // 2.8.7 - 02/12/2014 - Filtrados todos los campos de las peticiones GET y POST con las funciones que proporciona PHP 
 // 2.8.6 - 14/11/2014 - Todas las cadenas de textos pasadas a constantes 

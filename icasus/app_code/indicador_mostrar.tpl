@@ -60,7 +60,6 @@
                     {/if}
                 {else}
                     <p class="aviso">{$smarty.const.MSG_INDIC_NO_VAL}</p>
-
                 {/if}
                 <!-- //GRÁFICAS -->
             </div>

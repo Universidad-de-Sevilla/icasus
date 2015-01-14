@@ -36,14 +36,10 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
     $dato_subunidades = $dato_subunidad->Find_entidades("id_indicador = $id_dato");
     $smarty->assign("dato_subunidades", $dato_subunidades);
 
-//    //Simplemente ver si hay mediciones
-//    $medicion = new Medicion();
-//    $mediciones = $medicion->Find("id_indicador = $id_dato");
-//    $smarty->assign("mediciones", $mediciones);
-
     //Simplemente ver si hay mediciones
     $medicion = new Medicion();
     $mediciones = $medicion->Find("id_indicador = $id_dato");
+    $smarty->assign("mediciones", $mediciones);
     if ($mediciones)
     {
         $paneles = array();
@@ -75,10 +71,7 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
         $panel->periodicidad = "anual";
         $paneles[] = clone($panel);
         $smarty->assign("paneles", $paneles);
-        $smarty->assign("mediciones", $mediciones);
     }
-    
-    
     $smarty->assign('_nombre_pagina', TXT_DATO_FICHA . ": $dato->nombre");
     $plantilla = 'dato_mostrar.tpl';
 }

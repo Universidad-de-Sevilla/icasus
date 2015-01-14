@@ -145,6 +145,8 @@ define('TXT_INDIC_SEG_DEPART', 'Seguimiento de Indicadores de los Departamentos'
 define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta Medición.');
 define('TXT_INDIC_ACT_MED', 'Marque la casilla si además quiere activarla');
 define('TXT_INDIC_SUBUNID_VAL', 'Valores de las subunidades para');
+define('TXT_INDIC_DAT_MED_NULA', 'Indicadores y Datos con Mediciones nulas');
+define('TXT_INDIC_DAT_SIN_MED', 'Indicadores y Datos sin Mediciones');
 
 //Informes
 define('TXT_INFORME_IC', 'Informe generado por ICASUS');

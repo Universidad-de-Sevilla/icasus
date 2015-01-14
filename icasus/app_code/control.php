@@ -21,7 +21,6 @@ else
 }
 $fecha = date("Y");
 
-
 //------------------------------------------------------------------------------
 //---- Muestra todos los valores NULL al inicio con el año actual    -----------
 //------------------------------------------------------------------------------
@@ -43,7 +42,6 @@ if ($modulo == 'filtrOnlyear')
     $valor = new Valor();
     $valores = $valor->filtro_onlyear($fecha, $cadena);
     $smarty->assign("valores", $valores);
-    
 }
 
 //------------------------------------------------------------------------------
@@ -59,6 +57,20 @@ if ($modulo == 'desactivar_valor')
     $valor->activo = 0;
     $valor->Save();
 }
+
+//------------------------------------------------------------------------------
+//Cálculo de indicadores y datos sin mediciones
+//------------------------------------------------------------------------------
+
+$indicador = new Indicador();
+$indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad);
+$proceso = new Proceso();
+//TODO sacar nombres de entidad y códigos de proceso
+//foreach ($indicadores_sin_med as $ind)
+//{
+//    
+//}
+$smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 
 $smarty->assign("modulo", $modulo);
 $smarty->assign("entidad", $entidad);

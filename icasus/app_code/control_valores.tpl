@@ -1,7 +1,9 @@
-<div class="button_bar clear_fix"><h3>Indicadores y datos con mediciones nulas</h3></div>
+<div class="button_bar clear_fix">
+    <h3>{$smarty.const.TXT_INDIC_DAT_MED_NULA}</h3>
+</div>
 <table class="display datatable"> 
     <thead>
-        <tr><th>{$smarty.const.FIELD_PROC}</th><th>{$smarty.const.FIELD_UNID}</th><th>{$smarty.const.FIELD_INDIC}</th><th>{$smarty.const.FIELD_FECHA}</th><th>{$smarty.const.FIELD_VAL}</th><th>{$smarty.const.TXT_CANCEL}</th></tr>
+        <tr><th>{$smarty.const.FIELD_PROC}</th><th>{$smarty.const.FIELD_UNID}</th><th>{$smarty.const.FIELD_INDIC} / {$smarty.const.TXT_DATO}</th><th>{$smarty.const.FIELD_FECHA}</th><th>{$smarty.const.FIELD_VAL}</th><th>{$smarty.const.TXT_CANCEL}</th></tr>
     </thead>
     <tbody>
         {foreach from=$valores item=valor}
@@ -26,10 +28,31 @@
         {/foreach}
     </tbody>	
 </table>
-    <div class="button_bar clear_fix"><h3>Indicadores y datos sin mediciones</h3></div>
- 
- 
- 
+
+<div class="button_bar clear_fix">
+    <h3>{$smarty.const.TXT_INDIC_DAT_SIN_MED}</h3>
+</div>
+<table class="display datatable"> 
+    <thead>
+        <tr>
+           <!-- <th>{$smarty.const.FIELD_PROC}</th>
+            <th>{$smarty.const.FIELD_UNID}</th>-->
+            <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.TXT_DATO}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {foreach from=$indicadores_sin_med item=indicador}
+            <tr>
+                <!--<td>{$indicador.id_proceso}</td>
+                <td>{$indicador.id_entidad}</td>-->
+                <td>
+                    <a href="index.php?page=indicador_mostrar&id_indicador={$indicador.id}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador.nombre}</a>
+                </td>
+            </tr>
+        {/foreach}
+    </tbody>	
+</table>
+
 <!-- dialogo para cancelar el control de valores -->
 <div class="display_none">
     <div id="dialogo_cancelar_control" class="dialog_content narrow ui-dialog-content ui-widget-content" >

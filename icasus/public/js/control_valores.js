@@ -21,6 +21,7 @@ $(".cancelar").on('click', function (evento) {
                         url: "index.php?page=control&modulo=desactivar_valor&ajax=true&id_valor=" + id_valor,
                         success: function () {
                             location.reload();
+                            alert("Valor cancelado");
                         }
                     });
                 }
