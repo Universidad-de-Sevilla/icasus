@@ -56,7 +56,10 @@
                     {/foreach}
                 {/if}
             {else}
-                <p class="aviso">{$smarty.const.MSG_INDIC_NO_VAL}</p>
+                <div class="alert alert_blue">
+                    <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                    {$smarty.const.MSG_INDIC_NO_VAL}
+                </div>
             {/if}
             <!-- //GRÁFICAS -->
 

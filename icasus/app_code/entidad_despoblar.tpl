@@ -1,15 +1,18 @@
 <div class="box grid_16 single_datatable">
-    <form action='index.php?page=entidad_despoblar' method='post' class='formdiv' name='formdiv'>
-        <input type='hidden' name='id_entidad' value='{$entidad->id}' />
+    <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_USERS_ASIG}</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
+    <form action='index.php?page=entidad_despoblar&id_entidad={$entidad->id}' method='post' class='formdiv' name='formdiv'>
         <div id="dt1" class="no_margin">
             <table class="display datatable">
                 <thead>
-                    <tr><th></th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th></tr>
+                    <tr><th></th><th>{$smarty.const.FIELD_ROL}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th></tr>
                 </thead>
                 <tbody>
                     {foreach from=$usuarios item=usuario}
                         <tr class="gradex">
                             <td><input type='checkbox' name='id_usuario[]' value='{$usuario->id_usuario}' /></td>
+                            <td>{$usuario->rol->nombre}</td>
                             <td>{$usuario->usuario->nombre}</td>
                             <td>{$usuario->usuario->apellidos}</td>
                             <td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>

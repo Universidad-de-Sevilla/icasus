@@ -14,21 +14,20 @@ $(".cancelar").on('click', function (evento) {
         buttons: [
             {
                 text: "Confirmar",
-                "class": 'green',
+                class: 'green',
                 click: function () {
                     $(this).dialog("close");
                     $.ajax({
                         url: "index.php?page=control&modulo=desactivar_valor&ajax=true&id_valor=" + id_valor,
                         success: function () {
                             location.reload();
-                            alert("Valor cancelado");
                         }
                     });
                 }
             },
             {
                 text: "Cancelar",
-                "class": 'red text_only has_text',
+                class: 'red text_only has_text',
                 click: function () {
                     $(this).dialog("close");
                 }

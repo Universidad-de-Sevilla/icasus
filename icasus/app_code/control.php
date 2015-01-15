@@ -50,12 +50,13 @@ if ($modulo == 'filtrOnlyear')
 
 if ($modulo == 'desactivar_valor')
 {
-//	$fecha = sanitize($_REQUEST["fecha"],INT);
     $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor = new Valor();
     $valor->load("id = $id_valor");
     $valor->activo = 0;
     $valor->Save();
+    $valores = $valor->filtro_onlyear($fecha, $cadena);
+    $smarty->assign("valores", $valores);
 }
 
 //------------------------------------------------------------------------------

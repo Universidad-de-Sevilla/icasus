@@ -4,23 +4,25 @@
     <a href="#" class="toggle"></a>
     <div class="block"> 
         {if $usuarios}
-            <table class='static'>
-                <thead>
-                    <tr><th>{$smarty.const.FIELD_ROL}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
-                </thead>
-                <tbody>
-                    {foreach from=$usuarios item=usuario}
-                        <tr>
-                            <td>{$usuario->rol->nombre}</td>
-                            <td>{$usuario->usuario->nombre}</td>
-                            <td>{$usuario->usuario->apellidos}</td>
-                            <td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
-                            <td>{$usuario->usuario->telefono}</td>
-                            <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DET}</a></td>
-                        </tr>
-                    {/foreach}
-                </tbody>
-            </table>
+            <div id="dt1" class="no_margin">
+                <table class='display datatable'>
+                    <thead>
+                        <tr><th>{$smarty.const.FIELD_ROL}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                    </thead>
+                    <tbody>
+                        {foreach from=$usuarios item=usuario}
+                            <tr>
+                                <td>{$usuario->rol->nombre}</td>
+                                <td>{$usuario->usuario->nombre}</td>
+                                <td>{$usuario->usuario->apellidos}</td>
+                                <td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
+                                <td>{$usuario->usuario->telefono}</td>
+                                <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DET}</a></td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
         {else}
             <div class='alert alert_blue'>{$smarty.const.MSG_UNID_NO_USERS}</div>
         {/if}
@@ -33,8 +35,7 @@
     <a href="#" class="toggle"></a>
     <div class="toggle_container">  
         <div class="block">
-            <form action='index.php?page=entidad_poblar' method='post' name='formpoblar' class='validate_form'>     
-                <input type='hidden' name='id_entidad' value='{$entidad->id}' />
+            <form action='index.php?page=entidad_poblar&id_entidad={$entidad->id}' method='post' name='formpoblar' class='validate_form'>     
                 <div id="dt1" class="no_margin">
                     <table class="display datatable">
                         <thead>

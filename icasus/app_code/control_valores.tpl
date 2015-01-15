@@ -64,4 +64,4 @@
     </div>
 </div>
 
-<script src="js/control_valores.js" type="text/javascript"></script>
+

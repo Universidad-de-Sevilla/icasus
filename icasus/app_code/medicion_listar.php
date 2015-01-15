@@ -42,6 +42,7 @@ $smarty->assign('tipo', $tipo);
 
 $medicion = new Medicion();
 $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+ $smarty->assign("mediciones", $mediciones);
 if ($mediciones)
 {
     $smarty->assign('mediciones', $mediciones);
@@ -74,7 +75,6 @@ if ($mediciones)
     $panel->periodicidad = "anual";
     $paneles[] = clone($panel);
     $smarty->assign("paneles", $paneles);
-    $smarty->assign("mediciones", $mediciones);
 }
 //array de subunidades con las mediciones y sus valores
 $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);

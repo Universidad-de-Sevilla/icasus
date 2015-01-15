@@ -56,39 +56,39 @@
                 </tbody>
             </table>
         </div>
-    {else}
-        <div class="alert alert_blue">
-            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-            {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
-        </div>
-    {/if}
-</div>
-
-<div style="opacity: 1;" class="box grid_16">
-
-    <h2 class="box_head">{$smarty.const.TXT_VAL_TABLA}</h2>
-    <div style="opacity: 1;" class="block">
-        <table class="static">
-            <thead>
-                <tr>
-                    <th></th>
-                        {foreach from=$mediciones item=medicion}
-                        <th>{$medicion->etiqueta}</th>
-                        {/foreach}
-                </tr>
-            </thead>
-            <tbody>
-                {foreach from=$subunidades_mediciones item=subunidades}
-                    <tr><td>{$subunidades->etiqueta}</td>
-                        {foreach from=$subunidades->mediciones item=medicion}
-                            <td>{if $medicion->medicion_valor == '--'} -- {else}{if $medicion->medicion_valor->valor != NULL}{$medicion->medicion_valor->valor|round:"2"}{/if}{/if}</td>
-                        {/foreach}
-                    </tr>
-                {/foreach}
-            </tbody>
-        </table>
     </div>
-</div>
+
+    <div style="opacity: 1;" class="box grid_16">
+        <h2 class="box_head">{$smarty.const.TXT_VAL_TABLA}</h2>
+        <div style="opacity: 1;" class="block">
+            <table class="static">
+                <thead>
+                    <tr>
+                        <th></th>
+                            {foreach from=$mediciones item=medicion}
+                            <th>{$medicion->etiqueta}</th>
+                            {/foreach}
+                    </tr>
+                </thead>
+                <tbody>
+                    {foreach from=$subunidades_mediciones item=subunidades}
+                        <tr><td>{$subunidades->etiqueta}</td>
+                            {foreach from=$subunidades->mediciones item=medicion}
+                                <td>{if $medicion->medicion_valor == '--'} -- {else}{if $medicion->medicion_valor->valor != NULL}{$medicion->medicion_valor->valor|round:"2"}{/if}{/if}</td>
+                            {/foreach}
+                        </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{else}
+    <div class="alert alert_blue">
+        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+        {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
+    </div>
+{/if}
 
 <script src="js/highcharts.js" type="text/javascript"></script>
 <script src="js/highchartStruct.js" type="text/javascript"></script>
