@@ -3,26 +3,28 @@
 </h3>
 <div class="box grid_16">
     <div class="block">	
-        {if $procesos}                   
-            <table class="static"> 
-                <thead>                       
-                    <tr class="gradeX"><th>{$smarty.const.FIELD_ID}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_PROPIETARIO}</th></tr>
-                </thead>                      
-                <tbody>                       
-                    {foreach from=$procesos item=proceso}
-                        <tr class="gradeX">    
-                            <td>{$proceso->id}</td>
-                            <td nowrap>{$proceso->codigo}</td>
-                            <td><a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">{$proceso->nombre}</a></td>
-                            <td>
-                                {$proceso->propietario->nombre}
-                                {$proceso->propietario->apellidos}
-                                <!--<a href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}"></a>-->
-                            </td>               
-                        </tr>
-                    {/foreach}
-                </tbody>
-            </table>
+        {if $procesos}  
+            <div id="dt1" class="no_margin">
+                <table class="display datatable"> 
+                    <thead>                       
+                        <tr class="gradeX"><th>{$smarty.const.FIELD_ID}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_PROPIETARIO}</th></tr>
+                    </thead>                      
+                    <tbody>                       
+                        {foreach from=$procesos item=proceso}
+                            <tr class="gradeX">    
+                                <td>{$proceso->id}</td>
+                                <td nowrap>{$proceso->codigo}</td>
+                                <td><a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">{$proceso->nombre}</a></td>
+                                <td>
+                                    {$proceso->propietario->nombre}
+                                    {$proceso->propietario->apellidos}
+                                    <!--<a href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}"></a>-->
+                                </td>               
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
         {else}
             <div class="section">
                 <p>{$smarty.const.MSG_UNID_NO_PROC}</p>

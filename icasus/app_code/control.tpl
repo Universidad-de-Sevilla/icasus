@@ -43,4 +43,3 @@
     <script src="theme/danpin/scripts/adminica/adminica_datatables.js" type="text/javascript"></script>
     {include file="control_valores.tpl"}
 {/if}
-<script src="js/control_valores.js" type="text/javascript"></script>

@@ -2,7 +2,7 @@
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_USERS_ASIG}</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
-    <form action='index.php?page=entidad_despoblar&id_entidad={$entidad->id}' method='post' class='formdiv' name='formdiv'>
+    <form action='index.php?page=entidad_despoblar&id_entidad={$entidad->id}' method='post' class='formdiv' name='formdiv' onsubmit="return confirm('{$smarty.const.MSG_USERS_CONFIRM_DESVINC}');">
         <div id="dt1" class="no_margin">
             <table class="display datatable">
                 <thead>
@@ -23,7 +23,7 @@
         </div>
         <div class="button_bar clearfix">
             <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
-                    onclick="history.back();">
+                    onclick="location.href = 'index.php?page=entidad_datos&id_entidad={$entidad->id}';">
                 <div class="ui-icon ui-icon-closethick"></div>
                 <span>{$smarty.const.TXT_CANCEL}</span>
             </button>

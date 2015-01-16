@@ -35,7 +35,7 @@
     <a href="#" class="toggle"></a>
     <div class="toggle_container">  
         <div class="block">
-            <form action='index.php?page=entidad_poblar&id_entidad={$entidad->id}' method='post' name='formpoblar' class='validate_form'>     
+            <form action='index.php?page=entidad_poblar&id_entidad={$entidad->id}' method='post' name='formpoblar' class='validate_form' onsubmit="return confirm('{$smarty.const.MSG_USERS_CONFIRM_VINC}');">     
                 <div id="dt1" class="no_margin">
                     <table class="display datatable">
                         <thead>
@@ -69,7 +69,7 @@
                 </fieldset>
                 <div class="button_bar clearfix">
                     <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
-                            onclick="history.back();">
+                            onclick="location.href = 'index.php?page=entidad_datos&id_entidad={$entidad->id}';">
                         <div class="ui-icon ui-icon-closethick"></div>
                         <span>{$smarty.const.TXT_CANCEL}</span>
                     </button>

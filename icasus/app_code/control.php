@@ -1,5 +1,7 @@
 <?php
 
+global $smarty;
+global $plantilla;
 //$modulo = sanitize($_REQUEST["modulo"], SQL);
 //$id_entidad = sanitize($_REQUEST["id_entidad"], SQL);
 
@@ -30,6 +32,28 @@ if ($modulo == 'inicio')
     $valores = $valor->filtro_onlyear($fecha, $cadena);
     $smarty->assign("valores", $valores);
     $smarty->assign("id_entidad", $id_entidad);
+
+    //Comprobamos si existen valores a desactivar
+    if (filter_has_var(INPUT_POST, 'id_valor'))
+    {
+        $post_array = filter_input_array(INPUT_POST);
+        $id_valores = $post_array['id_valor'];
+        if ($id_valores)
+        {
+            $contador = 0;
+            foreach ($id_valores as $id_valor)
+            {
+                $id_val = filter_var($id_valor);
+                $valor->load("id = $id_val");
+                $valor->activo = 0;
+                $valor->Save();
+                $contador ++;
+            }
+            $aviso = MSG_VALS_DESACT . ' ' . $contador . ' ' . TXT_VALS;
+            $smarty->assign("aviso", $aviso);
+            header("index.php?page=control&modulo=inicio&id_entidad=$entidad->id&aviso=$aviso");
+        }
+    }
 }
 
 //------------------------------------------------------------------------------
@@ -50,13 +74,20 @@ if ($modulo == 'filtrOnlyear')
 
 if ($modulo == 'desactivar_valor')
 {
-    $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
-    $valor = new Valor();
-    $valor->load("id = $id_valor");
-    $valor->activo = 0;
-    $valor->Save();
-    $valores = $valor->filtro_onlyear($fecha, $cadena);
-    $smarty->assign("valores", $valores);
+    $post_array = filter_input_array(INPUT_POST);
+//    $id_valores = $post_array['id_valor'];
+//    if ($id_valores)
+//    {
+//        $contador = 0;
+//        foreach ($id_valores as $id_valor)
+//        {
+//            $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
+//            
+//            $valor->load("id = $id_valor");
+//            $valor->activo = 0;
+//            $valor->Save();
+//        }
+//    }
 }
 
 //------------------------------------------------------------------------------

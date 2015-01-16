@@ -38,10 +38,6 @@
 
 <div style="opacity: 1;" class="box grid_16">
     <h2 class="box_head">{$smarty.const.TXT_RANGO_FECHAS}</h2>
-    <div class="controls">
-        <a href="#" class="grabber"></a>
-        <a href="#" class="toggle"></a>
-    </div>
     <div style="display: block;" class="toggle_container">
         <div style="opacity: 1;" class="block">
             <form method="post" action="">

@@ -40,7 +40,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
             $contador ++;
         }
         $aviso = MSG_UNID_USERS_BORRADOS . ' ' . $contador . ' ' . TXT_USERS;
-        header("location:index.php?page=entidad_datos&id_entidad=$id_entidad&aviso=$aviso");
+        header("location:index.php?page=entidad_despoblar&id_entidad=$id_entidad&aviso=$aviso");
 //        $plantilla = 'entidad_datos.tpl';
     }
     else

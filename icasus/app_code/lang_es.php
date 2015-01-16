@@ -321,6 +321,7 @@ define('TXT_USER_LIST', 'Lista de Usuarios');
 define('TXT_USER_DAT', 'Datos del Usuario');
 
 //Valores
+define('TXT_VALS', 'Valores');
 define('TXT_VAL_EDIT', 'Edición de Valores');
 define('TXT_VAL_AGREGAR', 'Agregar Valor');
 define('TXT_VALS_EDIT', 'Editar Valores');
@@ -331,6 +332,7 @@ define('TXT_VAL_TABLA', 'Tabla de Valores');
 define('TXT_VAL_REF_EDIT', 'Editar Valor de Referencia');
 define('TXT_VAL_REF_CREAR', 'Crear nuevos Valores de Referencia');
 define('TXT_VAL_REF_NUEVO', 'Nueva Referencia');
+define('TXT_VALS_DESACT', 'Desactivar Valores');
 
 //Visibilidad, permisos
 define('TXT_TODOS', 'Todos');
@@ -435,12 +437,16 @@ define('MSG_PROC_ARCHIVO_NO', 'No se han subido archivos para este Proceso.');
 define('MSG_USER_BORRADO', 'Se ha borrado el Usuario.');
 define('MSG_USER_CREADO', 'Se ha creado un nuevo Usuario en el sistema.');
 define('MSG_USER_EDITADO', 'El Usuario se ha modificado correctamente.');
+define('MSG_USERS_CONFIRM_VINC', '¿Desea vincular a la Unidad los Usuarios marcados?');
+define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la Unidad los Usuarios marcados?');
 
 //Valores
 define('MSG_VAL_BORRADO', 'Se ha borrado un Valor.');
 define('MSG_VAL_EXPORT', 'Exportando Valores para:');
 define('MSG_VAL_GRABAR', 'El Valor se ha grabado correctamente.');
 define('MSG_VAL_DESACT', 'Desea desactivar el Valor (control) del siguiente Indicador:');
+define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los Valores marcados?');
+define('MSG_VALS_DESACT', 'Se han desactivado:');
 
 //----------------------------------------------------------------------------------
 //ERRORES: ERR_[Nombre]
