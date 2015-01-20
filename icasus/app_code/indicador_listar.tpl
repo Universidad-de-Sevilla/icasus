@@ -10,11 +10,14 @@
     -->
 </h3>
 {if $indicadores}
-    <div class="box grid_16 single_datatable">
+    <div class="box grid_16">
         <div id="dt1" class="no_margin">
             <table class='display datatable'>
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_PROC}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_INDIC}</th>
+                    <tr>
+                        <th>{$smarty.const.FIELD_PROC}</th>
+                        <th>{$smarty.const.FIELD_COD}</th>
+                        <th>{$smarty.const.FIELD_INDIC}</th>
                         <th>{$smarty.const.FIELD_RESP}</th>
                         <!--
                         <th>Acciones</th>
@@ -49,5 +52,7 @@
         </div>
     </div>  
 {else}
-    <p class='aviso'>{$smarty.const.MSG_UNID_NO_INDIC}</p>
-{/if}
+    <div class="alert alert_blue"> 
+        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
+        {$smarty.const.MSG_UNID_NO_INDIC}</div>
+    {/if}

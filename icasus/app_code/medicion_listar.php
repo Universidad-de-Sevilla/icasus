@@ -42,7 +42,7 @@ $smarty->assign('tipo', $tipo);
 
 $medicion = new Medicion();
 $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio");
- $smarty->assign("mediciones", $mediciones);
+$smarty->assign("mediciones", $mediciones);
 if ($mediciones)
 {
     $smarty->assign('mediciones', $mediciones);
@@ -58,7 +58,7 @@ if ($mediciones)
         $panel->id = 2;
         $panel->tipo->clase_css = "lineal";
         $panel->ancho = 8;
-        $panel->nombre = $indicador->nombre . " (" . $anio_inicio . " - " . $anio_fin . ")";
+        $panel->nombre = TXT_2_ULT_ANYO;
         $panel->fecha_inicio = $anio_inicio . "-01-01";
         $panel->fecha_fin = date("Y-m-d");
         $panel->periodicidad = "todos";
@@ -69,7 +69,7 @@ if ($mediciones)
     $anio_fin = date('Y') - 1;
     $panel->id = 1;
     $panel->tipo->clase_css = "lineal";
-    $panel->nombre = $indicador->nombre . " (" . $anio_inicio . " - " . $anio_fin . ")";
+    $panel->nombre = TXT_HISTORICO;
     $panel->fecha_inicio = $indicador->historicos . "-01-01";
     $panel->fecha_fin = $anio_fin . "-12-31";
     $panel->periodicidad = "anual";

@@ -188,10 +188,11 @@ define('TXT_MED_BORRAR', 'Borrar Medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las Mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las Mediciones.');
 define('TXT_MED_PROGRAM', 'Programar Medición');
-define('TXT_MED_VALORES', 'Valor o conjunto de valores de la Medición actual');
+define('TXT_MED_VALORES', 'Valor o Conjunto de Valores de la Medición Actual');
 define('TXT_MED_DATOS', 'Datos de la Medición');
 define('TXT_MED_GESTION', 'Gestión de Mediciones');
 define('TXT_MED_AGREGAR', 'Agregar Medición');
+define('TXT_MED_TABLA', 'Tabla de Mediciones');
 
 //Menú Principal
 define('TXT_INICIO', 'Inicio');
@@ -444,7 +445,6 @@ define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la Unidad los Usuari
 define('MSG_VAL_BORRADO', 'Se ha borrado un Valor.');
 define('MSG_VAL_EXPORT', 'Exportando Valores para:');
 define('MSG_VAL_GRABAR', 'El Valor se ha grabado correctamente.');
-define('MSG_VAL_DESACT', 'Desea desactivar el Valor (control) del siguiente Indicador:');
 define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los Valores marcados?');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 

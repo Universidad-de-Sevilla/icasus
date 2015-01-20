@@ -53,11 +53,10 @@
 
 </style>
 
-<div class="box grid_16 single_datatable">
+<div class="box grid_16">
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_CONSULT_PARAM}</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
-
     <div class ="columns clearfix">
         <!-- El buscador de datos e indicadores -->
         <div class="col_50 no_border">
@@ -159,10 +158,10 @@
         <div class="section">
             <ul class="mediciones">
                 <li><a href="#" class="medicion actual">{$smarty.const.TXT_TODOS}</a></li>
-                {$anyo_actual = $smarty.now|date_format:'%Y'}
-                {for $anyo = $anyo_actual - 5 to $anyo_actual}
+                    {$anyo_actual = $smarty.now|date_format:'%Y'}
+                    {for $anyo = $anyo_actual - 5 to $anyo_actual}
                     <li><a href="#" class="medicion">{$anyo}</a></li>
-                {/for}
+                    {/for}
             </ul>
         </div>
 

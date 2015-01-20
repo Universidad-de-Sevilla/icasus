@@ -20,31 +20,17 @@
                 <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> 
             </div>
+
+            <!-- GRÁFICAS -->
             <div style="margin:10px;">
-                <!-- GRÁFICAS -->
                 {if $mediciones}
-
-                    <!--
-                    <div class="highchart" id="anuales" style="width:100%;" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-fecha_inicio="{$indicador->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"> </div>
-                    </div>
-                
-                    {if $indicador->periodicidad != "Anual"}
-                      <div style="background: white; padding:20px 40px; margin:10px;">
-                        <h3 style="margin: 0 0 20px 0;">Dos últimos años ({$smarty.now|date_format:'%Y' - 1} / {$smarty.now|date_format:'%Y'})</h3>
-                        <div class="highchart" id="ultimas" data-id_indicador="{$indicador->id}" data-nombre_indicador="{$indicador->nombre}" data-periodicidad="todos" data-fecha_inicio="{$smarty.now|date_format:'%Y' - 2}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y-%m-%d'}" data-periodicidad="todos"></div>
-                      </div>
-                    {/if}
-                    -->
-
                     {if $paneles}
                         {foreach $paneles as $panel}
                             <div class="box grid_{$panel->ancho}" style="float:left;">
                                 <div class="block alturo" style="height:320px">
-                                    <!--
                                     <div class="titulo-panel">
-                                      <strong>{$panel->nombre}</strong>
+                                        <strong>{$panel->nombre}</strong>
                                     </div>
-                                    -->
                                     <div class="section">
                                         <div class="highchart {$panel->tipo->clase_css}" 
                                              id="panel_{$panel->id}" 
@@ -64,8 +50,9 @@
                         {$smarty.const.MSG_INDIC_NO_VAL}
                     </div>
                 {/if}
-                <!-- //GRÁFICAS -->
             </div>
+            <!-- //GRÁFICAS -->
+
         </div><!-- //.block -->
     </div><!-- //toggle_container -->
 </div><!-- //box grid_16 -->
@@ -250,7 +237,7 @@
                     {if $indicador_subunidades}
                         <ul>
                             {foreach $indicador_subunidades as $indicador_subunidad}
-                                <li><a href="index.php?entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->nombre}</a></li>
+                                <li><a href="index.php?page=entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->nombre}</a></li>
                                 {/foreach}
                         </ul>
                     {else}

@@ -8,23 +8,17 @@
         </fieldset>
         <fieldset>
             <div class="clearfix">
-                <input type="button" id="imgEdit" name="imgEdit" value="{$smarty.const.TXT_EDIT}" onclick="
-                                        document.forms[0].notas.readOnly = false;
-                                        document.forms[0].notas.style.backgroundColor = '#eee';
-                                        document.forms[0].notas.style.border = '1px solid #666';
-                                        document.getElementById('imgEdit').style.display = 'none';
-                                        document.getElementById('imgSave').style.display = 'inline';
-                                        document.getElementById('notas').focus();
-                       " />
+                <input type="button" id="imgEdit" name="imgEdit" value="{$smarty.const.TXT_EDIT}" 
+                       onclick="document.forms[0].notas.readOnly = false;
+                               document.forms[0].notas.style.backgroundColor = '#eee';
+                               document.forms[0].notas.style.border = '1px solid #666';
+                               document.getElementById('imgEdit').style.display = 'none';
+                               document.getElementById('imgSave').style.display = 'inline';
+                               document.getElementById('notas').focus();" />
             </div>
         </fieldset>
         <fieldset>
             <div class="clearfix">
-                <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
-                        onclick="history.back();">
-                    <div class="ui-icon ui-icon-closethick"></div>
-                    <span>{$smarty.const.TXT_CANCEL}</span>
-                </button>
                 <input type="submit" id="imgSave" name="imagSave" value="{$smarty.const.TXT_BTN_GRABAR_NOTA}" class="send_right" >
             </div>
         </fieldset>

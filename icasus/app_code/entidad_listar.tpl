@@ -7,7 +7,13 @@
             <div class="block">
                 <div id="dt1" class="no_margin">
                     <table class="display datatable">
-                        <thead><tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_UNID}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>{$smarty.const.FIELD_COD}</th>
+                                <th>{$smarty.const.FIELD_UNID}</th>
+                                <th>{$smarty.const.FIELD_ACCIONES}</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             {foreach from=$entidades_usuario item=entidad}
                                 <tr>

@@ -68,10 +68,14 @@
         <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" ><img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF_CREAR}</a> 
     </div>
     <div id="dt1" class="no_margin">
-        <table class='static'>
+        <table class='display datatable'>
             <thead>
                 <tr>
-                    <th>{$smarty.const.FIELD_ETIQUETA}</th><th>{$smarty.const.FIELD_VAL_REF}</th><th>{$smarty.const.FIELD_VISIB_GRAFIC}</th><th>{$smarty.const.FIELD_ACTIVO}</th></tr>
+                    <th>{$smarty.const.FIELD_ETIQUETA}</th>
+                    <th>{$smarty.const.FIELD_VAL_REF}</th>
+                    <th>{$smarty.const.FIELD_VISIB_GRAFIC}</th>
+                    <th>{$smarty.const.FIELD_ACTIVO}</th>
+                </tr>
             </thead>
             <tbody>
                 {foreach from=$indicador->valores_referencia item=item}

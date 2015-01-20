@@ -6,6 +6,7 @@
         </div>
     </div>
 </div>
+
 <!-- división modal asignar una unidad a una medición -->
 <div id="modal_asignar_una_medicion" class="dialog_content narrow ui-dialog-content ui-widget-content">
     <div class="block" style="opacity: 1;" >
@@ -16,6 +17,7 @@
         </div>
     </div>
 </div>
+
 <!-- división modal confirmacion de desactivación de las mediciones completas de una subuniadad para un indicador -->
 <div id="modal_activar_all" class="dialog_content narrow ui-dialog-content ui-widget-content">
     <div class="block" style="opacity: 1;" >
@@ -30,10 +32,10 @@
 
 <!-- división seleccionar periodos a consultar -->
 <div>
-    <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-            src='/icons/ff16/time.png' />{$smarty.const.TXT_MED_MOSTRAR}</a> &nbsp; &nbsp;
     <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-            src='/icons/ff16/chart_curve.png' />{$smarty.const.TXT_VOLVER} {$tipo}</a> &nbsp;
+            src='/icons/ff16/chart_curve.png' />{$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
+    <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+            src='/icons/ff16/time.png' />{$smarty.const.TXT_MED_MOSTRAR}</a> 
 </div>
 
 <div style="opacity: 1;" class="box grid_16">

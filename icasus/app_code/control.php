@@ -19,7 +19,7 @@ if ($num_subunidades == 0)
 }
 else
 {
-    $cadena = "AND e.id_madre = $id_entidad ";
+    $cadena = "AND (e.id_madre = $id_entidad OR e.id= $id_entidad)";
 }
 $fecha = date("Y");
 
@@ -97,11 +97,6 @@ if ($modulo == 'desactivar_valor')
 $indicador = new Indicador();
 $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad);
 $proceso = new Proceso();
-//TODO sacar nombres de entidad y códigos de proceso
-//foreach ($indicadores_sin_med as $ind)
-//{
-//    
-//}
 $smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 
 $smarty->assign("modulo", $modulo);

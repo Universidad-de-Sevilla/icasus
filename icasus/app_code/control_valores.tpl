@@ -40,33 +40,20 @@
 <table class="display datatable"> 
     <thead>
         <tr>
-           <!-- <th>{$smarty.const.FIELD_PROC}</th>
-            <th>{$smarty.const.FIELD_UNID}</th>-->
+            <th>{$smarty.const.FIELD_PROC}</th>        
             <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.TXT_DATO}</th>
         </tr>
     </thead>
     <tbody>
         {foreach from=$indicadores_sin_med item=indicador}
             <tr>
-                <!--<td>{$indicador.id_proceso}</td>
-                <td>{$indicador.id_entidad}</td>-->
+                <td>{$indicador.proceso}</td>
                 <td>
-                    <a href="index.php?page=indicador_mostrar&id_indicador={$indicador.id}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador.nombre}</a>
+                    <a href="index.php?page=indicador_mostrar&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">
+                        {$indicador.indicador}
+                    </a>
                 </td>
             </tr>
         {/foreach}
     </tbody>	
 </table>
-
-<!-- dialogo para cancelar el control de valores -->
-<div class="display_none">
-    <div id="dialogo_cancelar_control" class="dialog_content narrow ui-dialog-content ui-widget-content" >
-        <div class="block" style="opacity: 1;" >
-            <div class="section" style="padding:20px">
-                <p>{$smarty.const.MSG_VAL_DESACT} "<b><span id="nombre_unid"></span> - <span id="nombre_val"></span></b>" </p>
-            </div>
-        </div>
-    </div>
-</div>
-
-

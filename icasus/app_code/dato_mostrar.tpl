@@ -22,45 +22,35 @@
             </div>
 
             <!-- GRÁFICAS -->
-            {if $mediciones}
-                <div style="background: white; margin:10px;">
-                    <h3 style="margin: 0 0 20px 0;">{$smarty.const.TXT_HISTORICO}</h3>
-                </div>
-
-                {if $dato->periodicidad != "Anual"}
-                    <div style="background: white; margin:10px;">
-                        <h3 style="margin: 0 0 20px 0;">{$smarty.const.TXT_2_ULT_ANYO} ({$smarty.now|date_format:'%Y' - 1} / {$smarty.now|date_format:'%Y'})</h3>
-                    </div>
-                {/if}
-
-                {if $paneles}
-                    {foreach $paneles as $panel}
-                        <div class="box grid_{$panel->ancho}" style="float:left;">
-                            <div class="block alturo" style="height:320px">
-                                <!--
-                                <div class="titulo-panel">
-                                  <strong>{$panel->nombre}</strong>
-                                </div>
-                                -->
-                                <div class="section">
-                                    <div class="highchart {$panel->tipo->clase_css}" 
-                                         id="panel_{$panel->id}" 
-                                         data-id_indicador="{$dato->id}" 
-                                         data-nombre_indicador="{$dato->nombre}" 
-                                         data-fecha_inicio="{$panel->fecha_inicio}" 
-                                         data-fecha_fin="{$panel->fecha_fin}" 
-                                         data-periodicidad="{$panel->periodicidad}"></div>
+            <div style="margin:10px;">
+                {if $mediciones}
+                    {if $paneles}
+                        {foreach $paneles as $panel}
+                            <div class="box grid_{$panel->ancho}" style="float:left;">
+                                <div class="block alturo" style="height:320px">
+                                    <div class="titulo-panel">
+                                        <strong>{$panel->nombre}</strong>
+                                    </div>
+                                    <div class="section">
+                                        <div class="highchart {$panel->tipo->clase_css}" 
+                                             id="panel_{$panel->id}" 
+                                             data-id_indicador="{$dato->id}" 
+                                             data-nombre_indicador="{$dato->nombre}" 
+                                             data-fecha_inicio="{$panel->fecha_inicio}" 
+                                             data-fecha_fin="{$panel->fecha_fin}" 
+                                             data-periodicidad="{$panel->periodicidad}"></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    {/foreach}
+                        {/foreach}
+                    {/if}
+                {else}
+                    <div class="alert alert_blue">
+                        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                        {$smarty.const.MSG_INDIC_NO_VAL}
+                    </div>
                 {/if}
-            {else}
-                <div class="alert alert_blue">
-                    <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-                    {$smarty.const.MSG_INDIC_NO_VAL}
-                </div>
-            {/if}
+            </div>
             <!-- //GRÁFICAS -->
 
         </div><!-- //.block -->
@@ -183,7 +173,7 @@
                     {if $dato_subunidades}
                         <ul>
                             {foreach $dato_subunidades as $dato_subunidad}
-                                <li><a href="index.php?entidad_datos&id_entidad={$dato_subunidad->entidad->id}">{$dato_subunidad->entidad->nombre}</a></li>
+                                <li><a href="index.php?page=entidad_datos&id_entidad={$dato_subunidad->entidad->id}">{$dato_subunidad->entidad->nombre}</a></li>
                                 {/foreach}
                         </ul>
                     {else}

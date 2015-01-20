@@ -1,6 +1,6 @@
 <div class="box grid_16">
     <div class="block">	
-        <div class="section clearfix" style="padding:5px;">
+        <div class="button_bar clearfix" style="padding:5px;">
            <!--<a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'>
                 <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/><span> {$smarty.const.TXT_PROC_LIST}</span></a>&nbsp;&nbsp;-->
             <a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'>
@@ -14,7 +14,6 @@
                 <img src='/icons/ff16/chart_curve_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_INDIC_CREAR}</span></a>&nbsp;&nbsp;
             <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                 <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span> </a>
-
         </div>
     </div>
 </div>
@@ -25,7 +24,6 @@
         <a href="#" class="grabber"></a>
         <a href="#" class="toggle"></a>
         <div class="block">
-
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_PROC_MADRE}</label>
                 <div>
@@ -148,33 +146,38 @@
     </div>
 </div>
 
-
 <div class="box grid_16">
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_PROC_INDICS}</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
     <div class="block">	
         {if $indicadores}
-            <table class="static"> 
-                <thead>
-                    <tr><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_INDIC}</th><th>{$smarty.const.FIELD_RESP}</th></tr>
-                </thead>
-                <tbody>
-                    {foreach from=$indicadores item=indicador} 
+            <div id="dt1" class="no_margin">
+                <table class="display datatable"> 
+                    <thead>
                         <tr>
-                            <td>{$indicador->codigo}</td>
-                            <td>
-                                <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>{$indicador->nombre}</a>
-                                <a href='#' title='{$indicador->descripcion}'><big>*</big></a>
-                            </td>
-                            <td>
-                                {$indicador->responsable->nombre} {$indicador->responsable->apellidos}
-                                 <!--<a href='index.php?page=usuario_datos&id_usuario={$indicador->id_responsable}'></a>-->
-                            </td>
+                            <th>{$smarty.const.FIELD_COD}</th>
+                            <th>{$smarty.const.FIELD_INDIC}</th>
+                            <th>{$smarty.const.FIELD_RESP}</th>
                         </tr>
-                    {/foreach}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {foreach from=$indicadores item=indicador} 
+                            <tr>
+                                <td>{$indicador->codigo}</td>
+                                <td>
+                                    <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>{$indicador->nombre}</a>
+                                    <a href='#' title='{$indicador->descripcion}'><big>*</big></a>
+                                </td>
+                                <td>
+                                    {$indicador->responsable->nombre} {$indicador->responsable->apellidos}
+                                     <!--<a href='index.php?page=usuario_datos&id_usuario={$indicador->id_responsable}'></a>-->
+                                </td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
         {else}
             <div class='alert alert_blue'>
                 <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
@@ -200,22 +203,27 @@
         <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_PROC_ARCHIVOS}</h2>
         <a href="#" class="grabber"></a>
         <a href="#" class="toggle"></a>
-        <div class="block">	
-            <table class="static"> 
-                <thead>
-                    <tr><th>{$smarty.const.FIELD_TITULO}</th><th>{$smarty.const.FIELD_USER}</th></tr>
-                </thead>
-                <tbody>
-                    {foreach from=$archivos item=archivo} 
+        <div class="block">
+            <div id="dt1" class="no_margin">
+                <table class="display datatable"> 
+                    <thead>
                         <tr>
-                            <td><a href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo|htmlentities}</a> 
-                                {if $archivo->descripcion != NULL}<a href='#' title='{$archivo->descripcion}'><big>*</big></a>{/if}
-                            </td>
-                            <td>{$archivo->usuario->nombre|htmlentities} {$archivo->usuario->apellidos|htmlentities}</td>
+                            <th>{$smarty.const.FIELD_TITULO}</th>
+                            <th>{$smarty.const.FIELD_USER}</th>
                         </tr>
-                    {/foreach}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {foreach from=$archivos item=archivo} 
+                            <tr>
+                                <td><a href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo|htmlentities}</a> 
+                                    {if $archivo->descripcion != NULL}<a href='#' title='{$archivo->descripcion}'><big>*</big></a>{/if}
+                                </td>
+                                <td>{$archivo->usuario->nombre|htmlentities} {$archivo->usuario->apellidos|htmlentities}</td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>	
 {/if}
@@ -226,24 +234,31 @@
         <a href="#" class="grabber"></a>
         <a href="#" class="toggle"></a>
         <div class="block">	
-            <table class="static"> 
-                <thead>
-                    <tr><th>{$smarty.const.FIELD_SUBPROC}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_PROPIETARIO}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
-                </thead>
-                <tbody>
-                    {foreach from=$subprocesos item=subproceso}
+            <div id="dt1" class="no_margin">
+                <table class="display datatable"> 
+                    <thead>
                         <tr>
-                            <td>{$subproceso->codigo}</td>
-                            <td>{$subproceso->nombre}</td>
-                            <td>{$subproceso->propietario->nombre} {$subproceso->propietario->apellidos}</td>
-                            <td><a href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">{$smarty.const.TXT_VER}</a>
-                                - <a href="index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">{$smarty.const.TXT_EDIT}</a>
-                                - <a href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'
-                                     onClick='return confirmar();'>{$smarty.const.TXT_BORRAR}</a></td>
+                            <th>{$smarty.const.FIELD_SUBPROC}</th>
+                            <th>{$smarty.const.FIELD_NOMBRE}</th>
+                            <th>{$smarty.const.FIELD_PROPIETARIO}</th>
+                            <th>{$smarty.const.FIELD_ACCIONES}</th>
                         </tr>
-                    {/foreach}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {foreach from=$subprocesos item=subproceso}
+                            <tr>
+                                <td>{$subproceso->codigo}</td>
+                                <td>{$subproceso->nombre}</td>
+                                <td>{$subproceso->propietario->nombre} {$subproceso->propietario->apellidos}</td>
+                                <td><a href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">{$smarty.const.TXT_VER}</a>
+                                    - <a href="index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">{$smarty.const.TXT_EDIT}</a>
+                                    - <a href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'
+                                         onClick='return confirmar();'>{$smarty.const.TXT_BORRAR}</a></td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>		
 {/if}

@@ -7,7 +7,12 @@
             <div id="dt1" class="no_margin">
                 <table class="display datatable"> 
                     <thead>                       
-                        <tr class="gradeX"><th>{$smarty.const.FIELD_ID}</th><th>{$smarty.const.FIELD_COD}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_PROPIETARIO}</th></tr>
+                        <tr class="gradeX">
+                            <th>{$smarty.const.FIELD_ID}</th>
+                            <th>{$smarty.const.FIELD_COD}</th>
+                            <th>{$smarty.const.FIELD_NOMBRE}</th>
+                            <th>{$smarty.const.FIELD_PROPIETARIO}</th>
+                        </tr>
                     </thead>                      
                     <tbody>                       
                         {foreach from=$procesos item=proceso}

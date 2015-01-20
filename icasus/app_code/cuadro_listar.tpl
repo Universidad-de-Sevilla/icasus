@@ -9,7 +9,12 @@
         <div id="dt1" class="no_margin">
             <table class="display datatable"> 
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_VISIBILIDAD}</th><th>{$smarty.const.FIELD_COMENTARIOS}</th><!--<th>Acciones</th>--></tr>
+                    <tr>
+                        <th>{$smarty.const.FIELD_NOMBRE}</th>
+                        <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
+                        <th>{$smarty.const.FIELD_COMENTARIOS}</th>
+                        <!--<th>Acciones</th>-->
+                    </tr>
                 </thead>
                 <tbody>
                     {foreach from=$cuadros_propios item=cuadro}
@@ -26,7 +31,7 @@
 
 {else}
     <h3>{$smarty.const.MSG_CUADRO_MANDO_NO_DEF}<a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_CUADRO_NUEVO}"> {$smarty.const.TXT_A_Q_ESPERAS}</a></h3>
-    {/if}
+{/if}
 
 {if $cuadros_publicos|count > 0}
 
@@ -35,7 +40,12 @@
         <div id="dt1" class="no_margin">
             <table class="display datatable"> 
                 <thead>
-                    <tr><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_VISIBILIDAD}</th><th>{$smarty.const.FIELD_COMENTARIOS}</th><!--<th>Acciones</th>--></tr>
+                    <tr>
+                        <th>{$smarty.const.FIELD_NOMBRE}</th>
+                        <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
+                        <th>{$smarty.const.FIELD_COMENTARIOS}</th>
+                        <!--<th>Acciones</th>-->
+                    </tr>
                 </thead>
                 <tbody>
                     {foreach from=$cuadros_publicos item=cuadro}

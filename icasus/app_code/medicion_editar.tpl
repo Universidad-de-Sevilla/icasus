@@ -149,7 +149,7 @@
         {
             event.preventDefault();
             var url = $(this).attr('href');
-            var confirm_box = confirm('Pulse "Aceptar" para borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición.');
+            var confirm_box = confirm('Pulse "Aceptar" para borrar esta Medición. Recuerde que se borrarán los Valores y los Valores de Referencia recogidos para esta Medición.');
             if (confirm_box)
             {
                 window.location = url;
