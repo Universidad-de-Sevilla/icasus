@@ -39,7 +39,7 @@ $entidad->load("id = $indicador->id_entidad");
 $smarty->assign('entidad', $entidad);
 $smarty->assign('tipo', $tipo);
 
-
+//Simplemente ver si hay mediciones
 $medicion = new Medicion();
 $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio");
 $smarty->assign("mediciones", $mediciones);

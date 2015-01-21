@@ -5,7 +5,7 @@ var idIndicador = $("#container").data("id_indicador");
 var nomIndicador = $("#container").data("nombre_indicador");
 var chartSerie = new HighchartSerie();
 var totales = [];
-// Consulta a la base de dato
+// Consulta a la base de datos
 $.ajax({
     url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador,
     type: "GET",

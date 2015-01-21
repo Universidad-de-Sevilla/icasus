@@ -34,6 +34,8 @@ if ($modulo == 'propio')
     $medicion = new Medicion();
     $mediciones_indicador = array();
     $paneles_indicador = array();
+    $smarty->assign("mediciones_indicador", $mediciones_indicador);
+    $smarty->assign("paneles_indicador", $paneles_indicador);
     foreach ($indicadores as $indicador)
     {
         $mediciones_indicador[$indicador->id] = $medicion->Find("id_indicador = $indicador->id");
@@ -68,8 +70,7 @@ if ($modulo == 'propio')
             $paneles_indicador[$indicador->id][] = clone($panel);
         }
     }
-    $smarty->assign("mediciones_indicador", $mediciones_indicador);
-    $smarty->assign("paneles_indicador", $paneles_indicador);
+    
 }
 
 //Módulo de segregado

@@ -26,7 +26,7 @@
                     <li>
                         <a href="#" class="handle"></a>
                         <h3 class="bar"  tipo="propio" id="{$item->id}"><a href="javascript:void(0)">{$smarty.const.FIELD_PROC}: {$item->nombre}</a></h3>
-                        <div class="content" id="contenedor_propio_{$item->id}">	</div>
+                        <div class="content" id="contenedor_propio_{$item->id}"></div>
                     </li>
                 {/foreach}
             </ul>
@@ -45,7 +45,7 @@
                     <li>
                         <a href="#" class="handle"></a>
                         <h3 class="bar" tipo="segregado" id="{$item.id_proceso}"><a href="javascript:void(0)">{$smarty.const.FIELD_PROC}: {$item.nombre_proceso} ({$item.nombre_entidad})</a></h3>
-                        <div class="content" id="contenedor_segregado_{$item.id_proceso}"> </div>
+                        <div class="content" id="contenedor_segregado_{$item.id_proceso}"></div>
                     </li>
                 {/foreach}
             </ul>
@@ -64,7 +64,7 @@
                     <li>
                         <a href="#" class="handle"></a>
                         <h3 class="bar"  tipo="superior" id="{$item->id}"><a href="javascript:void(0)">{$smarty.const.FIELD_PROC}: {$item->nombre}</a></h3>
-                        <div class="content" id="contenedor_superior_{$item->id}"> </div>
+                        <div class="content" id="contenedor_superior_{$item->id}"></div>
                     </li>
                 {/foreach}
             </ul>

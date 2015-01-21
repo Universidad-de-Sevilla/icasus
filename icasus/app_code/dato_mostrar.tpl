@@ -21,13 +21,13 @@
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>
             </div>
 
-            <!-- GRÁFICAS -->
+          <!-- GRÁFICAS -->
             <div style="margin:10px;">
                 {if $mediciones}
                     {if $paneles}
                         {foreach $paneles as $panel}
                             <div class="box grid_{$panel->ancho}" style="float:left;">
-                                <div class="block alturo" style="height:320px">
+                                <div class="block">
                                     <div class="titulo-panel">
                                         <strong>{$panel->nombre}</strong>
                                     </div>

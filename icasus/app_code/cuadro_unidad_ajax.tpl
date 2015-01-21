@@ -13,30 +13,39 @@
                     {if $paneles_indicador[$item->id]}
                         {foreach $paneles_indicador[$item->id] as $panel}
                             <div class="box grid_{$panel->ancho}">
-                                <div class="block alturo" style="height:320px">
-                                    <!--
+                                <div class="block">
                                     <div class="titulo-panel">
-                                      <strong>{$panel->nombre}</strong>
+                                        <strong>{$panel->nombre}</strong>
                                     </div>
-                                    -->
                                     <div class="section">
-                                        <div class="highchart {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-id_indicador="{$item->id}" data-nombre_indicador="{$item->nombre}" data-fecha_inicio="{$panel->fecha_inicio}" data-fecha_fin="{$panel->fecha_fin}" data-periodicidad="{$panel->periodicidad}"></div>
+                                        <div class="highchart {$panel->tipo->clase_css}" 
+                                             id="panel_{$panel->id}" 
+                                             data-id_indicador="{$item->id}" 
+                                             data-nombre_indicador="{$item->nombre}" 
+                                             data-fecha_inicio="{$panel->fecha_inicio}" 
+                                             data-fecha_fin="{$panel->fecha_fin}" 
+                                             data-periodicidad="{$panel->periodicidad}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         {/foreach}
                     {/if}
                 {else}
-                    <p class="aviso">{$smarty.const.MSG_INDIC_NO_VAL}</p>
+                    <div class="alert alert_blue">
+                        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                        {$smarty.const.MSG_INDIC_NO_VAL}
+                    </div>
                 {/if}
                 <!-- //GRÁFICAS -->
                                        <!-- <img src="index.php?page=grafica_indicador_agregado&id_indicador={$item->id}" alt="gráfica completa con los valores medios del indicador"/> -->
             </div>
         {/foreach}
     {else}
-        <p>
+        <div class="alert alert_blue">
+            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
             {$smarty.const.MSG_PROC_NO_INDIC}
-        </p>
+        </div>
     {/if}
 
 {/if}
@@ -56,9 +65,10 @@
             </div>
         {/foreach}
     {else}
-        <p> 
+        <div class="alert alert_blue">
+            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
             {$smarty.const.MSG_PROC_NO_INDIC}
-        </p>
+        </div>
     {/if}
 {/if}
 
@@ -71,19 +81,45 @@
                     <b>{$item->nombre}</b><br />
                     <b>{$smarty.const.FIELD_INTERP}:</b> {$item->interpretacion}
                 </div>
-                <div>
-                    <div style="background: white; padding:20px 40px; margin:10px;">
-                        <div class="panel_flot" id="{$item->id}" data-id_indicador="{$item->id}" data-nombre_indicador="{$item->nombre}" data-fecha_inicio="{$item->historicos}-01-01" data-fecha_fin="{$smarty.now|date_format:'%Y' - 1}-12-31" data-periodicidad="anual"></div>
-                        <div class="leyenda"></div>
+
+                <!-- GRÁFICAS -->
+                {if $mediciones_indicador[$item->id]}
+                    {if $paneles_indicador[$item->id]}
+                        {foreach $paneles_indicador[$item->id] as $panel}
+                            <div class="box grid_{$panel->ancho}">
+                                <div class="block">
+                                    <div class="titulo-panel">
+                                        <strong>{$panel->nombre}</strong>
+                                    </div>
+                                    <div class="section">
+                                        <div class="highchart {$panel->tipo->clase_css}" 
+                                             id="panel_{$panel->id}" 
+                                             data-id_indicador="{$item->id}" 
+                                             data-nombre_indicador="{$item->nombre}" 
+                                             data-fecha_inicio="{$panel->fecha_inicio}" 
+                                             data-fecha_fin="{$panel->fecha_fin}" 
+                                             data-periodicidad="{$panel->periodicidad}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {/foreach}
+                    {/if}
+                {else}
+                    <div class="alert alert_blue">
+                        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                        {$smarty.const.MSG_INDIC_NO_VAL}
                     </div>
-                                                          <!-- <img src="index.php?page=grafica_indicador_agregado&id_indicador={$item->id}" alt="gráfica completa con los valores medios del indicador"/> -->
-                </div>
+                {/if}
+                <!-- //GRÁFICAS -->
+                                       <!-- <img src="index.php?page=grafica_indicador_agregado&id_indicador={$item->id}" alt="gráfica completa con los valores medios del indicador"/> -->
             </div>
         {/foreach}
     {else}
-        <p> 
+        <div class="alert alert_blue">
+            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
             {$smarty.const.MSG_PROC_NO_INDIC}
-        </p>
+        </div>
     {/if}
 {/if}
 
