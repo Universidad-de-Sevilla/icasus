@@ -29,48 +29,35 @@ if ($modulo == 'propio')
     $smarty->assign('indicadores', $indicadores);
     $smarty->assign('modulo', $modulo);
 
-    //Nuevos gráficos
+    //Gráficos
     //Simplemente ver si hay mediciones
     $medicion = new Medicion();
     $mediciones_indicador = array();
     $paneles_indicador = array();
-    $smarty->assign("mediciones_indicador", $mediciones_indicador);
-    $smarty->assign("paneles_indicador", $paneles_indicador);
+    $panel_id = 0;
     foreach ($indicadores as $indicador)
     {
         $mediciones_indicador[$indicador->id] = $medicion->Find("id_indicador = $indicador->id");
         if ($mediciones_indicador[$indicador->id])
         {
+            // Prepara el panel anual
             $panel = new Panel();
             $panel->tipo = new Panel_tipo();
             $panel->ancho = 16;
-            if ($indicador->periodicidad != "Anual")
-            {
-                // Prepara el panel intraanual
-                $anio_inicio = date('Y') - 2;
-                $anio_fin = date('Y');
-                $panel->id = 2;
-                $panel->tipo->clase_css = "lineal";
-                $panel->ancho = 16;
-                $panel->nombre = $indicador->nombre . " (" . $anio_inicio . " - " . $anio_fin . ")";
-                $panel->fecha_inicio = $anio_inicio . "-01-01";
-                $panel->fecha_fin = date("Y-m-d");
-                $panel->periodicidad = "todos";
-                $paneles_indicador[$indicador->id][] = clone($panel);
-            }
-            // Prepara el panel anual
             $anio_inicio = $indicador->historicos;
             $anio_fin = date('Y') - 1;
-            $panel->id = 1;
+            $panel->id = $panel_id;
+            $panel_id++;
             $panel->tipo->clase_css = "lineal";
-            $panel->nombre = $indicador->nombre . " (" . $anio_inicio . " - " . $anio_fin . ")";
+            $panel->nombre = TXT_HISTORICO;
             $panel->fecha_inicio = $indicador->historicos . "-01-01";
             $panel->fecha_fin = $anio_fin . "-12-31";
             $panel->periodicidad = "anual";
-            $paneles_indicador[$indicador->id][] = clone($panel);
+            $paneles_indicador[$indicador->id] = clone($panel);
         }
     }
-    
+    $smarty->assign("mediciones_indicador", $mediciones_indicador);
+    $smarty->assign("paneles_indicador", $paneles_indicador);
 }
 
 //Módulo de segregado
@@ -89,11 +76,38 @@ if ($modulo == 'superior')
     $entidad->load("id = $id_unidad");
     $entidad->load("id = $entidad->id_madre");
 
-    $indicador = new Indicador();
-    $indicadores = $indicador->find("id_entidad = $entidad->id AND id_proceso = $id_proceso");
-    $smarty->assign('indicadores_superior', $indicadores);
-
+    $i = new Indicador();
+    $indicadores_sup = $i->find("id_entidad = $entidad->id AND id_proceso = $id_proceso");
+    $smarty->assign('indicadores_superior', $indicadores_sup);
     $smarty->assign('modulo', $modulo);
+
+    //Gráficos
+    //Simplemente ver si hay mediciones
+    $medicion = new Medicion();
+    $mediciones_indicador_sup = array();
+    $paneles_indicador_sup = array();
+    foreach ($indicadores_sup as $indicador)
+    {
+        $mediciones_indicador_sup[$indicador->id] = $medicion->Find("id_indicador = $indicador->id");
+        if ($mediciones_indicador_sup[$indicador->id])
+        {
+            // Prepara el panel anual
+            $panel = new Panel();
+            $panel->tipo = new Panel_tipo();
+            $panel->ancho = 16;
+            $anio_inicio = $indicador->historicos;
+            $anio_fin = date('Y') - 1;
+            $panel->id = 1;
+            $panel->tipo->clase_css = "lineal";
+            $panel->nombre = TXT_HISTORICO;
+            $panel->fecha_inicio = $indicador->historicos . "-01-01";
+            $panel->fecha_fin = $anio_fin . "-12-31";
+            $panel->periodicidad = "anual";
+            $paneles_indicador_sup[$indicador->id] = clone($panel);
+        }
+        $smarty->assign("mediciones_indicador_sup", $mediciones_indicador_sup);
+        $smarty->assign("paneles_indicador_sup", $paneles_indicador_sup);
+    }
 }
 $plantilla = 'cuadro_unidad_ajax.tpl';
 $smarty->assign('_nombre_pagina', TXT_CUAD_RES);

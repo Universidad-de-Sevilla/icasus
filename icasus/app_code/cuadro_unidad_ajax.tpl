@@ -11,25 +11,23 @@
                 <!-- GRÁFICAS -->
                 {if $mediciones_indicador[$item->id]}
                     {if $paneles_indicador[$item->id]}
-                        {foreach $paneles_indicador[$item->id] as $panel}
-                            <div class="box grid_{$panel->ancho}">
+                            <div class="box grid_{$paneles_indicador[$item->id]->ancho}">
                                 <div class="block">
                                     <div class="titulo-panel">
-                                        <strong>{$panel->nombre}</strong>
+                                        <strong>{$paneles_indicador[$item->id]->nombre}</strong>
                                     </div>
                                     <div class="section">
-                                        <div class="highchart {$panel->tipo->clase_css}" 
-                                             id="panel_{$panel->id}" 
+                                        <div class="highchart {$paneles_indicador[$item->id]->tipo->clase_css}" 
+                                             id="panel_{$paneles_indicador[$item->id]->id}" 
                                              data-id_indicador="{$item->id}" 
                                              data-nombre_indicador="{$item->nombre}" 
-                                             data-fecha_inicio="{$panel->fecha_inicio}" 
-                                             data-fecha_fin="{$panel->fecha_fin}" 
-                                             data-periodicidad="{$panel->periodicidad}">
+                                             data-fecha_inicio="{$paneles_indicador[$item->id]->fecha_inicio}" 
+                                             data-fecha_fin="{$paneles_indicador[$item->id]->fecha_fin}" 
+                                             data-periodicidad="{$paneles_indicador[$item->id]->periodicidad}">
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        {/foreach}
+                            </div>    
                     {/if}
                 {else}
                     <div class="alert alert_blue">
@@ -83,27 +81,25 @@
                 </div>
 
                 <!-- GRÁFICAS -->
-                {if $mediciones_indicador[$item->id]}
-                    {if $paneles_indicador[$item->id]}
-                        {foreach $paneles_indicador[$item->id] as $panel}
-                            <div class="box grid_{$panel->ancho}">
+                {if $mediciones_indicador_sup[$item->id]}
+                    {if $paneles_indicador_sup[$item->id]}
+                            <div class="box grid_{$paneles_indicador_sup[$item->id]->ancho}">
                                 <div class="block">
                                     <div class="titulo-panel">
-                                        <strong>{$panel->nombre}</strong>
+                                        <strong>{$paneles_indicador_sup[$item->id]->nombre}</strong>
                                     </div>
                                     <div class="section">
-                                        <div class="highchart {$panel->tipo->clase_css}" 
-                                             id="panel_{$panel->id}" 
+                                        <div class="highchart {$paneles_indicador_sup[$item->id]->tipo->clase_css}" 
+                                             id="panel_{$item->id}" 
                                              data-id_indicador="{$item->id}" 
                                              data-nombre_indicador="{$item->nombre}" 
-                                             data-fecha_inicio="{$panel->fecha_inicio}" 
-                                             data-fecha_fin="{$panel->fecha_fin}" 
-                                             data-periodicidad="{$panel->periodicidad}">
+                                             data-fecha_inicio="{$paneles_indicador_sup[$item->id]->fecha_inicio}" 
+                                             data-fecha_fin="{$paneles_indicador_sup[$item->id]->fecha_fin}" 
+                                             data-periodicidad="{$paneles_indicador_sup[$item->id]->periodicidad}">
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        {/foreach}
                     {/if}
                 {else}
                     <div class="alert alert_blue">

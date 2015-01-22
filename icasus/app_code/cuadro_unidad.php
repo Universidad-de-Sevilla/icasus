@@ -19,12 +19,11 @@ if (!is_object($smarty))
     header('Location:index.php?page=cuadro_listar');
 }
 
-$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-
 //if (isset($_GET["id_entidad"]) AND $_GET["id_entidad"] >0)
-if ($id_entidad > 0)
+if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
 //	$id_entidad = sanitize($_GET["id_entidad"],2);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);

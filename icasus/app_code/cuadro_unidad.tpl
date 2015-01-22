@@ -24,14 +24,18 @@
             <ul class="block content_accordion ">
                 {foreach from=$procesos_propios item=item}
                     <li>
-                        <a href="#" class="handle"></a>
-                        <h3 class="bar"  tipo="propio" id="{$item->id}"><a href="javascript:void(0)">{$smarty.const.FIELD_PROC}: {$item->nombre}</a></h3>
+                        <h3 class="bar"  tipo="propio" id="{$item->id}">
+                            <a href="javascript:void(0)">{$smarty.const.FIELD_PROC}: {$item->nombre}</a>
+                        </h3>
                         <div class="content" id="contenedor_propio_{$item->id}"></div>
                     </li>
                 {/foreach}
             </ul>
         {else}
-            {$smarty.const.MSG_UNID_NO_PROC}
+            <div class="alert alert_blue">
+                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                {$smarty.const.MSG_UNID_NO_PROC}
+            </div>
         {/if}
     </div>
 </div>
@@ -43,14 +47,18 @@
             <ul class="block content_accordion ">
                 {foreach from=$procesos_indicadores_segregados item=item}
                     <li>
-                        <a href="#" class="handle"></a>
-                        <h3 class="bar" tipo="segregado" id="{$item.id_proceso}"><a href="javascript:void(0)">{$smarty.const.FIELD_PROC}: {$item.nombre_proceso} ({$item.nombre_entidad})</a></h3>
+                        <h3 class="bar" tipo="segregado" id="{$item.id_proceso}">
+                            <a href="javascript:void(0)">{$smarty.const.FIELD_PROC}: {$item.nombre_proceso} ({$item.nombre_entidad})</a>
+                        </h3>
                         <div class="content" id="contenedor_segregado_{$item.id_proceso}"></div>
                     </li>
                 {/foreach}
             </ul>
         {else}
-            {$smarty.const.MSG_UNID_NO_SEG}
+            <div class="alert alert_blue">
+                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                {$smarty.const.MSG_UNID_NO_SEG}
+            </div>
         {/if}
     </div>
 </div>
@@ -62,14 +70,18 @@
             <ul class="block content_accordion ">
                 {foreach from=$procesos_indicadores_superior item=item}
                     <li>
-                        <a href="#" class="handle"></a>
-                        <h3 class="bar"  tipo="superior" id="{$item->id}"><a href="javascript:void(0)">{$smarty.const.FIELD_PROC}: {$item->nombre}</a></h3>
+                        <h3 class="bar"  tipo="superior" id="{$item->id}">
+                            <a href="javascript:void(0)">{$smarty.const.FIELD_PROC}: {$item->nombre}</a>
+                        </h3>
                         <div class="content" id="contenedor_superior_{$item->id}"></div>
                     </li>
                 {/foreach}
             </ul>
         {else}
-            {$smarty.const.MSG_UNID_SUP_NO_PROC}
+            <div class="alert alert_blue">
+                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                {$smarty.const.MSG_UNID_SUP_NO_PROC}
+            </div>
         {/if}
     </div>
 </div>
