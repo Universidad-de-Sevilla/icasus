@@ -215,6 +215,10 @@ define('TXT_SIG', 'Siguiente');
 define('TXT_ANT', 'Anterior');
 define('TXT_EDIT', 'Editar');
 define('TXT_BORRAR', 'Borrar');
+define('TXT_VOLVER', 'Volver al');
+define('TXT_VOLVER_INDICE', 'Volver al índice');
+define('TXT_VOLVER_LIST', 'Volver al listado');
+define('TXT_VOLVER_CUADRO', 'Volver al Cuadro');
 
 //Páginas
 define('TXT_PAG', 'Página');
@@ -326,6 +330,7 @@ define('TXT_VALS', 'Valores');
 define('TXT_VAL_EDIT', 'Edición de Valores');
 define('TXT_VAL_AGREGAR', 'Agregar Valor');
 define('TXT_VALS_EDIT', 'Editar Valores');
+define('TXT_VALS_RES', 'Resumen de Valores');
 define('TXT_VAL_IMPORT', 'Importar Valores');
 define('TXT_VAL_REF', 'Valores de Referencia');
 define('TXT_VAL_REC', 'Valores recogidos');
@@ -339,11 +344,6 @@ define('TXT_VALS_DESACT', 'Desactivar Valores');
 define('TXT_TODOS', 'Todos');
 define('TXT_PUBLICO', 'Público');
 define('TXT_PRIVADO', 'Privado');
-
-//Volver
-define('TXT_VOLVER', 'Volver al');
-define('TXT_VOLVER_INDICE', 'Volver al índice');
-define('TXT_VOLVER_LIST', 'Volver al listado');
 
 //-------------------------------------------------------------------------------------
 //NOTIFICACIONES/AVISOS: MSG_[Nombre]

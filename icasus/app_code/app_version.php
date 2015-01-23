@@ -1,7 +1,8 @@
 <?php
-define('IC_VERSION', "2.9.3");
-define('IC_FECHA_REVISION', "22/01/2015");
+define('IC_VERSION', "2.9.4");
+define('IC_FECHA_REVISION', "23/01/2015");
 
+// 2.9.3 - 23/01/2015 - Adaptaciones, correcciones de algunos gráficos con Highcharts.
 // 2.9.3 - 22/01/2015 - Adaptaciones, correcciones de algunos gráficos con Highcharts.
 // 2.9.2 - 15/01/2015 - Cambios en la interfaz de Ficha Unidad. Muestra rol de los usuarios cuando se vayan a desasignar de una Unidad.
 // 2.9.1 - 22/12/2014 - Control de indicadores/datos sin mediciones. Cambios en la interfaz.

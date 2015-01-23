@@ -32,9 +32,8 @@
                 </fieldset>
 
                 <div class="button_bar clearfix">
-                    <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
+                    <button class="red send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
                             onclick="history.back();">
-                        <div class="ui-icon ui-icon-closethick"></div>
                         <span>{$smarty.const.TXT_CANCEL}</span>
                     </button>
                     <button class="green send_right" type="submit" value="{$smarty.const.TXT_GRABAR}" name="indicador_submit">

@@ -45,7 +45,14 @@ $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_ini
 $smarty->assign("mediciones", $mediciones);
 if ($mediciones)
 {
-    $smarty->assign('mediciones', $mediciones);
+    //Prepara el panel de resumen de Valores
+    $panel_res = new Panel();
+    $panel_res->ancho = 16;
+    $panel_res->nombre = TXT_VALS_RES;
+    $panel_res->periodicidad = "anual";
+    $smarty->assign("panel_res", $panel_res);
+
+    //Prepara el resto de paneles
     $paneles = array();
     $panel = new Panel();
     $panel->tipo = new Panel_tipo();
