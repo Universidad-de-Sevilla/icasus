@@ -12,17 +12,20 @@ $(".borrar").on('click', function (evento) {
     $('#nombre_panel').html(boton_borrar.data('nombre_panel'));
     $("#dialogo_borrar_panel").dialog({
         autoOpen: true, modal: true,
+        title:"Borrar Panel",
         buttons: [
             {
                 text: "Cancelar",
-                "class": 'red text_only has_text',
+                class: 'red',
+                style: 'color:white;',
                 click: function () {
                     $(this).dialog("close");
                 }
             },
             {
                 text: "Confirmar",
-                "class": 'green',
+                class: 'green',
+                style: 'color:white;',
                 click: function () {
                     $(this).dialog("close");
                     $.ajax({

@@ -9,9 +9,10 @@
                 </div>
 
                 <!-- GRÁFICAS -->
-                {if $mediciones_indicador[$item->id]}
-                    {if $paneles_indicador[$item->id]}
-                            <div class="box grid_{$paneles_indicador[$item->id]->ancho}">
+                <div style="margin:10px;">
+                    {if $mediciones_indicador[$item->id]}
+                        {if $paneles_indicador[$item->id]}
+                            <div class="box grid_{$paneles_indicador[$item->id]->ancho}" >
                                 <div class="block">
                                     <div class="titulo-panel">
                                         <strong>{$paneles_indicador[$item->id]->nombre}</strong>
@@ -28,13 +29,14 @@
                                     </div>
                                 </div>
                             </div>    
+                        {/if}
+                    {else}
+                        <div class="alert alert_blue">
+                            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                            {$smarty.const.MSG_INDIC_NO_VAL}
+                        </div>
                     {/if}
-                {else}
-                    <div class="alert alert_blue">
-                        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-                        {$smarty.const.MSG_INDIC_NO_VAL}
-                    </div>
-                {/if}
+                </div>
                 <!-- //GRÁFICAS -->
                                        <!-- <img src="index.php?page=grafica_indicador_agregado&id_indicador={$item->id}" alt="gráfica completa con los valores medios del indicador"/> -->
             </div>
@@ -45,7 +47,6 @@
             {$smarty.const.MSG_PROC_NO_INDIC}
         </div>
     {/if}
-
 {/if}
 
 {if $modulo == 'segregado'}
@@ -81,8 +82,9 @@
                 </div>
 
                 <!-- GRÁFICAS -->
-                {if $mediciones_indicador_sup[$item->id]}
-                    {if $paneles_indicador_sup[$item->id]}
+                <div style="margin:10px;">
+                    {if $mediciones_indicador_sup[$item->id]}
+                        {if $paneles_indicador_sup[$item->id]}
                             <div class="box grid_{$paneles_indicador_sup[$item->id]->ancho}">
                                 <div class="block">
                                     <div class="titulo-panel">
@@ -100,13 +102,14 @@
                                     </div>
                                 </div>
                             </div>
+                        {/if}
+                    {else}
+                        <div class="alert alert_blue">
+                            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                            {$smarty.const.MSG_INDIC_NO_VAL}
+                        </div>
                     {/if}
-                {else}
-                    <div class="alert alert_blue">
-                        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-                        {$smarty.const.MSG_INDIC_NO_VAL}
-                    </div>
-                {/if}
+                </div>
                 <!-- //GRÁFICAS -->
                                        <!-- <img src="index.php?page=grafica_indicador_agregado&id_indicador={$item->id}" alt="gráfica completa con los valores medios del indicador"/> -->
             </div>

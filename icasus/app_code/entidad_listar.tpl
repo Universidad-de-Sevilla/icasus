@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<div class="box grid_16 single_datatable">
+<div class="box grid_16">
     <div class="toggle_container">
         <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_UNID_TODAS}</h2>
         <!--

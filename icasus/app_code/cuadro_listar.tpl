@@ -4,8 +4,10 @@
 </div>
 
 {if $cuadros_propios|count > 0}
-    <div class="box grid_16 single_datatable">
+    <div class="box grid_16">
         <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</h2>
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
         <div id="dt1" class="no_margin">
             <table class="display datatable"> 
                 <thead>
@@ -45,8 +47,10 @@
 {/if}
 
 {if $cuadros_publicos|count > 0}
-    <div class="box grid_16 single_datatable">
+    <div class="box grid_16">
         <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}</h2>
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
         <div id="dt1" class="no_margin">
             <table class="display datatable"> 
                 <thead>
@@ -62,7 +66,7 @@
                         <tr>
                             <td><a href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td> 
                             <td>{if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}{else}{$smarty.const.TXT_PRIVADO}{/if}</td>
-                            <td width="70%">{$cuadro->comentarios}</td>
+                            <td width="60%">{$cuadro->comentarios}</td>
                         </tr>
                     {/foreach}
                 </tbody>	

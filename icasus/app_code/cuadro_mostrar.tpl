@@ -26,13 +26,24 @@
 
 {if $paneles}
     {foreach $paneles as $panel}
-        <div class="box grid_{$panel->ancho}" style="float:left;">
+        <div class="box grid_{$panel->ancho}" >   
             <div class="block alturo" style="height:320px">
                 <div class="titulo-panel">
                     <strong>{$panel->nombre}</strong> 
-                    <a class="borrar pull-right ihidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/cancel.png" /></a>
-                    &nbsp; 
-                    <a class="editar pull-right hidden" data-nombre_panel="{$panel->nombre}" href="#"><img src="/icons/ff16/application_add.png" /></a>
+                    {if $_usuario->id eq $cuadro->id_usuario}
+                        <a title="{$smarty.const.TXT_BORRAR}" 
+                           class="borrar" 
+                           style="z-index:3;position:absolute;right: 5px;top:5px;" 
+                           data-nombre_panel="{$panel->nombre}" href="#">
+                            <img src="/icons/ff16/cancel.png" />
+                        </a>
+                        <a title="{$smarty.const.TXT_EDIT}" 
+                           class="editar" 
+                           style="z-index:2;position:absolute;right: 20px;top:5px;" 
+                           data-nombre_panel="{$panel->nombre}" href="#">
+                            <img src="/icons/ff16/application_edit.png" />&nbsp;&nbsp;
+                        </a>   
+                    {/if}
                 </div>
                 <div class="section">
                     <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 

@@ -1,6 +1,4 @@
-<div class="button_bar clear_fix">
-    <h3>{$smarty.const.TXT_INDIC_DAT_MED_NULA}</h3>
-</div>
+<h2 class="box_head grad_grey_dark">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</h2>
 <form action='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}' method='post' class='formdiv' name='formdiv' onsubmit="return confirm('{$smarty.const.MSG_VALS_CONFIRM_DESACT}');">
     <table class="display datatable"> 
         <thead>
@@ -34,9 +32,7 @@
     </div>
 </form>
 
-<div class="button_bar clear_fix">
-    <h3>{$smarty.const.TXT_INDIC_DAT_SIN_MED}</h3>
-</div>
+<h2 class="box_head grad_grey_dark">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</h2>
 <table class="display datatable"> 
     <thead>
         <tr>
