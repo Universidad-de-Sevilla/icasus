@@ -24,23 +24,26 @@
 </div>
 <!-- //Dialogo para borrar paneles -->
 
+<!-- Paneles -->
 {if $paneles}
     {foreach $paneles as $panel}
         <div class="box grid_{$panel->ancho}" >   
-            <div class="block alturo" style="height:320px">
+            <div class="block alturo">
                 <div class="titulo-panel">
                     <strong>{$panel->nombre}</strong> 
                     {if $_usuario->id eq $cuadro->id_usuario}
                         <a title="{$smarty.const.TXT_BORRAR}" 
                            class="borrar" 
                            style="z-index:3;position:absolute;right: 5px;top:5px;" 
-                           data-nombre_panel="{$panel->nombre}" href="#">
+                           data-nombre_panel="{$panel->nombre}" 
+                           href="javascript:void(0)">
                             <img src="/icons/ff16/cancel.png" />
                         </a>
                         <a title="{$smarty.const.TXT_EDIT}" 
                            class="editar" 
                            style="z-index:2;position:absolute;right: 20px;top:5px;" 
-                           data-nombre_panel="{$panel->nombre}" href="#">
+                           data-nombre_panel="{$panel->nombre}" 
+                           href="index.php?page=panel_editar&id_panel={$panel->id}&id_cuadro={$id_cuadro}">
                             <img src="/icons/ff16/application_edit.png" />&nbsp;&nbsp;
                         </a>   
                     {/if}
@@ -56,6 +59,7 @@
         </div>
     {/foreach}
 {/if}
+<!-- //Paneles -->
 
 <script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>

@@ -4,7 +4,10 @@
             <form action='index.php?page=cuadro_grabar' method='post' id='formcuadro' name='formcuadro' class='validate_form'>
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_NOMBRE_CUADRO}</label>
-                    <div><input name='nombre'class="required" type="text" /><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div></div>
+                    <div>
+                        <input name='nombre'class="required" type="text" />
+                        <div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
+                    </div>
                 </fieldset>
 
                 <fieldset class="label_side">

@@ -3,7 +3,8 @@
  * las gráficas de los cuadros de mando.
  */
 
-//Diaĺogo de confirmación para el botón de borrar panel
+//$(".titulo-panel").on('mouseover', function(evento) { });
+
 $(".borrar").on('click', function (evento) {
     var boton_borrar, id_panel;
     boton_borrar = $(this);
@@ -457,5 +458,3 @@ $(".panel_metrica").each(function (index) {
         });
     });
 });
-
-

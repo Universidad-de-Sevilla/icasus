@@ -13,7 +13,6 @@ global $plantilla;
 //if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]))
 if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'))
 {
-
 //    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 //    $tipo = sanitize($_REQUEST["tipo"], SQL);
@@ -27,6 +26,21 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $indicador = new Indicador();
     $indicador->load("id = $medicion->id_indicador");
     $smarty->assign("indicador", $indicador);
+
+    //Obtener todas las mediciones para avanzar o retroceder 
+    $mediciones = $medicion->Find("id_indicador = $indicador->id ORDER BY periodo_inicio");
+    $smarty->assign("mediciones", $mediciones);
+    $cont = 0;
+    foreach ($mediciones as $med)
+    {
+        if ($id_medicion == $med->id)
+        {
+            $indice = $cont;
+            $smarty->assign("indice", $indice);
+        }
+        $cont++;
+    }
+
 
     //comprobar permisos para cambiar mediciones tanto para responsables del indicador como
     //de la medición o responsables de la unidad

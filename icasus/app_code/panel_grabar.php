@@ -26,9 +26,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') OR filter_has_var(INPUT_POST, 'id_en
 //    $panel->fecha_fin = sanitize($_REQUEST["finYear"], INT) . '-' . sanitize($_REQUEST["finMonth"], INT) . '-' . sanitize($_REQUEST["finDay"], INT);
     $panel->fecha_fin = filter_input(INPUT_POST, 'finYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finDay', FILTER_SANITIZE_NUMBER_INT);
 //    $panel->orden = sanitize($_REQUEST["orden"], SQL);
-    $panel->orden = filter_input(INPUT_POST, 'orden', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $panel->orden = filter_input(INPUT_POST, 'orden', FILTER_SANITIZE_NUMBER_INT);
 //    $panel->ancho = sanitize($_REQUEST["ancho"], SQL);
-    $panel->ancho = filter_input(INPUT_POST, 'ancho', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $panel->ancho = filter_input(INPUT_POST, 'ancho', FILTER_SANITIZE_NUMBER_INT);
 //    $panel->periodicidad = isset($_REQUEST["periodicidad"]) ? sanitize($_REQUEST["periodicidad"], SQL) : "todo";
     $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : "todo";
 

@@ -19,7 +19,7 @@
 <fieldset class="label_side">
 	<label>{$smarty.const.FIELD_NOMBRE}</label>
 	<div>
-		<input class="required text" type="text" name="nombre"></input>
+		<input class="required text" type="text" name="nombre">
 		<div class="required_tag tooltip hover left"></div>
 	</div>
 </fieldset>
@@ -28,7 +28,7 @@
 	<label>{$smarty.const.FIELD_ORDEN}</label>
 	<div class="clearfix">
 		<div class="col_25">
-			<input class="text required" type="text" name="orden"></input>
+			<input class="text required" type="text" name="orden">
 		</div>
 		<div class="required_tag tooltip hover left"></div>
 	</div>
@@ -105,8 +105,6 @@
 	<div id="listado_indicadores_complementarios" >
 	</div>
 </fieldset>
-
-
 
 <script>
 
@@ -198,7 +196,7 @@ $('.tipo_periodicidad').on('change',function(){
 	<div class="clearfix">
 		<div class="col_50">
 				<input data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
-				name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}"data-nombre_subunidad="Total"> {$smarty.const.FIELD_TOTAL}<br /> 
+				name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}"data-nombre_subunidad="Total"> {$smarty.const.FIELD_TOTAL}<br/> 
 			{foreach name=subunidades from=$indicador_subunidades item=item}
 				{if $smarty.foreach.subunidades.iteration == floor($indicador_subunidades|@count/2)+1 }
 					</div><div class="col_50 no_border">

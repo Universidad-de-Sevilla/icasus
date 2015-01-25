@@ -10,7 +10,7 @@
     <fieldset class="label_side top">
         <label>{$smarty.const.FIELD_NOMBRE}</label>
         <div>
-            <input class="required text" type="text" name="nombre"></input>
+            <input class="required text" type="text" name="nombre">
             <div class="required_tag tooltip hover left"></div>
         </div>
     </fieldset>
@@ -19,7 +19,7 @@
         <label>{$smarty.const.FIELD_ORDEN}</label>
         <div class="clearfix">
             <div class="col_25">
-                <input class="text required" type="text" name="orden"></input>
+                <input class="text required" type="text" name="orden">
             </div>
             <div class="required_tag tooltip hover left"></div>
         </div>

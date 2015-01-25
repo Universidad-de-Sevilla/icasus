@@ -12,6 +12,9 @@
 </h3>
 
 <div class="box grid_16">
+    <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_UNID_PARAM}</h2> 
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
     <div class="block">
         <fieldset class="label_side">
             <label>{$smarty.const.FIELD_COD}</label>

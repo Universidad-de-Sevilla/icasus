@@ -73,6 +73,7 @@ define('TXT_CUADRO_EDIT', 'Editar Cuadro de Mando');
 //Paneles de los Cuadros de Mando
 define('TXT_PANEL_NUEVO', 'Nuevo Panel');
 define('TXT_PANEL_AGREGAR', 'Agregar Panel');
+define('TXT_PANEL_EDITAR', 'Editar Panel');
 define('TXT_PANELES_INFO', 'Información sobre los Paneles');
 
 //Datos
@@ -103,6 +104,7 @@ define('TXT_DIM_REL', 'Relación de Dimensiones');
 
 //Entidades (Unidades)
 define('TXT_UNID', 'Unidad');
+define('TXT_UNID_PARAM', 'Parámetros de la Unidad');
 define('TXT_UNID_SUP_INDIC', 'Indicadores de la Unidad Superior');
 define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la Unidad');
 define('TXT_UNID_TODAS', 'Todas las Unidades');
@@ -374,6 +376,7 @@ define('MSG_CUADRO_MANDO_NO_DEF', 'No has definido ningún Cuadro de Mando propi
 define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún Cuadro de Mando público todavía.');
 //Paneles de los Cuadros de Mando
 define('MSG_PANEL_BORRAR', 'Va a borrar del Cuadro de Mando el siguiente Panel:');
+define('MSG_PANEL_EDITADO', "Panel editado correctamente.");
 
 //Datos
 define('MSG_DATO_BORRADO', 'Se ha borrado el Dato: ');
