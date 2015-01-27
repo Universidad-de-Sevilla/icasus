@@ -21,7 +21,7 @@ if (filter_has_var(INPUT_GET, 'id'))
         $paneles = $panel->Find_joined("id_cuadro = $id_cuadro ORDER BY orden");
         $smarty->assign("paneles", $paneles);
 
-        $smarty->assign("_nombre_pagina", "$cuadro->nombre");
+        $smarty->assign("_nombre_pagina", TXT_CUADRO_MANDO . ': ' . "$cuadro->nombre");
         $plantilla = "cuadro_mostrar.tpl";
     }
     else

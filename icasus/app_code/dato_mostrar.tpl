@@ -21,7 +21,7 @@
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>
             </div>
 
-          <!-- GRÁFICAS -->
+            <!-- GRÁFICAS -->
             <div style="margin:10px;">
                 {if $mediciones}
                     {if $paneles}
@@ -38,7 +38,8 @@
                                              data-nombre_indicador="{$dato->nombre}" 
                                              data-fecha_inicio="{$panel->fecha_inicio}" 
                                              data-fecha_fin="{$panel->fecha_fin}" 
-                                             data-periodicidad="{$panel->periodicidad}"></div>
+                                             data-periodicidad="{$panel->periodicidad}">
+                                        </div>
                                     </div>
                                 </div>
                             </div>

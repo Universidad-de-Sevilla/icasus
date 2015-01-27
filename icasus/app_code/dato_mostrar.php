@@ -55,8 +55,8 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
             $panel->tipo->clase_css = "lineal";
             $panel->ancho = 16;
             $panel->nombre = TXT_2_ULT_ANYO;
-            $panel->fecha_inicio = $anio_inicio . "-01-01";
-            $panel->fecha_fin = date("Y-m-d");
+            $panel->fecha_inicio = "01-01-" . $anio_inicio;
+            $panel->fecha_fin = date("d-m-Y");
             $panel->periodicidad = "todos";
             $paneles[] = clone($panel);
         }
@@ -66,8 +66,8 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
         $panel->id = 1;
         $panel->tipo->clase_css = "lineal";
         $panel->nombre = TXT_HISTORICO;
-        $panel->fecha_inicio = $dato->historicos . "-01-01";
-        $panel->fecha_fin = $anio_fin . "-12-31";
+        $panel->fecha_inicio = "01-01-" . $dato->historicos;
+        $panel->fecha_fin = "31-12-" . $anio_fin;
         $panel->periodicidad = "anual";
         $paneles[] = clone($panel);
         $smarty->assign("paneles", $paneles);

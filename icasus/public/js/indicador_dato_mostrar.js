@@ -55,8 +55,8 @@ $('.highchart').each(function () {
                 renderTo: idPanel
             },
             title: {
-                text: nomIndicador + '(' + fecha_inicio + " a " + fecha_fin + ")",
-                style: {"color": "grey", "fontSize": "12px"}
+                text: nomIndicador + ' (' + fecha_inicio + ' a ' + fecha_fin + ')',
+                style: {"fontSize": "14px"}
             },
             exporting: {
                 enabled: true

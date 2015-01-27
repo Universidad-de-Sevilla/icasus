@@ -5,6 +5,7 @@ var idIndicador = $("#container").data("id_indicador");
 var nomIndicador = $("#container").data("nombre_indicador");
 var chartSerie = new HighchartSerie();
 var totales = [];
+
 // Consulta a la base de datos
 $.ajax({
     url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador,
@@ -12,6 +13,7 @@ $.ajax({
     dataType: "json",
     success: onDataReceived
 });
+
 // Guardado de datos en highchartstruct y totales para las medias
 function onDataReceived(datos) {
     //var categories = new Set();
@@ -37,7 +39,8 @@ $(document).ajaxComplete(function () {
             renderTo: 'container'
         },
         title: {
-            text: nomIndicador
+            text: nomIndicador,
+            style: {"fontSize": "14px"}
         },
         tooltip: {
             shared: false
@@ -163,8 +166,8 @@ $('.highchart').each(function () {
                 renderTo: idPanel
             },
             title: {
-                text: nomIndicador + '(' + fecha_inicio + " a " + fecha_fin + ")",
-                style: {"color": "grey", "fontSize": "12px"}
+                text: nomIndicador + ' (' + fecha_inicio + ' a ' + fecha_fin + ')',
+                style: {"fontSize": "14px"}
             },
             exporting: {
                 enabled: true

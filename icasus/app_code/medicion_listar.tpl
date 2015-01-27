@@ -76,10 +76,10 @@
                         {foreach $mediciones as $medicion}
                             <tr class="gradeX">
                                 <td nowrap><a href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}">{$medicion->etiqueta}</a></td>
-                                <td>{$medicion->periodo_inicio}</td>
-                                <td>{$medicion->periodo_fin}</td>
-                                <td>{$medicion->grabacion_inicio}</td>
-                                <td>{$medicion->grabacion_fin}</td>
+                                <td>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</td>
+                                <td>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</td>
+                                <td>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</td>
+                                <td>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</td>
                             </tr>
                         {/foreach}
                     </tbody>

@@ -45,10 +45,10 @@ $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_ini
 $smarty->assign("mediciones", $mediciones);
 if ($mediciones)
 {
-    //Prepara el panel de resumen de Valores
+    //Prepara el panel de Valores/Subunidad
     $panel_res = new Panel();
     $panel_res->ancho = 16;
-    $panel_res->nombre = TXT_VALS_RES;
+    $panel_res->nombre = TXT_VALS_SUBUNID;
     $panel_res->periodicidad = "anual";
     $smarty->assign("panel_res", $panel_res);
 
@@ -66,8 +66,8 @@ if ($mediciones)
         $panel->tipo->clase_css = "lineal";
         $panel->ancho = 8;
         $panel->nombre = TXT_2_ULT_ANYO;
-        $panel->fecha_inicio = $anio_inicio . "-01-01";
-        $panel->fecha_fin = date("Y-m-d");
+        $panel->fecha_inicio = "01-01-" . $anio_inicio;
+        $panel->fecha_fin = date("d-m-Y");
         $panel->periodicidad = "todos";
         $paneles[] = clone($panel);
     }
@@ -77,8 +77,8 @@ if ($mediciones)
     $panel->id = 1;
     $panel->tipo->clase_css = "lineal";
     $panel->nombre = TXT_HISTORICO;
-    $panel->fecha_inicio = $indicador->historicos . "-01-01";
-    $panel->fecha_fin = $anio_fin . "-12-31";
+    $panel->fecha_inicio = "01-01-" . $indicador->historicos;
+    $panel->fecha_fin = "31-12-" . $anio_fin;
     $panel->periodicidad = "anual";
     $paneles[] = clone($panel);
     $smarty->assign("paneles", $paneles);

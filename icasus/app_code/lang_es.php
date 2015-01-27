@@ -185,7 +185,7 @@ define('TXT_MED_DES_CEN', 'Medición desagregada en las Subunidades y cumpliment
 define('TXT_MED_ESTA', 'esta Medición');
 define('TXT_MED_ACARGO', 'Mediciones a su cargo');
 define('TXT_MED_VOLVER', 'Volver a las Mediciones');
-define('TXT_MED_MOSTRAR', 'Mostrar Mediciones');
+define('TXT_MED_MOSTRAR', 'Mediciones');
 define('TXT_MED_BORRAR', 'Borrar Medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las Mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las Mediciones.');
@@ -332,7 +332,7 @@ define('TXT_VALS', 'Valores');
 define('TXT_VAL_EDIT', 'Edición de Valores');
 define('TXT_VAL_AGREGAR', 'Agregar Valor');
 define('TXT_VALS_EDIT', 'Editar Valores');
-define('TXT_VALS_RES', 'Resumen de Valores');
+define('TXT_VALS_SUBUNID', 'Valores por Subunidad');
 define('TXT_VAL_IMPORT', 'Importar Valores');
 define('TXT_VAL_REF', 'Valores de Referencia');
 define('TXT_VAL_REC', 'Valores recogidos');

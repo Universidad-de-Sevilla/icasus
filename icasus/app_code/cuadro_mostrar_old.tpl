@@ -30,9 +30,7 @@
         <div class="box grid_{$panel->ancho}" >   
             <div class="block alturo">
                 <div class="titulo-panel">
-                    <!--<strong>{$panel->nombre}</strong> -->
-                    <span>{$smarty.const.FIELD_ORDEN}: {$panel->orden}</span>
-                    <span>{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
+                    <strong>{$panel->nombre}</strong> 
                     {if $_usuario->id eq $cuadro->id_usuario}
                         <a title="{$smarty.const.TXT_EDIT}" 
                            class="editar" 
@@ -43,7 +41,7 @@
                         </a>   
                         <a title="{$smarty.const.TXT_BORRAR}" 
                            class="borrar" 
-                           style="z-index:2;position:absolute;right: 5px;top:5px;" 
+                           style="z-index:3;position:absolute;right: 5px;top:5px;" 
                            data-nombre_panel="{$panel->nombre}" 
                            href="javascript:void(0)">
                             <img src="/icons/ff16/cancel.png" />
@@ -52,25 +50,19 @@
                     {/if}
                 </div>
                 <div class="section">
-                    <div class="panel {$panel->tipo->clase_css}" 
-                         id="panel_{$panel->id}" 
-                         data-id_panel="{$panel->id}"
-                         data-titulo_panel ="{$panel->nombre}"
-                         data-id_medicion="{$panel->id_medicion}" 
-                         data-fecha_inicio="{$panel->fecha_inicio|date_format:"%d-%m-%Y"}" 
-                         data-fecha_fin="{$panel->fecha_fin|date_format:"%d-%m-%Y"}" 
-                         data-ancho="{$panel->ancho}"
-                         data-periodicidad="{$panel->periodicidad}">
-                    </div>
+                    <div class="panel {$panel->tipo->clase_css}" id="panel_{$panel->id}" data-idpanel="{$panel->id}" 
+                         data-id_medicion="{$panel->id_medicion}" data-fecha_inicio="{$panel->fecha_inicio}" 
+                         data-fecha_fin="{$panel->fecha_fin}" data-ancho="{$panel->ancho}"
+                         data-periodicidad="{$panel->periodicidad}"></div>
                     <div class="leyenda"></div>
                 </div>
             </div>
         </div>
     {/foreach}
 {/if}
-<!-- //Paneles -->		
+<!-- //Paneles -->
 
-<script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/exporting.js" type="text/javascript"></script>
-<script src="js/highchartStruct.js" type="text/javascript"></script>
-<script src="js/cuadro_mostrar.js" type="text/javascript"></script>
+<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
+<script src="theme/danpin/scripts/flot/jquery.flot.pie.min.js" type="text/javascript"></script>		
+<script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>
