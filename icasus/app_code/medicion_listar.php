@@ -3,6 +3,8 @@
 //-------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: medicion_listar.php
+// Desarrolladores: Joaquín Valonero Zaera (jvalzae@hotmail.com)
+// 
 //-------------------------------------------------------------------------------
 // Muestra un listado de las mediciones establecidas para un indicador
 //-------------------------------------------------------------------------------

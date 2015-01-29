@@ -3,6 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: dato_mostrar.php
+// Desarrolladores: Joaquín Valonero Zaera (jvalzae@hotmail.com)
+// 
 //---------------------------------------------------------------------------------------------------
 // Muestra todos los parametros de un dato y un listado de los valores introducidos
 // Es casi igual que el indicador pero con algunos campos menos (misma tabla de la base de datos)

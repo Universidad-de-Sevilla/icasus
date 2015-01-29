@@ -3,7 +3,7 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: cuadro_unidad.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
+// Desarrolladores: Joaquín Valonero Zaera (jvalzae@hotmail.com)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Lista los indicadores de la unidad
 //---------------------------------------------------------------------------------------------------

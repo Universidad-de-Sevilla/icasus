@@ -1,5 +1,14 @@
 <?php
 
+//---------------------------------------------------------------------------------------------------
+// Proyecto: Icasus 
+// Archivo: cuadro_unidad.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es) 
+// Joaquín Valonero Zaera (jvalzae@hotmail.com)
+//---------------------------------------------------------------------------------------------------
+// Descripcion: Control de indicadores, mediciones, valores...
+//---------------------------------------------------------------------------------------------------
+
 global $smarty;
 global $plantilla;
 //$modulo = sanitize($_REQUEST["modulo"], SQL);

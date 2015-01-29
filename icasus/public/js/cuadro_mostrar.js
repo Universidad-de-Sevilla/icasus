@@ -1,7 +1,11 @@
-/* 
- * Incluye el código JavaScript para el fichero cuadro_mostrar.tpl que gestiona 
- * las gráficas de los cuadros de mando.
- */
+//--------------------------------------------------------------------------
+// Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+// Archivo: public/js/cuadro_mostrar.js
+// Desarrolladores: Joaquín Valonero Zaera (jvalzae@hotmail.com)
+//--------------------------------------------------------------------------
+//Incluye el código JavaScript para el fichero cuadro_mostrar.tpl que gestiona 
+//las gráficas de los cuadros de mando.
+//----------------------------------------------------------------------------
 
 //Diaĺogo de confirmación para el botón de borrar panel
 $(".borrar").on('click', function (evento) {

@@ -49,10 +49,10 @@
                            class="borrar" 
                            style="z-index:2;position:absolute;right: 5px;top:5px;" 
                            data-id_panel="{$panel->id}" 
+                           data-nombre_panel="{$panel->nombre}" 
                            href="javascript:void(0)">
                             <img src="/icons/ff16/cancel.png" />
                         </a>
-
                     {/if}
                 </div>
                 <div class="section">

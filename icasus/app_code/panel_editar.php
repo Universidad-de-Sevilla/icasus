@@ -3,7 +3,7 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: panel_editar.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es) 
+// Desarrolladores: Joaquín Valonero Zaera (jvalzae@hotmail.com)
 // 
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Controlador principal para editar paneles
