@@ -12,7 +12,7 @@
 require_once('function/sanitize.php');
 global $smarty;
 global $basedatos;
-global $operario;
+global $_usuario;
 global $plantilla;
 
 $smarty->assign('_javascript', array('usuario_validar'));
@@ -25,7 +25,7 @@ if (filter_has_var(INPUT_POST, 'id_usuario') || filter_has_var(INPUT_POST, 'nif'
 {
     //este condicional es para evitar que editen otros lo datos de otros usuario
 //    if ($operario->id_usuario == $_POST['id_usuario'])
-    if ($operario->id_usuario == filter_input(INPUT_POST, 'id_usuario'))
+    if ($_usuario->id_usuario == filter_input(INPUT_POST, 'id_usuario'))
     {
         // Modifica en la base de datos un usuario que ya existía
 //        $id_usuario = sanitize($_POST['id_usuario'], 16);
@@ -50,7 +50,7 @@ if (filter_has_var(INPUT_POST, 'id_usuario') || filter_has_var(INPUT_POST, 'nif'
             $smarty->assign('aviso', MSG_USER_EDITADO);
             $smarty->assign('usuario', $usuario->obtener_datos($id_usuario));
             $smarty->assign('entidades', $usuario->obtener_entidades($id_usuario));
-            $smarty->assign('id_operario', $operario->id_usuario);
+            $smarty->assign('id_operario', $_usuario->id_usuario);
             $plantilla = "usuario_datos.tpl";
         }
         else
@@ -59,7 +59,7 @@ if (filter_has_var(INPUT_POST, 'id_usuario') || filter_has_var(INPUT_POST, 'nif'
             $smarty->assign('error', $error);
             $smarty->assign('usuario', $usuario->obtener_datos($id_usuario));
             $smarty->assign('entidades', $usuario->obtener_entidades($id_usuario));
-            $smarty->assign('id_operario', $operario->id_usuario);
+            $smarty->assign('id_operario', $_usuario->id_usuario);
             $plantilla = "usuario_editar.tpl";
         }
     }
@@ -76,14 +76,14 @@ else if (filter_has_var(INPUT_GET, 'id_usuario'))
 {
     //este condicional es para evitar que editen otros lo datos de otros usuario
 //    if ($operario->id_usuario == $_GET['id_usuario'])
-    if ($operario->id_usuario == filter_input(INPUT_GET, 'id_usuario'))
+    if ($_usuario->id_usuario == filter_input(INPUT_GET, 'id_usuario'))
     {
 //        $id_usuario = sanitize($_GET['id_usuario'], 16);
         $id_usuario = filter_input(INPUT_GET, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
         $usuario = new Usuario($basedatos);
         $smarty->assign('usuario', $usuario->obtener_datos($id_usuario));
         $smarty->assign('entidades', $usuario->obtener_entidades($id_usuario));
-        $smarty->assign('id_operario', $operario->id_usuario);
+        $smarty->assign('id_operario', $_usuario->id_usuario);
         $plantilla = "usuario_editar.tpl";
     }
     else

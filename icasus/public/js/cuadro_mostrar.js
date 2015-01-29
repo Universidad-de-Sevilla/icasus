@@ -7,7 +7,7 @@
 $(".borrar").on('click', function (evento) {
     var boton_borrar, id_panel;
     boton_borrar = $(this);
-    id_panel = boton_borrar.parents().find(".panel").data("idpanel");
+    id_panel = $(this).data("id_panel");
     $('#nombre_panel').html(boton_borrar.data('nombre_panel'));
     $("#dialogo_borrar_panel").dialog({
         autoOpen: true, modal: true,

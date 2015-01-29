@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
-global $operario;
+global $_usuario;
 global $plantilla;
 $smarty->assign('_javascript', array('valor_validar', 'calcular'));
 

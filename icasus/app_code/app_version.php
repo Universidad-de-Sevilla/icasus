@@ -1,7 +1,8 @@
 <?php
-define('IC_VERSION', "2.9.5");
-define('IC_FECHA_REVISION', "25/01/2015");
+define('IC_VERSION', "2.9.6");
+define('IC_FECHA_REVISION', "29/01/2015");
 
+// 2.9.6 - 29/01/2015 - Varios añadidos: borrado de cuadros de mando, paneles, avence de mediciones mejorado, actualización de Highcharts...
 // 2.9.5 - 25/01/2015 - Edición de paneles, cambios en interfaz y avance de mediciones.
 // 2.9.4 - 23/01/2015 - Adaptaciones, correcciones de algunos gráficos con Highcharts.
 // 2.9.3 - 22/01/2015 - Adaptaciones, correcciones de algunos gráficos con Highcharts.

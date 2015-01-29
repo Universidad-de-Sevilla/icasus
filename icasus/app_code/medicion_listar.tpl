@@ -49,86 +49,103 @@
                             </div>
                         {/foreach}
                     {/if}
-                </div>
-                <!-- //GRÁFICAS -->
+                {else}
+                    <div class="alert alert_blue">
+                        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                        {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
+                    </div>
+                {/if}
+            </div>
+            <!-- //GRÁFICAS -->
 
+        </div>
+    </div>
+</div>
+
+{if $mediciones}
+    <div class="box grid_16">
+        <div class="toggle_container">    
+            <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_TABLA}</h2>
+            <a href="#" class="grabber"></a>
+            <a href="#" class="toggle"></a> 
+            <div class="block">
+                <div class="button_bar clearfix">
+                    <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}</a>&nbsp;&nbsp;
+                    <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                            src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
+                    <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>
+                </div>
+                <div id="dt1" class="no_margin">
+                    <table class="display datatable" id="listado_mediciones">
+                        <thead>
+                            <tr>
+                                <th>{$smarty.const.FIELD_ETIQUETA}</th>
+                                <th>{$smarty.const.FIELD_INICIO_PERIODO}</th>
+                                <th>{$smarty.const.FIELD_FIN_PERIODO}</th>
+                                <th>{$smarty.const.FIELD_INICIO_GRABACION}</th>
+                                <th>{$smarty.const.FIELD_FIN_GRABACION}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach $mediciones as $medicion}
+                                <tr class="gradeX">
+                                    <td nowrap><a title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}">{$medicion->etiqueta}</a></td>
+                                    <td>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</td>
+                                    <td>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</td>
+                                    <td>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</td>
+                                    <td>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 
     <div class="box grid_16">
-        <div class="toggle_container">    
-            <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_TABLA}</h2>
-            <a href="#" class="grabber"></a>
-            <a href="#" class="toggle"></a>          
-            <div id="dt1" class="no_margin">
-                <table class="display datatable" id="listado_mediciones">
-                    <thead>
-                        <tr>
-                            <th>{$smarty.const.FIELD_ETIQUETA}</th>
-                            <th>{$smarty.const.FIELD_INICIO_PERIODO}</th>
-                            <th>{$smarty.const.FIELD_FIN_PERIODO}</th>
-                            <th>{$smarty.const.FIELD_INICIO_GRABACION}</th>
-                            <th>{$smarty.const.FIELD_FIN_GRABACION}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {foreach $mediciones as $medicion}
-                            <tr class="gradeX">
-                                <td nowrap><a href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}">{$medicion->etiqueta}</a></td>
-                                <td>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</td>
-                                <td>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</td>
-                                <td>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</td>
-                                <td>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</td>
-                            </tr>
-                        {/foreach}
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <div style="opacity: 1;" class="box grid_16">
         <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_VAL_TABLA}</h2>
         <a href="#" class="grabber"></a>
         <a href="#" class="toggle"></a>
-        <div style="opacity: 1;" class="block">
-            <div id="dt1" class="no_margin">
-                <table class="display datatable">
-                    <thead>
-                        <tr>
-                            <th>{$smarty.const.FIELD_UNID}</th>
-                                {foreach from=$mediciones item=medicion}
-                                <th>{$medicion->etiqueta}</th>
-                                {/foreach}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {foreach from=$subunidades_mediciones item=subunidades}
+        <div class="block">
+            <div class="button_bar clearfix">
+                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}</a>&nbsp;&nbsp;
+                <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
+                <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>
+            </div>
+            <div class="block">
+                <div id="dt1" class="no_margin">
+                    <table class="display datatable">
+                        <thead>
                             <tr>
-                                <td>{$subunidades->etiqueta}</td>
-                                {foreach from=$subunidades->mediciones item=medicion}
-                                    <td>
-                                        {if $medicion->medicion_valor == '--'} -- 
-                                        {else}
-                                            {if $medicion->medicion_valor->valor != NULL}
-                                                {$medicion->medicion_valor->valor|round:"2"}
-                                            {/if}
-                                        {/if}
-                                    </td>
-                                {/foreach}
+                                <th>{$smarty.const.FIELD_UNID}</th>
+                                    {foreach from=$mediciones item=medicion}
+                                    <th>{$medicion->etiqueta}</th>
+                                    {/foreach}
                             </tr>
-                        {/foreach}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {foreach from=$subunidades_mediciones item=subunidades}
+                                <tr>
+                                    <td>{$subunidades->etiqueta}</td>
+                                    {foreach from=$subunidades->mediciones item=medicion}
+                                        <td>
+                                            {if $medicion->medicion_valor == '--'} -- 
+                                            {else}
+                                                {if $medicion->medicion_valor->valor != NULL}
+                                                    {$medicion->medicion_valor->valor|round:"2"}
+                                                {/if}
+                                            {/if}
+                                        </td>
+                                    {/foreach}
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-
-{else}
-    <div class="alert alert_blue">
-        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-        {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
     </div>
 {/if}
 

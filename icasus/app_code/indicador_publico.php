@@ -11,7 +11,7 @@
 
 global $smarty;
 global $plantilla;
-global $operario;
+global $_usuario;
 
 // Esto es para prevenir que se cargue el script sin pasar por index.php
 if (!is_object($smarty))

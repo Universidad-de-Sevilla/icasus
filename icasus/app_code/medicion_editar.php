@@ -116,7 +116,7 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $smarty->assign('entidad', $entidad);
 
     $smarty->assign("usuario", $usuario);
-    $smarty->assign("_nombre_pagina", FIELD_MED . " $medicion->etiqueta - $indicador->nombre");
+    $smarty->assign("_nombre_pagina", TXT_MED_VER . ": " . " $medicion->etiqueta - $indicador->nombre");
     $smarty->assign('_javascript', array('medicion_editar'));
     $plantilla = "medicion_editar.tpl";
 }

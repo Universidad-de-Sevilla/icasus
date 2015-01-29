@@ -16,7 +16,7 @@ if (filter_has_var(INPUT_GET,'id_cuadro'))
     $cuadro = new Cuadro();
     $cuadro->load("id = $id_cuadro");
     $smarty->assign('cuadro', $cuadro);
-    $smarty->assign('_nombre_pagina', TXT_CUADRO_EDIT);
+    $smarty->assign('_nombre_pagina', TXT_CUADRO_EDIT.': '.$cuadro->nombre);
     $plantilla = 'cuadro_editar.tpl';
 }
 else

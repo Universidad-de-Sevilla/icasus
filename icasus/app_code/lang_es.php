@@ -180,6 +180,7 @@ define('TXT_CERRAR_SESION', 'Cerrar sesión');
 
 //Mediciones
 define('TXT_MED_UNICA', 'Medición única en la Unidad actual');
+define('TXT_MED_VER', 'Ver Medición');
 define('TXT_MED_DES', 'Medición desagregada en las Subunidades y cumplimentada por los responsables de las Subunidades, o la persona delegada.');
 define('TXT_MED_DES_CEN', 'Medición desagregada en las Subunidades y cumplimentada de manera centralizada por el responsable de medición del Indicador.');
 define('TXT_MED_ESTA', 'esta Medición');
@@ -213,10 +214,13 @@ define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
 define('TXT_VER', 'Ver');
 define('TXT_SI', 'Si');
 define('TXT_NO', 'No');
+define('TXT_PRIMER', 'Primera');
+define('TXT_ULTIMO', 'Última');
 define('TXT_SIG', 'Siguiente');
 define('TXT_ANT', 'Anterior');
 define('TXT_EDIT', 'Editar');
 define('TXT_BORRAR', 'Borrar');
+define('TXT_DESACT', 'Desactivar');
 define('TXT_VOLVER', 'Volver al');
 define('TXT_VOLVER_INDICE', 'Volver al índice');
 define('TXT_VOLVER_LIST', 'Volver al listado');
@@ -329,9 +333,8 @@ define('TXT_USER_DAT', 'Datos del Usuario');
 
 //Valores
 define('TXT_VALS', 'Valores');
-define('TXT_VAL_EDIT', 'Edición de Valores');
+define('TXT_VAL_EDIT', 'Editar Valores');
 define('TXT_VAL_AGREGAR', 'Agregar Valor');
-define('TXT_VALS_EDIT', 'Editar Valores');
 define('TXT_VALS_SUBUNID', 'Valores por Subunidad');
 define('TXT_VAL_IMPORT', 'Importar Valores');
 define('TXT_VAL_REF', 'Valores de Referencia');
@@ -371,7 +374,7 @@ define('MSG_ARCHIVO_BORRADO', 'Se ha borrado el archivo.');
 define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Cuadros de Mando
-define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado un Cuadro de Mando.');
+define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el Cuadro de Mando:');
 define('MSG_CUADRO_MANDO_NO_DEF', 'No has definido ningún Cuadro de Mando propio todavía.');
 define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún Cuadro de Mando público todavía.');
 //Paneles de los Cuadros de Mando
@@ -486,6 +489,7 @@ define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.'
 define('ERR_CUAD_MANDO', 'El Cuadro de Mando no existe o no tiene permisos para consultarlo.');
 define('ERR_CUAD_MANDO_PARAM', 'Parámetros insuficientes para mostrar el Cuadro de Mando.');
 define('ERR_CUAD_MANDO_EDIT', 'El Cuadro de Mando no existe o no tiene permisos para editarlo.');
+define('ERR_CUAD_MANDO_BORRAR', 'No se puede borrar un Cuadro de Mando que contenga paneles. Bórralos primero.');
 
 //Datos
 define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo Dato.');

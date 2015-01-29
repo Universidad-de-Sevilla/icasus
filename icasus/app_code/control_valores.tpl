@@ -1,13 +1,18 @@
 <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</h2>
 <form action='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}' method='post' class='formdiv' name='formdiv' onsubmit="return confirm('{$smarty.const.MSG_VALS_CONFIRM_DESACT}');">
+    <div class="button_bar clearfix">
+        <button class="green send_left" type="submit" value="" name="enviar">
+            <span>{$smarty.const.TXT_VALS_DESACT}</span>
+        </button>
+    </div>
     <table class="display datatable"> 
         <thead>
-            <tr><th></th><th>{$smarty.const.FIELD_PROC}</th><th>{$smarty.const.FIELD_UNID}</th><th>{$smarty.const.FIELD_INDIC} / {$smarty.const.TXT_DATO}</th><th>{$smarty.const.FIELD_FECHA}</th><th>{$smarty.const.FIELD_VAL}</th></tr>
+            <tr><th>{$smarty.const.TXT_DESACT}</th><th>{$smarty.const.FIELD_PROC}</th><th>{$smarty.const.FIELD_UNID}</th><th>{$smarty.const.FIELD_INDIC} / {$smarty.const.TXT_DATO}</th><th>{$smarty.const.FIELD_FECHA}</th><th>{$smarty.const.FIELD_VAL}</th></tr>
         </thead>
         <tbody>
             {foreach from=$valores item=valor}
                 <tr>
-                    <td><input type='checkbox' name='id_valor[]' value='{$valor.id_valor}'/></td>
+                    <td style="text-align: center"><input type='checkbox' name='id_valor[]' value='{$valor.id_valor}'/></td>
                     <td>
                         {if $valor.cod_proceso == ''}
                             {$smarty.const.FIELD_DATOS}
@@ -25,11 +30,6 @@
             {/foreach}
         </tbody>	
     </table>
-    <div class="button_bar clearfix">
-        <button class="green send_right" type="submit" value="" name="enviar">
-            <span>{$smarty.const.TXT_VALS_DESACT}</span>
-        </button>
-    </div>
 </form>
 
 <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</h2>

@@ -10,7 +10,7 @@
 require_once('function/sanitize.php');
 global $smarty;
 global $basedatos;
-global $operario;
+global $_usuario;
 global $page;
 global $plantilla;
 $smarty->assign('_javascript', array('confirmar_borrar'));

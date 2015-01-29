@@ -9,7 +9,7 @@
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
-global $operario;
+global $_usuario;
 global $plantilla;
 
 // Comprueba si vienen los datos necesarios para grabar un nuevo valor
@@ -49,13 +49,13 @@ if (filter_has_var(INPUT_POST, 'id_indicador') && filter_has_var(INPUT_POST, 'da
     $valor->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones') : null;
     $valor->fecha_recogida = mktime(0, 0, 0, $month, $day, $year);
     $valor->fecha_entrada = time();
-    $valor->id_usuario = $operario->id_usuario;
+    $valor->id_usuario = $_usuario->id_usuario;
     //print_r($valor);
     if ($valor->save())
     {
         // Se ha grabado bien, reenviamos al indicador
         $log = new Log(); // registra la accion en el log
-        $log->add('nuevo valor', $id_indicador, $operario->id_usuario);
+        $log->add('nuevo valor', $id_indicador, $_usuario->id_usuario);
         $aviso = MSG_VAL_GRABAR;
         header("Location: index.php?page=indicador_datos&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
     }
