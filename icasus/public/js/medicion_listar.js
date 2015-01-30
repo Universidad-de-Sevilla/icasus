@@ -14,7 +14,7 @@ $.ajax({
     success: onDataReceived
 });
 
-// Guardado de datos en highchartstruct y totales para las medias
+// Guardado de datos en highchartStruct y totales para las medias
 function onDataReceived(datos) {
     //var categories = new Set();
     datos.forEach(function (d) {
@@ -25,7 +25,6 @@ function onDataReceived(datos) {
         }
     });
 }
-;
 
 // Pinta y configura el gráfico
 $(document).ajaxComplete(function () {

@@ -62,7 +62,8 @@ $('.panel_linea').each(function () {
     //Guarda los datos de todas las series de cada indicador del panel
     var total_dataseries = new Array();
 
-    //Obtenemos la lista de indicadores que forman el panel
+    //Obtenemos la lista de indicadores que forman el panel 
+    //y los recorremos para sacar su serie
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
         $.each(indicadores, function (indicador) {
 
@@ -105,43 +106,50 @@ $('.panel_linea').each(function () {
                         }
                     });
                 }
-                total_dataseries = total_dataseries.concat(dataseries);
+
+                //Sacar los datos de la dataserie y hacer un push en 
+                //total_dataseries donde el nombre es el del indicador
+                total_dataseries.push({
+                    name: indicador.nombre,
+                    data: dataseries.data
+                });
             }
         });
+    });
 
-        var chart1 = new Highcharts.Chart({
-            chart: {
-                type: 'line',
-                height: 300,
-                renderTo: contenedor
-            },
+    //Una vez obtenido el total_dataseries pintamos el gráfico
+    var chart1 = new Highcharts.Chart({
+        chart: {
+            type: 'line',
+            height: 300,
+            renderTo: contenedor
+        },
+        title: {
+            text: titulo + ' ' + '(' + fecha_inicio + ' a ' + fecha_fin + ')',
+            style: {"fontSize": "14px"}
+        },
+        exporting: {
+            enabled: true
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
             title: {
-                text: titulo + ' ' + '(' + fecha_inicio + ' a ' + fecha_fin + ')',
-                style: {"fontSize": "14px"}
-            },
-            exporting: {
-                enabled: true
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {
-                title: {
-                    text: 'valores'
-                }
-            },
-            plotOptions: {
-                series: {
-                    dataLabels: {
-                        enabled: true,
-                        formatter: function () {
-                            return this.y ? ((Math.round(this.y * 100)) / 100) : null;
-                        }
+                text: 'valores'
+            }
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    formatter: function () {
+                        return this.y ? ((Math.round(this.y * 100)) / 100) : null;
                     }
                 }
-            },
-            series: total_dataseries
-        });
+            }
+        },
+        series: total_dataseries
     });
 });
 
@@ -150,178 +158,140 @@ $(".panel_barra").each(function () {
     var contenedor = $(this).attr('id');
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
+    var periodicidad = $(this).data("periodicidad");
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
-    var periodicidad = $(this).data("periodicidad");
 
     //Guarda los datos de todas las series de cada indicador del panel
     var total_dataseries = new Array();
 
-    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function (indicadores) {
+    //Obtenemos la lista de indicadores que forman el panel 
+    //y los recorremos para sacar su serie
+    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
+        $.each(indicadores, function (orden, indicador) {
 
-        $.each(indicadores, function (index, indicador) {
-            var url = "api_publica.php?metodo=get_valores_indicador_agrupado&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
+            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
+                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
+                    "&periodicidad=" + periodicidad;
 
-            $.getJSON(url, function (datos) {
-                var items = []; // valores que hay que pintar en la gráfica
-                var unidades = []; //array con las subunidades que vienen en los datos para pintar el eje X
-                var total; // valor medio o suma de todas las subunidades
-                var etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a>';
+            // contenedor para los datos del gráfico
+            var chartSerie = new HighchartSerie();
+            //Si el indicador no es el primero(barras) 
+            if (orden !== 0) {
 
-                // Recorre los datos que vienen de la api y los mete en el array items 
-                // a la vez que preparo las unidades para etiquetar el eje horizontal
-                $.each(datos, function (i, dato) {
-                    if (dato.unidad !== "Total")
-                    {
-                        items.push([i, dato.valor]);
-                        unidades.push([i, dato.etiqueta_mini]);
-                    }
-                    else
-                    {
-                        total = dato.valor;
-                    }
-                });
-
-                // El primer indicador lo pintamos como barra
-                if (index === 0)
-                {
-                    datos_flot[index] = {
-                        label: etiqueta_indicador,
-                        color: index,
-                        data: items,
-                        bars: {show: true, order: 1, barWidth: 0.5, fill: 0.6, align: 'center', horizontal: false}
-                    };
-
-                    // La línea con el total
-                    var marcas = [{color: "maroon", yaxis: {from: total, to: total}}];
-
-                    opciones = {
-                        legend: {container: leyenda},
-                        xaxis: {ticks: unidades, min: -0.5, max: datos.length - 1.5},
-                        grid: {
-                            backgroundColor: {colors: ["#eee", "#eee"]},
-                            borderWidth: {top: 1, right: 1, bottom: 1, left: 1},
-                            markings: marcas,
-                            hoverable: true
-                        },
-                        colors: ['maroon', 'darkolivegreen', 'orange']
-                    };
+                if (periodicidad === "anual") {
+                    chartSerie.categoryType = "año";
                 }
-                else
-                {
-                    datos_flot[index] = {
-                        label: etiqueta_indicador,
-                        color: index,
-                        data: items,
-                        lines: {show: true},
-                        points: {show: true}};
+                else {
+                    chartSerie.categoryType = "medicion";
                 }
-            }); //fin llamada api get_valores_indicador
-        });
-    });
-});
+            }
 
+            $.ajax({
+                url: urlApi,
+                type: "GET",
+                dataType: "json",
+                success: onDataReceived
+            });
 
-$(".panel_barra").each(function (index) {
-    var datos_flot = [];
-    var opciones = [];
-    var id_panel = $(this).data("idpanel");
-    var leyenda = $(this).next(".leyenda");
-    var fecha_inicio = $(this).data("fecha_inicio");
-    var fecha_fin = $(this).data("fecha_fin");
-    var periodicidad = $(this).data("periodicidad");
-
-    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function (indicadores) {
-
-        $.each(indicadores, function (index, indicador) {
-            var url = "api_publica.php?metodo=get_valores_indicador_agrupado&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
-            console.log(url);
-            $.getJSON(url, function (datos) {
-                var items = []; // valores que hay que pintar en la gráfica
-                var unidades = []; //array con las subunidades que vienen en los datos para pintar el eje X
-                var total; // valor medio o suma de todas las subunidades
-                var etiqueta_indicador = '<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id + '" target="_blank">' + indicador.nombre + '</a>';
-
-                // Recorre los datos que vienen de la api y los mete en el array items 
-                // a la vez que preparo las unidades para etiquetar el eje horizontal
-                $.each(datos, function (i, dato) {
-                    if (dato.unidad !== "Total")
-                    {
-                        items.push([i, dato.valor]);
-                        unidades.push([i, dato.etiqueta_mini]);
+            function onDataReceived(datos) {
+                datos.forEach(function (dato) {
+                    //Primer indicador: gráfico de barras
+                    if (orden === 0) {
+                        if (d.etiqueta_mini) {
+                            chartSerie.add(d);
+                        } else if (d.id_unidad === '0') {
+                            totales[d.medicion] = parseFloat(d.valor);
+                        }
                     }
-                    else
-                    {
-                        total = dato.valor;
+                    //Resto indicadores: gráfico de lineas
+                    else {
+                        // Agrega los que no tienen etiqueta_mini (total y referencias)
+                        // descarta las mediciones de unidades (no sirven aquí)
+                        if (!dato.etiqueta_mini && (dato.valor !== null)) {
+                            chartSerie.add(dato);
+                        }
                     }
                 });
 
-                // El primer indicador lo pintamos como barra
-                if (index === 0)
-                {
-                    datos_flot[index] = {
-                        label: etiqueta_indicador,
-                        color: index,
-                        data: items,
-                        bars: {show: true, order: 1, barWidth: 0.5, fill: 0.6, align: 'center', horizontal: false}
-                    };
+                // El primer indicador lo pintamos como gráfico de barras
+                if (orden === 0) {
 
-                    // La línea con el total
-                    var marcas = [{color: "maroon", yaxis: {from: total, to: total}}];
+                    dataseries = chartSerie.getBarSerie();
+                    dataseries[dataseries.length - 1].visible = true;
+                    dataseries[dataseries.length - 1].selected = true;
 
-                    opciones = {
-                        legend: {container: leyenda},
-                        xaxis: {ticks: unidades, min: -0.5, max: datos.length - 1.5},
-                        grid: {
-                            backgroundColor: {colors: ["#eee", "#eee"]},
-                            borderWidth: {top: 1, right: 1, bottom: 1, left: 1},
-                            markings: marcas,
-                            hoverable: true
-                        },
-                        colors: ['maroon', 'darkolivegreen', 'orange']
-                    };
+                    //Sacar los datos de la dataserie y hacer un push en 
+                    //total_dataseries donde el nombre es el del indicador
+                    total_dataseries.push({
+                        type: 'column',
+                        name: indicador.nombre,
+                        data: dataseries.data
+                    });
+
                 }
-                else
-                {
-                    datos_flot[index] = {
-                        label: etiqueta_indicador,
-                        color: index,
-                        data: items,
-                        lines: {show: true},
-                        points: {show: true}};
+                //El resto de inidacores se pintan con gráficos de líneas
+                else {
+                    // Pide las series de datos a chartSerie
+                    // A saber: Totales y Valores de referencia
+                    dataseries = chartSerie.getLinealSerie();
+                    // Si no es anual ocultamos valores de referencia
+                    if (chartSerie.categoryType !== "año") {
+                        dataseries.forEach(function (dataserie, index) {
+                            if (index !== 0) {
+                                dataserie.visible = false;
+                            }
+                        });
+                    }
+
+                    //Sacar los datos de la dataserie y hacer un push en 
+                    //total_dataseries donde el nombre es el del indicador
+                    total_dataseries.push({
+                        type: 'line',
+                        name: indicador.nombre,
+                        data: dataseries.data
+                    });
                 }
+            }
+        });
+    });
 
-                console.log(datos_flot);
-                $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
-                $.plot($("#panel_" + id_panel), datos_flot, opciones);
-
-            }); //fin llamada api get_valores_indicador
-
-            // Pinta el tooltip cuando pasamos el cursor sobre un punto de la gráfica
-            var previousPoint = null;
-            $("#panel_" + id_panel).bind("plothover", function (event, pos, item) {
-                if (item) {
-                    if (previousPoint !== item.dataIndex) {
-                        previousPoint = item.dataIndex;
-                        $("#tooltip").remove();
-                        var x = item.datapoint[0].toFixed(2),
-                                y = item.datapoint[1].toFixed(2),
-                                z = item.datapoint[0];
-                        var fecha = (new Date(z)).getDate() + "/" + (new Date(z)).getMonth() + "/" + (new Date(z)).getFullYear();
-                        showTooltip(item.pageX, item.pageY, y + " - " + item.series.label);
-                        console.log(item);
+    //Una vez obtenido el total_dataseries pintamos el gráfico
+    var chart1 = new Highcharts.Chart({
+        chart: {
+            height: 300,
+            renderTo: contenedor
+        },
+        title: {
+            text: titulo + ' ' + '(' + fecha_inicio + ' a ' + fecha_fin + ')',
+            style: {"fontSize": "14px"}
+        },
+        exporting: {
+            enabled: true
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'valores'
+            }
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    formatter: function () {
+                        return this.y ? ((Math.round(this.y * 100)) / 100) : null;
                     }
                 }
-                else
-                {
-                    $("#tooltip").remove();
-                    previousPoint = null;
-                }
-            }); // termina código para tooltip
-        });
+            }
+        },
+        series: total_dataseries
     });
 });
 
+//Paneles de tarta
 $(".panel_tarta").each(function (index) {
     var datos_flot = [];
     var total; // valor total del indicador para esta medición

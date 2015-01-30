@@ -123,6 +123,6 @@
 {/if}
 
 <script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/highchartStruct.js" type="text/javascript"></script>
 <script src="js/exporting.js"></script>
+<script src="js/highchartStruct.js" type="text/javascript"></script>
 <script src="js/indicador_dato_mostrar.js" type="text/javascript"></script>
