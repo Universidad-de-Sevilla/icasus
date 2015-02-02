@@ -3,7 +3,7 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: cuadro_unidad.php
-// Desarrolladores: Joaquín Valonero Zaera (jvalzae@hotmail.com)
+// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Lista los indicadores de la unidad
 //---------------------------------------------------------------------------------------------------

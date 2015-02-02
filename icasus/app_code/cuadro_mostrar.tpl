@@ -4,7 +4,9 @@
                 src='/icons/ff16/application_add.png' /> {$smarty.const.TXT_PANEL_AGREGAR}</a>&nbsp;&nbsp;
         <a title="{$smarty.const.TXT_EDIT_PROP}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
                 src='/icons/ff16/table_edit.png' /> {$smarty.const.TXT_EDIT_PROP}</a>&nbsp;&nbsp;
-        <a title="{$smarty.const.TXT_BORRAR}" href='index.php?page=cuadro_borrar&id_cuadro={$cuadro->id}&id_entidad=14'>
+        <a onclick="return confirm('{$smarty.const.MSG_CUADRO_MANDO_CONFIRM_BORRAR}');" 
+           title="{$smarty.const.TXT_BORRAR}" 
+           href='index.php?page=cuadro_borrar&id_cuadro={$cuadro->id}&id_entidad=14'>
             <img src='/icons/ff16/table_delete.png' /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
         {/if}
     <a title="{$smarty.const.TXT_VOLVER_LIST}" href='index.php?page=cuadro_listar&id_entidad=14'>
@@ -81,5 +83,6 @@
 
 <script src="js/highcharts.js" type="text/javascript"></script>
 <script src="js/exporting.js" type="text/javascript"></script>
-<script src="js/highchartStruct.js" type="text/javascript"></script>
+<script src="js/Conjunto.js" type="text/javascript"></script>
+<script src="js/HighchartSerie.js" type="text/javascript"></script>
 <script src="js/cuadro_mostrar.js" type="text/javascript"></script>

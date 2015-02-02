@@ -3,7 +3,7 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: dato_mostrar.php
-// Desarrolladores: Joaquín Valonero Zaera (jvalzae@hotmail.com)
+// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
 // 
 //---------------------------------------------------------------------------------------------------
 // Muestra todos los parametros de un dato y un listado de los valores introducidos
@@ -29,6 +29,7 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
         $error = ERR_DATO_MOSTRAR;
         header("location:index.php?error=$error");
     }
+
     $entidad = new Entidad();
     $entidad->load("id = $dato->id_entidad");
     $smarty->assign('entidad', $entidad);
@@ -82,4 +83,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?error=$error");
 }
-

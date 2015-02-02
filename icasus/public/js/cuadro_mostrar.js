@@ -1,7 +1,7 @@
 //--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
 // Archivo: public/js/cuadro_mostrar.js
-// Desarrolladores: Joaquín Valonero Zaera (jvalzae@hotmail.com)
+// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
 //Incluye el código JavaScript para el fichero cuadro_mostrar.tpl que gestiona 
 //las gráficas de los cuadros de mando.
@@ -60,7 +60,7 @@ $('.panel_linea').each(function () {
     var fecha_fin = $(this).data("fecha_fin");
 
     //Guarda los datos de todas las series de cada indicador del panel
-    var total_dataseries = new Array();
+    var totalDataseries = new Array();
 
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie
@@ -73,6 +73,7 @@ $('.panel_linea').each(function () {
 
             // contenedor para los datos del gráfico
             var chartSerie = new HighchartSerie();
+
             if (periodicidad === "anual") {
                 chartSerie.categoryType = "año";
             }
@@ -97,7 +98,7 @@ $('.panel_linea').each(function () {
 
                 // Pide las series de datos a chartSerie
                 // A saber: Totales y Valores de referencia
-                dataseries = chartSerie.getLinealSerie();
+                var dataseries = chartSerie.getLinealSerie();
                 // Si no es anual ocultamos valores de referencia
                 if (chartSerie.categoryType !== "año") {
                     dataseries.forEach(function (dataserie, index) {
@@ -108,19 +109,17 @@ $('.panel_linea').each(function () {
                 }
 
                 //Sacar los datos de la dataserie y hacer un push en 
-                //total_dataseries donde el nombre es el del indicador
-                total_dataseries.push({
-                    name: indicador.nombre,
-                    data: dataseries.data
-                });
+                //total_dataseries donde el nombre es el del indicador.
+                for (dataserie in dataseries) {
+                    totalDataseries.push(dataserie);
+                }
             }
         });
     });
 
-    //Una vez obtenido el total_dataseries pintamos el gráfico
+    //Una vez obtenido el totalDataseries pintamos el gráfico
     var chart1 = new Highcharts.Chart({
         chart: {
-            type: 'line',
             height: 300,
             renderTo: contenedor
         },
@@ -136,7 +135,7 @@ $('.panel_linea').each(function () {
         },
         yAxis: {
             title: {
-                text: 'valores'
+                text: 'Valores'
             }
         },
         plotOptions: {
@@ -149,7 +148,7 @@ $('.panel_linea').each(function () {
                 }
             }
         },
-        series: total_dataseries
+        series: totalDataseries
     });
 });
 
@@ -163,7 +162,7 @@ $(".panel_barra").each(function () {
     var fecha_fin = $(this).data("fecha_fin");
 
     //Guarda los datos de todas las series de cada indicador del panel
-    var total_dataseries = new Array();
+    var totalDataseries = new Array();
 
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie
@@ -198,11 +197,13 @@ $(".panel_barra").each(function () {
                 datos.forEach(function (dato) {
                     //Primer indicador: gráfico de barras
                     if (orden === 0) {
-                        if (d.etiqueta_mini) {
-                            chartSerie.add(d);
-                        } else if (d.id_unidad === '0') {
-                            totales[d.medicion] = parseFloat(d.valor);
-                        }
+                        datos.forEach(function (d) {
+                            if (d.etiqueta_mini) {
+                                chartSerie.add(d);
+                            } else if (d.id_unidad === '0') {
+                                totales[d.medicion] = parseFloat(d.valor);
+                            }
+                        });
                     }
                     //Resto indicadores: gráfico de lineas
                     else {
@@ -214,23 +215,14 @@ $(".panel_barra").each(function () {
                     }
                 });
 
+                var dataseries = [];
                 // El primer indicador lo pintamos como gráfico de barras
                 if (orden === 0) {
-
                     dataseries = chartSerie.getBarSerie();
                     dataseries[dataseries.length - 1].visible = true;
                     dataseries[dataseries.length - 1].selected = true;
-
-                    //Sacar los datos de la dataserie y hacer un push en 
-                    //total_dataseries donde el nombre es el del indicador
-                    total_dataseries.push({
-                        type: 'column',
-                        name: indicador.nombre,
-                        data: dataseries.data
-                    });
-
                 }
-                //El resto de inidacores se pintan con gráficos de líneas
+                //El resto de indicadores se pintan con gráficos de líneas
                 else {
                     // Pide las series de datos a chartSerie
                     // A saber: Totales y Valores de referencia
@@ -243,20 +235,17 @@ $(".panel_barra").each(function () {
                             }
                         });
                     }
-
-                    //Sacar los datos de la dataserie y hacer un push en 
-                    //total_dataseries donde el nombre es el del indicador
-                    total_dataseries.push({
-                        type: 'line',
-                        name: indicador.nombre,
-                        data: dataseries.data
-                    });
+                }
+                //Sacar los datos de la dataserie y hacer un push en 
+                //total_dataseries donde el nombre es el del indicador
+                for (dataserie in dataseries) {
+                    totalDataseries.push(dataserie);
                 }
             }
         });
     });
 
-    //Una vez obtenido el total_dataseries pintamos el gráfico
+    //Una vez obtenido el totalDataseries pintamos el gráfico
     var chart1 = new Highcharts.Chart({
         chart: {
             height: 300,
@@ -274,7 +263,7 @@ $(".panel_barra").each(function () {
         },
         yAxis: {
             title: {
-                text: 'valores'
+                text: 'Valores'
             }
         },
         plotOptions: {
@@ -287,81 +276,98 @@ $(".panel_barra").each(function () {
                 }
             }
         },
-        series: total_dataseries
+        series: totalDataseries
     });
 });
 
 //Paneles de tarta
 $(".panel_tarta").each(function (index) {
-    var datos_flot = [];
-    var total; // valor total del indicador para esta medición
-    var medicion; //etiqueta de la medición que vamos a mostrar
-    var id_medicion = $(this).data("id_medicion");
-    var id_panel = $(this).data("idpanel");
-    var leyenda = $(this).next('.leyenda');
-    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function (indicadores) {
-        var indicador = indicadores[0];
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function (datos) {
-            var items = [];
-            $.each(datos, function (i, dato) {
-                if (dato.id_medicion === id_medicion)
-                {
-                    // Si id_unidad es 0 se trata del valor total, en otro caso es el parcial de una subunidad
-                    if (dato.id_unidad === 0)
-                    {
-                        total = dato.valor;
-                        medicion = dato.medicion;
-                    }
-                    else
-                    {
-                        datos_flot.push({label: dato.unidad, data: parseFloat(dato.valor)});
-                        medicion = dato.medicion;
-                    }
-                }
-            });
-            //opciones =  { series: { pie: { show: true, radius: 1, label: { show: true, radius: 2/3, threshold: 0.05 } } }, legend: { show: false } };
-            var opciones = {
-                //series: { pie: { show: true, label: {threshold: 0.04} } },
-                series:
-                        {
-                            pie: {
-                                show: true,
-                                label: {
-                                    show: true,
-                                    formatter: function (label, series)
-                                    {
-                                        return '<div style="font-size:x-small;text-align:center;padding:2px;color:'
-                                                + series.color + ';">' + label + '<br/>' + series.data[0][1] + '</div>';
-                                    },
-                                    threshold: 0.05
-                                }
-                            }
-                        },
-                grid: {hoverable: true},
-                legend: {show: false}
-            };
+    var contenedor = $(this).attr('id');
+    var id_panel = $(this).data("id_panel");
+    var titulo = $(this).data("titulo_panel");
+    var periodicidad = $(this).data("periodicidad");
+    var fecha_inicio = $(this).data("fecha_inicio");
+    var fecha_fin = $(this).data("fecha_fin");
 
-            // Cuando se pase el cursor sobre la tarta aparecerán los valores de cada porción
-            $("#panel_" + id_panel).bind("plothover", function (event, pos, item) {
-                // alert("You clicked at " + pos.x + ", " + pos.y);
-                if (item)
-                {
-                    leyenda.html("<div style='width:4px;height:0;border:5px solid " + item.series.color + ";float:left'></div> <h4>" + item.series.label + ": " + Math.round(item.series.percent) + "% (" + item.series.data[0][1] + ")</h4>");
-                }
-                else
-                {
-                    leyenda.html('<p>' + indicador.nombre + ' - Medición: <strong>' + medicion +
-                            '</strong> - Total: <strong>' + total + '</strong></p>');
-                }
+    //Guarda los datos de todas las series de cada indicador del panel
+    var totalDataseries = new Array();
+
+    //Obtenemos la lista de indicadores que forman el panel 
+    //y los recorremos para sacar su serie
+    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
+        $.each(indicadores, function (indicador) {
+
+            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
+                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
+                    "&periodicidad=" + periodicidad;
+
+            // contenedor para los datos del gráfico
+            var chartSerie = new HighchartSerie();
+
+            $.ajax({
+                url: urlApi,
+                type: "GET",
+                dataType: "json",
+                success: onDataReceived
             });
-            $("#panel_" + id_panel).css("height", "200px");
-            $.plot($("#panel_" + id_panel), datos_flot, opciones);
-            leyenda.html('<p style="font-size:10px;">' + indicador.nombre + ' - Medición: <strong>' + medicion +
-                    '</strong> - Total: <strong>' + total + '</strong></p>');
+
+            function onDataReceived(datos) {
+                datos.forEach(function (dato) {
+                    if (d.etiqueta_mini) {
+                        chartSerie.add(d);
+                    } else if (d.id_unidad === '0') {
+                        totales[d.medicion] = parseFloat(d.valor);
+                    }
+                });
+
+                var serie = chartSerie.getPieSerie();
+                //Hacemos visible el último año
+                serie[serie.length - 1].visible = true;
+                serie[serie.length - 1].selected = true;
+                
+                 //Sacar los datos de la dataserie y hacer un push en 
+                //total_dataseries donde el nombre es el del indicador
+                for (dataserie in dataseries) {
+                    totalDataseries.push(dataserie);
+                }
+            }
         });
     });
-});
 
+    //Una vez obtenido el totalDataseries pintamos el gráfico
+    var chart1 = new Highcharts.Chart({
+        chart: {
+            height: 300,
+            renderTo: contenedor
+        },
+        title: {
+            text: titulo + ' ' + '(' + fecha_inicio + ' a ' + fecha_fin + ')',
+            style: {"fontSize": "14px"}
+        },
+        exporting: {
+            enabled: true
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Valores'
+            }
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    formatter: function () {
+                        return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                    }
+                }
+            }
+        },
+        series: totalDataseries
+    });
+});
 
 $(".panel_tabla").each(function (index) {
     var datos_flot = [];

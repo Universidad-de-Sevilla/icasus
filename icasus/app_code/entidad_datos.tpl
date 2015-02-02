@@ -13,8 +13,8 @@
 
 <div class="box grid_16">
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_UNID_PARAM}</h2> 
-        <a href="#" class="grabber"></a>
-        <a href="#" class="toggle"></a>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
     <div class="block">
         <fieldset class="label_side">
             <label>{$smarty.const.FIELD_COD}</label>
@@ -51,7 +51,7 @@
         <div class="block">
             <div class="button_bar clearfix">
                 <a href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_add.png' />
-                    {$smarty.const.TXT_USERS_VINC}</a> &nbsp; &nbsp; &nbsp;
+                    {$smarty.const.TXT_USERS_VINC}</a>&nbsp;&nbsp;
                 <a href='index.php?page=entidad_despoblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_delete.png' />
                     {$smarty.const.TXT_USERS_DESVINC}</a>
             </div>

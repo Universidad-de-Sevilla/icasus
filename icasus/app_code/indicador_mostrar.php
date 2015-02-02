@@ -25,8 +25,6 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
         $error = ERR_INDIC_MOSTRAR;
         header("location:index.php?error=$error");
     }
-    $indicador->load_joined("id = $id_indicador");
-    $smarty->assign('indicador', $indicador);
 
     $entidad = new Entidad();
     $entidad->load("id = $indicador->id_entidad");
@@ -57,7 +55,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
             $panel->ancho = 16;
             $panel->nombre = TXT_2_ULT_ANYO;
             $panel->fecha_inicio = "01-01-" . $anio_inicio;
-            $panel->fecha_fin = date("d-m-Y");
+            $panel->fecha_fin = "31-12-".$anio_fin;
             $panel->periodicidad = "todos";
             $paneles[] = clone($panel);
         }
@@ -73,7 +71,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
         $paneles[] = clone($panel);
         $smarty->assign("paneles", $paneles);
     }
-    $smarty->assign('_nombre_pagina', TXT_INDIC_FICHA . ': ' . $indicador->nombre);
+    $smarty->assign('_nombre_pagina', TXT_INDIC_FICHA . ": $indicador->nombre");
     $plantilla = 'indicador_mostrar.tpl';
 }
 else

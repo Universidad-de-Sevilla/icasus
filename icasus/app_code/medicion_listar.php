@@ -3,7 +3,7 @@
 //-------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: medicion_listar.php
-// Desarrolladores: Joaquín Valonero Zaera (jvalzae@hotmail.com)
+// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
 // 
 //-------------------------------------------------------------------------------
 // Muestra un listado de las mediciones establecidas para un indicador
@@ -68,8 +68,8 @@ if ($mediciones)
         $panel->tipo->clase_css = "lineal";
         $panel->ancho = 8;
         $panel->nombre = TXT_2_ULT_ANYO;
-        $panel->fecha_inicio = "01-01-" . $anio_inicio;
-        $panel->fecha_fin = date("d-m-Y");
+        $panel->fecha_inicio = date("d-m")."-" . $anio_inicio;
+        $panel->fecha_fin = date("Y-m-d");
         $panel->periodicidad = "todos";
         $paneles[] = clone($panel);
     }

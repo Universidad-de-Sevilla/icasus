@@ -4,7 +4,7 @@
 // Proyecto: Icasus 
 // Archivo: cuadro_unidad.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es) 
-// Joaquín Valonero Zaera (jvalzae@hotmail.com)
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Control de indicadores, mediciones, valores...
 //---------------------------------------------------------------------------------------------------

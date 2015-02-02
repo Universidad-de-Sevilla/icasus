@@ -35,7 +35,9 @@
                                 <a title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'>
                                     <img src='/icons/ff16/table_edit.png' />
                                 </a>&nbsp;&nbsp;
-                                <a title="{$smarty.const.TXT_BORRAR}" href='index.php?page=cuadro_borrar&id_cuadro={$cuadro->id}&id_entidad=14'>
+                                <a onclick="return confirm('{$smarty.const.MSG_CUADRO_MANDO_CONFIRM_BORRAR}');" 
+                                   title="{$smarty.const.TXT_BORRAR}" 
+                                   href='index.php?page=cuadro_borrar&id_cuadro={$cuadro->id}&id_entidad=14'>
                                     <img src='/icons/ff16/table_delete.png' />
                                 </a>
                             </td>

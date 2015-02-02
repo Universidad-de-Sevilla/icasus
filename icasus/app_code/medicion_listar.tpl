@@ -150,6 +150,7 @@
 {/if}
 
 <script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/highchartStruct.js" type="text/javascript"></script>
-<script src="js/exporting.js"></script>
+<script src="js/exporting.js" type="text/javascript"></script>
+<script src="js/Conjunto.js" type="text/javascript"></script>
+<script src="js/HighchartSerie.js" type="text/javascript"></script>
 <script src="js/medicion_listar.js" type="text/javascript"></script>
