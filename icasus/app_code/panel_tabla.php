@@ -28,6 +28,7 @@ if ($modulo == 'subunidades')
     $indicador_subunidad = new Indicador_subunidad();
     $indicador_subunidades = $indicador_subunidad->find_entidades("id_indicador = $id_indicador");
     $smarty->assign("indicador_subunidades", $indicador_subunidades);
+    $smarty->assign("id_indicador", $id_indicador);
 }
 if ($modulo == 'fecha_fin')
 {
