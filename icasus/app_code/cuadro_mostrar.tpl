@@ -63,8 +63,8 @@
                          data-id_panel="{$panel->id}"
                          data-titulo_panel ="{$panel->nombre}"
                          data-id_medicion="{$panel->id_medicion}" 
-                         data-fecha_inicio="{$panel->fecha_inicio|date_format:"%d-%m-%Y"}" 
-                         data-fecha_fin="{$panel->fecha_fin|date_format:"%d-%m-%Y"}" 
+                         data-fecha_inicio="{$panel->fecha_inicio}" 
+                         data-fecha_fin="{$panel->fecha_fin}" 
                          data-ancho="{$panel->ancho}"
                          data-periodicidad="{$panel->periodicidad}">
                     </div>

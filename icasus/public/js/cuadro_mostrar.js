@@ -58,6 +58,8 @@ $('.panel_linea').each(function () {
     var periodicidad = $(this).data("periodicidad");
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
+    var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
+    var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
 
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
@@ -124,7 +126,7 @@ $('.panel_linea').each(function () {
             renderTo: contenedor
         },
         title: {
-            text: titulo + ' ' + '(' + fecha_inicio + ' a ' + fecha_fin + ')',
+            text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
             style: {"fontSize": "14px"}
         },
         exporting: {
@@ -160,6 +162,8 @@ $(".panel_barra").each(function () {
     var periodicidad = $(this).data("periodicidad");
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
+    var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
+    var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
 
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
@@ -252,7 +256,7 @@ $(".panel_barra").each(function () {
             renderTo: contenedor
         },
         title: {
-            text: titulo + ' ' + '(' + fecha_inicio + ' a ' + fecha_fin + ')',
+            text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
             style: {"fontSize": "14px"}
         },
         exporting: {
@@ -288,6 +292,8 @@ $(".panel_tarta").each(function (index) {
     var periodicidad = $(this).data("periodicidad");
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
+    var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
+    var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
 
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
@@ -324,8 +330,8 @@ $(".panel_tarta").each(function (index) {
                 //Hacemos visible el último año
                 serie[serie.length - 1].visible = true;
                 serie[serie.length - 1].selected = true;
-                
-                 //Sacar los datos de la dataserie y hacer un push en 
+
+                //Sacar los datos de la dataserie y hacer un push en 
                 //total_dataseries donde el nombre es el del indicador
                 for (dataserie in dataseries) {
                     totalDataseries.push(dataserie);
@@ -341,7 +347,7 @@ $(".panel_tarta").each(function (index) {
             renderTo: contenedor
         },
         title: {
-            text: titulo + ' ' + '(' + fecha_inicio + ' a ' + fecha_fin + ')',
+            text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
             style: {"fontSize": "14px"}
         },
         exporting: {

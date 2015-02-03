@@ -3,6 +3,7 @@
 //-------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: indicador_mostrar.php
+// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
 //-------------------------------------------------------------------------------
 // Muestra la ficha del indicador y los gráficos con los valores
 //-------------------------------------------------------------------------------
@@ -49,13 +50,12 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
         {
             // Prepara el panel intraanual
             $anio_inicio = date('Y') - 2;
-            $anio_fin = date('Y');
             $panel->id = 2;
             $panel->tipo->clase_css = "lineal";
             $panel->ancho = 16;
             $panel->nombre = TXT_2_ULT_ANYO;
-            $panel->fecha_inicio = "01-01-" . $anio_inicio;
-            $panel->fecha_fin = "31-12-".$anio_fin;
+            $panel->fecha_inicio = $anio_inicio . "-01-01";
+            $panel->fecha_fin = date("Y-m-d");
             $panel->periodicidad = "todos";
             $paneles[] = clone($panel);
         }
@@ -65,8 +65,8 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
         $panel->id = 1;
         $panel->tipo->clase_css = "lineal";
         $panel->nombre = TXT_HISTORICO;
-        $panel->fecha_inicio = "01-01-" . $indicador->historicos;
-        $panel->fecha_fin = "31-12-" . $anio_fin;
+        $panel->fecha_inicio = $indicador->historicos . "-01-01";
+        $panel->fecha_fin = $anio_fin . "-12-31";
         $panel->periodicidad = "anual";
         $paneles[] = clone($panel);
         $smarty->assign("paneles", $paneles);
