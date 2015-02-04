@@ -76,11 +76,6 @@
 {/if}
 <!-- //Paneles -->		
 
-<script src="theme/danpin/scripts/flot/jquery.flot.min.js" type="text/javascript"></script>		
-<script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
-<script src="theme/danpin/scripts/flot/jquery.flot.pie.min.js" type="text/javascript"></script>		
-<script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>
-
 <script src="js/highcharts.js" type="text/javascript"></script>
 <script src="js/exporting.js" type="text/javascript"></script>
 <script src="js/Conjunto.js" type="text/javascript"></script>
