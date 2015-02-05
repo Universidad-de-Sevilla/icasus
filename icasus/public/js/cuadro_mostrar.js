@@ -61,13 +61,17 @@ $('.panel_linea').each(function () {
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
 
+    //Leyenda donde irań los indicadores relacionados
+    var leyenda = $(this).next('.leyenda');
+    leyenda.append('<p><h4>Indicador/es:</h4><p>');
+
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
 
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
-        $.each(indicadores, function (indicador) {
+        $.each(indicadores, function (index, indicador) {
 
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
                     "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
@@ -82,6 +86,11 @@ $('.panel_linea').each(function () {
             else {
                 chartSerie.categoryType = "medicion";
             }
+
+            //Incluye en la leyenda el indicador relacionado
+            leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+                    + '" style="border:0">' + indicador.nombre + '</a></p>');
+
             $.ajax({
                 url: urlApi,
                 type: "GET",
@@ -117,40 +126,39 @@ $('.panel_linea').each(function () {
                 }
             }
         });
-    });
-
-    //Una vez obtenido el totalDataseries pintamos el gráfico
-    var chart1 = new Highcharts.Chart({
-        chart: {
-            height: 300,
-            renderTo: contenedor
-        },
-        title: {
-            text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
-            style: {"fontSize": "14px"}
-        },
-        exporting: {
-            enabled: true
-        },
-        xAxis: {
-            type: 'category'
-        },
-        yAxis: {
+        //Una vez obtenido el totalDataseries pintamos el gráfico
+        var chart1 = new Highcharts.Chart({
+            chart: {
+                height: 300,
+                renderTo: contenedor
+            },
             title: {
-                text: 'Valores'
-            }
-        },
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    enabled: true,
-                    formatter: function () {
-                        return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
+                style: {"fontSize": "14px"}
+            },
+            exporting: {
+                enabled: true
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Valores'
+                }
+            },
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                        }
                     }
                 }
-            }
-        },
-        series: totalDataseries
+            },
+            series: totalDataseries
+        });
     });
 });
 
@@ -165,22 +173,26 @@ $(".panel_barra").each(function () {
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
 
+    //Leyenda donde irań los indicadores relacionados
+    var leyenda = $(this).next('.leyenda');
+    leyenda.append('<p><h4>Indicador base:</h4><p>');
+
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
 
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
-        $.each(indicadores, function (orden, indicador) {
+        $.each(indicadores, function (index, indicador) {
 
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
                     "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
                     "&periodicidad=" + periodicidad;
 
-            // contenedor para los datos del gráfico
+            // contenedor para los datos del indicador
             var chartSerie = new HighchartSerie();
             //Si el indicador no es el primero(barras) 
-            if (orden !== 0) {
+            if (index !== 0) {
 
                 if (periodicidad === "anual") {
                     chartSerie.categoryType = "año";
@@ -190,6 +202,19 @@ $(".panel_barra").each(function () {
                 }
             }
 
+            //Actualizamos la leyenda
+            if (index === 0 && indicadores.length > 1) {
+                //Incluye en la leyenda el indicador base
+                leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+                        + '" style="border:0">' + indicador.nombre + '</a></p>');
+                leyenda.append('<p><h4>Indicador/es complementarios:</h4><p>');
+
+            }
+            else {
+                //Incluye en la leyenda el indicador relacionado
+                leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+                        + '" style="border:0">' + indicador.nombre + '</a></p>');
+            }
             $.ajax({
                 url: urlApi,
                 type: "GET",
@@ -200,7 +225,7 @@ $(".panel_barra").each(function () {
             function onDataReceived(datos) {
                 datos.forEach(function (dato) {
                     //Primer indicador: gráfico de barras
-                    if (orden === 0) {
+                    if (index === 0) {
                         datos.forEach(function (d) {
                             if (d.etiqueta_mini) {
                                 chartSerie.add(d);
@@ -221,7 +246,7 @@ $(".panel_barra").each(function () {
 
                 var dataseries = [];
                 // El primer indicador lo pintamos como gráfico de barras
-                if (orden === 0) {
+                if (index === 0) {
                     dataseries = chartSerie.getBarSerie();
                     dataseries[dataseries.length - 1].visible = true;
                     dataseries[dataseries.length - 1].selected = true;
@@ -233,8 +258,8 @@ $(".panel_barra").each(function () {
                     dataseries = chartSerie.getLinealSerie();
                     // Si no es anual ocultamos valores de referencia
                     if (chartSerie.categoryType !== "año") {
-                        dataseries.forEach(function (dataserie, index) {
-                            if (index !== 0) {
+                        dataseries.forEach(function (indice, dataserie) {
+                            if (indice !== 0) {
                                 dataserie.visible = false;
                             }
                         });
@@ -247,45 +272,44 @@ $(".panel_barra").each(function () {
                 }
             }
         });
-    });
-
-    //Una vez obtenido el totalDataseries pintamos el gráfico
-    var chart1 = new Highcharts.Chart({
-        chart: {
-            height: 300,
-            renderTo: contenedor
-        },
-        title: {
-            text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
-            style: {"fontSize": "14px"}
-        },
-        exporting: {
-            enabled: true
-        },
-        xAxis: {
-            type: 'category'
-        },
-        yAxis: {
+        //Una vez obtenido el totalDataseries pintamos el gráfico
+        var chart1 = new Highcharts.Chart({
+            chart: {
+                height: 300,
+                renderTo: contenedor
+            },
             title: {
-                text: 'Valores'
-            }
-        },
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    enabled: true,
-                    formatter: function () {
-                        return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
+                style: {"fontSize": "14px"}
+            },
+            exporting: {
+                enabled: true
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Valores'
+                }
+            },
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                        }
                     }
                 }
-            }
-        },
-        series: totalDataseries
+            },
+            series: totalDataseries
+        });
     });
 });
 
 //Paneles de tarta
-$(".panel_tarta").each(function (index) {
+$(".panel_tarta").each(function () {
     var contenedor = $(this).attr('id');
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
@@ -298,10 +322,14 @@ $(".panel_tarta").each(function (index) {
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
 
+    //Leyenda donde ira el indicador relacionado
+    var leyenda = $(this).next('.leyenda');
+    leyenda.append('<p><h4>Indicador:</h4><p>');
+
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
-        $.each(indicadores, function (indicador) {
+        $.each(indicadores, function (index, indicador) {
 
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
                     "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
@@ -309,6 +337,10 @@ $(".panel_tarta").each(function (index) {
 
             // contenedor para los datos del gráfico
             var chartSerie = new HighchartSerie();
+
+            //Incluye en la leyenda el indicador relacionado
+            leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+                    + '" style="border:0">' + indicador.nombre + '</a></p>');
 
             $.ajax({
                 url: urlApi,
@@ -375,8 +407,8 @@ $(".panel_tarta").each(function (index) {
     });
 });
 
-$(".panel_tabla").each(function (index) {
-    var datos_flot = [];
+//Paneles de tabla
+$(".panel_tabla").each(function () {
     var id_panel = $(this).data("id_panel");
     var leyenda = $(this).next('.leyenda');
     leyenda.insertBefore($(this));
@@ -408,11 +440,12 @@ $(".panel_tabla").each(function (index) {
     });
 });
 
-// Se usa en "la biblioteca en cifras"
-// Solo pinta años completos de momento
-// Es una función "digna de mejora"
-$(".panel_tabla_multi").each(function (index) {
-    var datos_flot = [];
+
+//Paneles de tabla multi
+//Se usa en "la biblioteca en cifras"
+//Solo pinta años completos de momento
+//Es una función "digna de mejora"
+$(".panel_tabla_multi").each(function () {
     var fecha_inicio = $(this).attr("data-fecha_inicio");
     var fecha_fin = $(this).attr("data-fecha_fin");
     var id_panel = $(this).data("id_panel");
@@ -469,9 +502,8 @@ $(".panel_tabla_multi").each(function (index) {
     });
 });
 
-
-$(".panel_metrica").each(function (index) {
-    var datos_flot = [];
+//Paneles de métricas
+$(".panel_metrica").each(function () {
     var medicion; //etiqueta de la medición a mostrar
     var id_panel = $(this).data("id_panel");
     var ancho = $(this).data("ancho");
@@ -517,5 +549,3 @@ $(".panel_metrica").each(function (index) {
         });
     });
 });
-
-
