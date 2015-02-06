@@ -125,6 +125,39 @@ if ($modulo == 'grabaretiqueta')
     }
     $medicion->save();
 }
+
+if ($modulo == 'grabarobservaciones')
+{
+//    $valor = sanitize($_POST["valor"], SQL);
+    $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+//    $contenedor = sanitize($_POST["contenedor"], SQL);
+    $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+//    $id_medicion = sanitize($_POST["id_medicion"], INT);
+    $id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
+    $medicion->load("id = $id_medicion");
+    if ($contenedor == 'ob')
+    {
+        $medicion->observaciones = $valor;
+    }
+    elseif ($contenedor == 'pi')
+    {
+        $medicion->periodo_inicio = $valor;
+    }
+    elseif ($contenedor == 'pf')
+    {
+        $medicion->periodo_fin = $valor;
+    }
+    elseif ($contenedor == 'gi')
+    {
+        $medicion->grabacion_inicio = $valor;
+    }
+    elseif ($contenedor == 'gf')
+    {
+        $medicion->grabacion_fin = $valor;
+    }
+    $medicion->save();
+}
+
 if ($modulo == 'editaretiqueta')
 {
 //    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
@@ -144,6 +177,27 @@ if ($modulo == 'editaretiqueta')
     }
     $plantilla = 'medicion_editar_ajax.tpl';
 }
+
+if ($modulo == 'editarobservaciones')
+{
+//    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
+    $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
+//    $contenedor = sanitize($_REQUEST["contenedor"], SQL);
+    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $smarty->assign("contenedor", $contenedor);
+    $medicion->load("id = $id_medicion");
+    $smarty->assign("medicion", $medicion);
+    if ($contenedor == 'pi' OR $contenedor == 'pf' OR $contenedor == 'gi' OR $contenedor == 'gf')
+    {
+        $smarty->assign("modulo", "editarfecha");
+    }
+    else
+    {
+        $smarty->assign("modulo", "editarobservaciones");
+    }
+    $plantilla = 'medicion_editar_ajax.tpl';
+}
+
 if ($modulo == 'cancelaretiqueta')
 {
 //    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
@@ -156,6 +210,20 @@ if ($modulo == 'cancelaretiqueta')
     $smarty->assign("modulo", "cancelaretiqueta");
     $plantilla = 'medicion_editar_ajax.tpl';
 }
+
+if ($modulo == 'cancelarobservaciones')
+{
+//    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
+    $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
+//    $contenedor = sanitize($_REQUEST["contenedor"], SQL);
+    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $medicion->load("id = $id_medicion");
+    $smarty->assign('medicion', $medicion);
+    $smarty->assign('contenedor', $contenedor);
+    $smarty->assign("modulo", "cancelarobservaciones");
+    $plantilla = 'medicion_editar_ajax.tpl';
+}
+
 // valores de referencia ---------------------------------------------------------
 // TODO: comprobar permisos
 if ($modulo == 'anularvalorreferencia')

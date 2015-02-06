@@ -57,6 +57,11 @@ function etiqueta_editar(medicion,content)
   $('#'+content).load("index.php?page=medicion_editar_ajax&modulo=editaretiqueta&ajax=true&id_medicion="+medicion+"&contenedor="+content);
 }
 
+function observaciones_editar(medicion,content)
+{
+  $('#'+content).load("index.php?page=medicion_editar_ajax&modulo=editarobservaciones&ajax=true&id_medicion="+medicion+"&contenedor="+content);
+}
+
 function etiqueta_editar_grabar(content,medicion,tag)
 {
   var value = $("[name="+tag+"]").val();
@@ -65,9 +70,22 @@ function etiqueta_editar_grabar(content,medicion,tag)
   });
 }
 
+function observaciones_editar_grabar(content,medicion,tag)
+{
+  var value = $("[name="+tag+"]").val();
+  $.post("index.php?page=medicion_editar_ajax&modulo=grabarobservaciones&ajax=true",{id_medicion:medicion,contenedor:content,valor:value},function(){
+    $('#'+content).load("index.php?page=medicion_editar_ajax&modulo=cancelarobservaciones&ajax=true&id_medicion="+medicion+"&contenedor="+content);
+  });
+}
+
 function etiqueta_editar_cancelar(content,medicion)
 {
   $('#'+content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion="+medicion+"&contenedor="+content);
+}
+
+function observaciones_editar_cancelar(content,medicion)
+{
+  $('#'+content).load("index.php?page=medicion_editar_ajax&modulo=cancelarobservaciones&ajax=true&id_medicion="+medicion+"&contenedor="+content);
 }
 
 function fecha_editar(medicion,content)

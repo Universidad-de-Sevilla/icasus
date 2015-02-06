@@ -34,6 +34,7 @@ if (filter_has_var(INPUT_POST, 'id_indicador')and filter_input(INPUT_POST, 'tipo
     $medicion->grabacion_fin = $grabacion_fin;
 //    $medicion->etiqueta = empty($_REQUEST["etiqueta"]) ? null : sanitize($_REQUEST["etiqueta"], SQL);
     $medicion->etiqueta = filter_has_var(INPUT_POST, 'etiqueta') ? filter_input(INPUT_POST, 'etiqueta', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+    $medicion->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : '';
     if ($medicion->save())
     {
 //        if (isset($_REQUEST["valor_referencia"]))

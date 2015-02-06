@@ -80,6 +80,14 @@
                         </span>
                     </div>
                 </fieldset>
+                <fieldset>
+                    <label>{$smarty.const.FIELD_OBSERV}</label>
+                    <div>
+                        <span id="ob">
+                            <a href="javascript:void(0)" onclick="javascript:observaciones_editar('{$medicion->id}', 'ob', 'observaciones');">{if $medicion->observaciones != ''}{$medicion->observaciones}{else}----{/if}</a>
+                        </span>
+                    </div>
+                </fieldset>
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_INICIO_PERIODO}</label>
                     <div>

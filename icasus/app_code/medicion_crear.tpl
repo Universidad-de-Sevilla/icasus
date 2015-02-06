@@ -17,6 +17,12 @@
                     <div class="required_tag"></div>
                 </div>
             </fieldset>
+            <fieldset>
+                <label>{$smarty.const.FIELD_OBSERV}</label>
+                <div>
+                    <textarea name="observaciones" id="observaciones" /></textarea>
+                </div>
+            </fieldset>
             <div class="columns clearfix">
                 <div class="col_25">
                     <fieldset >
@@ -58,6 +64,7 @@
                 </button>
             </div>
         </div><!--fin tab medicion -->
+
         <div style="opacity: 1;" id="referencia" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
             {if $tipo == "indicador"}
@@ -89,6 +96,7 @@
                 </button>
             </div>
         </div><!--fin tab referencia -->
+
         <div style="opacity: 1;" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
             <fieldset class="label_side">

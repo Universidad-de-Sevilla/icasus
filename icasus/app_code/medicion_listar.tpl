@@ -82,18 +82,18 @@
                                 <th>{$smarty.const.FIELD_ETIQUETA}</th>
                                 <th>{$smarty.const.FIELD_INICIO_PERIODO}</th>
                                 <th>{$smarty.const.FIELD_FIN_PERIODO}</th>
-                                <th>{$smarty.const.FIELD_INICIO_GRABACION}</th>
-                                <th>{$smarty.const.FIELD_FIN_GRABACION}</th>
+                                <th>{$smarty.const.FIELD_OBSERV}</th>
                             </tr>
                         </thead>
                         <tbody>
                             {foreach $mediciones as $medicion}
                                 <tr class="gradeX">
-                                    <td nowrap><a title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}">{$medicion->etiqueta}</a></td>
+                                    <td nowrap>
+                                        <a title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}">{$medicion->etiqueta}</a>
+                                    </td>
                                     <td>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</td>
                                     <td>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</td>
-                                    <td>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</td>
-                                    <td>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</td>
+                                    <td>{$medicion->observaciones|truncate:60}</td>
                                 </tr>
                             {/foreach}
                         </tbody>
