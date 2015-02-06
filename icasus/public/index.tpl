@@ -121,26 +121,26 @@
 
                     {if isset($entidad)}
                         <h2 style="text-align: center"> {$smarty.const.TXT_UNID}: {$entidad->nombre}</h2>
-                        <h2 style="text-align: center">
-                            <a href='index.php?page=entidad_datos&id_entidad={$entidad->id}'><img 
+                        <h2 style="text-align: center;font-size: 16px;">
+                            <a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}'><img 
                                     src='/icons/ff16/chart_organisation.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_UNID_FICHA}</a>&nbsp;&nbsp;
-                            <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img 
+                            <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img 
                                     src='/icons/ff16/cog.png' />
                                 {$smarty.const.TXT_PROCS}</a>&nbsp;&nbsp;
-                            <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img 
+                            <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img 
                                     src='/icons/ff16/chart_curve.png' />
                                 {$smarty.const.FIELD_INDICS}</a>&nbsp;&nbsp;
-                            <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
+                            <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
                                     src='/icons/ff16/chart_bar.png' />
                                 {$smarty.const.FIELD_DATOS}</a>&nbsp;&nbsp;
-                            <a href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'><img 
+                            <a title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'><img 
                                     src='/icons/ff16/book.png' />
                                 {$smarty.const.TXT_CONSULT}</a>&nbsp;&nbsp;
-                            <a href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'><img 
+                            <a title="{$smarty.const.TXT_CUAD_RES}" href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'><img 
                                     src='/icons/ff16/table_go.png' />
                                 {$smarty.const.TXT_CUAD_RES}</a>
                                 {if $_control} 
-                                &nbsp;&nbsp;<a href='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}'><img 
+                                &nbsp;&nbsp;<a title="{$smarty.const.TXT_CONTROL}" href='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}'><img 
                                         src='/icons/ff16/eye.png' /> 
                                     {$smarty.const.TXT_CONTROL}</a>
                                 {/if}
