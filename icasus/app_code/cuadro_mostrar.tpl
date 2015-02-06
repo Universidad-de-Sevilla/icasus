@@ -36,11 +36,11 @@
         <div class="box grid_{$panel->ancho}" >   
             <div class="block alturo">
                 <div class="titulo-panel">
-                    <strong>{$panel->nombre}</strong>
-                    <br>
-                    <span>{$smarty.const.FIELD_ORDEN}: {$panel->orden}</span>
-                    <span>{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
+                    <strong>{$panel->nombre}</strong>            
                     {if $_usuario->id eq $cuadro->id_usuario}
+                        <br>
+                        <span style="font-size:10px;">{$smarty.const.FIELD_ORDEN}: {$panel->orden}</span>
+                        <span style="font-size:10px;">{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
                         <a title="{$smarty.const.TXT_EDIT}" 
                            class="editar" 
                            style="z-index:2;position:absolute;right: 20px;top:5px;" 
