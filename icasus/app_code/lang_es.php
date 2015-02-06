@@ -79,6 +79,7 @@ define('TXT_PANELES_INFO', 'Información sobre los Paneles');
 //Datos
 define('TXT_DATO_MEDICIONES', 'Mediciones del Dato');
 define('TXT_DATO', 'Dato');
+define('TXT_DATO_MOSTRAR', 'Mostrar Ficha del Dato');
 define('TXT_DATO_EDIT', 'Editar Dato');
 define('TXT_DATO_FICHA', 'Ficha del Dato');
 define('TXT_DATO_NUEVO', 'Nuevo Dato');
@@ -234,6 +235,7 @@ define('TXT_PAG_EDIT', 'Editar Página');
 
 //Procesos
 define('TXT_PROCS', 'Procesos');
+define('TXT_PROC_VER', 'Ver Proceso');
 define('TXT_PROC_PARAM', 'Parámetros del Proceso');
 define('TXT_PROC_VOLVER', 'Volver al Proceso');
 define('TXT_PROC_FICHA', 'Ficha del Proceso');
@@ -315,6 +317,7 @@ define('TXT_METRICA_DESC', 'Muestra una medición puntual para una unidad y un i
 
 //Usuarios
 define('TXT_USERS_ASIGNAR', 'Asignar Usuarios');
+define('TXT_USER_VER', 'Ver Usuario');
 define('TXT_USERS_DESASIGNAR', 'Desasignar Usuarios marcados');
 define('TXT_USERS_ALTA', 'Alta de Usuarios');
 define('TXT_USERS_BAJA', 'Baja de Usuarios');

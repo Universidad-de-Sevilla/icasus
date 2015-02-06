@@ -19,7 +19,7 @@
                             <tr class="gradeX">    
                                 <td>{$proceso->id}</td>
                                 <td nowrap>{$proceso->codigo}</td>
-                                <td><a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">{$proceso->nombre}</a></td>
+                                <td><a title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">{$proceso->nombre}</a></td>
                                 <td>
                                     {$proceso->propietario->nombre}
                                     {$proceso->propietario->apellidos}

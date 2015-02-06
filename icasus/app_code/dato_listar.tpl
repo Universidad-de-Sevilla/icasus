@@ -33,12 +33,15 @@
                             <td>{$dato->id}</td>
                             <td>{$dato->codigo}</td>
                             <td>
-                                <a href="index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$entidad->id}&tipo=dato"><img src="/icons/ff16/time.png" /></a>
-                                <a href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}'>{$dato->nombre}</a>
-                                <a href='#' title='{$dato->descripcion}'>*</a>
+                                <a href="index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$entidad->id}&tipo=dato" 
+                                   title="{$smarty.const.TXT_DATO_MEDICIONES} :: {$dato->nombre}" target="_blank">
+                                    <img src="/icons/ff16/time.png" /></a>
+                                <a target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}'
+                                   title="{$smarty.const.TXT_DATO_MOSTRAR} :: {$dato->nombre}">{$dato->nombre}</a>
+                                <a href="javascript:void(0)" title='{$dato->descripcion}'>*</a>
                             </td>
                             <td>
-                                <a href='index.php?page=usuario_datos&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>{$dato->responsable->nombre}
+                                <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_datos&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>{$dato->responsable->nombre}
                                     {$dato->responsable->apellidos}</a>
                             </td>
                         </tr>
