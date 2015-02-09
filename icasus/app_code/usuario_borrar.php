@@ -7,7 +7,7 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra un usuario
 //---------------------------------------------------------------------------------------------------
-require_once('function/sanitize.php');
+//require_once('function/sanitize.php');
 global $smarty;
 global $basedatos;
 global $_usuario;
