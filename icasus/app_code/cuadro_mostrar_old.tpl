@@ -4,15 +4,21 @@
                 src='/icons/ff16/application_add.png' /> {$smarty.const.TXT_PANEL_AGREGAR}</a>&nbsp;&nbsp;
         <a href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
                 src='/icons/ff16/table_edit.png' /> {$smarty.const.TXT_EDIT_PROP}</a>&nbsp;&nbsp;
+        <a onclick="return confirm('{$smarty.const.MSG_CUADRO_MANDO_CONFIRM_BORRAR}');" 
+           title="{$smarty.const.TXT_BORRAR}" 
+           href='index.php?page=cuadro_borrar&id_cuadro={$cuadro->id}&id_entidad=14'>
+            <img src='/icons/ff16/table_delete.png' /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;    
         {/if}
     <a href='index.php?page=cuadro_listar&id_entidad=14'><img 
             src='/icons/ff16/arrow_undo.png' /> {$smarty.const.TXT_VOLVER_LIST}</a> 
 </div>
 
-<div class="alert alert_blue">
-    <img height="24" width="24" src="theme/danpin/images/icons/small/white/info_about.png">
-    {$cuadro->comentarios}
-</div>
+{if $cuadro->comentarios}
+    <div class="alert alert_blue">
+        <img height="24" width="24" src="theme/danpin/images/icons/small/white/info_about.png">
+        {$cuadro->comentarios}
+    </div>
+{/if}
 
 <!-- Dialogo para borrar paneles -->
 <div id="dialogo_borrar_panel" class="dialog_content narrow ui-dialog-content ui-widget-content">
@@ -32,6 +38,9 @@
                 <div class="titulo-panel">
                     <strong>{$panel->nombre}</strong> 
                     {if $_usuario->id eq $cuadro->id_usuario}
+                        <br>
+                        <span style="font-size:10px;">{$smarty.const.FIELD_ORDEN}: {$panel->orden}</span>
+                        <span style="font-size:10px;">{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
                         <a title="{$smarty.const.TXT_EDIT}" 
                            class="editar" 
                            style="z-index:2;position:absolute;right: 20px;top:5px;" 
@@ -66,3 +75,4 @@
 <script src="theme/danpin/scripts/flot/jquery.flot.time.js" type="text/javascript"></script>
 <script src="theme/danpin/scripts/flot/jquery.flot.pie.min.js" type="text/javascript"></script>		
 <script src="theme/danpin/scripts/flot/jquery.flot.orderBars.js" type="text/javascript"></script>
+<script src="js/cuadro_mostrar_old.js" type="text/javascript"></script>
