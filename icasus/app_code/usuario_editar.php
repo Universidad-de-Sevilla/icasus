@@ -9,7 +9,7 @@
 // Descripcion: Formulario para dar de alta o modificar un usuario en el sistema
 // -----------------------------------------------------------------------------------------------
 
-require_once('function/sanitize.php');
+//require_once('function/sanitize.php');
 global $smarty;
 global $basedatos;
 global $_usuario;

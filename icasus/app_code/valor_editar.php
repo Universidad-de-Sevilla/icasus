@@ -7,7 +7,7 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Editar valores de un indicador
 //---------------------------------------------------------------------------------------------------
-require_once('function/sanitize.php');
+//require_once('function/sanitize.php');
 global $smarty;
 global $basedatos;
 global $plantilla;
