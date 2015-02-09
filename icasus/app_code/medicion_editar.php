@@ -85,23 +85,23 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
     $smarty->assign("valores", $valores);
 
+    //Buscar todos valores ref del indicador y recorrer si no existe entrada 
+    //en la tabla valores_ref _med creamos entrada y despues asignamos a la plantilla
     $valor_referencia_medicion = new Valor_referencia_medicion();
     $valor_referencia = new Valor_referencia();
-    $valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion");
     $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
-    if ($valores_referencia_medicion)
-    {
-        $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
-    }
-    // Si hay valores de referencia pero no se han definido en esta medición los creamos
-    else if ($valores_referencia)
+    if ($valores_referencia)
     {
         foreach ($valores_referencia as & $valor_referencia)
         {
-            $valor_referencia_medicion = new Valor_referencia_medicion();
-            $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
-            $valor_referencia_medicion->id_medicion = $id_medicion;
-            $valor_referencia_medicion->save();
+            $existe = $valor_referencia_medicion->Load("id_valor_referencia=$valor_referencia->id AND id_medicion=$id_medicion");
+            if (!$existe)
+            {
+                $valor_referencia_medicion = new Valor_referencia_medicion();
+                $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
+                $valor_referencia_medicion->id_medicion = $id_medicion;
+                $valor_referencia_medicion->save();
+            }
         }
         $valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion");
         $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
