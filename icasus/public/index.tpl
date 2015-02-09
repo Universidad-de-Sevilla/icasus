@@ -68,7 +68,7 @@
 
         <!-- Load JQuery -->		
         <script src="theme/danpin/scripts/jquery/jquery171.min.js" type="text/javascript"></script>
-
+        
         <!-- Load JQuery UI -->
         <script src="theme/danpin/scripts/jquery/jquery-ui1817.min.js" type="text/javascript"></script>
 
