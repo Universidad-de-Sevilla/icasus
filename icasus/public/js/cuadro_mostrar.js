@@ -100,6 +100,10 @@ $('.panel_linea').each(function () {
 
             function onDataReceived(datos) {
                 datos.forEach(function (dato) {
+                    
+                    //TODO
+                    //Tener en cuenta si es una medicion o el total
+                    
                     // Agrega los que no tienen etiqueta_mini (total y referencias)
                     // descarta las mediciones de unidades (no sirven aquí)
                     if (!dato.etiqueta_mini && (dato.valor !== null)) {

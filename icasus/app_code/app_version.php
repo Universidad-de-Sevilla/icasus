@@ -2,6 +2,7 @@
 define('IC_VERSION', "2.9.8");
 define('IC_FECHA_REVISION', "06/02/2015");
 
+// 2.9.9 - 10/02/2015 - Corregido problema en las mediciones: ahora se muestram todos los valores de referencia
 // 2.9.8 - 06/02/2015 - Añadido campo observaciones a las mediciones.
 // 2.9.7 - 03/02/2015 - Formato de fecha español en los gráficos.
 // 2.9.6 - 29/01/2015 - Varios añadidos: borrado de cuadros de mando, paneles, avence de mediciones mejorado, actualización de Highcharts...
