@@ -167,7 +167,7 @@ $(".panel_linea").each(function (index) {
                     }
                     // Comprobamos si es valor referencia 
                     // TODO: puede haber más de una referencia
-                    else if (dato.referencia === true)
+                    else if (dato.referencia == true)
                     {
                         referencias.push([dato.periodo_fin, dato.valor]);
                         referencia_nombre = dato.unidad;
@@ -336,10 +336,10 @@ $(".panel_tarta").each(function (index) {
         $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function (datos) {
             var items = [];
             $.each(datos, function (i, dato) {
-                if (dato.id_medicion === id_medicion)
+                if (dato.id_medicion == id_medicion)
                 {
                     // Si id_unidad es 0 se trata del valor total, en otro caso es el parcial de una subunidad
-                    if (dato.id_unidad === 0)
+                    if (dato.id_unidad == 0)
                     {
                         total = dato.valor;
                         medicion = dato.medicion;
@@ -410,7 +410,7 @@ $(".panel_tabla").each(function (index) {
             var id_entidad = indicador.id_entidad;
             $.each(datos, function (i, dato) {
                 var paridad;
-                if (dato.id_unidad === id_entidad)
+                if (dato.id_unidad == id_entidad)
                 {
                     if (i % 2 === 0) {
                         paridad = "odd";
@@ -507,7 +507,7 @@ $(".panel_metrica").each(function (index) {
             // Tomamos la entidad a mostrar del panel_indicador actual
             var id_entidad = indicador.id_entidad;
             $.each(datos, function (i, dato) {
-                if ((dato.id_unidad === id_entidad || dato.id_unidad === '0') && dato.id_medicion === id_medicion)
+                if ((dato.id_unidad == id_entidad || dato.id_unidad == '0') && dato.id_medicion == id_medicion)
                 {
                     if (id_entidad !== '0')
                     {
