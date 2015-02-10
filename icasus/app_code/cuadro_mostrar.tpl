@@ -160,7 +160,7 @@ $(".panel_linea").each(function (index) {
                 var etiqueta_indicador;
                 var id_entidad = indicador.id_entidad;
                 $.each(datos, function (i, dato) {
-                    if (dato.id_unidad === id_entidad)
+                    if (dato.id_unidad == id_entidad)
                     {
                         unidad = dato.unidad; //guarrerida española
                         items.push([dato.periodo_fin, dato.valor]);
@@ -195,7 +195,7 @@ $(".panel_linea").each(function (index) {
                     grid: {hoverable: true},
                     colors: ['maroon', 'darkblue', 'orange', 'goldenrod', 'pink', 'yellow', 'brown']
                 };
-                console.log(datos_flot);
+                //console.log(datos_flot);
                 $("#panel_" + id_panel).css("height", 200 - index * 12 + "px");
                 $.plot($("#panel_" + id_panel), datos_flot, opciones);
 
