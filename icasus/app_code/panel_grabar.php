@@ -59,7 +59,7 @@ if ($id_cuadro && $nombre_panel && $orden && $tipo && $ancho)
                 $id_entidad = filter_input(INPUT_POST, 'id_subunidad', FILTER_SANITIZE_NUMBER_INT);
                 if ($id_indicador && $id_entidad)
                 {
-                    $panel_indicador->id_indicador = $id_indicador
+                    $panel_indicador->id_indicador = $id_indicador;
                     $panel_indicador->id_entidad = $id_entidad;
                     if ($panel_indicador->save())
                     {

@@ -1,5 +1,5 @@
 <div style='width: 335px; float:left; margin:5px;'>
-    <img src='theme/usevilla/cuadromando.png' alt='{$smarty.const.TXT_ICON_GRAF_LINEAL}' align='right' /><p><b>{$smarty.const.TXT_ICASUS}</b> {$smarty.const.TXT_LOGIN_PARTE1}
+    <img src='images/cuadromando.png' alt='{$smarty.const.TXT_ICON_GRAF_LINEAL}' align='right' /><p><b>{$smarty.const.TXT_ICASUS}</b> {$smarty.const.TXT_LOGIN_PARTE1}
         <a href="http://www.us.es/">{$smarty.const.TXT_UNIVERSIDAD}</a>.</p>
 
     <p>{$smarty.const.TXT_LOGIN_PARTE2}</p>
