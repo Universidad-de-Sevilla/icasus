@@ -136,23 +136,27 @@
             {else}
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_ETIQUETA}</label>
-                    <div>{$medicion->etiqueta}  </div>
+                    <div>{$medicion->etiqueta}</div>
+                </fieldset>
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_OBSERV}</label>
+                    <div>{$medicion->observaciones}</div>
                 </fieldset>
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_INICIO_PERIODO}</label>
-                    <div>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"} </div>
+                    <div>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</div>
                 </fieldset>
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_FIN_PERIODO}</label>
-                    <div>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}  </div>
+                    <div>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</div>
                 </fieldset>
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
-                    <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"} </div>
+                    <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</div>
                 </fieldset>
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
-                    <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}  </div>
+                    <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</div>
                 </fieldset>
                 {if isset($valores_referencia_medicion)}
                     {foreach $valores_referencia_medicion as $valor_referencia_medicion}
