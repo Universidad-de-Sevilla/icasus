@@ -17,6 +17,7 @@ if (filter_has_var(INPUT_GET, 'id_panel') && filter_has_var(INPUT_GET, 'id_cuadr
     $smarty->assign("id_cuadro", $id_cuadro);
     $panel = new Panel();
     $panel->Load(("id = $id_panel"));
+    //Guardamos los cambios
     if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'orden') && filter_has_var(INPUT_POST, 'ancho'))
     {
         $panel->nombre = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
@@ -35,6 +36,6 @@ else
 {
     // Faltan parametros avisamos error
     $error = ERR_PARAM;
-    header("Location: index.php?page=cuadro_listar&error=error");
+    header("Location: index.php?page=cuadro_listar&error=$error");
 }
 

@@ -30,7 +30,8 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         foreach ($id_usuarios as $id_usuario)
         {
             $usuario_entidad = new Usuario_entidad;
-            $id_usuario = sanitize($id_usuario, INT);
+//            $id_usuario = sanitize($id_usuario, INT);
+            $id_usuario = filter_var($id_usuario, FILTER_SANITIZE_NUMBER_INT);
             $usuario_entidad->id_usuario = $id_usuario;
             $usuario_entidad->id_entidad = $id_entidad;
             $usuario_entidad->id_rol = $id_rol;

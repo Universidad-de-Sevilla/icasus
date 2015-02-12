@@ -76,7 +76,7 @@
                     <label>{$smarty.const.FIELD_ETIQUETA}</label>
                     <div>
                         <span id="et">
-                            <a href="javascript:void(0)" onclick="javascript:etiqueta_editar('{$medicion->id}', 'et', 'etiqueta');">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}----{/if}</a>
+                            <a href="javascript:void(0)" onclick="javascript:etiqueta_editar('{$medicion->id}', 'et', 'etiqueta');">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}---{/if}</a>
                         </span>
                     </div>
                 </fieldset>
@@ -84,7 +84,7 @@
                     <label>{$smarty.const.FIELD_OBSERV}</label>
                     <div>
                         <span id="ob">
-                            <a href="javascript:void(0)" onclick="javascript:observaciones_editar('{$medicion->id}', 'ob', 'observaciones');">{if $medicion->observaciones != ''}{$medicion->observaciones}{else}----{/if}</a>
+                            <a href="javascript:void(0)" onclick="javascript:observaciones_editar('{$medicion->id}', 'ob', 'observaciones');">{if $medicion->observaciones != ''}{$medicion->observaciones}{else}---{/if}</a>
                         </span>
                     </div>
                 </fieldset>
@@ -92,7 +92,7 @@
                     <label>{$smarty.const.FIELD_INICIO_PERIODO}</label>
                     <div>
                         <span id="pi">
-                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pi');">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pi');">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}---{/if}</a>
                         </span>
                     </div>
                 </fieldset>
@@ -100,7 +100,7 @@
                     <label>{$smarty.const.FIELD_FIN_PERIODO}</label>
                     <div>
                         <span id="pf">
-                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pf');">{if $medicion->periodo_fin}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pf');">{if $medicion->periodo_fin}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}{else}---{/if}</a>
                         </span>
                     </div>
                 </fieldset>
@@ -108,7 +108,7 @@
                     <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
                     <div>
                         <span id="gi">
-                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}---{/if}</a>
                         </span>
                     </div>
                 </fieldset>
@@ -116,7 +116,7 @@
                     <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
                     <div>
                         <span id="gf">
-                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}----{/if}</a>
+                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}---{/if}</a>
                         </span>
                     </div>
                 </fieldset>

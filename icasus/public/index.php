@@ -16,8 +16,10 @@ include_once('../app_code/app_version.php');
 include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
 include_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
 include_once('../../cascara_core/lib/smarty/Smarty.class.php');
-//include_once('../../cascara_core/function/sanitize.php');
 include_once('../../cascara_core/function/caracteres.php');
+
+//Retirar cuando todo este bien con la función filter_input de PHP
+include_once('../../cascara_core/function/sanitize.php');
 
 //Fichero de idioma
 include_once('../app_code/' . IC_LANG_FILE);

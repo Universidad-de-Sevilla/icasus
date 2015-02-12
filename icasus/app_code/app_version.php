@@ -1,6 +1,6 @@
 <?php
-define('IC_VERSION', "2.9.8");
-define('IC_FECHA_REVISION', "06/02/2015");
+define('IC_VERSION', "2.9.9");
+define('IC_FECHA_REVISION', "10/02/2015");
 
 // 2.9.9 - 10/02/2015 - Corregido problema en las mediciones: ahora se muestram todos los valores de referencia
 // 2.9.8 - 06/02/2015 - Añadido campo observaciones a las mediciones.

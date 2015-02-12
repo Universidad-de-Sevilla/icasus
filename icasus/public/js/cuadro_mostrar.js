@@ -426,7 +426,7 @@ $(".panel_tabla").each(function () {
             var id_entidad = indicador.id_entidad;
             $.each(datos, function (i, dato) {
                 var paridad;
-                if (dato.id_unidad === id_entidad)
+                if (dato.id_unidad == id_entidad)
                 {
                     if (i % 2 === 0) {
                         paridad = "odd";
@@ -523,7 +523,7 @@ $(".panel_metrica").each(function () {
             // Tomamos la entidad a mostrar del panel_indicador actual
             var id_entidad = indicador.id_entidad;
             $.each(datos, function (i, dato) {
-                if ((dato.id_unidad === id_entidad || dato.id_unidad === '0') && dato.id_medicion === id_medicion)
+                if ((dato.id_unidad == id_entidad || dato.id_unidad == '0') && dato.id_medicion == id_medicion)
                 {
                     if (id_entidad !== '0')
                     {

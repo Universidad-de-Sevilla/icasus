@@ -35,7 +35,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         foreach ($id_usuarios as $id_usuario)
         {
 //      $id_usuario = sanitize($id_usuario,INT);
-            $id_usuario = filter_var($id_usuario);
+            $id_usuario = filter_var($id_usuario, FILTER_SANITIZE_NUMBER_INT);
             $usuario_entidad->desasignar_usuario($id_entidad, $id_usuario);
             $contador ++;
         }

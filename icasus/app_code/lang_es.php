@@ -384,6 +384,7 @@ define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún Cuadro de Mando público
 //Paneles de los Cuadros de Mando
 define('MSG_PANEL_BORRAR', 'Va a borrar del Cuadro de Mando el siguiente Panel:');
 define('MSG_PANEL_EDITADO', "Panel editado correctamente.");
+define('MSG_PANEL_CREADO', "Se ha añadido al Cuadro de Mando el siguiente Panel:");
 
 //Datos
 define('MSG_DATO_BORRADO', 'Se ha borrado el Dato: ');
