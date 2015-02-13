@@ -506,6 +506,9 @@ $(".panel_tabla_multi").each(function () {
     });
 });
 
+
+//TODO CORREGIR EL TAMAÑO DEL TEXTO DE LAS MEDICIONES
+//
 //Paneles de métricas
 $(".panel_metrica").each(function () {
     var medicion; //etiqueta de la medición a mostrar

@@ -63,7 +63,7 @@
                    name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}"data-nombre_subunidad="Total"> {$smarty.const.FIELD_TOTAL}<br /> 
             {foreach name=subunidades from=$indicador_subunidades item=item}
                 {if $smarty.foreach.subunidades.iteration == floor($indicador_subunidades|@count/2)+1 }</div><div class="col_50 no_border">{/if}
-                <input data-id_indicador="{$id_indicador}" class="required subunidad_seleccionada_metrica"  name="id_subunidad"type="radio" value="{$item->id_entidad}"> {$item->entidad->etiqueta}<br /> 
+                <input data-id_indicador="{$id_indicador}" class="required subunidad_seleccionada_metrica"  name="id_subunidad" type="radio" value="{$item->id_entidad}"> {$item->entidad->etiqueta}<br /> 
             {/foreach}
         </div>
         <div class="required_tag tooltip hover left"></div>
@@ -85,31 +85,31 @@
 
 {literal}
     <script>
-    var page = {/literal}"{$panel->clase_css}"{literal};
-    $('.medicion').on('click', function () {
-        $('#footer_tabs').show();
-    });
-    $('.subunidad_seleccionada_metrica').on('click', function () {
-        var id_indicador = $(this).data('id_indicador');
-        $.ajax({
-            url: "index.php?page=" + page + "&ajax=true&modulo=mediciones_metrica&id_indicador="
-                    + id_indicador,
-            success: function (datos) {
-                $("#mediciones_metrica").html(datos);
-            }
+        var page = {/literal}"{$panel->clase_css}"{literal};
+        $('.medicion').on('click', function () {
+            $('#footer_tabs').show();
         });
-    });
-    $('#buscar_indicador').on('keyup', function () {
-        var cadena = $(this).val();
-        var id_entidad = $(this).data('id_entidad');
-        $('#subunidades').html('');
-        $.ajax({
-            url: "index.php?page=panel_buscador&ajax=true&modulo=indicador_metrica&id_entidad=" + id_entidad + "&cadena=" + cadena,
-            success: function (datos) {
-                $('#listado_indicadores').html(datos);
-            }
+        $('.subunidad_seleccionada_metrica').on('click', function () {
+            var id_indicador = $(this).data('id_indicador');
+            $.ajax({
+                url: "index.php?page=" + page + "&ajax=true&modulo=mediciones_metrica&id_indicador="
+                        + id_indicador,
+                success: function (datos) {
+                    $("#mediciones_metrica").html(datos);
+                }
+            });
         });
-    });
+        $('#buscar_indicador').on('keyup', function () {
+            var cadena = $(this).val();
+            var id_entidad = $(this).data('id_entidad');
+            $('#subunidades').html('');
+            $.ajax({
+                url: "index.php?page=panel_buscador&ajax=true&modulo=indicador_metrica&id_entidad=" + id_entidad + "&cadena=" + cadena,
+                success: function (datos) {
+                    $('#listado_indicadores').html(datos);
+                }
+            });
+        });
     </script>
 {/literal}
 
