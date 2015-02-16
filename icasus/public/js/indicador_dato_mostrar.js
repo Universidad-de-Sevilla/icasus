@@ -11,7 +11,7 @@ $('.highchart').each(function () {
     var fecha_fin = $(this).data("fecha_fin");
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
-    // contenedor para los datos del gráfico
+    // Contenedor para los datos del gráfico
     var chartSerie = new HighchartSerie();
 
     if (periodicidad === "anual") {
@@ -49,7 +49,7 @@ $('.highchart').each(function () {
                 }
             });
         }
-        //Gráfico
+        //Gráfico de línea
         var chart1 = new Highcharts.Chart({
             chart: {
                 height: 300,

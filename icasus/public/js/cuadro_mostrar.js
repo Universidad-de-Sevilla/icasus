@@ -100,10 +100,10 @@ $('.panel_linea').each(function () {
 
             function onDataReceived(datos) {
                 datos.forEach(function (dato) {
-                    
+
                     //TODO
                     //Tener en cuenta si es una medicion o el total
-                    
+
                     // Agrega los que no tienen etiqueta_mini (total y referencias)
                     // descarta las mediciones de unidades (no sirven aquí)
                     if (!dato.etiqueta_mini && (dato.valor !== null)) {
@@ -317,14 +317,7 @@ $(".panel_tarta").each(function () {
     var contenedor = $(this).attr('id');
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
-    var periodicidad = $(this).data("periodicidad");
-    var fecha_inicio = $(this).data("fecha_inicio");
-    var fecha_fin = $(this).data("fecha_fin");
-    var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
-    var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
-
-    //Guarda los datos de todas las series de cada indicador del panel
-    var totalDataseries = new Array();
+    var id_medicion = $(this).data("id_medicion");
 
     //Leyenda donde ira el indicador relacionado
     var leyenda = $(this).next('.leyenda');
@@ -335,9 +328,7 @@ $(".panel_tarta").each(function () {
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
         $.each(indicadores, function (index, indicador) {
 
-            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
-                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
-                    "&periodicidad=" + periodicidad;
+            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id;
 
             // contenedor para los datos del gráfico
             var chartSerie = new HighchartSerie();
@@ -355,59 +346,48 @@ $(".panel_tarta").each(function () {
 
             function onDataReceived(datos) {
                 datos.forEach(function (dato) {
-                    if (d.etiqueta_mini) {
-                        chartSerie.add(d);
-                    } else if (d.id_unidad === '0') {
-                        totales[d.medicion] = parseFloat(d.valor);
+                    if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
+                        chartSerie.add(dato);
                     }
                 });
 
-                var serie = chartSerie.getPieSerie();
-                //Hacemos visible el último año
-                serie[serie.length - 1].visible = true;
-                serie[serie.length - 1].selected = true;
+                var dataseries = chartSerie.getPieSerie();
 
-                //Sacar los datos de la dataserie y hacer un push en 
-                //total_dataseries donde el nombre es el del indicador
-                for (dataserie in dataseries) {
-                    totalDataseries.push(dataserie);
-                }
+                //Gráfico de tarta
+                var chart1 = new Highcharts.Chart({
+                    chart: {
+                        height: 300,
+                        renderTo: contenedor
+                    },
+                    title: {
+                        text: titulo,
+                        style: {"fontSize": "14px"}
+                    },
+                    exporting: {
+                        enabled: true
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Valores'
+                        }
+                    },
+                    plotOptions: {
+                        series: {
+                            dataLabels: {
+                                enabled: true,
+                                formatter: function () {
+                                    return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                                }
+                            }
+                        }
+                    },
+                    series: dataseries
+                });
             }
         });
-    });
-
-    //Una vez obtenido el totalDataseries pintamos el gráfico
-    var chart1 = new Highcharts.Chart({
-        chart: {
-            height: 300,
-            renderTo: contenedor
-        },
-        title: {
-            text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
-            style: {"fontSize": "14px"}
-        },
-        exporting: {
-            enabled: true
-        },
-        xAxis: {
-            type: 'category'
-        },
-        yAxis: {
-            title: {
-                text: 'Valores'
-            }
-        },
-        plotOptions: {
-            series: {
-                dataLabels: {
-                    enabled: true,
-                    formatter: function () {
-                        return this.y ? ((Math.round(this.y * 100)) / 100) : null;
-                    }
-                }
-            }
-        },
-        series: totalDataseries
     });
 });
 

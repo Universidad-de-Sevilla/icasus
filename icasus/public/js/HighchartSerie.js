@@ -98,7 +98,7 @@ function HighchartSerie() {
         return serieHighchart;
     };
 
-    //Devuelve una serie Highchart para un gráfico de barras
+    //Devuelve una serie Highchart para un gráfico de tarta
     this.getPieSerie = function () {
         var serieHighchart = [];
         this.categories.data.sort();
@@ -110,8 +110,7 @@ function HighchartSerie() {
             serieHighchart.push({
                 type: 'pie',
                 name: medicion,
-                data: arrayMedicion,
-                visible: false
+                data: arrayMedicion
             });
         }
         return serieHighchart;
@@ -122,7 +121,7 @@ function HighchartSerie() {
         var serieHighchart = [];
         //Valor por defecto para el nombre del indicador/dato que sólo se muestra en los 
         //paneles de línea de los cuadros de mando
-        nomIndicador = typeof nomIndicador !== 'undefined' ? (' - '+nomIndicador) : '';
+        nomIndicador = typeof nomIndicador !== 'undefined' ? (' - ' + nomIndicador) : '';
         this.categories.data.sort();
         for (unidad in this.serie) {
             var arrayUnidad = this.serie[unidad];

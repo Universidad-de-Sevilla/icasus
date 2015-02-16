@@ -1,9 +1,9 @@
-//Muestra las gráficas para las mediciones en el fichero medicion_listar.tpl
+// Muestra las gráficas para las mediciones en el fichero medicion_listar.tpl
 
 // Variables
 var idIndicador = $("#container").data("id_indicador");
 var nomIndicador = $("#container").data("nombre_indicador");
-// contenedor para los datos del gráfico
+// Contenedor para los datos del gráfico
 var chartSerie = new HighchartSerie();
 var totales = [];
 
@@ -15,7 +15,7 @@ $.ajax({
     success: onDataReceived
 });
 
-// Guardado de datos en highchartStruct y totales para las medias
+// Guardado de datos en HighchartSerie y totales para las medias
 function onDataReceived(datos) {
     datos.forEach(function (d) {
         if (d.etiqueta_mini) {
@@ -26,13 +26,13 @@ function onDataReceived(datos) {
     });
 }
 
-// Pinta y configura el gráfico
+// Pinta y configura el gráfico resumen de valores por subunidad
 $(document).ajaxComplete(function () {
     var serie = chartSerie.getBarSerie();
-    //Hacemos visible el último año
+    // Hacemos visible el último año
     serie[serie.length - 1].visible = true;
     serie[serie.length - 1].selected = true;
-    //Gráfico
+    // Gráfico de barras
     var chart1 = new Highcharts.Chart({
         chart: {
             height: 300,
@@ -59,7 +59,7 @@ $(document).ajaxComplete(function () {
         plotOptions: {
             series: {
                 events: {
-                    //Pintamos la media al hacer click en él.
+                    // Pintamos la media al hacer click en él.
                     legendItemClick: function (event) {
                         if (this.visible) {
                             chart1.yAxis[0].removePlotLine(this.name);
@@ -122,7 +122,7 @@ $('.highchart').each(function () {
     var fecha_fin = $(this).data("fecha_fin");
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
-    // contenedor para los datos del gráfico
+    // Contenedor para los datos del gráfico
     var chartSerie = new HighchartSerie();
 
     if (periodicidad === "anual") {
@@ -160,7 +160,7 @@ $('.highchart').each(function () {
                 }
             });
         }
-        //Gráfico
+        //Gráfico de líneas
         var chart1 = new Highcharts.Chart({
             chart: {
                 height: 300,
