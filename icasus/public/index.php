@@ -41,8 +41,7 @@ $adodb = NewADOConnection($dsn);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
 
 // No podemos usarlo hasta que no esté Icasus en utf8
-//$adodb->Execute("SET NAMES UTF8");
-//$adodb->Execute("SET NAMES LATIN1");
+$adodb->Execute("SET NAMES UTF8");
 
 date_default_timezone_set('Europe/Madrid');
 setlocale(LC_ALL, 'es-ES');
