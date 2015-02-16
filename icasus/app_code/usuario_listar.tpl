@@ -7,24 +7,24 @@
 -->
 
 <div class="box grid_16 single_datatable">
-	<div id="dt1" class="no_margin">
-		<table class="display datatable"> 
-			<thead>
-				<tr><th>Nombre</th><th>Apellidos</th><th>Correo</th><th>Teléfono</th><th>Unidad de destino</th><th>Acciones</th></tr>
-			</thead>
-			<tbody>
-			{foreach from=$usuarios item=usuario}
-				<tr class="gradeX">
-					<td>{$usuario->nombre}</td>
-					<td>{$usuario->apellidos}</td>
-					<td><a href='mailto:{$usuario->correo}'>{$usuario->correo}</a></td>
-					<td>{$usuario->telefono}</td>
-		      <td>{$usuario->unidad_hominis}</td>
-					<td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'>Detalle</a>
-		      </td>
-				</tr>
-		   {/foreach}
-			</tbody>
-		</table>
-	</div>
+    <div id="dt1" class="no_margin">
+        <table class="display datatable"> 
+            <thead>
+                <tr><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_UNID_DEST}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+            </thead>
+            <tbody>
+                {foreach from=$usuarios item=usuario}
+                    <tr class="gradeX">
+                        <td>{$usuario->nombre}</td>
+                        <td>{$usuario->apellidos}</td>
+                        <td><a href='mailto:{$usuario->correo}'>{$usuario->correo}</a></td>
+                        <td>{$usuario->telefono}</td>
+                        <td>{$usuario->unidad_hominis}</td>
+                        <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'>{$smarty.const.FIELD_DET}</a>
+                        </td>
+                    </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
 </div>

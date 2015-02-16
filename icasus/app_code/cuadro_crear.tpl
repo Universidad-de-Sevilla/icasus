@@ -1,37 +1,42 @@
 <div class="box grid_16">
-	<div class="toggle_container">
-		<div class="block">
-			<form action='index.php?page=cuadro_grabar' method='post' id='formcuadro' name='formcuadro' class='validate_form'>
-				<fieldset class="label_side">
-					<label>Nombre cuadro de mandos</label>
-					<div><input name='nombre'class="required" type="text" /><div class="required_tag tooltip hover left" title="Campo requerido"></div></div>
-				</fieldset>
+    <div class="toggle_container">
+        <div class="block">
+            <form action='index.php?page=cuadro_grabar' method='post' id='formcuadro' name='formcuadro' class='validate_form'>
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_NOMBRE_CUADRO}</label>
+                    <div>
+                        <input name='nombre'class="required" type="text" />
+                        <div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
+                    </div>
+                </fieldset>
 
-				<fieldset class="label_side">
-					<label>Comentarios</label>
-					<div><textarea  class='inp' name='comentarios'></textarea></div>
-				</fieldset>
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_COMENTARIOS}</label>
+                    <div><textarea  class='inp' name='comentarios'></textarea></div>
+                </fieldset>
 
-				<fieldset class="label_side">
-					<label>Visibilidad</label>
-          <div>
-            <label class="radio">
-              <input type="radio" name="privado" id="privado1" value="0" checked>
-              Público
-            </label>
-            <label class="radio">
-              <input type="radio" name="privado" id="privado2" value="1">
-              Privado
-            </label>
-          </div>
-				</fieldset>
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_VISIBILIDAD}</label>
+                    <div>
+                        <label class="radio">
+                            <input type="radio" name="privado" id="privado1" value="0" checked>
+                            {$smarty.const.TXT_PUBLICO}
+                        </label>
+                        <label class="radio">
+                            <input type="radio" name="privado" id="privado2" value="1">
+                            {$smarty.const.TXT_PRIVADO}
+                        </label>
+                    </div>
+                </fieldset>
 
-        <div class="button_bar clearfix">
-					<button class="green" type="submit" value="Grabar" name="indicador_submit">
-					<span>Grabar</span>
-					</button>
+                <div class="button_bar clearfix">
+                    <button class="red send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
+                            onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
+                    <button class="green send_right" type="submit" value="{$smarty.const.TXT_GRABAR}" name="indicador_submit">
+                        <span>{$smarty.const.TXT_GRABAR}</span>
+                    </button>
+                </div>
+            </form>
         </div>
-			</form>
-		</div>
-	</div>
+    </div>
 </div>

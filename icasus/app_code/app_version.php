@@ -1,7 +1,21 @@
 <?php
-define('IC_VERSION', "2.8.3");
-define('IC_FECHA_REVISION', "27/10/2014");
+define('IC_VERSION', "2.9.9");
+define('IC_FECHA_REVISION', "10/02/2015");
 
+// 2.9.9 - 10/02/2015 - Corregido problema en las mediciones: ahora se muestram todos los valores de referencia
+// 2.9.8 - 06/02/2015 - Añadido campo observaciones a las mediciones.
+// 2.9.7 - 03/02/2015 - Formato de fecha español en los gráficos.
+// 2.9.6 - 29/01/2015 - Varios añadidos: borrado de cuadros de mando, paneles, avence de mediciones mejorado, actualización de Highcharts...
+// 2.9.5 - 25/01/2015 - Edición de paneles, cambios en interfaz y avance de mediciones.
+// 2.9.4 - 23/01/2015 - Adaptaciones, correcciones de algunos gráficos con Highcharts.
+// 2.9.3 - 22/01/2015 - Adaptaciones, correcciones de algunos gráficos con Highcharts.
+// 2.9.2 - 15/01/2015 - Cambios en la interfaz de Ficha Unidad. Muestra rol de los usuarios cuando se vayan a desasignar de una Unidad.
+// 2.9.1 - 22/12/2014 - Control de indicadores/datos sin mediciones. Cambios en la interfaz.
+// 2.9.0 - 22/12/2014 - Mejoras en la usabilidad de la aplicación.
+// 2.8.7 - 02/12/2014 - Filtrados todos los campos de las peticiones GET y POST con las funciones que proporciona PHP 
+// 2.8.6 - 14/11/2014 - Todas las cadenas de textos pasadas a constantes 
+// 2.8.5 - 04/11/2014 - Refactorizadas todas las clases PHP a nombres con mayúsculas
+// 2.8.4 - 28/10/2014 - Nueva plantilla autocontenida
 // 2.8.3 - 27/10/2014 - Corrige errores y muestra versión en pie. Corrige errores en edición de datos e indicadores (#787 y #2725)
 // 2.8.2 - 15/10/2014 - Muestra correctamente el tipo de agregación (cálculo del total) de indicadores y datos
 // 2.8.1 - 17/09/2014 - Agrupa las gráficas en mediciones_mostrar

@@ -1,6 +1,6 @@
 {if $modulo == 'seleccionar_años'}
 <fieldset class="label">
-	<label>Fín del período</label>
+	<label>{$smarty.const.FIELD_FIN_PERIODO}</label>
 	<div>
 		<select name="fin"  id="fin" class="select_box">
 			{foreach from=$years item=year}

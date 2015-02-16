@@ -25,7 +25,7 @@ $objPHPExcel = $objReader->load("hominis_files/hominis.xls");
 
 $objWorksheet = $objPHPExcel->getActiveSheet();
 
-$usuario = new usuario();
+$usuario = new Usuario();
 $db = $usuario->DB();
 
 $query = "DELETE FROM hominis;";

@@ -649,7 +649,7 @@ li.has_drawer.open > a {
 	border-radius: 0;
 	border-left: none;
 	text-shadow: 0px 1px 1px #000;
-	background: transparent url(../images/blank.png) repeat9 !important;
+	background: transparent url(../images/blank.png) repeat !important;
 	filter: none !important;
 	zoom: 1;
 }
@@ -819,7 +819,7 @@ div.main_container .box h2.box_head {
 	margin: 0 0 0 1px;
 	margin-left: 0;
 	border-bottom: 1px solid #eee;
-	width: 100%x;
+	width: 100%;
 	padding: 10px 10px;
 	list-style: none;
 	display: block;
@@ -909,7 +909,7 @@ div.main_container .box h2.box_head {
 }
 
 .box, .block, .flat_area, .indent , #nav_top{
-	opacity: 0;
+	//opacity: 0;
 }
 
 /*-----Loading Overlay -------*/
@@ -1807,7 +1807,7 @@ DataTable
 .DataTables_sort_wrapper {
 	background: none;
 	padding: 10px 5px 10px 20px;
-	text-align: center;
+	text-align: left;
 	font-size: 12px;
 	color: #333;
 	text-shadow: 0 1px 0 #FFFFFF; /*
@@ -1937,7 +1937,7 @@ table.static thead tr th {
 	border-right: none;
 	line-height: 30px;
 	padding: 0 10px;
-	text-align: left;
+        text-align: left;
 	color: #333;
 	font-weight: normal;
 	text-shadow: 0px 1px 0px #fff;
@@ -2345,7 +2345,7 @@ body div.main_container {
 }
 
 body div.full_size {
-	padding: none !important;
+	padding: 0 !important;
 }
 
 #template_options {

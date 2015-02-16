@@ -12,9 +12,9 @@ function fila_grabar(id_valor,medicion)
 {
   var value = $('[name=v_'+id_valor+']').val();
   value = value.replace(',','.');
-  if (value != '')
+  if (value !== '')
   {
-    if (isNaN(value)== false)
+    if (isNaN(value)=== false)
     {
       $.ajax({
         type: "POST",
@@ -30,7 +30,7 @@ function fila_grabar(id_valor,medicion)
       });
       */
     }
-    else if (value == "---")
+    else if (value === "---")
     {
       $.post("index.php?page=medicion_editar_ajax&modulo=anularvalor&ajax=true",{id_valor:id_valor},function(){
         $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion="+medicion);
@@ -57,6 +57,11 @@ function etiqueta_editar(medicion,content)
   $('#'+content).load("index.php?page=medicion_editar_ajax&modulo=editaretiqueta&ajax=true&id_medicion="+medicion+"&contenedor="+content);
 }
 
+function observaciones_editar(medicion,content)
+{
+  $('#'+content).load("index.php?page=medicion_editar_ajax&modulo=editarobservaciones&ajax=true&id_medicion="+medicion+"&contenedor="+content);
+}
+
 function etiqueta_editar_grabar(content,medicion,tag)
 {
   var value = $("[name="+tag+"]").val();
@@ -65,9 +70,22 @@ function etiqueta_editar_grabar(content,medicion,tag)
   });
 }
 
+function observaciones_editar_grabar(content,medicion,tag)
+{
+  var value = $("[name="+tag+"]").val();
+  $.post("index.php?page=medicion_editar_ajax&modulo=grabarobservaciones&ajax=true",{id_medicion:medicion,contenedor:content,valor:value},function(){
+    $('#'+content).load("index.php?page=medicion_editar_ajax&modulo=cancelarobservaciones&ajax=true&id_medicion="+medicion+"&contenedor="+content);
+  });
+}
+
 function etiqueta_editar_cancelar(content,medicion)
 {
   $('#'+content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion="+medicion+"&contenedor="+content);
+}
+
+function observaciones_editar_cancelar(content,medicion)
+{
+  $('#'+content).load("index.php?page=medicion_editar_ajax&modulo=cancelarobservaciones&ajax=true&id_medicion="+medicion+"&contenedor="+content);
 }
 
 function fecha_editar(medicion,content)
@@ -102,15 +120,15 @@ function referencia_grabar(id)
   var value = $("[name=input_referencia_"+id+"]").val();
   value = value.replace(',','.');
 
-  if (value != '')
+  if (value !== '')
   {
-    if (isNaN(value) == false)
+    if (isNaN(value) === false)
     {
       $.post("index.php?page=medicion_editar_ajax&modulo=grabarvalorreferencia&ajax=true",{id_referencia:id,valor:value},function(){
       $('#referencia_'+id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id="+id);
       });
     }
-    else if (value == "---")
+    else if (value === "---")
     {
       $.post("index.php?page=medicion_editar_ajax&modulo=anularvalorreferencia&ajax=true",{id_referencia:id},function(){
         $('#referencia_'+id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id="+id);
@@ -123,7 +141,7 @@ function referencia_grabar(id)
   }
   else
   {
-    alert('Está intentando introducir un valor vacio.\n\nPuede restituir el valor con [cancelar].');
+    alert('Está intentando introducir un valor vacio.\n\nPuede restituir el valor con [cancelar].\nPuede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---).');
   }
 }
 

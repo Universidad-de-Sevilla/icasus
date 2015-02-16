@@ -1,102 +1,122 @@
 <h3> 
-  <!--<a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
-  Editar unidad</a> &nbsp; &nbsp; -->
-  <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/cog.png' />
-  Ver procesos</a> &nbsp; &nbsp; &nbsp;
-  <a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve.png' />
-  Ver indicadores</a> &nbsp; &nbsp; 
-  <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/table.png' />
-  Ver datos</a> &nbsp; &nbsp; 
-  <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation.png' />
-  Editar unidad</a> &nbsp; &nbsp; 
-  <a href='index.php?page=csv_importar&id_entidad={$entidad->id}'><img src='/icons/ff16/lorry.png' />
-  Importar valores</a> &nbsp; &nbsp; 
+   <!-- <a href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/cog.png' />
+    {$smarty.const.TXT_PROCS}</a> &nbsp; &nbsp; 
+<a href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_curve.png' />
+    {$smarty.const.FIELD_INDICS}</a> &nbsp; &nbsp; 
+<a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_bar.png' />
+    {$smarty.const.FIELD_DATOS}</a> &nbsp; &nbsp; -->
+    <a href='index.php?page=entidad_editar&id_entidad={$entidad->id}'><img src='/icons/ff16/chart_organisation_edit.png' />
+        {$smarty.const.TXT_UNID_EDIT}</a> &nbsp; &nbsp; 
+    <a href='index.php?page=csv_importar&id_entidad={$entidad->id}'><img src='/icons/ff16/lorry.png' />
+        {$smarty.const.TXT_VAL_IMPORT}</a> &nbsp; &nbsp; 
 </h3>
+
 <div class="box grid_16">
-	<div class="toggle_container">
-		<div class="block">
-			<fieldset class="label_side">
-				<label>Código</label>
-				<div class="clearfix">
-						<span>{$entidad->codigo}</span>
-				</div>
-			</fieldset>	
-			<fieldset class="label_side">
-				<label>Nombre</label>
-				<div class="clearfix">
-						<span>{$entidad->nombre}</span>
-				</div>
-			</fieldset>	
-			<fieldset class="label_side">
-				<label>Página web</label>
-				<div class="clearfix">
-						<span><a href='{$entidad->web}'>{$entidad->web}</a></span>
-				</div>
-			</fieldset>	
-			<fieldset class="label_side">
-				<label>Unidad superior</label>
-				<div class="clearfix">
-						<span><a href="index.php?page=entidad_datos&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a></span>
-				</div>
-			</fieldset>	
-		</div>
-	</div>
+    <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_UNID_PARAM}</h2> 
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
+    <div class="block">
+        <fieldset class="label_side">
+            <label>{$smarty.const.FIELD_COD}</label>
+            <div class="clearfix">
+                <span>{$entidad->codigo}</span>
+            </div>
+        </fieldset>	
+        <fieldset class="label_side">
+            <label>{$smarty.const.FIELD_NOMBRE}</label>
+            <div class="clearfix">
+                <span>{$entidad->nombre}</span>
+            </div>
+        </fieldset>	
+        <fieldset class="label_side">
+            <label>{$smarty.const.FIELD_WEB}</label>
+            <div class="clearfix">
+                <span><a href='{$entidad->web}'>{$entidad->web}</a></span>
+            </div>
+        </fieldset>	
+        <fieldset class="label_side">
+            <label>{$smarty.const.FIELD_UNID_SUP}</label>
+            <div class="clearfix">
+                <span><a href="index.php?page=entidad_datos&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a></span>
+            </div>
+        </fieldset>	
+    </div>
 </div>
 
-<h2>Usuarios</h2>
-			<h3>
-				<a href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_add.png' />
-					Vincular usuarios</a> &nbsp; &nbsp; &nbsp;
-					&nbsp; <a href='index.php?page=entidad_despoblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_delete.png' />
-					Desvincular usuarios</a>
-			</h3>
+<div class="box grid_16">
+    <div class="toggle_container">
+        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_USERS}</h2> 
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
+        <div class="block">
+            <div class="button_bar clearfix">
+                <a href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_add.png' />
+                    {$smarty.const.TXT_USERS_VINC}</a>&nbsp;&nbsp;
+                <a href='index.php?page=entidad_despoblar&id_entidad={$entidad->id}'><img src='/icons/ff16/user_delete.png' />
+                    {$smarty.const.TXT_USERS_DESVINC}</a>
+            </div>
+            {if $usuarios}
+                <div id="dt1" class="no_margin">
+                    <table class='display datatable'>
+                        <thead>
+                            <tr>
+                                <th>{$smarty.const.FIELD_ROL}</th>
+                                <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                <th>{$smarty.const.FIELD_APEL}</th>
+                                <th>{$smarty.const.FIELD_CORREO}</th>
+                                <th>{$smarty.const.FIELD_TEL}</th>
+                                <th>{$smarty.const.FIELD_ACCIONES}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach from=$usuarios item=usuario}
+                                <tr class="gradeX">
+                                    <td>{$usuario->rol->nombre}</td>
+                                    <td>{$usuario->usuario->nombre}</td>
+                                    <td>{$usuario->usuario->apellidos}</td>
+                                    <td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
+                                    <td>{$usuario->usuario->telefono}</td>
+                                    <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DET}</a></td>
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            {else}
+                <div class="alert alert_blue">{$smarty.const.MSG_UNID_NO_USERS}</div>
+            {/if}
+        </div>
+    </div>
+</div>
 
-{if $usuarios}
-	<div class="box grid_16">
-		<div class="block">	
-			<table class='static'>
-				<thead>
-					<tr><th>Rol</th><th>Nombre</th><th>Apellidos</th><th>Correo</th><th>Teléfono</th><th>Acciones</th></tr>
-				</thead>
-				<tbody>
-				{foreach from=$usuarios item=usuario}
-					<tr class="gradeX">
-						<td>{$usuario->rol->nombre}</td>
-						<td>{$usuario->usuario->nombre}</td>
-						<td>{$usuario->usuario->apellidos}</td>
-						<td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
-						<td>{$usuario->usuario->telefono}</td>
-						<td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>Detalle</a></td>
-					</tr>
-			   {/foreach}
-				</tbody>
-			</table>
-		</div>
-	</div>	
-{else}
-<div class="alert alert_blue">No se han vinculado usuarios a esta entidad</div>
-{/if}
-
-<h2>Subunidades</h2>
-{if $subentidades}
-	<div class="box grid_16">
-		<div class="block">
-			<table class="static">
-				<thead>
-					<tr><th>Código</th><th>Nombre</th><th>Acciones</th></tr>
-				</thead>
-				<tbody>
-				{foreach from=$subentidades item=subentidad}
-					<tr class="gradeX">
-						<td>{$subentidad->codigo}</td>
-						<td>{$subentidad->nombre}</td>
-						<td><a href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'>Mostrar</a></td>
-					</tr>
-			   	{/foreach}
-				</tbody>
-			</table>
-		</div>
-	</div>	
-{else}
-<div class="alert alert_blue">Esta unidad no tiene subunidades</div>
-{/if}
+<div class="box grid_16">
+    <h2 class="box_head grad_grey_dark">{$smarty.const.FIELD_SUBUNIDS}</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
+    {if $subentidades}
+        <div class="block">
+            <div id="dt1" class="no_margin">
+                <table class="display datatable">
+                    <thead>
+                        <tr>
+                            <th>{$smarty.const.FIELD_COD}</th>
+                            <th>{$smarty.const.FIELD_NOMBRE}</th>
+                            <th>{$smarty.const.FIELD_ACCIONES}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach from=$subentidades item=subentidad}
+                            <tr class="gradeX">
+                                <td>{$subentidad->codigo}</td>
+                                <td>{$subentidad->nombre}</td>
+                                <td><a href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'>{$smarty.const.TXT_MOSTRAR}</a></td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {else}
+        <div class="alert alert_blue">{$smarty.const.MSG_UNID_NO_SUBUNIDS}</div>
+    {/if}
+</div>

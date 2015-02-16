@@ -464,7 +464,7 @@
              /* Nodes too close, repulsion occurs */
              if ( $Distance < $FreeZone )
               {
-               $Force = log(pow(2,$FreeZone-$Distance));
+               $Force = Log(pow(2,$FreeZone-$Distance));
                if ( $Force > 1 )
                 { $this->Data[$Key]["Vectors"][] = array("Type"=>"R","Angle"=>$Angle % 360,"Force"=>$Force); }
               }
@@ -486,9 +486,9 @@
                $Angle    = $this->getAngle($X1,$Y1,$X2,$Y2);
 
                if ( $Distance > $FreeZone )
-                $Force = log(($Distance-$FreeZone)+1);
+                $Force = Log(($Distance-$FreeZone)+1);
                else
-                { $Force = log(($FreeZone-$Distance)+1); ($Angle = $Angle + 180); }
+                { $Force = Log(($FreeZone-$Distance)+1); ($Angle = $Angle + 180); }
 
                if ( $Force > 1 )
                 $this->Data[$Key]["Vectors"][] = array("Type"=>"A","Angle"=>$Angle % 360,"Force"=>$Force);

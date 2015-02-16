@@ -6,4 +6,4 @@ function caracteres($cadena){
    return(strtr($cadena,$tofind,$replac));
 }
 
-?>
+

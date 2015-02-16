@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (https://forja.rediris.es/projects/icasus/)
 // Archivo: dimension_crear.php
@@ -12,27 +13,29 @@ global $smarty;
 global $basedatos;
 global $plantilla;
 
-$dimension = new dimension();
+$dimension = new Dimension();
 // Si vienen los datos necesarios del formulario grabamos
-if (isset($_POST['nombre']))
+//if (isset($_POST['nombre'])) 
+if (filter_has_var(INPUT_POST, 'nombre'))
 {
-	$dimension->nombre = sanitize($_POST['nombre'],2);
-	//$dimension->codigo = sanitize($_POST['codigo'],2);
-	$adodb->execute("SET NAMES utf8");
-	if ($dimension->save())
-	{
-		$smarty->assign('aviso' , 'Se ha creado una dimensi&oacute;n.');
-	}
-	else
-	{
-		$error = $dimension->ErrorMsg();
-		$smarty->assign('error' , 'No se ha podido crear la dimensi&oacute;n.'); //Este es el error reportado: '.$error);
-	}
+//    $dimension->nombre = sanitize($_POST['nombre'], 2);
+    //$dimension->codigo = sanitize($_POST['codigo'],2);
+    $dimension->nombre = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $adodb->execute("SET NAMES utf8");
+    if ($dimension->save())
+    {
+        $smarty->assign('aviso', MSG_DIM_CREADA);
+    }
+    else
+    {
+        $error = $dimension->ErrorMsg();
+        $smarty->assign('error', ERR_DIM_CREAR); //Este es el error reportado: '.$error);
+    }
 }
 
 // Array de dimensiones que pasamos a la vista para ver las existentes
 $dimensiones = $dimension->find('1 = 1 ORDER BY nombre');
 $smarty->assign('dimensiones', $dimensiones);
 $plantilla = "dimension_crear.tpl";
-$smarty->assign('_nombre_pagina','Relación de dimensiones');
-?>
+$smarty->assign('_nombre_pagina', TXT_DIM_REL);
+

@@ -50,7 +50,7 @@ class PHPExcel_Logarithmic_Best_Fit extends PHPExcel_Best_Fit
 
 
 	public function getValueOfYForX($xValue) {
-		return $this->getIntersect() + $this->getSlope() * log($xValue - $this->_Xoffset);
+		return $this->getIntersect() + $this->getSlope() * Log($xValue - $this->_Xoffset);
 	}	//	function getValueOfYForX()
 
 

@@ -3,49 +3,49 @@
 //mostrar y esconder bloques html
 function open_close(id)
 {
-        if (document.getElementById(id).style.display == 'none')
+        if (document.getElementById(id).style.display === 'none')
         {
-                document.getElementById(id).style.display = ''; 
-        	if (id == 'dpto')
-		{
-	        	document.getElementById('biblioteca').style.display = 'none'; 
-		}
-		else
-		{
-	        	document.getElementById('dpto').style.display = 'none'; 
-		}
-	} 
+                document.getElementById(id).style.display = '';
+            if (id === 'dpto')
+        {
+                document.getElementById('biblioteca').style.display = 'none';
+        }
         else
-        { 
+        {
+                document.getElementById('dpto').style.display = 'none';
+        }
+    }
+        else
+        {
                 document.getElementById(id).style.display = 'none';
         }
 }
 </script>
 {/literal}
 
-<form action="index.php?page=informes/cuadromando_departamento_excel" method="post" onsubmit="valida_constructor()">
-<p><b>Seleccionar la raíz del código de unidad para el grupo que desee:</b><br />
-<input type="radio" name="unidad" value="UE01" onclick="open_close('dpto')"> Departamentos<br />
-<input type="radio" name="unidad" value="UN03" onclick="open_close('biblioteca')"> Bibliotecas</p> 
+<form action="index.php?page=informes/cuadromando_departamento_excel" method="post" onsubmit="valida_constructor();">
+<p><b>{$smarty.const.TXT_SEL_RAIZ_COD_UNID}</b><br />
+<input type="radio" name="unidad" value="UE01" onclick="open_close('dpto');"> {$smarty.const.TXT_DEPARTAMENTOS}<br />
+<input type="radio" name="unidad" value="UN03" onclick="open_close('biblioteca');"> {$smarty.const.TXT_BIBLIOTECAS}</p>
 
-<p id="dpto" style="display:none"><b>Seleccionar los indicadores que contendré el informe:</b><br />
-<input type="checkbox" name="indicador[]" value="AOG-I1">Número de convocatorias<br />
-<input type="checkbox" name="indicador[]" value="AOG-I2">Plazo convocatorias<br />
-<input type="checkbox" name="indicador[]" value="MS-I1">Índice de participación<br />
-<input type="checkbox" name="indicador[]" value="MS-I2">Índice de satisfacción general<br />
-<input type="checkbox" name="indicador[]" value="GE-I1">Volumen tramitación<br />
-<input type="checkbox" name="indicador[]" value="GE-I2">Fiabilidad tramitación expedientes<br />
+<p id="dpto" style="display:none"><b>{$smarty.const.TXT_INFORME_SEL_INDIC}</b><br />
+<input type="checkbox" name="indicador[]" value="AOG-I1">{$smarty.const.TXT_NUM_CONVOCATORIAS}<br />
+<input type="checkbox" name="indicador[]" value="AOG-I2">{$smarty.const.TXT_PLAZO_CONVOCATORIAS}<br />
+<input type="checkbox" name="indicador[]" value="MS-I1">{$smarty.const.TXT_INDICE_PARTICIPACION}<br />
+<input type="checkbox" name="indicador[]" value="MS-I2">{$smarty.const.TXT_INDICE_SATISFACCION}<br />
+<input type="checkbox" name="indicador[]" value="GE-I1">{$smarty.const.TXT_VOL_TRAMITACION}<br />
+<input type="checkbox" name="indicador[]" value="GE-I2">{$smarty.const.TXT_FIABILIDAD_TRAMIT_EXPED}<br />
 </p>
 
-<p id="biblioteca" style="display:none"><b>Seleccionar los indicadores que contendré el informe:</b><br />
-<input type="checkbox" name="indicador[]" value="FCPR-I01">Préstamo por usuario potencial<br />
+<p id="biblioteca" style="display:none"><b>{$smarty.const.TXT_INFORME_SEL_INDIC}</b><br />
+<input type="checkbox" name="indicador[]" value="FCPR-I01">{$smarty.const.TXT_PRESTAMO_USER}<br />
 </p>
 
-<p><b>Seleccionar los años que se reflejarán en el informe:</b><br />
-<input type="checkbox" name="periodo[]" value="2009">2009<br />
-<input type="checkbox" name="periodo[]" value="2010">2010<br />
-<input type="checkbox" name="periodo[]" value="2011">2011<br />
-<input type="checkbox" name="periodo[]" value="2012">2012<br />
+<p><b>{$smarty.const.TXT_INFORME_SEL_ANYO}</b><br />
+{$anyo_actual = $smarty.now|date_format:'%Y'}
+{for $anyo = $anyo_actual - 4 to $anyo_actual}
+    <input type="checkbox" name="periodo[]" value="{$anyo}">{$anyo}<br />
+{/for}
 </p>
-<p><input type="submit" value="Generar informe"></p>
+<p><input type="submit" value="{$smarty.const.TXT_GEN_INFO}"></p>
 </form>

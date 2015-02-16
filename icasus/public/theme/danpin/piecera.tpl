@@ -1,7 +1,7 @@
 							</div>
 							<div id="tabs-3" class="block">
 								<div class="section">
-                                                                    <h1 style="color: #999999; font-weight: normal;">ICASUS&COPY;{$smarty.now|date_format:"%Y"} - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
+                                                                    <h1 style="color: #999999; font-weight: normal;">ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA</h1>
                                                                     <h1 style="color: #999999; font-weight: normal;">VERSI&Oacute;N: {$smarty.const.IC_VERSION} - FECHA DE REVISI&Oacute;N: {$smarty.const.IC_FECHA_REVISION}</h1>
 								</div>
 							</div>

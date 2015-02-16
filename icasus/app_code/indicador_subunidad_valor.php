@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: indicador_subunidad_valor.php
@@ -9,65 +10,68 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$id_entidad = sanitize($_REQUEST["id_entidad"], INT);
+//$id_entidad = sanitize($_REQUEST["id_entidad"], INT);
+$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
-if (isset($_REQUEST["id_indicador"]))
+//if (isset($_REQUEST["id_indicador"]))
+if (filter_has_var(INPUT_GET, 'id_indicador'))
 {
-  $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
-  $tipo = "indicador";
+//    $id_indicador = sanitize($_REQUEST["id_indicador"], INT);
+    $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
+    $tipo = "indicador";
 }
-else if (isset($_REQUEST["id_dato"]))
+//else if (isset($_REQUEST["id_dato"]))
+else if (filter_has_var(INPUT_GET, 'id_dato'))
 {
-  $id_indicador = sanitize($_REQUEST["id_dato"], INT);
-  $tipo = "dato";
-}
-else
-{
-  $error = "Faltan parámetros para mostrar la lista de mediciones";
-  header("location:index.php?page=entidad_listar&error=$error");
-}
-
-if(isset($id_entidad))
-{
-
-  $indicador = new indicador();
-  $indicador->load("id = $id_indicador");
-  $smarty->assign('indicador', $indicador);
-
-  // Comprueba permisos para el usuario: responsable unidad, responsable delegado, 
-  // responsable indicador, responsable medicion
-  $usuario_entidad = new usuario_entidad();
-  if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)")
-      || $indicador->id_responsable == $usuario->id
-      || $indicador->id_responsable_medicion == $usuario->id)
-  {
-    $entidad = new entidad();
-    $entidad->load("id = $indicador->id_entidad");
-    $smarty->assign('entidad', $entidad);
-
-    $medicion= new medicion();
-    $years = $medicion->find_year_mediciones($id_indicador);
-    $smarty->assign('years',$years);
-
-    $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
-    $smarty->assign('mediciones',$mediciones);
-
-    $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador,$entidad->id);
-    $smarty->assign('subunidades_mediciones',$subunidades_mediciones);
-
-    $smarty->assign("tipo", $tipo);
-    $smarty->assign('_nombre_pagina', "Valores de las subunidades para: $indicador->nombre");
-    $plantilla = 'indicador_subunidad_valor.tpl';
-  }
-  else
-  {
-    // El usuario no tiene permisos avisamos error
-    $error = 'No tiene permisos suficientes para editar indicadores de esta unidad';
-    header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
-  }
+//    $id_indicador = sanitize($_REQUEST["id_dato"], INT);
+    $id_indicador = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
+    $tipo = "dato";
 }
 else
 {
-  $error = "Faltan parámetros para mostrar las subunidades y los valores";
-  header("location:index.php?page=entidad_listar&error=$error");
+    $error = ERR_PARAM;
+    header("location:index.php?page=entidad_listar&error=$error");
+}
+
+if (isset($id_entidad))
+{
+
+    $indicador = new Indicador();
+    $indicador->load("id = $id_indicador");
+    $smarty->assign('indicador', $indicador);
+
+    // Comprueba permisos para el usuario: responsable unidad, responsable delegado, 
+    // responsable indicador, responsable medicion
+    $usuario_entidad = new Usuario_entidad();
+    if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)") || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+    {
+        $entidad = new Entidad();
+        $entidad->load("id = $indicador->id_entidad");
+        $smarty->assign('entidad', $entidad);
+
+        $medicion = new Medicion();
+        $years = $medicion->find_year_mediciones($id_indicador);
+        $smarty->assign('years', $years);
+
+        $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+        $smarty->assign('mediciones', $mediciones);
+
+        $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
+        $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
+
+        $smarty->assign("tipo", $tipo);
+        $smarty->assign('_nombre_pagina', TXT_INDIC_SUBUNID_VAL . ": $indicador->nombre");
+        $plantilla = 'indicador_subunidad_valor.tpl';
+    }
+    else
+    {
+        // El usuario no tiene permisos avisamos error
+        $error = ERR_INDIC_EDIT_NO_AUT;
+        header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
+    }
+}
+else
+{
+    $error = ERR_PARAM;
+    header("location:index.php?page=entidad_listar&error=$error");
 }

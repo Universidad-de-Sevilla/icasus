@@ -1,4 +1,5 @@
 <?php
+
 //--------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: indicador_editar.php
@@ -11,65 +12,67 @@ global $usuario;
 global $plantilla;
 
 // Comprobamos que vengan los datos mínimos necesarios
-if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']))
+//if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']))
+
+if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
-  $id_indicador = sanitize($_REQUEST['id_indicador'],16);
-  $id_entidad = sanitize($_REQUEST['id_entidad'],16);
+//    $id_indicador = sanitize($_REQUEST['id_indicador'], 16);
+//    $id_entidad = sanitize($_REQUEST['id_entidad'], 16);
+    $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
-  $indicador = new indicador();
-  $indicador->load_joined("id = $id_indicador");
-  $smarty->assign('indicador', $indicador);
+    $indicador = new Indicador();
+    $indicador->load_joined("id = $id_indicador");
+    $smarty->assign('indicador', $indicador);
 
-  // Comprueba permisos para el usuario: responsable unidad, responsable delegado,
-  // responsable indicador, responsable medicion
-  $usuario_entidad = new usuario_entidad();
-  if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)")
-      || $indicador->id_responsable == $usuario->id
-      || $indicador->id_responsable_medicion == $usuario->id)
-  {
-    $entidad = new entidad();
-    $entidad->load("id = $indicador->id_entidad");
-    $subunidades = $entidad->Find("id_madre = $indicador->id_entidad");
-    $smarty->assign('entidad', $entidad);
-    $smarty->assign('subunidades', $subunidades);
+    // Comprueba permisos para el usuario: responsable unidad, responsable delegado,
+    // responsable indicador, responsable medicion
+    $usuario_entidad = new Usuario_entidad();
+    if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)") || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+    {
+        $entidad = new Entidad();
+        $entidad->load("id = $indicador->id_entidad");
+        $subunidades = $entidad->Find("id_madre = $indicador->id_entidad");
+        $smarty->assign('entidad', $entidad);
+        $smarty->assign('subunidades', $subunidades);
 
-    $proceso = new proceso();
-    $procesos = $proceso->Find("id_entidad = $indicador->id_entidad");
-    $smarty->assign('procesos', $procesos);
+        $proceso = new Proceso();
+        $procesos = $proceso->Find("id_entidad = $indicador->id_entidad");
+        $smarty->assign('procesos', $procesos);
 
-    $criterio_efqm = new criterio_efqm();
-    $criterios_efqm = $criterio_efqm->Find("1 = 1");
-    $smarty->assign("criterios_efqm", $criterios_efqm);
+        $criterio_efqm = new Criterio_efqm();
+        $criterios_efqm = $criterio_efqm->Find("1 = 1");
+        $smarty->assign("criterios_efqm", $criterios_efqm);
 
-    $visibilidad = new visibilidad;
-    $visibilidades = $visibilidad->Find("1=1");
-    $smarty->assign("visibilidades", $visibilidades);
+        $visibilidad = new Visibilidad;
+        $visibilidades = $visibilidad->Find("1=1");
+        $smarty->assign("visibilidades", $visibilidades);
 
-    $tipo_agregacion = new tipo_agregacion();
-    $tipos_agregacion = $tipo_agregacion->Find("true ORDER BY id");
-    $smarty->assign("tipos_agregacion", $tipos_agregacion);
+        $tipo_agregacion = new Tipo_agregacion();
+        $tipos_agregacion = $tipo_agregacion->Find("true ORDER BY id");
+        $smarty->assign("tipos_agregacion", $tipos_agregacion);
 
-    $usuario_entidad = new usuario_entidad();
-    $usuarios_entidades = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
-    $smarty->assign('usuarios_entidades', $usuarios_entidades);
+        $usuario_entidad = new Usuario_entidad();
+        $usuarios_entidades = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
+        $smarty->assign('usuarios_entidades', $usuarios_entidades);
 
-    $indicador_subunidad = new indicador_subunidad();
-    $indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_indicador");
-    $smarty->assign("indicador_subunidades", $indicador_subunidades);
+        $indicador_subunidad = new Indicador_subunidad();
+        $indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_indicador");
+        $smarty->assign("indicador_subunidades", $indicador_subunidades);
 
-    $smarty->assign('_nombre_pagina', "Editando indicador: " . $indicador->nombre);
-    $plantilla = 'indicador_editar.tpl';
-  }
-  else
-  {
-    // El usuario no tiene permisos avisamos error
-    $error = 'No tiene permisos suficientes para editar indicadores de esta unidad';
-    header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
-  }
+        $smarty->assign('_nombre_pagina', TXT_INDIC_EDIT . ': ' . $indicador->nombre);
+        $plantilla = 'indicador_editar.tpl';
+    }
+    else
+    {
+        // El usuario no tiene permisos avisamos error
+        $error = ERR_INDIC_EDIT_NO_AUT;
+        header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
+    }
 }
 else
 {
-  // Faltan parametros avisamos error
-  $error = 'Faltan parametros para editar un indicador';
-  header("Location:index.php?error=$error");
+    // Faltan parametros avisamos error
+    $error = ERR_PARAM;
+    header("Location:index.php?error=$error");
 }

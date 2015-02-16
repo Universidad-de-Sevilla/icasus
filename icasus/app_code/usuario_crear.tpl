@@ -1,6 +1,6 @@
 {if $aviso}<p class='aviso'>{$aviso}</p>{/if} 
 {if $error}<p class='error'>{$error}</p>{/if} 
-<h3>Crear usuario</h3>
+<h3>{$smarty.const.TXT_USER_CREAR}</h3>
 <form action="index.php?page=usuario_crear" method="post" id="formusuario" name="formusuario" class="datos">
 	<input name='id_entidad' id='id_entidad' type='hidden' value={$entidad.id_entidad} />
 <!--
@@ -19,30 +19,30 @@
 	{/foreach }
 	</select></p>
 -->
-	<p><label for="nombre">Nombre</label> &nbsp;<span class="grey">(requerido)</span>
+	<p><label for="nombre">{$smarty.const.FIELD_NOMBRE}</label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>
 	<input name="nombre" id="nombre" class="inp" /></p>
 
-	<p><label for="apellidos">Apellidos </label> &nbsp;<span class="grey">(requerido)</span>
+	<p><label for="apellidos">{$smarty.const.FIELD_APEL}</label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>
 	<input name="apellidos" id="apellidos" class="inp" /></p>
 
-	<p><label for="nif">D.N.I.(con letra)</label> &nbsp;<span class="grey">(requerido)</span>
+	<p><label for="nif">{$smarty.const.FIELD_DNI}</label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>
 	<input name="nif" id="nif" class="inp" /></p>
 
-	<p><label for="correo">Correo electr&oacute;nico</label> &nbsp;
+	<p><label for="correo">{$smarty.const.FIELD_CORREO}</label> &nbsp;
 	<input name="correo" id="correo" class="inp" /></p>
 
-	<p><label for="telefono">Tel&eacute;fono</label> &nbsp;
+	<p><label for="telefono">{$smarty.const.FIELD_TEL}</label> &nbsp;
 	<input name="telefono" id="telefono" class="inp" /></p>
 
-	<p><label for="login">Login </label> &nbsp;<span class="grey">(requerido)</span>
+	<p><label for="login">{$smarty.const.FIELD_LOGIN} </label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>
 	<input name="login" id="login" class="inp" /></p>
 
-	<p><label for="clave">Clave de acceso </label> &nbsp;<span class="grey">(requerido)</span>
+	<p><label for="clave">{$smarty.const.FIELD_CLAVE} </label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>
 	<input type="password" name="clave" id="clave" class="inp" /></p>
 
-	<p><label for="clave2">Repetir clave de acceso </label> &nbsp;<span class="grey">(requerido)</span>
+	<p><label for="clave2">{$smarty.const.FIELD_REP_CLAVE} </label> &nbsp;<span class="grey">{$smarty.const.MSG_FIELD_REQ}</span>
 	<input type ="password" name="clave2" id="clave2" class="inp" /></p>
 
-	<p><input type="button" class="submit" value="Enviar" name="usuario_submit" onclick="javascript:usuario_validar();" /></p>
+	<p><input type="button" class="submit" value="{$smarty.const.TXT_BTN_ENVIAR}" name="usuario_submit" onclick="javascript:usuario_validar();" /></p>
 
 </form>

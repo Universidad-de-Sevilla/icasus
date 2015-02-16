@@ -6,17 +6,17 @@
 {elseif $error}<p class='error'>{$error}</p>
 {/if}
 
-<h3>Subir ficheros</h3>
+<h3>{$smarty.const.TXT_ARCHIVOS_SUBIR}</h3>
 
 <form class="datos" method="post" action="index.php?page=archivo_subir&dir={$directorio}" enctype="multipart/form-data" > 
     <input type="file" name="archivo" class="inp"/>
-    <input name="enviar" type="submit" value="Subir archivo" />
+    <input name="enviar" type="submit" value="{$smarty.const.TXT_ARCHIVO_SUBIR}" />
 </form>
 
-<p>Recuerda que el nombre del archivo es el que se verá en la relación inferior, por ello renombra tu archivo antes de subirlo para que sea clarificador para los que vayan a descargarlos.</p>
-<p style="color:red">IMPORTANTE: el nombre de los ficheros no deben contener caracteres como ñ, acentos o espacios en blanco.</p>
+<p>{$smarty.const.MSG_ARCHIVO_RENOMBRAR}</p>
+<p style="color:red">{$smarty.const.MSG_ARCHIVO_NOMBRE}</p>
 
-<h3>Contenido de {$directorio}</h3>
+<h3>{$smarty.const.TXT_CONTENIDO} {$directorio}</h3>
 <table class="datos">
 {foreach from=$archivos item=archivo }
     {* Evitamos que se ven los directorios ".", ".." y cualquier archivo o directorio que empiece por "." *}
@@ -26,8 +26,8 @@
         <td><a href="upload/{$directorio}/{$archivo[0]}"><img src='iconos/16x16/page.png' alt='-' /> {$archivo[0]}</a></td>
         <td>{$archivo[1]}</td>
         <td><a href="index.php?page=archivo_borrar&fichero={$archivo[0]}&dir={$directorio}" 
-            onclick="javascript: return confirm('Quieres borrar el archivo : {$archivo[0]}');"><img 
-            src='iconos/16x16/cross.png' title ='Borrar' alt='Borrar' /></a></td>
+            onclick="javascript: return confirm('{$smarty.const.MSG_ARCHIVO_BORRAR_CONFIRM} : {$archivo[0]}');"><img 
+            src='iconos/16x16/cross.png' title ='{$smarty.const.TXT_BORRAR}' alt='{$smarty.const.TXT_BORRAR}' /></a></td>
         </tr>
     {/if}
 {/foreach}

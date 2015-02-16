@@ -1,15 +1,15 @@
 <div style="padding:10px">  
-<p class="label_side">La subunidad <b>{$entidad->nombre}</b> tiene vinculada las siguientes mediciones con los correspondientes valores:</p>
-{if $mediciones}
-{foreach from=$mediciones item=medicion}
-	{$medicion->etiqueta} - {$medicion->medicion_valor}<br/>
-{/foreach}
-{else}
-<p>Este indicador no tiene definidas mediciones.</p>
-{/if}
+    <p class="label_side">{$smarty.const.TXT_SUBUNID}<b>{$entidad->nombre}</b> {$smarty.const.TXT_SUBUNID_MEDS}:</p>
+    {if $mediciones}
+        {foreach from=$mediciones item=medicion}
+            {$medicion->etiqueta} - {$medicion->medicion_valor}<br/>
+        {/foreach}
+    {else}
+        <p>{$smarty.const.MSG_INDIC_NO_MED}</p>
+    {/if}
 </div>
 <!--
-			 <form method="post" action="index.php?page=indicador_mostrar&id_indicador=5087" id="formcrearreferencia" name="formcrearreferencia" class="validate_form">
+                         <form method="post" action="index.php?page=indicador_mostrar&id_indicador=5087" id="formcrearreferencia" name="formcrearreferencia" class="validate_form">
         <fieldset class="label_side">
           <label>Etiqueta</label>
           <div><b><input  type='text' name='c-etiqueta' value="" class="text required"/></b><div class="required_tag"></div></div>
@@ -33,4 +33,4 @@
             </button>
           </div>
         </form>
-				-->
+-->

@@ -1,4 +1,5 @@
 <?php
+
 /* vim: set expandtab tabstop=4 shiftwidth=4 softtabstop=4 */
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
@@ -18,15 +19,20 @@ if (!is_object($smarty))
     header('Location:index.php?page=archivo_listar');
 }
 
-if (isset($_GET['fichero']) && isset($_GET['dir']))
+//if (isset($_GET['fichero']) && isset($_GET['dir']))
+    if(filter_has_var(INPUT_GET, 'fichero')&&  filter_has_var(INPUT_GET,'dir'))
 {
-    $fichero = sanitize($_GET['fichero'],2);
-    $dir = sanitize($_GET['dir'],PARANOID);
+//    $fichero = sanitize($_GET['fichero'], 2);
+//    $dir = sanitize($_GET['dir'], PARANOID);
+    
+    $fichero = filter_input(INPUT_GET,'fichero',FILTER_CALLBACK,array("options"=>"Util::mysqlCleaner"));
+    $dir = filter_input(INPUT_GET,'dir',FILTER_SANITIZE_STRING);
+    
     unlink(IC_DIR_BASE . '/upload/' . $dir . '/' . $fichero);
-    header("Location:index.php?page=archivo_listar&dir=$dir&aviso=Se ha borrado el fichero");
+    header("Location:index.php?page=archivo_listar&dir=$dir&aviso=".MSG_ARCHIVO_BORRADO);
 }
 else
 {
-    $error = "Faltan datos para procesar la solicitud de borrado de archivo";
+    $error = ERR_ARCHIVO_BORRAR;
     header("Location:index.php?page=error&error=$error");
 }

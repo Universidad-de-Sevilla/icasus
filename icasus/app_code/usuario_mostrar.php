@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: usuario_mostrar.php
@@ -9,20 +10,21 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
-if ($_REQUEST['id_usuario'])
+//if ($_REQUEST['id_usuario'])
+if (filter_has_var(INPUT_GET, 'id_usuario'))
 {
-	$id_usuario = sanitize($_REQUEST['id_usuario'],INT);
-	$persona = new usuario();
-  $persona->load_joined("id = $id_usuario");
-	$smarty->assign('persona', $persona);
+//    $id_usuario = sanitize($_REQUEST['id_usuario'], INT);
+    $id_usuario = filter_input(INPUT_GET, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
+    $persona = new Usuario();
+    $persona->load_joined("id = $id_usuario");
+    $smarty->assign('persona', $persona);
 
-	$nombre_pagina = $persona->nombre . ' ' . $persona->apellidos;
-	$smarty->assign('_nombre_pagina', $nombre_pagina);
-	$plantilla = "usuario_mostrar.tpl";
+    $nombre_pagina = $persona->nombre . ' ' . $persona->apellidos;
+    $smarty->assign('_nombre_pagina', $nombre_pagina);
+    $plantilla = "usuario_mostrar.tpl";
 }
 else
 {
-	$error = "No se puede mostrar el usuario por falta de parámetros.";
-  header("location:index.php?page=inicio&error=$error");
+    $error = ERR_PARAM;
+    header("location:index.php?page=inicio&error=$error");
 }
-?>

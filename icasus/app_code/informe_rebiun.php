@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: consulta_avanzada.php
@@ -8,16 +9,15 @@
 //  - Permite elegir subunidades
 //  - Permite acotar los periodos de medición deseados
 //---------------------------------------------------------------------------------------------------
-$indicador = new indicador();
+$indicador = new Indicador();
 $rebiun_detalle = $indicador->rebiun_2012_detalle();
-$smarty->assign("informe",$rebiun_detalle);
+$smarty->assign("informe", $rebiun_detalle);
 
 $rebiun_suma = $indicador->rebiun_2012_suma();
-$smarty->assign("suma",$rebiun_suma);
+$smarty->assign("suma", $rebiun_suma);
 
 $rebiun_promedio = $indicador->rebiun_2012_promedio();
-$smarty->assign("promedio",$rebiun_promedio);
+$smarty->assign("promedio", $rebiun_promedio);
 
-$smarty->assign("_nombre_pagina", "Informe Rebiun 2012");
+$smarty->assign("_nombre_pagina", TXT_INFORME_REBIUN);
 $plantilla = "informe_rebiun.tpl";
-?>

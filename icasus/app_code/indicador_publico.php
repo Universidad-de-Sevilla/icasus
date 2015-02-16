@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: cuadromando_crear.php
@@ -8,22 +9,22 @@
 // Descripcion: Crea un nuevo cuadro de mandos para un usuario
 //--------------------------------------------------------------------------------------------------- 
 
-global $smarty;                   
-global $plantilla;                
-global $operario;                 
+global $smarty;
+global $plantilla;
+global $_usuario;
 
 // Esto es para prevenir que se cargue el script sin pasar por index.php
-if (!is_object($smarty))          
+if (!is_object($smarty))
 {
-        header('Location:index.php');   
+    header('Location:index.php');
 }
 
 $entidad = new ado_indicador();
 $indicadores = $entidad->indicador_publico();
 //print_r($indicadores);
-$smarty->assign('indicadores',$indicadores);
-        
-$smarty->assign('_nombre_pagina' , "Indicadores p&uacute;blicos");        
+$smarty->assign('indicadores', $indicadores);
+
+$smarty->assign('_nombre_pagina', TXT_INDIC_PUBLIC);
 $plantilla = 'indicador_publico.tpl';
 
-?>
+

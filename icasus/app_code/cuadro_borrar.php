@@ -1,4 +1,5 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: cuadro_borrar.php
@@ -6,30 +7,36 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra un cuadro de mando
 //---------------------------------------------------------------------------------------------------
-require_once('function/sanitize.php');
-global $smarty;
-global $operario;
 
-if (isset($_REQUEST['id']))
+global $smarty;
+global $_usuario;
+
+//if (isset($_REQUEST['id']))
+if (filter_has_var(INPUT_GET, 'id_cuadro'))
 {
-	$id_cuadro = sanitize($_REQUEST['id'],16);
-	$id_usuario = $operario->id_usuario;
-	$cuadro = new cuadro();
-	$cuadro->Load("id = $id_cuadro AND id_usuario = $id_usuario");
-	if ($cuadro->delete())
-	{
-		$aviso = "Se ha eliminado un cuadro de mando";
-		header("Location: index.php?page=cuadro_listar&aviso=$aviso");
-	}
-	else
-	{
-		$error = "No tiene permiso para realizar esta acción";
-		header("Location: index.php?page=cuadro_listar&error=$error");
-	}
+//	$id_cuadro = sanitize($_REQUEST['id'],16);
+    $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
+    $id_usuario = $_usuario->id_usuario;
+    $cuadro = new Cuadro();
+//    $cuadro->Load("id = $id_cuadro AND id_usuario = $id_usuario");
+    $cuadro->load("id = $id_cuadro");
+    $panel = new Panel();
+    $paneles_cuadro = $panel->Find("id_cuadro=$id_cuadro");
+    if (!$paneles_cuadro)
+    {
+        $aviso = MSG_CUADRO_MANDO_BORRADO." ".$cuadro->nombre;
+        $cuadro->delete();
+        header("Location: index.php?page=cuadro_listar&aviso=$aviso");
+    }
+    else
+    {
+        $error = ERR_CUAD_MANDO_BORRAR;
+        header("Location: index.php?page=cuadro_listar&error=$error");
+    }
 }
 else // falta id
 {
-	$error = 'Faltan parámetros para realizar esta acción.'; 
-	header("Location: index.php?page=cuadro_listar&error=$error");
+    $error = ERR_PARAM;
+    header("Location: index.php?page=cuadro_listar&error=$error");
 }
-?>
+
