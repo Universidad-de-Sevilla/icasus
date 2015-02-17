@@ -113,7 +113,7 @@ $('.panel_linea').each(function () {
 
                 // Pide las series de datos a chartSerie
                 // A saber: Totales y Valores de referencia
-                var dataseries = chartSerie.getLinealSerie();
+                var dataseries = chartSerie.getLinealSerie(indicador.nombre);
                 // Si no es anual ocultamos valores de referencia
                 if (chartSerie.categoryType !== "año") {
                     dataseries.forEach(function (dataserie, index) {
@@ -318,7 +318,8 @@ $(".panel_tarta").each(function () {
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var id_medicion = $(this).data("id_medicion");
-
+    //Variables para guardar el nombre y total de la medición solicitada
+    var medicion, total = 0;
     //Leyenda donde ira el indicador relacionado
     var leyenda = $(this).next('.leyenda');
     leyenda.append('<p><h4>Indicador:</h4><p>');
@@ -334,7 +335,7 @@ $(".panel_tarta").each(function () {
             var chartSerie = new HighchartSerie();
 
             //Incluye en la leyenda el indicador relacionado
-            leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+            leyenda.append('<p style="font-size:0.9em"><a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
                     + '" style="border:0">' + indicador.nombre + '</a></p>');
 
             $.ajax({
@@ -348,9 +349,16 @@ $(".panel_tarta").each(function () {
                 datos.forEach(function (dato) {
                     if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
                         chartSerie.add(dato);
+                        total += parseFloat(dato.valor);
+                        if (!medicion) {
+                            medicion = dato.medicion;
+                        }
                     }
                 });
 
+                //Redondeamos el total
+                total = ((Math.round(total * 100)) / 100);
+                
                 var dataseries = chartSerie.getPieSerie();
 
                 //Gráfico de tarta
@@ -362,6 +370,9 @@ $(".panel_tarta").each(function () {
                     title: {
                         text: titulo,
                         style: {"fontSize": "14px"}
+                    },
+                    subtitle: {
+                        text: 'Medición: ' + medicion + ' Total: ' + total
                     },
                     exporting: {
                         enabled: true
@@ -486,53 +497,54 @@ $(".panel_tabla_multi").each(function () {
     });
 });
 
-
-//TODO CORREGIR EL TAMAÑO DEL TEXTO DE LAS MEDICIONES
-//
 //Paneles de métricas
 $(".panel_metrica").each(function () {
     var medicion; //etiqueta de la medición a mostrar
+    var unidad; //etiqueta de la unidad a mostrar
     var id_panel = $(this).data("id_panel");
     var ancho = $(this).data("ancho");
     var leyenda = $(this).next('.leyenda');
     var id_medicion = $(this).data("id_medicion");
 
-    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function (indicadores) {
+    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
         // De momento cogemos solo el primer indicador por si viene mas de uno 
         var indicador = indicadores[0];
 
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id, function (datos) {
+        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id).done(function (datos) {
             var html = "";
             // Tomamos la entidad a mostrar del panel_indicador actual
             var id_entidad = indicador.id_entidad;
             $.each(datos, function (i, dato) {
+                console.log(dato);
                 if ((dato.id_unidad == id_entidad || dato.id_unidad == '0') && dato.id_medicion == id_medicion)
                 {
                     if (id_entidad !== '0')
                     {
                         if (dato.id_unidad !== '0')
                         {
-                            html += "<p style='font-size:" + (ancho * 2 - dato.valor.length * 0.4) + "em; padding: 20px 0 10px 0; text-align: center;'>" + dato.valor + "</p>";
-                            html += "<p style='text-align: center; line-height: 10px;'>" + dato.unidad + "</p>";
+                            html.append("<p style='font-size:" + (1 + (ancho * 2 - dato.valor.length * 0.4)) + "em; color:maroon; padding: 20px 0 10px 0; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>");
+                            html.append("<p style='text-align: center; line-height: 10px;'>" + dato.unidad + "</p>");
                         }
                         else
                         {
-                            html += "<p style='font-size:2em; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + dato.valor + "</p>";
-                            html += "<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>Valor total</strong></p>";
+                            html.append("<p style='font-size:2em; color:maroon; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>");
+                            html.append("<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>Valor total</strong></p>");
                         }
                     }
                     else
                     {
-                        html += "<p style='font-size:" + (ancho * 2 - dato.valor.length * 0.4) + "em; padding: 30px 0px; text-align: center;'>" + dato.valor + "</p>";
+                        html += "<p style='font-size:" + (1 + (ancho * 2 - dato.valor.length * 0.4)) + "em; padding: 30px 0px; color:maroon; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>";
                     }
                     medicion = dato.medicion;
+                    unidad = dato.unidad;
                 }
             });
             $('<div/>', {'class': 'centrado',
                 html: html
             }).appendTo('#panel_' + id_panel);
-            leyenda.html('<p style="font-size:0.9em"><a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
-                    + '" target="_blank" style="border:0">' + indicador.nombre + '</a> - <strong>Medición:</strong> ' + medicion + '</p>');
+            leyenda.append('<p><h4>Indicador:</h4><p>');
+            leyenda.append('<p style="font-size:0.9em"><a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+                    + '" style="border:0">' + indicador.nombre + ' - ' + unidad + ' (' + medicion + ')</a></p>');
         });
     });
 });

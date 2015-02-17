@@ -33,6 +33,8 @@ require_once("../../cascara_core/function/sanitize.php");
 // Es necesario porque este fichero no depende del controlador principal index.php
 require_once("../app_code/app_config.php");
 @mysql_connect(IC_DB_HOST, IC_DB_LOGIN, IC_DB_CLAVE);
+mysql_query("SET NAMES UTF8");
+
 if (mysql_select_db(IC_DB_DATABASE))
 {
     // Capturamos y procesamos los datos de la petición

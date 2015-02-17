@@ -40,13 +40,10 @@ $dsn = 'mysql://' . IC_DB_LOGIN . ':' . IC_DB_CLAVE . '@' . IC_DB_HOST . '/' . I
 $adodb = NewADOConnection($dsn);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
 
-// No podemos usarlo hasta que no esté Icasus en utf8
-//$adodb->Execute("SET NAMES UTF8");
-//$adodb->Execute("SET NAMES LATIN1");
+$adodb->Execute("SET NAMES UTF8");
 
 date_default_timezone_set('Europe/Madrid');
 setlocale(LC_ALL, 'es-ES');
-
 
 // Variables globales
 $smarty = new Smarty();
@@ -102,12 +99,12 @@ if (isset($_SESSION['usuario']))
     {
         $id_entidad = 0;
     }
-  
+
     $usuario = $_SESSION['usuario'];
     //Control de unidades:
-    $usuario_entidad= new Usuario_entidad();
-    $control= $usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad);
-    $smarty->assign('_control',$control);
+    $usuario_entidad = new Usuario_entidad();
+    $control = $usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad);
+    $smarty->assign('_control', $control);
     $smarty->assign('_usuario', $usuario);
     /*
       // Comprueba si el usuario tiene permiso para realizar esta acción
