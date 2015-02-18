@@ -110,7 +110,8 @@ function HighchartSerie() {
             serieHighchart.push({
                 type: 'pie',
                 name: medicion,
-                data: arrayMedicion
+                data: arrayMedicion,
+                showInLegend: true
             });
         }
         return serieHighchart;

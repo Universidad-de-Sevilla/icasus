@@ -358,13 +358,12 @@ $(".panel_tarta").each(function () {
 
                 //Redondeamos el total
                 total = ((Math.round(total * 100)) / 100);
-                
+
                 var dataseries = chartSerie.getPieSerie();
 
                 //Gráfico de tarta
                 var chart1 = new Highcharts.Chart({
                     chart: {
-                        height: 300,
                         renderTo: contenedor
                     },
                     title: {
@@ -372,7 +371,7 @@ $(".panel_tarta").each(function () {
                         style: {"fontSize": "14px"}
                     },
                     subtitle: {
-                        text: 'Medición: ' + medicion + ' Total: ' + total
+                        text: 'Medición: ' + medicion + ' Total: ' + total + ' (100%)'
                     },
                     exporting: {
                         enabled: true
@@ -390,9 +389,18 @@ $(".panel_tarta").each(function () {
                             dataLabels: {
                                 enabled: true,
                                 formatter: function () {
-                                    return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                                    return this.y ? ((Math.round(this.y * 100)) / 100)
+                                            + ' (' + Math.round(this.percentage) + '%)' : null;
                                 }
                             }
+                        }
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                            html += '<span >\u25CF</span> ' + this.series.name + ': <b>' + this.y
+                                    + ' (' + Math.round(this.percentage) + '%)' + '</b><br/>';
+                            return html;
                         }
                     },
                     series: dataseries
@@ -522,7 +530,7 @@ $(".panel_metrica").each(function () {
                     {
                         if (dato.id_unidad !== '0')
                         {
-                            html.append("<p style='font-size:" + (1 + (ancho * 2 - dato.valor.length * 0.4)) + "em; color:maroon; padding: 20px 0 10px 0; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>");
+                            html.append("<p style='font-size:" + (1 + (Math.abs(ancho * 2 - dato.valor.length * 0.4))) + "em; color:maroon; padding: 20px 0 10px 0; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>");
                             html.append("<p style='text-align: center; line-height: 10px;'>" + dato.unidad + "</p>");
                         }
                         else
@@ -533,7 +541,7 @@ $(".panel_metrica").each(function () {
                     }
                     else
                     {
-                        html += "<p style='font-size:" + (1 + (ancho * 2 - dato.valor.length * 0.4)) + "em; padding: 30px 0px; color:maroon; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>";
+                        html += "<p style='font-size:" + (1 + (Math.abs(ancho * 2 - dato.valor.length * 0.4))) + "em; padding: 30px 0px; color:maroon; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>";
                     }
                     medicion = dato.medicion;
                     unidad = dato.unidad;
