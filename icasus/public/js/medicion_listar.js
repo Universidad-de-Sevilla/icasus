@@ -35,7 +35,6 @@ $(document).ajaxComplete(function () {
     // Gráfico de barras
     var chart1 = new Highcharts.Chart({
         chart: {
-            height: 300,
             renderTo: 'container'
         },
         title: {
@@ -163,7 +162,6 @@ $('.highchart').each(function () {
         //Gráfico de líneas
         var chart1 = new Highcharts.Chart({
             chart: {
-                height: 300,
                 renderTo: idPanel
             },
             title: {

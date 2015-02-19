@@ -52,7 +52,6 @@ $('.highchart').each(function () {
         //Gráfico de línea
         var chart1 = new Highcharts.Chart({
             chart: {
-                height: 300,
                 renderTo: idPanel
             },
             title: {
