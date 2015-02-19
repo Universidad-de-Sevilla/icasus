@@ -390,7 +390,7 @@ $(".panel_tarta").each(function () {
                                 enabled: true,
                                 formatter: function () {
                                     return this.y ? ((Math.round(this.y * 100)) / 100)
-                                            + ' (' + Math.round(this.percentage) + '%)' : null;
+                                            + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' : null;
                                 }
                             }
                         }
@@ -399,7 +399,7 @@ $(".panel_tarta").each(function () {
                         formatter: function () {
                             html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
                             html += '<span >\u25CF</span> ' + this.series.name + ': <b>' + this.y
-                                    + ' (' + Math.round(this.percentage) + '%)' + '</b><br/>';
+                                    + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' + '</b><br/>';
                             return html;
                         }
                     },
