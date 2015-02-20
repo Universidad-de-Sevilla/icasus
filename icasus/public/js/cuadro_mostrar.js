@@ -125,44 +125,44 @@ $('.panel_linea').each(function () {
 
                 //Sacar los datos de la dataserie y hacer un push en 
                 //total_dataseries donde el nombre es el del indicador.
-                for (dataserie in dataseries) {
+                dataseries.forEach(function (dataserie){
                     totalDataseries.push(dataserie);
-                }
-            }
-        });
-        //Una vez obtenido el totalDataseries pintamos el gráfico
-        var chart1 = new Highcharts.Chart({
-            chart: {
-                height: 300,
-                renderTo: contenedor
-            },
-            title: {
-                text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
-                style: {"fontSize": "14px"}
-            },
-            exporting: {
-                enabled: true
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {
-                title: {
-                    text: 'Valores'
-                }
-            },
-            plotOptions: {
-                series: {
-                    dataLabels: {
-                        enabled: true,
-                        formatter: function () {
-                            return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                });
+
+                //Una vez obtenido el totalDataseries pintamos el gráfico
+                var chart1 = new Highcharts.Chart({
+                    chart: {
+                        renderTo: contenedor
+                    },
+                    title: {
+                        text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
+                        style: {"fontSize": "14px"}
+                    },
+                    exporting: {
+                        enabled: true
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Valores'
                         }
-                    }
-                }
-            },
-            series: totalDataseries
-        });
+                    },
+                    plotOptions: {
+                        series: {
+                            dataLabels: {
+                                enabled: true,
+                                formatter: function () {
+                                    return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                                }
+                            }
+                        }
+                    },
+                    series: totalDataseries
+                });
+            }
+        }); 
     });
 });
 
