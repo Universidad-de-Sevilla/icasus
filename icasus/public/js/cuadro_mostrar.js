@@ -505,54 +505,120 @@ $(".panel_tabla_multi").each(function () {
     });
 });
 
-//Paneles de métricas
+//Paneles de métricas nueva
 $(".panel_metrica").each(function () {
-    var medicion; //etiqueta de la medición a mostrar
-    var unidad; //etiqueta de la unidad a mostrar
     var id_panel = $(this).data("id_panel");
     var ancho = $(this).data("ancho");
-    var leyenda = $(this).next('.leyenda');
     var id_medicion = $(this).data("id_medicion");
+    //Leyenda donde ira el indicador relacionado
+    var leyenda = $(this).next('.leyenda');
+    leyenda.append('<p><h4>Indicador:</h4><p>');
+    var medicion; //etiqueta de la medición a mostrar
+    var unidad; //etiqueta de la unidad a mostrar
 
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
         // De momento cogemos solo el primer indicador por si viene mas de uno 
         var indicador = indicadores[0];
 
-        $.getJSON("api_publica.php?metodo=get_valores_indicador&id=" + indicador.id).done(function (datos) {
+        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id).done(function (datos) {
             var html = "";
             // Tomamos la entidad a mostrar del panel_indicador actual
             var id_entidad = indicador.id_entidad;
-            $.each(datos, function (i, dato) {
-                console.log(dato);
-                if ((dato.id_unidad == id_entidad || dato.id_unidad == '0') && dato.id_medicion == id_medicion)
-                {
-                    if (id_entidad !== '0')
+            //Si es un total
+            if (id_entidad == 0) {
+                var total = 0;
+                $.each(datos, function (i, dato) {
+                    if (dato.id_medicion == id_medicion && dato.etiqueta_mini)
                     {
-                        if (dato.id_unidad !== '0')
-                        {
-                            html.append("<p style='font-size:" + (1 + (Math.abs(ancho * 2 - dato.valor.length * 0.4))) + "em; color:maroon; padding: 20px 0 10px 0; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>");
-                            html.append("<p style='text-align: center; line-height: 10px;'>" + dato.unidad + "</p>");
-                        }
-                        else
-                        {
-                            html.append("<p style='font-size:2em; color:maroon; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>");
-                            html.append("<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>Valor total</strong></p>");
+                        total += parseFloat(dato.valor);
+                        //Guardamos la medición y la unidad perteneciente
+                        if (!medicion && !unidad) {
+                            medicion = dato.medicion;
+                            unidad = 'Total';
                         }
                     }
-                    else
+                });
+                //Redondeamos el total
+                total = ((Math.round(total * 100)) / 100);
+                html = "<p style='font-size:2em; color:maroon; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + total + "</p>";
+                html += "<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>Valor Total</strong></p>";
+            }
+            //Si es una unidad
+            else {
+                var valor = 0;
+                $.each(datos, function (i, dato) {
+                    if (dato.id_medicion == id_medicion && id_entidad == dato.id_unidad)
                     {
-                        html += "<p style='font-size:" + (1 + (Math.abs(ancho * 2 - dato.valor.length * 0.4))) + "em; padding: 30px 0px; color:maroon; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>";
+                        valor = parseFloat(dato.valor);
+                        //Guardamos la medición y la unidad perteneciente
+                        if (!medicion && !unidad) {
+                            medicion = dato.medicion;
+                            unidad = dato.unidad;
+                        }
                     }
-                    medicion = dato.medicion;
-                    unidad = dato.unidad;
-                }
-            });
+                });
+                //Redondeamos el valor
+                valor = ((Math.round(valor * 100)) / 100);
+                html = "<p style='font-size:2em; color:maroon; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + valor + "</p>";
+                html += "<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>" + unidad + "</strong></p>";
+            }
             $('<div/>', {'class': 'centrado',
                 html: html
             }).appendTo('#panel_' + id_panel);
-            leyenda.append('<p><h4>Indicador:</h4><p>');
+
             leyenda.append('<p style="font-size:0.9em"><a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
                     + '" style="border:0">' + indicador.nombre + ' - ' + unidad + ' (' + medicion + ')</a></p>');
         });
     });
 });
+
+////Paneles de métricas antigua
+//$(".panel_metrica").each(function () {
+//    var medicion; //etiqueta de la medición a mostrar
+//    var unidad; //etiqueta de la unidad a mostrar
+//    var id_panel = $(this).data("id_panel");
+//    var ancho = $(this).data("ancho");
+//    var leyenda = $(this).next('.leyenda');
+//    var id_medicion = $(this).data("id_medicion");
+//
+//    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
+//        // De momento cogemos solo el primer indicador por si viene mas de uno 
+//        var indicador = indicadores[0];
+//
+//        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id).done(function (datos) {
+//            var html = "";
+//            // Tomamos la entidad a mostrar del panel_indicador actual
+//            var id_entidad = indicador.id_entidad;
+//            $.each(datos, function (i, dato) {
+//                if ((dato.id_unidad == id_entidad || dato.id_unidad == '0') && dato.id_medicion == id_medicion)
+//                {
+//                    if (id_entidad !== '0')
+//                    {
+//                        if (dato.id_unidad !== '0')
+//                        {
+//                            html="<p style='font-size:" + (1 + (Math.abs(ancho * 2 - dato.valor.length * 0.4))) + "em; color:maroon; padding: 20px 0 10px 0; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>";
+//                            html+=("<p style='text-align: center; line-height: 10px;'>" + dato.unidad + "</p>");
+//                        }
+//                        else
+//                        {
+//                            html="<p style='font-size:2em; color:maroon; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>";
+//                            html+="<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>Valor total</strong></p>";
+//                        }
+//                    }
+//                    else
+//                    {
+//                        html += "<p style='font-size:" + (1 + (Math.abs(ancho * 2 - dato.valor.length * 0.4))) + "em; padding: 30px 0px; color:maroon; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>";
+//                    }
+//                    medicion = dato.medicion;
+//                    unidad = dato.unidad;
+//                }
+//            });
+//            $('<div/>', {'class': 'centrado',
+//                html: html
+//            }).appendTo('#panel_' + id_panel);
+//            leyenda.append('<p><h4>Indicador:</h4><p>');
+//            leyenda.append('<p style="font-size:0.9em"><a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+//                    + '" style="border:0">' + indicador.nombre + ' - ' + unidad + ' (' + medicion + ')</a></p>');
+//        });
+//    });
+//});
