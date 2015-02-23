@@ -60,7 +60,7 @@ $('.panel_linea').each(function () {
     var fecha_fin = $(this).data("fecha_fin");
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
-
+//    var ancho = $(this).data("ancho");
     //Leyenda donde irań los indicadores relacionados
     var leyenda = $(this).next('.leyenda');
     leyenda.append('<p><h4>Indicador/es:</h4><p>');
@@ -100,36 +100,55 @@ $('.panel_linea').each(function () {
 
             function onDataReceived(datos) {
                 datos.forEach(function (dato) {
-
-                    //TODO
-                    //Tener en cuenta si es una medicion o el total
-
-                    // Agrega los que no tienen etiqueta_mini (total y referencias)
-                    // descarta las mediciones de unidades (no sirven aquí)
-                    if (!dato.etiqueta_mini && (dato.valor !== null)) {
-                        chartSerie.add(dato);
+                    //Si es un Total
+                    if (indicador.id_entidad == 0) {
+                        // Agrega los que no tienen etiqueta_mini (total y referencias)
+                        // descarta las mediciones de unidades (no sirven aquí)
+                        if (!dato.etiqueta_mini && (dato.valor !== null)) {
+                            chartSerie.add(dato);
+                        }
+                    }
+                    //Si es una Unidad
+                    else if (indicador.id_entidad == dato.id_unidad || dato.referencia == true) {
+                        if (dato.valor !== null) {
+                            chartSerie.add(dato,true);
+                        }
                     }
                 });
 
                 // Pide las series de datos a chartSerie
-                // A saber: Totales y Valores de referencia
-                var dataseries = chartSerie.getLinealSerie(indicador.nombre);
-                // Si no es anual ocultamos valores de referencia
-                if (chartSerie.categoryType !== "año") {
-                    dataseries.forEach(function (dataserie, index) {
-                        if (index !== 0) {
-                            dataserie.visible = false;
-                        }
-                    });
+                //Totales
+                if (indicador.id_entidad == 0) {
+                    var dataseries = chartSerie.getLinealSerie(indicador.nombre);
+                    // Si es no anual ocultamos valores de referencia
+                    if (chartSerie.categoryType !== "año") {
+                        dataseries.forEach(function (dataserie, index) {
+                            if (index !== 0) {
+                                dataserie.visible = false;
+                            }
+                        });
+                    }
+                }
+                //Unidades
+                else {
+                    var dataseries = chartSerie.getLinealSerie(indicador.nombre);
+                    // Si es no anual ocultamos valores de referencia
+                    if (chartSerie.categoryType !== "año") {
+                        dataseries.forEach(function (dataserie, index) {
+                            if (index !== 0) {
+                                dataserie.visible = false;
+                            }
+                        });
+                    }
                 }
 
                 //Sacar los datos de la dataserie y hacer un push en 
                 //total_dataseries donde el nombre es el del indicador.
-                dataseries.forEach(function (dataserie){
+                dataseries.forEach(function (dataserie) {
                     totalDataseries.push(dataserie);
                 });
 
-                //Una vez obtenido el totalDataseries pintamos el gráfico
+                //Gráfico de líneas
                 var chart1 = new Highcharts.Chart({
                     chart: {
                         renderTo: contenedor
@@ -159,10 +178,13 @@ $('.panel_linea').each(function () {
                             }
                         }
                     },
+                    legend: {
+//                        x: ancho
+                    },
                     series: totalDataseries
                 });
             }
-        }); 
+        });
     });
 });
 
@@ -195,15 +217,12 @@ $(".panel_barra").each(function () {
 
             // contenedor para los datos del indicador
             var chartSerie = new HighchartSerie();
-            //Si el indicador no es el primero(barras) 
-            if (index !== 0) {
 
-                if (periodicidad === "anual") {
-                    chartSerie.categoryType = "año";
-                }
-                else {
-                    chartSerie.categoryType = "medicion";
-                }
+            if (periodicidad === "anual") {
+                chartSerie.categoryType = "año";
+            }
+            else {
+                chartSerie.categoryType = "medicion";
             }
 
             //Actualizamos la leyenda
@@ -251,7 +270,7 @@ $(".panel_barra").each(function () {
                 var dataseries = [];
                 // El primer indicador lo pintamos como gráfico de barras
                 if (index === 0) {
-                    dataseries = chartSerie.getBarSerie();
+                    dataseries = chartSerie.getBarSerie(indicador.nombre);
                     dataseries[dataseries.length - 1].visible = true;
                     dataseries[dataseries.length - 1].selected = true;
                 }
@@ -259,7 +278,7 @@ $(".panel_barra").each(function () {
                 else {
                     // Pide las series de datos a chartSerie
                     // A saber: Totales y Valores de referencia
-                    dataseries = chartSerie.getLinealSerie();
+                    dataseries = chartSerie.getLinealSerie(indicador.nombre);
                     // Si no es anual ocultamos valores de referencia
                     if (chartSerie.categoryType !== "año") {
                         dataseries.forEach(function (indice, dataserie) {
@@ -269,45 +288,46 @@ $(".panel_barra").each(function () {
                         });
                     }
                 }
+
                 //Sacar los datos de la dataserie y hacer un push en 
-                //total_dataseries donde el nombre es el del indicador
-                for (dataserie in dataseries) {
+                //total_dataseries donde el nombre es el del indicador.
+                dataseries.forEach(function (dataserie) {
                     totalDataseries.push(dataserie);
-                }
-            }
-        });
-        //Una vez obtenido el totalDataseries pintamos el gráfico
-        var chart1 = new Highcharts.Chart({
-            chart: {
-                height: 300,
-                renderTo: contenedor
-            },
-            title: {
-                text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
-                style: {"fontSize": "14px"}
-            },
-            exporting: {
-                enabled: true
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {
-                title: {
-                    text: 'Valores'
-                }
-            },
-            plotOptions: {
-                series: {
-                    dataLabels: {
-                        enabled: true,
-                        formatter: function () {
-                            return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                });
+
+                //Una vez obtenido el totalDataseries pintamos el gráfico
+                var chart1 = new Highcharts.Chart({
+                    chart: {
+                        renderTo: contenedor
+                    },
+                    title: {
+                        text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
+                        style: {"fontSize": "14px"}
+                    },
+                    exporting: {
+                        enabled: true
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Valores'
                         }
-                    }
-                }
-            },
-            series: totalDataseries
+                    },
+                    plotOptions: {
+                        series: {
+                            dataLabels: {
+                                enabled: true,
+                                formatter: function () {
+                                    return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                                }
+                            }
+                        }
+                    },
+                    series: totalDataseries
+                });
+            }
         });
     });
 });
@@ -443,7 +463,6 @@ $(".panel_tabla").each(function () {
     });
 });
 
-
 //Paneles de tabla multi
 //Se usa en "la biblioteca en cifras"
 //Solo pinta años completos de momento
@@ -505,10 +524,9 @@ $(".panel_tabla_multi").each(function () {
     });
 });
 
-//Paneles de métricas nueva
+//Paneles de métrica
 $(".panel_metrica").each(function () {
     var id_panel = $(this).data("id_panel");
-    var ancho = $(this).data("ancho");
     var id_medicion = $(this).data("id_medicion");
     //Leyenda donde ira el indicador relacionado
     var leyenda = $(this).next('.leyenda');
@@ -571,54 +589,3 @@ $(".panel_metrica").each(function () {
         });
     });
 });
-
-////Paneles de métricas antigua
-//$(".panel_metrica").each(function () {
-//    var medicion; //etiqueta de la medición a mostrar
-//    var unidad; //etiqueta de la unidad a mostrar
-//    var id_panel = $(this).data("id_panel");
-//    var ancho = $(this).data("ancho");
-//    var leyenda = $(this).next('.leyenda');
-//    var id_medicion = $(this).data("id_medicion");
-//
-//    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
-//        // De momento cogemos solo el primer indicador por si viene mas de uno 
-//        var indicador = indicadores[0];
-//
-//        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id).done(function (datos) {
-//            var html = "";
-//            // Tomamos la entidad a mostrar del panel_indicador actual
-//            var id_entidad = indicador.id_entidad;
-//            $.each(datos, function (i, dato) {
-//                if ((dato.id_unidad == id_entidad || dato.id_unidad == '0') && dato.id_medicion == id_medicion)
-//                {
-//                    if (id_entidad !== '0')
-//                    {
-//                        if (dato.id_unidad !== '0')
-//                        {
-//                            html="<p style='font-size:" + (1 + (Math.abs(ancho * 2 - dato.valor.length * 0.4))) + "em; color:maroon; padding: 20px 0 10px 0; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>";
-//                            html+=("<p style='text-align: center; line-height: 10px;'>" + dato.unidad + "</p>");
-//                        }
-//                        else
-//                        {
-//                            html="<p style='font-size:2em; color:maroon; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>";
-//                            html+="<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>Valor total</strong></p>";
-//                        }
-//                    }
-//                    else
-//                    {
-//                        html += "<p style='font-size:" + (1 + (Math.abs(ancho * 2 - dato.valor.length * 0.4))) + "em; padding: 30px 0px; color:maroon; text-align: center;'>" + ((Math.round(dato.valor * 100)) / 100) + "</p>";
-//                    }
-//                    medicion = dato.medicion;
-//                    unidad = dato.unidad;
-//                }
-//            });
-//            $('<div/>', {'class': 'centrado',
-//                html: html
-//            }).appendTo('#panel_' + id_panel);
-//            leyenda.append('<p><h4>Indicador:</h4><p>');
-//            leyenda.append('<p style="font-size:0.9em"><a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
-//                    + '" style="border:0">' + indicador.nombre + ' - ' + unidad + ' (' + medicion + ')</a></p>');
-//        });
-//    });
-//});

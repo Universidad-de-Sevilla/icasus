@@ -61,7 +61,7 @@
 	<label><span></span></label>
 	<div class="clearfix">
 		<div class="col_25">
-			<input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_INDIC_BUSCAR_BASE}" name="buscar_indicador_base" id="buscar_indicador_base" type="text">
+			<input data-id_entidad="{$id_entidad}" class="text" placeholder="{$smarty.const.TXT_INDIC_BUSCAR_BASE}" name="buscar_indicador_base" id="buscar_indicador_base" type="text">
 		</div>
 	</div>
 	<div id="listado_indicadores_base" >
@@ -99,7 +99,7 @@
 	<label><span></span></label>
 	<div class="clearfix">
 		<div class="col_25">
-			<input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_INDIC_BUSCAR_COMPLEMENT}" name="buscar_indicador_complementario" id="buscar_indicador_complementario" type="text">
+			<input data-id_entidad="{$id_entidad}" class="text" placeholder="{$smarty.const.TXT_INDIC_BUSCAR_COMPLEMENT}" name="buscar_indicador_complementario" id="buscar_indicador_complementario" type="text">
 		</div>
 	</div>
 	<div id="listado_indicadores_complementarios" >
@@ -196,13 +196,13 @@ $('.tipo_periodicidad').on('change',function(){
 	<div class="clearfix">
 		<div class="col_50">
 				<input data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
-				name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}"data-nombre_subunidad="Total"> {$smarty.const.FIELD_TOTAL}<br/> 
+				name="id_subunidad" type="radio" value="0" data-nombre_indicador="{$nombre_indicador}" data-nombre_subunidad="Total"> {$smarty.const.FIELD_TOTAL}<br/> 
 			{foreach name=subunidades from=$indicador_subunidades item=item}
 				{if $smarty.foreach.subunidades.iteration == floor($indicador_subunidades|@count/2)+1 }
 					</div><div class="col_50 no_border">
 				{/if}
 				<input data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
-				name="id_subunidad"type="radio" value="{$item->id_entidad}" data-nombre_indicador="{$nombre_indicador}"data-nombre_subunidad="{$item->entidad->etiqueta}"> 
+				name="id_subunidad" type="radio" value="{$item->id_entidad}" data-nombre_indicador="{$nombre_indicador}" data-nombre_subunidad="{$item->entidad->etiqueta}"> 
 				{$item->entidad->etiqueta}<br /> 
 			{/foreach}
 		</div>
