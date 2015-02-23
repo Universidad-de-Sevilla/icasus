@@ -1,7 +1,7 @@
 <?php
 
 //--------------------------------------------------------------------------
-// Proyecto: Icasus 
+// Proyecto: Icasus
 // Archivo: datos_rebiun.php
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------
@@ -10,7 +10,8 @@ global $usuario;
 global $plantilla;
 
 define('ENTIDAD_MADRE', 14);
-define('MEDICIONES', '(1649,1648,1508,1515,1541,1646,1647,1686)');
+//define('MEDICIONES', '(1649,1648,1508,1515,1541,1646,1647,1686)');
+define('MEDICIONES', '(2289,2256,2253,2252,2249,2248,2198,2197)');
 $entidades_autorizadas = array();
 
 $entidad = new Entidad();
@@ -21,14 +22,17 @@ $smarty->assign('entidad', $entidad);
 $subentidades = $entidad->Find("id_madre = " . ENTIDAD_MADRE);
 
 // Recorre las unidades que tiene asignadas el usuario para encontrar las que tiene con rol de responsable
-foreach ($usuario->entidades as $usuario_entidad) {
-    //Solamente entro en aquellas en las que es responsable 
-    if ($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2) {
+foreach ($usuario->entidades as $usuario_entidad)
+{
+    //Solamente entro en aquellas en las que es responsable
+    if ($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2)
+    {
         //Recorre las subunidades de la unidad ENTIDAD_MADRE
-        foreach ($subentidades as $subentidad) {
-            //print_r($usuario_entidad->id_entidad . "-" . $subentidad->id . "\r");
-            // Comprueba si el usuario es miembro de la subunidad actual 
-            if ($usuario_entidad->id_entidad == $subentidad->id) {
+        foreach ($subentidades as $subentidad) 
+        {
+            // Comprueba si el usuario es miembro de la subunidad actual
+            if ($usuario_entidad->id_entidad == $subentidad->id) 
+            {
                 // Añade la subunidad actual al array de entidades autorizadas
                 $entidades_autorizadas[] = $subentidad;
                 $valor = new Valor();
