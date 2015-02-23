@@ -58,7 +58,7 @@
                 $.ajax({
                     type: "GET",
                     data: {ajax: true, valor_parcial: valor_parcial, id_valor: id_valor, id_entidad: id_entidad, id_usuario: id_usuario},
-                    url: "index.php?page=datos_rebiun_grabar",
+                    url: "index.php?page=datos_rebiun_grabar&ajax=true",
                     success: function (resultado) {
                         if (resultado === valor_parcial)
                         {
