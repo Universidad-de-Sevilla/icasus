@@ -28,7 +28,7 @@ if (filter_has_var(INPUT_GET, 'id_valor') && filter_has_var(INPUT_GET, 'id_entid
         $valor = new Valor();
         $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
         $valor->load("id = $id_valor");
-        $valor_parcial = filter_input(INPUT_GET, 'valor_parcial', FILTER_SANITIZE_NUMBER_FLOAT);
+        $valor_parcial = filter_input(INPUT_GET, 'valor_parcial', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $valor->valor_parcial = $valor_parcial;
         $valor->valor = $valor->valor_parcial;
         $valor->id_usuario = $usuario->id;
