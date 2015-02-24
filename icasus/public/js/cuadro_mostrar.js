@@ -60,11 +60,14 @@ $('.panel_linea').each(function () {
     var fecha_fin = $(this).data("fecha_fin");
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
-//    var ancho = $(this).data("ancho");
+    //Ancho de la leyenda del gráfico
+    var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Leyenda donde irań los indicadores relacionados
     var leyenda = $(this).next('.leyenda');
     leyenda.append('<p><h4>Indicador/es:</h4><p>');
-
+    //Guarda el identificador de los indicadores representados para evitar 
+    //la repetición de valores de referencia
+//    var indicadores_ref = new Array();
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
 
@@ -77,7 +80,7 @@ $('.panel_linea').each(function () {
                     "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
                     "&periodicidad=" + periodicidad;
 
-            // contenedor para los datos del gráfico
+            //Contenedor para los datos del gráfico
             var chartSerie = new HighchartSerie();
 
             if (periodicidad === "anual") {
@@ -86,10 +89,6 @@ $('.panel_linea').each(function () {
             else {
                 chartSerie.categoryType = "medicion";
             }
-
-            //Incluye en la leyenda el indicador relacionado
-            leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
-                    + '" style="border:0">' + indicador.nombre + '</a></p>');
 
             $.ajax({
                 url: urlApi,
@@ -102,44 +101,41 @@ $('.panel_linea').each(function () {
                 datos.forEach(function (dato) {
                     //Si es un Total
                     if (indicador.id_entidad == 0) {
-                        // Agrega los que no tienen etiqueta_mini (total y referencias)
-                        // descarta las mediciones de unidades (no sirven aquí)
+                        if ((!dato.etiqueta_mini ||
+                                (dato.referencia && !($.inArray(indicador.id, indicadores))))
+                                && (dato.valor !== null)) {
+                            chartSerie.add(dato);
+                        }
                         if (!dato.etiqueta_mini && (dato.valor !== null)) {
                             chartSerie.add(dato);
                         }
                     }
                     //Si es una Unidad
-                    else if (indicador.id_entidad == dato.id_unidad || dato.referencia == true) {
-                        if (dato.valor !== null) {
-                            chartSerie.add(dato,true);
-                        }
+                    else if (indicador.id_entidad == dato.id_unidad ||
+                            (dato.referencia && !($.inArray(indicador.id, indicadores)))
+                            && (dato.valor !== null)) {
+                        chartSerie.add(dato, true);
                     }
                 });
 
+                //Incluye en listado de indicadores el indicador relacionado si no estaba ya
+//                if (!$.inArray(indicador.id, indicadores_ref)) {
+                leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+                        + '" style="border:0">' + indicador.nombre + '</a></p>');
+//                }
+
+                //Guardamos el identificador una vez sacados los datos
+//                indicadores_ref.push(indicador.id);
+
                 // Pide las series de datos a chartSerie
-                //Totales
-                if (indicador.id_entidad == 0) {
-                    var dataseries = chartSerie.getLinealSerie(indicador.nombre);
-                    // Si es no anual ocultamos valores de referencia
-                    if (chartSerie.categoryType !== "año") {
-                        dataseries.forEach(function (dataserie, index) {
-                            if (index !== 0) {
-                                dataserie.visible = false;
-                            }
-                        });
-                    }
-                }
-                //Unidades
-                else {
-                    var dataseries = chartSerie.getLinealSerie(indicador.nombre);
-                    // Si es no anual ocultamos valores de referencia
-                    if (chartSerie.categoryType !== "año") {
-                        dataseries.forEach(function (dataserie, index) {
-                            if (index !== 0) {
-                                dataserie.visible = false;
-                            }
-                        });
-                    }
+                var dataseries = chartSerie.getLinealSerie(indicador.nombre);
+                // Si es no anual ocultamos valores de referencia
+                if (chartSerie.categoryType !== "año") {
+                    dataseries.forEach(function (dataserie, index) {
+                        if (index !== 0) {
+                            dataserie.visible = false;
+                        }
+                    });
                 }
 
                 //Sacar los datos de la dataserie y hacer un push en 
@@ -179,7 +175,7 @@ $('.panel_linea').each(function () {
                         }
                     },
                     legend: {
-//                        x: ancho
+                        width: ancho_leyenda
                     },
                     series: totalDataseries
                 });
@@ -198,11 +194,11 @@ $(".panel_barra").each(function () {
     var fecha_fin = $(this).data("fecha_fin");
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
-
+    //Ancho de la leyenda del gráfico
+    var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Leyenda donde irań los indicadores relacionados
     var leyenda = $(this).next('.leyenda');
     leyenda.append('<p><h4>Indicador base:</h4><p>');
-
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
 
@@ -218,12 +214,12 @@ $(".panel_barra").each(function () {
             // contenedor para los datos del indicador
             var chartSerie = new HighchartSerie();
 
-            if (periodicidad === "anual") {
-                chartSerie.categoryType = "año";
-            }
-            else {
-                chartSerie.categoryType = "medicion";
-            }
+//            if (periodicidad === "anual") {
+//                chartSerie.categoryType = "año";
+//            }
+//            else {
+//                chartSerie.categoryType = "medicion";
+//            }
 
             //Actualizamos la leyenda
             if (index === 0 && indicadores.length > 1) {
@@ -247,17 +243,13 @@ $(".panel_barra").each(function () {
 
             function onDataReceived(datos) {
                 datos.forEach(function (dato) {
-                    //Primer indicador: gráfico de barras
+                    //Gráfico de barras
                     if (index === 0) {
-                        datos.forEach(function (d) {
-                            if (d.etiqueta_mini) {
-                                chartSerie.add(d);
-                            } else if (d.id_unidad === '0') {
-                                totales[d.medicion] = parseFloat(d.valor);
-                            }
-                        });
+                        if (dato.etiqueta_mini) {
+                            chartSerie.add(dato);
+                        }
                     }
-                    //Resto indicadores: gráfico de lineas
+                    //Gráfico de líneas
                     else {
                         // Agrega los que no tienen etiqueta_mini (total y referencias)
                         // descarta las mediciones de unidades (no sirven aquí)
@@ -267,22 +259,21 @@ $(".panel_barra").each(function () {
                     }
                 });
 
-                var dataseries = [];
-                // El primer indicador lo pintamos como gráfico de barras
-                if (index === 0) {
+                // Pide las series de datos a chartSerie
+                var dataseries;
+                //Indicador base gráfico de barras
+                if (index == 0) {
                     dataseries = chartSerie.getBarSerie(indicador.nombre);
-                    dataseries[dataseries.length - 1].visible = true;
-                    dataseries[dataseries.length - 1].selected = true;
+                    // Hacemos visible el último año
+                    serie[serie.length - 1].visible = true;
+                    serie[serie.length - 1].selected = true;
                 }
-                //El resto de indicadores se pintan con gráficos de líneas
-                else {
-                    // Pide las series de datos a chartSerie
-                    // A saber: Totales y Valores de referencia
+                else if (index != 0) {
                     dataseries = chartSerie.getLinealSerie(indicador.nombre);
-                    // Si no es anual ocultamos valores de referencia
+                    // Si es no anual ocultamos valores de referencia
                     if (chartSerie.categoryType !== "año") {
-                        dataseries.forEach(function (indice, dataserie) {
-                            if (indice !== 0) {
+                        dataseries.forEach(function (dataserie, index) {
+                            if (index !== 0) {
                                 dataserie.visible = false;
                             }
                         });
@@ -295,7 +286,7 @@ $(".panel_barra").each(function () {
                     totalDataseries.push(dataserie);
                 });
 
-                //Una vez obtenido el totalDataseries pintamos el gráfico
+                //Gráfico combinado (barras y líneas)
                 var chart1 = new Highcharts.Chart({
                     chart: {
                         renderTo: contenedor
@@ -325,6 +316,9 @@ $(".panel_barra").each(function () {
                             }
                         }
                     },
+                    legend: {
+                        width: ancho_leyenda
+                    },
                     series: totalDataseries
                 });
             }
@@ -338,6 +332,8 @@ $(".panel_tarta").each(function () {
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var id_medicion = $(this).data("id_medicion");
+    //Ancho de la leyenda del gráfico
+    var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Variables para guardar el nombre y total de la medición solicitada
     var medicion, total = 0;
     //Leyenda donde ira el indicador relacionado
@@ -379,6 +375,7 @@ $(".panel_tarta").each(function () {
                 //Redondeamos el total
                 total = ((Math.round(total * 100)) / 100);
 
+                //Pide las series de datos a chartSerie
                 var dataseries = chartSerie.getPieSerie();
 
                 //Gráfico de tarta
@@ -422,6 +419,9 @@ $(".panel_tarta").each(function () {
                                     + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' + '</b><br/>';
                             return html;
                         }
+                    },
+                    legend: {
+                        width: ancho_leyenda
                     },
                     series: dataseries
                 });

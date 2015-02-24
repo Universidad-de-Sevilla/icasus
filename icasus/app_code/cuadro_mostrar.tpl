@@ -65,7 +65,6 @@
                          data-id_medicion="{$panel->id_medicion}" 
                          data-fecha_inicio="{$panel->fecha_inicio}" 
                          data-fecha_fin="{$panel->fecha_fin}" 
-                         data-ancho="{$panel->ancho}"
                          data-periodicidad="{$panel->periodicidad}">
                     </div>
                     <div class="leyenda"></div>
