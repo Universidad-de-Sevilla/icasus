@@ -66,8 +66,8 @@ $('.panel_linea').each(function () {
     var leyenda = $(this).next('.leyenda');
     leyenda.append('<p><h4>Indicador/es:</h4><p>');
     //Guarda el identificador de los indicadores representados para evitar 
-    //la repetición de valores de referencia
-//    var indicadores_ref = new Array();
+    //la repetición de nombres y de valores de referencia
+    var indicadores_procesados = new Array();
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
 
@@ -101,31 +101,31 @@ $('.panel_linea').each(function () {
                 datos.forEach(function (dato) {
                     //Si es un Total
                     if (indicador.id_entidad == 0) {
-                        if ((!dato.etiqueta_mini ||
-                                (dato.referencia && !($.inArray(indicador.id, indicadores))))
+                        if (!dato.etiqueta_mini && !dato.referencia
                                 && (dato.valor !== null)) {
-                            chartSerie.add(dato);
-                        }
-                        if (!dato.etiqueta_mini && (dato.valor !== null)) {
                             chartSerie.add(dato);
                         }
                     }
                     //Si es una Unidad
-                    else if (indicador.id_entidad == dato.id_unidad ||
-                            (dato.referencia && !($.inArray(indicador.id, indicadores)))
-                            && (dato.valor !== null)) {
-                        chartSerie.add(dato, true);
+                    else {
+                        if (indicador.id_entidad == dato.id_unidad
+                                && (dato.valor !== null)) {
+                            chartSerie.add(dato, true);
+                        }
+                    }
+                    //Si es una referencia
+                    if (dato.referencia && (dato.valor !== null)
+                            && indicadores_procesados.indexOf(indicador.id) === -1) {
+                        chartSerie.add(dato);
                     }
                 });
 
                 //Incluye en listado de indicadores el indicador relacionado si no estaba ya
-//                if (!$.inArray(indicador.id, indicadores_ref)) {
-                leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
-                        + '" style="border:0">' + indicador.nombre + '</a></p>');
-//                }
-
-                //Guardamos el identificador una vez sacados los datos
-//                indicadores_ref.push(indicador.id);
+                if (indicadores_procesados.indexOf(indicador.id) === -1) {
+                    leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+                            + '" style="border:0">' + indicador.nombre + '</a></p>');
+                    indicadores_procesados.push(indicador.id);
+                }
 
                 // Pide las series de datos a chartSerie
                 var dataseries = chartSerie.getLinealSerie(indicador.nombre);
