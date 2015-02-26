@@ -20,7 +20,7 @@ function onDataReceived(datos) {
     datos.forEach(function (d) {
         if (d.etiqueta_mini) {
             chartSerie.add(d);
-        } else if (d.id_unidad === '0') {
+        } else if (d.id_unidad == 0) {
             totales[d.medicion] = parseFloat(d.valor);
         }
     });
@@ -40,9 +40,6 @@ $(document).ajaxComplete(function () {
         title: {
             text: nomIndicador,
             style: {"fontSize": "14px"}
-        },
-        tooltip: {
-            shared: false
         },
         exporting: {
             enabled: true

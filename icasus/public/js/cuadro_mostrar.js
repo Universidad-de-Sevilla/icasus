@@ -190,15 +190,13 @@ $(".panel_barra").each(function () {
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var periodicidad = $(this).data("periodicidad");
-    var fecha_inicio = $(this).data("fecha_inicio");
-    var fecha_fin = $(this).data("fecha_fin");
-    var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
-    var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
     //Ancho de la leyenda del gráfico
     var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Leyenda donde irań los indicadores relacionados
     var leyenda = $(this).next('.leyenda');
-    leyenda.append('<p><h4>Indicador base:</h4><p>');
+    leyenda.append('<p><h4>Indicador base (gráfico de barras):</h4><p>');
+    //Guarda los totales del indicador base
+//    var totales = new Array();
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
 
@@ -207,33 +205,14 @@ $(".panel_barra").each(function () {
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
         $.each(indicadores, function (index, indicador) {
 
-            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
-                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
-                    "&periodicidad=" + periodicidad;
+            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id
+                    + "&periodicidad=" + periodicidad;
 
             // contenedor para los datos del indicador
             var chartSerie = new HighchartSerie();
+            //Guarda los totales del indicador base
+            var totales = new Array();
 
-//            if (periodicidad === "anual") {
-//                chartSerie.categoryType = "año";
-//            }
-//            else {
-//                chartSerie.categoryType = "medicion";
-//            }
-
-            //Actualizamos la leyenda
-            if (index === 0 && indicadores.length > 1) {
-                //Incluye en la leyenda el indicador base
-                leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
-                        + '" style="border:0">' + indicador.nombre + '</a></p>');
-                leyenda.append('<p><h4>Indicador/es complementarios:</h4><p>');
-
-            }
-            else {
-                //Incluye en la leyenda el indicador relacionado
-                leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
-                        + '" style="border:0">' + indicador.nombre + '</a></p>');
-            }
             $.ajax({
                 url: urlApi,
                 type: "GET",
@@ -243,40 +222,42 @@ $(".panel_barra").each(function () {
 
             function onDataReceived(datos) {
                 datos.forEach(function (dato) {
-                    //Gráfico de barras
-                    if (index === 0) {
-                        if (dato.etiqueta_mini) {
-                            chartSerie.add(dato);
-                        }
+                    if (dato.etiqueta_mini) {
+                        chartSerie.add(dato);
                     }
-                    //Gráfico de líneas
-                    else {
-                        // Agrega los que no tienen etiqueta_mini (total y referencias)
-                        // descarta las mediciones de unidades (no sirven aquí)
-                        if (!dato.etiqueta_mini && (dato.valor !== null)) {
-                            chartSerie.add(dato);
-                        }
+                    else if (dato.id_unidad == 0) {
+                        totales[dato.unidad] = parseFloat(dato.valor);
                     }
                 });
+
+                //Actualizamos la leyenda
+                if (index === 0 && indicadores.length > 1) {
+                    //Incluye en la leyenda el indicador base
+                    leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+                            + '" style="border:0">' + indicador.nombre + '</a></p>');
+                    leyenda.append('<p><h4>Indicador/es complementarios (gráfico/s de líneas):</h4><p>');
+
+                }
+                else {
+                    //Incluye en la leyenda el indicador relacionado
+                    leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+                            + '" style="border:0">' + indicador.nombre + '</a></p>');
+                }
 
                 // Pide las series de datos a chartSerie
                 var dataseries;
                 //Indicador base gráfico de barras
-                if (index == 0) {
+                if (index === 0) {
                     dataseries = chartSerie.getBarSerie(indicador.nombre);
                     // Hacemos visible el último año
-                    serie[serie.length - 1].visible = true;
-                    serie[serie.length - 1].selected = true;
+                    dataseries[dataseries.length - 1].visible = true;
+                    dataseries[dataseries.length - 1].selected = true;
                 }
-                else if (index != 0) {
+                else if (index !== 0) {
                     dataseries = chartSerie.getLinealSerie(indicador.nombre);
-                    // Si es no anual ocultamos valores de referencia
-                    if (chartSerie.categoryType !== "año") {
-                        dataseries.forEach(function (dataserie, index) {
-                            if (index !== 0) {
-                                dataserie.visible = false;
-                            }
-                        });
+                    //Ocultamos los últimos años
+                    for (var i = 0, n = dataseries.length - 1; i !== n; i++) {
+                        dataseries[i].visible = false;
                     }
                 }
 
@@ -292,7 +273,7 @@ $(".panel_barra").each(function () {
                         renderTo: contenedor
                     },
                     title: {
-                        text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
+                        text: titulo,
                         style: {"fontSize": "14px"}
                     },
                     exporting: {
@@ -313,6 +294,37 @@ $(".panel_barra").each(function () {
                                 formatter: function () {
                                     return this.y ? ((Math.round(this.y * 100)) / 100) : null;
                                 }
+                            },
+                            events: {
+                                // Pintamos la media al hacer click en él.
+                                legendItemClick: function (event) {
+                                    if (this.visible) {
+                                        chart1.yAxis[0].removePlotLine(this.name);
+                                    } else {
+                                        chart1.yAxis[0].addPlotLine({
+                                            label: {
+                                                text: Math.round(totales[this.name] * 100) / 100,
+                                                x: -28,
+                                                y: 5,
+                                                style: {
+                                                    color: this.color
+                                                }
+                                            },
+                                            value: totales[this.name],
+                                            color: this.color,
+                                            width: 2,
+                                            id: this.name
+                                        });
+                                    }
+                                }
+                            }
+                        },
+                        column: {
+                            dataLabels: {
+                                enabled: true,
+                                formatter: function () {
+                                    return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                                }
                             }
                         }
                     },
@@ -320,6 +332,24 @@ $(".panel_barra").each(function () {
                         width: ancho_leyenda
                     },
                     series: totalDataseries
+                });
+                console.log(chart1.getSelectedSeries());
+                // Pinta la media del último grupo de datos (último periodo)
+                chart1.getSelectedSeries().forEach(function (selected) {
+                    chart1.yAxis[0].addPlotLine({
+                        label: {
+                            text: Math.round(totales[selected.name] * 100) / 100,
+                            x: -28,
+                            y: 5,
+                            style: {
+                                color: selected.color
+                            }
+                        },
+                        value: totales[selected.name],
+                        color: selected.color,
+                        width: 2,
+                        id: selected.name
+                    });
                 });
             }
         });
@@ -493,7 +523,6 @@ $(".panel_tabla_multi").each(function () {
     apiURL = "api_publica.php?metodo=get_indicadores_panel_con_datos&id=" + id_panel
             + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin;
 
-    console.log(apiURL);
     $.getJSON(apiURL, function (indicadores) {
         $.each(indicadores, function (i, datos) {
             var indicador = datos.indicador;
