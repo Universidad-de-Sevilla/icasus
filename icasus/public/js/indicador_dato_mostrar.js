@@ -52,7 +52,11 @@ $('.highchart').each(function () {
         //Gráfico de línea
         var chart1 = new Highcharts.Chart({
             chart: {
-                renderTo: idPanel
+                renderTo: idPanel,
+                options3d: {
+                    enabled: true,
+                    depth: 10
+                }
             },
             title: {
                 text: nomIndicador + ' (' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',

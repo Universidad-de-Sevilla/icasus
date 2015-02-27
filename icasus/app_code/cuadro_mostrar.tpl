@@ -76,6 +76,7 @@
 <!-- //Paneles -->		
 
 <script src="js/highcharts.js" type="text/javascript"></script>
+<script src="js/highcharts-3d.js" type="text/javascript"></script>
 <script src="js/exporting.js" type="text/javascript"></script>
 <script src="js/Conjunto.js" type="text/javascript"></script>
 <script src="js/HighchartSerie.js" type="text/javascript"></script>

@@ -35,7 +35,12 @@ $(document).ajaxComplete(function () {
     // Gráfico de barras
     var chart1 = new Highcharts.Chart({
         chart: {
-            renderTo: 'container'
+            renderTo: 'container',
+            options3d: {
+                enabled: true,
+                alpha: 5,
+                depth: 80
+            }
         },
         title: {
             text: nomIndicador,
@@ -62,9 +67,9 @@ $(document).ajaxComplete(function () {
                         } else {
                             chart1.yAxis[0].addPlotLine({
                                 label: {
-                                    text: Math.round(totales[this.name] * 100) / 100,
-                                    x: -28,
-                                    y: 5,
+                                    text: 'Total: ' + Math.round(totales[this.name] * 100) / 100,
+                                    x: -60,
+                                    y: 10,
                                     style: {
                                         color: this.color
                                     }
@@ -84,7 +89,8 @@ $(document).ajaxComplete(function () {
                     formatter: function () {
                         return this.y ? ((Math.round(this.y * 100)) / 100) : null;
                     }
-                }
+                },
+                depth: 20
             }
         },
         series: serie
@@ -93,9 +99,9 @@ $(document).ajaxComplete(function () {
     chart1.getSelectedSeries().forEach(function (selected) {
         chart1.yAxis[0].addPlotLine({
             label: {
-                text: Math.round(totales[selected.name] * 100) / 100,
-                x: -28,
-                y: 5,
+                text: 'Total: ' + Math.round(totales[selected.name] * 100) / 100,
+                x: -60,
+                y: 10,
                 style: {
                     color: selected.color
                 }
@@ -159,7 +165,11 @@ $('.highchart').each(function () {
         //Gráfico de líneas
         var chart1 = new Highcharts.Chart({
             chart: {
-                renderTo: idPanel
+                renderTo: idPanel,
+                options3d: {
+                    enabled: true,
+                    depth: 10
+                }
             },
             title: {
                 text: nomIndicador + ' (' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',

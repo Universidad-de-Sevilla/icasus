@@ -147,7 +147,11 @@ $('.panel_linea').each(function () {
                 //Gráfico de líneas
                 var chart1 = new Highcharts.Chart({
                     chart: {
-                        renderTo: contenedor
+                        renderTo: contenedor,
+                        options3d: {
+                            enabled: true,
+                            depth: 10
+                        }
                     },
                     title: {
                         text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
@@ -270,7 +274,12 @@ $(".panel_barra").each(function () {
                 //Gráfico combinado (barras y líneas)
                 var chart1 = new Highcharts.Chart({
                     chart: {
-                        renderTo: contenedor
+                        renderTo: contenedor,
+                        options3d: {
+                            enabled: true,
+                            alpha: 5,
+                            depth: 80
+                        }
                     },
                     title: {
                         text: titulo,
@@ -303,9 +312,9 @@ $(".panel_barra").each(function () {
                                     } else {
                                         chart1.yAxis[0].addPlotLine({
                                             label: {
-                                                text: Math.round(totales[this.name] * 100) / 100,
-                                                x: -28,
-                                                y: 5,
+                                                text: 'Total: ' + Math.round(totales[this.name] * 100) / 100,
+                                                x: -60,
+                                                y: 10,
                                                 style: {
                                                     color: this.color
                                                 }
@@ -325,7 +334,8 @@ $(".panel_barra").each(function () {
                                 formatter: function () {
                                     return this.y ? ((Math.round(this.y * 100)) / 100) : null;
                                 }
-                            }
+                            },
+                            depth: 20
                         }
                     },
                     legend: {
@@ -337,9 +347,9 @@ $(".panel_barra").each(function () {
                 chart1.getSelectedSeries().forEach(function (selected) {
                     chart1.yAxis[0].addPlotLine({
                         label: {
-                            text: Math.round(totales[selected.name] * 100) / 100,
-                            x: -28,
-                            y: 5,
+                            text: 'Total: ' + Math.round(totales[selected.name] * 100) / 100,
+                            x: -60,
+                            y: 10,
                             style: {
                                 color: selected.color
                             }
@@ -410,7 +420,11 @@ $(".panel_tarta").each(function () {
                 //Gráfico de tarta
                 var chart1 = new Highcharts.Chart({
                     chart: {
-                        renderTo: contenedor
+                        renderTo: contenedor,
+                        options3d: {
+                            enabled: true,
+                            alpha: 45
+                        }
                     },
                     title: {
                         text: titulo,
@@ -439,6 +453,9 @@ $(".panel_tarta").each(function () {
                                             + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' : null;
                                 }
                             }
+                        },
+                        pie: {
+                            depth: 25
                         }
                     },
                     tooltip: {

@@ -1,7 +1,10 @@
 <?php
-define('IC_VERSION', "2.9.9");
-define('IC_FECHA_REVISION', "10/02/2015");
 
+define('IC_VERSION', "2.10.1");
+define('IC_FECHA_REVISION', "26/02/2015");
+
+// 2.10.1 - 26/02/2015 - Gráficos 3D.
+// 2.10.0 - 26/02/2015 - Todos los gráficos con Highcharts.  
 // 2.9.9 - 10/02/2015 - Corregido problema en las mediciones: ahora se muestram todos los valores de referencia
 // 2.9.8 - 06/02/2015 - Añadido campo observaciones a las mediciones.
 // 2.9.7 - 03/02/2015 - Formato de fecha español en los gráficos.
