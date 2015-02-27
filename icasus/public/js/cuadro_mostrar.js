@@ -196,7 +196,7 @@ $(".panel_barra").each(function () {
     var leyenda = $(this).next('.leyenda');
     leyenda.append('<p><h4>Indicador base (gráfico de barras):</h4><p>');
     //Guarda los totales del indicador base
-//    var totales = new Array();
+    var totales = new Array();
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
 
@@ -210,8 +210,6 @@ $(".panel_barra").each(function () {
 
             // contenedor para los datos del indicador
             var chartSerie = new HighchartSerie();
-            //Guarda los totales del indicador base
-            var totales = new Array();
 
             $.ajax({
                 url: urlApi,
@@ -225,8 +223,10 @@ $(".panel_barra").each(function () {
                     if (dato.etiqueta_mini) {
                         chartSerie.add(dato);
                     }
-                    else if (dato.id_unidad == 0) {
-                        totales[dato.unidad] = parseFloat(dato.valor);
+                    //Total para el indicador base
+                    else if (dato.id_unidad == 0 && index === 0) {
+                        var pos = dato.medicion + ' - ' + indicador.nombre;
+                        totales[pos] = parseFloat(dato.valor);
                     }
                 });
 
@@ -333,8 +333,7 @@ $(".panel_barra").each(function () {
                     },
                     series: totalDataseries
                 });
-                console.log(chart1.getSelectedSeries());
-                // Pinta la media del último grupo de datos (último periodo)
+//                 Pinta la media del último grupo de datos (último periodo)
                 chart1.getSelectedSeries().forEach(function (selected) {
                     chart1.yAxis[0].addPlotLine({
                         label: {
