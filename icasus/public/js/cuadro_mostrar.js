@@ -312,9 +312,11 @@ $(".panel_barra").each(function () {
                                     } else {
                                         chart1.yAxis[0].addPlotLine({
                                             label: {
-                                                text: 'Total: ' + Math.round(totales[this.name] * 100) / 100,
+                                                text: '<span title="Total ' + this.name + ': ' + Math.round(totales[this.name] * 100) / 100 + '">Total: <b>'
+                                                        + Math.round(totales[this.name] * 100) / 100 + '</b></span>',
                                                 x: -60,
                                                 y: 10,
+                                                useHTML: true,
                                                 style: {
                                                     color: this.color
                                                 }
@@ -347,9 +349,11 @@ $(".panel_barra").each(function () {
                 chart1.getSelectedSeries().forEach(function (selected) {
                     chart1.yAxis[0].addPlotLine({
                         label: {
-                            text: 'Total: ' + Math.round(totales[selected.name] * 100) / 100,
+                            text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
+                                    + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
                             x: -60,
                             y: 10,
+                            useHTML: true,
                             style: {
                                 color: selected.color
                             }
