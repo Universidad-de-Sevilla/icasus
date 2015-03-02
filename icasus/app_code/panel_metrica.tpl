@@ -76,7 +76,7 @@
         <div class="col_50">
             {foreach name=mediciones from=$mediciones item=item}
                 {if $smarty.foreach.mediciones.iteration == floor($mediciones|@count/2)+2}</div><div class="col_50 no_border">{/if}
-                <input data-id_indicador="{$id_indicador}" class="required medicion" name="id_medicion"type="radio" value="{$item->id}"> {$item->etiqueta}<br /> 
+                <input data-id_indicador="{$id_indicador}" class="required medicion" name="id_medicion" type="radio" value="{$item->id}"> {$item->etiqueta}<br /> 
             {/foreach}
         </div>
         <div class="required_tag tooltip hover left"></div>

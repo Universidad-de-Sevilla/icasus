@@ -38,7 +38,7 @@
             <select name="ancho" class="required">
                 {section start=2 loop=17 name="size"}
                     <option value="{$smarty.section.size.index}"
-                            {if $smarty.section.size.index == $panel->ancho_pred}selected="selected"{/if} >
+                            {if $smarty.section.size.index == $panel->ancho_pred} selected="selected"{/if} >
                         {$smarty.section.size.index}</option> 
                     {/section}
             </select>
@@ -106,7 +106,10 @@
                 </div><div class="col_50 no_border">
                 {/if}
                 <input data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
-                       name="id_subunidad"type="radio" value="{$item->id_entidad}" data-nombre_indicador="{$nombre_indicador}"data-nombre_subunidad="{$item->entidad->etiqueta}"> 
+                       name="id_subunidad"
+                       type="radio" value="{$item->id_entidad}" 
+                       data-nombre_indicador="{$nombre_indicador}"
+                       data-nombre_subunidad="{$item->entidad->etiqueta}"> 
                 {$item->entidad->etiqueta}<br /> 
             {/foreach}
         </div>

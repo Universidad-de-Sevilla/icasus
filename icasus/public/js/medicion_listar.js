@@ -1,9 +1,9 @@
-//Muestra las gráficas para las mediciones en el fichero medicion_listar.tpl
+// Muestra las gráficas para las mediciones en el fichero medicion_listar.tpl
 
 // Variables
 var idIndicador = $("#container").data("id_indicador");
 var nomIndicador = $("#container").data("nombre_indicador");
-// contenedor para los datos del gráfico
+// Contenedor para los datos del gráfico
 var chartSerie = new HighchartSerie();
 var totales = [];
 
@@ -15,35 +15,36 @@ $.ajax({
     success: onDataReceived
 });
 
-// Guardado de datos en highchartStruct y totales para las medias
+// Guardado de datos en HighchartSerie y totales para las medias
 function onDataReceived(datos) {
     datos.forEach(function (d) {
         if (d.etiqueta_mini) {
             chartSerie.add(d);
-        } else if (d.id_unidad === '0') {
+        } else if (d.id_unidad == 0) {
             totales[d.medicion] = parseFloat(d.valor);
         }
     });
 }
 
-// Pinta y configura el gráfico
+// Pinta y configura el gráfico resumen de valores por subunidad
 $(document).ajaxComplete(function () {
     var serie = chartSerie.getBarSerie();
-    //Hacemos visible el último año
+    // Hacemos visible el último año
     serie[serie.length - 1].visible = true;
     serie[serie.length - 1].selected = true;
-    //Gráfico
+    // Gráfico de barras
     var chart1 = new Highcharts.Chart({
         chart: {
-            height: 300,
-            renderTo: 'container'
+            renderTo: 'container',
+            options3d: {
+                enabled: true,
+                alpha: 5,
+                depth: 80
+            }
         },
         title: {
             text: nomIndicador,
             style: {"fontSize": "14px"}
-        },
-        tooltip: {
-            shared: false
         },
         exporting: {
             enabled: true
@@ -59,16 +60,18 @@ $(document).ajaxComplete(function () {
         plotOptions: {
             series: {
                 events: {
-                    //Pintamos la media al hacer click en él.
+                    // Pintamos la media al hacer click en él.
                     legendItemClick: function (event) {
                         if (this.visible) {
                             chart1.yAxis[0].removePlotLine(this.name);
                         } else {
                             chart1.yAxis[0].addPlotLine({
                                 label: {
-                                    text: Math.round(totales[this.name] * 100) / 100,
-                                    x: -28,
-                                    y: 5,
+                                    text: '<span title="Total ' + this.name + ': ' + Math.round(totales[this.name] * 100) / 100 + '">Total: <b>'
+                                            + Math.round(totales[this.name] * 100) / 100 + '</b></span>',
+                                    x: -60,
+                                    y: 10,
+                                    useHTML: true,
                                     style: {
                                         color: this.color
                                     }
@@ -88,7 +91,8 @@ $(document).ajaxComplete(function () {
                     formatter: function () {
                         return this.y ? ((Math.round(this.y * 100)) / 100) : null;
                     }
-                }
+                },
+                depth: 20
             }
         },
         series: serie
@@ -97,9 +101,11 @@ $(document).ajaxComplete(function () {
     chart1.getSelectedSeries().forEach(function (selected) {
         chart1.yAxis[0].addPlotLine({
             label: {
-                text: Math.round(totales[selected.name] * 100) / 100,
-                x: -28,
-                y: 5,
+                text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
+                        + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                x: -60,
+                y: 10,
+                useHTML: true,
                 style: {
                     color: selected.color
                 }
@@ -122,7 +128,7 @@ $('.highchart').each(function () {
     var fecha_fin = $(this).data("fecha_fin");
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
-    // contenedor para los datos del gráfico
+    // Contenedor para los datos del gráfico
     var chartSerie = new HighchartSerie();
 
     if (periodicidad === "anual") {
@@ -160,11 +166,14 @@ $('.highchart').each(function () {
                 }
             });
         }
-        //Gráfico
+        //Gráfico de líneas
         var chart1 = new Highcharts.Chart({
             chart: {
-                height: 300,
-                renderTo: idPanel
+                renderTo: idPanel,
+                options3d: {
+                    enabled: true,
+                    depth: 10
+                }
             },
             title: {
                 text: nomIndicador + ' (' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',

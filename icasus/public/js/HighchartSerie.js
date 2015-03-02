@@ -9,11 +9,12 @@
 
 /**
  * HighchartSerie:
- * Clase para la organización de las series
  * 
- * Interface:
- * + void function constructor ()
- * + void function add (elemento de la Base de Datos)
+ * Clase para la organización de las series.
+ * 
+ * Funciones:
+ * + void function HighchartSerie()
+ * + void function add(elem,esunidad)
  * + array function getBarSerie()
  * + array function getPieSerie()
  * + array function getLinealSerie()
@@ -43,8 +44,45 @@ function HighchartSerie() {
     this.serie = [];
     this.categories = new Conjunto();
     this.categoryType = "unidad";
+    //Seleccionamos un color en función del nombre de la serie
+    var color = function (unidad, nomIndicador) {
+        //Los límites en rojo
+        if (unidad.indexOf('mite') !== -1) {
+            return '#FF0000';
+        }
+        //Los objetivos en verde
+        else if (unidad.indexOf('bjetivo') !== -1) {
+            return '#00FF00';
+        }
+        //Los valores rebiun en negro
+        else if (unidad.indexOf('ebiun') !== -1) {
+            return '#000000';
+        }
+        //Indicador en cuadros de mando: colores al azar
+        else if (nomIndicador !== '') {
+            //Generamos un color al azar
+            var color = '#' + (function lol(m, s, c) {
+                return s[m.floor(m.random() * s.length)] +
+                        (c && lol(m, s, c - 1));
+            })(Math, '0123456789ABCDEF', 4);
+            //Evitamos blanco (no visible) y colores de los valores de referencia
+            while (color === '#FFFFFF' || color === '#FF0000'
+                    || color === '#00FF00'
+                    || color === '#000000') {
+                color = '#' + (function lol(m, s, c) {
+                    return s[m.floor(m.random() * s.length)] +
+                            (c && lol(m, s, c - 1));
+                })(Math, '0123456789ABCDEF', 4);
 
-    this.add = function (elem) {
+            }
+            return color;
+        }
+    };
+
+    this.add = function (elem, esunidad) {
+        //Valor por defecto para esunidad
+        esunidad = typeof esunidad !== 'undefined' ? esunidad : false;
+        var medicionOunidad;
         var category;
         // Escoge la información que usaremos como eje de las x
         if (this.categoryType === "año") {
@@ -60,8 +98,12 @@ function HighchartSerie() {
             category = elem.etiqueta_mini;
         }
 
-        var medicionOunidad = elem.etiqueta_mini ? elem.medicion : elem.unidad;
-
+        if (esunidad) {
+            medicionOunidad = elem.unidad;
+        }
+        else {
+            medicionOunidad = elem.etiqueta_mini ? elem.medicion : elem.unidad;
+        }
         var data = {
             id: category,
             name: category,
@@ -80,8 +122,11 @@ function HighchartSerie() {
     };
 
     //Devuelve una serie Highchart para un gráfico de barras
-    this.getBarSerie = function () {
+    this.getBarSerie = function (nomIndicador) {
         var serieHighchart = [];
+        //Valor por defecto para el nombre del indicador/dato que sólo se muestra en los 
+        //paneles de los cuadros de mando
+        nomIndicador = typeof nomIndicador !== 'undefined' ? (' - ' + nomIndicador) : '';
         this.categories.data.sort();
         for (medicion in this.serie) {
             var arrayMedicion = this.serie[medicion];
@@ -90,7 +135,7 @@ function HighchartSerie() {
             }
             serieHighchart.push({
                 type: 'column',
-                name: medicion,
+                name: medicion + nomIndicador,
                 data: arrayMedicion,
                 visible: false
             });
@@ -98,7 +143,45 @@ function HighchartSerie() {
         return serieHighchart;
     };
 
-    //Devuelve una serie Highchart para un gráfico de barras
+    //Devuelve una serie Highchart para un gráfico de líneas
+    this.getLinealSerie = function (nomIndicador) {
+        var serieHighchart = [];
+        //Valor por defecto para el nombre del indicador/dato que sólo se muestra en los 
+        //paneles de los cuadros de mando
+        nomIndicador = typeof nomIndicador !== 'undefined' ? (' - ' + nomIndicador) : '';
+        this.categories.data.sort();
+        for (unidad in this.serie) {
+            var arrayUnidad = this.serie[unidad];
+            for (u in arrayUnidad) {
+                arrayUnidad[u].x = this.categories.position(arrayUnidad[u].id);
+            }
+            arrayUnidad.sort(function (a, b) {
+                return a.x - b.x;
+            });
+            //Colores para valores de referencia e indicadores de cuadros de mando
+            if (unidad.indexOf('mite') !== -1 || unidad.indexOf('bjetivo') !== -1
+                    || unidad.indexOf('ebiun') !== -1
+                    || nomIndicador !== '') {
+                serieHighchart.push({
+                    type: 'line',
+                    name: unidad + nomIndicador,
+                    data: arrayUnidad,
+                    color: color(unidad, nomIndicador)
+                });
+            }
+            //Colores para el resto de las series
+            else {
+                serieHighchart.push({
+                    type: 'line',
+                    name: unidad + nomIndicador,
+                    data: arrayUnidad
+                });
+            }
+        }
+        return serieHighchart;
+    };
+
+    //Devuelve una serie Highchart para un gráfico de tarta
     this.getPieSerie = function () {
         var serieHighchart = [];
         this.categories.data.sort();
@@ -111,35 +194,9 @@ function HighchartSerie() {
                 type: 'pie',
                 name: medicion,
                 data: arrayMedicion,
-                visible: false
-            });
-        }
-        return serieHighchart;
-    };
-
-    //Devuelve una serie Highchart para un gráfico de líneas
-    this.getLinealSerie = function (nomIndicador) {
-        var serieHighchart = [];
-        //Valor por defecto para el nombre del indicador/dato que sólo se muestra en los 
-        //paneles de línea de los cuadros de mando
-        nomIndicador = typeof nomIndicador !== 'undefined' ? (' - '+nomIndicador) : '';
-        this.categories.data.sort();
-        for (unidad in this.serie) {
-            var arrayUnidad = this.serie[unidad];
-            for (u in arrayUnidad) {
-                arrayUnidad[u].x = this.categories.position(arrayUnidad[u].id);
-            }
-            arrayUnidad.sort(function (a, b) {
-                return a.x - b.x;
-            });
-            serieHighchart.push({
-                type: 'line',
-                name: unidad + nomIndicador,
-                data: arrayUnidad
+                showInLegend: true
             });
         }
         return serieHighchart;
     };
 }
-
-

@@ -5,18 +5,19 @@
 //--------------------------------------------------------------------------
 
 /** 
- * Conjunto (copiado de "Estructuras de Datos en Javascript"
+ * Conjunto:
  *
- * Definición: Lista en la que no se pueden repetir elementos.
+ * Lista en la que no se pueden repetir elementos.
  * No tiene porque estar ordenado.
  *
  * Funciones:
- * + void function add (element)
- * + boolean function remove (element)
- * + integer function position (element)
- * + element function get (integer)
- * + array<element> function getAll ()
- * + array<element> function set (element, element)
+ * + void function Conjunto()
+ * + void function add(element)
+ * + boolean function remove(element)
+ * + integer function position(element)
+ * + element function get(integer)
+ * + array<element> function getAll()
+ * + array<element> function set(element, element)
  * + void function show()
  *
  */
