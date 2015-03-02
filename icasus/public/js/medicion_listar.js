@@ -42,6 +42,9 @@ $(document).ajaxComplete(function () {
                 depth: 80
             }
         },
+        credits: {
+            enabled: false
+        },
         title: {
             text: nomIndicador,
             style: {"fontSize": "14px"}
@@ -174,6 +177,9 @@ $('.highchart').each(function () {
                     enabled: true,
                     depth: 10
                 }
+            },
+            credits: {
+                enabled: false
             },
             title: {
                 text: nomIndicador + ' (' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',

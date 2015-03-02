@@ -58,6 +58,9 @@ $('.highchart').each(function () {
                     depth: 10
                 }
             },
+            credits: {
+                enabled: false
+            },
             title: {
                 text: nomIndicador + ' (' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
                 style: {"fontSize": "14px"}

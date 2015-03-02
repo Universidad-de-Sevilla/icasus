@@ -153,6 +153,9 @@ $('.panel_linea').each(function () {
                             depth: 10
                         }
                     },
+                    credits: {
+                        enabled: false
+                    },
                     title: {
                         text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
                         style: {"fontSize": "14px"}
@@ -280,6 +283,9 @@ $(".panel_barra").each(function () {
                             alpha: 5,
                             depth: 80
                         }
+                    },
+                    credits: {
+                        enabled: false
                     },
                     title: {
                         text: titulo,
@@ -429,6 +435,9 @@ $(".panel_tarta").each(function () {
                             enabled: true,
                             alpha: 45
                         }
+                    },
+                    credits: {
+                        enabled: false
                     },
                     title: {
                         text: titulo,
