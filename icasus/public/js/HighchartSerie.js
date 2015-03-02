@@ -124,11 +124,25 @@ function HighchartSerie() {
             arrayUnidad.sort(function (a, b) {
                 return a.x - b.x;
             });
-            serieHighchart.push({
-                type: 'line',
-                name: unidad + nomIndicador,
-                data: arrayUnidad
-            });
+            //Colores para valores de referencia e indicadores de cuadros de mando
+            if (unidad.indexOf('mite') !== -1 || unidad.indexOf('bjetivo') !== -1
+                    || unidad.indexOf('ebiun') !== -1
+                    || nomIndicador !== '') {
+                serieHighchart.push({
+                    type: 'line',
+                    name: unidad + nomIndicador,
+                    data: arrayUnidad,
+                    color: getColor(unidad, nomIndicador)
+                });
+            }
+            //Colores para el resto de las series
+            else {
+                serieHighchart.push({
+                    type: 'line',
+                    name: unidad + nomIndicador,
+                    data: arrayUnidad
+                });
+            }
         }
         return serieHighchart;
     };
@@ -153,4 +167,37 @@ function HighchartSerie() {
     };
 }
 
+//Seleccionamos un color en función del nombre de la serie
+function getColor(unidad, nomIndicador) {
+    //Los límites en rojo
+    if (unidad.indexOf('mite') !== -1) {
+        return '#FF0000';
+    }
+    //Los objetivos en verde
+    else if (unidad.indexOf('bjetivo') !== -1) {
+        return '#00FF00';
+    }
+    //Los valores rebiun en negro
+    else if (unidad.indexOf('ebiun') !== -1) {
+        return '#000000';
+    }
+    //Indicador en cuadros de mando: colores al azar
+    else if (nomIndicador !== '') {
+        //Generamos un color al azar
+        var color = '#' + (function lol(m, s, c) {
+            return s[m.floor(m.random() * s.length)] +
+                    (c && lol(m, s, c - 1));
+        })(Math, '0123456789ABCDEF', 4);
+        //Evitamos blanco (no visible) y colores de los valores de referencia
+        while (color === '#FFFFFF' || color === '#FF0000'
+                || color === '#00FF00'
+                || color === '#000000') {
+            color = '#' + (function lol(m, s, c) {
+                return s[m.floor(m.random() * s.length)] +
+                        (c && lol(m, s, c - 1));
+            })(Math, '0123456789ABCDEF', 4);
 
+        }
+        return color;
+    }
+}
