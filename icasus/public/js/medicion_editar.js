@@ -110,8 +110,7 @@ $("#container").each(function () {
     }
 });
 
-
-
+//Edición de la medición
 function fila_editar(medicion, id_valor)
 {
     $('#valors').load("index.php?page=medicion_editar_ajax&modulo=editarfila&ajax=true&id_medicion=" + medicion + "&id_valor=" + id_valor);

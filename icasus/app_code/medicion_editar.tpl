@@ -27,148 +27,142 @@
     </div>
 </div>
 
-<div class="box grid_8">
+<div class="box grid_16">
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_DATOS}</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
     <div class="toggle_container">
-        <div class="block">
-            {if $permiso_editar == true}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_ETIQUETA}</label>
-                    <div>
-                        <span id="et">
-                            <a href="javascript:void(0)" onclick="javascript:etiqueta_editar('{$medicion->id}', 'et', 'etiqueta');">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}---{/if}</a>
-                        </span>
-                    </div>
-                </fieldset>
-                <fieldset>
-                    <label>{$smarty.const.FIELD_OBSERV}</label>
-                    <div>
-                        <span id="ob">
-                            <a href="javascript:void(0)" onclick="javascript:observaciones_editar('{$medicion->id}', 'ob', 'observaciones');">{if $medicion->observaciones != ''}{$medicion->observaciones}{else}---{/if}</a>
-                        </span>
-                    </div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_INICIO_PERIODO}</label>
-                    <div>
-                        <span id="pi">
-                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pi');">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}---{/if}</a>
-                        </span>
-                    </div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_FIN_PERIODO}</label>
-                    <div>
-                        <span id="pf">
-                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pf');">{if $medicion->periodo_fin}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}{else}---{/if}</a>
-                        </span>
-                    </div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
-                    <div>
-                        <span id="gi">
-                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}---{/if}</a>
-                        </span>
-                    </div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
-                    <div>
-                        <span id="gf">
-                            <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}---{/if}</a>
-                        </span>
-                    </div>
-                </fieldset>
-                {if isset($valores_referencia_medicion)}
-                    {foreach $valores_referencia_medicion as $valor_referencia_medicion}
+        <div class="box grid_8">
+            <div class="block" style="margin:10px;">
+                {if $permiso_editar == true}
+                    <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_ETIQUETA}</label>
+                        <div>
+                            <span id="et">
+                                <a href="javascript:void(0)" onclick="javascript:etiqueta_editar('{$medicion->id}', 'et', 'etiqueta');">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}---{/if}</a>
+                            </span>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <label>{$smarty.const.FIELD_OBSERV}</label>
+                        <div>
+                            <span id="ob">
+                                <a href="javascript:void(0)" onclick="javascript:observaciones_editar('{$medicion->id}', 'ob', 'observaciones');">{if $medicion->observaciones != ''}{$medicion->observaciones}{else}---{/if}</a>
+                            </span>
+                        </div>
+                    </fieldset>
+                    <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_INICIO_PERIODO}</label>
+                        <div>
+                            <span id="pi">
+                                <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pi');">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}---{/if}</a>
+                            </span>
+                        </div>
+                    </fieldset>
+                    <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_FIN_PERIODO}</label>
+                        <div>
+                            <span id="pf">
+                                <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pf');">{if $medicion->periodo_fin}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}{else}---{/if}</a>
+                            </span>
+                        </div>
+                    </fieldset>
+                    <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
+                        <div>
+                            <span id="gi">
+                                <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}---{/if}</a>
+                            </span>
+                        </div>
+                    </fieldset>
+                    <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
+                        <div>
+                            <span id="gf">
+                                <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}---{/if}</a>
+                            </span>
+                        </div>
+                    </fieldset>
+                    {if isset($valores_referencia_medicion)}
+                        {foreach $valores_referencia_medicion as $valor_referencia_medicion}
+                            <fieldset class="label_side">
+                                <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+                                <div><span id="referencia_{$valor_referencia_medicion->id}">
+                                        <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}');">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor|round:"2"}{/if}</a></span></div>
+                            </fieldset>
+                        {/foreach}
+                    {else}
                         <fieldset class="label_side">
-                            <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-                            <div><span id="referencia_{$valor_referencia_medicion->id}">
-                                    <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}');">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor|round:"2"}{/if}</a></span></div>
+                            <div>{$smarty.const.MSG_INDIC_NO_VAL_REF}</div>
                         </fieldset>
-                    {/foreach}
+                    {/if}
                 {else}
                     <fieldset class="label_side">
-                        <div>{$smarty.const.MSG_INDIC_NO_VAL_REF}</div>
+                        <label>{$smarty.const.FIELD_ETIQUETA}</label>
+                        <div>{$medicion->etiqueta}</div>
                     </fieldset>
-                {/if}
-            {else}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_ETIQUETA}</label>
-                    <div>{$medicion->etiqueta}</div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_OBSERV}</label>
-                    <div>{$medicion->observaciones}</div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_INICIO_PERIODO}</label>
-                    <div>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_FIN_PERIODO}</label>
-                    <div>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
-                    <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
-                    <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</div>
-                </fieldset>
-                {if isset($valores_referencia_medicion)}
-                    {foreach $valores_referencia_medicion as $valor_referencia_medicion}
-                        <fieldset class="label_side">
-                            <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-                            <div>{$valor_referencia_medicion->valor|round:"2"}</div>
-                        </fieldset>
-                    {/foreach}
-                {else}
                     <fieldset class="label_side">
-                        <div>{$smarty.const.MSG_INDIC_NO_VAL_REF}</div>
+                        <label>{$smarty.const.FIELD_OBSERV}</label>
+                        <div>{$medicion->observaciones}</div>
                     </fieldset>
-                {/if}
-            {/if}
-        </div>
-    </div>
-</div>
-
-<div class="box grid_8">
-    <div class="toggle_container">
-        <h2 class="box_head grad_grey_dark">{$smarty.const.FIELD_MED}</h2>
-        <a href="#" class="grabber"></a>
-        <a href="#" class="toggle"></a>
-        <div class="block">
-            <!-- GRÁFICA -->
-            <div style="margin:10px;">
-                {if $pinta_panel}
-                    <div class="block">
-                        <div class="titulo-panel">
-                            <strong>{$panel->nombre}</strong>
-                        </div>
-                        <div class="section">
-                            <div id="container" 
-                                 data-id_indicador="{$indicador->id}" 
-                                 data-nombre_indicador="{$indicador->nombre}" 
-                                 data-id_medicion="{$medicion->id}">
-                            </div>
-                        </div>
-                    </div>
-                {else}
-                    <div class="alert alert_blue">
-                        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-                        {$smarty.const.MSG_VAL_NO_ASIG}
-                    </div>
+                    <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_INICIO_PERIODO}</label>
+                        <div>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</div>
+                    </fieldset>
+                    <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_FIN_PERIODO}</label>
+                        <div>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</div>
+                    </fieldset>
+                    <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
+                        <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</div>
+                    </fieldset>
+                    <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
+                        <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</div>
+                    </fieldset>
+                    {if isset($valores_referencia_medicion)}
+                        {foreach $valores_referencia_medicion as $valor_referencia_medicion}
+                            <fieldset class="label_side">
+                                <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+                                <div>{$valor_referencia_medicion->valor|round:"2"}</div>
+                            </fieldset>
+                        {/foreach}
+                    {else}
+                        <fieldset class="label_side">
+                            <div>{$smarty.const.MSG_INDIC_NO_VAL_REF}</div>
+                        </fieldset>
+                    {/if}
                 {/if}
             </div>
-            <!-- //GRÁFICA -->
-        </div><!-- //.block -->
-    </div><!-- //toggle_container -->
-</div><!-- //box grid_8 -->
+        </div>
+        <div class="box grid_8">
+                <!-- GRÁFICA -->
+                <div style="margin:10px;">
+                    {if $pinta_panel}
+                        <div class="block">
+                            <div class="titulo-panel">
+                                <strong>{$panel->nombre}</strong>
+                            </div>
+                            <div class="section">
+                                <div id="container" 
+                                     data-id_indicador="{$indicador->id}" 
+                                     data-nombre_indicador="{$indicador->nombre}" 
+                                     data-id_medicion="{$medicion->id}">
+                                </div>
+                            </div>
+                        </div>
+                    {else}
+                        <div class="alert alert_blue">
+                            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                            {$smarty.const.MSG_VAL_NO_ASIG}
+                        </div>
+                    {/if}
+                </div>
+                <!-- //GRÁFICA -->
+        </div><!-- //box grid_8 -->
+    </div>
+</div>
 
 <div class="box grid_16">
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_VALORES}</h2>

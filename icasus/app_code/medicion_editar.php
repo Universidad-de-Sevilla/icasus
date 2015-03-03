@@ -84,7 +84,7 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
     $smarty->assign("valores", $valores);
 
-    //Prepara el panel de tarta
+    //Prepara el panel de tarta si hay valores
     $pinta_panel = false;
     foreach ($valores as $val)
     {
