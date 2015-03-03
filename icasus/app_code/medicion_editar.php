@@ -41,7 +41,6 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
         $cont++;
     }
 
-
     //comprobar permisos para cambiar mediciones tanto para responsables del indicador como
     //de la medición o responsables de la unidad
     $responsable_unidad = false;
@@ -85,6 +84,23 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
     $smarty->assign("valores", $valores);
 
+    //Prepara el panel de tarta
+    $pinta_panel = false;
+    foreach ($valores as $val)
+    {
+        if ($val->valor != null)
+        {
+            $pinta_panel = true;
+        }
+    }
+    if ($pinta_panel)
+    {
+        $panel = new Panel();
+        $panel->nombre = TXT_VALS_SUBUNID;
+        $smarty->assign("panel", $panel);
+    }
+    $smarty->assign("pinta_panel", $pinta_panel);
+
     //Buscar todos valores ref del indicador y recorrer si no existe entrada 
     //en la tabla valores_ref _med creamos entrada y despues asignamos a la plantilla
     $valor_referencia_medicion = new Valor_referencia_medicion();
@@ -92,7 +108,7 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
     if ($valores_referencia)
     {
-        foreach ($valores_referencia as & $valor_referencia)
+        foreach ($valores_referencia as $valor_referencia)
         {
             $existe = $valor_referencia_medicion->Load("id_valor_referencia=$valor_referencia->id AND id_medicion=$id_medicion");
             if (!$existe)
@@ -126,3 +142,4 @@ else
     header("location:index.php?error=$error");
 }
 
+    

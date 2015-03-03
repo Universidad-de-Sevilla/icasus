@@ -27,45 +27,7 @@
     </div>
 </div>
 
-<div class="box grid_16">
-    <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_VALORES}</h2>
-    <a href="#" class="grabber"></a>
-    <a href="#" class="toggle"></a>
-    {if $valores}
-        <div id="valors">
-            <table class="static">
-                <thead>
-                    <tr>
-                        <th>{$smarty.const.FIELD_UNID}</th>
-                        <th>{$smarty.const.FIELD_VAL}</th>
-                        <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
-                        <th>{$smarty.const.FIELD_USER_GRABA}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {foreach $valores as $valor}
-                        <tr>
-                            <td>{$valor->entidad->etiqueta}</td>
-                            <td>
-                                {if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
-                                    <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
-                                {else}
-                                {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
-                            {/if}
-                        </td>
-                        <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
-                        <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
-                    </tr>
-                {/foreach}
-            </tbody>
-        </table>
-    </div>
-{else}
-    <div class="alert alert_red">{$smarty.const.ERR_MED_NO_VAL}</div>
-{/if}
-</div>
-
-<div class="box grid_16">
+<div class="box grid_8">
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_DATOS}</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
@@ -174,17 +136,82 @@
         </div>
     </div>
 </div>
-{literal}
-    <script>
-        $('a.confirmar').click(function (event)
-        {
-            event.preventDefault();
-            var url = $(this).attr('href');
-            var confirm_box = confirm('Pulse "Aceptar" para borrar esta Medición. Recuerde que se borrarán los Valores y los Valores de Referencia recogidos para esta Medición.');
-            if (confirm_box)
-            {
-                window.location = url;
-            }
-        });
-    </script>
-{/literal}
+
+<div class="box grid_8">
+    <div class="toggle_container">
+        <h2 class="box_head grad_grey_dark">{$smarty.const.FIELD_MED}</h2>
+        <a href="#" class="grabber"></a>
+        <a href="#" class="toggle"></a>
+        <div class="block">
+            <!-- GRÁFICA -->
+            <div style="margin:10px;">
+                {if $pinta_panel}
+                    <div class="block">
+                        <div class="titulo-panel">
+                            <strong>{$panel->nombre}</strong>
+                        </div>
+                        <div class="section">
+                            <div id="container" 
+                                 data-id_indicador="{$indicador->id}" 
+                                 data-nombre_indicador="{$indicador->nombre}" 
+                                 data-id_medicion="{$medicion->id}">
+                            </div>
+                        </div>
+                    </div>
+                {else}
+                    <div class="alert alert_blue">
+                        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                        {$smarty.const.MSG_VAL_NO_ASIG}
+                    </div>
+                {/if}
+            </div>
+            <!-- //GRÁFICA -->
+        </div><!-- //.block -->
+    </div><!-- //toggle_container -->
+</div><!-- //box grid_8 -->
+
+<div class="box grid_16">
+    <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_VALORES}</h2>
+    <a href="#" class="grabber"></a>
+    <a href="#" class="toggle"></a>
+    {if $valores}
+        <div id="valors">
+            <table class="static">
+                <thead>
+                    <tr>
+                        <th>{$smarty.const.FIELD_UNID}</th>
+                        <th>{$smarty.const.FIELD_VAL}</th>
+                        <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
+                        <th>{$smarty.const.FIELD_USER_GRABA}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {foreach $valores as $valor}
+                        <tr>
+                            <td>{$valor->entidad->etiqueta}</td>
+                            <td>
+                                {if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
+                                    <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
+                                {else}
+                                {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
+                            {/if}
+                        </td>
+                        <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
+                        <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
+                    </tr>
+                {/foreach}
+            </tbody>
+        </table>
+    </div>
+{else}
+    <div class="alert alert_red">{$smarty.const.ERR_MED_NO_VAL}</div>
+{/if}
+</div>
+
+<script src="js/highcharts.js" type="text/javascript"></script>
+<script src="js/highcharts-3d.js" type="text/javascript"></script>
+<script src="js/exporting.js" type="text/javascript"></script>
+<script src="js/Conjunto.js" type="text/javascript"></script>
+<script src="js/HighchartSerie.js" type="text/javascript"></script>
+<script src="js/medicion_editar.js" type="text/javascript"></script>
+

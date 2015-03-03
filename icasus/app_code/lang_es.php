@@ -453,6 +453,7 @@ define('MSG_USERS_CONFIRM_VINC', '¿Desea vincular a la Unidad los Usuarios marc
 define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la Unidad los Usuarios marcados?');
 
 //Valores
+define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado Valores a esta Medición');
 define('MSG_VAL_BORRADO', 'Se ha borrado un Valor.');
 define('MSG_VAL_EXPORT', 'Exportando Valores para:');
 define('MSG_VAL_GRABAR', 'El Valor se ha grabado correctamente.');
