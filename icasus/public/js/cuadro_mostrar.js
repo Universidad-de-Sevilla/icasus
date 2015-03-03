@@ -411,13 +411,21 @@ $(".panel_tarta").each(function () {
             });
 
             function onDataReceived(datos) {
+                //Buscamos la medición para luego obtener su total
+                while (!medicion) {
+                    datos.forEach(function (dato) {
+                        if (dato.id_medicion == id_medicion) {
+                            medicion = dato.medicion;
+                        }
+                    });
+                }
                 datos.forEach(function (dato) {
                     if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
                         chartSerie.add(dato);
-                        total += parseFloat(dato.valor);
-                        if (!medicion) {
-                            medicion = dato.medicion;
-                        }
+                    }
+                    //Guardamos el total
+                    if (medicion == dato.medicion && dato.id_unidad == 0) {
+                        total = parseFloat(dato.valor);
                     }
                 });
 
