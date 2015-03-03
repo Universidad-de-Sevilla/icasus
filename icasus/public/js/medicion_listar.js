@@ -92,7 +92,7 @@ $(document).ajaxComplete(function () {
                 dataLabels: {
                     enabled: true,
                     formatter: function () {
-                        return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                        return this.y ? Math.round(this.y * 100) / 100 : null;
                     }
                 },
                 depth: 20
@@ -201,7 +201,7 @@ $('.highchart').each(function () {
                     dataLabels: {
                         enabled: true,
                         formatter: function () {
-                            return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                            return this.y ? Math.round(this.y * 100) / 100 : null;
                         }
                     }
                 }

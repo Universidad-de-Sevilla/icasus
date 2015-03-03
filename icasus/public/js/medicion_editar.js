@@ -48,7 +48,7 @@ $("#container").each(function () {
         });
 
         //Redondeamos el total
-        total = ((Math.round(total * 100)) / 100);
+        total = Math.round(total * 100) / 100;
 
         //Pide las series de datos a chartSerie
         var dataseries = chartSerie.getPieSerie();
@@ -70,7 +70,7 @@ $("#container").each(function () {
                 style: {"fontSize": "14px"}
             },
             subtitle: {
-                text: 'Medición: ' + medicion + ' Total: ' + total + ' (100%)'
+                text: 'Medición: ' + medicion + ' Total: ' + total
             },
             exporting: {
                 enabled: true

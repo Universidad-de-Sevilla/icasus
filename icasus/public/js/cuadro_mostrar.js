@@ -422,7 +422,7 @@ $(".panel_tarta").each(function () {
                 });
 
                 //Redondeamos el total
-                total = ((Math.round(total * 100)) / 100);
+                total = Math.round(total * 100) / 100;
 
                 //Pide las series de datos a chartSerie
                 var dataseries = chartSerie.getPieSerie();
@@ -444,7 +444,7 @@ $(".panel_tarta").each(function () {
                         style: {"fontSize": "14px"}
                     },
                     subtitle: {
-                        text: 'Medición: ' + medicion + ' Total: ' + total + ' (100%)'
+                        text: 'Medición: ' + medicion + ' Total: ' + total
                     },
                     exporting: {
                         enabled: true
@@ -603,19 +603,25 @@ $(".panel_metrica").each(function () {
             //Si es un total
             if (id_entidad == 0) {
                 var total = 0;
-                $.each(datos, function (i, dato) {
-                    if (dato.id_medicion == id_medicion && dato.etiqueta_mini)
-                    {
-                        total += parseFloat(dato.valor);
-                        //Guardamos la medición y la unidad perteneciente
-                        if (!medicion && !unidad) {
+                //Buscamos y guardamos la medición 
+                while (!medicion) {
+                    $.each(datos, function (i, dato) {
+                        if (dato.id_medicion == id_medicion)
+                        {
                             medicion = dato.medicion;
-                            unidad = 'Total';
                         }
+                    });
+                }
+                //Guardada la medición localizamos el total
+                $.each(datos, function (i, dato) {
+                    if (dato.medicion == medicion && dato.id_unidad == 0)
+                    {
+                        total = parseFloat(dato.valor);
+                        unidad = dato.unidad;
                     }
                 });
                 //Redondeamos el total
-                total = ((Math.round(total * 100)) / 100);
+                total = Math.round(total * 100) / 100;
                 html = "<p style='font-size:2em; color:maroon; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + total + "</p>";
                 html += "<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>Valor Total</strong></p>";
             }
@@ -634,7 +640,7 @@ $(".panel_metrica").each(function () {
                     }
                 });
                 //Redondeamos el valor
-                valor = ((Math.round(valor * 100)) / 100);
+                valor = Math.round(valor * 100) / 100;
                 html = "<p style='font-size:2em; color:maroon; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + valor + "</p>";
                 html += "<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>" + unidad + "</strong></p>";
             }
