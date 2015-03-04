@@ -80,7 +80,12 @@
                 <a href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>
             </div>
-
+            {if $dato->calculo}
+                <div class="alert alert_blue">
+                    <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                    {$smarty.const.TXT_CALC_AUTO}
+                </div>
+            {/if}
             <div class="columns clearfix">
                 <div class="col_40">
                     <fieldset class="label">
@@ -105,12 +110,14 @@
                     {$dato->descripcion}
                 </div>
             </fieldset>
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_CALCULO}</label>
-                <div>
-                    {$dato->calculo}
-                </div>
-            </fieldset>
+            {if $dato->calculo}
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_CALCULO}</label>
+                    <div>
+                        {$dato->calculo}
+                    </div>
+                </fieldset>
+            {/if}
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_RESP_DATO}</label>
                 <div>

@@ -80,6 +80,12 @@
                 <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> 
             </div>
+            {if $indicador->calculo}
+                <div class="alert alert_blue">
+                    <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                    {$smarty.const.TXT_CALC_AUTO}
+                </div>
+            {/if}
             <div class="columns clearfix">
                 <div class="col_40">
                     <fieldset class="label">

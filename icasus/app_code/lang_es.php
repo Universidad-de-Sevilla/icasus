@@ -288,6 +288,7 @@ define('TXT_SEMESTRAL', 'Semestral');
 define('TXT_2_ULT_ANYO', 'Dos últimos años');
 
 //Tipos de Cálculo
+define('TXT_CALC_AUTO', 'Cálculo Automático');
 define('TXT_INDEF', 'Indefinido');
 define('TXT_PROMED', 'Promedio');
 define('TXT_SUMA', 'Suma');
