@@ -3,9 +3,9 @@
     <input type="hidden" name="id_entidad" value="{$entidad->id}" />
     <div style="opacity: 1;" class="box tabs" id="tab_crear_dato">
         <ul class="tab_header">
-            <li ><a  href="#dato"> {$smarty.const.TXT_DATO}</a></li>
-            <li ><a  href="#otras" >{$smarty.const.TXT_OTRAS_PROP}</a></li>
-            <li ><a  href="#subunidades" >{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
+            <li ><a id="tab_datos"  href="#dato"> {$smarty.const.TXT_DATO}</a></li>
+            <li ><a id="tab_otras" href="#otras" >{$smarty.const.TXT_OTRAS_PROP}</a></li>
+            <li ><a id="tab_subunidades" href="#subunidades" >{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
         </ul>
 
         <div style="opacity: 1;" id="dato" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
@@ -193,63 +193,5 @@
         </div>
     </div><!-- id=subunidades -->
 </form>
-{literal}
-    <script>
-        $(document).ready(function () {
-            //desactivar inicialmente las tabs 1 y 2
-            //$('#tab_crear_dato').tabs({disabled: [1, 2]});
-            //mostrar tipo de medición
-            $('.medicion').on('click', function () {
-                var valor = $(this).attr('value');
-                if (valor === 1 || valor === 2)
-                {
-                    $('#total').css('display', 'block');
-                    $('#div_unidad').css('display', 'inline');
-                    $('#div_subunidades').css('display', 'inline');
-                    $(".subunidad").attr("checked", "checked");
-                }
-                else if (valor === 0)
-                {
-                    $('#total').css('display', 'none');
-                    $('#div_unidad').css('display', 'inline');
-                    $('#div_subunidades').css('display', 'none');
-                    $(".subunidad").removeAttr("checked");
-                    $(".unidad").attr("checked", "checked");
-                }
-            });
-            //validar formulario
-            var validator = $('#formdato').validate({
-                rules: {
-                    codigo: {required: true},
-                    id_responsable: {required: true},
-                    nombre: {required: true}
-                },
-                ignore: ':hidden',
-                messages: {
-                    codigo: 'Debe insertar un código',
-                    id_responsable: 'Debe seleccionar un responsable',
-                    nombre: 'Debe dar un nombre'
-                }
-            });
-            //Boton previo
-            $('button.btnPrev').on('click', function () {
-                var actualTab = $('#tab_crear_dato').tabs('option', 'selected');
-                $('#tab_crear_dato').tabs('enable', actualTab - 1).tabs('select', actualTab - 1).tabs('disable', actualTab);
-            });
-            //Boton next
-            $('button.btnNext').on('click', function () {
-                var actualTab = $('#tab_crear_dato').tabs('option', 'selected');
-                var estavalidado = $('#formdato').valid();
-                if (estavalidado === true)
-                {
-                    $('#tab_crear_dato').tabs('enable', actualTab + 1).tabs('select', actualTab + 1).tabs('disable', actualTab);
-                }
-                else
-                {
-                    validator.focusInvalid();
-                }
-                return false;
-            });
-        });
-    </script>
-{/literal}
+
+<script src="js/dato_editar.js" type="text/javascript"></script>

@@ -4,7 +4,8 @@
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: cuadro_unidad.php
 // Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Lista los indicadores de la unidad
 //---------------------------------------------------------------------------------------------------
@@ -19,10 +20,8 @@ if (!is_object($smarty))
     header('Location:index.php?page=cuadro_listar');
 }
 
-//if (isset($_GET["id_entidad"]) AND $_GET["id_entidad"] >0)
 if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
-//	$id_entidad = sanitize($_GET["id_entidad"],2);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");

@@ -3,6 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: medicion_crear_ajax.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Actualiza de manera asincrona las subunidades que se verán afectadas antes de crearse
 // una medición
@@ -11,9 +13,6 @@
 global $smarty;
 global $usuario;
 global $plantilla;
-
-//$id_indicador = sanitize($_GET['id_indicador'],INT);
-//$id_entidad = sanitize($_GET['id_entidad'],INT);
 
 $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);

@@ -3,6 +3,9 @@
 //-------------------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: login_sso.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//---------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------
 // Controlador que autentica a los usuarios para entrar al sistema usando el SSO de la US 
 //-------------------------------------------------------------------------------------------
@@ -13,7 +16,6 @@ $usuario_sso = new OpenSSO();
 
 // Este controlador puede hacer tres cosas: autenticar, logout o mostrar la página inicial 
 // (que hace de presentación y tiene un enlace para autenticar)
-//if (isset($_GET["autenticar"]))
 if (filter_has_var(INPUT_GET, 'autenticar'))
 {
     if ($usuario_sso->check_and_force_sso())
@@ -84,7 +86,6 @@ if (filter_has_var(INPUT_GET, 'autenticar'))
         }
     }
 }
-//else if (isset($_GET["logout"]))
 else if (filter_has_var(INPUT_GET, 'logout'))
 {
     session_unset();

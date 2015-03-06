@@ -3,6 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: dato_listar.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Listado de datos para una entidad determinada
 //---------------------------------------------------------------------------------------------------
@@ -12,10 +14,8 @@ global $plantilla;
 
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
-//if ($_GET['id_entidad'] > '0')
 if ($id_entidad != 0)
 {
-//	$id_entidad = sanitize($_GET["id_entidad"],INT);
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);

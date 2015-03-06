@@ -3,7 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: dato_mostrar.php
-// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Muestra todos los parametros de un dato y un listado de los valores introducidos
 // Es casi igual que el indicador pero con algunos campos menos (misma tabla de la base de datos)
@@ -13,10 +14,8 @@
 global $smarty;
 global $plantilla;
 
-//if (isset($_REQUEST['id_dato']))
 if (filter_has_var(INPUT_GET, 'id_dato'))
 {
-//	$id_dato = sanitize($_REQUEST['id_dato'],16); 
     $id_dato = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
     $dato = new Indicador();
     if ($dato->load_joined("id = $id_dato"))

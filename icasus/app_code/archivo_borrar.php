@@ -5,7 +5,8 @@
 // Proyecto: Icasus 
 // Archivo: archivo_borrar.php
 // Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra un archivo y redirige al listado de nuevo
 //---------------------------------------------------------------------------------------------------

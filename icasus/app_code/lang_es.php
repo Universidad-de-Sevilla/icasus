@@ -1,5 +1,10 @@
 <?php
 
+//---------------------------------------------------------------------------------------------------
+// Proyecto: Icasus 
+// Archivo: lang_es.php
+// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
+//---------------------------------------------------------------------------------------------------
 /* Este fichero contiene constantes para todos los textos de la aplicación Icasus en español:
  * Clasificación:
  * TXT_[Nombre]--> Textos en general

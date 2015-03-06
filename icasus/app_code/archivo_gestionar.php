@@ -3,12 +3,13 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: archivo_gestionar.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
 global $plantilla;
 global $usuario;
-
 
 //if (isset($_REQUEST["id_proceso"]) AND isset($_REQUEST["id_entidad"]))
 //if (isset($_REQUEST["id_proceso"]))

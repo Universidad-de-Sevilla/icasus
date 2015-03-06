@@ -3,11 +3,12 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: panel_nuevo.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es) 
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Controlador principal para generar paneles
 //---------------------------------------------------------------------------------------------------
-//$id_cuadro = sanitize($_REQUEST["id_cuadro"], INT);
+
 $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
 $id_entidad = 14;
 if (!empty($id_cuadro) OR ! empty($id_entidad))

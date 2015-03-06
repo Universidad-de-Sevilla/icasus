@@ -2,7 +2,9 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: app_code/grafica_indicador_segregado.php 
+// Archivo: app_code/grafica_indicador_segregado.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Dibuja una gráfica de una medición concreta de un indicador que recibe valores de 
 // varias subunidades. 
