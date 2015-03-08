@@ -3,6 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: proceso_crear.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Creación de nuevos procesos
 //---------------------------------------------------------------------------------------------------
@@ -10,10 +12,8 @@
 global $smarty;
 global $plantilla;
 
-//if (isset($_REQUEST["id_entidad"]))
 if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
-//    $id_entidad = sanitize($_REQUEST["id_entidad"], INT);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");

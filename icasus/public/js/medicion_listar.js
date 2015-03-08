@@ -1,4 +1,11 @@
-// Muestra las gráficas para las mediciones en el fichero medicion_listar.tpl
+//--------------------------------------------------------------------------
+// Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+// Archivo: public/js/medicion_listar.js
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//--------------------------------------------------------------------------
+//Muestra las gráficas para las mediciones en el fichero medicion_listar.tpl
+//----------------------------------------------------------------------------
 
 // Variables
 var idIndicador = $("#container").data("id_indicador");
