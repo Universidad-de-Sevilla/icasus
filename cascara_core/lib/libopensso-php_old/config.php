@@ -1,6 +1,7 @@
 <?php
 // Configuration package used
-//define('CONFIG_PACK', 'ssopre.us.es_002');
+// Juanan: comentamos esta constante porque usaremos la nuestra, ver en login_sso.php
+// define('CONFIG_PACK', 'pre_11');
 
 
 // Package directory (do not change)

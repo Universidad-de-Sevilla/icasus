@@ -1,5 +1,5 @@
 <?php
-define('OPENSSO_BASE_URL', 'https://sso.us.es/OPENSSO/index.php/');
+define('OPENSSO_BASE_URL', 'https://ssopre.us.es/OPENSSO/index.php/');
 define('OPENSSO_COOKIE_NAME', 'iPlanetDirectoryPro');
 define('OPENSSO_LOGIN_URL',      OPENSSO_BASE_URL . 'UI/Login');
 define('OPENSSO_LOGOUT_URL',     OPENSSO_BASE_URL . 'UI/Logout');
@@ -11,3 +11,5 @@ define('OPENSSO_DOMAIN', ".us.es");
 
 // Certificados
 define('VALIDATE_CERT', true);
+define('CRT_SERIALNUMBER', '1021042076');
+

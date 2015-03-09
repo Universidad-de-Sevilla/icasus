@@ -11,3 +11,5 @@ define('OPENSSO_DOMAIN', ".us.es");
 
 // Certificados
 define('VALIDATE_CERT', true);
+define('CRT_SERIALNUMBER', '1021042076');
+
