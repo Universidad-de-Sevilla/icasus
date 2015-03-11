@@ -12,14 +12,14 @@ $(document).ready(function () {
     //mostrar tipo de medición
     $('.medicion').on('click', function () {
         var valor = $(this).attr('value');
-        if (valor === 1 || valor === 2)
+        if (valor === '1' || valor === '2')
         {
             $('#total').css('display', 'block');
             $('#div_unidad').css('display', 'block');
             $('#div_subunidades').css('display', 'block');
             $(".subunidad").attr("checked", "checked");
         }
-        else if (valor === 0)
+        else if (valor === '0')
         {
             $('#total').css('display', 'none');
             $('#div_unidad').css('display', 'block');

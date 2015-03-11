@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.10.4");
-define('IC_FECHA_REVISION', "05/03/2015");
+define('IC_VERSION', "2.10.5");
+define('IC_FECHA_REVISION', "11/03/2015");
 
+// 2.10.5 - 11/03/2015 - Revisiones código Javascript y PHP.
 // 2.10.4 - 05/03/2015 - Código Javascript separado de código html.
 // 2.10.3 - 03/03/2015 - Gráficos de tarta en edición de mediciones.
 // 2.10.2 - 02/03/2015 - Colores especifícos para cada valor de referencia en gráficas.

@@ -63,14 +63,15 @@ if (
     {
         if ($es_dato_nuevo == true)
         {
-            $subunidades = filter_input(INPUT_POST, 'subunidades');
+            $post_array = filter_input_array(INPUT_POST);
+            $subunidades = $post_array['subunidades'];
             if (count($subunidades) > 0)
             {
                 foreach ($subunidades as $subunidad)
                 {
                     $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $dato->id;
-                    $indicador_subunidad->id_entidad = $subunidad;
+                    $indicador_subunidad->id_entidad = filter_var($subunidad, FILTER_SANITIZE_NUMBER_INT);
 
                     // Comprueba si la medición va a ser centralizada o asignada a cada responsable de subunidad
                     // si es para cada responsable de subunidad, se le asigna como responsable de la medición
@@ -105,12 +106,15 @@ if (
             }
             if (filter_has_var(INPUT_POST, 'subunidades'))
             {
-                $subunidades = filter_input(INPUT_POST, 'subunidades');
+                 $post_array = filter_input_array(INPUT_POST);
+//                $subunidades = filter_input(INPUT_POST, 'subunidades');
+                 $subunidades = $post_array['subunidades'];
                 foreach ($subunidades as $id_subunidad)
                 {
                     $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $id_dato;
-                    $indicador_subunidad->id_entidad = $id_subunidad;
+//                    $indicador_subunidad->id_entidad = $id_subunidad;
+                    $indicador_subunidad->id_entidad = filter_var($id_subunidad, FILTER_SANITIZE_NUMBER_INT);
                     switch ($dato->desagregado)
                     {
                         case 0:
