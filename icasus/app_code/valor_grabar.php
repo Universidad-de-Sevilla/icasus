@@ -29,10 +29,10 @@ if (filter_has_var(INPUT_POST, 'id_indicador') && filter_has_var(INPUT_POST, 'da
         $valor->load("id_valor = $id_valor");
     }
     $valor->id_indicador = $id_indicador;
-    $valor->valor = filter_input(INPUT_POST, 'dato_valor', FILTER_SANITIZE_NUMBER_FLOAT);
-    $valor->objetivo = filter_has_var(INPUT_POST, 'objetivo') ? filter_input(INPUT_POST, 'objetivo', FILTER_SANITIZE_NUMBER_FLOAT) : 0;
-    $valor->objetivo_carta = filter_has_var(INPUT_POST, 'objetivo_carta') ? filter_input(INPUT_POST, 'objetivo_carta', FILTER_SANITIZE_NUMBER_FLOAT) : 0;
-    $valor->objetivo_estrategico = filter_has_var(INPUT_POST, 'objetivo_estrategico') ? filter_input(INPUT_POST, 'objetivo_estrategico', FILTER_SANITIZE_NUMBER_FLOAT) : 0;
+    $valor->valor = filter_input(INPUT_POST, 'dato_valor', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+    $valor->objetivo = filter_has_var(INPUT_POST, 'objetivo') ? filter_input(INPUT_POST, 'objetivo', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) : 0;
+    $valor->objetivo_carta = filter_has_var(INPUT_POST, 'objetivo_carta') ? filter_input(INPUT_POST, 'objetivo_carta', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) : 0;
+    $valor->objetivo_estrategico = filter_has_var(INPUT_POST, 'objetivo_estrategico') ? filter_input(INPUT_POST, 'objetivo_estrategico', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION) : 0;
     $valor->calculo = filter_has_var(INPUT_POST, 'calculo') ? filter_input(INPUT_POST, 'calculo') : null;
     $valor->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones') : null;
     $valor->fecha_recogida = mktime(0, 0, 0, $month, $day, $year);

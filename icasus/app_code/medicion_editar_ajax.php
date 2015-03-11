@@ -38,7 +38,7 @@ if ($modulo == 'anularvalor')
 
 if ($modulo == 'grabarfila')
 {
-    $valor_parcial = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_NUMBER_FLOAT);
+    $valor_parcial = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
     if ($valor->puede_grabarse($valor->id, $usuario->id))
