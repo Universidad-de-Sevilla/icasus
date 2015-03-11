@@ -3,20 +3,21 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: medicion_borrar.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Borra la medición, los valores y los valores de referencia asociados a ella
 //---------------------------------------------------------------------------------------------------
+
 global $smarty;
 global $usuario;
 
-//if (isset($_REQUEST["id_medicion"]) AND isset($_REQUEST["tipo"]) AND isset($_REQUEST["id_entidad"]))
 if (filter_has_var(INPUT_GET, 'id_medicion') AND filter_has_var(INPUT_GET, 'tipo') AND filter_has_var(INPUT_GET, 'id_entidad'))
 {
-//    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-//    $id_entidad = sanitize($_REQUEST["id_entidad"], INT);
+
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-//    $tipo = sanitize($_REQUEST["tipo"], SQL);
+
     $tipo = filter_input(INPUT_GET, 'tipo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 
     $medicion = new Medicion();

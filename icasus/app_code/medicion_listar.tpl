@@ -23,8 +23,6 @@
                                 <div  id="container" 
                                       data-id_indicador="{$indicador->id}" 
                                       data-nombre_indicador="{$indicador->nombre}" 
-                                      data-fecha_inicio="" 
-                                      data-fecha_fin="" 
                                       data-periodicidad="{$panel_res->periodicidad}">
                                 </div>
                             </div>

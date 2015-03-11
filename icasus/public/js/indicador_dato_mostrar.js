@@ -1,5 +1,12 @@
+//--------------------------------------------------------------------------
+// Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+// Archivo: public/js/indicador_dato_mostrar.js
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//--------------------------------------------------------------------------
 //Muestra los gráficos de los indicadores y datos
 //en los ficheros indicador_mostrar.tpl y dato_mostrar.tpl
+//----------------------------------------------------------------------------
 
 // Para cada contenedor de clase highchart vamos a pintar el gráfico
 $('.highchart').each(function () {
@@ -58,6 +65,9 @@ $('.highchart').each(function () {
                     depth: 10
                 }
             },
+            credits: {
+                enabled: false
+            },
             title: {
                 text: nomIndicador + ' (' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
                 style: {"fontSize": "14px"}
@@ -78,7 +88,7 @@ $('.highchart').each(function () {
                     dataLabels: {
                         enabled: true,
                         formatter: function () {
-                            return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                            return this.y ? Math.round(this.y * 100) / 100 : null;
                         }
                     }
                 }

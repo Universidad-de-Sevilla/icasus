@@ -3,6 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: entidad_datos.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Muestra los datos de una entidad y los usuarios que tiene
 //---------------------------------------------------------------------------------------------------

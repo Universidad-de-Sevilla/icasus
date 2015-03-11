@@ -1,7 +1,8 @@
 //--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
 // Archivo: public/js/cuadro_mostrar.js
-// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
 //Incluye el código JavaScript para el fichero cuadro_mostrar.tpl que gestiona 
 //las gráficas de los cuadros de mando.
@@ -153,6 +154,9 @@ $('.panel_linea').each(function () {
                             depth: 10
                         }
                     },
+                    credits: {
+                        enabled: false
+                    },
                     title: {
                         text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
                         style: {"fontSize": "14px"}
@@ -281,6 +285,9 @@ $(".panel_barra").each(function () {
                             depth: 80
                         }
                     },
+                    credits: {
+                        enabled: false
+                    },
                     title: {
                         text: titulo,
                         style: {"fontSize": "14px"}
@@ -405,18 +412,26 @@ $(".panel_tarta").each(function () {
             });
 
             function onDataReceived(datos) {
+                //Buscamos la medición para luego obtener su total
+                while (!medicion) {
+                    datos.forEach(function (dato) {
+                        if (dato.id_medicion == id_medicion) {
+                            medicion = dato.medicion;
+                        }
+                    });
+                }
                 datos.forEach(function (dato) {
                     if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
                         chartSerie.add(dato);
-                        total += parseFloat(dato.valor);
-                        if (!medicion) {
-                            medicion = dato.medicion;
-                        }
+                    }
+                    //Guardamos el total
+                    if (medicion == dato.medicion && dato.id_unidad == 0) {
+                        total = parseFloat(dato.valor);
                     }
                 });
 
                 //Redondeamos el total
-                total = ((Math.round(total * 100)) / 100);
+                total = Math.round(total * 100) / 100;
 
                 //Pide las series de datos a chartSerie
                 var dataseries = chartSerie.getPieSerie();
@@ -430,12 +445,15 @@ $(".panel_tarta").each(function () {
                             alpha: 45
                         }
                     },
+                    credits: {
+                        enabled: false
+                    },
                     title: {
                         text: titulo,
                         style: {"fontSize": "14px"}
                     },
                     subtitle: {
-                        text: 'Medición: ' + medicion + ' Total: ' + total + ' (100%)'
+                        text: 'Medición: ' + medicion + ' Total: ' + total
                     },
                     exporting: {
                         enabled: true
@@ -594,19 +612,25 @@ $(".panel_metrica").each(function () {
             //Si es un total
             if (id_entidad == 0) {
                 var total = 0;
-                $.each(datos, function (i, dato) {
-                    if (dato.id_medicion == id_medicion && dato.etiqueta_mini)
-                    {
-                        total += parseFloat(dato.valor);
-                        //Guardamos la medición y la unidad perteneciente
-                        if (!medicion && !unidad) {
+                //Buscamos y guardamos la medición 
+                while (!medicion) {
+                    $.each(datos, function (i, dato) {
+                        if (dato.id_medicion == id_medicion)
+                        {
                             medicion = dato.medicion;
-                            unidad = 'Total';
                         }
+                    });
+                }
+                //Guardada la medición localizamos el total
+                $.each(datos, function (i, dato) {
+                    if (dato.medicion == medicion && dato.id_unidad == 0)
+                    {
+                        total = parseFloat(dato.valor);
+                        unidad = dato.unidad;
                     }
                 });
                 //Redondeamos el total
-                total = ((Math.round(total * 100)) / 100);
+                total = Math.round(total * 100) / 100;
                 html = "<p style='font-size:2em; color:maroon; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + total + "</p>";
                 html += "<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>Valor Total</strong></p>";
             }
@@ -625,7 +649,7 @@ $(".panel_metrica").each(function () {
                     }
                 });
                 //Redondeamos el valor
-                valor = ((Math.round(valor * 100)) / 100);
+                valor = Math.round(valor * 100) / 100;
                 html = "<p style='font-size:2em; color:maroon; padding:20px 0 0 0; text-align:center; line-height:6px;'>" + valor + "</p>";
                 html += "<p style='padding:0 0 20px 0; text-align: center;line-height: 10px;'><strong>" + unidad + "</strong></p>";
             }

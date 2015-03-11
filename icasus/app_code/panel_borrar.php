@@ -3,12 +3,13 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: panel_borrar.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es) 
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra paneles 
 //---------------------------------------------------------------------------------------------------
 $id_usuario = $usuario->id;
-//$id_panel = sanitize($_REQUEST["id_panel"], INT);
+
 $id_panel = filter_input(INPUT_GET, 'id_panel', FILTER_SANITIZE_NUMBER_INT);
 if (!empty($id_panel))
 {

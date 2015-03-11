@@ -4,7 +4,8 @@
 // Proyecto: Icasus (https://forja.rediris.es/projects/icasus/)
 // Archivo: dimension_crear.php
 // Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Creación de nuevas dimensiones
 //---------------------------------------------------------------------------------------------------

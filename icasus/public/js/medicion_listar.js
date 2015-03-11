@@ -1,4 +1,11 @@
-// Muestra las gráficas para las mediciones en el fichero medicion_listar.tpl
+//--------------------------------------------------------------------------
+// Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+// Archivo: public/js/medicion_listar.js
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//--------------------------------------------------------------------------
+//Muestra las gráficas para las mediciones en el fichero medicion_listar.tpl
+//----------------------------------------------------------------------------
 
 // Variables
 var idIndicador = $("#container").data("id_indicador");
@@ -41,6 +48,9 @@ $(document).ajaxComplete(function () {
                 alpha: 5,
                 depth: 80
             }
+        },
+        credits: {
+            enabled: false
         },
         title: {
             text: nomIndicador,
@@ -89,7 +99,7 @@ $(document).ajaxComplete(function () {
                 dataLabels: {
                     enabled: true,
                     formatter: function () {
-                        return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                        return this.y ? Math.round(this.y * 100) / 100 : null;
                     }
                 },
                 depth: 20
@@ -175,6 +185,9 @@ $('.highchart').each(function () {
                     depth: 10
                 }
             },
+            credits: {
+                enabled: false
+            },
             title: {
                 text: nomIndicador + ' (' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
                 style: {"fontSize": "14px"}
@@ -195,7 +208,7 @@ $('.highchart').each(function () {
                     dataLabels: {
                         enabled: true,
                         formatter: function () {
-                            return this.y ? ((Math.round(this.y * 100)) / 100) : null;
+                            return this.y ? Math.round(this.y * 100) / 100 : null;
                         }
                     }
                 }

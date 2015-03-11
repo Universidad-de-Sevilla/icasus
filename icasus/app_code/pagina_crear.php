@@ -3,6 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: pagina_crear.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Crea una nueva pagina en icasus, en principio para la ayuda
 //---------------------------------------------------------------------------------------------------

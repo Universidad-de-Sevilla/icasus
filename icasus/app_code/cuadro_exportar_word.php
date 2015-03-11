@@ -4,7 +4,8 @@
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: cuadro_exportar_word.php
 // Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Genera un informe word del cuadro de mando activo 
 //---------------------------------------------------------------------------------------------------

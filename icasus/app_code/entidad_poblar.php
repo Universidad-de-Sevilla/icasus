@@ -3,6 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: entidad_poblar.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Muestra un listado de usuarios para ser asignados a una unidad
 // Si los usuario ya vienen señalados se graban en la tabla usuario_unidad
@@ -11,26 +13,20 @@
 global $smarty;
 global $plantilla;
 
-//if (isset($_REQUEST["id_entidad"]))
 if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
-//  $id_entidad = sanitize($_REQUEST['id_entidad'],INT);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     // Si vienen datos del formulario asignamos los usuarios marcados a la entidad
-//     if (isset($_REQUEST['id_rol']) AND isset($_REQUEST['id_usuario']))
     if (filter_has_var(INPUT_POST, 'id_rol') && filter_has_var(INPUT_POST, 'id_usuario'))
     {
-//        $id_rol = sanitize($_REQUEST['id_rol'], INT);
         $id_rol = filter_input(INPUT_POST, 'id_rol', FILTER_SANITIZE_NUMBER_INT);
         $contador = 0;
 
         $post_array = filter_input_array(INPUT_POST);
         $id_usuarios = $post_array['id_usuario'];
-//        foreach ($_REQUEST['id_usuario'] as $id_usuario)
         foreach ($id_usuarios as $id_usuario)
         {
             $usuario_entidad = new Usuario_entidad;
-//            $id_usuario = sanitize($id_usuario, INT);
             $id_usuario = filter_var($id_usuario, FILTER_SANITIZE_NUMBER_INT);
             $usuario_entidad->id_usuario = $id_usuario;
             $usuario_entidad->id_entidad = $id_entidad;

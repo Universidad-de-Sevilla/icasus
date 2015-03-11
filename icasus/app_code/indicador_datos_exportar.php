@@ -4,16 +4,15 @@
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: indicador_datos_informe.php
 // Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Muestra todos los parametros de un indicador y la gráfica de los valores introducidos
 //---------------------------------------------------------------------------------------------------
 global $basedatos;
 
-//if (isset($_GET['id_indicador']))
 if (filter_has_var(INPUT_GET, 'id_indicador'))
 {
-//	$id_indicador = sanitize($_GET['id_indicador'],16); 
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $indicador = new Indicador($basedatos);
     $indicador->obtener_datos($id_indicador);

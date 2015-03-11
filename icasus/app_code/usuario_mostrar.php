@@ -3,17 +3,18 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: usuario_mostrar.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Muestra los datos de un usuario y las entidades a las que pertenece
 //---------------------------------------------------------------------------------------------------
+
 global $smarty;
 global $plantilla;
 global $usuario;
 
-//if ($_REQUEST['id_usuario'])
 if (filter_has_var(INPUT_GET, 'id_usuario'))
 {
-//    $id_usuario = sanitize($_REQUEST['id_usuario'], INT);
     $id_usuario = filter_input(INPUT_GET, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
     $persona = new Usuario();
     $persona->load_joined("id = $id_usuario");

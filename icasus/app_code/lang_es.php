@@ -1,5 +1,10 @@
 <?php
 
+//---------------------------------------------------------------------------------------------------
+// Proyecto: Icasus 
+// Archivo: lang_es.php
+// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
+//---------------------------------------------------------------------------------------------------
 /* Este fichero contiene constantes para todos los textos de la aplicación Icasus en español:
  * Clasificación:
  * TXT_[Nombre]--> Textos en general
@@ -288,6 +293,7 @@ define('TXT_SEMESTRAL', 'Semestral');
 define('TXT_2_ULT_ANYO', 'Dos últimos años');
 
 //Tipos de Cálculo
+define('TXT_CALC_AUTO', 'Cálculo Automático');
 define('TXT_INDEF', 'Indefinido');
 define('TXT_PROMED', 'Promedio');
 define('TXT_SUMA', 'Suma');
@@ -389,6 +395,7 @@ define('MSG_PANEL_CREADO', "Se ha añadido al Cuadro de Mando el siguiente Panel
 //Datos
 define('MSG_DATO_BORRADO', 'Se ha borrado el Dato: ');
 define('MSG_DATO_ACTUALIZADO', 'Se ha actualizado el Dato');
+define('MSG_DATO_CONFIRM_BORRAR', '¿Realmente quiere borrar este Dato?');
 define('MSG_DATO_CREADO', 'Se ha creado un nuevo Dato');
 define('MSG_DATO_EXPORT_OK', 'Los Datos se han exportado correctamente: ');
 define('MSG_DATO_NO_VAL_REF', 'Es un Dato y éstos no tienen asociados valores de referencia.');
@@ -419,6 +426,7 @@ define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado Subunidades a este Indic
 define('MSG_INDIC_NO_VAL', 'No hay Valores recogidos para este Indicador.');
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo Indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado Indicadores.');
+define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Indicador?');
 define('MSG_INDIC_BORRADO', 'Se ha borrado el Indicador.');
 define('MSG_INDIC_COPIADOS', 'Indicadores copiados.');
 define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los Datos del Indicador.');
@@ -441,6 +449,7 @@ define('MSG_PAG_EDIT_OK', 'La Página se ha modificado correctamente.');
 
 //Procesos
 define('MSG_PROC_BORRADO', 'Se ha borrado el Proceso.');
+define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Proceso?');
 define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo Proceso para esta Unidad.');
 define('MSG_PROC_NO_INDIC', 'No se ha definido ningún Indicador para este Proceso.');
 define('MSG_PROC_ARCHIVO_NO', 'No se han subido archivos para este Proceso.');
@@ -453,6 +462,7 @@ define('MSG_USERS_CONFIRM_VINC', '¿Desea vincular a la Unidad los Usuarios marc
 define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la Unidad los Usuarios marcados?');
 
 //Valores
+define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado Valores a esta Medición');
 define('MSG_VAL_BORRADO', 'Se ha borrado un Valor.');
 define('MSG_VAL_EXPORT', 'Exportando Valores para:');
 define('MSG_VAL_GRABAR', 'El Valor se ha grabado correctamente.');

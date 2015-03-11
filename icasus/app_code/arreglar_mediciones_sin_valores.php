@@ -4,6 +4,7 @@
 // Proyecto: Icasus 
 // Archivo: 
 // Tipo: controlador
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
 // Este script se utiliza para crear los valores de las mediciones que se hayan quedado sin descendencia
 // por no tener las subunidades asignadas en su momento 

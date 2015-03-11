@@ -1,11 +1,14 @@
 <?php
 
-define('IC_VERSION', "2.10.2");
-define('IC_FECHA_REVISION', "02/03/2015");
+define('IC_VERSION', "2.10.5");
+define('IC_FECHA_REVISION', "11/03/2015");
 
-// 2.10.1 - 02/03/2015 - Colores especifícos para cada valor de referencia en gráficas.
+// 2.10.5 - 11/03/2015 - Revisiones código Javascript y PHP.
+// 2.10.4 - 05/03/2015 - Código Javascript separado de código html.
+// 2.10.3 - 03/03/2015 - Gráficos de tarta en edición de mediciones.
+// 2.10.2 - 02/03/2015 - Colores especifícos para cada valor de referencia en gráficas.
 // 2.10.1 - 26/02/2015 - Gráficos 3D.
-// 2.10.0 - 26/02/2015 - Todos los gráficos con Highcharts.  
+// 2.10.0 - 26/02/2015 - Gráficos cuadros de mando con Highcharts.  
 // 2.9.9 - 10/02/2015 - Corregido problema en las mediciones: ahora se muestram todos los valores de referencia
 // 2.9.8 - 06/02/2015 - Añadido campo observaciones a las mediciones.
 // 2.9.7 - 03/02/2015 - Formato de fecha español en los gráficos.

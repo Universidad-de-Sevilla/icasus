@@ -4,7 +4,8 @@
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: valor_exportar.php
 // Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Prepara datos y genera ficheros cvs para exportar indicadores 
 // y valores a otras aplicaciones
@@ -14,7 +15,6 @@ global $smarty;
 global $basedatos;
 global $plantilla;
 
-//$id_entidad = sanitize($_REQUEST['id_entidad'], 16);
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 $entidad = new Entidad($base_datos);

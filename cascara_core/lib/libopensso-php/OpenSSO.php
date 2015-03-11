@@ -2,18 +2,18 @@
 /**
  * OpenSSO integration library for PHP
  *
- * Copyright (c) 2012, Jorge López Pérez <jorge@adobo.org>
- * 
+ * Copyright (c) 2013-2015, Jorge López Pérez <jorgelp-ext@us.es>
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 require_once(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config.php');
 
 class OpenSSO {
-	const version = '0.4.2';
+	const version = '0.4.5';
 
 	private $cookiename;
 	private $token;
@@ -138,7 +138,7 @@ class OpenSSO {
 			if (!$this->check_error()) {
 				header("Location: " . OPENSSO_LOGIN_URL . '?goto='
 						. urlencode($gotourl));
-			} 
+			}
 
 			return FALSE;
 		} else {
@@ -148,7 +148,7 @@ class OpenSSO {
 
 	/**
 	 * Just checks if the user has an opened session to OpenSSO.
-	 * 
+	 *
 	 * Fetchs user attributes if a valid session is found
 	 */
 
@@ -222,7 +222,7 @@ class OpenSSO {
 					// Store attribute
 					if (!empty($atr)) {
 						$atr = strtolower($atr);
-						$this->attributes[$atr] = count($values) == 1 ? 
+						$this->attributes[$atr] = count($values) == 1 ?
 									$values[0] :
 									$values;
 						$values = array();
@@ -235,7 +235,7 @@ class OpenSSO {
 
 			// Last attribute
 			if (!empty($atr)) {
-				$this->attributes[$atr] = count($values) == 1 ? 
+				$this->attributes[$atr] = count($values) == 1 ?
 							$values[0] :
 							$values;
 				$values = array();
@@ -257,7 +257,7 @@ class OpenSSO {
 		$result = new stdClass();
 		$uri = parse_url($url);
 
-		$socket_dest = $uri['scheme'] == 'http' ? 'tcp' : 'ssl';
+		$socket_dest = $uri['scheme'] == 'http' ? 'tcp' : 'tls';
 		$socket_dest .= '://';
 
 		switch ($uri['scheme']) {
@@ -294,14 +294,6 @@ class OpenSSO {
 			$options = stream_context_get_options($this->context);
 			$site_cert =
 				openssl_x509_parse($options['ssl']['peer_certificate']);
-
-			if (defined('CRT_SERIALNUMBER')) {
-				if ($site_cert['serialNumber'] != CRT_SERIALNUMBER) {
-					$result->error = 'Invalid certificate serial number ('
-							.$site_cert['serialNumber'].')';
-					return $result;
-				}
-			}
 		}
 
 		$path = isset($uri['path']) ? $uri['path'] : '/';
@@ -312,7 +304,7 @@ class OpenSSO {
 		// Create HTTP request.
 		$defaults = array(
 				'Host' => "Host: " . $uri['host'],
-				'User-Agent' => 'User-Agent: libopensso-php ' 
+				'User-Agent' => 'User-Agent: libopensso-php '
 					. self::version,
 		);
 
@@ -367,7 +359,7 @@ class OpenSSO {
 
 	/**
 	 * Returns all attributes
-	 * 
+	 *
 	 * @param boolean	Force use of arrays even on single valued attributes
 	 */
 	public function all_attributes($force_arrays = FALSE) {
@@ -389,7 +381,7 @@ class OpenSSO {
 
 	/**
 	 * Logs out user from OpenSSO
-	 * 
+	 *
 	 * @param boolean	Back logout URL (accepts boolean for backwards
 						compatibility)
 	 * @param string	Back logout URL (only if $logout_page was boolean)

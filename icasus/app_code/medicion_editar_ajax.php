@@ -3,15 +3,17 @@
 //------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: medicion_editar_ajax.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //------------------------------------------------------------------------------
 // Controlador que devuelve todas las peticiones que se hacen desde
 // medicion_editar.tpl en ajax
 //------------------------------------------------------------------------------
+
 global $smarty;
 global $usuario;
 global $plantilla;
 
-//$modulo = sanitize($_REQUEST["modulo"], SQL);
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 $medicion = new Medicion();
 $indicador = new Indicador();
@@ -22,7 +24,6 @@ $indicador_subunidad = new Indicador_subunidad();
 //valores que se definen como filas --------------------------------------------
 if ($modulo == 'anularvalor')
 {
-//    $id_valor = sanitize($_REQUEST["id_valor"], INT);
     $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
     if ($valor->puede_grabarse($valor->id, $usuario->id))
@@ -37,9 +38,7 @@ if ($modulo == 'anularvalor')
 
 if ($modulo == 'grabarfila')
 {
-//    $valor_parcial = sanitize($_REQUEST["valor"], FLOAT);
-    $valor_parcial = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_NUMBER_FLOAT);
-//    $id_valor = sanitize($_REQUEST["id_valor"], INT);
+    $valor_parcial = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
     if ($valor->puede_grabarse($valor->id, $usuario->id))
@@ -55,9 +54,8 @@ if ($modulo == 'grabarfila')
 }
 if ($modulo == 'editarfila')
 {
-//    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-//    $id_valor = sanitize($_REQUEST["id_valor"], INT);
+
     $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $smarty->assign("valor_edit", $id_valor);
     $smarty->assign("usuario", $usuario);
@@ -76,7 +74,6 @@ if ($modulo == 'editarfila')
 }
 if ($modulo == 'cancelarfila')
 {
-//    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $smarty->assign("medicion_edit", $id_medicion);
     $smarty->assign("usuario", $usuario);
@@ -96,11 +93,10 @@ if ($modulo == 'cancelarfila')
 //etiquetas y fechas -----------------------------------------------------------
 if ($modulo == 'grabaretiqueta')
 {
-//    $valor = sanitize($_POST["valor"], SQL);
     $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-//    $contenedor = sanitize($_POST["contenedor"], SQL);
+
     $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-//    $id_medicion = sanitize($_POST["id_medicion"], INT);
+
     $id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $medicion->load("id = $id_medicion");
     if ($contenedor == 'et')
@@ -128,11 +124,10 @@ if ($modulo == 'grabaretiqueta')
 
 if ($modulo == 'grabarobservaciones')
 {
-//    $valor = sanitize($_POST["valor"], SQL);
     $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-//    $contenedor = sanitize($_POST["contenedor"], SQL);
+
     $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-//    $id_medicion = sanitize($_POST["id_medicion"], INT);
+
     $id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $medicion->load("id = $id_medicion");
     if ($contenedor == 'ob')
@@ -160,9 +155,8 @@ if ($modulo == 'grabarobservaciones')
 
 if ($modulo == 'editaretiqueta')
 {
-//    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-//    $contenedor = sanitize($_REQUEST["contenedor"], SQL);
+
     $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $smarty->assign("contenedor", $contenedor);
     $medicion->load("id = $id_medicion");
@@ -180,9 +174,8 @@ if ($modulo == 'editaretiqueta')
 
 if ($modulo == 'editarobservaciones')
 {
-//    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-//    $contenedor = sanitize($_REQUEST["contenedor"], SQL);
+
     $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $smarty->assign("contenedor", $contenedor);
     $medicion->load("id = $id_medicion");
@@ -200,9 +193,8 @@ if ($modulo == 'editarobservaciones')
 
 if ($modulo == 'cancelaretiqueta')
 {
-//    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-//    $contenedor = sanitize($_REQUEST["contenedor"], SQL);
+
     $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $medicion->load("id = $id_medicion");
     $smarty->assign('medicion', $medicion);
@@ -213,9 +205,8 @@ if ($modulo == 'cancelaretiqueta')
 
 if ($modulo == 'cancelarobservaciones')
 {
-//    $id_medicion = sanitize($_REQUEST["id_medicion"], INT);
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-//    $contenedor = sanitize($_REQUEST["contenedor"], SQL);
+
     $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $medicion->load("id = $id_medicion");
     $smarty->assign('medicion', $medicion);
@@ -228,7 +219,6 @@ if ($modulo == 'cancelarobservaciones')
 // TODO: comprobar permisos
 if ($modulo == 'anularvalorreferencia')
 {
-//    $id_referencia = sanitize($_REQUEST["id_referencia"], INT);
     $id_referencia = filter_input(INPUT_POST, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
     $valor_referencia_medicion->load("id = $id_referencia");
     $valor_referencia_medicion->valor = NULL;
@@ -237,9 +227,8 @@ if ($modulo == 'anularvalorreferencia')
 
 if ($modulo == 'grabarvalorreferencia')
 {
-//    $id_referencia = sanitize($_REQUEST["id_referencia"], 2);
     $id_referencia = filter_input(INPUT_POST, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
-//    $valor = sanitize($_REQUEST["valor"], 2);
+
     $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $valor_referencia_medicion->load("id =$id_referencia");
     $valor_referencia_medicion->valor = $valor;
@@ -248,7 +237,6 @@ if ($modulo == 'grabarvalorreferencia')
 
 if ($modulo == 'cancelarvalorreferencia')
 {
-//    $id_referencia = sanitize($_REQUEST["id"], INT);
     $id_referencia = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     $valor_referencia_medicion->load("id = $id_referencia");
     $smarty->assign("valor_referencia_medicion", $valor_referencia_medicion);
@@ -258,7 +246,6 @@ if ($modulo == 'cancelarvalorreferencia')
 
 if ($modulo == 'editarvalorreferencia')
 {
-//    $id_referencia = sanitize($_REQUEST["id_referencia"], INT);
     $id_referencia = filter_input(INPUT_GET, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
     $valor_referencia_medicion->load("id = $id_referencia");
     $smarty->assign("referencia", $valor_referencia_medicion);

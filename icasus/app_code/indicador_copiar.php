@@ -4,7 +4,8 @@
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: indicador_copiar.php
 // Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Copia uno o mas indicadores desde el catalogo de indicadores
 //---------------------------------------------------------------------------------------------------

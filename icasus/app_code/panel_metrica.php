@@ -1,8 +1,16 @@
 <?php
 
-//$modulo = sanitize($_REQUEST["modulo"], SQL);
+//---------------------------------------------------------------------------------------------------
+// Proyecto: Icasus 
+// Archivo: panel_metrica.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//---------------------------------------------------------------------------------------------------
+// Controlador para la creación de paneles de métricas
+//---------------------------------------------------------------------------------------------------
+
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-//$tipo = sanitize($_REQUEST["page"], SQL);
+
 $tipo = filter_input(INPUT_GET, 'page', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 
 $panel_tipo = new Panel_tipo();
@@ -11,7 +19,6 @@ $smarty->assign('panel', $panel_tipo);
 
 if ($modulo == 'inicio')
 {
-//    $id_entidad = sanitize($_REQUEST["id_entidad"], 2);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
     $indicador = new Indicador();
@@ -22,7 +29,6 @@ if ($modulo == 'inicio')
 }
 if ($modulo == 'subunidades_metrica')
 {
-//    $id_indicador = sanitize($_REQUEST["id_indicador"], 2);
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
 
     $indicador_subunidad = new Indicador_subunidad();
@@ -32,7 +38,6 @@ if ($modulo == 'subunidades_metrica')
 }
 if ($modulo == 'mediciones_metrica')
 {
-//    $id_indicador = sanitize($_REQUEST["id_indicador"], 2);
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $medicion = new Medicion();
     $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");

@@ -4,7 +4,8 @@
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: cuadromando_exportar_excel_estilo.php
 // Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Da estilo a la hojas de calculo excel 
 //---------------------------------------------------------------------------------------------------

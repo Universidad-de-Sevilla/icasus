@@ -5,7 +5,8 @@
 // Proyecto: Icasus 
 // Archivo: archivo_subir.php
 // Tipo: controlador sin plantilla
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Sube un archivo a la carpeta indicada en el POST
 //---------------------------------------------------------------------------------------------------

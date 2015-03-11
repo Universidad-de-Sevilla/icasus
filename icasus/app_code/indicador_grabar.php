@@ -3,6 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: indicador_grabar.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Graba los datos de un indicador nuevo o existente
 //---------------------------------------------------------------------------------------------------
@@ -94,14 +96,17 @@ if (
         if (!isset($id_indicador))
         {
 //            $subunidades = isset($_REQUEST["subunidades"]) ? $_REQUEST["subunidades"] : array();
-            $subunidades = filter_has_var(INPUT_POST, 'subunidades') ? filter_input(INPUT_POST, 'subunidades') : array();
+            $post_array = filter_input_array(INPUT_POST);
+//            $subunidades = filter_has_var(INPUT_POST, 'subunidades') ? filter_input(INPUT_POST, 'subunidades') : array();
+            $subunidades = filter_has_var(INPUT_POST, 'subunidades') ? $post_array['subunidades'] : array();
             if (count($subunidades) > 0)
             {
                 foreach ($subunidades as $subunidad)
                 {
                     $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $indicador->id;
-                    $indicador_subunidad->id_entidad = $subunidad;
+//                    $indicador_subunidad->id_entidad = $subunidad;
+                    $indicador_subunidad->id_entidad = filter_var($subunidad, FILTER_SANITIZE_NUMBER_INT);
                     //comprueba si la medición va a ser centralizada o para cada responsable de subunidad
                     //si es para cada responsable de subunidad, se le asigna como responsable de la medición
                     //el reponsable de la unidad. Si no exite este se le asigna como resposable de medición
@@ -137,13 +142,16 @@ if (
             if (filter_has_var(INPUT_POST, 'criterios_efqm'))
             {
                 // Grabamos los criterios EFQM en los que este indicador influye (pueden ser uno o dos)
-                $criterios_efqm = filter_input(INPUT_POST, 'criterios_efqm');
+                $post_array = filter_input_array(INPUT_POST);
+//                $criterios_efqm = filter_input(INPUT_POST, 'criterios_efqm');
+                $criterios_efqm = $post_array['criterios_efqm'];
 //                   foreach ($_REQUEST["criterios_efqm"] as $id_criterio_efqm)
                 foreach ($criterios_efqm as $id_criterio_efqm)
                 {
                     $criterio_efqm_indicador = new Criterio_efqm_indicador();
                     $criterio_efqm_indicador->id_indicador = $indicador->id;
-                    $criterio_efqm_indicador->id_criterio_efqm = $id_criterio_efqm;
+//                    $criterio_efqm_indicador->id_criterio_efqm = $id_criterio_efqm;
+                    $criterio_efqm_indicador->id_criterio_efqm = filter_var($id_criterio_efqm, FILTER_SANITIZE_NUMBER_INT);
                     $criterio_efqm_indicador->save();
                 }
             }
@@ -161,14 +169,17 @@ if (
 //            if (isset($_REQUEST["criterios_efqm"]))
             if (filter_has_var(INPUT_POST, 'criterios_efqm'))
             {
+                $post_array = filter_input_array(INPUT_POST);
                 // Grabamos los criterios EFQM en los que este indicador influye (pueden ser uno o dos)
-                $criterios_efqm = filter_input(INPUT_POST, 'criterios_efqm');
+//                $criterios_efqm = filter_input(INPUT_POST, 'criterios_efqm');
+                $criterios_efqm = $post_array['criterios_efqm'];
 //                     foreach ($_REQUEST["criterios_efqm"] as $id_criterio_efqm)
                 foreach ($criterios_efqm as $id_criterio_efqm)
                 {
                     $criterio_efqm_indicador = new Criterio_efqm_indicador();
                     $criterio_efqm_indicador->id_indicador = $indicador->id;
-                    $criterio_efqm_indicador->id_criterio_efqm = $id_criterio_efqm;
+//                    $criterio_efqm_indicador->id_criterio_efqm = $id_criterio_efqm;
+                    $criterio_efqm_indicador->id_criterio_efqm = filter_var($id_criterio_efqm, FILTER_SANITIZE_NUMBER_INT);
                     $criterio_efqm_indicador->save();
                 }
             }
@@ -181,13 +192,16 @@ if (
 //            if (isset($_REQUEST["subunidades"]))
             if (filter_has_var(INPUT_POST, 'subunidades'))
             {
-                $subunidades = filter_input(INPUT_POST, 'subunidades');
+                $post_array = filter_input_array(INPUT_POST);
+//                $subunidades = filter_input(INPUT_POST, 'subunidades');
+                $subunidades = $post_array['subunidades'];
 //                foreach ($_REQUEST["subunidades"] as $id_subunidad)
                 foreach ($subunidades as $id_subunidad)
                 {
                     $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $id_indicador;
-                    $indicador_subunidad->id_entidad = $id_subunidad;
+//                    $indicador_subunidad->id_entidad = $id_subunidad;
+                    $indicador_subunidad->id_entidad = filter_var($id_subunidad, FILTER_SANITIZE_NUMBER_INT);
                     switch ($indicador->desagregado)
                     {
                         case 0:
