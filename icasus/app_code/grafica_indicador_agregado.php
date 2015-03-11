@@ -2,7 +2,9 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: app_code/grafica_indicador_agregado.php 
+// Archivo: app_code/grafica_indicador_agregado.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Muestra una gráfica con las agregados de los valores de un indicador agregado
 //---------------------------------------------------------------------------------------------------
@@ -11,8 +13,6 @@ global $usuario;
 include("../../cascara_core/lib/pChart2/class/pDraw.class.php");
 include("../../cascara_core/lib/pChart2/class/pImage.class.php");
 include("../../cascara_core/lib/pChart2/class/pData.class.php");
-
-
 
 //if (isset($_REQUEST["id_indicador"]))
 if (filter_has_var(INPUT_GET, 'id_indicador'))

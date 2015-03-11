@@ -4,7 +4,8 @@
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: exportar_datos.php
 // Tipo: procesa datos e interfaz de usuario
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Prepara datos y genera ficheros cvs para exportar indicadores 
 // y valores a otras aplicaciones
@@ -17,14 +18,9 @@ $identificador = filter_input(INPUT_GET, 'identificador');
 $tipo_datos = filter_input(INPUT_GET, 'tipo_datos');
 
 // Comprueba que el usuario ha iniciado sesion y que vienen las variables necesarias
-//if (!isset($_SESSION["usuario"]) OR ! isset($_GET["identificador"]) OR ! isset($_GET["tipo_datos"]))
 if (!isset($_SESSION["usuario"]) OR ! $identificador OR ! $tipo_datos) {
     header("Location: index.php?aviso=" . MSG_NO_SESION);
 }
-
-// Variables que vienen de la pagina anterior
-//$identificador = $_GET["identificador"];
-//$tipo_datos = $_GET["tipo_datos"];
 
 switch ($tipo_datos) {
     case "indicadores":

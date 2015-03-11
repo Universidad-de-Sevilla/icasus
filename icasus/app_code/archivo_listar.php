@@ -5,7 +5,8 @@
 // Proyecto: Icasus 
 // Archivo: archivo_listar.php
 // Tipo: controlador
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Lista el contenido de archivos del directorio indicado y muestra un formulario para 
 // subir nuevos archivos

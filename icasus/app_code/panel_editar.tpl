@@ -44,10 +44,4 @@
     </div>
 </div>
 
-{literal}
-    <script>
-        $(function () {
-            $('#panel_editar').validate();
-        });
-    </script>
-{/literal}
+<script src="js/panel_editar.js" type="text/javascript"></script>

@@ -4,7 +4,6 @@
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: panel_editar.php
 // Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
-// 
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Controlador principal para editar paneles
 //---------------------------------------------------------------------------------------------------

@@ -123,16 +123,5 @@
         </div><!--fin tab subunidades -->
     </div><!--fin id=tab_crear_medicion -->
 </form>
-{literal}
-    <script>
-        $(document).ready(function () {
-            $('.subunidad').on('click', function () {
-                var indicador = $(this).data('indicador');
-                var entidad = $(this).val();
-                $.ajax({
-                    url: "index.php?page=medicion_crear_ajax&ajax=true&id_indicador=" + indicador + "r&id_entidad=" + entidad
-                });
-            });
-        });
-    </script>
-{/literal}
+
+<script src="js/medicion_crear.js" type="text/javascript"></script>

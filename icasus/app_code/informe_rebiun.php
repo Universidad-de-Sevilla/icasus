@@ -3,6 +3,7 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: consulta_avanzada.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
 // Consulta a los datos e indicadores, permitiendo hacer operaciones matemáticas sencillas entre ellos.
 //  - Genera una tabla de resultados y una gráfica

@@ -9,8 +9,9 @@
                         src='/icons/ff16/chart_bar.png' /> {$smarty.const.TXT_DATOS_LIST}</a>&nbsp;&nbsp;-->
                 <a href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/chart_bar_edit.png'  /> {$smarty.const.TXT_EDIT}</a>&nbsp;&nbsp;
-                <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' onClick='return confirmar();'><img 
-                        src='/icons/ff16/chart_bar_delete.png'  /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
+                <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
+                   onClick="return confirm('{$smarty.const.MSG_DATO_CONFIRM_BORRAR}');">
+                    <img src='/icons/ff16/chart_bar_delete.png'  /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
                 <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a>&nbsp;&nbsp;
                 <a href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
@@ -69,8 +70,9 @@
                         src='/icons/ff16/chart_bar.png' /> {$smarty.const.TXT_DATOS_LIST}</a>&nbsp;&nbsp;-->
                 <a href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/chart_bar_edit.png'  /> {$smarty.const.TXT_EDIT}</a>&nbsp;&nbsp;
-                <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' onClick='return confirmar();'><img 
-                        src='/icons/ff16/chart_bar_delete.png'  /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
+                <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
+                   onClick="return confirm('{$smarty.const.MSG_DATO_CONFIRM_BORRAR}');">
+                    <img src='/icons/ff16/chart_bar_delete.png'  /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
                 <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 
                         src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a>&nbsp;&nbsp;
                 <a href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><img 

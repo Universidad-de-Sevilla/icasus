@@ -3,6 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: dato_editar.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Formulario para modificar los datos (los datos son indicadores recortados)
 //---------------------------------------------------------------------------------------------------
@@ -11,12 +13,8 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-// Comprobamos que vengan los datos mínimos necesarios
-//if (isset($_REQUEST['id_dato']) && isset($_REQUEST['id_entidad']))
 if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
-//  $id_dato = sanitize($_REQUEST['id_dato'],16);
-//  $id_entidad = sanitize($_REQUEST['id_entidad'],16);
     $id_dato = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $usuario_entidad = new Usuario_entidad;

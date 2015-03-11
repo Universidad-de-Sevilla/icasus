@@ -3,11 +3,12 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: usuario_borrar.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es) 
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra un usuario
 //---------------------------------------------------------------------------------------------------
-//require_once('function/sanitize.php');
+
 global $smarty;
 global $basedatos;
 global $_usuario;
@@ -15,12 +16,9 @@ global $page;
 global $plantilla;
 $smarty->assign('_javascript', array('confirmar_borrar'));
 
-//if (isset($_REQUEST['id_usuario']) && isset($_REQUEST['id_entidad']))
 if (filter_has_var(INPUT_GET, 'id_usuario') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
-//    $id_entidad = sanitize($_REQUEST['id_entidad'], 16);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-//    $id_usuario = sanitize($_REQUEST['id_usuario'], 16);
     $id_usuario = filter_input(INPUT_GET, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
     $usuario = new Usuario($basedatos);
     $criterio = " WHERE 1 = 1 ";

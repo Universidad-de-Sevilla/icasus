@@ -1,20 +1,3 @@
-{literal}
-    <script>
-        $(document).ready(function () {
-            $('select.identificador').change(function () {
-                var id_usuario = this.value;
-                var id_indsub = $(this).attr('id');
-                if (id_usuario !== 0)
-                {
-                    $.post("index.php?page=medicion_responsable_ajax&modulo=grabar&ajax=true", {id: id_indsub, id_usuario: id_usuario}, function () {
-                        location.reload();
-                    });
-                }
-            });
-        });
-    </script>
-{/literal}
-
 <div class="box grid_16">
     <h3>{$smarty.const.TXT_UNIDS_MEDS_INDIC}</h3>
     <div class="button_bar clearfix">
@@ -51,3 +34,5 @@
         <div class="alert alert_blue">{$smarty.const.MSG_MED_NO_ASIG}</div>
     {/if}
 </div>
+
+<script src="js/medicion_responsable.js" type="text/javascript"></script>

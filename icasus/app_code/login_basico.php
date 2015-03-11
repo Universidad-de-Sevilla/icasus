@@ -1,16 +1,21 @@
 <?php
 
+//---------------------------------------------------------------------------------------------------
+// Proyecto: Icasus 
+// Archivo: login_basico.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//---------------------------------------------------------------------------------------------------
+// Controlador que autentica a los usuarios para entrar al sistema
+//---------------------------------------------------------------------------------------------------
+
 global $smarty;
 global $plantilla;
 $smarty->assign('_nombre_pagina', TXT_BIENVENIDO);
 
 // Comprueba que vengan los datos
-//if (isset($_POST["login"]) && isset($_POST["clave"]))
 if (filter_has_var(INPUT_POST, 'login') && filter_has_var(INPUT_POST, 'clave'))
 {
-//    $login = sanitize($_POST["login"], 2);
-//    $clave = sanitize($_POST["clave"], 2);
-
     $login = filter_input(INPUT_POST, 'login', FILTER_CALLBACK, array('options' => 'Util::mysqlCleaner'));
     $clave = filter_input(INPUT_POST, 'clave', FILTER_CALLBACK, array('options' => 'Util::mysqlCleaner'));
 
@@ -30,7 +35,6 @@ if (filter_has_var(INPUT_POST, 'login') && filter_has_var(INPUT_POST, 'clave'))
         $plantilla = "login_basico.tpl";
     }
 }
-//else if (isset($_GET["logout"]))
 else if (filter_has_var(INPUT_GET, 'logout'))
 {
     // Si no venía del formulario cerramos sesión y enviamos a inicio

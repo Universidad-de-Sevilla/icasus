@@ -3,13 +3,14 @@
 //------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: cuadro_mostrar.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //------------------------------------------------------------------------------
 // Muestra un cuadro de mando con todos sus paneles
 //------------------------------------------------------------------------------
-//if (!empty($_REQUEST["id"]))
+
 if (filter_has_var(INPUT_GET, 'id'))
 {
-//  $id_cuadro = sanitize($_REQUEST["id"], INT);
     $id_cuadro = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
     $smarty->assign("id_cuadro", $id_cuadro);
     $cuadro = new Cuadro();

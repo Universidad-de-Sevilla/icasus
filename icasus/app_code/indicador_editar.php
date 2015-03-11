@@ -3,6 +3,8 @@
 //--------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: indicador_editar.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
 // Descripcion: Formulario para modificar los datos de un indicador
 //--------------------------------------------------------------------------
@@ -12,12 +14,8 @@ global $usuario;
 global $plantilla;
 
 // Comprobamos que vengan los datos mínimos necesarios
-//if (isset($_REQUEST['id_indicador']) && isset($_REQUEST['id_entidad']))
-
 if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
-//    $id_indicador = sanitize($_REQUEST['id_indicador'], 16);
-//    $id_entidad = sanitize($_REQUEST['id_entidad'], 16);
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 

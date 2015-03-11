@@ -2,9 +2,9 @@
     <input type="hidden" name="id_entidad" value="{$entidad->id}" />
     <div style="opacity: 1;" class="box tabs" id="tab_editar_indicador">
         <ul class="tab_header">
-            <li ><a  href="#indicador" >{$smarty.const.FIELD_INDIC}</a></li>
-            <li ><a  href="#otros" >{$smarty.const.TXT_DATOS_OTROS}</a></li>
-            <li ><a  href="#subunidades" >{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
+            <li ><a  href="#indicador" id="tab_indicador">{$smarty.const.FIELD_INDIC}</a></li>
+            <li ><a  href="#otros" id="tab_otros">{$smarty.const.TXT_DATOS_OTROS}</a></li>
+            <li ><a  href="#subunidades" id="tab_subunidades">{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
         </ul>
         <div style="opacity: 1;" id="indicador" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
@@ -64,7 +64,7 @@
             </fieldset>
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
-                <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
+                <button class="green send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
             </div>
         </div><!-- fin tab 1 -->
         <div style="opacity: 1;" id="otros" class="block ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
@@ -171,7 +171,7 @@
             </div>
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
-                <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
+                <button class="green send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
             </div>
         </div><!-- fin tab otros datos -->
         <div style="opacity: 1;" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
@@ -221,76 +221,10 @@
             </fieldset>
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
-                <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
+                <button class="green send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
             </div>
         </div><!-- fin tab subunidades afectadas -->
     </div>
 </form>
 
-{literal}
-    <script>
-        $(document).ready(function () {
-            //$('#tab_editar_indicador').tabs({disabled: [1, 2]});
-            //mostrar tipo de medición
-            $('.medicion').on('click', function () {
-                var valor = $(this).attr('value');
-                if (valor === 1 || valor === 2)
-                {
-                    $('#total').css('display', 'block');
-                    $('#div_unidad').css('display', 'block');
-                    $('#div_subunidades').css('display', 'block');
-                    $(".subunidad").attr("checked", "checked");
-                }
-                else if (valor === 0)
-                {
-                    $('#total').css('display', 'none');
-                    $('#div_unidad').css('display', 'block');
-                    $('#div_subunidades').css('display', 'none');
-                    $(".subunidad").removeAttr("checked");
-                    $(".unidad").attr("checked", "checked");
-                }
-            });
-            //validar formulario
-            var validator = $('#formindicador').validate({
-                rules: {
-                    codigo: {required: true},
-                    id_proceso: {required: true},
-                    nombre: {required: true},
-                    formulacion: {required: true},
-                    id_responsable: {required: true},
-                    id_responsable_medicion: {required: true},
-                    tipo_seleccion_responsable: {required: true}
-                },
-                ignore: ':hidden',
-                messages: {
-                    codigo: 'Debe insertar un código',
-                    id_proceso: 'Debe seleccionar un proceso',
-                    nombre: 'Debe dar un nombre',
-                    formulacion: 'Debe indidr su formulación',
-                    id_responsable: 'Seleccionar un responsable',
-                    id_responsable_medicion: 'Seleccionar el responsable de medición',
-                    tipo_seleccion_responsable: 'Seleccionar el tipo de medición'
-                }
-            });
-            //Boton previo
-            $('button.btnPrev').on('click', function () {
-                var actualTab = $('#tab_editar_indicador').tabs('option', 'selected');
-                $('#tab_editar_indicador').tabs('enable', actualTab - 1).tabs('select', actualTab - 1).tabs('disable', actualTab);
-            });
-            //Boton next
-            $('button.btnNext').on('click', function () {
-                var actualTab = $('#tab_editar_indicador').tabs('option', 'selected');
-                var estavalidado = $('#formindicador').valid();
-                if (estavalidado === true)
-                {
-                    $('#tab_editar_indicador').tabs('enable', actualTab + 1).tabs('select', actualTab + 1).tabs('disable', actualTab);
-                }
-                else
-                {
-                    validator.focusInvalid();
-                }
-                return false;
-            });
-        });
-    </script>
-{/literal}
+<script src="js/indicador_editar.js" type="text/javascript"></script>

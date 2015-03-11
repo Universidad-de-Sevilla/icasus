@@ -3,7 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: cuadro_unidad.php
-// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Lista los indicadores de la unidad
 //---------------------------------------------------------------------------------------------------
@@ -12,13 +13,9 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-//$id_unidad = sanitize($_GET["id_entidad"],2);
-//$id_proceso = sanitize($_GET["id_proceso"],2);
-
 $id_unidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
 
-//$modulo = sanitize($_GET["modulo"], SQL);
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 
 //Módulo de propio

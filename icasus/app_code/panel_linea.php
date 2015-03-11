@@ -1,8 +1,16 @@
 <?php
 
-//$modulo = sanitize($_REQUEST["modulo"], SQL);
+//---------------------------------------------------------------------------------------------------
+// Proyecto: Icasus 
+// Archivo: panel_linea.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//---------------------------------------------------------------------------------------------------
+// Controlador para la creación de paneles de lineas
+//---------------------------------------------------------------------------------------------------
+
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-//$tipo = sanitize($_REQUEST["page"], SQL);
+
 $tipo = filter_input(INPUT_GET, 'page', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 
 $panel_tipo = new Panel_tipo();
@@ -11,7 +19,6 @@ $smarty->assign('panel', $panel_tipo);
 
 if ($modulo == 'inicio')
 {
-//    $id_entidad = sanitize($_REQUEST["id_entidad"], 2);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
     $indicador = new Indicador();
@@ -22,15 +29,13 @@ if ($modulo == 'inicio')
 }
 if ($modulo == 'fecha_fin')
 {
-//    $fecha_inicio = sanitize($_REQUEST["fecha_inicio"], 2);
     $fecha_inicio = filter_input(INPUT_GET, 'fecha_inicio', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $smarty->assign('fecha_inicio', $fecha_inicio);
 }
 if ($modulo == 'subunidades')
 {
-//    $id_indicador = sanitize($_REQUEST["id_indicador"], 2);
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
-//    $nombre_indicador = sanitize($_REQUEST["nombre_indicador"], SQL);
+
     $nombre_indicador = filter_input(INPUT_GET, 'nombre_indicador', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 
     $indicador_subunidad = new Indicador_subunidad();

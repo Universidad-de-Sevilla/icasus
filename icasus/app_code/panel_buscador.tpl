@@ -133,42 +133,4 @@
     <div class="required_tag tooltip hover left"></div>
 {/if}
 
-{literal}
-    <script>
-        $('.indicador_seleccionado_tarta').on('click', function () {
-            var id_indicador = $(this).data('id_indicador');
-            $('#mediciones_tarta').html('');
-            $.ajax({
-                url: "index.php?page=" + page + "&ajax=true&modulo=mediciones_tarta&id_indicador="
-                        + id_indicador,
-                success: function (datos) {
-                    $("#mediciones_tarta").html(datos);
-                }
-            });
-        });
-        $('.indicador_seleccionado_metrica').on('click', function () {
-            var id_indicador = $(this).data('id_indicador');
-            $('#subunidades_metrica').html('');
-            $('#mediciones_metrica').html('');
-            $.ajax({
-                url: "index.php?page=" + page + "&ajax=true&modulo=subunidades_metrica&id_indicador="
-                        + id_indicador,
-                success: function (datos) {
-                    $("#subunidades_metrica").html(datos);
-                }
-            });
-        });
-        $('.indicador_seleccionado').on('click', function () {
-            var id_indicador = $(this).data('id_indicador');
-            $('#subunidades').html('');
-            $.ajax({
-                url: "index.php?page=" + page + "&ajax=true&modulo=subunidades&id_indicador="
-                        + id_indicador,
-                success: function (datos) {
-                    $("#subunidades").html(datos);
-                }
-            });
-        });
-    </script>
-{/literal}
-
+<script src="js/panel_buscador.js" type="text/javascript"></script>

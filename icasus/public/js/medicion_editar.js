@@ -1,5 +1,9 @@
-// -------------------------------------------------------
-// Proyecto Icasus
+//--------------------------------------------------------------------------
+// Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+// Archivo: public/js/medicion_editar.js
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//--------------------------------------------------------------------------
 // Funciones de la plantilla medicion_editar.tpl
 // -------------------------------------------------------
 
