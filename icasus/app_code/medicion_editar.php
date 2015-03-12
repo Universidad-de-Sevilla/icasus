@@ -45,42 +45,38 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
 
     //comprobar permisos para cambiar mediciones tanto para responsables del indicador como
     //de la medición o responsables de la unidad
-    $responsable_unidad = false;
+    $permiso_editar = false;
     foreach ($usuario->entidades AS $usuario_entidad)
     {
         if (($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2) AND $usuario_entidad->id_entidad == $indicador->id_entidad)
         {
-            $responsable_unidad = true;
+            $permiso_editar = true;
         }
     }
-    if ($responsable_unidad == true
-            OR $indicador->id_responsable == $usuario->id
+    if ($indicador->id_responsable == $usuario->id
             OR $indicador->id_responsable_medicion == $usuario->id)
     {
         $permiso_editar = true;
     }
-    else
-    {
-        $permiso_editar = false;
-    }
     $smarty->assign('permiso_editar', $permiso_editar);
 
-    /*
-      // Lo mismo pero preguntando a la base de datos
-      $usuario_entidad = new usuario_entidad();
-      if ($usuario_entidad->load("id_usuario=$usuario->id AND id_entidad=$entidad->id AND (id_rol = 1 OR id_rol =2)"))
-      {
-      $permiso_editar = true;
-      }
-      else if ($indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id)
-      {
-      $permiso_editar = true;
-      }
-      else
-      {
-      $permiso_editar = false;
-      }
-     */
+// Lo mismo pero preguntando a la base de datos
+//
+//    $permiso_editar = false;
+//    $usuario_entidad = new Usuario_entidad();
+//    if ($usuario_entidad->load("id_usuario=$usuario->id AND id_entidad=$indicador->id_entidad AND (id_rol = 1 OR id_rol =2)"))
+//    {
+//        $permiso_editar = true;
+//    }
+//    else if ($indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id)
+//    {
+//        $permiso_editar = true;
+//    }
+////    else
+////    {
+////        $permiso_editar = false;
+////    }
+//    $smarty->assign('permiso_editar', $permiso_editar);
 
     $valor = new Valor();
     $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
@@ -88,18 +84,21 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
 
     //Prepara el panel de tarta si hay valores
     $pinta_panel = false;
-    foreach ($valores as $val)
+    if ($valores)
     {
-        if ($val->valor != null)
+        foreach ($valores as $val)
         {
-            $pinta_panel = true;
+            if ($val->valor != null)
+            {
+                $pinta_panel = true;
+            }
         }
-    }
-    if ($pinta_panel)
-    {
-        $panel = new Panel();
-        $panel->nombre = TXT_VALS_SUBUNID;
-        $smarty->assign("panel", $panel);
+        if ($pinta_panel)
+        {
+            $panel = new Panel();
+            $panel->nombre = TXT_VALS_SUBUNID;
+            $smarty->assign("panel", $panel);
+        }
     }
     $smarty->assign("pinta_panel", $pinta_panel);
 

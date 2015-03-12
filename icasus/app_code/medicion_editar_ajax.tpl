@@ -13,7 +13,7 @@
                 <tr>
                     <td>{$valor->entidad->nombre}</td>
                     <td>
-                        {if $valor->autorizado == 1 OR $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
+                        {if $permiso_editar}
                             {if $valor->id == $valor_edit}
                                 {if $indicador->calculo}{$indicador->calculo}<br />{/if}
                                 <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}"  style="margin: 5px 0; height: 20px; line-height: 20px; float: none;">

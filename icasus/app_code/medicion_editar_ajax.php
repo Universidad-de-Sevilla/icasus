@@ -41,7 +41,9 @@ if ($modulo == 'grabarfila')
     $valor_parcial = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
-    if ($valor->puede_grabarse($valor->id, $usuario->id))
+    //Comentado da problemas con los responsables de Unidad (revisar función)
+    //de todos modos ya se comprueba en la plantilla
+//    if ($valor->puede_grabarse($valor->id, $usuario->id))
     {
         //la función calcular calcula y graba el valor final y el parcial en el objeto $valor
         $valor->calcular($id_valor, $valor_parcial);
@@ -216,7 +218,6 @@ if ($modulo == 'cancelarobservaciones')
 }
 
 // valores de referencia ---------------------------------------------------------
-// TODO: comprobar permisos
 if ($modulo == 'anularvalorreferencia')
 {
     $id_referencia = filter_input(INPUT_POST, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
@@ -252,3 +253,19 @@ if ($modulo == 'editarvalorreferencia')
     $smarty->assign("modulo", "editarvalorreferencia");
     $plantilla = 'medicion_editar_ajax.tpl';
 }
+
+//Comprobar permisos
+$permiso_editar = false;
+foreach ($usuario->entidades AS $usuario_entidad)
+{
+    if (($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2) AND $usuario_entidad->id_entidad == $indicador->id_entidad)
+    {
+        $permiso_editar = true;
+    }
+}
+if ($indicador->id_responsable == $usuario->id
+        OR $indicador->id_responsable_medicion == $usuario->id)
+{
+    $permiso_editar = true;
+}
+$smarty->assign('permiso_editar', $permiso_editar);

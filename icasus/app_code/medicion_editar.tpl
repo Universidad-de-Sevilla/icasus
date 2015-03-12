@@ -137,29 +137,29 @@
             </div>
         </div>
         <div class="box grid_8">
-                <!-- GRÁFICA -->
-                <div style="margin:10px;">
-                    {if $pinta_panel}
-                        <div class="block">
-                            <div class="titulo-panel">
-                                <strong>{$panel->nombre}</strong>
-                            </div>
-                            <div class="section">
-                                <div id="container" 
-                                     data-id_indicador="{$indicador->id}" 
-                                     data-nombre_indicador="{$indicador->nombre}" 
-                                     data-id_medicion="{$medicion->id}">
-                                </div>
+            <!-- GRÁFICA -->
+            <div style="margin:10px;">
+                {if $pinta_panel}
+                    <div class="block">
+                        <div class="titulo-panel">
+                            <strong>{$panel->nombre}</strong>
+                        </div>
+                        <div class="section">
+                            <div id="container" 
+                                 data-id_indicador="{$indicador->id}" 
+                                 data-nombre_indicador="{$indicador->nombre}" 
+                                 data-id_medicion="{$medicion->id}">
                             </div>
                         </div>
-                    {else}
-                        <div class="alert alert_blue">
-                            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-                            {$smarty.const.MSG_VAL_NO_ASIG}
-                        </div>
-                    {/if}
-                </div>
-                <!-- //GRÁFICA -->
+                    </div>
+                {else}
+                    <div class="alert alert_blue">
+                        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                        {$smarty.const.MSG_VAL_NO_ASIG}
+                    </div>
+                {/if}
+            </div>
+            <!-- //GRÁFICA -->
         </div><!-- //box grid_8 -->
     </div>
 </div>
@@ -184,7 +184,7 @@
                         <tr>
                             <td>{$valor->entidad->etiqueta}</td>
                             <td>
-                                {if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
+                                {if $permiso_editar}
                                     <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
                                 {else}
                                 {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
