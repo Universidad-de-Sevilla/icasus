@@ -13,7 +13,7 @@ global $plantilla;
 
 define('ENTIDAD_MADRE', 14);
 //define('MEDICIONES', '(1649,1648,1508,1515,1541,1646,1647,1686)');
-define('MEDICIONES', '(2289,2256,2253,2252,2249,2248,2198,2197)');
+define('MEDICIONES', '(2289,2255,2256,2253,2252,2249,2248,2198,2197)');
 $entidades_autorizadas = array();
 
 $entidad = new Entidad();
