@@ -40,7 +40,7 @@
                     </td>
                     <td>{$valor.fecha}</td>
                     <td>{if $valor.valor == NULL}
-                        <a href="index.php?page=medicion_editar&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}">{$smarty.const.TXT_NULO}</a>{/if}</td>
+                        <a href="index.php?page=medicion_editar&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$smarty.const.TXT_NULO}</a>{/if}</td>
                 </tr>
             {/foreach}
         </tbody>	

@@ -45,7 +45,7 @@ if ($modulo == 'inicio')
 
     //Indicadores/Datos sin Mediciones 
     $indicador = new Indicador();
-    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad);
+    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad,$fecha);
     $proceso = new Proceso();
     $smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 
@@ -85,13 +85,14 @@ if ($modulo == 'filtrOnlyear')
 
     //Indicadores/Datos sin Mediciones 
     $indicador = new Indicador();
-    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad);
+    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad,$fecha);
     $proceso = new Proceso();
     $smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 }
 
 $smarty->assign("modulo", $modulo);
 $smarty->assign("entidad", $entidad);
+$smarty->assign("fecha", $fecha);
 $smarty->assign("_nombre_pagina", "Control:  $entidad->nombre");
 $plantilla = "control.tpl";
 

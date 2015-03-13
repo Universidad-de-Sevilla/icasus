@@ -8,7 +8,7 @@
                         <div>
                             {html_select_date id="Year" prefix="" class="required" year_empty=$smarty.const.TXT_SEL
 					display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10
-					end_year=$smarty.now|date_format:"%Y"}
+					end_year=$smarty.now|date_format:"%Y" time=''}
                             <div class="required_tag"></div>
                         </div>
                     </fieldset> 
