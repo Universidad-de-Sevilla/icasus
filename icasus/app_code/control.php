@@ -78,28 +78,6 @@ if ($modulo == 'filtrOnlyear')
 }
 
 //------------------------------------------------------------------------------
-//Desactiva un valor quitándolo de la lista de control
-//------------------------------------------------------------------------------
-
-if ($modulo == 'desactivar_valor')
-{
-    $post_array = filter_input_array(INPUT_POST);
-//    $id_valores = $post_array['id_valor'];
-//    if ($id_valores)
-//    {
-//        $contador = 0;
-//        foreach ($id_valores as $id_valor)
-//        {
-//            $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
-//            
-//            $valor->load("id = $id_valor");
-//            $valor->activo = 0;
-//            $valor->Save();
-//        }
-//    }
-}
-
-//------------------------------------------------------------------------------
 //Cálculo de indicadores y datos sin mediciones
 //------------------------------------------------------------------------------
 
