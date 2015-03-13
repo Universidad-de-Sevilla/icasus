@@ -131,7 +131,7 @@ define('TXT_INDIC_PROP', 'Indicadores propios de la Unidad');
 define('TXT_INDIC_MED', 'Mediciones del Indicador');
 define('TXT_INDIC_PARAM', 'Parámetros del Indicador');
 define('TXT_INDIC_NUEVO', 'Nuevo Indicador');
-define('TXT_INDIC_IR', 'Ir al Indicador');
+define('TXT_INDIC_IR', 'Ir al Indicador/Dato');
 define('TXT_INDIC_VOLVER', 'Volver al Indicador');
 define('TXT_INDIC_MOSTRAR', 'Mostrar Ficha del Indicador');
 define('TXT_INDIC_FICHA', 'Ficha del Indicador');

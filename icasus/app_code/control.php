@@ -37,10 +37,17 @@ $fecha = date("Y");
 //------------------------------------------------------------------------------
 if ($modulo == 'inicio')
 {
+    //Indicadores/Datos con Valores nulos
     $valor = new Valor();
     $valores = $valor->filtro_onlyear($fecha, $cadena);
     $smarty->assign("valores", $valores);
     $smarty->assign("id_entidad", $id_entidad);
+
+    //Indicadores/Datos sin Mediciones 
+    $indicador = new Indicador();
+    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad);
+    $proceso = new Proceso();
+    $smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 
     //Comprobamos si existen valores a desactivar
     if (filter_has_var(INPUT_POST, 'id_valor'))
@@ -70,21 +77,18 @@ if ($modulo == 'inicio')
 //------------------------------------------------------------------------------
 if ($modulo == 'filtrOnlyear')
 {
-//	$fecha = sanitize($_REQUEST["fecha"],INT);
+   //Indicadores/Datos con Valores nulos
     $fecha = filter_input(INPUT_GET, 'fecha', FILTER_SANITIZE_NUMBER_INT);
     $valor = new Valor();
     $valores = $valor->filtro_onlyear($fecha, $cadena);
     $smarty->assign("valores", $valores);
+
+    //Indicadores/Datos sin Mediciones 
+    $indicador = new Indicador();
+    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad);
+    $proceso = new Proceso();
+    $smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 }
-
-//------------------------------------------------------------------------------
-//Cálculo de indicadores y datos sin mediciones
-//------------------------------------------------------------------------------
-
-$indicador = new Indicador();
-$indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad);
-$proceso = new Proceso();
-$smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 
 $smarty->assign("modulo", $modulo);
 $smarty->assign("entidad", $entidad);

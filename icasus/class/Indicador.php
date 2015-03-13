@@ -238,7 +238,9 @@ class Indicador extends ADOdb_Active_Record
 
     public function find_sin_mediciones($id_entidad)
     {
-        $sql = "SELECT i.id as id_indicador,i.id_entidad, i.nombre as indicador, p.nombre as proceso FROM indicadores i "
+        $sql = "SELECT i.id as id_indicador,i.id_entidad, i.nombre as indicador, "
+                . "p.nombre as proceso, p.codigo as cod_proceso, p.id as id_proceso "
+                . "FROM indicadores i "
                 . "LEFT JOIN procesos p ON i.id_proceso = p.id "
                 . "WHERE i.id NOT IN (SELECT id_indicador FROM mediciones) "
                 . "AND i.id_entidad = {$id_entidad}";
