@@ -13,12 +13,15 @@
                         </div>
                     </fieldset> 
                 </form>
-                <div class="grid_16">
-                    <a href="#tabla_agrupados">{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a><br>
-                    <a href="#tabla_nulos">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</a><br>
-                    <a href="#tabla_modificados">{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a><br>
-                    <a href="#tabla_sin_med">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</a>
-                </div>
+                <fieldset class="label_side">
+                    <label>{$smarty.const.TXT_CONTROL}</label>
+                    <div>
+                        <a href="#tabla_agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}">{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a><br>
+                        <a href="#tabla_nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</a><br>
+                        <a href="#tabla_modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}">{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a><br>
+                        <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</a>
+                    </div>
+                </fieldset>
             </div>
         </div>
     </div>
