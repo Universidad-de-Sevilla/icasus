@@ -2,7 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
-// Archivo: cuadromando_crear.php
+// Archivo: indicador_publico.php
 // Tipo: controlador
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------

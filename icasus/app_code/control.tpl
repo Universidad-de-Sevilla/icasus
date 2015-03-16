@@ -13,12 +13,18 @@
                         </div>
                     </fieldset> 
                 </form>
+                <div class="grid_16">
+                    <a href="#tabla_agrupados">{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a><br>
+                    <a href="#tabla_nulos">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</a><br>
+                    <a href="#tabla_modificados">{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a><br>
+                    <a href="#tabla_sin_med">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</a>
+                </div>
             </div>
         </div>
     </div>
     <div class="box grid_16 single_datatable">
         <div id="dt1" class="no_margin">
-                {include file="control_valores.tpl"}
+            {include file="control_valores.tpl"}
         </div><!-- #dt1 .no_margin -->
     </div><!-- .box grid16 single_datatable -->	
     {literal}
@@ -26,7 +32,9 @@
             var id_entidad = {/literal}{$id_entidad}{literal};
             $('#Year').on('change', function () {
                 var fecha = $('#Year').val();
-                if (fecha===''){fecha=new Date().getFullYear();}
+                if (fecha === '') {
+                    fecha = new Date().getFullYear();
+                }
                 $.ajax({
                     url: "index.php?page=control&ajax=true&modulo=filtrOnlyear&id_entidad=" + id_entidad + "&fecha=" + fecha,
                     success: function (datos) {

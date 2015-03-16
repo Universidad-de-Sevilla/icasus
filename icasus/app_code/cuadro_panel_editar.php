@@ -2,7 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: cuadromando_listar.php
+// Archivo: cuadro_panel_editar.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Lista los cuadros de mando definidos por este usuario

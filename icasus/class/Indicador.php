@@ -236,7 +236,7 @@ class Indicador extends ADOdb_Active_Record
         return $db->getall($sql);
     }
 
-    public function find_sin_mediciones($id_entidad,$fecha)
+    public function find_sin_mediciones($id_entidad, $fecha)
     {
         $sql = "SELECT i.id as id_indicador,i.id_entidad, i.nombre as indicador, "
                 . "p.nombre as proceso, p.codigo as cod_proceso, p.id as id_proceso "
