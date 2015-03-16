@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.10.5");
-define('IC_FECHA_REVISION', "11/03/2015");
+define('IC_VERSION', "2.10.6");
+define('IC_FECHA_REVISION', "16/03/2015");
 
+// 2.10.6 - 16/03/2015 - Corrige error al grabar los datos de indicadores y datos (tipo agregación)
 // 2.10.5 - 11/03/2015 - Revisiones código Javascript y PHP.
 // 2.10.4 - 05/03/2015 - Código Javascript separado de código html.
 // 2.10.3 - 03/03/2015 - Gráficos de tarta en edición de mediciones.
