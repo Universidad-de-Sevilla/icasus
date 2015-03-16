@@ -298,8 +298,11 @@ class Valor extends ADOdb_Active_Record
     public function filtro_onlyear($fecha, $cadena)
     {
         $db = $this->DB();
-        $sql = "SELECT  v.id as id_valor, m.id as id_medicion,p.nombre as proceso,p.codigo as cod_proceso,e.etiqueta as unidad, i.nombre as indicador, i.id_entidad as entidad_del_indicador,i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, v.valor
-			FROM `valores` v
+        $sql = "SELECT  v.id as id_valor, m.id as id_medicion,p.nombre as proceso,
+            p.codigo as cod_proceso,p.id as id_proceso,e.etiqueta as unidad, 
+            i.nombre as indicador, i.id_entidad as entidad_del_indicador,
+            i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, 
+            v.valor FROM `valores` v
 			LEFT JOIN mediciones m ON v.id_medicion = m.id
 			LEFT JOIN entidades e ON v.id_entidad = e.id
 			LEFT JOIN indicadores i ON m.id_indicador = i.id
@@ -308,7 +311,52 @@ class Valor extends ADOdb_Active_Record
 			$cadena 
 			AND v.activo = 1 
 			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
-			ORDER BY e.etiqueta, i.nombre";
+			ORDER BY  i.nombre,e.etiqueta";
+        return $db->getall($sql);
+    }
+
+    //función para mostrar los datos en control agrupados
+    public function filtro_onlyear_agrupados($fecha, $cadena)
+    {
+        $db = $this->DB();
+        $sql = "SELECT  COUNT(v.id) as subunidades, v.id as id_valor, m.id as id_medicion,p.nombre as proceso,
+            p.codigo as cod_proceso,p.id as id_proceso, i.nombre as indicador, 
+            i.id_entidad as entidad_del_indicador,i.id as id_indicador,
+            e.id as id_entidad,m.etiqueta as fecha,u.id as id_usuario,
+            u.nombre as nombre_responsable,u.apellidos as apellidos_responsable, 
+            v.valor FROM `valores` v
+			LEFT JOIN mediciones m ON v.id_medicion = m.id
+			LEFT JOIN entidades e ON v.id_entidad = e.id
+			LEFT JOIN indicadores i ON m.id_indicador = i.id
+                        LEFT JOIN usuarios u ON i.id_responsable_medicion = u.id
+			LEFT JOIN procesos p ON p.id = i.id_proceso
+			WHERE v.valor IS NULL
+			$cadena 
+			AND v.activo = 1 
+			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
+			GROUP BY  i.id,m.id ORDER BY i.nombre,m.etiqueta";
+        return $db->getall($sql);
+    }
+
+    //función para mostrar los datos en control modificados
+    public function filtro_onlyear_modificados($fecha, $cadena)
+    {
+        $db = $this->DB();
+        $sql = "SELECT  v.id as id_valor,v.fecha_recogida, m.id as id_medicion,p.nombre as proceso,
+            p.codigo as cod_proceso,p.id as id_proceso,e.etiqueta as unidad, 
+            i.nombre as indicador, i.id_entidad as entidad_del_indicador,
+            i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, 
+            v.valor FROM `valores` v
+			LEFT JOIN mediciones m ON v.id_medicion = m.id
+			LEFT JOIN entidades e ON v.id_entidad = e.id
+			LEFT JOIN indicadores i ON m.id_indicador = i.id
+			LEFT JOIN procesos p ON p.id = i.id_proceso
+			WHERE v.valor IS NOT NULL
+			$cadena 
+			AND v.activo = 1 
+			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
+                        AND DATE_FORMAT( v.fecha_recogida, '%Y' ) = $fecha
+			ORDER BY  v.fecha_recogida, i.nombre";
         return $db->getall($sql);
     }
 

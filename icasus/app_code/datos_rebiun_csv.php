@@ -1,7 +1,9 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: consulta_avanzada.php
+// Archivo: datos_rebiun_csv.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Consulta a los datos e indicadores, permitiendo hacer operaciones matemáticas sencillas entre ellos.
 //  - Genera una tabla de resultados y una gráfica
