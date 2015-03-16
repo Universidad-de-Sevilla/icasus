@@ -2,7 +2,10 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: clase/fichero.php
+// Archivo: class/Fichero.php
+// Tipo: definicion de clase
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Gestiona los ficheros asociados a un objeto (unidad, proceso, indicador)
 //---------------------------------------------------------------------------------------------------

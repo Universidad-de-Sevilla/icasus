@@ -2,7 +2,10 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: class/panel_indicador.php
+// Archivo: class/Panel_indicador.php
+// Tipo: definicion de clase
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Gestiona los paneles de un cuadro de mando
 //---------------------------------------------------------------------------------------------------

@@ -2,10 +2,14 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Archivo: class/usuario.php
+// Archivo: class/Usuario.php
+// Tipo: definicion de clase
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: gestiona los usuarios 
 //---------------------------------------------------------------------------------------------------
+
 class Usuario extends ADOdb_Active_Record
 {
 

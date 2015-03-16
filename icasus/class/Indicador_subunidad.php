@@ -2,7 +2,10 @@
 
 //----------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Fichero: class/indicador_subunidad.php
+// Fichero: class/Indicador_subunidad.php
+// Tipo: definicion de clase
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //----------------------------------------------------------------------------------
 // Relaciona los indicadores con las subunidades y los responsables 
 // de grabar valores

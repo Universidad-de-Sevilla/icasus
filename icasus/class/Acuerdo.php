@@ -1,9 +1,10 @@
 <?php
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus (http://forja.rediris.es/projects/icasus/)
-// Archivo: clase/acta.php
+// Proyecto: Icasus
+// Archivo: class/Acuerdo.php
 // Tipo: definicion de clase
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Gestiona los cuadros de mandos o colecciones de indicadores 
 //---------------------------------------------------------------------------------------------------

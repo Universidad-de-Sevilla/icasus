@@ -1,9 +1,10 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
-// Archivo: class/rtf.php
-// Tipo: clase
-// Desarrolladores: Juanan Ruiz (juanan@us.es)
+// Archivo: class/Rtf.php
+// Tipo: definicion de clase
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Crea ficheros rtf utilizando la libreria phprtflite
 //---------------------------------------------------------------------------------------------------

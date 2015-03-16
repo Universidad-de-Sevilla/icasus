@@ -2,7 +2,10 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: class/valor_referencia.php
+// Archivo: class/Valor_referencia.php
+// Tipo: definicion de clase
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Gestiona los valores de referencia de los indicadores 
 //---------------------------------------------------------------------------------------------------

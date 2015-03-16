@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.10.6");
+define('IC_VERSION', "2.11.0");
 define('IC_FECHA_REVISION', "16/03/2015");
 
+// 2.11.0 - 16/03/2015 - Control mejorado.
 // 2.10.6 - 16/03/2015 - Corrige error al grabar los datos de indicadores y datos (tipo agregación)
 // 2.10.5 - 11/03/2015 - Revisiones código Javascript y PHP.
 // 2.10.4 - 05/03/2015 - Código Javascript separado de código html.

@@ -1,16 +1,14 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of Util
- * Clase que contiene métodos estáticos de utilidad para la aplicación
- * @author joaquin
- */
+//----------------------------------------------------------------------------------
+// Proyecto: Icasus
+// Fichero: class/Util.php
+// Tipo: definicion de clase
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//----------------------------------------------------------------------------------
+// Clase que contiene métodos estáticos de utilidad para la aplicación
+//----------------------------------------------------------------------------------
 
 class Util
 {
