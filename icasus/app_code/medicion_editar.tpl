@@ -1,11 +1,6 @@
-<div class="box grid_16">
-    <div class="button_bar clearfix">
-        <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
-        <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
-            {if $permiso_editar}
-            <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_BORRAR}</a>&nbsp;&nbsp;
-            {/if}
-        <span class="pull-right">
+{if count($mediciones)> 1}
+    <div class="box grid_16">   
+        <div class="button_bar clearfix">
             {if $indice > 0} 
                 <a href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[0]->id}&tipo={$tipo}'>
                     <img src='/icons/ff16/arrow_left.png' />&nbsp;<img src='/icons/ff16/arrow_left.png' /> {$smarty.const.TXT_PRIMER}
@@ -22,16 +17,27 @@
                     <img src='/icons/ff16/arrow_right.png' />&nbsp;<img src='/icons/ff16/arrow_right.png' /> {$smarty.const.TXT_ULTIMO}
                 </a>
             {/if} 
-
-        </span>
+        </div>
     </div>
-</div>
+{/if}
 
 <div class="box grid_16">
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_DATOS}</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
     <div class="toggle_container">
+        <div class="button_bar clearfix">
+            <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+                    src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}
+            </a>&nbsp;&nbsp;
+            {if $permiso_editar}
+                <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_BORRAR}
+                </a>&nbsp;&nbsp;
+            {/if}
+            <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
+            <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
+        </div>
         <div class="box grid_8">
             <div class="block" style="margin:10px;">
                 {if $permiso_editar == true}
@@ -168,38 +174,62 @@
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_VALORES}</h2>
     <a href="#" class="grabber"></a>
     <a href="#" class="toggle"></a>
-    {if $valores}
-        <div id="valors">
-            <table class="static">
-                <thead>
-                    <tr>
-                        <th>{$smarty.const.FIELD_UNID}</th>
-                        <th>{$smarty.const.FIELD_VAL}</th>
-                        <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
-                        <th>{$smarty.const.FIELD_USER_GRABA}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {foreach $valores as $valor}
+    <div class="toggle_container">
+        <div class="button_bar clearfix">
+            <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+                    src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}
+            </a>&nbsp;&nbsp;
+            {if $permiso_editar}
+                <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_BORRAR}
+                </a>&nbsp;&nbsp;
+            {/if}
+            <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
+            <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
+        </div> 
+        {if $valores}
+            <div id="valors">
+                <table class="static">
+                    <thead>
                         <tr>
-                            <td>{$valor->entidad->etiqueta}</td>
-                            <td>
-                                {if $permiso_editar}
-                                    <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
-                                {else}
-                                {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
-                            {/if}
-                        </td>
-                        <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
-                        <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
-                    </tr>
-                {/foreach}
-            </tbody>
-        </table>
+                            <th>{$smarty.const.FIELD_UNID}</th>
+                            <th>{$smarty.const.FIELD_VAL}</th>
+                            <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
+                            <th>{$smarty.const.FIELD_USER_GRABA}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach $valores as $valor}
+                            <tr>
+                                <td>{$valor->entidad->etiqueta}</td>
+                                <td>
+                                    {if $permiso_editar}
+                                        <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
+                                            {if $valor->valor == NULL}
+                                                ---
+                                            {else}
+                                                {$valor->valor|round:"2"}
+                                            {/if}
+                                        </a>
+                                    {else}
+                                        {if $valor->valor == NULL}
+                                            ---
+                                        {else}
+                                            {$valor->valor|round:"2"}
+                                        {/if}
+                                    {/if}
+                                </td>
+                                <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
+                                <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        {else}
+            <div class="alert alert_red">{$smarty.const.ERR_MED_NO_VAL}</div>
+        {/if}
     </div>
-{else}
-    <div class="alert alert_red">{$smarty.const.ERR_MED_NO_VAL}</div>
-{/if}
 </div>
 
 <script src="js/highcharts.js" type="text/javascript"></script>

@@ -354,6 +354,7 @@ define('TXT_VAL_TABLA', 'Tabla de Valores');
 define('TXT_VAL_REF_EDIT', 'Editar Valor de Referencia');
 define('TXT_VAL_REF_CREAR', 'Crear nuevos Valores de Referencia');
 define('TXT_VAL_REF_NUEVO', 'Nueva Referencia');
+define('TXT_VAL_REF_BORRAR', 'Borrar Valores de Referencia');
 define('TXT_VALS_DESACT', 'Desactivar Valores');
 
 //Visibilidad, permisos
