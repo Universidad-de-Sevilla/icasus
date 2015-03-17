@@ -2,6 +2,15 @@
     <div style="opacity: 1;" class="box grid_16 no_titlebar">
         <div class="toggle_container">
             <div style="opacity: 1;" class="block">
+                <fieldset class="label_side">
+                    <label>{$smarty.const.TXT_CONTROL}</label>
+                    <div>
+                        <a href="#tabla_agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}">{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a><br>
+                        <a href="#tabla_nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</a><br>
+                        <a href="#tabla_modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}">{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a><br>
+                        <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</a>
+                    </div>
+                </fieldset>
                 <form>
                     <fieldset class="label_side">
                         <label>{$smarty.const.FIELD_FECHA}</label>
@@ -12,16 +21,7 @@
                             <div class="required_tag"></div>
                         </div>
                     </fieldset> 
-                </form>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.TXT_CONTROL}</label>
-                    <div>
-                        <a href="#tabla_agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}">{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a><br>
-                        <a href="#tabla_nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</a><br>
-                        <a href="#tabla_modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}">{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a><br>
-                        <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</a>
-                    </div>
-                </fieldset>
+                </form>    
             </div>
         </div>
     </div>
