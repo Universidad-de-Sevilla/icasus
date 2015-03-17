@@ -471,6 +471,7 @@ define('MSG_VAL_EXPORT', 'Exportando Valores para:');
 define('MSG_VAL_GRABAR', 'El Valor se ha grabado correctamente.');
 define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los Valores marcados?');
 define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los Valores de Referencia marcados?');
+define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 
 //----------------------------------------------------------------------------------

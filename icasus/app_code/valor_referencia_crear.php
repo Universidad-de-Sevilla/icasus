@@ -47,6 +47,29 @@ if ($indicador->id_responsable == $usuario->id
 }
 $smarty->assign('permiso', $permiso);
 
+$valor_ref = new Valor_referencia();
+//Comprobamos si existen valores para borrar
+if (filter_has_var(INPUT_POST, 'id_val_ref'))
+{
+    $post_array = filter_input_array(INPUT_POST);
+    $id_valores_ref = $post_array['id_val_ref'];
+    if ($id_valores_ref)
+    {
+        $contador = 0;
+        foreach ($id_valores_ref as $id_valor_ref)
+        {
+            //Borra el valor de referencia
+            $id_val_ref = filter_var($id_valor_ref, FILTER_SANITIZE_NUMBER_INT);
+            $valor_ref->load("id = $id_val_ref");
+            $valor_ref->delete();
+            $contador ++;
+        }
+        $aviso = MSG_VALS_REF_BORRADO . ' ' . $contador . ' ' . TXT_VAL_REF;
+        $smarty->assign("aviso", $aviso);
+        header("index.php?page=valor_referencia_crear&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+    }
+}
+
 $smarty->assign('_javascript', array('valor_referencia_crear'));
 $smarty->assign('indicador', $indicador);
 $smarty->assign('_nombre_pagina', $indicador->nombre);

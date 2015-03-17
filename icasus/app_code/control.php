@@ -41,7 +41,7 @@ if ($modulo == 'inicio')
     //Indicadores/Datos con Valores nulos agrupados
     $valores_agrupados = $valor->filtro_onlyear_agrupados($fecha, $cadena);
     $smarty->assign("valores_agrupados", $valores_agrupados);
-    
+
     //Indicadores/Datos con Valores nulos
     $valores = $valor->filtro_onlyear($fecha, $cadena);
     $smarty->assign("valores", $valores);
@@ -66,7 +66,7 @@ if ($modulo == 'inicio')
             foreach ($id_valores as $id_valor)
             {
                 //Desactiva el valor
-                $id_val = filter_var($id_valor);
+                $id_val = filter_var($id_valor, FILTER_SANITIZE_NUMBER_INT);
                 $valor->load("id = $id_val");
                 $valor->activo = 0;
                 $valor->Save();

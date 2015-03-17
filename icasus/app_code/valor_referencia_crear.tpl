@@ -63,51 +63,78 @@
 </div>
 
 <div class="box grid_16">
-    <div class="button_bar clearfix">
-        <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" ><img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF_CREAR}</a>&nbsp;&nbsp;
-            {if $permiso}
-            <a href='javascript:void(0)' onClick="return confirm('{$smarty.const.MSG_VALS_REF_CONFIRM_BORRAR}');" >
-                <img src='/icons/ff16/tag_blue_delete.png' /> {$smarty.const.TXT_VAL_REF_BORRAR}</a>&nbsp;&nbsp;
-            {/if}
-        <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
-        <a href="index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}"><img src ="/icons/ff16/chart_curve.png"> {$smarty.const.TXT_VOLVER} {$tipo}</a>       
-    </div>
-    <div id="dt1" class="no_margin">
-        <table class='display datatable'>
-            <thead>
-                <tr>
-                    <th>{$smarty.const.FIELD_ETIQUETA}</th>
-                    <th>{$smarty.const.FIELD_VAL_REF}</th>
-                    <th>{$smarty.const.FIELD_VISIB_GRAFIC}</th>
-                    <th>{$smarty.const.FIELD_ACTIVO}</th>
-                </tr>
-            </thead>
-            <tbody>
-                {foreach from=$indicador->valores_referencia item=item}
-                    <tr class="gradeX">
-                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
-                        <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
-                        <td>
-                            <a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-grafica-{$item->id}" value="{$item->grafica}">
-                                {if $item->grafica}
-                                    {$smarty.const.TXT_SI}
-                                {else}
-                                    {$smarty.const.TXT_NO}
-                                {/if}
-                            </a>
-                        </td>
-                        <td>
-                            <a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-activo-{$item->id}" value="{$item->activo}">
-                                {if $item->activo}
-                                    {$smarty.const.TXT_SI}
-                                {else}
-                                    {$smarty.const.TXT_NO}
-                                {/if}
-                            </a>
-                        </td>
+    <form action='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}' method='post' onsubmit="return confirm('{$smarty.const.MSG_VALS_REF_CONFIRM_BORRAR}');">
+        <div class="button_bar clearfix">
+            <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" ><img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF_CREAR}</a>&nbsp;&nbsp;
+                {if $permiso}
+                <a href="javascript:void(0)" onClick="$(this).closest('form').submit();" >
+                    <img src='/icons/ff16/tag_blue_delete.png' /> {$smarty.const.TXT_VAL_REF_BORRAR}</a>&nbsp;&nbsp;
+                {/if}
+            <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
+            <a href="index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}"><img src ="/icons/ff16/chart_curve.png"> {$smarty.const.TXT_VOLVER} {$tipo}</a>       
+        </div>
+        <div id="dt1" class="no_margin">
+            <table class='display datatable'>
+                <thead>
+                    <tr>
+                        {if $permiso}
+                            <th></th>
+                        {/if}
+                        <th>{$smarty.const.FIELD_ETIQUETA}</th>
+                        <th>{$smarty.const.FIELD_VAL_REF}</th>
+                        <th>{$smarty.const.FIELD_VISIB_GRAFIC}</th>
+                        <th>{$smarty.const.FIELD_ACTIVO}</th>
                     </tr>
-                {/foreach}
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    {foreach from=$indicador->valores_referencia item=item}
+                        <tr class="gradeX">
+                            {if $permiso}
+                                <td style="text-align: center">
+                                    <input type="checkbox" name='id_val_ref[]' value="{$item->id}"/>
+                                </td>
+                                <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
+                                <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
+                                <td>
+                                    <a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-grafica-{$item->id}" value="{$item->grafica}">
+                                        {if $item->grafica}
+                                            {$smarty.const.TXT_SI}
+                                        {else}
+                                            {$smarty.const.TXT_NO}
+                                        {/if}
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-activo-{$item->id}" value="{$item->activo}">
+                                        {if $item->activo}
+                                            {$smarty.const.TXT_SI}
+                                        {else}
+                                            {$smarty.const.TXT_NO}
+                                        {/if}
+                                    </a>
+                                </td>
+                            {else}
+                                <td>{$item->etiqueta|htmlentities}</td>
+                                <td>{$item->nombre|htmlentities}</td>
+                                <td>
+                                    {if $item->grafica}
+                                        {$smarty.const.TXT_SI}
+                                    {else}
+                                        {$smarty.const.TXT_NO}
+                                    {/if}
+                                </td>
+                                <td>
+                                    {if $item->activo}
+                                        {$smarty.const.TXT_SI}
+                                    {else}
+                                        {$smarty.const.TXT_NO}
+                                    {/if}
+                                </td>
+                            {/if}
+                        </tr>
+                    {/foreach}
+                </tbody>
+            </table>
+        </div>
+    </form>
 </div>
