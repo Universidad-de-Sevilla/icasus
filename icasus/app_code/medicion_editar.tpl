@@ -91,11 +91,22 @@
                     </fieldset>
                     {if isset($valores_referencia_medicion)}
                         {foreach $valores_referencia_medicion as $valor_referencia_medicion}
-                            <fieldset class="label_side">
-                                <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-                                <div><span id="referencia_{$valor_referencia_medicion->id}">
-                                        <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}');">{if $valor_referencia_medicion->valor == NULL}---{else}{$valor_referencia_medicion->valor|round:"2"}{/if}</a></span></div>
-                            </fieldset>
+                            {if $valor_referencia_medicion->valor_referencia->activo}
+                                <fieldset class="label_side">
+                                    <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+                                    <div>
+                                        <span id="referencia_{$valor_referencia_medicion->id}">
+                                            <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}');">
+                                                {if $valor_referencia_medicion->valor == NULL}
+                                                    ---
+                                                {else}
+                                                    {$valor_referencia_medicion->valor|round:"2"}
+                                                {/if}
+                                            </a>
+                                        </span>
+                                    </div>
+                                </fieldset>
+                            {/if}
                         {/foreach}
                     {else}
                         <fieldset class="label_side">
@@ -129,10 +140,12 @@
                     </fieldset>
                     {if isset($valores_referencia_medicion)}
                         {foreach $valores_referencia_medicion as $valor_referencia_medicion}
-                            <fieldset class="label_side">
-                                <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-                                <div>{$valor_referencia_medicion->valor|round:"2"}</div>
-                            </fieldset>
+                            {if $valor_referencia_medicion->valor_referencia->activo}
+                                <fieldset class="label_side">
+                                    <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+                                    <div>{$valor_referencia_medicion->valor|round:"2"}</div>
+                                </fieldset>
+                            {/if}
                         {/foreach}
                     {else}
                         <fieldset class="label_side">

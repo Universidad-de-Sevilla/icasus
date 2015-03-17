@@ -48,6 +48,7 @@ if ($indicador->id_responsable == $usuario->id
 $smarty->assign('permiso', $permiso);
 
 $valor_ref = new Valor_referencia();
+$valor_referencia_medicion = new Valor_referencia_medicion();
 //Comprobamos si existen valores para borrar
 if (filter_has_var(INPUT_POST, 'id_val_ref'))
 {
