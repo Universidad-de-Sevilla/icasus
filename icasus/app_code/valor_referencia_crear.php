@@ -31,6 +31,22 @@ else // falta id_indicador o id_entidad
 $indicador = new Indicador();
 $indicador->load_joined("id=$id_indicador");
 
+//Permiso para borrar referencias
+$permiso = false;
+foreach ($usuario->entidades AS $usuario_entidad)
+{
+    if (($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2) AND $usuario_entidad->id_entidad == $indicador->id_entidad)
+    {
+        $permiso = true;
+    }
+}
+if ($indicador->id_responsable == $usuario->id
+        OR $indicador->id_responsable_medicion == $usuario->id)
+{
+    $permiso = true;
+}
+$smarty->assign('permiso', $permiso);
+
 $smarty->assign('_javascript', array('valor_referencia_crear'));
 $smarty->assign('indicador', $indicador);
 $smarty->assign('_nombre_pagina', $indicador->nombre);

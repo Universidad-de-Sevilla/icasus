@@ -17,7 +17,7 @@
                 <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a>&nbsp;&nbsp;
                 <a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-                        src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
+                        src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
                 <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> 
             </div>
@@ -78,7 +78,7 @@
                 <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a>&nbsp;&nbsp;
                 <a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-                        src='/icons/ff16/tag_blue.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
+                        src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
                 <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a> 
             </div>

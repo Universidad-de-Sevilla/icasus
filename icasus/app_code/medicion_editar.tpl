@@ -32,7 +32,7 @@
             </a>&nbsp;&nbsp;
             {if $permiso_editar}
                 <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'>
-                    <img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_BORRAR}
+                    <img src='/icons/ff16/time_delete.png' /> {$smarty.const.TXT_MED_BORRAR}
                 </a>&nbsp;&nbsp;
             {/if}
             <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
@@ -181,7 +181,7 @@
             </a>&nbsp;&nbsp;
             {if $permiso_editar}
                 <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'>
-                    <img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_BORRAR}
+                    <img src='/icons/ff16/time_delete.png' /> {$smarty.const.TXT_MED_BORRAR}
                 </a>&nbsp;&nbsp;
             {/if}
             <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
