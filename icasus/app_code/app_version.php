@@ -1,17 +1,19 @@
 <?php
 
-define('IC_VERSION', "2.11.0");
-define('IC_FECHA_REVISION', "16/03/2015");
+define('IC_VERSION', "2.12.0");
+define('IC_FECHA_REVISION', "18/03/2015");
 
+// 2.12.0 - 18/03/2015 - Borrado de Valores de Referencia.
 // 2.11.0 - 16/03/2015 - Control mejorado.
-// 2.10.6 - 16/03/2015 - Corrige error al grabar los datos de indicadores y datos (tipo agregación)
+// 2.10.7 - 16/03/2015 - Corrige error al grabar los datos de indicadores y datos (tipo agregación)
+// 2.10.6 - 12/03/2015 - Permisos revisados en la edición de valores de una medición.
 // 2.10.5 - 11/03/2015 - Revisiones código Javascript y PHP.
 // 2.10.4 - 05/03/2015 - Código Javascript separado de código html.
 // 2.10.3 - 03/03/2015 - Gráficos de tarta en edición de mediciones.
 // 2.10.2 - 02/03/2015 - Colores especifícos para cada valor de referencia en gráficas.
 // 2.10.1 - 26/02/2015 - Gráficos 3D.
 // 2.10.0 - 26/02/2015 - Gráficos cuadros de mando con Highcharts.  
-// 2.9.9 - 10/02/2015 - Corregido problema en las mediciones: ahora se muestram todos los valores de referencia
+// 2.9.9 - 10/02/2015 - Corregido problema en las mediciones: ahora se muestran todos los valores de referencia
 // 2.9.8 - 06/02/2015 - Añadido campo observaciones a las mediciones.
 // 2.9.7 - 03/02/2015 - Formato de fecha español en los gráficos.
 // 2.9.6 - 29/01/2015 - Varios añadidos: borrado de cuadros de mando, paneles, avence de mediciones mejorado, actualización de Highcharts...
