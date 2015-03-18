@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.12.0");
+define('IC_VERSION', "2.12.1");
 define('IC_FECHA_REVISION', "18/03/2015");
 
+// 2.12.1 - 18/03/2015 - Corregido problema al grabar valores nulos y actualización automática del gráfico de tarta en las mediciones.
 // 2.12.0 - 18/03/2015 - Borrado de Valores de Referencia.
 // 2.11.0 - 16/03/2015 - Control mejorado.
 // 2.10.7 - 16/03/2015 - Corrige error al grabar los datos de indicadores y datos (tipo agregación)

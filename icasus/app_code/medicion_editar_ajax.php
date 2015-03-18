@@ -26,12 +26,14 @@ if ($modulo == 'anularvalor')
 {
     $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
-    if ($valor->puede_grabarse($valor->id, $usuario->id))
+//    if ($valor->puede_grabarse($valor->id, $usuario->id))
     {
         $valor->valor = NULL;
         $valor->valor_parcial = NULL;
-        $valor->id_usuario = $usuario->id;
-        $valor->fecha_recogida = date("Y-m-d");
+//        $valor->id_usuario = $usuario->id;
+//        $valor->fecha_recogida = date("Y-m-d");
+        $valor->id_usuario = NULL;
+        $valor->fecha_recogida = NULL;
         $valor->save();
     }
 }

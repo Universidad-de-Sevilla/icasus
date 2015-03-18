@@ -142,6 +142,8 @@ function fila_grabar(id_valor, medicion)
                 data: {"id_valor": id_valor, "valor": value},
                 success: function (response) {
                     $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                    $('#grafica').load(location.reload());
+
                 }
             });
             /*
@@ -154,6 +156,7 @@ function fila_grabar(id_valor, medicion)
         {
             $.post("index.php?page=medicion_editar_ajax&modulo=anularvalor&ajax=true", {id_valor: id_valor}, function () {
                 $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                $('#grafica').load(location.reload());
             });
         }
         else
