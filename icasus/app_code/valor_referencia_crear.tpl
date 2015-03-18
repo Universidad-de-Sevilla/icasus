@@ -65,11 +65,14 @@
 <div class="box grid_16">
     <form action='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}' method='post' onsubmit="return confirm('{$smarty.const.MSG_VALS_REF_CONFIRM_BORRAR}');">
         <div class="button_bar clearfix">
-            <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" ><img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF_CREAR}</a>&nbsp;&nbsp;
-                {if $permiso}
+            {if $permiso}
+                <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" >
+                    <img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF_CREAR}
+                </a>&nbsp;&nbsp;
                 <a href="javascript:void(0)" onClick="$(this).closest('form').submit();" >
-                    <img src='/icons/ff16/tag_blue_delete.png' /> {$smarty.const.TXT_VAL_REF_BORRAR}</a>&nbsp;&nbsp;
-                {/if}
+                    <img src='/icons/ff16/tag_blue_delete.png' /> {$smarty.const.TXT_VAL_REF_BORRAR}
+                </a>&nbsp;&nbsp;
+            {/if}
             <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
             <a href="index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}"><img src ="/icons/ff16/chart_curve.png"> {$smarty.const.TXT_VOLVER} {$tipo}</a>       
         </div>
@@ -79,7 +82,7 @@
                     <tr>
                         {if $permiso}
                             <th></th>
-                        {/if}
+                            {/if}
                         <th>{$smarty.const.FIELD_ETIQUETA}</th>
                         <th>{$smarty.const.FIELD_VAL_REF}</th>
                         <th>{$smarty.const.FIELD_VISIB_GRAFIC}</th>
