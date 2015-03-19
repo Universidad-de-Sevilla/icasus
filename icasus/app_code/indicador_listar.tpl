@@ -1,12 +1,15 @@
 <h3>	 
-    <a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'><img 
-            src='/icons/ff16/chart_curve_add.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_INDIC_CREAR}</a>&nbsp;&nbsp;
-   <!-- <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
-            src='/icons/ff16/chart_bar.png' /> {$smarty.const.TXT_DATOS_LIST}</a>
-    <a href='index.php?page=entidad_indicadores_excel&id_entidad={$entidad->id}'><img 
-    src='/icons/ff16/page_excel.png' alt='icono' />Exportar indicadores</a>&nbsp; &nbsp;
-    <a href='index.php?page=indicador_publico'><img 
-    src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públicos</a>
+    {if $_control}
+        <a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'>
+            <img src='/icons/ff16/chart_curve_add.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_INDIC_CREAR}
+        </a>&nbsp;&nbsp;
+    {/if}
+<!-- <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
+    src='/icons/ff16/chart_bar.png' /> {$smarty.const.TXT_DATOS_LIST}</a>
+<a href='index.php?page=entidad_indicadores_excel&id_entidad={$entidad->id}'><img 
+src='/icons/ff16/page_excel.png' alt='icono' />Exportar indicadores</a>&nbsp; &nbsp;
+<a href='index.php?page=indicador_publico'><img 
+src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públicos</a>
     -->
 </h3>
 {if $indicadores}

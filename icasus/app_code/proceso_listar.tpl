@@ -1,5 +1,9 @@
 <h3>
-    <a href="index.php?page=proceso_crear&id_entidad={$entidad->id}"><img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}</a> 
+    {if $_control}
+        <a href="index.php?page=proceso_crear&id_entidad={$entidad->id}">
+            <img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}
+        </a> 
+    {/if}
 </h3>
 <div class="box grid_16">
     <div class="block">	

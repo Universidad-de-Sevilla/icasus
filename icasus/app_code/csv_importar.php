@@ -14,10 +14,8 @@ global $usuario;
 
 $usuario_entidad = new Usuario_entidad();
 
-//if (isset($_REQUEST['id_entidad']))
 if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
-//  $id_entidad = sanitize($_REQUEST['id_entidad'], INT);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     if ($usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad))
     {

@@ -1,7 +1,10 @@
-<h3>	 
-    <a href='index.php?page=dato_crear&id_entidad={$entidad->id}'><img 
-            src='/icons/ff16/chart_bar_add.png' /> {$smarty.const.TXT_DATO_CREAR}</a>&nbsp;&nbsp;
-        {if $entidad->id == 14}
+<h3>	
+    {if $_control}
+        <a href='index.php?page=dato_crear&id_entidad={$entidad->id}'>
+            <img src='/icons/ff16/chart_bar_add.png' /> {$smarty.const.TXT_DATO_CREAR}
+        </a>&nbsp;&nbsp;
+    {/if}
+    {if $entidad->id == 14}
         <a href='index.php?page=datos_rebiun'>
             <img src='/icons/ff16/basket.png' /> {$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}
         </a>

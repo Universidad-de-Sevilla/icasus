@@ -1,23 +1,3 @@
-<!--<div class="box grid_16">
-    <div class="block">	
-        <div class="button_bar clearfix" style="padding:5px;">
-           <a href='index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/><span> {$smarty.const.TXT_PROC_LIST}</span></a>&nbsp;&nbsp;
-            <a href='index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/cog_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_CREAR}</span></a>&nbsp;&nbsp;
-            <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span></a>&nbsp;&nbsp;
-            <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-               onClick='return confirmar();'>
-                <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span></a>&nbsp;&nbsp;
-           <a href='index.php?page=indicador_crear&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/chart_curve_add.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_INDIC_CREAR}</span></a>&nbsp;&nbsp;
-            <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span> </a>
-        </div>
-    </div>
-</div>-->
-
 <div class="box grid_16">
     <div class="toggle_container">
         <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_PROC_PARAM}</h2>
@@ -25,13 +5,18 @@
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
-                <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span></a>&nbsp;&nbsp;
-                <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-                   onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
-                    <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span></a>&nbsp;&nbsp;
+                {if $_control}
+                    <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                        <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
+                    </a>&nbsp;&nbsp;
+                    <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
+                       onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
+                        <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span>
+                    </a>&nbsp;&nbsp;
+                {/if}
                 <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span> </a>
+                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span>
+                </a>
             </div>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_PROC_MADRE}</label>
@@ -161,13 +146,18 @@
     <a href="#" class="toggle"></a>
     <div class="block">	
         <div class="button_bar clearfix">
-            <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span></a>&nbsp;&nbsp;
-            <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-               onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
-                <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span></a>&nbsp;&nbsp;
+            {if $_control}
+                <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                    <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
+                </a>&nbsp;&nbsp;
+                <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
+                   onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
+                    <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span>
+                </a>&nbsp;&nbsp;
+            {/if}
             <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span> </a>
+                <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span>
+            </a>
         </div>
         {if $indicadores}
             <div id="dt1" class="no_margin">
@@ -212,13 +202,18 @@
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
-                <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span></a>&nbsp;&nbsp;
-                <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-                   onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
-                    <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span></a>&nbsp;&nbsp;
+                {if $_control}
+                    <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                        <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
+                    </a>&nbsp;&nbsp;
+                    <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
+                       onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
+                        <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span>
+                    </a>&nbsp;&nbsp;
+                {/if}
                 <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span> </a>
+                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span>
+                </a>
             </div>
             <p align="center"><img src="index.php?page=archivo_descargar&id={$flujograma->id}" alt="{$smarty.const.TXT_PROC_FLUJO}" /></p>
         </div>
@@ -232,13 +227,18 @@
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
-                <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span></a>&nbsp;&nbsp;
-                <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-                   onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
-                    <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span></a>&nbsp;&nbsp;
+                {if $_control}
+                    <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                        <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
+                    </a>&nbsp;&nbsp;
+                    <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
+                       onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
+                        <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span>
+                    </a>&nbsp;&nbsp;
+                {/if}
                 <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span> </a>
+                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span>
+                </a>
             </div>
             <div id="dt1" class="no_margin">
                 <table class="display datatable"> 
@@ -250,12 +250,16 @@
                     </thead>
                     <tbody>
                         {foreach from=$archivos item=archivo} 
-                            <tr>
-                                <td><a href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo|htmlentities}</a> 
-                                    {if $archivo->descripcion != NULL}<a href='#' title='{$archivo->descripcion}'><big>*</big></a>{/if}
-                                </td>
-                                <td>{$archivo->usuario->nombre|htmlentities} {$archivo->usuario->apellidos|htmlentities}</td>
-                            </tr>
+                            {if $archivo->visible}
+                                <tr>
+                                    <td><a href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo|htmlentities}</a> 
+                                        {if $archivo->descripcion != NULL}
+                                            <a href='javascript:void(0)' title='{$archivo->descripcion}'><big>*</big></a>
+                                        {/if}
+                                    </td>
+                                    <td>{$archivo->usuario->nombre|htmlentities} {$archivo->usuario->apellidos|htmlentities}</td>
+                                </tr>
+                            {/if}
                         {/foreach}
                     </tbody>
                 </table>
@@ -271,13 +275,18 @@
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
-                <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span></a>&nbsp;&nbsp;
-                <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-                   onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
-                    <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span></a>&nbsp;&nbsp;
+                {if $_control}
+                    <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                        <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
+                    </a>&nbsp;&nbsp;
+                    <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
+                       onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
+                        <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span>
+                    </a>&nbsp;&nbsp;
+                {/if}
                 <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span> </a>
+                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span>
+                </a>
             </div>
             <div id="dt1" class="no_margin">
                 <table class="display datatable"> 

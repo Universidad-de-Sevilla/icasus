@@ -1,6 +1,13 @@
 <div class="box grid_16 clear_fix">
-    <a href="javascript:void(0)" class="dialog_button" data-dialog="dialog_crear"><img src="/icons/ff16/box_bullet_add.png" /> {$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}</a>&nbsp;&nbsp;
-    <a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><img src="/icons/ff16/cog.png" /> {$smarty.const.TXT_PROC_VOLVER}</a>
+    <div class="button_bar clearfix">
+        {if $_control}
+            <a href="javascript:void(0)" class="dialog_button" data-dialog="dialog_crear">
+                <img src="/icons/ff16/box_bullet_add.png" /> {$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}
+            </a>&nbsp;&nbsp;
+        {/if}
+        <a href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><img src="/icons/ff16/cog.png" /> {$smarty.const.TXT_PROC_VOLVER}
+        </a>
+    </div>
 </div>		
 
 <div class="display_none">
@@ -60,14 +67,17 @@
                 </fieldset>
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_VISIB}</label>
-                    <div><input type="radio" name='evisible' value="1" class="required"/> {$smarty.const.TXT_SI} <input type="radio" name='evisible' value="0" class="required"/>  {$smarty.const.TXT_NO}</div>
+                    <div>
+                        <input type="radio" name='evisible' value="1" class="required"/> {$smarty.const.TXT_SI} 
+                        <input type="radio" name='evisible' value="0" class="required"/>  {$smarty.const.TXT_NO}
+                    </div>
                 </fieldset>
                 <div class="button_bar clearfix">
                     <button class="green send_right" type="button" value="{$smarty.const.TXT_GRABAR}" name="egrabar" id="egrabar">
                         <div class="ui-icon ui-icon-check"></div>
                         <span>{$smarty.const.TXT_ARCHIVO_ACTUALIZAR}</span>
                     </button>
-                    <button class="light send_left close_dialog" type="button" value="{$smarty.const.TXT_CANCEL}" name="ecancelar" id="ecancelar">
+                    <button class="red send_left close_dialog" type="button" value="{$smarty.const.TXT_CANCEL}" name="ecancelar" id="ecancelar">
                         <div class="ui-icon ui-icon-closethick"></div>
                         <span> {$smarty.const.TXT_CANCEL}</span>
                     </button>
@@ -85,14 +95,14 @@
                 <p>{$smarty.const.MSG_ARCHIVO_BORRAR_CONFIRM} <b><span id="titulo_borrar"></span></b>.</p>
             </div>
             <div class="button_bar clearfix">
-                <input type="hidden" value="" name="id_borrar" id="id_borrar">
-                <button class="delete_confirm dark green no_margin_bottom close_dialog" name="borrar" id="borrar">
-                    <div class="ui-icon ui-icon-check"></div>
-                    <span>{$smarty.const.TXT_BORRAR}</span>
-                </button>
-                <button class="dark send_right close_dialog">
+                <input type="hidden" value="" name="id_borrar" id="id_borrar">    
+                <button class="dark red send_left close_dialog">
                     <div class="ui-icon ui-icon-closethick"></div>
                     <span>{$smarty.const.TXT_CANCEL}</span>
+                </button>
+                <button class="delete_confirm dark green send_right no_margin_bottom close_dialog" name="borrar" id="borrar">
+                    <div class="ui-icon ui-icon-check"></div>
+                    <span>{$smarty.const.TXT_BORRAR}</span>
                 </button>
             </div>
         </div>
@@ -104,20 +114,56 @@
         {if isset($archivos)}
             <table class='display datatable'>
                 <thead>
-                    <tr><th></th><th>{$smarty.const.FIELD_TITULO}</th><th>{$smarty.const.FIELD_VISIB}</th><th>{$smarty.const.FIELD_USER}</th></tr>
+                    <tr>
+                        {if $_control}
+                            <th></th>
+                            {/if}
+                        <th>{$smarty.const.FIELD_TITULO}</th>
+                        <th>{$smarty.const.FIELD_VISIB}</th>
+                        <th>{$smarty.const.FIELD_USER}</th>
+                    </tr>
                 </thead>
                 <tbody>
                     {foreach from=$archivos item=archivo}
                         <tr>
+                            {if $_control}
+                                <td>
+                                    <a href="javascript:void(0)" class="borrar_archivo dialog_button" id="l-borrar-{$archivo->id}" data-dialog="dialog_delete">
+                                        <img title="{$smarty.const.TXT_ARCHIVO_BORRAR}" src="/icons/ff16/bin.png">
+                                    </a>
+                                </td>
+                            {/if}
                             <td>
-                                <a href="javascript:void(0)" class="borrar_archivo dialog_button" id="l-borrar-{$archivo->id}" data-dialog="dialog_delete"><img src="/icons/ff16/bin.png"></a>
+                                {if $_control}
+                                    <a href="javascript:void(0)" class="editar_archivo dialog_button" id="l-titulo-{$archivo->id}"  value="{$archivo->titulo|htmlentities}" data-dialog="dialog_editar" >
+                                        {$archivo->titulo|htmlentities}
+                                    </a>
+                                {else}
+                                    {$archivo->titulo|htmlentities}
+                                {/if}
+                                {if $archivo->descripcion != NULL}
+                                    <a href='javascript:void(0)' id="l-descripcion-{$archivo->id}" title='{$archivo->descripcion|htmlentities}'>
+                                        <big>*</big>
+                                    </a>
+                                {/if}
                             </td>
                             <td>
-                                <a href="javascript:void(0)" class="editar_archivo dialog_button" id="l-titulo-{$archivo->id}"  value="{$archivo->titulo|htmlentities}" data-dialog="dialog_editar" >
-                                    {$archivo->titulo|htmlentities}</a>
-                                {if $archivo->descripcion != NULL}<a href='#' id="l-descripcion-{$archivo->id}" title='{$archivo->descripcion|htmlentities}'><big>*</big></a>{/if}
+                                {if $_control}
+                                    <a href="javascript:void(0)" class="editar_archivo dialog_button" id="l-visible-{$archivo->id}" value="{$archivo->visible}" data-dialog="dialog_editar">
+                                        {if $archivo->visible}
+                                            {$smarty.const.TXT_SI}
+                                        {else}
+                                            {$smarty.const.TXT_NO}
+                                        {/if}
+                                    </a>
+                                {else}
+                                    {if $archivo->visible}
+                                        {$smarty.const.TXT_SI}
+                                    {else}
+                                        {$smarty.const.TXT_NO}
+                                    {/if}
+                                {/if}
                             </td>
-                            <td><a href="javascript:void(0)" id="l-visible-{$archivo->id}" value="{$archivo->visible}" >{$archivo->visible}</a></td>
                             <td>{$archivo->usuario->nombre} {$archivo->usuario->apellidos}</td>
                         </tr>
                     {/foreach}

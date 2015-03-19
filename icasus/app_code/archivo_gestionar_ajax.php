@@ -14,7 +14,6 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-//$modulo = sanitize($_REQUEST["modulo"], SQL);
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 
 $fichero = new Fichero();
@@ -24,14 +23,10 @@ if ($modulo == 'subir')
 {
 //    $ext = pathinfo($_FILES['sarchivo']['name']);
     $ext = $ext["extension"];
-//    $fichero->titulo = sanitize($_REQUEST["stitulo"], SQL);
     $fichero->titulo = filter_input(INPUT_POST, 'stitulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-//    $fichero->descripcion = sanitize($_REQUEST["sdescripcion"], SQL);
     $fichero->descripcion = filter_input(INPUT_POST, 'sdescripcion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-//    $fichero->id_objeto = sanitize($_REQUEST["id_objeto"], INT);
     $fichero->id_objeto = filter_input(INPUT_POST, 'id_objeto', FILTER_SANITIZE_NUMBER_INT);
     $fichero->id_usuario = $usuario->id;
-//    $fichero->visible = sanitize($_REQUEST["svisible"], INT);
     $fichero->visible = filter_input(INPUT_POST, 'svisible', FILTER_SANITIZE_NUMBER_INT);
     $fichero->tipo_objeto = 'proceso';
     $fichero->extension = $ext;
@@ -79,24 +74,21 @@ if ($modulo == 'subir')
 
 if ($modulo == 'actualizar')
 {
-//    if ($fichero->load("id = " . sanitize($_REQUEST["id"], INT)))
-    if ($fichero->load("id = " . filter_input(INPUT_POST, 'id_fichero', FILTER_SANITIZE_NUMBER_INT)))
+    $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+    if ($fichero->load("id =$id"))
     {
-//        $fichero->titulo = sanitize($_REQUEST["titulo"], SQL);
         $fichero->titulo = filter_input(INPUT_POST, 'titulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-//        $fichero->descripcion = sanitize($_REQUEST["descripcion"], SQL);
         $fichero->descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
         $fichero->id_usuario = $usuario->id;
-//        $fichero->visible = sanitize($_REQUEST["visible"]);
-        $fichero->visible = filter_input(INPUT_POST, 'evisible', FILTER_SANITIZE_NUMBER_INT);
+        $fichero->visible = filter_input(INPUT_POST, 'visible', FILTER_SANITIZE_NUMBER_INT);
         //$db->execute("SET NAMES UTF8");
         $fichero->save();
     }
 }
 if ($modulo == 'borrar')
 {
-//    if ($fichero->load("id = " . sanitize($_REQUEST["id"], INT)))
-    if ($fichero->load("id = " . filter_input(INPUT_POST, 'id_borrar', FILTER_SANITIZE_NUMBER_INT)))
+    $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+    if ($fichero->load("id =$id"))
     {
         $fichero->delete();
     }

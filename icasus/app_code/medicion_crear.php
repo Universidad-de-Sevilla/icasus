@@ -80,7 +80,7 @@ if ($indicador->load("id = $id_indicador"))
     else
     {
         // El usuario no tiene permisos avisamos error
-        $error = ERR_MED_AUT . "$tipo";
+        $error = ERR_MED_AUT . " $tipo";
         header("Location:index.php?page=" . $tipo . "_mostrar&id_$tipo=$id_indicador&error=$error");
     }
 }
