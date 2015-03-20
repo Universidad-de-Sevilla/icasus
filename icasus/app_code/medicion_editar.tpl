@@ -3,18 +3,18 @@
         <div class="button_bar clearfix">
             {if $indice > 0} 
                 <a href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[0]->id}&tipo={$tipo}'>
-                    <img src='/icons/ff16/arrow_left.png' />&nbsp;<img src='/icons/ff16/arrow_left.png' /> {$smarty.const.TXT_PRIMER}
+                    <img src='/icons/ff16/resultset_first.png' /> {$smarty.const.TXT_PRIMER}
                 </a>&nbsp;&nbsp;
                 <a href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice-1]->id}&tipo={$tipo}'>
-                    <img src='/icons/ff16/arrow_left.png' /> {$smarty.const.TXT_ANT}
+                    <img src='/icons/ff16/resultset_previous.png' /> {$smarty.const.TXT_ANT}
                 </a>&nbsp;&nbsp;
             {/if}
             {if $indice < (count($mediciones)-1)}
                 <a href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice+1]->id}&tipo={$tipo}'>
-                    <img src='/icons/ff16/arrow_right.png' /> {$smarty.const.TXT_SIG}
+                    <img src='/icons/ff16/resultset_next.png' /> {$smarty.const.TXT_SIG}
                 </a>&nbsp;&nbsp;
                 <a href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[(count($mediciones)-1)]->id}&tipo={$tipo}'>
-                    <img src='/icons/ff16/arrow_right.png' />&nbsp;<img src='/icons/ff16/arrow_right.png' /> {$smarty.const.TXT_ULTIMO}
+                    <img src='/icons/ff16/resultset_last.png' /> {$smarty.const.TXT_ULTIMO}
                 </a>
             {/if} 
         </div>
