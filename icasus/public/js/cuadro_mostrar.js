@@ -129,7 +129,7 @@ $('.panel_linea').each(function () {
                 }
 
                 // Pide las series de datos a chartSerie
-                var dataseries = chartSerie.getLinealSerie(indicador.nombre);
+                var dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
                 // Si es no anual ocultamos valores de referencia
                 if (chartSerie.categoryType !== "año") {
                     dataseries.forEach(function (dataserie, index) {
@@ -262,7 +262,7 @@ $(".panel_barra").each(function () {
                     dataseries[dataseries.length - 1].selected = true;
                 }
                 else if (index !== 0) {
-                    dataseries = chartSerie.getLinealSerie(indicador.nombre);
+                    dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
                     //Ocultamos los últimos años
                     for (var i = 0, n = dataseries.length - 1; i !== n; i++) {
                         dataseries[i].visible = false;

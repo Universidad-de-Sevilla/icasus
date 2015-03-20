@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.12.3");
-define('IC_FECHA_REVISION', "19/03/2015");
+define('IC_VERSION', "2.12.4");
+define('IC_FECHA_REVISION', "20/03/2015");
 
+// 2.12.4 - 20/03/2015 - Colores fijos para los indicadores de los cuadros de mando.
 // 2.12.3 - 19/03/2015 - Revisado el acceso a ciertas funciones según los permisos.
 // 2.12.2 - 19/03/2015 - Fallos en la gestión de archivos de un proceso corregidos. Ahora funciona bien.
 // 2.12.1 - 18/03/2015 - Corregido problema al grabar valores nulos y actualización automática del gráfico de tarta en las mediciones.

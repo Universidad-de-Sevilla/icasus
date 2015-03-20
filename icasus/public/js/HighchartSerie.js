@@ -45,7 +45,7 @@ function HighchartSerie() {
     this.categories = new Conjunto();
     this.categoryType = "unidad";
     //Seleccionamos un color en función del nombre de la serie
-    var color = function (unidad, nomIndicador) {
+    var color = function (unidad, nomIndicador, index) {
         //Los límites en rojo
         if (unidad.indexOf('mite') !== -1) {
             return '#FF0000';
@@ -60,20 +60,25 @@ function HighchartSerie() {
         }
         //Indicador en cuadros de mando: colores al azar
         else if (nomIndicador !== '') {
-            //Generamos un color al azar
-            var color = '#' + (function lol(m, s, c) {
-                return s[m.floor(m.random() * s.length)] +
-                        (c && lol(m, s, c - 1));
-            })(Math, '0123456789ABCDEF', 4);
-            //Evitamos blanco (no visible) y colores de los valores de referencia
-            while (color === '#FFFFFF' || color === '#FF0000'
-                    || color === '#00FF00'
-                    || color === '#000000') {
+            var colors = ['#7CB5EC', '#880736', '#BF921D', '#F77205', '#900787'];
+            var color = colors[index];
+            if (index > 4) {
+                //Generamos un color al azar
                 color = '#' + (function lol(m, s, c) {
                     return s[m.floor(m.random() * s.length)] +
                             (c && lol(m, s, c - 1));
                 })(Math, '0123456789ABCDEF', 4);
-
+                //Evitamos blanco, colores de valores de referencia y por defecto(colors)
+                while (color === '#FFFFFF'
+                        || color === '#FF0000'
+                        || color === '#00FF00'
+                        || color === '#000000'
+                        || colors.indexOf(color) !== -1) {
+                    color = '#' + (function lol(m, s, c) {
+                        return s[m.floor(m.random() * s.length)] +
+                                (c && lol(m, s, c - 1));
+                    })(Math, '0123456789ABCDEF', 4);
+                }
             }
             return color;
         }
@@ -144,7 +149,7 @@ function HighchartSerie() {
     };
 
     //Devuelve una serie Highchart para un gráfico de líneas
-    this.getLinealSerie = function (nomIndicador) {
+    this.getLinealSerie = function (nomIndicador, index) {
         var serieHighchart = [];
         //Valor por defecto para el nombre del indicador/dato que sólo se muestra en los 
         //paneles de los cuadros de mando
@@ -159,14 +164,15 @@ function HighchartSerie() {
                 return a.x - b.x;
             });
             //Colores para valores de referencia e indicadores de cuadros de mando
-            if (unidad.indexOf('mite') !== -1 || unidad.indexOf('bjetivo') !== -1
+            if (unidad.indexOf('mite') !== -1
+                    || unidad.indexOf('bjetivo') !== -1
                     || unidad.indexOf('ebiun') !== -1
                     || nomIndicador !== '') {
                 serieHighchart.push({
                     type: 'line',
                     name: unidad + nomIndicador,
                     data: arrayUnidad,
-                    color: color(unidad, nomIndicador)
+                    color: color(unidad, nomIndicador, index)
                 });
             }
             //Colores para el resto de las series
