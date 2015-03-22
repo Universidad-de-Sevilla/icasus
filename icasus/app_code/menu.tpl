@@ -19,9 +19,9 @@
     <div class="cog">+</div>
     <a href="index.php" class="logo"><span>{$smarty.const.TXT_ICASUS}</span></a>
 
-    <div class="user_box dark_box clearfix">
+    <div class="user_box clearfix">
         <img align="left" src="theme/danpin/images/profile.jpg" width="55" alt="{$smarty.const.TXT_FOTO_PERFIL}" />  
-        <h2 style="font-size:1.6em;">{$smarty.const.TXT_ICASUS}</h2>
+        <h2 style="font-size:1.6em;color:#BF921D">{$smarty.const.TXT_ICASUS}</h2>
         <h3><a title="{$_usuario->login}" href='index.php?page=usuario_mostrar&id_usuario={$_usuario->id}'>{$_usuario->login}</a></h3><br>
         <ul>
             <li><a href="index.php?page={$smarty.const.IC_TIPO_LOGIN}&logout=true">{$smarty.const.TXT_CERRAR_SESION}</a></li>
