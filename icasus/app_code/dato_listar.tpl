@@ -24,7 +24,6 @@
             <table class='display datatable'>
                 <thead>
                     <tr>
-                        <th>{$smarty.const.FIELD_ID}</th>
                         <th>{$smarty.const.FIELD_COD}</th>
                         <th>{$smarty.const.FIELD_NOMBRE}</th>
                         <th>{$smarty.const.FIELD_RESP}</th>
@@ -33,7 +32,6 @@
                 <tbody>
                     {foreach from=$datos item=dato} 
                         <tr>
-                            <td>{$dato->id}</td>
                             <td>{$dato->codigo}</td>
                             <td>
                                 <a href="index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$entidad->id}&tipo=dato" 
@@ -56,5 +54,6 @@
 {else}
     <div class="alert alert_blue"> 
         <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-        {$smarty.const.MSG_UNID_NO_DATOS}</div>
-    {/if}
+        {$smarty.const.MSG_UNID_NO_DATOS}
+    </div>
+{/if}
