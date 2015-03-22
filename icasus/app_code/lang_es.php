@@ -35,7 +35,6 @@ define('TXT_MANUAL', 'Manual');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
-define('TXT_REP_GRAFIC', 'Representación gráfica del indicador');
 define('TXT_EXPORT_CSV', 'Exportar en CSV');
 define('TXT_ICON', 'Icono');
 define('TXT_ICON_GRAF_LINEAL', 'Icono gráfica lineal');
@@ -156,6 +155,7 @@ define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Indicadores y Datos con Mediciones n
 define('TXT_INDIC_DAT_MED_NULA', 'Indicadores y Datos con Mediciones nulas');
 define('TXT_INDIC_DAT_ULTIMA_MOD', 'Indicadores y Datos, última modificación');
 define('TXT_INDIC_DAT_SIN_MED', 'Indicadores y Datos sin Mediciones');
+define('TXT_REP_GRAFIC', 'Representación Gráfica del Indicador');
 
 //Informes
 define('TXT_INFORME_IC', 'Informe generado por ICASUS');

@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.13.6");
+define('IC_VERSION', "2.13.7");
 define('IC_FECHA_REVISION', "23/03/2015");
 
+// 2.13.7 - 23/03/2015 - Cambios en la interfaz de indicador_mostrar, se muestra la opción de crear indicadores para los usuarios con priviliegios,...
 // 2.13.6 - 23/03/2015 - Corregido fallo, ahora se muestra el menu de unidad en la gestión de archivos de un proceso.
 // 2.13.5 - 23/03/2015 - Cambios en la interfaz de proceso_mostrar (opción crear proceso).
 // 2.13.4 - 23/03/2015 - Cambios en la interfaz del listado de procesos.

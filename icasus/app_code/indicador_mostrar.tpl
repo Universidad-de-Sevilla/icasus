@@ -1,12 +1,15 @@
 <div class="box grid_16">
     <div class="toggle_container">
-        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_INDIC_MED}</h2>
+        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_REP_GRAFIC}</h2>
         <a href="#" class="grabber"></a>
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
-               <!-- <a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img
-                        src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_INDIC_LIST}</a>&nbsp;&nbsp;-->
+                {if $_control}
+                    <a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'>
+                        <img src='/icons/ff16/chart_curve_add.png' /> {$smarty.const.TXT_INDIC_CREAR}
+                    </a>&nbsp;&nbsp;
+                {/if}
                 <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/chart_curve_edit.png'  /> {$smarty.const.TXT_EDIT}</a>&nbsp;&nbsp;
                 <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
@@ -14,8 +17,8 @@
                     <img src='/icons/ff16/chart_curve_delete.png'  /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
                 <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a>&nbsp;&nbsp;
-                <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-                        src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a>&nbsp;&nbsp;
+               <!-- <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a>&nbsp;&nbsp;-->
                 <a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
                 <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
@@ -66,8 +69,11 @@
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
-                <!--<a href='index.php?page=indicador_listar&id_entidad={$indicador->id_entidad}'><img
-                        src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_INDIC_LIST}</a>&nbsp;&nbsp;-->
+                {if $_control}
+                    <a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'>
+                        <img src='/icons/ff16/chart_curve_add.png' /> {$smarty.const.TXT_INDIC_CREAR}
+                    </a>&nbsp;&nbsp;
+                {/if}
                 <a href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/chart_curve_edit.png'  /> {$smarty.const.TXT_EDIT}</a>&nbsp;&nbsp;
                 <a href='index.php?page=indicador_borrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
@@ -75,8 +81,8 @@
                     <img src='/icons/ff16/chart_curve_delete.png'  /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
                 <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a>&nbsp;&nbsp;
-                <a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-                        src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a>&nbsp;&nbsp;
+                <!--<a href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
+                        src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}</a>&nbsp;&nbsp;-->
                 <a href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                         src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
                 <a href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
