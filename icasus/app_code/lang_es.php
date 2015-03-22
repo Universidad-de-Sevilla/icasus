@@ -29,7 +29,6 @@ define('TXT_NO_ASIG', 'No asignado');
 define('TXT_REG_EVENTOS', 'Registro de eventos');
 define('TXT_NULO', 'NULO');
 define('TXT_CONTENIDO', 'Contenido de');
-define('TXT_A_Q_ESPERAS', '¿A qué esperas?');
 define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_MANUAL', 'Manual');
@@ -388,7 +387,6 @@ define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 //Cuadros de Mando
 define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el Cuadro de Mando:');
 define('MSG_CUADRO_MANDO_CONFIRM_BORRAR', '¿Desea borrar el Cuadro de Mando?');
-define('MSG_CUADRO_MANDO_NO_DEF', 'No has definido ningún Cuadro de Mando propio todavía.');
 define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún Cuadro de Mando público todavía.');
 //Paneles de los Cuadros de Mando
 define('MSG_PANEL_BORRAR', 'Va a borrar del Cuadro de Mando el siguiente Panel:');
