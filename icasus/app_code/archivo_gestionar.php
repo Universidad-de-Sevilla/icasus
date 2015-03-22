@@ -16,6 +16,10 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
     $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
+    $entidad = new Entidad();
+    $entidad->load("id = $id_entidad");
+    $smarty->assign('entidad', $entidad);
+    
     // Datos del proceso
     $proceso = new Proceso();
     $proceso->load_joined("id = $id_proceso");
