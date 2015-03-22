@@ -28,8 +28,21 @@ else // falta id_indicador o id_entidad
     $plantilla = 'error.tpl';
 }
 
+if (filter_has_var(INPUT_GET, 'id_entidad'))
+{
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    $entidad = new Entidad();
+    $entidad->load("id = $id_entidad");
+    $smarty->assign('entidad', $entidad);
+}
+
 $indicador = new Indicador();
 $indicador->load_joined("id=$id_indicador");
+
+
+$entidad = new Entidad();
+$entidad->load("id = $indicador->id_entidad");
+$smarty->assign('entidad', $entidad);
 
 //Permiso para borrar referencias
 $permiso = false;
@@ -75,7 +88,7 @@ if (filter_has_var(INPUT_POST, 'id_val_ref'))
             //Borra el valor de referencia si no tiene valores en ninguna medición
             if ($tiene_valores)
             {
-                $error = ERR_VAL_REF_BORRAR.' ('.$valor_ref->etiqueta.')';
+                $error = ERR_VAL_REF_BORRAR . ' (' . $valor_ref->etiqueta . ')';
                 $smarty->assign("error", $error);
                 header("Location: index.php?page=valor_referencia_crear&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&error=$error");
                 exit;
