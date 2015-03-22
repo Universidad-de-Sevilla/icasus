@@ -6,6 +6,9 @@
         <div class="block">
             <div class="button_bar clearfix">
                 {if $_control}
+                    <a href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}">
+                        <img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}
+                    </a>&nbsp;&nbsp; 
                     <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                         <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
                     </a>&nbsp;&nbsp;
@@ -147,6 +150,9 @@
     <div class="block">	
         <div class="button_bar clearfix">
             {if $_control}
+                <a href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}">
+                    <img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}
+                </a>&nbsp;&nbsp;
                 <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                     <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
                 </a>&nbsp;&nbsp;
@@ -203,6 +209,9 @@
         <div class="block">
             <div class="button_bar clearfix">
                 {if $_control}
+                    <a href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}">
+                        <img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}
+                    </a>&nbsp;&nbsp;
                     <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                         <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
                     </a>&nbsp;&nbsp;
@@ -228,6 +237,9 @@
         <div class="block">
             <div class="button_bar clearfix">
                 {if $_control}
+                    <a href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}">
+                        <img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}
+                    </a>&nbsp;&nbsp;
                     <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                         <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
                     </a>&nbsp;&nbsp;
@@ -276,6 +288,9 @@
         <div class="block">
             <div class="button_bar clearfix">
                 {if $_control}
+                    <a href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}">
+                        <img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}
+                    </a>&nbsp;&nbsp;
                     <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                         <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
                     </a>&nbsp;&nbsp;
