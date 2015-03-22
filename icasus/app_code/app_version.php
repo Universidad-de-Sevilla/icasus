@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.13.3");
+define('IC_VERSION', "2.13.4");
 define('IC_FECHA_REVISION', "23/03/2015");
 
+// 2.13.4 - 23/03/2015 - Cambios en la interfaz del listado de procesos.
 // 2.13.3 - 23/03/2015 - Cambios en la interfaz del listado de cuadros de mando.
 // 2.13.2 - 23/03/2015 - Añadidas las columnas tipo de proceso y proceso madre al listado de procesos.
 // 2.13.1 - 23/03/2015 - Sustituido el campo Acciones en las tablas por iconos en vez de texto.

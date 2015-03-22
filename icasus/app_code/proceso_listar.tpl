@@ -38,9 +38,8 @@
                                     </a>
                                 </td>
                                 <td>
-                                    {$proceso->propietario->nombre}
-                                    {$proceso->propietario->apellidos}
-                                    <!--<a href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}"></a>-->
+                                    <a href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">{$proceso->propietario->nombre}
+                                    {$proceso->propietario->apellidos}</a>
                                 </td>               
                             </tr>
                         {/foreach}
