@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.13.10");
+define('IC_VERSION', "2.13.11");
 define('IC_FECHA_REVISION', "23/03/2015");
 
+// 2.13.11 - 23/03/2015 - Muestra periodicidad en los listados de indicadores y datos.
 // 2.13.10 - 23/03/2015 - Cambios en la interfaz de dato_mostrar, se muestra la opción de crear datos para los usuarios con privilegios,...
 // 2.13.9 - 23/03/2015 - Quitado campo identificador del listado de datos.
 // 2.13.8 - 23/03/2015 - Corregido fallo, ahora se muestra el menu de unidad en la gestión de valores de referencia de un indicador/dato.

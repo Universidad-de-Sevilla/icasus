@@ -26,6 +26,7 @@
                     <tr>
                         <th>{$smarty.const.FIELD_COD}</th>
                         <th>{$smarty.const.FIELD_NOMBRE}</th>
+                        <th>{$smarty.const.FIELD_PERIOD}</th>
                         <th>{$smarty.const.FIELD_RESP}</th>
                     </tr>
                 </thead>
@@ -41,6 +42,7 @@
                                    title="{$smarty.const.TXT_DATO_MOSTRAR} :: {$dato->nombre}">{$dato->nombre}</a>
                                 <a href="javascript:void(0)" title='{$dato->descripcion}'>*</a>
                             </td>
+                            <td>{$dato->periodicidad}</td>
                             <td>
                                 <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_datos&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>{$dato->responsable->nombre}
                                     {$dato->responsable->apellidos}</a>

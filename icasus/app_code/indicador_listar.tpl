@@ -21,6 +21,7 @@ src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públi
                         <th>{$smarty.const.FIELD_PROC}</th>
                         <th>{$smarty.const.FIELD_COD}</th>
                         <th>{$smarty.const.FIELD_INDIC}</th>
+                        <th>{$smarty.const.FIELD_PERIOD}</th>
                         <th>{$smarty.const.FIELD_RESP}</th>
                         <!--
                         <th>Acciones</th>
@@ -39,6 +40,7 @@ src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públi
                                 <a target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}' 
                                    title="{$smarty.const.TXT_INDIC_MOSTRAR} :: {$indicador->nombre}">{$indicador->nombre}</a> 
                                 <a href="javascript:void(0)" title='{$indicador->descripcion}'>*</a></td>
+                            <td>{$indicador->periodicidad}</td>
                             <td>
                                 <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}&id_entidad={$entidad->id}'>{$indicador->responsable->nombre} 
                                     {$indicador->responsable->apellidos}</a>
