@@ -5,12 +5,14 @@
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
-                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}</a>&nbsp;&nbsp;
-                <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-                        src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
-                <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-                        src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>&nbsp;&nbsp;
-                <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>
+                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}">
+                    <img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}</a>&nbsp;&nbsp;
+                <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
+                <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>&nbsp;&nbsp;
+                <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>
             </div>
 
             <!-- GRÁFICAS -->
@@ -139,6 +141,29 @@
                                                 --- 
                                             {else}
                                                 {$medicion->medicion_valor->valor|round:"2"}
+                                                {if isset($medicion_lim[$medicion->id])AND isset($medicion_lim[$medicion->id])}
+                                                    {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
+                                                        <img src='/icons/ff16/bullet_red.png' />
+                                                    {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
+                                                        <img src='/icons/ff16/bullet_green.png' />
+                                                    {else}
+                                                        <img src='/icons/ff16/bullet_yellow.png' />
+                                                    {/if}
+                                                {else if isset($medicion_obj[$medicion->id])}
+                                                    {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
+                                                        <img src='/icons/ff16/bullet_green.png' />
+                                                    {else}
+                                                        <img src='/icons/ff16/bullet_red.png' />
+                                                    {/if}
+                                                {else if isset($medicion_lim[$medicion->id])}
+                                                    {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
+                                                        <img src='/icons/ff16/bullet_red.png' />
+                                                    {else}
+                                                        <img src='/icons/ff16/bullet_green.png' />
+                                                    {/if}
+                                                {else}
+                                                    <img src='/icons/ff16/bullet_green.png' />
+                                                {/if}
                                             {/if}
                                         </td>
                                     {/foreach}

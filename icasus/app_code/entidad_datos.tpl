@@ -80,7 +80,7 @@
                                     <td>{$usuario->usuario->apellidos}</td>
                                     <td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
                                     <td>{$usuario->usuario->telefono}</td>
-                                    <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DET}</a></td>
+                                    <td><a title="{$smarty.const.FIELD_DET}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'><img src='/icons/ff16/magnifier.png' /></a></td>
                                 </tr>
                             {/foreach}
                         </tbody>
@@ -112,8 +112,14 @@
                         {foreach from=$subentidades item=subentidad}
                             <tr class="gradeX">
                                 <td>{$subentidad->codigo}</td>
-                                <td>{$subentidad->nombre}</td>
-                                <td><a href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'>{$smarty.const.TXT_MOSTRAR}</a></td>
+                                <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'><img src='/icons/ff16/chart_organisation.png' /> {$subentidad->nombre}</a></td>
+                                <td> 
+                                    <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$subentidad->id}'><img src='/icons/ff16/cog.png' /></a> -
+                                    <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$subentidad->id}'><img src='/icons/ff16/chart_curve.png' /></a> - 
+                                    <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$subentidad->id}'><img src='/icons/ff16/chart_bar.png' /></a> -
+                                    <a title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$subentidad->id}'><img src='/icons/ff16/book.png' /></a> -
+                                    <a title="{$smarty.const.TXT_CUAD_RES}" href='index.php?page=cuadro_unidad&id_entidad={$subentidad->id}'><img src='/icons/ff16/table_go.png' /></a> 
+                                </td>
                             </tr>
                         {/foreach}
                     </tbody>

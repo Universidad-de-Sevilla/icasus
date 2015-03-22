@@ -1,8 +1,10 @@
-<div class="button_bar clearfix" style="margin: 5px">
-    <a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_CUADRO_NUEVO}">
-        <img src="/icons/ff16/table_add.png" alt="{$smarty.const.TXT_ICON}" /> {$smarty.const.TXT_CUADRO_NUEVO}</a>
+<div>
+    <div class="button_bar clearfix" style="margin: 5px">
+        <a href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_CUADRO_NUEVO}">
+            <img src="/icons/ff16/table_add.png" alt="{$smarty.const.TXT_ICON}" /> {$smarty.const.TXT_CUADRO_NUEVO}</a>
+    </div>
 </div>
-
+            
 {if $cuadros_propios|count > 0}
     <div class="box grid_16">
         <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</h2>

@@ -7,7 +7,14 @@
             <div id="dt1" class="no_margin">
                 <table class='display datatable'>
                     <thead>
-                        <tr><th>{$smarty.const.FIELD_ROL}</th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_TEL}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_ROL}</th>
+                            <th>{$smarty.const.FIELD_NOMBRE}</th>
+                            <th>{$smarty.const.FIELD_APEL}</th>
+                            <th>{$smarty.const.FIELD_CORREO}</th>
+                            <th>{$smarty.const.FIELD_TEL}</th>
+                            <th>{$smarty.const.FIELD_ACCIONES}</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {foreach from=$usuarios item=usuario}
@@ -17,7 +24,7 @@
                                 <td>{$usuario->usuario->apellidos}</td>
                                 <td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
                                 <td>{$usuario->usuario->telefono}</td>
-                                <td><a href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DET}</a></td>
+                                <td><a title="{$smarty.const.FIELD_DET}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'><img src='/icons/ff16/magnifier.png' /></a></td>
                             </tr>
                         {/foreach}
                     </tbody>

@@ -626,6 +626,7 @@ define('FIELD_DET', 'Detalle');
 define('FIELD_OBSERV', 'Observaciones');
 define('FIELD_ACTIVO', 'Activo');
 define('FIELD_VERSION', 'Versión');
+define('FIELD_STATUS', 'Status');
 
 //Archivos
 define('FIELD_ARCHIVO', 'Archivo');

@@ -47,9 +47,9 @@
 <h2 id="tabla_nulos" class="box_head grad_grey_dark">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</h2>
 <form action='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}' method='post' class='formdiv' name='formdiv' onsubmit="return confirm('{$smarty.const.MSG_VALS_CONFIRM_DESACT}');">
     <div class="button_bar clearfix">
-        <button class="green send_left" type="submit" value="" name="enviar">
-            <span>{$smarty.const.TXT_VALS_DESACT}</span>
-        </button>
+        <a title="{$smarty.const.TXT_VALS_DESACT}" href="javascript:void(0)" onClick="$(this).closest('form').submit();" >
+            <img src='/icons/ff16/tag_blue_delete.png' /> {$smarty.const.TXT_VALS_DESACT}
+        </a>
     </div>
     <table class="display datatable"> 
         <thead>

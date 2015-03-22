@@ -12,7 +12,6 @@
                 <table class="display datatable"> 
                     <thead>                       
                         <tr class="gradeX">
-                            <th>{$smarty.const.FIELD_ID}</th>
                             <th>{$smarty.const.FIELD_COD}</th>
                             <th>{$smarty.const.FIELD_NOMBRE}</th>
                             <th>{$smarty.const.FIELD_PROPIETARIO}</th>
@@ -21,7 +20,6 @@
                     <tbody>                       
                         {foreach from=$procesos item=proceso}
                             <tr class="gradeX">    
-                                <td>{$proceso->id}</td>
                                 <td nowrap>{$proceso->codigo}</td>
                                 <td><a title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">{$proceso->nombre}</a></td>
                                 <td>

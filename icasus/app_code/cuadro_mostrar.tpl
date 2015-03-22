@@ -1,25 +1,26 @@
-<div class="button_bar clearfix">
-    {if $cuadro->id_usuario == $_usuario->id}
-        <a title="{$smarty.const.TXT_PANEL_AGREGAR}" href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
-                src='/icons/ff16/application_add.png' /> {$smarty.const.TXT_PANEL_AGREGAR}</a>&nbsp;&nbsp;
-        <a title="{$smarty.const.TXT_EDIT_PROP}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
-                src='/icons/ff16/table_edit.png' /> {$smarty.const.TXT_EDIT_PROP}</a>&nbsp;&nbsp;
-        <a onclick="return confirm('{$smarty.const.MSG_CUADRO_MANDO_CONFIRM_BORRAR}');" 
-           title="{$smarty.const.TXT_BORRAR}" 
-           href='index.php?page=cuadro_borrar&id_cuadro={$cuadro->id}&id_entidad=14'>
-            <img src='/icons/ff16/table_delete.png' /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
-        {/if}
-    <a title="{$smarty.const.TXT_VOLVER_LIST}" href='index.php?page=cuadro_listar&id_entidad=14'>
-        <img src='/icons/ff16/arrow_undo.png' /> {$smarty.const.TXT_VOLVER_LIST}</a> 
-</div>
-
-{if $cuadro->comentarios}
-    <div class="alert alert_blue">
-        <img height="24" width="24" src="theme/danpin/images/icons/small/white/info_about.png">
-        {$cuadro->comentarios}
+<div>
+    <div class="button_bar clearfix">
+        {if $cuadro->id_usuario == $_usuario->id}
+            <a title="{$smarty.const.TXT_PANEL_AGREGAR}" href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'><img 
+                    src='/icons/ff16/application_add.png' /> {$smarty.const.TXT_PANEL_AGREGAR}</a>&nbsp;&nbsp;
+            <a title="{$smarty.const.TXT_EDIT_PROP}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><img 
+                    src='/icons/ff16/table_edit.png' /> {$smarty.const.TXT_EDIT_PROP}</a>&nbsp;&nbsp;
+            <a onclick="return confirm('{$smarty.const.MSG_CUADRO_MANDO_CONFIRM_BORRAR}');" 
+               title="{$smarty.const.TXT_BORRAR}" 
+               href='index.php?page=cuadro_borrar&id_cuadro={$cuadro->id}&id_entidad=14'>
+                <img src='/icons/ff16/table_delete.png' /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
+            {/if}
+        <a title="{$smarty.const.TXT_VOLVER_LIST}" href='index.php?page=cuadro_listar&id_entidad=14'>
+            <img src='/icons/ff16/arrow_undo.png' /> {$smarty.const.TXT_VOLVER_LIST}</a> 
     </div>
-{/if}
-
+    <br>
+    {if $cuadro->comentarios}
+        <div class="alert alert_blue">
+            <img height="24" width="24" src="theme/danpin/images/icons/small/white/info_about.png">
+            {$cuadro->comentarios}
+        </div>
+    {/if}
+</div>
 <!-- Dialogo para borrar paneles -->
 <div id="dialogo_borrar_panel" class="dialog_content narrow ui-dialog-content ui-widget-content">
     <div class="block" style="opacity: 1;" >

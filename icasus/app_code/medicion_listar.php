@@ -64,7 +64,7 @@ if ($mediciones)
         $panel->tipo->clase_css = "lineal";
         $panel->ancho = 8;
         $panel->nombre = TXT_2_ULT_ANYO;
-        $panel->fecha_inicio = $anio_inicio."-01-01";
+        $panel->fecha_inicio = $anio_inicio . "-01-01";
         $panel->fecha_fin = date("Y-m-d");
         $panel->periodicidad = "todos";
         $paneles[] = clone($panel);
@@ -84,6 +84,48 @@ if ($mediciones)
 //array de subunidades con las mediciones y sus valores
 $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
 $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
+
+//Control (Status) de valores limite y objetivo
+$valor_referencia = new Valor_referencia();
+$valor_referencia_medicion = new Valor_referencia_medicion();
+//Array que contiene las referencias para cada medicion del indicador
+$mediciones_referencias = [];
+$medicion_lim = [];
+$medicion_obj = [];
+$valores_referencia = $valor_referencia->Find("id_indicador = $id_indicador");
+if ($valores_referencia)
+{
+    foreach ($mediciones as $med)
+    {
+        foreach ($valores_referencia as $valor_referencia)
+        {
+            $existe = $valor_referencia_medicion->Load("id_valor_referencia=$valor_referencia->id AND id_medicion=$med->id");
+            if (!$existe)
+            {
+                $valor_referencia_medicion = new Valor_referencia_medicion();
+                $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
+                $valor_referencia_medicion->id_medicion = $med->id;
+                $valor_referencia_medicion->save();
+            }
+        }
+        $mediciones_referencias[$med->id] = $valor_referencia_medicion->Find_joined("id_medicion=$med->id");
+        foreach ($mediciones_referencias[$med->id] as $valores_referencia_medicion)
+        {
+            //Es la referencia Limite
+            if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+            {
+                $medicion_lim[$med->id] = $valores_referencia_medicion->valor;
+            }
+            //Es la referencia Objetivo
+            if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+            {
+                $medicion_obj[$med->id] = $valores_referencia_medicion->valor;
+            }
+        }
+    }
+}
+$smarty->assign('medicion_obj', $medicion_obj);
+$smarty->assign('medicion_lim', $medicion_lim);
 
 $smarty->assign('_nombre_pagina', TXT_MED_GESTION . ": $indicador->nombre");
 $plantilla = 'medicion_listar.tpl';

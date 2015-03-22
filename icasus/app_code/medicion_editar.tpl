@@ -1,3 +1,4 @@
+<!-- NAVEGACIÓN-->
 {if count($mediciones)> 1}
     <div class="box grid_16">   
         <div class="button_bar clearfix">
@@ -20,6 +21,7 @@
         </div>
     </div>
 {/if}
+<!-- //NAVEGACIÓN-->
 
 <div class="box grid_16">
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_DATOS}</h2>
@@ -144,7 +146,13 @@
                             {if $valor_referencia_medicion->valor_referencia->activo}
                                 <fieldset class="label_side">
                                     <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
-                                    <div>{$valor_referencia_medicion->valor|round:"2"}</div>
+                                    <div>  
+                                        {if $valor_referencia_medicion->valor == NULL}
+                                            ---
+                                        {else}
+                                            {$valor_referencia_medicion->valor|round:"2"}
+                                        {/if}
+                                    </div>
                                 </fieldset>
                             {/if}
                         {/foreach}
@@ -157,6 +165,7 @@
             </div>
         </div>
         <div class="box grid_8">
+
             <!-- GRÁFICA -->
             <div id="grafica" style="margin:10px;">
                 {if $pinta_panel}
@@ -180,6 +189,7 @@
                 {/if}
             </div>
             <!-- //GRÁFICA -->
+
         </div><!-- //box grid_8 -->
     </div>
 </div>
@@ -209,6 +219,7 @@
                         <tr>
                             <th>{$smarty.const.FIELD_UNID}</th>
                             <th>{$smarty.const.FIELD_VAL}</th>
+                            <th>{$smarty.const.FIELD_STATUS}</th>
                             <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
                             <th>{$smarty.const.FIELD_USER_GRABA}</th>
                         </tr>
@@ -234,8 +245,37 @@
                                         {/if}
                                     {/if}
                                 </td>
+                                <td style="text-align: center"> 
+                                    {if $valor->valor != NULL}
+                                        {if isset($medicion_lim)AND isset($medicion_lim)}
+                                            {if  $valor->valor < $medicion_lim}
+                                                <img src='/icons/ff16/bullet_red.png' />
+                                            {else if $valor->valor >= $medicion_obj}
+                                                <img src='/icons/ff16/bullet_green.png' />
+                                            {else}
+                                                <img src='/icons/ff16/bullet_yellow.png' />
+                                            {/if}
+                                        {else if isset($medicion_obj)}
+                                            {if $valor->valor >= $medicion_obj }
+                                                <img src='/icons/ff16/bullet_green.png' />
+                                            {else}
+                                                <img src='/icons/ff16/bullet_red.png' />
+                                            {/if}
+                                        {else if isset($medicion_lim)}
+                                            {if $valor->valor < $medicion_lim }
+                                                <img src='/icons/ff16/bullet_red.png' />
+                                            {else}
+                                                <img src='/icons/ff16/bullet_green.png' />
+                                            {/if}
+                                        {else}
+                                            <img src='/icons/ff16/bullet_green.png' />
+                                        {/if}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
                                 <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
-                                <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>
+                                <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
                             </tr>
                         {/foreach}
                     </tbody>
@@ -246,6 +286,31 @@
         {/if}
     </div>
 </div>
+
+<!-- NAVEGACIÓN-->
+{if count($mediciones)> 1}
+    <div class="box grid_16">   
+        <div class="button_bar clearfix">
+            {if $indice > 0} 
+                <a href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[0]->id}&tipo={$tipo}'>
+                    <img src='/icons/ff16/resultset_first.png' /> {$smarty.const.TXT_PRIMER}
+                </a>&nbsp;&nbsp;
+                <a href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice-1]->id}&tipo={$tipo}'>
+                    <img src='/icons/ff16/resultset_previous.png' /> {$smarty.const.TXT_ANT}
+                </a>&nbsp;&nbsp;
+            {/if}
+            {if $indice < (count($mediciones)-1)}
+                <a href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice+1]->id}&tipo={$tipo}'>
+                    <img src='/icons/ff16/resultset_next.png' /> {$smarty.const.TXT_SIG}
+                </a>&nbsp;&nbsp;
+                <a href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[(count($mediciones)-1)]->id}&tipo={$tipo}'>
+                    <img src='/icons/ff16/resultset_last.png' /> {$smarty.const.TXT_ULTIMO}
+                </a>
+            {/if} 
+        </div>
+    </div>
+{/if}
+<!-- //NAVEGACIÓN-->
 
 <script src="js/highcharts.js" type="text/javascript"></script>
 <script src="js/highcharts-3d.js" type="text/javascript"></script>

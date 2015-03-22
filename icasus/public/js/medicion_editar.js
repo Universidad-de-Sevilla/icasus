@@ -249,12 +249,14 @@ function referencia_grabar(id)
         {
             $.post("index.php?page=medicion_editar_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
                 $('#referencia_' + id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
+                $('#valors').load(location.reload());
             });
         }
         else if (value === "---")
         {
             $.post("index.php?page=medicion_editar_ajax&modulo=anularvalorreferencia&ajax=true", {id_referencia: id}, function () {
                 $('#referencia_' + id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
+                $('#valors').load(location.reload());
             });
         }
         else
