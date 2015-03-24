@@ -9,6 +9,7 @@
 //-------------------------------------------------------------------------------
 
 global $smarty;
+global $usuario;
 global $plantilla;
 
 if (filter_has_var(INPUT_GET, 'id_indicador'))
@@ -69,6 +70,29 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
         $paneles[] = clone($panel);
         $smarty->assign("paneles", $paneles);
     }
+
+    //Comprobamos si hay valores para pintar los gráficos
+    $valor = new Valor();
+    $pinta_grafico = false;
+    if ($mediciones)
+    {
+        foreach ($mediciones as $med)
+        {
+            $valores = $valor->Find_joined_jjmc($med->id, $usuario->id);
+            if ($valores)
+            {
+                foreach ($valores as $val)
+                {
+                    if ($val->valor != null)
+                    {
+                        $pinta_grafico = true;
+                    }
+                }
+            }
+        }
+    }
+    $smarty->assign("pinta_grafico", $pinta_grafico);
+
     $smarty->assign('_nombre_pagina', TXT_INDIC_FICHA . ": $indicador->nombre");
     $plantilla = 'indicador_mostrar.tpl';
 }

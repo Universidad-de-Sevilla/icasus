@@ -168,7 +168,7 @@
 
             <!-- GRÁFICA -->
             <div id="grafica" style="margin:10px;">
-                {if $pinta_panel}
+                {if $pinta_grafico}
                     <div class="block">
                         <div class="titulo-panel">
                             <strong>{$panel->nombre}</strong>

@@ -17,7 +17,7 @@
 
             <!-- GRÁFICAS -->
             <div style="margin:10px;">
-                {if $mediciones}
+                {if $pinta_grafico}
                     {if $panel_res}
                         <div class="box grid_{$panel_res->ancho}"  style="float:left;">
                             <div class="block">
@@ -51,10 +51,15 @@
                             </div>
                         {/foreach}
                     {/if}
-                {else}
+                {else if !$mediciones}
                     <div class="alert alert_blue">
                         <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
                         {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
+                    </div>
+                {else}
+                    <div class="alert alert_blue">
+                        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+                        {$smarty.const.MSG_INDIC_NO_VAL}
                     </div>
                 {/if}
             </div>

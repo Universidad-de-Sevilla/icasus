@@ -27,7 +27,7 @@
 
             <!-- GRÁFICAS -->
             <div style="margin:10px;">
-                {if $mediciones}
+                {if $pinta_grafico}
                     {if $paneles}
                         {foreach $paneles as $panel}
                             <div class="box grid_{$panel->ancho}" style="float:left;">

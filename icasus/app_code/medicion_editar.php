@@ -79,25 +79,25 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
     $smarty->assign("valores", $valores);
 
-    //Prepara el panel de tarta si hay valores
-    $pinta_panel = false;
+    //Prepara el gráfico de tarta si hay valores
+    $pinta_grafico = false;
     if ($valores)
     {
         foreach ($valores as $val)
         {
             if ($val->valor != null)
             {
-                $pinta_panel = true;
+                $pinta_grafico = true;
             }
         }
-        if ($pinta_panel)
+        if ($pinta_grafico)
         {
             $panel = new Panel();
             $panel->nombre = TXT_VALS_SUBUNID;
             $smarty->assign("panel", $panel);
         }
     }
-    $smarty->assign("pinta_panel", $pinta_panel);
+    $smarty->assign("pinta_grafico", $pinta_grafico);
 
     //Buscar todos valores ref del indicador y recorrer si no existe entrada 
     //en la tabla valores_ref _med creamos entrada y despues asignamos a la plantilla

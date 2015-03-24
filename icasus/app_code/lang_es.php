@@ -424,7 +424,7 @@ define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna Unidad.');
 //Indicadores
 define('MSG_INDIC_NO_UNID_SUP', 'No hay Indicadores definidos en la Unidad superior.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado Subunidades a este Indicador (corregir)');
-define('MSG_INDIC_NO_VAL', 'No hay Valores recogidos para este Indicador.');
+define('MSG_INDIC_NO_VAL', 'No hay Valores recogidos para este Indicador/Dato.');
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo Indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado Indicadores.');
 define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Indicador?');

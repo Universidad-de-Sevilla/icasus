@@ -1,9 +1,10 @@
 <?php
 
-define('IC_VERSION', "2.13.13");
-define('IC_FECHA_REVISION', "23/03/2015");
+define('IC_VERSION', "2.13.14");
+define('IC_FECHA_REVISION', "24/03/2015");
 
-// 2.13.13 - 23/03/2015 - Cambios en la interfaz de responsable de medición.
+// 2.13.14 - 24/03/2015 - Controla que no se pinten gráficas si existen mediciones sin valores.
+// 2.13.13 - 24/03/2015 - Cambios en la interfaz de responsable de medición.
 // 2.13.12 - 24/03/2015 - Corregido problema versión servidor php arrays en medicion_listar.php. Pequeños cambios de interfaz.
 // 2.13.11 - 23/03/2015 - Muestra periodicidad en los listados de indicadores y datos.
 // 2.13.10 - 23/03/2015 - Cambios en la interfaz de dato_mostrar, se muestra la opción de crear datos para los usuarios con privilegios,...

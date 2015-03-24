@@ -12,6 +12,7 @@
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
+global $usuario;
 global $plantilla;
 
 if (filter_has_var(INPUT_GET, 'id_dato'))
@@ -72,6 +73,29 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
         $paneles[] = clone($panel);
         $smarty->assign("paneles", $paneles);
     }
+
+    //Comprobamos si hay valores para pintar los gráficos
+    $valor = new Valor();
+    $pinta_grafico = false;
+    if ($mediciones)
+    {
+        foreach ($mediciones as $med)
+        {
+            $valores = $valor->Find_joined_jjmc($med->id, $usuario->id);
+            if ($valores)
+            {
+                foreach ($valores as $val)
+                {
+                    if ($val->valor != null)
+                    {
+                        $pinta_grafico = true;
+                    }
+                }
+            }
+        }
+    }
+    $smarty->assign("pinta_grafico", $pinta_grafico);
+
     $smarty->assign('_nombre_pagina', TXT_DATO_FICHA . ": $dato->nombre");
     $plantilla = 'dato_mostrar.tpl';
 }

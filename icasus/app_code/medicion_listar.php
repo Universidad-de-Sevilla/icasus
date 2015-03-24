@@ -81,6 +81,29 @@ if ($mediciones)
     $paneles[] = clone($panel);
     $smarty->assign("paneles", $paneles);
 }
+
+//Comprobamos si hay valores para pintar los gráficos
+$valor = new Valor();
+$pinta_grafico = false;
+if ($mediciones)
+{
+    foreach ($mediciones as $med)
+    {
+        $valores = $valor->Find_joined_jjmc($med->id, $usuario->id);
+        if ($valores)
+        {
+            foreach ($valores as $val)
+            {
+                if ($val->valor != null)
+                {
+                    $pinta_grafico = true;
+                }
+            }
+        }
+    }
+}
+$smarty->assign("pinta_grafico", $pinta_grafico);
+
 //array de subunidades con las mediciones y sus valores
 $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
 $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
