@@ -27,7 +27,10 @@
                         <td><a href='mailto:{$usuario->correo}'>{$usuario->correo}</a></td>
                         <td>{$usuario->telefono}</td>
                         <td>{$usuario->unidad_hominis}</td>
-                        <td><a title="{$smarty.const.FIELD_DET}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'><img src='/icons/ff16/magnifier.png' /></a>
+                        <td>
+                            <a title="{$smarty.const.FIELD_DET}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'>
+                                <img src='/icons/ff16/magnifier.png' />
+                            </a>
                         </td>
                     </tr>
                 {/foreach}

@@ -1,7 +1,7 @@
 <h3>	 
     {if $_control}
         <a href='index.php?page=indicador_crear&id_entidad={$entidad->id}'>
-            <img src='/icons/ff16/chart_curve_add.png' alt='{$smarty.const.TXT_ICON}' /> {$smarty.const.TXT_INDIC_CREAR}
+            <img src='/icons/ff16/chart_curve_add.png' /> {$smarty.const.TXT_INDIC_CREAR}
         </a>&nbsp;&nbsp;
     {/if}
 <!-- <a href='index.php?page=dato_listar&id_entidad={$entidad->id}'><img 
@@ -64,5 +64,6 @@ src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públi
 {else}
     <div class="alert alert_blue"> 
         <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
-        {$smarty.const.MSG_UNID_NO_INDIC}</div>
-    {/if}
+        {$smarty.const.MSG_UNID_NO_INDIC}
+    </div>
+{/if}

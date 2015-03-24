@@ -5,9 +5,10 @@
         </a> 
     {/if}
 </h3>
-<div class="box grid_16">
-    <div class="block">	
-        {if $procesos}  
+
+{if $procesos} 
+    <div class="box grid_16">
+        <div class="block">	
             <div id="dt1" class="no_margin">
                 <table class="display datatable"> 
                     <thead>                       
@@ -39,20 +40,23 @@
                                 </td>
                                 <td>
                                     <a href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">{$proceso->propietario->nombre}
-                                    {$proceso->propietario->apellidos}</a>
+                                        {$proceso->propietario->apellidos}</a>
                                 </td>               
                             </tr>
                         {/foreach}
                     </tbody>
                 </table>
             </div>
-        {else}
-            <div class="section">
-                <p>{$smarty.const.MSG_UNID_NO_PROC}</p>
-            </div>
-        {/if}
+        </div>
+    </div>	
+{else}
+    <div class="alert alert_blue">
+        <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+        {$smarty.const.MSG_UNID_NO_PROC}
     </div>
-</div>	   
+{/if}
+
+
 {if $entidad->id == 14}
     <div class="box grid_16">
         <div style="border:1px solid silver; padding:5px;">

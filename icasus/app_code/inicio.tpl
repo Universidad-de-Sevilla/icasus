@@ -20,17 +20,17 @@
                             <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/chart_organisation.png' /> {$entidad->entidad->nombre}</a></td>
                             <td>{$entidad->rol->nombre}</td>
                             <td>
-                                <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/cog.png' /></a> -
-                                <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/chart_curve.png' /></a> -
-                                <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/chart_bar.png' /></a> -
-                                <a title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/book.png' /></a> -
-                                <a title="{$smarty.const.TXT_CUAD_RES}" href='index.php?page=cuadro_unidad&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/table_go.png' /></a>  
+                                <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/cog.png' /></a>&nbsp;
+                                <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/chart_curve.png' /></a>&nbsp;
+                                <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/chart_bar.png' /></a>&nbsp;
+                                <a title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/book.png' /></a>&nbsp;
+                                <a title="{$smarty.const.TXT_CUAD_RES}" href='index.php?page=cuadro_unidad&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/table_go.png' /></a>&nbsp; 
                                 <!--
                                 <a href="index.php?page=plan_estrategico/plan_listar&id_entidad={$entidad->entidad->id}&entidad={$entidad->entidad->nombre|htmlentities}">Planificaci&oacute;n</a> -
                                 <a href='index.php?page=grupo/acta_listar&id_entidad={$entidad->entidad->id}' title="Ver las actas de este equipo">Actas</a>
                                 -->
                                 {if $entidad->rol->id == 1 OR $entidad->rol->id == 2}
-                                    - <a title="{$smarty.const.TXT_CONTROL}" href='index.php?page=control&modulo=inicio&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/eye.png' /></a>
+                                    &nbsp;<a title="{$smarty.const.TXT_CONTROL}" href='index.php?page=control&modulo=inicio&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/eye.png' /></a>
                                     {/if}
                             </td>
                         </tr>

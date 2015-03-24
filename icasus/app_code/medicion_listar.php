@@ -89,9 +89,9 @@ $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
 $valor_referencia = new Valor_referencia();
 $valor_referencia_medicion = new Valor_referencia_medicion();
 //Array que contiene las referencias para cada medicion del indicador
-$mediciones_referencias = [];
-$medicion_lim = [];
-$medicion_obj = [];
+$mediciones_referencias = array();
+$medicion_lim = array();
+$medicion_obj = array();
 $valores_referencia = $valor_referencia->Find("id_indicador = $id_indicador");
 if ($valores_referencia)
 {
