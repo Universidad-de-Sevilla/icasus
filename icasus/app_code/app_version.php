@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.13.14");
-define('IC_FECHA_REVISION', "24/03/2015");
+define('IC_VERSION', "2.13.15");
+define('IC_FECHA_REVISION', "25/03/2015");
 
+// 2.13.15 - 24/03/2015 - Tamaño fijo para la columna de acciones de las unidades.
 // 2.13.14 - 24/03/2015 - Controla que no se pinten gráficas si existen mediciones sin valores.
 // 2.13.13 - 24/03/2015 - Cambios en la interfaz de responsable de medición.
 // 2.13.12 - 24/03/2015 - Corregido problema versión servidor php arrays en medicion_listar.php. Pequeños cambios de interfaz.

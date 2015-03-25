@@ -113,7 +113,7 @@
                             <tr class="gradeX">
                                 <td>{$subentidad->codigo}</td>
                                 <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'><img src='/icons/ff16/chart_organisation.png' /> {$subentidad->nombre}</a></td>
-                                <td> 
+                                <td width="16%"> 
                                     <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$subentidad->id}'><img src='/icons/ff16/cog.png' /></a>&nbsp;
                                     <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$subentidad->id}'><img src='/icons/ff16/chart_curve.png' /></a>&nbsp;
                                     <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$subentidad->id}'><img src='/icons/ff16/chart_bar.png' /></a>&nbsp;
