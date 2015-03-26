@@ -18,6 +18,7 @@
                             <th>{$smarty.const.FIELD_PROC_MADRE}</th>
                             <th>{$smarty.const.FIELD_NOMBRE}</th>
                             <th>{$smarty.const.FIELD_PROPIETARIO}</th>
+                            <th>{$smarty.const.FIELD_ACCIONES}</th>
                         </tr>
                     </thead>                      
                     <tbody>                       
@@ -35,13 +36,27 @@
                                     {/if}
                                 </td>
                                 <td><a title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
-                                        {$proceso->nombre}
+                                        <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/> {$proceso->nombre}
                                     </a>
                                 </td>
                                 <td>
-                                    <a href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">{$proceso->propietario->nombre}
+                                    <a title="{$smarty.const.TXT_USER_VER}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">{$proceso->propietario->nombre}
                                         {$proceso->propietario->apellidos}</a>
-                                </td>               
+                                </td>
+                                <td width="10%">
+                                    {if $_control}
+                                        <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                                            <img title="{$smarty.const.TXT_EDIT}" src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' />
+                                        </a>&nbsp;
+                                        <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
+                                           onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
+                                            <img title="{$smarty.const.TXT_BORRAR}" src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' />
+                                        </a>&nbsp;
+                                    {/if}
+                                    <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                                        <img title="{$smarty.const.TXT_ARCHIVOS}" src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' />
+                                    </a>
+                                </td>
                             </tr>
                         {/foreach}
                     </tbody>
