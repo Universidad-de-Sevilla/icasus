@@ -139,6 +139,12 @@
                     <div> {$proceso->registros} </div>
                 </fieldset>    
             {/if}
+            {if $proceso->observaciones}
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_OBSERV}</label>
+                    <div> {$proceso->observaciones} </div>
+                </fieldset>    
+            {/if}
         </div>
     </div>
 </div>
