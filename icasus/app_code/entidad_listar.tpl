@@ -26,7 +26,7 @@
                                         <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/chart_curve.png' /></a>&nbsp;
                                         <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/chart_bar.png' /></a>&nbsp;
                                         <a title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/book.png' /></a>&nbsp;
-                                        <a title="{$smarty.const.TXT_CUAD_RES}" href='index.php?page=cuadro_unidad&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/table_go.png' /></a>&nbsp; 
+                                        <a title="{$smarty.const.TXT_CUAD_RES}" href='index.php?page=cuadro_unidad&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/table_go.png' /></a> 
                                             {if $entidad->rol->id == 1 OR $entidad->rol->id == 2}
                                             &nbsp;<a title="{$smarty.const.TXT_CONTROL}" href='index.php?page=control&modulo=inicio&id_entidad={$entidad->entidad->id}'><img src='/icons/ff16/eye.png' /></a>
                                             {/if}
