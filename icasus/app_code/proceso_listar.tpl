@@ -43,7 +43,7 @@
                                     <a title="{$smarty.const.TXT_USER_VER}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">{$proceso->propietario->nombre}
                                         {$proceso->propietario->apellidos}</a>
                                 </td>
-                                <td width="10%">
+                                <td style="white-space:nowrap">
                                     {if $_control}
                                         <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                                             <img title="{$smarty.const.TXT_EDIT}" src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' />

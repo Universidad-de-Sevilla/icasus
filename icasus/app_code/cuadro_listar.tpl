@@ -30,7 +30,7 @@
                                 {/if}
                             </td>
                             <td width="60%">{$cuadro->comentarios}</td>
-                            <td style="text-align: center">
+                            <td style="white-space:nowrap">
                                 <a title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'>
                                     <img src='/icons/ff16/table_edit.png' />
                                 </a>&nbsp;

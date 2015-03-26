@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.13.18");
+define('IC_VERSION', "2.13.19");
 define('IC_FECHA_REVISION', "26/03/2015");
 
+// 2.13.19 - 26/03/2015 - No se accede a la opcion responsable de medicion en los indicadores a menos que se tenga control del mismo. También se recoge el id_entidad en las ediciones.
 // 2.13.18 - 26/03/2015 - Añadido campo observaciones a los indicadores.
 // 2.13.17 - 26/03/2015 - Añadida la columna Acciones al listado de procesos.
 // 2.13.16 - 26/03/2015 - Añadido campo observaciones a los procesos. Corregido fallo al grabar no se recogia el id_entidad.

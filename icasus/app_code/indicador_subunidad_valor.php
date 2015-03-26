@@ -64,7 +64,7 @@ if (isset($id_entidad))
     {
         // El usuario no tiene permisos avisamos error
         $error = ERR_INDIC_EDIT_NO_AUT;
-        header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
+        header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&error=$error");
     }
 }
 else

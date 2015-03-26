@@ -540,6 +540,7 @@ define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el Indicador, el identificador 
 //Mediciones
 define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de creación de Medición.');
 define('ERR_MED_AUT', 'No tiene permisos suficientes para agregar Mediciones a este');
+define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en esta Medición');
 define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
 define('ERR_MED_NO_VAL', 'Error: no existen valores pendientes ni recogidos para esta Medición.');
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la Medición, inténtelo de nuevo o contacte con los administradores de Icasus.');
