@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.13.17");
+define('IC_VERSION', "2.13.18");
 define('IC_FECHA_REVISION', "26/03/2015");
 
+// 2.13.18 - 26/03/2015 - Añadido campo observaciones a los indicadores.
 // 2.13.17 - 26/03/2015 - Añadida la columna Acciones al listado de procesos.
 // 2.13.16 - 26/03/2015 - Añadido campo observaciones a los procesos. Corregido fallo al grabar no se recogia el id_entidad.
 // 2.13.15 - 24/03/2015 - Tamaño fijo para la columna de acciones de las unidades.
