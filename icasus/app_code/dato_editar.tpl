@@ -78,6 +78,11 @@
             </fieldset>
 
             <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_OBSERV}</label>
+                <div><textarea  class="autogrow" name="observaciones">{$dato->observaciones}</textarea></div>
+            </fieldset>
+
+            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_CALCULO}</label>
                 <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}">{$dato->calculo}</textarea></div>
             </fieldset>

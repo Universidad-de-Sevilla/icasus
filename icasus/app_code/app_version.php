@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.13.21");
+define('IC_VERSION', "2.13.22");
 define('IC_FECHA_REVISION', "27/03/2015");
 
+// 2.13.22 - 27/03/2015 - Añadido campo observaciones a los datos.
 // 2.13.21 - 27/03/2015 - Columna de Acciones en el listado de Indicadores.
 // 2.13.20 - 27/03/2015 - Corregido fallo por el cual, si habia error de permisos no se tenia en cuenta si estábamos en un dato cuando editábamos valores y el responsable de medición.
 // 2.13.19 - 26/03/2015 - No se accede a la opcion responsable de medicion en los indicadores a menos que se tenga control del mismo. También se recoge el id_entidad en las ediciones.

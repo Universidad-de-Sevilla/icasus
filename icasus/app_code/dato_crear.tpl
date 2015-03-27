@@ -71,6 +71,11 @@
             </fieldset>
 
             <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_OBSERV}</label>
+                <div><textarea  class="autogrow" name="observaciones"></textarea></div>
+            </fieldset>
+
+            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_CALCULO}</label>
                 <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}"></textarea></div>
             </fieldset>
@@ -180,6 +185,6 @@
         </div><!-- tab id=subunidades -->    
     </div>
 </form>
-            
+
 <script src="js/dato_crear.js" type="text/javascript"></script>
 
