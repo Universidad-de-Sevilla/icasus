@@ -533,7 +533,7 @@ define('ERR_PARAM_GRAFIC', 'Faltan parámetros para mostrar la gráfica.');
 //Indicadores
 define('ERR_INDIC_BORRAR_MED', 'Tiene Mediciones asociadas al Indicador, necesita borrar primero las Mediciones.');
 define('ERR_INDIC_BORRAR_NO_AUT', 'No tiene permisos para borrar el Indicador.');
-define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Indicadores de esta Unidad');
+define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Indicadores/Datos de esta Unidad');
 define('ERR_INDIC_GRABAR', 'No se ha podido grabar el Indicador.');
 define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el Indicador, el identificador no existe en la base de datos.');
 

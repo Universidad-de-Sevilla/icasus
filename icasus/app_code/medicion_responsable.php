@@ -59,5 +59,5 @@ else
 {
     // El usuario no tiene permisos avisamos error
     $error = ERR_MED_RESP;
-    header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&error=$error");
+    header("Location:index.php?page=$tipo _mostrar&id_$tipo=$id_indicador&id_entidad=$id_entidad&error=$error");
 }
