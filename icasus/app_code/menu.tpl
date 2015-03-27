@@ -17,7 +17,7 @@
 
 <div id="sidebar">
     <div class="cog">+</div>
-    <a href="index.php" class="logo"><span>{$smarty.const.TXT_ICASUS}</span></a>
+    <a title="{$smarty.const.TXT_ICASUS}" href="index.php" class="logo"><span>{$smarty.const.TXT_ICASUS}</span></a>
 
     <div class="user_box clearfix">
         <img align="left" src="theme/danpin/images/profile.jpg" width="55" alt="{$smarty.const.TXT_FOTO_PERFIL}" />  

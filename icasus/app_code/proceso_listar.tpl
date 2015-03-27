@@ -24,12 +24,12 @@
                     <tbody>                       
                         {foreach from=$procesos item=proceso}
                             <tr class="gradeX">    
-                                <td nowrap>{$proceso->codigo}</td>
-                                <td nowrap>{$proceso->alcance}</td>
+                                <td style="white-space:nowrap">{$proceso->codigo}</td>
+                                <td style="white-space:nowrap">{$proceso->alcance}</td>
                                 <td>
                                     {if $proceso->madre->id > 0}
                                         <a title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->madre->id}&id_entidad={$proceso->madre->id_entidad}">
-                                            {$proceso->madre->nombre}
+                                            <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/> {$proceso->madre->nombre}
                                         </a>
                                     {else}
                                         {$smarty.const.TXT_PROC_ES_MADRE}
