@@ -21,7 +21,11 @@
                 <tbody>
                     {foreach from=$cuadros_propios item=cuadro}
                         <tr>
-                            <td><a title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td> 
+                            <td>
+                                <a title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}">
+                                    <img src='/icons/ff16/table.png' /> {$cuadro->nombre}
+                                </a>
+                            </td> 
                             <td>
                                 {if $cuadro->privado == 0}
                                     {$smarty.const.TXT_PUBLICO}
@@ -66,8 +70,16 @@
                 <tbody>
                     {foreach from=$cuadros_publicos item=cuadro}
                         <tr>
-                            <td><a href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td> 
-                            <td>{if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}{else}{$smarty.const.TXT_PRIVADO}{/if}</td>
+                            <td>
+                                <a title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}">
+                                    <img src='/icons/ff16/table.png' /> {$cuadro->nombre}
+                                </a>
+                            </td> 
+                            <td>
+                                {if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}
+                                {else}{$smarty.const.TXT_PRIVADO}
+                                {/if}
+                            </td>
                             <td width="60%">{$cuadro->comentarios}</td>
                         </tr>
                     {/foreach}

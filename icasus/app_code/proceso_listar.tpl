@@ -35,13 +35,16 @@
                                         {$smarty.const.TXT_PROC_ES_MADRE}
                                     {/if}
                                 </td>
-                                <td><a title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
+                                <td>
+                                    <a title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                         <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/> {$proceso->nombre}
                                     </a>
                                 </td>
                                 <td>
-                                    <a title="{$smarty.const.TXT_USER_VER}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">{$proceso->propietario->nombre}
-                                        {$proceso->propietario->apellidos}</a>
+                                    <a title="{$smarty.const.TXT_USER_VER}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
+                                        <img src='/icons/ff16/user.png' alt='{$smarty.const.TXT_ICON}'/> {$proceso->propietario->nombre}
+                                        {$proceso->propietario->apellidos}
+                                    </a>
                                 </td>
                                 <td style="white-space:nowrap">
                                     {if $_control}
