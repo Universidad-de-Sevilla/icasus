@@ -46,7 +46,7 @@ if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad a
 
     $indicador_subunidad = new Indicador_subunidad();
     $indicadores_subunidades = $indicador_subunidad->Find_entidades_responsables($id_indicador, $usuario->id);
-    $smarty->assign("_nombre_pagina", TXT_RESPONSABLES_GRABAR);
+    $smarty->assign("_nombre_pagina", TXT_RESPONSABLES_GRABAR . ': ' . $indicador->nombre);
     $smarty->assign("indicadores_subunidades", $indicadores_subunidades);
 
     $entidad = new Entidad();

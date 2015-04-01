@@ -114,7 +114,7 @@ if (filter_has_var(INPUT_POST, 'id_val_ref'))
 
 $smarty->assign('_javascript', array('valor_referencia_crear'));
 $smarty->assign('indicador', $indicador);
-$smarty->assign('_nombre_pagina', $indicador->nombre);
+$smarty->assign('_nombre_pagina', TXT_VAL_REF . ': ' . $indicador->nombre);
 
 $smarty->assign('tipo', $tipo);
 $plantilla = 'valor_referencia_crear.tpl';
