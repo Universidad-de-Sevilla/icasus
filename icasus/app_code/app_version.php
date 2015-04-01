@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.13.22");
-define('IC_FECHA_REVISION', "27/03/2015");
+define('IC_VERSION', "2.13.23");
+define('IC_FECHA_REVISION', "01/04/2015");
 
+// 2.13.23 - 01/04/2015 - Columna de Acciones en el listado de Datos.
 // 2.13.22 - 27/03/2015 - Añadido campo observaciones a los datos.
 // 2.13.21 - 27/03/2015 - Columna de Acciones en el listado de Indicadores.
 // 2.13.20 - 27/03/2015 - Corregido fallo por el cual, si habia error de permisos no se tenia en cuenta si estábamos en un dato cuando editábamos valores y el responsable de medición.
