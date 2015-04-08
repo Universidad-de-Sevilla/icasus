@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.13.25");
-define('IC_FECHA_REVISION', "01/04/2015");
+define('IC_VERSION', "2.13.26");
+define('IC_FECHA_REVISION', "08/04/2015");
 
+// 2.13.26 - 08/04/2015 - Corrige fallo por el cual no se mostraba el status en las mediciones al querer editar un valor.
 // 2.13.25 - 01/04/2015 - Añadidos iconos a los listados. Pequeños cambios generales de interfaz.
 // 2.13.24 - 01/04/2015 - Corregidos títulos de las páginas (muestran su nombre y el del dato/indicador): medicion_responsable y valor_referencia_crear.
 // 2.13.23 - 01/04/2015 - Columna de Acciones en el listado de Datos.

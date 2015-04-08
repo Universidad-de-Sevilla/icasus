@@ -271,3 +271,42 @@ if ($indicador->id_responsable == $usuario->id
     $permiso_editar = true;
 }
 $smarty->assign('permiso_editar', $permiso_editar);
+
+//Buscar todos valores ref del indicador y recorrer si no existe entrada 
+//en la tabla valores_ref _med creamos entrada y despues asignamos a la plantilla
+$valor_referencia_medicion = new Valor_referencia_medicion();
+$valor_referencia = new Valor_referencia();
+$valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
+if ($valores_referencia)
+{
+    foreach ($valores_referencia as $valor_referencia)
+    {
+        $existe = $valor_referencia_medicion->Load("id_valor_referencia=$valor_referencia->id AND id_medicion=$id_medicion");
+        if (!$existe)
+        {
+            $valor_referencia_medicion = new Valor_referencia_medicion();
+            $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
+            $valor_referencia_medicion->id_medicion = $id_medicion;
+            $valor_referencia_medicion->save();
+        }
+    }
+    $valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion");
+    $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
+
+    //Control (Status) de valores limite y objetivo
+    foreach ($valores_referencia_medicion as $med_ref)
+    {
+        //Es la referencia Limite
+        if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
+        {
+            $medicion_lim = $med_ref->valor;
+            $smarty->assign('medicion_lim', $medicion_lim);
+        }
+        //Es la referencia Objetivo
+        if (strpos($med_ref->valor_referencia->etiqueta, 'bjetivo') !== false)
+        {
+            $medicion_obj = $med_ref->valor;
+            $smarty->assign('medicion_obj', $medicion_obj);
+        }
+    }
+}
