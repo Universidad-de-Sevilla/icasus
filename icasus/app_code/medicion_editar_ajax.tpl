@@ -12,7 +12,7 @@
         <tbody>
             {foreach $valores as $valor}
                 <tr>
-                    <td>{$valor->entidad->nombre}</td>
+                    <td>{$valor->entidad->etiqueta}</td>
                     <td>
                         {if $permiso_editar}
                             {if $valor->id == $valor_edit}
@@ -78,7 +78,7 @@
         <tbody>
             {foreach $valores as $valor}
                 <tr>
-                    <td>{$valor->entidad->nombre}</td>
+                    <td>{$valor->entidad->etiqueta}</td>
                     <td>
                         {if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
                             <a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
