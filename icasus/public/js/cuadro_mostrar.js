@@ -546,13 +546,13 @@ $(".panel_tabla_multi").each(function () {
     var cuenta_indicadores;
 
     leyenda.insertBefore($(this));
-    leyenda.html('<h4>Poner algo aquí</h4>');
+//    leyenda.html('<h4>Poner algo aquí</h4>');
 
     fecha = new Date(fecha_inicio);
     anio_inicio = fecha.getFullYear();
     fecha = new Date(fecha_fin);
     anio_fin = fecha.getFullYear();
-    htmlTabla += "<thead><tr><th></th>";
+    htmlTabla += "<thead><tr><th>Nombre</th>";
     for (anio = anio_inicio; anio <= anio_fin; anio++) {
         htmlTabla += "<th>" + anio + "</th>";
     }
@@ -588,6 +588,92 @@ $(".panel_tabla_multi").each(function () {
         altura = (200 + (25 * cuenta_indicadores));
         $("#panel_" + id_panel).css("height", altura + "px");
         $("#panel_" + id_panel).closest(".alturo").css("height", altura + "px");
+    });
+});
+
+//Panel de datos Rebiun
+$(".panel_rebiun").each(function () {
+    var fecha = new Date();
+    var anio_inicio = fecha.getFullYear() - 2;
+    var anio_fin = fecha.getFullYear() - 1;
+    var fecha_inicio = anio_inicio + "-01-01";
+    var fecha_fin = anio_fin + "-12-31";
+    var id_panel = $(this).data("id_panel");
+    var paridad;
+    var htmlTabla = '<table class="static">';
+
+    //Creamos la cabecera de la tabla
+    htmlTabla += "<thead><tr><th>Código</th><th>Nombre</th>";
+    htmlTabla += "<th>" + anio_inicio + "</th><th>" + anio_fin + "</th>";
+    htmlTabla += "<th>Evolución</th></tr></thead><tbody>";
+
+    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
+        $.each(indicadores, function (index, indicador) {
+
+            if (index % 2 === 0) {
+                paridad = "odd";
+            } else {
+                paridad = "even";
+            }
+
+            htmlTabla += '<tr class="' + paridad + '"><td style="white-space:nowrap">' + indicador.codigo + '</td><td>' + indicador.nombre + '</td>';
+
+            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
+                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin;
+
+            $.ajax({
+                url: urlApi,
+                type: "GET",
+                async: false,
+                dataType: "json",
+                success: onDataReceived
+            });
+
+            var valor_anio_inicio;
+            var valor_anio_fin;
+            var evolucion;
+
+            function onDataReceived(datos) {
+                valor_anio_inicio = null;
+                valor_anio_fin = null;
+                datos.forEach(function (dato) {
+                    //Buscamos el total del año inicial
+                    if (dato.id_unidad == 0 && dato.medicion == anio_inicio) {
+                        valor_anio_inicio = Math.round(dato.valor * 100) / 100;
+                        htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anio_inicio + '</td>';
+                    }
+                    //Buscamos el total del año final
+                    if (dato.id_unidad == 0 && dato.medicion == anio_fin) {
+                        valor_anio_fin = Math.round(dato.valor * 100) / 100;
+                        htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anio_fin + '</td>';
+                    }
+                });
+                if (valor_anio_inicio === null) {
+                    htmlTabla += '<td  style="white-space:nowrap">---</td>';
+                }
+                if (valor_anio_fin === null) {
+                    htmlTabla += '<td  style="white-space:nowrap">---</td>';
+                }
+                //Si existen ambos totales calculamos su diferencia
+                if (valor_anio_inicio !== null && valor_anio_fin !== null) {
+                    evolucion = Math.round((valor_anio_fin - valor_anio_inicio) * 100) / 100;
+                    if (evolucion > 0) {
+                        htmlTabla += '<td title="Incremento" style="color:green;white-space:nowrap;font-weight:bold;">' + evolucion + '</td></tr>';
+                    }
+                    else if (evolucion < 0) {
+                        htmlTabla += '<td title="Descenso" style="color:red;white-space:nowrap;font-weight:bold;">' + evolucion + '</td></tr>';
+                    }
+                    else {
+                        htmlTabla += '<td title="Constante" style="white-space:nowrap;font-weight:bold;">Constante</td></tr>';
+                    }
+                }
+                else {
+                    htmlTabla += '<td style="white-space:nowrap">---</td>';
+                }
+            }
+        });
+        htmlTabla += '</tbody></table>';
+        $('#panel_' + id_panel).html(htmlTabla);
     });
 });
 
