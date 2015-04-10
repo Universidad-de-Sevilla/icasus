@@ -4,6 +4,7 @@
             <tr>
                 <th>{$smarty.const.FIELD_UNID}</th>
                 <th>{$smarty.const.FIELD_VAL}</th>
+                <th>{$smarty.const.FIELD_STATUS}</th>
                 <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
                 <th>{$smarty.const.FIELD_USER_GRABA}</th>
             </tr>
@@ -11,7 +12,7 @@
         <tbody>
             {foreach $valores as $valor}
                 <tr>
-                    <td>{$valor->entidad->nombre}</td>
+                    <td>{$valor->entidad->etiqueta}</td>
                     <td>
                         {if $permiso_editar}
                             {if $valor->id == $valor_edit}
@@ -24,6 +25,35 @@
                             {/if}
                         {else}
                         {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
+                    {/if}
+                </td>
+                <td style="text-align: center"> 
+                    {if $valor->valor != NULL}
+                        {if isset($medicion_lim)AND isset($medicion_lim)}
+                            {if  $valor->valor < $medicion_lim}
+                                <img src='/icons/ff16/bullet_red.png' />
+                            {else if $valor->valor >= $medicion_obj}
+                                <img src='/icons/ff16/bullet_green.png' />
+                            {else}
+                                <img src='/icons/ff16/bullet_yellow.png' />
+                            {/if}
+                        {else if isset($medicion_obj)}
+                            {if $valor->valor >= $medicion_obj }
+                                <img src='/icons/ff16/bullet_green.png' />
+                            {else}
+                                <img src='/icons/ff16/bullet_red.png' />
+                            {/if}
+                        {else if isset($medicion_lim)}
+                            {if $valor->valor < $medicion_lim }
+                                <img src='/icons/ff16/bullet_red.png' />
+                            {else}
+                                <img src='/icons/ff16/bullet_green.png' />
+                            {/if}
+                        {else}
+                            <img src='/icons/ff16/bullet_green.png' />
+                        {/if}
+                    {else}
+                        ---
                     {/if}
                 </td>
                 <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
@@ -40,6 +70,7 @@
             <tr>
                 <th>{$smarty.const.FIELD_UNID}</th>
                 <th>{$smarty.const.FIELD_VAL}</th>
+                <th>{$smarty.const.FIELD_STATUS}</th>
                 <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
                 <th>{$smarty.const.FIELD_USER_GRABA}</th>
             </tr>
@@ -47,12 +78,41 @@
         <tbody>
             {foreach $valores as $valor}
                 <tr>
-                    <td>{$valor->entidad->nombre}</td>
+                    <td>{$valor->entidad->etiqueta}</td>
                     <td>
                         {if $valor->autorizado == 1 OR  $indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id}
                             <a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
                         {else}
                         {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
+                    {/if}
+                </td>
+                <td style="text-align: center"> 
+                    {if $valor->valor != NULL}
+                        {if isset($medicion_lim)AND isset($medicion_lim)}
+                            {if  $valor->valor < $medicion_lim}
+                                <img src='/icons/ff16/bullet_red.png' />
+                            {else if $valor->valor >= $medicion_obj}
+                                <img src='/icons/ff16/bullet_green.png' />
+                            {else}
+                                <img src='/icons/ff16/bullet_yellow.png' />
+                            {/if}
+                        {else if isset($medicion_obj)}
+                            {if $valor->valor >= $medicion_obj }
+                                <img src='/icons/ff16/bullet_green.png' />
+                            {else}
+                                <img src='/icons/ff16/bullet_red.png' />
+                            {/if}
+                        {else if isset($medicion_lim)}
+                            {if $valor->valor < $medicion_lim }
+                                <img src='/icons/ff16/bullet_red.png' />
+                            {else}
+                                <img src='/icons/ff16/bullet_green.png' />
+                            {/if}
+                        {else}
+                            <img src='/icons/ff16/bullet_green.png' />
+                        {/if}
+                    {else}
+                        ---
                     {/if}
                 </td>
                 <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
@@ -134,7 +194,7 @@
             {if $medicion->etiqueta != NULL}
                 {$medicion->etiqueta}
             {else}
-                ----
+                ---
             {/if}
         </a>
     {/if}
@@ -143,7 +203,7 @@
             {if $medicion->periodo_inicio != NULL}
                 {$medicion->periodo_inicio|date_format:"%d-%m-%Y"}
             {else}
-                ----
+                ---
             {/if}
         </a>
     {/if}
@@ -151,7 +211,7 @@
         <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pf');">
             {if $medicion->periodo_fin != NULL}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}
             {else}
-                ----
+                ---
             {/if}
         </a>
     {/if}
@@ -160,7 +220,7 @@
             {if $medicion->grabacion_inicio != NULL}
                 {$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}
             {else}
-                ----
+                ---
             {/if}
         </a>
     {/if}
@@ -169,7 +229,7 @@
             {if $medicion->grabacion_fin != NULL}
                 {$medicion->grabacion_fin|date_format:"%d-%m-%Y"}
             {else}
-                ----
+                ---
             {/if}
         </a>
     {/if}
@@ -181,7 +241,7 @@
             {if $medicion->observaciones != ''}
                 {$medicion->observaciones}
             {else}
-                ----
+                ---
             {/if}
         </a>
     {/if}
@@ -190,7 +250,7 @@
             {if $medicion->periodo_inicio != NULL}
                 {$medicion->periodo_inicio|date_format:"%d-%m-%Y"}
             {else}
-                ----
+                ---
             {/if}
         </a>
     {/if}
@@ -198,7 +258,7 @@
         <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pf');">
             {if $medicion->periodo_fin != NULL}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}
             {else}
-                ----
+                ---
             {/if}
         </a>
     {/if}
@@ -207,7 +267,7 @@
             {if $medicion->grabacion_inicio != NULL}
                 {$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}
             {else}
-                ----
+                ---
             {/if}
         </a>
     {/if}
@@ -216,7 +276,7 @@
             {if $medicion->grabacion_fin != NULL}
                 {$medicion->grabacion_fin|date_format:"%d-%m-%Y"}
             {else}
-                ----
+                ---
             {/if}
         </a>
     {/if}

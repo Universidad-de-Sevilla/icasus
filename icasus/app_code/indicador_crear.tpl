@@ -74,6 +74,10 @@
                 <div><textarea  class="inp" name="descripcion"></textarea></div>
             </fieldset>
             <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_OBSERV}</label>
+                <div><textarea  class="inp" name="observaciones"></textarea></div>
+            </fieldset>
+            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_CALCULO}</label>
                 <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}"></textarea></div>
             </fieldset>

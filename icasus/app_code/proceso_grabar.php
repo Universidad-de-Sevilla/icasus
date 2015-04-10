@@ -9,7 +9,6 @@
 // Descripcion: Graba un nuevo proceso en la base de datos comprobando que el código no se 
 // encuentre repetido
 //---------------------------------------------------------------------------------------------------
-
 // Si vienen todos los datos necesarios del formulario grabamos     
 if (filter_has_var(INPUT_POST, 'alcance') && filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'codigo') && filter_has_var(INPUT_POST, 'id_propietario') && filter_has_var(INPUT_POST, 'madre'))
 {
@@ -35,8 +34,10 @@ if (filter_has_var(INPUT_POST, 'alcance') && filter_has_var(INPUT_POST, 'nombre'
     $proceso->documentacion = filter_has_var(INPUT_POST, 'documentacion') ? filter_input(INPUT_POST, 'documentacion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $proceso->mediciones = filter_has_var(INPUT_POST, 'mediciones') ? filter_input(INPUT_POST, 'mediciones', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $proceso->registros = filter_has_var(INPUT_POST, 'registros') ? filter_input(INPUT_POST, 'registros', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+    $proceso->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $proceso->id_propietario = filter_has_var(INPUT_POST, 'id_propietario') ? filter_input(INPUT_POST, 'id_propietario', FILTER_SANITIZE_NUMBER_INT) : null;
-    $proceso->id_entidad = filter_has_var(INPUT_POST, 'id_entidad') ? filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT) : null;
+    $id_entidad = filter_has_var(INPUT_POST, 'id_entidad') ? filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT) : null;
+    $proceso->id_entidad = $id_entidad;
 
     /*
       // PORHACER

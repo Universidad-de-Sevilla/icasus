@@ -8,6 +8,7 @@
 //---------------------------------------------------------------------------------------------------
 // Muestra una tabla con todas las mediciones de un indicador y sus valores, para poder editarlos
 //---------------------------------------------------------------------------------------------------
+
 global $smarty;
 global $usuario;
 global $plantilla;
@@ -64,7 +65,7 @@ if (isset($id_entidad))
     {
         // El usuario no tiene permisos avisamos error
         $error = ERR_INDIC_EDIT_NO_AUT;
-        header("Location:index.php?page=indicador_mostrar&id_indicador=$id_indicador&error=$error");
+        header("Location:index.php?page=$tipo _mostrar&id_$tipo=$id_indicador&id_entidad=$id_entidad&error=$error");
     }
 }
 else

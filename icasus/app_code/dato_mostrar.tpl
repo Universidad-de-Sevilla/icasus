@@ -112,12 +112,22 @@
                     </fieldset>
                 </div>
             </div><!-- //.colums .clearfix -->
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_DESC}</label>
-                <div>
-                    {$dato->descripcion}
-                </div>
-            </fieldset>
+            {if $dato->descripcion != ""}
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_DESC}</label>
+                    <div>
+                        {$dato->descripcion}
+                    </div>
+                </fieldset>
+            {/if} 
+            {if $dato->observaciones != ""}
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_OBSERV}</label>
+                    <div>
+                        {$dato->observaciones}
+                    </div>
+                </fieldset>
+            {/if}
             {if $dato->calculo}
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_CALCULO}</label>

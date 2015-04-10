@@ -10,8 +10,9 @@
                             <option value="0">{$smarty.const.TXT_PROC_ES_MADRE}</option>
                             {foreach from=$procesos_madre item=proceso_madre}
                                 <option value="{$proceso_madre->id}">
-                                    {$proceso_madre->codigo} - {$proceso_madre->nombre}</option>
-                                {/foreach} 
+                                    {$proceso_madre->codigo} - {$proceso_madre->nombre}
+                                </option>
+                            {/foreach} 
                         </select>
                     </div>
                 </fieldset> 
@@ -144,8 +145,13 @@
                     <div>
                         <textarea  class="autogrow" name="registros" id="registros"></textarea>
                     </div>
-                </fieldset>    
-
+                </fieldset>  
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_OBSERV}</label>
+                    <div>
+                        <textarea  class="autogrow" name="observaciones" id="registros"></textarea>
+                    </div>
+                </fieldset> 
                 <div class="button_bar clearfix">
                     <button class="green send_right" type="submit" value="{$smarty.const.TXT_GRABAR}" name="proceso_submit">
                         <div class="ui-icon ui-icon-check"></div>

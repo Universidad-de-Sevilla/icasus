@@ -449,7 +449,7 @@ define('MSG_PAG_NUEVA_OK', 'La Página se ha creado correctamente.');
 define('MSG_PAG_EDIT_OK', 'La Página se ha modificado correctamente.');
 
 //Procesos
-define('MSG_PROC_BORRADO', 'Se ha borrado el Proceso.');
+define('MSG_PROC_BORRADO', 'Se ha borrado el Proceso: ');
 define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Proceso?');
 define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo Proceso para esta Unidad.');
 define('MSG_PROC_NO_INDIC', 'No se ha definido ningún Indicador para este Proceso.');
@@ -533,13 +533,14 @@ define('ERR_PARAM_GRAFIC', 'Faltan parámetros para mostrar la gráfica.');
 //Indicadores
 define('ERR_INDIC_BORRAR_MED', 'Tiene Mediciones asociadas al Indicador, necesita borrar primero las Mediciones.');
 define('ERR_INDIC_BORRAR_NO_AUT', 'No tiene permisos para borrar el Indicador.');
-define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Indicadores de esta Unidad');
+define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Indicadores/Datos de esta Unidad');
 define('ERR_INDIC_GRABAR', 'No se ha podido grabar el Indicador.');
 define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el Indicador, el identificador no existe en la base de datos.');
 
 //Mediciones
 define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de creación de Medición.');
 define('ERR_MED_AUT', 'No tiene permisos suficientes para agregar Mediciones a este');
+define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en esta Medición');
 define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
 define('ERR_MED_NO_VAL', 'Error: no existen valores pendientes ni recogidos para esta Medición.');
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la Medición, inténtelo de nuevo o contacte con los administradores de Icasus.');

@@ -143,8 +143,13 @@
                 <div>
                     <textarea  class="autogrow" name="registros" id="registros">{$proceso->registros}</textarea>
                 </div>
-            </fieldset>    
-
+            </fieldset>
+            <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_OBSERV}</label>
+                <div>
+                    <textarea  class="autogrow" name="observaciones" id="registros">{$proceso->observaciones}</textarea>
+                </div>
+            </fieldset>  
             <div class="button_bar clearfix">
                 <button class="green send_right" type="submit" value="{$smarty.const.TXT_GRABAR}" name="proceso_submit">
                     <div class="ui-icon ui-icon-check"></div>

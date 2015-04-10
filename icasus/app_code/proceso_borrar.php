@@ -27,7 +27,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
         else
         {
             $proceso->delete();
-            $aviso = MSG_PROC_BORRADO;
+            $aviso = MSG_PROC_BORRADO . $proceso->nombre;
             header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&aviso=$aviso");
         }
     }

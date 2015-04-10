@@ -1,8 +1,20 @@
 <?php
 
-define('IC_VERSION', "2.13.15");
-define('IC_FECHA_REVISION', "25/03/2015");
+define('IC_VERSION', "2.13.27");
+define('IC_FECHA_REVISION', "09/04/2015");
 
+// 2.13.27 - 09/04/2015 - Cuadro de mando de datos Rebiun.
+// 2.13.26 - 08/04/2015 - Corrige fallo por el cual no se mostraba el status en las mediciones al querer editar un valor.
+// 2.13.25 - 01/04/2015 - Añadidos iconos a los listados. Pequeños cambios generales de interfaz.
+// 2.13.24 - 01/04/2015 - Corregidos títulos de las páginas (muestran su nombre y el del dato/indicador): medicion_responsable y valor_referencia_crear.
+// 2.13.23 - 01/04/2015 - Columna de Acciones en el listado de Datos.
+// 2.13.22 - 27/03/2015 - Añadido campo observaciones a los datos.
+// 2.13.21 - 27/03/2015 - Columna de Acciones en el listado de Indicadores.
+// 2.13.20 - 27/03/2015 - Corregido fallo por el cual, si habia error de permisos no se tenia en cuenta si estábamos en un dato cuando editábamos valores y el responsable de medición.
+// 2.13.19 - 26/03/2015 - No se accede a la opcion responsable de medicion en los indicadores a menos que se tenga control del mismo. También se recoge el id_entidad en las ediciones.
+// 2.13.18 - 26/03/2015 - Añadido campo observaciones a los indicadores.
+// 2.13.17 - 26/03/2015 - Añadida la columna Acciones al listado de procesos.
+// 2.13.16 - 26/03/2015 - Añadido campo observaciones a los procesos. Corregido fallo al grabar no se recogia el id_entidad.
 // 2.13.15 - 24/03/2015 - Tamaño fijo para la columna de acciones de las unidades.
 // 2.13.14 - 24/03/2015 - Controla que no se pinten gráficas si existen mediciones sin valores.
 // 2.13.13 - 24/03/2015 - Cambios en la interfaz de responsable de medición.
