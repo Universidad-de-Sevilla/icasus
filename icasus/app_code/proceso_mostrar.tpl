@@ -184,14 +184,13 @@
                     <tbody>
                         {foreach from=$indicadores item=indicador} 
                             <tr>
-                                <td>{$indicador->codigo}</td>
+                                <td style="white-space:nowrap">{$indicador->codigo}</td>
                                 <td>
-                                    <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>{$indicador->nombre}</a>
+                                    <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$indicador->nombre}</a>
                                     <a href='#' title='{$indicador->descripcion}'><big>*</big></a>
                                 </td>
                                 <td>
-                                    {$indicador->responsable->nombre} {$indicador->responsable->apellidos}
-                                     <!--<a href='index.php?page=usuario_datos&id_usuario={$indicador->id_responsable}'></a>-->
+                                    <a title="{$smarty.const.TXT_VER}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'> <img src='/icons/ff16/user.png' /> {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                 </td>
                             </tr>
                         {/foreach}
@@ -316,19 +315,24 @@
                             <th>{$smarty.const.FIELD_SUBPROC}</th>
                             <th>{$smarty.const.FIELD_NOMBRE}</th>
                             <th>{$smarty.const.FIELD_PROPIETARIO}</th>
-                            <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                {if $_control}
+                                <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                {/if}
                         </tr>
                     </thead>
                     <tbody>
                         {foreach from=$subprocesos item=subproceso}
                             <tr>
-                                <td>{$subproceso->codigo}</td>
-                                <td>{$subproceso->nombre}</td>
+                                <td style="white-space:nowrap">{$subproceso->codigo}</td>
+                                <td><a title="{$smarty.const.TXT_VER}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}"> <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/> {$subproceso->nombre}</a></td>
                                 <td>{$subproceso->propietario->nombre} {$subproceso->propietario->apellidos}</td>
-                                <td><a href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">{$smarty.const.TXT_VER}</a>
-                                    - <a href="index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">{$smarty.const.TXT_EDIT}</a>
-                                    - <a href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'
-                                         onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">{$smarty.const.TXT_BORRAR}</a></td>
+                                {if $_control}
+                                    <td>
+                                        <a title="{$smarty.const.TXT_EDIT}" href="index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}"><img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /></a>&nbsp;
+                                        <a title="{$smarty.const.TXT_BORRAR}" href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'
+                                           onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');"><img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /></a>
+                                    </td>
+                                {/if}
                             </tr>
                         {/foreach}
                     </tbody>
