@@ -6,6 +6,7 @@
         </div>
     </div>
 </div>
+<!-- //división modal activar uno -->
 
 <!-- división modal asignar una unidad a una medición -->
 <div id="modal_asignar_una_medicion" class="dialog_content narrow ui-dialog-content ui-widget-content">
@@ -17,8 +18,9 @@
         </div>
     </div>
 </div>
+<!-- //división modal asignar una unidad a una medición -->
 
-<!-- división modal confirmacion de desactivación de las mediciones completas de una subuniadad para un indicador -->
+<!-- división modal confirmación de desactivación de las mediciones completas de una subunidad para un indicador -->
 <div id="modal_activar_all" class="dialog_content narrow ui-dialog-content ui-widget-content">
     <div class="block" style="opacity: 1;" >
         <div class="section" style="padding:20px">
@@ -29,19 +31,19 @@
         </div>
     </div>
 </div>
+<!-- //división modal confirmación de desactivación de las mediciones completas de una subunidad para un indicador -->
 
 <!-- división seleccionar periodos a consultar -->
-<div>
-    <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-            src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
-    <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-            src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a> 
-</div>
-
 <div style="opacity: 1;" class="box grid_16">
     <h2 class="box_head">{$smarty.const.TXT_RANGO_FECHAS}</h2>
     <div style="display: block;" class="toggle_container">
         <div style="opacity: 1;" class="block">
+            <div class="button_bar clearfix">
+                <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+                        src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a>&nbsp;&nbsp;
+                <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+                        src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>         
+            </div>
             <form method="post" action="">
                 <input type="hidden" name="id_indicador" id="id_indicador" value="{$indicador->id}">
                 <input type="hidden" name="id_entidad" id="id_entidad" value="{$entidad->id}">
@@ -75,12 +77,15 @@
         </div>
     </div>
 </div>
+<!-- //división seleccionar periodos a consultar -->
+
 <!-- división muestra valores de subunidades-mediciones -->
 <div style="opacity: 1;" class="box grid_16">
-    <div style="opacity: 1;" class="block" id="mostrar_valores">	
+    <div style="opacity: 1;overflow-x:auto" class="block" id="mostrar_valores">	
         {include file="indicador_subunidad_valor_mostrar.tpl"}
     </div>
 </div>
+<!-- //división muestra valores de subunidades-mediciones -->
 
 <script src="js/indicador_subunidad_valor.js" type="text/javascript"></script>
 
