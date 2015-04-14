@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.13.28");
-define('IC_FECHA_REVISION', "10/04/2015");
+define('IC_VERSION', "2.13.29");
+define('IC_FECHA_REVISION', "14/04/2015");
 
+// 2.13.29 - 14/04/2015 - Cuadro de mando datos Rebiun mejorado (buscador...).
 // 2.13.28 - 10/04/2015 - Añadido scroll horizontal a la tabla de edición de valores. Cambios en fichas de procesos.
 // 2.13.27 - 09/04/2015 - Cuadro de mando de datos Rebiun.
 // 2.13.26 - 08/04/2015 - Corrige fallo por el cual no se mostraba el status en las mediciones al querer editar un valor.
