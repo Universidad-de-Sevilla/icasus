@@ -600,7 +600,7 @@ $(".panel_rebiun").each(function () {
     var fecha_fin = anio_fin + "-12-31";
     var id_panel = $(this).data("id_panel");
     var paridad;
-    var buscador=  '<p style="font-weight:bold">Buscar:&nbsp;<input type="text" id="search" placeholder="Teclear..." /></p>';
+    var buscador = '<p style="font-weight:bold">Buscar:&nbsp;<input type="text" id="search" placeholder="Teclear..." /></p>';
     $('#panel_' + id_panel).append(buscador);
     var htmlTabla = '<table id="tabla_rebiun" class="static">';
 
@@ -676,17 +676,17 @@ $(".panel_rebiun").each(function () {
         });
         htmlTabla += '</tbody></table>';
         $('#panel_' + id_panel).append(htmlTabla);
-        $("#search").keyup(function(){
-        _this = this;
-        // Show only matching TR, hide rest of them
-        $.each($("#tabla_rebiun tbody").find("tr"), function() {
-            console.log($(this).text());
-            if($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) == -1)
-               $(this).hide();
-            else
-                 $(this).show();                
+        $("#search").keyup(function () {
+            _this = this;
+            // Show only matching TR, hide rest of them
+            $.each($("#tabla_rebiun tbody").find("tr"), function () {
+                console.log($(this).text());
+                if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
+                    $(this).hide();
+                else
+                    $(this).show();
+            });
         });
-    }); 
     });
 });
 
