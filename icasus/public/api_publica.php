@@ -86,7 +86,7 @@ function get_indicadores_panel($id)
     $query = "SELECT indicadores.id, indicadores.codigo, indicadores.nombre, panel_indicadores.id_entidad, panel_indicadores.id_serietipo
   FROM indicadores
   INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador
-  WHERE panel_indicadores.id_panel = $id";
+  WHERE panel_indicadores.id_panel = $id ORDER BY codigo";
 
     $resultado = mysql_query($query);
     while ($registro = mysql_fetch_assoc($resultado))
