@@ -187,11 +187,10 @@
 
                     {* el cuerpo del template va aqui *}
                     {include file=$plantilla}
-
-                    {*footer*}
-                    {include file='footer.tpl'}
                 </div>
             </div>
         </div>
+        {*footer*}
+        {include file='footer.tpl'}
     </body>
 </html>
