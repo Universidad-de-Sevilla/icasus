@@ -26,16 +26,11 @@ if ($modulo == 'anularvalor')
 {
     $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
-//    if ($valor->puede_grabarse($valor->id, $usuario->id))
-    {
-        $valor->valor = NULL;
-        $valor->valor_parcial = NULL;
-//        $valor->id_usuario = $usuario->id;
-//        $valor->fecha_recogida = date("Y-m-d");
-        $valor->id_usuario = NULL;
-        $valor->fecha_recogida = NULL;
-        $valor->save();
-    }
+    $valor->valor = NULL;
+    $valor->valor_parcial = NULL;
+    $valor->id_usuario = NULL;
+    $valor->fecha_recogida = NULL;
+    $valor->save();
 }
 
 if ($modulo == 'grabarfila')
@@ -43,19 +38,14 @@ if ($modulo == 'grabarfila')
     $valor_parcial = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
-    //Comentado da problemas con los responsables de Unidad (revisar función)
-    //de todos modos ya se comprueba en la plantilla
-//    if ($valor->puede_grabarse($valor->id, $usuario->id))
-    {
-        //la función calcular calcula y graba el valor final y el parcial en el objeto $valor
-        $valor->calcular($id_valor, $valor_parcial);
-        $valor->valor_parcial = $valor_parcial;
-        $valor->id_usuario = $usuario->id;
-        $valor->fecha_recogida = date("Y-m-d");
-        $valor->save();
-    }
-    //TODO: que pasa si no puede grabar por falta de permisos
+    //la función calcular calcula y graba el valor final y el parcial en el objeto $valor
+    $valor->calcular($id_valor, $valor_parcial);
+    $valor->valor_parcial = $valor_parcial;
+    $valor->id_usuario = $usuario->id;
+    $valor->fecha_recogida = date("Y-m-d");
+    $valor->save();
 }
+
 if ($modulo == 'editarfila')
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
@@ -255,22 +245,6 @@ if ($modulo == 'editarvalorreferencia')
     $smarty->assign("modulo", "editarvalorreferencia");
     $plantilla = 'medicion_editar_ajax.tpl';
 }
-
-//Comprobar permisos
-$permiso_editar = false;
-foreach ($usuario->entidades AS $usuario_entidad)
-{
-    if (($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2) AND $usuario_entidad->id_entidad == $indicador->id_entidad)
-    {
-        $permiso_editar = true;
-    }
-}
-if ($indicador->id_responsable == $usuario->id
-        OR $indicador->id_responsable_medicion == $usuario->id)
-{
-    $permiso_editar = true;
-}
-$smarty->assign('permiso_editar', $permiso_editar);
 
 //Buscar todos valores ref del indicador y recorrer si no existe entrada 
 //en la tabla valores_ref _med creamos entrada y despues asignamos a la plantilla

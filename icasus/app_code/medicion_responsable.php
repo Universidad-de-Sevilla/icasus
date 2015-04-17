@@ -40,10 +40,8 @@ $indicador = new Indicador();
 $indicador->load_joined("id = $id_indicador");
 $smarty->assign('indicador', $indicador);
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-$usuario_entidad = new Usuario_entidad();
-if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)") || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+if ($control || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
 {
-
     $indicador_subunidad = new Indicador_subunidad();
     $indicadores_subunidades = $indicador_subunidad->Find_entidades_responsables($id_indicador, $usuario->id);
     $smarty->assign("_nombre_pagina", TXT_RESPONSABLES_GRABAR . ': ' . $indicador->nombre);

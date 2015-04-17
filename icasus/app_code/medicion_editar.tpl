@@ -251,7 +251,7 @@
                                 </td>
                                 <td style="text-align: center"> 
                                     {if $valor->valor != NULL}
-                                        {if isset($medicion_lim)AND isset($medicion_lim)}
+                                        {if isset($medicion_lim) AND isset($medicion_obj)}
                                             {if  $valor->valor < $medicion_lim}
                                                 <img src='/icons/ff16/bullet_red.png' />
                                             {else if $valor->valor >= $medicion_obj}

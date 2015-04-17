@@ -39,8 +39,7 @@ $activo = filter_input(INPUT_GET, 'activo', FILTER_SANITIZE_NUMBER_INT);
 
 if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 {
-    $usuario_entidad = new Usuario_entidad();
-    if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)"))
+    if ($control)
     {
         switch ($modulo)
         {

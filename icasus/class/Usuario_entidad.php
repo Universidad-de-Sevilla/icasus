@@ -142,14 +142,19 @@ class Usuario_entidad extends ADOdb_Active_Record
 
     public function comprobar_responsable_entidad($id_usuario, $id_entidad)
     {
+        //Permisos del usuario en la unidad
         if ($this->load("id_usuario=$id_usuario AND id_entidad=$id_entidad AND (id_rol = 1 OR id_rol =2)"))
         {
             return true;
         }
-        else
+        //Comprobamos la herencia en las subunidades
+        if ($id_entidad != 1)
         {
-            return false;
+            $entidad = new Entidad();
+            $entidad->load("id=$id_entidad");
+            return $this->comprobar_responsable_entidad($id_usuario, $entidad->id_madre);
         }
+        return false;
     }
 
 }

@@ -15,7 +15,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
     $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
     $proceso = new Proceso();
     $proceso->load_joined("id = $id_proceso");
-    if ($proceso->id_propietario == $proceso->propietario->id)
+    if ($control OR $proceso->id_propietario == $proceso->propietario->id)
     {
         $indicador = new Indicador();
         $indicadores = $indicador->Find("id_proceso = $id_proceso");

@@ -19,7 +19,7 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $usuario_entidad = new Usuario_entidad;
     // Comprobamos permisos
-    if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)"))
+    if ($control)
     {
         $dato = new Indicador();
         $dato->load_joined("id = $id_dato");

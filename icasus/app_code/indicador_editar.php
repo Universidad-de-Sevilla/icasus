@@ -26,7 +26,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     // Comprueba permisos para el usuario: responsable unidad, responsable delegado,
     // responsable indicador, responsable medicion
     $usuario_entidad = new Usuario_entidad();
-    if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)") || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+    if ($control || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
     {
         $entidad = new Entidad();
         $entidad->load("id = $indicador->id_entidad");
