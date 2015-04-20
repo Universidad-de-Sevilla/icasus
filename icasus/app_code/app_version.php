@@ -3,7 +3,7 @@
 define('IC_VERSION', "2.14.1");
 define('IC_FECHA_REVISION', "20/04/2015");
 
-// 2.14.1 - 20/04/2015 - Corregido fallo en la edición de mediciones por el cual no se actualizaba el título de la página al cambiar la etiqueta de una medición.
+// 2.14.1 - 20/04/2015 - Corregido: en la edición de mediciones no se actualizaba el título de la página al cambiar la etiqueta de una medición.
 // 2.14.0 - 17/04/2015 - Revisión mejorada de los permisos de la aplicación (incluye superadmin, herencia...).
 // 2.13.29 - 14/04/2015 - Cuadro de mando datos Rebiun mejorado (buscador...).
 // 2.13.28 - 10/04/2015 - Añadido scroll horizontal a la tabla de edición de valores. Cambios en fichas de procesos.
