@@ -38,76 +38,104 @@
     <a href="#" class="toggle"></a>
     <div class="toggle_container">
         <div class="button_bar clearfix">
-            <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}</a>&nbsp;&nbsp;
-            <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
-            <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-                    src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}
-            </a>&nbsp;&nbsp;
-            {if $permiso_editar}
+            {if !$indicador->calculo}
+                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                </a>&nbsp;&nbsp;
+                <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
+                </a>&nbsp;&nbsp;
+            {/if}  
+            {if $permiso_editar && !$indicador->calculo}
                 <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'>
                     <img src='/icons/ff16/time_delete.png' /> {$smarty.const.TXT_MED_BORRAR}
                 </a>&nbsp;&nbsp;
             {/if}
+            <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+                    src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}
+            </a>&nbsp;&nbsp;
             <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
             <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
         </div>
         <div class="box grid_8">
             <div class="block" style="margin:10px;">
-                {if $permiso_editar == true}
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_ETIQUETA}</label>
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_ETIQUETA}</label>
+                    {if $permiso_editar == true && !$indicador->calculo}
                         <div>
                             <span id="et">
                                 <a href="javascript:void(0)" onclick="javascript:etiqueta_editar('{$medicion->id}', 'et', 'etiqueta');">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}---{/if}</a>
                             </span>
                         </div>
-                    </fieldset>
-                    <fieldset>
-                        <label>{$smarty.const.FIELD_OBSERV}</label>
+                    {else}
+                        <div>{$medicion->etiqueta}</div>
+                    {/if}
+                </fieldset>
+                <fieldset>
+                    <label>{$smarty.const.FIELD_OBSERV}</label>
+                    {if $permiso_editar == true}
                         <div>
                             <span id="ob">
                                 <a href="javascript:void(0)" onclick="javascript:observaciones_editar('{$medicion->id}', 'ob', 'observaciones');">{if $medicion->observaciones != ''}{$medicion->observaciones}{else}---{/if}</a>
                             </span>
                         </div>
-                    </fieldset>
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_INICIO_PERIODO}</label>
+                    {else}
+                        <div>{if $medicion->observaciones != ''}{$medicion->observaciones}{else}---{/if}</div>
+                    {/if}
+                </fieldset>
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_INICIO_PERIODO}</label>
+                    {if $permiso_editar == true && !$indicador->calculo}
                         <div>
                             <span id="pi">
                                 <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pi');">{if $medicion->periodo_inicio}{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}{else}---{/if}</a>
                             </span>
                         </div>
-                    </fieldset>
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_FIN_PERIODO}</label>
+                    {else}
+                        <div>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</div>
+                    {/if}
+                </fieldset>
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_FIN_PERIODO}</label>
+                    {if $permiso_editar == true && !$indicador->calculo}
                         <div>
                             <span id="pf">
                                 <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pf');">{if $medicion->periodo_fin}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}{else}---{/if}</a>
                             </span>
                         </div>
-                    </fieldset>
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
+                    {else}
+                        <div>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</div>
+                    {/if}
+                </fieldset>
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
+                    {if $permiso_editar == true && !$indicador->calculo}
                         <div>
                             <span id="gi">
                                 <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}---{/if}</a>
                             </span>
                         </div>
-                    </fieldset>
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
+                    {else}
+                        <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</div>
+                    {/if}
+                </fieldset>
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
+                    {if $permiso_editar == true && !$indicador->calculo}
                         <div>
                             <span id="gf">
                                 <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}---{/if}</a>
                             </span>
                         </div>
-                    </fieldset>
-                    {if isset($valores_referencia_medicion)}
-                        {foreach $valores_referencia_medicion as $valor_referencia_medicion}
-                            {if $valor_referencia_medicion->valor_referencia->activo}
-                                <fieldset class="label_side">
-                                    <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+                    {else}
+                        <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</div>
+                    {/if}
+                </fieldset>
+                {if isset($valores_referencia_medicion)}
+                    {foreach $valores_referencia_medicion as $valor_referencia_medicion}
+                        {if $valor_referencia_medicion->valor_referencia->activo}
+                            <fieldset class="label_side">
+                                <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+                                {if $permiso_editar == true}
                                     <div>
                                         <span id="referencia_{$valor_referencia_medicion->id}">
                                             <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}');">
@@ -119,44 +147,7 @@
                                             </a>
                                         </span>
                                     </div>
-                                </fieldset>
-                            {/if}
-                        {/foreach}
-                    {else}
-                        <fieldset class="label_side">
-                            <div>{$smarty.const.MSG_INDIC_NO_VAL_REF}</div>
-                        </fieldset>
-                    {/if}
-                {else}
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_ETIQUETA}</label>
-                        <div>{$medicion->etiqueta}</div>
-                    </fieldset>
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_OBSERV}</label>
-                        <div>{$medicion->observaciones}</div>
-                    </fieldset>
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_INICIO_PERIODO}</label>
-                        <div>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</div>
-                    </fieldset>
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_FIN_PERIODO}</label>
-                        <div>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</div>
-                    </fieldset>
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
-                        <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</div>
-                    </fieldset>
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
-                        <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</div>
-                    </fieldset>
-                    {if isset($valores_referencia_medicion)}
-                        {foreach $valores_referencia_medicion as $valor_referencia_medicion}
-                            {if $valor_referencia_medicion->valor_referencia->activo}
-                                <fieldset class="label_side">
-                                    <label>{$valor_referencia_medicion->valor_referencia->etiqueta}</label>
+                                {else}
                                     <div>  
                                         {if $valor_referencia_medicion->valor == NULL}
                                             ---
@@ -164,17 +155,18 @@
                                             {$valor_referencia_medicion->valor|round:"2"}
                                         {/if}
                                     </div>
-                                </fieldset>
-                            {/if}
-                        {/foreach}
-                    {else}
-                        <fieldset class="label_side">
-                            <div>{$smarty.const.MSG_INDIC_NO_VAL_REF}</div>
-                        </fieldset>
-                    {/if}
+                                {/if}
+                            </fieldset>
+                        {/if}
+                    {/foreach}
+                {else}
+                    <fieldset class="label_side">
+                        <div>{$smarty.const.MSG_INDIC_NO_VAL_REF}</div>
+                    </fieldset>
                 {/if}
             </div>
         </div>
+
         <div class="box grid_8">
 
             <!-- GRÁFICA -->
@@ -211,17 +203,21 @@
     <a href="#" class="toggle"></a>
     <div class="toggle_container">
         <div class="button_bar clearfix">
-            <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}</a>&nbsp;&nbsp;
-            <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
-            <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
-                    src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}
-            </a>&nbsp;&nbsp;
-            {if $permiso_editar}
+            {if !$indicador->calculo}
+                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                </a>&nbsp;&nbsp;
+                <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
+                </a>&nbsp;&nbsp;
+            {/if}
+            {if $permiso_editar && !$indicador->calculo}
                 <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'>
                     <img src='/icons/ff16/time_delete.png' /> {$smarty.const.TXT_MED_BORRAR}
                 </a>&nbsp;&nbsp;
             {/if}
+            <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+                    src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}
+            </a>&nbsp;&nbsp;
             <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
             <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
         </div> 
@@ -242,7 +238,7 @@
                             <tr>
                                 <td>{$valor->entidad->etiqueta}</td>
                                 <td>
-                                    {if $permiso_editar}
+                                    {if $permiso_editar && !$indicador->calculo}
                                         <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
                                             {if $valor->valor == NULL}
                                                 ---
