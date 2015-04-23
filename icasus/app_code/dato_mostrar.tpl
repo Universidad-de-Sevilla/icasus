@@ -1,3 +1,12 @@
+<div>
+    {if $dato->calculo}
+        <div class="alert alert_blue">
+            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+            {$smarty.const.TXT_CALC_AUTO}
+        </div>
+    {/if}
+</div>
+
 <div class="box grid_16">
     <div class="toggle_container">
         <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_REP_GRAFIC}</h2>
@@ -88,12 +97,6 @@
                 <a href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
                     <img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>
             </div>
-            {if $dato->calculo}
-                <div class="alert alert_blue">
-                    <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-                    {$smarty.const.TXT_CALC_AUTO}
-                </div>
-            {/if}
             <div class="columns clearfix">
                 <div class="col_40">
                     <fieldset class="label">

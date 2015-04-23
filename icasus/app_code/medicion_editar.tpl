@@ -1,3 +1,12 @@
+<div>
+    {if $indicador->calculo}
+        <div class="alert alert_blue">
+            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
+            {$smarty.const.TXT_CALC_AUTO}
+        </div>
+    {/if}
+</div>
+
 <!-- NAVEGACIÓN-->
 {if count($mediciones)> 1}
     <div class="box grid_16">   
