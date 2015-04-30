@@ -22,6 +22,9 @@
                         <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
                     </a>&nbsp;&nbsp;
                 {/if}
+                <a href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}
+                </a>&nbsp;&nbsp;
                 <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>&nbsp;&nbsp;
                 <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
@@ -97,6 +100,9 @@
                             <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
                         </a>&nbsp;&nbsp;
                     {/if}
+                    <a href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <img src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}
+                    </a>&nbsp;&nbsp;
                     <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
                             src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>&nbsp;&nbsp;
                     <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>
@@ -142,6 +148,9 @@
                             src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
                     </a>&nbsp;&nbsp;
                 {/if}
+                <a href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}
+                </a>&nbsp;&nbsp;
                 <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>&nbsp;&nbsp;
                 <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>
