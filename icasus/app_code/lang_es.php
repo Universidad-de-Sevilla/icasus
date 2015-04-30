@@ -270,7 +270,7 @@ define('TXT_BTN_ENVIAR', 'Enviar');
 define('TXT_BTN_Aceptar', 'Aceptar');
 define('TXT_BTN_GUARDAR', 'Guardar');
 define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');
-define('TXT_SOLO_INDIC_CALC', 'Sólo si es un indicador calculado');
+define('TXT_SOLO_INDIC_CALC', 'Sólo si es un Indicador/Dato calculado');
 define('TXT_BUSCAR', 'Buscar...');
 define('TXT_INDICAR_COD', 'Indique un código estandarizado y único');
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');

@@ -64,6 +64,12 @@ if (
         // Si el indicador es nuevo grabamos subunidades
         if (!isset($id_indicador))
         {
+            //Si es calculado guardamos los indicadores/datos de los que depende en 
+            //la tabĺa de indicadores_dependencias
+            if ($indicador->calculo AND $indicador->calculo != "")
+            {
+                guardar_dependencias($indicador->id);
+            }
             $post_array = filter_input_array(INPUT_POST);
             $subunidades = filter_has_var(INPUT_POST, 'subunidades') ? $post_array['subunidades'] : array();
             if (count($subunidades) > 0)
@@ -120,7 +126,14 @@ if (
         }
         else
         {
-            // Si el indicador ya existía hay que currarselo de otra forma
+            //Si es calculado guardamos los indicadores/datos de los que depende en 
+            //la tabĺa de indicadores_dependencias pero antes borramos 
+            //las anteriores dependencias por si estas cambian en la edición
+            borrar_dependencias($id_indicador);
+            if ($indicador->calculo AND $indicador->calculo != "")
+            {
+                guardar_dependencias($id_indicador);
+            }
             //Primero borramos los existentes ¿no habrá otra forma más elegante?
             $criterio_efqm_indicador = new Criterio_efqm_indicador();
             while ($criterio_efqm_indicador->load("id_indicador = $indicador->id"))
@@ -199,3 +212,59 @@ else
     header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
 }
 
+//Función que guarda los indicadores/datos de los que depende el indicador/dato 
+//calculado cuyo identificador recibe como parámatro
+function guardar_dependencias($id)
+{
+
+    $indicador_calculado = new Indicador();
+    $indicador_calculado->load("id=$id");
+    $calculo = str_split($indicador_calculado->calculo);
+    $es_variable = false;
+    // Recorremos la cadena $calculo para sacar los 
+    // indicadores/datos influyentes
+    foreach ($calculo as $elemento)
+    {
+        if ($elemento == "[")
+        {
+            $variable = "";
+            $es_variable = true;
+            continue;
+        }
+        if ($elemento == "]")
+        {
+            //Es el id de un indicador/dato del que depende
+            if (is_numeric($variable))
+            {
+                //Lo guardamos en la tabla de indicadores_dependencias
+                guarda_dependencia($id, (int) $variable);
+            }
+            $es_variable = false;
+        }
+        if ($es_variable)
+        {
+            $variable .= $elemento;
+        }
+    }
+}
+
+//Función que guarda una dependencia de un indicador/dato de otro 
+//cuyos identificadores recibe como parámetros
+function guarda_dependencia($id_calculado, $id_operando)
+{
+    $indicador_dependencia = new Indicador_dependencia();
+    $indicador_dependencia->id_calculado = $id_calculado;
+    $indicador_dependencia->id_operando = $id_operando;
+    $indicador_dependencia->Save();
+}
+
+//Función que borra los indicadores/datos de los que depende el indicador/dato 
+//calculado cuyo identificador recibe como parámatro
+function borrar_dependencias($id)
+{
+    $indicador_dependencia = new Indicador_dependencia();
+    while ($indicador_dependencia->load("id_calculado = $id"))
+    {
+        $indicador_dependencia->delete();
+    }
+}

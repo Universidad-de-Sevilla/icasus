@@ -28,6 +28,12 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
         }
         else
         {
+            //Si es calculado borramos sus dependencias de 
+            //la tabla de indicadores dependencias
+            if ($dato->calculo)
+            {
+                borrar_dependencias($id_dato);
+            }
             $dato->delete();
             $aviso = MSG_DATO_BORRADO . "$dato->nombre";
             header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&aviso=$aviso");
@@ -45,3 +51,13 @@ else
     header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&error=$error");
 }
 
+//Función que borra los indicadores/datos de los que depende el indicador/dato 
+//calculado cuyo identificador recibe como parámatro
+function borrar_dependencias($id)
+{
+    $indicador_dependencia = new Indicador_dependencia();
+    while ($indicador_dependencia->load("id_calculado = $id"))
+    {
+        $indicador_dependencia->delete();
+    }
+}

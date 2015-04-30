@@ -26,6 +26,12 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
         }
         else
         {
+            //Si es calculado borramos sus dependencias de 
+            //la tabla de indicadores dependencias
+            if ($indicador->calculo)
+            {
+                borrar_dependencias($id_indicador);
+            }
             $indicador->delete();
             $aviso = MSG_INDIC_BORRADO;
             header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
@@ -43,3 +49,13 @@ else
     header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
 }
 
+//Función que borra los indicadores/datos de los que depende el indicador/dato 
+//calculado cuyo identificador recibe como parámatro
+function borrar_dependencias($id)
+{
+    $indicador_dependencia = new Indicador_dependencia();
+    while ($indicador_dependencia->load("id_calculado = $id"))
+    {
+        $indicador_dependencia->delete();
+    }
+}
