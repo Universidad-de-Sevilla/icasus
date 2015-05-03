@@ -6,9 +6,8 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //------------------------------------------------------------------------------
-// Muestra la interfaz para programar las mediciones que se van a realizar
-// Puede hacerse manualmente o utilizando una plantilla que genera las
-// mediciones automaticamente (TODO)
+// Muestra la interfaz para programar las mediciones que se van a realizar de manera 
+// manual.
 // Muestra un listado con la unidad y las subunidades para indicar las afectadas
 //------------------------------------------------------------------------------
 global $smarty;
@@ -19,11 +18,6 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
 {
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $tipo = "indicador";
-
-    $valor_referencia = new Valor_referencia();
-    $valores_referencia = $valor_referencia->Find("id_indicador = $id_indicador");
-
-    $smarty->assign("valores_referencia", $valores_referencia);
 }
 else if (filter_has_var(INPUT_GET, 'id_dato'))
 {
@@ -36,6 +30,11 @@ else
     header("location:index.php?page=entidad_listar&error=$error");
 }
 
+$valor_referencia = new Valor_referencia();
+$valores_referencia = $valor_referencia->Find("id_indicador = $id_indicador");
+
+$smarty->assign("valores_referencia", $valores_referencia);
+
 $indicador = new Indicador;
 if ($indicador->load("id = $id_indicador"))
 {
@@ -43,16 +42,7 @@ if ($indicador->load("id = $id_indicador"))
 
     //comprobar permisos para cambiar mediciones tanto para responsables del
     //indicador como de la medición o responsables de la unidad
-    $responsable_unidad = false;
-    foreach ($usuario->entidades AS $usuario_entidad)
-    {
-        if (($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2) AND $usuario_entidad->id_entidad == $indicador->id_entidad)
-        {
-            $responsable_unidad = true;
-        }
-    }
-    if ($responsable_unidad == true
-            OR $indicador->id_responsable == $usuario->id
+    if ($control OR $indicador->id_responsable == $usuario->id
             OR $indicador->id_responsable_medicion == $usuario->id)
     {
         $permiso_crear = true;

@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.14.4");
-define('IC_FECHA_REVISION', "30/04/2015");
+define('IC_VERSION', "2.15.0");
+define('IC_FECHA_REVISION', "04/05/2015");
 
+// 2.15.0 - 04/05/2015 - Sustituye la función agregar medición por generar mediciones de manera automática (primera versión: no tiene en cuenta Indicadores/Datos calculados). 
 // 2.14.4 - 30/04/2015 - Se guardan en una tabla las dependencias de aquellos indicadores/datos cuyo cálculo depende de otros. Esto facilitará posteriormente el cálculo automático. 
 // 2.14.3 - 23/04/2015 - Se ocultan las opciones de edición en las mediciones para los indicadores/datos calculados.
 // 2.14.2 - 23/04/2015 - Muestra el aviso de cálculo automático en la cabecera de los indicadores/datos y también en sus mediciones. 

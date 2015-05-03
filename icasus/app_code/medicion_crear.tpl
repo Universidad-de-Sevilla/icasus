@@ -1,4 +1,4 @@
-<h2>{$indicador->codigo} - {$indicador->nombre}</h2>
+<div><h2>{$indicador->codigo} - {$indicador->nombre}</h2></div>
 <form name="medicion" id="medicion" action="index.php?page=medicion_grabar" method="post" class="validate_form">
     <input type="hidden" name="id_indicador" value="{$indicador->id}" />
     <input type="hidden" name="tipo" value="{$tipo}" />
@@ -67,7 +67,7 @@
 
         <div style="opacity: 1;" id="referencia" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
-            {if $tipo == "indicador"}
+            {*if $tipo == "indicador"*}
                 <fieldset >
                     {if $valores_referencia}
                         {foreach $valores_referencia as $valor_referencia}
@@ -83,12 +83,12 @@
                         </div>
                     {/if}
                 </fieldset>
-            {else}
+            {*else}
                 <div class="alert dismissible alert_blue">
                     <img src="images/icons/small/white/alert_2.png" height="24" width="24">
                     {$smarty.const.MSG_DATO_NO_VAL_REF}
                 </div>
-            {/if}
+            {/if*}
             <div class="button_bar clearfix">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="green send_right" type="submit" name="proceso_submit" value='{$smarty.const.TXT_GRABAR}' >

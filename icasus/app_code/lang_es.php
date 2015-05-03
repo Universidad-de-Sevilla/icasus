@@ -202,6 +202,7 @@ define('TXT_MED_VALORES', 'Valor o Conjunto de Valores de la Medición Actual');
 define('TXT_MED_DATOS', 'Datos de la Medición');
 define('TXT_MED_GESTION', 'Gestión de Mediciones');
 define('TXT_MED_AGREGAR', 'Agregar Medición');
+define('TXT_MED_GENERAR', 'Generar Medición/es');
 define('TXT_MED_TABLA', 'Tabla de Mediciones');
 
 //Menú Principal
@@ -432,7 +433,7 @@ define('MSG_INDIC_BORRADO', 'Se ha borrado el Indicador.');
 define('MSG_INDIC_COPIADOS', 'Indicadores copiados.');
 define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los Datos del Indicador.');
 define('MSG_INDIC_NO_PUBLIC', 'Este Indicador no está definido como público.');
-define('MSG_INDIC_NO_VAL_REF', 'No se han definido Valores de referencia para este Indicador.');
+define('MSG_INDIC_NO_VAL_REF', 'No se han definido Valores de Referencia para este Indicador.');
 define('MSG_INDIC_NO_DATOS', 'Todavía no se han introducido Datos en este Indicador.');
 define('MSG_INDIC_NO_MED', 'Todavía no se han definido Mediciones para este Indicador.');
 
@@ -443,6 +444,9 @@ define('MSG_MED_BORRADA', 'La Medición se ha borrado con éxito.');
 define('MSG_MEDS_GRABADAS', 'Mediciones grabadas');
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de Indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva Medición. Unidades afectadas: ');
+define('MSG_MEDS_GENERADA', 'Se ha/n generado correctamente la/s Medición/es.');
+define('MSG_MED_GENERAR', 'Esta acción generará automáticamente todas las Mediciones (si no existen) del Indicador/Dato para el año actual en función de su periodicidad. ¿Está seguro?');
+define('MSG_MED_EXISTE', 'Ya existe/n Medicion/es para este año.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La Página se ha creado correctamente.');

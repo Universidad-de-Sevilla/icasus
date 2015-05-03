@@ -15,9 +15,12 @@
         <div class="block">
             <div class="button_bar clearfix">
                 {if !$indicador->calculo}
-                    <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}">
-                        <img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                    <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+                        <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
                     </a>&nbsp;&nbsp;
+                  <!-- <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}">
+                        <img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                    </a>&nbsp;&nbsp;-->
                     <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
                     </a>&nbsp;&nbsp;
@@ -94,8 +97,11 @@
             <div class="block">
                 <div class="button_bar clearfix">
                     {if !$indicador->calculo}
-                        <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                        <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+                            <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
                         </a>&nbsp;&nbsp;
+                        <!--<a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                        </a>&nbsp;&nbsp;-->
                         <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                             <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
                         </a>&nbsp;&nbsp;
@@ -142,8 +148,11 @@
         <div class="block">
             <div class="button_bar clearfix">
                 {if !$indicador->calculo}
-                    <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                    <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+                        <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
                     </a>&nbsp;&nbsp;
+                    <!--<a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                    </a>&nbsp;&nbsp;-->
                     <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
                             src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
                     </a>&nbsp;&nbsp;
