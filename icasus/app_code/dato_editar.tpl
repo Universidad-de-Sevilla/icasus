@@ -11,7 +11,7 @@
         <div style="opacity: 1;" id="dato" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_ID}</label>
+                <label>{$smarty.const.FIELD_COD}</label>
                 <div>
                     <input type="text" name="codigo" value="{$dato->codigo}" />
                     <div class="required_tag"></div>
@@ -115,10 +115,10 @@
                         <div>
                             <select name="periodicidad" class="required select_box">
                                 <option value="Anual" {if $dato->periodicidad == Anual}selected{/if} >{$smarty.const.TXT_ANUAL}</option>
-                                <option value="Mensual"{if $dato->periodicidad == Mensual}selected{/if} >{$smarty.const.TXT_MENSUAL}</option>
-                                <option value="Trimestral"{if $dato->periodicidad == Trimestral}selected{/if} {$smarty.const.TXT_TRIMESTRAL}</option>
-                                <option value="Cuatrimestral"{if $dato->periodicidad == Cuatrimestral}selected{/if} >{$smarty.const.TXT_CUATRIMESTRAL}</option>
                                 <option value="Semestral"{if $dato->periodicidad == Semestral}selected{/if} >{$smarty.const.TXT_SEMESTRAL}</option>
+                                <option value="Trimestral"{if $dato->periodicidad == Trimestral}selected{/if}> {$smarty.const.TXT_TRIMESTRAL}</option>
+                                <option value="Cuatrimestral"{if $dato->periodicidad == Cuatrimestral}selected{/if} >{$smarty.const.TXT_CUATRIMESTRAL}</option>
+                                <option value="Mensual"{if $dato->periodicidad == Mensual}selected{/if} >{$smarty.const.TXT_MENSUAL}</option>   
                             </select>
                         </div>
                     </fieldset>

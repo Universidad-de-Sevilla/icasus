@@ -322,11 +322,11 @@ function generar_medicion_mensual($indicador, $tipo, $indice)
     $medicion = new Medicion();
     if ($indice < 10)
     {
-        $etiqueta = Date('Y') . '.0' . $indice . 'M';
+        $etiqueta = Date('Y') . '.0' . $indice;
     }
     else
     {
-        $etiqueta = Date('Y') . '.' . $indice . 'M';
+        $etiqueta = Date('Y') . '.' . $indice;
     }
     //Comprobamos primero si ya exite la medición
     if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))

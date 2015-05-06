@@ -144,10 +144,10 @@
                         <div>
                             <select name="periodicidad" id="periodicidad" class="select_box">
                                 <option value="Anual"{if {$indicador->periodicidad} == Anual}selected{/if} >{$smarty.const.TXT_ANUAL}</option>
-                                <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if} >{$smarty.const.TXT_MENSUAL}</option>
+                                <option value="Semestral"{if $indicador->periodicidad == Semestral}selected{/if} >{$smarty.const.TXT_SEMESTRAL}</option>
                                 <option value="Trimestral" {if $indicador->periodicidad == Trimestral}selected{/if} >{$smarty.const.TXT_TRIMESTRAL}</option>
                                 <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if} >{$smarty.const.TXT_CUATRIMESTRAL}</option>
-                                <option value="Semestral"{if $indicador->periodicidad == Semestral}selected{/if} >{$smarty.const.TXT_SEMESTRAL}</option>
+                                <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if} >{$smarty.const.TXT_MENSUAL}</option>     
                             </select>
                         </div>
                     </fieldset>

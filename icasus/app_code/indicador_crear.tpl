@@ -137,10 +137,10 @@
                         <div>
                             <select name="periodicidad" id="periodicidad" class="select_box">
                                 <option value="Anual" selected>{$smarty.const.TXT_ANUAL}</option>
-                                <option value="Mensual">{$smarty.const.TXT_MENSUAL}</option>
+                                <option value="Semestral">{$smarty.const.TXT_SEMESTRAL}</option>
                                 <option value="Trimestral">{$smarty.const.TXT_TRIMESTRAL}</option>
                                 <option value="Cuatrimestral">{$smarty.const.TXT_CUATRIMESTRAL}</option>
-                                <option value="Semestral">{$smarty.const.TXT_SEMESTRAL}</option>
+                                <option value="Mensual">{$smarty.const.TXT_MENSUAL}</option>
                             </select>
                         </div>
                     </fieldset>
