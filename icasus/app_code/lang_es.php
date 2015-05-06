@@ -568,7 +568,7 @@ define('ERR_VAL_REF_BORRAR', 'No se puede borrar un Valor de Referencia con valo
 //CAMPOS DE LAS TABLAS: FIELD_[Nombre]
 //-----------------------------------------------------------------------------------
 
-define('FIELD_ID', 'Identificador');
+define('FIELD_ID', 'ID');
 define('FIELD_ACCIONES', 'Acciones');
 define('FIELD_TITULO', 'Título');
 define('FIELD_DESC', 'Descripción');
