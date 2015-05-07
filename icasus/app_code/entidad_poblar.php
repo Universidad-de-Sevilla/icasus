@@ -42,20 +42,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     // Si no vienen datos en el POST mostramos el formulario
     else
     {
-        /*
-          if (isset($_REQUEST['criterio']))
-          {
-          $criterio = sanitize($_REQUEST['criterio'],SQL);
-          $where = "nombre LIKE '%$criterio%' OR apellidos LIKE '%$criterio%' OR correo LIKE '%$criterio%' OR login LIKE '%$criterio%' OR unidad_hominis LIKE '%criterio%' ORDER BY apellidos ";
-          }
-          else
-          {
-          // Si no se ha buscado nada listamos todos
-          $where = "1 = 1 ORDER BY apellidos";
-          $criterio = "";
-          }
-          $smarty->assign('criterio', $criterio);
-         */
         $persona = new Usuario();
         $where = "1 = 1 ORDER BY apellidos";
         $personas = $persona->Find_sql($where);
