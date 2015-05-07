@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.15.2");
+define('IC_VERSION', "2.15.3");
 define('IC_FECHA_REVISION', "06/05/2015");
 
+// 2.15.3 - 06/05/2015 - Muestra todos los tipos de agregación de manera correcta en la creación/edición de Indicadores/Datos y requiere un tipo de medición para evitar errores de validación.
 // 2.15.2 - 06/05/2015 - Muestra ordenada y correctamente las periodicidades de Indicadores/Datos tanto en su creación como en su edición.
 // 2.15.1 - 06/05/2015 - Añade la columna identificador en los listados de Indicadores/Datos también indica si son calculados y su fórmula.
 // 2.15.0 - 04/05/2015 - Sustituye la función agregar medición por generar mediciones de manera automática (primera versión: no tiene en cuenta Indicadores/Datos calculados). 

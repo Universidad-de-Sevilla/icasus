@@ -162,7 +162,9 @@
                 <div>
                     <select name="id_tipo_agregacion" id="id_tipo_agregacion">
                         {foreach $tipos_agregacion as $tipo_agregacion}
-                            <option value="{$tipo_agregacion->id}" {if $dato->id_tipo_agregacion == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+                            {if $tipo_agregacion->id != 0}
+                                <option value="{$tipo_agregacion->id}" {if $dato->id_tipo_agregacion == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+                            {/if}
                         {/foreach}
                     </select>
                 </div>

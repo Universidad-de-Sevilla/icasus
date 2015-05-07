@@ -36,8 +36,11 @@ if (
         $es_dato_nuevo = true;
         $aviso = MSG_DATO_CREADO;
     }
+    
+    $id_entidad=  filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    
     // Campos obligatorios
-    $dato->id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    $dato->id_entidad = $id_entidad;
     $dato->codigo = filter_input(INPUT_POST, 'codigo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $dato->nombre = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $dato->id_responsable = filter_input(INPUT_POST, 'id_responsable', FILTER_SANITIZE_NUMBER_INT);
@@ -57,6 +60,10 @@ if (
     $dato->indicadores_relacionados = filter_has_var(INPUT_POST, 'indicadores_relacionados') ? filter_input(INPUT_POST, 'indicadores_relacionados', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $dato->activo = 1;
     $dato->fecha_creacion = date("Y-m-d");
+    if (filter_input(INPUT_POST, 'tipo_seleccion_responsable', FILTER_SANITIZE_NUMBER_INT) == 0)
+    {
+        $dato->id_tipo_agregacion = 0;
+    }
 
     // Una vez grabado el dato vamos a asignar a los responsables de medicion
     // Esto sólo se hace si se trata de un nuevo dato

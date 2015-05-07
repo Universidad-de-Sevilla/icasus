@@ -37,6 +37,10 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $visibilidades = $visibilidad->Find("1=1");
     $smarty->assign("visibilidades", $visibilidades);
 
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipos_agregacion = $tipo_agregacion->Find("true ORDER BY id");
+    $smarty->assign("tipos_agregacion", $tipos_agregacion);
+
     $smarty->assign("_nombre_pagina", TXT_INDIC_NUEVO . " - " . $entidad->nombre);
     $plantilla = "indicador_crear.tpl";
 }

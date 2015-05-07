@@ -35,13 +35,15 @@ $(document).ready(function () {
             codigo: {required: true},
             id_responsable: {required: true},
             id_responsable_medicion: {required: true},
-            nombre: {required: true}
+            nombre: {required: true},
+            tipo_seleccion_responsable: {required: true}
         },
         ignore: ':hidden',
         messages: {
             codigo: 'Debe insertar un código',
             id_responsable: 'Debe seleccionar un responsable',
-            nombre: 'Debe dar un nombre'
+            nombre: 'Debe dar un nombre',
+            tipo_seleccion_responsable: 'Seleccionar el tipo de medición'
         }
     });
     //Boton previo

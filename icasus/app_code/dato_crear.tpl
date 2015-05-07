@@ -142,10 +142,10 @@
 
         <div style="opacity: 1;" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
-            <fieldset class="label_side">
+            <fieldset class="label_side required">
                 <label>{$smarty.const.FIELD_TIP_MED}</label>
                 <div>
-                    <p><input type="radio" name="tipo_seleccion_responsable" value="0" class="medicion"> {$smarty.const.TXT_MED_UNICA}</p>
+                    <p><input type="radio" name="tipo_seleccion_responsable" value="0" class="medicion" > {$smarty.const.TXT_MED_UNICA}</p>
                     <p><input type="radio" name="tipo_seleccion_responsable" value="1" class="medicion"> {$smarty.const.TXT_MED_DES}</p>
                     <p><input type="radio" name="tipo_seleccion_responsable" value="2" class="medicion"> {$smarty.const.TXT_MED_DES_CEN}</p>
                 </div>
@@ -155,9 +155,11 @@
                 <label>{$smarty.const.FIELD_CALC_TOTAL}</label>
                 <div>
                     <select name="id_tipo_agregacion" id="id_tipo_agregacion">
-                        <option value="0" selected>{$smarty.const.TXT_INDEF}</option>
-                        <option value="1">{$smarty.const.TXT_PROMED}</option>
-                        <option value="2">{$smarty.const.TXT_SUMA}</option>
+                        {foreach $tipos_agregacion as $tipo_agregacion}
+                            {if $tipo_agregacion->id != 0}
+                                <option value="{$tipo_agregacion->id}" >{$tipo_agregacion->descripcion}</option>
+                            {/if}
+                        {/foreach}
                     </select>
                 </div>
             </fieldset>
