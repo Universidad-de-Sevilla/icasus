@@ -18,8 +18,7 @@ $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_I
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 if (isset($id_indicador))
 {
-    $usuario_entidad = new Usuario_entidad();
-    if ($usuario_entidad->load("id_usuario=$usuario->id and id_entidad=$id_entidad and (id_rol=1 or id_rol=2)"))
+    if ($control)
     {
         $indicador = new Indicador();
         $indicador->load("id = $id_indicador");

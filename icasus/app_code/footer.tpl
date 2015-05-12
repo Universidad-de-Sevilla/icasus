@@ -1,7 +1,7 @@
-<div class="section">
-    <h1 style="color: #999999; font-weight: normal;">{$smarty.const.TXT_FOOTER}</h1>
-    <h1 style="color: #999999; font-weight: normal;">{$smarty.const.FIELD_VERSION}: {$smarty.const.IC_VERSION} - {$smarty.const.FIELD_FECHA_REV}: {$smarty.const.IC_FECHA_REVISION}</h1>
-</div>
+<footer style="position: absolute;left:25%">
+        <h1 style="color: #999999; font-weight: normal;">{$smarty.const.TXT_FOOTER}</h1>
+        <h1 style="color: #999999; font-weight: normal;">{$smarty.const.FIELD_VERSION}: {$smarty.const.IC_VERSION} - {$smarty.const.FIELD_FECHA_REV}: {$smarty.const.IC_FECHA_REVISION}</h1>
+</footer>
 
 {literal}
     <script type="text/javascript" src="theme/danpin/scripts/DataTables/jquery.dataTables.js"></script>

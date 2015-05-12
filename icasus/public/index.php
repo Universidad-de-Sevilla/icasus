@@ -97,7 +97,7 @@ if (isset($_SESSION['usuario']))
 
     if ($id_entidad == null || $id_entidad == false)
     {
-        $id_entidad = 0;
+        $id_entidad = 1;
     }
 
     $usuario = $_SESSION['usuario'];

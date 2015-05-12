@@ -161,37 +161,44 @@
                     </div>
 
                     {if isset($smarty.get.error)}
-                        <div class="alert dissmisible alert_red">
-                            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alarm_bell.png"> 
-                            {$smarty.get.error}
+                        <div>
+                            <div class="alert dissmisible alert_red">
+                                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alarm_bell.png"> 
+                                {$smarty.get.error}
+                            </div>
                         </div>
                     {/if}
                     {if isset($error)}
-                        <div class="alert dissmisible alert_red">
-                            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alarm_bell.png"> 
-                            {$error}
+                        <div>
+                            <div class="alert dissmisible alert_red">
+                                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alarm_bell.png"> 
+                                {$error}
+                            </div>
                         </div>
                     {/if}
                     {if isset($smarty.get.aviso)}
-                        <div class="alert dissmisible alert_blue">
-                            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
-                            {$smarty.get.aviso}
+                        <div>
+                            <div class="alert dissmisible alert_blue">
+                                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
+                                {$smarty.get.aviso}
+                            </div>
                         </div>
                     {/if}
                     {if isset($aviso)}
-                        <div class="alert dissmisible alert_blue">
-                            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
-                            {$aviso}
+                        <div>
+                            <div class="alert dissmisible alert_blue">
+                                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
+                                {$aviso}
+                            </div>
                         </div>
                     {/if}
 
                     {* el cuerpo del template va aqui *}
                     {include file=$plantilla}
-
-                    {*footer*}
-                    {include file='footer.tpl'}
                 </div>
             </div>
         </div>
+        {*footer*}
+        {include file='footer.tpl'}
     </body>
 </html>

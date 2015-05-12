@@ -142,8 +142,7 @@ function fila_grabar(id_valor, medicion)
                 data: {"id_valor": id_valor, "valor": value},
                 success: function (response) {
                     $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                    $('#grafica').load(location.reload());
-
+                    location.reload();
                 }
             });
             /*
@@ -156,7 +155,7 @@ function fila_grabar(id_valor, medicion)
         {
             $.post("index.php?page=medicion_editar_ajax&modulo=anularvalor&ajax=true", {id_valor: id_valor}, function () {
                 $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                $('#grafica').load(location.reload());
+                location.reload();
             });
         }
         else
@@ -190,6 +189,7 @@ function etiqueta_editar_grabar(content, medicion, tag)
     var value = $("[name=" + tag + "]").val();
     $.post("index.php?page=medicion_editar_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
         $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+        location.reload();
     });
 }
 
