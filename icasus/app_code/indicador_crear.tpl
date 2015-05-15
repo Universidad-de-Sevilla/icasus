@@ -138,8 +138,8 @@
                             <select name="periodicidad" id="periodicidad" class="select_box">
                                 <option value="Anual" selected>{$smarty.const.TXT_ANUAL}</option>
                                 <option value="Semestral">{$smarty.const.TXT_SEMESTRAL}</option>
-                                <option value="Trimestral">{$smarty.const.TXT_TRIMESTRAL}</option>
                                 <option value="Cuatrimestral">{$smarty.const.TXT_CUATRIMESTRAL}</option>
+                                <option value="Trimestral">{$smarty.const.TXT_TRIMESTRAL}</option>
                                 <option value="Mensual">{$smarty.const.TXT_MENSUAL}</option>
                             </select>
                         </div>
@@ -187,7 +187,7 @@
                 <label>{$smarty.const.FIELD_CALC_TOTAL}</label>
                 <div>
                     <select name="id_tipo_agregacion" id="id_tipo_agregacion">
-                         {foreach $tipos_agregacion as $tipo_agregacion}
+                        {foreach $tipos_agregacion as $tipo_agregacion}
                             {if $tipo_agregacion->id != 0}
                                 <option value="{$tipo_agregacion->id}" >{$tipo_agregacion->descripcion}</option>
                             {/if}

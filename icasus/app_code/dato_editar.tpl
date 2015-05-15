@@ -116,8 +116,8 @@
                             <select name="periodicidad" class="required select_box">
                                 <option value="Anual" {if $dato->periodicidad == Anual}selected{/if} >{$smarty.const.TXT_ANUAL}</option>
                                 <option value="Semestral"{if $dato->periodicidad == Semestral}selected{/if} >{$smarty.const.TXT_SEMESTRAL}</option>
-                                <option value="Trimestral"{if $dato->periodicidad == Trimestral}selected{/if}> {$smarty.const.TXT_TRIMESTRAL}</option>
                                 <option value="Cuatrimestral"{if $dato->periodicidad == Cuatrimestral}selected{/if} >{$smarty.const.TXT_CUATRIMESTRAL}</option>
+                                <option value="Trimestral"{if $dato->periodicidad == Trimestral}selected{/if}> {$smarty.const.TXT_TRIMESTRAL}</option>
                                 <option value="Mensual"{if $dato->periodicidad == Mensual}selected{/if} >{$smarty.const.TXT_MENSUAL}</option>   
                             </select>
                         </div>
