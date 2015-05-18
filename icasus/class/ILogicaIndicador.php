@@ -14,6 +14,13 @@
 interface ILogicaIndicador
 {
 
+    //-----------------------------------------------------------------
+    //GENERACIÓN DE MEDICIONES
+    //-----------------------------------------------------------------
+    //Genera las mediciones de un Indicador/Dato para el año actual en 
+    //función de su periodicidad. El tipo es: "indicador" o "dato"
+    function generar_mediciones($indicador, $tipo);
+
     //-----------------------------------------------------------------------------
     // FUNCIONES PARA EL CÁLCULO DE DEPENDENCIAS 
     // EN INDICADORES/DATOS CALCULADOS

@@ -18,5 +18,18 @@ class Util
     {
         return(stripslashes(mysql_real_escape_string($data)));
     }
+    
+    //Fechas: calcula si un año es o no bisiesto
+    static function esBisiesto($year)
+    {
+        if ((!($year % 4) && ($year % 100)) || !($year % 400))
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
+    }
 
 }

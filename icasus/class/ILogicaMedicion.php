@@ -1,0 +1,24 @@
+<?php
+
+//--------------------------------------------------------------------------
+// Proyecto: Icasus 
+// Archivo: class/ILogicaMedicion.php
+// Tipo: definicion de clase
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//--------------------------------------------------------------------------
+// Descripcion: Interface que contendra los métodos para la Lógica de Negocio 
+// de las Mediciones en Icasus.
+//--------------------------------------------------------------------------
+
+interface ILogicaMedicion
+{
+
+    // Genera un valor nulo para cada una de las unidades asociadas 
+    // al Indicador/Dato en la medición dada que recibe como parámetro
+    function generar_valores_medicion($medicion);
+
+    //Genera valores nulos para los valores de referencia de la medición que 
+    //recibe como parámetro de un Indicador/Dato
+    function generar_valores_referencia_medicion($medicion);
+}
