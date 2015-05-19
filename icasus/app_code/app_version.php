@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.15.4");
-define('IC_FECHA_REVISION', "07/05/2015");
+define('IC_VERSION', "2.15.5");
+define('IC_FECHA_REVISION', "19/05/2015");
 
+// 2.15.5 - 19/05/2015 - La generación de mediciones también genera mediciones para los Indicadores/Datos cuyo cálculo dependa del mismo.
 // 2.15.4 - 07/05/2015 - Al editar el tipo de agregación de un indicador/dato ya se guarda correctamente y se modifican las mediciones (según la periodicidad) creando valores para las subunidades.
 // 2.15.3 - 06/05/2015 - Muestra todos los tipos de agregación de manera correcta en la creación/edición de Indicadores/Datos y requiere un tipo de medición para evitar errores de validación.
 // 2.15.2 - 06/05/2015 - Muestra ordenada y correctamente las periodicidades de Indicadores/Datos tanto en su creación como en su edición.

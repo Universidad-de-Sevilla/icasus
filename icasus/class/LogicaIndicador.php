@@ -29,6 +29,10 @@ class LogicaIndicador implements ILogicaIndicador
     //función de su periodicidad. El tipo es: "indicador" o "dato"
     public function generar_mediciones($indicador, $tipo)
     {
+        //Primero generamos mediciones para los Indicadores/Datos Calculados 
+        //cuyo cálculo dependa del Indicador/Dato actual
+        $this->generar_mediciones_indicadores_dependientes($indicador);
+
         //Generamos mediciones en función de la periodicidad
         //Anual
         if ($indicador->periodicidad == 'Anual')
@@ -53,9 +57,29 @@ class LogicaIndicador implements ILogicaIndicador
         //Mensual
         else
         {
-            $this->generar_mediciones_mensuales($indicador, $tipo);
+            $this->generar_mediciones_mensuales($indicador);
         }
-        //        generar_mediciones_indicadores_dependientes($indicador, $tipo);
+    }
+
+    //Genera mediciones para todos los Indicadores cuyo cálculo 
+    //dependa del Indicador que recibe como parámetro
+    function generar_mediciones_indicadores_dependientes($indicador)
+    {
+        $indicador_dependencia = new Indicador_dependencia();
+        $indicadores_dependientes = $indicador_dependencia->Find("id_operando=$indicador->id");
+        foreach ($indicadores_dependientes as $indicador_dependiente)
+        {
+            $indicador = new Indicador();
+            $indicador->load("id=$indicador_dependiente->id_calculado");
+            if ($indicador->id_proceso)
+            {
+                $this->generar_mediciones($indicador, "indicador");
+            }
+            else
+            {
+                $this->generar_mediciones($indicador, "dato");
+            }
+        }
     }
 
     //Genera una medición Anual
