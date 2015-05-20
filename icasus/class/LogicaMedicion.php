@@ -47,4 +47,17 @@ class LogicaMedicion implements ILogicaMedicion
         }
     }
 
+    //Borra todos los valores de la medición cuyo identificador recibe 
+    //como parámetro
+    function borrar_valores_medicion($id)
+    {
+        $valor = new Valor();
+        $valores_borrar = $valor->Find("id_medicion=$id");
+        foreach ($valores_borrar as $valor_borrar)
+        {
+            $valor->Load("id=$valor_borrar->id");
+            $valor->Delete();
+        }
+    }
+
 }

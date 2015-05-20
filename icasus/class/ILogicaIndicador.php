@@ -32,4 +32,11 @@ interface ILogicaIndicador
     //Función que borra los indicadores/datos de los que depende el indicador/dato 
     //calculado cuyo identificador recibe como parámetro
     function borrar_dependencias($id);
+
+    //-----------------------------------------------------------------------------
+    // FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO
+    //------------------------------------------------------------------------------
+    // Actualiza mediciones y genera un valor en blanco para cada una de las unidades 
+    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad
+    function actualizar_mediciones($indicador);
 }

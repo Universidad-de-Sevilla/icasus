@@ -377,4 +377,252 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
+    //-----------------------------------------------------------------------------
+    // FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO
+    //------------------------------------------------------------------------------
+    // Actualiza mediciones y genera un valor en blanco para cada una de las unidades 
+    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad
+    function actualizar_mediciones($indicador)
+    {
+        //Año y fecha actuales
+        $anyo = date('Y');
+        $fecha = date('Y-m-d');
+        //Periodicidad Anual
+        if ($indicador->periodicidad == 'Anual')
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_anuales($indicador, $anyo);
+        }
+        //Periodicidad Semestral
+        else if ($indicador->periodicidad == 'Semestral')
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_semestrales($indicador, $anyo, $fecha);
+        }
+        //Periodicidad Cuatrimestral
+        else if ($indicador->periodicidad == 'Cuatrimestral')
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_cuatrimestrales($indicador, $anyo, $fecha);
+        }
+        //Periodicidad Trimestral
+        else if ($indicador->periodicidad == 'Trimestral')
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_trimestrales($indicador, $anyo, $fecha);
+        }
+        //Periodicidad mensual
+        else
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_mensuales($indicador, $anyo, $fecha);
+        }
+        foreach ($mediciones_actualizables as $medicion)
+        {
+            //Borramos todos los valores de las mediciones a actualizar
+            $this->logicaMedicion->borrar_valores_medicion($medicion->id);
+            //Generamos valores nulos
+            $this->logicaMedicion->generar_valores_medicion($medicion);
+        }
+    }
+
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //anual para el año que recibe como parámetro
+    function actualizar_mediciones_anuales($indicador, $anyo)
+    {
+        $medicion = new Medicion();
+        return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo'");
+    }
+
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //semestral en el año que recibe como parámetro y en función de la fecha que 
+    //también recibe como parámetro
+    function actualizar_mediciones_semestrales($indicador, $anyo, $fecha)
+    {
+        $medicion = new Medicion();
+        //Estamos en el segundo Semestre
+        if ($fecha > $anyo . "-06-30")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo.2S'");
+        }
+        //Estamos en el primer Semestre
+        else
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo%'");
+        }
+    }
+
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //cuatrimestral en el año que recibe como parámetro y en función de la fecha que 
+    //también recibe como parámetro
+    function actualizar_mediciones_cuatrimestrales($indicador, $anyo, $fecha)
+    {
+        $medicion = new Medicion();
+        //Estamos en el primer Cuatrimestre
+        if ($fecha < $anyo . "-05-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo%'");
+        }
+        //Estamos en el segundo Cuatrimestre
+        else if ($fecha >= $anyo . "-05-01" && $fecha < $anyo . "-09-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.2C' "
+                            . "OR etiqueta LIKE '$anyo.3C')");
+        }
+        //Estamos en el tercer Cuatrimestre
+        else
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo.3C'");
+        }
+    }
+
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //trimestral en el año que recibe como parámetro y en función de la fecha que 
+    //también recibe como parámetro
+    function actualizar_mediciones_trimestrales($indicador, $anyo, $fecha)
+    {
+        $medicion = new Medicion();
+        //Estamos en el primer Trimestre
+        if ($fecha < $anyo . "-04-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo%'");
+        }
+        //Estamos en el segundo Trimestre
+        else if (fecha >= $anyo . "-04-01" && $fecha < $anyo . "-07-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.2T' "
+                            . "OR etiqueta LIKE '$anyo.3T' "
+                            . "OR etiqueta LIKE '$anyo.4T')");
+        }
+        //Estamos en el tercer Trimestre
+        else if (fecha >= $anyo . "-07-01" && $fecha < $anyo . "-10-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.3T' "
+                            . "OR etiqueta LIKE '$anyo.4T')");
+        }
+        //Estamos en el cuarto Trimestre
+        else
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo.4T'");
+        }
+    }
+
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //mensual en el año que recibe como parámetro y en función de la fecha que 
+    //también recibe como parámetro
+    function actualizar_mediciones_mensuales($indicador, $anyo, $fecha)
+    {
+        $medicion = new Medicion();
+        //Estamos en Enero
+        if ($fecha < $anyo . "-02-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo%'");
+        }
+        //Estamos en Febrero
+        else if (fecha >= $anyo . "-02-01" && $fecha < $anyo . "-03-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.02' "
+                            . "OR etiqueta LIKE '$anyo.03' "
+                            . "OR etiqueta LIKE '$anyo.04'"
+                            . "OR etiqueta LIKE '$anyo.05'"
+                            . "OR etiqueta LIKE '$anyo.06'"
+                            . "OR etiqueta LIKE '$anyo.07'"
+                            . "OR etiqueta LIKE '$anyo.08'"
+                            . "OR etiqueta LIKE '$anyo.09'"
+                            . "OR etiqueta LIKE '$anyo.10'"
+                            . "OR etiqueta LIKE '$anyo.11'"
+                            . "OR etiqueta LIKE '$anyo.12')");
+        }
+        //Estamos en Marzo
+        else if (fecha >= $anyo . "-03-01" && $fecha < $anyo . "-04-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.03' "
+                            . "OR etiqueta LIKE '$anyo.04'"
+                            . "OR etiqueta LIKE '$anyo.05'"
+                            . "OR etiqueta LIKE '$anyo.06'"
+                            . "OR etiqueta LIKE '$anyo.07'"
+                            . "OR etiqueta LIKE '$anyo.08'"
+                            . "OR etiqueta LIKE '$anyo.09'"
+                            . "OR etiqueta LIKE '$anyo.10'"
+                            . "OR etiqueta LIKE '$anyo.11'"
+                            . "OR etiqueta LIKE '$anyo.12')");
+        }
+        //Estamos en Abril
+        else if (fecha >= $anyo . "-04-01" && $fecha < $anyo . "-05-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.04' "
+                            . "OR etiqueta LIKE '$anyo.05'"
+                            . "OR etiqueta LIKE '$anyo.06'"
+                            . "OR etiqueta LIKE '$anyo.07'"
+                            . "OR etiqueta LIKE '$anyo.08'"
+                            . "OR etiqueta LIKE '$anyo.09'"
+                            . "OR etiqueta LIKE '$anyo.10'"
+                            . "OR etiqueta LIKE '$anyo.11'"
+                            . "OR etiqueta LIKE '$anyo.12')");
+        }
+        //Estamos en Mayo
+        else if (fecha >= $anyo . "-05-01" && $fecha < $anyo . "-06-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.05' "
+                            . "OR etiqueta LIKE '$anyo.06'"
+                            . "OR etiqueta LIKE '$anyo.07'"
+                            . "OR etiqueta LIKE '$anyo.08'"
+                            . "OR etiqueta LIKE '$anyo.09'"
+                            . "OR etiqueta LIKE '$anyo.10'"
+                            . "OR etiqueta LIKE '$anyo.11'"
+                            . "OR etiqueta LIKE '$anyo.12')");
+        }
+        //Estamos en Junio
+        else if (fecha >= $anyo . "-06-01" && $fecha < $anyo . "-07-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.06' "
+                            . "OR etiqueta LIKE '$anyo.07'"
+                            . "OR etiqueta LIKE '$anyo.08'"
+                            . "OR etiqueta LIKE '$anyo.09'"
+                            . "OR etiqueta LIKE '$anyo.10'"
+                            . "OR etiqueta LIKE '$anyo.11'"
+                            . "OR etiqueta LIKE '$anyo.12')");
+        }
+        //Estamos en Julio
+        else if (fecha >= $anyo . "-07-01" && $fecha < $anyo . "-08-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.07' "
+                            . "OR etiqueta LIKE '$anyo.08'"
+                            . "OR etiqueta LIKE '$anyo.09'"
+                            . "OR etiqueta LIKE '$anyo.10'"
+                            . "OR etiqueta LIKE '$anyo.11'"
+                            . "OR etiqueta LIKE '$anyo.12')");
+        }
+        //Estamos en Agosto
+        else if (fecha >= $anyo . "-08-01" && $fecha < $anyo . "-09-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.08' "
+                            . "OR etiqueta LIKE '$anyo.09'"
+                            . "OR etiqueta LIKE '$anyo.10'"
+                            . "OR etiqueta LIKE '$anyo.11'"
+                            . "OR etiqueta LIKE '$anyo.12')");
+        }
+        //Estamos en Septiembre
+        else if (fecha >= $anyo . "-09-01" && $fecha < $anyo . "-10-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.09' "
+                            . "OR etiqueta LIKE '$anyo.10'"
+                            . "OR etiqueta LIKE '$anyo.11'"
+                            . "OR etiqueta LIKE '$anyo.12')");
+        }
+        //Estamos en Octubre
+        else if (fecha >= $anyo . "-10-01" && $fecha < $anyo . "-11-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.10' "
+                            . "OR etiqueta LIKE '$anyo.11'"
+                            . "OR etiqueta LIKE '$anyo.12')");
+        }
+        //Estamos en Noviembre
+        else if (fecha >= $anyo . "-11-01" && $fecha < $anyo . "-12-01")
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.11' "
+                            . "OR etiqueta LIKE '$anyo.12')");
+        }
+        //Estamos en Diciembre
+        else
+        {
+            return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo.12'");
+        }
+    }
+
 }

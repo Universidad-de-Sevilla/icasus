@@ -21,4 +21,8 @@ interface ILogicaMedicion
     //Genera valores nulos para los valores de referencia de la medición que 
     //recibe como parámetro de un Indicador/Dato
     function generar_valores_referencia_medicion($medicion);
+
+    //Borra todos los valores de la medición cuyo identificador recibe 
+    //como parámetro
+    function borrar_valores_medicion($id);
 }
