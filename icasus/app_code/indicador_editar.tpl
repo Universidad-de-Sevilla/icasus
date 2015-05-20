@@ -102,10 +102,6 @@
                 <div><input  type="text" name="interpretacion"value="{$indicador->interpretacion}" /></div>
             </fieldset>
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_INDIC_REL}</label>
-                <div><input  type="text" name="indicadores_relacionados"value="{$indicador->indicadores_relacionados}" /></div>
-            </fieldset>
-            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_EFQM}</label>
                 <div class="columns clearfix">
                     <div class="col_50">

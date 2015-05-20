@@ -161,10 +161,7 @@
                 <label>{$smarty.const.FIELD_FUENTE_DAT}</label>
                 <div>{$dato->fuente_datos}&nbsp;</div>	
             </fieldset>
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_DAT_REL}</label>
-                <div>{$dato->indicadores_relacionados}&nbsp;</div>
-            </fieldset>
+
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_HISTORICO}</label>
                 <div>{$dato->historicos}&nbsp;</div>

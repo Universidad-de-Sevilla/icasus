@@ -102,13 +102,7 @@
                 <div><input  type="text" name="historicos"value="{$dato->historicos}" /></div>
             </fieldset>
 
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_INDIC_DAT_REL}</label>
-                <div><input  type="text" name="indicadores_relacionados" value="{$dato->indicadores_relacionados}" /></div>
-            </fieldset>
-
             <div class="columns clearfix">
-
                 <div class="col_50">
                     <fieldset class="label">
                         <label>{$smarty.const.FIELD_PERIOD}</label>
@@ -123,7 +117,6 @@
                         </div>
                     </fieldset>
                 </div>
-
                 <div class="col_50">
                     <fieldset class="label">
                         <label>{$smarty.const.FIELD_VISIBILIDAD}</label>

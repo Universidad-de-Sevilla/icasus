@@ -642,7 +642,6 @@ define('FIELD_COMENTARIOS', 'Comentarios');
 define('FIELD_RESP_DATO', 'Responsable del dato');
 define('FIELD_FUENTE_DAT', 'Fuente de datos');
 define('FIELD_DATOS', 'Datos');
-define('FIELD_DAT_REL', 'Datos relacionados');
 
 //Entidades (Unidades)
 define('FIELD_UNID', 'Unidad');
@@ -660,8 +659,6 @@ define('FIELD_VISIB_GRAFIC', 'Visible en gráfica');
 
 //Indicadores
 define('FIELD_INDIC', 'Indicador');
-define('FIELD_INDIC_DAT_REL', 'Indicadores/datos relacionados');
-define('FIELD_INDIC_REL', 'Indicadores relacionados');
 define('FIELD_INDIC_BASE', 'Indicador base');
 define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
 define('FIELD_INDICS', 'Indicadores');

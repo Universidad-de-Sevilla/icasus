@@ -211,12 +211,6 @@
                     <div>{$indicador->interpretacion}&nbsp;</div>
                 </fieldset>
             {/if}
-            {if $indicador->indicadores_relacionados != ""}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_INDIC_REL}</label>
-                    <div>{$indicador->indicadores_relacionados}&nbsp;</div>
-                </fieldset>
-            {/if}
             <div class="columns clearfix">
                 <div class="col_50">
                     <fieldset class="label_side">
