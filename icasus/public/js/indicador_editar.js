@@ -36,6 +36,7 @@ $(document).ready(function () {
             id_proceso: {required: true},
             nombre: {required: true},
             formulacion: {required: true},
+            historicos: {required: true},
             id_responsable: {required: true},
             id_responsable_medicion: {required: true},
             tipo_seleccion_responsable: {required: true}
@@ -46,6 +47,7 @@ $(document).ready(function () {
             id_proceso: 'Debe seleccionar un proceso',
             nombre: 'Debe dar un nombre',
             formulacion: 'Debe indidr su formulación',
+            historicos: 'Debe indicar un año de inicio para el Histórico del Indicador',
             id_responsable: 'Seleccionar un responsable',
             id_responsable_medicion: 'Seleccionar el responsable de medición',
             tipo_seleccion_responsable: 'Seleccionar el tipo de medición'

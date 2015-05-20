@@ -36,13 +36,16 @@ $(document).ready(function () {
             id_responsable: {required: true},
             id_responsable_medicion: {required: true},
             nombre: {required: true},
+            historicos: {required: true},
             tipo_seleccion_responsable: {required: true}
         },
         ignore: ':hidden',
         messages: {
             codigo: 'Debe insertar un código',
             id_responsable: 'Debe seleccionar un responsable',
+            id_responsable_medicion: 'Seleccionar el responsable de medición',
             nombre: 'Debe dar un nombre',
+            historicos: 'Debe indicar un año de inicio para el Histórico del Dato',
             tipo_seleccion_responsable: 'Seleccionar el tipo de medición'
         }
     });

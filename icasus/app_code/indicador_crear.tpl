@@ -39,6 +39,14 @@
                 <div><textarea  class="required2" name="formulacion"></textarea><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div></div>
             </fieldset>
             <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_CALCULO}</label>
+                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}"></textarea></div>
+            </fieldset>
+            <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_HISTORICO}</label>
+                <div><input  type="number" name="historicos" /></div>
+            </fieldset>
+            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_RESP_SEG}</label>
                 <div>
                     <select name="id_responsable" class="required2 select_box">
@@ -78,10 +86,6 @@
                 <div><textarea  class="inp" name="observaciones"></textarea></div>
             </fieldset>
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_CALCULO}</label>
-                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}"></textarea></div>
-            </fieldset>
-            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_FUENTE_INFO}</label>
                 <div><input  type="text" name="fuente_informacion"/></div>	
             </fieldset>
@@ -92,10 +96,6 @@
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_MET}</label>
                 <div><input  type="text" name="evidencia" /></div>		
-            </fieldset>
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_HISTORICO}</label>
-                <div><input  type="number" name="historicos" /></div>
             </fieldset>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_INTERP}</label>

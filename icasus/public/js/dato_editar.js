@@ -32,13 +32,19 @@ $(document).ready(function () {
         rules: {
             codigo: {required: true},
             id_responsable: {required: true},
+            id_responsable_medicion: {required: true},
+            historicos: {required: true},
+            tipo_seleccion_responsable: {required: true},
             nombre: {required: true}
         },
         ignore: ':hidden',
         messages: {
             codigo: 'Debe insertar un código',
             id_responsable: 'Debe seleccionar un responsable',
-            nombre: 'Debe dar un nombre'
+            id_responsable_medicion: 'Seleccionar el responsable de medición',
+            historicos: 'Debe indicar un año de inicio para el Histórico del Dato',
+            nombre: 'Debe dar un nombre',
+            tipo_seleccion_responsable: 'Seleccionar el tipo de medición'
         }
     });
     //Cambiar de pestaña y botón de grabar

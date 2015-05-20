@@ -27,6 +27,16 @@
             </fieldset>
 
             <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_CALCULO}</label>
+                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}">{$dato->calculo}</textarea></div>
+            </fieldset>
+
+            <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_HISTORICO}</label>
+                <div><input  type="text" name="historicos"value="{$dato->historicos}" /></div>
+            </fieldset>
+
+            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_RESP_SEG}</label>
                 <div>
                     <select name="id_responsable" class="select_box">
@@ -83,11 +93,6 @@
             </fieldset>
 
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_CALCULO}</label>
-                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}">{$dato->calculo}</textarea></div>
-            </fieldset>
-
-            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_FUENTE_DAT}</label>
                 <div><input  type="text" name="fuente_datos" value="{$dato->fuente_datos}"/></div>
             </fieldset>
@@ -95,11 +100,6 @@
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_UNID_GEN}</label>
                 <div><input  type="text" name="unidad_generadora" value="{$dato->unidad_generadora}" /></div>
-            </fieldset>
-
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_HISTORICO}</label>
-                <div><input  type="text" name="historicos"value="{$dato->historicos}" /></div>
             </fieldset>
 
             <div class="columns clearfix">

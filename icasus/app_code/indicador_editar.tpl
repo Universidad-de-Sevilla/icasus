@@ -39,6 +39,14 @@
                 <div><textarea   name="formulacion">{$indicador->formulacion}</textarea><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div></div>
             </fieldset>
             <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_CALCULO}</label>
+                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}">{$indicador->calculo}</textarea></div>
+            </fieldset>
+            <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_HISTORICO}</label>
+                <div><input  type="number" name="historicos"value="{$indicador->historicos}" /></div>
+            </fieldset>
+            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_RESP_SEG}</label>
                 <div>
                     <select name="id_responsable" class="required2 select_box">
@@ -76,11 +84,7 @@
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_OBSERV}</label>
                 <div><textarea  class="inp" name="observaciones">{$indicador->observaciones}</textarea></div>
-            </fieldset>
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_CALCULO}</label>
-                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}">{$indicador->calculo}</textarea></div>
-            </fieldset>
+            </fieldset> 
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_FUENTE_INFO}</label>
                 <div><input  type="text" name="fuente_informacion" value="{$indicador->fuente_informacion}"/></div>
@@ -92,10 +96,6 @@
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_MET}</label>
                 <div><input  type="text" name="evidencia" value="{$indicador->evidencia}" /></div>
-            </fieldset>
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_HISTORICO}</label>
-                <div><input  type="text" name="historicos"value="{$indicador->historicos}" /></div>
             </fieldset>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_INTERP}</label>

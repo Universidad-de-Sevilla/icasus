@@ -23,6 +23,16 @@
                     <input type="text" name="nombre"  />
                     <div class="required_tag"></div>
                 </div>
+
+            </fieldset>
+            <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_CALCULO}</label>
+                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}"></textarea></div>
+            </fieldset>
+
+            <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_HISTORICO}</label>
+                <div><input  type="number" name="historicos" /></div>
             </fieldset>
 
             <fieldset class="label_side">
@@ -76,11 +86,6 @@
             </fieldset>
 
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_CALCULO}</label>
-                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}"></textarea></div>
-            </fieldset>
-
-            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_FUENTE_DAT}</label>
                 <div><input  type="text" name="fuente_datos"/></div>	
             </fieldset>
@@ -88,11 +93,6 @@
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_UNID_GEN}</label>
                 <div><input  type="text" name="unidad_generadora" /></div>
-            </fieldset>
-
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_HISTORICO}</label>
-                <div><input  type="number" name="historicos" /></div>
             </fieldset>
 
             <div class="columns clearfix">
