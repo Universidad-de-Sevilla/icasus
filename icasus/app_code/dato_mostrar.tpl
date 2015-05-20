@@ -157,10 +157,20 @@
                     {if $dato->responsable_medicion->puesto} - {$dato->responsable_medicion->puesto} {/if}
                 </div>
             </fieldset>
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_FUENTE_DAT}</label>
-                <div>{$dato->fuente_datos}&nbsp;</div>	
-            </fieldset>
+
+            {if $dato->fuente_informacion != ""}
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_FUENTE_INFO}</label>
+                    <div>{$dato->fuente_informacion}&nbsp;</div>
+                </fieldset>
+            {/if}
+
+            {if $dato->fuente_datos != ""}
+                <fieldset class="label_side">
+                    <label>{$smarty.const.FIELD_FUENTE_DAT}</label>
+                    <div>{$dato->fuente_datos}&nbsp;</div>	
+                </fieldset>
+            {/if}
 
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_HISTORICO}</label>

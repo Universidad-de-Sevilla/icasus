@@ -272,6 +272,8 @@ define('TXT_BTN_Aceptar', 'Aceptar');
 define('TXT_BTN_GUARDAR', 'Guardar');
 define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');
 define('TXT_SOLO_INDIC_CALC', 'Sólo si es un Indicador/Dato calculado');
+define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el Indicador/Dato.');
+define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde se obtienen los Valores para el Indicador/Dato.');
 define('TXT_BUSCAR', 'Buscar...');
 define('TXT_INDICAR_COD', 'Indique un código estandarizado y único');
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
@@ -640,7 +642,7 @@ define('FIELD_COMENTARIOS', 'Comentarios');
 
 //Datos
 define('FIELD_RESP_DATO', 'Responsable del dato');
-define('FIELD_FUENTE_DAT', 'Fuente de datos');
+define('FIELD_FUENTE_DAT', 'Fuente de Datos');
 define('FIELD_DATOS', 'Datos');
 
 //Entidades (Unidades)
@@ -663,7 +665,7 @@ define('FIELD_INDIC_BASE', 'Indicador base');
 define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
 define('FIELD_INDICS', 'Indicadores');
 define('FIELD_FORM', 'Formulación');
-define('FIELD_FUENTE_INFO', 'Fuente de información');
+define('FIELD_FUENTE_INFO', 'Fuente de Información');
 define('FIELD_PERIOD', 'Periodicidad');
 define('FIELD_RESP', 'Responsable');
 define('FIELD_RESP_SEG', 'Responsable de seguimiento');

@@ -86,8 +86,13 @@
             </fieldset>
 
             <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_FUENTE_INFO}</label>
+                <div><input  type="text" placeholder="{$smarty.const.TXT_FUENTE_INFO}" name="fuente_informacion"/></div>	
+            </fieldset>
+
+            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_FUENTE_DAT}</label>
-                <div><input  type="text" name="fuente_datos"/></div>	
+                <div><input  type="text" placeholder="{$smarty.const.TXT_FUENTE_DAT}" name="fuente_datos"/></div>	
             </fieldset>
 
             <fieldset class="label_side">
