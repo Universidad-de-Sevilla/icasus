@@ -377,6 +377,20 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
+    function calcular_dependencias($id)
+    {
+        $indicadores_influyentes = array();
+        $indicador_dependencia = new Indicador_dependencia();
+        $indicadores_dependencias = $indicador_dependencia->Find("id_calculado=$id");
+        foreach ($indicadores_dependencias as $indicador_dependiente)
+        {
+            $indicador_influye = new Indicador();
+            $indicador_influye->load("id=$indicador_dependiente->id_operando");
+            $indicadores_influyentes[] = $indicador_influye;
+        }
+        return $indicadores_influyentes;
+    }
+
     //-----------------------------------------------------------------------------
     // FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO
     //------------------------------------------------------------------------------

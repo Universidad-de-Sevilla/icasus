@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.15.8");
-define('IC_FECHA_REVISION', "20/05/2015");
+define('IC_VERSION', "2.15.9");
+define('IC_FECHA_REVISION', "21/05/2015");
 
+// 2.15.9 - 21/05/2015 - En Indicadores/Datos calculados además de indicarse que es calculado, se incluye un listado de enlaces a los Indicadores/Datos que influyen en su cálculo.
 // 2.15.8 - 20/05/2015 - Añadido el campo Fuente de Información a la creación/edición de Datos que estaba pendiente. Añadidos placeholders a los campos Fuente de Información y Fuente de Datos en la creación/edición de Indicadores/Datos.
 // 2.15.7 - 20/05/2015 - Se han movido los campos Histórico y Cálculo a la primera pestaña de creación/edición de Indicadores/Datos. Se valida la existencia del Histórico y se añade la validación del responsable en la creación/edición de Datos que estaba pendiente.
 // 2.15.6 - 20/05/2015 - Se ha quitado el campo Indicadores/Datos relacionados no es necesario ya que éstos se ven en el cálculo del Indicador/Dato si lo hubiere.

@@ -33,6 +33,7 @@ define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_MANUAL', 'Manual');
 define('TXT_REP_GRAFIC', 'Representación Gráfica del Indicador/Dato');
+define('TXT_DEPENDE', 'Su cálculo depende de los siguientes Indicadores/Datos:');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
@@ -297,7 +298,7 @@ define('TXT_SEMESTRAL', 'Semestral');
 define('TXT_2_ULT_ANYO', 'Dos últimos años');
 
 //Tipos de Cálculo
-define('TXT_CALC_AUTO', 'Calculado automáticamente.');
+define('TXT_CALC_AUTO', 'Calculado automáticamente');
 define('TXT_INDEF', 'Indefinido');
 define('TXT_PROMED', 'Promedio');
 define('TXT_SUMA', 'Suma');

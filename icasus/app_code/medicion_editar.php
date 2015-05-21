@@ -11,6 +11,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+//Variable para operar con Indicadores/Datos
+$logicaIndicador = new LogicaIndicador();
 
 if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'))
 {
@@ -120,6 +122,10 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $entidad = new Entidad();
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign('entidad', $entidad);
+
+    //Si es calculado vemos los Indicadores/Datos de los que depende
+    $indicadores_influyentes = $logicaIndicador->calcular_dependencias($indicador->id);
+    $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
 
     $smarty->assign("usuario", $usuario);
     $smarty->assign("_nombre_pagina", TXT_MED_VER . ": " . " $medicion->etiqueta - $indicador->nombre");

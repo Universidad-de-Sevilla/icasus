@@ -1,12 +1,3 @@
-<div>
-    {if $indicador->calculo}
-        <div class="alert alert_blue">
-            <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png">
-            {$smarty.const.TXT_CALC_AUTO}
-        </div>
-    {/if}
-</div>
-
 <!-- NAVEGACIÓN-->
 {if count($mediciones)> 1}
     <div class="box grid_16">   
@@ -31,6 +22,67 @@
     </div>
 {/if}
 <!-- //NAVEGACIÓN-->
+
+<!-- INDICADORES/DATOS CALCULADOS -->
+{if $indicador->calculo}
+    <div class="box grid_16">
+        <div class="toggle_container">
+            <h2 class="box_head grad_grey_dark" >
+                <img style="float:left" src="theme/danpin/images/icons/small/white/alert_2.png">
+                {$smarty.const.TXT_CALC_AUTO}
+            </h2>
+            <a href="#" class="grabber"></a>
+            <a href="#" class="toggle"></a>
+            <div class="block">
+                <div class="button_bar clearfix">
+                    {if !$indicador->calculo}
+                      <!--   <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+                            <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
+                        </a>&nbsp;&nbsp;-->
+                        <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                        </a>&nbsp;&nbsp;
+                        <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                            <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
+                        </a>&nbsp;&nbsp;
+                    {/if}  
+                    {if $permiso_editar && !$indicador->calculo}
+                        <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'>
+                            <img src='/icons/ff16/time_delete.png' /> {$smarty.const.TXT_MED_BORRAR}
+                        </a>&nbsp;&nbsp;
+                    {/if}
+                    <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
+                            src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}
+                    </a>&nbsp;&nbsp;
+                    <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
+                    <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
+                </div>
+                <div style="margin:10px;">
+                    <p>{$smarty.const.TXT_DEPENDE}</p>
+                    <ul>
+                        {foreach $indicadores_influyentes as $indicador_influyente}
+                            {if $indicador_influyente->id_proceso}
+                                <li> 
+                                    <a href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$entidad->id}' 
+                                       title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$indicador_influyente->nombre}">
+                                        <img src='/icons/ff16/chart_curve.png' /> {$indicador_influyente->nombre}
+                                    </a>
+                                </li>
+                            {else}
+                                <li> 
+                                    <a href='index.php?page=dato_mostrar&id_dato={$indicador_influyente->id}&id_entidad={$entidad->id}' 
+                                       title="{$smarty.const.TXT_DATO_MOSTRAR}: {$indicador_influyente->nombre}">
+                                        <img src='/icons/ff16/chart_bar.png' /> {$indicador_influyente->nombre}
+                                    </a>
+                                </li>
+                            {/if}
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{/if}
+<!-- //INDICADORES/DATOS CALCULADOS -->
 
 <div class="box grid_16">
     <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_MED_DATOS}</h2>
