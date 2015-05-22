@@ -448,7 +448,7 @@ define('MSG_MEDS_GRABADAS', 'Mediciones grabadas');
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de Indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva Medición. Unidades afectadas: ');
 define('MSG_MEDS_GENERADA', 'Se ha/n generado correctamente la/s Medición/es.');
-define('MSG_MED_GENERAR', 'Esta acción generará automáticamente todas las Mediciones (si no existen) del Indicador/Dato para el año actual en función de su periodicidad. ¿Está seguro?');
+define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las Mediciones (si no existen) del Indicador/Dato, desde su origen Histórico y teniendo en cuenta la Periodicidad del mismo. ¿Está seguro?');
 define('MSG_MED_EXISTE', 'Ya existe/n Medicion/es para este año.');
 
 //Páginas

@@ -25,39 +25,17 @@ class LogicaIndicador implements ILogicaIndicador
     //-----------------------------------------------------------------
     //GENERACIÓN DE MEDICIONES
     //-----------------------------------------------------------------
-    //Genera las mediciones de un Indicador/Dato para el año actual en 
-    //función de su periodicidad. El tipo es: "indicador" o "dato"
-    public function generar_mediciones($indicador, $tipo)
+    //Genera las mediciones de un Indicador/Dato a partir de su Histórico. 
+    //El tipo es: "indicador" o "dato"
+    function generar_mediciones($indicador, $tipo)
     {
         //Primero generamos mediciones para los Indicadores/Datos Calculados 
         //cuyo cálculo dependa del Indicador/Dato actual
         $this->generar_mediciones_indicadores_dependientes($indicador);
 
-        //Generamos mediciones en función de la periodicidad
-        //Anual
-        if ($indicador->periodicidad == 'Anual')
+        for ($i = $indicador->historicos; $i < idate('Y') + 1; $i++)
         {
-            $this->generar_medicion_anual($indicador, $tipo);
-        }
-        //Semestral
-        else if ($indicador->periodicidad == 'Semestral')
-        {
-            $this->generar_mediciones_semestrales($indicador, $tipo);
-        }
-        //Cuatrimestral
-        else if ($indicador->periodicidad == 'Cuatrimestral')
-        {
-            $this->generar_mediciones_cuatrimestrales($indicador, $tipo);
-        }
-        //Trimestral
-        else if ($indicador->periodicidad == 'Trimestral')
-        {
-            $this->generar_mediciones_trimestrales($indicador, $tipo);
-        }
-        //Mensual
-        else
-        {
-            $this->generar_mediciones_mensuales($indicador);
+            $this->generar_mediciones_por_anyo($indicador, $i, $tipo);
         }
     }
 
@@ -82,11 +60,47 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
+    //Genera las mediciones de un Indicador/Dato para el año que recibe 
+    //como parámetro en función de su periodicidad. El tipo es: "indicador" o "dato"
+    public function generar_mediciones_por_anyo($indicador, $anyo, $tipo)
+    {
+        //Primero generamos mediciones para los Indicadores/Datos Calculados 
+        //cuyo cálculo dependa del Indicador/Dato actual
+//        $this->generar_mediciones_indicadores_dependientes($indicador, $anyo);
+
+        //Generamos mediciones en función de la periodicidad
+        //Anual
+        if ($indicador->periodicidad == 'Anual')
+        {
+            $this->generar_medicion_anual($indicador, $anyo, $tipo);
+        }
+        //Semestral
+        else if ($indicador->periodicidad == 'Semestral')
+        {
+            $this->generar_mediciones_semestrales($indicador, $anyo, $tipo);
+        }
+        //Cuatrimestral
+        else if ($indicador->periodicidad == 'Cuatrimestral')
+        {
+            $this->generar_mediciones_cuatrimestrales($indicador, $anyo, $tipo);
+        }
+        //Trimestral
+        else if ($indicador->periodicidad == 'Trimestral')
+        {
+            $this->generar_mediciones_trimestrales($indicador, $anyo, $tipo);
+        }
+        //Mensual
+        else
+        {
+            $this->generar_mediciones_mensuales($indicador, $anyo, $tipo);
+        }
+    }
+
     //Genera una medición Anual
-    function generar_medicion_anual($indicador, $tipo)
+    function generar_medicion_anual($indicador, $anyo, $tipo)
     {
         $medicion = new Medicion();
-        $etiqueta = Date('Y');
+        $etiqueta = $anyo;
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
@@ -95,8 +109,8 @@ class LogicaIndicador implements ILogicaIndicador
         }
         else
         {
-            $periodo_inicio = Date('Y') . '-01-01';
-            $periodo_fin = Date('Y') . '-12-31';
+            $periodo_inicio = $anyo . '-01-01';
+            $periodo_fin = $anyo . '-12-31';
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio;
             $medicion->periodo_fin = $periodo_fin;
@@ -117,19 +131,19 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera las mediciones Semestrales
-    function generar_mediciones_semestrales($indicador, $tipo)
+    function generar_mediciones_semestrales($indicador, $anyo, $tipo)
     {
         for ($i = 1; $i != 3; $i++)
         {
-            $this->generar_medicion_semestral($indicador, $tipo, $i);
+            $this->generar_medicion_semestral($indicador, $anyo, $tipo, $i);
         }
     }
 
     //Genera una medición semestral
-    function generar_medicion_semestral($indicador, $tipo, $indice)
+    function generar_medicion_semestral($indicador, $anyo, $tipo, $indice)
     {
         $medicion = new Medicion();
-        $etiqueta = Date('Y') . '.' . $indice . 'S';
+        $etiqueta = $anyo . '.' . $indice . 'S';
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
@@ -138,8 +152,8 @@ class LogicaIndicador implements ILogicaIndicador
         }
         else
         {
-            $periodo_inicio = array(Date('Y') . '-01-01', Date('Y') . '-07-01');
-            $periodo_fin = array(Date('Y') . '-06-30', Date('Y') . '-12-31');
+            $periodo_inicio = array($anyo . '-01-01', $anyo . '-07-01');
+            $periodo_fin = array($anyo . '-06-30', $anyo . '-12-31');
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio[$indice - 1];
             $medicion->periodo_fin = $periodo_fin[$indice - 1];
@@ -160,19 +174,19 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera las mediciones cuatrimestrales 
-    function generar_mediciones_cuatrimestrales($indicador, $tipo)
+    function generar_mediciones_cuatrimestrales($indicador, $anyo, $tipo)
     {
         for ($i = 1; $i != 4; $i++)
         {
-            $this->generar_medicion_cuatrimestral($indicador, $tipo, $i);
+            $this->generar_medicion_cuatrimestral($indicador, $anyo, $tipo, $i);
         }
     }
 
     //Genera una medición cuatrimestral
-    function generar_medicion_cuatrimestral($indicador, $tipo, $indice)
+    function generar_medicion_cuatrimestral($indicador, $anyo, $tipo, $indice)
     {
         $medicion = new Medicion();
-        $etiqueta = Date('Y') . '.' . $indice . 'C';
+        $etiqueta = $anyo . '.' . $indice . 'C';
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
@@ -181,8 +195,8 @@ class LogicaIndicador implements ILogicaIndicador
         }
         else
         {
-            $periodo_inicio = array(Date('Y') . '-01-01', Date('Y') . '-05-01', Date('Y') . '-09-01');
-            $periodo_fin = array(Date('Y') . '-04-30', Date('Y') . '-08-31', Date('Y') . '-12-31');
+            $periodo_inicio = array($anyo . '-01-01', $anyo . '-05-01', $anyo . '-09-01');
+            $periodo_fin = array($anyo . '-04-30', $anyo . '-08-31', $anyo . '-12-31');
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio[$indice - 1];
             $medicion->periodo_fin = $periodo_fin[$indice - 1];
@@ -203,19 +217,19 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera las mediciones trimestrales 
-    function generar_mediciones_trimestrales($indicador, $tipo)
+    function generar_mediciones_trimestrales($indicador, $anyo, $tipo)
     {
         for ($i = 1; $i != 5; $i++)
         {
-            $this->generar_medicion_trimestral($indicador, $tipo, $i);
+            $this->generar_medicion_trimestral($indicador, $anyo, $tipo, $i);
         }
     }
 
     //Genera una medición trimestral
-    function generar_medicion_trimestral($indicador, $tipo, $indice)
+    function generar_medicion_trimestral($indicador, $anyo, $tipo, $indice)
     {
         $medicion = new Medicion();
-        $etiqueta = Date('Y') . '.' . $indice . 'T';
+        $etiqueta = $anyo . '.' . $indice . 'T';
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
@@ -224,8 +238,8 @@ class LogicaIndicador implements ILogicaIndicador
         }
         else
         {
-            $periodo_inicio = array(Date('Y') . '-01-01', Date('Y') . '-04-01', Date('Y') . '-07-01', Date('Y') . '-10-01');
-            $periodo_fin = array(Date('Y') . '-03-31', Date('Y') . '-06-30', Date('Y') . '-09-30', Date('Y') . '-12-31', Date('Y') . '-05-31',);
+            $periodo_inicio = array($anyo . '-01-01', $anyo . '-04-01', $anyo . '-07-01', $anyo . '-10-01');
+            $periodo_fin = array($anyo . '-03-31', $anyo . '-06-30', $anyo . '-09-30', $anyo . '-12-31', $anyo . '-05-31',);
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio[$indice - 1];
             $medicion->periodo_fin = $periodo_fin[$indice - 1];
@@ -246,25 +260,25 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera las mediciones mensuales
-    function generar_mediciones_mensuales($indicador, $tipo)
+    function generar_mediciones_mensuales($indicador, $anyo, $tipo)
     {
         for ($i = 1; $i != 13; $i++)
         {
-            $this->generar_medicion_mensual($indicador, $tipo, $i);
+            $this->generar_medicion_mensual($indicador, $anyo, $tipo, $i);
         }
     }
 
     //Genera una medición mensual
-    function generar_medicion_mensual($indicador, $tipo, $indice)
+    function generar_medicion_mensual($indicador, $anyo, $tipo, $indice)
     {
         $medicion = new Medicion();
         if ($indice < 10)
         {
-            $etiqueta = Date('Y') . '.0' . $indice;
+            $etiqueta = $anyo . '.0' . $indice;
         }
         else
         {
-            $etiqueta = Date('Y') . '.' . $indice;
+            $etiqueta = $anyo . '.' . $indice;
         }
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
@@ -274,29 +288,29 @@ class LogicaIndicador implements ILogicaIndicador
         }
         else
         {
-            $periodo_inicio = array(Date('Y') . '-01-01', Date('Y') . '-02-01',
-                Date('Y') . '-03-01', Date('Y') . '-04-01', Date('Y') . '-05-01',
-                Date('Y') . '-06-01', Date('Y') . '-07-01', Date('Y') . '-08-01',
-                Date('Y') . '-09-01', Date('Y') . '-10-01', Date('Y') . '-11-01',
-                Date('Y') . '-12-01');
+            $periodo_inicio = array($anyo . '-01-01', $anyo . '-02-01',
+                $anyo . '-03-01', $anyo . '-04-01', $anyo . '-05-01',
+                $anyo . '-06-01', $anyo . '-07-01', $anyo . '-08-01',
+                $anyo . '-09-01', $anyo . '-10-01', $anyo . '-11-01',
+                $anyo . '-12-01');
             //Si el año es bisiesto añadimos un día a Febrero
             if (Util::esBisiesto(Date('Y')))
             {
-                $periodo_fin = array(Date('Y') . '-01-31', Date('Y') . '-02-29',
-                    Date('Y') . '-03-31', Date('Y') . '-04-30',
-                    Date('Y') . '-05-31', Date('Y') . '-06-30',
-                    Date('Y') . '-07-31', Date('Y') . '-08-31',
-                    Date('Y') . '-09-30', Date('Y') . '-10-31',
-                    Date('Y') . '-11-30', Date('Y') . '-12-31');
+                $periodo_fin = array($anyo . '-01-31', $anyo . '-02-29',
+                    $anyo . '-03-31', $anyo . '-04-30',
+                    $anyo . '-05-31', $anyo . '-06-30',
+                    $anyo . '-07-31', $anyo . '-08-31',
+                    $anyo . '-09-30', $anyo . '-10-31',
+                    $anyo . '-11-30', $anyo . '-12-31');
             }
             else
             {
-                $periodo_fin = array(Date('Y') . '-01-31', Date('Y') . '-02-28',
-                    Date('Y') . '-03-31', Date('Y') . '-04-30',
-                    Date('Y') . '-05-31', Date('Y') . '-06-30',
-                    Date('Y') . '-07-31', Date('Y') . '-08-31',
-                    Date('Y') . '-09-30', Date('Y') . '-10-31',
-                    Date('Y') . '-11-30', Date('Y') . '-12-31');
+                $periodo_fin = array($anyo . '-01-31', $anyo . '-02-28',
+                    $anyo . '-03-31', $anyo . '-04-30',
+                    $anyo . '-05-31', $anyo . '-06-30',
+                    $anyo . '-07-31', $anyo . '-08-31',
+                    $anyo . '-09-30', $anyo . '-10-31',
+                    $anyo . '-11-30', $anyo . '-12-31');
             }
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio[$indice - 1];

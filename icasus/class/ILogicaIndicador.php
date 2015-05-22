@@ -17,8 +17,8 @@ interface ILogicaIndicador
     //-----------------------------------------------------------------
     //GENERACIÓN DE MEDICIONES
     //-----------------------------------------------------------------
-    //Genera las mediciones de un Indicador/Dato para el año actual en 
-    //función de su periodicidad. El tipo es: "indicador" o "dato"
+    //Genera las mediciones de un Indicador/Dato a partir de su Histórico. 
+    //El tipo es: "indicador" o "dato"
     function generar_mediciones($indicador, $tipo);
 
     //-----------------------------------------------------------------------------
@@ -32,7 +32,7 @@ interface ILogicaIndicador
     //Función que borra los indicadores/datos de los que depende el indicador/dato 
     //calculado cuyo identificador recibe como parámetro
     function borrar_dependencias($id);
-    
+
     //Función que devuelve los indicadores/datos de los que depende 
     //el indicador/dato cuyo identificador recibe como parámetro
     function calcular_dependencias($id);
