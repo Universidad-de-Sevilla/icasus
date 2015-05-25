@@ -33,7 +33,7 @@
 
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_HISTORICO}</label>
-                <div><input  type="text" name="historicos"value="{$dato->historicos}" /></div>
+                <div><input  type="text" name="historicos"value="{$dato->historicos}" /><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div></div>
             </fieldset>
 
             <fieldset class="label_side">
