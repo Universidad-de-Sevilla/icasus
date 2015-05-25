@@ -18,7 +18,7 @@ $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_I
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 if (isset($id_indicador))
 {
-    if ($control)
+    if ($control || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
     {
         $indicador = new Indicador();
         $indicador->load("id = $id_indicador");
