@@ -312,18 +312,12 @@
                 </div>
             </div>
             <div class="columns clearfix">
-                <div class="col_50">
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_NIVEL_DES}</label>
-                        <div>{$indicador->nivel_desagregacion}&nbsp;</div>
-                    </fieldset>
-                </div>
-                <div class="col_50">
+                {if $indicador->unidad_generadora != ""}
                     <fieldset class="label_side">
                         <label>{$smarty.const.FIELD_UNID_GEN}</label>
                         <div>{$indicador->unidad_generadora}&nbsp;</div>
                     </fieldset>
-                </div>
+                {/if}
             </div>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_SUBUNID_AFECT}</label>

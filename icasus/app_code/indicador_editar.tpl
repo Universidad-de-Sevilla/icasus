@@ -99,7 +99,7 @@
             </fieldset>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_INTERP}</label>
-                <div><input  type="text" name="interpretacion"value="{$indicador->interpretacion}" /></div>
+                <div><input  type="text" name="interpretacion" value="{$indicador->interpretacion}" /></div>
             </fieldset>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_EFQM}</label>
@@ -165,7 +165,7 @@
                 <div class="col_50">
                     <fieldset class="label">
                         <label>{$smarty.const.FIELD_UNID_GEN}</label>
-                        <div><input  type="text" name="unidad_generadora" {$indicador->unidad_generadora} /></div>
+                        <div><input  type="text" name="unidad_generadora" value="{$indicador->unidad_generadora}" /></div>
                     </fieldset>
                 </div>
             </div>

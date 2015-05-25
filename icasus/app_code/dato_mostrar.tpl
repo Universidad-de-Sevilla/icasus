@@ -246,10 +246,12 @@
             </div>
             <div class="columns clearfix">
                 <div class="col_50">
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_UNID_GEN}</label>
-                        <div>{$dato->unidad_generadora}&nbsp;</div>
-                    </fieldset>
+                    {if $dato->unidad_generadora != ""}
+                        <fieldset class="label_side">
+                            <label>{$smarty.const.FIELD_UNID_GEN}</label>
+                            <div>{$dato->unidad_generadora}&nbsp;</div>
+                        </fieldset>
+                    {/if}
                 </div>
                 <div class="col_50">
                     <fieldset class="label_side">
