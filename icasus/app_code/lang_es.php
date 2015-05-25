@@ -584,7 +584,6 @@ define('FIELD_FECHA_HORA', 'Fecha/Hora');
 define('FIELD_CALCULO', 'Cálculo');
 define('FIELD_WEB', 'Sitio web');
 define('FIELD_FUENTE', 'Fuente');
-define('FIELD_HISTORICO', 'Histórico');
 define('FIELD_PERIODO', 'Periodo');
 define('FIELD_VISIBILIDAD', 'Visibilidad');
 define('FIELD_CALC_TOTAL', 'Cálculo del total');
@@ -672,6 +671,7 @@ define('FIELD_RESP', 'Responsable');
 define('FIELD_RESP_SEG', 'Responsable de seguimiento');
 define('FIELD_RESP_GRABAR', 'Responsable de grabación');
 define('FIELD_EFQM', 'Criterios EFQM');
+define('FIELD_HISTORICO', 'Histórico');
 
 //Mediciones
 define('FIELD_MED', 'Medición');

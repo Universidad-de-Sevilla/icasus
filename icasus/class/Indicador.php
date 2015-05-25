@@ -92,6 +92,10 @@ class Indicador extends ADOdb_Active_Record
                 $responsable->load("id = $indicador->id_responsable");
                 $indicador->responsable = $responsable;
 
+                $responsable_medicion = new Usuario();
+                $responsable_medicion->load("id = $indicador->id_responsable_medicion");
+                $indicador->responsable_medicion = $responsable_medicion;
+
                 $visibilidad = new Visibilidad();
                 $visibilidad->load("id = $indicador->id_visibilidad");
                 $indicador->visibilidad = $visibilidad;

@@ -25,11 +25,11 @@
                         {foreach from=$procesos item=proceso}
                             <tr class="gradeX">    
                                 <td style="white-space:nowrap">{$proceso->codigo}</td>
-                                <td style="white-space:nowrap">{$proceso->alcance}</td>
+                                <td>{$proceso->alcance}</td>
                                 <td>
                                     {if $proceso->madre->id > 0}
                                         <a title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->madre->id}&id_entidad={$proceso->madre->id_entidad}">
-                                            <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/> {$proceso->madre->nombre}
+                                            {$proceso->madre->nombre}
                                         </a>
                                     {else}
                                         {$smarty.const.TXT_PROC_ES_MADRE}
@@ -37,12 +37,12 @@
                                 </td>
                                 <td>
                                     <a title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
-                                        <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/> {$proceso->nombre}
+                                        {$proceso->nombre}
                                     </a>
                                 </td>
                                 <td>
                                     <a title="{$smarty.const.TXT_USER_VER}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
-                                        <img src='/icons/ff16/user.png' alt='{$smarty.const.TXT_ICON}'/> {$proceso->propietario->nombre}
+                                        {$proceso->propietario->nombre}
                                         {$proceso->propietario->apellidos}
                                     </a>
                                 </td>
