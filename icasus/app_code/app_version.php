@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.15.12");
-define('IC_FECHA_REVISION', "25/05/2015");
+define('IC_VERSION', "2.15.13");
+define('IC_FECHA_REVISION', "26/05/2015");
 
+// 2.15.13 - 26/05/2015 - Cuando se crea un Indicador/Dato también se generan automáticamente sus mediciones a partir de su Histórico.
 // 2.15.12 - 25/05/2015 - Se han retirado algunos campos de las fichas de Indicadores/Datos y se ha corregido error por el cual no se mostraba el valor de la Unidad Generadora en la edición de Indicadores.
 // 2.15.11 - 25/05/2015 - Añadido el campo Histórico y Responsable de Medición a los listados de Indicadores/Datos (corregido enlace a Usuarios en el listado de Datos).
 // 2.15.10 - 22/05/2015 - Se generan las Mediciones de Indicadores/Datos a partir de su Histórico y hasta el año actual inclusive.

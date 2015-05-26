@@ -112,6 +112,8 @@ if (
                     $indicador_subunidad->save();
                 }
             }
+            //Por último, generamos las mediciones para el Dato
+            $logicaIndicador->generar_mediciones($dato, "dato");
         }
         //El dato ya existía
         else

@@ -41,7 +41,7 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Genera mediciones para todos los Indicadores cuyo cálculo 
     //dependa del Indicador que recibe como parámetro
-    function generar_mediciones_indicadores_dependientes($indicador)
+    private function generar_mediciones_indicadores_dependientes($indicador)
     {
         $indicador_dependencia = new Indicador_dependencia();
         $indicadores_dependientes = $indicador_dependencia->Find("id_operando=$indicador->id");
@@ -62,12 +62,11 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Genera las mediciones de un Indicador/Dato para el año que recibe 
     //como parámetro en función de su periodicidad. El tipo es: "indicador" o "dato"
-    public function generar_mediciones_por_anyo($indicador, $anyo, $tipo)
+    private function generar_mediciones_por_anyo($indicador, $anyo, $tipo)
     {
         //Primero generamos mediciones para los Indicadores/Datos Calculados 
         //cuyo cálculo dependa del Indicador/Dato actual
 //        $this->generar_mediciones_indicadores_dependientes($indicador, $anyo);
-
         //Generamos mediciones en función de la periodicidad
         //Anual
         if ($indicador->periodicidad == 'Anual')
@@ -97,7 +96,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera una medición Anual
-    function generar_medicion_anual($indicador, $anyo, $tipo)
+    private function generar_medicion_anual($indicador, $anyo, $tipo)
     {
         $medicion = new Medicion();
         $etiqueta = $anyo;
@@ -131,7 +130,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera las mediciones Semestrales
-    function generar_mediciones_semestrales($indicador, $anyo, $tipo)
+    private function generar_mediciones_semestrales($indicador, $anyo, $tipo)
     {
         for ($i = 1; $i != 3; $i++)
         {
@@ -140,7 +139,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera una medición semestral
-    function generar_medicion_semestral($indicador, $anyo, $tipo, $indice)
+    private function generar_medicion_semestral($indicador, $anyo, $tipo, $indice)
     {
         $medicion = new Medicion();
         $etiqueta = $anyo . '.' . $indice . 'S';
@@ -174,7 +173,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera las mediciones cuatrimestrales 
-    function generar_mediciones_cuatrimestrales($indicador, $anyo, $tipo)
+    private function generar_mediciones_cuatrimestrales($indicador, $anyo, $tipo)
     {
         for ($i = 1; $i != 4; $i++)
         {
@@ -183,7 +182,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera una medición cuatrimestral
-    function generar_medicion_cuatrimestral($indicador, $anyo, $tipo, $indice)
+    private function generar_medicion_cuatrimestral($indicador, $anyo, $tipo, $indice)
     {
         $medicion = new Medicion();
         $etiqueta = $anyo . '.' . $indice . 'C';
@@ -217,7 +216,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera las mediciones trimestrales 
-    function generar_mediciones_trimestrales($indicador, $anyo, $tipo)
+    private function generar_mediciones_trimestrales($indicador, $anyo, $tipo)
     {
         for ($i = 1; $i != 5; $i++)
         {
@@ -226,7 +225,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera una medición trimestral
-    function generar_medicion_trimestral($indicador, $anyo, $tipo, $indice)
+    private function generar_medicion_trimestral($indicador, $anyo, $tipo, $indice)
     {
         $medicion = new Medicion();
         $etiqueta = $anyo . '.' . $indice . 'T';
@@ -260,7 +259,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera las mediciones mensuales
-    function generar_mediciones_mensuales($indicador, $anyo, $tipo)
+    private function generar_mediciones_mensuales($indicador, $anyo, $tipo)
     {
         for ($i = 1; $i != 13; $i++)
         {
@@ -269,7 +268,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera una medición mensual
-    function generar_medicion_mensual($indicador, $anyo, $tipo, $indice)
+    private function generar_medicion_mensual($indicador, $anyo, $tipo, $indice)
     {
         $medicion = new Medicion();
         if ($indice < 10)
@@ -337,7 +336,7 @@ class LogicaIndicador implements ILogicaIndicador
     //-----------------------------------------------------------------------------
     //Función que guarda los indicadores/datos de los que depende el 
     //indicador/dato calculado cuyo identificador recibe como parámetro
-    public function guardar_dependencias($id)
+    function guardar_dependencias($id)
     {
         $indicador_calculado = new Indicador();
         $indicador_calculado->load("id=$id");
@@ -372,7 +371,7 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Función que guarda una dependencia de un indicador/dato de otro 
     //cuyos identificadores recibe como parámetros
-    public function guarda_dependencia($id_calculado, $id_operando)
+    private function guarda_dependencia($id_calculado, $id_operando)
     {
         $indicador_dependencia = new Indicador_dependencia();
         $indicador_dependencia->id_calculado = $id_calculado;
@@ -382,7 +381,7 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Función que borra los indicadores/datos de los que depende el indicador/dato 
     //calculado cuyo identificador recibe como parámetro
-    public function borrar_dependencias($id)
+    function borrar_dependencias($id)
     {
         $indicador_dependencia = new Indicador_dependencia();
         while ($indicador_dependencia->load("id_calculado = $id"))
@@ -451,7 +450,7 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
     //anual para el año que recibe como parámetro
-    function actualizar_mediciones_anuales($indicador, $anyo)
+    private function actualizar_mediciones_anuales($indicador, $anyo)
     {
         $medicion = new Medicion();
         return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo'");
@@ -460,7 +459,7 @@ class LogicaIndicador implements ILogicaIndicador
     //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
     //semestral en el año que recibe como parámetro y en función de la fecha que 
     //también recibe como parámetro
-    function actualizar_mediciones_semestrales($indicador, $anyo, $fecha)
+    private function actualizar_mediciones_semestrales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
         //Estamos en el segundo Semestre
@@ -478,7 +477,7 @@ class LogicaIndicador implements ILogicaIndicador
     //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
     //cuatrimestral en el año que recibe como parámetro y en función de la fecha que 
     //también recibe como parámetro
-    function actualizar_mediciones_cuatrimestrales($indicador, $anyo, $fecha)
+    private function actualizar_mediciones_cuatrimestrales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
         //Estamos en el primer Cuatrimestre
@@ -502,7 +501,7 @@ class LogicaIndicador implements ILogicaIndicador
     //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
     //trimestral en el año que recibe como parámetro y en función de la fecha que 
     //también recibe como parámetro
-    function actualizar_mediciones_trimestrales($indicador, $anyo, $fecha)
+    private function actualizar_mediciones_trimestrales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
         //Estamos en el primer Trimestre
@@ -533,7 +532,7 @@ class LogicaIndicador implements ILogicaIndicador
     //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
     //mensual en el año que recibe como parámetro y en función de la fecha que 
     //también recibe como parámetro
-    function actualizar_mediciones_mensuales($indicador, $anyo, $fecha)
+    private function actualizar_mediciones_mensuales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
         //Estamos en Enero

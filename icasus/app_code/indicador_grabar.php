@@ -131,6 +131,8 @@ if (
                     $criterio_efqm_indicador->save();
                 }
             }
+            //Por último, generamos las mediciones para el Indicador
+            $logicaIndicador->generar_mediciones($indicador, "indicador");
         }
         //El indicador ya existe (edición)
         else
