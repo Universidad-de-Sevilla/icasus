@@ -432,7 +432,7 @@ define('MSG_INDIC_NO_VAL', 'No hay Valores recogidos para este Indicador/Dato.')
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo Indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado Indicadores.');
 define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Indicador?');
-define('MSG_INDIC_BORRADO', 'Se ha borrado el Indicador.');
+define('MSG_INDIC_BORRADO', 'Se ha borrado el Indicador: ');
 define('MSG_INDIC_COPIADOS', 'Indicadores copiados.');
 define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los Datos del Indicador.');
 define('MSG_INDIC_NO_PUBLIC', 'Este Indicador no está definido como público.');
@@ -524,6 +524,7 @@ define('ERR_DATO_GRABAR', 'No se ha podido grabar el Dato.');
 define('ERR_DATO_MOSTRAR', 'No se puede mostrar el Dato, el identificador no existe en la base de datos.');
 define('ERR_DATO_IMPORT_NO_AUT', 'No tiene autorización para importar Datos en esta Unidad.');
 define('ERR_DATO_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Datos de esta Unidad.');
+define('ERR_DATO_BORRAR_DEP', 'Este Dato influye en el cálculo de otros Indicadores/Datos. Debe eliminar éstos primero.');
 
 //Dimensiones
 define('ERR_DIM_CREAR', 'No se ha podido crear la Dimensión.');
@@ -539,6 +540,7 @@ define('ERR_PARAM_GRAFIC', 'Faltan parámetros para mostrar la gráfica.');
 
 //Indicadores
 define('ERR_INDIC_BORRAR_MED', 'Tiene Mediciones asociadas al Indicador, necesita borrar primero las Mediciones.');
+define('ERR_INDIC_BORRAR_DEP', 'Este Indicador influye en el cálculo de otros Indicadores/Datos. Debe eliminar éstos primero.');
 define('ERR_INDIC_BORRAR_NO_AUT', 'No tiene permisos para borrar el Indicador.');
 define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Indicadores/Datos de esta Unidad');
 define('ERR_INDIC_GRABAR', 'No se ha podido grabar el Indicador.');
@@ -551,6 +553,7 @@ define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables e
 define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
 define('ERR_MED_NO_VAL', 'Error: no existen valores pendientes ni recogidos para esta Medición.');
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la Medición, inténtelo de nuevo o contacte con los administradores de Icasus.');
+define('ERR_MED_BORRAR', 'No se puede borrar la Medicion ya que influye en el cálculo de otros Indicadores/Datos. Borre éstos primero');
 
 //Procesos
 define('ERR_PROC_BORRAR', 'Tiene Indicadores asociados al Proceso, necesita borrar primero los Indicadores.');

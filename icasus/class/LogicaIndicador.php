@@ -23,11 +23,11 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //-----------------------------------------------------------------
-    //GENERACIÓN DE MEDICIONES
+    //MEDICIONES
     //-----------------------------------------------------------------
     //Genera las mediciones de un Indicador/Dato a partir de su Histórico. 
     //El tipo es: "indicador" o "dato"
-    function generar_mediciones($indicador, $tipo)
+    public function generar_mediciones($indicador, $tipo)
     {
         //Primero generamos mediciones para los Indicadores/Datos Calculados 
         //cuyo cálculo dependa del Indicador/Dato actual
@@ -330,13 +330,71 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
+    //Borra del Indicador/Dato que recibe como parámetro la medición cuyo 
+    //identificador recibe también como parámetro
+    //El tipo es: "indicador" o "dato"
+    public function borrar_medicion($indicador, $tipo, $id_medicion)
+    {
+        //Comprobar si el indicador influye en otros si es asi no se podra borrar la medicion
+        $indicadores_dependientes = $this->calcular_influencias($indicador->id);
+        //Si no influye podemos borrar
+        if (count($indicadores_dependientes) == 0)
+        {
+            $medicion = new Medicion();
+            $adodb = $medicion->db();
+            // Consulta para borrar los valores
+            $query1 = "DELETE FROM valores WHERE id_medicion = $id_medicion;\n";
+            // Consulta para borrar los registros relacionados de la tabla valor_referencia_medicion
+            $query2 = "DELETE FROM valores_referencia_mediciones WHERE id_medicion = $id_medicion;\n";
+            // Consulta para borrar la medición
+            $query3 = "DELETE FROM mediciones WHERE id = $id_medicion;\n";
+            // Comenzamos una transacción de manera que se borre todo o nada
+            $adodb->StartTrans();
+            $adodb->Execute($query1);
+            $adodb->Execute($query2);
+            $adodb->Execute($query3);
+            if ($adodb->HasFailedTrans())
+            {
+                $error = ERR_OP_BD;
+                $estado = "error=$error";
+            }
+            else
+            {
+                $aviso = MSG_MED_BORRADA;
+                $estado = "aviso=$aviso";
+            }
+            $adodb->CompleteTrans();
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
+        }
+        //Influye en otros, luego no podemos borrar la medición
+        else
+        {
+            $error = ERR_MED_BORRAR;
+            $estado = "error=$error";
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
+        }
+    }
+
+    //Borra todas las mediciones del indicador 
+    //cuyo identificador recibe como parámetro
+    //El tipo es: "indicador" o "dato"
+    public function borrar_mediciones($indicador, $tipo)
+    {
+        $medicion = new Medicion();
+        $mediciones_indicador = $medicion->Find("id_indicador=$indicador->id");
+        foreach ($mediciones_indicador as $medicion_indicador)
+        {
+            $this->borrar_medicion($indicador, $tipo, $medicion_indicador->id);
+        }
+    }
+
     //-----------------------------------------------------------------------------
     // FUNCIONES PARA EL CÁLCULO DE DEPENDENCIAS 
     // EN INDICADORES/DATOS CALCULADOS
     //-----------------------------------------------------------------------------
     //Función que guarda los indicadores/datos de los que depende el 
     //indicador/dato calculado cuyo identificador recibe como parámetro
-    function guardar_dependencias($id)
+    public function guardar_dependencias($id)
     {
         $indicador_calculado = new Indicador();
         $indicador_calculado->load("id=$id");
@@ -381,7 +439,7 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Función que borra los indicadores/datos de los que depende el indicador/dato 
     //calculado cuyo identificador recibe como parámetro
-    function borrar_dependencias($id)
+    public function borrar_dependencias($id)
     {
         $indicador_dependencia = new Indicador_dependencia();
         while ($indicador_dependencia->load("id_calculado = $id"))
@@ -390,7 +448,7 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-    function calcular_dependencias($id)
+    public function calcular_dependencias($id)
     {
         $indicadores_influyentes = array();
         $indicador_dependencia = new Indicador_dependencia();
@@ -404,12 +462,28 @@ class LogicaIndicador implements ILogicaIndicador
         return $indicadores_influyentes;
     }
 
+    //Función que devuelve los indicadores/datos sobre los que influye el 
+    //indicador/dato cuyo identificador recibe como parámetro
+    public function calcular_influencias($id)
+    {
+        $indicadores_dependientes = array();
+        $indicador_dependencia = new Indicador_dependencia();
+        $indicadores_dependencias = $indicador_dependencia->Find("id_operando=$id");
+        foreach ($indicadores_dependencias as $indicador_dependiente)
+        {
+            $indicador_depende = new Indicador();
+            $indicador_depende->load("id=$indicador_dependiente->id_calculado");
+            $indicadores_dependientes[] = $indicador_depende;
+        }
+        return $indicadores_dependientes;
+    }
+
     //-----------------------------------------------------------------------------
     // FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO
     //------------------------------------------------------------------------------
     // Actualiza mediciones y genera un valor en blanco para cada una de las unidades 
     // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad
-    function actualizar_mediciones($indicador)
+    public function actualizar_mediciones($indicador)
     {
         //Año y fecha actuales
         $anyo = date('Y');

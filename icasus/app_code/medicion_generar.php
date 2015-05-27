@@ -58,11 +58,7 @@ if ($indicador->load("id = $id_indicador"))
     {
         //Generamos mediciones en función de la Periodicidad y 
         //el Histórico del Indicador/Dato
-         $logicaIndicador->generar_mediciones($indicador, $tipo);
-//        for ($i = $indicador->historicos; $i < idate('Y') + 1; $i++)
-//        {
-//            $logicaIndicador->generar_mediciones($indicador, $i, $tipo);
-//        }
+        $logicaIndicador->generar_mediciones($indicador, $tipo);
     }
     else
     {

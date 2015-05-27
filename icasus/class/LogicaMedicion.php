@@ -16,7 +16,7 @@ class LogicaMedicion implements ILogicaMedicion
 
     // Genera un valor nulo para cada una de las unidades asociadas 
     // al Indicador/Dato en la medición dada que recibe como parámetro
-    function generar_valores_medicion($medicion)
+    public function generar_valores_medicion($medicion)
     {
         $indicador_subunidad = new Indicador_subunidad();
         $indicadores_subunidades = $indicador_subunidad->Find("id_indicador = $medicion->id_indicador");
@@ -32,7 +32,7 @@ class LogicaMedicion implements ILogicaMedicion
 
     //Genera valores nulos para los valores de referencia de la medición que 
     //recibe como parámetro de un Indicador/Dato
-    function generar_valores_referencia_medicion($medicion)
+    public function generar_valores_referencia_medicion($medicion)
     {
         //Valores de referencia
         $valor_referencia = new Valor_referencia();
@@ -49,7 +49,7 @@ class LogicaMedicion implements ILogicaMedicion
 
     //Borra todos los valores de la medición cuyo identificador recibe 
     //como parámetro
-    function borrar_valores_medicion($id)
+    public function borrar_valores_medicion($id)
     {
         $valor = new Valor();
         $valores_borrar = $valor->Find("id_medicion=$id");

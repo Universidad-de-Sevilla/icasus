@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.15.13");
+define('IC_VERSION', "2.15.14");
 define('IC_FECHA_REVISION', "26/05/2015");
 
+// 2.15.14 - 26/05/2015 - Movido a la Lógica de Indicadores/Datos el borrado de mediciones y corregidos errores de código. Además, cuando se borra un Indicador/Dato no se puede si existen otros que dependan de el. Permite borrar calculados siempre y cuando otros Indicadores/Datos no dependan de él.
 // 2.15.13 - 26/05/2015 - Cuando se crea un Indicador/Dato también se generan automáticamente sus mediciones a partir de su Histórico.
 // 2.15.12 - 25/05/2015 - Se han retirado algunos campos de las fichas de Indicadores/Datos y se ha corregido error por el cual no se mostraba el valor de la Unidad Generadora en la edición de Indicadores.
 // 2.15.11 - 25/05/2015 - Añadido el campo Histórico y Responsable de Medición a los listados de Indicadores/Datos (corregido enlace a Usuarios en el listado de Datos).

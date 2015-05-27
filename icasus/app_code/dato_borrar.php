@@ -8,7 +8,10 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra un dato
 //---------------------------------------------------------------------------------------------------
+
 global $usuario;
+//Variable para operar con Indicadores/Datos
+$logicaIndicador = new LogicaIndicador();
 
 if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -21,10 +24,19 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
     {
         $medicion = new Medicion();
         $mediciones = $medicion->Find("id_indicador = $id_dato");
-        if ($mediciones)
+        $indicadores_dependientes = $logicaIndicador->calcular_influencias($dato->id);
+        //Si tiene mediciones y no es calculado no se puede borrar 
+        //hasta borrar las mediciones
+        if ($mediciones && !$dato->calculo)
         {
             $error = ERR_DATO_BORRAR_MED;
-            header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&error=$error");
+            header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&error=$error");
+        }
+        //Si otros Indicadores/Datos dependen de él tampoco podremos borrar
+        else if (count($indicadores_dependientes) != 0)
+        {
+            $error = ERR_DATO_BORRAR_DEP;
+            header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&error=$error");
         }
         else
         {
@@ -32,7 +44,9 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
             //la tabla de indicadores dependencias
             if ($dato->calculo)
             {
-                borrar_dependencias($id_dato);
+                $logicaIndicador->borrar_dependencias($id_dato);
+                //Borramos también sus mediciones
+                $logicaIndicador->borrar_mediciones($dato, "dato");
             }
             $dato->delete();
             $aviso = MSG_DATO_BORRADO . "$dato->nombre";
@@ -42,22 +56,11 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
     else
     {
         $error = ERR_DATO_BORRAR_NO_AUT;
-        header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&error=$error");
+        header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&error=$error");
     }
 }
 else
 { // falta id_dato o id_entidad
     $error = ERR_PARAM;
     header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&error=$error");
-}
-
-//Función que borra los indicadores/datos de los que depende el indicador/dato 
-//calculado cuyo identificador recibe como parámatro
-function borrar_dependencias($id)
-{
-    $indicador_dependencia = new Indicador_dependencia();
-    while ($indicador_dependencia->load("id_calculado = $id"))
-    {
-        $indicador_dependencia->delete();
-    }
 }
