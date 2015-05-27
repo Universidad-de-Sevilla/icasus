@@ -172,7 +172,15 @@
                 </a> 
             </div>
             <div class="columns clearfix">
-                <div class="col_40">
+                <div class="col_25">
+                    <fieldset class="label">
+                        <label>{$smarty.const.FIELD_ID}</label>
+                        <div>
+                            {$indicador->id}
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col_25">
                     <fieldset class="label">
                         <label>{$smarty.const.FIELD_COD}</label>
                         <div>
@@ -180,7 +188,7 @@
                         </div>
                     </fieldset>
                 </div>
-                <div class="col_60">
+                <div class="col_50">
                     <fieldset class="label">
                         <label>{$smarty.const.FIELD_PROC}</label>
                         <div>

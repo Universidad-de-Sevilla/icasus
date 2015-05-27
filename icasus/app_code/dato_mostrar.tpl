@@ -156,7 +156,15 @@
                     <img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>
             </div>
             <div class="columns clearfix">
-                <div class="col_40">
+                <div class="col_50">
+                    <fieldset class="label">
+                        <label>{$smarty.const.FIELD_ID}</label>
+                        <div>
+                            {$dato->id}
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col_50">
                     <fieldset class="label">
                         <label>{$smarty.const.FIELD_COD}</label>
                         <div>
@@ -164,15 +172,13 @@
                         </div>
                     </fieldset>
                 </div>
-                <div class="col_60">
-                    <fieldset class="label">
-                        <label>{$smarty.const.FIELD_NOMBRE}</label>
-                        <div>
-                            {$dato->nombre}
-                        </div>
-                    </fieldset>
-                </div>
             </div><!-- //.colums .clearfix -->
+            <fieldset class="label_side">
+                <label>{$smarty.const.FIELD_NOMBRE}</label>
+                <div>
+                    {$dato->nombre}
+                </div>
+            </fieldset>
             {if $dato->descripcion != ""}
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_DESC}</label>
