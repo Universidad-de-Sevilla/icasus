@@ -46,6 +46,8 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
                 $logicaIndicador->borrar_mediciones($indicador, "indicador");
             }
             $indicador->delete();
+            //Borramos también las Unidades vinculadas al Indicador
+            $logicaIndicador->borrar_unidades($id_indicador);
             $aviso = MSG_INDIC_BORRADO . "$indicador->nombre";
             header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
         }

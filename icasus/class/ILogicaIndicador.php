@@ -25,7 +25,7 @@ interface ILogicaIndicador
     //identificador recibe también como parámetro
     //El tipo es: "indicador" o "dato"
     public function borrar_medicion($indicador, $tipo, $id_medicion);
-    
+
     //Borra todas las mediciones del indicador 
     //cuyo identificador recibe como parámetro
     //El tipo es: "indicador" o "dato"
@@ -50,6 +50,13 @@ interface ILogicaIndicador
     //Función que devuelve los indicadores/datos sobre los que influye el 
     //indicador/dato cuyo identificador recibe como parámetro
     public function calcular_influencias($id);
+
+    //--------------------------------------------------------------------------
+    //UNIDADES
+    //--------------------------------------------------------------------------
+    //Borra todas las Unidades vinculadas al Indicador/Dato cuyo identificador 
+    //recibe como parámetro
+    public function borrar_unidades($id);
 
     //-----------------------------------------------------------------------------
     // FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO

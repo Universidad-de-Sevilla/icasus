@@ -49,6 +49,8 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
                 $logicaIndicador->borrar_mediciones($dato, "dato");
             }
             $dato->delete();
+            //Borramos también las Unidades vinculadas al Dato
+            $logicaIndicador->borrar_unidades($id_dato);
             $aviso = MSG_DATO_BORRADO . "$dato->nombre";
             header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&aviso=$aviso");
         }

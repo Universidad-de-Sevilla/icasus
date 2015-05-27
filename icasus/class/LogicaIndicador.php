@@ -22,6 +22,20 @@ class LogicaIndicador implements ILogicaIndicador
         $this->logicaMedicion = new LogicaMedicion();
     }
 
+    //--------------------------------------------------------------------------
+    //UNIDADES
+    //--------------------------------------------------------------------------
+    //Borra todas las Unidades vinculadas al Indicador/Dato cuyo identificador 
+    //recibe como parámetro
+    public function borrar_unidades($id)
+    {
+        $indicador_subunidad = new Indicador_subunidad();
+        while ($indicador_subunidad->load("id_indicador = $id"))
+        {
+            $indicador_subunidad->delete();
+        }
+    }
+
     //-----------------------------------------------------------------
     //MEDICIONES
     //-----------------------------------------------------------------
