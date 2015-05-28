@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.15.16");
-define('IC_FECHA_REVISION', "27/05/2015");
+define('IC_VERSION', "2.15.17");
+define('IC_FECHA_REVISION', "28/05/2015");
 
+// 2.15.17 - 28/05/2015 - Se valida en la creación/edición de Indicadores/Datos que al menos se vincule una Unidad al Indicador/Dato.
 // 2.15.16 - 27/05/2015 - Muestra el identificador(ID) en las fichas de Indicadores y Datos pues es necesario para el cálculo.
 // 2.15.15 - 27/05/2015 - Cuando se borra un Indicador/Dato se borran también las Unidades vinculadas al mismo.
 // 2.15.14 - 26/05/2015 - Movido a la Lógica de Indicadores/Datos el borrado de mediciones y corregidos errores de código. Además, cuando se borra un Indicador/Dato no se puede si existen otros que dependan de el. Permite borrar calculados siempre y cuando otros Indicadores/Datos no dependan de él.

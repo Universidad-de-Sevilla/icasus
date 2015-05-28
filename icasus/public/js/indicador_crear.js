@@ -38,7 +38,8 @@ $(document).ready(function () {
             historicos: {required: true},
             id_responsable: {required: true},
             id_responsable_medicion: {required: true},
-            tipo_seleccion_responsable: {required: true}
+            tipo_seleccion_responsable: {required: true},
+            'subunidades[]': {required: true}
         },
         ignore: ':hidden',
         messages: {
@@ -49,7 +50,8 @@ $(document).ready(function () {
             historicos: 'Debe indicar un año de inicio para el Histórico del Indicador',
             id_responsable: 'Seleccionar un responsable',
             id_responsable_medicion: 'Seleccionar el responsable de medición',
-            tipo_seleccion_responsable: 'Seleccionar el tipo de medición'
+            tipo_seleccion_responsable: 'Seleccionar el tipo de medición',
+            'subunidades[]': 'Debe seleccionar al menos una Unidad'
         }
     });
     //Boton previo
