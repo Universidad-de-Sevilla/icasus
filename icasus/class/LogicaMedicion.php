@@ -30,8 +30,56 @@ class LogicaMedicion implements ILogicaMedicion
         }
     }
 
-    //Genera valores nulos para los valores de referencia de la medición que 
-    //recibe como parámetro de un Indicador/Dato
+    // Actualiza las unidades asociadas al Indicador/Dato en la 
+    // medición dada que recibe como parámetro y en función de la lista de 
+    // unidades que también recibe como parámetro
+    public function actualizar_unidades_medicion($medicion)
+    {
+        $indicador_subunidad = new Indicador_subunidad();
+        $indicador_subunidades = $indicador_subunidad->Find("id_indicador = $medicion->id_indicador");
+        $indicador_subunidades_id = array();
+        $valor = new Valor();
+        $valores_medicion = $valor->Find("id_medicion=$medicion->id");
+        //Obtenemos los ids de las nuevas subunidades
+        foreach ($indicador_subunidades as $indicador_subunidad)
+        {
+            array_push($indicador_subunidades_id, $indicador_subunidad->id_entidad);
+        }
+        //Actualizamos los valores de la medicion
+        foreach ($valores_medicion as $valor_medicion)
+        {
+            //Si se media antes pero ahora no lo 
+            if (!in_array($valor_medicion->id_entidad, $indicador_subunidades_id))
+            {
+                $valor->Load("id=$valor_medicion->id");
+                $valor->activo = 0;
+                $valor->Save();
+            }
+            //Si no se media, pero antes si (existia) y ahora también activamos el valor
+            if (in_array($valor_medicion->id_entidad, $indicador_subunidades_id))
+            {
+                $valor->Load("id=$valor_medicion->id");
+                $valor->activo = 1;
+                $valor->Save();
+            }
+        }
+        //Si no existia  un valor para esa Unidad 
+        //(nunca se midió hasta hoy) lo generamos
+        foreach ($indicador_subunidades_id as $indicador_subunidad_id)
+        {
+            if (!$valor->Load("id_medicion=$medicion->id AND id_entidad=$indicador_subunidad_id"))
+            {
+                $valor = new Valor();
+                $valor->id_entidad = $indicador_subunidad_id;
+                $valor->id_medicion = $medicion->id;
+                $valor->activo = 1;
+                $valor->save();
+            }
+        }
+    }
+
+//Genera valores nulos para los valores de referencia de la medición que 
+//recibe como parámetro de un Indicador/Dato
     public function generar_valores_referencia_medicion($medicion)
     {
         //Valores de referencia

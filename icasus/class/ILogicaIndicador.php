@@ -62,6 +62,12 @@ interface ILogicaIndicador
     // FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO
     //------------------------------------------------------------------------------
     // Actualiza mediciones y genera un valor en blanco para cada una de las unidades 
-    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad
+    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
+    // cuando cambiamos el tipo de agregación
     public function actualizar_mediciones($indicador);
+
+    // Actualiza mediciones activando/desactivando las Unidades 
+    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
+    // cuando cambiamos las Unidades en Indicadores/Datos Agregados
+    public function actualizar_subunidades($indicador);
 }

@@ -115,7 +115,7 @@ if (
             //Por último, generamos las mediciones para el Dato
             $logicaIndicador->generar_mediciones($dato, "dato");
         }
-        //El dato ya existía
+        //El dato ya existía (edición)
         else
         {
             //Si es calculado guardamos los indicadores/datos de los que depende en 
@@ -134,13 +134,11 @@ if (
             if (filter_has_var(INPUT_POST, 'subunidades'))
             {
                 $post_array = filter_input_array(INPUT_POST);
-//                $subunidades = filter_input(INPUT_POST, 'subunidades');
                 $subunidades = $post_array['subunidades'];
                 foreach ($subunidades as $id_subunidad)
                 {
                     $indicador_subunidad = new Indicador_subunidad();
                     $indicador_subunidad->id_indicador = $id_dato;
-//                    $indicador_subunidad->id_entidad = $id_subunidad;
                     $indicador_subunidad->id_entidad = filter_var($id_subunidad, FILTER_SANITIZE_NUMBER_INT);
                     switch ($dato->desagregado)
                     {
@@ -174,6 +172,12 @@ if (
                         ($tipo_agregacion_actual != 0 && $dato->id_tipo_agregacion == 0))
                 {
                     $logicaIndicador->actualizar_mediciones($dato);
+                }
+                //Actualizamos las Unidades de las mediciones si han 
+                //cambiado en Indicadores Agregados
+                if ($tipo_agregacion_actual == $dato->id_tipo_agregacion && $dato->id_tipo_agregacion != 0)
+                {
+                    $logicaIndicador->actualizar_subunidades($dato);
                 }
             }
         }

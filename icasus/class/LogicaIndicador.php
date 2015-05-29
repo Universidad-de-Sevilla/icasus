@@ -496,7 +496,8 @@ class LogicaIndicador implements ILogicaIndicador
     // FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO
     //------------------------------------------------------------------------------
     // Actualiza mediciones y genera un valor en blanco para cada una de las unidades 
-    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad
+    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
+    // cuando cambiamos el tipo de agregación
     public function actualizar_mediciones($indicador)
     {
         //Año y fecha actuales
@@ -533,6 +534,45 @@ class LogicaIndicador implements ILogicaIndicador
             $this->logicaMedicion->borrar_valores_medicion($medicion->id);
             //Generamos valores nulos
             $this->logicaMedicion->generar_valores_medicion($medicion);
+        }
+    }
+
+    // Actualiza mediciones activando/desactivando las Unidades 
+    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
+    // cuando cambiamos las Unidades en Indicadores/Datos Agregados
+    public function actualizar_subunidades($indicador)
+    {
+        //Año y fecha actuales
+        $anyo = date('Y');
+        $fecha = date('Y-m-d');
+        //Periodicidad Anual
+        if ($indicador->periodicidad == 'Anual')
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_anuales($indicador, $anyo);
+        }
+        //Periodicidad Semestral
+        else if ($indicador->periodicidad == 'Semestral')
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_semestrales($indicador, $anyo, $fecha);
+        }
+        //Periodicidad Cuatrimestral
+        else if ($indicador->periodicidad == 'Cuatrimestral')
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_cuatrimestrales($indicador, $anyo, $fecha);
+        }
+        //Periodicidad Trimestral
+        else if ($indicador->periodicidad == 'Trimestral')
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_trimestrales($indicador, $anyo, $fecha);
+        }
+        //Periodicidad mensual
+        else
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_mensuales($indicador, $anyo, $fecha);
+        }
+        foreach ($mediciones_actualizables as $medicion)
+        {
+            $this->logicaMedicion->actualizar_unidades_medicion($medicion);
         }
     }
 

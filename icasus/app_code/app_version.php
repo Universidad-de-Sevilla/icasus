@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.15.18");
-define('IC_FECHA_REVISION', "28/05/2015");
+define('IC_VERSION', "2.15.19");
+define('IC_FECHA_REVISION', "29/05/2015");
 
+// 2.15.19 - 29/05/2015 - Activa o desactiva las subunidades en las mediciones de un Indicador/Dato cuando se cambian.
 // 2.15.18 - 28/05/2015 - Se valida que el Histórico de los Indicadores/Datos comience en 2008 o después.
 // 2.15.17 - 28/05/2015 - Se valida en la creación/edición de Indicadores/Datos que al menos se vincule una Unidad al Indicador/Dato.
 // 2.15.16 - 27/05/2015 - Muestra el identificador(ID) en las fichas de Indicadores y Datos pues es necesario para el cálculo.

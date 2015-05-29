@@ -213,6 +213,12 @@ if (
                 {
                     $logicaIndicador->actualizar_mediciones($indicador);
                 }
+                //Actualizamos las Unidades de las mediciones si han 
+                //cambiado en Indicadores Agregados
+                if ($tipo_agregacion_actual == $indicador->id_tipo_agregacion && $indicador->id_tipo_agregacion != 0)
+                {
+                    $logicaIndicador->actualizar_subunidades($indicador);
+                }
             }
         }
         header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&aviso=$aviso");
