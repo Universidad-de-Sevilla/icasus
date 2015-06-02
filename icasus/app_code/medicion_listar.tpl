@@ -235,28 +235,30 @@
                                                 --- 
                                             {else}
                                                 {$medicion->medicion_valor->valor|round:"2"}
-                                                {if isset($medicion_lim[$medicion->id])AND isset($medicion_lim[$medicion->id])}
-                                                    {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
-                                                        <img src='/icons/ff16/bullet_red.png' />
-                                                    {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
-                                                        <img src='/icons/ff16/bullet_green.png' />
-                                                    {else}
-                                                        <img src='/icons/ff16/bullet_yellow.png' />
+                                                {if $indicador->id_tipo_agregacion == 0}
+                                                    {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
+                                                        {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
+                                                            <img src='/icons/ff16/bullet_red.png' />
+                                                        {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
+                                                            <img src='/icons/ff16/bullet_green.png' />
+                                                        {else}
+                                                            <img src='/icons/ff16/bullet_yellow.png' />
+                                                        {/if}
                                                     {/if}
-                                                {else if isset($medicion_obj[$medicion->id])}
-                                                    {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
-                                                        <img src='/icons/ff16/bullet_green.png' />
-                                                    {else}
-                                                        <img src='/icons/ff16/bullet_red.png' />
+                                                    {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
+                                                        {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
+                                                            <img src='/icons/ff16/bullet_green.png' />
+                                                        {else}
+                                                            <img src='/icons/ff16/bullet_red.png' />
+                                                        {/if}
                                                     {/if}
-                                                {else if isset($medicion_lim[$medicion->id])}
-                                                    {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
-                                                        <img src='/icons/ff16/bullet_red.png' />
-                                                    {else}
-                                                        <img src='/icons/ff16/bullet_green.png' />
+                                                    {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
+                                                        {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
+                                                            <img src='/icons/ff16/bullet_red.png' />
+                                                        {else}
+                                                            <img src='/icons/ff16/bullet_green.png' />
+                                                        {/if}
                                                     {/if}
-                                                {else}
-                                                    <img src='/icons/ff16/bullet_green.png' />
                                                 {/if}
                                             {/if}
                                         </td>
