@@ -36,7 +36,10 @@ $(document).ready(function () {
             id_responsable: {required: true},
             id_responsable_medicion: {required: true},
             nombre: {required: true},
-            historicos: {required: true},
+            historicos: {
+                required: true,
+                min: 2008
+            },
             tipo_seleccion_responsable: {required: true}
         },
         ignore: ':hidden',
@@ -45,7 +48,10 @@ $(document).ready(function () {
             id_responsable: 'Debe seleccionar un responsable',
             id_responsable_medicion: 'Seleccionar el responsable de medición',
             nombre: 'Debe dar un nombre',
-            historicos: 'Debe indicar un año de inicio para el Histórico del Dato',
+            historicos: {
+                required: 'Debe indicar un año de inicio para el Histórico del Dato',
+                min: 'El Histórico debe ser igual o posterior al año 2008'
+            },
             tipo_seleccion_responsable: 'Seleccionar el tipo de medición'
         }
     });

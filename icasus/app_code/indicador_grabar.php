@@ -29,6 +29,7 @@ if (
         $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
         $indicador->load("id = $id_indicador");
         $tipo_agregacion_actual = $indicador->id_tipo_agregacion;
+        $periodicidad_actual = $indicador->periodicidad;
         $aviso = MSG_INDIC_ACTUALIZADO;
     }
     else
@@ -206,22 +207,42 @@ if (
                     }
                     $indicador_subunidad->save();
                 }
-                //Actualizamos las mediciones en función de la fecha si 
-                //cambiamos tipo de agregación
-                if (($tipo_agregacion_actual == 0 && $indicador->id_tipo_agregacion != 0) ||
-                        ($tipo_agregacion_actual != 0 && $indicador->id_tipo_agregacion == 0))
+                //Si mantenemos la misma periodicidad
+                if ($periodicidad_actual == $indicador->periodicidad)
                 {
-                    $logicaIndicador->actualizar_mediciones($indicador);
+                    //Actualizamos las mediciones en función de la fecha si 
+                    //cambiamos tipo de agregación
+                    if (($tipo_agregacion_actual == 0 && $indicador->id_tipo_agregacion != 0) ||
+                            ($tipo_agregacion_actual != 0 && $indicador->id_tipo_agregacion == 0))
+                    {
+                        $logicaIndicador->actualizar_mediciones($indicador);
+                    }
+                    //Actualizamos las Unidades de las mediciones si han 
+                    //cambiado en Indicadores Agregados
+                    if ($tipo_agregacion_actual == $indicador->id_tipo_agregacion && $indicador->id_tipo_agregacion != 0)
+                    {
+                        $logicaIndicador->actualizar_subunidades($indicador);
+                    }
                 }
-                //Actualizamos las Unidades de las mediciones si han 
-                //cambiado en Indicadores Agregados
-                if ($tipo_agregacion_actual == $indicador->id_tipo_agregacion && $indicador->id_tipo_agregacion != 0)
+                //Si hemos cambiado la periodicidad
+                else
                 {
-                    $logicaIndicador->actualizar_subunidades($indicador);
+                    $aviso = $aviso;
+                    $error = MSG_INDIC_PERIODICIDAD;
                 }
             }
         }
-        header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&aviso=$aviso");
+        // Si ha ido bien mostramos la ficha del indicador
+        if ($error)
+        {
+            //Si se cambio la periodicidad lanzamos además del aviso de 
+            //actualización un mensaje de error para advertir del cambio
+            header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&aviso=$aviso&error=$error");
+        }
+        else
+        {
+            header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&aviso=$aviso");
+        }
     }
     else
     {

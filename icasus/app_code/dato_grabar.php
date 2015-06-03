@@ -32,6 +32,7 @@ if (
         $dato->load("id = $id_dato");
         $es_dato_nuevo = false;
         $tipo_agregacion_actual = $dato->id_tipo_agregacion;
+        $periodicidad_actual = $dato->periodicidad;
         $aviso = MSG_DATO_ACTUALIZADO;
     }
     else
@@ -166,23 +167,41 @@ if (
                     }
                     $indicador_subunidad->save();
                 }
-                //Actualizamos las mediciones en función de la fecha si 
-                //cambiamos tipo de agregación
-                if (($tipo_agregacion_actual == 0 && $dato->id_tipo_agregacion != 0) ||
-                        ($tipo_agregacion_actual != 0 && $dato->id_tipo_agregacion == 0))
+                //Si mantenemos la misma periodicidad
+                if ($periodicidad_actual == $dato->periodicidad)
                 {
-                    $logicaIndicador->actualizar_mediciones($dato);
+                    //Actualizamos las mediciones en función de la fecha si 
+                    //cambiamos tipo de agregación
+                    if (($tipo_agregacion_actual == 0 && $dato->id_tipo_agregacion != 0) ||
+                            ($tipo_agregacion_actual != 0 && $dato->id_tipo_agregacion == 0))
+                    {
+                        $logicaIndicador->actualizar_mediciones($dato);
+                    }
+                    //Actualizamos las Unidades de las mediciones si han 
+                    //cambiado en Indicadores Agregados
+                    if ($tipo_agregacion_actual == $dato->id_tipo_agregacion && $dato->id_tipo_agregacion != 0)
+                    {
+                        $logicaIndicador->actualizar_subunidades($dato);
+                    }
                 }
-                //Actualizamos las Unidades de las mediciones si han 
-                //cambiado en Indicadores Agregados
-                if ($tipo_agregacion_actual == $dato->id_tipo_agregacion && $dato->id_tipo_agregacion != 0)
+                else
                 {
-                    $logicaIndicador->actualizar_subunidades($dato);
+                    $aviso = $aviso;
+                    $error = MSG_DATO_PERIODICIDAD;
                 }
             }
         }
         // Si ha ido bien mostramos la ficha del dato 
-        header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&aviso=$aviso");
+        if ($error)
+        {
+            //Si se cambio la periodicidad lanzamos además del aviso de 
+            //actualización un mensaje de error para advertir del cambio
+            header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&aviso=$aviso&error=$error");
+        }
+        else
+        {
+            header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&aviso=$aviso");
+        }
     }
     else
     {

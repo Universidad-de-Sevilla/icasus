@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.15.20");
+define('IC_VERSION', "2.15.21");
 define('IC_FECHA_REVISION', "03/06/2015");
 
+// 2.15.21 - 03/06/2015 - Se corrige fallo de validación del Histórico en los Datos. Se lanza un aviso cuando se cambia la Periodicidad de un Indicador/Dato para que el usuario quede al tanto y ajuste las Mediciones.
 // 2.15.20 - 03/06/2015 - Se corrigen fallos  a la hora de mostrar un color asociado al valor de una medición y sólo se asignan colores para valores no agregados.
 // 2.15.19 - 29/05/2015 - Activa o desactiva las subunidades en las mediciones de un Indicador/Dato cuando se cambian.
 // 2.15.18 - 28/05/2015 - Se valida que el Histórico de los Indicadores/Datos comience en 2008 o después.

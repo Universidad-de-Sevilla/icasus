@@ -33,7 +33,10 @@ $(document).ready(function () {
             codigo: {required: true},
             id_responsable: {required: true},
             id_responsable_medicion: {required: true},
-            historicos: {required: true},
+            historicos: {
+                required: true,
+                min: 2008
+            },
             tipo_seleccion_responsable: {required: true},
             nombre: {required: true}
         },
@@ -42,7 +45,10 @@ $(document).ready(function () {
             codigo: 'Debe insertar un código',
             id_responsable: 'Debe seleccionar un responsable',
             id_responsable_medicion: 'Seleccionar el responsable de medición',
-            historicos: 'Debe indicar un año de inicio para el Histórico del Dato',
+            historicos: {
+                required: 'Debe indicar un año de inicio para el Histórico del Dato',
+                min: 'El Histórico debe ser igual o posterior al año 2008'
+            },
             nombre: 'Debe dar un nombre',
             tipo_seleccion_responsable: 'Seleccionar el tipo de medición'
         }
