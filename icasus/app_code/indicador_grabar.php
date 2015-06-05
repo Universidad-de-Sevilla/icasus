@@ -227,7 +227,8 @@ if (
                 //Si hemos cambiado la periodicidad
                 else
                 {
-                    $aviso = $aviso;
+                    //Generamos para el año actual las Mediciones para la nueva Periodicidad
+                    $logicaIndicador->generar_mediciones_por_anyo($indicador, idate('Y'), "indicador");
                     $error = MSG_INDIC_PERIODICIDAD;
                 }
             }

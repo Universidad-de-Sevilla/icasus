@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.15.22");
+define('IC_VERSION', "2.15.23");
 define('IC_FECHA_REVISION', "05/06/2015");
 
+// 2.15.23 - 05/06/2015 - Cuando cambiamos la Periodicidad de un Indicador/Dato se generan las Mediciones para ese año en función de la nueva Periodicidad establecida.
 // 2.15.22 - 05/06/2015 - Cambios en la interfaz: se visualiza el rol del Usuario cuando estamos trabajando con una Unidad.
 // 2.15.21 - 03/06/2015 - Se corrige fallo de validación del Histórico en los Datos. Se lanza un aviso cuando se cambia la Periodicidad de un Indicador/Dato para que el usuario quede al tanto y ajuste las Mediciones.
 // 2.15.20 - 03/06/2015 - Se corrigen fallos  a la hora de mostrar un color asociado al valor de una medición y sólo se asignan colores para valores no agregados.

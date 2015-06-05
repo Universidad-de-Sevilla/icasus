@@ -405,7 +405,7 @@ define('MSG_DATO_CREADO', 'Se ha creado un nuevo Dato');
 define('MSG_DATO_EXPORT_OK', 'Los Datos se han exportado correctamente: ');
 define('MSG_DATO_NO_VAL_REF', 'Es un Dato y éstos no tienen asociados valores de referencia.');
 define('MSG_DATO_NO_SUBUNID_ASIG', 'No se han asignado subunidades a este Dato (corregir)');
-define('MSG_DATO_PERIODICIDAD', 'IMPORTANTE: Cambió la Periodicidad del Dato. Por favor, revise las Mediciones: borre aquellas que no sean válidas y vuelva a generarlas para que éstas se ajusten a la nueva Periodicidad establecida.');
+define('MSG_DATO_PERIODICIDAD', 'IMPORTANTE: Cambió la Periodicidad del Dato. Por favor, revise las Mediciones: borre aquellas que considere no válidas.');
 
 //Dimensiones
 define('MSG_DIM_CREADA', 'Se ha creado una Dimensión.');
@@ -440,7 +440,7 @@ define('MSG_INDIC_NO_PUBLIC', 'Este Indicador no está definido como público.')
 define('MSG_INDIC_NO_VAL_REF', 'No se han definido Valores de Referencia para este Indicador.');
 define('MSG_INDIC_NO_DATOS', 'Todavía no se han introducido Datos en este Indicador.');
 define('MSG_INDIC_NO_MED', 'Todavía no se han definido Mediciones para este Indicador.');
-define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la Periodicidad del Indicador. Por favor, revise las Mediciones: borre aquellas que no sean válidas y vuelva a generarlas para que éstas se ajusten a la nueva Periodicidad establecida.');
+define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la Periodicidad del Indicador. Por favor, revise las Mediciones: borre aquellas que considere no válidas.');
 
 //Mediciones
 define('MSG_MED_NO_TIPO', 'Todavía no se han establecido Mediciones para este');

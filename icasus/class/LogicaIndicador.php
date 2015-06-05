@@ -76,11 +76,8 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Genera las mediciones de un Indicador/Dato para el año que recibe 
     //como parámetro en función de su periodicidad. El tipo es: "indicador" o "dato"
-    private function generar_mediciones_por_anyo($indicador, $anyo, $tipo)
+    public function generar_mediciones_por_anyo($indicador, $anyo, $tipo)
     {
-        //Primero generamos mediciones para los Indicadores/Datos Calculados 
-        //cuyo cálculo dependa del Indicador/Dato actual
-//        $this->generar_mediciones_indicadores_dependientes($indicador, $anyo);
         //Generamos mediciones en función de la periodicidad
         //Anual
         if ($indicador->periodicidad == 'Anual')

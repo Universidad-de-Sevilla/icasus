@@ -184,9 +184,11 @@ if (
                         $logicaIndicador->actualizar_subunidades($dato);
                     }
                 }
+                //Si hemos cambiado la periodicidad
                 else
                 {
-                    $aviso = $aviso;
+                    //Generamos para el año actual las Mediciones para la nueva Periodicidad
+                    $logicaIndicador->generar_mediciones_por_anyo($dato, idate('Y'), "dato");
                     $error = MSG_DATO_PERIODICIDAD;
                 }
             }
