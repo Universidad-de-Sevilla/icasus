@@ -3,7 +3,7 @@
 //--------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: class/ILogicaMedicion.php
-// Tipo: definicion de clase
+// Tipo: definicion de Interfaz
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
