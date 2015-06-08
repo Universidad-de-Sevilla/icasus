@@ -33,7 +33,7 @@ class LogicaMedicion implements ILogicaMedicion
     // Actualiza las unidades asociadas al Indicador/Dato en la 
     // medición dada que recibe como parámetro y en función de la lista de 
     // unidades que también recibe como parámetro
-    public function actualizar_unidades_medicion($medicion)
+    public function actualizar_subunidades_medicion($medicion)
     {
         $indicador_subunidad = new Indicador_subunidad();
         $indicador_subunidades = $indicador_subunidad->Find("id_indicador = $medicion->id_indicador");
@@ -48,19 +48,25 @@ class LogicaMedicion implements ILogicaMedicion
         //Actualizamos los valores de la medicion
         foreach ($valores_medicion as $valor_medicion)
         {
-            //Si se media antes pero ahora no lo 
+//            //Si se media antes pero ahora no lo desactivamos
+//            if (!in_array($valor_medicion->id_entidad, $indicador_subunidades_id))
+//            {
+//                $valor->Load("id=$valor_medicion->id");
+//                $valor->activo = 0;
+//                $valor->Save();
+//            }
+//            //Si no se media, pero antes si (existia) y ahora también activamos el valor
+//            if (in_array($valor_medicion->id_entidad, $indicador_subunidades_id))
+//            {
+//                $valor->Load("id=$valor_medicion->id");
+//                $valor->activo = 1;
+//                $valor->Save();
+//            }
+            //Si se media antes pero ahora no, lo borramos
             if (!in_array($valor_medicion->id_entidad, $indicador_subunidades_id))
             {
                 $valor->Load("id=$valor_medicion->id");
-                $valor->activo = 0;
-                $valor->Save();
-            }
-            //Si no se media, pero antes si (existia) y ahora también activamos el valor
-            if (in_array($valor_medicion->id_entidad, $indicador_subunidades_id))
-            {
-                $valor->Load("id=$valor_medicion->id");
-                $valor->activo = 1;
-                $valor->Save();
+                $valor->Delete();
             }
         }
         //Si no existia  un valor para esa Unidad 

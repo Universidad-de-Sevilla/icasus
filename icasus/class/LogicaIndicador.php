@@ -569,7 +569,7 @@ class LogicaIndicador implements ILogicaIndicador
         }
         foreach ($mediciones_actualizables as $medicion)
         {
-            $this->logicaMedicion->actualizar_unidades_medicion($medicion);
+            $this->logicaMedicion->actualizar_subunidades_medicion($medicion);
         }
     }
 

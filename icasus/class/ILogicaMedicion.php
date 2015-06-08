@@ -21,7 +21,7 @@ interface ILogicaMedicion
     // Actualiza las unidades asociadas al Indicador/Dato en la 
     // medición dada que recibe como parámetro y en función de la lista de 
     // unidades que también recibe como parámetro
-    public function actualizar_unidades_medicion($medicion);
+    public function actualizar_subunidades_medicion($medicion);
 
     //Genera valores nulos para los valores de referencia de la medición que 
     //recibe como parámetro de un Indicador/Dato
