@@ -35,17 +35,17 @@
             <a href="#" class="toggle"></a>
             <div class="block">
                 <div class="button_bar clearfix">
+                   <!-- <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+                        <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
+                    </a>&nbsp;&nbsp;
+                    <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                    </a>&nbsp;&nbsp;-->
                     {if !$indicador->calculo}
-                      <!--   <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
-                            <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
-                        </a>&nbsp;&nbsp;-->
-                        <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
-                        </a>&nbsp;&nbsp;
                         <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                             <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
                         </a>&nbsp;&nbsp;
                     {/if}  
-                    {if $permiso_editar && !$indicador->calculo}
+                    {if $permiso_editar}
                         <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'>
                             <img src='/icons/ff16/time_delete.png' /> {$smarty.const.TXT_MED_BORRAR}
                         </a>&nbsp;&nbsp;
@@ -90,17 +90,17 @@
     <a href="#" class="toggle"></a>
     <div class="toggle_container">
         <div class="button_bar clearfix">
-            {if !$indicador->calculo}
-              <!--   <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+              <!--  <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
                     <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
-                </a>&nbsp;&nbsp;-->
-                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
                 </a>&nbsp;&nbsp;
+                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                </a>&nbsp;&nbsp;-->
+            {if !$indicador->calculo}
                 <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
                 </a>&nbsp;&nbsp;
             {/if}  
-            {if $permiso_editar && !$indicador->calculo}
+            {if $permiso_editar}
                 <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'>
                     <img src='/icons/ff16/time_delete.png' /> {$smarty.const.TXT_MED_BORRAR}
                 </a>&nbsp;&nbsp;
@@ -258,17 +258,17 @@
     <a href="#" class="toggle"></a>
     <div class="toggle_container">
         <div class="button_bar clearfix">
-            {if !$indicador->calculo}
                 <!--<a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
                     <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
-                </a>&nbsp;&nbsp;-->
-                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
                 </a>&nbsp;&nbsp;
+                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                </a>&nbsp;&nbsp;-->
+            {if !$indicador->calculo}
                 <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
                 </a>&nbsp;&nbsp;
             {/if}
-            {if $permiso_editar && !$indicador->calculo}
+            {if $permiso_editar}
                 <a class='confirmar' href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'>
                     <img src='/icons/ff16/time_delete.png' /> {$smarty.const.TXT_MED_BORRAR}
                 </a>&nbsp;&nbsp;

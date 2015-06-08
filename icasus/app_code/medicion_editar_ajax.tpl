@@ -24,7 +24,7 @@
                         {/if}
                     </td>
                     <td style="text-align: center"> 
-                        {if $valor->valor != NULL}
+                        {if $valor->valor != NULL AND $indicador->id_tipo_agregacion == 0}
                             {if isset($medicion_lim) AND isset($medicion_obj)}
                                 {if  $valor->valor < $medicion_lim}
                                     <img src='/icons/ff16/bullet_red.png' />
@@ -46,7 +46,7 @@
                                     <img src='/icons/ff16/bullet_green.png' />
                                 {/if}
                             {else}
-                                <img src='/icons/ff16/bullet_green.png' />
+                                ---
                             {/if}
                         {else}
                             ---
@@ -83,7 +83,7 @@
                         </a>
                     </td>
                     <td style="text-align: center"> 
-                        {if $valor->valor != NULL}
+                        {if $valor->valor != NULL AND $indicador->id_tipo_agregacion == 0}
                             {if isset($medicion_lim) AND isset($medicion_obj)}
                                 {if  $valor->valor < $medicion_lim}
                                     <img src='/icons/ff16/bullet_red.png' />
@@ -105,7 +105,7 @@
                                     <img src='/icons/ff16/bullet_green.png' />
                                 {/if}
                             {else}
-                                <img src='/icons/ff16/bullet_green.png' />
+                                ---
                             {/if}
                         {else}
                             ---
