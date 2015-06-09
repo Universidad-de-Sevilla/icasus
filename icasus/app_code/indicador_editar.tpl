@@ -139,6 +139,7 @@
                         <label>{$smarty.const.FIELD_PERIOD}</label>
                         <div>
                             <select name="periodicidad" id="periodicidad" class="select_box">
+                                <option value="Bienal"{if {$indicador->periodicidad} == Bienal}selected{/if} >{$smarty.const.TXT_BIENAL}</option>
                                 <option value="Anual"{if {$indicador->periodicidad} == Anual}selected{/if} >{$smarty.const.TXT_ANUAL}</option>
                                 <option value="Semestral"{if $indicador->periodicidad == Semestral}selected{/if} >{$smarty.const.TXT_SEMESTRAL}</option>
                                 <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if} >{$smarty.const.TXT_CUATRIMESTRAL}</option>

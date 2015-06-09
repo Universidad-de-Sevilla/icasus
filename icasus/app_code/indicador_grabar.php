@@ -228,7 +228,14 @@ if (
                 else
                 {
                     //Generamos para el año actual las Mediciones para la nueva Periodicidad
-                    $logicaIndicador->generar_mediciones_por_anyo($indicador, idate('Y'), "indicador");
+                    if ($indicador->periodicidad == 'Bienal')
+                    {
+                        $logicaIndicador->generar_medicion_bienal($indicador, idate('Y'), "indicador");
+                    }
+                    else
+                    {
+                        $logicaIndicador->generar_mediciones_por_anyo($indicador, idate('Y'), "indicador");
+                    }
                     $error = MSG_INDIC_PERIODICIDAD;
                 }
             }

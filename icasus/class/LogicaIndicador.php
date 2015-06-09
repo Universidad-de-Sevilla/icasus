@@ -47,9 +47,19 @@ class LogicaIndicador implements ILogicaIndicador
         //cuyo cálculo dependa del Indicador/Dato actual
         $this->generar_mediciones_indicadores_dependientes($indicador);
 
-        for ($i = $indicador->historicos; $i < idate('Y') + 1; $i++)
+        if ($indicador->periodicidad == 'Bienal')
         {
-            $this->generar_mediciones_por_anyo($indicador, $i, $tipo);
+            for ($i = $indicador->historicos; $i < idate('Y') + 1; $i += 2)
+            {
+                $this->generar_medicion_bienal($indicador, $i, $tipo);
+            }
+        }
+        else
+        {
+            for ($i = $indicador->historicos; $i < idate('Y') + 1; $i++)
+            {
+                $this->generar_mediciones_por_anyo($indicador, $i, $tipo);
+            }
         }
     }
 
@@ -71,6 +81,42 @@ class LogicaIndicador implements ILogicaIndicador
             {
                 $this->generar_mediciones($indicador, "dato");
             }
+        }
+    }
+
+    //Genera las mediciones de un Indicador/Dato para el año que recibe 
+    //como parámetro en Indicadores/Datos con periodicidad Bienal. 
+    //El tipo es: "indicador" o "dato"
+    public function generar_medicion_bienal($indicador, $anyo, $tipo)
+    {
+        $medicion = new Medicion();
+        $etiqueta = $anyo . '-' . ($anyo + 2);
+        //Comprobamos primero si ya exite la medición
+        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
+        {
+            $aviso = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+        }
+        else
+        {
+            $periodo_inicio = $anyo . '-01-01';
+            $periodo_fin = $anyo + 2 . '-12-31';
+            $medicion->id_indicador = $indicador->id;
+            $medicion->periodo_inicio = $periodo_inicio;
+            $medicion->periodo_fin = $periodo_fin;
+            $medicion->grabacion_inicio = $periodo_inicio;
+            $medicion->grabacion_fin = $periodo_fin;
+            $medicion->etiqueta = $etiqueta;
+            $medicion->observaciones = '';
+            $medicion->save();
+            // Generamos un valor nulo para cada una de las unidades 
+            // asociadas al Indicador/Dato en la medición dada
+            $this->logicaMedicion->generar_valores_medicion($medicion);
+            //Generamos valores de referencia para la medición
+            $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
+
+            $aviso = MSG_MEDS_GENERADA;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
         }
     }
 
@@ -500,8 +546,13 @@ class LogicaIndicador implements ILogicaIndicador
         //Año y fecha actuales
         $anyo = date('Y');
         $fecha = date('Y-m-d');
+        //Periodicidad Bienal
+        if ($indicador->periodicidad == 'Bienal')
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_bienales($indicador, $anyo);
+        }
         //Periodicidad Anual
-        if ($indicador->periodicidad == 'Anual')
+        else if ($indicador->periodicidad == 'Anual')
         {
             $mediciones_actualizables = $this->actualizar_mediciones_anuales($indicador, $anyo);
         }
@@ -542,8 +593,13 @@ class LogicaIndicador implements ILogicaIndicador
         //Año y fecha actuales
         $anyo = date('Y');
         $fecha = date('Y-m-d');
+        //Periodicidad Bienal
+        if ($indicador->periodicidad == 'Bienal')
+        {
+            $mediciones_actualizables = $this->actualizar_mediciones_bienales($indicador, $anyo);
+        }
         //Periodicidad Anual
-        if ($indicador->periodicidad == 'Anual')
+        else if ($indicador->periodicidad == 'Anual')
         {
             $mediciones_actualizables = $this->actualizar_mediciones_anuales($indicador, $anyo);
         }
@@ -571,6 +627,16 @@ class LogicaIndicador implements ILogicaIndicador
         {
             $this->logicaMedicion->actualizar_subunidades_medicion($medicion);
         }
+    }
+
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //bienal para el año que recibe como parámetro
+    private function actualizar_mediciones_bienales($indicador, $anyo)
+    {
+        $medicion = new Medicion();
+        $etiqueta = $anyo - 1;
+        return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo-%' "
+                        . "OR etiqueta LIKE '$etiqueta-%')");
     }
 
     //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 

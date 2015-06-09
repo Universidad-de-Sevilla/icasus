@@ -22,7 +22,13 @@ interface ILogicaIndicador
     public function generar_mediciones($indicador, $tipo);
 
     //Genera las mediciones de un Indicador/Dato para el año que recibe 
-    //como parámetro en función de su periodicidad. El tipo es: "indicador" o "dato"
+    //como parámetro en Indicadores/Datos con periodicidad Bienal. 
+    //El tipo es: "indicador" o "dato"
+    public function generar_medicion_bienal($indicador, $anyo, $tipo);
+
+    //Genera las mediciones de un Indicador/Dato para el año que recibe 
+    //como parámetro en función de su periodicidad. 
+    //El tipo es: "indicador" o "dato"
     public function generar_mediciones_por_anyo($indicador, $anyo, $tipo);
 
     //Borra del Indicador/Dato que recibe como parámetro la medición cuyo 

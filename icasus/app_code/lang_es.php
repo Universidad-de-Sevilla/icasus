@@ -287,9 +287,10 @@ define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para
 define('TXT_SEL_RESP_GRABAR', 'Elegir nuevo responsable de grabación ...');
 define('TXT_CONFIRM', 'Por favor, confirme que desea');
 
-//Tiempo
+//Tiempo/Periodicidad
 define('TXT_HISTORICO', 'Histórico anual');
 define('TXT_RANGO_FECHAS', 'Rango de fechas');
+define('TXT_BIENAL', 'Bienal');
 define('TXT_ANUAL', 'Anual');
 define('TXT_MENSUAL', 'Mensual');
 define('TXT_TRIMESTRAL', 'Trimestral');
@@ -300,7 +301,6 @@ define('TXT_2_ULT_ANYO', 'Dos últimos años');
 //Tipos de Cálculo
 define('TXT_CALC_AUTO', 'Calculado automáticamente');
 define('TXT_INDEF', 'Indefinido');
-define('TXT_PROMED', 'Promedio');
 define('TXT_SUMA', 'Suma');
 
 //Tipos de Exportación

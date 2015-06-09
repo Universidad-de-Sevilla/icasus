@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.15.24");
+define('IC_VERSION', "2.16.0");
 define('IC_FECHA_REVISION', "08/06/2015");
 
+// 2.16.0 - 08/06/2015 - Se ha añadido la periodicidad bienal.
 // 2.15.24 - 08/06/2015 - Ahora se eliminan o crean valores para las subunidades en las mediciones de un Indicador/Dato cuando éstas se cambian.
 // 2.15.23 - 05/06/2015 - Cuando cambiamos la Periodicidad de un Indicador/Dato se generan las Mediciones para ese año en función de la nueva Periodicidad establecida.
 // 2.15.22 - 05/06/2015 - Cambios en la interfaz: se visualiza el rol del Usuario cuando estamos trabajando con una Unidad.
