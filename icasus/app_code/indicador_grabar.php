@@ -62,12 +62,17 @@ if (
     $indicador->historicos = filter_has_var(INPUT_POST, 'historicos') ? filter_input(INPUT_POST, 'historicos', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $indicador->unidad_generadora = filter_has_var(INPUT_POST, 'unidad_generadora') ? filter_input(INPUT_POST, 'unidad_generadora', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $indicador->interpretacion = filter_has_var(INPUT_POST, 'interpretacion') ? filter_input(INPUT_POST, 'interpretacion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+    $indicador->fecha_creacion = date("Y-m-d");
     $indicador->id_tipo_agregacion = filter_has_var(INPUT_POST, 'id_tipo_agregacion') ? filter_input(INPUT_POST, 'id_tipo_agregacion', FILTER_SANITIZE_NUMBER_INT) : 0;
     if (filter_input(INPUT_POST, 'tipo_seleccion_responsable', FILTER_SANITIZE_NUMBER_INT) == 0)
     {
         $indicador->id_tipo_agregacion = 0;
     }
-    $indicador->fecha_creacion = date("Y-m-d");
+    $indicador->id_tipo_agregacion_temporal = filter_has_var(INPUT_POST, 'id_tipo_agregacion_temporal') ? filter_input(INPUT_POST, 'id_tipo_agregacion_temporal', FILTER_SANITIZE_NUMBER_INT) : 0;
+    if ($indicador->periodicidad == 'Bienal' || $indicador->periodicidad == 'Anual')
+    {
+        $indicador->id_tipo_agregacion_temporal = 0;
+    }
     if ($indicador->save())
     {
         // Si el indicador es nuevo grabamos subunidades

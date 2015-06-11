@@ -279,7 +279,7 @@
             {/if}
             <div class="columns clearfix">
                 <div class="col_50">
-                    <fieldset class="label_side">
+                    <fieldset class="label">
                         <label>{$smarty.const.FIELD_EFQM}</label>
                         <div>
                             {if is_array($indicador->criterios_efqm)}
@@ -296,8 +296,56 @@
                         </div>
                     </fieldset>
                 </div>
+                <div class="col_25">
+                    <fieldset class="label">
+                        <label>{$smarty.const.FIELD_VISIBILIDAD}</label>
+                        <div>{$indicador->visibilidad->nombre|htmlentities}&nbsp;</div>
+                    </fieldset>
+                </div>
+                <div class="col_25">
+                    {if $indicador->unidad_generadora != ""}
+                        <fieldset class="label">
+                            <label>{$smarty.const.FIELD_UNID_GEN}</label>
+                            <div>{$indicador->unidad_generadora}&nbsp;</div>
+                        </fieldset>
+                    {/if}
+                </div>
+            </div>
+            <div class="columns clearfix">
                 <div class="col_50">
+                    <fieldset class="label">
+                        <label>{$smarty.const.FIELD_PERIOD}</label>
+                        <div>{$indicador->periodicidad}&nbsp;</div>
+                    </fieldset>
+                </div>
+                <div class="col_50">
+                    <fieldset title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" class="label">
+                        <label>{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
+                        <div>
+                            {$indicador->tipo_agregacion_temporal->descripcion}
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="columns clearfix">       
+                <div class="col_60">
                     <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_SUBUNID_AFECT}</label>
+                        <div>
+                            {if $indicador_subunidades}
+                                <ul>
+                                    {foreach $indicador_subunidades as $indicador_subunidad}
+                                        <li><a href="index.php?page=entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->nombre}</a></li>
+                                        {/foreach}
+                                </ul>
+                            {else}
+                                {$smarty.const.MSG_INDIC_NO_SUBUNID_ASIG}
+                            {/if}
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col_40">
+                    <fieldset title="{$smarty.const.TXT_CALCULO_TOTAL}" class="label">
                         <label>{$smarty.const.FIELD_CALC_TOTAL}</label>
                         <div>
                             {$indicador->tipo_agregacion->descripcion}
@@ -305,42 +353,6 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="columns clearfix">
-                <div class="col_50">
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_PERIOD}</label>
-                        <div>{$indicador->periodicidad}&nbsp;</div>
-                    </fieldset>
-                </div>
-                <div class="col_50">
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_VISIBILIDAD}</label>
-                        <div>{$indicador->visibilidad->nombre|htmlentities}&nbsp;</div>
-                    </fieldset>
-                </div>
-            </div>
-            <div class="columns clearfix">
-                {if $indicador->unidad_generadora != ""}
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_UNID_GEN}</label>
-                        <div>{$indicador->unidad_generadora}&nbsp;</div>
-                    </fieldset>
-                {/if}
-            </div>
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_SUBUNID_AFECT}</label>
-                <div>
-                    {if $indicador_subunidades}
-                        <ul>
-                            {foreach $indicador_subunidades as $indicador_subunidad}
-                                <li><a href="index.php?page=entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->nombre}</a></li>
-                                {/foreach}
-                        </ul>
-                    {else}
-                        {$smarty.const.MSG_INDIC_NO_SUBUNID_ASIG}
-                    {/if}
-                </div>
-            </fieldset>
         </div>
     </div>
 </div>

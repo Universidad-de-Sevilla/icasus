@@ -1,11 +1,14 @@
 <form method="post" action="index.php?page=indicador_grabar&id_indicador={$indicador->id}" id="formindicador" name="formindicador">
     <input type="hidden" name="id_entidad" value="{$entidad->id}" />
+
     <div style="opacity: 1;" class="box tabs" id="tab_editar_indicador">
         <ul class="tab_header">
             <li ><a  href="#indicador" id="tab_indicador">{$smarty.const.FIELD_INDIC}</a></li>
-            <li ><a  href="#otros" id="tab_otros">{$smarty.const.TXT_DATOS_OTROS}</a></li>
+            <li ><a  href="#otros" id="tab_otros">{$smarty.const.TXT_OTRAS_PROP}</a></li>
             <li ><a  href="#subunidades" id="tab_subunidades">{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
         </ul>
+
+        <!-- Tab Indicador -->
         <div style="opacity: 1;" id="indicador" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
             <div class="columns clearfix">
@@ -74,7 +77,10 @@
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="green send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
             </div>
-        </div><!-- fin tab 1 -->
+        </div>
+        <!-- //Tab Indicador --> 
+
+        <!-- Tab Otras Propiedades -->
         <div style="opacity: 1;" id="otros" class="block ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
             <p>&nbsp;</p>
             <fieldset class="label_side">
@@ -133,23 +139,8 @@
                     </div>
                 </div>
             </fieldset>
-            <div class="columns clearfix">
-                <div class="col_25">
-                    <fieldset class="label">
-                        <label>{$smarty.const.FIELD_PERIOD}</label>
-                        <div>
-                            <select name="periodicidad" id="periodicidad" class="select_box">
-                                <option value="Bienal"{if {$indicador->periodicidad} == Bienal}selected{/if} >{$smarty.const.TXT_BIENAL}</option>
-                                <option value="Anual"{if {$indicador->periodicidad} == Anual}selected{/if} >{$smarty.const.TXT_ANUAL}</option>
-                                <option value="Semestral"{if $indicador->periodicidad == Semestral}selected{/if} >{$smarty.const.TXT_SEMESTRAL}</option>
-                                <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if} >{$smarty.const.TXT_CUATRIMESTRAL}</option>
-                                <option value="Trimestral" {if $indicador->periodicidad == Trimestral}selected{/if} >{$smarty.const.TXT_TRIMESTRAL}</option> 
-                                <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if} >{$smarty.const.TXT_MENSUAL}</option>     
-                            </select>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="col_25">
+            <div class="columns clearfix">     
+                <div class="col_50">
                     <fieldset class="label">
                         <label>{$smarty.const.FIELD_VISIBILIDAD}</label>
                         <div>
@@ -170,11 +161,45 @@
                     </fieldset>
                 </div>
             </div>
+            <div class="columns clearfix">
+                <div class="col_50">
+                    <fieldset class="label">
+                        <label>{$smarty.const.FIELD_PERIOD}</label>
+                        <div>
+                            <select name="periodicidad" id="periodicidad" class="select_box">
+                                <option value="Bienal"{if {$indicador->periodicidad} == Bienal}selected{/if} >{$smarty.const.TXT_BIENAL}</option>
+                                <option value="Anual"{if {$indicador->periodicidad} == Anual}selected{/if} >{$smarty.const.TXT_ANUAL}</option>
+                                <option value="Semestral"{if $indicador->periodicidad == Semestral}selected{/if} >{$smarty.const.TXT_SEMESTRAL}</option>
+                                <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if} >{$smarty.const.TXT_CUATRIMESTRAL}</option>
+                                <option value="Trimestral" {if $indicador->periodicidad == Trimestral}selected{/if} >{$smarty.const.TXT_TRIMESTRAL}</option> 
+                                <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if} >{$smarty.const.TXT_MENSUAL}</option>     
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col_50">
+                    <fieldset title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" class="label" id="total_anual" style="display:{if $indicador->periodicidad == Anual OR $indicador->periodicidad == Bienal}none{else}block{/if}">
+                        <label>{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
+                        <div>
+                            <select name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
+                                {foreach $tipos_agregacion as $tipo_agregacion}
+                                    {if $tipo_agregacion->id != 0}
+                                        <option value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion_temporal == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+                                    {/if}
+                                {/foreach}
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+            </div> 
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="green send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
             </div>
-        </div><!-- fin tab otros datos -->
+        </div>
+        <!-- //Tab Otras Propiedades -->
+
+        <!-- Tab Subunidades afectadas -->
         <div style="opacity: 1;" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide">
             <p>&nbsp;</p>
             <fieldset class="label_side">
@@ -186,12 +211,12 @@
                 </div>
             </fieldset>
 
-            <fieldset class="label_side" id="total" style="display:{if $indicador->desagregado == 0}none{else}block{/if}">
+            <fieldset title="{$smarty.const.TXT_CALCULO_TOTAL}" class="label_side" id="total" style="display:{if $indicador->desagregado == 0}none{else}block{/if}">
                 <label>{$smarty.const.FIELD_CALC_TOTAL}</label>
                 <div>
                     <select name="id_tipo_agregacion" id="id_tipo_agregacion">
                         {foreach $tipos_agregacion as $tipo_agregacion}
-                            {if $tipo_agregacion->id != 0}
+                            {if $tipo_agregacion->id != 0 AND $tipo_agregacion->id != 5}
                                 <option value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
                             {/if}
                         {/foreach}
@@ -201,12 +226,12 @@
 
             <fieldset class="label_side">
                 <div>
-                    <div id="div_unidad" style="display:">
+                    <div id="div_unidad" style="display:none">
                         <input type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad"
                                {foreach $indicador_subunidades as $indicador_subunidad}
                                    {if $indicador_subunidad->id_entidad == $entidad->id} checked{/if}
-                               {/foreach}
-                               /> {$entidad->nombre}<hr />
+                               {/foreach}/> {$entidad->nombre}
+                        <hr/>
                     </div>
                     <div id="div_subunidades" class="column clearfix" style="display:{if $indicador->desagregado == 0}none{else}block{/if}">
                         <div class="col_50">
@@ -215,18 +240,18 @@
                                 <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad"
                                        {foreach $indicador_subunidades as $indicador_subunidad}
                                            {if $indicador_subunidad->id_entidad == $subunidad->id} checked{/if}
-                                       {/foreach}
-                                       /> {$subunidad->nombre}<br />
+                                       {/foreach}/> {$subunidad->nombre}<br/>
                             {/foreach}
                         </div>
-                    </div><!-- div_subunidades -->
+                    </div>
                 </div>
             </fieldset>
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>
                 <button class="green send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
             </div>
-        </div><!-- fin tab subunidades afectadas -->
+        </div>
+        <!-- //Tab Subunidades afectadas --> 
     </div>
 </form>
 

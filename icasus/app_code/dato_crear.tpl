@@ -7,6 +7,7 @@
             <li><a href="#subunidades" >{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
         </ul>
 
+        <!-- Tab Dato -->
         <div style="opacity: 1;" id="dato" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
             <fieldset class="label_side">
@@ -70,10 +71,11 @@
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>          
                 <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
             </div>
-        </div><!-- fin tab id=dato -->
+        </div>
+        <!-- //Tab Dato --> 
 
+        <!-- Tab Otras Propiedades -->
         <div style="opacity: 1;" id="otras" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
-
             <p>&nbsp;</p>
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_DESC}</label>
@@ -95,27 +97,7 @@
                 <div><input  type="text" placeholder="{$smarty.const.TXT_FUENTE_DAT}" name="fuente_datos"/></div>	
             </fieldset>
 
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_UNID_GEN}</label>
-                <div><input  type="text" name="unidad_generadora" /></div>
-            </fieldset>
-
             <div class="columns clearfix">
-                <div class="col_50">
-                    <fieldset class="label">
-                        <label>{$smarty.const.FIELD_PERIOD}</label>
-                        <div>
-                            <select name="periodicidad" class="required select_box">
-                                <option value="Bienal">{$smarty.const.TXT_BIENAL}</option>
-                                <option value="Anual" selected>{$smarty.const.TXT_ANUAL}</option>
-                                <option value="Semestral">{$smarty.const.TXT_SEMESTRAL}</option>
-                                <option value="Cuatrimestral">{$smarty.const.TXT_CUATRIMESTRAL}</option>
-                                <option value="Trimestral">{$smarty.const.TXT_TRIMESTRAL}</option>
-                                <option value="Mensual">{$smarty.const.TXT_MENSUAL}</option>
-                            </select>
-                        </div>
-                    </fieldset>
-                </div>
                 <div class="col_50">
                     <fieldset class="label">
                         <label>{$smarty.const.FIELD_VISIBILIDAD}</label>	
@@ -130,15 +112,55 @@
                         </div>
                     </fieldset>
                 </div>
-            </div><!-- fin class="columns clearfix" -->
+                <div class="col_50">
+                    <fieldset class="label">
+                        <label>{$smarty.const.FIELD_UNID_GEN}</label>
+                        <div><input  type="text" name="unidad_generadora" /></div>
+                    </fieldset>
+                </div>
+            </div>
+
+            <div class="columns clearfix">
+                <div class="col_50">
+                    <fieldset class="label">
+                        <label>{$smarty.const.FIELD_PERIOD}</label>
+                        <div>
+                            <select name="periodicidad" id="periodicidad" class="required select_box">
+                                <option value="Bienal">{$smarty.const.TXT_BIENAL}</option>
+                                <option value="Anual" selected>{$smarty.const.TXT_ANUAL}</option>
+                                <option value="Semestral">{$smarty.const.TXT_SEMESTRAL}</option>
+                                <option value="Cuatrimestral">{$smarty.const.TXT_CUATRIMESTRAL}</option>
+                                <option value="Trimestral">{$smarty.const.TXT_TRIMESTRAL}</option>
+                                <option value="Mensual">{$smarty.const.TXT_MENSUAL}</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col_50">
+                    <fieldset title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" class="label" id="total_anual" style="display:none">
+                        <label>{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
+                        <div>
+                            <select name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
+                                {foreach $tipos_agregacion as $tipo_agregacion}
+                                    {if $tipo_agregacion->id != 0}
+                                        <option value="{$tipo_agregacion->id}" >{$tipo_agregacion->descripcion}</option>
+                                    {/if}
+                                {/foreach}
+                            </select>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
 
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>          
                 <button class="btnNext dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_SIG}</span></button>
                 <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
             </div>
-        </div><!-- fin tab id=otros -->
+        </div>
+        <!-- //Tab Otras Propiedades -->
 
+        <!-- Tab Subunidades afectadas -->
         <div style="opacity: 1;" id="subunidades" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
             <p>&nbsp;</p>
             <fieldset class="label_side required">
@@ -150,7 +172,7 @@
                 </div>
             </fieldset>
 
-            <fieldset class="label_side" id="total" style="display:none">
+            <fieldset title="{$smarty.const.TXT_CALCULO_TOTAL}" class="label_side" id="total" style="display:none">
                 <label>{$smarty.const.FIELD_CALC_TOTAL}</label>
                 <div>
                     <select name="id_tipo_agregacion" id="id_tipo_agregacion">
@@ -183,7 +205,8 @@
                 <button class="dark send_right img_icon has_text" type="submit"><span>{$smarty.const.TXT_GRABAR}</span></button>
                 <button class="btnPrev dark send_right img_icon has_text" type="button"><span>{$smarty.const.TXT_ANT}</span></button>
             </div>
-        </div><!-- tab id=subunidades -->    
+        </div>  
+        <!-- //Tab Subunidades afectadas --> 
     </div>
 </form>
 

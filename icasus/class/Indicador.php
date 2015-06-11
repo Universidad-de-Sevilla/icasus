@@ -25,6 +25,7 @@ class Indicador extends ADOdb_Active_Record
     public $valores_pendientes;
     public $medicion;
     public $tipo_agregacion;
+    public $tipo_agregacion_temporal;
 
     public function find_medicion_joined($criterio)
     {
@@ -69,6 +70,10 @@ class Indicador extends ADOdb_Active_Record
             $tipo_agregacion = new Tipo_agregacion();
             $tipo_agregacion->load("id = $this->id_tipo_agregacion");
             $this->tipo_agregacion = $tipo_agregacion;
+
+            $tipo_agregacion_temporal = new Tipo_agregacion();
+            $tipo_agregacion_temporal->load("id = $this->id_tipo_agregacion_temporal");
+            $this->tipo_agregacion_temporal = $tipo_agregacion_temporal;
 
             return true;
         }

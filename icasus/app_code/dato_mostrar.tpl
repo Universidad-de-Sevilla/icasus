@@ -236,31 +236,60 @@
                 <label>{$smarty.const.FIELD_HISTORICO}</label>
                 <div>{$dato->historicos}&nbsp;</div>
             </fieldset>
+
             <div class="columns clearfix">
                 <div class="col_50">
-                    <fieldset class="label_side">
+                    <fieldset class="label">
+                        <label>{$smarty.const.FIELD_VISIBILIDAD}</label>	
+                        <div>{$dato->visibilidad->nombre|htmlentities}&nbsp;</div>
+                    </fieldset>
+                </div>
+                <div class="col_50">
+                    {if $dato->unidad_generadora != ""}
+                        <fieldset class="label">
+                            <label>{$smarty.const.FIELD_UNID_GEN}</label>
+                            <div>{$dato->unidad_generadora}&nbsp;</div>
+                        </fieldset>
+                    {/if}
+                </div>   
+            </div>
+
+            <div class="columns clearfix">
+                <div class="col_50">
+                    <fieldset class="label">
                         <label>{$smarty.const.FIELD_PERIOD}</label>
                         <div>{$dato->periodicidad}&nbsp;</div>
                     </fieldset>
                 </div>
                 <div class="col_50">
-                    <fieldset class="label_side">
-                        <label>{$smarty.const.FIELD_VISIBILIDAD}</label>	
-                        <div>{$dato->visibilidad->nombre|htmlentities}&nbsp;</div>
+                    <fieldset title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" class="label">
+                        <label>{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
+                        <div>
+                            {$dato->tipo_agregacion_temporal->descripcion}
+                        </div>
                     </fieldset>
                 </div>
             </div>
+
             <div class="columns clearfix">
-                <div class="col_50">
-                    {if $dato->unidad_generadora != ""}
-                        <fieldset class="label_side">
-                            <label>{$smarty.const.FIELD_UNID_GEN}</label>
-                            <div>{$dato->unidad_generadora}&nbsp;</div>
-                        </fieldset>
-                    {/if}
-                </div>
-                <div class="col_50">
+                <div class="col_60">
                     <fieldset class="label_side">
+                        <label>{$smarty.const.FIELD_SUBUNID_AFECT}</label>
+                        <div>
+                            {if $dato_subunidades}
+                                <ul>
+                                    {foreach $dato_subunidades as $dato_subunidad}
+                                        <li><a href="index.php?page=entidad_datos&id_entidad={$dato_subunidad->entidad->id}">{$dato_subunidad->entidad->nombre}</a></li>
+                                        {/foreach}
+                                </ul>
+                            {else}
+                                {$smarty.const.MSG_DATO_NO_SUBUNID_ASIG}
+                            {/if}
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="col_40">
+                    <fieldset title="{$smarty.const.TXT_CALCULO_TOTAL}" class="label">
                         <label>{$smarty.const.FIELD_CALC_TOTAL}</label>
                         <div>
                             {$dato->tipo_agregacion->descripcion}
@@ -268,21 +297,6 @@
                     </fieldset>
                 </div>
             </div>
-
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_SUBUNID_AFECT}</label>
-                <div>
-                    {if $dato_subunidades}
-                        <ul>
-                            {foreach $dato_subunidades as $dato_subunidad}
-                                <li><a href="index.php?page=entidad_datos&id_entidad={$dato_subunidad->entidad->id}">{$dato_subunidad->entidad->nombre}</a></li>
-                                {/foreach}
-                        </ul>
-                    {else}
-                        {$smarty.const.MSG_DATO_NO_SUBUNID_ASIG}
-                    {/if}
-                </div>
-            </fieldset>
         </div><!-- //.block -->
     </div><!-- //.toggle_container -->
 </div><!-- //.box .grid_16 -->

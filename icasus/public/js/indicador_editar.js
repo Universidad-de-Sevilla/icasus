@@ -8,7 +8,19 @@
 //----------------------------------------------------------------------------
 
 $(document).ready(function () {
-    //$('#tab_editar_indicador').tabs({disabled: [1, 2]});
+    //mostrar selección de agregación temporal
+    $('#periodicidad').on('click', function () {
+        var valor = $(this).attr('value');
+        if (valor === 'Bienal' || valor === 'Anual')
+        {
+            $('#total_anual').css('display', 'none');
+        }
+        else
+        {
+
+            $('#total_anual').css('display', 'block');
+        }
+    });
     //mostrar tipo de medición
     $('.medicion').on('click', function () {
         var valor = $(this).attr('value');

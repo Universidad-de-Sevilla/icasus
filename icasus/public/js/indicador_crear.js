@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
-// Proyecto: Icasus 
-// Archivo: indicador_crear.js
+// Proyecto: Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+// Archivo: public/js/indicador_crear.js
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //------------------------------------------------------------------------------
@@ -9,6 +9,19 @@
 
 $(document).ready(function () {
     $('#tab_crear_indicador').tabs({disabled: [1, 2]});
+    //mostrar selección de agregación temporal
+    $('#periodicidad').on('click', function () {
+        var valor = $(this).attr('value');
+        if (valor === 'Bienal' || valor === 'Anual')
+        {
+            $('#total_anual').css('display', 'none');
+        }
+        else
+        {
+
+            $('#total_anual').css('display', 'block');
+        }
+    });
     //mostrar tipo de medición
     $('.medicion').on('click', function () {
         var valor = $(this).attr('value');

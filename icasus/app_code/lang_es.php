@@ -94,7 +94,6 @@ define('TXT_DATOS_LIST', 'Lista de Datos');
 define('TXT_DATOS_REBIUN', 'Datos Rebiun');
 define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida Datos Rebiun');
 define('TXT_DATOS_EXPORT', 'Exportar Datos');
-define('TXT_DATOS_OTROS', 'Otros Datos');
 define('TXT_DATOS_REBIUN_DET', 'Detalle Datos Rebiun'); //2012
 define('TXT_DATOS_REBIUN_SUMA', 'Suma Datos Rebiun');
 define('TXT_DATOS_REBIUN_PROMEDIO', 'Promedio Datos Rebiun');
@@ -264,6 +263,8 @@ define('TXT_OTRAS_PROP', 'Otras propiedades');
 
 //Propiedades HTML: Titles, placeholders, values de botones...
 define('TXT_CODIGO', 'Único, fácil de recordar y sin espacios');
+define('TXT_CALCULO_TOTAL', 'Determina cómo se calcula el total entre todas las subunidades');
+define('TXT_CALCULO_TOTAL_ANUAL', 'Determina cómo se calcula el total anual entre todos los periodos');
 define('TXT_BORRAR_CONFIRM', 'Confirmar borrado');
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CANCEL', 'Cancelar');
@@ -586,12 +587,10 @@ define('FIELD_NOMBRE', 'Nombre');
 define('FIELD_PROPIETARIO', 'Propietario');
 define('FIELD_FECHA', 'Fecha');
 define('FIELD_FECHA_HORA', 'Fecha/Hora');
-define('FIELD_CALCULO', 'Cálculo');
 define('FIELD_WEB', 'Sitio web');
 define('FIELD_FUENTE', 'Fuente');
 define('FIELD_PERIODO', 'Periodo');
 define('FIELD_VISIBILIDAD', 'Visibilidad');
-define('FIELD_CALC_TOTAL', 'Cálculo del total');
 define('FIELD_UMBRAL', 'Umbral');
 define('FIELD_OBJ', 'Objetivo');
 define('FIELD_OBJP', 'Objetivo Pactado');
@@ -604,7 +603,6 @@ define('FIELD_FECHA_REV', 'Fecha de revisión');
 define('FIELD_FECHA_OBTENCION', 'Fecha de obtención');
 define('FIELD_FECHA_RECOGIDA', 'Fecha recogida');
 define('FIELD_AGREG', 'Agregado');
-define('FIELD_MET', 'Método de comprobación/evidencia');
 define('FIELD_INTERP', 'Interpretación');
 define('FIELD_STANDARD', 'Estándar');
 define('FIELD_INFORM', 'Informe');
@@ -675,8 +673,12 @@ define('FIELD_PERIOD', 'Periodicidad');
 define('FIELD_RESP', 'Responsable');
 define('FIELD_RESP_SEG', 'Responsable de seguimiento');
 define('FIELD_RESP_GRABAR', 'Responsable de grabación');
+define('FIELD_MET', 'Método de comprobación (evidencia)');
 define('FIELD_EFQM', 'Criterios EFQM');
 define('FIELD_HISTORICO', 'Histórico');
+define('FIELD_CALCULO', 'Cálculo');
+define('FIELD_CALC_TOTAL', 'Cálculo del total entre subunidades');
+define('FIELD_CALC_TOTAL_ANUAL', 'Cálculo del total anual');
 
 //Mediciones
 define('FIELD_MED', 'Medición');
