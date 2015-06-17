@@ -104,7 +104,9 @@
                                         <div class="highchart {$panel->tipo->clase_css}" 
                                              id="panel_{$panel->id}" 
                                              data-id_indicador="{$dato->id}" 
-                                             data-nombre_indicador="{$dato->nombre}" 
+                                             data-nombre_indicador="{$dato->nombre}"
+                                             data-valor_min="{$dato->valor_min}" 
+                                             data-valor_max="{$dato->valor_max}"
                                              data-fecha_inicio="{$panel->fecha_inicio}" 
                                              data-fecha_fin="{$panel->fecha_fin}" 
                                              data-periodicidad="{$panel->periodicidad}">
@@ -235,6 +237,42 @@
             <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_HISTORICO}</label>
                 <div>{$dato->historicos}&nbsp;</div>
+            </fieldset>
+
+            <fieldset title="{$smarty.const.TXT_INTERVALO}" class="label">
+                <label>{$smarty.const.FIELD_INTERVALO}</label>
+                <div class="columns clearfix">
+                    {if $dato->valor_min ==NULL}
+                        <div class="col_50">
+                            <fieldset class="label_side">
+                                <label>{$smarty.const.FIELD_VALOR_MIN}</label>
+                                <div>{$smarty.const.TXT_NO_ASIG}</div>
+                            </fieldset>
+                        </div>
+                    {else}
+                        <div class="col_50">
+                            <fieldset class="label_side">
+                                <label>{$smarty.const.FIELD_VALOR_MIN}</label>
+                                <div>{$dato->valor_min}</div>
+                            </fieldset>
+                        </div>
+                    {/if}
+                    {if $dato->valor_max ==NULL}   
+                        <div class="col_50">
+                            <fieldset class="label_side">
+                                <label>{$smarty.const.FIELD_VALOR_MAX}</label>
+                                <div>{$smarty.const.TXT_NO_ASIG}</div>
+                            </fieldset>
+                        </div>
+                    {else}
+                        <div class="col_50">
+                            <fieldset class="label_side">
+                                <label>{$smarty.const.FIELD_VALOR_MAX}</label>
+                                <div>{$dato->valor_max}</div>
+                            </fieldset>
+                        </div>
+                    {/if}
+                </div>
             </fieldset>
 
             <div class="columns clearfix">

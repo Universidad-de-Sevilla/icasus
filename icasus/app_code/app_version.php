@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.17.0");
-define('IC_FECHA_REVISION', "11/06/2015");
+define('IC_VERSION', "2.18.0");
+define('IC_FECHA_REVISION', "17/06/2015");
 
+// 2.18.0 - 17/06/2015 - Establece valores mínimos y máximos para las mediciones de un Indicador/Dato y si existen dichos valores no se pueden asignar valores fuera de dicho intervalo.
 // 2.17.0 - 11/06/2015 - Se ha añadido un campo para indicar como se calculará el total anual en Indicadores/Datos con periodicidades inferiores al año. 
 // 2.16.0 - 08/06/2015 - Se ha añadido la periodicidad bienal.
 // 2.15.24 - 08/06/2015 - Ahora se eliminan o crean valores para las subunidades en las mediciones de un Indicador/Dato cuando éstas se cambian.

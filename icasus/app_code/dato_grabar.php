@@ -58,7 +58,7 @@ if (
     $dato->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $dato->fuente_informacion = filter_has_var(INPUT_POST, 'fuente_informacion') ? filter_input(INPUT_POST, 'fuente_informacion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $dato->fuente_datos = filter_has_var(INPUT_POST, 'fuente_datos') ? filter_input(INPUT_POST, 'fuente_datos', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $dato->historicos = filter_has_var(INPUT_POST, 'historicos') ? filter_input(INPUT_POST, 'historicos', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+    $dato->historicos = filter_has_var(INPUT_POST, 'historicos') ? filter_input(INPUT_POST, 'historicos', FILTER_SANITIZE_NUMBER_INT) : null;
     $dato->unidad_generadora = filter_has_var(INPUT_POST, 'unidad_generadora') ? filter_input(INPUT_POST, 'unidad_generadora', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $dato->activo = 1;
     $dato->fecha_creacion = date("Y-m-d");
@@ -71,6 +71,30 @@ if (
     if ($dato->periodicidad == 'Bienal' || $dato->periodicidad == 'Anual')
     {
         $dato->id_tipo_agregacion_temporal = 0;
+    }
+    if (filter_has_var(INPUT_POST, 'valor_min'))
+    {
+        $valor_min = filter_input(INPUT_POST, 'valor_min', FILTER_VALIDATE_FLOAT);
+        if (is_numeric($valor_min))
+        {
+            $dato->valor_min = $valor_min;
+        }
+        else
+        {
+            $dato->valor_min = NULL;
+        }
+    }
+    if (filter_has_var(INPUT_POST, 'valor_max'))
+    {
+        $valor_max = filter_input(INPUT_POST, 'valor_max', FILTER_VALIDATE_FLOAT);
+        if (is_numeric($valor_max))
+        {
+            $dato->valor_max = $valor_max;
+        }
+        else
+        {
+            $dato->valor_max = NULL;
+        }
     }
     // Una vez grabado el dato vamos a asignar a los responsables de medicion
     // Esto sólo se hace si se trata de un nuevo dato

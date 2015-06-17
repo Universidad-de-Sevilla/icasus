@@ -279,6 +279,7 @@ define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde s
 define('TXT_BUSCAR', 'Buscar...');
 define('TXT_INDICAR_COD', 'Indique un código estandarizado y único');
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
+define('TXT_INTERVALO', 'Determina el Intervalo de Valores (cerrado) que podrán tomar las Mediciones del Indicador/Dato.');
 
 //Selecciones
 define('TXT_SEL', 'Seleccionar...');
@@ -679,6 +680,9 @@ define('FIELD_HISTORICO', 'Histórico');
 define('FIELD_CALCULO', 'Cálculo');
 define('FIELD_CALC_TOTAL', 'Cálculo del total entre subunidades');
 define('FIELD_CALC_TOTAL_ANUAL', 'Cálculo del total anual');
+define('FIELD_INTERVALO', 'Intervalo de Valores [Valor_mínimo, Valor_máximo]');
+define('FIELD_VALOR_MIN', 'Valor mínimo');
+define('FIELD_VALOR_MAX', 'Valor máximo');
 
 //Mediciones
 define('FIELD_MED', 'Medición');

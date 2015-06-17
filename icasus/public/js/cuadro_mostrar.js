@@ -321,7 +321,7 @@ $(".panel_barra").each(function () {
                                             label: {
                                                 text: '<span title="Total ' + this.name + ': ' + Math.round(totales[this.name] * 100) / 100 + '">Total: <b>'
                                                         + Math.round(totales[this.name] * 100) / 100 + '</b></span>',
-                                                x: -60,
+                                                x: -50,
                                                 y: 10,
                                                 useHTML: true,
                                                 style: {
@@ -358,7 +358,7 @@ $(".panel_barra").each(function () {
                         label: {
                             text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
                                     + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
-                            x: -60,
+                            x: -50,
                             y: 10,
                             useHTML: true,
                             style: {

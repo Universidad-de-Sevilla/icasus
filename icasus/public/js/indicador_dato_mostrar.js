@@ -14,6 +14,19 @@ $('.highchart').each(function () {
     var idIndicador = $(this).data("id_indicador");
     var nomIndicador = $(this).data("nombre_indicador");
     var periodicidad = $(this).data("periodicidad");
+    var valor_min = null;
+    var valor_max = null;
+    var tickInterval = null;
+    if ($.isNumeric($(this).data("valor_min"))) {
+        valor_min = $(this).data("valor_min");
+    }
+    if ($.isNumeric($(this).data("valor_max"))) {
+        valor_max = $(this).data("valor_max");
+    }
+    //Intervalo para las encuestas
+    if (valor_min === 1 && valor_max === 9) {
+        tickInterval = 1;
+    }
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
@@ -81,7 +94,10 @@ $('.highchart').each(function () {
             yAxis: {
                 title: {
                     text: 'Valores'
-                }
+                },
+                min: valor_min,
+                max: valor_max,
+                tickInterval: tickInterval
             },
             plotOptions: {
                 series: {

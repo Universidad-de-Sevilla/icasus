@@ -15,7 +15,7 @@
                 <label>{$smarty.const.FIELD_COD}</label>
                 <div>
                     <input type="text" name="codigo" value="{$dato->codigo}" />
-                    <div class="required_tag"></div>
+                    <div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
                 </div>
             </fieldset>
 
@@ -23,18 +23,14 @@
                 <label>{$smarty.const.FIELD_NOMBRE}</label>
                 <div>
                     <input type="text" name="nombre" value="{$dato->nombre}" />
-                    <div class="required_tag"></div>
+                    <div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
                 </div>
             </fieldset>
 
             <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_CALCULO}</label>
-                <div><textarea  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}">{$dato->calculo}</textarea></div>
-            </fieldset>
-
-            <fieldset class="label_side">
                 <label>{$smarty.const.FIELD_HISTORICO}</label>
-                <div><input  type="text" name="historicos"value="{$dato->historicos}" /><div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div></div>
+                <div><input  type="number" name="historicos" value="{$dato->historicos}"/>
+                    <div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div></div>
             </fieldset>
 
             <fieldset class="label_side">
@@ -52,7 +48,7 @@
                             </option>
                         {/foreach}
                     </select>
-                    <div class="required_tag"></div>
+                    <div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
                 </div>
             </fieldset>
 
@@ -71,9 +67,35 @@
                             </option>
                         {/foreach}
                     </select>
-                    <div class="required_tag"></div>
+                    <div class="required_tag tooltip hover left" title="{$smarty.const.MSG_FIELD_REQ}"></div>
                 </div>
             </fieldset>
+
+            <div class="columns clearfix">
+                <div class="col_50">
+                    <fieldset class="label">
+                        <label>{$smarty.const.FIELD_CALCULO}</label>
+                        <div><textarea rows="6"  class="" name="calculo" placeholder="{$smarty.const.TXT_SOLO_INDIC_CALC}">{$dato->calculo}</textarea></div>
+                    </fieldset>
+                </div>
+                <div  class="col_50">
+                    <fieldset title="{$smarty.const.TXT_INTERVALO}" class="label">
+                        <label>{$smarty.const.FIELD_INTERVALO}</label>
+                        <div class="col_50">
+                            <fieldset class="label_side">
+                                <label>{$smarty.const.FIELD_VALOR_MIN}</label>
+                                <div><input  type="number" value="{$dato->valor_min}" name="valor_min"/></div>
+                            </fieldset>
+                        </div>
+                        <div class="col_50">
+                            <fieldset class="label_side">
+                                <label>{$smarty.const.FIELD_VALOR_MAX}</label>
+                                <div><input  type="number" value="{$dato->valor_max}" name="valor_max"/></div>
+                            </fieldset>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
 
             <div class="button_bar clearfix" id="footer_tabs">
                 <button class="dark send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" onclick="history.back();"><span>{$smarty.const.TXT_CANCEL}</span></button>

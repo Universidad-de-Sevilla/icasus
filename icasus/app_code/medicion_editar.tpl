@@ -280,7 +280,7 @@
             <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>&nbsp;&nbsp;
         </div> 
         {if $valores}
-            <div id="valors">
+            <div id="valors" data-valor_min="{$indicador->valor_min}" data-valor_max="{$indicador->valor_max}">
                 <table class="static">
                     <thead>
                         <tr>

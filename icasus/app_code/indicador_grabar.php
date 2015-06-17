@@ -59,7 +59,7 @@ if (
     $indicador->fuente_datos = filter_has_var(INPUT_POST, 'fuente_datos') ? filter_input(INPUT_POST, 'fuente_datos', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $indicador->desagregado = filter_has_var(INPUT_POST, 'tipo_seleccion_responsable') ? filter_input(INPUT_POST, 'tipo_seleccion_responsable', FILTER_SANITIZE_NUMBER_INT) : null;
     $indicador->evidencia = filter_has_var(INPUT_POST, 'evidencia') ? filter_input(INPUT_POST, 'evidencia', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $indicador->historicos = filter_has_var(INPUT_POST, 'historicos') ? filter_input(INPUT_POST, 'historicos', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+    $indicador->historicos = filter_has_var(INPUT_POST, 'historicos') ? filter_input(INPUT_POST, 'historicos', FILTER_SANITIZE_NUMBER_INT) : null;
     $indicador->unidad_generadora = filter_has_var(INPUT_POST, 'unidad_generadora') ? filter_input(INPUT_POST, 'unidad_generadora', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $indicador->interpretacion = filter_has_var(INPUT_POST, 'interpretacion') ? filter_input(INPUT_POST, 'interpretacion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $indicador->fecha_creacion = date("Y-m-d");
@@ -73,6 +73,31 @@ if (
     {
         $indicador->id_tipo_agregacion_temporal = 0;
     }
+    if (filter_has_var(INPUT_POST, 'valor_min'))
+    {
+        $valor_min = filter_input(INPUT_POST, 'valor_min', FILTER_VALIDATE_FLOAT);
+        if (is_numeric($valor_min))
+        {
+            $indicador->valor_min = $valor_min;
+        }
+        else
+        {
+            $indicador->valor_min = NULL;
+        }
+    }
+    if (filter_has_var(INPUT_POST, 'valor_max'))
+    {
+        $valor_max = filter_input(INPUT_POST, 'valor_max', FILTER_VALIDATE_FLOAT);
+        if (is_numeric($valor_max))
+        {
+            $indicador->valor_max = $valor_max;
+        }
+        else
+        {
+            $indicador->valor_max = NULL;
+        }
+    }
+
     if ($indicador->save())
     {
         // Si el indicador es nuevo grabamos subunidades

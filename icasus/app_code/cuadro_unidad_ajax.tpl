@@ -21,7 +21,9 @@
                                         <div class="highchart {$paneles_indicador[$item->id]->tipo->clase_css}" 
                                              id="panel_{$paneles_indicador[$item->id]->id}" 
                                              data-id_indicador="{$item->id}" 
-                                             data-nombre_indicador="{$item->nombre}" 
+                                             data-nombre_indicador="{$item->nombre}"
+                                             data-valor_min="{$item->valor_min}" 
+                                             data-valor_max="{$item->valor_max}" 
                                              data-fecha_inicio="{$paneles_indicador[$item->id]->fecha_inicio}" 
                                              data-fecha_fin="{$paneles_indicador[$item->id]->fecha_fin}" 
                                              data-periodicidad="{$paneles_indicador[$item->id]->periodicidad}">
@@ -95,6 +97,8 @@
                                              id="panel_{$item->id}" 
                                              data-id_indicador="{$item->id}" 
                                              data-nombre_indicador="{$item->nombre}" 
+                                             data-valor_min="{$item->valor_min}" 
+                                             data-valor_max="{$item->valor_max}" 
                                              data-fecha_inicio="{$paneles_indicador_sup[$item->id]->fecha_inicio}" 
                                              data-fecha_fin="{$paneles_indicador_sup[$item->id]->fecha_fin}" 
                                              data-periodicidad="{$paneles_indicador_sup[$item->id]->periodicidad}">
