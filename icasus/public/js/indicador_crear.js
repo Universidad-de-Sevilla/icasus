@@ -42,6 +42,7 @@ $(document).ready(function () {
         }
     });
     //validar formulario
+    var anyo = new Date().getFullYear();
     var validator = $('#formindicador').validate({
         rules: {
             codigo: {required: true},
@@ -50,7 +51,8 @@ $(document).ready(function () {
             formulacion: {required: true},
             historicos: {
                 required: true,
-                min: 2008
+                min: 2008,
+                max: anyo
             },
             id_responsable: {required: true},
             id_responsable_medicion: {required: true},
@@ -65,7 +67,8 @@ $(document).ready(function () {
             formulacion: 'Debe indicar su formulación',
             historicos: {
                 required: 'Debe indicar un año de inicio para el Histórico del Indicador',
-                min: 'El Histórico debe ser igual o posterior al año 2008'
+                min: 'El Histórico debe ser igual o posterior al año 2008',
+                max: 'El Histórico debe ser igual o anterior al año actual'
             },
             id_responsable: 'Seleccionar un responsable',
             id_responsable_medicion: 'Seleccionar el responsable de medición',
