@@ -325,10 +325,10 @@
                             {if is_array($indicador->criterios_efqm)}
                                 <ul> 
                                     {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
-                                        {if $indicador_criterio_efqm->id_criterio_efqm != 0}
-                                            <li> {$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}</li>
-                                            {/if}  
-                                        {/foreach}
+                                        <li>
+                                            {$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}
+                                        </li>
+                                    {/foreach}
                                 </ul>
                             {else}
                                 {$smarty.const.MSG_NO_DEF}

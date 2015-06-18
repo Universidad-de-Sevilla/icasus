@@ -156,10 +156,11 @@ if (
                 $criterios_efqm = $post_array['criterios_efqm'];
                 foreach ($criterios_efqm as $id_criterio_efqm)
                 {
-                    $criterio_efqm_indicador = new Criterio_efqm_indicador();
-                    $criterio_efqm_indicador->id_indicador = $indicador->id;
-                    $criterio_efqm_indicador->id_criterio_efqm = filter_var($id_criterio_efqm, FILTER_SANITIZE_NUMBER_INT);
-                    $criterio_efqm_indicador->save();
+                    $id_efqm = filter_var($id_criterio_efqm, FILTER_SANITIZE_NUMBER_INT);
+                    if ($id_efqm != 0)
+                    {
+                        $logicaIndicador->grabar_criterio_efqm($indicador->id, $id_efqm);
+                    }
                 }
             }
             //Por último, generamos las mediciones para el Indicador
@@ -177,11 +178,7 @@ if (
                 $logicaIndicador->guardar_dependencias($id_indicador);
             }
             //Primero borramos los existentes ¿no habrá otra forma más elegante?
-            $criterio_efqm_indicador = new Criterio_efqm_indicador();
-            while ($criterio_efqm_indicador->load("id_indicador = $indicador->id"))
-            {
-                $criterio_efqm_indicador->delete();
-            }
+            $logicaIndicador->borrar_criterios_efqm($id_indicador);
             // Ahora damos de alta los que vienen en el formulario
             if (filter_has_var(INPUT_POST, 'criterios_efqm'))
             {
@@ -190,10 +187,11 @@ if (
                 $criterios_efqm = $post_array['criterios_efqm'];
                 foreach ($criterios_efqm as $id_criterio_efqm)
                 {
-                    $criterio_efqm_indicador = new Criterio_efqm_indicador();
-                    $criterio_efqm_indicador->id_indicador = $indicador->id;
-                    $criterio_efqm_indicador->id_criterio_efqm = filter_var($id_criterio_efqm, FILTER_SANITIZE_NUMBER_INT);
-                    $criterio_efqm_indicador->save();
+                    $id_efqm = filter_var($id_criterio_efqm, FILTER_SANITIZE_NUMBER_INT);
+                    if ($id_efqm != 0)
+                    {
+                        $logicaIndicador->grabar_criterio_efqm($id_indicador, $id_efqm);
+                    }
                 }
             }
             //lo mismo pero para las subunidades afectadas

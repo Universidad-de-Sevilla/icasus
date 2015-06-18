@@ -46,6 +46,8 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
                 $logicaIndicador->borrar_mediciones($indicador, "indicador");
             }
             $indicador->delete();
+            //Borramos despues los criterior EFQM
+            $logicaIndicador->borrar_criterios_efqm($id_indicador);
             //Borramos también las Unidades vinculadas al Indicador
             $logicaIndicador->borrar_unidades($id_indicador);
             $aviso = MSG_INDIC_BORRADO . "$indicador->nombre";

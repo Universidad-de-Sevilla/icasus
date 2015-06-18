@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.18.0");
-define('IC_FECHA_REVISION', "17/06/2015");
+define('IC_VERSION', "2.18.1");
+define('IC_FECHA_REVISION', "18/06/2015");
 
+// 2.18.1 - 18/06/2015 - Correcciones en criterios EFQM (movidos a la lógica de Indicadores), ahora se muestran correctamente y se borran los criterios asociados a un Indicador cuando éste también se elimina.
 // 2.18.0 - 17/06/2015 - Establece valores mínimos y máximos para las mediciones de un Indicador/Dato y si existen dichos valores no se pueden asignar valores fuera de dicho intervalo.
 // 2.17.0 - 11/06/2015 - Se ha añadido un campo para indicar como se calculará el total anual en Indicadores/Datos con periodicidades inferiores al año. 
 // 2.16.0 - 08/06/2015 - Se ha añadido la periodicidad bienal.

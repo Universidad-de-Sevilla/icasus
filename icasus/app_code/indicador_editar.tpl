@@ -151,7 +151,7 @@
                             <option value="">{$smarty.const.TXT_ELEG_UNO}</option>
                             {foreach $criterios_efqm as $criterio_efqm}
                                 <option value="{$criterio_efqm->id}"
-                                        {if $indicador->criterios_efqm}
+                                        {if $indicador->criterios_efqm|@count gt 1}
                                             {if $indicador->criterios_efqm[1]->criterio_efqm->id == $criterio_efqm->id}selected{/if}
                                         {/if}
                                         >
@@ -249,7 +249,7 @@
 
             <fieldset class="label_side">
                 <div>
-                    <div id="div_unidad" style="display:none">
+                    <div id="div_unidad">
                         <input type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad"
                                {foreach $indicador_subunidades as $indicador_subunidad}
                                    {if $indicador_subunidad->id_entidad == $entidad->id} checked{/if}

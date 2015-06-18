@@ -843,4 +843,27 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
+    //------------------------------------------------------------------------
+    //CRITERIOS EFQM
+    //-------------------------------------------------------------------------
+    //Asigna el criterio efqm cuyo id recibe al indicador cuyo identificador
+    //tambien recibe como parámetro
+    public function grabar_criterio_efqm($id, $id_efqm)
+    {
+        $criterio_efqm_indicador = new Criterio_efqm_indicador();
+        $criterio_efqm_indicador->id_indicador = $id;
+        $criterio_efqm_indicador->id_criterio_efqm = $id_efqm;
+        $criterio_efqm_indicador->save();
+    }
+
+    //Borra todos los criterios efqm del indicador cuyo identificador recibe como parámetro
+    public function borrar_criterios_efqm($id)
+    {
+        $criterio_efqm_indicador = new Criterio_efqm_indicador();
+        while ($criterio_efqm_indicador->load("id_indicador = $id"))
+        {
+            $criterio_efqm_indicador->delete();
+        }
+    }
+
 }

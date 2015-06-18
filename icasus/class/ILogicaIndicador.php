@@ -80,4 +80,14 @@ interface ILogicaIndicador
     // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
     // cuando cambiamos las Unidades en Indicadores/Datos Agregados
     public function actualizar_subunidades($indicador);
+
+    //------------------------------------------------------------------------
+    //CRITERIOS EFQM
+    //-------------------------------------------------------------------------
+    //Asigna el criterio efqm cuyo id recibe al indicador cuyo identificador
+    //tambien recibe como parámetro
+    public function grabar_criterio_efqm($id, $id_efqm);
+
+    //Borra todos los criterios efqm del indicador cuyo identificador recibe como parámetro
+    public function borrar_criterios_efqm($id);
 }
