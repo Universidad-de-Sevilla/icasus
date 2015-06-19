@@ -34,7 +34,11 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
     $entidad = new Entidad();
     $entidad->load("id = $dato->id_entidad");
     $smarty->assign('entidad', $entidad);
-    
+
+    //Vemos si influye en otros Indicadores/Datos
+    $indicadores_dependientes = $logicaIndicador->calcular_influencias($id_dato);
+    $smarty->assign('indicadores_dependientes', $indicadores_dependientes);
+
     //Si es calculado vemos los Indicadores/Datos de los que depende
     $indicadores_influyentes = $logicaIndicador->calcular_dependencias($id_dato);
     $smarty->assign("indicadores_influyentes", $indicadores_influyentes);

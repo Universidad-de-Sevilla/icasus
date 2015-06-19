@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.18.2");
-define('IC_FECHA_REVISION', "18/06/2015");
+define('IC_VERSION', "2.19.0");
+define('IC_FECHA_REVISION', "19/06/2015");
 
+// 2.19.0 - 19/06/2015 - Muestra en la ficha de un Indicador/Dato los Indicadores/Datos en cuyo cálculo influye (si los hubiere).
 // 2.18.2 - 18/06/2015 - Se valida que el Histórico de Indicadores/Datos no sea mayor al año actual.
 // 2.18.1 - 18/06/2015 - Correcciones en criterios EFQM (movidos a la lógica de Indicadores), ahora se muestran correctamente y se borran los criterios asociados a un Indicador cuando éste también se elimina.
 // 2.18.0 - 17/06/2015 - Establece valores mínimos y máximos para las mediciones de un Indicador/Dato y si existen dichos valores no se pueden asignar valores fuera de dicho intervalo.

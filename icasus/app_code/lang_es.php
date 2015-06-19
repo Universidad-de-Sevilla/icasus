@@ -34,6 +34,7 @@ define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_MANUAL', 'Manual');
 define('TXT_REP_GRAFIC', 'Representación Gráfica del Indicador/Dato');
 define('TXT_DEPENDE', 'Su cálculo depende de los siguientes Indicadores/Datos:');
+define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes Indicadores/Datos:');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
@@ -156,6 +157,7 @@ define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Indicadores y Datos con Mediciones n
 define('TXT_INDIC_DAT_MED_NULA', 'Indicadores y Datos con Mediciones nulas');
 define('TXT_INDIC_DAT_ULTIMA_MOD', 'Indicadores y Datos, última modificación');
 define('TXT_INDIC_DAT_SIN_MED', 'Indicadores y Datos sin Mediciones');
+define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/Datos dependientes');
 
 //Informes
 define('TXT_INFORME_IC', 'Informe generado por ICASUS');

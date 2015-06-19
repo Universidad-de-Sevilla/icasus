@@ -339,6 +339,68 @@
     </div><!-- //.toggle_container -->
 </div><!-- //.box .grid_16 -->
 
+<!-- INDICADORES/DATOS DEPENDIENTES -->
+{if $indicadores_dependientes}
+    <div class="box grid_16">
+        <div class="toggle_container">
+            <h2 class="box_head grad_grey_dark" >
+                {$smarty.const.TXT_INDIC_DAT_DEPENDIENTES}
+            </h2>
+            <a href="#" class="grabber"></a>
+            <a href="#" class="toggle"></a>
+            <div class="block">
+                <div class="button_bar clearfix">
+                    {if $_control}
+                        <a href='index.php?page=dato_crear&id_entidad={$dato->id_entidad}'>
+                            <img src='/icons/ff16/chart_bar_add.png' /> {$smarty.const.TXT_DATO_CREAR}
+                        </a>&nbsp;&nbsp;
+                    {/if}
+                    <a href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                        <img src='/icons/ff16/chart_bar_edit.png'  /> {$smarty.const.TXT_EDIT}</a>&nbsp;&nbsp;
+                    <a href='index.php?page=dato_borrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
+                       onClick="return confirm('{$smarty.const.MSG_DATO_CONFIRM_BORRAR}');">
+                        <img src='/icons/ff16/chart_bar_delete.png'  /> {$smarty.const.TXT_BORRAR}</a>&nbsp;&nbsp;
+                    <a href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                        <img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_MOSTRAR}</a>&nbsp;&nbsp;
+                    <a href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                        <img src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}
+                    </a>&nbsp;&nbsp;
+                    {if !$dato->calculo}
+                        <a href='index.php?page=indicador_subunidad_valor&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                            <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
+                        </a>&nbsp;&nbsp;
+                    {/if}
+                    <a href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                        <img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>
+                </div>
+                <div style="margin:10px;">
+                    <p>{$smarty.const.TXT_INFLUYE}</p>
+                    <ul>
+                        {foreach $indicadores_dependientes as $indicador_dependiente}
+                            {if $indicador_dependiente->id_proceso}
+                                <li> 
+                                    <a href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$entidad->id}' 
+                                       title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$indicador_dependiente->nombre}">
+                                        <img src='/icons/ff16/chart_curve.png' /> {$indicador_dependiente->nombre}
+                                    </a>
+                                </li>
+                            {else}
+                                <li> 
+                                    <a href='index.php?page=dato_mostrar&id_dato={$indicador_dependiente->id}&id_entidad={$entidad->id}' 
+                                       title="{$smarty.const.TXT_DATO_MOSTRAR}: {$indicador_dependiente->nombre}">
+                                        <img src='/icons/ff16/chart_bar.png' /> {$indicador_dependiente->nombre}
+                                    </a>
+                                </li>
+                            {/if}
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{/if}
+<!-- //INDICADORES/DATOS DEPENDIENTES -->
+
 <script src="js/highcharts.js" type="text/javascript"></script>
 <script src="js/highcharts-3d.js" type="text/javascript"></script>
 <script src="js/exporting.js" type="text/javascript"></script>
