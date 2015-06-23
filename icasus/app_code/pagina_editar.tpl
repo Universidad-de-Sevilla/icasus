@@ -2,9 +2,7 @@
     <h2>{$smarty.const.TXT_PAG_EDIT}</h2>
 </div>
 <div class="toggle_container">
-    <form name='formpagina' id='formpagina' action='index.php?page=pagina_editar' class='datos' method='post'>
-        <input type='hidden' id='id_pagina' name='id_pagina' value='{$pagina->id}' />
-
+    <form name='formpagina' id='formpagina' action='index.php?page=pagina_editar&id_pagina={$pagina->id}' class='datos' method='post'> 
         <fieldset class="label_side">
             <label>{$smarty.const.FIELD_TITULO}</label>
             <div class="clearfix">

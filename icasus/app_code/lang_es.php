@@ -693,7 +693,7 @@ define('FIELD_RESP_MED', 'Responsable de Medición');
 define('FIELD_TIP_MED', 'Tipo de Medición');
 
 //Páginas
-define('FIELD_PAG_CONTENIDO', 'Contenido de la página');
+define('FIELD_PAG_CONTENIDO', 'Contenido de la página (HTML)');
 
 //Procesos
 define('FIELD_PROC', 'Proceso');
