@@ -83,7 +83,7 @@ class Indicador_subunidad extends ADOdb_Active_Record
                 $indicador_subunidad->entidad = new Entidad();
                 $indicador_subunidad->entidad->load("id = $indicador_subunidad->id_entidad");
             }
-            usort($indicadores_subunidades, array($this, "compara_por_etiquetas"));
+            usort($indicadores_subunidades, array($this, 'ordenarPorNombre'));
             return $indicadores_subunidades;
         }
         else
@@ -92,7 +92,23 @@ class Indicador_subunidad extends ADOdb_Active_Record
         }
     }
 
-    //actuliza los registros de la tabla indicador_subunidad de manera asincrona
+    private function quitar_tildes($cadena)
+    {
+        $no_permitidas = array("á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú", "ñ", "À", "Ã", "Ì", "Ò", "Ù", "Ã™", "Ã ", "Ã¨", "Ã¬", "Ã²", "Ã¹", "ç", "Ç", "Ã¢", "ê", "Ã®", "Ã´", "Ã»", "Ã‚", "ÃŠ", "ÃŽ", "Ã”", "Ã›", "ü", "Ã¶", "Ã–", "Ã¯", "Ã¤", "«", "Ò", "Ã", "Ã„", "Ã‹");
+        $permitidas = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U", "n", "N", "A", "E", "I", "O", "U", "a", "e", "i", "o", "u", "c", "C", "a", "e", "i", "o", "u", "A", "E", "I", "O", "U", "u", "o", "O", "i", "a", "e", "U", "I", "A", "E");
+        $texto = str_replace($no_permitidas, $permitidas, $cadena);
+        return $texto;
+    }
+
+    //Ordena las subunidades de un Indicador/Dato por su nombre
+    private function ordenarPorNombre($a, $b)
+    {
+        $cadena1 = $this->quitar_tildes($a->entidad->nombre);
+        $cadena2 = $this->quitar_tildes($b->entidad->nombre);
+        return strcasecmp($cadena1, $cadena2);
+    }
+
+    //actualiza los registros de la tabla indicador_subunidad de manera asincrona
     //desde el controlador medicion_crear
     public function actualizar_subunidades($id_indicador, $id_entidad)
     {

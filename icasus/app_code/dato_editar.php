@@ -29,7 +29,7 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
         $entidad->load("id = $dato->id_entidad");
         $smarty->assign('entidad', $entidad);
 
-        $subunidades = $entidad->Find("id_madre = $dato->id_entidad");
+        $subunidades = $entidad->Find("id_madre = $dato->id_entidad ORDER BY nombre");
         $smarty->assign('subunidades', $subunidades);
 
         $visibilidad = new Visibilidad;
