@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.19.2");
-define('IC_FECHA_REVISION', "23/06/2015");
+define('IC_VERSION', "2.19.3");
+define('IC_FECHA_REVISION', "24/06/2015");
 
+// 2.19.3 - 24/06/2015 - Traducción del plugin exporting.js de Highcharts al español.
 // 2.19.2 - 23/06/2015 - Correcciones en las páginas de ayuda (ya se pueden editar). Revisión del contenido y añadido de una leyenda para los iconos.
 // 2.19.1 - 23/06/2015 - Muestra ordenados los listados de subunidades en las fichas de Indicadores/Datos. Borrado de ficheros innecesarios.
 // 2.19.0 - 19/06/2015 - Muestra en la ficha de un Indicador/Dato los Indicadores/Datos en cuyo cálculo influye (si los hubiere).
