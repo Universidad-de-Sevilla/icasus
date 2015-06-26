@@ -87,6 +87,15 @@
         <script src="theme/danpin/scripts/tiptip/jquery.tipTip.minified.js"></script>
         <script src="theme/danpin/scripts/validation/jquery.validate.min.js" type="text/javascript"></script>		
 
+        <!-- Highslide -->
+        <script type='text/javascript' src="js/highslide/highslide-full.min.js"></script>
+        <script type='text/javascript' src="js/highslide/highslide.config.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/highslide/highslide.css"/>
+
+        <!--<script type='text/javascript' src="js/highslide-full.min.js"></script>
+        <script type='text/javascript' src="js/highslide.config.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/highslide/highslide.css"/>-->
+
         <!-- Configuration Script -->
         <script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_ui.js"></script>
         <script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_forms.js"></script>

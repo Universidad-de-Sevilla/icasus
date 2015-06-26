@@ -87,7 +87,7 @@
                         <div class="box grid_{$panel_res->ancho}"  style="float:left;">
                             <div class="block">
                                 <div class="titulo-panel">
-                                    <strong>{$panel_res->nombre}</strong>
+                                    <strong>{$panel_res->nombre}</strong>&nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR}
                                 </div>
                                 <div  id="container" 
                                       data-id_indicador="{$indicador->id}" 
@@ -104,7 +104,7 @@
                             <div class="box grid_{$panel->ancho}" style="float:left;">
                                 <div class="block">
                                     <div class="titulo-panel">
-                                        <strong>{$panel->nombre}</strong>
+                                        <strong>{$panel->nombre}</strong>&nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR}
                                     </div>
                                     <div class="highchart {$panel->tipo->clase_css}" 
                                          id="panel_{$panel->id}" 
@@ -269,9 +269,8 @@
     </div>
 {/if}
 
-<script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/highcharts-3d.js" type="text/javascript"></script>
-<script src="js/exporting.js" type="text/javascript"></script>
-<script src="js/Conjunto.js" type="text/javascript"></script>
-<script src="js/HighchartSerie.js" type="text/javascript"></script>
+<script src="js/highcharts/highcharts.js" type="text/javascript"></script>
+<script src="js/highcharts/exporting.js" type="text/javascript"></script>
+<script src="js/highcharts/Conjunto.js" type="text/javascript"></script>
+<script src="js/highcharts/HighchartSerie.js" type="text/javascript"></script>
 <script src="js/medicion_listar.js" type="text/javascript"></script>

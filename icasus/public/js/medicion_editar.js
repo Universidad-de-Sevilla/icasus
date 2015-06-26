@@ -70,13 +70,10 @@ $("#container").each(function () {
         var dataseries = chartSerie.getPieSerie();
 
         //Gráfico de tarta
-        var chart1 = new Highcharts.Chart({
+        pintaGrafico({
             chart: {
                 renderTo: contenedor,
-                options3d: {
-                    enabled: true,
-                    alpha: 45
-                }
+                events: {}
             },
             credits: {
                 enabled: false
@@ -89,7 +86,7 @@ $("#container").each(function () {
                 text: 'Medición: ' + medicion + ' Total: ' + total
             },
             exporting: {
-                enabled: true
+                filename: nomIndicador + '(Medición: ' + medicion + ')'
             },
             xAxis: {
                 type: 'category'
@@ -108,9 +105,6 @@ $("#container").each(function () {
                                     + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' : null;
                         }
                     }
-                },
-                pie: {
-                    depth: 25
                 }
             },
             tooltip: {
@@ -333,3 +327,34 @@ function referencia_cancelar(id)
     $('#referencia_' + id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
 }
 
+//Función que pinta nuestra gráfica
+function pintaGrafico(chartOptions) {
+    $(document).ready(function () {
+        // Añadimos evento al hacer click en el gráfico
+        chartOptions.chart.events.click = function () {
+            hs.htmlExpand(document.getElementById(chartOptions.chart.renderTo), {
+                width: 9999,
+                height: 9999,
+                allowWidthReduction: true,
+                preserveContent: false
+            }, {
+                chartOptions: chartOptions
+            });
+        };
+        var chart = new Highcharts.Chart(chartOptions);
+    });
+}
+
+// Crea un nuevo gráfico con un popup de Highslide
+hs.Expander.prototype.onAfterExpand = function () {
+    if (this.custom.chartOptions) {
+        var chartOptions = this.custom.chartOptions;
+        if (!this.hasChart) {
+            chartOptions.chart.renderTo = $('.highslide-body')[0];
+            chartOptions.chart.events.click = function () {
+            };
+            var hsChart = new Highcharts.Chart(chartOptions);
+        }
+        this.hasChart = true;
+    }
+};

@@ -15,7 +15,7 @@
                             <div class="box grid_{$paneles_indicador[$item->id]->ancho}" >
                                 <div class="block">
                                     <div class="titulo-panel">
-                                        <strong>{$paneles_indicador[$item->id]->nombre}</strong>
+                                        <strong>{$paneles_indicador[$item->id]->nombre}</strong>&nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR}
                                     </div>
                                     <div class="section">
                                         <div class="highchart {$paneles_indicador[$item->id]->tipo->clase_css}" 
@@ -90,7 +90,7 @@
                             <div class="box grid_{$paneles_indicador_sup[$item->id]->ancho}">
                                 <div class="block">
                                     <div class="titulo-panel">
-                                        <strong>{$paneles_indicador_sup[$item->id]->nombre}</strong>
+                                        <strong>{$paneles_indicador_sup[$item->id]->nombre}</strong>&nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR}
                                     </div>
                                     <div class="section">
                                         <div class="highchart {$paneles_indicador_sup[$item->id]->tipo->clase_css}" 
@@ -126,9 +126,8 @@
     {/if}
 {/if}
 
-<script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/highcharts-3d.js" type="text/javascript"></script>
-<script src="js/exporting.js" type="text/javascript"></script>
-<script src="js/Conjunto.js" type="text/javascript"></script>
-<script src="js/HighchartSerie.js" type="text/javascript"></script>
+<script src="js/highcharts/highcharts.js" type="text/javascript"></script>
+<script src="js/highcharts/exporting.js" type="text/javascript"></script>
+<script src="js/highcharts/Conjunto.js" type="text/javascript"></script>
+<script src="js/highcharts/HighchartSerie.js" type="text/javascript"></script>
 <script src="js/indicador_dato_mostrar.js" type="text/javascript"></script>

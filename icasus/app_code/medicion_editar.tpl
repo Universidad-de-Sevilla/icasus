@@ -229,7 +229,7 @@
                 {if $pinta_grafico}
                     <div class="block">
                         <div class="titulo-panel">
-                            <strong>{$panel->nombre}</strong>
+                            <strong>{$panel->nombre}</strong>&nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR}
                         </div>
                         <div class="section">
                             <div id="container" 
@@ -379,10 +379,9 @@
 {/if}
 <!-- //NAVEGACIÓN-->
 
-<script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/highcharts-3d.js" type="text/javascript"></script>
-<script src="js/exporting.js" type="text/javascript"></script>
-<script src="js/Conjunto.js" type="text/javascript"></script>
-<script src="js/HighchartSerie.js" type="text/javascript"></script>
+<script src="js/highcharts/highcharts.js" type="text/javascript"></script>
+<script src="js/highcharts/exporting.js" type="text/javascript"></script>
+<script src="js/highcharts/Conjunto.js" type="text/javascript"></script>
+<script src="js/highcharts/HighchartSerie.js" type="text/javascript"></script>
 <script src="js/medicion_editar.js" type="text/javascript"></script>
 

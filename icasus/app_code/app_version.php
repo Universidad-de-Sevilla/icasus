@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.19.3");
+define('IC_VERSION', "2.20.0");
 define('IC_FECHA_REVISION', "24/06/2015");
 
+// 2.20.0 - 24/06/2015 - Añade popup de los gráficos a pantalla completa al hacer click sobre los mismos usando la librería Highslide. Se deshabilita el 3d de los gráficos pues es un recurso estético y da problemas con Highslide. Ahora también, los gráficos se descargan con su nombre por defecto.
 // 2.19.3 - 24/06/2015 - Traducción del plugin exporting.js de Highcharts al español.
 // 2.19.2 - 23/06/2015 - Correcciones en las páginas de ayuda (ya se pueden editar). Revisión del contenido y añadido de una leyenda para los iconos.
 // 2.19.1 - 23/06/2015 - Muestra ordenados los listados de subunidades en las fichas de Indicadores/Datos. Borrado de ficheros innecesarios.

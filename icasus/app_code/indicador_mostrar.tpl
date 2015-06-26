@@ -108,7 +108,7 @@
                             <div class="box grid_{$panel->ancho}" style="float:left;">
                                 <div class="block">
                                     <div class="titulo-panel">
-                                        <strong>{$panel->nombre}</strong>
+                                        <strong>{$panel->nombre}</strong>&nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR}
                                     </div>
                                     <div class="section">
                                         <div class="highchart {$panel->tipo->clase_css}" 
@@ -463,9 +463,8 @@
 {/if}
 <!-- //INDICADORES/DATOS DEPENDIENTES -->
 
-<script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/highcharts-3d.js" type="text/javascript"></script>
-<script src="js/exporting.js"></script>
-<script src="js/Conjunto.js" type="text/javascript"></script>
-<script src="js/HighchartSerie.js" type="text/javascript"></script>
+<script src="js/highcharts/highcharts.js" type="text/javascript"></script>
+<script src="js/highcharts/exporting.js" type="text/javascript"></script>
+<script src="js/highcharts/Conjunto.js" type="text/javascript"></script>
+<script src="js/highcharts/HighchartSerie.js" type="text/javascript"></script>
 <script src="js/indicador_dato_mostrar.js" type="text/javascript"></script>

@@ -70,23 +70,23 @@ $('.highchart').each(function () {
             });
         }
         //Gráfico de línea
-        var chart1 = new Highcharts.Chart({
+        pintaGrafico({
             chart: {
                 renderTo: idPanel,
-                options3d: {
-                    enabled: true,
-                    depth: 10
-                }
+                events: {}
             },
             credits: {
                 enabled: false
             },
             title: {
-                text: nomIndicador + ' (' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
+                text: nomIndicador,
                 style: {"fontSize": "14px"}
             },
+            subtitle: {
+                text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
+            },
             exporting: {
-                enabled: true
+                filename: nomIndicador + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
             },
             xAxis: {
                 type: 'category'
@@ -113,3 +113,35 @@ $('.highchart').each(function () {
         });
     }
 });
+
+//Función que pinta nuestra gráfica
+function pintaGrafico(chartOptions) {
+    $(document).ready(function () {
+        // Añadimos evento al hacer click en el gráfico
+        chartOptions.chart.events.click = function () {
+            hs.htmlExpand(document.getElementById(chartOptions.chart.renderTo), {
+                width: 9999,
+                height: 9999,
+                allowWidthReduction: true,
+                preserveContent: false
+            }, {
+                chartOptions: chartOptions
+            });
+        };
+        var chart = new Highcharts.Chart(chartOptions);
+    });
+}
+
+// Crea un nuevo gráfico con un popup de Highslide
+hs.Expander.prototype.onAfterExpand = function () {
+    if (this.custom.chartOptions) {
+        var chartOptions = this.custom.chartOptions;
+        if (!this.hasChart) {
+            chartOptions.chart.renderTo = $('.highslide-body')[0];
+            chartOptions.chart.events.click = function () {
+            };
+            var hsChart = new Highcharts.Chart(chartOptions);
+        }
+        this.hasChart = true;
+    }
+};

@@ -281,6 +281,7 @@ define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde s
 define('TXT_BUSCAR', 'Buscar...');
 define('TXT_INDICAR_COD', 'Indique un código estandarizado y único');
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
+define('TXT_GRAFICO_AUMENTAR', '(Haga click sobre el gráfico para aumentarlo)');
 define('TXT_INTERVALO', 'Determina el Intervalo de Valores (cerrado) que podrán tomar las Mediciones del Indicador/Dato.');
 
 //Selecciones
