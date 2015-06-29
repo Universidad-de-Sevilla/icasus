@@ -122,8 +122,7 @@ function pintaGrafico(chartOptions) {
             hs.htmlExpand(document.getElementById(chartOptions.chart.renderTo), {
                 width: 9999,
                 height: 9999,
-                allowWidthReduction: true,
-                preserveContent: false
+                allowWidthReduction: true
             }, {
                 chartOptions: chartOptions
             });
@@ -133,15 +132,15 @@ function pintaGrafico(chartOptions) {
 }
 
 // Crea un nuevo gráfico con un popup de Highslide
+var i = 0; //Contador de popus
 hs.Expander.prototype.onAfterExpand = function () {
     if (this.custom.chartOptions) {
         var chartOptions = this.custom.chartOptions;
-        if (!this.hasChart) {
-            chartOptions.chart.renderTo = $('.highslide-body')[0];
-            chartOptions.chart.events.click = function () {
-            };
-            var hsChart = new Highcharts.Chart(chartOptions);
-        }
-        this.hasChart = true;
+        chartOptions.chart.height = 600;
+        chartOptions.chart.renderTo = $('.highslide-body')[i];
+        chartOptions.chart.events.click = function () {
+        };
+        var hsChart = new Highcharts.Chart(chartOptions);
+        i++;
     }
 };
