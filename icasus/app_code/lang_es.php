@@ -275,7 +275,7 @@ define('TXT_BTN_ENVIAR', 'Enviar');
 define('TXT_BTN_Aceptar', 'Aceptar');
 define('TXT_BTN_GUARDAR', 'Guardar');
 define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');
-define('TXT_SOLO_INDIC_CALC', 'Sólo si es un Indicador/Dato calculado');
+define('TXT_SOLO_INDIC_CALC', 'Sólo si es un Indicador/Dato calculado. Si es así, indique la fórmula matemática correspondiente empleando la siguiente sintaxis para referirse a Indicadores/Datos: [ID del Indicador/Dato]. Ej: [1]+[2], el resultado será la suma del valor de Indicador/Dato con ID=1 más el Indicador/Dato con ID=2. IMPORTANTE: La periodicidad debe ser la misma para todos los Indicadores/Datos implicados, de lo contrario no será posible el cálculo.');
 define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el Indicador/Dato.');
 define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde se obtienen los Valores para el Indicador/Dato.');
 define('TXT_BUSCAR', 'Buscar...');
