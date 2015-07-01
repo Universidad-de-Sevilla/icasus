@@ -345,6 +345,49 @@
                                 <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
                             </tr>
                         {/foreach}
+                        {if $indicador->id_tipo_agregacion!= 0}
+                            <tr style="font-weight: bold">
+                                <td style="border-left:solid 2px #BF2453;border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
+                                <td style="border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453">
+                                    {if $total === NULL}
+                                        ---
+                                    {else}
+                                        {$total|round:"2"}
+                                    {/if}
+                                </td>
+                                <td style="text-align: center;border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453"> 
+                                    {if $total != NULL}
+                                        {if isset($medicion_lim) AND isset($medicion_obj)}
+                                            {if  $total < $medicion_lim}
+                                                <img src='/icons/ff16/bullet_red.png' />
+                                            {else if $total >= $medicion_obj}
+                                                <img src='/icons/ff16/bullet_green.png' />
+                                            {else}
+                                                <img src='/icons/ff16/bullet_yellow.png' />
+                                            {/if}
+                                        {else if isset($medicion_obj)}
+                                            {if $total >= $medicion_obj }
+                                                <img src='/icons/ff16/bullet_green.png' />
+                                            {else}
+                                                <img src='/icons/ff16/bullet_red.png' />
+                                            {/if}
+                                        {else if isset($medicion_lim)}
+                                            {if $total < $medicion_lim }
+                                                <img src='/icons/ff16/bullet_red.png' />
+                                            {else}
+                                                <img src='/icons/ff16/bullet_green.png' />
+                                            {/if}
+                                        {else}
+                                            ---
+                                        {/if}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                                <td style="border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453">---</td>
+                                <td style="border-right:solid 2px #BF2453;border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453">---</td>  
+                            </tr>
+                        {/if}
                     </tbody>
                 </table>
             </div>

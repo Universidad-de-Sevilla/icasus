@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.20.1");
+define('IC_VERSION', "2.21.0");
 define('IC_FECHA_REVISION', "29/06/2015");
 
+// 2.21.0 - 29/06/2015 - Se añade una fila al final de la tabla de valores de una medicion que indica el total calculado de la misma en mediciones no centralizadas.
 // 2.20.1 - 29/06/2015 - Correcciones a Highslide: gráficos se abren en mayor tamaño vertical, los gráficos de barras se pintan con los totales al ampliarse y se pueden abrir varias ventanas.
 // 2.20.0 - 24/06/2015 - Añade popup de los gráficos a pantalla completa al hacer click sobre los mismos usando la librería Highslide. Se deshabilita el 3d de los gráficos pues es un recurso estético y da problemas con Highslide. Ahora también, los gráficos se descargan con su nombre por defecto.
 // 2.19.3 - 24/06/2015 - Traducción del plugin exporting.js de Highcharts al español.

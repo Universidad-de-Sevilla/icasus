@@ -127,6 +127,13 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $indicadores_influyentes = $logicaIndicador->calcular_dependencias($indicador->id);
     $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
 
+    //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
+    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+    $smarty->assign("total", $total);
+
     $smarty->assign("usuario", $usuario);
     $smarty->assign("_nombre_pagina", TXT_MED_VER . ": " . " $medicion->etiqueta - $indicador->nombre");
     $smarty->assign('_javascript', array('medicion_editar'));

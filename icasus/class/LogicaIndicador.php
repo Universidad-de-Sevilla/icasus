@@ -16,10 +16,13 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Variable para llamar a la Lógica de Negocio de las Mediciones
     private $logicaMedicion;
+    //Variable para llamar a la Lógica de Negocio de los Valores
+    private $logicaValores;
 
     public function __construct()
     {
         $this->logicaMedicion = new LogicaMedicion();
+        $this->logicaValores = new LogicaValores();
     }
 
     //--------------------------------------------------------------------------
@@ -442,6 +445,49 @@ class LogicaIndicador implements ILogicaIndicador
         foreach ($mediciones_indicador as $medicion_indicador)
         {
             $this->borrar_medicion($indicador, $tipo, $medicion_indicador->id);
+        }
+    }
+
+    //Calcula el total del indicador que recibe como parámetro para el conjunto 
+    //de valores que también recibe como parámetro y en función de su tipo de agregación 
+    //si es no agregado devolverá null.
+    public function calcular_total($indicador, $valores)
+    {
+        $total = null;
+        //Significa que la medición no es centralizada
+        if (count($valores) > 1)
+        {
+            $total = $this->calcular_total_agregacion($indicador, $valores);
+        }
+        return $total;
+    }
+
+    private function calcular_total_agregacion($indicador, $valores)
+    {
+        switch ($indicador->id_tipo_agregacion)
+        {
+            //Media
+            case 1:
+                {
+                    return $this->logicaValores->media($valores);
+                }
+            //Sumatorio
+            case 2:
+                {
+                    return $this->logicaValores->sumatorio($valores);
+                }
+            //Máximo
+            case 3:
+                {
+                    return $this->logicaValores->maximo($valores);
+                }
+            //Mediana
+            case 4:
+                {
+                    return $this->logicaValores->mediana($valores);
+                }
+            //No agregados o evolutivos (temporal)
+            default:return null;
         }
     }
 

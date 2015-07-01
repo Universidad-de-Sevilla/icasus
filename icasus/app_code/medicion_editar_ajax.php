@@ -13,6 +13,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+//Variable para operar con Indicadores/Datos
+$logicaIndicador = new LogicaIndicador();
 
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 $medicion = new Medicion();
@@ -20,6 +22,7 @@ $indicador = new Indicador();
 $valor = new Valor();
 $valor_referencia_medicion = new Valor_referencia_medicion();
 $indicador_subunidad = new Indicador_subunidad();
+$entidad = new Entidad();
 
 //valores que se definen como filas --------------------------------------------
 if ($modulo == 'anularvalor')
@@ -60,11 +63,21 @@ if ($modulo == 'editarfila')
     $indicador->load("id = $medicion->id_indicador");
     $smarty->assign("indicador", $indicador);
 
+    $entidad->load("id = $indicador->id_entidad");
+    $smarty->assign('entidad', $entidad);
+
     $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
     $smarty->assign("valores", $valores);
 
     $smarty->assign("modulo", "editarfila");
     $plantilla = 'medicion_editar_ajax.tpl';
+
+    //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
+    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+    $smarty->assign("total", $total);
 }
 if ($modulo == 'cancelarfila')
 {
@@ -78,11 +91,21 @@ if ($modulo == 'cancelarfila')
     $indicador->load("id = $medicion->id_indicador");
     $smarty->assign("indicador", $indicador);
 
+    $entidad->load("id = $indicador->id_entidad");
+    $smarty->assign('entidad', $entidad);
+
     $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
     $smarty->assign("valores", $valores);
 
     $smarty->assign("modulo", "cancelarfila");
     $plantilla = 'medicion_editar_ajax.tpl';
+
+    //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
+    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+    $smarty->assign("total", $total);
 }
 //etiquetas y fechas -----------------------------------------------------------
 if ($modulo == 'grabaretiqueta')

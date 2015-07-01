@@ -41,6 +41,11 @@ interface ILogicaIndicador
     //El tipo es: "indicador" o "dato"
     public function borrar_mediciones($indicador, $tipo);
 
+    //Calcula el total del indicador que recibe como parámetro para el conjunto 
+    //de valores que también recibe como parámetro y en función de su tipo de agregación 
+    //si es no agregado devolverá null.
+    public function calcular_total($indicador, $valores);
+
     //-----------------------------------------------------------------------------
     // FUNCIONES PARA EL CÁLCULO DE DEPENDENCIAS 
     // EN INDICADORES/DATOS CALCULADOS
