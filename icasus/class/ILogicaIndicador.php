@@ -66,6 +66,11 @@ interface ILogicaIndicador
     //indicador/dato cuyo identificador recibe como parámetro
     public function calcular_influencias($id);
 
+    //Función que actualiza el valor de los indicadores calculados que 
+    //dependen de aquel cuyo id pasamos para la medición cuya etiqueta damos y para la 
+    //entidad cuyo id pasamos también como parámetro 
+    public function actualizar_valor_indicadores_calculados($id, $etiqueta_medicion, $id_entidad);
+
     //--------------------------------------------------------------------------
     //UNIDADES
     //--------------------------------------------------------------------------
@@ -95,4 +100,11 @@ interface ILogicaIndicador
 
     //Borra todos los criterios efqm del indicador cuyo identificador recibe como parámetro
     public function borrar_criterios_efqm($id);
+
+    //---------------------------------------------------------------------------
+    //VALORES
+    //-----------------------------------------------------------------------------
+    //Devuelve todos los valores del Indicador/Dato para la medición 
+    //cuya etiqueta recibe como parámetro
+    public function indicador_valores_medicion($indicador, $etiqueta_medicion);
 }

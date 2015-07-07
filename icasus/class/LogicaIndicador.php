@@ -459,6 +459,11 @@ class LogicaIndicador implements ILogicaIndicador
         {
             $total = $this->calcular_total_agregacion($indicador, $valores);
         }
+        //La medición esta centralizada por tanto sólo tenemos ub valor
+        else
+        {
+            $total = $valores[0]->valor;
+        }
         return $total;
     }
 
@@ -581,12 +586,177 @@ class LogicaIndicador implements ILogicaIndicador
         return $indicadores_dependientes;
     }
 
-    //-----------------------------------------------------------------------------
-    // FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO
-    //------------------------------------------------------------------------------
-    // Actualiza mediciones y genera un valor en blanco para cada una de las unidades 
-    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
-    // cuando cambiamos el tipo de agregación
+    //Función que actualiza el valor de los indicadores calculados que 
+    //dependen de aquel cuyo id pasamos para la medición cuya etiqueta damos y para la 
+    //entidad cuyo id pasamos también como parámetro
+    public function actualizar_valor_indicadores_calculados($id, $etiqueta, $id_entidad)
+    {
+        $indicadores_dependientes = $this->calcular_influencias($id);
+        if ($indicadores_dependientes)
+        {
+            foreach ($indicadores_dependientes as $indicador_dependiente)
+            {
+                $this->actualizar_valor_indicadores_calculados($indicador_dependiente->id, $etiqueta, $id_entidad);
+                $this->actualizar_valor($indicador_dependiente, $etiqueta, $id_entidad);
+            }
+        }
+    }
+
+    //Función que calcula y graba el valor de un Indicador/Dato calculado. 
+    //Recibe como parámetros el Indicador/Dato calculado 
+    private function actualizar_valor($indicador, $etiqueta, $id_entidad)
+    {
+        //Variable que nos dirá si es factible el cálculo
+        $calculable = true;
+        $indicadores_influyentes = $this->calcular_dependencias($indicador->id);
+        foreach ($indicadores_influyentes as $indicador_influyente)
+        {
+            //Comprobamos que la periodicidad de todos los indicadores 
+            //implicados sea la misma
+            if ($indicador->periodicidad !== $indicador_influyente->periodicidad)
+            {
+                $calculable = false;
+            }
+        }
+        if (calculable)
+        {
+            //Si el Indicador/Dato se mide de forma centralizada en la Unidad superior 
+            //entonces calculamos totales  de los influyentes y a partir de la 
+            //fórmula calculamos y grabamos el valor
+            if ($indicador->id_tipo_agregacion == 0)
+            {
+                $this->actualizar_valor_centralizado($indicador, $etiqueta, $id_entidad);
+            }
+            else
+            {
+                $this->actualizar_valor_agregado($indicador, $etiqueta, $id_entidad);
+            }
+        }
+    }
+
+    //Función que calcula el valor para un Indicador/Dato calculado 
+    //que se mide de forma centralizada en la medición cuya etiqueta se pasa como parámetro
+    private function actualizar_valor_centralizado($indicador, $etiqueta, $id_entidad)
+    {
+        // Recorremos la cadena $calculo para sacar y calcular las variables
+        // Almacenamos el resultado en $formula
+        $es_variable = false;
+        $formula = "";
+        $calculo = str_split($indicador->calculo);
+        foreach ($calculo as $elemento)
+        {
+            if ($elemento == "[")
+            {
+                $variable = "";
+                $es_variable = true;
+                continue;
+            }
+            if ($elemento == "]")
+            {
+                if (is_numeric($variable))
+                {
+                    $id_operando = (int) $variable;
+                    $operando = new Indicador();
+                    $operando->Load("id=$id_operando");
+                    $valores = $this->indicador_valores_medicion($operando, $etiqueta);
+                    $valor_total = $this->calcular_total($operando, $valores);
+                    $formula .= "$valor_total";
+                }
+                $es_variable = false;
+                continue;
+            }
+            if ($es_variable)
+            {
+                $variable .= $elemento;
+            }
+            else
+            {
+                $formula .= $elemento;
+            }
+        }
+        // Calcula el resultado de la formula y guarda el valor final 
+        eval("\$valor_final = $formula;");
+
+        //Grabamos el valor
+        $valor = new Valor();
+        $medicion = new Medicion();
+        $medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'");
+        $valor->load("id_medicion=$medicion->id");
+        $valor->valor = $valor_final;
+        $valor->Save();
+    }
+
+    //Función que calcula el valor para un Indicador/Dato calculado 
+    //que se mide como agregado de subunidades
+    private function actualizar_valor_agregado($indicador, $valor, $id_entidad)
+    {
+        // Recorremos la cadena $calculo para sacar y calcular las variables
+        // Almacenamos el resultado en $formula
+        $es_variable = false;
+        $formula = "";
+        $calculo = str_split($indicador->calculo);
+        foreach ($calculo as $elemento)
+        {
+            if ($elemento == "[")
+            {
+                $variable = "";
+                $es_variable = true;
+                continue;
+            }
+            if ($elemento == "]")
+            {
+                if (is_numeric($variable))
+                {
+                    $id_operando = (int) $variable;
+                    $operando = new Indicador();
+                    $operando->Load("id=$id_operando");
+                    $valores = $this->indicador_valores_medicion($operando, $etiqueta);
+                    $valor_total = $this->calcular_total($operando, $valores);
+                    $formula .= "$valor_total";
+                }
+                $es_variable = false;
+                continue;
+            }
+            if ($es_variable)
+            {
+                $variable .= $elemento;
+            }
+            else
+            {
+                $formula .= $elemento;
+            }
+        }
+        // Calcula el resultado de la formula y guarda el valor final 
+        eval("\$valor_final = $formula;");
+
+        //Grabamos el valor
+        $valor = new Valor();
+        $medicion = new Medicion();
+        $medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'");
+        $valor->load("id_medicion=$medicion->id");
+        $valor->valor = $valor_final;
+        $valor->Save();
+    }
+
+//---------------------------------------------------------------------------
+//VALORES
+//-----------------------------------------------------------------------------
+    //Devuelve todos los valores del Indicador/Dato para la medición 
+    //cuya etiqueta recibe como parámetro
+    public function indicador_valores_medicion($indicador, $etiqueta_medicion)
+    {
+        $valor = new Valor();
+        $medicion = new Medicion();
+        $medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta_medicion'");
+        return $valor->Find("id_medicion=$medicion->id");
+    }
+
+//-----------------------------------------------------------------------------
+// FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO
+//------------------------------------------------------------------------------
+// Actualiza mediciones y genera un valor en blanco para cada una de las unidades 
+// asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
+// cuando cambiamos el tipo de agregación
     public function actualizar_mediciones($indicador)
     {
         //Año y fecha actuales
@@ -631,9 +801,9 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-    // Actualiza mediciones activando/desactivando las Unidades 
-    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
-    // cuando cambiamos las Unidades en Indicadores/Datos Agregados
+// Actualiza mediciones activando/desactivando las Unidades 
+// asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
+// cuando cambiamos las Unidades en Indicadores/Datos Agregados
     public function actualizar_subunidades($indicador)
     {
         //Año y fecha actuales
@@ -675,8 +845,8 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-    //bienal para el año que recibe como parámetro
+//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+//bienal para el año que recibe como parámetro
     private function actualizar_mediciones_bienales($indicador, $anyo)
     {
         $medicion = new Medicion();
@@ -685,17 +855,17 @@ class LogicaIndicador implements ILogicaIndicador
                         . "OR etiqueta LIKE '$etiqueta-%')");
     }
 
-    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-    //anual para el año que recibe como parámetro
+//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+//anual para el año que recibe como parámetro
     private function actualizar_mediciones_anuales($indicador, $anyo)
     {
         $medicion = new Medicion();
         return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo'");
     }
 
-    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-    //semestral en el año que recibe como parámetro y en función de la fecha que 
-    //también recibe como parámetro
+//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+//semestral en el año que recibe como parámetro y en función de la fecha que 
+//también recibe como parámetro
     private function actualizar_mediciones_semestrales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
@@ -711,9 +881,9 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-    //cuatrimestral en el año que recibe como parámetro y en función de la fecha que 
-    //también recibe como parámetro
+//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+//cuatrimestral en el año que recibe como parámetro y en función de la fecha que 
+//también recibe como parámetro
     private function actualizar_mediciones_cuatrimestrales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
@@ -735,9 +905,9 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-    //trimestral en el año que recibe como parámetro y en función de la fecha que 
-    //también recibe como parámetro
+//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+//trimestral en el año que recibe como parámetro y en función de la fecha que 
+//también recibe como parámetro
     private function actualizar_mediciones_trimestrales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
@@ -766,9 +936,9 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-    //mensual en el año que recibe como parámetro y en función de la fecha que 
-    //también recibe como parámetro
+//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+//mensual en el año que recibe como parámetro y en función de la fecha que 
+//también recibe como parámetro
     private function actualizar_mediciones_mensuales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
@@ -889,11 +1059,11 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-    //------------------------------------------------------------------------
-    //CRITERIOS EFQM
-    //-------------------------------------------------------------------------
-    //Asigna el criterio efqm cuyo id recibe al indicador cuyo identificador
-    //tambien recibe como parámetro
+//------------------------------------------------------------------------
+//CRITERIOS EFQM
+//-------------------------------------------------------------------------
+//Asigna el criterio efqm cuyo id recibe al indicador cuyo identificador
+//tambien recibe como parámetro
     public function grabar_criterio_efqm($id, $id_efqm)
     {
         $criterio_efqm_indicador = new Criterio_efqm_indicador();
@@ -902,7 +1072,7 @@ class LogicaIndicador implements ILogicaIndicador
         $criterio_efqm_indicador->save();
     }
 
-    //Borra todos los criterios efqm del indicador cuyo identificador recibe como parámetro
+//Borra todos los criterios efqm del indicador cuyo identificador recibe como parámetro
     public function borrar_criterios_efqm($id)
     {
         $criterio_efqm_indicador = new Criterio_efqm_indicador();

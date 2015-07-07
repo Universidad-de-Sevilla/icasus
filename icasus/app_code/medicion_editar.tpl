@@ -296,7 +296,7 @@
                             <tr>
                                 <td>{$valor->entidad->etiqueta}</td>
                                 <td>
-                                    {if $permiso_editar && !$indicador->calculo && $valor->activo}
+                                    {if $permiso_editar && !$indicador->calculo}
                                         <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
                                             {if $valor->valor == NULL}
                                                 ---

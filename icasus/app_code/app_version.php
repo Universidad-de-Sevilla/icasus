@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.21.1");
-define('IC_FECHA_REVISION', "01/07/2015");
+define('IC_VERSION', "2.22.0");
+define('IC_FECHA_REVISION', "07/07/2015");
 
+// 2.22.0 - 07/07/2015 - Calculo totalmente automático para Indicadores/Datos calculados que se miden de forma centralizada.
 // 2.21.1 - 01/07/2015 - Añadido placeholder explicativo para el caso de los Indicadores/Datos calculados.
 // 2.21.0 - 01/07/2015 - Se añade una fila al final de la tabla de valores de una medicion que indica el total calculado de la misma en mediciones no centralizadas.
 // 2.20.1 - 29/06/2015 - Correcciones a Highslide: gráficos se abren en mayor tamaño vertical, los gráficos de barras se pintan con los totales al ampliarse y se pueden abrir varias ventanas.

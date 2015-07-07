@@ -34,6 +34,10 @@ if ($modulo == 'anularvalor')
     $valor->id_usuario = NULL;
     $valor->fecha_recogida = NULL;
     $valor->save();
+
+    //Chequeamos indicadores dependientes para el cálculo automático
+    $medicion->load("id=$valor->id_medicion");
+    $logicaIndicador->actualizar_valor_indicadores_calculados($medicion->id_indicador, $medicion->etiqueta, $valor->id_entidad);
 }
 
 if ($modulo == 'grabarfila')
@@ -42,11 +46,16 @@ if ($modulo == 'grabarfila')
     $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
     //la función calcular calcula y graba el valor final y el parcial en el objeto $valor
-    $valor->calcular($id_valor, $valor_parcial);
+//    $valor->calcular($id_valor, $valor_parcial);
     $valor->valor_parcial = $valor_parcial;
+    $valor->valor = $valor_parcial;
     $valor->id_usuario = $usuario->id;
     $valor->fecha_recogida = date("Y-m-d");
     $valor->save();
+
+    //Chequeamos indicadores dependientes para el cálculo automático
+    $medicion->load("id=$valor->id_medicion");
+    $logicaIndicador->actualizar_valor_indicadores_calculados($medicion->id_indicador, $medicion->etiqueta, $valor->id_entidad);
 }
 
 if ($modulo == 'editarfila')
