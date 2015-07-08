@@ -163,7 +163,7 @@
                 </fieldset>
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
-                    {if $permiso_editar == true && !$indicador->calculo}
+                    {if $permiso_unidad == true && !$indicador->calculo}
                         <div>
                             <span id="gi">
                                 <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}---{/if}</a>
@@ -175,7 +175,7 @@
                 </fieldset>
                 <fieldset class="label_side">
                     <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
-                    {if $permiso_editar == true && !$indicador->calculo}
+                    {if $permiso_unidad == true && !$indicador->calculo}
                         <div>
                             <span id="gf">
                                 <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}---{/if}</a>

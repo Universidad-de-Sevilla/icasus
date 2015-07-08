@@ -45,6 +45,12 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     //comprobar permisos para cambiar mediciones tanto para responsables del indicador como
     //de la medición o responsables de la unidad
     $permiso_editar = false;
+    $permiso_unidad = false;
+    if ($control)
+    {
+        $permiso_unidad = true;
+    }
+    $smarty->assign('permiso_unidad', $permiso_unidad);
     if ($control OR $indicador->id_responsable == $usuario->id
             OR $indicador->id_responsable_medicion == $usuario->id)
     {
