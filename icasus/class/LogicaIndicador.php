@@ -625,7 +625,7 @@ class LogicaIndicador implements ILogicaIndicador
             //fórmula calculamos y grabamos el valor
             if ($indicador->id_tipo_agregacion == 0)
             {
-                $this->actualizar_valor_centralizado($indicador, $etiqueta, $id_entidad);
+                $this->actualizar_valor_centralizado($indicador, $etiqueta);
             }
             else
             {
@@ -636,7 +636,7 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Función que calcula el valor para un Indicador/Dato calculado 
     //que se mide de forma centralizada en la medición cuya etiqueta se pasa como parámetro
-    private function actualizar_valor_centralizado($indicador, $etiqueta, $id_entidad)
+    private function actualizar_valor_centralizado($indicador, $etiqueta)
     {
         // Recorremos la cadena $calculo para sacar y calcular las variables
         // Almacenamos el resultado en $formula
@@ -688,54 +688,67 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Función que calcula el valor para un Indicador/Dato calculado 
     //que se mide como agregado de subunidades
-    private function actualizar_valor_agregado($indicador, $valor, $id_entidad)
+    private function actualizar_valor_agregado($indicador, $etiqueta, $id_entidad)
     {
-        // Recorremos la cadena $calculo para sacar y calcular las variables
-        // Almacenamos el resultado en $formula
-        $es_variable = false;
-        $formula = "";
-        $calculo = str_split($indicador->calculo);
-        foreach ($calculo as $elemento)
-        {
-            if ($elemento == "[")
-            {
-                $variable = "";
-                $es_variable = true;
-                continue;
-            }
-            if ($elemento == "]")
-            {
-                if (is_numeric($variable))
-                {
-                    $id_operando = (int) $variable;
-                    $operando = new Indicador();
-                    $operando->Load("id=$id_operando");
-                    $valores = $this->indicador_valores_medicion($operando, $etiqueta);
-                    $valor_total = $this->calcular_total($operando, $valores);
-                    $formula .= "$valor_total";
-                }
-                $es_variable = false;
-                continue;
-            }
-            if ($es_variable)
-            {
-                $variable .= $elemento;
-            }
-            else
-            {
-                $formula .= $elemento;
-            }
-        }
-        // Calcula el resultado de la formula y guarda el valor final 
-        eval("\$valor_final = $formula;");
-
-        //Grabamos el valor
-        $valor = new Valor();
+        //En este caso comprobaremos primero que el Indicador/Dato calculado se 
+        //mida para la entidad en la que hemos introducido valores en sus 
+        //Indicadores/Datos influyentes
         $medicion = new Medicion();
         $medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'");
-        $valor->load("id_medicion=$medicion->id");
-        $valor->valor = $valor_final;
-        $valor->Save();
+        $valor = new Valor();
+        //Si se mide entonces calculamos
+        if ($valor->load("id_medicion=$medicion->id AND id_entidad=$id_entidad"))
+        {
+            // Recorremos la cadena $calculo para sacar y calcular las variables
+            // Almacenamos el resultado en $formula
+            $es_variable = false;
+            $formula = "";
+            $calculo = str_split($indicador->calculo);
+            foreach ($calculo as $elemento)
+            {
+                if ($elemento == "[")
+                {
+                    $variable = "";
+                    $es_variable = true;
+                    continue;
+                }
+                if ($elemento == "]")
+                {
+                    if (is_numeric($variable))
+                    {
+                        $id_operando = (int) $variable;
+                        $operando = new Indicador();
+                        $operando->Load("id=$id_operando");
+                        //Recuperar el valor para la entidad
+                        $valores = $this->indicador_valores_medicion($operando, $etiqueta);
+                        foreach ($valores as $val)
+                        {
+                            if ($val->id_entidad == $id_entidad)
+                            {
+                                $valor_total = $val->valor;
+                            }
+                        }
+                        $formula .= "$valor_total";
+                    }
+                    $es_variable = false;
+                    continue;
+                }
+                if ($es_variable)
+                {
+                    $variable .= $elemento;
+                }
+                else
+                {
+                    $formula .= $elemento;
+                }
+            }
+            // Calcula el resultado de la formula y guarda el valor final 
+            eval("\$valor_final = $formula;");
+
+            //Grabamos el valor
+            $valor->valor = $valor_final;
+            $valor->Save();
+        }
     }
 
 //---------------------------------------------------------------------------
