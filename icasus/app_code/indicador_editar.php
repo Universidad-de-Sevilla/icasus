@@ -30,7 +30,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     {
         $entidad = new Entidad();
         $entidad->load("id = $indicador->id_entidad");
-        $subunidades = $entidad->Find("id_madre = $indicador->id_entidad ORDER BY nombre");
+        $subunidades = $entidad->Find("id_madre = $indicador->id_entidad ORDER BY etiqueta");
         $smarty->assign('entidad', $entidad);
         $smarty->assign('subunidades', $subunidades);
 

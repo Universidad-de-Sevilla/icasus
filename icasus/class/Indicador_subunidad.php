@@ -83,7 +83,7 @@ class Indicador_subunidad extends ADOdb_Active_Record
                 $indicador_subunidad->entidad = new Entidad();
                 $indicador_subunidad->entidad->load("id = $indicador_subunidad->id_entidad");
             }
-            usort($indicadores_subunidades, array($this, 'ordenarPorNombre'));
+            usort($indicadores_subunidades, array($this, 'ordenarPorEtiqueta'));
             return $indicadores_subunidades;
         }
         else
@@ -100,11 +100,11 @@ class Indicador_subunidad extends ADOdb_Active_Record
         return $texto;
     }
 
-    //Ordena las subunidades de un Indicador/Dato por su nombre
-    private function ordenarPorNombre($a, $b)
+    //Ordena las subunidades de un Indicador/Dato por su etiqueta
+    private function ordenarPorEtiqueta($a, $b)
     {
-        $cadena1 = $this->quitar_tildes($a->entidad->nombre);
-        $cadena2 = $this->quitar_tildes($b->entidad->nombre);
+        $cadena1 = $this->quitar_tildes($a->entidad->etiqueta);
+        $cadena2 = $this->quitar_tildes($b->entidad->etiqueta);
         return strcasecmp($cadena1, $cadena2);
     }
 

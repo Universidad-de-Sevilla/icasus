@@ -1,9 +1,10 @@
 <?php
 
-define('IC_VERSION', "2.23.0");
-define('IC_FECHA_REVISION', "07/07/2015");
+define('IC_VERSION', "2.23.1");
+define('IC_FECHA_REVISION', "08/07/2015");
 
-// 2.23.0 - 07/07/2015 - Calculo totalmente automático para Indicadores/Datos calculados que se miden de forma distribuida.
+// 2.23.1 - 08/07/2015 - Unidades con nombres de etiquetas en las fichas y en los formularios de crear/editar Indicadores/Datos.
+// 2.23.0 - 08/07/2015 - Calculo totalmente automático para Indicadores/Datos calculados que se miden de forma distribuida.
 // 2.22.0 - 07/07/2015 - Calculo totalmente automático para Indicadores/Datos calculados que se miden de forma centralizada.
 // 2.21.1 - 01/07/2015 - Añadido placeholder explicativo para el caso de los Indicadores/Datos calculados.
 // 2.21.0 - 01/07/2015 - Se añade una fila al final de la tabla de valores de una medicion que indica el total calculado de la misma en mediciones no centralizadas.

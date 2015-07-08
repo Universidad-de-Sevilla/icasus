@@ -221,7 +221,7 @@
                                {foreach $indicador_subunidades as $indicador_subunidad}
                                    {if $indicador_subunidad->id_entidad == $entidad->id} checked{/if}
                                {/foreach}
-                               /> {$entidad->nombre}<hr />
+                               /> {$entidad->etiqueta}<hr />
                     </div>
                     <div id="div_subunidades" class="column clearfix" style="display:{if $dato->desagregado == 0}none{else}block{/if}">
                         <div class="col_50">
@@ -231,7 +231,7 @@
                                        {foreach $indicador_subunidades as $indicador_subunidad}
                                            {if $indicador_subunidad->id_entidad == $subunidad->id} checked{/if}
                                        {/foreach}
-                                       /> {$subunidad->nombre}<br />
+                                       /> {$subunidad->etiqueta}<br />
                             {/foreach}
                         </div>
                     </div>

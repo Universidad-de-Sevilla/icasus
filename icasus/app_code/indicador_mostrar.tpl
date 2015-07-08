@@ -375,7 +375,7 @@
                             {if $indicador_subunidades}
                                 <ul>
                                     {foreach $indicador_subunidades as $indicador_subunidad}
-                                        <li><a href="index.php?page=entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->nombre}</a></li>
+                                        <li><a href="index.php?page=entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->etiqueta}</a></li>
                                         {/foreach}
                                 </ul>
                             {else}

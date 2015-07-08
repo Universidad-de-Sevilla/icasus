@@ -208,13 +208,13 @@
             <fieldset class="label_side">
                 <div>
                     <div id="div_unidad" style="display:none">
-                        <input type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad" /> {$entidad->nombre}<hr />
+                        <input type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad" /> {$entidad->etiqueta}<hr />
                     </div>
                     <div id="div_subunidades" class="column clearfix" style="display:none">
                         <div class="col_50">
                             {foreach name="subunidad" from=$subunidades item="subunidad"}
                                 {if $smarty.foreach.subunidad.iteration == $subunidades|@count/2+1}</div><div class="col_50">{/if}
-                                <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad"/> {$subunidad->nombre}<br />
+                                <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad"/> {$subunidad->etiqueta}<br />
                             {/foreach}
                         </div>
                     </div>

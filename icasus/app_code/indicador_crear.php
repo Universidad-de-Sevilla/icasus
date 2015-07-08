@@ -18,7 +18,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign("entidad", $entidad);
-    $subunidades = $entidad->Find("id_madre = $id_entidad ORDER BY nombre");
+    $subunidades = $entidad->Find("id_madre = $id_entidad ORDER BY etiqueta");
     $smarty->assign('subunidades', $subunidades);
 
     $usuario_entidad = new Usuario_entidad;

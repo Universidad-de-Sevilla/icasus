@@ -253,7 +253,7 @@
                         <input type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad"
                                {foreach $indicador_subunidades as $indicador_subunidad}
                                    {if $indicador_subunidad->id_entidad == $entidad->id} checked{/if}
-                               {/foreach}/> {$entidad->nombre}
+                               {/foreach}/> {$entidad->etiqueta}
                         <hr/>
                     </div>
                     <div id="div_subunidades" class="column clearfix" style="display:{if $indicador->desagregado == 0}none{else}block{/if}">
@@ -263,7 +263,7 @@
                                 <input type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad"
                                        {foreach $indicador_subunidades as $indicador_subunidad}
                                            {if $indicador_subunidad->id_entidad == $subunidad->id} checked{/if}
-                                       {/foreach}/> {$subunidad->nombre}<br/>
+                                       {/foreach}/> {$subunidad->etiqueta}<br/>
                             {/foreach}
                         </div>
                     </div>
