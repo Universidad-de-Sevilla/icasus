@@ -38,7 +38,7 @@
             <div class="block alturo">
                 <div class="titulo-panel">
                     <strong>{$panel->nombre}</strong>
-                    {if $panel->tipo->id != 5 && $panel->tipo->id != 6 && $panel->tipo->id != 7}
+                    {if $panel->tipo->id != 1 && $panel->tipo->id != 5 && $panel->tipo->id != 6 && $panel->tipo->id != 7}
                         &nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR} 
                     {/if}
                     {if $_usuario->id eq $cuadro->id_usuario}

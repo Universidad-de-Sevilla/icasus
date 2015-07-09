@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.23.2");
-define('IC_FECHA_REVISION', "08/07/2015");
+define('IC_VERSION', "2.23.3");
+define('IC_FECHA_REVISION', "09/07/2015");
 
+// 2.23.3 - 09/07/2015 - Corregido fallo: ya no se muestra el texto de aumentar gráfico en paneles métrica ya que no lo son.
 // 2.23.2 - 08/07/2015 - La edición de las fechas de grabación de Indicadores/Datos sólo es editable por los responsables de Unidad.
 // 2.23.1 - 08/07/2015 - Unidades con nombres de etiquetas en las fichas y en los formularios de crear/editar Indicadores/Datos.
 // 2.23.0 - 08/07/2015 - Calculo totalmente automático para Indicadores/Datos calculados que se miden de forma distribuida.
