@@ -127,19 +127,19 @@ if ($modulo == 'grabaretiqueta')
     {
         $medicion->etiqueta = $valor;
     }
-    elseif ($contenedor == 'pi')
+    else if ($contenedor == 'pi')
     {
         $medicion->periodo_inicio = $valor;
     }
-    elseif ($contenedor == 'pf')
+    else if ($contenedor == 'pf')
     {
         $medicion->periodo_fin = $valor;
     }
-    elseif ($contenedor == 'gi')
+    else if ($contenedor == 'gi')
     {
         $medicion->grabacion_inicio = $valor;
     }
-    elseif ($contenedor == 'gf')
+    else if ($contenedor == 'gf')
     {
         $medicion->grabacion_fin = $valor;
     }
@@ -158,19 +158,19 @@ if ($modulo == 'grabarobservaciones')
     {
         $medicion->observaciones = $valor;
     }
-    elseif ($contenedor == 'pi')
+    else if ($contenedor == 'pi')
     {
         $medicion->periodo_inicio = $valor;
     }
-    elseif ($contenedor == 'pf')
+    else if ($contenedor == 'pf')
     {
         $medicion->periodo_fin = $valor;
     }
-    elseif ($contenedor == 'gi')
+    else if ($contenedor == 'gi')
     {
         $medicion->grabacion_inicio = $valor;
     }
-    elseif ($contenedor == 'gf')
+    else if ($contenedor == 'gf')
     {
         $medicion->grabacion_fin = $valor;
     }

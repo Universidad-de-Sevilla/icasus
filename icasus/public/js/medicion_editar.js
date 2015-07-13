@@ -11,6 +11,10 @@
 valor_min = $("#valors").data("valor_min");
 valor_max = $("#valors").data("valor_max");
 
+//Fechas de inicio y fin de grabación
+grabacion_inicio = $("#gi").data("grabacion_inicio");
+grabacion_fin = $("#gf").data("grabacion_fin");
+
 //Diaĺogo de confirmación para el botón de borrar medición
 $('a.confirmar').click(function (event)
 {
@@ -129,95 +133,105 @@ function fila_editar(medicion, id_valor)
 function fila_grabar(id_valor, medicion)
 {
     var value = $('[name=v_' + id_valor + ']').val();
+    var fecha_actual = new Date();
+    var fecha_inicio = new Date(grabacion_inicio);
+    var fecha_fin = new Date(grabacion_fin);
     value = value.replace(',', '.');
-    if (value !== '')
-    {
-        if (isNaN(value) === false)
+
+    //Comprobamos que estemos dentro del periodo de grabación
+    if ((fecha_actual >= fecha_inicio) && (fecha_actual <= fecha_fin)) {
+        if (value !== '')
         {
-            //Si hay un intervalo [min,max]
-            if ($.isNumeric(valor_min) && $.isNumeric(valor_max)) {
-                if (value < valor_min || value > valor_max) {
-                    alert('Debe insertar un valor que esté dentro del intervalo de valores [' + valor_min + ', ' + valor_max + '] aceptados por el Indicador/Dato');
-                }
-                else {
-                    $.ajax({
-                        type: "POST",
-                        url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
-                        data: {"id_valor": id_valor, "valor": value},
-                        success: function (response) {
-                            $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                            location.reload();
-                        }
-                    });
-                }
-            }
-            //Si hay un valor mínimo
-            else if ($.isNumeric(valor_min) && !$.isNumeric(valor_max)) {
-                if (value < valor_min) {
-                    alert('Debe insertar un valor que sea igual o mayor que el valor mínimo (' + valor_min + ') aceptado por el Indicador/Dato');
-                }
-                else {
-                    $.ajax({
-                        type: "POST",
-                        url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
-                        data: {"id_valor": id_valor, "valor": value},
-                        success: function (response) {
-                            $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                            location.reload();
-                        }
-                    });
-                }
-            }
-            //Si hay un valor máximo
-            else if ($.isNumeric(valor_max) && !$.isNumeric(valor_min)) {
-                if (value > valor_max) {
-                    alert('Debe insertar un valor que sea igual o menor que el valor máximo (' + valor_max + ') aceptado por el Indicador/Dato');
-                }
-                else {
-                    $.ajax({
-                        type: "POST",
-                        url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
-                        data: {"id_valor": id_valor, "valor": value},
-                        success: function (response) {
-                            $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                            location.reload();
-                        }
-                    });
-                }
-            }
-            //Si no hay definida ninguna restricción en cuanto a los valores 
-            else {
-                $.ajax({
-                    type: "POST",
-                    url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
-                    data: {"id_valor": id_valor, "valor": value},
-                    success: function (response) {
-                        $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                        location.reload();
+            if (isNaN(value) === false)
+            {
+                //Si hay un intervalo [min,max]
+                if ($.isNumeric(valor_min) && $.isNumeric(valor_max)) {
+                    if (value < valor_min || value > valor_max) {
+                        alert('Debe insertar un valor que esté dentro del intervalo de valores [' + valor_min + ', ' + valor_max + '] aceptados por el Indicador/Dato');
                     }
+                    else {
+                        $.ajax({
+                            type: "POST",
+                            url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                            data: {"id_valor": id_valor, "valor": value},
+                            success: function (response) {
+                                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+                //Si hay un valor mínimo
+                else if ($.isNumeric(valor_min) && !$.isNumeric(valor_max)) {
+                    if (value < valor_min) {
+                        alert('Debe insertar un valor que sea igual o mayor que el valor mínimo (' + valor_min + ') aceptado por el Indicador/Dato');
+                    }
+                    else {
+                        $.ajax({
+                            type: "POST",
+                            url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                            data: {"id_valor": id_valor, "valor": value},
+                            success: function (response) {
+                                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+                //Si hay un valor máximo
+                else if ($.isNumeric(valor_max) && !$.isNumeric(valor_min)) {
+                    if (value > valor_max) {
+                        alert('Debe insertar un valor que sea igual o menor que el valor máximo (' + valor_max + ') aceptado por el Indicador/Dato');
+                    }
+                    else {
+                        $.ajax({
+                            type: "POST",
+                            url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                            data: {"id_valor": id_valor, "valor": value},
+                            success: function (response) {
+                                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+                //Si no hay definida ninguna restricción en cuanto a los valores 
+                else {
+                    $.ajax({
+                        type: "POST",
+                        url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                        data: {"id_valor": id_valor, "valor": value},
+                        success: function (response) {
+                            $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                            location.reload();
+                        }
+                    });
+                }
+                /*
+                 * $.post("index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",{id_valor:id_valor, valor:value},function(){
+                 $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion="+medicion);
+                 });
+                 */
+            }
+            else if (value === "---")
+            {
+                $.post("index.php?page=medicion_editar_ajax&modulo=anularvalor&ajax=true", {id_valor: id_valor}, function () {
+                    $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                    location.reload();
                 });
             }
-            /*
-             * $.post("index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",{id_valor:id_valor, valor:value},function(){
-             $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion="+medicion);
-             });
-             */
-        }
-        else if (value === "---")
-        {
-            $.post("index.php?page=medicion_editar_ajax&modulo=anularvalor&ajax=true", {id_valor: id_valor}, function () {
-                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                location.reload();
-            });
+            else
+            {
+                alert('Está intentando introducir un dato que no es reconocido como número.');
+            }
         }
         else
         {
-            alert('Está intentando introducir un dato que no es reconocido como número.');
+            alert('Está intentando introducir un valor vacio.\nPuede restituir el valor anterior pulsando el icono "X" (cancelar). \nPuede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---)');
         }
     }
-    else
-    {
-        alert('Está intentando introducir un valor vacio.\nPuede restituir el valor anterior pulsando el icono "X" (cancelar). \nPuede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---)');
+    else {
+        alert('No se pueden grabar valores, esta fuera del periodo de grabación (' + fecha_inicio.toLocaleDateString() + ' al ' + fecha_fin.toLocaleDateString() + ').');
     }
 }
 
@@ -278,6 +292,7 @@ function fecha_grabar(medicion, content)
     $.post("index.php?page=medicion_editar_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
         $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
     });
+    $('#valors').load(location.reload());
 }
 
 function fecha_cancelar(content, medicion)

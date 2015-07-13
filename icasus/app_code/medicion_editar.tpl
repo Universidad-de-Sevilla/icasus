@@ -165,7 +165,7 @@
                     <label>{$smarty.const.FIELD_INICIO_GRABACION}</label>
                     {if $permiso_unidad == true && !$indicador->calculo}
                         <div>
-                            <span id="gi">
+                            <span id="gi" data-grabacion_inicio="{$medicion->grabacion_inicio}">
                                 <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">{if $medicion->grabacion_inicio}{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}{else}---{/if}</a>
                             </span>
                         </div>
@@ -177,7 +177,7 @@
                     <label>{$smarty.const.FIELD_FIN_GRABACION}</label>
                     {if $permiso_unidad == true && !$indicador->calculo}
                         <div>
-                            <span id="gf">
+                            <span id="gf" data-grabacion_fin="{$medicion->grabacion_fin}">
                                 <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">{if $medicion->grabacion_fin}{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}{else}---{/if}</a>
                             </span>
                         </div>
