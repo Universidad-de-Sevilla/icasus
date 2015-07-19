@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.24.0");
-define('IC_FECHA_REVISION', "13/07/2015");
+define('IC_VERSION', "2.24.1");
+define('IC_FECHA_REVISION', "19/07/2015");
 
+// 2.24.1 - 19/07/2015 - Se han cambiado la fecha de fin de grabación por defecto cuando se generan las mediciones de Indicadores/Datos. 
 // 2.24.0 - 13/07/2015 - Se controla que sólo se puedan grabar valores en una medición dentro de su plazo de grabación.
 // 2.23.3 - 09/07/2015 - Corregido fallo: ya no se muestra el texto de aumentar gráfico en paneles métrica ya que no lo son.
 // 2.23.2 - 08/07/2015 - La edición de las fechas de grabación de Indicadores/Datos sólo es editable por los responsables de Unidad.

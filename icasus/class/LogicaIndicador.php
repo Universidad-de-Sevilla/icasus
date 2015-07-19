@@ -104,11 +104,12 @@ class LogicaIndicador implements ILogicaIndicador
         {
             $periodo_inicio = $anyo . '-01-01';
             $periodo_fin = $anyo + 2 . '-12-31';
+            $grabacion_fin = $anyo + 3 . '-04-30';
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio;
             $medicion->periodo_fin = $periodo_fin;
             $medicion->grabacion_inicio = $periodo_inicio;
-            $medicion->grabacion_fin = $periodo_fin;
+            $medicion->grabacion_fin = $grabacion_fin;
             $medicion->etiqueta = $etiqueta;
             $medicion->observaciones = '';
             $medicion->save();
@@ -170,11 +171,12 @@ class LogicaIndicador implements ILogicaIndicador
         {
             $periodo_inicio = $anyo . '-01-01';
             $periodo_fin = $anyo . '-12-31';
+            $grabacion_fin = $anyo + 1 . '-04-30';
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio;
             $medicion->periodo_fin = $periodo_fin;
             $medicion->grabacion_inicio = $periodo_inicio;
-            $medicion->grabacion_fin = $periodo_fin;
+            $medicion->grabacion_fin = $grabacion_fin;
             $medicion->etiqueta = $etiqueta;
             $medicion->observaciones = '';
             $medicion->save();
@@ -213,11 +215,19 @@ class LogicaIndicador implements ILogicaIndicador
         {
             $periodo_inicio = array($anyo . '-01-01', $anyo . '-07-01');
             $periodo_fin = array($anyo . '-06-30', $anyo . '-12-31');
+            if (Util::esBisiesto($anyo + 1))
+            {
+                $grabacion_fin = array($anyo . '-08-31', $anyo + 1 . '-02-29');
+            }
+            else
+            {
+                $grabacion_fin = array($anyo . '-08-31', $anyo + 1 . '-02-28');
+            }
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio[$indice - 1];
             $medicion->periodo_fin = $periodo_fin[$indice - 1];
             $medicion->grabacion_inicio = $periodo_inicio[$indice - 1];
-            $medicion->grabacion_fin = $periodo_fin[$indice - 1];
+            $medicion->grabacion_fin = $grabacion_fin[$indice - 1];
             $medicion->etiqueta = $etiqueta;
             $medicion->observaciones = '';
             $medicion->save();
@@ -256,11 +266,19 @@ class LogicaIndicador implements ILogicaIndicador
         {
             $periodo_inicio = array($anyo . '-01-01', $anyo . '-05-01', $anyo . '-09-01');
             $periodo_fin = array($anyo . '-04-30', $anyo . '-08-31', $anyo . '-12-31');
+            if (Util::esBisiesto($anyo + 1))
+            {
+                $grabacion_fin = array($anyo . '-06-30', $anyo . '-10-31', $anyo + 1 . '-02-29');
+            }
+            else
+            {
+                $grabacion_fin = array($anyo . '-06-30', $anyo . '-10-31', $anyo + 1 . '-02-28');
+            }
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio[$indice - 1];
             $medicion->periodo_fin = $periodo_fin[$indice - 1];
             $medicion->grabacion_inicio = $periodo_inicio[$indice - 1];
-            $medicion->grabacion_fin = $periodo_fin[$indice - 1];
+            $medicion->grabacion_fin = $grabacion_fin[$indice - 1];
             $medicion->etiqueta = $etiqueta;
             $medicion->observaciones = '';
             $medicion->save();
@@ -298,12 +316,20 @@ class LogicaIndicador implements ILogicaIndicador
         else
         {
             $periodo_inicio = array($anyo . '-01-01', $anyo . '-04-01', $anyo . '-07-01', $anyo . '-10-01');
-            $periodo_fin = array($anyo . '-03-31', $anyo . '-06-30', $anyo . '-09-30', $anyo . '-12-31', $anyo . '-05-31',);
+            $periodo_fin = array($anyo . '-03-31', $anyo . '-06-30', $anyo . '-09-30', $anyo . '-12-31');
+            if (Util::esBisiesto($anyo + 1))
+            {
+                $grabacion_fin = array($anyo . '-05-31', $anyo . '-08-31', $anyo . '-11-30', $anyo + 1 . '-02-29');
+            }
+            else
+            {
+                $grabacion_fin = array($anyo . '-05-31', $anyo . '-08-31', $anyo . '-11-30', $anyo + 1 . '-02-28');
+            }
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio[$indice - 1];
             $medicion->periodo_fin = $periodo_fin[$indice - 1];
             $medicion->grabacion_inicio = $periodo_inicio[$indice - 1];
-            $medicion->grabacion_fin = $periodo_fin[$indice - 1];
+            $medicion->grabacion_fin = $grabacion_fin[$indice - 1];
             $medicion->etiqueta = $etiqueta;
             $medicion->observaciones = '';
             $medicion->save();
@@ -353,7 +379,7 @@ class LogicaIndicador implements ILogicaIndicador
                 $anyo . '-09-01', $anyo . '-10-01', $anyo . '-11-01',
                 $anyo . '-12-01');
             //Si el año es bisiesto añadimos un día a Febrero
-            if (Util::esBisiesto(Date('Y')))
+            if (Util::esBisiesto($anyo))
             {
                 $periodo_fin = array($anyo . '-01-31', $anyo . '-02-29',
                     $anyo . '-03-31', $anyo . '-04-30',
@@ -361,6 +387,12 @@ class LogicaIndicador implements ILogicaIndicador
                     $anyo . '-07-31', $anyo . '-08-31',
                     $anyo . '-09-30', $anyo . '-10-31',
                     $anyo . '-11-30', $anyo . '-12-31');
+                $grabacion_fin = array($anyo . '-02-29', $anyo . '-03-31',
+                    $anyo . '-04-30', $anyo . '-05-31',
+                    $anyo . '-06-30', $anyo . '-07-31',
+                    $anyo . '-08-31', $anyo . '-09-30',
+                    $anyo . '-10-31', $anyo . '-11-30',
+                    $anyo . '-12-31', $anyo + 1 . '-01-31');
             }
             else
             {
@@ -370,12 +402,18 @@ class LogicaIndicador implements ILogicaIndicador
                     $anyo . '-07-31', $anyo . '-08-31',
                     $anyo . '-09-30', $anyo . '-10-31',
                     $anyo . '-11-30', $anyo . '-12-31');
+                $grabacion_fin = array($anyo . '-02-28', $anyo . '-03-31',
+                    $anyo . '-04-30', $anyo . '-05-31',
+                    $anyo . '-06-30', $anyo . '-07-31',
+                    $anyo . '-08-31', $anyo . '-09-30',
+                    $anyo . '-10-31', $anyo . '-11-30',
+                    $anyo . '-12-31', $anyo + 1 . '-01-31');
             }
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio[$indice - 1];
             $medicion->periodo_fin = $periodo_fin[$indice - 1];
             $medicion->grabacion_inicio = $periodo_inicio[$indice - 1];
-            $medicion->grabacion_fin = $periodo_fin[$indice - 1];
+            $medicion->grabacion_fin = $grabacion_fin[$indice - 1];
             $medicion->etiqueta = $etiqueta;
             $medicion->observaciones = '';
             $medicion->save();
