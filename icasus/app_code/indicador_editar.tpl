@@ -249,7 +249,7 @@
 
             <fieldset class="label_side">
                 <div>
-                    <div id="div_unidad">
+                    <div id="div_unidad" style="display:{if $indicador->desagregado != 0}none{else}block{/if}">
                         <input type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad"
                                {foreach $indicador_subunidades as $indicador_subunidad}
                                    {if $indicador_subunidad->id_entidad == $entidad->id} checked{/if}

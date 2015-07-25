@@ -100,7 +100,7 @@ if (
 
     if ($indicador->save())
     {
-        // Si el indicador es nuevo grabamos subunidades
+        // Si el indicador es nuevo grabamos subunidades (CREACIÓN)
         if (!isset($id_indicador))
         {
             //Si es calculado guardamos los indicadores/datos de los que depende en 
@@ -148,6 +148,38 @@ if (
                     }
                     $indicador_subunidad->save();
                 }
+                //Para el caso de la Mediana añadimos siempre también la Unidad madre
+                if ($indicador->id_tipo_agregacion == 4)
+                {
+                    $indicador_subunidad = new Indicador_subunidad();
+                    $indicador_subunidad->id_indicador = $indicador->id;
+                    $indicador_subunidad->id_entidad = $id_entidad;
+                    switch ($tipo_seleccion_responsable)
+                    {
+                        case 0:
+                            $indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+                            break;
+                        case 1:
+                            $usuario_entidad = new Usuario_entidad();
+                            // Cargamos al responsable de la unidad para echarle el muerto 
+                            // Luego el podrá echárselo a otro
+                            if ($usuario_entidad->load("id_entidad = $subunidad AND id_rol = 1"))
+                            {
+                                $indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;
+                            }
+                            else
+                            {
+                                $indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+                            }
+                            break;
+                        case 2:
+                            $indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+                            break;
+                        default:
+                            $indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+                    }
+                    $indicador_subunidad->save();
+                }
             }
             if (filter_has_var(INPUT_POST, 'criterios_efqm'))
             {
@@ -166,7 +198,8 @@ if (
             //Por último, generamos las mediciones para el Indicador
             $logicaIndicador->generar_mediciones($indicador, "indicador");
         }
-        //El indicador ya existe (edición)
+        //---------------------------------------------------------------------------------
+        //El indicador ya existe (EDICIÓN)
         else
         {
             //Si es calculado guardamos los indicadores/datos de los que depende en 
@@ -235,6 +268,47 @@ if (
                     }
                     $indicador_subunidad->save();
                 }
+                //Para el caso de la Mediana añadimos siempre también la Unidad madre
+                if ($indicador->id_tipo_agregacion == 4)
+                {
+                    $indicador_subunidad = new Indicador_subunidad();
+                    $indicador_subunidad->id_indicador = $id_indicador;
+                    $indicador_subunidad->id_entidad = $id_entidad;
+                    switch ($indicador->desagregado)
+                    {
+                        case 0:
+                            $indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+                            break;
+                        case 1:
+                            $usuario_entidad = new Usuario_entidad();
+                            // Cargamos al responsable de la unidad para echarle el muerto 
+                            // Luego el podrá echárselo a otro
+                            if ($usuario_entidad->load("id_entidad = $subunidad AND id_rol = 1"))
+                            {
+                                $indicador_subunidad->id_usuario = $usuario_entidad->id_usuario;
+                            }
+                            else
+                            {
+                                $indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+                            }
+                            break;
+                        case 2:
+                            $indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+                            break;
+                        default:
+                            $indicador_subunidad->id_usuario = $indicador->id_responsable_medicion;
+                    }
+                    $indicador_subunidad->save();
+                }
+                //Si el indicador es agregado y no usa la mediana para su cálculo borramos la Unidad madre                
+                if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4)
+                {
+                    $indicador_subunidad = new Indicador_subunidad();
+                    while ($indicador_subunidad->load("id_indicador = $id_indicador AND id_entidad=$id_entidad"))
+                    {
+                        $indicador_subunidad->delete();
+                    }
+                }
                 //Si mantenemos la misma periodicidad
                 if ($periodicidad_actual == $indicador->periodicidad)
                 {
@@ -247,7 +321,7 @@ if (
                     }
                     //Actualizamos las Unidades de las mediciones si han 
                     //cambiado en Indicadores Agregados
-                    if ($tipo_agregacion_actual == $indicador->id_tipo_agregacion && $indicador->id_tipo_agregacion != 0)
+                    if ($indicador->id_tipo_agregacion != 0)
                     {
                         $logicaIndicador->actualizar_subunidades($indicador);
                     }

@@ -28,9 +28,10 @@ $(document).ready(function () {
         if (valor === '1' || valor === '2')
         {
             $('#total').css('display', 'block');
-            $('#div_unidad').css('display', 'block');
+            $('#div_unidad').css('display', 'none');
             $('#div_subunidades').css('display', 'block');
             $(".subunidad").attr("checked", "checked");
+            $(".unidad").removeAttr("checked");
         }
         else if (valor === '0')
         {
@@ -54,7 +55,8 @@ $(document).ready(function () {
                 min: 2008,
                 max: anyo
             },
-            tipo_seleccion_responsable: {required: true}
+            tipo_seleccion_responsable: {required: true},
+            'subunidades[]': {required: true}
         },
         ignore: ':hidden',
         messages: {
@@ -67,7 +69,8 @@ $(document).ready(function () {
                 min: 'El Histórico debe ser igual o posterior al año 2008',
                 max: 'El Histórico debe ser igual o anterior al año actual'
             },
-            tipo_seleccion_responsable: 'Seleccionar el tipo de medición'
+            tipo_seleccion_responsable: 'Seleccionar el tipo de medición',
+            'subunidades[]': 'Debe seleccionar al menos una Unidad'
         }
     });
     //Boton previo

@@ -293,59 +293,93 @@
                     </thead>
                     <tbody>
                         {foreach $valores as $valor}
-                            <tr>
-                                <td>{$valor->entidad->etiqueta}</td>
-                                <td>
-                                    {if $permiso_editar && !$indicador->calculo}
-                                        <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
+                            {*El indicador/dato es agregado pero por si se calcula por mediana nos cercioramos de no
+                            listar la Unidad madre en orden, la pondremos al final*}
+                            {if $valor->id_entidad!=$entidad->id && $indicador->id_tipo_agregacion!= 0}
+                                <tr>
+                                    <td>{$valor->entidad->etiqueta}</td>
+                                    <td>
+                                        {if $permiso_editar && !$indicador->calculo}
+                                            <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
+                                                {if $valor->valor == NULL}
+                                                    ---
+                                                {else}
+                                                    {$valor->valor|round:"2"}
+                                                {/if}
+                                            </a>
+                                        {else}
                                             {if $valor->valor == NULL}
                                                 ---
                                             {else}
                                                 {$valor->valor|round:"2"}
                                             {/if}
-                                        </a>
-                                    {else}
-                                        {if $valor->valor == NULL}
-                                            ---
-                                        {else}
-                                            {$valor->valor|round:"2"}
                                         {/if}
-                                    {/if}
-                                </td>
-                                <td style="text-align: center"> 
-                                    {if $valor->valor != NULL AND $indicador->id_tipo_agregacion == 0}
-                                        {if isset($medicion_lim) AND isset($medicion_obj)}
-                                            {if  $valor->valor < $medicion_lim}
-                                                <img src='/icons/ff16/bullet_red.png' />
-                                            {else if $valor->valor >= $medicion_obj}
-                                                <img src='/icons/ff16/bullet_green.png' />
-                                            {else}
-                                                <img src='/icons/ff16/bullet_yellow.png' />
-                                            {/if}
-                                        {else if isset($medicion_obj)}
-                                            {if $valor->valor >= $medicion_obj }
-                                                <img src='/icons/ff16/bullet_green.png' />
-                                            {else}
-                                                <img src='/icons/ff16/bullet_red.png' />
-                                            {/if}
-                                        {else if isset($medicion_lim)}
-                                            {if $valor->valor < $medicion_lim }
-                                                <img src='/icons/ff16/bullet_red.png' />
-                                            {else}
-                                                <img src='/icons/ff16/bullet_green.png' />
-                                            {/if}
-                                        {else}
-                                            ---
-                                        {/if}
-                                    {else}
+                                    </td>
+                                    <td style="text-align: center"> 
                                         ---
-                                    {/if}
-                                </td>
-                                <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
-                                <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
-                            </tr>
+                                    </td>
+                                    <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
+                                    <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
+                                </tr>
+                            {/if}
+                            {*El indicador/dato es no agregado*}
+                            {if $indicador->id_tipo_agregacion== 0}
+                                <tr>
+                                    <td>{$valor->entidad->etiqueta}</td>
+                                    <td>
+                                        {if $permiso_editar && !$indicador->calculo}
+                                            <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
+                                                {if $valor->valor == NULL}
+                                                    ---
+                                                {else}
+                                                    {$valor->valor|round:"2"}
+                                                {/if}
+                                            </a>
+                                        {else}
+                                            {if $valor->valor == NULL}
+                                                ---
+                                            {else}
+                                                {$valor->valor|round:"2"}
+                                            {/if}
+                                        {/if}
+                                    </td>
+                                    <td style="text-align: center"> 
+                                        {if $valor->valor != NULL}
+                                            {if isset($medicion_lim) AND isset($medicion_obj)}
+                                                {if  $valor->valor < $medicion_lim}
+                                                    <img src='/icons/ff16/bullet_red.png' />
+                                                {else if $valor->valor >= $medicion_obj}
+                                                    <img src='/icons/ff16/bullet_green.png' />
+                                                {else}
+                                                    <img src='/icons/ff16/bullet_yellow.png' />
+                                                {/if}
+                                            {else if isset($medicion_obj)}
+                                                {if $valor->valor >= $medicion_obj }
+                                                    <img src='/icons/ff16/bullet_green.png' />
+                                                {else}
+                                                    <img src='/icons/ff16/bullet_red.png' />
+                                                {/if}
+                                            {else if isset($medicion_lim)}
+                                                {if $valor->valor < $medicion_lim }
+                                                    <img src='/icons/ff16/bullet_red.png' />
+                                                {else}
+                                                    <img src='/icons/ff16/bullet_green.png' />
+                                                {/if}
+                                            {else}
+                                                ---
+                                            {/if}
+                                        {else}
+                                            ---
+                                        {/if}
+                                    </td>
+                                    <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
+                                    <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
+                                </tr>
+                            {/if}
                         {/foreach}
-                        {if $indicador->id_tipo_agregacion!= 0}
+                        <!-- TOTALES -->
+                        {*El indicador/dato es agregado y no se calcula por mediana*}
+                        {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
                             <tr style="font-weight: bold">
                                 <td style="border-left:solid 2px #BF2453;border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
                                 <td style="border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453">
@@ -388,6 +422,69 @@
                                 <td style="border-right:solid 2px #BF2453;border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453">---</td>  
                             </tr>
                         {/if}
+                        {*El indicador/dato es agregado y se calcula por mediana*}
+                        {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion== 4}
+                            {foreach $valores as $valor}
+                                {if $valor->id_entidad==$entidad->id}
+                                    <tr style="font-weight: bold">
+                                        <td style="border-left:solid 2px #BF2453;border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
+                                        <td style="border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453">
+                                            {if $permiso_editar && !$indicador->calculo}
+                                                <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
+                                                    {if $valor->valor == NULL}
+                                                        ---
+                                                    {else}
+                                                        {$valor->valor|round:"2"}
+                                                    {/if}
+                                                </a>
+                                            {else}
+                                                {if $valor->valor == NULL}
+                                                    ---
+                                                {else}
+                                                    {$valor->valor|round:"2"}
+                                                {/if}
+                                            {/if}
+                                        </td>
+                                        <td style="text-align: center;border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453"> 
+                                            {if $valor->valor != NULL}
+                                                {if isset($medicion_lim) AND isset($medicion_obj)}
+                                                    {if  $valor->valor < $medicion_lim}
+                                                        <img src='/icons/ff16/bullet_red.png' />
+                                                    {else if $valor->valor >= $medicion_obj}
+                                                        <img src='/icons/ff16/bullet_green.png' />
+                                                    {else}
+                                                        <img src='/icons/ff16/bullet_yellow.png' />
+                                                    {/if}
+                                                {else if isset($medicion_obj)}
+                                                    {if $valor->valor >= $medicion_obj }
+                                                        <img src='/icons/ff16/bullet_green.png' />
+                                                    {else}
+                                                        <img src='/icons/ff16/bullet_red.png' />
+                                                    {/if}
+                                                {else if isset($medicion_lim)}
+                                                    {if $valor->valor < $medicion_lim }
+                                                        <img src='/icons/ff16/bullet_red.png' />
+                                                    {else}
+                                                        <img src='/icons/ff16/bullet_green.png' />
+                                                    {/if}
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            {else}
+                                                ---
+                                            {/if}
+                                        </td>
+                                        <td style="border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453">
+                                            {$valor->fecha_recogida|date_format:"%d-%m-%Y"}
+                                        </td>
+                                        <td style="border-right:solid 2px #BF2453;border-top:solid 2px #BF2453;border-bottom:solid 2px #BF2453">
+                                            {$valor->usuario->nombre} {$valor->usuario->apellidos}
+                                        </td>  
+                                    </tr>
+                                {/if}
+                            {/foreach}
+                        {/if}
+                        <!-- //TOTALES -->
                     </tbody>
                 </table>
             </div>

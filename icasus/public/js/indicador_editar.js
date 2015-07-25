@@ -27,9 +27,10 @@ $(document).ready(function () {
         if (valor === '1' || valor === '2')
         {
             $('#total').css('display', 'block');
-            $('#div_unidad').css('display', 'block');
+            $('#div_unidad').css('display', 'none');
             $('#div_subunidades').css('display', 'block');
             $(".subunidad").attr("checked", "checked");
+            $(".unidad").removeAttr("checked");
         }
         else if (valor === '0')
         {
