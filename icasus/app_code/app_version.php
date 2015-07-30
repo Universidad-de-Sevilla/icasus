@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "2.24.2");
-define('IC_FECHA_REVISION', "27/07/2015");
+define('IC_VERSION', "2.24.3");
+define('IC_FECHA_REVISION', "30/07/2015");
 
+// 2.24.3 - 30/07/2015 - Correcciones en las gráficas y en las mediciones de Indicadores/Datos para calcular y mostrar correctamente el total cuando es una mediana.
 // 2.24.2 - 27/07/2015 - Quitada la Unidad madre del cálculo agregado (no se puede asignar como subunidad en Indicadores/Datos de este tipo) sólo pueden asignarse subunidades. La Unidad madre en Indicadores/Datos agregados sólo aparece en la edición de mediciones para el caso de un cálculo con mediana.
 // 2.24.1 - 19/07/2015 - Se han cambiado la fecha de fin de grabación por defecto cuando se generan las mediciones de Indicadores/Datos. 
 // 2.24.0 - 13/07/2015 - Se controla que sólo se puedan grabar valores en una medición dentro de su plazo de grabación.

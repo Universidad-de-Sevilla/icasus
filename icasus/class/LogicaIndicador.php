@@ -527,7 +527,10 @@ class LogicaIndicador implements ILogicaIndicador
             //Mediana
             case 4:
                 {
-                    return $this->logicaValores->mediana($valores);
+                    //Cálculo real de la mediana de los valores, no utilizado.
+                    //return $this->logicaValores->mediana($valores);
+                    //Recoge la mediana del valor que tenga la Unidad madre
+                    return $this->logicaValores->mediana_manual($indicador, $valores);
                 }
             //No agregados o evolutivos (temporal)
             default:return null;
