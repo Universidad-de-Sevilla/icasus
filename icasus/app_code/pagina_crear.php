@@ -11,16 +11,12 @@
 global $smarty;
 global $plantilla;
 
-//if (isset($_POST['alias']) && isset($_POST['titulo']) && isset($_POST['contenido'])) 
 if (filter_has_var(INPUT_POST, 'alias') && filter_has_var(INPUT_POST, 'titulo') && filter_has_var(INPUT_POST, 'contenido'))
 {
     // Guardamos los datos que vienen del formulario
     $pagina = new Pagina();
-//    $pagina->alias = $pagina->alieniza($_POST['alias']);
     $pagina->alias = $pagina->alieniza(filter_input(INPUT_POST, 'alias'));
-//    $pagina->titulo = $_POST['titulo'];
-    $pagina->titulo = filter_input(INPUT_POST, 'titulo');
-//    $pagina->contenido = $_POST['contenido'];
+    $pagina->titulo = filter_input(INPUT_POST, 'titulo',FILTER_SANITIZE_STRING);
     $pagina->contenido = filter_input(INPUT_POST, 'contenido');
     $pagina->modified = time();
     $pagina->save();

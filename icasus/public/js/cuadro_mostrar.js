@@ -146,23 +146,23 @@ $('.panel_linea').each(function () {
                 });
 
                 //Gráfico de líneas
-                var chart1 = new Highcharts.Chart({
+                pintaGrafico({
                     chart: {
                         renderTo: contenedor,
-                        options3d: {
-                            enabled: true,
-                            depth: 10
-                        }
+                        events: {}
                     },
                     credits: {
                         enabled: false
                     },
                     title: {
-                        text: titulo + ' ' + '(' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
+                        text: titulo,
                         style: {"fontSize": "14px"}
                     },
+                    subtitle: {
+                        text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
+                    },
                     exporting: {
-                        enabled: true
+                        filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
                     },
                     xAxis: {
                         type: 'category'
@@ -207,6 +207,8 @@ $(".panel_barra").each(function () {
     var totales = new Array();
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
+    //Nos indica si es un gráfico de barras
+    var barras = true;
 
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie
@@ -261,6 +263,7 @@ $(".panel_barra").each(function () {
                     dataseries[dataseries.length - 1].visible = true;
                     dataseries[dataseries.length - 1].selected = true;
                 }
+                //Resto de indicadores gráficos de líneas
                 else if (index !== 0) {
                     dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
                     //Ocultamos los últimos años
@@ -276,14 +279,10 @@ $(".panel_barra").each(function () {
                 });
 
                 //Gráfico combinado (barras y líneas)
-                var chart1 = new Highcharts.Chart({
+                pintaGrafico({
                     chart: {
                         renderTo: contenedor,
-                        options3d: {
-                            enabled: true,
-                            alpha: 5,
-                            depth: 80
-                        }
+                        events: {}
                     },
                     credits: {
                         enabled: false
@@ -293,7 +292,7 @@ $(".panel_barra").each(function () {
                         style: {"fontSize": "14px"}
                     },
                     exporting: {
-                        enabled: true
+                        filename: titulo
                     },
                     xAxis: {
                         type: 'category'
@@ -315,13 +314,13 @@ $(".panel_barra").each(function () {
                                 // Pintamos la media al hacer click en él.
                                 legendItemClick: function (event) {
                                     if (this.visible) {
-                                        chart1.yAxis[0].removePlotLine(this.name);
+                                        this.chart.yAxis[0].removePlotLine(this.name);
                                     } else {
-                                        chart1.yAxis[0].addPlotLine({
+                                        this.chart.yAxis[0].addPlotLine({
                                             label: {
                                                 text: '<span title="Total ' + this.name + ': ' + Math.round(totales[this.name] * 100) / 100 + '">Total: <b>'
                                                         + Math.round(totales[this.name] * 100) / 100 + '</b></span>',
-                                                x: -60,
+                                                x: -50,
                                                 y: 10,
                                                 useHTML: true,
                                                 style: {
@@ -343,34 +342,14 @@ $(".panel_barra").each(function () {
                                 formatter: function () {
                                     return this.y ? ((Math.round(this.y * 100)) / 100) : null;
                                 }
-                            },
-                            depth: 20
+                            }
                         }
                     },
                     legend: {
                         width: ancho_leyenda
                     },
                     series: totalDataseries
-                });
-//                 Pinta la media del último grupo de datos (último periodo)
-                chart1.getSelectedSeries().forEach(function (selected) {
-                    chart1.yAxis[0].addPlotLine({
-                        label: {
-                            text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                    + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
-                            x: -60,
-                            y: 10,
-                            useHTML: true,
-                            style: {
-                                color: selected.color
-                            }
-                        },
-                        value: totales[selected.name],
-                        color: selected.color,
-                        width: 2,
-                        id: selected.name
-                    });
-                });
+                }, totales);
             }
         });
     });
@@ -437,13 +416,10 @@ $(".panel_tarta").each(function () {
                 var dataseries = chartSerie.getPieSerie();
 
                 //Gráfico de tarta
-                var chart1 = new Highcharts.Chart({
+                pintaGrafico({
                     chart: {
                         renderTo: contenedor,
-                        options3d: {
-                            enabled: true,
-                            alpha: 45
-                        }
+                        events: {}
                     },
                     credits: {
                         enabled: false
@@ -456,7 +432,7 @@ $(".panel_tarta").each(function () {
                         text: 'Medición: ' + medicion + ' Total: ' + total
                     },
                     exporting: {
-                        enabled: true
+                        filename: titulo + '(Medición: ' + medicion + ')'
                     },
                     xAxis: {
                         type: 'category'
@@ -475,9 +451,6 @@ $(".panel_tarta").each(function () {
                                             + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' : null;
                                 }
                             }
-                        },
-                        pie: {
-                            depth: 25
                         }
                     },
                     tooltip: {
@@ -761,3 +734,78 @@ $(".panel_metrica").each(function () {
         });
     });
 });
+
+//Función que pinta nuestra gráfica
+function pintaGrafico(chartOptions, totales) {
+    $(document).ready(function () {
+        // Añadimos evento al hacer click en el gráfico
+        chartOptions.chart.events.click = function () {
+            hs.htmlExpand(document.getElementById(chartOptions.chart.renderTo), {
+                width: 9999,
+                height: 9999,
+                allowWidthReduction: true
+            }, {
+                chartOptions: chartOptions,
+                totales: totales
+            });
+        };
+        var chart = new Highcharts.Chart(chartOptions);
+        if (totales) {
+            // Pinta la media del último grupo de datos (último periodo)
+            chart.getSelectedSeries().forEach(function (selected) {
+                chart.yAxis[0].addPlotLine({
+                    label: {
+                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
+                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                        x: -50,
+                        y: 10,
+                        useHTML: true,
+                        style: {
+                            color: selected.color
+                        }
+                    },
+                    value: totales[selected.name],
+                    color: selected.color,
+                    width: 2,
+                    id: selected.name
+                });
+            });
+        }
+    });
+}
+
+// Crea un nuevo gráfico con un popup de Highslide
+var i = 0; //Contador de popus
+hs.Expander.prototype.onAfterExpand = function () {
+    if (this.custom.chartOptions) {
+        var chartOptions = this.custom.chartOptions;
+        chartOptions.chart.height = 600;
+        chartOptions.chart.renderTo = $('.highslide-body')[i];
+        chartOptions.chart.events.click = function () {
+        };
+        var hsChart = new Highcharts.Chart(chartOptions);
+        if (this.custom.totales) {
+            var totales = this.custom.totales;
+            // Pinta la media del último grupo de datos (último periodo)
+            hsChart.getSelectedSeries().forEach(function (selected) {
+                hsChart.yAxis[0].addPlotLine({
+                    label: {
+                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
+                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                        x: -50,
+                        y: 10,
+                        useHTML: true,
+                        style: {
+                            color: selected.color
+                        }
+                    },
+                    value: totales[selected.name],
+                    color: selected.color,
+                    width: 2,
+                    id: selected.name
+                });
+            });
+        }
+        i++;
+    }
+};

@@ -1,3 +1,60 @@
+<!-- INDICADORES/DATOS CALCULADOS -->
+{if $indicador->calculo}
+    <div class="box grid_16">
+        <div class="toggle_container">
+            <h2 class="box_head grad_grey_dark" >
+                <img style="float:left" src="theme/danpin/images/icons/small/white/alert_2.png">
+                {$smarty.const.TXT_CALC_AUTO}
+            </h2>
+            <a href="#" class="grabber"></a>
+            <a href="#" class="toggle"></a>
+            <div class="block">
+                <div class="button_bar clearfix">
+                    <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+                        <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
+                    </a>&nbsp;&nbsp;
+                    <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}">
+                        <img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                    </a>&nbsp;&nbsp;
+                    <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
+                    </a>&nbsp;&nbsp;
+                    <a href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <img src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}
+                    </a>&nbsp;&nbsp;
+                    <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>&nbsp;&nbsp;
+                    <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>
+                </div>
+                <div style="margin:10px;">
+                    <p>{$smarty.const.TXT_DEPENDE}</p>
+                    <ul>
+                        {foreach $indicadores_influyentes as $indicador_influyente}
+                            {if $indicador_influyente->id_proceso}
+                                <li> 
+                                    <a href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$entidad->id}' 
+                                       title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$indicador_influyente->nombre}">
+                                        <img src='/icons/ff16/chart_curve.png' /> {$indicador_influyente->nombre}
+                                    </a>
+                                </li>
+                            {else}
+                                <li> 
+                                    <a href='index.php?page=dato_mostrar&id_dato={$indicador_influyente->id}&id_entidad={$entidad->id}' 
+                                       title="{$smarty.const.TXT_DATO_MOSTRAR}: {$indicador_influyente->nombre}">
+                                        <img src='/icons/ff16/chart_bar.png' /> {$indicador_influyente->nombre}
+                                    </a>
+                                </li>
+                            {/if}
+                        {/foreach}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{/if}
+<!-- //INDICADORES/DATOS CALCULADOS -->
+
 <div class="box grid_16">
     <div class="toggle_container">
         <h2 class="box_head grad_grey_dark">{$smarty.const.FIELD_MEDICIONES}</h2>
@@ -5,10 +62,18 @@
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
+                <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+                    <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
+                </a>&nbsp;&nbsp;
                 <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}">
-                    <img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}</a>&nbsp;&nbsp;
+                    <img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                </a>&nbsp;&nbsp;
                 <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
+                    <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
+                </a>&nbsp;&nbsp;  
+                <a href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}
+                </a>&nbsp;&nbsp;
                 <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>&nbsp;&nbsp;
                 <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
@@ -22,12 +87,14 @@
                         <div class="box grid_{$panel_res->ancho}"  style="float:left;">
                             <div class="block">
                                 <div class="titulo-panel">
-                                    <strong>{$panel_res->nombre}</strong>
+                                    <strong>{$panel_res->nombre}</strong>&nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR}
                                 </div>
                                 <div  id="container" 
                                       data-id_indicador="{$indicador->id}" 
                                       data-nombre_indicador="{$indicador->nombre}" 
-                                      data-periodicidad="{$panel_res->periodicidad}">
+                                      data-periodicidad="{$panel_res->periodicidad}"
+                                      data-valor_min="{$indicador->valor_min}" 
+                                      data-valor_max="{$indicador->valor_max}">
                                 </div>
                             </div>
                         </div>
@@ -37,12 +104,14 @@
                             <div class="box grid_{$panel->ancho}" style="float:left;">
                                 <div class="block">
                                     <div class="titulo-panel">
-                                        <strong>{$panel->nombre}</strong>
+                                        <strong>{$panel->nombre}</strong>&nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR}
                                     </div>
                                     <div class="highchart {$panel->tipo->clase_css}" 
                                          id="panel_{$panel->id}" 
                                          data-id_indicador="{$indicador->id}" 
-                                         data-nombre_indicador="{$indicador->nombre}"  
+                                         data-nombre_indicador="{$indicador->nombre}" 
+                                         data-valor_min="{$indicador->valor_min}" 
+                                         data-valor_max="{$indicador->valor_max}" 
                                          data-fecha_inicio="{$panel->fecha_inicio}" 
                                          data-fecha_fin="{$panel->fecha_fin}" 
                                          data-periodicidad="{$panel->periodicidad}">
@@ -77,9 +146,17 @@
             <a href="#" class="toggle"></a> 
             <div class="block">
                 <div class="button_bar clearfix">
-                    <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}</a>&nbsp;&nbsp;
-                    <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-                            src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
+                    <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+                        <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
+                    </a>&nbsp;&nbsp;
+                    <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                    </a>&nbsp;&nbsp;
+                    <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <img src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
+                    </a>&nbsp;&nbsp;
+                    <a href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <img src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}
+                    </a>&nbsp;&nbsp;
                     <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
                             src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>&nbsp;&nbsp;
                     <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>
@@ -118,9 +195,17 @@
         <a href="#" class="toggle"></a>
         <div class="block">
             <div class="button_bar clearfix">
-                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}</a>&nbsp;&nbsp;
+                <a href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+                    <img src='/icons/ff16/time_go.png' /> {$smarty.const.TXT_MED_GENERAR}
+                </a>&nbsp;&nbsp;
+                <a href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}"><img src='/icons/ff16/time_add.png' /> {$smarty.const.TXT_MED_AGREGAR}
+                </a>&nbsp;&nbsp;
                 <a href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img
-                        src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}</a>&nbsp;&nbsp;
+                        src='/icons/ff16/tag_blue_edit.png' /> {$smarty.const.TXT_VAL_EDIT}
+                </a>&nbsp;&nbsp;
+                <a href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <img src='/icons/ff16/user_medicion.png' /> {$smarty.const.FIELD_RESP_MED}
+                </a>&nbsp;&nbsp;
                 <a href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img 
                         src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF}</a>&nbsp;&nbsp;
                 <a href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$smarty.const.TXT_VOLVER} {$tipo}</a>
@@ -146,28 +231,30 @@
                                                 --- 
                                             {else}
                                                 {$medicion->medicion_valor->valor|round:"2"}
-                                                {if isset($medicion_lim[$medicion->id])AND isset($medicion_lim[$medicion->id])}
-                                                    {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
-                                                        <img src='/icons/ff16/bullet_red.png' />
-                                                    {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
-                                                        <img src='/icons/ff16/bullet_green.png' />
-                                                    {else}
-                                                        <img src='/icons/ff16/bullet_yellow.png' />
+                                                {if $indicador->id_tipo_agregacion == 0}
+                                                    {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
+                                                        {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
+                                                            <img src='/icons/ff16/bullet_red.png' />
+                                                        {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
+                                                            <img src='/icons/ff16/bullet_green.png' />
+                                                        {else}
+                                                            <img src='/icons/ff16/bullet_yellow.png' />
+                                                        {/if}
                                                     {/if}
-                                                {else if isset($medicion_obj[$medicion->id])}
-                                                    {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
-                                                        <img src='/icons/ff16/bullet_green.png' />
-                                                    {else}
-                                                        <img src='/icons/ff16/bullet_red.png' />
+                                                    {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
+                                                        {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
+                                                            <img src='/icons/ff16/bullet_green.png' />
+                                                        {else}
+                                                            <img src='/icons/ff16/bullet_red.png' />
+                                                        {/if}
                                                     {/if}
-                                                {else if isset($medicion_lim[$medicion->id])}
-                                                    {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
-                                                        <img src='/icons/ff16/bullet_red.png' />
-                                                    {else}
-                                                        <img src='/icons/ff16/bullet_green.png' />
+                                                    {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
+                                                        {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
+                                                            <img src='/icons/ff16/bullet_red.png' />
+                                                        {else}
+                                                            <img src='/icons/ff16/bullet_green.png' />
+                                                        {/if}
                                                     {/if}
-                                                {else}
-                                                    <img src='/icons/ff16/bullet_green.png' />
                                                 {/if}
                                             {/if}
                                         </td>
@@ -182,9 +269,8 @@
     </div>
 {/if}
 
-<script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/highcharts-3d.js" type="text/javascript"></script>
-<script src="js/exporting.js" type="text/javascript"></script>
-<script src="js/Conjunto.js" type="text/javascript"></script>
-<script src="js/HighchartSerie.js" type="text/javascript"></script>
+<script src="js/highcharts/highcharts.js" type="text/javascript"></script>
+<script src="js/highcharts/exporting.js" type="text/javascript"></script>
+<script src="js/highcharts/Conjunto.js" type="text/javascript"></script>
+<script src="js/highcharts/HighchartSerie.js" type="text/javascript"></script>
 <script src="js/medicion_listar.js" type="text/javascript"></script>

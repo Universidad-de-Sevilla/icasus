@@ -33,7 +33,7 @@
         <li><a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'><img src='/icons/ff16/table.png' /> {$smarty.const.TXT_CUADROS_MANDO}</a></li>
         <li><a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'><img src='/icons/ff16/chart_organisation.png' />{$smarty.const.FIELD_UNIDS}</a></li>
         <li><a title="{$smarty.const.TXT_USERS}" href='index.php?page=usuario_listar'><img src='/icons/ff16/user.png' /> {$smarty.const.TXT_USERS}</a></li>
-        <li><a title="{$smarty.const.TXT_AYUDA}" href='index.php?page=pagina_mostrar&alias=indice'><img src='/icons/ff16/user_comment.png' />{$smarty.const.TXT_AYUDA}</a></li>
+        <li><a title="{$smarty.const.TXT_AYUDA}" href='index.php?page=pagina_mostrar&alias=indice'><img src='/icons/ff16/help.png' />{$smarty.const.TXT_AYUDA}</a></li>
         <li><a title="{$smarty.const.TXT_MIS_NOTAS}" href='index.php?page=nota_mostrar'><img src='/icons/ff16/note_edit.png' /> {$smarty.const.TXT_MIS_NOTAS}</a></li>
     </ul>
 

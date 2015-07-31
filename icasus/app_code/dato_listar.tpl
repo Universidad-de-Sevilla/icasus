@@ -22,28 +22,41 @@
             <table class='display datatable'>
                 <thead>
                     <tr>
+                        <th>{$smarty.const.FIELD_ID}</th>
                         <th>{$smarty.const.FIELD_COD}</th>
                         <th>{$smarty.const.FIELD_NOMBRE}</th>
+                        <th>{$smarty.const.FIELD_HISTORICO}</th>
                         <th>{$smarty.const.FIELD_PERIOD}</th>
                         <th>{$smarty.const.FIELD_RESP}</th>
+                        <th>{$smarty.const.FIELD_RESP_MED}</th>
                         <th>{$smarty.const.FIELD_ACCIONES}</th>
                     </tr>
                 </thead>
                 <tbody>
                     {foreach from=$datos item=dato} 
                         <tr>
+                            <td style="white-space:nowrap">{$dato->id}</td>
                             <td style="white-space:nowrap">{$dato->codigo}</td>
                             <td width="30%">
+                                {if $dato->calculo}
+                                    <img title="{$smarty.const.TXT_CALC_AUTO} {$dato->calculo}" src='/icons/ff16/calculator.png' />
+                                {/if}
                                 <a target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}'
-                                   title="{$smarty.const.TXT_DATO_MOSTRAR} :: {$dato->nombre}">
-                                    <img src='/icons/ff16/chart_bar.png' /> {$dato->nombre}</a>
+                                   title="{$smarty.const.TXT_DATO_MOSTRAR}: {$dato->nombre}">
+                                    {$dato->nombre}</a>
                                 <a href="javascript:void(0)" title='{$dato->descripcion}'>*</a>
                             </td>
+                            <td>{$dato->historicos}</td>
                             <td>{$dato->periodicidad}</td>
                             <td>
-                                <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_datos&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>
-                                    <img src='/icons/ff16/user.png' /> {$dato->responsable->nombre}
+                                <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>
+                                    {$dato->responsable->nombre}
                                     {$dato->responsable->apellidos}</a>
+                            </td>
+                            <td>
+                                <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable_medicion}&id_entidad={$entidad->id}'>
+                                    {$dato->responsable_medicion->nombre}
+                                    {$dato->responsable_medicion->apellidos}</a>
                             </td>
                             <td style="white-space:nowrap">
                                 {if $_control}
@@ -62,7 +75,7 @@
                                     </a>&nbsp;
                                 {/if}
                                 <a href="index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}" 
-                                   title="{$smarty.const.TXT_DATO_MEDICIONES} :: {$dato->nombre}" target="_blank">
+                                   title="{$smarty.const.TXT_DATO_MEDICIONES}: {$dato->nombre}" target="_blank">
                                     <img src="/icons/ff16/time.png" /></a>&nbsp;
                                 <a title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
                                     <img src='/icons/ff16/tag.png' /></a>

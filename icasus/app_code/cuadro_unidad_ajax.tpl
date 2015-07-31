@@ -15,13 +15,15 @@
                             <div class="box grid_{$paneles_indicador[$item->id]->ancho}" >
                                 <div class="block">
                                     <div class="titulo-panel">
-                                        <strong>{$paneles_indicador[$item->id]->nombre}</strong>
+                                        <strong>{$paneles_indicador[$item->id]->nombre}</strong>&nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR}
                                     </div>
                                     <div class="section">
                                         <div class="highchart {$paneles_indicador[$item->id]->tipo->clase_css}" 
                                              id="panel_{$paneles_indicador[$item->id]->id}" 
                                              data-id_indicador="{$item->id}" 
-                                             data-nombre_indicador="{$item->nombre}" 
+                                             data-nombre_indicador="{$item->nombre}"
+                                             data-valor_min="{$item->valor_min}" 
+                                             data-valor_max="{$item->valor_max}" 
                                              data-fecha_inicio="{$paneles_indicador[$item->id]->fecha_inicio}" 
                                              data-fecha_fin="{$paneles_indicador[$item->id]->fecha_fin}" 
                                              data-periodicidad="{$paneles_indicador[$item->id]->periodicidad}">
@@ -88,13 +90,15 @@
                             <div class="box grid_{$paneles_indicador_sup[$item->id]->ancho}">
                                 <div class="block">
                                     <div class="titulo-panel">
-                                        <strong>{$paneles_indicador_sup[$item->id]->nombre}</strong>
+                                        <strong>{$paneles_indicador_sup[$item->id]->nombre}</strong>&nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR}
                                     </div>
                                     <div class="section">
                                         <div class="highchart {$paneles_indicador_sup[$item->id]->tipo->clase_css}" 
                                              id="panel_{$item->id}" 
                                              data-id_indicador="{$item->id}" 
                                              data-nombre_indicador="{$item->nombre}" 
+                                             data-valor_min="{$item->valor_min}" 
+                                             data-valor_max="{$item->valor_max}" 
                                              data-fecha_inicio="{$paneles_indicador_sup[$item->id]->fecha_inicio}" 
                                              data-fecha_fin="{$paneles_indicador_sup[$item->id]->fecha_fin}" 
                                              data-periodicidad="{$paneles_indicador_sup[$item->id]->periodicidad}">
@@ -122,9 +126,8 @@
     {/if}
 {/if}
 
-<script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/highcharts-3d.js" type="text/javascript"></script>
-<script src="js/exporting.js" type="text/javascript"></script>
-<script src="js/Conjunto.js" type="text/javascript"></script>
-<script src="js/HighchartSerie.js" type="text/javascript"></script>
+<script src="js/highcharts/highcharts.js" type="text/javascript"></script>
+<script src="js/highcharts/exporting.js" type="text/javascript"></script>
+<script src="js/highcharts/Conjunto.js" type="text/javascript"></script>
+<script src="js/highcharts/HighchartSerie.js" type="text/javascript"></script>
 <script src="js/indicador_dato_mostrar.js" type="text/javascript"></script>

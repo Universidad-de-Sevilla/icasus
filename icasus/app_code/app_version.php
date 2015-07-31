@@ -1,8 +1,58 @@
 <?php
 
-define('IC_VERSION', "2.14.1");
-define('IC_FECHA_REVISION', "20/04/2015");
+define('IC_VERSION', "2.24.3");
+define('IC_FECHA_REVISION', "30/07/2015");
 
+// 2.24.3 - 30/07/2015 - Correcciones en las gráficas y en las mediciones de Indicadores/Datos para calcular y mostrar correctamente el total cuando es una mediana.
+// 2.24.2 - 27/07/2015 - Quitada la Unidad madre del cálculo agregado (no se puede asignar como subunidad en Indicadores/Datos de este tipo) sólo pueden asignarse subunidades. La Unidad madre en Indicadores/Datos agregados sólo aparece en la edición de mediciones para el caso de un cálculo con mediana.
+// 2.24.1 - 19/07/2015 - Se han cambiado la fecha de fin de grabación por defecto cuando se generan las mediciones de Indicadores/Datos. 
+// 2.24.0 - 13/07/2015 - Se controla que sólo se puedan grabar valores en una medición dentro de su plazo de grabación.
+// 2.23.3 - 09/07/2015 - Corregido fallo: ya no se muestra el texto de aumentar gráfico en paneles métrica ya que no lo son.
+// 2.23.2 - 08/07/2015 - La edición de las fechas de grabación de Indicadores/Datos sólo es editable por los responsables de Unidad.
+// 2.23.1 - 08/07/2015 - Unidades con nombres de etiquetas en las fichas y en los formularios de crear/editar Indicadores/Datos.
+// 2.23.0 - 08/07/2015 - Calculo totalmente automático para Indicadores/Datos calculados que se miden de forma distribuida.
+// 2.22.0 - 07/07/2015 - Calculo totalmente automático para Indicadores/Datos calculados que se miden de forma centralizada.
+// 2.21.1 - 01/07/2015 - Añadido placeholder explicativo para el caso de los Indicadores/Datos calculados.
+// 2.21.0 - 01/07/2015 - Se añade una fila al final de la tabla de valores de una medicion que indica el total calculado de la misma en mediciones no centralizadas.
+// 2.20.1 - 29/06/2015 - Correcciones a Highslide: gráficos se abren en mayor tamaño vertical, los gráficos de barras se pintan con los totales al ampliarse y se pueden abrir varias ventanas.
+// 2.20.0 - 24/06/2015 - Añade popup de los gráficos a pantalla completa al hacer click sobre los mismos usando la librería Highslide. Se deshabilita el 3d de los gráficos pues es un recurso estético y da problemas con Highslide. Ahora también, los gráficos se descargan con su nombre por defecto.
+// 2.19.3 - 24/06/2015 - Traducción del plugin exporting.js de Highcharts al español.
+// 2.19.2 - 23/06/2015 - Correcciones en las páginas de ayuda (ya se pueden editar). Revisión del contenido y añadido de una leyenda para los iconos.
+// 2.19.1 - 23/06/2015 - Muestra ordenados los listados de subunidades en las fichas de Indicadores/Datos. Borrado de ficheros innecesarios.
+// 2.19.0 - 19/06/2015 - Muestra en la ficha de un Indicador/Dato los Indicadores/Datos en cuyo cálculo influye (si los hubiere).
+// 2.18.2 - 18/06/2015 - Se valida que el Histórico de Indicadores/Datos no sea mayor al año actual.
+// 2.18.1 - 18/06/2015 - Correcciones en criterios EFQM (movidos a la lógica de Indicadores), ahora se muestran correctamente y se borran los criterios asociados a un Indicador cuando éste también se elimina.
+// 2.18.0 - 17/06/2015 - Establece valores mínimos y máximos para las mediciones de un Indicador/Dato y si existen dichos valores no se pueden asignar valores fuera de dicho intervalo.
+// 2.17.0 - 11/06/2015 - Se ha añadido un campo para indicar como se calculará el total anual en Indicadores/Datos con periodicidades inferiores al año. 
+// 2.16.0 - 08/06/2015 - Se ha añadido la periodicidad bienal.
+// 2.15.24 - 08/06/2015 - Ahora se eliminan o crean valores para las subunidades en las mediciones de un Indicador/Dato cuando éstas se cambian.
+// 2.15.23 - 05/06/2015 - Cuando cambiamos la Periodicidad de un Indicador/Dato se generan las Mediciones para ese año en función de la nueva Periodicidad establecida.
+// 2.15.22 - 05/06/2015 - Cambios en la interfaz: se visualiza el rol del Usuario cuando estamos trabajando con una Unidad.
+// 2.15.21 - 03/06/2015 - Se corrige fallo de validación del Histórico en los Datos. Se lanza un aviso cuando se cambia la Periodicidad de un Indicador/Dato para que el usuario quede al tanto y ajuste las Mediciones.
+// 2.15.20 - 03/06/2015 - Se corrigen fallos  a la hora de mostrar un color asociado al valor de una medición y sólo se asignan colores para valores no agregados.
+// 2.15.19 - 29/05/2015 - Activa o desactiva las subunidades en las mediciones de un Indicador/Dato cuando se cambian.
+// 2.15.18 - 28/05/2015 - Se valida que el Histórico de los Indicadores/Datos comience en 2008 o después.
+// 2.15.17 - 28/05/2015 - Se valida en la creación/edición de Indicadores/Datos que al menos se vincule una Unidad al Indicador/Dato.
+// 2.15.16 - 27/05/2015 - Muestra el identificador(ID) en las fichas de Indicadores y Datos pues es necesario para el cálculo.
+// 2.15.15 - 27/05/2015 - Cuando se borra un Indicador/Dato se borran también las Unidades vinculadas al mismo.
+// 2.15.14 - 26/05/2015 - Movido a la Lógica de Indicadores/Datos el borrado de mediciones y corregidos errores de código. Además, cuando se borra un Indicador/Dato no se puede si existen otros que dependan de el. Permite borrar calculados siempre y cuando otros Indicadores/Datos no dependan de él.
+// 2.15.13 - 26/05/2015 - Cuando se crea un Indicador/Dato también se generan automáticamente sus mediciones a partir de su Histórico.
+// 2.15.12 - 25/05/2015 - Se han retirado algunos campos de las fichas de Indicadores/Datos y se ha corregido error por el cual no se mostraba el valor de la Unidad Generadora en la edición de Indicadores.
+// 2.15.11 - 25/05/2015 - Añadido el campo Histórico y Responsable de Medición a los listados de Indicadores/Datos (corregido enlace a Usuarios en el listado de Datos).
+// 2.15.10 - 22/05/2015 - Se generan las Mediciones de Indicadores/Datos a partir de su Histórico y hasta el año actual inclusive.
+// 2.15.9 - 21/05/2015 - En Indicadores/Datos calculados además de indicarse que es calculado, se incluye un listado de enlaces a los Indicadores/Datos que influyen en su cálculo.
+// 2.15.8 - 20/05/2015 - Añadido el campo Fuente de Información a la creación/edición de Datos que estaba pendiente. Añadidos placeholders a los campos Fuente de Información y Fuente de Datos en la creación/edición de Indicadores/Datos.
+// 2.15.7 - 20/05/2015 - Se han movido los campos Histórico y Cálculo a la primera pestaña de creación/edición de Indicadores/Datos. Se valida la existencia del Histórico y se añade la validación del responsable en la creación/edición de Datos que estaba pendiente.
+// 2.15.6 - 20/05/2015 - Se ha quitado el campo Indicadores/Datos relacionados no es necesario ya que éstos se ven en el cálculo del Indicador/Dato si lo hubiere.
+// 2.15.5 - 19/05/2015 - La generación de mediciones también genera mediciones para los Indicadores/Datos cuyo cálculo dependa del mismo.
+// 2.15.4 - 07/05/2015 - Al editar el tipo de agregación de un indicador/dato ya se guarda correctamente y se modifican las mediciones (según la periodicidad) creando valores para las subunidades.
+// 2.15.3 - 06/05/2015 - Muestra todos los tipos de agregación de manera correcta en la creación/edición de Indicadores/Datos y requiere un tipo de medición para evitar errores de validación.
+// 2.15.2 - 06/05/2015 - Muestra ordenada y correctamente las periodicidades de Indicadores/Datos tanto en su creación como en su edición.
+// 2.15.1 - 06/05/2015 - Añade la columna identificador en los listados de Indicadores/Datos también indica si son calculados y su fórmula.
+// 2.15.0 - 04/05/2015 - Sustituye la función agregar medición por generar mediciones de manera automática (primera versión: no tiene en cuenta Indicadores/Datos calculados). 
+// 2.14.4 - 30/04/2015 - Se guardan en una tabla las dependencias de aquellos indicadores/datos cuyo cálculo depende de otros. Esto facilitará posteriormente el cálculo automático. 
+// 2.14.3 - 23/04/2015 - Se ocultan las opciones de edición en las mediciones para los indicadores/datos calculados.
+// 2.14.2 - 23/04/2015 - Muestra el aviso de cálculo automático en la cabecera de los indicadores/datos y también en sus mediciones. 
 // 2.14.1 - 20/04/2015 - Corregido: en la edición de mediciones no se actualizaba el título de la página al cambiar la etiqueta de una medición.
 // 2.14.0 - 17/04/2015 - Revisión mejorada de los permisos de la aplicación (incluye superadmin, herencia...).
 // 2.13.29 - 14/04/2015 - Cuadro de mando datos Rebiun mejorado (buscador...).

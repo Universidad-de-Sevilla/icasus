@@ -13,6 +13,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+//Variable para operar con Indicadores/Datos
+$logicaIndicador = new LogicaIndicador();
 
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 $medicion = new Medicion();
@@ -20,6 +22,7 @@ $indicador = new Indicador();
 $valor = new Valor();
 $valor_referencia_medicion = new Valor_referencia_medicion();
 $indicador_subunidad = new Indicador_subunidad();
+$entidad = new Entidad();
 
 //valores que se definen como filas --------------------------------------------
 if ($modulo == 'anularvalor')
@@ -31,6 +34,10 @@ if ($modulo == 'anularvalor')
     $valor->id_usuario = NULL;
     $valor->fecha_recogida = NULL;
     $valor->save();
+
+    //Chequeamos indicadores dependientes para el cálculo automático
+    $medicion->load("id=$valor->id_medicion");
+    $logicaIndicador->actualizar_valor_indicadores_calculados($medicion->id_indicador, $medicion->etiqueta, $valor->id_entidad);
 }
 
 if ($modulo == 'grabarfila')
@@ -38,12 +45,15 @@ if ($modulo == 'grabarfila')
     $valor_parcial = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
     $id_valor = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
     $valor->load("id = $id_valor");
-    //la función calcular calcula y graba el valor final y el parcial en el objeto $valor
-    $valor->calcular($id_valor, $valor_parcial);
     $valor->valor_parcial = $valor_parcial;
+    $valor->valor = $valor_parcial;
     $valor->id_usuario = $usuario->id;
     $valor->fecha_recogida = date("Y-m-d");
     $valor->save();
+
+    //Chequeamos indicadores dependientes para el cálculo automático
+    $medicion->load("id=$valor->id_medicion");
+    $logicaIndicador->actualizar_valor_indicadores_calculados($medicion->id_indicador, $medicion->etiqueta, $valor->id_entidad);
 }
 
 if ($modulo == 'editarfila')
@@ -60,11 +70,21 @@ if ($modulo == 'editarfila')
     $indicador->load("id = $medicion->id_indicador");
     $smarty->assign("indicador", $indicador);
 
+    $entidad->load("id = $indicador->id_entidad");
+    $smarty->assign('entidad', $entidad);
+
     $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
     $smarty->assign("valores", $valores);
 
     $smarty->assign("modulo", "editarfila");
     $plantilla = 'medicion_editar_ajax.tpl';
+
+    //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
+    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+    $smarty->assign("total", $total);
 }
 if ($modulo == 'cancelarfila')
 {
@@ -78,11 +98,21 @@ if ($modulo == 'cancelarfila')
     $indicador->load("id = $medicion->id_indicador");
     $smarty->assign("indicador", $indicador);
 
+    $entidad->load("id = $indicador->id_entidad");
+    $smarty->assign('entidad', $entidad);
+
     $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
     $smarty->assign("valores", $valores);
 
     $smarty->assign("modulo", "cancelarfila");
     $plantilla = 'medicion_editar_ajax.tpl';
+
+    //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
+    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+    $smarty->assign("total", $total);
 }
 //etiquetas y fechas -----------------------------------------------------------
 if ($modulo == 'grabaretiqueta')
@@ -97,19 +127,19 @@ if ($modulo == 'grabaretiqueta')
     {
         $medicion->etiqueta = $valor;
     }
-    elseif ($contenedor == 'pi')
+    else if ($contenedor == 'pi')
     {
         $medicion->periodo_inicio = $valor;
     }
-    elseif ($contenedor == 'pf')
+    else if ($contenedor == 'pf')
     {
         $medicion->periodo_fin = $valor;
     }
-    elseif ($contenedor == 'gi')
+    else if ($contenedor == 'gi')
     {
         $medicion->grabacion_inicio = $valor;
     }
-    elseif ($contenedor == 'gf')
+    else if ($contenedor == 'gf')
     {
         $medicion->grabacion_fin = $valor;
     }
@@ -128,19 +158,19 @@ if ($modulo == 'grabarobservaciones')
     {
         $medicion->observaciones = $valor;
     }
-    elseif ($contenedor == 'pi')
+    else if ($contenedor == 'pi')
     {
         $medicion->periodo_inicio = $valor;
     }
-    elseif ($contenedor == 'pf')
+    else if ($contenedor == 'pf')
     {
         $medicion->periodo_fin = $valor;
     }
-    elseif ($contenedor == 'gi')
+    else if ($contenedor == 'gi')
     {
         $medicion->grabacion_inicio = $valor;
     }
-    elseif ($contenedor == 'gf')
+    else if ($contenedor == 'gf')
     {
         $medicion->grabacion_fin = $valor;
     }

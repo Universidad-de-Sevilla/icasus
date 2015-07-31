@@ -18,7 +18,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign("entidad", $entidad);
-    $subunidades = $entidad->Find("id_madre = $id_entidad");
+    $subunidades = $entidad->Find("id_madre = $id_entidad ORDER BY etiqueta");
     $smarty->assign('subunidades', $subunidades);
 
     $usuario_entidad = new Usuario_entidad;
@@ -28,6 +28,10 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $visibilidad = new Visibilidad;
     $visibilidades = $visibilidad->Find("1=1");
     $smarty->assign("visibilidades", $visibilidades);
+
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipos_agregacion = $tipo_agregacion->Find("true ORDER BY id");
+    $smarty->assign("tipos_agregacion", $tipos_agregacion);
 
     $smarty->assign("_nombre_pagina", TXT_DATO_NUEVO . " - " . $entidad->nombre);
     $plantilla = "dato_crear.tpl";
