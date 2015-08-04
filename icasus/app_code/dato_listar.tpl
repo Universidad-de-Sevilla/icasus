@@ -49,12 +49,12 @@
                             <td>{$dato->historicos}</td>
                             <td>{$dato->periodicidad}</td>
                             <td>
-                                <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>
+                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>
                                     {$dato->responsable->nombre}
                                     {$dato->responsable->apellidos}</a>
                             </td>
                             <td>
-                                <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable_medicion}&id_entidad={$entidad->id}'>
+                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable_medicion}&id_entidad={$entidad->id}'>
                                     {$dato->responsable_medicion->nombre}
                                     {$dato->responsable_medicion->apellidos}</a>
                             </td>

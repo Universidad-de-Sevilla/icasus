@@ -3,7 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: lang_es.php
-// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
+// Desarrolladores:Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+//  Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 /* Este fichero contiene constantes para todos los textos de la aplicación Icasus en español:
  * Clasificación:
@@ -17,12 +18,10 @@
 //TEXTOS: TXT_[Nombre]
 //---------------------------------------------------------------------------------
 
-define('TXT_ICASUS', 'ICASUS');
-define('TXT_BIENVENIDO', 'Bienvenido a Icasus');
-define('TXT_UNIVERSIDAD', 'Universidad de Sevilla');
+define('TXT_ICASUS', 'Icasus');
+define('TXT_APP_DESCRIPCION', 'Indicadores de Calidad de los Servicios de la Universidad de Sevilla');
 define('TXT_DEPARTAMENTOS', 'Departamentos');
 define('TXT_BIBLIOTECAS', 'Bibliotecas');
-define('TXT_FOOTER', 'ICASUS - APLICACIÓN DE GESTIÓN DE CALIDAD DE LOS SERVICIOS DE LA UNIVERSIDAD DE SEVILLA');
 define('TXT_CONTROL', 'Control');
 define('TXT_OTRO_OFIMATICA', 'Microsoft Office o cualquier otro programa de ofimática.');
 define('TXT_NO_ASIG', 'No asignado');
@@ -175,17 +174,17 @@ define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Fiabilidad tramitación expedientes');
 define('TXT_PRESTAMO_USER', 'Préstamo por Usuario potencial');
 
 //Login
+define('TXT_BIENVENIDO', 'Bienvenido a Icasus');
 define('TXT_LOGIN', 'Iniciar sesión');
 define('TXT_LOGIN_PARTE1', 'es una aplicación web para la gestión de la calidad en la');
 define('TXT_LOGIN_PARTE2', 'Para acceder al sistema es necesario ser miembro activo de alguno de los grupos de calidad de la Universidad de Sevilla y solicitar autorización de acceso al responsable de su grupo de calidad.');
-define('TXT_LOGIN_PARTE3', 'Icasus ha sido desarrollado por el');
+define('TXT_LOGIN_PARTE3', 'ha sido desarrollado por el');
 define('TXT_LOGIN_PARTE4', 'y puede utilizarse como');
 define('TXT_LOGIN_PARTE5', 'Puede bajar una primera versión del');
-define('TXT_LOGIN_PARTE6', 'en formato PDF. Revisión disponible: 26 mayo 2010');
+define('TXT_LOGIN_PARTE6', 'en formato .PDF (revisión disponible: 26 mayo 2010).');
 define('TXT_AREA_REC_HUM', 'Área de Recursos Humanos de la Universidad de Sevilla');
 define('TXT_SOFT_LIBRE', 'Software Libre');
 define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
-define('TXT_CERRAR_SESION', 'Cerrar sesión');
 
 //Mediciones
 define('TXT_MED_UNICA', 'Medición única en la Unidad actual');
@@ -212,7 +211,15 @@ define('TXT_INICIO', 'Inicio');
 define('TXT_CUADROS_MANDO', 'Cuadros de Mando');
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
+define('TXT_ENLACES', 'Enlaces externos');
+define('TXT_UNIVERSIDAD', 'Universidad de Sevilla (US)');
+define('TXT_RRHH', 'Recursos Humanos US');
+define('TXT_BIBLIOTECA', 'Biblioteca US (BUS)');
+define('TXT_SECRETARIA', 'Secretaría Virtual US');
+//Menú de Usuario
+define('TXT_USER_PERFIL', 'Perfil de Usuario');
 define('TXT_MIS_NOTAS', 'Mis notas');
+define('TXT_CERRAR_SESION', 'Cerrar sesión');
 //Menú de Unidades
 define('TXT_CUAD_RES', 'Cuadro Resumen');
 
@@ -221,6 +228,7 @@ define('TXT_MOSTRAR', 'Mostrar');
 define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
 
 //Navegación
+define('TXT_MOSTAR_OCULTAR_NAV', 'Mostrar/Ocultar navegación');
 define('TXT_VER', 'Ver');
 define('TXT_SI', 'Si');
 define('TXT_NO', 'No');
@@ -231,7 +239,9 @@ define('TXT_ANT', 'Anterior');
 define('TXT_EDIT', 'Editar');
 define('TXT_BORRAR', 'Borrar');
 define('TXT_DESACT', 'Desactivar');
+define('TXT_CERRAR', 'Cerrar');
 define('TXT_VOLVER', 'Volver al');
+define('TXT_VOLVER_ARRIBA', 'Volver arriba');
 define('TXT_VOLVER_INDICE', 'Volver al índice');
 define('TXT_VOLVER_LIST', 'Volver al listado');
 define('TXT_VOLVER_CUADRO', 'Volver al Cuadro');
@@ -271,7 +281,7 @@ define('TXT_BORRAR_CONFIRM', 'Confirmar borrado');
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CANCEL', 'Cancelar');
 define('TXT_GEN_INFO', 'Generar informe');
-define('TXT_BTN_ENVIAR', 'Enviar');
+define('TXT_BTN_INICIAR_SESION', 'Iniciar Sesión');
 define('TXT_BTN_Aceptar', 'Aceptar');
 define('TXT_BTN_GUARDAR', 'Guardar');
 define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');
@@ -333,7 +343,6 @@ define('TXT_METRICA_DESC', 'Muestra una medición puntual para una unidad y un i
 
 //Usuarios
 define('TXT_USERS_ASIGNAR', 'Asignar Usuarios');
-define('TXT_USER_VER', 'Ver Usuario');
 define('TXT_USERS_DESASIGNAR', 'Desasignar Usuarios marcados');
 define('TXT_USERS_ALTA', 'Alta de Usuarios');
 define('TXT_USERS_BAJA', 'Baja de Usuarios');

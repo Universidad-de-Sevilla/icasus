@@ -41,7 +41,7 @@
                                     </a>
                                 </td>
                                 <td>
-                                    <a title="{$smarty.const.TXT_USER_VER}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
+                                    <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
                                         {$proceso->propietario->nombre}
                                         {$proceso->propietario->apellidos}
                                     </a>

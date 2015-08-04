@@ -52,12 +52,12 @@ src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públi
                             <td>{$indicador->historicos}</td>
                             <td>{$indicador->periodicidad}</td>
                             <td>
-                                <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}&id_entidad={$entidad->id}'>
+                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}&id_entidad={$entidad->id}'>
                                     {$indicador->responsable->nombre} 
                                     {$indicador->responsable->apellidos}</a>
                             </td>
                             <td>
-                                <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}&id_entidad={$entidad->id}'>
+                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}&id_entidad={$entidad->id}'>
                                     {$indicador->responsable_medicion->nombre} 
                                     {$indicador->responsable_medicion->apellidos}</a>
                             </td>
