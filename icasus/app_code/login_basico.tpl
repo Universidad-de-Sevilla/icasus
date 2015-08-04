@@ -34,7 +34,7 @@
                         <div class="form-group">
                             <input class="form-control" placeholder="{$smarty.const.FIELD_CLAVE}" name="clave" id="clave" type="password" value="" required>
                         </div>
-                        <button class="btn btn-success btn-block" type="submit"><i class="fa fa-sign-in fa-fw"></i> {$smarty.const.TXT_BTN_INICIAR_SESION}</button>
+                        <button title="{$smarty.const.TXT_LOGIN}" class="btn btn-success btn-block" type="submit"><i class="fa fa-sign-in fa-fw"></i> {$smarty.const.TXT_LOGIN}</button>
                     </fieldset>
                 </form>
             </div>

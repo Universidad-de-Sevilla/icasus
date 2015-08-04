@@ -281,7 +281,6 @@ define('TXT_BORRAR_CONFIRM', 'Confirmar borrado');
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CANCEL', 'Cancelar');
 define('TXT_GEN_INFO', 'Generar informe');
-define('TXT_BTN_INICIAR_SESION', 'Iniciar Sesión');
 define('TXT_BTN_Aceptar', 'Aceptar');
 define('TXT_BTN_GUARDAR', 'Guardar');
 define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');

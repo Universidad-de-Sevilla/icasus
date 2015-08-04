@@ -182,7 +182,7 @@
                                                         </li>
                                                         <li role="presentation">
                                                             <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                                <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}
+                                                                <i class="fa fa-table fa-fw"></i> {$smarty.const.FIELD_DATOS}
                                                             </a>
                                                         </li>
                                                         <li role="presentation">
@@ -218,7 +218,9 @@
                         {/if}
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="page-header">{$_nombre_pagina}</h1>
+                                <h1 class="page-header">
+                                    {$_nombre_pagina}
+                                </h1>
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>

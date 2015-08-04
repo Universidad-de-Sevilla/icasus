@@ -398,6 +398,10 @@ table.dataTable thead .sorting:after {
     background-size: cover;
 }
 
+.login-sso{
+    margin-top: 10%;
+}
+
 /*Back to top*/
 #top-link-block.affix-top {
     position: absolute; /* allows it to "slide" up into view */
