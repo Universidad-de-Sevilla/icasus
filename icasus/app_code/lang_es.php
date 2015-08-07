@@ -212,10 +212,10 @@ define('TXT_CUADROS_MANDO', 'Cuadros de Mando');
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
 define('TXT_ENLACES', 'Enlaces externos');
-define('TXT_UNIVERSIDAD', 'Universidad de Sevilla (US)');
-define('TXT_RRHH', 'Recursos Humanos US');
-define('TXT_BIBLIOTECA', 'Biblioteca US (BUS)');
-define('TXT_SECRETARIA', 'Secretaría Virtual US');
+define('TXT_UNIVERSIDAD', 'Universidad de Sevilla');
+define('TXT_RRHH', 'Recursos Humanos');
+define('TXT_BIBLIOTECA', 'Biblioteca');
+define('TXT_SECRETARIA', 'Secretaría Virtual');
 //Menú de Usuario
 define('TXT_USER_PERFIL', 'Perfil de Usuario');
 define('TXT_MIS_NOTAS', 'Mis notas');
@@ -245,6 +245,7 @@ define('TXT_VOLVER_ARRIBA', 'Volver arriba');
 define('TXT_VOLVER_INDICE', 'Volver al índice');
 define('TXT_VOLVER_LIST', 'Volver al listado');
 define('TXT_VOLVER_CUADRO', 'Volver al Cuadro');
+define('TXT_TOGGLED', 'Plegar/desplegar menú lateral');
 
 //Páginas
 define('TXT_PAG', 'Página');
@@ -464,7 +465,7 @@ define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de Indicadores que n
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva Medición. Unidades afectadas: ');
 define('MSG_MEDS_GENERADA', 'Se ha/n generado correctamente la/s Medición/es.');
 define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las Mediciones (si no existen) del Indicador/Dato, desde su origen Histórico y teniendo en cuenta la Periodicidad del mismo. ¿Está seguro?');
-define('MSG_MED_EXISTE', 'Ya existe/n Medicion/es para este año.');
+define('MSG_MED_EXISTE', 'Ya existe/n Medicion/es hasta este año.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La Página se ha creado correctamente.');

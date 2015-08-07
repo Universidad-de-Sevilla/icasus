@@ -45,6 +45,34 @@ $(function () {
     }
 });
 
+//Menu toggle
+$("#menu-toggle").click(function (e) {
+    e.preventDefault();
+    $("#page-wrapper").toggleClass("toggled");
+    $(".sidebar").toggleClass("toggled");
+    $(".fa-stack").toggleClass("fa-lg");
+    $("#links").toggleClass("hidden");
+    $(".texto-menu").toggleClass("hidden");
+});
+
+//Collapsible panels
+jQuery(function ($) {
+    $('.panel-heading i.clickable').on("click", function (e) {
+        if ($(this).hasClass('panel-collapsed')) {
+            // expand the panel
+            $(this).parents('.panel').find('.panel-body').slideDown();
+            $(this).removeClass('panel-collapsed');
+            $(this).removeClass('fa-chevron-down').addClass('fa-chevron-up');
+        }
+        else {
+            // collapse the panel
+            $(this).parents('.panel').find('.panel-body').slideUp();
+            $(this).addClass('panel-collapsed');
+            $(this).removeClass('fa-chevron-up').addClass('fa-chevron-down');
+        }
+    });
+});
+
 // Back to Top
 // Only enable if the document has a long scroll bar
 // Note the window height + offset

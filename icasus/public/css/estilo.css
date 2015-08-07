@@ -46,6 +46,13 @@ hr{
         padding: 0 30px 40px;
         border-left: 1px solid #BF921D;
     }
+
+    #page-wrapper.toggled {
+        position: inherit;
+        margin: 0 0 0 70px;
+        padding: 0 30px 40px;
+        border-left: 1px solid #BF921D;
+    }
 }
 
 .logo{
@@ -55,7 +62,9 @@ hr{
 }
 
 .page-header{
-    border-color: #BF921D;   
+    margin-top: 2%;
+    border-color: #BF921D; 
+    color: #BF2453;
 }
 
 .navbar-default{
@@ -67,7 +76,7 @@ hr{
 }
 
 .navbar-brand{
-    font-size: 38px; 
+    font-size: 46px; 
     color: #BF2453 !important;
     font-weight: bold;
     font-style: italic;
@@ -154,6 +163,13 @@ hr{
         z-index: 1;
         position: absolute;
         width: 250px;
+        margin-top: 51px;
+    }
+
+    .sidebar.toggled {
+        z-index: 1;
+        position: absolute;
+        width: 70px;
         margin-top: 51px;
     }
 
@@ -378,8 +394,16 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 
+.alert {
+    margin-top: 2%;
+}
+
 .panel-login{
     margin-top: 10%;
+}
+
+.panel-unidad{
+    margin-top: 2%;
 }
 
 .footer{
@@ -388,6 +412,10 @@ table.dataTable thead .sorting:after {
     color: #fff;
     padding: 1%;
 }
+
+.clickable {
+    cursor: pointer;
+} 
 
 /*Página de login*/
 .login-page {
@@ -398,7 +426,7 @@ table.dataTable thead .sorting:after {
     background-size: cover;
 }
 
-.login-sso{
+.image-us-login-sso{
     margin-top: 10%;
 }
 
@@ -417,4 +445,8 @@ table.dataTable thead .sorting:after {
     right: 10px; /* padding from the right side of the window */
     color: #BF2453;
     border-color: #BF921D;
+}
+
+#page-wrapper .toggled{
+    margin:0;
 }

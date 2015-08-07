@@ -91,44 +91,48 @@
                     </ul>
                     <!-- /.navbar-top-links -->
 
-                    <div class="navbar-default sidebar" role="navigation" >
+                    <ul class="nav navbar-left">
+                        <a id="menu-toggle" class="btn btn-circle btn-lg hidden-xs hidden-sm" title="{$smarty.const.TXT_TOGGLED}" href="#"><i class="fa fa-bars"></i></a>
+                    </ul>
+
+                    <div class="navbar-default sidebar toggled" role="navigation" >
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
                                 <li>
                                     <a title="{$smarty.const.TXT_INICIO}" href='index.php?page=inicio' accesskey='h'>
-                                        <i class="fa fa-home fa-fw"></i> {$smarty.const.TXT_INICIO}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x"></i></span><span class="texto-menu hidden"> {$smarty.const.TXT_INICIO}</span></a>      
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
-                                        <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span><span class="texto-menu hidden"> {$smarty.const.TXT_CUADROS_MANDO}</span></a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>
-                                        <i class="fa fa-sitemap fa-fw"></i> {$smarty.const.FIELD_UNIDS}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span><span class="texto-menu hidden"> {$smarty.const.FIELD_UNIDS}</span></a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_USERS}" href='index.php?page=usuario_listar'>
-                                        <i class="fa fa-users fa-fw"></i> {$smarty.const.TXT_USERS}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-users fa-stack-1x"></i></span><span class="texto-menu hidden"> {$smarty.const.TXT_USERS}</span></a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_AYUDA}" href='index.php?page=pagina_mostrar&alias=indice'>
-                                        <i class="fa fa-question-circle fa-fw"></i> {$smarty.const.TXT_AYUDA}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-question-circle fa-stack-1x"></i></span><span class="texto-menu hidden"> {$smarty.const.TXT_AYUDA}</span></a>
                                 </li>
-                                <li>
+                                <li id="links" class="hidden">
                                     <a title="{$smarty.const.TXT_ENLACES}" href="#">
-                                        <i class="fa fa-external-link fa-fw"></i> {$smarty.const.TXT_ENLACES}<span class="fa arrow"></span></a>
+                                        <span class="fa-stack"><i class="fa fa-external-link fa-stack-1x"></i></span> {$smarty.const.TXT_ENLACES}<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
-                                            <a title="{$smarty.const.TXT_UNIVERSIDAD}" href='http://www.us.es/' target="_blank"><i class="fa fa-university fa-fw"></i> {$smarty.const.TXT_UNIVERSIDAD}</a>
+                                            <a title="{$smarty.const.TXT_UNIVERSIDAD}" href='http://www.us.es/' target="_blank"><span class="fa-stack"><i class="fa fa-university fa-stack-1x"></i></span> {$smarty.const.TXT_UNIVERSIDAD}</a>
                                         </li>
                                         <li>
-                                            <a title="{$smarty.const.TXT_RRHH}" href='http://recursoshumanos.us.es/' target="_blank"><i class="fa fa-male fa-fw"></i> {$smarty.const.TXT_RRHH}</a>
+                                            <a title="{$smarty.const.TXT_RRHH}" href='http://recursoshumanos.us.es/' target="_blank"><span class="fa-stack"><i class="fa fa-male fa-stack-1x"></i></span> {$smarty.const.TXT_RRHH}</a>
                                         </li>
                                         <li>
-                                            <a title="{$smarty.const.TXT_BIBLIOTECA}" href='http://bib.us.es/' target="_blank"><i class="fa fa-book fa-fw"></i> {$smarty.const.TXT_BIBLIOTECA}</a>
+                                            <a title="{$smarty.const.TXT_BIBLIOTECA}" href='http://bib.us.es/' target="_blank"><span class="fa-stack"><i class="fa fa-book fa-stack-1x"></i></span> {$smarty.const.TXT_BIBLIOTECA}</a>
                                         </li>
                                         <li>
-                                            <a title="{$smarty.const.TXT_SECRETARIA}" href='https://sevius.us.es/' target="_blank"><i class="fa fa-tv fa-fw"></i> {$smarty.const.TXT_SECRETARIA}</a>
+                                            <a title="{$smarty.const.TXT_SECRETARIA}" href='https://sevius.us.es/' target="_blank"><span class="fa-stack"><i class="fa fa-tv fa-stack-1x"></i></span> {$smarty.const.TXT_SECRETARIA}</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-second-level -->
@@ -138,15 +142,16 @@
                         <!-- /.sidebar-collapse -->
                     </div>
                     <!-- /.navbar-default-sidebar -->
+
                 </nav>                          
 
                 <!-- Page Content -->
-                <div id="page-wrapper">
+                <div id="page-wrapper" class="toggled">
                     <div class="container-fluid">
                         {if isset($entidad)}
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="panel panel-red">
+                                    <div class="panel panel-unidad panel-red">
                                         <div class="panel-heading">
                                             <div class="row">
                                                 <div class="col-lg-8">
@@ -155,6 +160,7 @@
                                                 <!-- /.col-lg-8 -->
                                                 <div class="col-lg-4">
                                                     <span class="panel-title" title="{$smarty.const.FIELD_ROL}: {$_rol}"><i class="fa fa-certificate fa-fw"></i> {$_rol}</span>
+                                                    <i class="fa fa-chevron-up pull-right clickable"></i>
                                                 </div>
                                                 <!-- /.col-lg-4 -->
                                             </div>
@@ -167,7 +173,7 @@
                                                     <ul class="nav nav-pills">
                                                         <li role="presentation">
                                                             <a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}' class="btn btn-default">
-                                                                <i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_UNID_FICHA}
+                                                                <i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_UNID_FICHA}
                                                             </a>
                                                         </li>
                                                         <li role="presentation">
@@ -216,15 +222,6 @@
                             </div>
                             <!-- /.row -->
                         {/if}
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h1 class="page-header">
-                                    {$_nombre_pagina}
-                                </h1>
-                            </div>
-                            <!-- /.col-lg-12 -->
-                        </div>
-                        <!-- /.row -->
                         {if isset($smarty.get.error)}
                             <div class="row">
                                 <div class="col-lg-12">
@@ -280,15 +277,11 @@
                                 <!-- /.col-lg-12 -->
                             </div>
                             <!-- /.row -->
-                        {/if}
-                        <div class="row">
-                            <div class="col-lg-12">
-                                {* El cuerpo del template va aqui *}
-                                {include file=$plantilla}
-                            </div>
-                            <!-- /.col-lg-12 -->
-                        </div>
-                        <!-- /.row -->   
+                        {/if}           
+
+                        {* El cuerpo del template va aqui *}
+                        {include file=$plantilla}
+
                     </div>
                     <!-- /.container-fluid -->
                 </div>
@@ -331,14 +324,8 @@
         {else}
             {* Si no hay sesión iniciada *}
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                        {* El cuerpo del template va aqui *}
-                        {include file=$plantilla}
-                    </div>
-                    <!-- /.col-md-8 -->
-                </div>
-                <!-- /.row -->
+                {* El cuerpo del template va aqui *}
+                {include file=$plantilla}
             </div>
             <!-- /.container-fluid -->  
         {/if}

@@ -1,12 +1,3 @@
-<div class="row">
-    <div class="col-lg-12">
-        <h2 class="page-header">
-            <i class="fa fa-home fa-fw"></i> {$_nombre_pagina}
-        </h2>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
 {if $entidades_usuario }
     <div class="box grid_16">
         <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_USER_UNIDS}</h2>
