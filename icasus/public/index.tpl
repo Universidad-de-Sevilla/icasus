@@ -14,6 +14,7 @@
 
         <title>{$_nombre_pagina} - {$smarty.const.TXT_ICASUS}</title>
 
+        <!-- Favicon -->
         <link rel=icon href=favicon.ico sizes="32x32 48x48" type="image/vnd.microsoft.icon">
 
         <!-- Bootstrap Core CSS -->
@@ -22,11 +23,14 @@
         <!-- MetisMenu CSS -->
         <link href="lib/metisMenu.min.css" rel="stylesheet">
 
+        <!-- Datatables -->
+        <link href="lib/dataTables/css/dataTables.bootstrap.css" rel="stylesheet">
+
         <!-- Highslide -->
+        <link rel="stylesheet" type="text/css" href="lib/highslide/highslide.css"/>
         <script type='text/javascript' src="lib/highslide/highslide-full.min.js"></script>
         <script type='text/javascript' src="lib/highslide/highslide.config.js"></script>
-        <link rel="stylesheet" type="text/css" href="lib/highslide/highslide.css"/>
-
+        
         <!-- Custom CSS -->
         <link href="css/estilo.css" rel="stylesheet">
 
@@ -91,10 +95,6 @@
                     </ul>
                     <!-- /.navbar-top-links -->
 
-                    <ul class="nav navbar-left">
-                        <a id="menu-toggle" class="btn btn-circle btn-lg hidden-xs hidden-sm" title="{$smarty.const.TXT_TOGGLED}" href="#"><i class="fa fa-bars"></i></a>
-                    </ul>
-
                     <div class="navbar-default sidebar toggled" role="navigation" >
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
@@ -120,22 +120,25 @@
                                 </li>
                                 <li id="links" class="hidden">
                                     <a title="{$smarty.const.TXT_ENLACES}" href="#">
-                                        <span class="fa-stack"><i class="fa fa-external-link fa-stack-1x"></i></span> {$smarty.const.TXT_ENLACES}<span class="fa arrow"></span></a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-external-link fa-stack-1x"></i></span> {$smarty.const.TXT_ENLACES}<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
-                                            <a title="{$smarty.const.TXT_UNIVERSIDAD}" href='http://www.us.es/' target="_blank"><span class="fa-stack"><i class="fa fa-university fa-stack-1x"></i></span> {$smarty.const.TXT_UNIVERSIDAD}</a>
+                                            <a title="{$smarty.const.TXT_UNIVERSIDAD}" href='http://www.us.es/' target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-university fa-stack-1x"></i></span> {$smarty.const.TXT_UNIVERSIDAD}</a>
                                         </li>
                                         <li>
-                                            <a title="{$smarty.const.TXT_RRHH}" href='http://recursoshumanos.us.es/' target="_blank"><span class="fa-stack"><i class="fa fa-male fa-stack-1x"></i></span> {$smarty.const.TXT_RRHH}</a>
+                                            <a title="{$smarty.const.TXT_RRHH}" href='http://recursoshumanos.us.es/' target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-male fa-stack-1x"></i></span> {$smarty.const.TXT_RRHH}</a>
                                         </li>
                                         <li>
-                                            <a title="{$smarty.const.TXT_BIBLIOTECA}" href='http://bib.us.es/' target="_blank"><span class="fa-stack"><i class="fa fa-book fa-stack-1x"></i></span> {$smarty.const.TXT_BIBLIOTECA}</a>
+                                            <a title="{$smarty.const.TXT_BIBLIOTECA}" href='http://bib.us.es/' target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-book fa-stack-1x"></i></span> {$smarty.const.TXT_BIBLIOTECA}</a>
                                         </li>
                                         <li>
-                                            <a title="{$smarty.const.TXT_SECRETARIA}" href='https://sevius.us.es/' target="_blank"><span class="fa-stack"><i class="fa fa-tv fa-stack-1x"></i></span> {$smarty.const.TXT_SECRETARIA}</a>
+                                            <a title="{$smarty.const.TXT_SECRETARIA}" href='https://sevius.us.es/' target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-tv fa-stack-1x"></i></span> {$smarty.const.TXT_SECRETARIA}</a>
                                         </li>
                                     </ul>
                                     <!-- /.nav-second-level -->
+                                </li>
+                                <li class="hidden-xs hidden-sm">
+                                    <a id="menu-toggle" title="{$smarty.const.TXT_TOGGLED}" href="#"><span class="fa-stack fa-lg"><i id="toggle-icon" class="fa fa-chevron-right fa-stack-1x"></i></span></a>
                                 </li>
                             </ul>
                         </div>
@@ -338,6 +341,10 @@
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="lib/metisMenu/metisMenu.min.js"></script>
+
+        <!-- Datatables -->
+        <script src="lib/dataTables/js/jquery.dataTables.min.js"></script>
+        <script src="lib/dataTables/js/dataTables.bootstrap.js"></script>
 
         <!-- Custom JavaScript -->
         <script src="js/index.js"></script>

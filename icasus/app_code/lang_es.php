@@ -405,7 +405,8 @@ define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 //Cuadros de Mando
 define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el Cuadro de Mando:');
 define('MSG_CUADRO_MANDO_CONFIRM_BORRAR', '¿Desea borrar el Cuadro de Mando?');
-define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún Cuadro de Mando público todavía.');
+define('MSG_CUADRO_MANDO_NO_PROPIO', 'No tiene ningún Cuadro de Mando propio todavía. Cree un nuevo Cuadro de mando.');
+define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún Cuadro de Mando público todavía. Cree un nuevo Cuadro de mando.');
 //Paneles de los Cuadros de Mando
 define('MSG_PANEL_BORRAR', 'Va a borrar del Cuadro de Mando el siguiente Panel:');
 define('MSG_PANEL_EDITADO', "Panel editado correctamente.");

@@ -7,6 +7,7 @@
 // Incluye el código JavaScript para el fichero index.tpl
 //----------------------------------------------------------------------------
 
+//MetisMenu
 $(function () {
 
     $('#side-menu').metisMenu();
@@ -48,11 +49,23 @@ $(function () {
 //Menu toggle
 $("#menu-toggle").click(function (e) {
     e.preventDefault();
+    var icono = $("#toggle-icon");
     $("#page-wrapper").toggleClass("toggled");
     $(".sidebar").toggleClass("toggled");
     $(".fa-stack").toggleClass("fa-lg");
     $("#links").toggleClass("hidden");
     $(".texto-menu").toggleClass("hidden");
+    if (icono.hasClass('fa-chevron-right')) {
+        icono.removeClass('fa-chevron-right');
+        icono.addClass('fa-chevron-left');
+        $("#menu-toggle").addClass('pull-right');
+    }
+    else {
+        icono.removeClass('fa-chevron-left');
+        $("#menu-toggle").removeClass('pull-right');
+        icono.addClass('fa-chevron-right');
+    }
+
 });
 
 //Collapsible panels
@@ -82,3 +95,10 @@ if (($(window).height() + 100) < $(document).height()) {
         offset: {top: 100}
     });
 }
+
+//Datatables
+$(document).ready(function () {
+    $('.datatable').DataTable({
+        "pagingType": "full_numbers"
+    });
+});
