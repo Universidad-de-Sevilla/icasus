@@ -26,16 +26,16 @@
 <br>
 <!-- /Barra de botones -->
 
-{if $cuadros_propios|count > 0}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {if $cuadros_propios|count > 0}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>
@@ -72,39 +72,31 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <!-- /.panel-body -->        
+                {else}
+                    <div class="alert alert-warning alert-dismissible">
+                        <i class="fa fa-exclamation-triangle fa-fw"></i> 
+                        {$smarty.const.MSG_CUADRO_MANDO_NO_PROPIO}
+                    </div> 
+                {/if}
             </div>
-            <!-- /.panel -->
+            <!-- /.panel-body -->        
         </div>
-        <!-- /.col-lg-12 -->
+        <!-- /.panel -->
     </div>
-    <!-- /.row -->
-{else}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="alert alert-warning alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
-                    <span aria-hidden="true">&times;</span></button>
-                <i class="fa fa-exclamation-triangle fa-fw"></i> 
-                {$smarty.const.MSG_CUADRO_MANDO_NO_PROPIO}
-            </div>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-{/if}
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
 
-{if $cuadros_publicos|count > 0}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO_PUBLIC}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO_PUBLIC}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {if $cuadros_publicos|count > 0}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>
@@ -139,25 +131,17 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <!-- /.panel-body -->        
+                {else}
+                    <div class="alert alert-warning alert-dismissible">
+                        <i class="fa fa-exclamation-triangle fa-fw"></i> 
+                        {$smarty.const.MSG_CUADRO_MANDO_NO_PUBLIC}
+                    </div> 
+                {/if}
             </div>
-            <!-- /.panel -->
+            <!-- /.panel-body -->        
         </div>
-        <!-- /.col-lg-12 -->
+        <!-- /.panel -->
     </div>
-    <!-- /.row -->
-{else}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="alert alert-warning alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
-                    <span aria-hidden="true">&times;</span></button>
-                <i class="fa fa-exclamation-triangle fa-fw"></i> 
-                {$smarty.const.MSG_CUADRO_MANDO_NO_PUBLIC}
-            </div>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-{/if}
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->

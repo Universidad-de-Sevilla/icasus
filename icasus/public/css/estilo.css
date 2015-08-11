@@ -116,6 +116,10 @@ hr{
     white-space: normal;
 }
 
+#fecha{
+    color: #BF2453;
+}
+
 .sidebar .sidebar-nav.navbar-collapse {
     padding-right: 0;
     padding-left: 0;
@@ -171,6 +175,10 @@ hr{
         position: absolute;
         width: 70px;
         margin-top: 51px;
+    }
+
+    .texto-menu.toggled, #links.toggled{
+        display:none;
     }
 
     .navbar-top-links .dropdown-messages,

@@ -19,18 +19,21 @@ class LogicaUsuario implements ILogicaUsuario
     public function getRol($usuario, $id_entidad)
     {
         $rol = null;
-        foreach ($usuario->entidades as $entidad_usuario)
+        if ($usuario->entidades)
         {
-            if ($entidad_usuario->id_entidad == $id_entidad)
+            foreach ($usuario->entidades as $entidad_usuario)
             {
-                $rol = $entidad_usuario->rol->nombre;
+                if ($entidad_usuario->id_entidad == $id_entidad)
+                {
+                    $rol = $entidad_usuario->rol->nombre;
+                }
             }
-        }
-        if ($rol == null)
-        {
-            $entidad = new Entidad();
-            $entidad->load("id=$id_entidad");
-            return $this->getRol($usuario, $entidad->id_madre);
+            if ($rol == null)
+            {
+                $entidad = new Entidad();
+                $entidad->load("id=$id_entidad");
+                return $this->getRol($usuario, $entidad->id_madre);
+            }
         }
         return $rol;
     }

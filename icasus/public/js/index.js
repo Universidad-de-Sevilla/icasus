@@ -9,9 +9,7 @@
 
 //MetisMenu
 $(function () {
-
     $('#side-menu').metisMenu();
-
 });
 
 //Loads the correct sidebar on window load,
@@ -49,12 +47,13 @@ $(function () {
 //Menu toggle
 $("#menu-toggle").click(function (e) {
     e.preventDefault();
-    var icono = $("#toggle-icon");
     $("#page-wrapper").toggleClass("toggled");
     $(".sidebar").toggleClass("toggled");
     $(".fa-stack").toggleClass("fa-lg");
-    $("#links").toggleClass("hidden");
-    $(".texto-menu").toggleClass("hidden");
+    $("#links").toggleClass("toggled");
+    $(".texto-menu").toggleClass("toggled");
+
+    var icono = $("#toggle-icon");
     if (icono.hasClass('fa-chevron-right')) {
         icono.removeClass('fa-chevron-right');
         icono.addClass('fa-chevron-left');
@@ -65,7 +64,6 @@ $("#menu-toggle").click(function (e) {
         $("#menu-toggle").removeClass('pull-right');
         icono.addClass('fa-chevron-right');
     }
-
 });
 
 //Collapsible panels

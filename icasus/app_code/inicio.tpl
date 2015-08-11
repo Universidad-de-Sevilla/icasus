@@ -10,16 +10,16 @@
 <!-- /.row -->
 <!-- /Nombre página -->
 
-{if $entidades_usuario }
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {if $entidades_usuario }
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>
@@ -52,29 +52,20 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <!-- /.panel-body -->        
+                {else}
+                    <div class="alert alert-warning alert-dismissible">
+                        <i class="fa fa-exclamation-triangle fa-fw"></i> 
+                        {$smarty.const.MSG_UNID_NO_ASIG}
+                    </div>
+                {/if}
             </div>
-            <!-- /.panel -->
+            <!-- /.panel-body -->        
         </div>
-        <!-- /.col-lg-12 -->
+        <!-- /.panel -->
     </div>
-    <!-- /.row -->
-{else}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="alert alert-warning alert-dismissible">
-                <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
-                    <span aria-hidden="true">&times;</span></button>
-                <i class="fa fa-exclamation-triangle fa-fw"></i> 
-                {$smarty.const.MSG_UNID_NO_ASIG}
-            </div>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-{/if}
-
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
 
 {if $indicadores}
     <div class="box grid_16 single_datatable">

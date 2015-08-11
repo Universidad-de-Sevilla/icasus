@@ -118,7 +118,6 @@ define('TXT_SUBUNID', 'La Subunidad');
 define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes Mediciones con los correspondientes valores');
 define('TXT_UNID_NUEVA', 'Nueva Unidad');
 define('TXT_UNID_FICHA', 'Ficha de Unidad');
-define('TXT_UNID_LIST', 'Lista de Unidades');
 define('TXT_UNID_PROC_LIST', 'Lista de procesos de la Unidad con sus Indicadores');
 define('TXT_UNID_EDIT', 'Editar Unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con Mediciones en el Indicador');
@@ -440,6 +439,7 @@ define('MSG_UNID_NO_SEG', 'Esta Unidad no mide Indicadores segregados.');
 define('MSG_UNID_NO_SUBUNIDS', 'Esta Unidad no tiene Subunidades.');
 define('MSG_UNID_CREADA', 'La Unidad se ha creado correctamente con los datos que aparecen a continuación: ');
 define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna Unidad.');
+define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen Unidades Orgánicas.');
 
 //Indicadores
 define('MSG_INDIC_NO_UNID_SUP', 'No hay Indicadores definidos en la Unidad superior.');

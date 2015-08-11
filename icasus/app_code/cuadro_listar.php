@@ -17,4 +17,3 @@ $smarty->assign('cuadros_publicos', $cuadros_public);
 
 $plantilla = 'cuadro_listar.tpl';
 $smarty->assign('_nombre_pagina', TXT_CUADROS_MANDO);
-

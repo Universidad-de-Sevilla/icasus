@@ -30,7 +30,7 @@
         <link rel="stylesheet" type="text/css" href="lib/highslide/highslide.css"/>
         <script type='text/javascript' src="lib/highslide/highslide-full.min.js"></script>
         <script type='text/javascript' src="lib/highslide/highslide.config.js"></script>
-        
+
         <!-- Custom CSS -->
         <link href="css/estilo.css" rel="stylesheet">
 
@@ -76,6 +76,9 @@
                     <!-- /.navbar-header -->
 
                     <ul class="nav navbar-top-links navbar-right">
+                        <li>
+                            <span id="fecha" title="{$smarty.const.FIELD_FECHA}"><i class="fa fa-calendar fa-fw"></i> {$smarty.now|date_format:'%d-%m-%Y'}</span>
+                        </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" title="{$_usuario->login}" data-toggle="dropdown" href="#">
                                 <i class="fa fa-user fa-fw"></i> {$_usuario->login} <i class="fa fa-caret-down"></i>
@@ -100,25 +103,25 @@
                             <ul class="nav" id="side-menu">
                                 <li>
                                     <a title="{$smarty.const.TXT_INICIO}" href='index.php?page=inicio' accesskey='h'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x"></i></span><span class="texto-menu hidden"> {$smarty.const.TXT_INICIO}</span></a>      
+                                        <span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_INICIO}</span></a>      
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span><span class="texto-menu hidden"> {$smarty.const.TXT_CUADROS_MANDO}</span></a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_CUADROS_MANDO}</span></a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span><span class="texto-menu hidden"> {$smarty.const.FIELD_UNIDS}</span></a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.FIELD_UNIDS}</span></a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_USERS}" href='index.php?page=usuario_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-users fa-stack-1x"></i></span><span class="texto-menu hidden"> {$smarty.const.TXT_USERS}</span></a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-users fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_USERS}</span></a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_AYUDA}" href='index.php?page=pagina_mostrar&alias=indice'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-question-circle fa-stack-1x"></i></span><span class="texto-menu hidden"> {$smarty.const.TXT_AYUDA}</span></a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-question-circle fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_AYUDA}</span></a>
                                 </li>
-                                <li id="links" class="hidden">
+                                <li id="links" class="toggled">
                                     <a title="{$smarty.const.TXT_ENLACES}" href="#">
                                         <span class="fa-stack fa-lg"><i class="fa fa-external-link fa-stack-1x"></i></span> {$smarty.const.TXT_ENLACES}<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
@@ -295,7 +298,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                {$smarty.const.TXT_ICASUS} - {$smarty.const.TXT_APP_DESCRIPCION}
+                                {$smarty.const.TXT_ICASUS} - {$smarty.const.TXT_APP_DESCRIPCION} <i class="fa fa-copyright fa-fw"></i>{$smarty.now|date_format:'%Y'}
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>
