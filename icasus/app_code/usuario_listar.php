@@ -13,7 +13,7 @@ global $smarty;
 global $plantilla;
 
 $smarty->assign('_javascript', array('ordenatabla'));
-$smarty->assign('_nombre_pagina', TXT_USER_LIST);
+$smarty->assign('_nombre_pagina', TXT_USERS);
 
 $usuario = new Usuario();
 if (filter_has_var(INPUT_POST, 'criterio'))
@@ -30,4 +30,3 @@ $usuarios = $usuario->Find($where);
 
 $smarty->assign('usuarios', $usuarios);
 $plantilla = 'usuario_listar.tpl';
-

@@ -34,6 +34,7 @@ define('TXT_MANUAL', 'Manual');
 define('TXT_REP_GRAFIC', 'Representación Gráfica del Indicador/Dato');
 define('TXT_DEPENDE', 'Su cálculo depende de los siguientes Indicadores/Datos:');
 define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes Indicadores/Datos:');
+define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
@@ -721,7 +722,7 @@ define('FIELD_CLAVE', 'Clave de acceso');
 define('FIELD_REP_CLAVE', 'Repetir clave de acceso');
 define('FIELD_APEL', 'Apellidos');
 define('FIELD_TEL', 'Teléfono');
-define('FIELD_CORREO', 'Correo electrónico');
+define('FIELD_CORREO', 'E-mail');
 define('FIELD_DNI', 'DNI o NIE (con letra)');
 define('FIELD_USER_GRABA', 'Usuario que graba');
 define('FIELD_ROL', 'Rol');
