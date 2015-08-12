@@ -298,7 +298,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                {$smarty.const.TXT_ICASUS} - {$smarty.const.TXT_APP_DESCRIPCION} <i class="fa fa-copyright fa-fw"></i>{$smarty.now|date_format:'%Y'}
+                                {$smarty.const.TXT_ICASUS} - {$smarty.const.TXT_APP_DESCRIPCION}
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>

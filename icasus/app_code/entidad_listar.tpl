@@ -83,7 +83,6 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
                                     <th>{$smarty.const.FIELD_UNID}</th>
-                                    <th>{$smarty.const.FIELD_ROL}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
                             </thead>
@@ -92,7 +91,6 @@
                                     <tr>
                                         <td>{$entidad->codigo}</td>
                                         <td><a title="{$entidad->nombre}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}'>{$entidad->nombre}</a></td>
-                                        <td>{$entidad->nombre}</td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}'><i class="fa fa-th-list fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><i class="fa fa-gears fa-fw"></i></a>
