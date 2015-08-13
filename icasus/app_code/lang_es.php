@@ -275,7 +275,7 @@ define('TXT_EDIT_PROP', 'Editar propiedades');
 define('TXT_OTRAS_PROP', 'Otras propiedades');
 
 //Propiedades HTML: Titles, placeholders, values de botones...
-define('TXT_CODIGO', 'Único, fácil de recordar y sin espacios');
+define('TXT_CODIGO', 'Único, fácil de recordar, en mayúsculas y sin espacios');
 define('TXT_CALCULO_TOTAL', 'Determina cómo se calcula el total entre todas las subunidades');
 define('TXT_CALCULO_TOTAL_ANUAL', 'Determina cómo se calcula el total anual entre todos los periodos');
 define('TXT_BORRAR_CONFIRM', 'Confirmar borrado');
@@ -392,7 +392,7 @@ define('MSG_FALTAN_PARAM_MET', 'Faltan parámetros para ejecutar el método');
 define('MSG_ERR', 'Por favor inténtelo de nuevo, si el problema persiste póngase en contacto con nosotros en la dirección: ');
 define('MSG_NO_SESION', 'Debe iniciar sesión.');
 define('MSG_GUARDAR_OK', 'Se han guardado los cambios correctamente.');
-define('MSG_FIELD_REQ', '(Campo requerido)');
+define('MSG_CAMPO_REQ', 'Campo obligatorio');
 
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');

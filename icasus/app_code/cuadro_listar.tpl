@@ -73,8 +73,8 @@
                         </table>
                     </div>
                 {else}
-                    <div class="alert alert-warning alert-dismissible">
-                        <i class="fa fa-exclamation-triangle fa-fw"></i> 
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
                         {$smarty.const.MSG_CUADRO_MANDO_NO_PROPIO}
                     </div> 
                 {/if}
@@ -132,8 +132,8 @@
                         </table>
                     </div>
                 {else}
-                    <div class="alert alert-warning alert-dismissible">
-                        <i class="fa fa-exclamation-triangle fa-fw"></i> 
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
                         {$smarty.const.MSG_CUADRO_MANDO_NO_PUBLIC}
                     </div> 
                 {/if}

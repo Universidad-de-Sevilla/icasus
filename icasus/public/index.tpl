@@ -21,7 +21,11 @@
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- MetisMenu CSS -->
-        <link href="lib/metisMenu.min.css" rel="stylesheet">
+        <link href="lib/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+        <!-- Chosen CSS -->
+        <link href="lib/chosen/chosen.min.css" rel="stylesheet">
+        <link href="lib/chosen/chosen-bootstrap.css" rel="stylesheet">
 
         <!-- Datatables -->
         <link href="lib/dataTables/css/dataTables.bootstrap.css" rel="stylesheet">
@@ -284,7 +288,34 @@
                             </div>
                             <!-- /.row -->
                         {/if}           
-
+                        {if isset($smarty.get.exito)}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-success alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <i class="fa fa-check fa-fw"></i>
+                                        {$smarty.get.exito}
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                            <!-- /.row -->
+                        {/if}
+                        {if isset($exito)}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-success alert-dismissible">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <i class="fa fa-check fa-fw"></i> 
+                                        {$exito}
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                            <!-- /.row -->
+                        {/if}  
                         {* El cuerpo del template va aqui *}
                         {include file=$plantilla}
 
@@ -342,8 +373,14 @@
         <!-- Bootstrap Core JavaScript -->
         <script src="lib/bootstrap/js/bootstrap.min.js"></script>
 
+        <!-- Bootstrap Validator -->
+        <script src="lib/bootstrap-validator/validator.min.js"></script>
+
         <!-- Metis Menu Plugin JavaScript -->
         <script src="lib/metisMenu/metisMenu.min.js"></script>
+
+        <!-- Chosen Plugin JavaScript -->
+        <script src="lib/chosen/chosen.jquery.min.js"></script>
 
         <!-- Datatables -->
         <script src="lib/dataTables/js/jquery.dataTables.min.js"></script>

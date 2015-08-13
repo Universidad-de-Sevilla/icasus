@@ -100,3 +100,9 @@ $(document).ready(function () {
         "pagingType": "full_numbers"
     });
 });
+
+//Chosen selects (añade búsqueda a los html select)
+$(".chosen-select").chosen({
+    disable_search_threshold: 10,
+    no_results_text: "Oops, no se encuentran registros coincidentes"
+});
