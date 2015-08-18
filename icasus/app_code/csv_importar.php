@@ -34,4 +34,3 @@ else
     $error = ERR_FALTAN_PAR_IMPORT;
     header('location:index.php?error=' . $error);
 }
-

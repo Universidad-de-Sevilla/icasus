@@ -26,7 +26,7 @@
                     </div>
                     <!-- /.col-md-6 -->
                     <div class="col-md-6">
-                        <button id="formlogin" title="{$smarty.const.TXT_LOGIN}" class="btn btn-success btn-block btn-lg" type="button" onclick="javascript:location.href = 'index.php?page=login_sso&autenticar'">
+                        <button id="formlogin" title="{$smarty.const.TXT_LOGIN}" class="btn btn-success btn-block btn-lg" type="button" onclick="location.href = 'index.php?page=login_sso&autenticar';">
                             <i class="fa fa-sign-in fa-fw"></i> {$smarty.const.TXT_LOGIN}
                         </button>
                     </div>

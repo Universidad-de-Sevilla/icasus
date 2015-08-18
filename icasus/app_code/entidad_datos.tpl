@@ -64,7 +64,11 @@
                         <tr>
                             <th>{$smarty.const.FIELD_WEB}</th>
                             <td>
-                                <a title="{$entidad->web}" href='{$entidad->web}' target="_blank">{$entidad->web}</a>
+                                {if $entidad->web}
+                                    <a title="{$entidad->web}" href='{$entidad->web}' target="_blank">{$entidad->web}</a>
+                                {else}
+                                    ---
+                                {/if}
                             </td>
                         </tr>
                         <tr>

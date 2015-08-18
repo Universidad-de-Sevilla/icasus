@@ -389,6 +389,9 @@
         <!-- Custom JavaScript -->
         <script src="js/index.js"></script>
 
+        <!-- Validaciones personalizadas -->
+        <script src="js/validador.js"></script>
+
     </body>
 
 </html>

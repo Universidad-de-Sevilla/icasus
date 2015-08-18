@@ -35,6 +35,7 @@ define('TXT_REP_GRAFIC', 'Representación Gráfica del Indicador/Dato');
 define('TXT_DEPENDE', 'Su cálculo depende de los siguientes Indicadores/Datos:');
 define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes Indicadores/Datos:');
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
+define('TXT_RESET', 'Reset');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
