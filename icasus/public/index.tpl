@@ -382,6 +382,9 @@
         <!-- Chosen Plugin JavaScript -->
         <script src="lib/chosen/chosen.jquery.min.js"></script>
 
+        <!-- Map Responsive Plugin JavaScript -->
+        <script src="lib/jquery-rwdImageMaps/jquery.rwdImageMaps.min.js"></script>
+
         <!-- Datatables -->
         <script src="lib/dataTables/js/jquery.dataTables.min.js"></script>
         <script src="lib/dataTables/js/dataTables.bootstrap.js"></script>

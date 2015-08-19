@@ -258,6 +258,7 @@ define('TXT_PAG_EDIT', 'Editar Página');
 //Procesos
 define('TXT_PROCS', 'Procesos');
 define('TXT_PROC_VER', 'Ver Proceso');
+define('TXT_PROC_MAP', 'Mapa de Procesos');
 define('TXT_PROC_PARAM', 'Parámetros del Proceso');
 define('TXT_PROC_VOLVER', 'Volver al Proceso');
 define('TXT_PROC_FICHA', 'Ficha del Proceso');

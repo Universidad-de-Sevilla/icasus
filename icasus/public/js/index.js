@@ -101,6 +101,11 @@ $(document).ready(function () {
     });
 });
 
+//Map Responsive
+$(document).ready(function () {
+    $('img[usemap]').rwdImageMaps();
+});
+
 //Chosen selects (añade búsqueda a los html select)
 $(".chosen-select").chosen({
     disable_search_threshold: 10,
