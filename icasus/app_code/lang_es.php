@@ -343,7 +343,7 @@ define('TXT_METRICA', 'Métrica');
 define('TXT_METRICA_DESC', 'Muestra una medición puntual para una unidad y un indicador en forma de dígitos.');
 
 //Usuarios
-define('TXT_USERS_ASIGNAR', 'Asignar Usuarios');
+define('TXT_USERS_ASIGNAR', 'Asignar Usuarios marcados');
 define('TXT_USERS_DESASIGNAR', 'Desasignar Usuarios marcados');
 define('TXT_USERS_ALTA', 'Alta de Usuarios');
 define('TXT_USERS_BAJA', 'Baja de Usuarios');

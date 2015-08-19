@@ -1,90 +1,146 @@
-<div class="box grid_16">
-    <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_USERS_ASIG}</h2>
-    <a href="#" class="grabber"></a>
-    <a href="#" class="toggle"></a>
-    <div class="block"> 
-        {if $usuarios}
-            <div id="dt1" class="no_margin">
-                <table class='display datatable'>
-                    <thead>
-                        <tr>
-                            <th>{$smarty.const.FIELD_ROL}</th>
-                            <th>{$smarty.const.FIELD_NOMBRE}</th>
-                            <th>{$smarty.const.FIELD_APEL}</th>
-                            <th>{$smarty.const.FIELD_CORREO}</th>
-                            <th>{$smarty.const.FIELD_TEL}</th>
-                            <th>{$smarty.const.FIELD_ACCIONES}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {foreach from=$usuarios item=usuario}
-                            <tr>
-                                <td>{$usuario->rol->nombre}</td>
-                                <td>{$usuario->usuario->nombre}</td>
-                                <td>{$usuario->usuario->apellidos}</td>
-                                <td><a href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
-                                <td>{$usuario->usuario->telefono}</td>
-                                <td><a title="{$smarty.const.FIELD_DET}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}&id_entidad={$entidad->id}'><img src='/icons/ff16/magnifier.png' /></a></td>
-                            </tr>
-                        {/foreach}
-                    </tbody>
-                </table>
-            </div>
-        {else}
-            <div class='alert alert_blue'>{$smarty.const.MSG_UNID_NO_USERS}</div>
-        {/if}
+<!-- Nombre página -->
+<div class="row">
+    <div class="col-lg-12">
+        <h2 title="{$_nombre_pagina}" class="page-header">
+            <i class="fa fa-user-plus fa-fw"></i> {$_nombre_pagina}
+        </h2>
     </div>
-</div>  
-
-<div class="box grid_16">         
-    <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_USERS_DISP}</h2>
-    <a href="#" class="grabber"></a>
-    <a href="#" class="toggle"></a>
-    <div class="toggle_container">  
-        <div class="block">
-            <form action='index.php?page=entidad_poblar&id_entidad={$entidad->id}' method='post' name='formpoblar' class='validate_form' onsubmit="return confirm('{$smarty.const.MSG_USERS_CONFIRM_VINC}');">     
-                <div id="dt1" class="no_margin">
-                    <table class="display datatable">
-                        <thead>
-                            <tr><th></th><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_APEL}</th><th>{$smarty.const.FIELD_CORREO}</th><th>{$smarty.const.FIELD_UNID_RPT}</th><th>{$smarty.const.FIELD_PUESTO}</th></tr>
-                        </thead>
-                        <tbody>
-                            {foreach from=$personas item=persona}
-                                <tr>
-                                    <td><input type='checkbox' name='id_usuario[]' value='{$persona.id}' class=""/></td>
-                                    <td>{$persona.nombre|upper}</td>
-                                    <td>{$persona.apellidos|upper}</td>
-                                    <td>{$persona.correo}</td>
-                                    <td>{$persona.unidad_hominis}</td>
-                                    <td>{$persona.puesto}</td>
-                                </tr>
-                            {/foreach}
-                        </tbody>
-                    </table>
-                </div>
-                <fieldset>
-                    <label>{$smarty.const.FIELD_ROL}</label>
-                    <div> 
-                        <select name='id_rol' id='id_rol' class="required">
-                            <option value="">{$smarty.const.TXT_SEL_UNO}</option>
-                            {foreach from=$roles item='rol'}
-                                <option value="{$rol->id}">{$rol->nombre}</option>
-                            {/foreach }
-                        </select>
-                        <div class="required_tag"></div>
-                    </div>
-                </fieldset>
-                <div class="button_bar clearfix">
-                    <button class="light send_left" type="reset" value="{$smarty.const.TXT_CANCEL}" name="proceso_cancel" 
-                            onclick="location.href = 'index.php?page=entidad_datos&id_entidad={$entidad->id}';">
-                        <div class="ui-icon ui-icon-closethick"></div>
-                        <span>{$smarty.const.TXT_CANCEL}</span>
-                    </button>
-                    <button class="green send_right" type="submit" value="{$smarty.const.TXT_USERS_ASIGNAR}" name="enviar">
-                        <span>{$smarty.const.TXT_USERS_ASIGNAR}</span>
-                    </button>
-                </div>  
-            </form>
-        </div>
-    </div>
+    <!-- /.col-lg-12 -->
 </div>
+<!-- /.row -->
+<!-- /Nombre página -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-users fa-fw"></i> {$smarty.const.TXT_USERS_DISP}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <form action='index.php?page=entidad_poblar&id_entidad={$entidad->id}' 
+                      method='post' name='formpoblar' 
+                      onsubmit="return confirm('{$smarty.const.MSG_USERS_CONFIRM_VINC}');"
+                      class="form-horizontal">
+                    <div class="table-responsive">
+                        <table class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                <tr>
+                                    <th></th>
+                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <th>{$smarty.const.FIELD_APEL}</th>
+                                    <th>{$smarty.const.FIELD_CORREO}</th>
+                                    <th>{$smarty.const.FIELD_UNID_RPT}</th>
+                                    <th>{$smarty.const.FIELD_PUESTO}</th>
+                                </tr>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$personas item=persona}
+                                    <tr>
+                                        <td><input type='checkbox' name='id_usuario[]' value='{$persona.id}'/></td>
+                                        <td>{$persona.nombre|upper}</td>
+                                        <td>{$persona.apellidos|upper}</td>
+                                        <td>{$persona.correo}</td>
+                                        <td>{$persona.unidad_hominis}</td>
+                                        <td>{$persona.puesto}</td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="id_rol" class="col-sm-2 control-label">{$smarty.const.FIELD_ROL}</label>
+                        <div class="col-sm-8">
+                            <select class="form-control chosen-select" name='id_rol' id='id_rol'>
+                                {foreach from=$roles item='rol'}
+                                    <option value="{$rol->id}">{$rol->nombre}</option>
+                                {/foreach }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-default btn-danger" title="{$smarty.const.TXT_CANCEL}" onclick="location.href = 'index.php?page=entidad_datos&id_entidad={$entidad->id}';">
+                                <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                            </button>
+                            <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
+                                <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
+                            </button>
+                            <button title="{$smarty.const.TXT_USERS_ASIGNAR}" type="submit" class="btn btn-default btn-success">
+                                <i class="fa fa-user-plus fa-fw"></i> {$smarty.const.TXT_USERS_ASIGNAR}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-users fa-fw"></i> {$smarty.const.TXT_USERS_ASIG}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {if $usuarios}
+                    <div class="table-responsive">
+                        <table class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>   
+                                    <th>{$smarty.const.FIELD_LOGIN}</th>
+                                    <th>{$smarty.const.FIELD_ROL}</th>
+                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <th>{$smarty.const.FIELD_APEL}</th>     
+                                    <th>{$smarty.const.FIELD_CORREO}</th>
+                                    <th>{$smarty.const.FIELD_TEL}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$usuarios item=usuario}
+                                    <tr>
+                                        <td> 
+                                            <a title="{$usuario->usuario->login}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'>
+                                                {$usuario->usuario->login}
+                                            </a>
+                                        </td>
+                                        <td>{$usuario->rol->nombre}</td>
+                                        <td>{$usuario->usuario->nombre}</td>
+                                        <td>{$usuario->usuario->apellidos}</td>
+                                        <td><a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
+                                        <td>{$usuario->usuario->telefono}</td>
+                                        <td style="white-space:nowrap">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'><i class="fa fa-eye fa-fw"></i></a>                 
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->usuario->correo}'><i class="fa fa-envelope fa-fw"></i></a>
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.{$smarty.const.MSG_UNID_NO_USERS}}
+                    </div> 
+                {/if}
+            </div>
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
