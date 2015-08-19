@@ -111,6 +111,7 @@ define('TXT_DIM_REL', 'Relación de Dimensiones');
 
 //Entidades (Unidades)
 define('TXT_UNID', 'Unidad');
+define('TXT_UNID_VOLVER', 'Volver a la Ficha de la Unidad');
 define('TXT_UNID_PARAM', 'Parámetros de la Unidad');
 define('TXT_UNID_SUP_INDIC', 'Indicadores de la Unidad Superior');
 define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la Unidad');
@@ -296,8 +297,8 @@ define('TXT_GRAFICO_AUMENTAR', '(Haga click sobre el gráfico para aumentarlo)')
 define('TXT_INTERVALO', 'Determina el Intervalo de Valores (cerrado) que podrán tomar las Mediciones del Indicador/Dato.');
 
 //Selecciones
-define('TXT_SEL', 'Seleccionar...');
-define('TXT_SEL_UNO', 'Seleccionar uno...');
+define('TXT_SEL', 'Seleccionar');
+define('TXT_SEL_UNO', 'Seleccionar uno');
 define('TXT_ELEG_UNO', 'Elegir uno si procede');
 define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
 define('TXT_SEL_RESP_GRABAR', 'Elegir nuevo responsable de grabación ...');

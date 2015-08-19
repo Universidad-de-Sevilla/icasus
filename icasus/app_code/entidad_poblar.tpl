@@ -10,6 +10,22 @@
 <!-- /.row -->
 <!-- /Nombre página -->
 
+<!-- Barra de botones -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="btn-toolbar" role="toolbar" aria-label="">
+            <div class="btn-group" role="group" aria-label="">
+                <a class="btn btn-default btn-danger" href="index.php?page=entidad_datos&id_entidad={$entidad->id}" title="{$smarty.const.TXT_UNID_VOLVER}">
+                    <i class="fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_UNID_VOLVER}</a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<br>
+<!-- /Barra de botones -->
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-red">
@@ -25,8 +41,7 @@
                       class="form-horizontal">
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
-                            <thead>
-                                <tr>
+                            <thead>               
                                 <tr>
                                     <th></th>
                                     <th>{$smarty.const.FIELD_NOMBRE}</th>
@@ -34,13 +49,13 @@
                                     <th>{$smarty.const.FIELD_CORREO}</th>
                                     <th>{$smarty.const.FIELD_UNID_RPT}</th>
                                     <th>{$smarty.const.FIELD_PUESTO}</th>
-                                </tr>
+
                                 </tr>
                             </thead>
                             <tbody>
                                 {foreach from=$personas item=persona}
                                     <tr>
-                                        <td><input type='checkbox' name='id_usuario[]' value='{$persona.id}'/></td>
+                                        <td><input title="{$smarty.const.TXT_SEL}" type='checkbox' name='id_usuario[]' value='{$persona.id}'/></td>
                                         <td>{$persona.nombre|upper}</td>
                                         <td>{$persona.apellidos|upper}</td>
                                         <td>{$persona.correo}</td>
