@@ -26,7 +26,7 @@
                     <fieldset>
                         <label>{$smarty.const.FIELD_COD}</label>
                         <div>
-                            <input type="text" name="codigo" value="{$proceso->codigo}" placeholder="{$smarty.const.TXT_INDICAR_COD}" class="required" />
+                            <input type="text" name="codigo" value="{$proceso->codigo}" placeholder="{$smarty.const.FIELD_COD}" class="required" />
                             <div class="required_tag"></div>
                         </div>
                     </fieldset> 

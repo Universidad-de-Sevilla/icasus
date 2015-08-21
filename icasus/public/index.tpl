@@ -27,13 +27,16 @@
         <link href="lib/chosen/chosen.min.css" rel="stylesheet">
         <link href="lib/chosen/chosen-bootstrap.css" rel="stylesheet">
 
+        <!-- Bootstrap DatePicker -->
+        <link href="lib/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+
         <!-- Datatables -->
         <link href="lib/dataTables/css/dataTables.bootstrap.css" rel="stylesheet">
 
         <!-- Highslide -->
         <link rel="stylesheet" type="text/css" href="lib/highslide/highslide.css"/>
-        <script type='text/javascript' src="lib/highslide/highslide-full.min.js"></script>
-        <script type='text/javascript' src="lib/highslide/highslide.config.js"></script>
+        <script type='text/javascript' src="lib/highslide/js/highslide-full.min.js"></script>
+        <script type='text/javascript' src="lib/highslide/js/highslide.config.js"></script>
 
         <!-- Custom CSS -->
         <link href="css/estilo.css" rel="stylesheet">
@@ -158,6 +161,7 @@
                 <!-- Page Content -->
                 <div id="page-wrapper" class="toggled">
                     <div class="container-fluid">
+                        <!-- Menú de Unidades -->
                         {if isset($entidad)}
                             <div class="row">
                                 <div class="col-lg-12">
@@ -232,6 +236,9 @@
                             </div>
                             <!-- /.row -->
                         {/if}
+                        <!-- /Menú de Unidades -->
+
+                        <!-- Notificaciones -->
                         {if isset($smarty.get.error)}
                             <div class="row">
                                 <div class="col-lg-12">
@@ -315,7 +322,9 @@
                                 <!-- /.col-lg-12 -->
                             </div>
                             <!-- /.row -->
-                        {/if}  
+                        {/if}
+                        <!-- /Notificaciones -->
+
                         {* El cuerpo del template va aqui *}
                         {include file=$plantilla}
 
@@ -375,6 +384,10 @@
 
         <!-- Bootstrap Validator -->
         <script src="lib/bootstrap-validator/validator.min.js"></script>
+
+        <!-- Bootstrap DatePicker -->
+        <script src="lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+        <script src="lib/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="lib/metisMenu/metisMenu.min.js"></script>

@@ -17,7 +17,7 @@ if (filter_has_var(INPUT_POST, 'alcance') && filter_has_var(INPUT_POST, 'nombre'
     $proceso->codigo = filter_has_var(INPUT_POST, 'codigo') ? filter_input(INPUT_POST, 'codigo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $proceso->revision = filter_has_var(INPUT_POST, 'revision') ? filter_input(INPUT_POST, 'revision', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $fecha = filter_has_var(INPUT_POST, 'fecha_revision') ? filter_input(INPUT_POST, 'fecha_revision', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $fecha = explode("/", $fecha);
+    $fecha_array = explode("/", $fecha);
     $fecha = $fecha[2] . "/" . $fecha[1] . "/" . $fecha[0];
     $proceso->fecha_revision = $fecha;
     $proceso->nombre = filter_has_var(INPUT_POST, 'nombre') ? filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
@@ -27,8 +27,6 @@ if (filter_has_var(INPUT_POST, 'alcance') && filter_has_var(INPUT_POST, 'nombre'
     $proceso->resultados_clave = filter_has_var(INPUT_POST, 'resultados_clave') ? filter_input(INPUT_POST, 'resultados_clave', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $proceso->entradas = filter_has_var(INPUT_POST, 'entradas') ? filter_input(INPUT_POST, 'entradas', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $proceso->salidas = filter_has_var(INPUT_POST, 'salidas') ? filter_input(INPUT_POST, 'salidas', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    //$proceso->proveedores = isset($_POST['proveedores'])?sanitize($_POST['proveedores'],2):null;    
-    //$proceso->clientes = isset($_POST['clientes'])?sanitize($_POST['clientes'],2):null;
     $proceso->actividades = filter_has_var(INPUT_POST, 'actividades') ? filter_input(INPUT_POST, 'actividades', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $proceso->variables_control = filter_has_var(INPUT_POST, 'variables_control') ? filter_input(INPUT_POST, 'variables_control', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $proceso->documentacion = filter_has_var(INPUT_POST, 'documentacion') ? filter_input(INPUT_POST, 'documentacion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
@@ -39,33 +37,22 @@ if (filter_has_var(INPUT_POST, 'alcance') && filter_has_var(INPUT_POST, 'nombre'
     $id_entidad = filter_has_var(INPUT_POST, 'id_entidad') ? filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT) : null;
     $proceso->id_entidad = $id_entidad;
 
-    /*
-      // PORHACER
-      $lista = $proceso->Find("codigo = $codigo");
-      print_r($lista);
-      if ($proceso->Find("codigo = $codigo"))
-      {
-      $error = "El código de proceso </b>$codigo</b> ya existe en el sistema";
-      header("Location:index.php?page=proceso&error=$error");
-      }
-     */
-
     if ($proceso->save())
     {
-        $aviso = MSG_PROC_GRABAR;
-        header("Location:index.php?page=proceso_listar&id_entidad=$id_entidad&aviso=$aviso");
+        $exito = MSG_PROC_GRABAR;
+        header("Location:index.php?page=proceso_listar&id_entidad=$id_entidad&exito=$exito");
     }
     else
     {
         $error = $proceso->error;
-        header("Location:index.php?page=proceso_listar&id_entidad=$id_entidad&aviso=$error");
+        header("Location:index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
     }
 }
 // Si no vienen datos mostramos el formulario
 else
 {
     $error = ERR_PARAM;
-    header("Location:index.php?page=proceso_listar&id_entidad=$id_entidad&aviso=$error");
+    header("Location:index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
 }
 
 

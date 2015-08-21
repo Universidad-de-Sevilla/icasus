@@ -35,4 +35,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?page=entidad_listar");
 }
-

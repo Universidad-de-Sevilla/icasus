@@ -24,3 +24,20 @@ $('#importar_csv').validator({
         validar_csv: 'El archivo no tiene la extensión .csv'
     }
 });
+
+// Función que valida que un fecha tiene el formato correcto
+$('#proceso_crear').validator({
+    custom: {
+        'validar_fecha': function ($el) {
+            var validado = false;
+            var regexp = /(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/([0-9]{4})$/;
+            if ($el.val().match(regexp) || !$el.val()) {
+                validado = true;
+            }
+            return validado;
+        }
+    },
+    errors: {
+        validar_fecha: 'Introduzca una fecha en el formato correcto (dd/mm/aaaa)'
+    }
+});

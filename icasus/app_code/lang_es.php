@@ -261,6 +261,7 @@ define('TXT_PROC_VER', 'Ver Proceso');
 define('TXT_PROC_MAP', 'Mapa de Procesos');
 define('TXT_PROC_PARAM', 'Parámetros del Proceso');
 define('TXT_PROC_VOLVER', 'Volver al Proceso');
+define('TXT_PROCS_VOLVER', 'Volver al listado de Procesos');
 define('TXT_PROC_FICHA', 'Ficha del Proceso');
 define('TXT_PROC_NUEVO', 'Nuevo Proceso');
 define('TXT_PROC_LIST', 'Lista de Procesos');
@@ -292,7 +293,6 @@ define('TXT_SOLO_INDIC_CALC', 'Sólo si es un Indicador/Dato calculado. Si es as
 define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el Indicador/Dato.');
 define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde se obtienen los Valores para el Indicador/Dato.');
 define('TXT_BUSCAR', 'Buscar...');
-define('TXT_INDICAR_COD', 'Indique un código estandarizado y único');
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
 define('TXT_GRAFICO_AUMENTAR', '(Haga click sobre el gráfico para aumentarlo)');
 define('TXT_INTERVALO', 'Determina el Intervalo de Valores (cerrado) que podrán tomar las Mediciones del Indicador/Dato.');
