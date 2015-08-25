@@ -33,7 +33,7 @@
                             <tbody>
                                 {foreach from=$entidades_usuario item=entidad}
                                     <tr>
-                                        <td>{$entidad->entidad->codigo}</td>
+                                        <td style="white-space:nowrap">{$entidad->entidad->codigo}</td>
                                         <td><a title="{$entidad->entidad->nombre}" href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'>{$entidad->entidad->nombre}</a></td>
                                         <td>{$entidad->rol->nombre}</td>
                                         <td style="white-space:nowrap">

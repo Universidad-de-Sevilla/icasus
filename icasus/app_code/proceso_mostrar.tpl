@@ -1,343 +1,420 @@
-<div class="box grid_16">
-    <div class="toggle_container">
-        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_PROC_PARAM}</h2>
-        <a href="#" class="grabber"></a>
-        <a href="#" class="toggle"></a>
-        <div class="block">
-            <div class="button_bar clearfix">
-                {if $_control}
-                    <a href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}">
-                        <img src='/icons/ff16/cog_add.png' alt='{$smarty.const.TXT_ICON}'/> {$smarty.const.TXT_PROC_CREAR}
-                    </a>&nbsp;&nbsp; 
-                    <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                        <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
-                    </a>&nbsp;&nbsp;
-                    <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
+<!-- Nombre página -->
+<div class="row">
+    <div class="col-lg-12">
+        <h2 title="{$_nombre_pagina}" class="page-header">
+            <i class="fa fa-gear fa-fw"></i> {$_nombre_pagina}
+        </h2>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Nombre página -->
+
+<!-- Barra de botones -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="btn-toolbar" role="toolbar" aria-label="">
+            {if $_control}
+                <div class="btn-group" role="group" aria-label="">
+                    <a class="btn btn-default btn-danger" href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}" title="{$smarty.const.TXT_PROC_CREAR}">
+                        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_PROC_CREAR}
+                    </a>
+                    <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-default btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                        <i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_PROC_EDIT}
+                    </a>
+                    <a title="{$smarty.const.TXT_PROC_BORRAR}" class="btn btn-default btn-danger" href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
                        onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
-                        <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span>
-                    </a>&nbsp;&nbsp;
-                {/if}
-                <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span>
-                </a>
+                        <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PROC_BORRAR}
+                    </a>
+                </div>
+            {/if}
+            <div class="btn-group" role="group" aria-label="">
+                <a class="btn btn-default btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
+                   title="{$smarty.const.TXT_ARCHIVOS}">
+                    <i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
             </div>
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_PROC_MADRE}</label>
-                <div>
-                    {if $proceso_madre->id > 0}
-                        {$proceso_madre->codigo} - {$proceso_madre->nombre} 
-                        &nbsp; <a href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso->id_entidad}">{$smarty.const.TXT_MOSTRAR}</a>
-                    {else}
-                        {$smarty.const.TXT_PROC_ES_MADRE}
-                    {/if}
-                </div>
-            </fieldset> 
-            <fieldset class="label_side">
-                <label>{$smarty.const.FIELD_NOMBRE}</label>
-                <div>
-                    <h3>{$proceso->nombre}</h3>
-                </div>
-            </fieldset> 
-            <div class="columns clearfix">
-                <div class="col_33">
-                    <fieldset>
-                        <label>{$smarty.const.FIELD_COD}</label>
-                        <div> {$proceso->codigo} </div>
-                    </fieldset> 
-                </div>
-                <div class="col_33">
-                    <fieldset>
-                        <label>{$smarty.const.FIELD_VERSION}</label>
-                        <div> {$proceso->revision} &nbsp; </div>
-                    </fieldset>  
-                </div>
-                <div class="col_33">
-                    <fieldset>
-                        <label>{$smarty.const.FIELD_FECHA}</label>
-                        <div> {$proceso->fecha_revision|date_format:'%d/%m/%Y'} &nbsp; </div>
-                    </fieldset>  
-                </div>
+            <div class="btn-group" role="group" aria-label="">
+                <a class="btn btn-default btn-danger" href="index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}" title="{$smarty.const.TXT_PROCS_VOLVER}">
+                    <i class="fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_PROCS_VOLVER}</a>
             </div>
-            <div class="columns clearfix">
-                <div class="col_50">
-                    <fieldset>
-                        <label>{$smarty.const.FIELD_PROPIETARIO}</label>
-                        <div>
-                            {$propietario->nombre} {$propietario->apellidos} 
-                            {if $propietario->puesto} - {$propietario->puesto} {/if}
-                        </div>
-                    </fieldset> 
-                </div>
-                <div class="col_50">
-                    <fieldset>
-                        <label>{$smarty.const.FIELD_TIPO_PROC}</label>
-                        <div> {$proceso->alcance} </div>
-                    </fieldset> 
-                </div>
-            </div>
-            {if $proceso->mision}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_MISION}</label>
-                    <div> {$proceso->mision} </div>
-                </fieldset>   
-            {/if}
-            {if $proceso->equipo_de_proceso}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_EQUIP_PROC}</label>
-                    <div> {$proceso->equipo_de_proceso} </div>
-                </fieldset>      
-            {/if}
-            {if $proceso->resultados_clave}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_RESULTS_CLAVE}</label>
-                    <div> {$proceso->resultados_clave} </div>
-                </fieldset>
-            {/if}
-            {if $proceso->entradas or $proceso->salidas}
-                <div class="columns clearfix">
-                    <div class="col_50">
-                        <fieldset>
-                            <label>{$smarty.const.FIELD_ENTRADAS_PROV}</label>
-                            <div> {$proceso->entradas} </div>
-                        </fieldset>  
-                    </div>
-                    <div class="col_50">
-                        <fieldset>
-                            <label>{$smarty.const.FIELD_SALIDAS_CLIENTS}</label>
-                            <div> {$proceso->salidas} </div>
-                        </fieldset>   
-                    </div>
-                </div>
-            {/if}
-            {if $proceso->actividades}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_ACTIVIDADES}</label>
-                    <div> {$proceso->actividades} </div>
-                </fieldset> 
-            {/if}
-            {if $proceso->variables_control}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_VARS_CONTROL}</label>
-                    <div> {$proceso->variables_control} </div>
-                </fieldset> 
-            {/if}
-            {if $proceso->documentacion}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_DOCUMENTACION}</label>
-                    <div> {$proceso->documentacion} </div>
-                </fieldset>
-            {/if}
-            {if $proceso->mediciones}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_MEDICIONES}</label>
-                    <div> {$proceso->mediciones} </div>
-                </fieldset>   
-            {/if}
-            {if $proceso->registros}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_REGISTROS}</label>
-                    <div> {$proceso->registros} </div>
-                </fieldset>    
-            {/if}
-            {if $proceso->observaciones}
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_OBSERV}</label>
-                    <div> {$proceso->observaciones} </div>
-                </fieldset>    
-            {/if}
         </div>
     </div>
+    <!-- /.col-lg-12 -->
 </div>
+<!-- /.row -->
+<br>
+<!-- /Barra de botones -->
 
-<div class="box grid_16">
-    <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_PROC_INDICS}</h2>
-    <a href="#" class="grabber"></a>
-    <a href="#" class="toggle"></a>
-    <div class="block">	
-        <div class="button_bar clearfix">
-            {if $_control}
-                <a href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}">
-                    <img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}
-                </a>&nbsp;&nbsp;
-                <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
-                </a>&nbsp;&nbsp;
-                <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-                   onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
-                    <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span>
-                </a>&nbsp;&nbsp;
-            {/if}
-            <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span>
-            </a>
-        </div>
-        {if $indicadores}
-            <div id="dt1" class="no_margin">
-                <table class="display datatable"> 
-                    <thead>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_PROC_PARAM}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <table class="table table-striped table-hover">
+                    <tbody>
                         <tr>
                             <th>{$smarty.const.FIELD_COD}</th>
-                            <th>{$smarty.const.FIELD_INDIC}</th>
-                            <th>{$smarty.const.FIELD_RESP}</th>
+                            <td>{$proceso->codigo}</td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {foreach from=$indicadores item=indicador} 
-                            <tr>
-                                <td style="white-space:nowrap">{$indicador->codigo}</td>
-                                <td>
-                                    <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'><img src='/icons/ff16/chart_curve.png' /> {$indicador->nombre}</a>
-                                    <a href='#' title='{$indicador->descripcion}'><big>*</big></a>
-                                </td>
-                                <td>
-                                    <a title="{$smarty.const.TXT_VER}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'> <img src='/icons/ff16/user.png' /> {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
-                                </td>
-                            </tr>
-                        {/foreach}
+                        <tr>
+                            <th>{$smarty.const.FIELD_NOMBRE}</th>
+                            <td>{$proceso->nombre}</td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_VERSION}</th>
+                            <td>{$proceso->revision}</td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_FECHA}</th>
+                            <td>{$proceso->fecha_revision|date_format:'%d/%m/%Y'}</td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_TIPO_PROC}</th>
+                            <td>{$proceso->alcance}</td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_PROC_MADRE}</th>
+                            <td>
+                                {if $proceso_madre->id > 0}              
+                                    <a title="{$proceso_madre->nombre}" 
+                                       href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso->id_entidad}">
+                                        {$proceso_madre->codigo} - {$proceso_madre->nombre}
+                                    </a>
+                                {else}
+                                    {$smarty.const.TXT_PROC_ES_MADRE}
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_PROPIETARIO}</th>
+                            <td>
+                                {$propietario->nombre} {$propietario->apellidos} 
+                                {if $propietario->puesto} - {$propietario->puesto} {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_MISION}</th>
+                            <td> 
+                                {if $proceso->mision}
+                                    {$proceso->mision}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_EQUIP_PROC}</th>
+                            <td> 
+                                {if $proceso->equipo_de_proceso}
+                                    {$proceso->equipo_de_proceso}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_RESULTS_CLAVE}</th>
+                            <td> 
+                                {if $proceso->resultados_clave}
+                                    {$proceso->resultados_clave}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_ENTRADAS_PROV}</th>
+                            <td> 
+                                {if $proceso->entradas}
+                                    {$proceso->entradas}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_SALIDAS_CLIENTS}</th>
+                            <td> 
+                                {if $proceso->entradas or $proceso->salidas}
+                                    {$proceso->salidas}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_ACTIVIDADES}</th>
+                            <td> 
+                                {if $proceso->actividades}
+                                    {$proceso->actividades}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_VARS_CONTROL}</th>
+                            <td> 
+                                {if $proceso->variables_control}
+                                    {$proceso->variables_control}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_DOCUMENTACION}</th>
+                            <td> 
+                                {if $proceso->documentacion}
+                                    {$proceso->documentacion}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>       
+                        <tr>
+                            <th>{$smarty.const.FIELD_MEDICIONES}</th>
+                            <td> 
+                                {if $proceso->mediciones}
+                                    {$proceso->mediciones}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>      
+                        <tr>
+                            <th>{$smarty.const.FIELD_REGISTROS}</th>
+                            <td> 
+                                {if $proceso->registros}
+                                    {$proceso->registros}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_OBSERV}</th>
+                            <td> 
+                                {if $proceso->observaciones}
+                                    {$proceso->observaciones}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-        {else}
-            <div class='alert alert_blue'>
-                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
-                {$smarty.const.MSG_PROC_NO_INDIC}
-            </div>
-        {/if}
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
     </div>
+    <!-- /.col-lg-12 -->
 </div>
+<!-- /.row -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_PROC_INDICS}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {if $indicadores}
+                    <div class="table-responsive">
+                        <table class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_COD}</th>
+                                    <th>{$smarty.const.FIELD_INDIC}</th>
+                                    <th>{$smarty.const.FIELD_RESP}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$indicadores item=indicador}
+                                    <tr>  
+                                        <td style="white-space:nowrap">{$indicador->codigo}</td>
+                                        <td>
+                                            <a title='{$indicador->nombre}: {$indicador->descripcion}' href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>{$indicador->nombre}</a>
+                                        </td>
+                                        <td>
+                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>{$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
+                                        </td>
+                                        <td style="white-space:nowrap">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$indicador->nombre}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'><i class="fa fa-dashboard fa-fw"></i></a>                 
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'><i class="fa fa-user fa-fw"></i></a>
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_PROC_NO_INDIC}
+                    </div> 
+                {/if}
+            </div>
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
 
 {if isset($flujograma)}
-    <div class="box grid_16">
-        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_PROC_FLUJO}</h2>
-        <a href="#" class="grabber"></a>
-        <a href="#" class="toggle"></a>
-        <div class="block">
-            <div class="button_bar clearfix">
-                {if $_control}
-                    <a href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}">
-                        <img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}
-                    </a>&nbsp;&nbsp;
-                    <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                        <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
-                    </a>&nbsp;&nbsp;
-                    <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-                       onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
-                        <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span>
-                    </a>&nbsp;&nbsp;
-                {/if}
-                <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span>
-                </a>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-arrows fa-fw"></i> {$smarty.const.TXT_PROC_FLUJO}</span>
+                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <img src="index.php?page=archivo_descargar&id={$flujograma->id}" alt="{$smarty.const.TXT_PROC_FLUJO}" class="img-rounded img-responsive" style="margin:0 auto">
+                </div>
+                <!-- /.panel-body -->        
             </div>
-            <p align="center"><img src="index.php?page=archivo_descargar&id={$flujograma->id}" alt="{$smarty.const.TXT_PROC_FLUJO}" /></p>
+            <!-- /.panel -->
         </div>
-    </div> <!-- .box .grid_16 -->
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
 {/if}
 
 {if isset($archivos)}
-    <div class="box grid_16">
-        <h2 class="box_head grad_grey_dark">{$smarty.const.TXT_PROC_ARCHIVOS}</h2>
-        <a href="#" class="grabber"></a>
-        <a href="#" class="toggle"></a>
-        <div class="block">
-            <div class="button_bar clearfix">
-                {if $_control}
-                    <a href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}">
-                        <img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}
-                    </a>&nbsp;&nbsp;
-                    <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                        <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
-                    </a>&nbsp;&nbsp;
-                    <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-                       onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
-                        <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span>
-                    </a>&nbsp;&nbsp;
-                {/if}
-                <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span>
-                </a>
-            </div>
-            <div id="dt1" class="no_margin">
-                <table class="display datatable"> 
-                    <thead>
-                        <tr>
-                            <th>{$smarty.const.FIELD_TITULO}</th>
-                            <th>{$smarty.const.FIELD_USER}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {foreach from=$archivos item=archivo} 
-                            {if $archivo->visible}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_PROC_ARCHIVOS}</span>
+                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table datatable table-striped table-hover">
+                            <thead>
                                 <tr>
-                                    <td><a href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo|htmlentities}</a> 
-                                        {if $archivo->descripcion != NULL}
-                                            <a href='javascript:void(0)' title='{$archivo->descripcion}'><big>*</big></a>
-                                        {/if}
-                                    </td>
-                                    <td>{$archivo->usuario->nombre|htmlentities} {$archivo->usuario->apellidos|htmlentities}</td>
+                                    <th>{$smarty.const.FIELD_TITULO}</th>
+                                    <th>{$smarty.const.FIELD_USER}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
-                            {/if}
-                        {/foreach}
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                                {foreach from=$archivos item=archivo} 
+                                    {if $archivo->visible}
+                                        <tr>  
+                                            <td>
+                                                <a title='{$archivo->titulo|htmlentities}: {$archivo->descripcion}' href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo|htmlentities}</a>
+                                            </td>
+                                            <td>
+                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'>{$archivo->usuario->nombre|htmlentities} {$archivo->usuario->apellidos|htmlentities}</a>
+                                            </td>
+                                            <td style="white-space:nowrap">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVO_DESCARGA}" href="index.php?page=archivo_descargar&id={$archivo->id}"><i class="fa fa-download fa-fw"></i></a>                 
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'><i class="fa fa-user fa-fw"></i></a>
+                                            </td>
+                                        </tr>
+                                    {/if}
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.panel-body -->        
             </div>
+            <!-- /.panel -->
         </div>
-    </div>	
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
 {/if}
 
 {if $subprocesos}
-    <div class="box grid_16">
-        <h2 class="box_head grad_grey_dark">{$smarty.const.FIELD_SUBPROCS}</h2>
-        <a href="#" class="grabber"></a>
-        <a href="#" class="toggle"></a>
-        <div class="block">
-            <div class="button_bar clearfix">
-                {if $_control}
-                    <a href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}">
-                        <img src='/icons/ff16/cog_add.png' /> {$smarty.const.TXT_PROC_CREAR}
-                    </a>&nbsp;&nbsp;
-                    <a href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                        <img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_EDIT}</span>
-                    </a>&nbsp;&nbsp;
-                    <a href='index.php?page=proceso_borrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'
-                       onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');">
-                        <img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_PROC_BORRAR}</span>
-                    </a>&nbsp;&nbsp;
-                {/if}
-                <a href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                    <img src='/icons/ff16/box.png' alt='{$smarty.const.TXT_ICON}' /><span> {$smarty.const.TXT_ARCHIVOS}</span>
-                </a>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_SUBPROCS}</span>
+                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>   
+                                    <th>{$smarty.const.FIELD_COD}</th>
+                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <th>{$smarty.const.FIELD_TIPO_PROC}</th>
+                                    <th>{$smarty.const.FIELD_PROC_MADRE}</th>         
+                                    <th>{$smarty.const.FIELD_PROPIETARIO}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$subprocesos item=subproceso}
+                                    <tr>    
+                                        <td style="white-space:nowrap">{$subproceso->codigo}</td>
+                                        <td>
+                                            <a title="{$subproceso->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
+                                                {$subproceso->nombre}
+                                            </a>
+                                        </td>
+                                        <td>{$subproceso->alcance}</td>
+                                        <td>
+                                            {if $subproceso->madre->id > 0}
+                                                <a title="{$subproceso->madre->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->madre->id}&id_entidad={$subproceso->madre->id_entidad}">
+                                                    {$subproceso->madre->nombre}
+                                                </a>
+                                            {else}
+                                                ---
+                                            {/if}
+                                        </td>
+                                        <td>
+                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$subproceso->propietario->id}">
+                                                {$subproceso->propietario->nombre}
+                                                {$subproceso->propietario->apellidos}
+                                            </a>
+                                        </td>
+                                        <td style="white-space:nowrap">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
+                                                <i class="fa fa-eye fa-fw"></i>
+                                            </a>                 
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS}" href='index.php?page=archivo_gestionar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
+                                                <i class="fa fa-file fa-fw"></i>
+                                            </a>
+                                            {if $_control}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>   
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_BORRAR}" href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}' onclick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');" >
+                                                    <i class="fa fa-trash fa-fw"></i>
+                                                </a>
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.panel-body -->        
             </div>
-            <div id="dt1" class="no_margin">
-                <table class="display datatable"> 
-                    <thead>
-                        <tr>
-                            <th>{$smarty.const.FIELD_SUBPROC}</th>
-                            <th>{$smarty.const.FIELD_NOMBRE}</th>
-                            <th>{$smarty.const.FIELD_PROPIETARIO}</th>
-                                {if $_control}
-                                <th>{$smarty.const.FIELD_ACCIONES}</th>
-                                {/if}
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {foreach from=$subprocesos item=subproceso}
-                            <tr>
-                                <td style="white-space:nowrap">{$subproceso->codigo}</td>
-                                <td><a title="{$smarty.const.TXT_VER}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}"> <img src='/icons/ff16/cog.png' alt='{$smarty.const.TXT_ICON}'/> {$subproceso->nombre}</a></td>
-                                <td>{$subproceso->propietario->nombre} {$subproceso->propietario->apellidos}</td>
-                                {if $_control}
-                                    <td>
-                                        <a title="{$smarty.const.TXT_EDIT}" href="index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}"><img src='/icons/ff16/cog_edit.png' alt='{$smarty.const.TXT_ICON}' /></a>&nbsp;
-                                        <a title="{$smarty.const.TXT_BORRAR}" href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'
-                                           onClick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');"><img src='/icons/ff16/cog_delete.png' alt='{$smarty.const.TXT_ICON}' /></a>
-                                    </td>
-                                {/if}
-                            </tr>
-                        {/foreach}
-                    </tbody>
-                </table>
-            </div>
+            <!-- /.panel -->
         </div>
-    </div>		
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
 {/if}

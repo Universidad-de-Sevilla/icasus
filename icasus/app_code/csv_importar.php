@@ -19,7 +19,9 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     if ($usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad))
     {
-        $smarty->assign('id_entidad', $id_entidad);
+        $entidad = new Entidad();
+        $entidad->Load("id=$id_entidad");
+        $smarty->assign('entidad', $entidad);
         $plantilla = 'csv_importar.tpl';
         $smarty->assign('_nombre_pagina', TXT_ARCHIVO_IMPORT_CSV);
     }

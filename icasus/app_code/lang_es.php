@@ -40,7 +40,6 @@ define('TXT_RESET', 'Reset');
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
 define('TXT_EXPORT_CSV', 'Exportar en CSV');
-define('TXT_ICON', 'Icono');
 define('TXT_ICON_GRAF_LINEAL', 'Icono gráfica lineal');
 define('TXT_LEYENDA', 'Leyenda');
 define('TXT_ACT_DESACT', 'Activar y desactivar');
@@ -226,7 +225,6 @@ define('TXT_CERRAR_SESION', 'Cerrar sesión');
 define('TXT_CUAD_RES', 'Cuadro Resumen');
 
 //Mostrar
-define('TXT_MOSTRAR', 'Mostrar');
 define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
 
 //Navegación
@@ -715,7 +713,6 @@ define('FIELD_PROC', 'Proceso');
 define('FIELD_PROC_MADRE', 'Proceso Madre');
 define('FIELD_TIPO_PROC', 'Tipo de Proceso');
 define('FIELD_SUBPROCS', 'Subprocesos');
-define('FIELD_SUBPROC', 'Subproceso');
 define('FIELD_EQUIP_PROC', 'Equipo de Proceso');
 
 //Usuarios

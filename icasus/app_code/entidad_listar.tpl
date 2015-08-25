@@ -33,7 +33,7 @@
                             <tbody>
                                 {foreach from=$entidades_usuario item=entidad}
                                     <tr>
-                                        <td>{$entidad->entidad->codigo}</td>
+                                        <td style="white-space:nowrap">{$entidad->entidad->codigo}</td>
                                         <td><a title="{$entidad->entidad->nombre}" href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'>{$entidad->entidad->nombre}</a></td>
                                         <td>{$entidad->rol->nombre}</td>
                                         <td style="white-space:nowrap">
@@ -89,7 +89,7 @@
                             <tbody>
                                 {foreach from=$entidades item=entidad}
                                     <tr>
-                                        <td>{$entidad->codigo}</td>
+                                        <td style="white-space:nowrap">{$entidad->codigo}</td>
                                         <td><a title="{$entidad->nombre}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}'>{$entidad->nombre}</a></td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}'><i class="fa fa-th-list fa-fw"></i></a>

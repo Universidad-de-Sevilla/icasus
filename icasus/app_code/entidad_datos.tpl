@@ -170,7 +170,7 @@
                             <tbody>
                                 {foreach from=$subentidades item=subentidad}
                                     <tr>  
-                                        <td>{$subentidad->codigo}</td>
+                                        <td style="white-space:nowrap">{$subentidad->codigo}</td>
                                         <td>
                                             <a title="{$subentidad->nombre}" href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'>{$subentidad->nombre}</a>
                                         </td>

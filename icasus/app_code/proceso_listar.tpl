@@ -70,7 +70,6 @@
                                                 ---
                                             {/if}
                                         </td>
-
                                         <td>
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
                                                 {$proceso->propietario->nombre}
@@ -123,7 +122,7 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <img src="images/mapa_procesos_biblioteca.png" usemap="#Map" class="img-rounded img-responsive" style="margin:0 auto">
+                    <img src="images/mapa_procesos_biblioteca.png" alt="{$smarty.const.TXT_PROC_MAP}" usemap="#Map" class="img-rounded img-responsive" style="margin:0 auto">
                     <map name="Map" id="Map">
                         <area shape="rect" coords="96,66,263,94" title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1920" />
                         <area shape="rect" coords="355,66,475,93" title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1921" />
