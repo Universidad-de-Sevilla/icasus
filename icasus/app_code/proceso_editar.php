@@ -50,7 +50,8 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
 
         if ($proceso->save())
         {
-            header("Location: index.php?page=proceso_mostrar&id_proceso=$id_proceso&id_entidad=$id_entidad");
+            $exito = MSG_PROC_EDITADO;
+            header("Location: index.php?page=proceso_mostrar&id_proceso=$id_proceso&id_entidad=$id_entidad&exito=$exito");
         }
         else
         {
@@ -83,4 +84,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?page=error&error=$error");
 }
-

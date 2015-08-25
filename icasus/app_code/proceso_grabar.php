@@ -17,7 +17,7 @@ if (filter_has_var(INPUT_POST, 'alcance') && filter_has_var(INPUT_POST, 'nombre'
     $proceso->codigo = filter_has_var(INPUT_POST, 'codigo') ? filter_input(INPUT_POST, 'codigo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $proceso->revision = filter_has_var(INPUT_POST, 'revision') ? filter_input(INPUT_POST, 'revision', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
     $fecha = filter_has_var(INPUT_POST, 'fecha_revision') ? filter_input(INPUT_POST, 'fecha_revision', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $fecha_array = explode("/", $fecha);
+    $fecha = explode("/", $fecha);
     $fecha = $fecha[2] . "/" . $fecha[1] . "/" . $fecha[0];
     $proceso->fecha_revision = $fecha;
     $proceso->nombre = filter_has_var(INPUT_POST, 'nombre') ? filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
