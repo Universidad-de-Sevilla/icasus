@@ -30,6 +30,9 @@
         <!-- Bootstrap DatePicker -->
         <link href="lib/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
+        <!-- Bootstrap Toggle -->
+        <link href="lib/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
+
         <!-- Datatables -->
         <link href="lib/dataTables/css/dataTables.bootstrap.css" rel="stylesheet">
 
@@ -43,13 +46,6 @@
 
         <!-- Custom Fonts -->
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-        <!-- Configuration Script -->
-        {if isset($_javascript)}
-            {foreach from=$_javascript item=script} 
-                <script type='text/javascript' src="js/{$script}.js"></script>
-            {/foreach}
-        {/if}
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -389,6 +385,9 @@
         <script src="lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
         <script src="lib/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js"></script>
 
+        <!-- Bootstrap Toggle -->
+        <script src="lib/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+
         <!-- Metis Menu Plugin JavaScript -->
         <script src="lib/metisMenu/metisMenu.min.js"></script>
 
@@ -407,6 +406,13 @@
 
         <!-- Validaciones personalizadas -->
         <script src="js/validador.js"></script>
+
+        <!-- Configuration Script -->
+        {if isset($_javascript)}
+            {foreach from=$_javascript item=script} 
+                <script type='text/javascript' src="js/{$script}.js"></script>
+            {/foreach}
+        {/if}
 
     </body>
 

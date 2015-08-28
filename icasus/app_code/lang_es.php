@@ -50,7 +50,6 @@ define('TXT_ARCHIVO_SUBIR_NUEVO', 'Subir nuevo archivo');
 define('TXT_ARCHIVO_SUBIR', 'Subir archivo');
 define('TXT_ARCHIVOS_SUBIR', 'Subir archivos');
 define('TXT_ARCHIVO_ACTUALIZAR_DATOS', 'Actualizar datos del archivo');
-define('TXT_ARCHIVO_ACTUALIZAR', 'Actualizar archivo');
 define('TXT_ARCHIVO_NUEVO', 'Nuevo archivo');
 define('TXT_ARCHIVO_BORRAR', 'Borrar archivo');
 define('TXT_ARCHIVOS', 'Archivos');
@@ -230,8 +229,8 @@ define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
 //Navegación
 define('TXT_MOSTAR_OCULTAR_NAV', 'Mostrar/Ocultar navegación');
 define('TXT_VER', 'Ver');
-define('TXT_SI', 'Si');
-define('TXT_NO', 'No');
+define('TXT_SI', 'SI');
+define('TXT_NO', 'NO');
 define('TXT_PRIMER', 'Primera');
 define('TXT_ULTIMO', 'Última');
 define('TXT_SIG', 'Siguiente');

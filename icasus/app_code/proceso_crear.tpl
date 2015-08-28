@@ -108,92 +108,70 @@
                             </select>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="mision" class="col-sm-2 control-label">{$smarty.const.FIELD_MISION}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="mision" name="mision" placeholder="{$smarty.const.FIELD_MISION}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="equipo_de_proceso" class="col-sm-2 control-label">{$smarty.const.FIELD_EQUIP_PROC}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="equipo_de_proceso" name="equipo_de_proceso" placeholder="{$smarty.const.FIELD_EQUIP_PROC}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="resultados_clave" class="col-sm-2 control-label">{$smarty.const.FIELD_RESULTS_CLAVE}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="resultados_clave" name="resultados_clave" placeholder="{$smarty.const.FIELD_RESULTS_CLAVE}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="entradas" class="col-sm-2 control-label">{$smarty.const.FIELD_ENTRADAS_PROV}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="entradas" name="entradas" placeholder="{$smarty.const.FIELD_ENTRADAS_PROV}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="salidas" class="col-sm-2 control-label">{$smarty.const.FIELD_SALIDAS_CLIENTS}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="salidas" name="salidas" placeholder="{$smarty.const.FIELD_SALIDAS_CLIENTS}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="actividades" class="col-sm-2 control-label">{$smarty.const.FIELD_ACTIVIDADES}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="actividades" name="actividades" placeholder="{$smarty.const.FIELD_ACTIVIDADES}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="variables_control" class="col-sm-2 control-label">{$smarty.const.FIELD_VARS_CONTROL}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="variables_control" name="variables_control" placeholder="{$smarty.const.FIELD_VARS_CONTROL}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="documentacion" class="col-sm-2 control-label">{$smarty.const.FIELD_DOCUMENTACION}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="documentacion" name="documentacion" placeholder="{$smarty.const.FIELD_DOCUMENTACION}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="mediciones" class="col-sm-2 control-label">{$smarty.const.FIELD_MEDICIONES}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="mediciones" name="mediciones" placeholder="{$smarty.const.FIELD_MEDICIONES}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="registros" class="col-sm-2 control-label">{$smarty.const.FIELD_REGISTROS}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" name="registros" id="registros" placeholder="{$smarty.const.FIELD_REGISTROS}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group">
                         <label for="observaciones" class="col-sm-2 control-label">{$smarty.const.FIELD_OBSERV}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" name="observaciones" id="observaciones" placeholder="{$smarty.const.FIELD_OBSERV}"></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="form-group">

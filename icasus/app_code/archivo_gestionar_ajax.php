@@ -31,6 +31,10 @@ if ($modulo == 'subir')
     $fichero->tipo_objeto = 'proceso';
     $fichero->extension = $ext;
 
+    //Obtenemos el proceso
+    $proceso = new Proceso();
+    $proceso->Load("id=$fichero->id_objeto");
+
     $subdir = "$fichero->id_objeto";
     $dir = IC_DIR_BASE . "upload/$fichero->tipo_objeto/";
     //comprobamos si el directorio de la unidad existe.
@@ -39,7 +43,7 @@ if ($modulo == 'subir')
         if (!mkdir($dir, 0755))
         {
             $error = ERR_DIR;
-            header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&error=$error");
+            header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&error=$error");
         }
     }
     //comprobamos si el subdirectorio de la unidad existe.
@@ -48,7 +52,7 @@ if ($modulo == 'subir')
         if (!mkdir($dir . $subdir, 0755))
         {
             $error = ERR_SUBDIR;
-            header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&error=$error");
+            header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&error=$error");
         }
     }
     //grabamos el archivo
@@ -61,14 +65,14 @@ if ($modulo == 'subir')
         }
         else
         {
-            $aviso = MSG_ARCHIVO_SUBIDA_OK;
-            header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&aviso=$aviso");
+            $exito = MSG_ARCHIVO_SUBIDA_OK;
+            header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&exito=$exito");
         }
     }
     else
     {
         $error = ERR_ARCHIVO_GRABAR;
-        header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&error=$error");
+        header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&error=$error");
     }
 }
 
@@ -85,6 +89,18 @@ if ($modulo == 'actualizar')
         $fichero->save();
     }
 }
+
+if ($modulo == 'visibilidad')
+{
+    $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+    if ($fichero->load("id =$id"))
+    {
+        $fichero->visible = filter_input(INPUT_POST, 'visible', FILTER_SANITIZE_NUMBER_INT);
+        //$db->execute("SET NAMES UTF8");
+        $fichero->save();
+    }
+}
+
 if ($modulo == 'borrar')
 {
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
