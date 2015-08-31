@@ -109,7 +109,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_ARCHIVO_BORRAR}</h4>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_ARCHIVO_BORRAR}</h3>
             </div>
             <div class="modal-body">
                 <input type="hidden" value="" name="id_borrar" id="id_borrar">
@@ -158,8 +158,6 @@
 <!-- /.row -->
 <br>
 <!-- /Barra de botones -->
-
-
 
 <div class="row">
     <div class="col-lg-12">

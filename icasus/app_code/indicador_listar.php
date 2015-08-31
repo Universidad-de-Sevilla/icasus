@@ -30,4 +30,3 @@ else
     $error = ERR_UNID_LIST_INDIC;
     header("location:index.php?page=error&error=$error");
 }
-
