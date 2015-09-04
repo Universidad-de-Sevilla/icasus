@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h2 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-gear fa-fw"></i> {$_nombre_pagina}
+            <i class="fa fa-folder fa-fw"></i> {$_nombre_pagina}
         </h2>
     </div>
     <!-- /.col-lg-12 -->
@@ -49,7 +49,7 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_PROC_PARAM}</span>
+                <span class="panel-title"><i class="fa fa-gear fa-fw"></i> {$smarty.const.TXT_PROC_PARAM}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
@@ -389,8 +389,8 @@
                                             </a>
                                         </td>
                                         <td style="white-space:nowrap">
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
-                                                <i class="fa fa-eye fa-fw"></i>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROC_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
+                                                <i class="fa fa-folder fa-fw"></i>
                                             </a>                 
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS}" href='index.php?page=archivo_gestionar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
                                                 <i class="fa fa-file fa-fw"></i>

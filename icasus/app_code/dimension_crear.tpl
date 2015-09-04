@@ -3,9 +3,9 @@
 <h2>{$smarty.const.TXT_DIM_CREAR}</h2>
 
 <form action='index.php?page=dimension_crear' method="post" class="datos" name="formcrear">
-	<p><label for='nombre'>{$smarty.const.FIELD_NOMBRE}</label> 
-	<input name='nombre' type='text' class='inp' /></p>
-	<p><input type='submit' name='submitcrear' value='{$smarty.const.TXT_BTN_Aceptar}' /></p>
+    <p><label for='nombre'>{$smarty.const.FIELD_NOMBRE}</label> 
+        <input name='nombre' type='text' class='inp' /></p>
+    <p><input type='submit' name='submitcrear' value='{$smarty.const.TXT_BTN_ACEPTAR}' /></p>
 </form>
 
 <!--
@@ -18,16 +18,16 @@
 -->
 <h2>{$smarty.const.TXT_DIM_LIST}</h2>
 <table class='listing' id='sortable'>
-	<thead>
-		<tr><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
-	</thead>
-	<tbody>
-	{foreach from=$dimensiones item=dimension}
-		<tr>
-			<td>{$dimension->nombre}</td>
-			<td><a href='index.php?page=dimension_editar&id={$dimension->id}'>{$smarty.const.TXT_EDIT}</a>
-				<!--| <a href='index.php?page=dimension_borrar&id={$dimension->id}&id_entidad=0'>Borrar</a>--></td>
-		</tr>
-   {/foreach}
-	</tbody>
+    <thead>
+        <tr><th>{$smarty.const.FIELD_NOMBRE}</th><th>{$smarty.const.FIELD_ACCIONES}</th></tr>
+    </thead>
+    <tbody>
+        {foreach from=$dimensiones item=dimension}
+            <tr>
+                <td>{$dimension->nombre}</td>
+                <td><a href='index.php?page=dimension_editar&id={$dimension->id}'>{$smarty.const.TXT_EDIT}</a>
+                        <!--| <a href='index.php?page=dimension_borrar&id={$dimension->id}&id_entidad=0'>Borrar</a>--></td>
+            </tr>
+        {/foreach}
+    </tbody>
 </table>

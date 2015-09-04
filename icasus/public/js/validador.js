@@ -38,6 +38,23 @@ $('#proceso_crear').validator({
         }
     },
     errors: {
-        validar_fecha: 'Introduzca una fecha en el formato correcto (dd/mm/aaaa)'
+        validar_fecha: 'Introduzca una fecha en el formato correcto (dd/mm/aaaa).'
+    }
+});
+
+// Función que valida que un fórmula tiene la sintaxis correcta
+$('#indicador_crear').validator({
+    custom: {
+        'validar_formula': function ($el) {
+            var validado = false;
+            var regexp = /(\()*\[([0-9]+)\]((\+|-|\*|\/)(\[([0-9]+)\]|[0-9]+))*(\))*((\+|-|\*|\/)(\()*(\[([0-9]+)\]|[0-9]+)(\))*)*$/;
+            if ($el.val().match(regexp) || !$el.val()) {
+                validado = true;
+            }
+            return validado;
+        }
+    },
+    errors: {
+        validar_formula: 'La fórmula no tiene la sintaxis correcta. La sintaxis para referirse a indicadores/datos es la siguiente: [ID del indicador/dato]. Ejemplo: [1]+[2]'
     }
 });

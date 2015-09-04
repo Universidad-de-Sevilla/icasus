@@ -12,7 +12,7 @@ body{
 } 
 
 a{
-    color: #BF2453;
+    color: #950717;
 }
 
 a:hover,
@@ -21,7 +21,7 @@ a:focus {
 }
 
 hr{
-    border-color: #BF921D !important;
+    border-color: #FFC526 !important;
 }
 
 #wrapper {
@@ -44,14 +44,14 @@ hr{
         position: inherit;
         margin: 0 0 0 250px;
         padding: 0 30px 40px;
-        border-left: 1px solid #BF921D;
+        border-left: 1px solid #FFC526;
     }
 
     #page-wrapper.toggled {
         position: inherit;
         margin: 0 0 0 70px;
         padding: 0 30px 40px;
-        border-left: 1px solid #BF921D;
+        border-left: 1px solid #FFC526;
     }
 }
 
@@ -63,12 +63,12 @@ hr{
 
 .page-header{
     margin-top: 2%;
-    border-color: #BF921D; 
-    color: #BF2453;
+    border-color: #FFC526; 
+    color: #950717;
 }
 
 .navbar-default{
-    border-color: #BF921D;
+    border-color: #FFC526;
 }
 
 .navbar-fixed-top + #page-wrapper {
@@ -77,9 +77,8 @@ hr{
 
 .navbar-brand{
     font-size: 46px; 
-    color: #BF2453 !important;
+    color: #950717 !important;
     font-weight: bold;
-    font-style: italic;
 }
 
 .navbar-top-links {
@@ -110,6 +109,7 @@ hr{
 .navbar-top-links .dropdown-menu li a {
     padding: 3px 20px;
     min-height: 0;
+    color: #950717;
 }
 
 .navbar-top-links .dropdown-menu li a div {
@@ -117,7 +117,7 @@ hr{
 }
 
 #fecha{
-    color: #BF2453;
+    color: #950717;
 }
 
 .sidebar .sidebar-nav.navbar-collapse {
@@ -233,8 +233,8 @@ hr{
 }
 
 .btn-danger{
-    background-color: #BF2453;
-    border-color: #BF2453;
+    background-color: #950717;
+    border-color: #950717;
 }
 
 .btn-danger:hover,
@@ -251,7 +251,7 @@ hr{
 .btn-danger:active.focus,
 .btn-danger.active.focus,
 .open > .dropdown-toggle.btn-danger.focus {
-    background-color: #BF2453;
+    background-color: #950717;
 }
 
 .dataTables_wrapper {
@@ -348,17 +348,17 @@ table.dataTable thead .sorting:after {
 }
 
 .panel-red {
-    border-color: #BF2453;
+    border-color: #950717;
 }
 
 .panel-red .panel-heading {
-    border-color: #BF2453;
+    border-color: #950717;
     color: #fff;
-    background-color: #BF2453;
+    background-color: #950717;
 }
 
 .panel-red a {
-    color: #BF2453;
+    color: #950717;
 }
 
 .panel-red a:hover {
@@ -396,8 +396,8 @@ table.dataTable thead .sorting:after {
 }
 
 .footer{
-    border-top: 1px solid #BF921D;
-    background-color: #BF2453;
+    border-top: 1px solid #FFC526;
+    background-color: #950717;
     color: #fff;
     padding: 1%;
 }
@@ -409,12 +409,12 @@ table.dataTable thead .sorting:after {
 .pagination > .active > a, .pagination > .active > a:focus, .pagination > 
 .active > a:hover, .pagination > .active > span, .pagination > .active > 
 span:focus, .pagination > .active > span:hover {
-    background-color:  #BF2453;
-    border-color:  #BF2453;
+    background-color:  #950717;
+    border-color:  #950717;
 }
 
 .pagination > li > a, .pagination > li > span {  
-    color: #BF2453;
+    color: #950717;
     text-decoration: none;
 }
 
@@ -441,14 +441,14 @@ span:focus, .pagination > li > span:hover {
     position: absolute; /* allows it to "slide" up into view */
     bottom: -82px; /* negative of the offset - height of link element */
     right: 10px; /* padding from the right side of the window */
-    color: #BF2453;
-    border-color: #BF921D;
+    color: #950717;
+    border-color: #FFC526;
 }
 
 #top-link-block.affix {
     position: fixed; /* keeps it on the bottom once in view */
     bottom: 18px; /* height of link element */
     right: 10px; /* padding from the right side of the window */
-    color: #BF2453;
-    border-color: #BF921D;
+    color: #950717;
+    border-color: #FFC526;
 }

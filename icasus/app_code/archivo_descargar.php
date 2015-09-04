@@ -11,10 +11,8 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
-//if (isset($_REQUEST["id"]))
 if (filter_has_var(INPUT_GET, 'id'))
 {
-//	$id = sanitize($_REQUEST["id"],2);
     $id = filter_input(INPUT_GET, 'id', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
 
     $a = new Fichero();

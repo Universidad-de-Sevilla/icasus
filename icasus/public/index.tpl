@@ -169,7 +169,7 @@
                                                 </div>
                                                 <!-- /.col-lg-8 -->
                                                 <div class="col-lg-4">
-                                                    <span class="panel-title" title="{$smarty.const.FIELD_ROL}: {$_rol}"><i class="fa fa-certificate fa-fw"></i> {$_rol}</span>
+                                                    <span class="panel-title" title="{$smarty.const.FIELD_ROL}: {$_rol}"><i class="fa fa-star fa-fw"></i> {$_rol}</span>
                                                     <i class="fa fa-chevron-up pull-right clickable"></i>
                                                 </div>
                                                 <!-- /.col-lg-4 -->
@@ -183,7 +183,7 @@
                                                     <ul class="nav nav-pills">
                                                         <li role="presentation">
                                                             <a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}' class="btn btn-default">
-                                                                <i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_UNID_FICHA}
+                                                                <i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_UNID_FICHA}
                                                             </a>
                                                         </li>
                                                         <li role="presentation">
@@ -198,17 +198,17 @@
                                                         </li>
                                                         <li role="presentation">
                                                             <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                                <i class="fa fa-table fa-fw"></i> {$smarty.const.FIELD_DATOS}
+                                                                <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}
                                                             </a>
                                                         </li>
                                                         <li role="presentation">
                                                             <a title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}' class="btn btn-default">
-                                                                <i class="fa fa-eye fa-fw"></i> {$smarty.const.TXT_CONSULT}
+                                                                <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                                                             </a>
                                                         </li>
                                                         <li role="presentation">
                                                             <a title="{$smarty.const.TXT_CUAD_RES}" href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}' class="btn btn-default">
-                                                                <i class="fa fa-dashcube fa-fw"></i> {$smarty.const.TXT_CUAD_RES}
+                                                                <i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_CUAD_RES}
                                                             </a>
                                                         </li>
                                                         {if $_control} 
@@ -387,6 +387,9 @@
 
         <!-- Bootstrap Toggle -->
         <script src="lib/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+
+        <!-- Bootstrap FileStyle -->
+        <script src="lib/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
         <script src="lib/metisMenu/metisMenu.min.js"></script>

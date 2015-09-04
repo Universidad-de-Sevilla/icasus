@@ -78,16 +78,18 @@
                             </table>
                             <br>
                             <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-10">
+                                <div class="col-sm-offset-2 col-sm-8">
                                     <button type="button" class="btn btn-default btn-danger" title="{$smarty.const.TXT_CANCEL}" onclick="location.href = 'index.php?page=entidad_datos&id_entidad={$entidad->id}';">
                                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                                     </button>
-                                    <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
-                                        <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
-                                    </button>
-                                    <button title="{$smarty.const.TXT_USERS_DESASIGNAR}" type="submit" class="btn btn-default btn-success">
-                                        <i class="fa fa-user-times fa-fw"></i> {$smarty.const.TXT_USERS_DESASIGNAR}
-                                    </button>
+                                    <div class="pull-right">
+                                        <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
+                                            <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
+                                        </button>
+                                        <button title="{$smarty.const.TXT_USERS_DESASIGNAR}" type="submit" class="btn btn-default btn-success">
+                                            <i class="fa fa-user-times fa-fw"></i> {$smarty.const.TXT_USERS_DESASIGNAR}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

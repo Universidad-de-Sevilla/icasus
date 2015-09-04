@@ -55,4 +55,9 @@ $(document).ready(function () {
             location.reload();
         });
     });
+
+    //Reset
+    $(':reset').click(function () {
+        $('#svisible').bootstrapToggle('on');
+    });
 });

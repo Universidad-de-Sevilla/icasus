@@ -85,18 +85,18 @@ if (filter_has_var(INPUT_POST, 'id_entidad'))
                 // $indicador = new indicador();
             }
         }
-        $aviso = MSG_MEDS_GRABADAS . ": $registros_grabados. ";
-        $aviso.= MSG_ARCHIVOS_PROCESADOS . ": $ficheros_procesados. ";
-        $aviso.= MSG_TOTAL_LINEAS . ": $lineas_totales. ";
+        $exito = MSG_MEDS_GRABADAS . ": $registros_grabados. ";
+        $exito.= MSG_ARCHIVOS_PROCESADOS . ": $ficheros_procesados. ";
+        $exito.= MSG_TOTAL_LINEAS . ": $lineas_totales. ";
         if ($registros_ajenos > 0)
         {
-            $aviso .= "$registros_ajenos " . MSG_MEDS_INDIC_NO_UNID;
+            $exito .= "$registros_ajenos " . MSG_MEDS_INDIC_NO_UNID;
         }
         if ($lineas_fallidas > 0)
         {
-            $aviso .= " $lineas_fallidas " . MSG_LINEAS_NO_REF_INDIC;
+            $exito .= " $lineas_fallidas " . MSG_LINEAS_NO_REF_INDIC;
         }
-        header("Location: index.php?page=csv_importar&id_entidad=$id_entidad&aviso=$aviso");
+        header("Location: index.php?page=csv_importar&id_entidad=$id_entidad&exito=$exito");
     }
     else
     {

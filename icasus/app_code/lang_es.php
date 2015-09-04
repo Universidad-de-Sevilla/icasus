@@ -18,7 +18,7 @@
 //TEXTOS: TXT_[Nombre]
 //---------------------------------------------------------------------------------
 
-define('TXT_ICASUS', 'Icasus');
+define('TXT_ICASUS', 'icasus');
 define('TXT_APP_DESCRIPCION', 'Indicadores de Calidad de los Servicios de la Universidad de Sevilla');
 define('TXT_DEPARTAMENTOS', 'Departamentos');
 define('TXT_BIBLIOTECAS', 'Bibliotecas');
@@ -31,9 +31,9 @@ define('TXT_CONTENIDO', 'Contenido de');
 define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_MANUAL', 'Manual');
-define('TXT_REP_GRAFIC', 'Representación Gráfica del Indicador/Dato');
-define('TXT_DEPENDE', 'Su cálculo depende de los siguientes Indicadores/Datos:');
-define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes Indicadores/Datos:');
+define('TXT_REP_GRAFIC', 'Representación Gráfica del indicador/dato');
+define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores/datos:');
+define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores/datos:');
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
 define('TXT_RESET', 'Reset');
 
@@ -67,7 +67,7 @@ define('TXT_POR_ANYOS', 'Por años');
 //Consulta
 define('TXT_CONSULT', 'Consulta');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
-define('TXT_CONSULT_AVAN', 'Consulta Avanzada de Indicadores y Datos');
+define('TXT_CONSULT_AVAN', 'Consulta Avanzada de indicadores y datos');
 
 //Cuadros de Mando
 define('TXT_CUADRO_MANDO', 'Cuadro de Mando');
@@ -82,24 +82,24 @@ define('TXT_PANEL_EDITAR', 'Editar Panel');
 define('TXT_PANELES_INFO', 'Información sobre los Paneles');
 
 //Datos
-define('TXT_DATO_MEDICIONES', 'Mediciones del Dato');
+define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
 define('TXT_DATO', 'Dato');
-define('TXT_DATO_MOSTRAR', 'Mostrar Ficha del Dato');
-define('TXT_DATO_EDIT', 'Editar Dato');
-define('TXT_DATO_FICHA', 'Ficha del Dato');
-define('TXT_DATO_NUEVO', 'Nuevo Dato');
-define('TXT_DATO_PARAM', 'Parámetros del Dato');
-define('TXT_DATO_CREAR', 'Crear Dato');
-define('TXT_DATOS_LIST', 'Lista de Datos');
+define('TXT_DATO_MOSTRAR', 'Mostrar Ficha del dato');
+define('TXT_DATO_EDIT', 'Editar dato');
+define('TXT_DATO_FICHA', 'Ficha del dato');
+define('TXT_DATO_NUEVO', 'Nuevo dato');
+define('TXT_DATO_PARAM', 'Parámetros del dato');
+define('TXT_DATO_CREAR', 'Crear dato');
+define('TXT_DATOS_LIST', 'Lista de datos');
 define('TXT_DATOS_REBIUN', 'Datos Rebiun');
-define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida Datos Rebiun');
-define('TXT_DATOS_EXPORT', 'Exportar Datos');
-define('TXT_DATOS_REBIUN_DET', 'Detalle Datos Rebiun'); //2012
-define('TXT_DATOS_REBIUN_SUMA', 'Suma Datos Rebiun');
-define('TXT_DATOS_REBIUN_PROMEDIO', 'Promedio Datos Rebiun');
-define('TXT_DATOS_REBIUN_DET_EXPORT_CSV', 'Exportar en CSV detalle Datos Rebiun');
-define('TXT_DATOS_REBIUN_SUMA_EXPORT_CSV', 'Exportar en CSV suma Datos Rebiun');
-define('TXT_DATOS_REBIUN_PROMEDIO_EXPORT_CSV', 'Exportar en CSV promedio Datos Rebiun');
+define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida datos Rebiun');
+define('TXT_DATOS_EXPORT', 'Exportar datos');
+define('TXT_DATOS_REBIUN_DET', 'Detalle datos Rebiun'); //2012
+define('TXT_DATOS_REBIUN_SUMA', 'Suma datos Rebiun');
+define('TXT_DATOS_REBIUN_PROMEDIO', 'Promedio datos Rebiun');
+define('TXT_DATOS_REBIUN_DET_EXPORT_CSV', 'Exportar en CSV detalle datos Rebiun');
+define('TXT_DATOS_REBIUN_SUMA_EXPORT_CSV', 'Exportar en CSV suma datos Rebiun');
+define('TXT_DATOS_REBIUN_PROMEDIO_EXPORT_CSV', 'Exportar en CSV promedio datos Rebiun');
 
 //Dimensiones
 define('TXT_DIM_CREAR', 'Crear Dimensión');
@@ -114,49 +114,51 @@ define('TXT_UNID_PARAM', 'Parámetros de la Unidad');
 define('TXT_UNID_SUP_INDIC', 'Indicadores de la Unidad Superior');
 define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la Unidad');
 define('TXT_UNID_TODAS', 'Todas las Unidades');
-define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la Unidad a la que se copiará el Indicador.');
+define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la Unidad a la que se copiará el indicador.');
 define('TXT_SUBUNID', 'La Subunidad');
-define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes Mediciones con los correspondientes valores');
+define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes mediciones con los correspondientes valores');
 define('TXT_UNID_NUEVA', 'Nueva Unidad');
 define('TXT_UNID_FICHA', 'Ficha de Unidad');
-define('TXT_UNID_PROC_LIST', 'Lista de procesos de la Unidad con sus Indicadores');
+define('TXT_UNID_PROC_LIST', 'Lista de procesos de la Unidad con sus indicadores');
 define('TXT_UNID_EDIT', 'Editar Unidad');
-define('TXT_UNIDS_MEDS_INDIC', 'Unidades con Mediciones en el Indicador');
-define('TXT_UNIDS_UE01', 'Unidades UE01 con sus Indicadores, Valores y Fecha');
+define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
+define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, Valores y Fecha');
 
 //Indicadores
-define('TXT_INDIC_SUBUNID', 'Relación de Indicadores de Subunidades');
+define('TXT_INDIC_SUBUNID', 'Relación de indicadores de Subunidades');
 define('TXT_INDIC_PROP', 'Indicadores propios de la Unidad');
-define('TXT_INDIC_MED', 'Mediciones del Indicador');
-define('TXT_INDIC_PARAM', 'Parámetros del Indicador');
-define('TXT_INDIC_NUEVO', 'Nuevo Indicador');
-define('TXT_INDIC_IR', 'Ir al Indicador/Dato');
-define('TXT_INDIC_VOLVER', 'Volver al Indicador');
-define('TXT_INDIC_MOSTRAR', 'Mostrar Ficha del Indicador');
-define('TXT_INDIC_FICHA', 'Ficha del Indicador');
-define('TXT_INDIC_CREAR', 'Crear Indicador');
-define('TXT_INDIC_LIST', 'Lista de Indicadores');
-define('TXT_INDIC_EDIT', 'Editar Indicador');
-define('TXT_INDIC_BORRAR', 'Borrar Indicador');
-define('TXT_INDICS_COPIAR', 'Copiar Indicadores');
-define('TXT_INDICS_DIC', 'Diccionario de Indicadores');
-define('TXT_INDICS_MIO', 'Mis Indicadores');
-define('TXT_INDIC_DAT', 'Datos del Indicador');
-define('TXT_INDIC_GEN_INFO_WORD', 'Generar un informe en Word de este Indicador');
-define('TXT_INDIC_EXPORT_EXCEL', 'Exportar los datos del Indicador a Excel');
+define('TXT_INDIC_MED', 'Mediciones del indicador');
+define('TXT_INDIC_PARAM', 'Parámetros del indicador');
+define('TXT_INDIC_NUEVO', 'Nuevo indicador');
+define('TXT_INDIC_IR', 'Ir al indicador/dato');
+define('TXT_INDIC_VOLVER', 'Volver al indicador');
+define('TXT_INDICS_VOLVER', 'Volver al listado de indicadores');
+define('TXT_INDIC_MOSTRAR', 'Mostrar Ficha del indicador');
+define('TXT_INDIC_FICHA', 'Ficha del indicador');
+define('TXT_INDIC_CREAR', 'Crear indicador');
+define('TXT_INDIC_LIST', 'Lista de indicadores');
+define('TXT_INDIC_EDIT', 'Editar indicador');
+define('TXT_INDIC_BORRAR', 'Borrar indicador');
+define('TXT_INDICS_COPIAR', 'Copiar indicadores');
+define('TXT_INDICS_DIC', 'Diccionario de indicadores');
+define('TXT_INDICS_MIO', 'Mis indicadores');
+define('TXT_INDIC_DAT', 'Datos del indicador');
+define('TXT_INDIC_GEN_INFO_WORD', 'Generar un informe en Word de este indicador');
+define('TXT_INDIC_EXPORT_EXCEL', 'Exportar los datos del indicador a Excel');
 define('TXT_INDIC_PUBLIC', 'Indicadores públicos');
 define('TXT_INDIC_ACARGO', 'Indicadores a su cargo');
-define('TXT_INDIC_BUSCAR_BASE', 'Buscar Indicador Base');
-define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar Indicadores Complementarios');
-define('TXT_INDIC_SEG_DEPART', 'Seguimiento de Indicadores de los Departamentos');
-define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta Medición.');
+define('TXT_INDIC_BUSCAR_BASE', 'Buscar indicador Base');
+define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar indicadores Complementarios');
+define('TXT_INDIC_SEG_DEPART', 'Seguimiento de indicadores de los Departamentos');
+define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta medición.');
 define('TXT_INDIC_ACT_MED', 'Marque la casilla si además quiere activarla');
 define('TXT_INDIC_SUBUNID_VAL', 'Valores de las subunidades para');
-define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Indicadores y Datos con Mediciones nulas agrupados');
-define('TXT_INDIC_DAT_MED_NULA', 'Indicadores y Datos con Mediciones nulas');
-define('TXT_INDIC_DAT_ULTIMA_MOD', 'Indicadores y Datos, última modificación');
-define('TXT_INDIC_DAT_SIN_MED', 'Indicadores y Datos sin Mediciones');
-define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/Datos dependientes');
+define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Indicadores y datos con mediciones nulas agrupados');
+define('TXT_INDIC_DAT_MED_NULA', 'Indicadores y datos con mediciones nulas');
+define('TXT_INDIC_DAT_ULTIMA_MOD', 'Indicadores y datos, última modificación');
+define('TXT_INDIC_DAT_SIN_MED', 'Indicadores y datos sin mediciones');
+define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
+define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
 
 //Informes
 define('TXT_INFORME_IC', 'Informe generado por ICASUS');
@@ -188,23 +190,23 @@ define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
 
 //Mediciones
 define('TXT_MED_UNICA', 'Medición única en la Unidad actual');
-define('TXT_MED_VER', 'Ver Medición');
+define('TXT_MED_VER', 'Ver medición');
 define('TXT_MED_DES', 'Medición desagregada en las Subunidades y cumplimentada por los responsables de las Subunidades, o la persona delegada.');
-define('TXT_MED_DES_CEN', 'Medición desagregada en las Subunidades y cumplimentada de manera centralizada por el responsable de medición del Indicador.');
-define('TXT_MED_ESTA', 'esta Medición');
+define('TXT_MED_DES_CEN', 'Medición desagregada en las Subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
+define('TXT_MED_ESTA', 'esta medición');
 define('TXT_MED_ACARGO', 'Mediciones a su cargo');
-define('TXT_MED_VOLVER', 'Volver a las Mediciones');
+define('TXT_MED_VOLVER', 'Volver a las mediciones');
 define('TXT_MED_MOSTRAR', 'Mediciones');
-define('TXT_MED_BORRAR', 'Borrar Medición');
-define('TXT_MED_ACT_TODAS', 'Activar todas las Mediciones.');
-define('TXT_MED_DESACT_TODAS', ' Desactivar todas las Mediciones.');
-define('TXT_MED_PROGRAM', 'Programar Medición');
-define('TXT_MED_VALORES', 'Valor o Conjunto de Valores de la Medición Actual');
-define('TXT_MED_DATOS', 'Datos de la Medición');
-define('TXT_MED_GESTION', 'Gestión de Mediciones');
-define('TXT_MED_AGREGAR', 'Agregar Medición');
-define('TXT_MED_GENERAR', 'Generar Medición/es');
-define('TXT_MED_TABLA', 'Tabla de Mediciones');
+define('TXT_MED_BORRAR', 'Borrar medición');
+define('TXT_MED_ACT_TODAS', 'Activar todas las mediciones.');
+define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
+define('TXT_MED_PROGRAM', 'Programar medición');
+define('TXT_MED_VALORES', 'Valor o conjunto de valores de la medición actual');
+define('TXT_MED_DATOS', 'Datos de la medición');
+define('TXT_MED_GESTION', 'Gestión de mediciones');
+define('TXT_MED_AGREGAR', 'Agregar medición');
+define('TXT_MED_GENERAR', 'Generar medición/es');
+define('TXT_MED_TABLA', 'Tabla de mediciones');
 
 //Menú Principal
 define('TXT_INICIO', 'Inicio');
@@ -282,17 +284,20 @@ define('TXT_CALCULO_TOTAL_ANUAL', 'Determina cómo se calcula el total anual ent
 define('TXT_BORRAR_CONFIRM', 'Confirmar borrado');
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CANCEL', 'Cancelar');
+define('TXT_EXAMINAR', 'Examinar...');
 define('TXT_GEN_INFO', 'Generar informe');
-define('TXT_BTN_Aceptar', 'Aceptar');
+define('TXT_NO_ARCHIVO_SEL', 'No se ha seleccionado ningún archivo.');
+define('TXT_BTN_ACEPTAR', 'Aceptar');
 define('TXT_BTN_GUARDAR', 'Guardar');
 define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');
-define('TXT_SOLO_INDIC_CALC', 'Sólo si es un Indicador/Dato calculado. Si es así, indique la fórmula matemática correspondiente empleando la siguiente sintaxis para referirse a Indicadores/Datos: [ID del Indicador/Dato]. Ej: [1]+[2], el resultado será la suma del valor de Indicador/Dato con ID=1 más el Indicador/Dato con ID=2. IMPORTANTE: La periodicidad debe ser la misma para todos los Indicadores/Datos implicados, de lo contrario no será posible el cálculo.');
-define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el Indicador/Dato.');
-define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde se obtienen los Valores para el Indicador/Dato.');
+define('TXT_SOLO_INDIC_CALC', 'Sólo si el valor del indicador/dato es calculado automáticamente (en función del valor de otros indicadores/datos). Deberá indicar una fórmula para el cálculo del mismo.');
+define('TXT_FORMULA', "Indique la fórmula para el cálculo, la sintaxis para referirse a indicadores/datos es la siguiente: [ID del indicador/dato]. Ejemplo: [1]+[2], el resultado será la suma del valor de indicador/dato con ID=1 más el indicador/dato con ID=2. IMPORTANTE: La periodicidad debe ser la misma para todos los indicadores/datos implicados, de lo contrario no será posible el cálculo.");
+define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el indicador/dato.');
+define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde se obtienen los valores para el indicador/dato.');
 define('TXT_BUSCAR', 'Buscar...');
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
 define('TXT_GRAFICO_AUMENTAR', '(Haga click sobre el gráfico para aumentarlo)');
-define('TXT_INTERVALO', 'Determina el Intervalo de Valores (cerrado) que podrán tomar las Mediciones del Indicador/Dato.');
+define('TXT_INTERVALO', 'Sólo si se quieren limitar los valores de las mediciones a un intervalo (cerrado) de posibles valores. Por ejemplo, para resultados de encuestas. No es compatible con el cálculo automático.');
 
 //Selecciones
 define('TXT_SEL', 'Seleccionar');
@@ -361,18 +366,18 @@ define('TXT_USER_DAT', 'Datos del Usuario');
 
 //Valores
 define('TXT_VALS', 'Valores');
-define('TXT_VAL_EDIT', 'Editar Valores');
-define('TXT_VAL_AGREGAR', 'Agregar Valor');
+define('TXT_VAL_EDIT', 'Editar valores');
+define('TXT_VAL_AGREGAR', 'Agregar valor');
 define('TXT_VALS_SUBUNID', 'Valores por Subunidad');
-define('TXT_VAL_IMPORT', 'Importar Valores');
-define('TXT_VAL_REF', 'Valores de Referencia');
+define('TXT_VAL_IMPORT', 'Importar valores');
+define('TXT_VAL_REF', 'Valores de referencia');
 define('TXT_VAL_REC', 'Valores recogidos');
-define('TXT_VAL_TABLA', 'Tabla de Valores');
-define('TXT_VAL_REF_EDIT', 'Editar Valor de Referencia');
-define('TXT_VAL_REF_CREAR', 'Crear nuevos Valores de Referencia');
-define('TXT_VAL_REF_NUEVO', 'Nueva Referencia');
-define('TXT_VAL_REF_BORRAR', 'Borrar Valores de Referencia');
-define('TXT_VALS_DESACT', 'Desactivar Valores');
+define('TXT_VAL_TABLA', 'Tabla de valores');
+define('TXT_VAL_REF_EDIT', 'Editar valor de referencia');
+define('TXT_VAL_REF_CREAR', 'Crear nuevos valores de referencia');
+define('TXT_VAL_REF_NUEVO', 'Nueva referencia');
+define('TXT_VAL_REF_BORRAR', 'Borrar valores de referencia');
+define('TXT_VALS_DESACT', 'Desactivar valores');
 
 //Visibilidad, permisos
 define('TXT_TODOS', 'Todos');
@@ -413,14 +418,14 @@ define('MSG_PANEL_EDITADO', "Panel editado correctamente.");
 define('MSG_PANEL_CREADO', "Se ha añadido al Cuadro de Mando el siguiente Panel:");
 
 //Datos
-define('MSG_DATO_BORRADO', 'Se ha borrado el Dato: ');
-define('MSG_DATO_ACTUALIZADO', 'Se ha actualizado el Dato');
-define('MSG_DATO_CONFIRM_BORRAR', '¿Realmente quiere borrar este Dato?');
-define('MSG_DATO_CREADO', 'Se ha creado un nuevo Dato');
-define('MSG_DATO_EXPORT_OK', 'Los Datos se han exportado correctamente: ');
-define('MSG_DATO_NO_VAL_REF', 'Es un Dato y éstos no tienen asociados valores de referencia.');
-define('MSG_DATO_NO_SUBUNID_ASIG', 'No se han asignado subunidades a este Dato (corregir)');
-define('MSG_DATO_PERIODICIDAD', 'IMPORTANTE: Cambió la Periodicidad del Dato. Por favor, revise las Mediciones: borre aquellas que considere no válidas.');
+define('MSG_DATO_BORRADO', 'Se ha borrado el dato: ');
+define('MSG_DATO_ACTUALIZADO', 'Se ha actualizado el dato');
+define('MSG_DATO_CONFIRM_BORRAR', '¿Realmente quiere borrar este dato?');
+define('MSG_DATO_CREADO', 'Se ha creado un nuevo dato');
+define('MSG_DATO_EXPORT_OK', 'Los datos se han exportado correctamente: ');
+define('MSG_DATO_NO_VAL_REF', 'Es un dato y éstos no tienen asociados valores de referencia.');
+define('MSG_DATO_NO_SUBUNID_ASIG', 'No se han asignado subunidades a este dato (corregir)');
+define('MSG_DATO_PERIODICIDAD', 'IMPORTANTE: Cambió la Periodicidad del dato. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
 
 //Dimensiones
 define('MSG_DIM_CREADA', 'Se ha creado una Dimensión.');
@@ -430,43 +435,43 @@ define('MSG_DIM_EDITADA', 'Se ha modificado una Dimensión.');
 define('MSG_UNID_NO_PROC', 'No hay procesos definidos para esta Unidad.');
 define('MSG_UNID_USERS_BORRADOS', 'Se han eliminado de la Unidad');
 define('MSG_UNID_USERS_AGREGADOS', 'Se han agregado a la Unidad');
-define('MSG_UNID_EDITADA', 'La Unidad se ha modificado con los Datos que aparecen a continuación.');
+define('MSG_UNID_EDITADA', 'La Unidad se ha modificado con los datos que aparecen a continuación.');
 define('MSG_UNID_NO_USERS', 'No se han vinculado Usuarios a esta Unidad.');
-define('MSG_UNID_NO_DATOS', 'No hay Datos definidos para esta Unidad.');
-define('MSG_UNID_NO_INDIC', 'No hay Indicadores definidos para esta Unidad.');
+define('MSG_UNID_NO_DATOS', 'No hay datos definidos para esta Unidad.');
+define('MSG_UNID_NO_INDIC', 'No hay indicadores definidos para esta Unidad.');
 define('MSG_UNID_SUBUNIDS_NO_INDIC', 'No hay indicadores definidos para las Subunidades de esta Unidad.');
 define('MSG_UNID_SUP_NO_PROC', 'La Unidad madre no tiene Procesos.');
-define('MSG_UNID_NO_SEG', 'Esta Unidad no mide Indicadores segregados.');
+define('MSG_UNID_NO_SEG', 'Esta Unidad no mide indicadores segregados.');
 define('MSG_UNID_NO_SUBUNIDS', 'Esta Unidad no tiene Subunidades.');
 define('MSG_UNID_CREADA', 'La Unidad se ha creado correctamente con los datos que aparecen a continuación: ');
 define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna Unidad.');
 define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen Unidades Orgánicas.');
 
 //Indicadores
-define('MSG_INDIC_NO_UNID_SUP', 'No hay Indicadores definidos en la Unidad superior.');
-define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado Subunidades a este Indicador (corregir)');
-define('MSG_INDIC_NO_VAL', 'No hay Valores recogidos para este Indicador/Dato.');
-define('MSG_INDIC_CREADO', 'Se ha creado un nuevo Indicador.');
-define('MSG_INDIC_NO_ENC', 'No se han encontrado Indicadores.');
-define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Indicador?');
-define('MSG_INDIC_BORRADO', 'Se ha borrado el Indicador: ');
+define('MSG_INDIC_NO_UNID_SUP', 'No hay indicadores definidos en la Unidad superior.');
+define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado Subunidades a este indicador (corregir)');
+define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.');
+define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
+define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores.');
+define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este indicador?');
+define('MSG_INDIC_BORRADO', 'Se ha borrado el indicador: ');
 define('MSG_INDIC_COPIADOS', 'Indicadores copiados.');
-define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los Datos del Indicador.');
-define('MSG_INDIC_NO_PUBLIC', 'Este Indicador no está definido como público.');
-define('MSG_INDIC_NO_VAL_REF', 'No se han definido Valores de Referencia para este Indicador.');
-define('MSG_INDIC_NO_DATOS', 'Todavía no se han introducido Datos en este Indicador.');
-define('MSG_INDIC_NO_MED', 'Todavía no se han definido Mediciones para este Indicador.');
-define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la Periodicidad del Indicador. Por favor, revise las Mediciones: borre aquellas que considere no válidas.');
+define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los datos del indicador.');
+define('MSG_INDIC_NO_PUBLIC', 'Este indicador no está definido como público.');
+define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para este indicador.');
+define('MSG_INDIC_NO_DATOS', 'Todavía no se han introducido datos en este indicador.');
+define('MSG_INDIC_NO_MED', 'Todavía no se han definido mediciones para este indicador.');
+define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la Periodicidad del indicador. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
 
 //Mediciones
-define('MSG_MED_NO_TIPO', 'Todavía no se han establecido Mediciones para este');
-define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna Medición.');
-define('MSG_MED_BORRADA', 'La Medición se ha borrado con éxito.');
+define('MSG_MED_NO_TIPO', 'Todavía no se han establecido mediciones para este');
+define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna medición.');
+define('MSG_MED_BORRADA', 'La medición se ha borrado con éxito.');
 define('MSG_MEDS_GRABADAS', 'Mediciones grabadas');
-define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de Indicadores que no pertenecen a la Unidad actual.');
-define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva Medición. Unidades afectadas: ');
-define('MSG_MEDS_GENERADA', 'Se ha/n generado correctamente la/s Medición/es.');
-define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las Mediciones (si no existen) del Indicador/Dato, desde su origen Histórico y teniendo en cuenta la Periodicidad del mismo. ¿Está seguro?');
+define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
+define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
+define('MSG_MEDS_GENERADA', 'Se ha/n generado correctamente la/s medición/es.');
+define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las mediciones (si no existen) del indicador/dato, desde su origen Histórico y teniendo en cuenta la Periodicidad del mismo. ¿Está seguro?');
 define('MSG_MED_EXISTE', 'Ya existe/n Medicion/es hasta este año.');
 
 //Páginas
@@ -478,7 +483,7 @@ define('MSG_PROC_BORRADO', 'Se ha borrado el Proceso: ');
 define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Proceso?');
 define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo Proceso para esta Unidad.');
 define('MSG_PROC_EDITADO', 'Se ha modificado el Proceso correctamente.');
-define('MSG_PROC_NO_INDIC', 'No se ha definido ningún Indicador para este Proceso.');
+define('MSG_PROC_NO_INDIC', 'No se ha definido ningún indicador para este Proceso.');
 define('MSG_PROC_ARCHIVO_NO', 'No se han subido archivos para este Proceso.');
 
 //Usuarios
@@ -488,13 +493,13 @@ define('MSG_USER_EDITADO', 'El Usuario se ha modificado correctamente.');
 define('MSG_USERS_CONFIRM_VINC', '¿Desea vincular a la Unidad los Usuarios marcados?');
 define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la Unidad los Usuarios marcados?');
 
-//Valores
-define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado Valores a esta Medición');
-define('MSG_VAL_BORRADO', 'Se ha borrado un Valor.');
-define('MSG_VAL_EXPORT', 'Exportando Valores para:');
-define('MSG_VAL_GRABAR', 'El Valor se ha grabado correctamente.');
-define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los Valores marcados?');
-define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los Valores de Referencia marcados?');
+//valores
+define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado valores a esta medición');
+define('MSG_VAL_BORRADO', 'Se ha borrado un valor.');
+define('MSG_VAL_EXPORT', 'Exportando valores para:');
+define('MSG_VAL_GRABAR', 'El valor se ha grabado correctamente.');
+define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los valores marcados?');
+define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los valores de referencia marcados?');
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 
@@ -519,7 +524,7 @@ define('ERR_FALTAN_PAR_IMPORT', 'Faltan parámetros para la importación.');
 define('ERR_PARAM_PAG', 'Faltan parámetros para mostrar la página solicitada.');
 define('ERR_FALTAN_PARAM_CONSULTA', 'Parámetros insuficientes para realizar la consulta.');
 define('ERR_NO_AUT_MOD', 'No tiene permisos para acceder a este módulo de la aplicación.');
-define('ERR_INFORM_INDIC', 'No se puede generar el Informe del Indicador por falta de parámetros.');
+define('ERR_INFORM_INDIC', 'No se puede generar el Informe del indicador por falta de parámetros.');
 define('ERR_GUARDAR', 'Hubo un problema, no se han podido guardar los cambios.');
 
 //Archivos
@@ -536,14 +541,14 @@ define('ERR_CUAD_MANDO_EDIT', 'El Cuadro de Mando no existe o no tiene permisos 
 define('ERR_CUAD_MANDO_BORRAR', 'No se puede borrar un Cuadro de Mando que contenga paneles. Bórralos primero.');
 
 //Datos
-define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo Dato.');
-define('ERR_DATO_BORRAR_MED', 'Tiene Mediciones asociadas al Dato, necesita borrar primero las Mediciones.');
-define('ERR_DATO_BORRAR_NO_AUT', 'No tiene permisos para borrar el Dato.');
-define('ERR_DATO_GRABAR', 'No se ha podido grabar el Dato.');
-define('ERR_DATO_MOSTRAR', 'No se puede mostrar el Dato, el identificador no existe en la base de datos.');
-define('ERR_DATO_IMPORT_NO_AUT', 'No tiene autorización para importar Datos en esta Unidad.');
-define('ERR_DATO_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Datos de esta Unidad.');
-define('ERR_DATO_BORRAR_DEP', 'Este Dato influye en el cálculo de otros Indicadores/Datos. Debe eliminar éstos primero.');
+define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo dato.');
+define('ERR_DATO_BORRAR_MED', 'Tiene mediciones asociadas al dato, necesita borrar primero las mediciones.');
+define('ERR_DATO_BORRAR_NO_AUT', 'No tiene permisos para borrar el dato.');
+define('ERR_DATO_GRABAR', 'No se ha podido grabar el dato.');
+define('ERR_DATO_MOSTRAR', 'No se puede mostrar el dato, el identificador no existe en la base de datos.');
+define('ERR_DATO_IMPORT_NO_AUT', 'No tiene autorización para importar datos en esta Unidad.');
+define('ERR_DATO_EDIT_NO_AUT', 'No tiene permisos suficientes para editar datos de esta Unidad.');
+define('ERR_DATO_BORRAR_DEP', 'Este dato influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
 
 //Dimensiones
 define('ERR_DIM_CREAR', 'No se ha podido crear la Dimensión.');
@@ -551,31 +556,31 @@ define('ERR_DIM_CREAR', 'No se ha podido crear la Dimensión.');
 //Entidades (Unidades)
 define('ERR_UNID', 'No ha especificado la Unidad.');
 define('ERR_UNID_NO_SEL', 'No se ha especificado una Unidad para asignar usuarios.');
-define('ERR_UNID_LIST_INDIC', 'No ha especificado la Unidad cuyos Indicadores desea listar.');
+define('ERR_UNID_LIST_INDIC', 'No ha especificado la Unidad cuyos indicadores desea listar.');
 define('ERR_UNID_EDIT', 'No se ha podido modificar la Unidad');
 
 //Gráficas
 define('ERR_PARAM_GRAFIC', 'Faltan parámetros para mostrar la gráfica.');
 
 //Indicadores
-define('ERR_INDIC_BORRAR_MED', 'Tiene Mediciones asociadas al Indicador, necesita borrar primero las Mediciones.');
-define('ERR_INDIC_BORRAR_DEP', 'Este Indicador influye en el cálculo de otros Indicadores/Datos. Debe eliminar éstos primero.');
-define('ERR_INDIC_BORRAR_NO_AUT', 'No tiene permisos para borrar el Indicador.');
-define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar Indicadores/Datos de esta Unidad');
-define('ERR_INDIC_GRABAR', 'No se ha podido grabar el Indicador.');
-define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el Indicador, el identificador no existe en la base de datos.');
+define('ERR_INDIC_BORRAR_MED', 'Tiene mediciones asociadas al indicador, necesita borrar primero las mediciones.');
+define('ERR_INDIC_BORRAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
+define('ERR_INDIC_BORRAR_NO_AUT', 'No tiene permisos para borrar el indicador.');
+define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar indicadores/datos de esta Unidad');
+define('ERR_INDIC_GRABAR', 'No se ha podido grabar el indicador.');
+define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el indicador, el identificador no existe en la base de datos.');
 
 //Mediciones
-define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de creación de Medición.');
-define('ERR_MED_AUT', 'No tiene permisos suficientes para agregar Mediciones a este');
-define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en esta Medición');
+define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de creación de medición.');
+define('ERR_MED_AUT', 'No tiene permisos suficientes para agregar mediciones a este');
+define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en esta medición');
 define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
-define('ERR_MED_NO_VAL', 'Error: no existen valores pendientes ni recogidos para esta Medición.');
-define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la Medición, inténtelo de nuevo o contacte con los administradores de Icasus.');
-define('ERR_MED_BORRAR', 'No se puede borrar la Medicion ya que influye en el cálculo de otros Indicadores/Datos. Borre éstos primero');
+define('ERR_MED_NO_VAL', 'Error: no existen valores pendientes ni recogidos para esta medición.');
+define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la medición, inténtelo de nuevo o contacte con los administradores de Icasus.');
+define('ERR_MED_BORRAR', 'No se puede borrar la Medicion ya que influye en el cálculo de otros indicadores/datos. Borre éstos primero');
 
 //Procesos
-define('ERR_PROC_BORRAR', 'Tiene Indicadores asociados al Proceso, necesita borrar primero los Indicadores.');
+define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al Proceso, necesita borrar primero los indicadores.');
 define('ERR_PROC_BORRAR_NO_AUT', 'No tiene persimos para borrar el Proceso.');
 define('ERR_PROC_GRABAR', 'Ha ocurrido un error al grabar el Proceso.');
 
@@ -586,8 +591,8 @@ define('ERR_LOGIN_SSO_AUT', 'La relacion de este Usuario con la Universidad no e
 define('ERR_USER_EDIT_NO_AUT', 'No tiene permiso para editar a este Usuario.');
 
 //Valores
-define('ERR_VAL_GRABAR', 'Se ha producido un error, no se ha grabado el Valor.');
-define('ERR_VAL_REF_BORRAR', 'No se puede borrar un Valor de Referencia con valores asignados a alguna medición.');
+define('ERR_VAL_GRABAR', 'Se ha producido un error, no se ha grabado el valor.');
+define('ERR_VAL_REF_BORRAR', 'No se puede borrar un valor de referencia con valores asignados a alguna medición.');
 
 //-----------------------------------------------------------------------------------
 //CAMPOS DE LAS TABLAS: FIELD_[Nombre]
@@ -661,7 +666,7 @@ define('FIELD_COMENTARIOS', 'Comentarios');
 
 //Datos
 define('FIELD_RESP_DATO', 'Responsable del dato');
-define('FIELD_FUENTE_DAT', 'Fuente de Datos');
+define('FIELD_FUENTE_DAT', 'Fuente de datos');
 define('FIELD_DATOS', 'Datos');
 
 //Entidades (Unidades)
@@ -684,6 +689,7 @@ define('FIELD_INDIC_BASE', 'Indicador base');
 define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
 define('FIELD_INDICS', 'Indicadores');
 define('FIELD_FORM', 'Formulación');
+define('FIELD_FORMULA', 'Fórmula de cálculo');
 define('FIELD_FUENTE_INFO', 'Fuente de Información');
 define('FIELD_PERIOD', 'Periodicidad');
 define('FIELD_RESP', 'Responsable');
@@ -695,15 +701,15 @@ define('FIELD_HISTORICO', 'Histórico');
 define('FIELD_CALCULO', 'Cálculo');
 define('FIELD_CALC_TOTAL', 'Cálculo del total entre subunidades');
 define('FIELD_CALC_TOTAL_ANUAL', 'Cálculo del total anual');
-define('FIELD_INTERVALO', 'Intervalo de Valores [Valor_mínimo, Valor_máximo]');
+define('FIELD_INTERVALO', 'Intervalo de valores [Vmin, Vmax]');
 define('FIELD_VALOR_MIN', 'Valor mínimo');
 define('FIELD_VALOR_MAX', 'Valor máximo');
 
 //Mediciones
 define('FIELD_MED', 'Medición');
 define('FIELD_MEDICIONES', 'Mediciones');
-define('FIELD_RESP_MED', 'Responsable de Medición');
-define('FIELD_TIP_MED', 'Tipo de Medición');
+define('FIELD_RESP_MED', 'Responsable de medición');
+define('FIELD_TIP_MED', 'Tipo de medición');
 
 //Páginas
 define('FIELD_PAG_CONTENIDO', 'Contenido de la página (HTML)');

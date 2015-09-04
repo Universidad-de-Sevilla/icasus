@@ -21,7 +21,12 @@
                     <div class="form-group has-feedback">
                         <label for="sarchivo" class="col-sm-2 control-label">{$smarty.const.FIELD_ARCHIVO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input  type="file" name="sarchivo" id="sarchivo" required />
+                            <input class="filestyle" data-buttonBefore="true" 
+                                   data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 
+                                   data-iconName="fa fa-folder-open fa-fw" 
+                                   data-buttonName="btn-primary" 
+                                   data-buttonText="{$smarty.const.TXT_EXAMINAR}" 
+                                   type="file" name="sarchivo" id="sarchivo" required />
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
@@ -37,7 +42,7 @@
                         <div class="col-sm-8">
                             <input  type="checkbox" id="svisible" name="svisible" class="form-control" 
                                     data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                    data-onstyle="success" data-offstyle="danger"
+                                    data-onstyle="success" data-offstyle="danger" data-size="small"
                                     data-off="{$smarty.const.TXT_NO}" value="1" checked />         
                         </div>
                     </div>
@@ -86,7 +91,7 @@
                             <input type="checkbox" id="evisible" class="form-control" name="evisible"
                                    data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                    data-onstyle="success" data-offstyle="danger"
-                                   data-off="{$smarty.const.TXT_NO}" />
+                                   data-off="{$smarty.const.TXT_NO}" data-size="small" />
                         </div>
                     </div>
                 </div>
