@@ -11,6 +11,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+//Variable para operar con Indicadores/Datos
+$logicaIndicador = new LogicaIndicador();
 
 if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'))
 {
@@ -43,6 +45,12 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     //comprobar permisos para cambiar mediciones tanto para responsables del indicador como
     //de la medición o responsables de la unidad
     $permiso_editar = false;
+    $permiso_unidad = false;
+    if ($control)
+    {
+        $permiso_unidad = true;
+    }
+    $smarty->assign('permiso_unidad', $permiso_unidad);
     if ($control OR $indicador->id_responsable == $usuario->id
             OR $indicador->id_responsable_medicion == $usuario->id)
     {
@@ -120,6 +128,17 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $entidad = new Entidad();
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign('entidad', $entidad);
+
+    //Si es calculado vemos los Indicadores/Datos de los que depende
+    $indicadores_influyentes = $logicaIndicador->calcular_dependencias($indicador->id);
+    $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
+
+    //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
+    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+    $smarty->assign("total", $total);
 
     $smarty->assign("usuario", $usuario);
     $smarty->assign("_nombre_pagina", TXT_MED_VER . ": " . " $medicion->etiqueta - $indicador->nombre");

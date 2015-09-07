@@ -101,9 +101,16 @@ if (isset($_SESSION['usuario']))
     }
 
     $usuario = $_SESSION['usuario'];
+
     //Control de unidades:
     $usuario_entidad = new Usuario_entidad();
     $control = $usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad);
+
+    //Guardamos el rol del usuario para la entidad actual
+    $logicaUsuario = new LogicaUsuario();
+    $rol = $logicaUsuario->getRol($usuario, $id_entidad);
+
+    $smarty->assign('_rol', $rol);
     $smarty->assign('_control', $control);
     $smarty->assign('_usuario', $usuario);
     /*

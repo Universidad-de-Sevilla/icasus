@@ -18,11 +18,14 @@ src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públi
             <table class='display datatable'>
                 <thead>
                     <tr>
+                        <th>{$smarty.const.FIELD_ID}</th>
                         <th>{$smarty.const.FIELD_PROC}</th>
                         <th>{$smarty.const.FIELD_COD}</th>
                         <th>{$smarty.const.FIELD_INDIC}</th>
+                        <th>{$smarty.const.FIELD_HISTORICO}</th>
                         <th>{$smarty.const.FIELD_PERIOD}</th>
                         <th>{$smarty.const.FIELD_RESP}</th>
+                        <th>{$smarty.const.FIELD_RESP_MED}</th>
                         <th>{$smarty.const.FIELD_ACCIONES}</th>
                     </tr>
                 </thead>
@@ -30,22 +33,33 @@ src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públi
                 <tbody>
                     {foreach from=$indicadores item=indicador} 
                         <tr>
+                            <td style="white-space:nowrap">{$indicador->id}</td>
                             <td>
                                 <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$entidad->id}'>
-                                    <img src='/icons/ff16/cog.png' /> {$indicador->proceso->nombre}
+                                    {$indicador->proceso->nombre}
                                 </a>
                             </td>
                             <td style="white-space:nowrap">{$indicador->codigo}</td>
                             <td width="30%">
+                                {if $indicador->calculo}
+                                    <img title="{$smarty.const.TXT_CALC_AUTO} {$indicador->calculo}" src='/icons/ff16/calculator.png' />
+                                {/if}
                                 <a target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}' 
-                                   title="{$smarty.const.TXT_INDIC_MOSTRAR} :: {$indicador->nombre}">
-                                    <img src='/icons/ff16/chart_curve.png' /> {$indicador->nombre}</a> 
-                                <a href="javascript:void(0)" title='{$indicador->descripcion}'>*</a></td>
+                                   title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$indicador->nombre}">
+                                    {$indicador->nombre}</a> 
+                                <a href="javascript:void(0)" title='{$indicador->descripcion}'>*</a>
+                            </td>
+                            <td>{$indicador->historicos}</td>
                             <td>{$indicador->periodicidad}</td>
                             <td>
                                 <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}&id_entidad={$entidad->id}'>
-                                    <img src='/icons/ff16/user.png' /> {$indicador->responsable->nombre} 
+                                    {$indicador->responsable->nombre} 
                                     {$indicador->responsable->apellidos}</a>
+                            </td>
+                            <td>
+                                <a title="{$smarty.const.TXT_USER_VER}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}&id_entidad={$entidad->id}'>
+                                    {$indicador->responsable_medicion->nombre} 
+                                    {$indicador->responsable_medicion->apellidos}</a>
                             </td>
                             <td style="white-space:nowrap">
                                 {if $_control}
@@ -64,7 +78,7 @@ src='/icons/ff16/chart_curve_world.png' alt='icono' />Mostrar indicadores públi
                                     </a>&nbsp;
                                 {/if}
                                 <a href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                   title="{$smarty.const.TXT_INDIC_MED} :: {$indicador->nombre}" target="_blank">
+                                   title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
                                     <img src='/icons/ff16/time.png' align="absmiddle"/></a>&nbsp;
                                 <a title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                     <img src='/icons/ff16/tag.png' /></a>

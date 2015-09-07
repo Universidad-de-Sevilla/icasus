@@ -37,7 +37,10 @@
         <div class="box grid_{$panel->ancho}" >   
             <div class="block alturo">
                 <div class="titulo-panel">
-                    <strong>{$panel->nombre}</strong>            
+                    <strong>{$panel->nombre}</strong>
+                    {if $panel->tipo->id != 1 && $panel->tipo->id != 5 && $panel->tipo->id != 6 && $panel->tipo->id != 7}
+                        &nbsp;{$smarty.const.TXT_GRAFICO_AUMENTAR} 
+                    {/if}
                     {if $_usuario->id eq $cuadro->id_usuario}
                         <br>
                         <span style="font-size:10px;">{$smarty.const.FIELD_ORDEN}: {$panel->orden}</span>
@@ -76,9 +79,8 @@
 {/if}
 <!-- //Paneles -->		
 
-<script src="js/highcharts.js" type="text/javascript"></script>
-<script src="js/highcharts-3d.js" type="text/javascript"></script>
-<script src="js/exporting.js" type="text/javascript"></script>
-<script src="js/Conjunto.js" type="text/javascript"></script>
-<script src="js/HighchartSerie.js" type="text/javascript"></script>
+<script src="js/highcharts/highcharts.js" type="text/javascript"></script>
+<script src="js/highcharts/exporting.js" type="text/javascript"></script>
+<script src="js/highcharts/Conjunto.js" type="text/javascript"></script>
+<script src="js/highcharts/HighchartSerie.js" type="text/javascript"></script>
 <script src="js/cuadro_mostrar.js" type="text/javascript"></script>

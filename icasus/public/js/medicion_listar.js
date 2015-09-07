@@ -10,6 +10,19 @@
 // Variables
 var idIndicador = $("#container").data("id_indicador");
 var nomIndicador = $("#container").data("nombre_indicador");
+var valor_min = null;
+var valor_max = null;
+var tickInterval = null;
+if ($.isNumeric($("#container").data("valor_min"))) {
+    valor_min = $("#container").data("valor_min");
+}
+if ($.isNumeric($("#container").data("valor_max"))) {
+    valor_max = $("#container").data("valor_max");
+}
+//Intervalo para las encuestas
+if (valor_min === 1 && valor_max === 9) {
+    tickInterval = 1;
+}
 // Contenedor para los datos del gráfico
 var chartSerie = new HighchartSerie();
 var totales = [];
@@ -40,14 +53,10 @@ $(document).ajaxComplete(function () {
     serie[serie.length - 1].visible = true;
     serie[serie.length - 1].selected = true;
     // Gráfico de barras
-    var chart1 = new Highcharts.Chart({
+    pintaGrafico({
         chart: {
             renderTo: 'container',
-            options3d: {
-                enabled: true,
-                alpha: 5,
-                depth: 80
-            }
+            events: {}
         },
         credits: {
             enabled: false
@@ -57,7 +66,7 @@ $(document).ajaxComplete(function () {
             style: {"fontSize": "14px"}
         },
         exporting: {
-            enabled: true
+            filename: nomIndicador
         },
         xAxis: {
             type: 'category'
@@ -65,7 +74,10 @@ $(document).ajaxComplete(function () {
         yAxis: {
             title: {
                 text: 'Valores'
-            }
+            },
+            min: valor_min,
+            max: valor_max,
+            tickInterval: tickInterval
         },
         plotOptions: {
             series: {
@@ -73,13 +85,13 @@ $(document).ajaxComplete(function () {
                     // Pintamos la media al hacer click en él.
                     legendItemClick: function (event) {
                         if (this.visible) {
-                            chart1.yAxis[0].removePlotLine(this.name);
+                            this.chart.yAxis[0].removePlotLine(this.name);
                         } else {
-                            chart1.yAxis[0].addPlotLine({
+                            this.chart.yAxis[0].addPlotLine({
                                 label: {
                                     text: '<span title="Total ' + this.name + ': ' + Math.round(totales[this.name] * 100) / 100 + '">Total: <b>'
                                             + Math.round(totales[this.name] * 100) / 100 + '</b></span>',
-                                    x: -60,
+                                    x: -50,
                                     y: 10,
                                     useHTML: true,
                                     style: {
@@ -101,31 +113,11 @@ $(document).ajaxComplete(function () {
                     formatter: function () {
                         return this.y ? Math.round(this.y * 100) / 100 : null;
                     }
-                },
-                depth: 20
+                }
             }
         },
         series: serie
-    });
-    // Pinta la media del último grupo de datos (último periodo)
-    chart1.getSelectedSeries().forEach(function (selected) {
-        chart1.yAxis[0].addPlotLine({
-            label: {
-                text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                        + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
-                x: -60,
-                y: 10,
-                useHTML: true,
-                style: {
-                    color: selected.color
-                }
-            },
-            value: totales[selected.name],
-            color: selected.color,
-            width: 2,
-            id: selected.name
-        });
-    });
+    }, true);
 });
 
 // Pinta las gráficas con los totales anuales e intraanuales
@@ -134,6 +126,19 @@ $('.highchart').each(function () {
     var idIndicador = $(this).data("id_indicador");
     var nomIndicador = $(this).data("nombre_indicador");
     var periodicidad = $(this).data("periodicidad");
+    var valor_min = null;
+    var valor_max = null;
+    var tickInterval = null;
+    if ($.isNumeric($(this).data("valor_min"))) {
+        valor_min = $(this).data("valor_min");
+    }
+    if ($.isNumeric($(this).data("valor_max"))) {
+        valor_max = $(this).data("valor_max");
+    }
+    //Intervalo para las encuestas
+    if (valor_min === 1 && valor_max === 9) {
+        tickInterval = 1;
+    }
     var fecha_inicio = $(this).data("fecha_inicio");
     var fecha_fin = $(this).data("fecha_fin");
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
@@ -177,23 +182,23 @@ $('.highchart').each(function () {
             });
         }
         //Gráfico de líneas
-        var chart1 = new Highcharts.Chart({
+        pintaGrafico({
             chart: {
                 renderTo: idPanel,
-                options3d: {
-                    enabled: true,
-                    depth: 10
-                }
+                events: {}
             },
             credits: {
                 enabled: false
             },
             title: {
-                text: nomIndicador + ' (' + fecha_inicio_es + ' a ' + fecha_fin_es + ')',
+                text: nomIndicador,
                 style: {"fontSize": "14px"}
             },
+            subtitle: {
+                text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
+            },
             exporting: {
-                enabled: true
+                filename: nomIndicador + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
             },
             xAxis: {
                 type: 'category'
@@ -201,7 +206,10 @@ $('.highchart').each(function () {
             yAxis: {
                 title: {
                     text: 'Valores'
-                }
+                },
+                min: valor_min,
+                max: valor_max,
+                tickInterval: tickInterval
             },
             plotOptions: {
                 series: {
@@ -217,3 +225,77 @@ $('.highchart').each(function () {
         });
     }
 });
+
+//Función que pinta nuestra gráfica
+function pintaGrafico(chartOptions, barras) {
+    $(document).ready(function () {
+        // Añadimos evento al hacer click en el gráfico
+        chartOptions.chart.events.click = function () {
+            hs.htmlExpand(document.getElementById(chartOptions.chart.renderTo), {
+                width: 9999,
+                height: 9999,
+                allowWidthReduction: true
+            }, {
+                chartOptions: chartOptions,
+                barras: barras
+            });
+        };
+        var chart = new Highcharts.Chart(chartOptions);
+        if (barras) {
+            // Pinta la media del último grupo de datos (último periodo)
+            chart.getSelectedSeries().forEach(function (selected) {
+                chart.yAxis[0].addPlotLine({
+                    label: {
+                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
+                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                        x: -50,
+                        y: 10,
+                        useHTML: true,
+                        style: {
+                            color: selected.color
+                        }
+                    },
+                    value: totales[selected.name],
+                    color: selected.color,
+                    width: 2,
+                    id: selected.name
+                });
+            });
+        }
+    });
+}
+
+// Crea un nuevo gráfico con un popup de Highslide
+var i = 0; //Contador de popups
+hs.Expander.prototype.onAfterExpand = function () {
+    if (this.custom.chartOptions) {
+        var chartOptions = this.custom.chartOptions;
+        chartOptions.chart.height = 600;
+        chartOptions.chart.renderTo = $('.highslide-body')[i];
+        chartOptions.chart.events.click = function () {
+        };
+        var hsChart = new Highcharts.Chart(chartOptions);
+        if (this.custom.barras) {
+            // Pinta la media del último grupo de datos (último periodo)
+            hsChart.getSelectedSeries().forEach(function (selected) {
+                hsChart.yAxis[0].addPlotLine({
+                    label: {
+                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
+                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                        x: -50,
+                        y: 10,
+                        useHTML: true,
+                        style: {
+                            color: selected.color
+                        }
+                    },
+                    value: totales[selected.name],
+                    color: selected.color,
+                    width: 2,
+                    id: selected.name
+                });
+            });
+        }
+        i++;
+    }
+};

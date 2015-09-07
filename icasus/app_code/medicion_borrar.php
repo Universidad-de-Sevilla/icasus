@@ -11,6 +11,8 @@
 
 global $smarty;
 global $usuario;
+//Variable para operar con Indicadores/Datos
+$logicaIndicador = new LogicaIndicador();
 
 if (filter_has_var(INPUT_GET, 'id_medicion') AND filter_has_var(INPUT_GET, 'tipo') AND filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -26,8 +28,7 @@ if (filter_has_var(INPUT_GET, 'id_medicion') AND filter_has_var(INPUT_GET, 'tipo
     $indicador->load("id = $medicion->id_indicador");
 
     // Comprobamos si el usuario tiene autorización
-    $usuario_entidad = new Usuario_entidad();
-    if ($usuario_entidad->load("id_usuario=$usuario->id AND id_entidad=$indicador->id_entidad AND (id_rol = 1 OR id_rol =2)"))
+    if ($control)
     {
         $autorizado = true;
     }
@@ -39,37 +40,9 @@ if (filter_has_var(INPUT_GET, 'id_medicion') AND filter_has_var(INPUT_GET, 'tipo
     {
         $autorizado = false;
     }
-
     if ($autorizado)
     {
-        $adodb = $medicion->db();
-        // Consulta para borrar los valores
-        $query1 = "DELETE FROM valores WHERE id_medicion = $id_medicion;\n";
-
-        // Consulta para borrar los registros relacionados de la tabla valor_referencia_medicion
-        $query2 = "DELETE FROM valores_referencia_mediciones WHERE id_medicion = $id_medicion;\n";
-
-        // Consulta para borrar la medición
-        $query3 = "DELETE FROM mediciones WHERE id = $id_medicion;\n";
-
-        // Comenzamos una transacción de manera que se borre todo o nada
-        $adodb->StartTrans();
-        $adodb->Execute($query1);
-        $adodb->Execute($query2);
-        $adodb->Execute($query3);
-        if ($adodb->HasFailedTrans())
-        {
-            $error = ERR_OP_BD;
-            $estado = "error=$error";
-        }
-        else
-        {
-            $aviso = MSG_MED_BORRADA;
-            $estado = "aviso=$aviso";
-        }
-        $adodb->CompleteTrans();
-
-        header("location:index.php?page=medicion_listar&id_{$tipo}=$indicador->id&id_entidad=$id_entidad&$estado");
+        $logicaIndicador->borrar_medicion($indicador, $tipo, $id_medicion);
     }
     else
     {

@@ -7,6 +7,14 @@
 // Funciones de la plantilla medicion_editar.tpl
 // -------------------------------------------------------
 
+//Variables: Valor mínimo y máximo permitido
+valor_min = $("#valors").data("valor_min");
+valor_max = $("#valors").data("valor_max");
+
+//Fechas de inicio y fin de grabación
+grabacion_inicio = $("#gi").data("grabacion_inicio");
+grabacion_fin = $("#gf").data("grabacion_fin");
+
 //Diaĺogo de confirmación para el botón de borrar medición
 $('a.confirmar').click(function (event)
 {
@@ -66,13 +74,10 @@ $("#container").each(function () {
         var dataseries = chartSerie.getPieSerie();
 
         //Gráfico de tarta
-        var chart1 = new Highcharts.Chart({
+        pintaGrafico({
             chart: {
                 renderTo: contenedor,
-                options3d: {
-                    enabled: true,
-                    alpha: 45
-                }
+                events: {}
             },
             credits: {
                 enabled: false
@@ -85,7 +90,7 @@ $("#container").each(function () {
                 text: 'Medición: ' + medicion + ' Total: ' + total
             },
             exporting: {
-                enabled: true
+                filename: nomIndicador + '(Medición: ' + medicion + ')'
             },
             xAxis: {
                 type: 'category'
@@ -104,9 +109,6 @@ $("#container").each(function () {
                                     + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' : null;
                         }
                     }
-                },
-                pie: {
-                    depth: 25
                 }
             },
             tooltip: {
@@ -131,41 +133,105 @@ function fila_editar(medicion, id_valor)
 function fila_grabar(id_valor, medicion)
 {
     var value = $('[name=v_' + id_valor + ']').val();
+    var fecha_actual = new Date();
+    var fecha_inicio = new Date(grabacion_inicio);
+    var fecha_fin = new Date(grabacion_fin);
     value = value.replace(',', '.');
-    if (value !== '')
-    {
-        if (isNaN(value) === false)
+
+    //Comprobamos que estemos dentro del periodo de grabación
+    if ((fecha_actual >= fecha_inicio) && (fecha_actual <= fecha_fin)) {
+        if (value !== '')
         {
-            $.ajax({
-                type: "POST",
-                url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
-                data: {"id_valor": id_valor, "valor": value},
-                success: function (response) {
+            if (isNaN(value) === false)
+            {
+                //Si hay un intervalo [min,max]
+                if ($.isNumeric(valor_min) && $.isNumeric(valor_max)) {
+                    if (value < valor_min || value > valor_max) {
+                        alert('Debe insertar un valor que esté dentro del intervalo de valores [' + valor_min + ', ' + valor_max + '] aceptados por el Indicador/Dato');
+                    }
+                    else {
+                        $.ajax({
+                            type: "POST",
+                            url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                            data: {"id_valor": id_valor, "valor": value},
+                            success: function (response) {
+                                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+                //Si hay un valor mínimo
+                else if ($.isNumeric(valor_min) && !$.isNumeric(valor_max)) {
+                    if (value < valor_min) {
+                        alert('Debe insertar un valor que sea igual o mayor que el valor mínimo (' + valor_min + ') aceptado por el Indicador/Dato');
+                    }
+                    else {
+                        $.ajax({
+                            type: "POST",
+                            url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                            data: {"id_valor": id_valor, "valor": value},
+                            success: function (response) {
+                                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+                //Si hay un valor máximo
+                else if ($.isNumeric(valor_max) && !$.isNumeric(valor_min)) {
+                    if (value > valor_max) {
+                        alert('Debe insertar un valor que sea igual o menor que el valor máximo (' + valor_max + ') aceptado por el Indicador/Dato');
+                    }
+                    else {
+                        $.ajax({
+                            type: "POST",
+                            url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                            data: {"id_valor": id_valor, "valor": value},
+                            success: function (response) {
+                                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                                location.reload();
+                            }
+                        });
+                    }
+                }
+                //Si no hay definida ninguna restricción en cuanto a los valores 
+                else {
+                    $.ajax({
+                        type: "POST",
+                        url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                        data: {"id_valor": id_valor, "valor": value},
+                        success: function (response) {
+                            $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                            location.reload();
+                        }
+                    });
+                }
+                /*
+                 * $.post("index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",{id_valor:id_valor, valor:value},function(){
+                 $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion="+medicion);
+                 });
+                 */
+            }
+            else if (value === "---")
+            {
+                $.post("index.php?page=medicion_editar_ajax&modulo=anularvalor&ajax=true", {id_valor: id_valor}, function () {
                     $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
                     location.reload();
-                }
-            });
-            /*
-             * $.post("index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",{id_valor:id_valor, valor:value},function(){
-             $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion="+medicion);
-             });
-             */
-        }
-        else if (value === "---")
-        {
-            $.post("index.php?page=medicion_editar_ajax&modulo=anularvalor&ajax=true", {id_valor: id_valor}, function () {
-                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                location.reload();
-            });
+                });
+            }
+            else
+            {
+                alert('Está intentando introducir un dato que no es reconocido como número.');
+            }
         }
         else
         {
-            alert('Está intentando introducir un dato que no es reconocido como número.');
+            alert('Está intentando introducir un valor vacio.\nPuede restituir el valor anterior pulsando el icono "X" (cancelar). \nPuede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---)');
         }
     }
-    else
-    {
-        alert('Está intentando introducir un valor vacio.\nPuede restituir el valor anterior pulsando el icono "X" (cancelar). \nPuede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---)');
+    else {
+        alert('No se pueden grabar valores, esta fuera del periodo de grabación (' + fecha_inicio.toLocaleDateString() + ' al ' + fecha_fin.toLocaleDateString() + ').');
     }
 }
 
@@ -226,6 +292,7 @@ function fecha_grabar(medicion, content)
     $.post("index.php?page=medicion_editar_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
         $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
     });
+    $('#valors').load(location.reload());
 }
 
 function fecha_cancelar(content, medicion)
@@ -275,3 +342,33 @@ function referencia_cancelar(id)
     $('#referencia_' + id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
 }
 
+//Función que pinta nuestra gráfica
+function pintaGrafico(chartOptions) {
+    $(document).ready(function () {
+        // Añadimos evento al hacer click en el gráfico
+        chartOptions.chart.events.click = function () {
+            hs.htmlExpand(document.getElementById(chartOptions.chart.renderTo), {
+                width: 9999,
+                height: 9999,
+                allowWidthReduction: true
+            }, {
+                chartOptions: chartOptions
+            });
+        };
+        var chart = new Highcharts.Chart(chartOptions);
+    });
+}
+
+// Crea un nuevo gráfico con un popup de Highslide
+var i = 0; //Contador de popups
+hs.Expander.prototype.onAfterExpand = function () {
+    if (this.custom.chartOptions) {
+        var chartOptions = this.custom.chartOptions;
+        chartOptions.chart.height = 600;
+        chartOptions.chart.renderTo = $('.highslide-body')[i];
+        chartOptions.chart.events.click = function () {
+        };
+        var hsChart = new Highcharts.Chart(chartOptions);
+        i++;
+    }
+};

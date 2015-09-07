@@ -12,6 +12,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+//Variable para operar con Indicadores/Datos
+$logicaIndicador = new LogicaIndicador();
 
 if (filter_has_var(INPUT_GET, 'id_indicador'))
 {
@@ -32,6 +34,10 @@ else
 $indicador = new Indicador();
 $indicador->load("id = $id_indicador");
 $smarty->assign('indicador', $indicador);
+
+//Si es calculado vemos los Indicadores/Datos de los que depende
+$indicadores_influyentes = $logicaIndicador->calcular_dependencias($id_indicador);
+$smarty->assign("indicadores_influyentes", $indicadores_influyentes);
 
 $entidad = new Entidad();
 $entidad->load("id = $indicador->id_entidad");

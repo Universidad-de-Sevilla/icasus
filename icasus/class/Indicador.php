@@ -25,6 +25,7 @@ class Indicador extends ADOdb_Active_Record
     public $valores_pendientes;
     public $medicion;
     public $tipo_agregacion;
+    public $tipo_agregacion_temporal;
 
     public function find_medicion_joined($criterio)
     {
@@ -70,6 +71,10 @@ class Indicador extends ADOdb_Active_Record
             $tipo_agregacion->load("id = $this->id_tipo_agregacion");
             $this->tipo_agregacion = $tipo_agregacion;
 
+            $tipo_agregacion_temporal = new Tipo_agregacion();
+            $tipo_agregacion_temporal->load("id = $this->id_tipo_agregacion_temporal");
+            $this->tipo_agregacion_temporal = $tipo_agregacion_temporal;
+
             return true;
         }
         else
@@ -91,6 +96,10 @@ class Indicador extends ADOdb_Active_Record
                 $responsable = new Usuario();
                 $responsable->load("id = $indicador->id_responsable");
                 $indicador->responsable = $responsable;
+
+                $responsable_medicion = new Usuario();
+                $responsable_medicion->load("id = $indicador->id_responsable_medicion");
+                $indicador->responsable_medicion = $responsable_medicion;
 
                 $visibilidad = new Visibilidad();
                 $visibilidad->load("id = $indicador->id_visibilidad");
