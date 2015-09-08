@@ -26,10 +26,10 @@ class LogicaUsuario implements ILogicaUsuario
                 $rol = $entidad_usuario->rol->nombre;
             }
         }
-        if ($rol == null)
+        $entidad = new Entidad();
+        $entidad->load("id=$id_entidad");
+        if ($rol == null AND $entidad->id_madre != 0)
         {
-            $entidad = new Entidad();
-            $entidad->load("id=$id_entidad");
             return $this->getRol($usuario, $entidad->id_madre);
         }
         return $rol;
