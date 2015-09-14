@@ -74,7 +74,11 @@
                         <tr>
                             <th>{$smarty.const.FIELD_UNID_SUP}</th>
                             <td>
-                                <a title="{$entidad->madre->nombre}" href="index.php?page=entidad_datos&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
+                                {if $entidad->madre->id !=0}
+                                    <a title="{$entidad->madre->nombre}" href="index.php?page=entidad_datos&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
+                                {else}
+                                    ---
+                                {/if}
                             </td>
                         </tr>
                     </tbody>

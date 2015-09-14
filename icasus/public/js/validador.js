@@ -52,9 +52,13 @@ $('#indicador_crear').validator({
                 validado = true;
             }
             return validado;
+        },
+        'validar_subunidades': function ($el) {
+            return $("#div_subunidades input[type=checkbox]:checked").length > 0;
         }
     },
     errors: {
-        validar_formula: 'La fórmula no tiene la sintaxis correcta. La sintaxis para referirse a indicadores/datos es la siguiente: [ID del indicador/dato]. Ejemplo: [1]+[2]'
+        validar_formula: 'La fórmula no tiene la sintaxis correcta. La sintaxis para referirse a indicadores/datos es la siguiente: [ID del indicador/dato]. Ejemplo: [1]+[2]',
+        validar_subunidades: 'Debe seleccionar al menos una Subunidad.'
     }
 });

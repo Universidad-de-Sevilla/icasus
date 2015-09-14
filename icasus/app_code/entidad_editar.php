@@ -46,7 +46,7 @@ if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'codigo')
 else
 {
     $madre = $entidad->madre;
-    $entidades = $entidad->find("id_madre = 1 OR id_madre=$madre->id_madre ORDER BY nombre");
+    $entidades = $entidad->find("id_madre = 0 OR id_madre = 1 OR id_madre=$madre->id_madre ORDER BY nombre");
     $smarty->assign('entidades', $entidades);
     $plantilla = 'entidad_editar.tpl';
 }

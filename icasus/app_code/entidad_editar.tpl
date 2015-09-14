@@ -54,17 +54,23 @@
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="id_padre" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID_SUP}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name='id_padre' id='id_padre'>
-                                {foreach from=$entidades item=padre}
-                                    <option value="{$padre->id}" {if $entidad->id_madre == $padre->id}selected{/if}>{$padre->nombre}
-                                    </option>
-                                {/foreach}
-                            </select>
+                    {if $entidad->id_madre!=0}
+                        <div class="form-group">
+                            <label for="id_padre" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID_SUP}</label>
+                            <div class="col-sm-8">
+                                <select class="form-control chosen-select" name='id_padre' id='id_padre'>
+                                    {foreach from=$entidades item=padre}
+                                        {if $padre->id != $entidad->id}
+                                            <option value="{$padre->id}" {if $entidad->id_madre == $padre->id}selected{/if}>{$padre->nombre}
+                                            </option>
+                                        {/if}
+                                    {/foreach}
+                                </select>
+                            </div>
                         </div>
-                    </div>
+                    {else}
+                        <input type="hidden" name="id_padre" value="{$entidad->id_madre}" />
+                    {/if}
                     <div class="form-group has-feedback">
                         <label for="web" class="col-sm-2 control-label">{$smarty.const.FIELD_WEB}</label>
                         <div class="col-sm-8">

@@ -57,7 +57,9 @@
                             <tbody>
                                 {foreach from=$indicadores item=indicador} 
                                     <tr>
-                                        <td>{$indicador->id}</td>
+                                        <td>
+                                            <span class="badge">{$indicador->id}</span>
+                                        </td>
                                         <td>{$indicador->codigo}</td>
                                         <td>
                                             {if $indicador->calculo}

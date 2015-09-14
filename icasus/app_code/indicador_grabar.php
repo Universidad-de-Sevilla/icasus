@@ -30,11 +30,11 @@ if (
         $indicador->load("id = $id_indicador");
         $tipo_agregacion_actual = $indicador->id_tipo_agregacion;
         $periodicidad_actual = $indicador->periodicidad;
-        $aviso = MSG_INDIC_ACTUALIZADO;
+        $exito = MSG_INDIC_ACTUALIZADO;
     }
     else
     {
-        $aviso = MSG_INDIC_CREADO;
+        $exito = MSG_INDIC_CREADO;
         $indicador->activo = 1;
     }
 
@@ -338,20 +338,20 @@ if (
                     {
                         $logicaIndicador->generar_mediciones_por_anyo($indicador, idate('Y'), "indicador");
                     }
-                    $error = MSG_INDIC_PERIODICIDAD;
+                    $aviso = MSG_INDIC_PERIODICIDAD;
                 }
             }
         }
         // Si ha ido bien mostramos la ficha del indicador
-        if ($error)
+        if ($aviso)
         {
             //Si se cambio la periodicidad lanzamos además del aviso de 
             //actualización un mensaje de error para advertir del cambio
-            header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&aviso=$aviso&error=$error");
+            header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&exito=$exito&aviso=$aviso");
         }
         else
         {
-            header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&aviso=$aviso");
+            header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&exito=$exito");
         }
     }
     else

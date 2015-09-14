@@ -176,7 +176,7 @@ define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Fiabilidad tramitación expedientes');
 define('TXT_PRESTAMO_USER', 'Préstamo por Usuario potencial');
 
 //Login
-define('TXT_BIENVENIDO', 'Bienvenido a Icasus');
+define('TXT_BIENVENIDO', 'Bienvenido a icasus');
 define('TXT_LOGIN', 'Iniciar sesión');
 define('TXT_LOGIN_PARTE1', 'es una aplicación web para la gestión de la calidad en la');
 define('TXT_LOGIN_PARTE2', 'Para acceder al sistema es necesario ser miembro activo de alguno de los grupos de calidad de la Universidad de Sevilla y solicitar autorización de acceso al responsable de su grupo de calidad.');
@@ -189,7 +189,7 @@ define('TXT_SOFT_LIBRE', 'Software Libre');
 define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
 
 //Mediciones
-define('TXT_MED_UNICA', 'Medición única en la Unidad actual');
+define('TXT_MED_UNICA', 'Medición única en la Unidad actual.');
 define('TXT_MED_VER', 'Ver medición');
 define('TXT_MED_DES', 'Medición desagregada en las Subunidades y cumplimentada por los responsables de las Subunidades, o la persona delegada.');
 define('TXT_MED_DES_CEN', 'Medición desagregada en las Subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
@@ -241,6 +241,8 @@ define('TXT_EDIT', 'Editar');
 define('TXT_BORRAR', 'Borrar');
 define('TXT_DESACT', 'Desactivar');
 define('TXT_CERRAR', 'Cerrar');
+define('TXT_MARCAR', 'Marcar todos');
+define('TXT_DESMARCAR', 'Desmarcar todos');
 define('TXT_VOLVER', 'Volver al');
 define('TXT_VOLVER_ARRIBA', 'Volver arriba');
 define('TXT_VOLVER_INDICE', 'Volver al índice');

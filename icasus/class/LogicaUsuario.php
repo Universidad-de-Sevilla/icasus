@@ -28,7 +28,7 @@ class LogicaUsuario implements ILogicaUsuario
                     $rol = $entidad_usuario->rol->nombre;
                 }
             }
-            if ($rol == null)
+            if ($rol == null && id_entidad != 0)
             {
                 $entidad = new Entidad();
                 $entidad->load("id=$id_entidad");
