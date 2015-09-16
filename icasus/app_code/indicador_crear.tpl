@@ -360,7 +360,7 @@
                                     {foreach name="subunidad" from=$subunidades item="subunidad"}
                                         <div class="checkbox">
                                             <label>
-                                                <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad" data-validar_subunidades="validar_subunidades" checked="checked">
+                                                <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad" data-validar_subunidades="validar_subunidades" >
                                                 {$subunidad->etiqueta}
                                             </label>
                                         </div>
