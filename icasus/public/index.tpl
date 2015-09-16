@@ -404,6 +404,12 @@
         <script src="lib/dataTables/js/jquery.dataTables.min.js"></script>
         <script src="lib/dataTables/js/dataTables.bootstrap.js"></script>
 
+        <!-- Highcharts -->
+        <script src="lib/highcharts/highcharts.js"></script>
+        <script src="lib/highcharts/exporting.js"></script>
+        <script src="lib/highcharts/Conjunto.js"></script>
+        <script src="lib/highcharts/HighchartSerie.js"></script>
+
         <!-- Custom JavaScript -->
         <script src="js/index.js"></script>
 

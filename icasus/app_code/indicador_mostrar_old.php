@@ -3,8 +3,7 @@
 //-------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Archivo: indicador_mostrar.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
-// Joaquín Valonero Zaera (tecnibus1@us.es)
+// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
 //-------------------------------------------------------------------------------
 // Muestra la ficha del indicador y los gráficos con los valores
 //-------------------------------------------------------------------------------
@@ -32,14 +31,6 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $entidad = new Entidad();
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign('entidad', $entidad);
-
-    //Responsables
-    $responsable = false;
-    if ($indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
-    {
-        $responsable = true;
-    }
-    $smarty->assign('responsable', $responsable);
 
     //Vemos si influye en otros Indicadores/Datos
     $indicadores_dependientes = $logicaIndicador->calcular_influencias($id_indicador);

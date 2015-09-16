@@ -24,14 +24,14 @@ define('TXT_DEPARTAMENTOS', 'Departamentos');
 define('TXT_BIBLIOTECAS', 'Bibliotecas');
 define('TXT_CONTROL', 'Control');
 define('TXT_OTRO_OFIMATICA', 'Microsoft Office o cualquier otro programa de ofimática.');
-define('TXT_NO_ASIG', 'No asignado');
+define('TXT_NO_ASIG', 'No asignado.');
 define('TXT_REG_EVENTOS', 'Registro de eventos');
 define('TXT_NULO', 'NULO');
 define('TXT_CONTENIDO', 'Contenido de');
 define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_MANUAL', 'Manual');
-define('TXT_REP_GRAFIC', 'Representación Gráfica del indicador/dato');
+define('TXT_REP_GRAFIC', 'Gráficas');
 define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores/datos:');
 define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores/datos:');
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
@@ -84,7 +84,7 @@ define('TXT_PANELES_INFO', 'Información sobre los Paneles');
 //Datos
 define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
 define('TXT_DATO', 'Dato');
-define('TXT_DATO_MOSTRAR', 'Mostrar Ficha del dato');
+define('TXT_DATO_MOSTRAR', 'Mostrar ficha del dato');
 define('TXT_DATO_EDIT', 'Editar dato');
 define('TXT_DATO_FICHA', 'Ficha del dato');
 define('TXT_DATO_NUEVO', 'Nuevo dato');
@@ -133,7 +133,7 @@ define('TXT_INDIC_NUEVO', 'Nuevo indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
 define('TXT_INDIC_VOLVER', 'Volver al indicador');
 define('TXT_INDICS_VOLVER', 'Volver al listado de indicadores');
-define('TXT_INDIC_MOSTRAR', 'Mostrar Ficha del indicador');
+define('TXT_INDIC_MOSTRAR', 'Mostrar ficha del indicador');
 define('TXT_INDIC_FICHA', 'Ficha del indicador');
 define('TXT_INDIC_CREAR', 'Crear indicador');
 define('TXT_INDIC_LIST', 'Lista de indicadores');
@@ -335,6 +335,7 @@ define('TXT_OPERATIVO', 'Operativo/Clave');
 define('TXT_DIR_GES', 'Directivo/Estratégico/Gestión');
 
 //Tipos de Representaciones Gráficas
+
 define('TXT_GRAFIC_INDIC_VAL', 'Gráfica con los valores del indicador');
 define('TXT_GRAFIC_VAL_MED', 'Gráfica completa con los valores medios del indicador');
 define('TXT_BARRAS', 'Barras');
@@ -451,7 +452,7 @@ define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen Unidades Orgánicas.');
 
 //Indicadores
 define('MSG_INDIC_NO_UNID_SUP', 'No hay indicadores definidos en la Unidad superior.');
-define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado Subunidades a este indicador (corregir)');
+define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.');
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores.');
@@ -679,7 +680,7 @@ define('FIELD_UNID_GEN', 'Unidad generadora');
 define('FIELD_UNID_DEST', 'Unidad de destino');
 define('FIELD_SUBUNID', 'Subunidad');
 define('FIELD_SUBUNIDS', 'Subunidades');
-define('FIELD_SUBUNID_AFECT', 'Subunidades afectadas');
+define('FIELD_SUBUNID_AFECT', 'Unidad/Subunidades afectadas');
 define('FIELD_UNIDS', 'Unidades');
 
 //Gráficas

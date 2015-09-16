@@ -2,11 +2,11 @@
 
 //-------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Archivo: indicador_mostrar.php
+// Archivo: graficas_mostrar.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //-------------------------------------------------------------------------------
-// Muestra la ficha del indicador y los gráficos con los valores
+// Muestra los gráficos de indicadores/datos con los valores
 //-------------------------------------------------------------------------------
 
 global $smarty;
@@ -113,10 +113,12 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $smarty->assign("pinta_grafico", $pinta_grafico);
 
     $smarty->assign('_nombre_pagina', TXT_INDIC_FICHA . ": $indicador->nombre");
-    $plantilla = 'indicador_mostrar.tpl';
+    $plantilla = 'graficas_mostrar.tpl';
 }
 else
 {
     $error = ERR_PARAM;
     header("location:index.php?error=$error");
 }
+
+
