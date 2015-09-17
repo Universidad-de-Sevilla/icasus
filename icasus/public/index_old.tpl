@@ -152,73 +152,81 @@
                     </div>
                     <!-- /.navbar-default-sidebar -->
 
-                </nav> 
-                <!-- /Navigation -->
+                </nav>                          
 
                 <!-- Page Content -->
                 <div id="page-wrapper" class="toggled">
                     <div class="container-fluid">
-
                         <!-- Menú de Unidades -->
                         {if isset($entidad)}
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <h1 class="page-header">            
-                                                <span title="{$smarty.const.TXT_UNID}: {$entidad->nombre}"><i class="fa fa-sitemap fa-fw"></i> {$entidad->nombre}</span> / 
-                                                <span title="{$smarty.const.FIELD_ROL}: {$_rol}"><i class="fa fa-star fa-fw"></i> {$_rol}</span>
-                                            </h1>
+                                    <div class="panel panel-unidad panel-red">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <span class="panel-title" title="{$smarty.const.TXT_UNID}: {$entidad->nombre}"><i class="fa fa-sitemap fa-fw"></i> {$entidad->nombre}</span>
+                                                </div>
+                                                <!-- /.col-lg-8 -->
+                                                <div class="col-lg-4">
+                                                    <span class="panel-title" title="{$smarty.const.FIELD_ROL}: {$_rol}"><i class="fa fa-star fa-fw"></i> {$_rol}</span>
+                                                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                                                </div>
+                                                <!-- /.col-lg-4 -->
+                                            </div>
+                                            <!-- /.row -->
                                         </div>
-                                        <!-- /.col-lg-12 -->
-                                    </div>
-                                    <!-- /.row -->
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <ul class="nav nav-pills" role="navigation">
-                                                <li role="presentation">
-                                                    <a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}' class="btn btn-default">
-                                                        <i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_UNID_FICHA}
-                                                    </a>
-                                                </li>
-                                                <li role="presentation">
-                                                    <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                        <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS}
-                                                    </a>
-                                                </li>
-                                                <li role="presentation">
-                                                    <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                        <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}
-                                                    </a>
-                                                </li>
-                                                <li role="presentation">
-                                                    <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                        <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}
-                                                    </a>
-                                                </li>
-                                                <li role="presentation">
-                                                    <a title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}' class="btn btn-default">
-                                                        <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
-                                                    </a>
-                                                </li>
-                                                <li role="presentation">
-                                                    <a title="{$smarty.const.TXT_CUAD_RES}" href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}' class="btn btn-default">
-                                                        <i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_CUAD_RES}
-                                                    </a>
-                                                </li>
-                                                {if $_control} 
-                                                    <li role="presentation">
-                                                        <a title="{$smarty.const.TXT_CONTROL}" href='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}' class="btn btn-default">
-                                                            <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
-                                                        </a>
-                                                    </li>
-                                                {/if}
-                                            </ul>
+                                        <!-- /.panel-heading -->
+                                        <div class="panel-body">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <ul class="nav nav-pills">
+                                                        <li role="presentation">
+                                                            <a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}' class="btn btn-default">
+                                                                <i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_UNID_FICHA}
+                                                            </a>
+                                                        </li>
+                                                        <li role="presentation">
+                                                            <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}' class="btn btn-default">
+                                                                <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS}
+                                                            </a>
+                                                        </li>
+                                                        <li role="presentation">
+                                                            <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}' class="btn btn-default">
+                                                                <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}
+                                                            </a>
+                                                        </li>
+                                                        <li role="presentation">
+                                                            <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}' class="btn btn-default">
+                                                                <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}
+                                                            </a>
+                                                        </li>
+                                                        <li role="presentation">
+                                                            <a title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}' class="btn btn-default">
+                                                                <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
+                                                            </a>
+                                                        </li>
+                                                        <li role="presentation">
+                                                            <a title="{$smarty.const.TXT_CUAD_RES}" href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}' class="btn btn-default">
+                                                                <i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_CUAD_RES}
+                                                            </a>
+                                                        </li>
+                                                        {if $_control} 
+                                                            <li role="presentation">
+                                                                <a title="{$smarty.const.TXT_CONTROL}" href='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}' class="btn btn-default">
+                                                                    <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
+                                                                </a>
+                                                            </li>
+                                                        {/if}
+                                                    </ul>
+                                                </div>
+                                                <!-- /.col-lg-12 -->
+                                            </div>
+                                            <!-- /.row -->
                                         </div>
-                                        <!-- /.col-lg-12 -->
+                                        <!-- /.panel-body -->
                                     </div>
-                                    <!-- /.row -->
-
+                                    <!-- /.panel -->
                                 </div>
                                 <!-- /.col-lg-12 -->
                             </div>

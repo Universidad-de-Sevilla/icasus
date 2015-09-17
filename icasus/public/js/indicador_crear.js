@@ -29,6 +29,7 @@ $(document).ready(function () {
         //Si no hay errores de validación avanzamos
         if (!validar.has('.has-error').length) {
             $('#tab_indicador').removeClass('active');
+            $('#tab_indicador').addClass('disabled');
             $('#indicador').removeClass('active');
             $('#tab_otros').removeClass('disabled');
             $('#tab_otros').addClass('active');
@@ -39,7 +40,9 @@ $(document).ready(function () {
     $('#btn_prev_indicador').on('click', function (e) {
         e.preventDefault();
         $('#tab_otros').removeClass('active');
+        $('#tab_otros').addClass('disabled');
         $('#otros').removeClass('active');
+        $('#tab_indicador').removeClass('disabled');
         $('#tab_indicador').addClass('active');
         $('#indicador').addClass('active');
     });
@@ -47,6 +50,7 @@ $(document).ready(function () {
     $('#btn_nxt_subunidades').on('click', function (e) {
         e.preventDefault();
         $('#tab_otros').removeClass('active');
+        $('#tab_otros').addClass('disabled');
         $('#otros').removeClass('active');
         $('#tab_subunidades').removeClass('disabled');
         $('#tab_subunidades').addClass('active');
@@ -56,7 +60,9 @@ $(document).ready(function () {
     $('#btn_prev_otros').on('click', function (e) {
         e.preventDefault();
         $('#tab_subunidades').removeClass('active');
+        $('#tab_subunidades').addClass('disabled');
         $('#subunidades').removeClass('active');
+        $('#tab_otros').removeClass('disabled');
         $('#tab_otros').addClass('active');
         $('#otros').addClass('active');
 

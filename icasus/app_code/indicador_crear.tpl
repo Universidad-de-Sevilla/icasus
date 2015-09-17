@@ -39,9 +39,9 @@
                     <input type="hidden" name="id_entidad" value="{$entidad->id}" /> 
                     <!-- Nav tabs -->
                     <ul class="nav nav-pills" role="tablist">
-                        <li id="tab_indicador" role="presentation" class="active" ><a aria-controls="{$smarty.const.FIELD_INDIC}" role="tab" >{$smarty.const.FIELD_INDIC}</a></li>
-                        <li id="tab_otros" role="presentation" class="disabled" ><a aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" >{$smarty.const.TXT_OTRAS_PROP}</a></li>
-                        <li id="tab_subunidades" role="presentation" class="disabled" ><a aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" >{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
+                        <li id="tab_indicador" role="presentation" class="active" ><a aria-controls="{$smarty.const.FIELD_INDIC}" role="tab" ><span class="badge">1</span> {$smarty.const.FIELD_INDIC}</a></li>
+                        <li id="tab_otros" role="presentation" class="disabled" ><a aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" ><span class="badge">2</span> {$smarty.const.TXT_OTRAS_PROP}</a></li>
+                        <li id="tab_subunidades" role="presentation" class="disabled" ><a aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" ><span class="badge">3</span> {$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
                     </ul>
                     <!-- /Nav tabs -->
                     <!-- Tab panes -->
@@ -278,15 +278,15 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-8">
+                                    <button id="btn_prev_indicador" title="{$smarty.const.TXT_ANT}" type="button" class="btn btn-default btn-primary btnPrev">
+                                        <i class=" fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_ANT}
+                                    </button>
                                     <button type="button" class="btn btn-default btn-danger" title="{$smarty.const.TXT_CANCEL}" onclick="location.href = 'index.php?page=indicador_listar&id_entidad={$entidad->id}';">
                                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                                     </button>
                                     <div class="pull-right">
                                         <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
                                             <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
-                                        </button>
-                                        <button id="btn_prev_indicador" title="{$smarty.const.TXT_ANT}" type="button" class="btn btn-default btn-primary btnPrev">
-                                            <i class=" fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_ANT}
                                         </button>
                                         <button id="btn_nxt_subunidades" title="{$smarty.const.TXT_SIG}" type="button" class="btn btn-default btn-primary btnNext">
                                             <i class="fa fa-arrow-right fa-fw"></i> {$smarty.const.TXT_SIG}
@@ -371,15 +371,15 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-8">
+                                    <button id="btn_prev_otros" title="{$smarty.const.TXT_ANT}" type="button" class="btn btn-default btn-primary btnPrev">
+                                        <i class=" fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_ANT}
+                                    </button>
                                     <button type="button" class="btn btn-default btn-danger" title="{$smarty.const.TXT_CANCEL}" onclick="location.href = 'index.php?page=indicador_listar&id_entidad={$entidad->id}';">
                                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
-                                    </button>
+                                    </button>     
                                     <div class="pull-right">
                                         <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
                                             <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
-                                        </button>
-                                        <button id="btn_prev_otros" title="{$smarty.const.TXT_ANT}" type="button" class="btn btn-default btn-primary btnPrev">
-                                            <i class=" fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_ANT}
                                         </button>
                                         <button title="{$smarty.const.TXT_GRABAR}" type="submit" class="btn btn-default btn-success">
                                             <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}
