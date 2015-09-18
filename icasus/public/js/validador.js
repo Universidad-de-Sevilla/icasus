@@ -43,7 +43,7 @@ $('#proceso_crear').validator({
 });
 
 // Función que valida que un fórmula tiene la sintaxis correcta
-$('#indicador_crear').validator({
+$('#indicador_crear,#indicador_editar').validator({
     custom: {
         'validar_formula': function ($el) {
             var validado = false;

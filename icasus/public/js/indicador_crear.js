@@ -19,7 +19,7 @@ $(document).ready(function () {
         }
         //Si no hay intervalo
         if (!$('#activar_intervalo').is(':checked')) {
-            //Retiramos de la validación el cálculo
+            //Retiramos de la validación el intervalo
             $('#vmin,#vmax').removeClass('has-error');
         }
         var validar = $('form').validator('validate');
@@ -144,9 +144,5 @@ $(document).ready(function () {
     //Reset
     $(':reset').click(function () {
         $('#activar_calculo,#activar_intervalo').bootstrapToggle('off');
-        $('#total').addClass('hidden');
-        $('#div_unidad').removeClass('hidden');
-        $('#div_subunidades').addClass('hidden');
-        $(".subunidad").removeAttr("checked");
     });
 });

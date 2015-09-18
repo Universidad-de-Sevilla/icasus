@@ -285,9 +285,6 @@
                                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                                     </button>
                                     <div class="pull-right">
-                                        <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
-                                            <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
-                                        </button>
                                         <button id="btn_nxt_subunidades" title="{$smarty.const.TXT_SIG}" type="button" class="btn btn-default btn-primary btnNext">
                                             <i class="fa fa-arrow-right fa-fw"></i> {$smarty.const.TXT_SIG}
                                         </button>
@@ -378,9 +375,6 @@
                                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                                     </button>     
                                     <div class="pull-right">
-                                        <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
-                                            <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
-                                        </button>
                                         <button title="{$smarty.const.TXT_GRABAR}" type="submit" class="btn btn-default btn-success">
                                             <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}
                                         </button>

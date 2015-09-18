@@ -128,7 +128,13 @@
                                         <td>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</td>
                                         <td>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</td>
                                         <td>{$medicion->observaciones|truncate:60}</td>
-                                        <td><a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}"><i class="fa fa-pencil fa-fw"></i></a></td>
+                                        <td>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}"><i class="fa fa-pencil fa-fw"></i></a>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_BORRAR}" href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}' 
+                                               onClick="return confirm('{$smarty.const.MSG_MED_CONFIRM_BORRAR}');">
+                                                <i class="fa fa-trash fa-fw"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 {/foreach}
                             </tbody>
@@ -177,25 +183,25 @@
                                             <td {if $indicador->id_tipo_agregacion == 0 && $subunidades->id == $entidad->id}
                                                 {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
                                                     {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
-                                                        class="danger"
+                                                        class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
                                                     {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
-                                                        class="success"
+                                                        class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
                                                     {else}
-                                                        class="warning"
+                                                        class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
                                                     {/if}
                                                 {/if}
                                                 {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
                                                     {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
-                                                        class="success"
+                                                        class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
                                                     {else}
-                                                        class="danger"
+                                                        class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
                                                     {/if}
                                                 {/if}
                                                 {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
                                                     {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
-                                                        class="danger"
+                                                        class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
                                                     {else}
-                                                        class="success"
+                                                        class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
                                                     {/if}
                                                 {/if}
                                                 {/if}>
