@@ -35,6 +35,14 @@ $indicador = new Indicador();
 $indicador->load("id = $id_indicador");
 $smarty->assign('indicador', $indicador);
 
+//Vemos si influye en otros Indicadores/Datos
+$indicadores_dependientes = $logicaIndicador->calcular_influencias($id_indicador);
+$smarty->assign('indicadores_dependientes', $indicadores_dependientes);
+
+//Si es calculado vemos los Indicadores/Datos de los que depende
+$indicadores_influyentes = $logicaIndicador->calcular_dependencias($id_indicador);
+$smarty->assign("indicadores_influyentes", $indicadores_influyentes);
+
 $entidad = new Entidad();
 $entidad->load("id = $indicador->id_entidad");
 $smarty->assign('entidad', $entidad);

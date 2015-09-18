@@ -267,6 +267,7 @@ function pintaGrafico(chartOptions, barras) {
 
 // Crea un nuevo gráfico con un popup de Highslide
 var i = 0; //Contador de popups
+hs.zIndexCounter = 2000; //z-index del popup
 hs.Expander.prototype.onAfterExpand = function () {
     if (this.custom.chartOptions) {
         var chartOptions = this.custom.chartOptions;

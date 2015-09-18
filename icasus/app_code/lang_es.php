@@ -190,7 +190,7 @@ define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
 
 //Mediciones
 define('TXT_MED_UNICA', 'Medición única en la Unidad actual.');
-define('TXT_MED_VER', 'Ver medición');
+define('TXT_MED_VER', 'Ver/Editar medición');
 define('TXT_MED_DES', 'Medición desagregada en las Subunidades y cumplimentada por los responsables de las Subunidades, o la persona delegada.');
 define('TXT_MED_DES_CEN', 'Medición desagregada en las Subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
 define('TXT_MED_ESTA', 'esta medición');
@@ -321,7 +321,7 @@ define('TXT_SEMESTRAL', 'Semestral');
 define('TXT_2_ULT_ANYO', 'Dos últimos años');
 
 //Tipos de Cálculo
-define('TXT_CALC_AUTO', 'Calculado automáticamente');
+define('TXT_CALC_AUTO', 'Este indicador/dato es calculado automáticamente');
 define('TXT_INDEF', 'Indefinido');
 define('TXT_SUMA', 'Suma');
 
