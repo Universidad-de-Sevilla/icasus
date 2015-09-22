@@ -36,9 +36,7 @@
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <form action='index.php?page=entidad_poblar&id_entidad={$entidad->id}' 
-                      method='post' name='formpoblar' 
-                      onsubmit="return confirm('{$smarty.const.MSG_USERS_CONFIRM_VINC}');"
-                      class="form-horizontal">
+                      method='post' name='formpoblar' class="form-horizontal">
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>               
@@ -86,12 +84,33 @@
                                 <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
                                     <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                                 </button>
-                                <button title="{$smarty.const.TXT_USERS_ASIGNAR}" type="submit" class="btn btn-default btn-success">
+                                <button title="{$smarty.const.TXT_USERS_ASIGNAR}" type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#dialogo_confirmar_alta">
                                     <i class="fa fa-user-plus fa-fw"></i> {$smarty.const.TXT_USERS_ASIGNAR}
                                 </button>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Diálogo Confirmar Alta -->
+                    <div class="modal fade" id="dialogo_confirmar_alta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-user-plus fa-fw"></i> {$smarty.const.TXT_USERS_ALTA}: {$entidad->nombre}</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{$smarty.const.MSG_USERS_CONFIRM_VINC}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                                    <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="alta" id="alta"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Diálogo Confirmar Alta -->
+
                 </form>
             </div>
             <!-- /.panel-body -->        
