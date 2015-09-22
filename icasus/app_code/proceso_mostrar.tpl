@@ -36,9 +36,6 @@
         <div class="btn-toolbar" role="toolbar" aria-label="">
             {if $_control}
                 <div class="btn-group" role="group" aria-label="">
-                    <a class="btn btn-default btn-danger" href="index.php?page=proceso_crear&id_entidad={$proceso->id_entidad}" title="{$smarty.const.TXT_PROC_CREAR}">
-                        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_PROC_CREAR}
-                    </a>
                     <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-default btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                         <i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_PROC_EDIT}
                     </a>
