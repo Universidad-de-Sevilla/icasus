@@ -80,10 +80,10 @@ if (
         {
             $indicador->valor_min = $valor_min;
         }
-        else
-        {
-            $indicador->valor_min = NULL;
-        }
+    }
+    else
+    {
+        $indicador->valor_min = NULL;
     }
     if (filter_has_var(INPUT_POST, 'valor_max'))
     {
@@ -92,10 +92,10 @@ if (
         {
             $indicador->valor_max = $valor_max;
         }
-        else
-        {
-            $indicador->valor_max = NULL;
-        }
+    }
+    else
+    {
+        $indicador->valor_max = NULL;
     }
 
     if ($indicador->save())

@@ -15,11 +15,6 @@
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
             <div class="btn-group" role="group" aria-label="">
-                {if $_control}
-                    <a title="{$smarty.const.TXT_INDIC_CREAR}" class="btn btn-default btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}'>
-                        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_INDIC_CREAR}
-                    </a>
-                {/if}
                 {if $_control || $responsable}
                     <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-danger" href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_EDIT}

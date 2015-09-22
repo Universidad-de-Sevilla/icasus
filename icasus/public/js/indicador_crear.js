@@ -136,7 +136,6 @@ $(document).ready(function () {
         }
         else
         {
-
             $('#total_anual').removeClass('hidden');
         }
     });

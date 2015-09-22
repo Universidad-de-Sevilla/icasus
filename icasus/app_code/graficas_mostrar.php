@@ -56,7 +56,7 @@ if ($mediciones)
 {
     //Prepara el panel de Valores/Subunidad
     $panel_res = new Panel();
-    $panel_res->ancho = 16;
+    $panel_res->ancho = 12;
     $panel_res->nombre = TXT_VALS_SUBUNID;
     $panel_res->periodicidad = "anual";
     $smarty->assign("panel_res", $panel_res);
@@ -65,14 +65,14 @@ if ($mediciones)
     $paneles = array();
     $panel = new Panel();
     $panel->tipo = new Panel_tipo();
-    $panel->ancho = 16;
+    $panel->ancho = 12;
     if ($indicador->periodicidad != "Anual")
     {
         // Prepara el panel intraanual
         $anio_inicio = date('Y') - 2;
         $panel->id = 2;
         $panel->tipo->clase_css = "lineal";
-        $panel->ancho = 8;
+        $panel->ancho = 6;
         $panel->nombre = TXT_2_ULT_ANYO;
         $panel->fecha_inicio = $anio_inicio . "-01-01";
         $panel->fecha_fin = date("Y-m-d");

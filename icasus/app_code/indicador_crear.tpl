@@ -39,9 +39,9 @@
                     <input type="hidden" name="id_entidad" value="{$entidad->id}" /> 
                     <!-- Nav tabs -->
                     <ul class="nav nav-pills" role="tablist">
-                        <li id="tab_indicador" role="presentation" class="active" ><a aria-controls="{$smarty.const.FIELD_INDIC}" role="tab" ><span class="badge">1</span> {$smarty.const.FIELD_INDIC}</a></li>
-                        <li id="tab_otros" role="presentation" class="disabled" ><a aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" ><span class="badge">2</span> {$smarty.const.TXT_OTRAS_PROP}</a></li>
-                        <li id="tab_subunidades" role="presentation" class="disabled" ><a aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" ><span class="badge">3</span> {$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
+                        <li id="tab_indicador" role="presentation" class="active" ><a title="{$smarty.const.FIELD_INDIC}" aria-controls="{$smarty.const.FIELD_INDIC}" role="tab" ><span class="badge">1</span> {$smarty.const.FIELD_INDIC}</a></li>
+                        <li id="tab_otros" role="presentation" class="disabled" ><a title="{$smarty.const.TXT_OTRAS_PROP}" aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" ><span class="badge">2</span> {$smarty.const.TXT_OTRAS_PROP}</a></li>
+                        <li id="tab_subunidades" role="presentation" class="disabled" ><a title="{$smarty.const.FIELD_SUBUNID_AFECT}" aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" ><span class="badge">3</span> {$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
                     </ul>
                     <!-- /Nav tabs -->
                     <!-- Tab panes -->

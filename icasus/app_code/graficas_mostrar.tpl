@@ -151,15 +151,21 @@
         {/if}
 
     {else if !$mediciones}
-        <div class="alert alert-info alert-dismissible">
-            <i class="fa fa-info-circle fa-fw"></i> 
-            {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
+        <div class="col-lg-12">
+            <div class="alert alert-info alert-dismissible">
+                <i class="fa fa-info-circle fa-fw"></i> 
+                {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
+            </div>
         </div>
+        <!-- /.col-lg-12 -->
     {else}
-        <div class="alert alert-info alert-dismissible">
-            <i class="fa fa-info-circle fa-fw"></i> 
-            {$smarty.const.MSG_INDIC_NO_VAL}
+        <div class="col-lg-12">
+            <div class="alert alert-info alert-dismissible">
+                <i class="fa fa-info-circle fa-fw"></i> 
+                {$smarty.const.MSG_INDIC_NO_VAL}
+            </div>
         </div>
+        <!-- /.col-lg-12 -->
     {/if}
 </div>
 <!-- /.row -->

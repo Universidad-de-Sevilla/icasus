@@ -460,6 +460,7 @@ define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.')
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores.');
 define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este indicador?');
+define('MSG_INDIC_CONFIRM_EDITAR', 'Va a editar este indicador, ¿esta seguro?');
 define('MSG_INDIC_BORRADO', 'Se ha borrado el indicador: ');
 define('MSG_INDIC_COPIADOS', 'Indicadores copiados.');
 define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los datos del indicador.');
