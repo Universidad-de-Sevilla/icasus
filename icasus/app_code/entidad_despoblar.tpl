@@ -37,9 +37,7 @@
             <div class="panel-body">
                 {if $usuarios}
                     <form action='index.php?page=entidad_despoblar&id_entidad={$entidad->id}' 
-                          method='post' name='formdiv' 
-                          onsubmit="return confirm('{$smarty.const.MSG_USERS_CONFIRM_DESVINC}');"
-                          class="form-horizontal">
+                          method='post' name='formdiv' class="form-horizontal">
                         <div class="table-responsive">
                             <table class="table datatable table-striped table-hover">
                                 <thead>
@@ -86,13 +84,34 @@
                                         <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
                                             <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                                         </button>
-                                        <button title="{$smarty.const.TXT_USERS_DESASIGNAR}" type="submit" class="btn btn-default btn-success">
+                                        <button title="{$smarty.const.TXT_USERS_DESASIGNAR}" type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#dialogo_confirmar_baja">
                                             <i class="fa fa-user-times fa-fw"></i> {$smarty.const.TXT_USERS_DESASIGNAR}
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Diálogo Confirmar Baja -->
+                        <div class="modal fade" id="dialogo_confirmar_baja" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h3 class="modal-title" id="myModalLabel"><i class="fa fa-user-times fa-fw"></i> {$smarty.const.TXT_USERS_BAJA}: {$entidad->nombre}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>{$smarty.const.MSG_USERS_CONFIRM_DESVINC}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                                        <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="baja" id="baja"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Diálogo Confirmar Baja -->
+
                     </form>
                 {else}
                     <div class="alert alert-info alert-dismissible">
