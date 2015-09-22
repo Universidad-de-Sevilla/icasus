@@ -441,6 +441,7 @@ define('MSG_DIM_EDITADA', 'Se ha modificado una Dimensión.');
 define('MSG_UNID_NO_PROC', 'No hay procesos definidos para esta Unidad.');
 define('MSG_UNID_USERS_BORRADOS', 'Se han eliminado de la Unidad');
 define('MSG_UNID_USERS_AGREGADOS', 'Se han agregado a la Unidad');
+define('MSG_UNID_CONFIRM_EDITAR', 'Va a editar esta unidad, ¿esta seguro?');
 define('MSG_UNID_EDITADA', 'La Unidad se ha modificado con los datos que aparecen a continuación.');
 define('MSG_UNID_NO_USERS', 'No se han vinculado Usuarios a esta Unidad.');
 define('MSG_UNID_NO_DATOS', 'No hay datos definidos para esta Unidad.');
