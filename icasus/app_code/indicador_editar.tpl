@@ -396,7 +396,6 @@
                                     <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_INDIC_EDIT}: {$indicador->nombre}</h3>
                                 </div>
                                 <div class="modal-body">
-                                    <input type="hidden" value="" name="id_borrar" id="id_borrar">
                                     <p>{$smarty.const.MSG_INDIC_CONFIRM_EDITAR}</p>
                                 </div>
                                 <div class="modal-footer">
