@@ -1,3 +1,23 @@
+<!-- Diálogo Confirmar Generar -->
+<div class="modal fade" id="dialogo_confirmar_generar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}: {$indicador->nombre}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_MED_GENERAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="generar" id="generar" href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Generar -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -16,7 +36,8 @@
         <div class="btn-toolbar" role="toolbar" aria-label="">
             <div class="btn-group" role="group" aria-label="">
                 {if $_control || $responsable}
-                    <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-default btn-danger" href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}" onclick="return confirm('{$smarty.const.MSG_MED_GENERAR}');">
+                    <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-default btn-danger" href='javascript:void(0)' 
+                       data-toggle="modal" data-target="#dialogo_confirmar_generar">
                         <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}
                     </a>
                     <a title="{$smarty.const.TXT_MED_AGREGAR}" class="btn btn-default btn-danger" href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}">
@@ -205,54 +226,54 @@
                                                     {/if}
                                                 {/if}
                                                 {/if}>
-                                                {if $medicion->medicion_valor->valor == NULL} 
-                                                    --- 
-                                                {else}
-                                                    {$medicion->medicion_valor->valor|round:"2"}
-                                                    {if $indicador->id_tipo_agregacion == 0}
-                                                        {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
-                                                            {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
-                                                                <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                            {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
-                                                                <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                            {else}
-                                                                <i class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                    {if $medicion->medicion_valor->valor == NULL} 
+                                                        --- 
+                                                    {else}
+                                                        {$medicion->medicion_valor->valor|round:"2"}
+                                                        {if $indicador->id_tipo_agregacion == 0}
+                                                            {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
+                                                                {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
+                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
+                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                {else}
+                                                                    <i class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                                {/if}
                                                             {/if}
-                                                        {/if}
-                                                        {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
-                                                            {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
-                                                                <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                            {else}
-                                                                <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                            {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
+                                                                {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
+                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                {else}
+                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                {/if}
                                                             {/if}
-                                                        {/if}
-                                                        {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
-                                                            {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
-                                                                <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                            {else}
-                                                                <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                            {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
+                                                                {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
+                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                {else}
+                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                {/if}
                                                             {/if}
                                                         {/if}
                                                     {/if}
-                                                {/if}
-                                            </td>
-                                        {/foreach}
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_INDIC_NO_VAL}
-                    </div>
-                {/if}
-            </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+                                                </td>
+                                                {/foreach}
+                                                </tr>
+                                                {/foreach}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        {else}
+                                            <div class="alert alert-info alert-dismissible">
+                                                <i class="fa fa-info-circle fa-fw"></i> 
+                                                {$smarty.const.MSG_INDIC_NO_VAL}
+                                            </div>
+                                            {/if}
+                                            </div>
+                                            <!-- /.panel-body -->        
+                                        </div>
+                                        <!-- /.panel -->
+                                    </div>
+                                    <!-- /.col-lg-12 -->
+                                </div>
+                                <!-- /.row -->
