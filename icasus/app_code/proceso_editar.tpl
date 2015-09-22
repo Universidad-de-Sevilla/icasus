@@ -183,12 +183,34 @@
                                 <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
                                     <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                                 </button>
-                                <button title="{$smarty.const.TXT_GRABAR}" type="submit" class="btn btn-default btn-success">
+                                <button title="{$smarty.const.TXT_GRABAR}" type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#dialogo_confirmar_edicion">
                                     <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}
                                 </button>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Diálogo Confirmar Edición -->
+                    <div class="modal fade" id="dialogo_confirmar_edicion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_PROC_EDIT}: {$proceso->nombre}</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" value="" name="id_borrar" id="id_borrar">
+                                    <p>{$smarty.const.MSG_PROC_CONFIRM_EDITAR}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                                    <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="editar" id="editar"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Diálogo Confirmar Edición -->
+
                 </form>
             </div>
             <!-- /.panel-body --> 

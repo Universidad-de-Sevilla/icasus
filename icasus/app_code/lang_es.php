@@ -489,6 +489,7 @@ define('MSG_PAG_EDIT_OK', 'La Página se ha modificado correctamente.');
 
 //Procesos
 define('MSG_PROC_BORRADO', 'Se ha borrado el Proceso: ');
+define('MSG_PROC_CONFIRM_EDITAR', 'Va a editar este proceso, ¿esta seguro?');
 define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Proceso?');
 define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo Proceso para esta Unidad.');
 define('MSG_PROC_EDITADO', 'Se ha modificado el Proceso correctamente.');
