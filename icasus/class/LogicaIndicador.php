@@ -119,8 +119,8 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $aviso = MSG_MEDS_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MEDS_GENERADA;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
@@ -186,8 +186,8 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $aviso = MSG_MEDS_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MEDS_GENERADA;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
@@ -237,8 +237,8 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $aviso = MSG_MEDS_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MEDS_GENERADA;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
@@ -288,8 +288,8 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $aviso = MSG_MEDS_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MEDS_GENERADA;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
@@ -339,8 +339,8 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $aviso = MSG_MEDS_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MEDS_GENERADA;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
@@ -423,8 +423,8 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $aviso = MSG_MEDS_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MEDS_GENERADA;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
