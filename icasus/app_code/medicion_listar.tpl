@@ -31,7 +31,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="generar" id="generar" href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="generar" id="generar" href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
                        data-toggle="modal" data-target="#dialogo_confirmar_generar">
                         <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}
                     </a>
-                    <a title="{$smarty.const.TXT_MED_AGREGAR}" class="btn btn-default btn-danger" href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}">
+                    <a title="{$smarty.const.TXT_MED_AGREGAR}" class="btn btn-default btn-danger" href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}">
                         <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_MED_AGREGAR}
                     </a>
                 {/if}

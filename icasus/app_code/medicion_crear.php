@@ -71,7 +71,7 @@ if ($indicador->load("id = $id_indicador"))
     {
         // El usuario no tiene permisos avisamos error
         $error = ERR_MED_AUT . " $tipo";
-        header("Location:index.php?page=" . $tipo . "_mostrar&id_$tipo=$id_indicador&error=$error");
+        header("Location:index.php?page=medicion_listar&id_$tipo=$id_indicador&id_entidad=$id_entidad&error=$error");
     }
 }
 else
