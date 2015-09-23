@@ -26,14 +26,14 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
         //hasta borrar las mediciones
         if ($mediciones && !$indicador->calculo)
         {
-            $error = ERR_INDIC_BORRAR_MED;
-            header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&error=$error");
+            $aviso = ERR_INDIC_BORRAR_MED;
+            header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
         }
         //Si otros Indicadores/Datos dependen de él tampoco podremos borrar
         else if (count($indicadores_dependientes) != 0)
         {
-            $error = ERR_INDIC_BORRAR_DEP;
-            header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&error=$error");
+            $aviso = ERR_INDIC_BORRAR_DEP;
+            header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
         }
         else
         {
@@ -50,8 +50,8 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
             $logicaIndicador->borrar_criterios_efqm($id_indicador);
             //Borramos también las Unidades vinculadas al Indicador
             $logicaIndicador->borrar_unidades($id_indicador);
-            $aviso = MSG_INDIC_BORRADO . "$indicador->nombre";
-            header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
+            $exito = MSG_INDIC_BORRADO . "$indicador->nombre";
+            header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&exito=$exito");
         }
     }
     else
