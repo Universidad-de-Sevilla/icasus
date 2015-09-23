@@ -458,8 +458,8 @@ class LogicaIndicador implements ILogicaIndicador
             }
             else
             {
-                $aviso = MSG_MED_BORRADA;
-                $estado = "aviso=$aviso";
+                $exito = MSG_MED_BORRADA;
+                $estado = "exito=$exito";
             }
             $adodb->CompleteTrans();
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
@@ -467,8 +467,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Influye en otros, luego no podemos borrar la medición
         else
         {
-            $error = ERR_MED_BORRAR;
-            $estado = "error=$error";
+            $aviso = ERR_MED_BORRAR;
+            $estado = "aviso=$aviso";
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
         }
     }

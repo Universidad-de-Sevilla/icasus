@@ -476,7 +476,7 @@ define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del indica
 define('MSG_MED_NO_TIPO', 'Todavía no se han establecido mediciones para este');
 define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna medición.');
 define('MSG_MED_BORRADA', 'La medición se ha borrado con éxito.');
-define('MSG_MED_CONFIRM_BORRAR', 'Pulse Aceptar para borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición.');
+define('MSG_MED_CONFIRM_BORRAR', 'Confirme si desea borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición.');
 define('MSG_MEDS_GRABADAS', 'Mediciones grabadas');
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');

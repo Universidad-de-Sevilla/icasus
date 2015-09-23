@@ -107,5 +107,6 @@ if ($valores_referencia)
 $smarty->assign('medicion_obj', $medicion_obj);
 $smarty->assign('medicion_lim', $medicion_lim);
 
+$smarty->assign('_javascript', array('medicion_listar'));
 $smarty->assign('_nombre_pagina', TXT_MED_GESTION . ": $indicador->nombre");
 $plantilla = 'medicion_listar.tpl';

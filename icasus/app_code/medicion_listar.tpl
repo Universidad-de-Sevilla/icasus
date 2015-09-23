@@ -1,3 +1,23 @@
+<!-- Diálogo Confirmar Borrado -->
+<div class="modal fade" id="dialogo_confirmar_borrado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_MED_BORRAR}: <span id="etiqueta_medicion"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_MED_CONFIRM_BORRAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="borrar" id="borrar"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Borrado -->
+
 <!-- Diálogo Confirmar Generar -->
 <div class="modal fade" id="dialogo_confirmar_generar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -151,8 +171,8 @@
                                         <td>{$medicion->observaciones|truncate:60}</td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}"><i class="fa fa-pencil fa-fw"></i></a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_BORRAR}" href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}' 
-                                               onClick="return confirm('{$smarty.const.MSG_MED_CONFIRM_BORRAR}');">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado"
+                                               data-etiqueta_medicion="{$medicion->etiqueta}" data-id_medicion="{$medicion->id}" data-tipo="{$tipo}" data-id_entidad="{$entidad->id}">
                                                 <i class="fa fa-trash fa-fw"></i>
                                             </a>
                                         </td>

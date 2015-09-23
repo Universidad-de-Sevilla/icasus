@@ -55,4 +55,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?error=$error");
 }
-
