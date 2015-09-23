@@ -12,6 +12,8 @@
 global $smarty;
 global $plantilla;
 
+$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+
 if ($id_entidad > 0)
 {
     $entidad = new Entidad();
@@ -22,6 +24,7 @@ if ($id_entidad > 0)
     $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
     $smarty->assign('indicadores', $indicadores);
 
+    $smarty->assign('_javascript', array('indicador_listar'));
     $smarty->assign('_nombre_pagina', TXT_INDIC_LIST . ': ' . $entidad->nombre);
     $plantilla = 'indicador_listar.tpl';
 }
