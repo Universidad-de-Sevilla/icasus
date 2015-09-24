@@ -196,9 +196,9 @@ class Indicador extends ADOdb_Active_Record
     }
 
     // Permiso del usuario para asignar una subunidad a un indicador desde medicion_crear_ajax.php
-    public function permiso_crear_medicion($id_usuario, $id_indicador)
+    public function permiso_crear_medicion($id_usuario, $id_indicador, $control)
     {
-        if ($this->load("id = $id_indicador AND (id_responsable = $id_usuario OR id_responsable_medicion = $id_usuario)"))
+        if ($control OR $this->load("id = $id_indicador AND (id_responsable = $id_usuario OR id_responsable_medicion = $id_usuario)"))
         {
             return true;
         }

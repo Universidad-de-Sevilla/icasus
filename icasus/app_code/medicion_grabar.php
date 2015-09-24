@@ -34,9 +34,10 @@ if (filter_has_var(INPUT_POST, 'id_indicador')and filter_input(INPUT_POST, 'tipo
     $medicion->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : '';
     if ($medicion->save())
     {
+        $post_array = filter_input_array(INPUT_POST);
         if (filter_has_var(INPUT_POST, 'valor_referencia'))
         {
-            $valores_referencia = filter_input(INPUT_POST, 'valor_referencia');
+            $valores_referencia = $post_array['valor_referencia'];
 
             foreach ($valores_referencia as $id_valor_referencia => $valor)
             {
@@ -48,7 +49,6 @@ if (filter_has_var(INPUT_POST, 'id_indicador')and filter_input(INPUT_POST, 'tipo
                 $valor_referencia_medicion->save();
             }
         }
-
         // Grabamos un valor en blanco a cada una de las unidades asociadas al indicador
         $indicador_subunidad = new Indicador_subunidad();
         $indicadores_subunidades = $indicador_subunidad->Find("id_indicador = $medicion->id_indicador");
@@ -61,8 +61,8 @@ if (filter_has_var(INPUT_POST, 'id_indicador')and filter_input(INPUT_POST, 'tipo
             $valor->activo = 1;
             $valor->save();
         }
-        $aviso = MSG_MED_CREADA . $numero_subunidades;
-        header("location:index.php?page=medicion_listar&id_{$tipo}=$medicion->id_indicador&aviso=$aviso");
+        $exito = MSG_MED_CREADA . $numero_subunidades;
+        header("location:index.php?page=medicion_listar&id_{$tipo}=$medicion->id_indicador&exito=$exito");
     }
     else
     {

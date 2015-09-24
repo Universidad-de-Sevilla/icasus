@@ -42,8 +42,9 @@ $('#proceso_crear').validator({
     }
 });
 
-// Función que valida que un fórmula tiene la sintaxis correcta
-$('#indicador_crear,#indicador_editar').validator({
+// Función que valida que un fórmula tiene la sintaxis correcta y que se marca
+// al menos una subunidad
+$('#indicador_crear,#indicador_editar,#medicion_crear').validator({
     custom: {
         'validar_formula': function ($el) {
             var validado = false;

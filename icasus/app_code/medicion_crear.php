@@ -64,7 +64,8 @@ if ($indicador->load("id = $id_indicador"))
         $indicador_subunidad = new Indicador_subunidad();
         $indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_indicador");
         $smarty->assign("indicador_subunidades", $indicador_subunidades);
-        $smarty->assign("_nombre_pagina", TXT_MED_PROGRAM);
+        $smarty->assign('_javascript', array('medicion_crear'));
+        $smarty->assign("_nombre_pagina", TXT_MED_AGREGAR . ': ' . $indicador->nombre);
         $plantilla = "medicion_crear.tpl";
     }
     else

@@ -65,7 +65,6 @@ $(document).ready(function () {
         $('#tab_otros').removeClass('disabled');
         $('#tab_otros').addClass('active');
         $('#otros').addClass('active');
-
     });
 
     //mostrar tipo de medición

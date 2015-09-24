@@ -149,14 +149,7 @@ class Indicador_subunidad extends ADOdb_Active_Record
                 default:
                     $this->id_usuario = $indicator->id_responsable_medicion;
             }
-            if ($this->save())
-            {
-                //escribir log de exito;
-            }
-            else
-            {
-                //escribir log de error
-            }
+            $this->save();
         }
     }
 
