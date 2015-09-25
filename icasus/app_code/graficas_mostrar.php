@@ -35,6 +35,14 @@ $indicador = new Indicador();
 $indicador->load("id = $id_indicador");
 $smarty->assign('indicador', $indicador);
 
+//Responsables
+$responsable = false;
+if ($indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+{
+    $responsable = true;
+}
+$smarty->assign('responsable', $responsable);
+
 //Vemos si influye en otros Indicadores/Datos
 $indicadores_dependientes = $logicaIndicador->calcular_influencias($id_indicador);
 $smarty->assign('indicadores_dependientes', $indicadores_dependientes);
