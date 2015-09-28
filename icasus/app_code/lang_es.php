@@ -503,7 +503,7 @@ define('MSG_USERS_CONFIRM_VINC', '¿Desea vincular a la unidad los usuarios marc
 define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la unidad los usuarios marcados?');
 
 //valores
-define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado valores a esta medición');
+define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado valores a esta medición.');
 define('MSG_VAL_BORRADO', 'Se ha borrado un valor.');
 define('MSG_VAL_EXPORT', 'Exportando valores para:');
 define('MSG_VAL_GRABAR', 'El valor se ha grabado correctamente.');
@@ -584,7 +584,7 @@ define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de creación de
 define('ERR_MED_AUT', 'No tiene permisos suficientes para agregar mediciones a este');
 define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en esta medición');
 define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
-define('ERR_MED_NO_VAL', 'Error: no existen valores pendientes ni recogidos para esta medición.');
+define('ERR_MED_NO_VAL', 'No existen valores pendientes ni recogidos para esta medición.');
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la medición, inténtelo de nuevo o contacte con los administradores de icasus.');
 define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el cálculo de otros indicadores/datos. Borre éstos primero');
 

@@ -15,18 +15,6 @@ valor_max = $("#valors").data("valor_max");
 grabacion_inicio = $("#gi").data("grabacion_inicio");
 grabacion_fin = $("#gf").data("grabacion_fin");
 
-//Diaĺogo de confirmación para el botón de borrar medición
-$('a.confirmar').click(function (event)
-{
-    event.preventDefault();
-    var url = $(this).attr('href');
-    var confirm_box = confirm('Pulse "Aceptar" para borrar esta Medición. Recuerde que se borrarán los Valores y los Valores de Referencia recogidos para esta Medición.');
-    if (confirm_box)
-    {
-        window.location = url;
-    }
-});
-
 //Panel de tarta
 $("#container").each(function () {
     var contenedor = $(this).attr('id');
