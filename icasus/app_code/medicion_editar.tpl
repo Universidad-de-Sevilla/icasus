@@ -497,8 +497,7 @@
                                                     {else}
                                                         class="success"
                                                     {/if}
-                                                {/if}
-                                                >
+                                                {/if}>
                                         <td style="border-left:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
                                         <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
                                             {if $total === NULL}
