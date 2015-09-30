@@ -41,9 +41,9 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h2 title="{$_nombre_pagina}" class="page-header">
+        <h3 title="{$_nombre_pagina}" class="page-header">
             <i class="fa fa-clock-o fa-fw"></i> {$_nombre_pagina}
-        </h2>
+        </h3>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -65,18 +65,18 @@
                     </a>
                 {/if}
                 {if !$indicador->calculo && ($_control || $responsable)}
-                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default btn-danger" href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
                     </a>
                 {/if}
                 {if $_control}
-                    <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-default btn-danger" href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-default btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
                     </a>
                 {/if}
             </div>
             <div class="btn-group" role="group" aria-label="">
-                <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-default btn-danger" href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-default btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}
                 </a>
             </div>
