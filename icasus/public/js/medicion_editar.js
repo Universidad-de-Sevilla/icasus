@@ -125,6 +125,8 @@ function fila_grabar(id_valor, medicion)
     var fecha_inicio = new Date(grabacion_inicio);
     var fecha_fin = new Date(grabacion_fin);
     value = value.replace(',', '.');
+    $('#intervalo').text('[' + valor_min + ', ' + valor_max + '].');
+    $('#periodo').text('(' + fecha_inicio.toLocaleDateString() + ' al ' + fecha_fin.toLocaleDateString() + ').');
 
     //Comprobamos que estemos dentro del periodo de grabación
     if ((fecha_actual >= fecha_inicio) && (fecha_actual <= fecha_fin)) {
@@ -135,7 +137,7 @@ function fila_grabar(id_valor, medicion)
                 //Si hay un intervalo [min,max]
                 if ($.isNumeric(valor_min) && $.isNumeric(valor_max)) {
                     if (value < valor_min || value > valor_max) {
-                        alert('Debe insertar un valor que esté dentro del intervalo de valores [' + valor_min + ', ' + valor_max + '] aceptados por el Indicador/Dato');
+                        $('#dialogo_valor_intervalo').modal('show');
                     }
                     else {
                         $.ajax({
@@ -152,7 +154,7 @@ function fila_grabar(id_valor, medicion)
                 //Si hay un valor mínimo
                 else if ($.isNumeric(valor_min) && !$.isNumeric(valor_max)) {
                     if (value < valor_min) {
-                        alert('Debe insertar un valor que sea igual o mayor que el valor mínimo (' + valor_min + ') aceptado por el Indicador/Dato');
+                        $('#dialogo_valor_intervalo').modal('show');
                     }
                     else {
                         $.ajax({
@@ -169,7 +171,7 @@ function fila_grabar(id_valor, medicion)
                 //Si hay un valor máximo
                 else if ($.isNumeric(valor_max) && !$.isNumeric(valor_min)) {
                     if (value > valor_max) {
-                        alert('Debe insertar un valor que sea igual o menor que el valor máximo (' + valor_max + ') aceptado por el Indicador/Dato');
+                        $('#dialogo_valor_intervalo').modal('show');
                     }
                     else {
                         $.ajax({
@@ -205,16 +207,16 @@ function fila_grabar(id_valor, medicion)
             }
             else
             {
-                alert('Está intentando introducir un dato que no es reconocido como número.');
+                $('#dialogo_valor_num').modal('show');
             }
         }
         else
         {
-            alert('Está intentando introducir un valor vacio.\nPuede restituir el valor anterior pulsando el icono "X" (cancelar). \nPuede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---)');
+            $('#dialogo_valor_nulo').modal('show');
         }
     }
     else {
-        alert('No se pueden grabar valores, esta fuera del periodo de grabación (' + fecha_inicio.toLocaleDateString() + ' al ' + fecha_fin.toLocaleDateString() + ').');
+        $('#dialogo_valor_periodo').modal('show');
     }
 }
 
@@ -237,7 +239,7 @@ function etiqueta_editar_grabar(content, medicion, tag)
 {
     var value = $("[name=" + tag + "]").val();
     if (value === '') {
-        alert('La etiqueta no puede estar vacía.\nPuede restituir el valor anterior pulsando el icono "X" (cancelar).');
+        $('#dialogo_etiqueta_nula').modal('show');
     }
     else {
         $.post("index.php?page=medicion_editar_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
@@ -316,12 +318,12 @@ function referencia_grabar(id)
         }
         else
         {
-            alert('Está intentando introducir un dato que no es reconocido como número.');
+            $('#dialogo_valor_num').modal('show');
         }
     }
     else
     {
-        alert('Está intentando introducir un valor vacio.\nPuede restituir el valor anterior pulsando el icono "X" (cancelar).\nPuede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---).');
+        $('#dialogo_valor_nulo').modal('show');
     }
 }
 
