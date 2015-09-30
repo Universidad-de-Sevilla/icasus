@@ -165,10 +165,10 @@
                                 <div class="col-lg-12">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <h1 class="page-header">            
+                                            <h2 class="page-header">            
                                                 <span title="{$smarty.const.TXT_UNID}: {$entidad->nombre}"><i class="fa fa-sitemap fa-fw"></i> {$entidad->nombre}</span> / 
                                                 <span title="{$smarty.const.FIELD_ROL}: {$_rol}"><i class="fa fa-star fa-fw"></i> {$_rol}</span>
-                                            </h1>
+                                            </h2>
                                         </div>
                                         <!-- /.col-lg-12 -->
                                     </div>
