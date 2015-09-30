@@ -22,14 +22,14 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
         $medicion = new Medicion();
         $mediciones = $medicion->Find("id_indicador = $id_indicador");
         $indicadores_dependientes = $logicaIndicador->calcular_influencias($indicador->id);
-        //Si tiene mediciones y no es calculado no se puede borrar 
+        //Si tiene mediciones no se puede borrar 
         //hasta borrar las mediciones
-        if ($mediciones && !$indicador->calculo)
+        if ($mediciones)
         {
             $aviso = ERR_INDIC_BORRAR_MED;
             header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
         }
-        //Si otros Indicadores/Datos dependen de él tampoco podremos borrar
+        //Si otros indicadores/datos dependen de él tampoco podremos borrar
         else if (count($indicadores_dependientes) != 0)
         {
             $aviso = ERR_INDIC_BORRAR_DEP;
@@ -42,8 +42,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
             if ($indicador->calculo)
             {
                 $logicaIndicador->borrar_dependencias($id_indicador);
-                //Borramos también sus mediciones
-                $logicaIndicador->borrar_mediciones($indicador, "indicador");
             }
             $indicador->delete();
             //Borramos despues los criterior EFQM
