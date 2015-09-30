@@ -195,11 +195,6 @@ function fila_grabar(id_valor, medicion)
                         }
                     });
                 }
-                /*
-                 * $.post("index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",{id_valor:id_valor, valor:value},function(){
-                 $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion="+medicion);
-                 });
-                 */
             }
             else if (value === "---")
             {
@@ -241,10 +236,15 @@ function observaciones_editar(medicion, content)
 function etiqueta_editar_grabar(content, medicion, tag)
 {
     var value = $("[name=" + tag + "]").val();
-    $.post("index.php?page=medicion_editar_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
-        $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
-        location.reload();
-    });
+    if (value === '') {
+        alert('La etiqueta no puede estar vacía.\nPuede restituir el valor anterior pulsando el icono "X" (cancelar).');
+    }
+    else {
+        $.post("index.php?page=medicion_editar_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
+            $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+            location.reload();
+        });
+    }
 }
 
 function observaciones_editar_grabar(content, medicion, tag)
@@ -321,7 +321,7 @@ function referencia_grabar(id)
     }
     else
     {
-        alert('Está intentando introducir un valor vacio.\n\nPuede restituir el valor con [cancelar].\nPuede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---).');
+        alert('Está intentando introducir un valor vacio.\nPuede restituir el valor anterior pulsando el icono "X" (cancelar).\nPuede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---).');
     }
 }
 

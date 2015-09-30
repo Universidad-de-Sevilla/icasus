@@ -159,7 +159,7 @@
                     <table class="table table-striped table-hover">
                         <tbody>
                             <tr>
-                                <th>{$smarty.const.FIELD_ETIQUETA}</th>
+                                <th>{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></th>
                                 <td>
                                     {if $permiso_editar == true && !$indicador->calculo}
                                         <div>
