@@ -27,6 +27,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $procesos_madre = $proceso_madre->find("id_entidad = $id_entidad");
     $smarty->assign('procesos_madre', $procesos_madre);
 
+    $smarty->assign('_javascript', array('proceso_crear'));
     $smarty->assign("_nombre_pagina", TXT_PROC_NUEVO . " - " . $entidad->nombre);
     $plantilla = "proceso_crear.tpl";
 }
