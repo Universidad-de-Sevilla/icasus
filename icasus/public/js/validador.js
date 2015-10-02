@@ -26,7 +26,7 @@ $('#importar_csv').validator({
 });
 
 // Función que valida que un fecha tiene el formato correcto
-$('#proceso_crear').validator({
+$('#proceso_crear,#proceso_editar').validator({
     custom: {
         'validar_fecha': function ($el) {
             var validado = false;
