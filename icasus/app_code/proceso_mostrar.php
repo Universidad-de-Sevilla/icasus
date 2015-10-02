@@ -23,6 +23,20 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
     $proceso->load_joined("id = $id_proceso");
     $smarty->assign('proceso', $proceso);
 
+    //Obtener todos los procesos para avanzar o retroceder 
+    $procesos = $proceso->Find_joined("id_entidad = $id_entidad ORDER BY codigo");
+    $smarty->assign("procesos", $procesos);
+    $cont = 0;
+    foreach ($procesos as $proc)
+    {
+        if ($id_proceso == $proc->id)
+        {
+            $indice = $cont;
+            $smarty->assign("indice", $indice);
+        }
+        $cont++;
+    }
+
     //Datos del proceso madre
     $proceso_madre = new Proceso();
     $proceso_madre->load("id = $proceso->id_madre");

@@ -62,6 +62,34 @@
 <br>
 <!-- /Barra de botones -->
 
+<!-- Navegación -->
+{if count($procesos)> 1}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="btn-toolbar" role="toolbar" aria-label="">
+                <div class="btn-group" role="group" aria-label="">
+                    <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-default btn-danger {if $indice == 0}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[0]->id}'>
+                        <i class="fa fa-step-backward fa-fw"></i> {$smarty.const.TXT_PRIMER}
+                    </a>
+                    <a title="{$smarty.const.TXT_ANT}" class="btn btn-default btn-danger {if $indice == 0}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[$indice-1]->id}'>
+                        <i class="fa fa-play fa-rotate-180 fa-fw"></i> {$smarty.const.TXT_ANT}
+                    </a>
+                    <a title="{$smarty.const.TXT_SIG}" class="btn btn-default btn-danger {if $indice == (count($procesos)-1)}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[$indice+1]->id}'>
+                        <i class="fa fa-play fa-fw"></i> {$smarty.const.TXT_SIG}
+                    </a>
+                    <a title="{$smarty.const.TXT_ULTIMO}" class="btn btn-default btn-danger {if $indice == (count($procesos)-1)}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[(count($procesos)-1)]->id}'>
+                        <i class="fa fa-step-forward fa-fw"></i> {$smarty.const.TXT_ULTIMO}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <br>
+{/if}
+<!-- /Navegación -->
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-red">
