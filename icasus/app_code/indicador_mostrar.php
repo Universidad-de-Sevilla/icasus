@@ -33,6 +33,20 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    //Obtener todos los indicadores para avanzar o retroceder 
+    $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
+    $smarty->assign("indicadores", $indicadores);
+    $cont = 0;
+    foreach ($indicadores as $ind)
+    {
+        if ($id_indicador == $ind->id)
+        {
+            $indice = $cont;
+            $smarty->assign("indice", $indice);
+        }
+        $cont++;
+    }
+
     //Responsables
     $responsable = false;
     if ($indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
