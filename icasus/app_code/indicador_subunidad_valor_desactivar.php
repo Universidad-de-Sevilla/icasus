@@ -8,14 +8,14 @@
 //---------------------------------------------------------------------------------------------------
 // Muestra un listado de las mediciones establecidas para un indicador
 //---------------------------------------------------------------------------------------------------
+
 global $smarty;
 global $usuario;
 global $plantilla;
 
-//$id_indicador = sanitize($_REQUEST["id_indicador"], INT);
 $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
-//$id_entidad = sanitize($_REQUEST["id_entidad"], INT);
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+
 if (isset($id_indicador))
 {
     if ($control || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
@@ -38,7 +38,7 @@ if (isset($id_indicador))
 
         $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
         $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
-//print_r($subunidades_mediciones);
+
         $smarty->assign('_nombre_pagina', TXT_INDIC_SUBUNID_VAL . ": $indicador->nombre");
         $plantilla = 'indicador_subunidad_valor.tpl';
     }
@@ -54,5 +54,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?page=entidad_listar&error=$error");
 }
-//print_r($subunidades_mediciones);
-

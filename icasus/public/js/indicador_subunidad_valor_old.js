@@ -1,12 +1,3 @@
-//--------------------------------------------------------------------------
-// Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
-// Archivo: public/js/indicador_subunidad_valor.js
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
-// Joaquín Valonero Zaera (tecnibus1@us.es)
-//--------------------------------------------------------------------------
-// Incluye el código JavaScript para el fichero indicador_subunidad_valor.tpl
-//----------------------------------------------------------------------------
-
 $(function () {
     var id_indicador = $('table').data('id_indicador');
     var id_entidad = $('table').data('id_entidad');
@@ -17,7 +8,7 @@ $(function () {
     var fin = 'null';
     var activo = 'null';
 
-    $('.no_asignada').on('click', function () {
+    $('#main_container').on('click', '.no_asignada', function () {
         var subunidad = $(this).parent().parent().data('subunidad');
         var id_medicion = $(this).parent().data('id_medicion');
         var id_subunidad = $(this).parent().parent().data('id_subunidad');
@@ -28,48 +19,40 @@ $(function () {
             var fin = $("#fin").val();
         }
         var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
-
-//        $("#modal_asignar_una_medicion").dialog({
-//            autoOpen: true, modal: true, title: subunidad,
-//            buttons: [
-//                {
-//                    text: "Cancelar",
-//                    class: 'red text_only has_text',
-//                    style: 'color:white;',
-//                    click: function () {
-//                        $(this).dialog("close");
-//                    }
-//                },
-//                {
-//                    text: "Confirmar",
-//                    class: 'green',
-//                    style: 'color:white;',
-//                    click: function () {
-//                        if ($('#activo:checked').val() === 1) {
-//                            var activo = 1;
-//                        } else {
-//                            var activo = 0;
-//                        }
-//                        parametros = parametros + "&activo=" + activo;
-//                        $(this).dialog("close");
-//                        $("#mostrar_valores").html("<div style='padding:30px'><b>Cargando datos ...</b></div>");
-//                        $.ajax({
-//                            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=asignar_una_medicion" + parametros,
-//                            success: function (datos) {
-//                                $("#mostrar_valores").html(datos);
-//                            }
-//                        });
-//                    }
-//                }
-//            ]
-//        });
-
-        $('#nombre_subunidad').html(subunidad);
-        $('#modal_asignar_una_medicion').modal('show');
-
-
-
-
+        $("#modal_asignar_una_medicion").dialog({
+            autoOpen: true, modal: true, title: subunidad,
+            buttons: [
+                {
+                    text: "Cancelar",
+                    class: 'red text_only has_text',
+                    style: 'color:white;',
+                    click: function () {
+                        $(this).dialog("close");
+                    }
+                },
+                {
+                    text: "Confirmar",
+                    class: 'green',
+                    style: 'color:white;',
+                    click: function () {
+                        if ($('#activo:checked').val() === 1) {
+                            var activo = 1;
+                        } else {
+                            var activo = 0;
+                        }
+                        parametros = parametros + "&activo=" + activo;
+                        $(this).dialog("close");
+                        $("#mostrar_valores").html("<div style='padding:30px'><b>Cargando datos ...</b></div>");
+                        $.ajax({
+                            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=asignar_una_medicion" + parametros,
+                            success: function (datos) {
+                                $("#mostrar_valores").html(datos);
+                            }
+                        });
+                    }
+                }
+            ]
+        });
     });
     $('#main_container').on('change', '.activar_uno', function () {
         var activar_uno = $(this);
@@ -169,7 +152,7 @@ $(function () {
             ]
         });
     });
-    $('#btn_mostrar').on('click', function () {
+    $('#main_container').on('click', '#btn_mostrar', function () {
         var inicio = $("#inicio").val();
         if (inicio === 0) {
             var fin = 0;
@@ -219,3 +202,5 @@ $(function () {
     });
 
 });
+
+

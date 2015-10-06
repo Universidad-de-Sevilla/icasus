@@ -33,7 +33,6 @@ else
 
 if (isset($id_entidad))
 {
-
     $indicador = new Indicador();
     $indicador->load("id = $id_indicador");
     $smarty->assign('indicador', $indicador);
@@ -57,6 +56,7 @@ if (isset($id_entidad))
         $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
 
         $smarty->assign("tipo", $tipo);
+        $smarty->assign('_javascript', array('indicador_subunidad_valor'));
         $smarty->assign('_nombre_pagina', TXT_INDIC_SUBUNID_VAL . ": $indicador->nombre");
         $plantilla = 'indicador_subunidad_valor.tpl';
     }
