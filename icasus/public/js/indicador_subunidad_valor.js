@@ -12,66 +12,40 @@ $(function () {
     var id_entidad = $('table').data('id_entidad');
     var id_medicion = 'null';
     var id_subunidad = 'null';
-    var subunidad = 'null';
+//    var subunidad = 'null';
     var inicio = 'null';
     var fin = 'null';
     var activo = 'null';
 
-    $('.no_asignada').on('click', function () {
+    //Diálogo para activar una medición no asignada
+    $('#page-wrapper').on('click', '.no_asignada', function () {
         var subunidad = $(this).parent().parent().data('subunidad');
         var id_medicion = $(this).parent().data('id_medicion');
         var id_subunidad = $(this).parent().parent().data('id_subunidad');
         var inicio = $("#inicio").val();
+        var fin = $("#fin").val();
         if (inicio === 0) {
-            var fin = 0;
-        } else {
-            var fin = $("#fin").val();
+            fin = 0;
         }
-        var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
-
-//        $("#modal_asignar_una_medicion").dialog({
-//            autoOpen: true, modal: true, title: subunidad,
-//            buttons: [
-//                {
-//                    text: "Cancelar",
-//                    class: 'red text_only has_text',
-//                    style: 'color:white;',
-//                    click: function () {
-//                        $(this).dialog("close");
-//                    }
-//                },
-//                {
-//                    text: "Confirmar",
-//                    class: 'green',
-//                    style: 'color:white;',
-//                    click: function () {
-//                        if ($('#activo:checked').val() === 1) {
-//                            var activo = 1;
-//                        } else {
-//                            var activo = 0;
-//                        }
-//                        parametros = parametros + "&activo=" + activo;
-//                        $(this).dialog("close");
-//                        $("#mostrar_valores").html("<div style='padding:30px'><b>Cargando datos ...</b></div>");
-//                        $.ajax({
-//                            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=asignar_una_medicion" + parametros,
-//                            success: function (datos) {
-//                                $("#mostrar_valores").html(datos);
-//                            }
-//                        });
-//                    }
-//                }
-//            ]
-//        });
-
         $('#nombre_subunidad').html(subunidad);
         $('#modal_asignar_una_medicion').modal('show');
-
-
-
-
+        $('#btn_confirm_med').click(function () {
+            var activo = 0;
+            if ($('#activo').is(":checked")) {
+                activo = 1;
+            }
+            var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
+            $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
+            $.ajax({
+                url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=asignar_una_medicion" + parametros,
+                success: function (datos) {
+                    $("#mostrar_valores").html(datos);
+                }
+            });
+        });
     });
-    $('#main_container').on('change', '.activar_uno', function () {
+
+    $('#page-wrapper').on('change', '.activar_uno', function () {
         var activar_uno = $(this);
         var id_subunidad = $(this).parent().parent().data('id_subunidad');
         var id_medicion = $(this).parent().data('id_medicion');
@@ -126,7 +100,8 @@ $(function () {
             ]
         });
     });
-    $('#main_container').on('click', '.activar_all', function () {
+
+    $('#page-wrapper').on('click', '.activar_all', function () {
         var activar_all = $(this);
         var id_medicion = 'null';
         var id_subunidad = $(this).parent().parent().data('id_subunidad');
@@ -177,7 +152,7 @@ $(function () {
             var fin = $("#fin").val();
         }
         var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
-        $("#mostrar_valores").html("<div style='padding:30px'><b>Cargando datos ...</b></div>");
+        $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
         $.ajax({
             url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=mostrar_valores" + parametros,
             success: function (datos) {
@@ -204,7 +179,8 @@ $(function () {
             }
         });
     });
-    $('#main_container').on('keyup', '.actualizar_dato', function () {
+
+    $('#page-wrapper').on('keyup', '.actualizar_dato', function () {
         var actualizar_dato = $(this);
         var id_valor = $(this).data('id_valor');
         var valor = $(this).val();

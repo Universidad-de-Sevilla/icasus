@@ -28,11 +28,16 @@
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.TXT_INDIC_CONFIRM_ASIG_MED}</p>
-                <p>{$smarty.const.TXT_INDIC_ACT_MED}: <input type="checkbox" id="activo" name="activo" value="1" checked="checked">
+                <p>{$smarty.const.TXT_INDIC_ACT_MED}
+                    <input id="activo" name="activo" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                           data-off="{$smarty.const.TXT_NO}" type="checkbox" 
+                           checked="checked">
+                </p>
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="" id=""><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+                <button title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="btn_confirm_med" id="btn_confirm_med" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
             </div>
         </div>
     </div>
@@ -156,7 +161,7 @@
                 <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA}</span>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body">
+            <div id="panel_valores" class="panel-body">
                 {include file="indicador_subunidad_valor_mostrar.tpl"}
             </div>
             <!-- /.panel-body -->

@@ -78,7 +78,9 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                     $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
                 }
                 break;
+
             case 'activar_uno':
+
                 $valor = new Valor();
                 $valor->load("id_medicion = $id_medicion AND id_entidad = $id_subunidad");
                 $valor->activo = $activo;
@@ -97,7 +99,9 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                     $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
                 }
                 break;
+
             case 'mostrar_valores':
+
                 $medicion = new Medicion();
 
                 if (filter_input(INPUT_GET, 'inicio') == 0)
@@ -111,7 +115,9 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                     $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
                 }
                 break;
+
             case 'seleccionar_años':
+
                 $medicion = new Medicion();
                 $years = $medicion->find_year_mediciones($id_indicador);
                 $smarty->assign('years', $years);
@@ -122,6 +128,7 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                 break;
 
             case 'activar_all':
+
                 $medicion = new Medicion();
 
                 if (filter_input(INPUT_GET, 'inicio') == 0)

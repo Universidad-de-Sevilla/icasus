@@ -6,13 +6,32 @@
         {/foreach}
     </select>                
 {elseif $modulo == 'mostrar_valores' OR $modulo == 'asignar_una_medicion' OR $modulo == 'activar_all' OR $modulo == 'activar_uno'}
-    {include file="indicador_subunidad_valor_mostrar.tpl"}
+    <!-- Valores de subunidades-mediciones -->
+    <div class="row">
+        <div class="col-lg-12" id="mostrar_valores">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA}</span>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    {include file="indicador_subunidad_valor_mostrar.tpl"}
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <!-- /Valores de subunidades-mediciones -->
 {/if}
 
-{*Recargamos chosen-select tras petición ajax*}
+{*Recargamos script, chosen-select y boostrap-toggle tras petición ajax*}
 <script>
     $('#fin').chosen({
         disable_search_threshold: 10,
         no_results_text: "Oops, no se encuentran registros coincidentes"
     });
+    $(':checkbox').bootstrapToggle();
 </script>

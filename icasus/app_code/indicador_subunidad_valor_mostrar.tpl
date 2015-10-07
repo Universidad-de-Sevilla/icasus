@@ -24,7 +24,7 @@
                                        data-onstyle="success" data-offstyle="danger" data-size="mini"
                                        data-off="{$smarty.const.TXT_VAL_DESACTIVO}"
                                        {if $medicion->medicion_valor->activo == 1}checked="checked"{/if}>
-                                <input class="actualizar_dato" data-id_valor="{$medicion->medicion_valor->id}" type="text" value="{$medicion->medicion_valor->valor}" {if $medicion->medicion_valor->activo != 1}disabled="disabled"{/if}>
+                                <input class="actualizar_dato" data-id_valor="{$medicion->medicion_valor->id}" type="number" value="{$medicion->medicion_valor->valor}" {if $medicion->medicion_valor->activo != 1}disabled="disabled"{/if}>
                             {else}
                                 <span title="{$smarty.const.TXT_ACT_DESACT}" class="badge no_asignada" style="cursor:pointer">{$smarty.const.TXT_NO_ASIG}</span>
                             {/if}
