@@ -64,10 +64,8 @@
                             <thead>
                                 <tr>   
                                     <th>{$smarty.const.FIELD_ID}</th>
-                                    <th>{$smarty.const.FIELD_COD}</th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
                                     <th>{$smarty.const.FIELD_PROC}</th>
-                                    <th>{$smarty.const.FIELD_HISTORICO}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
                                     <th>{$smarty.const.FIELD_RESP_MED}</th>
@@ -80,7 +78,6 @@
                                         <td>
                                             <span class="badge">{$indicador->id}</span>
                                         </td>
-                                        <td>{$indicador->codigo}</td>
                                         <td>
                                             {if $indicador->calculo}
                                                 <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
@@ -94,7 +91,6 @@
                                                 {$indicador->proceso->nombre}
                                             </a>
                                         </td>
-                                        <td>{$indicador->historicos}</td>
                                         <td>{$indicador->periodicidad}</td>
                                         <td>
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}&id_entidad={$entidad->id}'>

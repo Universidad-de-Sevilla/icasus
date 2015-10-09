@@ -737,7 +737,7 @@ define('FIELD_SUBPROCS', 'Subprocesos');
 define('FIELD_EQUIP_PROC', 'Equipo de proceso');
 
 //Usuarios
-define('FIELD_LOGIN', 'Login'); //TODO: a extinguir
+define('FIELD_LOGIN', 'Login');
 define('FIELD_USER', 'Usuario');
 define('FIELD_CLAVE', 'Clave de acceso');
 define('FIELD_REP_CLAVE', 'Repetir clave de acceso');
