@@ -1,23 +1,3 @@
-<!-- Diálogo Activar/Desactivar Valor-medición -->
-<div class="modal fade" id="modal_activar_uno" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil-square-o fa-fw"></i> </h3>
-            </div>
-            <div class="modal-body">
-                <p>{$smarty.const.TXT_CONFIRM} <b><span id="msg_activacion_uno"></span></b> {$smarty.const.TXT_MED_ESTA}.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="" id=""><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /Diálogo Activar/Desactivar Valor-medición -->
-
 <!-- Diálogo Asignar Unidad a una medición -->
 <div class="modal fade" id="modal_asignar_una_medicion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -50,17 +30,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil-square-o fa-fw"></i> </h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil-square-o fa-fw"></i> <span id="nombre_unidad"></span></h3>
             </div>
             <div class="modal-body">
-                <p>{$smarty.const.TXT_CONFIRM}:<br />
-                    <input  name="activo_all" type="radio" value="1" checked="checked">{$smarty.const.TXT_MED_ACT_TODAS}<br>
-                    <input name="activo_all" type="radio" value="0">{$smarty.const.TXT_MED_DESACT_TODAS}
-                </p>
+                <p>{$smarty.const.TXT_CONFIRM}</p>
+                <div class="radio">
+                    <label>
+                        <input name="activo_all" type="radio" value="1" checked="checked"> 
+                        {$smarty.const.TXT_MED_ACT_TODAS}
+                    </label>
+                </div>
+                <div class="radio">
+                    <label><input name="activo_all" type="radio" value="0"> 
+                        {$smarty.const.TXT_MED_DESACT_TODAS}
+                    </label>
+                </div>            
             </div>
             <div class="modal-footer">
-                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="" id=""><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+                <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+                <button title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-default btn-success" name="btn_confirm_all" id="btn_confirm_all" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
             </div>
         </div>
     </div>
@@ -71,7 +59,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-folder fa-fw"></i> {$_nombre_pagina}
+            <i class="fa fa-pencil-square-o fa-fw"></i> {$_nombre_pagina}
         </h3>
     </div>
     <!-- /.col-lg-12 -->

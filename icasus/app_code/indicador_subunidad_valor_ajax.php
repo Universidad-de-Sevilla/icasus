@@ -47,8 +47,11 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
             case 'actualizar_dato':
 
                 $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
-
-                $value = filter_input(INPUT_GET, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+                $value = null;
+                if (filter_has_var(INPUT_GET, 'valor'))
+                {
+                    $value = filter_input(INPUT_GET, 'valor', FILTER_VALIDATE_FLOAT);
+                }
                 $valor = new Valor();
                 $valor->Load("id = $id_valor");
                 $valor->id_usuario = $usuario->id;

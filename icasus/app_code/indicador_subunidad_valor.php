@@ -57,7 +57,7 @@ if (isset($id_entidad))
 
         $smarty->assign("tipo", $tipo);
         $smarty->assign('_javascript', array('indicador_subunidad_valor'));
-        $smarty->assign('_nombre_pagina', TXT_INDIC_SUBUNID_VAL . ": $indicador->nombre");
+        $smarty->assign('_nombre_pagina', TXT_VAL_EDIT . ": $indicador->nombre");
         $plantilla = 'indicador_subunidad_valor.tpl';
     }
     else

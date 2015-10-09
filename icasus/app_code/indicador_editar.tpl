@@ -176,7 +176,7 @@
                                 <div id="vmin" class="form-group has-feedback {if !$indicador->valor_min}hidden{/if}">
                                     <label for="valor_min" class="col-sm-2 control-label">{$smarty.const.FIELD_VALOR_MIN} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                                     <div class="col-sm-8">
-                                        <input type="number" id='valor_min' name="valor_min" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MIN}" value="{$indicador->valor_min}" required/>
+                                        <input type="number" step="0.01" id='valor_min' name="valor_min" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MIN}" value="{$indicador->valor_min}" required/>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -184,7 +184,7 @@
                                 <div id="vmax" class="form-group has-feedback {if !$indicador->valor_max}hidden{/if}">
                                     <label for="valor_max" class="col-sm-2 control-label">{$smarty.const.FIELD_VALOR_MAX} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                                     <div class="col-sm-8">
-                                        <input type="number" id='valor_max' name="valor_max" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MAX}" value="{$indicador->valor_max}" required/>
+                                        <input type="number" step="0.01" id='valor_max' name="valor_max" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MAX}" value="{$indicador->valor_max}" required/>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                         <div class="help-block with-errors"></div>
                                     </div>

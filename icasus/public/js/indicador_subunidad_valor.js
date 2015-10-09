@@ -12,7 +12,6 @@ $(function () {
     var id_entidad = $('table').data('id_entidad');
     var id_medicion = 'null';
     var id_subunidad = 'null';
-//    var subunidad = 'null';
     var inicio = 'null';
     var fin = 'null';
     var activo = 'null';
@@ -45,122 +44,62 @@ $(function () {
         });
     });
 
+    //Activar un valor
     $('#page-wrapper').on('change', '.activar_uno', function () {
         var activar_uno = $(this);
-        var id_subunidad = $(this).parent().parent().data('id_subunidad');
-        var id_medicion = $(this).parent().data('id_medicion');
-        var subunidad = $(this).parent().parent().data('subunidad');
+        var id_valor = $(this).data('id_valor');
+        var id_medicion = $(this).parent().parent().data('id_medicion');
+        var id_subunidad = $(this).parent().parent().parent().data('id_subunidad');
         var inicio = $("#inicio").val();
+        var fin = $("#fin").val();
         if (inicio === 0) {
-            var fin = 0;
-        } else {
-            var fin = $("#fin").val();
+            fin = 0;
         }
-        var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin;
-        //var parametros = "&id_subunidad="+id_subunidad+"&id_medicion="+id_medicion+"&inicio="+inicio+"&fin="+fin+"&id_entidad="+id_entidad+"&id_indicador="+id_indicador;
+        var activo = 0;
         if (activar_uno.is(':checked')) {
-            var activo = 1;
-            $('#msg_activacion_uno').html('activar');
-        } else {
-            var activo = 0;
-            $('#msg_activacion_uno').html('desactivar');
+            activo = 1;
         }
-        parametros = parametros + "&activo=" + activo;
-        $("#modal_activar_uno").dialog({
-            autoOpen: true, modal: true, title: subunidad,
-            buttons: [
-                {
-                    text: "Cancelar",
-                    class: 'red',
-                    style: 'color:white;',
-                    click: function () {
-                        $(this).dialog("close");
-                        if (activo === 1) {
-                            activar_uno.removeAttr("checked");
-                        } else {
-                            activar_uno.attr("checked", "checked");
-                        }
-                    }
-                },
-                {
-                    text: "Confirmar",
-                    class: 'green',
-                    style: 'color:white;',
-                    click: function () {
-                        $(this).dialog("close");
-                        $("#mostrar_valores").html("<div style='padding:30px'><b>Cargando datos ...</b></div>");
-                        $.ajax({
-                            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=activar_uno" + parametros,
-                            success: function (datos) {
-                                $("#mostrar_valores").html(datos);
-                            }
-                        });
-                    }
+        var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
+        $.ajax({
+            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=activar_uno" + parametros,
+            success: function () {
+                if (activo) {
+                    $('#' + id_valor).prop('disabled', false);
                 }
-            ]
+                else {
+                    $('#' + id_valor).prop('disabled', true);
+                }
+            }
         });
     });
 
+    //Diaĺogo activar/desactivar todas las mediciones para una unidad
     $('#page-wrapper').on('click', '.activar_all', function () {
-        var activar_all = $(this);
         var id_medicion = 'null';
         var id_subunidad = $(this).parent().parent().data('id_subunidad');
         var subunidad = $(this).parent().parent().data('subunidad');
         var inicio = $("#inicio").val();
+        var fin = $("#fin").val();
         if (inicio === 0) {
-            var fin = 0;
-        } else {
-            var fin = $("#fin").val();
+            fin = 0;
         }
         var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin;
-        $("#modal_activar_all").dialog({
-            autoOpen: true, modal: true, title: subunidad,
-            buttons: [
-                {
-                    text: "Cancelar",
-                    class: 'red',
-                    style: 'color:white;',
-                    click: function () {
-                        $(this).dialog("close");
-                    }
-                },
-                {
-                    text: "Confirmar",
-                    class: 'green',
-                    style: 'color:white;',
-                    click: function () {
-                        var activo_all = $("input[name='activo_all']:checked").val();
-                        parametros = parametros + "&activo=" + activo_all;
-                        $(this).dialog("close");
-                        $("#mostrar_valores").html("<div style='padding:30px'><b>Cargando datos ...</b></div>");
-                        $.ajax({
-                            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=activar_all" + parametros,
-                            success: function (datos) {
-                                $("#mostrar_valores").html(datos);
-                            }
-                        });
-                    }
+        $('#nombre_unidad').html(subunidad);
+        $("#modal_activar_all").modal('show');
+        $('#btn_confirm_all').click(function () {
+            var activo_all = $("input[name='activo_all']:checked").val();
+            parametros = parametros + "&activo=" + activo_all;
+            $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
+            $.ajax({
+                url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=activar_all" + parametros,
+                success: function (datos) {
+                    $("#mostrar_valores").html(datos);
                 }
-            ]
+            });
         });
     });
-    $('#btn_mostrar').on('click', function () {
-        var inicio = $("#inicio").val();
-        if (inicio === 0) {
-            var fin = 0;
-        } else {
-            var fin = $("#fin").val();
-        }
-        var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
-        $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
-        $.ajax({
-            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=mostrar_valores" + parametros,
-            success: function (datos) {
-                $("#mostrar_valores").html(datos);
-            }
-        });
-    });
-    //muestra los años de las mediciones
+
+    //Muestra el selector de los años de las mediciones
     $('#inicio').on('change', function () {
         $("#inicio option:selected").each(function () {
             elegido = $(this).val();
@@ -180,18 +119,54 @@ $(function () {
         });
     });
 
-    $('#page-wrapper').on('keyup', '.actualizar_dato', function () {
-        var actualizar_dato = $(this);
-        var id_valor = $(this).data('id_valor');
-        var valor = $(this).val();
-        //alert(valor);
-        var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
+    //Muestra las mediciones que están entre los períodos seleccionados
+    $('#btn_mostrar').on('click', function () {
+        var inicio = $("#inicio").val();
+        var fin = $("#fin").val();
+        if (inicio === 0) {
+            fin = 0;
+        }
+        var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
+        $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
         $.ajax({
-            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=mostrar_valores" + parametros,
             success: function (datos) {
-                actualizar_dato.css("color", "green");
+                $("#mostrar_valores").html(datos);
             }
         });
     });
 
+    //Actualizar valores
+    $('#page-wrapper').on('keyup', '.actualizar_dato', function () {
+        var actualizar_dato = $(this);
+        if ($.isNumeric(actualizar_dato.val())) {
+            actualizar_dato.css("color", "green");
+        }
+        else {
+            actualizar_dato.css("color", "red");
+        }
+    });
+    $('#page-wrapper').on('blur', '.actualizar_dato', function () {
+        var actualizar_dato = $(this);
+        var id_valor = $(this).data('id_valor');
+        var valor = $(this).val();
+        if ($.isNumeric(actualizar_dato.val())) {
+            var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
+            $.ajax({
+                url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                success: function () {
+                    actualizar_dato.css("color", "#333");
+                }
+            });
+        }
+        else{
+            var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor;
+            $.ajax({
+                url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                success: function () {
+                    actualizar_dato.css("color", "#333");
+                }
+            });
+        }
+    });
 });

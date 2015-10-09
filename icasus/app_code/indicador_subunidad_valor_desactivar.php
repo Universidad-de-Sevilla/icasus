@@ -39,7 +39,7 @@ if (isset($id_indicador))
         $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
         $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
 
-        $smarty->assign('_nombre_pagina', TXT_INDIC_SUBUNID_VAL . ": $indicador->nombre");
+        $smarty->assign('_nombre_pagina', TXT_VAL_EDIT . ": $indicador->nombre");
         $plantilla = 'indicador_subunidad_valor.tpl';
     }
     else

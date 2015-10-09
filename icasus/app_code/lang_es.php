@@ -153,7 +153,6 @@ define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar indicadores complementarios');
 define('TXT_INDIC_SEG_DEPART', 'Seguimiento de indicadores de los departamentos');
 define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta medición.');
 define('TXT_INDIC_ACT_MED', 'Indique si además quiere activarla: ');
-define('TXT_INDIC_SUBUNID_VAL', 'Valores de las subunidades para');
 define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Indicadores y datos con mediciones nulas agrupados');
 define('TXT_INDIC_DAT_MED_NULA', 'Indicadores y datos con mediciones nulas');
 define('TXT_INDIC_DAT_ULTIMA_MOD', 'Indicadores y datos, última modificación');
@@ -194,7 +193,7 @@ define('TXT_MED_UNICA', 'Medición única en la unidad actual.');
 define('TXT_MED_VER', 'Ver/Editar medición');
 define('TXT_MED_DES', 'Medición desagregada en las subunidades y cumplimentada por los responsables de las subunidades, o la persona delegada.');
 define('TXT_MED_DES_CEN', 'Medición desagregada en las subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
-define('TXT_MED_ESTA', 'esta medición');
+define('TXT_MED_ESTA', 'esta medición.');
 define('TXT_MED_ACARGO', 'Mediciones a su cargo');
 define('TXT_MED_VOLVER', 'Volver a las mediciones');
 define('TXT_MED_MOSTRAR', 'Mediciones');
@@ -297,6 +296,7 @@ define('TXT_FORMULA', "Indique la fórmula para el cálculo, la sintaxis para re
 define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el indicador/dato.');
 define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde se obtienen los valores para el indicador/dato.');
 define('TXT_BUSCAR', 'Buscar...');
+define('TXT_VAL_INSERT', 'Introduzca un número, dejar en blanco para valor nulo.');
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
 define('TXT_GRAFICO_AUMENTAR', '(Haga click sobre el gráfico para aumentarlo)');
 define('TXT_INTERVALO', 'Sólo si se quieren limitar los valores de las mediciones a un intervalo (cerrado) de posibles valores. Por ejemplo, para resultados de encuestas. No es compatible con el cálculo automático.');
@@ -307,7 +307,7 @@ define('TXT_SEL_UNO', 'Seleccionar uno');
 define('TXT_ELEG_UNO', 'Elegir uno si procede');
 define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
 define('TXT_SEL_RESP_GRABAR', 'Elegir nuevo responsable de grabación ...');
-define('TXT_CONFIRM', 'Por favor, confirme que desea');
+define('TXT_CONFIRM', 'Por favor, confirme que desea:');
 
 //Tiempo/Periodicidad
 define('TXT_HISTORICO', 'Histórico anual');
@@ -335,7 +335,6 @@ define('TXT_OPERATIVO', 'Operativo/Clave');
 define('TXT_DIR_GES', 'Directivo/Estratégico/Gestión');
 
 //Tipos de Representaciones Gráficas
-
 define('TXT_GRAFIC_INDIC_VAL', 'Gráfica con los valores del indicador');
 define('TXT_GRAFIC_VAL_MED', 'Gráfica completa con los valores medios del indicador');
 define('TXT_BARRAS', 'Barras');
