@@ -31,22 +31,22 @@
 <!-- /Nombre página -->
 
 <!-- Barra de botones -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
-                {if $_control}
+{if $_control}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="btn-toolbar" role="toolbar" aria-label="">
+                <div class="btn-group" role="group" aria-label="">
                     <a class="btn btn-default btn-danger" href="index.php?page=proceso_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_PROC_CREAR}">
                         <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_PROC_CREAR}
                     </a>
-                {/if}
+                </div>
             </div>
         </div>
+        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
+    <!-- /.row -->
+    <br>
+{/if}
 <!-- /Barra de botones -->
 
 <div class="row">
@@ -100,10 +100,10 @@
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROC_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>                 
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS}" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                                                <i class="fa fa-file fa-fw"></i>
-                                            </a>
                                             {if $_control}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS}" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                                                    <i class="fa fa-file fa-fw"></i>
+                                                </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>   

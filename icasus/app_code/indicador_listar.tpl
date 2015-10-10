@@ -31,22 +31,22 @@
 <!-- /Nombre página -->
 
 <!-- Barra de botones -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
-                {if $_control}
+{if $_control}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="btn-toolbar" role="toolbar" aria-label="">
+                <div class="btn-group" role="group" aria-label="">
                     <a class="btn btn-default btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
                         <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_INDIC_CREAR}
                     </a>
-                {/if}
+                </div>
             </div>
         </div>
+        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
+    <!-- /.row -->
+    <br>
+{/if}
 <!-- /Barra de botones -->
 
 <div class="row">

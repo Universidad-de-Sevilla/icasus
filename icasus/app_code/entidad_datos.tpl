@@ -11,20 +11,18 @@
 <!-- /Nombre página -->
 
 <!-- Barra de botones -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
-                {if $_control}
+{if $_control}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="btn-toolbar" role="toolbar" aria-label="">
+                <div class="btn-group" role="group" aria-label="">
                     <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger" href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
                         <i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_UNID_EDIT}
                     </a>
-                {/if}
-                <a title="{$smarty.const.TXT_VAL_IMPORT}" class="btn btn-default btn-danger" href='index.php?page=csv_importar&id_entidad={$entidad->id}'>
-                    <i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_VAL_IMPORT}
-                </a>
-            </div>
-            {if $_control}
+                    <a title="{$smarty.const.TXT_VAL_IMPORT}" class="btn btn-default btn-danger" href='index.php?page=csv_importar&id_entidad={$entidad->id}'>
+                        <i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_VAL_IMPORT}
+                    </a>
+                </div>   
                 <div class="btn-group" role="group" aria-label="">
                     <a title="{$smarty.const.TXT_USERS_VINC}" class="btn btn-default btn-danger" href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'>
                         <i class="fa fa-user-plus fa-fw"></i> {$smarty.const.TXT_USERS_VINC}
@@ -33,13 +31,13 @@
                         <i class="fa fa-user-times fa-fw"></i> {$smarty.const.TXT_USERS_DESVINC}
                     </a>
                 </div>
-            {/if}
+            </div>
         </div>
+        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
+    <!-- /.row -->
+    <br>
+{/if}
 <!-- /Barra de botones -->
 
 <div class="row">

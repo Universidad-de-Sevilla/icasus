@@ -22,7 +22,36 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-folder fa-fw"></i> {$_nombre_pagina}
+            <div class="row">
+                <div class="col-md-10">
+                    <i class="fa fa-folder fa-fw"></i> {$_nombre_pagina}
+                </div>
+                <!-- /.col-md-10 -->
+                <!-- Navegación -->
+                {if count($procesos)> 1}
+                    <div class="col-md-2">
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-default btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[0]->id}'>
+                                    <i class="fa fa-step-backward fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ANT}" class="btn btn-default btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[$indice-1]->id}'>
+                                    <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_SIG}" class="btn btn-default btn-danger btn-xs {if $indice == (count($procesos)-1)}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[$indice+1]->id}'>
+                                    <i class="fa fa-play fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ULTIMO}" class="btn btn-default btn-danger btn-xs {if $indice == (count($procesos)-1)}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[(count($procesos)-1)]->id}'>
+                                    <i class="fa fa-step-forward fa-fw"></i>
+                                </a>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- /.col-md-2 -->
+                {/if}
+                <!-- /Navegación -->
+            </div>
+            <!-- /.row -->
         </h3>
     </div>
     <!-- /.col-lg-12 -->
@@ -31,10 +60,10 @@
 <!-- /Nombre página -->
 
 <!-- Barra de botones -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            {if $_control}
+{if $_control}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="btn-toolbar" role="toolbar" aria-label="">
                 <div class="btn-group" role="group" aria-label="">
                     <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-default btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                         <i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_PROC_EDIT}
@@ -43,42 +72,11 @@
                        data-toggle="modal" data-target="#dialogo_confirmar_borrado">
                         <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PROC_BORRAR}
                     </a>
-                </div>
-            {/if}
-            <div class="btn-group" role="group" aria-label="">
-                <a class="btn btn-default btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
-                   title="{$smarty.const.TXT_ARCHIVOS}">
-                    <i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
-            </div>
-            <div class="btn-group" role="group" aria-label="">
-                <a class="btn btn-default btn-danger" href="index.php?page=proceso_listar&id_entidad={$proceso->id_entidad}" title="{$smarty.const.TXT_PROCS_VOLVER}">
-                    <i class="fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_PROCS_VOLVER}</a>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
-<!-- /Barra de botones -->
-
-<!-- Navegación -->
-{if count($procesos)> 1}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="btn-toolbar" role="toolbar" aria-label="">
+                </div> 
                 <div class="btn-group" role="group" aria-label="">
-                    <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-default btn-danger {if $indice == 0}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[0]->id}'>
-                        <i class="fa fa-step-backward fa-fw"></i> {$smarty.const.TXT_PRIMER}
-                    </a>
-                    <a title="{$smarty.const.TXT_ANT}" class="btn btn-default btn-danger {if $indice == 0}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[$indice-1]->id}'>
-                        <i class="fa fa-play fa-rotate-180 fa-fw"></i> {$smarty.const.TXT_ANT}
-                    </a>
-                    <a title="{$smarty.const.TXT_SIG}" class="btn btn-default btn-danger {if $indice == (count($procesos)-1)}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[$indice+1]->id}'>
-                        <i class="fa fa-play fa-fw"></i> {$smarty.const.TXT_SIG}
-                    </a>
-                    <a title="{$smarty.const.TXT_ULTIMO}" class="btn btn-default btn-danger {if $indice == (count($procesos)-1)}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[(count($procesos)-1)]->id}'>
-                        <i class="fa fa-step-forward fa-fw"></i> {$smarty.const.TXT_ULTIMO}
+                    <a class="btn btn-default btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
+                       title="{$smarty.const.TXT_ARCHIVOS}">
+                        <i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}
                     </a>
                 </div>
             </div>
@@ -88,7 +86,7 @@
     <!-- /.row -->
     <br>
 {/if}
-<!-- /Navegación -->
+<!-- /Barra de botones -->
 
 <div class="row">
     <div class="col-lg-12">
@@ -99,160 +97,162 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <table class="table table-striped table-hover">
-                    <tbody>
-                        <tr>
-                            <th>{$smarty.const.FIELD_COD}</th>
-                            <td>{$proceso->codigo}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_NOMBRE}</th>
-                            <td>{$proceso->nombre}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_VERSION}</th>
-                            <td>{$proceso->revision}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_FECHA}</th>
-                            <td>{$proceso->fecha_revision|date_format:'%d/%m/%Y'}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_TIPO_PROC}</th>
-                            <td>{$proceso->alcance}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_PROC_MADRE}</th>
-                            <td>
-                                {if $proceso_madre->id > 0}              
-                                    <a title="{$proceso_madre->nombre}" 
-                                       href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso->id_entidad}">
-                                        {$proceso_madre->codigo} - {$proceso_madre->nombre}
-                                    </a>
-                                {else}
-                                    {$smarty.const.TXT_PROC_ES_MADRE}
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_PROPIETARIO}</th>
-                            <td>
-                                {$propietario->nombre} {$propietario->apellidos} 
-                                {if $propietario->puesto} - {$propietario->puesto} {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_MISION}</th>
-                            <td> 
-                                {if $proceso->mision}
-                                    {$proceso->mision}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_EQUIP_PROC}</th>
-                            <td> 
-                                {if $proceso->equipo_de_proceso}
-                                    {$proceso->equipo_de_proceso}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_RESULTS_CLAVE}</th>
-                            <td> 
-                                {if $proceso->resultados_clave}
-                                    {$proceso->resultados_clave}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_ENTRADAS_PROV}</th>
-                            <td> 
-                                {if $proceso->entradas}
-                                    {$proceso->entradas}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_SALIDAS_CLIENTS}</th>
-                            <td> 
-                                {if $proceso->entradas or $proceso->salidas}
-                                    {$proceso->salidas}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_ACTIVIDADES}</th>
-                            <td> 
-                                {if $proceso->actividades}
-                                    {$proceso->actividades}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_VARS_CONTROL}</th>
-                            <td> 
-                                {if $proceso->variables_control}
-                                    {$proceso->variables_control}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_DOCUMENTACION}</th>
-                            <td> 
-                                {if $proceso->documentacion}
-                                    {$proceso->documentacion}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>       
-                        <tr>
-                            <th>{$smarty.const.FIELD_MEDICIONES}</th>
-                            <td> 
-                                {if $proceso->mediciones}
-                                    {$proceso->mediciones}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>      
-                        <tr>
-                            <th>{$smarty.const.FIELD_REGISTROS}</th>
-                            <td> 
-                                {if $proceso->registros}
-                                    {$proceso->registros}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_OBSERV}</th>
-                            <td> 
-                                {if $proceso->observaciones}
-                                    {$proceso->observaciones}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                            <tr>
+                                <th>{$smarty.const.FIELD_COD}</th>
+                                <td>{$proceso->codigo}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                <td>{$proceso->nombre}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_VERSION}</th>
+                                <td>{$proceso->revision}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_FECHA}</th>
+                                <td>{$proceso->fecha_revision|date_format:'%d/%m/%Y'}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_TIPO_PROC}</th>
+                                <td>{$proceso->alcance}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_PROC_MADRE}</th>
+                                <td>
+                                    {if $proceso_madre->id > 0}              
+                                        <a title="{$proceso_madre->nombre}" 
+                                           href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso->id_entidad}">
+                                            {$proceso_madre->codigo} - {$proceso_madre->nombre}
+                                        </a>
+                                    {else}
+                                        {$smarty.const.TXT_PROC_ES_MADRE}
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_PROPIETARIO}</th>
+                                <td>
+                                    {$propietario->nombre} {$propietario->apellidos} 
+                                    {if $propietario->puesto} - {$propietario->puesto} {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_MISION}</th>
+                                <td> 
+                                    {if $proceso->mision}
+                                        {$proceso->mision}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_EQUIP_PROC}</th>
+                                <td> 
+                                    {if $proceso->equipo_de_proceso}
+                                        {$proceso->equipo_de_proceso}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_RESULTS_CLAVE}</th>
+                                <td> 
+                                    {if $proceso->resultados_clave}
+                                        {$proceso->resultados_clave}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_ENTRADAS_PROV}</th>
+                                <td> 
+                                    {if $proceso->entradas}
+                                        {$proceso->entradas}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_SALIDAS_CLIENTS}</th>
+                                <td> 
+                                    {if $proceso->entradas or $proceso->salidas}
+                                        {$proceso->salidas}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_ACTIVIDADES}</th>
+                                <td> 
+                                    {if $proceso->actividades}
+                                        {$proceso->actividades}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_VARS_CONTROL}</th>
+                                <td> 
+                                    {if $proceso->variables_control}
+                                        {$proceso->variables_control}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_DOCUMENTACION}</th>
+                                <td> 
+                                    {if $proceso->documentacion}
+                                        {$proceso->documentacion}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>       
+                            <tr>
+                                <th>{$smarty.const.FIELD_MEDICIONES}</th>
+                                <td> 
+                                    {if $proceso->mediciones}
+                                        {$proceso->mediciones}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>      
+                            <tr>
+                                <th>{$smarty.const.FIELD_REGISTROS}</th>
+                                <td> 
+                                    {if $proceso->registros}
+                                        {$proceso->registros}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_OBSERV}</th>
+                                <td> 
+                                    {if $proceso->observaciones}
+                                        {$proceso->observaciones}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!-- /.panel-body -->        
         </div>
