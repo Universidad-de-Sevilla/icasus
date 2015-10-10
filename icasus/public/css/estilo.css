@@ -387,10 +387,6 @@ table.dataTable thead .sorting:after {
     margin-top: 2%;
 }
 
-.panel-login{
-    margin-top: 10%;
-}
-
 .panel-unidad{
     margin-top: 2%;
 }
@@ -430,10 +426,6 @@ span:focus, .pagination > li > span:hover {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-.image-us-login-sso{
-    margin-top: 10%;
 }
 
 /*Back to top*/

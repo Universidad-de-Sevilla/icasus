@@ -22,7 +22,7 @@
                                 <input class="form-control activar_uno"  type="checkbox"
                                        data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
                                        data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                       data-off="{$smarty.const.TXT_VAL_DESACTIVO}"
+                                       data-off="{$smarty.const.TXT_VAL_INACTIVO}"
                                        data-id_valor="{$medicion->medicion_valor->id}"
                                        {if $medicion->medicion_valor->activo == 1}checked="checked"{/if}>
                                 <input title="{$smarty.const.TXT_VAL_INSERT}" id="{$medicion->medicion_valor->id}" class="actualizar_dato" data-id_valor="{$medicion->medicion_valor->id}" type="text" value="{$medicion->medicion_valor->valor}" {if $medicion->medicion_valor->activo == 0}disabled="disabled"{/if}>

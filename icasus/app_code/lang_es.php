@@ -40,7 +40,6 @@ define('TXT_RESET', 'Reset');
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
 define('TXT_EXPORT_CSV', 'Exportar en CSV');
-define('TXT_ICON_GRAF_LINEAL', 'Icono gráfica lineal');
 define('TXT_LEYENDA', 'Leyenda');
 define('TXT_ACT_DESACT', 'Activar y desactivar');
 
@@ -373,7 +372,7 @@ define('TXT_VAL_AGREGAR', 'Agregar valor');
 define('TXT_VALS_SUBUNID', 'Valores por subunidad');
 define('TXT_VAL_IMPORT', 'Importar valores');
 define('TXT_VAL_ACTIVO', 'Activo');
-define('TXT_VAL_DESACTIVO', 'Desactivo');
+define('TXT_VAL_INACTIVO', 'Inactivo');
 define('TXT_VAL_REF', 'Valores de referencia');
 define('TXT_VAL_REC', 'Valores recogidos');
 define('TXT_VAL_TABLA', 'Tabla de valores');
