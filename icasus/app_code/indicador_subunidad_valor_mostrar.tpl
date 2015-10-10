@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-striped table-hover" data-id_indicador="{$indicador->id}" data-id_entidad="{$entidad->id}">
+    <table id="tabla_valores" class="table table-striped table-hover" data-id_indicador="{$indicador->id}" data-id_entidad="{$entidad->id}">
         <thead>
             <tr>
                 <th></th>
@@ -25,7 +25,7 @@
                                        data-off="{$smarty.const.TXT_VAL_DESACTIVO}"
                                        data-id_valor="{$medicion->medicion_valor->id}"
                                        {if $medicion->medicion_valor->activo == 1}checked="checked"{/if}>
-                                <input title="{$smarty.const.TXT_VAL_INSERT}" id="{$medicion->medicion_valor->id}" class="actualizar_dato" data-id_valor="{$medicion->medicion_valor->id}" type="number" step="0.01" value="{$medicion->medicion_valor->valor}" {if $medicion->medicion_valor->activo == 0}disabled="disabled"{/if}>
+                                <input title="{$smarty.const.TXT_VAL_INSERT}" id="{$medicion->medicion_valor->id}" class="actualizar_dato" data-id_valor="{$medicion->medicion_valor->id}" type="text" value="{$medicion->medicion_valor->valor}" {if $medicion->medicion_valor->activo == 0}disabled="disabled"{/if}>
                             {else}
                                 <span title="{$smarty.const.TXT_ACT_DESACT}" class="badge no_asignada" style="cursor:pointer">{$smarty.const.TXT_NO_ASIG}</span>
                             {/if}

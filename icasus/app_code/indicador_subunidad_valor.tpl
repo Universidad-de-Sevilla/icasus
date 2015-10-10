@@ -99,6 +99,60 @@
 <br>
 <!-- /Barra de botones -->
 
+<!-- Indicadores/datos dependientes -->
+{if $indicadores_dependientes}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-exclamation-triangle fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_DEPENDIENTES}</span>
+                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body" style="display: none">
+                    {$smarty.const.TXT_INFLUYE}
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <tr>
+                                <th>{$smarty.const.FIELD_ID}</th>
+                                <th>{$smarty.const.FIELD_NOMBRE}</th>
+                            </tr>
+                            {foreach $indicadores_dependientes as $indicador_dependiente}
+                                {if $indicador_dependiente->id_proceso}
+                                    <tr>
+                                        <td><span class="badge">{$indicador_dependiente->id}</span></td>
+                                        <td>
+                                            <a class="btn btn-default btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$entidad->id}' 
+                                               title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$indicador_dependiente->nombre}">
+                                                <i class="fa fa-dashboard fa-fw"></i> {$indicador_dependiente->nombre}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {else}
+                                    <tr>
+                                        <td><span class="badge">{$indicador_dependiente->id}</span></td>
+                                        <td> 
+                                            <a class="btn btn-default btn-warning" href='index.php?page=dato_mostrar&id_dato={$indicador_dependiente->id}&id_entidad={$entidad->id}' 
+                                               title="{$smarty.const.TXT_DATO_MOSTRAR}: {$indicador_dependiente->nombre}">
+                                                <i class="fa fa-database fa-fw"></i> {$indicador_dependiente->nombre}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {/if}   
+                            {/foreach}
+                        </table>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel --> 
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+{/if}
+<!-- /Indicadores/datos dependientes -->
+
 <!-- Selección de periodos a consultar -->
 <div class="row">
     <div class="col-lg-12">

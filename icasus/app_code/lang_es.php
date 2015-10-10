@@ -373,7 +373,7 @@ define('TXT_VAL_AGREGAR', 'Agregar valor');
 define('TXT_VALS_SUBUNID', 'Valores por subunidad');
 define('TXT_VAL_IMPORT', 'Importar valores');
 define('TXT_VAL_ACTIVO', 'Activo');
-define('TXT_VAL_DESACTIVO', 'No activo');
+define('TXT_VAL_DESACTIVO', 'Desactivo');
 define('TXT_VAL_REF', 'Valores de referencia');
 define('TXT_VAL_REC', 'Valores recogidos');
 define('TXT_VAL_TABLA', 'Tabla de valores');

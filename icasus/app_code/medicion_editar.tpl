@@ -197,10 +197,10 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-info-circle fa-fw"></i> {$smarty.const.TXT_CALC_AUTO}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
+                <div class="panel-body" style="display: none">
                     {$smarty.const.TXT_DEPENDE}
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -255,10 +255,10 @@
             <div class="panel panel-warning">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-exclamation-triangle fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_DEPENDIENTES}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
+                <div class="panel-body" style="display: none">
                     {$smarty.const.TXT_INFLUYE}
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -554,133 +554,64 @@
                                     {*El indicador/dato es no agregado*}
                                     {if $indicador->id_tipo_agregacion== 0}
                                         <tr {if isset($medicion_lim) AND isset($medicion_obj)}
-                                                    {if  $valor->valor < $medicion_lim}
-                                                        class="danger"
-                                                    {else if $valor->valor >= $medicion_obj}
-                                                        class="success"
-                                                    {else}
-                                                        class="warning"
-                                                    {/if}
-                                                {/if}
-                                                {if isset($medicion_obj) AND !isset($medicion_lim)}
-                                                    {if $valor->valor >= $medicion_obj}
-                                                        class="success"
-                                                    {else}
-                                                        class="danger"
-                                                    {/if}
-                                                {/if}
-                                                {if isset($medicion_lim) AND !isset($medicion_obj)}
-                                                    {if $valor->valor < $medicion_lim}
-                                                        class="danger"
-                                                    {else}
-                                                        class="success"
-                                                    {/if}
-                                                {/if}>
-                                            <td>{$valor->entidad->etiqueta}</td>
-                                            <td>
-                                                {if $permiso_editar && !$indicador->calculo}
-                                                    <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
-                                                        {if $valor->valor == NULL}
-                                                            ---
-                                                        {else}
-                                                            {$valor->valor|round:"2"}
-                                                        {/if}
-                                                    </a>
-                                                {else}
+                                            {if  $valor->valor < $medicion_lim}
+                                                class="danger"
+                                            {else if $valor->valor >= $medicion_obj}
+                                                class="success"
+                                            {else}
+                                                class="warning"
+                                            {/if}
+                                        {/if}
+                                        {if isset($medicion_obj) AND !isset($medicion_lim)}
+                                            {if $valor->valor >= $medicion_obj}
+                                                class="success"
+                                            {else}
+                                                class="danger"
+                                            {/if}
+                                        {/if}
+                                        {if isset($medicion_lim) AND !isset($medicion_obj)}
+                                            {if $valor->valor < $medicion_lim}
+                                                class="danger"
+                                            {else}
+                                                class="success"
+                                            {/if}
+                                        {/if}>
+                                        <td>{$valor->entidad->etiqueta}</td>
+                                        <td>
+                                            {if $permiso_editar && !$indicador->calculo}
+                                                <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
                                                     {if $valor->valor == NULL}
                                                         ---
                                                     {else}
                                                         {$valor->valor|round:"2"}
                                                     {/if}
-                                                {/if}
-                                            </td>
-                                            <td class="text-center"> 
-                                                {if $valor->valor != NULL}
-                                                    {if isset($medicion_lim) AND isset($medicion_obj)}
-                                                        {if  $valor->valor < $medicion_lim}
-                                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                        {else if $valor->valor >= $medicion_obj}
-                                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                        {else}
-                                                            <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
-                                                        {/if}
-                                                    {else if isset($medicion_obj)}
-                                                        {if $valor->valor >= $medicion_obj }
-                                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                        {else}
-                                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                        {/if}
-                                                    {else if isset($medicion_lim)}
-                                                        {if $valor->valor < $medicion_lim }
-                                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                        {else}
-                                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                        {/if}
-                                                    {else}
-                                                        ---
-                                                    {/if}
-                                                {else}
-                                                    ---
-                                                {/if}
-                                            </td>
-                                            <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
-                                            <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
-                                        </tr>
-                                    {/if}
-                                {/foreach}
-                                <!-- TOTALES -->
-                                {*El indicador/dato es agregado y no se calcula por mediana*}
-                                {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
-                                    <tr style="font-weight: bold"
-                                                {if isset($medicion_lim) AND isset($medicion_obj)}
-                                                    {if  $total < $medicion_lim}
-                                                        class="danger"
-                                                    {else if $total >= $medicion_obj}
-                                                        class="success"
-                                                    {else}
-                                                        class="warning"
-                                                    {/if}
-                                                {/if}
-                                                {if isset($medicion_obj) AND !isset($medicion_lim)}
-                                                    {if $total >= $medicion_obj}
-                                                        class="success"
-                                                    {else}
-                                                        class="danger"
-                                                    {/if}
-                                                {/if}
-                                                {if isset($medicion_lim) AND !isset($medicion_obj)}
-                                                    {if $total < $medicion_lim}
-                                                        class="danger"
-                                                    {else}
-                                                        class="success"
-                                                    {/if}
-                                                {/if}>
-                                        <td style="border-left:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
-                                        <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
-                                            {if $total === NULL}
-                                                ---
+                                                </a>
                                             {else}
-                                                {$total|round:"2"}
+                                                {if $valor->valor == NULL}
+                                                    ---
+                                                {else}
+                                                    {$valor->valor|round:"2"}
+                                                {/if}
                                             {/if}
                                         </td>
-                                        <td class="text-center" style="border-top:solid 2px #950717;border-bottom:solid 2px #950717"> 
-                                            {if $total != NULL}
+                                        <td class="text-center"> 
+                                            {if $valor->valor != NULL}
                                                 {if isset($medicion_lim) AND isset($medicion_obj)}
-                                                    {if  $total < $medicion_lim}
+                                                    {if  $valor->valor < $medicion_lim}
                                                         <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                    {else if $total >= $medicion_obj}
+                                                    {else if $valor->valor >= $medicion_obj}
                                                         <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
                                                         <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                                     {/if}
                                                 {else if isset($medicion_obj)}
-                                                    {if $total >= $medicion_obj }
+                                                    {if $valor->valor >= $medicion_obj }
                                                         <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
                                                         <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {/if}
                                                 {else if isset($medicion_lim)}
-                                                    {if $total < $medicion_lim }
+                                                    {if $valor->valor < $medicion_lim }
                                                         <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else}
                                                         <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
@@ -692,110 +623,179 @@
                                                 ---
                                             {/if}
                                         </td>
-                                        <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>
-                                        <td style="border-right:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>  
+                                        <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
+                                        <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
                                     </tr>
-                                {/if}
-                                {*El indicador/dato es agregado y se calcula por mediana*}
-                                {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion== 4}
-                                    {foreach $valores as $valor}
-                                        {if $valor->id_entidad==$entidad->id}
-                                            <tr style="font-weight: bold" 
-                                                {if isset($medicion_lim) AND isset($medicion_obj)}
-                                                    {if  $valor->valor < $medicion_lim}
-                                                        class="danger"
-                                                    {else if $valor->valor >= $medicion_obj}
-                                                        class="success"
-                                                    {else}
-                                                        class="warning"
+                                    {/if}
+                                        {/foreach}
+                                            <!-- TOTALES -->
+                                            {*El indicador/dato es agregado y no se calcula por mediana*}
+                                            {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
+                                                <tr style="font-weight: bold"
+                                                    {if isset($medicion_lim) AND isset($medicion_obj)}
+                                                        {if  $total < $medicion_lim}
+                                                            class="danger"
+                                                        {else if $total >= $medicion_obj}
+                                                            class="success"
+                                                        {else}
+                                                            class="warning"
+                                                        {/if}
                                                     {/if}
-                                                {/if}
-                                                {if isset($medicion_obj) AND !isset($medicion_lim)}
-                                                    {if $valor->valor >= $medicion_obj}
-                                                        class="success"
-                                                    {else}
-                                                        class="danger"
+                                                    {if isset($medicion_obj) AND !isset($medicion_lim)}
+                                                        {if $total >= $medicion_obj}
+                                                            class="success"
+                                                        {else}
+                                                            class="danger"
+                                                        {/if}
                                                     {/if}
-                                                {/if}
-                                                {if isset($medicion_lim) AND !isset($medicion_obj)}
-                                                    {if $valor->valor < $medicion_lim}
-                                                        class="danger"
-                                                    {else}
-                                                        class="success"
-                                                    {/if}
-                                                {/if}>
-                                                <td style="border-left:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
-                                                <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
-                                                    {if $permiso_editar && !$indicador->calculo}
-                                                        <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
-                                                            {if $valor->valor == NULL}
+                                                    {if isset($medicion_lim) AND !isset($medicion_obj)}
+                                                        {if $total < $medicion_lim}
+                                                            class="danger"
+                                                        {else}
+                                                            class="success"
+                                                        {/if}
+                                                    {/if}>
+                                                    <td style="border-left:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
+                                                    <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                                        {if $total === NULL}
+                                                            ---
+                                                        {else}
+                                                            {$total|round:"2"}
+                                                        {/if}
+                                                    </td>
+                                                    <td class="text-center" style="border-top:solid 2px #950717;border-bottom:solid 2px #950717"> 
+                                                        {if $total != NULL}
+                                                            {if isset($medicion_lim) AND isset($medicion_obj)}
+                                                                {if  $total < $medicion_lim}
+                                                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                {else if $total >= $medicion_obj}
+                                                                    <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                {else}
+                                                                    <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                                {/if}
+                                                            {else if isset($medicion_obj)}
+                                                                {if $total >= $medicion_obj }
+                                                                    <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                {else}
+                                                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                {/if}
+                                                            {else if isset($medicion_lim)}
+                                                                {if $total < $medicion_lim }
+                                                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                {else}
+                                                                    <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                {/if}
+                                                            {else}
                                                                 ---
-                                                            {else}
-                                                                {$valor->valor|round:"2"}
-                                                            {/if}
-                                                        </a>
-                                                    {else}
-                                                        {if $valor->valor == NULL}
-                                                            ---
-                                                        {else}
-                                                            {$valor->valor|round:"2"}
-                                                        {/if}
-                                                    {/if}
-                                                </td>
-                                                <td class="text-center" style="border-top:solid 2px #950717;border-bottom:solid 2px #950717"> 
-                                                    {if $valor->valor != NULL}
-                                                        {if isset($medicion_lim) AND isset($medicion_obj)}
-                                                            {if  $valor->valor < $medicion_lim}
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                            {else if $valor->valor >= $medicion_obj}
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                            {else}
-                                                                <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
-                                                            {/if}
-                                                        {else if isset($medicion_obj)}
-                                                            {if $valor->valor >= $medicion_obj }
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                            {else}
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                            {/if}
-                                                        {else if isset($medicion_lim)}
-                                                            {if $valor->valor < $medicion_lim }
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                            {else}
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
                                                             {/if}
                                                         {else}
                                                             ---
                                                         {/if}
-                                                    {else}
-                                                        ---
+                                                    </td>
+                                                    <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>
+                                                    <td style="border-right:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>  
+                                                </tr>
+                                            {/if}
+                                            {*El indicador/dato es agregado y se calcula por mediana*}
+                                            {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion== 4}
+                                                {foreach $valores as $valor}
+                                                    {if $valor->id_entidad==$entidad->id}
+                                                        <tr style="font-weight: bold" 
+                                                            {if isset($medicion_lim) AND isset($medicion_obj)}
+                                                                {if  $valor->valor < $medicion_lim}
+                                                                    class="danger"
+                                                                {else if $valor->valor >= $medicion_obj}
+                                                                    class="success"
+                                                                {else}
+                                                                    class="warning"
+                                                                {/if}
+                                                            {/if}
+                                                            {if isset($medicion_obj) AND !isset($medicion_lim)}
+                                                                {if $valor->valor >= $medicion_obj}
+                                                                    class="success"
+                                                                {else}
+                                                                    class="danger"
+                                                                {/if}
+                                                            {/if}
+                                                            {if isset($medicion_lim) AND !isset($medicion_obj)}
+                                                                {if $valor->valor < $medicion_lim}
+                                                                    class="danger"
+                                                                {else}
+                                                                    class="success"
+                                                                {/if}
+                                                            {/if}>
+                                                            <td style="border-left:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
+                                                            <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                                                {if $permiso_editar && !$indicador->calculo}
+                                                                    <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
+                                                                        {if $valor->valor == NULL}
+                                                                            ---
+                                                                        {else}
+                                                                            {$valor->valor|round:"2"}
+                                                                        {/if}
+                                                                    </a>
+                                                                {else}
+                                                                    {if $valor->valor == NULL}
+                                                                        ---
+                                                                    {else}
+                                                                        {$valor->valor|round:"2"}
+                                                                    {/if}
+                                                                {/if}
+                                                            </td>
+                                                            <td class="text-center" style="border-top:solid 2px #950717;border-bottom:solid 2px #950717"> 
+                                                                {if $valor->valor != NULL}
+                                                                    {if isset($medicion_lim) AND isset($medicion_obj)}
+                                                                        {if  $valor->valor < $medicion_lim}
+                                                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                        {else if $valor->valor >= $medicion_obj}
+                                                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                        {else}
+                                                                            <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                                        {/if}
+                                                                    {else if isset($medicion_obj)}
+                                                                        {if $valor->valor >= $medicion_obj }
+                                                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                        {else}
+                                                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                        {/if}
+                                                                    {else if isset($medicion_lim)}
+                                                                        {if $valor->valor < $medicion_lim }
+                                                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                        {else}
+                                                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                        {/if}
+                                                                    {else}
+                                                                        ---
+                                                                    {/if}
+                                                                {else}
+                                                                    ---
+                                                                {/if}
+                                                            </td>
+                                                            <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                                                {$valor->fecha_recogida|date_format:"%d-%m-%Y"}
+                                                            </td>
+                                                            <td style="border-right:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                                                {$valor->usuario->nombre} {$valor->usuario->apellidos}
+                                                            </td>  
+                                                        </tr>
                                                     {/if}
-                                                </td>
-                                                <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
-                                                    {$valor->fecha_recogida|date_format:"%d-%m-%Y"}
-                                                </td>
-                                                <td style="border-right:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
-                                                    {$valor->usuario->nombre} {$valor->usuario->apellidos}
-                                                </td>  
-                                            </tr>
-                                        {/if}
-                                    {/foreach}
-                                {/if}
-                                <!-- //TOTALES -->
-                            </tbody>
-                        </table>
-                    </div>
-                {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.ERR_MED_NO_VAL}
-                    </div> 
-                {/if}
-            </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+                                                {/foreach}
+                                            {/if}
+                                            <!-- //TOTALES -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {else}
+                                    <div class="alert alert-info alert-dismissible">
+                                        <i class="fa fa-info-circle fa-fw"></i> 
+                                        {$smarty.const.ERR_MED_NO_VAL}
+                                    </div> 
+                                    {/if}
+                                    </div>
+                                    <!-- /.panel-body -->        
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <!-- /.row -->

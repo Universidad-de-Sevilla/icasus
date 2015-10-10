@@ -54,10 +54,10 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-info-circle fa-fw"></i> {$smarty.const.TXT_CALC_AUTO}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
+                <div class="panel-body" style="display: none">
                     {$smarty.const.TXT_DEPENDE}
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -112,10 +112,10 @@
             <div class="panel panel-warning">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-exclamation-triangle fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_DEPENDIENTES}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
+                <div class="panel-body" style="display: none">
                     {$smarty.const.TXT_INFLUYE}
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">

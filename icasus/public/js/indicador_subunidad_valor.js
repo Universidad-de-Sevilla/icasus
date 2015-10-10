@@ -8,8 +8,8 @@
 //----------------------------------------------------------------------------
 
 $(function () {
-    var id_indicador = $('table').data('id_indicador');
-    var id_entidad = $('table').data('id_entidad');
+    var id_indicador = $('#tabla_valores').data('id_indicador');
+    var id_entidad = $('#tabla_valores').data('id_entidad');
     var id_medicion = 'null';
     var id_subunidad = 'null';
     var inicio = 'null';
@@ -102,7 +102,7 @@ $(function () {
     //Muestra el selector de los años de las mediciones
     $('#inicio').on('change', function () {
         $("#inicio option:selected").each(function () {
-            elegido = $(this).val();
+            var elegido = $(this).val();
             if (elegido === 0) {
                 $("#end_year").html(' ');
             }
@@ -159,7 +159,7 @@ $(function () {
                 }
             });
         }
-        else{
+        else if (actualizar_dato.val().length === 0) {
             var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor;
             $.ajax({
                 url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
@@ -167,6 +167,9 @@ $(function () {
                     actualizar_dato.css("color", "#333");
                 }
             });
+        }
+        else {
+            actualizar_dato.css("color", "red");
         }
     });
 });
