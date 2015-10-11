@@ -22,7 +22,36 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-folder fa-fw"></i> {$_nombre_pagina}
+            <div class="row">
+                <div class="col-md-10">
+                    <i class="fa fa-folder fa-fw"></i> {$_nombre_pagina}
+                </div>
+                <!-- /.col-md-10 -->
+                <!-- Navegación -->
+                {if count($indicadores)> 1}
+                    <div class="col-md-2">
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-default btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=indicador_mostrar&id_entidad={$entidad->id}&id_indicador={$indicadores[0]->id}'>
+                                    <i class="fa fa-step-backward fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ANT}" class="btn btn-default btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=indicador_mostrar&id_entidad={$entidad->id}&id_indicador={$indicadores[$indice-1]->id}'>
+                                    <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_SIG}" class="btn btn-default btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=indicador_mostrar&id_entidad={$entidad->id}&id_indicador={$indicadores[$indice+1]->id}'>
+                                    <i class="fa fa-play fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ULTIMO}" class="btn btn-default btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=indicador_mostrar&id_entidad={$entidad->id}&id_indicador={$indicadores[(count($indicadores)-1)]->id}'>
+                                    <i class="fa fa-step-forward fa-fw"></i>
+                                </a>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- /.col-md-2 -->
+                {/if}
+                <!-- /Navegación -->
+            </div>
+            <!-- /.row -->
         </h3>
     </div>
     <!-- /.col-lg-12 -->
@@ -77,34 +106,6 @@
 <!-- /.row -->
 <br>
 <!-- /Barra de botones -->
-
-<!-- Navegación -->
-{if count($indicadores)> 1}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="btn-toolbar" role="toolbar" aria-label="">
-                <div class="btn-group" role="group" aria-label="">
-                    <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-default btn-danger {if $indice == 0}disabled{/if}" href='index.php?page=indicador_mostrar&id_entidad={$entidad->id}&id_indicador={$indicadores[0]->id}'>
-                        <i class="fa fa-step-backward fa-fw"></i> {$smarty.const.TXT_PRIMER}
-                    </a>
-                    <a title="{$smarty.const.TXT_ANT}" class="btn btn-default btn-danger {if $indice == 0}disabled{/if}" href='index.php?page=indicador_mostrar&id_entidad={$entidad->id}&id_indicador={$indicadores[$indice-1]->id}'>
-                        <i class="fa fa-play fa-rotate-180 fa-fw"></i> {$smarty.const.TXT_ANT}
-                    </a>
-                    <a title="{$smarty.const.TXT_SIG}" class="btn btn-default btn-danger {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=indicador_mostrar&id_entidad={$entidad->id}&id_indicador={$indicadores[$indice+1]->id}'>
-                        <i class="fa fa-play fa-fw"></i> {$smarty.const.TXT_SIG}
-                    </a>
-                    <a title="{$smarty.const.TXT_ULTIMO}" class="btn btn-default btn-danger {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=indicador_mostrar&id_entidad={$entidad->id}&id_indicador={$indicadores[(count($indicadores)-1)]->id}'>
-                        <i class="fa fa-step-forward fa-fw"></i> {$smarty.const.TXT_ULTIMO}
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <br>
-{/if}
-<!-- /Navegación -->
 
 <!-- Indicadores/datos calculados -->
 {if $indicador->calculo}
@@ -227,176 +228,178 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <table class="table table-striped table-hover">
-                    <tbody>
-                        <tr>
-                            <th>{$smarty.const.FIELD_ID}</th>
-                            <td><span class="badge">{$indicador->id}</span></td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_COD}</th>
-                            <td>{$indicador->codigo}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_PROC}</th>
-                            <td>
-                                <a href="index.php?page=proceso_mostrar&id_proceso={$indicador->proceso->id}&id_entidad={$indicador->id_entidad}">{$indicador->proceso->codigo} - {$indicador->proceso->nombre}</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_NOMBRE}</th>
-                            <td>{$indicador->nombre}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_DESC}</th>
-                            <td> 
-                                {if $indicador->descripcion != ""}
-                                    {$indicador->descripcion}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_HISTORICO}</th>
-                            <td>{$indicador->historicos}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_PERIOD}</th>
-                            <td>{$indicador->periodicidad}</td>
-                        </tr>      
-                        <tr title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}">
-                            <th>{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</th>
-                            <td>{$indicador->tipo_agregacion_temporal->descripcion}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_OBSERV}</th>
-                            <td> 
-                                {if $indicador->observaciones != ""}
-                                    {$indicador->observaciones}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_FORM}</th>
-                            <td>{$indicador->formulacion}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_RESP_SEG}</th>
-                            <td> {$indicador->responsable->nombre} {$indicador->responsable->apellidos}
-                                {if $indicador->responsable->puesto} - {$indicador->responsable->puesto} {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_RESP_MED}</th>
-                            <td> {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}
-                                {if $indicador->responsable_medicion->puesto} - {$indicador->responsable_medicion->puesto} {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_FUENTE_INFO}</th>
-                            <td> 
-                                {if $indicador->fuente_informacion != ""}
-                                    {$indicador->fuente_informacion}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_FUENTE_DAT}</th>
-                            <td> 
-                                {if $indicador->fuente_datos != ""}
-                                    {$indicador->fuente_datos}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_MET}</th>
-                            <td> 
-                                {if $indicador->evidencia != ""}
-                                    {$indicador->evidencia}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_INTERP}</th>
-                            <td> 
-                                {if $indicador->interpretacion != ""}
-                                    {$indicador->interpretacion}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_INTERVALO}</th>
-                            <td>
-                                {if $indicador->valor_min != NULL && $indicador->valor_max != NULL}
-                                    [{$indicador->valor_min}, {$indicador->valor_max}] 
-                                {else}
-                                    {$smarty.const.TXT_NO_ASIG}
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_EFQM}</th>
-                            <td>
-                                {if is_array($indicador->criterios_efqm)}
-                                    <ul> 
-                                        {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
-                                            <li>
-                                                {$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}
-                                            </li>
-                                        {/foreach}
-                                    </ul>
-                                {else}
-                                    {$smarty.const.MSG_NO_DEF}
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
-                            <td>{$indicador->visibilidad->nombre|htmlentities}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_UNID_GEN}</th>
-                            <td> 
-                                {if $indicador->unidad_generadora != ""}
-                                    {$indicador->unidad_generadora}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_SUBUNID_AFECT}</th>
-                            <td>
-                                {if $indicador_subunidades}
-                                    <ul>
-                                        {foreach $indicador_subunidades as $indicador_subunidad}
-                                            <li>
-                                                <a href="index.php?page=entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->etiqueta}</a>
-                                            </li>
-                                        {/foreach}
-                                    </ul>
-                                {else}
-                                    {$smarty.const.MSG_INDIC_NO_SUBUNID_ASIG}
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr title="{$smarty.const.TXT_CALCULO_TOTAL}">
-                            <th>{$smarty.const.FIELD_CALC_TOTAL}</th>
-                            <td>{$indicador->tipo_agregacion->descripcion}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <tbody>
+                            <tr>
+                                <th>{$smarty.const.FIELD_ID}</th>
+                                <td><span class="badge">{$indicador->id}</span></td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_COD}</th>
+                                <td>{$indicador->codigo}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_PROC}</th>
+                                <td>
+                                    <a href="index.php?page=proceso_mostrar&id_proceso={$indicador->proceso->id}&id_entidad={$indicador->id_entidad}">{$indicador->proceso->codigo} - {$indicador->proceso->nombre}</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                <td>{$indicador->nombre}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_DESC}</th>
+                                <td> 
+                                    {if $indicador->descripcion != ""}
+                                        {$indicador->descripcion}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_HISTORICO}</th>
+                                <td>{$indicador->historicos}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_PERIOD}</th>
+                                <td>{$indicador->periodicidad}</td>
+                            </tr>      
+                            <tr title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}">
+                                <th>{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</th>
+                                <td>{$indicador->tipo_agregacion_temporal->descripcion}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_OBSERV}</th>
+                                <td> 
+                                    {if $indicador->observaciones != ""}
+                                        {$indicador->observaciones}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_FORM}</th>
+                                <td>{$indicador->formulacion}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_RESP_SEG}</th>
+                                <td> {$indicador->responsable->nombre} {$indicador->responsable->apellidos}
+                                    {if $indicador->responsable->puesto} - {$indicador->responsable->puesto} {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_RESP_MED}</th>
+                                <td> {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}
+                                    {if $indicador->responsable_medicion->puesto} - {$indicador->responsable_medicion->puesto} {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_FUENTE_INFO}</th>
+                                <td> 
+                                    {if $indicador->fuente_informacion != ""}
+                                        {$indicador->fuente_informacion}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_FUENTE_DAT}</th>
+                                <td> 
+                                    {if $indicador->fuente_datos != ""}
+                                        {$indicador->fuente_datos}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_MET}</th>
+                                <td> 
+                                    {if $indicador->evidencia != ""}
+                                        {$indicador->evidencia}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_INTERP}</th>
+                                <td> 
+                                    {if $indicador->interpretacion != ""}
+                                        {$indicador->interpretacion}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_INTERVALO}</th>
+                                <td>
+                                    {if $indicador->valor_min != NULL && $indicador->valor_max != NULL}
+                                        [{$indicador->valor_min}, {$indicador->valor_max}] 
+                                    {else}
+                                        {$smarty.const.TXT_NO_ASIG}
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_EFQM}</th>
+                                <td>
+                                    {if is_array($indicador->criterios_efqm)}
+                                        <ul> 
+                                            {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
+                                                <li>
+                                                    {$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}
+                                                </li>
+                                            {/foreach}
+                                        </ul>
+                                    {else}
+                                        {$smarty.const.MSG_NO_DEF}
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
+                                <td>{$indicador->visibilidad->nombre|htmlentities}</td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_UNID_GEN}</th>
+                                <td> 
+                                    {if $indicador->unidad_generadora != ""}
+                                        {$indicador->unidad_generadora}
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{$smarty.const.FIELD_SUBUNID_AFECT}</th>
+                                <td>
+                                    {if $indicador_subunidades}
+                                        <ul>
+                                            {foreach $indicador_subunidades as $indicador_subunidad}
+                                                <li>
+                                                    <a href="index.php?page=entidad_datos&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->etiqueta}</a>
+                                                </li>
+                                            {/foreach}
+                                        </ul>
+                                    {else}
+                                        {$smarty.const.MSG_INDIC_NO_SUBUNID_ASIG}
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr title="{$smarty.const.TXT_CALCULO_TOTAL}">
+                                <th>{$smarty.const.FIELD_CALC_TOTAL}</th>
+                                <td>{$indicador->tipo_agregacion->descripcion}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <!-- /.panel-body -->        
         </div>
