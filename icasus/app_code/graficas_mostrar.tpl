@@ -36,7 +36,7 @@
             </div>
             <div class="btn-group" role="group" aria-label="">
                 <a title="{$smarty.const.TXT_VOLVER} {$tipo}" class="btn btn-default btn-danger" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <i class="fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_VOLVER} {$tipo}
+                    <i class="fa fa-arrow-left fa-fw"></i>
                 </a>
             </div>
         </div>

@@ -16,7 +16,7 @@
         <div class="btn-toolbar" role="toolbar" aria-label="">
             <div class="btn-group" role="group" aria-label="">
                 <a title="{$smarty.const.TXT_VOLVER} {$smarty.const.FIELD_INDIC}" class="btn btn-default btn-danger" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <i class="fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_VOLVER} {$smarty.const.FIELD_INDIC}
+                    <i class="fa fa-arrow-left fa-fw"></i>
                 </a>
             </div>
         </div>

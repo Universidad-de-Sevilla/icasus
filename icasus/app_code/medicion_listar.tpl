@@ -55,6 +55,11 @@
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
             <div class="btn-group" role="group" aria-label="">
+                <a title="{$smarty.const.TXT_REP_GRAFIC}" class="btn btn-default btn-danger" href='index.php?page=graficas_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}
+                </a>
+            </div>
+            <div class="btn-group" role="group" aria-label="">
                 {if $_control || $responsable}
                     <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-default btn-danger" href='javascript:void(0)' 
                        data-toggle="modal" data-target="#dialogo_confirmar_generar">
@@ -82,7 +87,7 @@
             </div>
             <div class="btn-group" role="group" aria-label="">
                 <a title="{$smarty.const.TXT_VOLVER} {$tipo}" class="btn btn-default btn-danger" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <i class="fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_VOLVER} {$tipo}
+                    <i class="fa fa-arrow-left fa-fw"></i>
                 </a>
             </div>
         </div>
