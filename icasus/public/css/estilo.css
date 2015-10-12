@@ -444,3 +444,106 @@ span:focus, .pagination > li > span:hover {
     color: #950717;
     border-color: #FFC526;
 }
+
+/*Menú de Unidades*/
+.titulo-unidad{
+    text-decoration: none !important;
+}
+
+.panel-ficha-unidad {
+    border-color: #337AB7;
+}
+
+.panel-ficha-unidad .panel-heading {
+    border-color: #337AB7;
+    color: #fff;
+    background-color: #337AB7;
+}
+
+.panel-ficha-unidad .panel-heading:hover {
+    background-color: #23527C;
+}
+
+.panel-procesos {
+    border-color: #5cb85c;
+}
+
+.panel-procesos .panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+
+.panel-procesos .panel-heading:hover {
+    background-color: #3d8b3d;
+}
+
+.panel-indicadores {
+    border-color: #FFC526;
+}
+
+.panel-indicadores .panel-heading {
+    border-color: #FFC526;
+    color: #fff;
+    background-color: #FFC526;
+}
+
+.panel-indicadores .panel-heading:hover {
+    background-color: #df8a13;
+}
+
+.panel-datos {
+    border-color: #d9534f;
+}
+
+.panel-datos .panel-heading {
+    border-color: #d9534f;
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.panel-datos .panel-heading:hover {
+    background-color: #b52b27;
+}
+
+.panel-consulta {
+    border-color: darkorange;
+}
+
+.panel-consulta .panel-heading {
+    border-color: darkorange;
+    color: #fff;
+    background-color: darkorange;
+}
+
+.panel-consulta .panel-heading:hover {
+    background-color: orangered;
+}
+
+.panel-cuadro-res {
+    border-color: turquoise;
+}
+
+.panel-cuadro-res .panel-heading {
+    border-color: turquoise;
+    color: #fff;
+    background-color: turquoise;
+}
+
+.panel-cuadro-res .panel-heading:hover {
+    background-color: skyblue;
+}
+
+.panel-control {
+    border-color: violet;
+}
+
+.panel-control .panel-heading {
+    border-color: violet;
+    color: #fff;
+    background-color: violet;
+}
+
+.panel-control .panel-heading:hover {
+    background-color: mediumvioletred;
+}

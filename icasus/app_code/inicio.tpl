@@ -34,7 +34,7 @@
                                 {foreach from=$entidades_usuario item=entidad}
                                     <tr>
                                         <td style="white-space:nowrap">{$entidad->entidad->codigo}</td>
-                                        <td><a title="{$entidad->entidad->nombre}" href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'>{$entidad->entidad->nombre}</a></td>
+                                        <td><a title="{$entidad->entidad->nombre}" href='index.php?page=entidad_mostrar&id_entidad={$entidad->entidad->id}&principal=1'>{$entidad->entidad->nombre}</a></td>
                                         <td>{$entidad->rol->nombre}</td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->entidad->id}'><i class="fa fa-folder fa-fw"></i></a>

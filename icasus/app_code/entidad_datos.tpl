@@ -73,7 +73,7 @@
                             <th>{$smarty.const.FIELD_UNID_SUP}</th>
                             <td>
                                 {if $entidad->madre->id !=0}
-                                    <a title="{$entidad->madre->nombre}" href="index.php?page=entidad_datos&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
+                                    <a title="{$entidad->madre->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->madre->id}&principal=1">{$entidad->madre->nombre}</a>
                                 {else}
                                     ---
                                 {/if}
@@ -174,7 +174,7 @@
                                     <tr>  
                                         <td style="white-space:nowrap">{$subentidad->codigo}</td>
                                         <td>
-                                            <a title="{$subentidad->nombre}" href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'>{$subentidad->nombre}</a>
+                                            <a title="{$subentidad->nombre}" href='index.php?page=entidad_mostrar&id_entidad={$subentidad->id}&principal=1'>{$subentidad->nombre}</a>
                                         </td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'><i class="fa fa-folder fa-fw"></i></a>

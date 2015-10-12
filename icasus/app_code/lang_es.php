@@ -221,7 +221,7 @@ define('TXT_USER_PERFIL', 'Perfil de usuario');
 define('TXT_MIS_NOTAS', 'Mis notas');
 define('TXT_CERRAR_SESION', 'Cerrar sesión');
 //Menú de Unidades
-define('TXT_CUAD_RES', 'Cuadro Resumen');
+define('TXT_CUAD_RES', 'Cuadro resumen');
 
 //Mostrar
 define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
