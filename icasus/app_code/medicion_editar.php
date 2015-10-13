@@ -134,7 +134,28 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
 
     //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
-    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    if ($indicador->id == 5071 OR
+            $indicador->id == 5077 OR
+            $indicador->id == 5020 OR
+            $indicador->id == 5258 OR
+            $indicador->id == 5061 OR
+            $indicador->id == 5040 OR
+            $indicador->id == 5078 OR
+            $indicador->id == 5063 OR
+            $indicador->id == 5034 OR
+            $indicador->id == 5033 OR
+            $indicador->id == 5032 OR
+            $indicador->id == 5036 OR
+            $indicador->id == 5259 OR
+            $indicador->id == 5035 OR
+            $indicador->id == 5080)
+    {
+        $total = $logicaIndicador->calcular_total_heredado($indicador, $medicion->etiqueta);
+    }
+    else
+    {
+        $total = $logicaIndicador->calcular_total($indicador, $valores);
+    }
     $tipo_agregacion = new Tipo_agregacion();
     $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
     $smarty->assign("agregacion", $tipo_agregacion->descripcion);
@@ -150,5 +171,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?error=$error");
 }
-
-    
