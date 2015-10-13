@@ -1,6 +1,7 @@
 *.swp
 *~
 .DS_Store
+.idea/**/*
 icasus/app_code/app_config.php
 /nbproject/private/
 /nbproject/project.properties
