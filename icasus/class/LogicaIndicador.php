@@ -505,6 +505,53 @@ class LogicaIndicador implements ILogicaIndicador
         return $total;
     }
 
+    //Calcula el total del indicador que recibe como parámetro del total de sus
+    //indicadores inluyentes que también recibe como parámetros
+    public function calcular_total_heredado($indicador, $etiqueta)
+    {
+        $total = null;
+        // Recorremos la cadena $calculo para sacar y calcular las variables
+        // Almacenamos el resultado en $formula
+        $es_variable = false;
+        $formula = "";
+        $calculo = str_split($indicador->calculo);
+        foreach ($calculo as $elemento)
+        {
+            if ($elemento == "[")
+            {
+                $variable = "";
+                $es_variable = true;
+                continue;
+            }
+            if ($elemento == "]")
+            {
+                if (is_numeric($variable))
+                {
+                    $id_operando = (int) $variable;
+                    $operando = new Indicador();
+                    $operando->Load("id=$id_operando");
+                    $valores = $this->indicador_valores_medicion($operando, $etiqueta);
+                    $valor_total = $this->calcular_total($operando, $valores);
+                    $formula .= "$valor_total";
+                }
+                $es_variable = false;
+                continue;
+            }
+            if ($es_variable)
+            {
+                $variable .= $elemento;
+            }
+            else
+            {
+                $formula .= $elemento;
+            }
+        }
+        // Calcula el resultado de la formula y guarda el valor final 
+        eval("\$valor_final = $formula;");
+        $total = $valor_final;
+        return $total;
+    }
+
     private function calcular_total_agregacion($indicador, $valores)
     {
         switch ($indicador->id_tipo_agregacion)
