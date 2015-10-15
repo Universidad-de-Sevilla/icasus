@@ -80,7 +80,7 @@
 
                     <ul class="nav navbar-top-links navbar-right">
                         <li>
-                            <span id="fecha" title="{$smarty.const.FIELD_FECHA}"><i class="fa fa-calendar fa-fw"></i> {$smarty.now|date_format:'%d-%m-%Y'}</span>
+                            <span id="fecha" title="{$smarty.const.FIELD_FECHA}: {$smarty.now|date_format:'%d-%m-%Y'}"><i class="fa fa-calendar fa-fw"></i> {$smarty.now|date_format:'%d-%m-%Y'}</span>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" title="{$_usuario->login}" data-toggle="dropdown" href="#">
@@ -166,9 +166,9 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <h2 class="page-header"> 
-                                                <a class="titulo-unidad" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}&principal=1">
-                                                    <span title="{$smarty.const.TXT_UNID}: {$entidad->nombre}"><i class="fa fa-sitemap fa-fw"></i> {$entidad->nombre}</span> / 
-                                                    <span title="{$smarty.const.FIELD_ROL}: {$_rol}"><i class="fa fa-star fa-fw"></i> {$_rol}</span>
+                                                <a title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" 
+                                                   class="titulo-unidad" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}&principal=1">
+                                                    <i class="fa fa-sitemap fa-fw"></i> {$entidad->nombre} / <i class="fa fa-star fa-fw"></i> {$_rol}
                                                 </a>
                                             </h2>
                                         </div>

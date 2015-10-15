@@ -40,3 +40,19 @@ if ($modulo == 'crear')
     $db->execute("SET NAMES UTF8");
     $vr->save();
 }
+if ($modulo == 'grafica')
+{
+    $id = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
+    $vr->load("id = $id");
+    $vr->grafica = filter_input(INPUT_POST, 'grafica', FILTER_SANITIZE_NUMBER_INT);
+    $db->execute("SET NAMES UTF8");
+    $vr->save();
+}
+if ($modulo == 'activar')
+{
+    $id = filter_input(INPUT_POST, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
+    $vr->load("id = $id");
+    $vr->activo = filter_input(INPUT_POST, 'activo', FILTER_SANITIZE_NUMBER_INT);
+    $db->execute("SET NAMES UTF8");
+    $vr->save();
+}

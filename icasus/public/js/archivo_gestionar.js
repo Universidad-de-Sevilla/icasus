@@ -15,7 +15,7 @@ $(document).ready(function () {
         $('#id_fichero').attr('value', id);
         $('#etitulo').attr('value', $('#l-titulo-' + id).attr('value'));
         $('#edescripcion').text($('#l-descripcion-' + id).data('descripcion'));
-        if ($('#l-visible-' + id).data('visibilidad')) {
+        if ($('#l-visible-' + id).is(':checked')) {
             $('#evisible').bootstrapToggle('on');
         }
     });
@@ -33,8 +33,11 @@ $(document).ready(function () {
             });
         }
     });
+
     $(".visibilidad").change(function () {
-        var id = $(this).data('id');
+        var tag = $(this).attr('id');
+        var ids = tag.split('-');
+        var id = ids[2];
         var visible = 0;
         if ($(this).is(":checked")) {
             visible = 1;
@@ -42,6 +45,7 @@ $(document).ready(function () {
         $.post('index.php?page=archivo_gestionar_ajax&ajax=true&modulo=visibilidad', {visible: visible, id: id}, function () {
         });
     });
+
     $("a.borrar_archivo").click(function () {
         var tag = $(this).attr('id');
         var ids = tag.split('-');

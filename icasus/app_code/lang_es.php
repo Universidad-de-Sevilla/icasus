@@ -377,8 +377,7 @@ define('TXT_VAL_REF', 'Valores de referencia');
 define('TXT_VAL_REC', 'Valores recogidos');
 define('TXT_VAL_TABLA', 'Tabla de valores');
 define('TXT_VAL_REF_EDIT', 'Editar valor de referencia');
-define('TXT_VAL_REF_CREAR', 'Crear nuevos valores de referencia');
-define('TXT_VAL_REF_NUEVO', 'Nueva referencia');
+define('TXT_VAL_REF_CREAR', 'Crear valor de referencia');
 define('TXT_VAL_REF_BORRAR', 'Borrar valores de referencia');
 define('TXT_VALS_DESACT', 'Desactivar valores');
 define('TXT_VAL_LOGRADO', 'Valor logrado');
@@ -515,6 +514,7 @@ define('MSG_VAL_GRABAR', 'El valor se ha grabado correctamente.');
 define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los valores marcados?');
 define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los valores de referencia marcados?');
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
+define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia.');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 
 //----------------------------------------------------------------------------------

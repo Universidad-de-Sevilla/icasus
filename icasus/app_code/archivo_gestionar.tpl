@@ -192,11 +192,10 @@
                                             <span id="l-descripcion-{$archivo->id}" data-descripcion="{$archivo->descripcion|htmlentities}"></span>
                                         </td>
                                         <td>
-                                            <input type="checkbox" class="form-control visibilidad" data-id="{$archivo->id}"
+                                            <input id="l-visible-{$archivo->id}" type="checkbox" class="form-control visibilidad"
                                                    data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                                    data-onstyle="success" data-offstyle="danger" data-size="mini"
                                                    data-off="{$smarty.const.TXT_NO}" {if $archivo->visible}checked{/if} />
-                                            <span id="l-visible-{$archivo->id}" data-visibilidad="{$archivo->visible}"></span>
                                         </td>
                                         <td>
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}">

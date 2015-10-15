@@ -1,143 +1,279 @@
-<!-- Cuadro de dialogo oculto para crear nuevo valor de referencia -->
-<div class="display_none">
-    <div id="crear_referencia" class="dialog_content narrow " title="{$smarty.const.TXT_VAL_REF_NUEVO}">
-        <div class="block">
-            <form method="post" action="" id="formcrearreferencia" name="formcrearreferencia" class="validate_form">
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_ETIQUETA}</label>
-                    <div><b><input  type='text' name='c-etiqueta' value="" class="text required"/></b><div class="required_tag"></div></div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_NOMBRE}</label>
-                    <div><b><input  type='text' name='c-nombre' value="" class="text required"/></b><div class="required_tag"</div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_VISIB_GRAFIC}</label>
-                    <div><b><input  type='radio' name='c-grafica' value="1" class="required" checked/> {$smarty.const.TXT_SI} <input  type='radio' name='c-grafica' value="0" class="required"/>{$smarty.const.TXT_NO}</b><div class="required_tag"></div></div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_ACTIVO}</label>
-                    <div><b><input  type='radio' name='c-activo' value="1" checked class="required"/> {$smarty.const.TXT_SI} <input  type='radio' name='c-activo' value="0" class="required"/>{$smarty.const.TXT_NO}</b><div class="required_tag"></div></div>
-                </fieldset>
+<!-- Diálogo Crear valor de referencia -->
+<div class="modal fade" id="crear_referencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form method="post" action="" id="formcrearreferencia" name="formcrearreferencia" data-toggle="validator" class="form-horizontal">
                 <input type="hidden"  name="c-id_indicador" value="{$indicador->id}"/>
-                <div class="button_bar clearfix">
-                    <button class="green send_right" type="button" value="{$smarty.const.TXT_GRABAR}" name="valor_nuevo_crear" id="valor_nuevo_crear">
-                        <span>{$smarty.const.TXT_GRABAR}</span>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{$smarty.const.TXT_CERRAR}"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_VAL_REF_CREAR}</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group has-feedback">
+                        <label for="c-etiqueta" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <div class="col-sm-8">
+                            <input type="text" name='c-etiqueta' id="c-etiqueta" value="" class="form-control" placeholder="{$smarty.const.FIELD_ETIQUETA}" required />                  
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="c-nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <div class="col-sm-8">
+                            <input type="text" name='c-nombre' id="c-nombre" value="" class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-grafica" class="col-sm-2 control-label">{$smarty.const.FIELD_VISIB_GRAFIC}</label>
+                        <div class="col-sm-8">
+                            <input type="checkbox" id="c-grafica" name='c-grafica' class="form-control" 
+                                   data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                   data-onstyle="success" data-offstyle="danger" data-size="small"
+                                   data-off="{$smarty.const.TXT_NO}" checked />         
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="c-activo" class="col-sm-2 control-label">{$smarty.const.FIELD_ACTIVO}</label>
+                        <div class="col-sm-8">
+                            <input type="checkbox" id="c-activo" name='c-activo' class="form-control" 
+                                   data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                   data-onstyle="success" data-offstyle="danger" data-size="small"
+                                   data-off="{$smarty.const.TXT_NO}" checked />         
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+                    <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
+                        <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                     </button>
+                    <button name="valor_nuevo_crear" id="valor_nuevo_crear" type="submit" title="{$smarty.const.TXT_GRABAR}" class="btn btn-default btn-success"><i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<!-- /Diálogo Crear valor de referencia -->
 
-<!-- Cuadro de dialogo oculto para editar valor de referencia -->
-<div class="display_none">
-    <div id="editar_referencia" class="dialog_content narrow " title="{$smarty.const.TXT_VAL_REF_EDIT}">
-        <div class="block">
-            <form method="post" action="" id="formeditarreferencia" name="formeditarreferencia" class="validate_form">
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_ETIQUETA}</label>
-                    <div><b><input  type='text' id="e-etiqueta" name='e-etiqueta' value='' class="text required" /></b><div class="required_tag"></div></div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_NOMBRE}</label>
-                    <div><b><input  type='text' id="e-nombre" name='e-nombre' value='' class="text required" /></b><div class="required_tag"></div></div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_VISIB_GRAFIC}</label>
-                    <div><b><input  type='radio' name='e-grafica' id="e-grafica-1" value="1" class="required"/> {$smarty.const.TXT_SI} <input  type='radio' name='e-grafica' id="e-grafica-0"  value="0" class="required"/>{$smarty.const.TXT_NO}</b><div class="required_tag"></div></div>
-                </fieldset>
-                <fieldset class="label_side">
-                    <label>{$smarty.const.FIELD_ACTIVO}</label>
-                    <div><b><input  type='radio' name='e-activo' id="e-activo-1" value="1" class="required" /> {$smarty.const.TXT_SI}<input  type='radio' name='e-activo' id="e-activo-0" value="0" class="required"/>{$smarty.const.TXT_NO}</b><div class="required_tag"></div></div>
-                </fieldset>
+<!-- Diálogo Editar valor de referencia -->
+<div class="modal fade" id="editar_referencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <form method="post" action="" id="formeditarreferencia" name="formeditarreferencia" data-toggle="validator" class="form-horizontal">
                 <input type="hidden"  name="e-id_indicador" value="{$indicador->id}"/>
-                <div class="button_bar clearfix">
-                    <button class="green send_right" type="button" value="{$smarty.const.TXT_GRABAR}" name="valor_editar" id="valor_editar">
-                        <span>{$smarty.const.TXT_GRABAR}</span>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{$smarty.const.TXT_CERRAR}"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_VAL_REF_EDIT}</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group has-feedback">
+                        <label for="e-etiqueta" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <div class="col-sm-8">
+                            <input type="text" name='e-etiqueta' id="e-etiqueta" value="" class="form-control" placeholder="{$smarty.const.FIELD_ETIQUETA}" required />                  
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="e-nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <div class="col-sm-8">
+                            <input type="text" name='e-nombre' id="e-nombre" value="" class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="e-grafica" class="col-sm-2 control-label">{$smarty.const.FIELD_VISIB_GRAFIC}</label>
+                        <div class="col-sm-8">
+                            <input type="checkbox" id="e-grafica" name='e-grafica' class="form-control" 
+                                   data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                   data-onstyle="success" data-offstyle="danger" data-size="small"
+                                   data-off="{$smarty.const.TXT_NO}"/>         
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="e-activo" class="col-sm-2 control-label">{$smarty.const.FIELD_ACTIVO}</label>
+                        <div class="col-sm-8">
+                            <input type="checkbox" id="e-activo" name='e-activo' class="form-control" 
+                                   data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                   data-onstyle="success" data-offstyle="danger" data-size="small"
+                                   data-off="{$smarty.const.TXT_NO}"/>         
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+                    <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
+                        <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                     </button>
+                    <button name="valor_editar" id="valor_editar" type="submit" title="{$smarty.const.TXT_GRABAR}" class="btn btn-default btn-success"><i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
+<!-- /Diálogo Editar valor de referencia -->
 
-<div class="box grid_16">
-    <form action='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}' method='post' onsubmit="return confirm('{$smarty.const.MSG_VALS_REF_CONFIRM_BORRAR}');">
-        <div class="button_bar clearfix">
-            {if $permiso}
-                <a href='javascript:void(0)' class="dialog_button" data-dialog="crear_referencia" >
-                    <img src='/icons/ff16/tag.png' /> {$smarty.const.TXT_VAL_REF_CREAR}
-                </a>&nbsp;&nbsp;
-                <a href="javascript:void(0)" onClick="$(this).closest('form').submit();" >
-                    <img src='/icons/ff16/tag_blue_delete.png' /> {$smarty.const.TXT_VAL_REF_BORRAR}
-                </a>&nbsp;&nbsp;
-            {/if}
-            <a href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><img src='/icons/ff16/time.png' /> {$smarty.const.TXT_MED_VOLVER}</a>&nbsp;&nbsp;
-            <a href="index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}"><img src ="/icons/ff16/chart_curve.png"> {$smarty.const.TXT_VOLVER} {$tipo}</a>       
+<!-- Diálogo Confirmar Borrado -->
+<div class="modal fade" id="dialogo_confirmar_borrado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_VAL_REF_BORRAR}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_VALS_REF_CONFIRM_BORRAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="borrar" id="borrar" onClick="$('#form_val_ref').submit();"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
         </div>
-        <div id="dt1" class="no_margin">
-            <table class='display datatable'>
-                <thead>
-                    <tr>
-                        {if $permiso}
-                            <th></th>
-                            {/if}
-                        <th>{$smarty.const.FIELD_ETIQUETA}</th>
-                        <th>{$smarty.const.FIELD_VAL_REF}</th>
-                        <th>{$smarty.const.FIELD_VISIB_GRAFIC}</th>
-                        <th>{$smarty.const.FIELD_ACTIVO}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {foreach from=$indicador->valores_referencia item=item}
-                        <tr class="gradeX">
-                            {if $permiso}
-                                <td style="text-align: center">
-                                    <input type="checkbox" name='id_val_ref[]' value="{$item->id}"/>
-                                </td>
-                                <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
-                                <td><a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
-                                <td>
-                                    <a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-grafica-{$item->id}" value="{$item->grafica}">
-                                        {if $item->grafica}
-                                            {$smarty.const.TXT_SI}
-                                        {else}
-                                            {$smarty.const.TXT_NO}
-                                        {/if}
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:void(0)" data-dialog="editar_referencia" class="dialog_button " title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-activo-{$item->id}" value="{$item->activo}">
-                                        {if $item->activo}
-                                            {$smarty.const.TXT_SI}
-                                        {else}
-                                            {$smarty.const.TXT_NO}
-                                        {/if}
-                                    </a>
-                                </td>
-                            {else}
-                                <td>{$item->etiqueta|htmlentities}</td>
-                                <td>{$item->nombre|htmlentities}</td>
-                                <td>
-                                    {if $item->grafica}
-                                        {$smarty.const.TXT_SI}
-                                    {else}
-                                        {$smarty.const.TXT_NO}
-                                    {/if}
-                                </td>
-                                <td>
-                                    {if $item->activo}
-                                        {$smarty.const.TXT_SI}
-                                    {else}
-                                        {$smarty.const.TXT_NO}
-                                    {/if}
-                                </td>
-                            {/if}
-                        </tr>
-                    {/foreach}
-                </tbody>
-            </table>
-        </div>
-    </form>
+    </div>
 </div>
+<!-- /Diálogo Confirmar Borrado -->
+
+<!-- Nombre página -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 title="{$_nombre_pagina}" class="page-header">
+            <i class="fa fa-tags fa-fw"></i> {$_nombre_pagina}
+        </h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Nombre página -->
+
+<!-- Barra de botones -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="btn-toolbar" role="toolbar" aria-label="">
+            {if $permiso}
+                <div class="btn-group" role="group" aria-label="">
+                    <a href='javascript:void(0)' class="btn btn-default btn-danger" data-toggle="modal" data-target="#crear_referencia">
+                        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_VAL_REF_CREAR}
+                    </a>
+                    <a href="javascript:void(0)" class="btn btn-default btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                        <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_VAL_REF_BORRAR}
+                    </a>
+                </div>
+            {/if}
+            <div class="btn-group" role="group" aria-label="">
+                <a title="{$smarty.const.TXT_REP_GRAFIC}" class="btn btn-default btn-danger" href='index.php?page=graficas_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}
+                </a>
+            </div>
+            <div class="btn-group" role="group" aria-label="">
+                <a title="{$smarty.const.TXT_MED_MOSTRAR}" class="btn btn-default btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <i class="fa fa-clock-o fa-fw"></i> {$smarty.const.TXT_MED_MOSTRAR}
+                </a>
+                {if !$indicador->calculo && $permiso}
+                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
+                    </a>
+                {/if}
+                {if $permiso}
+                    <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-default btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
+                    </a>
+                {/if}
+            </div>
+            <div class="btn-group" role="group" aria-label="">
+                <a title="{$smarty.const.TXT_VOLVER} {$tipo}" class="btn btn-default btn-danger" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <i class="fa fa-arrow-left fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<br>
+<!-- /Barra de botones -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {if $indicador->valores_referencia}
+                    <form id="form_val_ref" action='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&borrar' method='post'>
+                        <div class="table-responsive">
+                            <table class="table datatable table-striped table-hover">
+                                <thead>
+                                    <tr>   
+                                        {if $permiso}
+                                            <th>
+                                            </th>
+                                        {/if}
+                                        <th>{$smarty.const.FIELD_ETIQUETA}</th>
+                                        <th>{$smarty.const.FIELD_VAL_REF}</th>
+                                        <th>{$smarty.const.FIELD_VISIB_GRAFIC}</th>
+                                        <th>{$smarty.const.FIELD_ACTIVO}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach from=$indicador->valores_referencia item=item}
+                                        <tr class="gradeX">
+                                            {if $permiso}
+                                                <td>
+                                                    <input type="checkbox" name='id_val_ref[]' value="{$item->id}"/>
+                                                </td>
+                                                <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
+                                                <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
+                                                <td>
+                                                    <input type="checkbox" class="grafica" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                           data-off="{$smarty.const.TXT_NO}" {if $item->grafica}checked{/if}
+                                                           id="l-grafica-{$item->id}">
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" class="activo" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                           data-off="{$smarty.const.TXT_NO}" {if $item->activo}checked{/if} 
+                                                           id="l-activo-{$item->id}">
+                                                </td>
+                                            {else}
+                                                <td>{$item->etiqueta|htmlentities}</td>
+                                                <td>{$item->nombre|htmlentities}</td>
+                                                <td>
+                                                    <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                           data-off="{$smarty.const.TXT_NO}" {if $item->grafica}checked{/if} 
+                                                           disabled>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                           data-off="{$smarty.const.TXT_NO}" {if $item->activo}checked{/if} 
+                                                           disabled>
+                                                </td>
+                                            {/if}
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_INDIC_NO_VAL_REF}
+                    </div> 
+                {/if}
+            </div>
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
