@@ -23,6 +23,7 @@ if ($id_entidad != 0)
     $dato = new Indicador();
     $datos = $dato->Find_joined("id_entidad = $id_entidad AND id_proceso IS NULL");
     $smarty->assign('datos', $datos);
+    $smarty->assign('_javascript', array('dato_listar'));
     $smarty->assign('_nombre_pagina', TXT_DATOS_LIST . ": " . $entidad->nombre);
     $plantilla = 'dato_listar.tpl';
 }
@@ -31,4 +32,3 @@ else
     $error = ERR_UNID;
     header("location:index.php?page=error&error=$error");
 }
-

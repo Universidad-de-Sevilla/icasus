@@ -83,9 +83,9 @@ define('TXT_PANELES_INFO', 'Información sobre los paneles');
 
 //Datos
 define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
-define('TXT_DATO', 'Dato');
 define('TXT_DATO_MOSTRAR', 'Mostrar ficha del dato');
 define('TXT_DATO_EDIT', 'Editar dato');
+define('TXT_DATO_BORRAR', 'Borrar dato');
 define('TXT_DATO_FICHA', 'Ficha del dato');
 define('TXT_DATO_NUEVO', 'Nuevo dato');
 define('TXT_DATO_PARAM', 'Parámetros del dato');
@@ -679,6 +679,7 @@ define('FIELD_NOMBRE_CUADRO', 'Nombre del cuadro de mando');
 define('FIELD_COMENTARIOS', 'Comentarios');
 
 //Datos
+define('FIELD_DATO', 'Dato');
 define('FIELD_RESP_DATO', 'Responsable del dato');
 define('FIELD_FUENTE_DAT', 'Fuente de datos');
 define('FIELD_DATOS', 'Datos');
