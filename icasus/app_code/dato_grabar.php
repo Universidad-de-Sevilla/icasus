@@ -14,7 +14,6 @@ global $usuario;
 $logicaIndicador = new LogicaIndicador();
 
 $es_dato_nuevo = false;
-$aviso = MSG_DATO_ACTUALIZADO;
 
 if (
         filter_has_var(INPUT_POST, 'tipo_seleccion_responsable')
@@ -30,15 +29,14 @@ if (
     {
         $id_dato = filter_input(INPUT_POST, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
         $dato->load("id = $id_dato");
-        $es_dato_nuevo = false;
         $tipo_agregacion_actual = $dato->id_tipo_agregacion;
         $periodicidad_actual = $dato->periodicidad;
-        $aviso = MSG_DATO_ACTUALIZADO;
+        $exito = MSG_DATO_ACTUALIZADO;
     }
     else
     {
         $es_dato_nuevo = true;
-        $aviso = MSG_DATO_CREADO;
+        $exito = MSG_DATO_CREADO;
     }
 
     $id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
@@ -299,20 +297,20 @@ if (
                     {
                         $logicaIndicador->generar_mediciones_por_anyo($dato, idate('Y'), "dato");
                     }
-                    $error = MSG_DATO_PERIODICIDAD;
+                    $aviso = MSG_DATO_PERIODICIDAD;
                 }
             }
         }
         // Si ha ido bien mostramos la ficha del dato 
-        if ($error)
+        if ($aviso)
         {
             //Si se cambio la periodicidad lanzamos además del aviso de 
             //actualización un mensaje de error para advertir del cambio
-            header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&aviso=$aviso&error=$error");
+            header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&exito=$exito&aviso=$aviso");
         }
         else
         {
-            header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&aviso=$aviso");
+            header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&exito=$exito");
         }
     }
     else

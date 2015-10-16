@@ -8,6 +8,8 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra un indicador
 //---------------------------------------------------------------------------------------------------
+
+global $usuario;
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 

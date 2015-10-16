@@ -29,14 +29,14 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
         //hasta borrar las mediciones
         if ($mediciones && !$dato->calculo)
         {
-            $error = ERR_DATO_BORRAR_MED;
-            header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&error=$error");
+            $aviso = ERR_DATO_BORRAR_MED;
+            header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&aviso=$aviso");
         }
         //Si otros Indicadores/Datos dependen de él tampoco podremos borrar
         else if (count($indicadores_dependientes) != 0)
         {
-            $error = ERR_DATO_BORRAR_DEP;
-            header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&error=$error");
+            $aviso = ERR_DATO_BORRAR_DEP;
+            header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&aviso=$aviso");
         }
         else
         {
@@ -51,8 +51,8 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
             $dato->delete();
             //Borramos también las Unidades vinculadas al Dato
             $logicaIndicador->borrar_unidades($id_dato);
-            $aviso = MSG_DATO_BORRADO . "$dato->nombre";
-            header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&aviso=$aviso");
+            $exito = MSG_DATO_BORRADO . "$dato->nombre";
+            header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&exito=$exito");
         }
     }
     else

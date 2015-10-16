@@ -6,7 +6,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Creación de nuevos datos. Son indicadores que usan menos propiedades 
+// Creación de nuevos datos. Son indicadores con menos propiedades (no asociados a procesos)
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
@@ -33,6 +33,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $tipos_agregacion = $tipo_agregacion->Find("true ORDER BY id");
     $smarty->assign("tipos_agregacion", $tipos_agregacion);
 
+    $smarty->assign('_javascript', array('dato_crear'));
     $smarty->assign("_nombre_pagina", TXT_DATO_NUEVO . " - " . $entidad->nombre);
     $plantilla = "dato_crear.tpl";
 }
