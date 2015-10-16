@@ -87,12 +87,12 @@
                                 <i class="fa fa-user fa-fw"></i> {$_usuario->login} <i class="fa fa-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$_usuario->id}'><i class="fa fa-user fa-fw"></i> {$smarty.const.TXT_USER_PERFIL}</a>
-                                </li>
-                                <li><a title="{$smarty.const.TXT_MIS_NOTAS}" href='index.php?page=nota_mostrar'><i class="fa fa-sticky-note fa-fw"></i> {$smarty.const.TXT_MIS_NOTAS}</a>
+                                <li>
+                                    <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$_usuario->id}'><i class="fa fa-user fa-fw"></i> {$smarty.const.TXT_USER_PERFIL}</a>
                                 </li>
                                 <li class="divider"></li>
-                                <li><a title="{$smarty.const.TXT_CERRAR_SESION}" href="index.php?page={$smarty.const.IC_TIPO_LOGIN}&logout=true"><i class="fa fa-sign-out fa-fw"></i> {$smarty.const.TXT_CERRAR_SESION}</a>
+                                <li>
+                                    <a title="{$smarty.const.TXT_CERRAR_SESION}" href="index.php?page={$smarty.const.IC_TIPO_LOGIN}&logout=true"><i class="fa fa-sign-out fa-fw"></i> {$smarty.const.TXT_CERRAR_SESION}</a>
                                 </li>
                             </ul>
                             <!-- /.dropdown-user -->
