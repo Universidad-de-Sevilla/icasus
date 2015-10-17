@@ -427,6 +427,7 @@ define('MSG_PANEL_CREADO', "Se ha añadido al cuadro de mando el siguiente panel
 define('MSG_DATO_BORRADO', 'Se ha borrado el dato: ');
 define('MSG_DATO_ACTUALIZADO', 'Se ha actualizado el dato');
 define('MSG_DATO_CONFIRM_BORRAR', '¿Realmente quiere borrar este dato?');
+define('MSG_DATO_CONFIRM_EDITAR', 'Va a editar este dato, ¿esta seguro?');
 define('MSG_DATO_CREADO', 'Se ha creado un nuevo dato');
 define('MSG_DATO_EXPORT_OK', 'Los datos se han exportado correctamente: ');
 define('MSG_DATO_NO_SUBUNID_ASIG', 'No se han asignado subunidades a este dato (corregir)');
