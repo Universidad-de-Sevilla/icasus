@@ -35,6 +35,7 @@ define('TXT_REP_GRAFIC', 'Gráficas');
 define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores/datos:');
 define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores/datos:');
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
+define('TXT_LLAMAR_TLF', 'Llamar al teléfono');
 define('TXT_RESET', 'Reset');
 
 //Accesibilidad (atributo alt de las imágenes)
@@ -245,7 +246,7 @@ define('TXT_DESMARCAR', 'Desmarcar todos');
 define('TXT_VOLVER', 'Volver al');
 define('TXT_VOLVER_ARRIBA', 'Volver arriba');
 define('TXT_VOLVER_INDICE', 'Volver al índice');
-define('TXT_VOLVER_LIST', 'Volver al listado');
+define('TXT_VOLVER_LIST', 'Volver al listado de');
 define('TXT_VOLVER_CUADRO', 'Volver al Cuadro');
 define('TXT_TOGGLED', 'Plegar/desplegar menú lateral');
 
