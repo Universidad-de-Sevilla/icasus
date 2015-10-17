@@ -36,7 +36,7 @@
                             {foreach from=$usuarios item=usuario}
                                 <tr>  
                                     <td> 
-                                        <a title="{$usuario->login}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'>
+                                        <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'>
                                             {$usuario->login}
                                         </a>
                                     </td>
@@ -46,7 +46,7 @@
                                     <td>{$usuario->telefono}</td>
                                     <td>{$usuario->unidad_hominis}</td>
                                     <td style="white-space:nowrap">
-                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'><i class="fa fa-eye fa-fw"></i></a>                 
+                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'><i class="fa fa-user fa-fw"></i></a>                 
                                         <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->correo}'><i class="fa fa-envelope fa-fw"></i></a>
                                     </td>
                                 </tr>

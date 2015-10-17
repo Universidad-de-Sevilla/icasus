@@ -117,7 +117,7 @@
                                 {foreach from=$usuarios item=usuario}
                                     <tr>  
                                         <td> 
-                                            <a title="{$usuario->usuario->login}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'>
+                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'>
                                                 {$usuario->usuario->login}
                                             </a>
                                         </td>
@@ -127,7 +127,7 @@
                                         <td><a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
                                         <td>{$usuario->usuario->telefono}</td>
                                         <td style="white-space:nowrap">
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'><i class="fa fa-eye fa-fw"></i></a>                 
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'><i class="fa fa-user fa-fw"></i></a>                 
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->usuario->correo}'><i class="fa fa-envelope fa-fw"></i></a>
                                         </td>
                                     </tr>
