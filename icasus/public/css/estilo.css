@@ -383,14 +383,6 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 
-.alert {
-    margin-top: 2%;
-}
-
-.panel-unidad{
-    margin-top: 2%;
-}
-
 .footer{
     border-top: 1px solid #FFC526;
     background-color: #950717;
