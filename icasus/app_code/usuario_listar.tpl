@@ -28,7 +28,6 @@
                                 <th>{$smarty.const.FIELD_APEL}</th>
                                 <th>{$smarty.const.FIELD_CORREO}</th>
                                 <th>{$smarty.const.FIELD_TEL}</th>
-                                <th>{$smarty.const.FIELD_UNID_DEST}</th>
                                 <th>{$smarty.const.FIELD_ACCIONES}</th>
                             </tr>
                         </thead>
@@ -44,7 +43,6 @@
                                     <td>{$usuario->apellidos}</td>       
                                     <td><a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->correo}'>{$usuario->correo}</a></td>
                                     <td><a title="{$smarty.const.TXT_LLAMAR_TLF}" href='tel:+34{$usuario->telefono}'>{$usuario->telefono}</a></td>
-                                    <td>{$usuario->unidad_hominis}</td>
                                     <td style="white-space:nowrap">
                                         <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'><i class="fa fa-user fa-fw"></i></a>                 
                                         <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->correo}'><i class="fa fa-envelope fa-fw"></i></a>

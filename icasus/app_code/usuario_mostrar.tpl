@@ -73,16 +73,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <th>{$smarty.const.FIELD_UNID_DEST}</th>
-                            <td>
-                                {if $persona->unidad_hominis}
-                                    {$persona->unidad_hominis}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
                             <th>{$smarty.const.FIELD_PUESTO}</th>
                             <td>
                                 {if $persona->puesto}
@@ -151,7 +141,7 @@
                     </div>
                 {/if}
             </div>
-            <!-- /.panel-body -->        
+            <!-- /.panel-body -->     
         </div>
         <!-- /.panel -->
     </div>
