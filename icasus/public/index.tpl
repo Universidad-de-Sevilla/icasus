@@ -175,13 +175,13 @@
                                             <div class="col-md-2">
                                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                                     <div class="btn-group" role="group" aria-label="">    
-                                                        <a title="{$smarty.const.TXT_CONSULT}" class="btn btn-default btn-danger btn-xs" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
+                                                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" class="btn btn-default btn-danger btn-xs" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
                                                             <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                                                         </a>
                                                     </div>
                                                     {if $_control}
                                                         <div class="btn-group" role="group" aria-label="">
-                                                            <a title="{$smarty.const.TXT_CONTROL}" class="btn btn-default btn-danger btn-xs" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                                                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" class="btn btn-default btn-danger btn-xs" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
                                                                 <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
                                                             </a>
                                                         </div>
@@ -201,22 +201,22 @@
                                     <div class="col-lg-12">
                                         <ul class="nav nav-pills nav-justified" role="navigation">
                                             <li role="presentation">
-                                                <a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}' class="btn btn-default">
+                                                <a title="{$smarty.const.TXT_UNID_FICHA_DESCRIPCION}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}' class="btn btn-default">
                                                     <i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_UNID_FICHA}
                                                 </a>
                                             </li>
                                             <li role="presentation">
-                                                <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}' class="btn btn-default">
+                                                <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}' class="btn btn-default">
                                                     <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS}
                                                 </a>
                                             </li>
                                             <li role="presentation">
-                                                <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}' class="btn btn-default">
+                                                <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}' class="btn btn-default">
                                                     <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}
                                                 </a>
                                             </li>
                                             <li role="presentation">
-                                                <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}' class="btn btn-default">
+                                                <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}' class="btn btn-default">
                                                     <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}
                                                 </a>
                                             </li>

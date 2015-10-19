@@ -498,7 +498,7 @@ span:focus, .pagination > li > span:hover {
     background-color: #b52b27;
 }
 
-.panel-consulta {
+/*.panel-consulta {
     border-color: darkorange;
 }
 
@@ -538,4 +538,4 @@ span:focus, .pagination > li > span:hover {
 
 .panel-control .panel-heading:hover {
     background-color: mediumvioletred;
-}
+}*/
