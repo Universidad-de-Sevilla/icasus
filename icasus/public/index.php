@@ -8,7 +8,6 @@
 //--------------------------------------------------------------------------
 // Descripción: Esta es la página que carga a todas las demás en su seno maternal 
 //--------------------------------------------------------------------------
-
 // Esto es para que se vean los errores
 ini_set('display_errors', '1');
 error_reporting(E_ALL & ~E_DEPRECATED);
@@ -87,6 +86,21 @@ if (isset($_SESSION['usuario']))
     if ($id_entidad == null || $id_entidad == false)
     {
         $id_entidad = 1;
+    }
+    else
+    {
+        //Cantidad de procesos, indicadores y datos
+        $proceso = new Proceso();
+        $procesos = $proceso->Find("id_entidad = $id_entidad");
+        $smarty->assign('num_procesos', count($procesos));
+
+        $indicador = new Indicador();
+        $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
+        $smarty->assign('num_indicadores', count($indicadores));
+
+        $dato = new Indicador();
+        $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL");
+        $smarty->assign('num_datos', count($datos));
     }
 
     $usuario = $_SESSION['usuario'];
