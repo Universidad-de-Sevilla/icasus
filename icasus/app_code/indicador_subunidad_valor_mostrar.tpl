@@ -13,7 +13,7 @@
             {foreach from=$subunidades_mediciones item=subunidades}
                 <tr data-subunidad="{$subunidades->etiqueta}" data-id_subunidad="{$subunidades->id}">
                     <td>
-                        <i title="{$smarty.const.TXT_ACT_DESACT}" class="fa fa-plus-square-o fa-fw activar_all" style="cursor:pointer"></i>
+                        <i title="{$smarty.const.TXT_ACT_DESACT}" class="fa fa-plus-square-o fa-fw activar_all clickable"></i>
                     </td>
                     <td>{$subunidades->etiqueta}</td>
                     {foreach from=$subunidades->mediciones item=medicion}
@@ -27,7 +27,7 @@
                                        {if $medicion->medicion_valor->activo == 1}checked="checked"{/if}>
                                 <input title="{$smarty.const.TXT_VAL_INSERT}" id="{$medicion->medicion_valor->id}" class="actualizar_dato" data-id_valor="{$medicion->medicion_valor->id}" type="text" value="{$medicion->medicion_valor->valor}" {if $medicion->medicion_valor->activo == 0}disabled="disabled"{/if}>
                             {else}
-                                <span title="{$smarty.const.TXT_ACT_DESACT}" class="badge no_asignada" style="cursor:pointer">{$smarty.const.TXT_NO_ASIG}</span>
+                                <span title="{$smarty.const.TXT_ACT_DESACT}" class="badge no_asignada clickable">{$smarty.const.TXT_NO_ASIG}</span>
                             {/if}
                         </td>
                     {/foreach}

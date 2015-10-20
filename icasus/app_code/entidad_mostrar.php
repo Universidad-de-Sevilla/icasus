@@ -23,7 +23,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'princi
     $principal = filter_input(INPUT_GET, 'principal', FILTER_SANITIZE_NUMBER_INT);
     $smarty->assign('principal', $principal);
 
-    //obtenemos los procesos de la unidad sus indicadores y datos
+    // Obtenemos los procesos de la unidad sus indicadores y datos
     $smarty->assign('procesos_propios', $procesos);
     $i = new Indicador();
     $indicadores = array();

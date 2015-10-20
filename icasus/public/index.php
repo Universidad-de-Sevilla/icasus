@@ -91,7 +91,7 @@ if (isset($_SESSION['usuario']))
     {
         //Cantidad de procesos, indicadores y datos
         $proceso = new Proceso();
-        $procesos = $proceso->Find("id_entidad = $id_entidad");
+        $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");
         $smarty->assign('num_procesos', count($procesos));
 
         $indicador = new Indicador();

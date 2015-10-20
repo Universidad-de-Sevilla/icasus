@@ -207,17 +207,17 @@
                                             </li>
                                             <li role="presentation">
                                                 <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                    <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS} <span class="badge" title="{$smarty.const.FIELD_TOTAL}: {$num_procesos}">{$num_procesos}</span>
+                                                    <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS} <span class="badge" title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.TXT_PROCS}">{$num_procesos}</span>
                                                 </a>
                                             </li>
                                             <li role="presentation">
                                                 <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                    <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span class="badge" title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores}">{$num_indicadores}</span>
+                                                    <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span class="badge" title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">{$num_indicadores}</span>
                                                 </a>
                                             </li>
                                             <li role="presentation">
                                                 <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                    <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span class="badge" title="{$smarty.const.FIELD_TOTAL}: {$num_datos}">{$num_datos}</span>
+                                                    <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span class="badge" title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">{$num_datos}</span>
                                                 </a>
                                             </li>
                                         </ul>

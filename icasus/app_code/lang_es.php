@@ -129,7 +129,7 @@ define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, valores y fecha');
 //Indicadores
 define('TXT_INDIC_SUBUNID', 'Relación de indicadores de subunidades');
 define('TXT_INDIC_PROP', 'Indicadores propios de la unidad');
-define('TXT_INDIC_PROC', 'Indicadores agrupados por proceso');
+define('TXT_INDIC_PROC', 'Indicadores agrupados por procesos');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_PARAM', 'Parámetros del indicador');
 define('TXT_INDIC_NUEVO', 'Nuevo indicador');

@@ -76,7 +76,7 @@
                                     <tr>    
                                         <td style="white-space:nowrap">{$proceso->codigo}</td>
                                         <td>
-                                            <a title="{$proceso->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
+                                            <a title="{$proceso->nombre}: {$proceso->mision}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                 {$proceso->nombre}
                                             </a>
                                         </td>
