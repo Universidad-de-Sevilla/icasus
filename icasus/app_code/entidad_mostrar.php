@@ -23,6 +23,22 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'princi
     $principal = filter_input(INPUT_GET, 'principal', FILTER_SANITIZE_NUMBER_INT);
     $smarty->assign('principal', $principal);
 
+    //obtenemos los procesos de la unidad sus indicadores y datos
+    $smarty->assign('procesos_propios', $procesos);
+    $i = new Indicador();
+    $indicadores = array();
+    foreach ($procesos as $proceso)
+    {
+        $indicadores_proc = $i->find("id_proceso = $proceso->id AND id_entidad = $id_entidad");
+        $indicadores[$proceso->id] = $indicadores_proc;
+    }
+    $smarty->assign('indicadores', $indicadores);
+    $smarty->assign('datos', $datos);
+
+    $anio_fin = date('Y') - 1;
+    $smarty->assign('anio_fin', $anio_fin);
+
+    $smarty->assign('_javascript', array('entidad_mostrar'));
     $smarty->assign('_nombre_pagina', $entidad->nombre);
     $plantilla = "entidad_mostrar.tpl";
 }

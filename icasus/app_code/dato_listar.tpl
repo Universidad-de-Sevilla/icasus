@@ -60,7 +60,7 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</span>
+                <span class="panel-title"><i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
