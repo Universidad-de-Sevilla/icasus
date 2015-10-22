@@ -111,7 +111,6 @@ define('TXT_DIM_REL', 'Relación de dimensiones');
 
 //Entidades (Unidades)
 define('TXT_UNID', 'Unidad');
-define('TXT_UNID_VOLVER', 'Volver a la ficha de la unidad');
 define('TXT_UNID_PARAM', 'Parámetros de la unidad');
 define('TXT_UNID_SUP_INDIC', 'Indicadores de la unidad superior');
 define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la unidad');
