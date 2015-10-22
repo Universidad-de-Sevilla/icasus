@@ -25,9 +25,9 @@ if (
 )
 {
     $dato = new Indicador();
-    if (filter_has_var(INPUT_POST, 'id_dato'))
+    if (filter_has_var(INPUT_GET, 'id_dato'))
     {
-        $id_dato = filter_input(INPUT_POST, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
+        $id_dato = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
         $dato->load("id = $id_dato");
         $tipo_agregacion_actual = $dato->id_tipo_agregacion;
         $periodicidad_actual = $dato->periodicidad;
