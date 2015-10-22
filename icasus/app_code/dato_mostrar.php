@@ -51,7 +51,7 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
 
     //Responsables
     $responsable = false;
-    if ($dato->id_responsable == $usuario->id || $dato->id_responsable_medicion == $usuario->id)
+    if ($dato->id_responsable == $usuario->id)
     {
         $responsable = true;
     }
