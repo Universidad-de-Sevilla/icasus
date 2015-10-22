@@ -20,7 +20,7 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
     $dato = new Indicador();
     $dato->load_joined("id = $id_dato");
     // Comprobamos que el usuario es responsable de este indicador para permitirle borrar
-    if ($control || $usuario->id == $dato->id_responsable OR $usuario->id == $dato->id_responsable_medicion)
+    if ($control || $usuario->id == $dato->id_responsable)
     {
         $medicion = new Medicion();
         $mediciones = $medicion->Find("id_indicador = $id_dato");

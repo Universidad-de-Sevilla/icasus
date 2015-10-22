@@ -19,7 +19,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $indicador = new Indicador();
     $indicador->load_joined("id = $id_indicador");
-    if ($control || $usuario->id == $indicador->id_responsable OR $usuario->id == $indicador->id_responsable_medicion)
+    if ($control || $usuario->id == $indicador->id_responsable)
     {
         $medicion = new Medicion();
         $mediciones = $medicion->Find("id_indicador = $id_indicador");

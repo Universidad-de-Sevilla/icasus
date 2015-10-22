@@ -69,12 +69,12 @@
                         <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_MED_AGREGAR}
                     </a>
                 {/if}
-                {if !$indicador->calculo && ($_control || $responsable)}
+                {if !$indicador->calculo && ($_control || $_usuario->id==$indicador->id_responsable)}
                     <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
                     </a>
                 {/if}
-                {if $_control || $responsable}
+                {if $_control || $_usuario->id==$indicador->id_responsable}
                     <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-default btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
                     </a>

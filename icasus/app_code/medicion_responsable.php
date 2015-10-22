@@ -39,7 +39,7 @@ $smarty->assign('indicador', $indicador);
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 //Responsables
 $responsable = false;
-if ($indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+if ($indicador->id_responsable == $usuario->id)
 {
     $responsable = true;
 }

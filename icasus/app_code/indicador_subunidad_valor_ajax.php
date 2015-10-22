@@ -40,7 +40,7 @@ $activo = filter_input(INPUT_GET, 'activo', FILTER_SANITIZE_NUMBER_INT);
 
 if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 {
-    if ($control || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+    if ($control || $indicador->id_responsable == $usuario->id)
     {
         switch ($modulo)
         {

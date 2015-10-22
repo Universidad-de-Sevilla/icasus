@@ -40,8 +40,8 @@ if (isset($id_entidad))
     $smarty->assign('indicador', $indicador);
 
     // Comprueba permisos para el usuario: responsable unidad, responsable delegado, 
-    // responsable indicador, responsable medicion
-    if ($control || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+    // responsable indicador
+    if ($control || $indicador->id_responsable == $usuario->id)
     {
         $entidad = new Entidad();
         $entidad->load("id = $indicador->id_entidad");
