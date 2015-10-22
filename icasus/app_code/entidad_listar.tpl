@@ -10,6 +10,19 @@
 <!-- /.row -->
 <!-- /Nombre página -->
 
+<!-- Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
+            <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Breadcrumbs -->
+
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-red">
