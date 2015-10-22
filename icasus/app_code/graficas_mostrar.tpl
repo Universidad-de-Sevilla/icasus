@@ -23,7 +23,7 @@
                         <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
                     </a>
                 {/if}
-                {if $_control}
+                {if $_control || $responsable}
                     <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-default btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
                     </a>
