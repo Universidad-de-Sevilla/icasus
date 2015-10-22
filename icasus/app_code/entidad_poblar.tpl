@@ -10,21 +10,21 @@
 <!-- /.row -->
 <!-- /Nombre página -->
 
-<!-- Barra de botones -->
+<!-- Breadcrumbs -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
-                <a class="btn btn-default btn-danger" href="index.php?page=entidad_datos&id_entidad={$entidad->id}" title="{$smarty.const.TXT_UNID_VOLVER}">
-                    <i class="fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_UNID_VOLVER}</a>
-            </div>
-        </div>
+        <ol class="breadcrumb">
+            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
+            <li><a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
+            <li><a title="{$entidad->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}&principal=1">{$entidad->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.TXT_UNID_FICHA}: {$entidad->nombre}" href="index.php?page=entidad_datos&id_entidad={$entidad->id}">{$smarty.const.TXT_UNID_FICHA}: {$entidad->nombre|truncate:30}</a></li>
+            <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
+        </ol>
     </div>
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-<br>
-<!-- /Barra de botones -->
+<!-- /Breadcrumbs -->
 
 <div class="row">
     <div class="col-lg-12">
@@ -44,10 +44,8 @@
                                     <th></th>
                                     <th>{$smarty.const.FIELD_NOMBRE}</th>
                                     <th>{$smarty.const.FIELD_APEL}</th>
-                                    <th>{$smarty.const.FIELD_CORREO}</th>
-                                    <th>{$smarty.const.FIELD_UNID_RPT}</th>
+                                    <th>{$smarty.const.FIELD_CORREO}</th>                                   
                                     <th>{$smarty.const.FIELD_PUESTO}</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +55,6 @@
                                         <td>{$persona.nombre|upper}</td>
                                         <td>{$persona.apellidos|upper}</td>
                                         <td>{$persona.correo}</td>
-                                        <td>{$persona.unidad_hominis}</td>
                                         <td>{$persona.puesto}</td>
                                     </tr>
                                 {/foreach}
