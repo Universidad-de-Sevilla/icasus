@@ -1,3 +1,17 @@
+<!-- Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
+            <li><a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
+            <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Breadcrumbs -->
+
 {if ($entidad->madre->id!=0 AND $entidad->madre->id!=1)}
     <div class="row">
         <div class="col-lg-12">
