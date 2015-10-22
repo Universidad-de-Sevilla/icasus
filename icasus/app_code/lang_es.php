@@ -288,6 +288,7 @@ define('TXT_OTRAS_PROP', 'Otras propiedades');
 
 //Propiedades HTML: Titles, placeholders, values de botones...
 define('TXT_CODIGO', 'Único, fácil de recordar, en mayúsculas y sin espacios');
+define('TXT_ESTA', 'Está aquí');
 define('TXT_CALCULO_TOTAL', 'Determina cómo se calcula el total entre todas las subunidades');
 define('TXT_CALCULO_TOTAL_ANUAL', 'Determina cómo se calcula el total anual entre todos los periodos');
 define('TXT_BORRAR_CONFIRM', 'Confirmar borrado');
