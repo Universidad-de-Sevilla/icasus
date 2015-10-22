@@ -37,7 +37,7 @@ $smarty->assign('indicador', $indicador);
 
 //Responsables
 $responsable = false;
-if ($indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+if ($indicador->id_responsable == $usuario->id)
 {
     $responsable = true;
 }
