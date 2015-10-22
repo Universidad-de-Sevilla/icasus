@@ -48,8 +48,7 @@ $smarty->assign('entidad', $entidad);
 
 //Permiso para crear y borrar referencias
 $permiso = false;
-if ($control || $indicador->id_responsable == $usuario->id
-        OR $indicador->id_responsable_medicion == $usuario->id)
+if ($control || $indicador->id_responsable == $usuario->id)
 {
     $permiso = true;
 }
