@@ -116,7 +116,7 @@
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
-                                            {if $_control}
+                                            {if $_control OR $_usuario->id==$indicador->id_responsable}
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>

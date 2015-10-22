@@ -11,16 +11,13 @@ body{
     background-color: #f8f8f8;
 } 
 
-nav a, h2 a{
+nav a, h2 a, p a{
     color: #950717;
 }
 
 nav a:hover, nav
-a:focus{
-    color: #880736;
-}
-
-h2 a:hover, h2 
+a:focus,h2 a:hover, h2 
+a:focus,p a:hover, p 
 a:focus{
     color: #880736;
 }
