@@ -268,7 +268,6 @@ define('TXT_PROC_VER', 'Ver proceso');
 define('TXT_PROC_MAP', 'Mapa de procesos');
 define('TXT_PROC_PARAM', 'Parámetros del proceso');
 define('TXT_PROC_VOLVER', 'Volver al proceso');
-define('TXT_PROCS_VOLVER', 'Volver al listado de procesos');
 define('TXT_PROC_FICHA', 'Ficha del proceso');
 define('TXT_PROC_NUEVO', 'Nuevo proceso');
 define('TXT_PROC_LIST', 'Lista de procesos');
