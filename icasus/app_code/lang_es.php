@@ -195,8 +195,6 @@ define('TXT_MED_DES', 'Medición desagregada en las subunidades y cumplimentada 
 define('TXT_MED_DES_CEN', 'Medición desagregada en las subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
 define('TXT_MED_ESTA', 'esta medición.');
 define('TXT_MED_ACARGO', 'Mediciones a su cargo');
-define('TXT_MED_VOLVER', 'Volver a las mediciones');
-define('TXT_MED_MOSTRAR', 'Mediciones');
 define('TXT_MED_BORRAR', 'Borrar medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
