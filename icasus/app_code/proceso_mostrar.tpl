@@ -60,7 +60,7 @@
 <!-- /Nombre página -->
 
 <!-- Barra de botones -->
-{if $_control}
+{if $_control || $_usuario->id == $proceso->id_propietario}
     <div class="row">
         <div class="col-lg-12">
             <div class="btn-toolbar" role="toolbar" aria-label="">
