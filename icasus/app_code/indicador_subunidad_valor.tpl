@@ -1,3 +1,22 @@
+<!-- Diálogo Valor fuera del intervalo -->
+<div class="modal fade" id="dialogo_valor_intervalo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}: {$indicador->nombre}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_MED_VAL_INTERVALO} <span id="intervalo"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-default btn-primary" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Valor fuera del intervalo -->
+
 <!-- Diálogo Asignar Unidad a una medición -->
 <div class="modal fade" id="modal_asignar_una_medicion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -224,7 +243,7 @@
                 <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA}</span>
             </div>
             <!-- /.panel-heading -->
-            <div id="panel_valores" class="panel-body">
+            <div id="panel_valores" data-valor_min="{$indicador->valor_min}" data-valor_max="{$indicador->valor_max}" class="panel-body">
                 {include file="indicador_subunidad_valor_mostrar.tpl"}
             </div>
             <!-- /.panel-body -->

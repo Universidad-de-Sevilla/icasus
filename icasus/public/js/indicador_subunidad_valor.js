@@ -7,6 +7,10 @@
 // Incluye el código JavaScript para el fichero indicador_subunidad_valor.tpl
 //----------------------------------------------------------------------------
 
+//Variables: Valor mínimo y máximo permitido
+valor_min = $("#panel_valores").data("valor_min");
+valor_max = $("#panel_valores").data("valor_max");
+
 $(function () {
     var id_indicador = $('#tabla_valores').data('id_indicador');
     var id_entidad = $('#tabla_valores').data('id_entidad');
@@ -150,14 +154,66 @@ $(function () {
         var actualizar_dato = $(this);
         var id_valor = $(this).data('id_valor');
         var valor = $(this).val();
+        $('#intervalo').text('[' + valor_min + ', ' + valor_max + '].');
         if ($.isNumeric(actualizar_dato.val())) {
-            var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
-            $.ajax({
-                url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
-                success: function () {
-                    actualizar_dato.css("color", "#333");
+            //Si hay un intervalo [min,max]
+            if ($.isNumeric(valor_min) && $.isNumeric(valor_max)) {
+                if (valor < valor_min || valor > valor_max) {
+                    actualizar_dato.css("color", "red");
+                    $('#dialogo_valor_intervalo').modal('show');
                 }
-            });
+                else {
+                    var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
+                    $.ajax({
+                        url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                        success: function () {
+                            actualizar_dato.css("color", "#333");
+                        }
+                    });
+                }
+            }
+            //Si hay un valor mínimo
+            else if ($.isNumeric(valor_min) && !$.isNumeric(valor_max)) {
+                if (valor < valor_min) {
+                    actualizar_dato.css("color", "red");
+                    $('#dialogo_valor_intervalo').modal('show');
+                }
+                else {
+                    var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
+                    $.ajax({
+                        url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                        success: function () {
+                            actualizar_dato.css("color", "#333");
+                        }
+                    });
+                }
+            }
+            //Si hay un valor máximo
+            else if ($.isNumeric(valor_max) && !$.isNumeric(valor_min)) {
+                if (valor > valor_max) {
+                    actualizar_dato.css("color", "red");
+                    $('#dialogo_valor_intervalo').modal('show');
+                }
+                else {
+                    var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
+                    $.ajax({
+                        url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                        success: function () {
+                            actualizar_dato.css("color", "#333");
+                        }
+                    });
+                }
+            }
+            //Si no hay definida ninguna restricción en cuanto a los valores
+            else {
+                var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
+                $.ajax({
+                    url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                    success: function () {
+                        actualizar_dato.css("color", "#333");
+                    }
+                });
+            }
         }
         else if (actualizar_dato.val().length === 0) {
             var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor;
