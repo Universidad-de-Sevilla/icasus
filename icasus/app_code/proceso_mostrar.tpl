@@ -118,7 +118,7 @@
                         <tbody>
                             <tr>
                                 <th>{$smarty.const.FIELD_COD}</th>
-                                <td>{$proceso->codigo}</td>
+                                <td><span class="label label-primary">{$proceso->codigo}</span></td>
                             </tr>
                             <tr>
                                 <th>{$smarty.const.FIELD_NOMBRE}</th>
@@ -301,14 +301,14 @@
                             <tbody>
                                 {foreach from=$indicadores item=indicador}
                                     <tr>  
-                                        <td style="white-space:nowrap">{$indicador->codigo}</td>
+                                        <td><span class="label label-primary">{$indicador->codigo}</span></td>
                                         <td>
                                             <a title='{$indicador->nombre}: {$indicador->descripcion}' href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>{$indicador->nombre}</a>
                                         </td>
                                         <td>
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>{$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                         </td>
-                                        <td style="white-space:nowrap">
+                                        <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$indicador->nombre}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'><i class="fa fa-dashboard fa-fw"></i></a>                 
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'><i class="fa fa-user fa-fw"></i></a>
                                         </td>
@@ -427,7 +427,7 @@
                             <tbody>
                                 {foreach from=$subprocesos item=subproceso}
                                     <tr>    
-                                        <td style="white-space:nowrap">{$subproceso->codigo}</td>
+                                        <td><span class="label label-primary">{$subproceso->codigo}</span></td>
                                         <td>
                                             <a title="{$subproceso->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
                                                 {$subproceso->nombre}
@@ -449,7 +449,7 @@
                                                 {$subproceso->propietario->apellidos}
                                             </a>
                                         </td>
-                                        <td style="white-space:nowrap">
+                                        <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROC_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>                 

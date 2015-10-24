@@ -89,7 +89,7 @@
                             <tbody>
                                 {foreach from=$procesos item=proceso}
                                     <tr>    
-                                        <td style="white-space:nowrap">{$proceso->codigo}</td>
+                                        <td><span class="label label-primary">{$proceso->codigo}</span></td>
                                         <td>
                                             <a title="{$proceso->nombre}: {$proceso->mision}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                 {$proceso->nombre}
@@ -111,7 +111,7 @@
                                                 {$proceso->propietario->apellidos}
                                             </a>
                                         </td>
-                                        <td style="white-space:nowrap">
+                                        <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROC_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>                 

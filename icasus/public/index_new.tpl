@@ -165,7 +165,7 @@
                                             <div class="col-md-10">
                                                 <a title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" 
                                                    class="titulo-unidad" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}&principal=1">
-                                                    <i class="fa fa-sitemap fa-fw"></i> {$entidad->nombre} / <i class="fa fa-star fa-fw"></i> {$_rol}
+                                                    <i class="fa fa-sitemap fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}
                                                 </a>
                                             </div>
                                             <!-- /.col-md-10 -->
@@ -326,7 +326,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                {$smarty.const.TXT_ICASUS} - {$smarty.const.TXT_APP_DESCRIPCION}
+                                <span class="h4">{$smarty.const.TXT_ICASUS}</span> - {$smarty.const.TXT_APP_DESCRIPCION}
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>

@@ -27,13 +27,13 @@ $subentidades = $entidad->Find("id_madre = " . ENTIDAD_MADRE);
 foreach ($usuario->entidades as $usuario_entidad)
 {
     //Solamente entro en aquellas en las que es responsable
-    if ($control || $usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2)
+    if ($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2)
     {
         //Recorre las subunidades de la unidad ENTIDAD_MADRE
         foreach ($subentidades as $subentidad)
         {
             // Comprueba si el usuario es miembro de la subunidad actual
-//            if ($usuario_entidad->id_entidad == $subentidad->id)
+            if ($usuario_entidad->id_entidad == $subentidad->id)
             {
                 // Añade la subunidad actual al array de entidades autorizadas
                 $entidades_autorizadas[] = $subentidad;
@@ -44,18 +44,17 @@ foreach ($usuario->entidades as $usuario_entidad)
         }
     }
 }
-
 if (count($entidades_autorizadas) > 0)
 {
     $smarty->assign("id_usuario", $usuario->id);
     $smarty->assign("entidades", $entidades_autorizadas);
     $smarty->assign("valores", $valores);
+    $smarty->assign('_javascript', array('datos_rebiun'));
     $smarty->assign("_nombre_pagina", TXT_DATOS_REBIUN_RECOGIDA);
     $plantilla = "datos_rebiun.tpl";
 }
 else
 {
     $error = ERR_NO_AUT_MOD;
-    header("location:index.php?page=error&error=$error");
+    header("location:index.php?page=dato_listar&id_entidad=$entidad->id&error=$error");
 }
-

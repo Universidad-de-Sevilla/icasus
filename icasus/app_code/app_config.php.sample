@@ -2,6 +2,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: config.php
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Variables globales para la apliación Icasus
 // Modifica este archivo para que se ajuste a tus necesidades concretas
@@ -16,9 +18,6 @@ define('IC_DB_HOST','localhost');           //escriba la dirección del servidor
 define('IC_DB_LOGIN','icasus');  //escriba el usuario de la BD.
 define('IC_DB_CLAVE','tarrupa25b');      //escriba la clave del usuario de la BD.
 define('IC_DB_DATABASE','icasus');//escriba el nombre de la BD.
-
-// Tema que vamos a utilizar para definir la apariencia del sitio
-define('IC_THEME', 'usevilla');
 
 // Establece que configuración SSO
 // Si en servidor de desarrollo (usuarios pruebapas, pruebaalumno y pruebapdi). Descomentar 'pre_11'.

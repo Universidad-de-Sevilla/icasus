@@ -253,7 +253,7 @@
                             </tr>
                             <tr>
                                 <th>{$smarty.const.FIELD_COD}</th>
-                                <td>{$indicador->codigo}</td>
+                                <td><span class="label label-primary">{$indicador->codigo}</span></td>
                             </tr>
                             <tr>
                                 <th>{$smarty.const.FIELD_PROC}</th>

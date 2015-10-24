@@ -68,7 +68,7 @@
                     <tbody>
                         <tr>
                             <th>{$smarty.const.FIELD_COD}</th>
-                            <td>{$entidad->codigo}</td>
+                            <td><span class="label label-primary">{$entidad->codigo}</span></td>
                         </tr>
                         <tr>
                             <th>{$smarty.const.FIELD_NOMBRE}</th>
@@ -141,7 +141,7 @@
                                         <td>{$usuario->usuario->apellidos}</td>       
                                         <td><a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
                                         <td>{$usuario->usuario->telefono}</td>
-                                        <td style="white-space:nowrap">
+                                        <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'><i class="fa fa-user fa-fw"></i></a>                 
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->usuario->correo}'><i class="fa fa-envelope fa-fw"></i></a>
                                         </td>
@@ -187,11 +187,11 @@
                             <tbody>
                                 {foreach from=$subentidades item=subentidad}
                                     <tr>  
-                                        <td style="white-space:nowrap">{$subentidad->codigo}</td>
+                                        <td><span class="label label-primary">{$subentidad->codigo}</span></td>
                                         <td>
                                             <a title="{$subentidad->nombre}" href='index.php?page=entidad_mostrar&id_entidad={$subentidad->id}&principal=1'>{$subentidad->nombre}</a>
                                         </td>
-                                        <td style="white-space:nowrap">
+                                        <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$subentidad->id}'><i class="fa fa-folder fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$subentidad->id}'><i class="fa fa-gears fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$subentidad->id}'><i class="fa fa-dashboard fa-fw"></i></a>

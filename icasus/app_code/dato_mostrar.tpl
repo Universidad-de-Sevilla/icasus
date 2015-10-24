@@ -253,7 +253,7 @@
                             </tr>
                             <tr>
                                 <th>{$smarty.const.FIELD_COD}</th>
-                                <td>{$dato->codigo}</td>
+                                <td><span class="label label-primary">{$dato->codigo}</span></td>
                             </tr>
                             <tr>
                                 <th>{$smarty.const.FIELD_NOMBRE}</th>

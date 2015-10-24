@@ -93,7 +93,7 @@ define('TXT_DATO_PARAM', 'Parámetros del dato');
 define('TXT_DATO_CREAR', 'Crear dato');
 define('TXT_DATOS_LIST', 'Lista de datos');
 define('TXT_DATOS_REBIUN', 'Datos Rebiun');
-define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida datos Rebiun');
+define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida de Datos Rebiun');
 define('TXT_DATOS_EXPORT', 'Exportar datos');
 define('TXT_DATOS_REBIUN_DET', 'Detalle datos Rebiun'); //2012
 define('TXT_DATOS_REBIUN_SUMA', 'Suma datos Rebiun');
