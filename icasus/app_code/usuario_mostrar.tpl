@@ -24,25 +24,6 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Barra de botones -->
-{if $_control}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="btn-toolbar" role="toolbar" aria-label="">
-                <div class="btn-group" role="group" aria-label="">
-                    <a class="btn btn-default btn-danger" href='index.php?page=usuario_listar' title="{$smarty.const.TXT_VOLVER_LIST} {$smarty.const.TXT_USERS}">
-                        <i class="fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_VOLVER_LIST} {$smarty.const.TXT_USERS}
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <br>
-{/if}
-<!-- /Barra de botones -->
-
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-red">
