@@ -660,6 +660,7 @@ define('FIELD_CAMBIO_A', 'Cambio a:');
 define('FIELD_ALIAS', 'Alias');
 define('FIELD_ORDEN', 'Orden');
 define('FIELD_ANCHO', 'Ancho');
+define('FIELD_ANYO', 'Año');
 define('FIELD_ANYOS', 'Años');
 define('FIELD_TOTAL', 'Total');
 define('FIELD_MISION', 'Misión');

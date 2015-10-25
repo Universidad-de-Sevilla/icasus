@@ -101,30 +101,30 @@
                     </ul>
                     <!-- /.navbar-top-links -->
 
-                    <div class="navbar-default sidebar" role="navigation" >
+                    <div class="navbar-default sidebar toggled" role="navigation" >
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
                                 <li>
                                     <a title="{$smarty.const.TXT_INICIO}" href='index.php?page=inicio' accesskey='h'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x"></i></span>{$smarty.const.TXT_INICIO}</a>      
+                                        <span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_INICIO}</span></a>      
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span>{$smarty.const.TXT_CUADROS_MANDO}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_CUADROS_MANDO}</span></a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span>{$smarty.const.FIELD_UNIDS}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.FIELD_UNIDS}</span></a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_USERS}" href='index.php?page=usuario_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-users fa-stack-1x"></i></span>{$smarty.const.TXT_USERS}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-users fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_USERS}</span></a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_AYUDA}" href='index.php?page=pagina_mostrar&alias=indice'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-question-circle fa-stack-1x"></i></span>{$smarty.const.TXT_AYUDA}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-question-circle fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_AYUDA}</span></a>
                                 </li>
-                                <li id="links">
+                                <li id="links" class="toggled">
                                     <a title="{$smarty.const.TXT_ENLACES}" href="#">
                                         <span class="fa-stack fa-lg"><i class="fa fa-external-link fa-stack-1x"></i></span> {$smarty.const.TXT_ENLACES}<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
@@ -143,6 +143,9 @@
                                     </ul>
                                     <!-- /.nav-second-level -->
                                 </li>
+                                <li class="hidden-xs hidden-sm">
+                                    <a id="menu-toggle" title="{$smarty.const.TXT_TOGGLED}" href="#"><span class="fa-stack fa-lg"><i id="toggle-icon" class="fa fa-chevron-right fa-stack-1x"></i></span></a>
+                                </li>
                             </ul>
                         </div>
                         <!-- /.sidebar-collapse -->
@@ -153,7 +156,7 @@
                 <!-- /Navigation -->
 
                 <!-- Page Content -->
-                <div id="page-wrapper">
+                <div id="page-wrapper" class="toggled">
                     <div class="container-fluid">
 
                         <!-- Menú de Unidades -->

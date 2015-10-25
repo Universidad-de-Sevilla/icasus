@@ -72,9 +72,9 @@ if ($modulo == 'inicio')
                 $valor->Save();
                 $contador ++;
             }
-            $aviso = MSG_VALS_DESACT . ' ' . $contador . ' ' . TXT_VALS;
-            $smarty->assign("aviso", $aviso);
-            header("index.php?page=control&modulo=inicio&id_entidad=$entidad->id&aviso=$aviso");
+            $exito = MSG_VALS_DESACT . ' ' . $contador . ' ' . TXT_VALS;
+            $smarty->assign("exito", $exito);
+            header("index.php?page=control&modulo=inicio&id_entidad=$entidad->id&exito=$exito");
         }
     }
 }
@@ -109,6 +109,6 @@ if ($modulo == 'filtrOnlyear')
 $smarty->assign("modulo", $modulo);
 $smarty->assign("entidad", $entidad);
 $smarty->assign("fecha", $fecha);
+$smarty->assign('_javascript', array('control'));
 $smarty->assign("_nombre_pagina", "Control:  $entidad->nombre");
 $plantilla = "control.tpl";
-

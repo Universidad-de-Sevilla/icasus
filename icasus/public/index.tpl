@@ -20,9 +20,6 @@
         <!-- Bootstrap Core CSS -->
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- MetisMenu CSS -->
-        <link href="lib/metisMenu/metisMenu.min.css" rel="stylesheet">
-
         <!-- Chosen CSS -->
         <link href="lib/chosen/chosen.min.css" rel="stylesheet">
         <link href="lib/chosen/chosen-bootstrap.css" rel="stylesheet">
@@ -101,50 +98,39 @@
                     </ul>
                     <!-- /.navbar-top-links -->
 
-                    <div class="navbar-default sidebar toggled" role="navigation" >
+                    <div class="navbar-default sidebar" role="navigation" >
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
+                                <li class="sidebar-search">
+                                    <div class="input-group custom-search-form">
+                                        <input class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" type="text">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-default" type="button">
+                                                <i class="fa fa-search fa-fw"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+                                    <!-- /input-group -->
+                                </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_INICIO}" href='index.php?page=inicio' accesskey='h'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_INICIO}</span></a>      
+                                        <span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x"></i></span>{$smarty.const.TXT_INICIO}</a>      
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_CUADROS_MANDO}</span></a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span>{$smarty.const.TXT_CUADROS_MANDO}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.FIELD_UNIDS}</span></a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span>{$smarty.const.FIELD_UNIDS}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_USERS}" href='index.php?page=usuario_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-users fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_USERS}</span></a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-users fa-stack-1x"></i></span>{$smarty.const.TXT_USERS}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_AYUDA}" href='index.php?page=pagina_mostrar&alias=indice'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-question-circle fa-stack-1x"></i></span><span class="texto-menu toggled"> {$smarty.const.TXT_AYUDA}</span></a>
-                                </li>
-                                <li id="links" class="toggled">
-                                    <a title="{$smarty.const.TXT_ENLACES}" href="#">
-                                        <span class="fa-stack fa-lg"><i class="fa fa-external-link fa-stack-1x"></i></span> {$smarty.const.TXT_ENLACES}<span class="fa arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        <li>
-                                            <a title="{$smarty.const.TXT_UNIVERSIDAD}" href='http://www.us.es/' target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-university fa-stack-1x"></i></span> {$smarty.const.TXT_UNIVERSIDAD}</a>
-                                        </li>
-                                        <li>
-                                            <a title="{$smarty.const.TXT_RRHH}" href='http://recursoshumanos.us.es/' target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-male fa-stack-1x"></i></span> {$smarty.const.TXT_RRHH}</a>
-                                        </li>
-                                        <li>
-                                            <a title="{$smarty.const.TXT_BIBLIOTECA}" href='http://bib.us.es/' target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-book fa-stack-1x"></i></span> {$smarty.const.TXT_BIBLIOTECA}</a>
-                                        </li>
-                                        <li>
-                                            <a title="{$smarty.const.TXT_SECRETARIA}" href='https://sevius.us.es/' target="_blank"><span class="fa-stack fa-lg"><i class="fa fa-tv fa-stack-1x"></i></span> {$smarty.const.TXT_SECRETARIA}</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-second-level -->
-                                </li>
-                                <li class="hidden-xs hidden-sm">
-                                    <a id="menu-toggle" title="{$smarty.const.TXT_TOGGLED}" href="#"><span class="fa-stack fa-lg"><i id="toggle-icon" class="fa fa-chevron-right fa-stack-1x"></i></span></a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-question-circle fa-stack-1x"></i></span>{$smarty.const.TXT_AYUDA}</a>
                                 </li>
                             </ul>
                         </div>
@@ -156,7 +142,7 @@
                 <!-- /Navigation -->
 
                 <!-- Page Content -->
-                <div id="page-wrapper" class="toggled">
+                <div id="page-wrapper">
                     <div class="container-fluid">
 
                         <!-- Menú de Unidades -->
@@ -385,9 +371,6 @@
 
         <!-- Bootstrap FileStyle -->
         <script src="lib/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
-
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="lib/metisMenu/metisMenu.min.js"></script>
 
         <!-- Chosen Plugin JavaScript -->
         <script src="lib/chosen/chosen.jquery.min.js"></script>
