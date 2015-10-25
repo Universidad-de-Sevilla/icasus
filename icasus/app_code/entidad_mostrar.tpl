@@ -1,3 +1,15 @@
+<!-- Nombre página -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" class="page-header">
+            <i class="fa fa-sitemap fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}
+        </h3>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Nombre página -->
+
 <!-- Breadcrumbs -->
 <div class="row">
     <div class="col-lg-12">
@@ -103,21 +115,35 @@
 <!-- /.row -->
 
 <div class="row">
-    <div class="col-lg-12">
-        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" class="btn btn-warning btn-block" href='index.php?page=cuadro_listar'>
+    <div class="col-md-4">
+        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" class="btn btn-warning btn-block" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
+            <h4><i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}</h4>
+        </a>
+    </div>
+    <!-- /.col-md-4 -->
+    <div class="col-md-4">
+        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" class="btn btn-danger btn-block" href='index.php?page=cuadro_listar'>
             <h4><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO}</h4>
         </a>
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /.col-md-4 -->
+    {if $_control}
+        <div class="col-md-4">
+            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" class="btn btn-info btn-block" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                <h4><i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}</h4>
+            </a>     
+        </div>
+        <!-- /.col-md-4 -->
+    {/if}
 </div>
 <!-- /.row -->
 
 <!-- Indicadores agrupados por procesos -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 title="{$smarty.const.TXT_INDIC_PROC}" class="page-header">
+        <h4 title="{$smarty.const.TXT_INDIC_PROC}" class="page-header">
             <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_PROC}
-        </h3>
+        </h4>
     </div>
     <!-- /.col-lg-12 -->
 </div>

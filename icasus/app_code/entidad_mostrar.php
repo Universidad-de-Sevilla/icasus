@@ -39,7 +39,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'princi
     $smarty->assign('anio_fin', $anio_fin);
 
     $smarty->assign('_javascript', array('entidad_mostrar'));
-    $smarty->assign('_nombre_pagina', $entidad->nombre);
+    $smarty->assign('_nombre_pagina', FIELD_UNID . ': ' . $entidad->nombre);
     $plantilla = "entidad_mostrar.tpl";
 }
 else

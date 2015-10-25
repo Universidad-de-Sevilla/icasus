@@ -102,10 +102,10 @@
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
                                 <li class="sidebar-search">
-                                    <div class="input-group custom-search-form">
+                                    <div class="input-group">
                                         <input class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" type="text">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="button">
+                                            <button title="{$smarty.const.TXT_BUSCAR}" class="btn btn-primary" type="button">
                                                 <i class="fa fa-search fa-fw"></i>
                                             </button>
                                         </span>
@@ -144,76 +144,6 @@
                 <!-- Page Content -->
                 <div id="page-wrapper">
                     <div class="container-fluid">
-
-                        <!-- Menú de Unidades -->
-                        {if isset($entidad)}
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <h2 class="page-header"> 
-                                        <div class="row">
-                                            <div class="col-md-10">
-                                                <a title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" 
-                                                   class="titulo-unidad" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}&principal=1">
-                                                    <i class="fa fa-sitemap fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}
-                                                </a>
-                                            </div>
-                                            <!-- /.col-md-10 -->
-                                            <div class="col-md-2">
-                                                <div class="btn-toolbar" role="toolbar" aria-label="">
-                                                    <div class="btn-group" role="group" aria-label="">    
-                                                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" class="btn btn-default btn-danger btn-xs" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
-                                                            <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
-                                                        </a>
-                                                    </div>
-                                                    {if $_control}
-                                                        <div class="btn-group" role="group" aria-label="">
-                                                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" class="btn btn-default btn-danger btn-xs" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
-                                                                <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
-                                                            </a>
-                                                        </div>
-                                                    {/if}
-                                                </div> 
-                                            </div>
-                                            <!-- /.col-md-2 -->
-                                        </div>
-                                        <!-- /.row -->
-                                    </h2>
-                                </div>
-                                <!-- /.col-lg-12 -->
-                            </div>
-                            <!-- /.row -->
-                            {if !isset($principal)}
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <ul class="nav nav-pills nav-justified" role="navigation">
-                                            <li role="presentation">
-                                                <a title="{$smarty.const.TXT_UNID_FICHA_DESCRIPCION}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}' class="btn btn-default">
-                                                    <i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_UNID_FICHA} 
-                                                </a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                    <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS} <span class="badge" title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.TXT_PROCS}">{$num_procesos}</span>
-                                                </a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                    <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span class="badge" title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">{$num_indicadores}</span>
-                                                </a>
-                                            </li>
-                                            <li role="presentation">
-                                                <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}' class="btn btn-default">
-                                                    <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span class="badge" title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">{$num_datos}</span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <!-- /.col-lg-12 -->
-                                </div>
-                                <!-- /.row -->
-                            {/if}
-                        {/if}
-                        <!-- /Menú de Unidades -->
 
                         <!-- Notificaciones -->
                         {if isset($smarty.get.error)}

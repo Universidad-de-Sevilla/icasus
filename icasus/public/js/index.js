@@ -7,11 +7,6 @@
 // Incluye el código JavaScript para el fichero index.tpl
 //----------------------------------------------------------------------------
 
-//MetisMenu
-//$(function () {
-//    $('#side-menu').metisMenu();
-//});
-
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
 // Sets the min-height of #page-wrapper to window size
@@ -45,26 +40,26 @@ $(function () {
 });
 
 //Menu toggle
-$("#menu-toggle").click(function (e) {
-    e.preventDefault();
-    $("#page-wrapper").toggleClass("toggled");
-    $(".sidebar").toggleClass("toggled");
-    $(".fa-stack").toggleClass("fa-lg");
-    $("#links").toggleClass("toggled");
-    $(".texto-menu").toggleClass("toggled");
-
-    var icono = $("#toggle-icon");
-    if (icono.hasClass('fa-chevron-right')) {
-        icono.removeClass('fa-chevron-right');
-        icono.addClass('fa-chevron-left');
-        $("#menu-toggle").addClass('pull-right');
-    }
-    else {
-        icono.removeClass('fa-chevron-left');
-        $("#menu-toggle").removeClass('pull-right');
-        icono.addClass('fa-chevron-right');
-    }
-});
+//$("#menu-toggle").click(function (e) {
+//    e.preventDefault();
+//    $("#page-wrapper").toggleClass("toggled");
+//    $(".sidebar").toggleClass("toggled");
+//    $(".fa-stack").toggleClass("fa-lg");
+//    $("#links").toggleClass("toggled");
+//    $(".texto-menu").toggleClass("toggled");
+//
+//    var icono = $("#toggle-icon");
+//    if (icono.hasClass('fa-chevron-right')) {
+//        icono.removeClass('fa-chevron-right');
+//        icono.addClass('fa-chevron-left');
+//        $("#menu-toggle").addClass('pull-right');
+//    }
+//    else {
+//        icono.removeClass('fa-chevron-left');
+//        $("#menu-toggle").removeClass('pull-right');
+//        icono.addClass('fa-chevron-right');
+//    }
+//});
 
 //Collapsible panels
 jQuery(function ($) {

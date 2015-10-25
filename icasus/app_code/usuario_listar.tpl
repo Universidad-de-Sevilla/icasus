@@ -1,9 +1,9 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h2 title="{$_nombre_pagina}" class="page-header">
+        <h3 title="{$_nombre_pagina}" class="page-header">
             <i class="fa fa-users fa-fw"></i> {$_nombre_pagina}
-        </h2>
+        </h3>
     </div>
     <!-- /.col-lg-12 -->
 </div>
