@@ -372,11 +372,11 @@ table.dataTable thead .sorting:after {
     background-color: #950717;
 }
 
-.panel-red a {
+.panel-red table a {
     color: #950717;
 }
 
-.panel-red a:hover {
+.panel-red table a:hover {
     color: #880736;
 }
 
@@ -449,36 +449,18 @@ span:focus, .pagination > li > span:hover {
 }
 
 /*Menú de Unidades*/
-.titulo-unidad{
-    text-decoration: none !important;
-}
-
-.panel-ficha-unidad {
+.panel-procesos {
     border-color: #337AB7;
 }
 
-.panel-ficha-unidad .panel-heading {
+.panel-procesos .panel-heading {
     border-color: #337AB7;
     color: #fff;
     background-color: #337AB7;
 }
 
-.panel-ficha-unidad .panel-heading:hover {
-    background-color: #23527C;
-}
-
-.panel-procesos {
-    border-color: #5cb85c;
-}
-
-.panel-procesos .panel-heading {
-    border-color: #5cb85c;
-    color: #fff;
-    background-color: #5cb85c;
-}
-
 .panel-procesos .panel-heading:hover {
-    background-color: #3d8b3d;
+    background-color: #23527C;
 }
 
 .panel-indicadores {

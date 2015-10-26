@@ -33,6 +33,16 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $smarty->assign('indicadores', $indicadores);
     $smarty->assign('datos', $datos);
 
+    //Subunidades
+    $subentidad = new Entidad();
+    $subentidades = $subentidad->Find("id_madre = $id_entidad ORDER by codigo");
+    $smarty->assign('subentidades', $subentidades);
+
+    //Usuarios
+    $usuario_entidad = new Usuario_entidad;
+    $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
+    $smarty->assign('usuarios', $usuarios);
+
     $anio_fin = date('Y') - 1;
     $smarty->assign('anio_fin', $anio_fin);
 

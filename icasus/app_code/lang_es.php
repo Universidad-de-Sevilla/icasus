@@ -219,7 +219,6 @@ define('TXT_USER_PERFIL', 'Perfil de usuario');
 define('TXT_MIS_NOTAS', 'Mis notas');
 define('TXT_CERRAR_SESION', 'Cerrar sesión');
 //Menú de Unidades
-define('TXT_UNID_FICHA_DESCRIPCION', 'Ficha de unidad: parámetros de la unidad, usuarios, subunidades... ');
 define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de procesos de la unidad e información sobre los mismos. ');
 define('TXT_INDICS_DESCRIPCION', 'Indicadores: listado de indicadores de la unidad e información sobre los mismos.');
 define('TXT_DATOS_DESCRIPCION', 'Datos: listado de datos de la unidad e información sobre los mismos.');
