@@ -16,7 +16,52 @@
         <ol class="breadcrumb">
             <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
             <li><a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
-            <li><a title="{$entidad->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}&principal=1">{$entidad->nombre|truncate:30}</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}">
+                    {$entidad->nombre|truncate:30} <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}"><i class="fa fa-folder fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
+                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.TXT_PROCS}">({$num_procesos})</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
+                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
+                            <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
+                            <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
+                        </a>
+                    </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar'>
+                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO}
+                        </a>
+                    </li>
+                    {if $_control}
+                        <li class="divider"></li>
+                        <li>
+                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                                <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
+                            </a>
+                        </li>
+                    {/if}
+                </ul>
+                <!-- /.dropdown-menu -->
+            </li>
+            <!-- /.dropdown -->
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -76,14 +121,14 @@
                             <br>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-8">
-                                    <button type="button" class="btn btn-default btn-danger" title="{$smarty.const.TXT_CANCEL}" onclick="location.href = 'index.php?page=entidad_datos&id_entidad={$entidad->id}';">
+                                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=entidad_mostrar&id_entidad={$entidad->id}'>
                                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
-                                    </button>
+                                    </a>
                                     <div class="pull-right">
-                                        <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
+                                        <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
                                             <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                                         </button>
-                                        <button title="{$smarty.const.TXT_USERS_DESASIGNAR}" type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#dialogo_confirmar_baja">
+                                        <button title="{$smarty.const.TXT_USERS_DESASIGNAR}" type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo_confirmar_baja">
                                             <i class="fa fa-user-times fa-fw"></i> {$smarty.const.TXT_USERS_DESASIGNAR}
                                         </button>
                                     </div>
@@ -103,8 +148,8 @@
                                         <p>{$smarty.const.MSG_USERS_CONFIRM_DESVINC}</p>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                                        <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="baja" id="baja"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                                        <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                                        <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-success" name="baja" id="baja"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
                                     </div>
                                 </div>
                             </div>
