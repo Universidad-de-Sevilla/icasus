@@ -14,14 +14,12 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
-if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'principal'))
+if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
     $entidad->load_joined("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
-    $principal = filter_input(INPUT_GET, 'principal', FILTER_SANITIZE_NUMBER_INT);
-    $smarty->assign('principal', $principal);
 
     // Obtenemos los procesos de la unidad sus indicadores y datos
     $smarty->assign('procesos_propios', $procesos);

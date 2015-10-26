@@ -400,7 +400,7 @@
                                         <ul>
                                             {foreach $indicador_subunidades as $indicador_subunidad}
                                                 <li>
-                                                    <a href="index.php?page=entidad_mostrar&id_entidad={$indicador_subunidad->entidad->id}&principal=1">{$indicador_subunidad->entidad->etiqueta}</a>
+                                                    <a href="index.php?page=entidad_mostrar&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->etiqueta}</a>
                                                 </li>
                                             {/foreach}
                                         </ul>

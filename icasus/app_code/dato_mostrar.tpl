@@ -354,7 +354,7 @@
                                         <ul>
                                             {foreach $dato_subunidades as $dato_subunidad}
                                                 <li>
-                                                    <a href="index.php?page=entidad_mostrar&id_entidad={$dato_subunidad->entidad->id}&principal=1">{$dato_subunidad->entidad->etiqueta}</a>
+                                                    <a href="index.php?page=entidad_mostrar&id_entidad={$dato_subunidad->entidad->id}">{$dato_subunidad->entidad->etiqueta}</a>
                                                 </li>
                                             {/foreach}
                                         </ul>
