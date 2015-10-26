@@ -45,6 +45,16 @@
                             <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
                         </a>
                     </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
+                            <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
+                        </a>
+                    </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar'>
+                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO}
+                        </a>
+                    </li>
                     {if $_control}
                         <li class="divider"></li>
                         <li>
@@ -54,7 +64,9 @@
                         </li>
                     {/if}
                 </ul>
+                <!-- /.dropdown-menu -->
             </li>
+            <!-- /.dropdown -->
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>

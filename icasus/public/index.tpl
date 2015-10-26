@@ -92,7 +92,7 @@
                                     <a title="{$smarty.const.TXT_CERRAR_SESION}" href="index.php?page={$smarty.const.IC_TIPO_LOGIN}&logout=true"><i class="fa fa-sign-out fa-fw"></i> {$smarty.const.TXT_CERRAR_SESION}</a>
                                 </li>
                             </ul>
-                            <!-- /.dropdown-user -->
+                            <!-- /.dropdown-menu -->
                         </li>
                         <!-- /.dropdown -->
                     </ul>
