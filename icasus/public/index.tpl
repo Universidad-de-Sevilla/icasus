@@ -263,7 +263,7 @@
                 <!-- /Footer -->
 
                 <!-- Back to Top -->
-                <a title="{$smarty.const.TXT_VOLVER_ARRIBA}" id="top-link-block" href="#top" class="btn btn-default hidden"  
+                <a title="{$smarty.const.TXT_VOLVER_ARRIBA}" id="top-link-block" href="#top" class="btn btn-primary hidden"  
                    {literal}
                        onclick="$('html,body').animate({scrollTop: 0}, 'slow');
                                return false;"
