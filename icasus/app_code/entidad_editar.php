@@ -33,14 +33,14 @@ if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'codigo')
     {
         $smarty->assign('entidad', $entidad);
         $exito = MSG_UNID_EDITADA;
-        header("location:index.php?page=entidad_datos&id_entidad=$entidad->id&exito=$exito");
+        header("location:index.php?page=entidad_mostrar&id_entidad=$entidad->id&exito=$exito");
     }
     else
     {
         $error = ERR_UNID_EDIT;
-        header("location:index.php?page=entidad_datos&id_entidad=$entidad->id&error=$error");
+        header("location:index.php?page=entidad_mostrar&id_entidad=$entidad->id&error=$error");
     }
-    $plantilla = "entidad_datos.tpl";
+    $plantilla = "entidad_mostrar.tpl";
 }
 // Si no vienen datos mostramos el formulario
 else
