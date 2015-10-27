@@ -96,7 +96,7 @@
         <div class="col-lg-12">
             <div class="btn-toolbar" role="toolbar" aria-label="">
                 <div class="btn-group" role="group" aria-label="">
-                    <a class="btn btn-danger" href="index.php?page=proceso_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_PROC_CREAR}">
+                    <a class="btn btn-primary" href="index.php?page=proceso_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_PROC_CREAR}">
                         <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_PROC_CREAR}
                     </a>
                 </div>

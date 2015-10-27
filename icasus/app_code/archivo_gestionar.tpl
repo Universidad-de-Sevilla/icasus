@@ -48,11 +48,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
-                    <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
+                    <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+                    <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
                         <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                     </button>
-                    <button type="submit" title="{$smarty.const.TXT_ARCHIVO_SUBIR}" class="btn btn-default btn-success"><i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_ARCHIVO_SUBIR}</button>
+                    <button type="submit" title="{$smarty.const.TXT_ARCHIVO_SUBIR}" class="btn btn-success"><i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_ARCHIVO_SUBIR}</button>
                 </div>
             </form>
         </div>
@@ -96,11 +96,11 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
-                    <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
+                    <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+                    <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
                         <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                     </button>
-                    <button type="submit" name="egrabar" id="egrabar" title="{$smarty.const.TXT_ARCHIVO_ACTUALIZAR_DATOS}" class="btn btn-default btn-success"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_ARCHIVO_ACTUALIZAR_DATOS}</button>
+                    <button type="submit" name="egrabar" id="egrabar" title="{$smarty.const.TXT_ARCHIVO_ACTUALIZAR_DATOS}" class="btn btn-success"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_ARCHIVO_ACTUALIZAR_DATOS}</button>
                 </div>
             </form>
         </div>
@@ -121,8 +121,8 @@
                 <p>{$smarty.const.MSG_ARCHIVO_BORRAR_CONFIRM} <b><span id="titulo_borrar"></span></b>.</p>
             </div>
             <div class="modal-footer">
-                <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
-                <button type="button" title="{$smarty.const.TXT_BORRAR}" class="btn btn-default btn-success" name="borrar" id="borrar"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_BORRAR}</button>
+                <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+                <button type="button" title="{$smarty.const.TXT_BORRAR}" class="btn btn-success" name="borrar" id="borrar"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_BORRAR}</button>
             </div>
         </div>
     </div>
@@ -208,7 +208,7 @@
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
             <div class="btn-group" role="group" aria-label="">
-                <a class="btn btn-default btn-primary" href="javascript:void(0)" title="{$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}" data-toggle="modal" data-target="#dialogo_crear">
+                <a class="btn btn-primary" href="javascript:void(0)" title="{$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}" data-toggle="modal" data-target="#dialogo_crear">
                     <i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}
                 </a>
             </div>
