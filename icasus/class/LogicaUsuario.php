@@ -18,7 +18,7 @@ class LogicaUsuario implements ILogicaUsuario
     //entidad cuyo identificador tambien recibe como parámetro
     public function getRol($usuario, $id_entidad)
     {
-        $rol = null;
+        $rol = TXT_INVITADO;
         if ($usuario->entidades)
         {
             foreach ($usuario->entidades as $entidad_usuario)
@@ -28,7 +28,7 @@ class LogicaUsuario implements ILogicaUsuario
                     $rol = $entidad_usuario->rol->nombre;
                 }
             }
-            if ($rol == null && $id_entidad != 0)
+            if ($rol == TXT_INVITADO && $id_entidad != 0)
             {
                 $entidad = new Entidad();
                 $entidad->load("id=$id_entidad");

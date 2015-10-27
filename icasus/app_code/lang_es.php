@@ -36,6 +36,7 @@ define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores/datos:'
 define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores/datos:');
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
 define('TXT_LLAMAR_TLF', 'Llamar al teléfono');
+define('TXT_INVITADO', 'Invitado');
 define('TXT_RESET', 'Reset');
 
 //Accesibilidad (atributo alt de las imágenes)
