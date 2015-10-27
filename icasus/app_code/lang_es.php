@@ -132,7 +132,6 @@ define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_PARAM', 'Parámetros del indicador');
 define('TXT_INDIC_NUEVO', 'Nuevo indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
-define('TXT_INDIC_VOLVER', 'Volver al indicador');
 define('TXT_INDIC_MOSTRAR', 'Mostrar ficha del indicador');
 define('TXT_INDIC_FICHA', 'Ficha del indicador');
 define('TXT_INDIC_CREAR', 'Crear indicador');
