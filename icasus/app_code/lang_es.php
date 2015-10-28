@@ -37,6 +37,7 @@ define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores/dato
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
 define('TXT_LLAMAR_TLF', 'Llamar al teléfono');
 define('TXT_INVITADO', 'Invitado');
+define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_RESET', 'Reset');
 
 //Accesibilidad (atributo alt de las imágenes)
@@ -405,6 +406,8 @@ define('MSG_ERR', 'Por favor inténtelo de nuevo, si el problema persiste pónga
 define('MSG_NO_SESION', 'Debe iniciar sesión.');
 define('MSG_GUARDAR_OK', 'Se han guardado los cambios correctamente.');
 define('MSG_CAMPO_REQ', 'Campo obligatorio');
+define('MSG_BUSCAR_NO_RESUL', 'No existen resultados para la búsqueda solicitada.');
+define('MSG_BUSCAR_NO_TEXTO', 'No introdujo ningún texto para buscar.');
 
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');
@@ -674,6 +677,7 @@ define('FIELD_OBSERV', 'Observaciones');
 define('FIELD_ACTIVO', 'Activo');
 define('FIELD_VERSION', 'Versión');
 define('FIELD_STATUS', 'Status');
+define('FIELD_CATEGORIA', 'Categoría');
 
 //Archivos
 define('FIELD_ARCHIVO', 'Archivo');

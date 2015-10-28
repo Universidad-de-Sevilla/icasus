@@ -102,15 +102,17 @@
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
                                 <li class="sidebar-search">
-                                    <div class="input-group">
-                                        <input class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" type="text">
-                                        <span class="input-group-btn">
-                                            <button title="{$smarty.const.TXT_BUSCAR}" class="btn btn-primary" type="button">
-                                                <i class="fa fa-search fa-fw"></i>
-                                            </button>
-                                        </span>
-                                    </div>
-                                    <!-- /input-group -->
+                                    <form method="post" action="index.php?page=busqueda" >
+                                        <div class="input-group">
+                                            <input id="texto_buscar" name="texto_buscar" class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" type="text">
+                                            <span class="input-group-btn">
+                                                <button id="btn_buscar" title="{$smarty.const.TXT_BUSCAR}" class="btn btn-primary" type="submit">
+                                                    <i class="fa fa-search fa-fw"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </form>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_INICIO}" href='index.php?page=inicio' accesskey='h'>
@@ -143,7 +145,7 @@
 
                 <!-- Page Content -->
                 <div id="page-wrapper">
-                    <div class="container-fluid">
+                    <div id="page-container" class="container-fluid">
 
                         <!-- Notificaciones -->
                         {if isset($smarty.get.error)}
