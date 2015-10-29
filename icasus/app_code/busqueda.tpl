@@ -158,15 +158,7 @@
                                                     <td>
                                                         <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROC_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                             <i class="fa fa-folder fa-fw"></i>
-                                                        </a>                 
-                                                        {if $_control || $_usuario->id == $proceso->id_propietario}
-                                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS}" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                                                                <i class="fa fa-file fa-fw"></i>
-                                                            </a>
-                                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                                                                <i class="fa fa-pencil fa-fw"></i>
-                                                            </a>
-                                                        {/if}
+                                                        </a>
                                                     </td>
                                                 </tr>
                                             {/foreach}
@@ -254,19 +246,6 @@
                                                         <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                             <i class="fa fa-tags fa-fw"></i>
                                                         </a>
-                                                        {if $_control OR $_usuario->id==$indicador->id_responsable}
-                                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
-                                                                <i class="fa fa-pencil fa-fw"></i>
-                                                            </a>
-                                                            {if !$indicador->calculo}
-                                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
-                                                                    <i class="fa fa-pencil-square-o fa-fw"></i> 
-                                                                </a>
-                                                            {/if}
-                                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
-                                                                <i class="fa fa-user fa-fw"></i>
-                                                            </a>
-                                                        {/if}
                                                     </td>
                                                 </tr>
                                             {/foreach}
@@ -346,19 +325,6 @@
                                                         <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
                                                             <i class="fa fa-tags fa-fw"></i>
                                                         </a>
-                                                        {if $_control OR $_usuario->id==$dato->id_responsable}
-                                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
-                                                                <i class="fa fa-pencil fa-fw"></i>
-                                                            </a>
-                                                            {if !$dato->calculo}
-                                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=indicador_subunidad_valor&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
-                                                                    <i class="fa fa-pencil-square-o fa-fw"></i> 
-                                                                </a>
-                                                            {/if}
-                                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
-                                                                <i class="fa fa-user fa-fw"></i>
-                                                            </a>
-                                                        {/if}
                                                     </td>
                                                 </tr>
                                             {/foreach}
