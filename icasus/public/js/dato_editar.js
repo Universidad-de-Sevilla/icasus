@@ -45,11 +45,15 @@ $(document).ready(function () {
             $('#formula_calculo').removeClass('hidden');
             $('#intervalo').addClass('hidden');
             $('#calculo').removeAttr('disabled');
+            $('.heredado').removeClass('hidden');
+            $("#id_tipo_agregacion").trigger("chosen:updated");
         }
         else {
             $('#calculo').attr('disabled', 'disabled');
             $('#formula_calculo').addClass('hidden');
             $('#intervalo').removeClass('hidden');
+            $('.heredado').addClass('hidden');
+            $("#id_tipo_agregacion").trigger("chosen:updated");
         }
     });
 

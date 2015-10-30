@@ -322,9 +322,9 @@
                                 <th>{$smarty.const.FIELD_PERIOD}</th>
                                 <td>{$dato->periodicidad}</td>
                             </tr>      
-                            <tr title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}">
-                                <th>{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</th>
-                                <td>{$dato->tipo_agregacion_temporal->descripcion}</td>
+                            <tr>
+                                <th title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</th>
+                                <td title="{$dato->tipo_agregacion_temporal->explicacion}">{$dato->tipo_agregacion_temporal->descripcion}</td>
                             </tr>
                             <tr>
                                 <th>{$smarty.const.FIELD_OBSERV}</th>
@@ -408,9 +408,9 @@
                                     {/if}
                                 </td>
                             </tr>
-                            <tr title="{$smarty.const.TXT_CALCULO_TOTAL}">
-                                <th>{$smarty.const.FIELD_CALC_TOTAL}</th>
-                                <td>{$dato->tipo_agregacion->descripcion}</td>
+                            <tr>
+                                <th title="{$smarty.const.TXT_CALCULO_TOTAL}">{$smarty.const.FIELD_CALC_TOTAL}</th>
+                                <td title="{$dato->tipo_agregacion->explicacion}">{$dato->tipo_agregacion->descripcion}</td>
                             </tr>
                         </tbody>
                     </table>

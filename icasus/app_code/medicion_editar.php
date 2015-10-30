@@ -138,7 +138,7 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
 
     //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
-    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
     $tipo_agregacion = new Tipo_agregacion();
     $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
     $smarty->assign("agregacion", $tipo_agregacion->descripcion);

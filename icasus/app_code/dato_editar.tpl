@@ -140,8 +140,8 @@
                                 <div class="col-sm-8">
                                     <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
                                         {foreach $tipos_agregacion as $tipo_agregacion}
-                                            {if $tipo_agregacion->id != 0}
-                                                <option value="{$tipo_agregacion->id}" {if $dato->id_tipo_agregacion_temporal == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+                                            {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 6}
+                                                <option title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" {if $dato->id_tipo_agregacion_temporal == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
                                             {/if}
                                         {/foreach}
                                     </select>
@@ -330,7 +330,7 @@
                                     <select class="form-control chosen-select" name="id_tipo_agregacion" id="id_tipo_agregacion">
                                         {foreach $tipos_agregacion as $tipo_agregacion}
                                             {if $tipo_agregacion->id != 0 AND $tipo_agregacion->id != 5}
-                                                <option value="{$tipo_agregacion->id}" {if $dato->id_tipo_agregacion == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+                                                <option {if $tipo_agregacion->id == 6 && !$dato->calculo}class="hidden heredado"{else if $tipo_agregacion->id == 6 && $dato->calculo}class="heredado"{/if} title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" {if $dato->id_tipo_agregacion == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
                                             {/if}
                                         {/foreach}
                                     </select>

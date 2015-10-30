@@ -213,14 +213,13 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
         $datos[] = $registro;
     }
 
-    // CORREGIDO NO ES NECESARIO DE MOMENTO
     // Aquí van los totales, si el indicador es calculado usamos obtener_total_calculado
-//    if ($calculo)
-//    {
-//        $totales = obtener_total_calculado($id, $fecha_inicio, $fecha_fin, $periodicidad);
-//        $datos = array_merge($datos, $totales);
-//    }
-//    else
+    if ($calculo)
+    {
+        $totales = obtener_total_calculado($id, $fecha_inicio, $fecha_fin, $periodicidad);
+        $datos = array_merge($datos, $totales);
+    }
+    else
 //   ------------------------------------------------------------ 
     {
         if ($operador == 'MEDIANA')

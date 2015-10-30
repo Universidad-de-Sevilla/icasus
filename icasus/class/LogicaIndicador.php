@@ -486,18 +486,22 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
+    //-----------------------------------------------------------------------------
+    // FUNCIONES PARA EL CÁLCULO DE TOTALES
+    // EN INDICADORES/DATOS
+    //-----------------------------------------------------------------------------
     //Calcula el total del indicador que recibe como parámetro para el conjunto 
     //de valores que también recibe como parámetro y en función de su tipo de agregación 
     //si es no agregado devolverá null.
-    public function calcular_total($indicador, $valores)
+    public function calcular_total($indicador, $valores, $etiqueta)
     {
         $total = null;
         //Significa que la medición no es centralizada
         if (count($valores) > 1)
         {
-            $total = $this->calcular_total_agregacion($indicador, $valores);
+            $total = $this->calcular_total_agregacion($indicador, $valores, $etiqueta);
         }
-        //La medición esta centralizada por tanto sólo tenemos ub valor
+        //La medición esta centralizada por tanto sólo tenemos un valor
         else
         {
             $total = $valores[0]->valor;
@@ -505,7 +509,7 @@ class LogicaIndicador implements ILogicaIndicador
         return $total;
     }
 
-    private function calcular_total_agregacion($indicador, $valores)
+    private function calcular_total_agregacion($indicador, $valores, $etiqueta)
     {
         switch ($indicador->id_tipo_agregacion)
         {
@@ -532,9 +536,61 @@ class LogicaIndicador implements ILogicaIndicador
                     //Recoge la mediana del valor que tenga la Unidad madre
                     return $this->logicaValores->mediana_manual($indicador, $valores);
                 }
-            //No agregados o evolutivos (temporal)
+            //TODO: No agregados o evolutivos (temporal)
+            case 5:
+            //Heredado de sus influyentes (sólo en indicadores/datos calculados)
+            case 6:
+                {
+                    return $this->calcular_total_heredado($indicador, $etiqueta);
+                }
             default:return null;
         }
+    }
+
+    //Calcula el total del indicador que recibe como parámetro del total de sus
+    //indicadores inluyentes que también recibe como parámetros
+    public function calcular_total_heredado($indicador, $etiqueta)
+    {
+        // Recorremos la cadena $calculo para sacar y calcular las variables
+        // Almacenamos el resultado en $formula
+        $es_variable = false;
+        $formula = "";
+        $calculo = str_split($indicador->calculo);
+        foreach ($calculo as $elemento)
+        {
+            if ($elemento == "[")
+            {
+                $variable = "";
+                $es_variable = true;
+                continue;
+            }
+            if ($elemento == "]")
+            {
+                if (is_numeric($variable))
+                {
+                    $id_operando = (int) $variable;
+                    $operando = new Indicador();
+                    $operando->Load("id=$id_operando");
+                    $valores = $this->indicador_valores_medicion($operando, $etiqueta);
+                    $valor_total = $this->calcular_total($operando, $valores, $etiqueta);
+                    $formula .= "$valor_total";
+                }
+                $es_variable = false;
+                continue;
+            }
+            if ($es_variable)
+            {
+                $variable .= $elemento;
+            }
+            else
+            {
+                $formula .= $elemento;
+            }
+        }
+        // Calcula el resultado de la formula y guarda el valor final 
+        eval("\$valor_final = $formula;");
+        $total = $valor_final;
+        return $total;
     }
 
     //-----------------------------------------------------------------------------
@@ -700,7 +756,7 @@ class LogicaIndicador implements ILogicaIndicador
                     $operando = new Indicador();
                     $operando->Load("id=$id_operando");
                     $valores = $this->indicador_valores_medicion($operando, $etiqueta);
-                    $valor_total = $this->calcular_total($operando, $valores);
+                    $valor_total = $this->calcular_total($operando, $valores, $etiqueta);
                     $formula .= "$valor_total";
                 }
                 $es_variable = false;
