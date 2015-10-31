@@ -113,7 +113,7 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS}</span>
+                <span class="panel-title"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROC_LIST}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->

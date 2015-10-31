@@ -1,11 +1,10 @@
 //--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
-// Archivo: public/js/indicador_dato_mostrar.js
+// Archivo: public/js/entidad_mostrar.js
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-//Muestra los gráficos de los indicadores y datos
-//en los ficheros indicador_mostrar.tpl y dato_mostrar.tpl
+//Muestra los gráficos de los indicadores y datos en entidad_mostrar.tpl
 //----------------------------------------------------------------------------
 
 // Para cada contenedor de clase highchart vamos a pintar el gráfico
@@ -133,6 +132,7 @@ function pintaGrafico(chartOptions) {
 
 // Crea un nuevo gráfico con un popup de Highslide
 var i = 0; //Contador de popus
+hs.zIndexCounter = 2000; //z-index del popup
 hs.Expander.prototype.onAfterExpand = function () {
     if (this.custom.chartOptions) {
         var chartOptions = this.custom.chartOptions;

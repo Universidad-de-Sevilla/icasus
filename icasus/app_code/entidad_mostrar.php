@@ -22,7 +22,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $smarty->assign('entidad', $entidad);
 
     // Obtenemos los procesos de la unidad sus indicadores y datos
-    $smarty->assign('procesos_propios', $procesos);
+    $smarty->assign('procesos', $procesos);
     $i = new Indicador();
     $indicadores = array();
     foreach ($procesos as $proceso)
