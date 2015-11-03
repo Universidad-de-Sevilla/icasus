@@ -4,47 +4,27 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-//Incluye el código JavaScript para el fichero cuadro_mostrar.tpl que gestiona 
-//las gráficas de los cuadros de mando.
+// Incluye el código JavaScript para el fichero cuadro_mostrar.tpl que gestiona 
+// las gráficas de los cuadros de mando.
 //----------------------------------------------------------------------------
 
 //Diaĺogo de confirmación para el botón de borrar panel
-$(".borrar").on('click', function (evento) {
-    var boton_borrar, id_panel;
-    boton_borrar = $(this);
-    id_panel = $(this).data("id_panel");
-    $('#nombre_panel').html(boton_borrar.data('nombre_panel'));
-    $("#dialogo_borrar_panel").dialog({
-        autoOpen: true, modal: true,
-        title: "Borrar Panel",
-        buttons: [
-            {
-                text: "Cancelar",
-                class: 'red',
-                style: 'color:white;',
-                click: function () {
-                    $(this).dialog("close");
-                }
-            },
-            {
-                text: "Confirmar",
-                class: 'green',
-                style: 'color:white;',
-                click: function () {
-                    $(this).dialog("close");
-                    $.ajax({
-                        url: "index.php?page=panel_borrar&ajax=true&id_panel=" + id_panel,
-                        success: function (datos) {
-                            $(boton_borrar).parent().siblings('.section').html('<h4>Borrando ...</h4>');
-                            boton_borrar.parents(".box").remove();
-                        }
-                    });
-                }
+$('#dialogo_borrado_panel').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var nombre_panel = button.data('nombre_panel');
+    var id_panel = button.data('id_panel');
+    var modal = $(this);
+    modal.find('#nombre_panel').text(nombre_panel);
+    modal.find('#borrar').click(function () {
+        $(this).parent().siblings('.modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> Borrando...</h4>");
+        $.ajax({
+            url: "index.php?page=panel_borrar&ajax=true&id_panel=" + id_panel,
+            success: function () {
+                button.parents(".panel").remove();
+                $('#dialogo_borrado_panel').modal('hide');
             }
-
-        ]
+        });
     });
-    evento.preventDefault();
 });
 
 //----------------------------------------------------------------------------------------
@@ -65,7 +45,7 @@ $('.panel_linea').each(function () {
     var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Leyenda donde irań los indicadores relacionados
     var leyenda = $(this).parent().siblings('.panel-footer');
-//    leyenda.append('<i style="font-size:0.9em">Enlaces:<p>');
+    leyenda.append('<p style="font-size:0.9em">Indicador/es:<p>');
     //Guarda el identificador de los indicadores representados para evitar 
     //la repetición de nombres y de valores de referencia
     var indicadores_procesados = new Array();
@@ -124,7 +104,7 @@ $('.panel_linea').each(function () {
                 //Incluye en listado de indicadores el indicador relacionado si no estaba ya
                 if (indicadores_procesados.indexOf(indicador.id) === -1) {
                     leyenda.append('<p style="font-size:0.9em"><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                            + '&id_entidad=' + indicador.id_unidad + '"><i class="fa fa-link fa-fw"></i> ' + indicador.nombre + '</a></p>');
+                            + '&id_entidad=' + indicador.id_unidad + '">' + indicador.nombre + '</a></p>');
                     indicadores_procesados.push(indicador.id);
                 }
 
@@ -202,7 +182,7 @@ $(".panel_barra").each(function () {
     var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Leyenda donde irań los indicadores relacionados
     var leyenda = $(this).parent().siblings('.panel-footer');
-    leyenda.append('<p><h4>Indicador base (gráfico de barras):</h4><p>');
+    leyenda.append('<p style="font-size:0.9em">Indicador base (gráfico de barras):<p>');
     //Guarda los totales del indicador base
     var totales = new Array();
     //Guarda los datos de todas las series de cada indicador del panel
@@ -367,7 +347,7 @@ $(".panel_tarta").each(function () {
     var medicion, total = 0;
     //Leyenda donde ira el indicador relacionado
     var leyenda = $(this).parent().siblings('.panel-footer');
-    leyenda.append('<p><h4>Indicador:</h4><p>');
+    leyenda.append('<p style="font-size:0.9em">Indicador:<p>');
 
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie
@@ -479,24 +459,18 @@ $(".panel_tabla").each(function () {
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function (indicadores) {
         // De momento cogemos solo el primer indicador por si viene mas de uno 
         var indicador = indicadores[0];
-        leyenda.html('<h4>' + indicador.nombre + '</h4>');
+        leyenda.html('<p style="font-size:0.9em">' + indicador.nombre + '</p>');
         $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id, function (datos) {
             var items = [];
             // Tomamos la entidad a mostrar del panel_indicador actual
             var id_entidad = indicador.id_entidad;
             $.each(datos, function (i, dato) {
-                var paridad;
                 if (dato.id_unidad == id_entidad)
                 {
-                    if (i % 2 === 0) {
-                        paridad = "odd";
-                    } else {
-                        paridad = "even";
-                    }
-                    items.push('<tr class="' + paridad + '"><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
+                    items.push('<tr><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
                 }
             });
-            $('<table />', {'class': 'static',
+            $('<table />', {'class': 'table table-striped table-hover',
                 'data-id_indicador': indicador.id,
                 html: items.join('')
             }).appendTo('#panel_' + id_panel);
@@ -505,77 +479,15 @@ $(".panel_tabla").each(function () {
 });
 
 //Paneles de tabla multi
-//Se usa en "la biblioteca en cifras"
-//Solo pinta años completos de momento
-//Es una función "digna de mejora"
+//Se usa en "la biblioteca en cifras" y en datos Rebiun
 $(".panel_tabla_multi").each(function () {
-    var fecha_inicio = $(this).attr("data-fecha_inicio");
-    var fecha_fin = $(this).attr("data-fecha_fin");
-    var id_panel = $(this).data("id_panel");
-    var leyenda = $(this).parent().siblings('.panel-footer');
-    var altura;
-    var apiURL;
-    var htmlTabla;
-    var cuenta_indicadores;
-
-    leyenda.insertBefore($(this));
-//    leyenda.html('<h4>Poner algo aquí</h4>');
-
-    fecha = new Date(fecha_inicio);
-    anio_inicio = fecha.getFullYear();
-    fecha = new Date(fecha_fin);
-    anio_fin = fecha.getFullYear();
-    htmlTabla += "<thead><tr><th>Nombre</th>";
-    for (anio = anio_inicio; anio <= anio_fin; anio++) {
-        htmlTabla += "<th>" + anio + "</th>";
-    }
-    htmlTabla += "</tr></thead>";
-
-    apiURL = "api_publica.php?metodo=get_indicadores_panel_con_datos&id=" + id_panel
-            + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin;
-
-    $.getJSON(apiURL, function (indicadores) {
-        $.each(indicadores, function (i, datos) {
-            var indicador = datos.indicador;
-            var paridad;
-            if (i % 2 === 0) {
-                paridad = "odd";
-            } else {
-                paridad = "even";
-            }
-            htmlTabla += '<tr class="' + paridad + '"><td>' + indicador.nombre + '</td>';
-            anio = anio_inicio;
-            $.each(datos.valores, function (j, valor) {
-                // Comprueba que el valor corresponde a la columna del año 
-                while (valor.anio > anio + j) {
-                    htmlTabla += '<td>&nbsp;</td>';
-                    anio++;
-                }
-                htmlTabla += '<td>' + valor.valor + '</td>';
-            });
-            htmlTabla += '</tr>';
-            cuenta_indicadores = i;
-        });
-        $('<table />', {'class': 'static', html: htmlTabla}).appendTo('#panel_' + id_panel);
-        //Ajustamos la altura de la gráfica y del contenedor según el número de indicadores del panel
-        altura = (200 + (25 * cuenta_indicadores));
-        $("#panel_" + id_panel).css("height", altura + "px");
-        $("#panel_" + id_panel).closest(".alturo").css("height", altura + "px");
-    });
-});
-
-//Panel de datos Rebiun
-$(".panel_rebiun").each(function () {
     var fecha = new Date();
     var anio_inicio = fecha.getFullYear() - 2;
     var anio_fin = fecha.getFullYear() - 1;
     var fecha_inicio = anio_inicio + "-01-01";
     var fecha_fin = anio_fin + "-12-31";
     var id_panel = $(this).data("id_panel");
-    var paridad;
-    var buscador = '<p style="font-weight:bold">Buscar:&nbsp;<input type="text" id="search" placeholder="Teclear..." /></p>';
-    $('#panel_' + id_panel).append(buscador);
-    var htmlTabla = '<table id="tabla_rebiun" class="static">';
+    var htmlTabla = ' <div class="table-responsive"><table id="tabla_rebiun" class="table datatable table-striped table-hover">';
 
     //Creamos la cabecera de la tabla
     htmlTabla += "<thead><tr><th>Código</th><th>Nombre</th>";
@@ -585,13 +497,7 @@ $(".panel_rebiun").each(function () {
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
         $.each(indicadores, function (index, indicador) {
 
-            if (index % 2 === 0) {
-                paridad = "odd";
-            } else {
-                paridad = "even";
-            }
-
-            htmlTabla += '<tr class="' + paridad + '"><td style="white-space:nowrap">' + indicador.codigo + '</td><td>' + indicador.nombre + '</td>';
+            htmlTabla += '<tr><td style="white-space:nowrap">' + indicador.codigo + '</td><td>' + indicador.nombre + '</td>';
 
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
                     "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin;
@@ -647,18 +553,10 @@ $(".panel_rebiun").each(function () {
                 }
             }
         });
-        htmlTabla += '</tbody></table>';
+        htmlTabla += '</tbody></table></div>';
         $('#panel_' + id_panel).append(htmlTabla);
-        $("#search").keyup(function () {
-            _this = this;
-            // Show only matching TR, hide rest of them
-            $.each($("#tabla_rebiun tbody").find("tr"), function () {
-                console.log($(this).text());
-                if ($(this).text().toLowerCase().indexOf($(_this).val().toLowerCase()) === -1)
-                    $(this).hide();
-                else
-                    $(this).show();
-            });
+        $('#tabla_rebiun').DataTable({
+            "pagingType": "full_numbers"
         });
     });
 });
@@ -669,7 +567,7 @@ $(".panel_metrica").each(function () {
     var id_medicion = $(this).data("id_medicion");
     //Leyenda donde ira el indicador relacionado
     var leyenda = $(this).parent().siblings('.panel-footer');
-    leyenda.append('<p><h4>Indicador:</h4><p>');
+    leyenda.append('<p style="font-size:0.9em">Indicador:<p>');
     var medicion; //etiqueta de la medición a mostrar
     var unidad; //etiqueta de la unidad a mostrar
 

@@ -36,16 +36,16 @@
                     <!-- Nav tabs -->
                     <ul class="nav nav-pills nav-justified" role="tablist">     
                         <li id="tab_unidades" role="presentation" class="active">
-                            <a href="#unidades" title="{$smarty.const.FIELD_UNIDS}" aria-controls="{$smarty.const.FIELD_UNIDS}" role="tab" data-toggle="tab">{$smarty.const.FIELD_UNIDS}</a>
+                            <a href="#unidades" title="{$smarty.const.FIELD_UNIDS}" aria-controls="{$smarty.const.FIELD_UNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.FIELD_UNIDS}</a>
                         </li>
                         <li id="tab_procesos" role="presentation">
-                            <a href="#procesos" title="{$smarty.const.TXT_PROCS}" aria-controls="{$smarty.const.TXT_PROCS}" role="tab" data-toggle="tab">{$smarty.const.TXT_PROCS}</a>
+                            <a href="#procesos" title="{$smarty.const.TXT_PROCS}" aria-controls="{$smarty.const.TXT_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS}</a>
                         </li> 
                         <li id="tab_indicadores" role="presentation">
-                            <a href="#indicadores" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab">{$smarty.const.FIELD_INDICS}</a>
+                            <a href="#indicadores" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</a>
                         </li> 
                         <li id="tab_datos" role="presentation">
-                            <a href="#datos" title="{$smarty.const.FIELD_DATOS}" aria-controls="{$smarty.const.FIELD_DATOS}" role="tab" data-toggle="tab">{$smarty.const.FIELD_DATOS}</a>
+                            <a href="#datos" title="{$smarty.const.FIELD_DATOS}" aria-controls="{$smarty.const.FIELD_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}</a>
                         </li> 
                     </ul>
                     <!-- /Nav tabs -->

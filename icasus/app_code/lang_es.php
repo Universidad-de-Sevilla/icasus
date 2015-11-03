@@ -82,6 +82,7 @@ define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
 //Paneles de los Cuadros de Mando
 define('TXT_PANEL_NUEVO', 'Nuevo panel');
 define('TXT_PANEL_AGREGAR', 'Agregar panel');
+define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
 define('TXT_PANELES_INFO', 'Información sobre los paneles');
 
