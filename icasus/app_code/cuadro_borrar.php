@@ -22,14 +22,14 @@ if (filter_has_var(INPUT_GET, 'id_cuadro'))
     $paneles_cuadro = $panel->Find("id_cuadro=$id_cuadro");
     if (!$paneles_cuadro)
     {
-        $aviso = MSG_CUADRO_MANDO_BORRADO . " " . $cuadro->nombre;
+        $exito = MSG_CUADRO_MANDO_BORRADO . " " . $cuadro->nombre;
         $cuadro->delete();
-        header("Location: index.php?page=cuadro_listar&aviso=$aviso");
+        header("Location: index.php?page=cuadro_listar&exito=$exito");
     }
     else
     {
-        $error = ERR_CUAD_MANDO_BORRAR;
-        header("Location: index.php?page=cuadro_listar&error=$error");
+        $aviso = MSG_CUAD_MANDO_BORRAR;
+        header("Location: index.php?page=cuadro_listar&aviso=$aviso");
     }
 }
 else
@@ -37,4 +37,3 @@ else
     $error = ERR_PARAM;
     header("Location: index.php?page=cuadro_listar&error=$error");
 }
-

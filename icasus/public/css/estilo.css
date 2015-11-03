@@ -49,7 +49,7 @@ hr, .divider{
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 0 0 225px;
+        margin: 0 0 0 210px;
         padding: 0 30px 40px;
         border-left: 1px solid #FFC526;
     }
@@ -181,7 +181,7 @@ hr, .divider{
     .sidebar {
         z-index: 1;
         position: absolute;
-        width: 225px;
+        width: 210px;
         margin-top: 51px;
     }
 

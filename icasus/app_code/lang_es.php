@@ -422,6 +422,7 @@ define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el cuadro de mando:');
 define('MSG_CUADRO_MANDO_CONFIRM_BORRAR', '¿Desea borrar el cuadro de mando?');
 define('MSG_CUADRO_MANDO_NO_PROPIO', 'No tiene ningún cuadro de mando propio todavía. Cree un nuevo cuadro de mando.');
 define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún cuadro de mando público todavía. Cree un nuevo cuadro de mando.');
+define('MSG_CUAD_MANDO_BORRAR', 'No se puede borrar un cuadro de mando que contenga paneles. Bórralos primero.');
 //Paneles de los Cuadros de Mando
 define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando el siguiente panel:');
 define('MSG_PANEL_EDITADO', "Panel editado correctamente.");
@@ -558,7 +559,6 @@ define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.'
 define('ERR_CUAD_MANDO', 'El cuadro de mando no existe o no tiene permisos para consultarlo.');
 define('ERR_CUAD_MANDO_PARAM', 'Parámetros insuficientes para mostrar el cuadro de mando.');
 define('ERR_CUAD_MANDO_EDIT', 'El cuadro de mando no existe o no tiene permisos para editarlo.');
-define('ERR_CUAD_MANDO_BORRAR', 'No se puede borrar un cuadro de mando que contenga paneles. Bórralos primero.');
 
 //Datos
 define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo dato.');

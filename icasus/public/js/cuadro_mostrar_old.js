@@ -64,8 +64,8 @@ $('.panel_linea').each(function () {
     //Ancho de la leyenda del gráfico
     var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Leyenda donde irań los indicadores relacionados
-    var leyenda = $(this).parent().siblings('.panel-footer');
-//    leyenda.append('<i style="font-size:0.9em">Enlaces:<p>');
+    var leyenda = $(this).next('.leyenda');
+    leyenda.append('<p><h4>Indicador/es:</h4><p>');
     //Guarda el identificador de los indicadores representados para evitar 
     //la repetición de nombres y de valores de referencia
     var indicadores_procesados = new Array();
@@ -123,8 +123,8 @@ $('.panel_linea').each(function () {
 
                 //Incluye en listado de indicadores el indicador relacionado si no estaba ya
                 if (indicadores_procesados.indexOf(indicador.id) === -1) {
-                    leyenda.append('<p style="font-size:0.9em"><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                            + '&id_entidad=' + indicador.id_unidad + '"><i class="fa fa-link fa-fw"></i> ' + indicador.nombre + '</a></p>');
+                    leyenda.append('<p style="font-size:0.9em">\n\<a href="index.php?page=medicion_listar&id_indicador=' + indicador.id
+                            + '" style="border:0">' + indicador.nombre + '</a></p>');
                     indicadores_procesados.push(indicador.id);
                 }
 
@@ -201,7 +201,7 @@ $(".panel_barra").each(function () {
     //Ancho de la leyenda del gráfico
     var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Leyenda donde irań los indicadores relacionados
-    var leyenda = $(this).parent().siblings('.panel-footer');
+    var leyenda = $(this).next('.leyenda');
     leyenda.append('<p><h4>Indicador base (gráfico de barras):</h4><p>');
     //Guarda los totales del indicador base
     var totales = new Array();
@@ -366,7 +366,7 @@ $(".panel_tarta").each(function () {
     //Variables para guardar el nombre y total de la medición solicitada
     var medicion, total = 0;
     //Leyenda donde ira el indicador relacionado
-    var leyenda = $(this).parent().siblings('.panel-footer');
+    var leyenda = $(this).next('.leyenda');
     leyenda.append('<p><h4>Indicador:</h4><p>');
 
     //Obtenemos la lista de indicadores que forman el panel 
@@ -474,7 +474,7 @@ $(".panel_tarta").each(function () {
 //Paneles de tabla
 $(".panel_tabla").each(function () {
     var id_panel = $(this).data("id_panel");
-    var leyenda = $(this).parent().siblings('.panel-footer');
+    var leyenda = $(this).next('.leyenda');
     leyenda.insertBefore($(this));
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function (indicadores) {
         // De momento cogemos solo el primer indicador por si viene mas de uno 
@@ -512,7 +512,7 @@ $(".panel_tabla_multi").each(function () {
     var fecha_inicio = $(this).attr("data-fecha_inicio");
     var fecha_fin = $(this).attr("data-fecha_fin");
     var id_panel = $(this).data("id_panel");
-    var leyenda = $(this).parent().siblings('.panel-footer');
+    var leyenda = $(this).next('.leyenda');
     var altura;
     var apiURL;
     var htmlTabla;
@@ -668,7 +668,7 @@ $(".panel_metrica").each(function () {
     var id_panel = $(this).data("id_panel");
     var id_medicion = $(this).data("id_medicion");
     //Leyenda donde ira el indicador relacionado
-    var leyenda = $(this).parent().siblings('.panel-footer');
+    var leyenda = $(this).next('.leyenda');
     leyenda.append('<p><h4>Indicador:</h4><p>');
     var medicion; //etiqueta de la medición a mostrar
     var unidad; //etiqueta de la unidad a mostrar
@@ -776,7 +776,6 @@ function pintaGrafico(chartOptions, totales) {
 
 // Crea un nuevo gráfico con un popup de Highslide
 var i = 0; //Contador de popus
-hs.zIndexCounter = 2000; //z-index del popup
 hs.Expander.prototype.onAfterExpand = function () {
     if (this.custom.chartOptions) {
         var chartOptions = this.custom.chartOptions;
