@@ -131,7 +131,7 @@
                                            href='javascript:void(0)' 
                                            data-toggle="modal" 
                                            data-target="#dialogo_borrado_panel">
-                                            <i class="fa fa-times fa-fw"></i>
+                                            <i class="fa fa-trash fa-fw"></i>
                                         </a>
                                     </div>
                                 {/if}
@@ -141,7 +141,9 @@
                         <!-- /.row --> 
                         <div class="row">
                             <div class="col-xs-12">
-                                <span title="{$smarty.const.FIELD_ANCHO}: {$panel->ancho}" class="label label-primary">{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
+                                {if $_usuario->id eq $cuadro->id_usuario}
+                                    <span title="{$smarty.const.FIELD_ANCHO}: {$panel->ancho}" class="label label-primary">{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
+                                {/if}
                                 {if $panel->tipo->id == 2 || $panel->tipo->id == 3 || $panel->tipo->id == 4}
                                     {$smarty.const.TXT_GRAFICO_AUMENTAR} 
                                 {/if}

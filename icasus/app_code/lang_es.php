@@ -76,6 +76,7 @@ define('TXT_CONSULT_AVAN', 'Consulta Avanzada de indicadores y datos');
 define('TXT_CUADRO_MANDO', 'Cuadro de mando');
 define('TXT_CUADROS_MANDO_PUBLIC', 'Cuadros de mando públicos');
 define('TXT_CUADRO_NUEVO', 'Nuevo cuadro de mando');
+define('TXT_CUADRO_PARAM', 'Parámetros del cuadro de mando');
 define('TXT_CUADRO_MANDO_PROPIOS', 'Tus cuadros de mando');
 define('TXT_CUADRO_EDIT', 'Editar cuadro de mando');
 define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
@@ -423,7 +424,9 @@ define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el cuadro de mando:');
 define('MSG_CUADRO_MANDO_CONFIRM_BORRAR', '¿Desea borrar el cuadro de mando?');
 define('MSG_CUADRO_MANDO_NO_PROPIO', 'No tiene ningún cuadro de mando propio todavía. Cree un nuevo cuadro de mando.');
 define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún cuadro de mando público todavía. Cree un nuevo cuadro de mando.');
-define('MSG_CUAD_MANDO_BORRAR', 'No se puede borrar un cuadro de mando que contenga paneles. Bórralos primero.');
+define('MSG_CUADRO_MANDO_BORRAR', 'No se puede borrar un cuadro de mando que contenga paneles. Bórralos primero.');
+define('MSG_CUADRO_CREADO', 'Se ha creado un nuevo cuadro de mando.');
+define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
 //Paneles de los Cuadros de Mando
 define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando el siguiente panel:');
 define('MSG_PANEL_EDITADO', "Panel editado correctamente.");

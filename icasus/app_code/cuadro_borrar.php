@@ -28,7 +28,7 @@ if (filter_has_var(INPUT_GET, 'id_cuadro'))
     }
     else
     {
-        $aviso = MSG_CUAD_MANDO_BORRAR;
+        $aviso = MSG_CUADRO_MANDO_BORRAR;
         header("Location: index.php?page=cuadro_listar&aviso=$aviso");
     }
 }
