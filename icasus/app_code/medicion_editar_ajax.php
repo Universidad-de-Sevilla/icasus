@@ -80,7 +80,7 @@ if ($modulo == 'editarfila')
     $plantilla = 'medicion_editar_ajax.tpl';
 
     //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
-    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
     $tipo_agregacion = new Tipo_agregacion();
     $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
     $smarty->assign("agregacion", $tipo_agregacion->descripcion);
@@ -108,7 +108,7 @@ if ($modulo == 'cancelarfila')
     $plantilla = 'medicion_editar_ajax.tpl';
 
     //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
-    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
     $tipo_agregacion = new Tipo_agregacion();
     $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
     $smarty->assign("agregacion", $tipo_agregacion->descripcion);
