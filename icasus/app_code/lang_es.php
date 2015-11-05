@@ -82,10 +82,10 @@ define('TXT_CUADRO_EDIT', 'Editar cuadro de mando');
 define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
 //Paneles de los Cuadros de Mando
 define('TXT_PANEL_NUEVO', 'Nuevo panel');
+define('TXT_PANEL_PARAM', 'Parámetros del panel');
 define('TXT_PANEL_AGREGAR', 'Agregar panel');
 define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
-define('TXT_PANELES_INFO', 'Información sobre los paneles');
 
 //Datos
 define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
@@ -346,6 +346,7 @@ define('TXT_BARRAS_DESC', 'Puede mostrar varios grupos de indicadores para una s
 define('TXT_LINEAS', 'Líneas');
 define('TXT_LINEAS_DESC', 'Muestra varios indicadores para distintas subunidades como gráfica de líneas.');
 define('TXT_TABLA', 'Tabla');
+define('TXT_TABLA_MULTI', 'Tabla múltiple');
 define('TXT_TABLA_DESC', 'Puede mostrar un indicador con sus mediciones para una o más subunidades en forma de tabla de datos');
 define('TXT_TARTA', 'Tarta');
 define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador entre las subunidades afectadas como gráfica de tarta');
@@ -427,6 +428,7 @@ define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún cuadro de mando público
 define('MSG_CUADRO_MANDO_BORRAR', 'No se puede borrar un cuadro de mando que contenga paneles. Bórralos primero.');
 define('MSG_CUADRO_CREADO', 'Se ha creado un nuevo cuadro de mando.');
 define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
+define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿esta seguro?');
 //Paneles de los Cuadros de Mando
 define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando el siguiente panel:');
 define('MSG_PANEL_EDITADO', "Panel editado correctamente.");

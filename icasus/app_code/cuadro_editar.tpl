@@ -16,6 +16,7 @@
         <ol class="breadcrumb">
             <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
             <li><a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>{$smarty.const.TXT_CUADROS_MANDO}</a></li>
+            <li><a title="{$cuadro->nombre}" href='index.php?page=cuadro_mostrar&id={$cuadro->id}'>{$cuadro->nombre}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -60,19 +61,40 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=cuadro_listar'>
+                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href='index.php?page=cuadro_mostrar&id={$cuadro->id}'>
                                 <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                             </a>
                             <div class="pull-right">
                                 <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
                                     <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                                 </button>
-                                <button title="{$smarty.const.TXT_GRABAR}" type="submit" class="btn btn-success">
+                                <button title="{$smarty.const.TXT_GRABAR}" type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo_confirmar_edicion">
                                     <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}
                                 </button>
                             </div>
                         </div>
                     </div>
+
+                    <!-- Diálogo Confirmar Edición -->
+                    <div class="modal fade" id="dialogo_confirmar_edicion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_CUADRO_EDIT}: {$cuadro->nombre}</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <p>{$smarty.const.MSG_CUADRO_CONFIRM_EDITAR}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                                    <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-success" name="editar" id="editar"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Diálogo Confirmar Edición -->
+
                 </form>
             </div>
             <!-- /.panel-body --> 

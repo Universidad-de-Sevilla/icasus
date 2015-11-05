@@ -1,52 +1,87 @@
-<!-- panel_nuevo.tpl -->
-<div>
-    <form method="post" action="index.php?page=panel_grabar" id="panel_nuevo" name="panel_nuevo">
-        <input type="hidden" name="id_entidad" value="{$id_entidad}" id="id_entidad">
-        <input type="hidden" name="id_cuadro" value="{$id_cuadro}" id="id_cuadro">
-        <div style="opacity: 1;" class="box tabs" id="tab_crear_panel">
-            <ul class="tab_header">
-                <li>
-                    <a class="tipo" data-tipo="panel_metrica"href="#datos_panel"><img src="/icons/ff32/date.png"style="padding-top:5px"><br /> {$smarty.const.TXT_METRICA}</a>
-                </li>
-                <li>
-                    <a class="tipo" data-tipo="panel_linea"href="#datos_panel"><img src="/icons/ff32/chart_curve.png"style="padding-top:5px"><br /> {$smarty.const.TXT_LINEAS}</a>
-                </li>
-                <li>
-                    <a  class="tipo" data-tipo="panel_tarta"href="#datos_panel"><img src="/icons/ff32/chart_pie.png"style="padding-top:5px"><br /> {$smarty.const.TXT_TARTA}</a>
-                </li>
-                <li>
-                    <a class="tipo" data-tipo="panel_barra"href="#datos_panel"><img src="/icons/ff32/chart_bar.png"style="padding-top:5px"><br /> {$smarty.const.TXT_BARRAS}</a>
-                </li>
-                <li>
-                    <a class="tipo" data-tipo="panel_tabla" href="#datos_panel"><img src="/icons/ff32/table.png" style="padding-top:5px"><br /> {$smarty.const.TXT_TABLA}</a>
-                </li>
-                <li>
-                    <a class="tipo" data-tipo="panel_informacion" href="#datos_panel"><img src="/icons/ff32/information.png"style="padding-top:5px" ><br /> {$smarty.const.TXT_AYUDA}</a>
-                </li>
-            </ul>
-            <div style="opacity: 1;" id="datos_panel" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
-                <div id="datos" class="columns clearfix">
-                    {include file="panel_informacion.tpl"}
-                </div>
-                <div class="button_bar clearfix" id="footer_tabs" style="display:none">
-                    <button class="green send_right img_icon has_text" type="submit">
-                        <span>{$smarty.const.TXT_GRABAR}</span>
-                    </button>
-                    <button class="btnPrev red send_left img_icon has_text" onclick="history.back();" type="button">
-                        <span>{$smarty.const.TXT_CANCEL}</span>
-                    </button>
-                </div>
-            </div><!-- fin tab 1 --> 
-        </div><!-- id tab_crear_panel -->
-    </form>
+<!-- Nombre página -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 title="{$_nombre_pagina}" class="page-header">
+            <i class="fa fa-plus-circle fa-fw"></i> {$_nombre_pagina}
+        </h3>
+    </div>
+    <!-- /.col-lg-12 -->
 </div>
+<!-- /.row -->
+<!-- /Nombre página -->
 
-<div>
-    <button class="light send_left" type="reset" value="{$smarty.const.TXT_VOLVER_CUADRO}" name="proceso_cancel" 
-            onclick="history.back();">
-        <img src='/icons/ff16/arrow_undo.png' style="margin:5px" />&nbsp;&nbsp;
-        {$smarty.const.TXT_VOLVER_CUADRO}
-    </button>
+<!-- Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
+            <li><a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>{$smarty.const.TXT_CUADROS_MANDO}</a></li>
+            <li><a title="{$cuadro->nombre}" href='index.php?page=cuadro_mostrar&id={$cuadro->id}'>{$cuadro->nombre}</a></li>
+            <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
 </div>
+<!-- /.row -->
+<!-- /Breadcrumbs -->
 
-<script src="js/panel_nuevo.js" type="text/javascript"></script>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_PANEL_PARAM}</span>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs h4" role="tablist">
+                    <li id="tab_metrica" role="presentation"><a title="{$smarty.const.TXT_METRICA}" aria-controls="{$smarty.const.TXT_METRICA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_metrica" href="#datos_panel"><i class="fa fa-calendar-check-o fa-fw"></i> {$smarty.const.TXT_METRICA}</a></li>
+                    <li id="tab_lineas" role="presentation"><a title="{$smarty.const.TXT_LINEAS}" aria-controls="{$smarty.const.TXT_LINEAS}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_linea" href="#datos_panel"><i class="fa fa-line-chart fa-fw"></i> {$smarty.const.TXT_LINEAS}</a></li>
+                    <li id="tab_tarta" role="presentation"><a title="{$smarty.const.TXT_TARTA}" aria-controls="{$smarty.const.TXT_TARTA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tarta" href="#datos_panel"><i class="fa fa-pie-chart fa-fw"></i> {$smarty.const.TXT_TARTA}</a></li>
+                    <li id="tab_barras" role="presentation"><a title="{$smarty.const.TXT_BARRAS}" aria-controls="{$smarty.const.TXT_BARRAS}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_barra" href="#datos_panel"><i class="fa fa-bar-chart fa-fw"></i> {$smarty.const.TXT_BARRAS}</a></li>
+                    <li id="tab_tabla" role="presentation"><a title="{$smarty.const.TXT_TABLA}" aria-controls="{$smarty.const.TXT_TABLA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla" href="#datos_panel"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a></li>
+                    <li id="tab_tabla_multi" role="presentation"><a title="{$smarty.const.TXT_TABLA_MULTI}" aria-controls="{$smarty.const.TXT_TABLA_MULTI}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla_multi" href="#datos_panel"><i class="fa fa-object-group fa-fw"></i> {$smarty.const.TXT_TABLA_MULTI}</a></li>
+                    <li id="tab_info" role="presentation" class="active" ><a title="{$smarty.const.TXT_AYUDA}" aria-controls="{$smarty.const.TXT_AYUDA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_informacion" href="#datos_panel"><i class="fa fa-question-circle fa-fw"></i> {$smarty.const.TXT_AYUDA}</a></li>
+                </ul>
+                <!-- /Nav tabs -->
+                <form method="post" action="index.php?page=panel_grabar" id="panel_nuevo" name="panel_nuevo"
+                      data-toggle="validator" class="form-horizontal">
+                    <input type="hidden" name="id_entidad" value="{$id_entidad}" id="id_entidad">
+                    <input type="hidden" name="id_cuadro" value="{$cuadro->id}" id="id_cuadro">
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!-- Tab -->
+                        <div role="tabpanel" class="tab-pane active" id="datos_panel">
+                            <div id="datos">
+                                {include file="panel_informacion.tpl"}
+                            </div>
+                            <div id="footer_tabs" class="hidden" class="form-group">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href='index.php?page=cuadro_mostrar&id={$cuadro->id}'>
+                                        <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                    </a>
+                                    <div class="pull-right">
+                                        <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
+                                            <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
+                                        </button>
+                                        <button title="{$smarty.const.TXT_GRABAR}" type="submit" class="btn btn-success">
+                                            <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Tab -->
+                    </div>
+                    <!-- /Tab panes -->
+
+                </form>
+            </div>
+            <!-- /.panel-body --> 
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
