@@ -40,7 +40,7 @@
                     <li id="tab_tarta" role="presentation"><a title="{$smarty.const.TXT_TARTA}" aria-controls="{$smarty.const.TXT_TARTA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tarta" href="#datos_panel"><i class="fa fa-pie-chart fa-fw"></i> {$smarty.const.TXT_TARTA}</a></li>
                     <li id="tab_barras" role="presentation"><a title="{$smarty.const.TXT_BARRAS}" aria-controls="{$smarty.const.TXT_BARRAS}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_barra" href="#datos_panel"><i class="fa fa-bar-chart fa-fw"></i> {$smarty.const.TXT_BARRAS}</a></li>
                     <li id="tab_tabla" role="presentation"><a title="{$smarty.const.TXT_TABLA}" aria-controls="{$smarty.const.TXT_TABLA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla" href="#datos_panel"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a></li>
-                    <li id="tab_tabla_multi" role="presentation"><a title="{$smarty.const.TXT_TABLA_MULTI}" aria-controls="{$smarty.const.TXT_TABLA_MULTI}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla_multi" href="#datos_panel"><i class="fa fa-object-group fa-fw"></i> {$smarty.const.TXT_TABLA_MULTI}</a></li>
+                    <li id="tab_tabla_multi" role="presentation"><a title="{$smarty.const.TXT_TABLA_MULTI}" aria-controls="{$smarty.const.TXT_TABLA_MULTI}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla_multi" href="#datos_panel"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA_MULTI}</a></li>
                     <li id="tab_info" role="presentation" class="active" ><a title="{$smarty.const.TXT_AYUDA}" aria-controls="{$smarty.const.TXT_AYUDA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_informacion" href="#datos_panel"><i class="fa fa-question-circle fa-fw"></i> {$smarty.const.TXT_AYUDA}</a></li>
                 </ul>
                 <!-- /Nav tabs -->
@@ -53,6 +53,7 @@
                     <div class="tab-content">
                         <!-- Tab -->
                         <div role="tabpanel" class="tab-pane active" id="datos_panel">
+                            <br>
                             <div id="datos">
                                 {include file="panel_informacion.tpl"}
                             </div>

@@ -1,68 +1,93 @@
-<div style="border:0px"  class="columns clearfix">
-    <div style="border:0px" class="col_50">
-        <div style="border:0px" class="col_25">
-            <div class="section">
-                <img class="send_right" src="/icons/ff32/date.png" alt="{$smarty.const.TXT_METRICA}" style="padding-top:5px" >
+<div class="row">
+    <div class="col-md-6">
+        <div class="well" title="{$smarty.const.TXT_METRICA}: {$smarty.const.TXT_METRICA_DESC}">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-calendar-check-o fa-4x"></i>
+                </div>
+                <div class="col-xs-9">
+                    <strong>{$smarty.const.TXT_METRICA}:</strong> {$smarty.const.TXT_METRICA_DESC}
+                </div>
             </div>
         </div>
-        <div style="border:0px" class="col_75">
-            <div class="section">
-                <p><strong>{$smarty.const.TXT_METRICA}:</strong> {$smarty.const.TXT_METRICA_DESC}</p>
-            </div>
-        </div>
+        <!-- /.well -->
     </div>
-    <div style="border:0px" class="col_50">
-        <div style="border:0px" class="col_25">
-            <div class="section">
-                <img class="send_right" src="/icons/ff32/chart_curve.png" alt="{$smarty.const.TXT_LINEAS}" style="padding-top:5px" >
+    <!-- /.col-md-6 -->
+    <div class="col-md-6">
+        <div class="well" title="{$smarty.const.TXT_LINEAS}: {$smarty.const.TXT_LINEAS_DESC}">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-line-chart fa-4x"></i>
+                </div>
+                <div class="col-xs-9">
+                    <strong>{$smarty.const.TXT_LINEAS}:</strong> {$smarty.const.TXT_LINEAS_DESC}
+                </div>
             </div>
         </div>
-        <div style="border:0px" class="col_75">
-            <div class="section">
-                <p><strong>{$smarty.const.TXT_LINEAS}: </strong> {$smarty.const.TXT_LINEAS_DESC}</p>
-            </div>
-        </div>
+        <!-- /.well -->
     </div>
+    <!-- /.col-md-6 -->
 </div>
-
-<div style="border:0px" class="columns clearfix">
-    <div style="border:0px" class="col_50">
-        <div style="border:0px" class="col_25">
-            <div class="section">
-                <img class="send_right" src="/icons/ff32/chart_pie.png"  alt="{$smarty.const.TXT_TARTA}" style="padding-top:5px" >
+<!-- /.row -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="well" title="{$smarty.const.TXT_TARTA}: {$smarty.const.TXT_TARTA_DESC}">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-pie-chart fa-4x"></i>
+                </div>
+                <div class="col-xs-9">
+                    <strong>{$smarty.const.TXT_TARTA}:</strong> {$smarty.const.TXT_TARTA_DESC}
+                </div>
             </div>
         </div>
-        <div style="border:0px" class="col_75">
-            <div class="section">
-                <p><strong>{$smarty.const.TXT_TARTA}:</strong> {$smarty.const.TXT_TARTA_DESC}</p>
-            </div>
-        </div>
+        <!-- /.well -->
     </div>
-    <div style="border:0px" class="col_50">
-        <div style="border:0px" class="col_25">
-            <div class="section">
-                <img class="send_right" src="/icons/ff32/chart_bar.png" alt="{$smarty.const.TXT_BARRAS}" style="padding-top:5px" >
+    <!-- /.col-md-6 -->
+    <div class="col-md-6">
+        <div class="well" title="{$smarty.const.TXT_BARRAS}: {$smarty.const.TXT_BARRAS_DESC}">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-bar-chart fa-4x"></i>
+                </div>
+                <div class="col-xs-9">
+                    <strong>{$smarty.const.TXT_BARRAS}:</strong> {$smarty.const.TXT_BARRAS_DESC}
+                </div>
             </div>
         </div>
-        <div style="border:0px" class="col_75">
-            <div class="section">
-                <p><strong>{$smarty.const.TXT_BARRAS}:</strong> {$smarty.const.TXT_BARRAS_DESC}</p>
-            </div>
-        </div>
+        <!-- /.well -->
     </div>
+    <!-- /.col-md-6 -->
 </div>
-
-<div style="border:0px" class="columns clearfix">
-    <div style="border:0px" class="col_50">
-        <div style="border:0px" class="col_25">
-            <div class="section">
-                <img class="send_right" src="/icons/ff32/table.png" alt="{$smarty.const.TXT_TABLA}" style="padding-top:5px" >
+<!-- /.row -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="well" title="{$smarty.const.TXT_TABLA}: {$smarty.const.TXT_TABLA_DESC}">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-table fa-4x"></i>
+                </div>
+                <div class="col-xs-9">
+                    <strong>{$smarty.const.TXT_TABLA}:</strong> {$smarty.const.TXT_TABLA_DESC}
+                </div>
             </div>
         </div>
-        <div style="border:0px" class="col_75">
-            <div class="section">
-                <p><strong>{$smarty.const.TXT_TABLA}:</strong> {$smarty.const.TXT_TABLA_DESC}</p>
-            </div>
-        </div>
+        <!-- /.well -->
     </div>
+    <!-- /.col-md-6 -->
+    <div class="col-md-6">
+        <div class="well" title="{$smarty.const.TXT_TABLA_MULTI}: {$smarty.const.TXT_TABLA_MULTI_DESC}">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-table fa-4x"></i>
+                </div>
+                <div class="col-xs-9">
+                    <strong>{$smarty.const.TXT_TABLA_MULTI}:</strong> {$smarty.const.TXT_TABLA_MULTI_DESC}
+                </div>
+            </div>
+        </div>
+        <!-- /.well -->
+    </div>
+    <!-- /.col-md-6 -->
 </div>
+<!-- /.row -->

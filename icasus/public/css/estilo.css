@@ -19,7 +19,8 @@ nav a,.nav-tabs a, h2 a, p a,.breadcrumb a{
     border-color: #FFC526; 
 }
 
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, 
+.nav-tabs > li.active > a:hover {
     border-color: #FFC526 #FFC526 transparent;
 }
 
