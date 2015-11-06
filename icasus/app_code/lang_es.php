@@ -471,7 +471,7 @@ define('MSG_INDIC_NO_UNID_SUP', 'No hay indicadores definidos en la unidad super
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.');
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
-define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores.');
+define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores/datos.');
 define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este indicador?');
 define('MSG_INDIC_CONFIRM_EDITAR', 'Va a editar este indicador, ¿esta seguro?');
 define('MSG_INDIC_BORRADO', 'Se ha borrado el indicador: ');

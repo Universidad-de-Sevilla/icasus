@@ -98,27 +98,21 @@
 {/if}
 
 {if $modulo == 'indicador_metrica'}
-    {if $indicadores}
-        <ul class="list-unstyled">
-            {foreach from=$indicadores item=item}
-                <li>
-                    <div class="radio">
-                        <label>
-                            <input data-id_entidad="{$id_entidad}" data-id_indicador="{$item->id}"
-                                   class="indicador_seleccionado_metrica" type="radio" 
-                                   name="id_indicador" value="{$item->id}" required> 
-                            {$item->nombre}
-                        </label>
-                    </div>
-                </li>
-            {/foreach}
+    <div class="clearfix">
+        <ul style="list-style:none">
+            {if $indicadores}
+                {foreach from=$indicadores item=item}
+                    <li><input data-id_entidad="{$id_entidad}" data-id_indicador="{$item->id}"
+                               class="required indicador_seleccionado_metrica" type="radio" 
+                               name="id_indicador" value="{$item->id}"> 
+                        {$item->nombre}</li>
+                    {/foreach}
+                {else}
+                <li><span class="text error">{$smarty.const.MSG_INDIC_NO_ENC}</span></li>
+                {/if}
         </ul>
-    {else}
-        <div class="alert alert-info alert-dismissible">
-            <i class="fa fa-info-circle fa-fw"></i> 
-            {$smarty.const.MSG_INDIC_NO_ENC}
-        </div>
-    {/if}
+    </div>
+    <div class="required_tag tooltip hover left"></div>
 {/if}
 
 {if $modulo == 'indicador_subunidades'}
@@ -139,4 +133,4 @@
     <div class="required_tag tooltip hover left"></div>
 {/if}
 
-<script src="js/panel_buscador.js"></script>
+<script src="js/panel_buscador.js" type="text/javascript"></script>

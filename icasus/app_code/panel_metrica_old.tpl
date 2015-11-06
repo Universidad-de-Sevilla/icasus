@@ -6,44 +6,53 @@
     <input type="hidden" name="finMonth" value="00">
     <input type="hidden" name="inicioDay" value="00">
     <input type="hidden" name="finDay" value="00">
-
-    <div class="form-group has-feedback">
-        <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
-        <div class="col-sm-8">
-            <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
-            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-            <div class="help-block with-errors"></div>
+    <fieldset class="label_side top">
+        <label>{$smarty.const.FIELD_NOMBRE}</label>
+        <div>
+            <input class="required text" type="text" name="nombre">
+            <div class="required_tag tooltip hover left"></div>
         </div>
-    </div>
-    <div class="form-group has-feedback">
-        <label for="orden" class="col-sm-2 control-label">{$smarty.const.FIELD_ORDEN} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
-        <div class="col-sm-8">
-            <input type="number" value="1" id='orden' name="orden" class="form-control" placeholder="{$smarty.const.FIELD_ORDEN}" min='1' required/>
-            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-            <div class="help-block with-errors"></div>
+    </fieldset>
+
+    <fieldset class="label_side top">
+        <label>{$smarty.const.FIELD_ORDEN}</label>
+        <div class="clearfix">
+            <div class="col_25">
+                <input class="text required" type="text" name="orden">
+            </div>
+            <div class="required_tag tooltip hover left"></div>
         </div>
-    </div>
-    <div class="form-group has-feedback">
-        <label for="ancho" class="col-sm-2 control-label">{$smarty.const.FIELD_ANCHO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
-        <div class="col-sm-8">
-            <input type="number" value="{$panel->ancho_pred}" id='ancho' name="ancho" class="form-control" placeholder="{$smarty.const.FIELD_ANCHO}" min='2' max="12" required/>
-            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-            <div class="help-block with-errors"></div>
+    </fieldset>
+
+    <fieldset class="label_side top">
+        <label>{$smarty.const.FIELD_ANCHO}<span></span></label>
+        <div class="clearfix">
+            <select name="ancho" class="required">
+                {section start=2 loop=17 name="size"}
+                    <option value="{$smarty.section.size.index}"
+                            {if $smarty.section.size.index == $panel->ancho_pred}selected="selected"{/if} >
+                        {$smarty.section.size.index}</option>
+                    {/section}
+            </select>
+            <div class="required_tag tooltip hover left"></div>
         </div>
-    </div>
+    </fieldset>
 
-    <div class="form-group">
-        <label for="buscar_indicador" class="col-sm-2 control-label">{$smarty.const.FIELD_INDIC}/{$smarty.const.FIELD_DATO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
-        <div class="col-sm-8">
-            <input data-id_entidad="{$id_entidad}" class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" name="buscar_indicador" id="buscar_indicador" type="text">
-        </div> 
-    </div>
+    <fieldset class="label_side top fieldset_indicadores">
+        <label>{$smarty.const.FIELD_INDIC}<span></span></label>
+        <div class="clearfix">
+            <div class="col_25">
+                <input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_BUSCAR}" name="buscar_indicador" id="buscar_indicador" type="text">
+            </div>
+        </div>
+        <div id="listado_indicadores">
+        </div>
+    </fieldset>
 
-    <div class="col-sm-8 col-sm-offset-2 hidden" id="listado_indicadores" style="overflow-y: scroll;height: 40vh;"></div>
-
-    <div class="col-sm-8 col-sm-offset-2 hidden" id="subunidades_metrica" style="overflow-y: scroll;height: 40vh;"></div>
-
-    <div class="col-sm-8 col-sm-offset-2 hidden" id="mediciones_metrica" style="overflow-y: scroll;height: 40vh;"></div>
+    <fieldset id="subunidades_metrica" class="label_side top">
+    </fieldset>
+    <fieldset id="mediciones_metrica" class="label_side top">
+    </fieldset>
 {/if}
 
 {if $modulo == 'subunidades_metrica'}
@@ -78,11 +87,10 @@
     <script>
         var page = {/literal}"{$panel->clase_css}"{literal};
         $('.medicion').on('click', function () {
-            $('#footer_tabs').removeClass('hidden');
+            $('#footer_tabs').show();
         });
         $('.subunidad_seleccionada_metrica').on('click', function () {
             var id_indicador = $(this).data('id_indicador');
-            $("#mediciones_metrica").removeClass('hidden');
             $.ajax({
                 url: "index.php?page=" + page + "&ajax=true&modulo=mediciones_metrica&id_indicador="
                         + id_indicador,
@@ -92,7 +100,6 @@
             });
         });
         $('#buscar_indicador').on('keyup', function () {
-            $('#listado_indicadores').removeClass('hidden');
             var cadena = $(this).val();
             var id_entidad = $(this).data('id_entidad');
             $('#subunidades').html('');
@@ -105,3 +112,4 @@
         });
     </script>
 {/literal}
+

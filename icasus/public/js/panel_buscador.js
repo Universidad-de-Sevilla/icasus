@@ -4,7 +4,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-//Incluye el código JavaScript para el fichero panel_buscador.tpl
+// Incluye el código JavaScript para el fichero panel_buscador.tpl
 //----------------------------------------------------------------------------
 
 $('.indicador_seleccionado_tarta').on('click', function () {
@@ -21,6 +21,7 @@ $('.indicador_seleccionado_tarta').on('click', function () {
 $('.indicador_seleccionado_metrica').on('click', function () {
     var id_indicador = $(this).data('id_indicador');
     $('#subunidades_metrica').html('');
+    $('#subunidades_metrica').removeClass('hidden');
     $('#mediciones_metrica').html('');
     $.ajax({
         url: "index.php?page=" + page + "&ajax=true&modulo=subunidades_metrica&id_indicador="
@@ -41,5 +42,3 @@ $('.indicador_seleccionado').on('click', function () {
         }
     });
 });
-
-
