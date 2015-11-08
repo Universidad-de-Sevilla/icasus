@@ -38,6 +38,7 @@ define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
 define('TXT_LLAMAR_TLF', 'Llamar al teléfono');
 define('TXT_INVITADO', 'Invitado');
 define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
+define('TXT_BUSQUEDA_CATEGORIA', 'Resultados de búsqueda/Categoría');
 define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
 
@@ -684,7 +685,6 @@ define('FIELD_OBSERV', 'Observaciones');
 define('FIELD_ACTIVO', 'Activo');
 define('FIELD_VERSION', 'Versión');
 define('FIELD_STATUS', 'Status');
-define('FIELD_CATEGORIA', 'Categoría');
 
 //Archivos
 define('FIELD_ARCHIVO', 'Archivo');

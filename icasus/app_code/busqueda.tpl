@@ -25,16 +25,15 @@
 
 {if $texto}
     <div class="row">
-        <!-- Selección de tipo -->
         <div class="col-lg-12">
             <div class="panel panel-red">
                 <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-star fa-fw"></i> {$smarty.const.FIELD_CATEGORIA}</span>
+                    <span class="panel-title"><i class="fa fa-search fa-fw"></i> {$smarty.const.TXT_BUSQUEDA_CATEGORIA}</span>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     <!-- Nav tabs -->
-                    <ul class="nav nav-pills nav-justified" role="tablist">     
+                    <ul class="nav nav-tabs h4" role="tablist">     
                         <li id="tab_unidades" role="presentation" class="active">
                             <a href="#unidades" title="{$smarty.const.FIELD_UNIDS}" aria-controls="{$smarty.const.FIELD_UNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.FIELD_UNIDS}</a>
                         </li>
@@ -49,26 +48,12 @@
                         </li> 
                     </ul>
                     <!-- /Nav tabs -->
-                </div>
-                <!-- /.panel-body --> 
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-        <!-- /Selección de tipo -->
+                    <br>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
 
-        <div class="col-lg-12">
-            <!-- Tab panes -->
-            <div class="tab-content">
-
-                <!-- Tab unidades -->
-                <div id="unidades" role="tabpanel" class="tab-pane active">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.FIELD_UNIDS}</span>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <!-- Tab unidades -->
+                        <div id="unidades" role="tabpanel" class="tab-pane active">
                             {if $entidades}
                                 <div class="table-responsive">
                                     <table class="table datatable table-striped table-hover">
@@ -102,21 +87,12 @@
                                     {$smarty.const.MSG_BUSCAR_NO_RESUL}
                                 </div>
                             {/if}
-                        </div>
-                        <!-- /.panel-body -->        
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /Tab unidades -->
 
-                <!-- Tab procesos -->
-                <div id="procesos" role="tabpanel" class="tab-pane">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <span class="panel-title"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS}</span>
                         </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <!-- /Tab unidades -->
+
+                        <!-- Tab procesos -->
+                        <div id="procesos" role="tabpanel" class="tab-pane">
                             {if $procesos}
                                 <div class="table-responsive">
                                     <table class="table datatable table-condensed table-striped table-hover">
@@ -172,20 +148,10 @@
                                 </div> 
                             {/if}
                         </div>
-                        <!-- /.panel-body -->        
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /Tab procesos -->
+                        <!-- /Tab procesos -->
 
-                <!-- Tab indicadores -->
-                <div id="indicadores" role="tabpanel" class="tab-pane">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</span>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <!-- Tab indicadores -->
+                        <div id="indicadores" role="tabpanel" class="tab-pane">
                             {if $indicadores}
                                 <div class="table-responsive">
                                     <table class="table table-condensed datatable table-striped table-hover">
@@ -259,20 +225,10 @@
                                 </div> 
                             {/if}
                         </div>
-                        <!-- /.panel-body -->        
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /Tab indicadores -->
+                        <!-- /Tab indicadores -->
 
-                <!-- Tab datos -->
-                <div id="datos" role="tabpanel" class="tab-pane">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <span class="panel-title"><i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}</span>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <!-- Tab datos -->
+                        <div id="datos" role="tabpanel" class="tab-pane">
                             {if $datos}
                                 <div class="table-responsive">
                                     <table class="table table-condensed datatable table-striped table-hover">
@@ -338,17 +294,18 @@
                                 </div> 
                             {/if}
                         </div>
-                        <!-- /.panel-body -->        
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /Tab datos -->
+                        <!-- /Tab datos -->
 
+                    </div>
+                    <!-- /Tab panes -->
+                </div>
+                <!-- /.panel-body --> 
             </div>
-            <!-- /Tab panes -->
+            <!-- /.panel -->
         </div>
         <!-- /.col-lg-12 -->
     </div>
+    <!-- /.row -->
 {else}
     <div class="row">
         <div class="col-lg-12">
