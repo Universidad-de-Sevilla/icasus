@@ -39,38 +39,57 @@
         </div> 
     </div>
 
-    <div class="col-sm-8 col-sm-offset-2 hidden" id="listado_indicadores" style="overflow-y: scroll;height: 40vh;"></div>
+    <div class="form-group has-feedback hidden" id="listado_indicadores"></div>
 
-    <div class="col-sm-8 col-sm-offset-2 hidden" id="subunidades_metrica" style="overflow-y: scroll;height: 40vh;"></div>
+    <div class="form-group has-feedback hidden" id="subunidades_metrica"></div>
 
-    <div class="col-sm-8 col-sm-offset-2 hidden" id="mediciones_metrica" style="overflow-y: scroll;height: 40vh;"></div>
+    <div class="form-group has-feedback hidden" id="mediciones_metrica"></div>
 {/if}
 
 {if $modulo == 'subunidades_metrica'}
-    <label>{$smarty.const.FIELD_SUBUNID}<span></span></label>
-    <div class="clearfix">
-        <div class="col_50">
-            <input data-id_indicador="{$id_indicador}" class="required subunidad_seleccionada_metrica"
-                   name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}"data-nombre_subunidad="Total"> {$smarty.const.FIELD_TOTAL}<br /> 
+    <label for="id_subunidad" class="col-sm-2 control-label">{$smarty.const.FIELD_SUBUNID} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+    <div class="col-sm-8" style="overflow-y: auto;height: 30vh;">
+        <ul class="list-unstyled">
+            <div class="radio">
+                <label>
+                    <input id="id_subunidad" data-id_indicador="{$id_indicador}" class="subunidad_seleccionada_metrica"
+                           name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}" data-nombre_subunidad="Total" required>
+                    {$smarty.const.FIELD_TOTAL}
+                </label>
+            </div>
             {foreach name=subunidades from=$indicador_subunidades item=item}
-                {if $smarty.foreach.subunidades.iteration == floor($indicador_subunidades|@count/2)+1 }</div><div class="col_50 no_border">{/if}
-                <input data-id_indicador="{$id_indicador}" class="required subunidad_seleccionada_metrica"  name="id_subunidad" type="radio" value="{$item->id_entidad}"> {$item->entidad->etiqueta}<br /> 
+                <li>
+                    <div class="radio">
+                        <label>
+                            <input id="id_subunidad" data-id_indicador="{$id_indicador}" class="subunidad_seleccionada_metrica"  name="id_subunidad" type="radio" value="{$item->id_entidad}" required>
+                            {$item->entidad->etiqueta}
+                        </label>
+                    </div>
+                </li>
             {/foreach}
-        </div>
-        <div class="required_tag tooltip hover left"></div>
+        </ul>
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
     </div>
 {/if}
 
 {if $modulo == 'mediciones_metrica'}
-    <label>{$smarty.const.FIELD_FECHA}<span></span></label>
-    <div class="clearfix">
-        <div class="col_50">
+    <label for="id_medicion" class="col-sm-2 control-label">{$smarty.const.FIELD_MED} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+    <div class="col-sm-8" style="overflow-y: auto;height: 30vh;">
+        <ul class="list-unstyled">
             {foreach name=mediciones from=$mediciones item=item}
-                {if $smarty.foreach.mediciones.iteration == floor($mediciones|@count/2)+2}</div><div class="col_50 no_border">{/if}
-                <input data-id_indicador="{$id_indicador}" class="required medicion" name="id_medicion" type="radio" value="{$item->id}"> {$item->etiqueta}<br /> 
+                <li>
+                    <div class="radio">
+                        <label>
+                            <input id="id_medicion" data-id_indicador="{$id_indicador}" class="medicion" name="id_medicion" type="radio" value="{$item->id}" required>
+                            {$item->etiqueta}
+                        </label>
+                    </div>
+                </li>
             {/foreach}
-        </div>
-        <div class="required_tag tooltip hover left"></div>
+        </ul>
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
     </div>
 {/if}
 
