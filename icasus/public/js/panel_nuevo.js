@@ -11,6 +11,8 @@ $(function () {
     $('.tipo').on('click', function () {
         var id_entidad = $('#id_entidad').val();
         var tipo = $(this).data('tipo');
+        var nombre_panel = $(this).data('nombre_panel');
+        $('#nombre_panel').text(': ' + nombre_panel);
         $('#datos_panel').removeClass('active');
         $('#footer_tabs').addClass('hidden');
         $.ajax({

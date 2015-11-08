@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-plus-circle fa-fw"></i> {$_nombre_pagina}
+            <i class="fa fa-plus-circle fa-fw"></i> {$_nombre_pagina}<span id="nombre_panel">: {$smarty.const.TXT_AYUDA}</span>
         </h3>
     </div>
     <!-- /.col-lg-12 -->
@@ -35,13 +35,13 @@
             <div class="panel-body">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs h4" role="tablist">
-                    <li id="tab_metrica" role="presentation"><a title="{$smarty.const.TXT_METRICA}" aria-controls="{$smarty.const.TXT_METRICA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_metrica" href="#datos_panel"><i class="fa fa-calendar-check-o fa-fw"></i> {$smarty.const.TXT_METRICA}</a></li>
-                    <li id="tab_lineas" role="presentation"><a title="{$smarty.const.TXT_LINEAS}" aria-controls="{$smarty.const.TXT_LINEAS}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_linea" href="#datos_panel"><i class="fa fa-line-chart fa-fw"></i> {$smarty.const.TXT_LINEAS}</a></li>
-                    <li id="tab_tarta" role="presentation"><a title="{$smarty.const.TXT_TARTA}" aria-controls="{$smarty.const.TXT_TARTA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tarta" href="#datos_panel"><i class="fa fa-pie-chart fa-fw"></i> {$smarty.const.TXT_TARTA}</a></li>
-                    <li id="tab_barras" role="presentation"><a title="{$smarty.const.TXT_BARRAS}" aria-controls="{$smarty.const.TXT_BARRAS}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_barra" href="#datos_panel"><i class="fa fa-bar-chart fa-fw"></i> {$smarty.const.TXT_BARRAS}</a></li>
-                    <li id="tab_tabla" role="presentation"><a title="{$smarty.const.TXT_TABLA}" aria-controls="{$smarty.const.TXT_TABLA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla" href="#datos_panel"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a></li>
-                    <li id="tab_tabla_multi" role="presentation"><a title="{$smarty.const.TXT_TABLA_MULTI}" aria-controls="{$smarty.const.TXT_TABLA_MULTI}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla_multi" href="#datos_panel"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA_MULTI}</a></li>
-                    <li id="tab_info" role="presentation" class="active" ><a title="{$smarty.const.TXT_AYUDA}" aria-controls="{$smarty.const.TXT_AYUDA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_informacion" href="#datos_panel"><i class="fa fa-question-circle fa-fw"></i> {$smarty.const.TXT_AYUDA}</a></li>
+                    <li id="tab_metrica" role="presentation"><a title="{$smarty.const.TXT_METRICA}" aria-controls="{$smarty.const.TXT_METRICA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_metrica" data-nombre_panel="{$smarty.const.TXT_METRICA}" href="#datos_panel"><i class="fa fa-calendar-check-o fa-fw"></i> {$smarty.const.TXT_METRICA}</a></li>
+                    <li id="tab_lineas" role="presentation"><a title="{$smarty.const.TXT_LINEAS}" aria-controls="{$smarty.const.TXT_LINEAS}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_linea" data-nombre_panel="{$smarty.const.TXT_LINEAS}" href="#datos_panel"><i class="fa fa-line-chart fa-fw"></i> {$smarty.const.TXT_LINEAS}</a></li>
+                    <li id="tab_tarta" role="presentation"><a title="{$smarty.const.TXT_TARTA}" aria-controls="{$smarty.const.TXT_TARTA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tarta" data-nombre_panel="{$smarty.const.TXT_TARTA}" href="#datos_panel"><i class="fa fa-pie-chart fa-fw"></i> {$smarty.const.TXT_TARTA}</a></li>
+                    <li id="tab_barras" role="presentation"><a title="{$smarty.const.TXT_BARRAS}" aria-controls="{$smarty.const.TXT_BARRAS}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_barra" data-nombre_panel="{$smarty.const.TXT_BARRAS}" href="#datos_panel"><i class="fa fa-bar-chart fa-fw"></i> {$smarty.const.TXT_BARRAS}</a></li>
+                    <li id="tab_tabla" role="presentation"><a title="{$smarty.const.TXT_TABLA}" aria-controls="{$smarty.const.TXT_TABLA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla" data-nombre_panel="{$smarty.const.TXT_TABLA}" href="#datos_panel"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a></li>
+                    <li id="tab_tabla_multi" role="presentation"><a title="{$smarty.const.TXT_TABLA_MULTI}" aria-controls="{$smarty.const.TXT_TABLA_MULTI}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla_multi" data-nombre_panel="{$smarty.const.TXT_TABLA_MULTI}" href="#datos_panel"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA_MULTI}</a></li>
+                    <li id="tab_info" role="presentation" class="active" ><a title="{$smarty.const.TXT_AYUDA}" aria-controls="{$smarty.const.TXT_AYUDA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_informacion" data-nombre_panel="{$smarty.const.TXT_AYUDA}" href="#datos_panel"><i class="fa fa-question-circle fa-fw"></i> {$smarty.const.TXT_AYUDA}</a></li>
                 </ul>
                 <!-- /Nav tabs -->
                 <form method="post" action="index.php?page=panel_grabar" id="panel_nuevo" name="panel_nuevo"
