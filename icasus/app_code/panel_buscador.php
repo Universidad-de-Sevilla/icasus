@@ -91,7 +91,6 @@ if (filter_has_var(INPUT_GET, 'modulo'))
     }
 
     $smarty->assign('modulo', $modulo);
-    $smarty->assign('_javascript', array('panel_buscador'));
     $plantilla = "panel_buscador.tpl";
 }
 else

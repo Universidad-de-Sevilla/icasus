@@ -187,8 +187,6 @@ $(".panel_barra").each(function () {
     var totales = new Array();
     //Guarda los datos de todas las series de cada indicador del panel
     var totalDataseries = new Array();
-    //Nos indica si es un gráfico de barras
-    var barras = true;
 
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie

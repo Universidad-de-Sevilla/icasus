@@ -114,7 +114,6 @@
             $('#listado_indicadores').removeClass('hidden');
             var cadena = $(this).val();
             var id_entidad = $(this).data('id_entidad');
-            $('#subunidades').html('');
             $.ajax({
                 url: "index.php?page=panel_buscador&ajax=true&modulo=indicador_metrica&id_entidad=" + id_entidad + "&cadena=" + cadena,
                 success: function (datos) {

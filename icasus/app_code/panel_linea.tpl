@@ -91,6 +91,7 @@
 {if $modulo == 'fecha_fin'}
     {html_select_date prefix="fin" all_extra="class='form-control chosen-select'" display_months=FALSE display_days=FALSE start_year=$fecha_inicio end_year=$smarty.now|date_format:"%Y"}
 {/if}
+<!-- /modulo == fecha_fin -->
 
 {if $modulo == 'subunidades'}
     <ul class="list-unstyled">
@@ -143,7 +144,8 @@
             });
         </script>
     {/literal}
-{/if} <!-- modulo == subunidades -->
+{/if}
+<!-- /modulo == subunidades -->
 
 {literal}
     <script>
@@ -175,7 +177,6 @@
                 $('#listado_indicadores').removeClass('hidden');
                 var cadena = $(this).val();
                 var id_entidad = $(this).data('id_entidad');
-                $('#subunidades').html('');
                 $.ajax({
                     url: "index.php?page=panel_buscador&ajax=true&modulo=indicadores_linea&id_entidad=" + id_entidad + "&cadena=" + cadena,
                     success: function (datos) {

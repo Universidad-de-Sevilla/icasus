@@ -10,6 +10,7 @@
 $('.indicador_seleccionado_tarta').on('click', function () {
     var id_indicador = $(this).data('id_indicador');
     $('#mediciones_tarta').html('');
+    $('#mediciones_tarta').removeClass('hidden');
     $.ajax({
         url: "index.php?page=" + page + "&ajax=true&modulo=mediciones_tarta&id_indicador="
                 + id_indicador,
