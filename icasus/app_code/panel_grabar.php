@@ -67,9 +67,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     $panel_indicador->id_entidad = $id_entidad;
                     if ($panel_indicador->save())
                     {
-                        $aviso = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                        $smarty->assign("aviso", $aviso);
-                        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&aviso=$aviso");
+                        $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                        $smarty->assign("exito", $exito);
+                        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
                     }
                     else
                     {
@@ -103,9 +103,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         $panel_indicador->id_entidad = filter_var($id_subunidades[$i], FILTER_SANITIZE_NUMBER_INT);
                         if ($panel_indicador->save())
                         {
-                            $aviso = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                            $smarty->assign("aviso", $aviso);
-                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&aviso=$aviso");
+                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                            $smarty->assign("exito", $exito);
+                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
                         }
                         else
                         {
@@ -133,9 +133,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     $panel_indicador->id_entidad = $id_entidad;
                     if ($panel_indicador->save())
                     {
-                        $aviso = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                        $smarty->assign("aviso", $aviso);
-                        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&aviso=$aviso");
+                        $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                        $smarty->assign("exito", $exito);
+                        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
                     }
                     else
                     {
@@ -167,9 +167,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         $panel_indicador->id_indicador = filter_var($id_indicador, FILTER_SANITIZE_NUMBER_INT);
                         if ($panel_indicador->save())
                         {
-                            $aviso = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                            $smarty->assign("aviso", $aviso);
-                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&aviso=$aviso");
+                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                            $smarty->assign("exito", $exito);
+                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
                         }
                         else
                         {
@@ -203,9 +203,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         $panel_indicador->id_entidad = filter_var($subunidad, FILTER_SANITIZE_NUMBER_INT);
                         if ($panel_indicador->save())
                         {
-                            $aviso = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                            $smarty->assign("aviso", $aviso);
-                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&aviso=$aviso");
+                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                            $smarty->assign("exito", $exito);
+                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
                         }
                         else
                         {
@@ -237,4 +237,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
 }
-
