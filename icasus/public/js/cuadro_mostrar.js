@@ -613,12 +613,12 @@ $(".panel_rebiun").each(function () {
                 valor_anio_fin = null;
                 datos.forEach(function (dato) {
                     //Buscamos el total del año inicial
-                    if (dato.id_unidad == 0 && dato.medicion == anio_inicio) {
+                    if (dato.id_unidad == indicador.id_entidad && dato.medicion == anio_inicio) {
                         valor_anio_inicio = Math.round(dato.valor * 100) / 100;
                         htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anio_inicio + '</td>';
                     }
                     //Buscamos el total del año final
-                    if (dato.id_unidad == 0 && dato.medicion == anio_fin) {
+                    if (dato.id_unidad == indicador.id_entidad && dato.medicion == anio_fin) {
                         valor_anio_fin = Math.round(dato.valor * 100) / 100;
                         htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anio_fin + '</td>';
                     }
