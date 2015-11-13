@@ -35,6 +35,7 @@ $('.indicador_seleccionado_metrica').on('click', function () {
 $('.indicador_seleccionado').on('click', function () {
     var id_indicador = $(this).data('id_indicador');
     $('#subunidades').html('');
+    $('#subunidades').removeClass('hidden');
     $.ajax({
         url: "index.php?page=" + page + "&ajax=true&modulo=subunidades&id_indicador="
                 + id_indicador,

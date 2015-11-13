@@ -460,6 +460,7 @@ $(".panel_tabla").each(function () {
         leyenda.html('<p style="font-size:0.9em">' + indicador.nombre + '</p>');
         $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id, function (datos) {
             var items = [];
+            items.push('<tr><th>Medición</th><th>Valor</th></tr>')
             // Tomamos la entidad a mostrar del panel_indicador actual
             var id_entidad = indicador.id_entidad;
             $.each(datos, function (i, dato) {

@@ -348,8 +348,8 @@ define('TXT_LINEAS', 'Líneas');
 define('TXT_LINEAS_DESC', 'Muestra varios indicadores/datos para distintas subunidades como gráfica de líneas.');
 define('TXT_TABLA', 'Tabla');
 define('TXT_TABLA_MULTI', 'Tabla múltiple');
-define('TXT_TABLA_MULTI_DESC', 'Tabla que muestra varios indicadores/datos y su evolución en los dos últimos años.');
-define('TXT_TABLA_DESC', 'Puede mostrar un indicador/dato con sus mediciones para una o más subunidades en forma de tabla de datos.');
+define('TXT_TABLA_MULTI_DESC', 'Tabla que muestra varios indicadores/datos y su evolución en los dos últimos años para una subunidad concreta.');
+define('TXT_TABLA_DESC', 'Puede mostrar un indicador/dato con sus mediciones para una subunidad en forma de tabla de datos.');
 define('TXT_TARTA', 'Tarta');
 define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador/dato entre las subunidades afectadas como gráfica de tarta.');
 define('TXT_METRICA', 'Métrica');
@@ -714,8 +714,8 @@ define('FIELD_VISIB_GRAFIC', 'Visible en gráfica');
 
 //Indicadores
 define('FIELD_INDIC', 'Indicador');
-define('FIELD_INDIC_BASE', 'Indicador base');
-define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
+define('FIELD_INDIC_BASE', 'Indicador/dato base');
+define('FIELD_INDIC_COMPLEMENT', 'Indicadores/datos complementarios');
 define('FIELD_INDICS', 'Indicadores');
 define('FIELD_FORM', 'Formulación');
 define('FIELD_FORMULA', 'Fórmula de cálculo');

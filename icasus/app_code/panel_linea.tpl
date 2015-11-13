@@ -89,7 +89,7 @@
 <!-- /modulo == inicio -->
 
 {if $modulo == 'fecha_fin'}
-    {html_select_date prefix="fin" all_extra="class='form-control chosen-select'" display_months=FALSE display_days=FALSE start_year=$fecha_inicio end_year=$smarty.now|date_format:"%Y"}
+    {html_select_date prefix="fin" all_extra="class='form-control chosen-select'id='fin'" display_months=FALSE display_days=FALSE start_year=$fecha_inicio end_year=$smarty.now|date_format:"%Y"}
 {/if}
 <!-- /modulo == fecha_fin -->
 
