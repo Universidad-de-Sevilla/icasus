@@ -66,7 +66,7 @@ define('TXT_ARCHIVO_IMPORT_CSV', 'Importar archivo CSV');
 
 //Clasificación
 define('TXT_POR_MEDICION', 'Por medición');
-define('TXT_POR_ANYOS', 'Por años');
+define('TXT_POR_ANYO', 'Por año');
 
 //Consulta
 define('TXT_CONSULT', 'Consulta');
@@ -670,7 +670,6 @@ define('FIELD_ALIAS', 'Alias');
 define('FIELD_ORDEN', 'Orden');
 define('FIELD_ANCHO', 'Ancho');
 define('FIELD_ANYO', 'Año');
-define('FIELD_ANYOS', 'Años');
 define('FIELD_TOTAL', 'Total');
 define('FIELD_MISION', 'Misión');
 define('FIELD_RESULTS_CLAVE', 'Resultados Clave');

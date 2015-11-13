@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><span></span> ({$smarty.const.FIELD_UNIDS})</h3>
+                <h3 class="modal-title" id="myModalLabel"><span></span> ({$smarty.const.FIELD_SUBUNIDS})</h3>
             </div>
             <div class="modal-body">
                 <div class="row" id="lista_subunidades"></div>
@@ -58,14 +58,14 @@
     <div class="form-group">
         <label for="inicio" class="col-sm-2 control-label">{$smarty.const.FIELD_FECHA_INIC}</label>
         <div class="col-sm-8">
-            {html_select_date prefix="inicio" all_extra="class='form-control chosen-select'" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 
+            {html_select_date prefix="inicio" all_extra="class='form-control chosen-select'id='inicio'" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 
             end_year=$smarty.now|date_format:"%Y" }
         </div>
     </div>
     <div class="form-group">
         <label for="fin" class="col-sm-2 control-label">{$smarty.const.FIELD_FECHA_FIN}</label>
         <div id="div_fecha_fin" class="col-sm-8">
-            {html_select_date prefix="inicio" all_extra="class='form-control chosen-select'" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 
+            {html_select_date prefix="inicio" all_extra="class='form-control chosen-select'id='fin'" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 
             end_year=$smarty.now|date_format:"%Y"}
         </div>
     </div>

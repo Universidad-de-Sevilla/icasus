@@ -43,3 +43,8 @@ $('.indicador_seleccionado').on('click', function () {
         }
     });
 });
+//Chosen selects (añade búsqueda a los html select)
+$(".chosen-select").chosen({
+    disable_search_threshold: 100,
+    no_results_text: "Oops, no se encuentran registros coincidentes"
+});

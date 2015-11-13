@@ -39,13 +39,16 @@
                         </li>
                         <li id="tab_procesos" role="presentation">
                             <a href="#procesos" title="{$smarty.const.TXT_PROCS}" aria-controls="{$smarty.const.TXT_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS}</a>
-                        </li> 
+                        </li>
                         <li id="tab_indicadores" role="presentation">
                             <a href="#indicadores" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</a>
-                        </li> 
+                        </li>
                         <li id="tab_datos" role="presentation">
                             <a href="#datos" title="{$smarty.const.FIELD_DATOS}" aria-controls="{$smarty.const.FIELD_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}</a>
-                        </li> 
+                        </li>
+                        <li id="tab_cuadros" role="presentation">
+                            <a href="#cuadros" title="{$smarty.const.TXT_CUADROS_MANDO}" aria-controls="{$smarty.const.TXT_CUADROS_MANDO}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO}</a>
+                        </li>
                     </ul>
                     <!-- /Nav tabs -->
                     <br>
@@ -178,7 +181,7 @@
                                                         {if $indicador->calculo}
                                                             <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
                                                         {/if}
-                                                        <a target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
+                                                        <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                            title="{$indicador->nombre}: {$indicador->descripcion}">
                                                             {$indicador->nombre}</a>
                                                     </td>
@@ -199,10 +202,10 @@
                                                             {$indicador->responsable_medicion->apellidos}</a>
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_INDIC_MOSTRAR}" target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_INDIC_MOSTRAR}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                             <i class="fa fa-folder fa-fw"></i>
                                                         </a>
-                                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" target="_blank" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                             <i class="fa fa-area-chart fa-fw"></i>
                                                         </a>
                                                         <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
@@ -252,7 +255,7 @@
                                                         {if $dato->calculo}
                                                             <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$dato->calculo}"></i>
                                                         {/if}
-                                                        <a target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
+                                                        <a href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
                                                            title="{$dato->nombre}: {$dato->descripcion}">
                                                             {$dato->nombre}</a>
                                                     </td>
@@ -268,10 +271,10 @@
                                                             {$dato->responsable_medicion->apellidos}</a>
                                                     </td>
                                                     <td>
-                                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_DATO_MOSTRAR}" target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_DATO_MOSTRAR}" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
                                                             <i class="fa fa-folder fa-fw"></i>
                                                         </a>
-                                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" target="_blank" href='index.php?page=graficas_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
                                                             <i class="fa fa-area-chart fa-fw"></i>
                                                         </a>
                                                         <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
@@ -295,6 +298,46 @@
                             {/if}
                         </div>
                         <!-- /Tab datos -->
+
+                        <!-- Tab cuadros -->
+                        <div id="cuadros" role="tabpanel" class="tab-pane">
+                            {if $cuadros_publicos}
+                                <div class="table-responsive">
+                                    <table class="table datatable table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                                <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
+                                                <th>{$smarty.const.FIELD_COMENTARIOS}</th>
+                                                <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {foreach from=$cuadros_publicos item=cuadro}
+                                                <tr>
+                                                    <td><a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td>            
+                                                    <td>
+                                                        {if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}
+                                                        {else}{$smarty.const.TXT_PRIVADO}
+                                                        {/if}
+                                                    </td>
+                                                    <td>{$cuadro->comentarios}</td>
+                                                    <td>
+                                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}"><i class="fa fa-eye fa-fw"></i></a>
+                                                    </td>
+                                                </tr>
+                                            {/foreach}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {else}
+                                <div class="alert alert-info alert-dismissible">
+                                    <i class="fa fa-info-circle fa-fw"></i> 
+                                    {$smarty.const.MSG_BUSCAR_NO_RESUL}
+                                </div> 
+                            {/if}
+                        </div>
+                        <!-- /Tab cuadros -->
 
                     </div>
                     <!-- /Tab panes -->

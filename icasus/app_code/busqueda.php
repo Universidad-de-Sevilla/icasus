@@ -9,9 +9,9 @@
 // Muestra los resultados de la búsqueda general
 //---------------------------------------------------------------------------------------------------
 
-if (filter_has_var(INPUT_POST, 'texto_buscar'))
+if (filter_has_var(INPUT_GET, 'texto_buscar'))
 {
-    $texto = filter_input(INPUT_POST, 'texto_buscar', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $texto = filter_input(INPUT_GET, 'texto_buscar', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
     $smarty->assign('texto', $texto);
     //Para hacer búsqueda case insensitive:
     $textob = strtoupper($texto);
@@ -34,6 +34,11 @@ if (filter_has_var(INPUT_POST, 'texto_buscar'))
     //Buscar datos
     $datos = $indicador->Find_joined("(upper(nombre) LIKE '%$textob%' OR upper(codigo) LIKE '%$textob%') AND id_proceso IS NULL");
     $smarty->assign('datos', $datos);
+
+    //Buscar cuadros de mando
+    $cuadro = new Cuadro();
+    $cuadros_public = $cuadro->Find("upper(nombre) LIKE '%$textob%' AND privado=0");
+    $smarty->assign('cuadros_publicos', $cuadros_public);
 
     $smarty->assign("_nombre_pagina", TXT_BUSCAR_RESUL . '"' . $texto . '"');
     $plantilla = "busqueda.tpl";

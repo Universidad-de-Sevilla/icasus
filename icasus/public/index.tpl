@@ -102,8 +102,9 @@
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
                                 <li class="sidebar-search">
-                                    <form method="post" action="index.php?page=busqueda" >
+                                    <form method="get" action="index.php">
                                         <div class="input-group">
+                                            <input type="hidden" name="page" value="busqueda">
                                             <input id="texto_buscar" name="texto_buscar" class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" type="text">
                                             <span class="input-group-btn">
                                                 <button id="btn_buscar" title="{$smarty.const.TXT_BUSCAR}" class="btn btn-primary" type="submit">
@@ -119,12 +120,12 @@
                                         <span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x"></i></span>{$smarty.const.TXT_INICIO}</a>      
                                 </li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span>{$smarty.const.TXT_CUADROS_MANDO}</a>
-                                </li>
-                                <li>
                                     <a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>
                                         <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span>{$smarty.const.FIELD_UNIDS}</a>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span>{$smarty.const.TXT_CUADROS_MANDO}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_USERS}" href='index.php?page=usuario_listar'>
