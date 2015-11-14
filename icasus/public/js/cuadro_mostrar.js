@@ -523,12 +523,16 @@ $(".panel_tabla_multi").each(function () {
                         htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anio_inicio + '</td>';
                     }
                     //Buscamos el total del año final
-                    if (dato.id_unidad == indicador.id_entidad && dato.medicion == anio_fin) {
+                    if (dato.id_unidad == indicador.id_entidad && dato.medicion == anio_fin && valor_anio_inicio !== null) {
                         valor_anio_fin = Math.round(dato.valor * 100) / 100;
                         htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anio_fin + '</td>';
                     }
+                    if (dato.id_unidad == indicador.id_entidad && dato.medicion == anio_fin && valor_anio_inicio === null) {
+                        valor_anio_fin = Math.round(dato.valor * 100) / 100;
+                        htmlTabla += '<td  style="white-space:nowrap">---</td><td title="Valor" style="white-space:nowrap">' + valor_anio_fin + '</td>';
+                    }
                 });
-                if (valor_anio_inicio === null) {
+                if (valor_anio_inicio === null && valor_anio_fin === null) {
                     htmlTabla += '<td  style="white-space:nowrap">---</td>';
                 }
                 if (valor_anio_fin === null) {

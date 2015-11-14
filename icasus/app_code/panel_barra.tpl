@@ -185,8 +185,6 @@
                 $('#periodicidad_etiquetas').addClass('hidden');
                 $('#periodicidad_años').removeClass('hidden');
             }
-            //$('#content_periodicidad').html('');
-            //$('#indicadores_complementarios').removeClass('hidden');
             $('#content_buscador_indicadores_complementarios').removeClass('hidden');
         });
     </script>

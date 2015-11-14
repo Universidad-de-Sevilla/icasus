@@ -222,6 +222,41 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
                 }
                 break;
+            case 6:
+                //Panel tabla_multi
+                $id_entidad = filter_input(INPUT_POST, 'id_subunidad', FILTER_SANITIZE_NUMBER_INT);
+                $post_array = filter_input_array(INPUT_POST);
+                $id_indicadores = $post_array['id_indicadores'];
+                if ($id_indicadores)
+                {
+                    foreach ($id_indicadores as $id_indicador)
+                    {
+                        $panel_indicador = new Panel_indicador();
+                        $panel_indicador->id_panel = $panel->id;
+                        $panel_indicador->mostrar_referencias = 1;
+                        $panel_indicador->id_entidad = $id_entidad;
+                        $panel_indicador->id_indicador = filter_var($id_indicador, FILTER_SANITIZE_NUMBER_INT);
+                        if ($panel_indicador->save())
+                        {
+                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                            $smarty->assign("exito", $exito);
+                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
+                        }
+                        else
+                        {
+                            // Error no se ha salvado el panel a la BD
+                            $error = ERR_GUARDAR;
+                            header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                        }
+                    }
+                }
+                else
+                {
+                    //Error faltan parámetros
+                    $error = ERR_PARAM;
+                    header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                }
+                break;
         } //switch
     }
     else
