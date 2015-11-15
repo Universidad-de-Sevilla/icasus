@@ -29,7 +29,7 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_PANEL_PARAM}</span>
+                <span class="panel-title"><i class="fa fa-columns fa-fw"></i> {$smarty.const.TXT_PANEL_PARAM}</span>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">

@@ -433,8 +433,9 @@ define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
 define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿esta seguro?');
 //Paneles de los Cuadros de Mando
 define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando el siguiente panel:');
-define('MSG_PANEL_EDITADO', "Panel editado correctamente.");
+define('MSG_PANEL_EDITADO', "Panel editado correctamente:");
 define('MSG_PANEL_CREADO', "Se ha añadido al cuadro de mando el siguiente panel:");
+define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿esta seguro?');
 
 //Datos
 define('MSG_DATO_BORRADO', 'Se ha borrado el dato: ');
