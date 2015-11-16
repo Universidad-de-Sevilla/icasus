@@ -66,6 +66,17 @@ $smarty->assign("mediciones", $mediciones);
 $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
 $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
 
+//Totales
+$totales = array();
+$valor = new Valor();
+foreach ($mediciones as $med)
+{
+    $valores = $valor->Find("id_medicion=$med->id");
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $med->etiqueta);
+    $totales[$med->id] = $total;
+}
+$smarty->assign('totales', $totales);
+
 //Control (Status) de valores limite y objetivo
 $valor_referencia = new Valor_referencia();
 $valor_referencia_medicion = new Valor_referencia_medicion();
