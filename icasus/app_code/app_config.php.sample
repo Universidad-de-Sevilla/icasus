@@ -25,7 +25,8 @@ define('IC_DB_DATABASE','icasus');//escriba el nombre de la BD.
 //define('CONFIG_PACK', 'prod_1013');
 define('CONFIG_PACK', 'pre_11');
 
-// Que tipo de autenticación va a uilizarse (login_sso ó login_basico).
+// Que tipo de autenticación va a utilizarse (login_sso ó login_basico).
+// Escribir mantenimiento para abrir con la página de mantenimiento.
 define('IC_TIPO_LOGIN','login_sso');
 
 //Directorio base

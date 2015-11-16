@@ -37,6 +37,7 @@ define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores/dato
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
 define('TXT_LLAMAR_TLF', 'Llamar al teléfono');
 define('TXT_INVITADO', 'Invitado');
+define('TXT_MANTENIMIENTO', 'Estamos realizando tareas de mantenimiento. Los servicios estarán disponibles lo antes posible, rogamos disculpen las molestias.');
 define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_BUSQUEDA_CATEGORIA', 'Resultados/Categoría');
 define('TXT_RESUMEN', 'Resumen');

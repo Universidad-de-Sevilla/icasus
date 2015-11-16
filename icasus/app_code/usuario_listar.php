@@ -12,7 +12,6 @@
 global $smarty;
 global $plantilla;
 
-$smarty->assign('_javascript', array('ordenatabla'));
 $smarty->assign('_nombre_pagina', TXT_USERS);
 
 $usuario = new Usuario();
