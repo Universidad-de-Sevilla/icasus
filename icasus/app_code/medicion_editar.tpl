@@ -694,7 +694,7 @@
                                             {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
                                                 <tr style="font-weight: bold"
                                                     {if isset($medicion_lim) AND isset($medicion_obj)}
-                                                        {if  $total < $medicion_lim}
+                                                        {if $total < $medicion_lim}
                                                             class="danger"
                                                         {else if $total >= $medicion_obj}
                                                             class="success"

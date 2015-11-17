@@ -151,7 +151,6 @@ define('TXT_INDIC_DAT', 'Datos del indicador');
 define('TXT_INDIC_GEN_INFO_WORD', 'Generar un informe en Word de este indicador');
 define('TXT_INDIC_EXPORT_EXCEL', 'Exportar los datos del indicador a Excel');
 define('TXT_INDIC_PUBLIC', 'Indicadores públicos');
-define('TXT_INDIC_ACARGO', 'Indicadores a su cargo');
 define('TXT_INDIC_BUSCAR_BASE', 'Buscar indicador base');
 define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar indicadores complementarios');
 define('TXT_INDIC_SEG_DEPART', 'Seguimiento de indicadores de los departamentos');
@@ -198,7 +197,6 @@ define('TXT_MED_VER', 'Ver/Editar medición');
 define('TXT_MED_DES', 'Medición desagregada en las subunidades y cumplimentada por los responsables de las subunidades, o la persona delegada.');
 define('TXT_MED_DES_CEN', 'Medición desagregada en las subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
 define('TXT_MED_ESTA', 'esta medición.');
-define('TXT_MED_ACARGO', 'Mediciones a su cargo');
 define('TXT_MED_BORRAR', 'Borrar medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
@@ -208,6 +206,7 @@ define('TXT_MED_GESTION', 'Gestión de mediciones');
 define('TXT_MED_AGREGAR', 'Agregar medición');
 define('TXT_MED_GENERAR', 'Generar medición/es');
 define('TXT_MED_TABLA', 'Tabla de mediciones');
+define('TXT_MED_ULTIMA', 'Última medición');
 
 //Menú Principal
 define('TXT_INICIO', 'Inicio');
@@ -362,6 +361,8 @@ define('TXT_USERS_DESASIGNAR', 'Desasignar usuarios marcados');
 define('TXT_USERS_ALTA', 'Alta de usuarios');
 define('TXT_USERS_BAJA', 'Baja de usuarios');
 define('TXT_USER_UNIDS', 'Unidades del usuario');
+define('TXT_USER_PROCS', 'Procesos del usuario');
+define('TXT_USER_INDIC', 'Indicadores/datos bajo su responsabilidad');
 define('TXT_USERS_ASIG', 'Usuarios asignados actualmente');
 define('TXT_USERS_DISP', 'Usuarios disponibles');
 define('TXT_USERS_VINC', 'Vincular usuarios');
@@ -485,6 +486,7 @@ define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para es
 define('MSG_INDIC_NO_DATOS', 'Todavía no se han introducido datos en este indicador.');
 define('MSG_INDIC_NO_MED', 'Todavía no se han definido mediciones para este indicador.');
 define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del indicador. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
+define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores/datos bajo su responsabilidad.');
 
 //Mediciones
 define('MSG_MED_NO_TIPO', 'Todavía no se han establecido mediciones para este');
@@ -508,6 +510,7 @@ define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
 define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
 
 //Procesos
+define('MSG_PROC_NO_ASIG', 'No dispone de procesos en propiedad.');
 define('MSG_PROC_BORRADO', 'Se ha borrado el proceso: ');
 define('MSG_PROC_CONFIRM_EDITAR', 'Va a editar este proceso, ¿esta seguro?');
 define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este proceso?');

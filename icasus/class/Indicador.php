@@ -113,6 +113,40 @@ class Indicador extends ADOdb_Active_Record
         }
     }
 
+    public function Find_joined_ultima_medicion($criterio)
+    {
+        if ($indicadores = $this->Find($criterio))
+        {
+            foreach ($indicadores as & $indicador)
+            {
+                $proceso = new Proceso();
+                $proceso->load("id = $indicador->id_proceso");
+                $indicador->proceso = $proceso;
+
+                $responsable = new Usuario();
+                $responsable->load("id = $indicador->id_responsable");
+                $indicador->responsable = $responsable;
+
+                $responsable_medicion = new Usuario();
+                $responsable_medicion->load("id = $indicador->id_responsable_medicion");
+                $indicador->responsable_medicion = $responsable_medicion;
+
+                $visibilidad = new Visibilidad();
+                $visibilidad->load("id = $indicador->id_visibilidad");
+                $indicador->visibilidad = $visibilidad;
+
+                $medicion = new Medicion();
+                $medicion->Load("id_indicador = $indicador->id ORDER BY periodo_inicio DESC LIMIT 1");
+                $indicador->medicion = $medicion;
+            }
+            return $indicadores;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public function Find_con_pendientes($condicion, $usuario_id)
     {
         if ($indicadores = $this->Find($condicion))

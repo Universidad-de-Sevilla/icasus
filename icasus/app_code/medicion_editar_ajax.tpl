@@ -16,7 +16,7 @@
                 {if $valor->id_entidad!=$entidad->id && $indicador->id_tipo_agregacion!= 0}
                     <tr>
                         <td>{$valor->entidad->etiqueta}</td>
-                        <td>
+                        <td style="white-space: nowrap">
                             {if $valor->id == $valor_edit}
                                 <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}">
                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="fila_grabar('{$valor->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
@@ -199,7 +199,7 @@
                                             {/if}
                                         {/if}>
                                         <td style="border-left:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
-                                        <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                        <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717;white-space: nowrap">
                                             {if $valor->id == $valor_edit}
                                                 {if $indicador->calculo}{$indicador->calculo}<br />{/if}
                                                 <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}">

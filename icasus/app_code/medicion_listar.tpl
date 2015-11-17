@@ -294,25 +294,25 @@
                                 {foreach $mediciones as $medicion}
                                     <tr {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
                                         {if  $totales[$medicion->id]< $medicion_lim[$medicion->id]}
-                                            class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                            class="danger"
                                         {else if $totales[$medicion->id] >= $medicion_obj[$medicion->id]}
-                                            class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                            class="success"
                                         {else}
-                                            class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
+                                            class="warning"
                                         {/if}
                                         {/if}
                                             {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
                                                 {if $totales[$medicion->id] >= $medicion_obj[$medicion->id] }
-                                                    class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                    class="success"
                                                 {else}
-                                                    class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                    class="danger"
                                                 {/if}
                                             {/if}
                                             {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
                                                 {if $totales[$medicion->id] < $medicion_lim[$medicion->id] }
-                                                    class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                    class="danger"
                                                 {else}
-                                                    class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                    class="success"
                                                 {/if}
                                             {/if}>
                                             <td>
