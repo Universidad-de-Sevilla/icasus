@@ -105,7 +105,7 @@
                                     <form method="get" action="index.php">
                                         <div class="input-group">
                                             <input type="hidden" name="page" value="busqueda">
-                                            <input id="texto_buscar" name="texto_buscar" class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" type="text">
+                                            <input id="texto_buscar" name="texto_buscar" {if isset($texto) && $texto != ''}value='{$texto}'{/if} class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" type="text">
                                             <span class="input-group-btn">
                                                 <button id="btn_buscar" title="{$smarty.const.TXT_BUSCAR}" class="btn btn-primary" type="submit">
                                                     <i class="fa fa-search fa-fw"></i>
