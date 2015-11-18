@@ -6,8 +6,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Muestra un listado de los indicadores, las mediciones pendientes, las unidades y 
-// los grupos del usuario actual
+// Muestra las entidades, procesos e indicadores/datos bajo la responsabilidad del usuario
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;

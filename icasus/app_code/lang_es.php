@@ -162,6 +162,7 @@ define('TXT_INDIC_DAT_ULTIMA_MOD', 'Indicadores y datos, última modificación')
 define('TXT_INDIC_DAT_SIN_MED', 'Indicadores y datos sin mediciones');
 define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
 define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
+define('TXT_INDIC_DAT_BORRAR', 'Borrar indicador/dato');
 
 //Informes
 define('TXT_INFORME_IC', 'Informe generado por ICASUS');
@@ -487,6 +488,7 @@ define('MSG_INDIC_NO_DATOS', 'Todavía no se han introducido datos en este indic
 define('MSG_INDIC_NO_MED', 'Todavía no se han definido mediciones para este indicador.');
 define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del indicador. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
 define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores/datos bajo su responsabilidad.');
+define('MSG_INDIC_DAT_CONFIRM_BORRAR', '¿Realmente quiere borrar este indicador/dato?');
 
 //Mediciones
 define('MSG_MED_NO_TIPO', 'Todavía no se han establecido mediciones para este');

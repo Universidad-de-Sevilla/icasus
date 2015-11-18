@@ -24,10 +24,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_INDIC_BORRAR}: <span id="nombre_indicador"></span></h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_BORRAR}: <span id="nombre_indicador"></span></h3>
             </div>
             <div class="modal-body">
-                <p>{$smarty.const.MSG_INDIC_CONFIRM_BORRAR}</p>
+                <p>{$smarty.const.MSG_INDIC_DAT_CONFIRM_BORRAR}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
