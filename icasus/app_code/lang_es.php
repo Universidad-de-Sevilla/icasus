@@ -472,6 +472,7 @@ define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna unidad.');
 define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen unidades orgánicas.');
 
 //Indicadores
+define('MSG_INDICS_NO', 'No hay indicadores definidos para ninguna unidad.');
 define('MSG_INDIC_NO_UNID_SUP', 'No hay indicadores definidos en la unidad superior.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.');
