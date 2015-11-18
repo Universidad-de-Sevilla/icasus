@@ -441,6 +441,7 @@ define('MSG_PANEL_CREADO', "Se ha añadido al cuadro de mando el siguiente panel
 define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿esta seguro?');
 
 //Datos
+define('MSG_DATOS_NO', 'No hay datos definidos para ninguna unidad.');
 define('MSG_DATO_BORRADO', 'Se ha borrado el dato: ');
 define('MSG_DATO_ACTUALIZADO', 'Se ha actualizado el dato');
 define('MSG_DATO_CONFIRM_BORRAR', '¿Realmente quiere borrar este dato?');

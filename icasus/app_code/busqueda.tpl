@@ -236,9 +236,9 @@
                                 <div class="table-responsive">
                                     <table class="table table-condensed datatable table-striped table-hover">
                                         <thead>
-                                            <tr>   
-                                                <th>{$smarty.const.FIELD_ID}</th>
+                                            <tr>
                                                 <th>{$smarty.const.FIELD_COD}</th>
+                                                <th>{$smarty.const.FIELD_UNID}</th>
                                                 <th>{$smarty.const.FIELD_DATO}</th>  
                                                 <th>{$smarty.const.FIELD_PERIOD}</th>
                                                 <th>{$smarty.const.FIELD_RESP}</th>
@@ -249,8 +249,8 @@
                                         <tbody>
                                             {foreach from=$datos item=dato} 
                                                 <tr>
-                                                    <td><span class="badge">{$dato->id}</span></td>
                                                     <td><span class="label label-primary">{$dato->codigo}</span></td>
+                                                    <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$dato->id_entidad}'>{$dato->entidad->etiqueta}</a></td>
                                                     <td>
                                                         {if $dato->calculo}
                                                             <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$dato->calculo}"></i>

@@ -19,6 +19,9 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        
+        <!-- MetisMenu CSS -->
+        <link href="lib/metisMenu/metisMenu.min.css" rel="stylesheet">
 
         <!-- Chosen CSS -->
         <link href="lib/chosen/chosen.min.css" rel="stylesheet">
@@ -130,6 +133,10 @@
                                 <li>
                                     <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>
                                         <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-stack-1x"></i></span>{$smarty.const.FIELD_INDICS}</a>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=datos'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-database fa-stack-1x"></i></span>{$smarty.const.FIELD_DATOS}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
@@ -312,6 +319,9 @@
 
         <!-- Bootstrap FileStyle -->
         <script src="lib/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
+        
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="lib/metisMenu/metisMenu.min.js"></script>
 
         <!-- Chosen Plugin JavaScript -->
         <script src="lib/chosen/chosen.jquery.min.js"></script>
