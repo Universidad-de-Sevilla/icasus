@@ -124,6 +124,10 @@
                                         <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span>{$smarty.const.FIELD_UNIDS}</a>
                                 </li>
                                 <li>
+                                    <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=procesos'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-gears fa-stack-1x"></i></span>{$smarty.const.TXT_PROCS}</a>
+                                </li>
+                                <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
                                         <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span>{$smarty.const.TXT_CUADROS_MANDO}</a>
                                 </li>

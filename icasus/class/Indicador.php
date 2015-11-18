@@ -89,6 +89,10 @@ class Indicador extends ADOdb_Active_Record
         {
             foreach ($indicadores as & $indicador)
             {
+                $entidad = new Entidad();
+                $entidad->load("id= $indicador->id_entidad");
+                $indicador->entidad = $entidad;
+
                 $proceso = new Proceso();
                 $proceso->load("id = $indicador->id_proceso");
                 $indicador->proceso = $proceso;
@@ -104,6 +108,14 @@ class Indicador extends ADOdb_Active_Record
                 $visibilidad = new Visibilidad();
                 $visibilidad->load("id = $indicador->id_visibilidad");
                 $indicador->visibilidad = $visibilidad;
+
+                $tipo_agregacion = new Tipo_agregacion();
+                $tipo_agregacion->load("id = $this->id_tipo_agregacion");
+                $indicador->tipo_agregacion = $tipo_agregacion;
+
+                $tipo_agregacion_temporal = new Tipo_agregacion();
+                $tipo_agregacion_temporal->load("id = $this->id_tipo_agregacion_temporal");
+                $indicador->tipo_agregacion_temporal = $tipo_agregacion_temporal;
             }
             return $indicadores;
         }

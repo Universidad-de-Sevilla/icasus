@@ -512,6 +512,7 @@ define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
 define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
 
 //Procesos
+define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
 define('MSG_PROC_NO_ASIG', 'No dispone de procesos en propiedad.');
 define('MSG_PROC_BORRADO', 'Se ha borrado el proceso: ');
 define('MSG_PROC_CONFIRM_EDITAR', 'Va a editar este proceso, ¿esta seguro?');
