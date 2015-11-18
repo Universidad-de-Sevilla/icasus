@@ -6,7 +6,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Muestra todos los parametros de un dato y un listado de los valores introducidos
+// Muestra todos los parametros de un dato.
 // Es casi igual que el indicador pero con algunos campos menos (misma tabla de la base de datos)
 // Se diferencia del indicador en que pertenece a una unidad pero no a un proceso
 //---------------------------------------------------------------------------------------------------
@@ -24,6 +24,11 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
     if ($dato->load_joined("id = $id_dato"))
     {
         $smarty->assign('dato', $dato);
+        //Si es un indicador
+        if ($dato->id_proceso)
+        {
+            header("Location: index.php?page=indicador_mostrar&id_indicador=$id_dato&id_entidad=$dato->id_entidad");
+        }
     }
     else
     {

@@ -6,7 +6,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //-------------------------------------------------------------------------------
-// Muestra la ficha del indicador y los gráficos con los valores
+// Muestra la ficha del indicador
 //-------------------------------------------------------------------------------
 
 global $smarty;
@@ -22,6 +22,11 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     if ($indicador->load_joined("id = $id_indicador"))
     {
         $smarty->assign('indicador', $indicador);
+        //Si es un dato
+        if (!$indicador->id_proceso)
+        {
+            header("Location: index.php?page=dato_mostrar&id_dato=$id_indicador&id_entidad=$indicador->id_entidad");
+        }
     }
     else
     {
