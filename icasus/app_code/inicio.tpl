@@ -278,7 +278,7 @@
                                                 {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]}{else}---{/if}
+                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]}{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion_listar&id_{if $indicador->id_proceso}indicador{else}dato{/if}={$indicador->id}&id_entidad={$indicador->id_entidad}">
                                                 <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>

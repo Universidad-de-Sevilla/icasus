@@ -42,8 +42,6 @@ define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_BUSQUEDA_CATEGORIA', 'Resultados/Categoría');
 define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
-define('TXT_CALIDAD', 'Calidad');
-
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
@@ -266,6 +264,7 @@ define('TXT_PAG_EDIT', 'Editar página');
 
 //Procesos
 define('TXT_PROCS', 'Procesos');
+define('TXT_PROC_TODOS', 'Todos los procesos');
 define('TXT_PROC_VER', 'Ver proceso');
 define('TXT_PROC_MAP', 'Mapa de procesos');
 define('TXT_PROC_PARAM', 'Parámetros del proceso');

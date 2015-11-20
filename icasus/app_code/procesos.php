@@ -12,7 +12,11 @@
 global $smarty;
 global $plantilla;
 
+// Procesos propiedad del usuario
 $proceso = new Proceso();
+$procesos_propios = $proceso->Find_joined("id_propietario=$usuario->id");
+$smarty->assign('procesos_propios', $procesos_propios);
+
 $procesos = $proceso->Find_joined("1=1 ORDER BY codigo");
 $smarty->assign('procesos', $procesos);
 

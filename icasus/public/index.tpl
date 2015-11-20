@@ -131,8 +131,8 @@
                                         <span class="fa-stack fa-lg"><i class="fa fa-gears fa-stack-1x"></i></span>{$smarty.const.TXT_PROCS}</a>
                                 </li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_CALIDAD}" href='#'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-star fa-stack-1x"></i></span>{$smarty.const.TXT_CALIDAD}<span class="glyphicon arrow"></span></a>
+                                    <a title="{$smarty.const.FIELD_MED}" href='#'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-clock-o fa-stack-1x"></i></span>{$smarty.const.FIELD_MED}<span class="glyphicon arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>
