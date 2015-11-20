@@ -30,7 +30,6 @@ define('TXT_NULO', 'NULO');
 define('TXT_CONTENIDO', 'Contenido de');
 define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
-define('TXT_MANUAL', 'Manual');
 define('TXT_REP_GRAFIC', 'Gráficas');
 define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores/datos:');
 define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores/datos:');
@@ -517,6 +516,7 @@ define('MSG_MED_EXISTE', 'Ya existe/n medicion/es hasta este año.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
+define('MSG_PAG_CONFIRM_EDITAR', 'Va a editar esta página, ¿esta seguro?');
 define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
 
 //Procesos

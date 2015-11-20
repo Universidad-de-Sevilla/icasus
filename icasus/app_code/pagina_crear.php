@@ -21,7 +21,7 @@ if (filter_has_var(INPUT_POST, 'alias') && filter_has_var(INPUT_POST, 'titulo') 
     $pagina->modified = time();
     $pagina->save();
     $smarty->assign('pagina', $pagina);
-    $smarty->assign('_nombre_pagina', TXT_MANUAL . ': ' . $pagina->titulo);
+    $smarty->assign('_nombre_pagina', TXT_AYUDA . ': ' . $pagina->titulo);
     $smarty->assign('exito', MSG_PAG_NUEVA_OK);
     $plantilla = 'pagina_mostrar.tpl';
 }

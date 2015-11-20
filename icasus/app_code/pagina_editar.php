@@ -15,15 +15,18 @@ if (filter_has_var(INPUT_GET, 'id_pagina'))
 {
     $pagina = new Pagina();
     $id_pagina = filter_input(INPUT_GET, 'id_pagina', FILTER_SANITIZE_NUMBER_INT);
+    $pagina->load("id=$id_pagina");
+    $smarty->assign('pagina', $pagina);
+    $smarty->assign('_nombre_pagina', TXT_PAG_EDIT . ': ' . $pagina->titulo);
     if (filter_has_var(INPUT_POST, 'titulo') && filter_has_var(INPUT_POST, 'alias') && filter_has_var(INPUT_POST, 'contenido'))
     {
-        $pagina->load("id=$id_pagina");
         $pagina->titulo = filter_input(INPUT_POST, 'titulo');
         $pagina->alias = $pagina->alieniza(filter_input(INPUT_POST, 'alias'));
         $pagina->contenido = filter_input(INPUT_POST, 'contenido');
         $pagina->modified = time();
         $pagina->save();
         $smarty->assign('exito', MSG_PAG_EDIT_OK);
+        $smarty->assign('_nombre_pagina', TXT_AYUDA . ': ' . $pagina->titulo);
         $plantilla = 'pagina_mostrar.tpl';
     }
     else
@@ -31,8 +34,6 @@ if (filter_has_var(INPUT_GET, 'id_pagina'))
         $pagina->load("id=$id_pagina");
         $plantilla = 'pagina_editar.tpl';
     }
-    $smarty->assign('pagina', $pagina);
-    $smarty->assign('_nombre_pagina', TXT_AYUDA . ': ' . $pagina->titulo);
 }
 else
 {

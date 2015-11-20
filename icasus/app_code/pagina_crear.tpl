@@ -52,7 +52,7 @@
                     <div class="form-group has-feedback">
                         <label for="contenido" class="col-sm-2 control-label">{$smarty.const.FIELD_PAG_CONTENIDO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <textarea class="form-control" id='contenido'  name='contenido' placeholder="{$smarty.const.FIELD_PAG_CONTENIDO}" rows='25' required></textarea>
+                            <textarea class="form-control" id='contenido' name='contenido' placeholder="{$smarty.const.FIELD_PAG_CONTENIDO}" rows='25' required></textarea>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
