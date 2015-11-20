@@ -133,23 +133,14 @@ hr, .divider{
 .navbar-top-links .dropdown-menu li a div {
     white-space: normal;
 }
-.navbar-top-links .dropdown-messages,
-.navbar-top-links .dropdown-tasks,
+
 .navbar-top-links .dropdown-alerts {
     width: 350px;
     min-width: 0;
 }
 
-.navbar-top-links .dropdown-messages {
-    margin-left: 5px;
-}
-
-.navbar-top-links .dropdown-tasks {
-    margin-left: -59px;
-}
-
 .navbar-top-links .dropdown-alerts {
-    margin-left: -123px;
+    margin-left: -125px;
 }
 
 .navbar-top-links .dropdown-user {
@@ -157,7 +148,7 @@ hr, .divider{
     left: auto;
 }
 
-#fecha{
+#fecha_actual{
     color: #950717;
 }
 

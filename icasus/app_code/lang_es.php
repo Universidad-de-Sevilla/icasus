@@ -4,7 +4,7 @@
 // Proyecto: Icasus 
 // Archivo: lang_es.php
 // Desarrolladores:Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
-//  Joaquín Valonero Zaera (tecnibus1@us.es)
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 /* Este fichero contiene constantes para todos los textos de la aplicación Icasus en español:
  * Clasificación:
@@ -262,6 +262,7 @@ define('TXT_TOGGLED', 'Plegar/desplegar menú lateral');
 //Páginas
 define('TXT_PAG', 'Página');
 define('TXT_PAG_NUEVA', 'Nueva página');
+define('TXT_PAG_PARAM', 'Parámetros de la página');
 define('TXT_PAG_AYUDA_NUEVA', 'Nueva página de ayuda');
 define('TXT_PAG_EDIT', 'Editar página');
 

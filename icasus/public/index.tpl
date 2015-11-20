@@ -79,18 +79,22 @@
                     <!-- /.navbar-header -->
 
                     <ul class="nav navbar-top-links navbar-right">
-                        <li>
-                            <span id="fecha" title="{$smarty.const.FIELD_FECHA}: {$smarty.now|date_format:'%d-%m-%Y'}"><i class="fa fa-calendar fa-fw"></i> {$smarty.now|date_format:'%d-%m-%Y'}</span>
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" title="{$_usuario->login}">
+                                <span id="fecha_actual" title="{$smarty.const.FIELD_FECHA}: {$smarty.now|date_format:'%d-%m-%Y'}"><i class="fa fa-calendar fa-fw"></i> {$smarty.now|date_format:'%d-%m-%Y'}</span>
+                            </a>
                         </li>
+                        <!-- /.dropdown -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" title="{$smarty.const.TXT_NOTIFICACIONES}" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                                <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
                                 <li>
                                     <a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>
                                         <div>
-                                            <i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}
+                                            <i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}:
                                             <span class="pull-right badge">{$num_entidades_usuario}</span>
                                         </div>
                                     </a>
@@ -99,7 +103,7 @@
                                 <li>
                                     <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=procesos'>
                                         <div>
-                                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}
+                                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}:
                                             <span class="pull-right badge">{$num_procesos_propios}</span>
                                         </div>
                                     </a>
@@ -108,7 +112,7 @@
                                 <li>
                                     <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>
                                         <div>
-                                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}
+                                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}:
                                             <span class="pull-right badge">{$num_indicadores_propios}</span>
                                         </div>
                                     </a>
@@ -117,7 +121,7 @@
                                 <li>
                                     <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=datos'>
                                         <div>
-                                            <i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}
+                                            <i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}:
                                             <span class="pull-right badge">{$num_datos_propios}</span>
                                         </div>
                                     </a>
@@ -182,8 +186,8 @@
                                         <span class="fa-stack fa-lg"><i class="fa fa-gears fa-stack-1x"></i></span>{$smarty.const.TXT_PROCS}</a>
                                 </li>
                                 <li>
-                                    <a title="{$smarty.const.FIELD_MED}" href='#'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-clock-o fa-stack-1x"></i></span>{$smarty.const.FIELD_MED}<span class="glyphicon arrow"></span></a>
+                                    <a title="{$smarty.const.FIELD_MEDICIONES}" href='#'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-clock-o fa-stack-1x"></i></span>{$smarty.const.FIELD_MEDICIONES}<span class="glyphicon arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>

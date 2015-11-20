@@ -23,7 +23,7 @@ if (filter_has_var(INPUT_GET, 'id_pagina'))
         $pagina->contenido = filter_input(INPUT_POST, 'contenido');
         $pagina->modified = time();
         $pagina->save();
-        $smarty->assign('aviso', MSG_PAG_EDIT_OK);
+        $smarty->assign('exito', MSG_PAG_EDIT_OK);
         $plantilla = 'pagina_mostrar.tpl';
     }
     else
@@ -40,4 +40,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?page=error&error=$error");
 }
-

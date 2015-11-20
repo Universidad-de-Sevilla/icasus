@@ -3,7 +3,7 @@
     <div class="col-lg-12">
         <div id="tabla_agrupados" class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</span>
+                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
@@ -66,7 +66,7 @@
     <div class="col-lg-12">
         <div id="tabla_nulos" class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_MED_NULA}</span>
+                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_MED_NULA}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
@@ -163,7 +163,7 @@
     <div class="col-lg-12">
         <div id="tabla_modificados" class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</span>
+                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
@@ -226,7 +226,7 @@
     <div class="col-lg-12">
         <div id="tabla_sin_med" class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_SIN_MED}</span>
+                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_SIN_MED}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
