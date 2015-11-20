@@ -20,5 +20,6 @@ $smarty->assign('procesos_propios', $procesos_propios);
 $procesos = $proceso->Find_joined("1=1 ORDER BY codigo");
 $smarty->assign('procesos', $procesos);
 
+$smarty->assign('_javascript', array('proceso_listar'));
 $smarty->assign('_nombre_pagina', TXT_PROCS);
 $plantilla = 'procesos.tpl';

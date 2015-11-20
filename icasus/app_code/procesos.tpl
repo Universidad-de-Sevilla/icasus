@@ -1,3 +1,23 @@
+<!-- Diálogo Confirmar Borrado -->
+<div class="modal fade" id="dialogo_confirmar_borrado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PROC_BORRAR}: <span id="nombre_proceso"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_PROC_CONFIRM_BORRAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Borrado -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -82,7 +102,7 @@
                                                 <i class="fa fa-pencil fa-fw"></i>
                                             </a>   
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_BORRAR}" 
-                                               href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_proceso"
+                                               href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado"
                                                data-id_proceso="{$proceso->id}" data-nombre_proceso="{$proceso->nombre}" data-id_entidad="{$proceso->id_entidad}">
                                                 <i class="fa fa-trash fa-fw"></i>
                                             </a>
