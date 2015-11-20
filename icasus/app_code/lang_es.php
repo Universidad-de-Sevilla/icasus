@@ -162,7 +162,6 @@ define('TXT_INDIC_DAT_ULTIMA_MOD', 'Indicadores y datos, última modificación')
 define('TXT_INDIC_DAT_SIN_MED', 'Indicadores y datos sin mediciones');
 define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
 define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
-define('TXT_INDIC_DAT_BORRAR', 'Borrar indicador/dato');
 
 //Informes
 define('TXT_INFORME_IC', 'Informe generado por ICASUS');
@@ -364,7 +363,8 @@ define('TXT_USERS_ALTA', 'Alta de usuarios');
 define('TXT_USERS_BAJA', 'Baja de usuarios');
 define('TXT_USER_UNIDS', 'Unidades del usuario');
 define('TXT_USER_PROCS', 'Procesos del usuario');
-define('TXT_USER_INDIC', 'Indicadores/datos bajo su responsabilidad');
+define('TXT_USER_INDIC', 'Indicadores bajo su responsabilidad');
+define('TXT_USER_DATO', 'Datos bajo su responsabilidad');
 define('TXT_USERS_ASIG', 'Usuarios asignados actualmente');
 define('TXT_USERS_DISP', 'Usuarios disponibles');
 define('TXT_USERS_VINC', 'Vincular usuarios');
@@ -451,6 +451,7 @@ define('MSG_DATO_CREADO', 'Se ha creado un nuevo dato');
 define('MSG_DATO_EXPORT_OK', 'Los datos se han exportado correctamente: ');
 define('MSG_DATO_NO_SUBUNID_ASIG', 'No se han asignado subunidades a este dato (corregir)');
 define('MSG_DATO_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del dato. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
+define('MSG_DATO_NO_ASIG', 'No dispone de datos bajo su responsabilidad.');
 
 //Dimensiones
 define('MSG_DIM_CREADA', 'Se ha creado una dimensión.');
@@ -490,8 +491,7 @@ define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para es
 define('MSG_INDIC_NO_DATOS', 'Todavía no se han introducido datos en este indicador.');
 define('MSG_INDIC_NO_MED', 'Todavía no se han definido mediciones para este indicador.');
 define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del indicador. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
-define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores/datos bajo su responsabilidad.');
-define('MSG_INDIC_DAT_CONFIRM_BORRAR', '¿Realmente quiere borrar este indicador/dato?');
+define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores bajo su responsabilidad.');
 
 //Mediciones
 define('MSG_MED_NO_TIPO', 'Todavía no se han establecido mediciones para este');

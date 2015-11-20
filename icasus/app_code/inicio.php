@@ -23,15 +23,21 @@ $proceso = new Proceso();
 $procesos_propios = $proceso->Find_joined("id_propietario=$usuario->id");
 $smarty->assign('procesos_propios', $procesos_propios);
 
-// Indicadores/datos bajo la responsabilidad de este usuario
+// Indicadores bajo la responsabilidad de este usuario
 $indicador = new Indicador();
-$indicadores = $indicador->Find_joined_ultima_medicion("id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id");
+$indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL");
 $smarty->assign("indicadores_propios", $indicadores);
+
+// Datos bajo la responsabilidad de este usuario
+$datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
+$smarty->assign("datos_propios", $datos);
+
+$indicadores_datos = array_merge($indicadores, $datos);
 
 // Valores totales de las últimas mediciones
 $totales = array();
 $valor = new Valor();
-foreach ($indicadores as $indicador)
+foreach ($indicadores_datos as $indicador)
 {
     $valores = $valor->find("id_medicion=" . $indicador->medicion->id);
     $total = $logicaIndicador->calcular_total($indicador, $valores, $indicador->medicion->etiqueta);
@@ -44,7 +50,7 @@ $valor_referencia = new Valor_referencia();
 $valor_referencia_medicion = new Valor_referencia_medicion();
 $medicion_lim = array();
 $medicion_obj = array();
-foreach ($indicadores as $indicador)
+foreach ($indicadores_datos as $indicador)
 {
     $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
     if ($valores_referencia)
