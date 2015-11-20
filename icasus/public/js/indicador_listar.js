@@ -4,7 +4,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-// Incluye el código JavaScript para el fichero indicador_listar.tpl
+// Incluye el código JavaScript para el fichero indicador_listar.tpl e indicadores.tpl
 //----------------------------------------------------------------------------
 
 //Borrado de indicadores
