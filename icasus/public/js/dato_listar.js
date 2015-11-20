@@ -4,7 +4,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-// Incluye el código JavaScript para el fichero dato_listar.tpl
+// Incluye el código JavaScript para el fichero dato_listar.tpl y datos.tpl
 //----------------------------------------------------------------------------
 
 //Borrado de datos

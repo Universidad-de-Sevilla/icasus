@@ -90,6 +90,7 @@ define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
 
 //Datos
+define('TXT_DATO_TODOS', 'Todos los datos');
 define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
 define('TXT_DATO_MOSTRAR', 'Mostrar ficha del dato');
 define('TXT_DATO_EDIT', 'Editar dato');
