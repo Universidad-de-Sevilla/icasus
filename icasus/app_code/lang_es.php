@@ -42,6 +42,8 @@ define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_BUSQUEDA_CATEGORIA', 'Resultados/Categoría');
 define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
+define('TXT_CALIDAD', 'Calidad');
+
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');

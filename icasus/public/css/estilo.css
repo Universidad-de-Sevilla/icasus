@@ -48,7 +48,7 @@ hr, .divider{
 #page-wrapper {
     padding: 0 15px 40px;
     min-height: 568px;
-    margin-top: 5%;
+    margin-top: 10px;
     background: #fff url("../images/universidad_trans.jpg") no-repeat center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -63,13 +63,6 @@ hr, .divider{
         padding: 0 30px 40px;
         border-left: 1px solid #FFC526;
     }
-
-    #page-wrapper.toggled {
-        position: inherit;
-        margin: 0 0 0 70px;
-        padding: 0 30px 40px;
-        border-left: 1px solid #FFC526;
-    }
 }
 
 .logo{
@@ -79,17 +72,17 @@ hr, .divider{
 }
 
 .page-header{
-    margin-top: 2%;
+    margin-top: 20px;
     border-color: #FFC526; 
     color: #950717;
 }
 
-.navbar-default{
-    border-color: #FFC526;
+.notificacion{
+    margin-top: 20px;
 }
 
-.navbar-fixed-top + #page-wrapper {
-    margin-top: 50px;
+.navbar-default{
+    border-color: #FFC526;
 }
 
 .navbar-brand{
@@ -195,17 +188,6 @@ hr, .divider{
         margin-top: 51px;
     }
 
-    .sidebar.toggled {
-        z-index: 1;
-        position: absolute;
-        width: 70px;
-        margin-top: 51px;
-    }
-
-    .texto-menu.toggled, #links.toggled{
-        display:none;
-    }
-
     .navbar-top-links .dropdown-messages,
     .navbar-top-links .dropdown-tasks,
     .navbar-top-links .dropdown-alerts {
@@ -214,8 +196,8 @@ hr, .divider{
 }
 
 @media(max-width:768px) {
-    .navbar-fixed-top + #page-wrapper {
-        margin-top: 100px;
+    .navbar-static-top + #page-wrapper {
+        margin-top: 0px;
     }
 }
 
@@ -500,45 +482,3 @@ span:focus, .pagination > li > span:hover {
 .panel-datos .panel-heading:hover {
     background-color: #b52b27;
 }
-
-/*.panel-consulta {
-    border-color: darkorange;
-}
-
-.panel-consulta .panel-heading {
-    border-color: darkorange;
-    color: #fff;
-    background-color: darkorange;
-}
-
-.panel-consulta .panel-heading:hover {
-    background-color: orangered;
-}
-
-.panel-cuadro-res {
-    border-color: turquoise;
-}
-
-.panel-cuadro-res .panel-heading {
-    border-color: turquoise;
-    color: #fff;
-    background-color: turquoise;
-}
-
-.panel-cuadro-res .panel-heading:hover {
-    background-color: skyblue;
-}
-
-.panel-control {
-    border-color: violet;
-}
-
-.panel-control .panel-heading {
-    border-color: violet;
-    color: #fff;
-    background-color: violet;
-}
-
-.panel-control .panel-heading:hover {
-    background-color: mediumvioletred;
-}*/

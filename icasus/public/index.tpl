@@ -19,7 +19,7 @@
 
         <!-- Bootstrap Core CSS -->
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        
+
         <!-- MetisMenu CSS -->
         <link href="lib/metisMenu/metisMenu.min.css" rel="stylesheet">
 
@@ -63,7 +63,7 @@
             <div id="wrapper">
 
                 <!-- Navigation -->
-                <nav id="top" class="navbar navbar-default navbar-fixed-top" role="navigation" style="margin-bottom: 0">
+                <nav id="top" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                             <span class="sr-only">{$smarty.const.TXT_MOSTAR_OCULTAR_NAV}</span>
@@ -131,12 +131,18 @@
                                         <span class="fa-stack fa-lg"><i class="fa fa-gears fa-stack-1x"></i></span>{$smarty.const.TXT_PROCS}</a>
                                 </li>
                                 <li>
-                                    <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-stack-1x"></i></span>{$smarty.const.FIELD_INDICS}</a>
-                                </li>
-                                <li>
-                                    <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=datos'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-database fa-stack-1x"></i></span>{$smarty.const.FIELD_DATOS}</a>
+                                    <a title="{$smarty.const.TXT_CALIDAD}" href='#'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-star fa-stack-1x"></i></span>{$smarty.const.TXT_CALIDAD}<span class="glyphicon arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>
+                                                <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-stack-1x"></i></span>{$smarty.const.FIELD_INDICS}</a>
+                                        </li>
+                                        <li>
+                                            <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=datos'>
+                                                <span class="fa-stack fa-lg"><i class="fa fa-database fa-stack-1x"></i></span>{$smarty.const.FIELD_DATOS}</a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
@@ -167,7 +173,7 @@
                         {if isset($smarty.get.error)}
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="alert alert-danger alert-dismissible">
+                                    <div class="alert alert-danger alert-dismissible notificacion">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
                                             <span aria-hidden="true">&times;</span></button>
                                         <i class="fa fa-exclamation-circle fa-fw"></i> 
@@ -181,7 +187,7 @@
                         {if isset($error)}
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="alert alert-danger alert-dismissible">
+                                    <div class="alert alert-danger alert-dismissible notificacion">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
                                             <span aria-hidden="true">&times;</span></button>
                                         <i class="fa fa-exclamation-circle fa-fw"></i>  
@@ -195,7 +201,7 @@
                         {if isset($smarty.get.aviso)}
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="alert alert-warning alert-dismissible">
+                                    <div class="alert alert-warning alert-dismissible notificacion">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
                                             <span aria-hidden="true">&times;</span></button>
                                         <i class="fa fa-exclamation-triangle fa-fw"></i>
@@ -209,7 +215,7 @@
                         {if isset($aviso)}
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="alert alert-warning alert-dismissible">
+                                    <div class="alert alert-warning alert-dismissible notificacion">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
                                             <span aria-hidden="true">&times;</span></button>
                                         <i class="fa fa-exclamation-triangle fa-fw"></i> 
@@ -223,7 +229,7 @@
                         {if isset($smarty.get.exito)}
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="alert alert-success alert-dismissible">
+                                    <div class="alert alert-success alert-dismissible notificacion">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
                                             <span aria-hidden="true">&times;</span></button>
                                         <i class="fa fa-check fa-fw"></i>
@@ -237,7 +243,7 @@
                         {if isset($exito)}
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="alert alert-success alert-dismissible">
+                                    <div class="alert alert-success alert-dismissible notificacion">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
                                             <span aria-hidden="true">&times;</span></button>
                                         <i class="fa fa-check fa-fw"></i> 
@@ -319,7 +325,7 @@
 
         <!-- Bootstrap FileStyle -->
         <script src="lib/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
-        
+
         <!-- Metis Menu Plugin JavaScript -->
         <script src="lib/metisMenu/metisMenu.min.js"></script>
 
