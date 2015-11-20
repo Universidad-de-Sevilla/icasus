@@ -113,6 +113,23 @@ if (isset($_SESSION['usuario']))
     $logicaUsuario = new LogicaUsuario();
     $rol = $logicaUsuario->getRol($usuario, $id_entidad);
 
+    // Entidades de este usuario
+    $smarty->assign('num_entidades_usuario', count($usuario->entidades));
+
+    // Procesos propiedad del usuario
+    $proceso = new Proceso();
+    $procesos_propios = $proceso->Find("id_propietario=$usuario->id");
+    $smarty->assign('num_procesos_propios', count($procesos_propios));
+
+    // Indicadores bajo la responsabilidad de este usuario
+    $indicador = new Indicador();
+    $indicadores = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL");
+    $smarty->assign("num_indicadores_propios", count($indicadores));
+
+    // Datos bajo la responsabilidad de este usuario
+    $datos = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
+    $smarty->assign("num_datos_propios", count($datos));
+
     $smarty->assign('_rol', $rol);
     $smarty->assign('_control', $control);
     $smarty->assign('_usuario', $usuario);

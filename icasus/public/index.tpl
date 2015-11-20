@@ -83,10 +83,61 @@
                             <span id="fecha" title="{$smarty.const.FIELD_FECHA}: {$smarty.now|date_format:'%d-%m-%Y'}"><i class="fa fa-calendar fa-fw"></i> {$smarty.now|date_format:'%d-%m-%Y'}</span>
                         </li>
                         <li class="dropdown">
+                            <a class="dropdown-toggle" title="{$smarty.const.TXT_NOTIFICACIONES}" data-toggle="dropdown" href="#">
+                                <i class="fa fa-bell fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li>
+                                    <a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>
+                                        <div>
+                                            <i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}
+                                            <span class="pull-right badge">{$num_entidades_usuario}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=procesos'>
+                                        <div>
+                                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}
+                                            <span class="pull-right badge">{$num_procesos_propios}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>
+                                        <div>
+                                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}
+                                            <span class="pull-right badge">{$num_indicadores_propios}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=datos'>
+                                        <div>
+                                            <i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}
+                                            <span class="pull-right badge">{$num_datos_propios}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a class="text-center" title="{$smarty.const.TXT_IR_INICIO}" href="index.php">
+                                        <strong>{$smarty.const.TXT_IR_INICIO}</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-alerts -->
+                        </li>
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
                             <a class="dropdown-toggle" title="{$_usuario->login}" data-toggle="dropdown" href="#">
                                 <i class="fa fa-user fa-fw"></i> {$_usuario->login} <i class="fa fa-caret-down"></i>
                             </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu dropdown-user">
                                 <li>
                                     <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$_usuario->id}'><i class="fa fa-user fa-fw"></i> {$smarty.const.TXT_USER_PERFIL}</a>
                                 </li>

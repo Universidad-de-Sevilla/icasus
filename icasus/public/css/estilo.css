@@ -59,7 +59,7 @@ hr, .divider{
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
-        margin: 0 0 0 210px;
+        margin: 0 0 0 220px;
         padding: 0 30px 40px;
         border-left: 1px solid #FFC526;
     }
@@ -133,6 +133,29 @@ hr, .divider{
 .navbar-top-links .dropdown-menu li a div {
     white-space: normal;
 }
+.navbar-top-links .dropdown-messages,
+.navbar-top-links .dropdown-tasks,
+.navbar-top-links .dropdown-alerts {
+    width: 350px;
+    min-width: 0;
+}
+
+.navbar-top-links .dropdown-messages {
+    margin-left: 5px;
+}
+
+.navbar-top-links .dropdown-tasks {
+    margin-left: -59px;
+}
+
+.navbar-top-links .dropdown-alerts {
+    margin-left: -123px;
+}
+
+.navbar-top-links .dropdown-user {
+    right: 0;
+    left: auto;
+}
 
 #fecha{
     color: #950717;
@@ -184,7 +207,7 @@ hr, .divider{
     .sidebar {
         z-index: 1;
         position: absolute;
-        width: 210px;
+        width: 220px;
         margin-top: 51px;
     }
 

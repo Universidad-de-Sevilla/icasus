@@ -42,6 +42,7 @@ define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_BUSQUEDA_CATEGORIA', 'Resultados/Categoría');
 define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
+define('TXT_NOTIFICACIONES', 'Notificaciones');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
@@ -250,6 +251,7 @@ define('TXT_DESACT', 'Desactivar');
 define('TXT_CERRAR', 'Cerrar');
 define('TXT_MARCAR', 'Marcar todos');
 define('TXT_DESMARCAR', 'Desmarcar todos');
+define('TXT_IR_INICIO', 'Ir a Inicio');
 define('TXT_VOLVER', 'Volver al');
 define('TXT_VOLVER_ARRIBA', 'Volver arriba');
 define('TXT_VOLVER_INDICE', 'Volver al índice');
