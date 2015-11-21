@@ -196,7 +196,7 @@
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}" href='#'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-stack-1x"></i></span>{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}<span class="glyphicon arrow"></span></a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-leaf fa-stack-1x"></i></span>{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}<span class="glyphicon arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>
