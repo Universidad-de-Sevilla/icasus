@@ -258,6 +258,9 @@
                                                         {if $dato->calculo}
                                                             <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$dato->calculo}"></i>
                                                         {/if}
+                                                        {if $dato->id_tipo_agregacion!= 0}
+                                                            <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
+                                                        {/if}
                                                         <a href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
                                                            title="{$dato->nombre}: {$dato->descripcion}">
                                                             {$dato->nombre}</a>
