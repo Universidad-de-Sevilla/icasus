@@ -32,6 +32,11 @@ $smarty->assign("indicadores_propios", $indicadores);
 $datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
 $smarty->assign("datos_propios", $datos);
 
+// Cuadros de mando del usuario
+$cuadro = new Cuadro();
+$cuadros = $cuadro->Find("id_usuario = $usuario->id");
+$smarty->assign('cuadros_propios', $cuadros);
+
 $indicadores_datos = array_merge($indicadores, $datos);
 
 // Valores totales de las últimas mediciones

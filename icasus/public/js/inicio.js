@@ -42,3 +42,14 @@ $('#dialogo_confirmar_borrado_dato').on('show.bs.modal', function (event) {
     modal.find('#nombre_dato').text(nombre_dato);
     modal.find('#borrar').attr('href', link);
 });
+
+//Borrado de cuadros de mando
+$('#dialogo_confirmar_borrado_cuadro').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var nombre_cuadro = button.data('nombre_cuadro');
+    var id_cuadro = button.data('id_cuadro');
+    var modal = $(this);
+    var link = 'index.php?page=cuadro_borrar&id_cuadro=' + id_cuadro + '&id_entidad=14';
+    modal.find('#nombre_cuadro').text(nombre_cuadro);
+    modal.find('#borrar').attr('href', link);
+});

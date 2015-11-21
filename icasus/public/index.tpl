@@ -128,6 +128,15 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
+                                    <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
+                                        <div>
+                                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}:
+                                            <span class="pull-right badge">{$num_cuadros_propios}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
                                     <a class="text-center" title="{$smarty.const.TXT_IR_INICIO}" href="index.php">
                                         <strong>{$smarty.const.TXT_IR_INICIO}</strong>
                                         <i class="fa fa-angle-right"></i>
@@ -186,8 +195,8 @@
                                         <span class="fa-stack fa-lg"><i class="fa fa-gears fa-stack-1x"></i></span>{$smarty.const.TXT_PROCS}</a>
                                 </li>
                                 <li>
-                                    <a title="{$smarty.const.FIELD_MEDICIONES}" href='#'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-clock-o fa-stack-1x"></i></span>{$smarty.const.FIELD_MEDICIONES}<span class="glyphicon arrow"></span></a>
+                                    <a title="{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}" href='#'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-stack-1x"></i></span>{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}<span class="glyphicon arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
                                             <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>

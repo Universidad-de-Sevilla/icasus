@@ -130,6 +130,11 @@ if (isset($_SESSION['usuario']))
     $datos = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
     $smarty->assign("num_datos_propios", count($datos));
 
+    // Cuadros de mando propios del usuario
+    $cuadro = new Cuadro();
+    $cuadros = $cuadro->Find("id_usuario = $usuario->id");
+    $smarty->assign('num_cuadros_propios', count($cuadros));
+
     $smarty->assign('_rol', $rol);
     $smarty->assign('_control', $control);
     $smarty->assign('_usuario', $usuario);

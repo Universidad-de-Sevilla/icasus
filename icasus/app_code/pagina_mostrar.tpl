@@ -30,8 +30,7 @@
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-<br>
-
+<hr>
 <!-- Barra de botones -->
 <div class="row">
     <div class="col-lg-12">
