@@ -7,7 +7,7 @@
 // Incluye el código JavaScript para el fichero index.tpl
 //----------------------------------------------------------------------------
 
-$(function() {
+$(function () {
 
     $('#side-menu').metisMenu();
 
@@ -76,7 +76,15 @@ if (($(window).height() + 100) < $(document).height()) {
 //Datatables
 $(document).ready(function () {
     $('.datatable').DataTable({
-        "pagingType": "full_numbers"
+        "pagingType": "full_numbers",
+        dom: "<'row'<'col-sm-3'l><'col-sm-3'B><'col-sm-6'f>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        buttons: [
+            {extend: 'pdf', className: 'btn-danger'},
+            {extend: 'csv', className: 'btn-danger'},
+            {extend: 'print', text: 'Imprimir', className: 'btn-danger'}
+        ]
     });
 });
 

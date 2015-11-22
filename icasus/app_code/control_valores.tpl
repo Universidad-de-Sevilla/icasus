@@ -276,28 +276,38 @@
 <!-- /Indicadores/Datos sin Mediciones -->
 
 {*Recargamos script, datatables y collapsible panels tras petición ajax*}
-<script>
-    //Collapsible panels
-    jQuery(function ($) {
-        $('.panel-heading i.clickable').on("click", function (e) {
-            if ($(this).hasClass('panel-collapsed')) {
-                // expand the panel
-                $(this).parents('.panel').find('.panel-body').slideDown();
-                $(this).removeClass('panel-collapsed');
-                $(this).removeClass('fa-chevron-down').addClass('fa-chevron-up');
-            }
-            else {
-                // collapse the panel
-                $(this).parents('.panel').find('.panel-body').slideUp();
-                $(this).addClass('panel-collapsed');
-                $(this).removeClass('fa-chevron-up').addClass('fa-chevron-down');
-            }
+{literal}
+    <script>
+        //Collapsible panels
+        jQuery(function ($) {
+            $('.panel-heading i.clickable').on("click", function (e) {
+                if ($(this).hasClass('panel-collapsed')) {
+                    // expand the panel
+                    $(this).parents('.panel').find('.panel-body').slideDown();
+                    $(this).removeClass('panel-collapsed');
+                    $(this).removeClass('fa-chevron-down').addClass('fa-chevron-up');
+                }
+                else {
+                    // collapse the panel
+                    $(this).parents('.panel').find('.panel-body').slideUp();
+                    $(this).addClass('panel-collapsed');
+                    $(this).removeClass('fa-chevron-up').addClass('fa-chevron-down');
+                }
+            });
         });
-    });
-    //Datatables
-    $(document).ready(function () {
-        $('.datatable').DataTable({
-            "pagingType": "full_numbers"
+        //Datatables
+        $(document).ready(function () {
+            $('.datatable').DataTable({
+                "pagingType": "full_numbers",
+                dom: "<'row'<'col-sm-3'l><'col-sm-3'B><'col-sm-6'f>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                buttons: [
+                    {extend: 'pdf', className: 'btn-danger'},
+                    {extend: 'csv', className: 'btn-danger'},
+                    {extend: 'print', text: 'Imprimir', className: 'btn-danger'}
+                ]
+            });
         });
-    });
-</script>
+    </script>
+{/literal}

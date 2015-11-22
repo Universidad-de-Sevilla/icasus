@@ -460,7 +460,7 @@ $(".panel_tabla").each(function () {
         leyenda.html('<p style="font-size:0.9em">' + indicador.nombre + '</p>');
         $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id, function (datos) {
             var items = [];
-            items.push('<tr><th>Medición</th><th>Valor</th></tr>')
+            items.push('<tr><th>Medición</th><th>Valor</th></tr>');
             // Tomamos la entidad a mostrar del panel_indicador actual
             var id_entidad = indicador.id_entidad;
             $.each(datos, function (i, dato) {
@@ -486,7 +486,7 @@ $(".panel_tabla_multi").each(function () {
     var fecha_inicio = anio_inicio + "-01-01";
     var fecha_fin = anio_fin + "-12-31";
     var id_panel = $(this).data("id_panel");
-    var htmlTabla = ' <div class="table-responsive"><table id="tabla_rebiun" class="table datatable table-striped table-hover">';
+    var htmlTabla = ' <div class="table-responsive"><table id="tabla_multi" class="table datatable table-striped table-hover">';
 
     //Creamos la cabecera de la tabla
     htmlTabla += "<thead><tr><th>Código</th><th>Nombre</th>";
@@ -558,8 +558,16 @@ $(".panel_tabla_multi").each(function () {
         });
         htmlTabla += '</tbody></table></div>';
         $('#panel_' + id_panel).append(htmlTabla);
-        $('#tabla_rebiun').DataTable({
-            "pagingType": "full_numbers"
+        $('#tabla_multi').DataTable({
+            "pagingType": "full_numbers",
+            dom: "<'row'<'col-sm-3'l><'col-sm-3'B><'col-sm-6'f>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+            buttons: [
+                {extend: 'pdf', className: 'btn-danger'},
+                {extend: 'csv', className: 'btn-danger'},
+                {extend: 'print', text: 'Imprimir', className: 'btn-danger'}
+            ]
         });
     });
 });

@@ -108,7 +108,7 @@
     {if $paneles}
         {foreach $paneles as $panel}
             <div class="col-lg-{$panel->ancho}" >
-                <div class="panel panel-default">
+                <div class="panel panel-red">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-9">
@@ -124,7 +124,7 @@
                                            href="index.php?page=panel_editar&id_panel={$panel->id}&id_cuadro={$id_cuadro}">
                                             <i class="fa fa-pencil fa-fw"></i> 
                                         </a>
-                                        <a class="btn btn-danger btn-xs" 
+                                        <a class="btn btn-primary btn-xs" 
                                            title="{$smarty.const.TXT_BORRAR}"
                                            data-id_panel="{$panel->id}" 
                                            data-nombre_panel="{$panel->nombre}"

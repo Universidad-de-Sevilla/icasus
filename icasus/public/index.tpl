@@ -36,6 +36,9 @@
         <!-- Datatables -->
         <link href="lib/dataTables/css/dataTables.bootstrap.css" rel="stylesheet">
 
+        <!-- Datatables Buttons -->
+        <link href="lib/dataTables/css/buttons.bootstrap.min.css" rel="stylesheet">
+
         <!-- Highslide -->
         <link rel="stylesheet" type="text/css" href="lib/highslide/highslide.css"/>
         <script type='text/javascript' src="lib/highslide/js/highslide-full.min.js"></script>
@@ -403,6 +406,12 @@
         <script src="lib/dataTables/js/jquery.dataTables.min.js"></script>
         <script src="lib/dataTables/js/dataTables.bootstrap.js"></script>
 
+        <!-- Datatables Buttons -->
+        <script src="lib/dataTables/js/dataTables.buttons.min.js"></script>
+        <script src="lib/dataTables/js/buttons.bootstrap.min.js"></script>
+        <script src="lib/dataTables/js/buttons.html5.min.js"></script>
+        <script src="lib/dataTables/js/buttons.print.min.js"></script>
+        
         <!-- Highcharts -->
         <script src="lib/highcharts/highcharts.js"></script>
         <script src="lib/highcharts/exporting.js"></script>
