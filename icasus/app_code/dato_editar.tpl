@@ -117,7 +117,7 @@
                             <div class="form-group has-feedback">
                                 <label for="historicos" class="col-sm-2 control-label">{$smarty.const.FIELD_HISTORICO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                                 <div class="col-sm-8">
-                                    <input type="number" id='historicos' name="historicos" class="form-control" placeholder="{$smarty.const.FIELD_HISTORICO}" min='2008' max="{$smarty.now|date_format:'%Y'}" value="{$dato->historicos}" required/>
+                                    <input type="number" id='historicos' name="historicos" class="form-control" placeholder="{$smarty.const.FIELD_HISTORICO}" min='2000' max="{$smarty.now|date_format:'%Y'}" value="{$dato->historicos}" required/>
                                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     <div class="help-block with-errors"></div>
                                 </div>
