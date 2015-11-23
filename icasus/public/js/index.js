@@ -81,7 +81,6 @@ $(document).ready(function () {
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         buttons: [
-            {extend: 'pdf', className: 'btn-danger'},
             {extend: 'csv', className: 'btn-danger'},
             {extend: 'print', text: 'Imprimir', className: 'btn-danger'}
         ]

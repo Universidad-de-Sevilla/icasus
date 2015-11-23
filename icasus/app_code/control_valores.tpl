@@ -275,6 +275,100 @@
 <!-- /.row -->
 <!-- /Indicadores/Datos sin Mediciones -->
 
+<!-- Indicadores/Datos valores de referencia -->
+<div class="row">
+    <div class="col-lg-12">
+        <div id="tabla_val_ref" class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_VAL_REF}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">        
+                <div class="table-responsive">
+                    <table class="table datatable table-condensed table-striped table-hover">
+                        <thead>
+                            <tr>      
+                                <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                                <th>{$smarty.const.FIELD_PROC}</th>
+                                <th>{$smarty.const.FIELD_MED}</th>
+                                <th>{$smarty.const.FIELD_LIMITE}</th>
+                                <th>{$smarty.const.FIELD_OBJ}</th>
+                                <th>{$smarty.const.FIELD_ACCIONES}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach from=$indicadores item=indicador}
+                                {foreach $mediciones[$indicador->id] as $medicion}
+                                    <tr>
+                                        <td>
+                                            {if $indicador->id_proceso}
+                                                <a href="index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador->nombre}</a>
+                                            {else}
+                                                <a href="index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador->nombre}</a>
+                                            {/if}
+                                        </td>
+                                        <td>
+                                            {if $indicador->id_proceso}
+                                                <a href="index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_PROC_VER}">
+                                                    {$indicador->proceso->nombre}
+                                                </a>
+                                            {else}
+                                                {$smarty.const.FIELD_DATOS}
+                                            {/if}
+                                        </td>
+                                        <td>{$medicion->etiqueta}</td>
+                                        <td {if isset($medicion_lim[$indicador->id])}style="color:red"{/if}>
+                                            {if isset($medicion_lim[$indicador->id])}
+                                                {if ($medicion_lim[$indicador->id][$medicion->id])}
+                                                    {$medicion_lim[$indicador->id][$medicion->id]}
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            {else}
+                                                {$smarty.const.MSG_NO_DEF}
+                                            {/if}
+                                        </td>
+                                        <td {if isset($medicion_obj[$indicador->id])}style="color:green"{/if}>
+                                            {if isset($medicion_obj[$indicador->id])}
+                                                {if ($medicion_obj[$indicador->id][$medicion->id])}
+                                                    {$medicion_obj[$indicador->id][$medicion->id]}
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            {else}
+                                                {$smarty.const.MSG_NO_DEF}
+                                            {/if}
+                                        </td>
+                                        <td>
+                                            {if ($indicador->id_proceso)}
+                                                <a class="btn btn-default btn-circle btn-xs" 
+                                                   href="index.php?page=medicion_editar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador">
+                                                    <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+                                                </a>
+                                            {else}
+                                                <a class="btn btn-default btn-circle btn-xs" 
+                                                   href="index.php?page=medicion_editar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato">
+                                                    <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+                                                </a>
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Indicadores/Datos valores de referencia -->
+
 {*Recargamos script, datatables y collapsible panels tras petición ajax*}
 {literal}
     <script>
@@ -303,7 +397,6 @@
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
                 buttons: [
-                    {extend: 'pdf', className: 'btn-danger'},
                     {extend: 'csv', className: 'btn-danger'},
                     {extend: 'print', text: 'Imprimir', className: 'btn-danger'}
                 ]

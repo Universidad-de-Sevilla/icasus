@@ -99,7 +99,8 @@
                                             <a href="#tabla_agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}">{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a><br>
                                             <a href="#tabla_nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</a><br>
                                             <a href="#tabla_modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}">{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a><br>
-                                            <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</a>
+                                            <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</a><br>
+                                            <a href="#tabla_val_ref" title="{$smarty.const.TXT_INDIC_DAT_VAL_REF}">{$smarty.const.TXT_INDIC_DAT_VAL_REF}</a>
                                         </div>
                                     </td>
                                 </tr>

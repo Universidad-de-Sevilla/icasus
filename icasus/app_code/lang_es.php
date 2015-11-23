@@ -162,6 +162,7 @@ define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Indicadores y datos con mediciones n
 define('TXT_INDIC_DAT_MED_NULA', 'Indicadores y datos con mediciones nulas');
 define('TXT_INDIC_DAT_ULTIMA_MOD', 'Indicadores y datos, última modificación');
 define('TXT_INDIC_DAT_SIN_MED', 'Indicadores y datos sin mediciones');
+define('TXT_INDIC_DAT_VAL_REF', 'Indicadores/datos: valores de referencia');
 define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
 define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
 
@@ -657,6 +658,7 @@ define('FIELD_FUENTE', 'Fuente');
 define('FIELD_PERIODO', 'Periodo');
 define('FIELD_VISIBILIDAD', 'Visibilidad');
 define('FIELD_UMBRAL', 'Umbral');
+define('FIELD_LIMITE', 'Límite');
 define('FIELD_OBJ', 'Objetivo');
 define('FIELD_OBJP', 'Objetivo Pactado');
 define('FIELD_OBJC', 'Objetivo Carta de Servicio');
