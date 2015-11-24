@@ -113,18 +113,18 @@
                         <div class="row">
                             <div class="col-xs-9">
                                 <span title="{$smarty.const.FIELD_ORDEN}" class="badge">{$panel->orden}</span>
-                                <strong><i class="fa fa-line-chart fa-fw"></i> {$panel->nombre}</strong>     
+                                <strong><i class="fa fa-area-chart fa-fw"></i> {$panel->nombre}</strong>     
                             </div>
                             <!-- /.col-xs-9 -->
                             <div class="col-xs-3">
                                 {if $_usuario->id eq $cuadro->id_usuario}
                                     <div class="btn-toolbar pull-right" role="group" aria-label="">
-                                        <a class="btn btn-primary btn-xs" 
+                                        <a class="btn btn-default btn-xs" 
                                            title="{$smarty.const.TXT_EDIT}"
                                            href="index.php?page=panel_editar&id_panel={$panel->id}&id_cuadro={$id_cuadro}">
                                             <i class="fa fa-pencil fa-fw"></i> 
                                         </a>
-                                        <a class="btn btn-primary btn-xs" 
+                                        <a class="btn btn-default btn-xs" 
                                            title="{$smarty.const.TXT_BORRAR}"
                                            data-id_panel="{$panel->id}" 
                                            data-nombre_panel="{$panel->nombre}"
@@ -142,7 +142,7 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 {if $_usuario->id eq $cuadro->id_usuario}
-                                    <span title="{$smarty.const.FIELD_ANCHO}: {$panel->ancho}" class="label label-primary">{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
+                                    <span title="{$smarty.const.FIELD_ANCHO}: {$panel->ancho}" class="label label-default">{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
                                 {/if}
                                 {if $panel->tipo->id == 2 || $panel->tipo->id == 3 || $panel->tipo->id == 4}
                                     {$smarty.const.TXT_GRAFICO_AUMENTAR} 
