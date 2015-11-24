@@ -20,9 +20,6 @@
         <!-- Bootstrap Core CSS -->
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- MetisMenu CSS -->
-        <link href="lib/metisMenu/metisMenu.min.css" rel="stylesheet">
-
         <!-- Chosen CSS -->
         <link href="lib/chosen/chosen.min.css" rel="stylesheet">
         <link href="lib/chosen/chosen-bootstrap.css" rel="stylesheet">
@@ -140,8 +137,8 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a class="text-center" title="{$smarty.const.TXT_IR_INICIO}" href="index.php">
-                                        <strong>{$smarty.const.TXT_IR_INICIO}</strong>
+                                    <a class="text-center" title="{$smarty.const.TXT_VER} {$smarty.const.TXT_TODOS}" href="index.php">
+                                        <strong>{$smarty.const.TXT_VER} {$smarty.const.TXT_TODOS}</strong>
                                         <i class="fa fa-angle-right"></i>
                                     </a>
                                 </li>
@@ -198,18 +195,12 @@
                                         <span class="fa-stack fa-lg"><i class="fa fa-gears fa-stack-1x"></i></span>{$smarty.const.TXT_PROCS}</a>
                                 </li>
                                 <li>
-                                    <a title="{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}" href='#'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-leaf fa-stack-1x"></i></span>{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}<span class="glyphicon arrow"></span></a>
-                                    <ul class="nav nav-second-level">
-                                        <li>
-                                            <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>
-                                                <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-stack-1x"></i></span>{$smarty.const.FIELD_INDICS}</a>
-                                        </li>
-                                        <li>
-                                            <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=datos'>
-                                                <span class="fa-stack fa-lg"><i class="fa fa-database fa-stack-1x"></i></span>{$smarty.const.FIELD_DATOS}</a>
-                                        </li>
-                                    </ul>
+                                    <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicadores'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-stack-1x"></i></span>{$smarty.const.FIELD_INDICS}</a>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=datos'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-database fa-stack-1x"></i></span>{$smarty.const.FIELD_DATOS}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar'>
@@ -393,9 +384,6 @@
         <!-- Bootstrap FileStyle -->
         <script src="lib/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
 
-        <!-- Metis Menu Plugin JavaScript -->
-        <script src="lib/metisMenu/metisMenu.min.js"></script>
-
         <!-- Chosen Plugin JavaScript -->
         <script src="lib/chosen/chosen.jquery.min.js"></script>
 
@@ -411,7 +399,7 @@
         <script src="lib/dataTables/js/buttons.bootstrap.min.js"></script>
         <script src="lib/dataTables/js/buttons.html5.min.js"></script>
         <script src="lib/dataTables/js/buttons.print.min.js"></script>
-        
+
         <!-- Highcharts -->
         <script src="lib/highcharts/highcharts.js"></script>
         <script src="lib/highcharts/exporting.js"></script>

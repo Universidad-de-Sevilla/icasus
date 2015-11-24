@@ -251,7 +251,6 @@ define('TXT_DESACT', 'Desactivar');
 define('TXT_CERRAR', 'Cerrar');
 define('TXT_MARCAR', 'Marcar todos');
 define('TXT_DESMARCAR', 'Desmarcar todos');
-define('TXT_IR_INICIO', 'Ir a Inicio');
 define('TXT_VOLVER', 'Volver al');
 define('TXT_VOLVER_ARRIBA', 'Volver arriba');
 define('TXT_VOLVER_INDICE', 'Volver al índice');
