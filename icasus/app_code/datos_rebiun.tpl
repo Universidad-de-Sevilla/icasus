@@ -116,14 +116,15 @@
                                         {foreach $entidad->valores as $valor}
                                             <tr>
                                                 <td>
-                                                    <input type="input" name="valor" id="valor" class="entrada_valor number" 
+                                                    <input type="number" step="0.01" name="valor" id="valor" class="entrada_valor" 
                                                            value="{$valor->valor_parcial}"
                                                            data-id_valor = "{$valor->id}"
                                                            data-id_entidad = "{$entidad->id}"
                                                            data-id_usuario = "{$id_usuario}"/>
                                                 </td>
                                                 <td class="text-justify">
-                                                    <p><b>{$valor->indicador->nombre}</b> ({$valor->medicion->etiqueta})</p>
+                                                    <p><b><a title="{$valor->indicador->nombre} ({$valor->medicion->etiqueta})" href="index.php?page=medicion_editar&id_medicion={$valor->medicion->id}&id_entidad={$valor->indicador->id_entidad}&tipo=dato">
+                                                                {$valor->indicador->nombre} ({$valor->medicion->etiqueta})</a></b></p>
                                                     <p><small>{$valor->indicador->descripcion}</small></p>   
                                                 </td>
                                             </tr>

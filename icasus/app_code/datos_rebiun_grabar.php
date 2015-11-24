@@ -10,7 +10,6 @@
 global $usuario;
 global $plantilla;
 $plantilla = "datos_rebiun_grabar.tpl";
-
 $autorizado = false;
 
 if (filter_has_var(INPUT_GET, 'id_valor') && filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'valor_parcial'))
@@ -24,7 +23,6 @@ if (filter_has_var(INPUT_GET, 'id_valor') && filter_has_var(INPUT_GET, 'id_entid
             $autorizado = true;
         }
     }
-
     if ($autorizado)
     {
         $valor = new Valor();
@@ -37,8 +35,12 @@ if (filter_has_var(INPUT_GET, 'id_valor') && filter_has_var(INPUT_GET, 'id_entid
         $valor->fecha_recogida = date("Y-m-d");
         if ($valor->save())
         {
-            $smarty->assign("resultado", $valor->valor_parcial);
+            $smarty->assign("resultado", $valor->valor);
         }
     }
 }
-
+else
+{
+    $error = ERR_PARAM;
+    header("location:index.php?page=error&error=$error");
+}
