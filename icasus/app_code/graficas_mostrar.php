@@ -31,6 +31,28 @@ else
     header("location:index.php?page=entidad_listar&error=$error");
 }
 
+if ($tipo == "indicador")
+{
+    //Obtener todos los indicadores para avanzar o retroceder 
+    $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
+}
+else
+{
+    //Obtener todos los datos para avanzar o retroceder 
+    $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NULL");
+}
+$smarty->assign("indicadores", $indicadores);
+$cont = 0;
+foreach ($indicadores as $ind)
+{
+    if ($id_indicador == $ind->id)
+    {
+        $indice = $cont;
+        $smarty->assign("indice", $indice);
+    }
+    $cont++;
+}
+
 $indicador = new Indicador();
 $indicador->load("id = $id_indicador");
 $smarty->assign('indicador', $indicador);
