@@ -120,27 +120,6 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Menú del dato -->
-<div class="row">
-    <div class="col-lg-12">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active">
-                <a title="{$smarty.const.TXT_DATO_FICHA}" href="#"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_DATO_FICHA}</a>
-            </li>
-            <li role="presentation">
-                <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
-            </li>
-            <li role="presentation">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
-            </li>
-        </ul>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
-<!-- /Menú del dato -->
-
 <!-- Barra de botones -->
 <div class="row">
     <div class="col-lg-12">
@@ -155,6 +134,31 @@
                         <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_DATO_BORRAR}
                     </a>
                 {/if}
+            </div>
+            <div class="btn-group" role="group" aria-label="">
+                <a title="{$smarty.const.TXT_REP_GRAFIC}" class="btn btn-danger" href='index.php?page=graficas_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                    <i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}
+                </a>
+            </div>
+            <div class="btn-group" role="group" aria-label="">    
+                <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                    <i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}
+                </a>
+                {if !$dato->calculo && ($_control || $responsable)}
+                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                        <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
+                    </a>
+                {/if}
+                {if $_control || $responsable}
+                    <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                        <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
+                    </a>
+                {/if}
+            </div>
+            <div class="btn-group" role="group" aria-label="">
+                <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                    <i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}
+                </a>
             </div>
         </div>
     </div>
