@@ -42,7 +42,36 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-clock-o fa-fw"></i> {$_nombre_pagina}
+            <div class="row">
+                <div class="col-md-10">
+                    <i class="fa fa-clock-o fa-fw"></i> {$_nombre_pagina}
+                </div>
+                <!-- /.col-md-10 -->
+                <!-- Navegación -->
+                {if count($indicadores)> 1}
+                    <div class="col-md-2">
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion_listar&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[0]->id}'>
+                                    <i class="fa fa-step-backward fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ANT}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion_listar&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[$indice-1]->id}'>
+                                    <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_SIG}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=medicion_listar&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[$indice+1]->id}'>
+                                    <i class="fa fa-play fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ULTIMO}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=medicion_listar&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[(count($indicadores)-1)]->id}'>
+                                    <i class="fa fa-step-forward fa-fw"></i>
+                                </a>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- /.col-md-2 -->
+                {/if}
+                <!-- /Navegación -->
+            </div>
+            <!-- /.row -->
         </h3>
     </div>
     <!-- /.col-lg-12 -->
