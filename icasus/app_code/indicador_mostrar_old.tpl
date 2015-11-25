@@ -24,7 +24,7 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-dashboard fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-folder fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -120,27 +120,6 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Menú del indicador -->
-<div class="row">
-    <div class="col-lg-12">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active">
-                <a title="{$smarty.const.TXT_INDIC_FICHA}" href="#"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_INDIC_FICHA}</a>
-            </li>
-            <li role="presentation">
-                <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
-            </li>
-            <li role="presentation">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
-            </li>
-        </ul>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
-<!-- /Menú del indicador -->
-
 <!-- Barra de botones -->
 <div class="row">
     <div class="col-lg-12">
@@ -155,6 +134,31 @@
                         <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_INDIC_BORRAR}
                     </a>
                 {/if}
+            </div>
+            <div class="btn-group" role="group" aria-label="">
+                <a title="{$smarty.const.TXT_REP_GRAFIC}" class="btn btn-danger" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}
+                </a>
+            </div>
+            <div class="btn-group" role="group" aria-label="">    
+                <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}
+                </a>
+                {if !$indicador->calculo && ($_control || $responsable)}
+                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
+                    </a>
+                {/if}
+                {if $_control || $responsable}
+                    <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
+                    </a>
+                {/if}
+            </div>
+            <div class="btn-group" role="group" aria-label="">
+                <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}
+                </a>
             </div>
         </div>
     </div>

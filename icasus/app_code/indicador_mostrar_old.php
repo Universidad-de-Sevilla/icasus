@@ -73,7 +73,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_indicador");
     $smarty->assign("indicador_subunidades", $indicador_subunidades);
 
-    $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
+    $smarty->assign('_nombre_pagina', TXT_INDIC_FICHA . ": $indicador->nombre");
     $plantilla = 'indicador_mostrar.tpl';
 }
 else
