@@ -70,9 +70,9 @@ define('TXT_POR_MEDICION', 'Por medición');
 define('TXT_POR_ANYO', 'Por año');
 
 //Consulta
-define('TXT_CONSULT', 'Consulta');
+define('TXT_CONSULT', 'Consulta avanzada');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
-define('TXT_CONSULT_AVAN', 'Consulta Avanzada de indicadores y datos');
+define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 
 //Cuadros de Mando
 define('TXT_CUADRO_MANDO', 'Cuadro de mando');
@@ -470,6 +470,7 @@ define('MSG_UNID_EDITADA', 'La unidad se ha modificado con los datos que aparece
 define('MSG_UNID_NO_USERS', 'No se han vinculado usuarios a esta unidad.');
 define('MSG_UNID_NO_DATOS', 'No hay datos definidos para esta unidad.');
 define('MSG_UNID_NO_INDIC', 'No hay indicadores definidos para esta unidad.');
+define('MSG_UNID_NO_IND_NO_DAT', 'No hay indicadores ni datos definidos para esta unidad.');
 define('MSG_UNID_SUBUNIDS_NO_INDIC', 'No hay indicadores definidos para las subunidades de esta unidad.');
 define('MSG_UNID_SUP_NO_PROC', 'La unidad madre no tiene procesos.');
 define('MSG_UNID_NO_SEG', 'Esta unidad no mide indicadores segregados.');

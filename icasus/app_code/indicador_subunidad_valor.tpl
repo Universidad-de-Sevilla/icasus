@@ -259,7 +259,7 @@
                             data-id_indicador="{$indicador->id}"
                             data-id_entidad="{$entidad->id}"
                             class="btn btn-success">
-                        <i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_MOSTRAR_RESUL}
+                        <i class="fa fa-search fa-fw"></i> {$smarty.const.TXT_MOSTRAR_RESUL}
                     </button>
                 </div> 
             </div>

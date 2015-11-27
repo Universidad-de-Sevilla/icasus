@@ -27,7 +27,7 @@ function agregarIndicador()
     var id_indicador = $(this).attr('id_indicador');
     var serie = $(".activo").data("serie");
     $(".activo").empty();
-    $(this).clone().appendTo('.activo').wrap("<div />").after('<a id="borra' + serie + '" title="Quitar" class="pull-right clickable"><i class="fa fa-times fa-fw"</a>').toggleClass("indicador escogido");
+    $(this).clone().appendTo('.activo').wrap("<div />").after('<b id="borra' + serie + '" class="icon-remove pull-right">X</b>').toggleClass("indicador escogido");
     $('#borra' + serie).bind('click', quitarIndicador);
     $.getJSON('api_publica.php?metodo=get_subunidades_indicador&id=' + id_indicador, function (data) {
         var items = [];
@@ -36,15 +36,9 @@ function agregarIndicador()
             items.push('<option id="' + subunidad.id + '">' + subunidad.etiqueta + '</option>');
         });
         $('<select/>', {
-            'class': 'subunidades form-control chosen-select',
+            'class': 'subunidades',
             html: items.join('')
         }).bind('change', mostrarIndicadorSubunidad).appendTo('.activo');
-        // Activamos chosen-select
-        $(".chosen-select").chosen({
-            disable_search_threshold: 10,
-            no_results_text: "Oops, no se encuentran registros coincidentes"
-        });
-        mostrarIndicador(serie);
     });
     // Después de añadir el indicador activamos el siguiente receptor
     // Si era el último creamos uno nuevo
@@ -56,9 +50,7 @@ function agregarIndicador()
     //{
     //$(".activo").nextAll(".receptor:first").trigger("click");
     //}
-
-//    $(".activo").nextAll(".receptor:first").trigger("click");
-//    mostrarIndicador(serie);
+    mostrarIndicador(serie);
     return false;
 }
 
@@ -90,11 +82,16 @@ function generaTablaDatos(id_indicador, nombre_indicador, datos, serie)
     $.each(datos, function (i, dato) {
         if (dato.unidad === subunidad_actual)
         {
-            items.push('<tr><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
+            if (i % 2 === 0) {
+                paridad = "odd";
+            } else {
+                paridad = "even";
+            }
+            items.push('<tr class="' + paridad + '"><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
         }
     });
     $('#tabla' + serie).empty();
-    $('<table />', {'class': 'table table-striped table-hover',
+    $('<table />', {'class': 'static',
         'data-id_indicador': id_indicador,
         html: items.join('')
     }).appendTo('#tabla' + serie);
@@ -106,10 +103,15 @@ function generaTablaResultados(datos)
     items.push('<caption>Resultados</caption>');
     items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
     $.each(datos, function (i, dato) {
-        items.push('<tr><td>' + dato[0] + '</td><td>' + dato[1].toFixed(2) + '</td></tr>');
+        if (i % 2 === 0) {
+            paridad = "odd";
+        } else {
+            paridad = "even";
+        }
+        items.push('<tr class="' + paridad + '"><td>' + dato[0] + '</td><td>' + dato[1].toFixed(2) + '</td></tr>');
     });
     $('#tablar').empty();
-    $('<table />', {'class': 'table table-striped table-hover',
+    $('<table />', {'class': 'static',
         'data-id_indicador': 0,
         html: items.join('')
     }).appendTo('#tablar');

@@ -6,6 +6,8 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
+// Controlador que permite descargar archivos de icasus
+//------------------------------------------------------------------------------------------------
 
 global $smarty;
 global $plantilla;
@@ -43,4 +45,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?error=$error");
 }
-

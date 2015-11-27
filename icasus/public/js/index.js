@@ -71,7 +71,8 @@ if (($(window).height() + 100) < $(document).height()) {
 $(document).ready(function () {
     $('.datatable').DataTable({
         "pagingType": "full_numbers",
-        dom: "<'row'<'col-sm-3'l><'col-sm-3'B><'col-sm-6'f>>" +
+        dom: "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
+                "<'row'<'col-sm-12'B>>" +
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         buttons: [
