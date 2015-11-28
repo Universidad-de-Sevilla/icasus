@@ -94,7 +94,7 @@
                                     {foreach $indicadores as $indicador}
                                         <tr>
                                             <td><span class="label label-primary">{$indicador->codigo}</span></td>
-                                            <td><a href="javascript:void(0)" class="indicador" id_indicador="{$indicador->id}">{$indicador->nombre}</a></td>
+                                            <td title="{$smarty.const.TXT_CONSULT_INCLUIR}"><a href="javascript:void(0)" class="indicador" id_indicador="{$indicador->id}">{$indicador->nombre}</a></td>
                                         </tr>
                                     {/foreach}
                                 </tbody>
@@ -181,12 +181,12 @@
                 <div class="col-lg-8">
                     <ul class="nav nav-pills mediciones">
                         <li>
-                            <a class="btn btn-default" href="#" class="medicion actual">{$smarty.const.TXT_TODOS}</a>
+                            <a class="btn btn-default medicion actual" href="#">{$smarty.const.TXT_TODOS}</a>
                         </li>
                         {$anyo_actual = $smarty.now|date_format:'%Y'}
                         {for $anyo = $anyo_actual - 5 to $anyo_actual}
                             <li>
-                                <a class="btn btn-default" href="javascript:void(0)" class="medicion">{$anyo}</a>
+                                <a class="btn btn-default medicion" href="javascript:void(0)">{$anyo}</a>
                             </li>
                         {/for}
                     </ul>
@@ -202,5 +202,3 @@
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-
-<script src="lib/flot/jquery.flot.min.js"></script>

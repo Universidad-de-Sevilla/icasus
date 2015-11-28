@@ -72,6 +72,7 @@ define('TXT_POR_ANYO', 'Por año');
 //Consulta
 define('TXT_CONSULT', 'Consulta avanzada');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
+define('TXT_CONSULT_INCLUIR', 'Incluir en la consulta');
 define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 
 //Cuadros de Mando

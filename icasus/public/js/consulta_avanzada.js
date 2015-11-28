@@ -27,7 +27,7 @@ function agregarIndicador()
     var id_indicador = $(this).attr('id_indicador');
     var serie = $(".activo").data("serie");
     $(".activo").empty();
-    $(this).clone().appendTo('.activo').wrap("<div />").after('<a id="borra' + serie + '" title="Quitar" class="pull-right clickable"><i class="fa fa-times fa-fw"</a>').toggleClass("indicador escogido");
+    $(this).clone().appendTo('.activo').wrap("<div />").after('<a id="borra' + serie + '" title="Retirar de la consulta" class="pull-right clickable" style="color:#950717"><i class="fa fa-times fa-fw"></i></a>').toggleClass("indicador escogido");
     $('#borra' + serie).bind('click', quitarIndicador);
     $.getJSON('api_publica.php?metodo=get_subunidades_indicador&id=' + id_indicador, function (data) {
         var items = [];
@@ -46,19 +46,6 @@ function agregarIndicador()
         });
         mostrarIndicador(serie);
     });
-    // Después de añadir el indicador activamos el siguiente receptor
-    // Si era el último creamos uno nuevo
-    //if ($(".activo").nextAll(".receptor:first") == 0)
-    //{
-    //crearReceptor();
-    //}
-    //else
-    //{
-    //$(".activo").nextAll(".receptor:first").trigger("click");
-    //}
-
-//    $(".activo").nextAll(".receptor:first").trigger("click");
-//    mostrarIndicador(serie);
     return false;
 }
 
@@ -72,6 +59,8 @@ function mostrarIndicador(serie) {
         opciones = prepararOpciones(data);
         $("#grafica").css("height", "400px");
         $.plot($("#grafica"), datos, opciones);
+        // Después de mostrar el indicador activamos el siguiente receptor
+        $(".activo").nextAll(".receptor:first").trigger("click");
     });
 }
 
@@ -293,7 +282,6 @@ function calcularResultado()
     generaTablaResultados(resultado);
     // Generamos la grafica con los resultados a partir del objeto 'resultados'
     $.plot($("#grafica"), resultados, opciones_resultado);
-
 }
 
 function crearReceptor()
@@ -310,26 +298,10 @@ function activarReceptor()
 function quitarIndicador()
 {
     serie = $(this).closest(".receptor").data("serie");
-    //datos[serie] = 0;
-    //datos_json[serie] = 0;
     delete datos.serie;
     delete datos_json.serie;
     $(this).closest('.receptor').empty();
     $("#tabla" + serie).empty();
     $("#grafica").css("height", "400px");
     $.plot($("#grafica"), datos, opciones);
-}
-
-// devuelve la posición si un array contiene a otro o -1 si no lo contiene
-function indexOfArray(val, array)
-{
-    var
-            hash = {},
-            indexes = {},
-            i, j;
-    for (i = 0; i < array.length; i++)
-    {
-        hash[array[i]] = i;
-    }
-    return (hash.hasOwnProperty(val)) ? hash[val] : -1;
 }

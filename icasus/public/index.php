@@ -123,12 +123,12 @@ if (isset($_SESSION['usuario']))
 
     // Indicadores bajo la responsabilidad de este usuario
     $indicador = new Indicador();
-    $indicadores = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL");
-    $smarty->assign("num_indicadores_propios", count($indicadores));
+    $indicadores_propios = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL");
+    $smarty->assign("num_indicadores_propios", count($indicadores_propios));
 
     // Datos bajo la responsabilidad de este usuario
-    $datos = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
-    $smarty->assign("num_datos_propios", count($datos));
+    $datos_propios = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
+    $smarty->assign("num_datos_propios", count($datos_propios));
 
     // Cuadros de mando propios del usuario
     $cuadro = new Cuadro();

@@ -496,3 +496,8 @@ span:focus, .pagination > li > span:hover {
 .panel-datos .panel-heading:hover {
     background-color: #b52b27;
 }
+
+/*Consultas*/
+.well.activo{
+    border: 1px solid #950717;
+}

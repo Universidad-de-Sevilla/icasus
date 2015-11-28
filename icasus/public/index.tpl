@@ -406,6 +406,9 @@
         <script src="lib/highcharts/Conjunto.js"></script>
         <script src="lib/highcharts/HighchartSerie.js"></script>
 
+        <!-- Flot -->
+        <script src="lib/flot/jquery.flot.min.js"></script>
+
         <!-- Custom JavaScript -->
         <script src="js/index.js"></script>
 
