@@ -171,9 +171,9 @@
                        data-toggle="modal" data-target="#dialogo_confirmar_generar">
                         <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}
                     </a>
-                    <a title="{$smarty.const.TXT_MED_AGREGAR}" class="btn btn-danger" href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}">
+                   <!-- <a title="{$smarty.const.TXT_MED_AGREGAR}" class="btn btn-danger" href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}">
                         <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_MED_AGREGAR}
-                    </a>
+                    </a>-->
                 {/if}
                 {if !$indicador->calculo && ($_control || $_usuario->id==$indicador->id_responsable)}
                     <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
