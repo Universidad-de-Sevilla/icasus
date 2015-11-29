@@ -27,8 +27,8 @@ if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'codigo')
 {
     $nombre = filter_input(INPUT_POST, 'nombre');
     $id_padre = filter_input(INPUT_POST, 'id_padre', FILTER_SANITIZE_NUMBER_INT);
-    $web = filter_has_var(INPUT_POST, 'web') ? filter_input(INPUT_POST, 'web', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : '';
-    $codigo = filter_has_var(INPUT_POST, 'codigo') ? filter_input(INPUT_POST, 'codigo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : '';
+    $web = filter_has_var(INPUT_POST, 'web') ? filter_input(INPUT_POST, 'web', FILTER_SANITIZE_URL) : '';
+    $codigo = filter_has_var(INPUT_POST, 'codigo') ? filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_STRING) : '';
     if ($entidad->actualizar($id_entidad, $id_padre, $nombre, $web, $codigo))
     {
         $smarty->assign('entidad', $entidad);

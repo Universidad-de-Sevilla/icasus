@@ -16,8 +16,8 @@ $smarty->assign('_nombre_pagina', TXT_BIENVENIDO);
 // Comprueba que vengan los datos
 if (filter_has_var(INPUT_POST, 'login') && filter_has_var(INPUT_POST, 'clave'))
 {
-    $login = filter_input(INPUT_POST, 'login', FILTER_CALLBACK, array('options' => 'Util::mysqlCleaner'));
-    $clave = filter_input(INPUT_POST, 'clave', FILTER_CALLBACK, array('options' => 'Util::mysqlCleaner'));
+    $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
+    $clave = filter_input(INPUT_POST, 'clave', FILTER_SANITIZE_STRING);
 
     $usuario = new Usuario();
     if ($usuario->load_joined("login = '$login' AND clave = '$clave'"))

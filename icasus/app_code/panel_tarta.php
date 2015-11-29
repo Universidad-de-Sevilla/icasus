@@ -11,8 +11,8 @@
 
 if (filter_has_var(INPUT_GET, 'page') && filter_has_var(INPUT_GET, 'modulo'))
 {
-    $modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-    $tipo = filter_input(INPUT_GET, 'page', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
+    $tipo = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
 
     $panel_tipo = new Panel_tipo();
     $panel_tipo->load("clase_css = '$tipo'");

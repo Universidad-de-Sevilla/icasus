@@ -14,7 +14,7 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 
 $fichero = new Fichero();
 $db = $fichero->DB();
@@ -23,8 +23,8 @@ if ($modulo == 'subir')
 {
 //    $ext = pathinfo($_FILES['sarchivo']['name']);
     $ext = $ext["extension"];
-    $fichero->titulo = filter_input(INPUT_POST, 'stitulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-    $fichero->descripcion = filter_input(INPUT_POST, 'sdescripcion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $fichero->titulo = filter_input(INPUT_POST, 'stitulo', FILTER_SANITIZE_STRING);
+    $fichero->descripcion = filter_input(INPUT_POST, 'sdescripcion', FILTER_SANITIZE_STRING);
     $fichero->id_objeto = filter_input(INPUT_POST, 'id_objeto', FILTER_SANITIZE_NUMBER_INT);
     $fichero->id_usuario = $usuario->id;
     $fichero->visible = filter_input(INPUT_POST, 'svisible', FILTER_SANITIZE_NUMBER_INT);
@@ -81,8 +81,8 @@ if ($modulo == 'actualizar')
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
     if ($fichero->load("id =$id"))
     {
-        $fichero->titulo = filter_input(INPUT_POST, 'titulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-        $fichero->descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+        $fichero->titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
+        $fichero->descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
         $fichero->id_usuario = $usuario->id;
         $fichero->visible = filter_input(INPUT_POST, 'visible', FILTER_SANITIZE_NUMBER_INT);
         //$db->execute("SET NAMES UTF8");

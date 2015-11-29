@@ -13,12 +13,6 @@
 class Util
 {
 
-    //Saneamiento SQL
-    static function mysqlCleaner($data)
-    {
-        return(stripslashes(mysql_real_escape_string($data)));
-    }
-    
     //Fechas: calcula si un año es o no bisiesto
     static function esBisiesto($year)
     {

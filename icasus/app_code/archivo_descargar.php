@@ -15,7 +15,7 @@ global $usuario;
 
 if (filter_has_var(INPUT_GET, 'id'))
 {
-    $id = filter_input(INPUT_GET, 'id', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
     $a = new Fichero();
     if ($a->load("id = $id"))

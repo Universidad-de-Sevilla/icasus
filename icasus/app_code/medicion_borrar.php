@@ -20,7 +20,7 @@ if (filter_has_var(INPUT_GET, 'id_medicion') AND filter_has_var(INPUT_GET, 'tipo
 
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
-    $tipo = filter_input(INPUT_GET, 'tipo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
 
     $medicion = new Medicion();
     $medicion->load("id = $id_medicion");

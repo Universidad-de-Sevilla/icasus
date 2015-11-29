@@ -8,9 +8,8 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Prepara los datos para mostrar el formulario que permite crear un nuevo cuadro de mando
 //---------------------------------------------------------------------------------------------------
-//$tipo = sanitize($_GET["tipo"], 2);
 
-$tipo = filter_input(INPUT_GET, 'tipo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
 
 $smarty->assign('_nombre_pagina', TXT_INDIC_SEG_DEPART);
 $plantilla = 'informes/cuadromando_departamento.tpl';

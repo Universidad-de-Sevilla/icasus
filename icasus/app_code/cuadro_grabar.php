@@ -27,13 +27,13 @@ if (filter_has_var(INPUT_POST, 'nombre'))
         }
     }
     $cuadro->id_usuario = $usuario->id;
-    $cuadro->nombre = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $cuadro->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $cuadro->privado = 0;
     if (filter_has_var(INPUT_POST, 'privado'))
     {
         $cuadro->privado = filter_input(INPUT_POST, 'privado', FILTER_VALIDATE_BOOLEAN);
     }
-    $cuadro->comentarios = filter_has_var(INPUT_POST, 'comentarios') ? filter_input(INPUT_POST, 'comentarios', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : '';
+    $cuadro->comentarios = filter_has_var(INPUT_POST, 'comentarios') ? filter_input(INPUT_POST, 'comentarios', FILTER_SANITIZE_STRING) : '';
     $cuadro->save();
     header("Location: index.php?page=cuadro_mostrar&id=$cuadro->id&exito=$exito");
 }

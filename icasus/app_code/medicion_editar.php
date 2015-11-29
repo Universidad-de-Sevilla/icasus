@@ -17,7 +17,7 @@ $logicaIndicador = new LogicaIndicador();
 if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'))
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-    $tipo = filter_input(INPUT_GET, 'tipo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
     $smarty->assign("tipo", $tipo);
 
     $medicion = new Medicion();

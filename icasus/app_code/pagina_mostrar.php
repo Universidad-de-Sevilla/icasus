@@ -14,7 +14,7 @@ global $plantilla;
 
 if (filter_has_var(INPUT_GET, 'alias') or filter_has_var(INPUT_GET, 'id_pagina'))
 {
-    $alias = filter_has_var(INPUT_GET, 'alias') ? filter_input(INPUT_GET, 'alias', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : '';
+    $alias = filter_has_var(INPUT_GET, 'alias') ? filter_input(INPUT_GET, 'alias', FILTER_SANITIZE_STRING) : '';
     $id_pagina = filter_has_var(INPUT_GET, 'id_pagina') ? filter_input(INPUT_GET, 'id_pagina', FILTER_SANITIZE_NUMBER_INT) : 0;
 }
 else

@@ -14,7 +14,7 @@ global $usuario;
 global $plantilla;
 //parametros que son comunes a todos los módulos
 
-$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 $entidad = new Entidad();
@@ -28,9 +28,9 @@ $indicador->load("id = $id_indicador");
 $smarty->assign('indicador', $indicador);
 
 
-$inicio = filter_input(INPUT_GET, 'inicio', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$inicio = filter_input(INPUT_GET, 'inicio', FILTER_SANITIZE_NUMBER_INT);
 
-$fin = filter_input(INPUT_GET, 'fin', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$fin = filter_input(INPUT_GET, 'fin', FILTER_SANITIZE_NUMBER_INT);
 
 $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 
@@ -125,7 +125,7 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                 $years = $medicion->find_year_mediciones($id_indicador);
                 $smarty->assign('years', $years);
 
-                $smarty->assign('year_inicio', filter_input(INPUT_GET, 'inicio', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")));
+                $smarty->assign('year_inicio', filter_input(INPUT_GET, 'inicio', FILTER_SANITIZE_NUMBER_INT));
                 $cabeceras = '';
                 $subunidades_mediciones = '';
                 break;

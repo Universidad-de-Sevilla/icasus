@@ -45,23 +45,23 @@ if (
     $indicador->id_responsable = filter_input(INPUT_POST, 'id_responsable', FILTER_SANITIZE_NUMBER_INT);
     $indicador->id_responsable_medicion = filter_input(INPUT_POST, 'id_responsable_medicion', FILTER_SANITIZE_NUMBER_INT);
     $indicador->id_entidad = $id_entidad;
-    $indicador->codigo = filter_input(INPUT_POST, 'codigo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-    $indicador->nombre = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-    $indicador->formulacion = filter_input(INPUT_POST, 'formulacion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-    $indicador->id_visibilidad = filter_input(INPUT_POST, 'id_visibilidad', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $indicador->codigo = filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_STRING);
+    $indicador->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+    $indicador->formulacion = filter_input(INPUT_POST, 'formulacion', FILTER_SANITIZE_STRING);
+    $indicador->id_visibilidad = filter_input(INPUT_POST, 'id_visibilidad', FILTER_SANITIZE_NUMBER_INT);
     $tipo_seleccion_responsable = filter_input(INPUT_POST, 'tipo_seleccion_responsable');
     // Campos opcionales 
-    $indicador->descripcion = filter_has_var(INPUT_POST, 'descripcion') ? filter_input(INPUT_POST, 'descripcion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $indicador->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $indicador->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $indicador->calculo = filter_has_var(INPUT_POST, 'calculo') ? filter_input(INPUT_POST, 'calculo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $indicador->fuente_informacion = filter_has_var(INPUT_POST, 'fuente_informacion') ? filter_input(INPUT_POST, 'fuente_informacion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $indicador->fuente_datos = filter_has_var(INPUT_POST, 'fuente_datos') ? filter_input(INPUT_POST, 'fuente_datos', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+    $indicador->descripcion = filter_has_var(INPUT_POST, 'descripcion') ? filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING) : null;
+    $indicador->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_SANITIZE_STRING) : null;
+    $indicador->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_SANITIZE_STRING) : null;
+    $indicador->calculo = filter_has_var(INPUT_POST, 'calculo') ? filter_input(INPUT_POST, 'calculo', FILTER_SANITIZE_STRING) : null;
+    $indicador->fuente_informacion = filter_has_var(INPUT_POST, 'fuente_informacion') ? filter_input(INPUT_POST, 'fuente_informacion', FILTER_SANITIZE_STRING) : null;
+    $indicador->fuente_datos = filter_has_var(INPUT_POST, 'fuente_datos') ? filter_input(INPUT_POST, 'fuente_datos', FILTER_SANITIZE_STRING) : null;
     $indicador->desagregado = filter_has_var(INPUT_POST, 'tipo_seleccion_responsable') ? filter_input(INPUT_POST, 'tipo_seleccion_responsable', FILTER_SANITIZE_NUMBER_INT) : null;
-    $indicador->evidencia = filter_has_var(INPUT_POST, 'evidencia') ? filter_input(INPUT_POST, 'evidencia', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+    $indicador->evidencia = filter_has_var(INPUT_POST, 'evidencia') ? filter_input(INPUT_POST, 'evidencia', FILTER_SANITIZE_STRING) : null;
     $indicador->historicos = filter_has_var(INPUT_POST, 'historicos') ? filter_input(INPUT_POST, 'historicos', FILTER_SANITIZE_NUMBER_INT) : null;
-    $indicador->unidad_generadora = filter_has_var(INPUT_POST, 'unidad_generadora') ? filter_input(INPUT_POST, 'unidad_generadora', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $indicador->interpretacion = filter_has_var(INPUT_POST, 'interpretacion') ? filter_input(INPUT_POST, 'interpretacion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+    $indicador->unidad_generadora = filter_has_var(INPUT_POST, 'unidad_generadora') ? filter_input(INPUT_POST, 'unidad_generadora', FILTER_SANITIZE_STRING) : null;
+    $indicador->interpretacion = filter_has_var(INPUT_POST, 'interpretacion') ? filter_input(INPUT_POST, 'interpretacion', FILTER_SANITIZE_STRING) : null;
     $indicador->fecha_creacion = date("Y-m-d");
     $indicador->id_tipo_agregacion = filter_has_var(INPUT_POST, 'id_tipo_agregacion') ? filter_input(INPUT_POST, 'id_tipo_agregacion', FILTER_SANITIZE_NUMBER_INT) : 0;
     if (filter_input(INPUT_POST, 'tipo_seleccion_responsable', FILTER_SANITIZE_NUMBER_INT) == 0)

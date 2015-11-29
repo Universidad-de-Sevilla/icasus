@@ -11,7 +11,7 @@
 
 if (filter_has_var(INPUT_GET, 'texto_buscar'))
 {
-    $texto = filter_input(INPUT_GET, 'texto_buscar', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $texto = filter_input(INPUT_GET, 'texto_buscar', FILTER_SANITIZE_STRING);
     $smarty->assign('texto', $texto);
     //Para hacer búsqueda case insensitive:
     $textob = strtoupper($texto);

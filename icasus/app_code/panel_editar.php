@@ -22,7 +22,7 @@ if (filter_has_var(INPUT_GET, 'id_panel') && filter_has_var(INPUT_GET, 'id_cuadr
     //Guardamos los cambios
     if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'orden') && filter_has_var(INPUT_POST, 'ancho'))
     {
-        $panel->nombre = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+        $panel->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
         $panel->orden = filter_input(INPUT_POST, 'orden', FILTER_SANITIZE_NUMBER_INT);
         $panel->ancho = filter_input(INPUT_POST, 'ancho', FILTER_SANITIZE_NUMBER_INT);
         $panel->Save();

@@ -11,7 +11,7 @@
 
 if (filter_has_var(INPUT_GET, 'modulo'))
 {
-    $modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 
     if ($modulo == 'periodicidad')
     {
@@ -25,7 +25,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
     }
     if ($modulo == 'indicadores_linea')
     {
-        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_SANITIZE_STRING);
 
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
@@ -37,7 +37,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
     }
     if ($modulo == 'indicador_barra_base')
     {
-        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_SANITIZE_STRING);
 
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
@@ -49,7 +49,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
     }
     if ($modulo == 'indicadores_barra_complementarios')
     {
-        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_SANITIZE_STRING);
 
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
@@ -61,7 +61,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
     }
     if ($modulo == 'indicador_tarta')
     {
-        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_SANITIZE_STRING);
 
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
@@ -73,7 +73,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
     }
     if ($modulo == 'indicador_metrica')
     {
-        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_SANITIZE_STRING);
 
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
@@ -85,7 +85,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
     }
     if ($modulo == 'indicador_subunidades')
     {
-        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+        $cadena = filter_input(INPUT_GET, 'cadena', FILTER_SANITIZE_STRING);
 
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 

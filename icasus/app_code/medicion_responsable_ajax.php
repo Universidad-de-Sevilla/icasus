@@ -14,7 +14,7 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 $indicador_subunidad = new Indicador_subunidad();
 
 if ($modulo == 'grabar')

@@ -15,7 +15,7 @@ $panel_indicador = new Panel_indicador();
 if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'orden') && filter_has_var(INPUT_POST, 'tipo') && filter_has_var(INPUT_POST, 'ancho'))
 {
     $id_cuadro = filter_input(INPUT_POST, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
-    $nombre_panel = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $nombre_panel = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $orden = filter_input(INPUT_POST, 'orden', FILTER_SANITIZE_NUMBER_INT);
     $tipo = filter_input(INPUT_POST, 'tipo', FILTER_SANITIZE_NUMBER_INT);
     $ancho = filter_input(INPUT_POST, 'ancho', FILTER_SANITIZE_NUMBER_INT);
@@ -30,7 +30,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
     $panel->id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $panel->fecha_inicio = filter_input(INPUT_POST, 'inicioYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'inicioMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'inicioDay', FILTER_SANITIZE_NUMBER_INT);
     $panel->fecha_fin = filter_input(INPUT_POST, 'finYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finDay', FILTER_SANITIZE_NUMBER_INT);
-    $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : "todo";
+    $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_SANITIZE_STRING) : "todo";
 
     // Cuando se trata de un año completamos meses y días para coger el año completo 
     if (filter_has_var(INPUT_POST, 'fecha'))

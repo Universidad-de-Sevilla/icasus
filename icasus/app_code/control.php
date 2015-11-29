@@ -12,8 +12,8 @@
 global $smarty;
 global $plantilla;
 
-$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
+$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
 $entidad = new Entidad();
 $entidad->load("id = $id_entidad");

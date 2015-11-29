@@ -17,7 +17,7 @@ $smarty->assign('_nombre_pagina', TXT_USERS);
 $usuario = new Usuario();
 if (filter_has_var(INPUT_POST, 'criterio'))
 {
-    $criterio = filter_input(INPUT_POST, 'criterio', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $criterio = filter_input(INPUT_POST, 'criterio', FILTER_SANITIZE_STRING);
     $smarty->assign('criterio', $criterio);
     $where = "nombre LIKE '%$criterio%' OR apellidos LIKE '%$criterio%' OR correo LIKE '%$criterio%' OR login LIKE '%$criterio%' ";
 }

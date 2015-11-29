@@ -27,7 +27,7 @@ if (mysql_select_db(IC_DB_DATABASE))
             {
                 if (!empty($valor))
                 {
-                    $variable = filter_var($valor, FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+                    $variable = filter_var($valor, FILTER_SANITIZE_STRING);
                 }
             }
             /*

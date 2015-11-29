@@ -16,7 +16,7 @@ global $plantilla;
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
-$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 $medicion = new Medicion();
 $indicador = new Indicador();
 $valor = new Valor();
@@ -117,9 +117,9 @@ if ($modulo == 'cancelarfila')
 //etiquetas y fechas -----------------------------------------------------------
 if ($modulo == 'grabaretiqueta')
 {
-    $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $valor = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_STRING);
 
-    $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_SANITIZE_STRING);
 
     $id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $medicion->load("id = $id_medicion");
@@ -148,9 +148,9 @@ if ($modulo == 'grabaretiqueta')
 
 if ($modulo == 'grabarobservaciones')
 {
-    $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $valor = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_STRING);
 
-    $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_SANITIZE_STRING);
 
     $id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $medicion->load("id = $id_medicion");
@@ -181,7 +181,7 @@ if ($modulo == 'editaretiqueta')
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 
-    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_SANITIZE_STRING);
     $smarty->assign("contenedor", $contenedor);
     $medicion->load("id = $id_medicion");
     $smarty->assign("medicion", $medicion);
@@ -200,7 +200,7 @@ if ($modulo == 'editarobservaciones')
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 
-    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_SANITIZE_STRING);
     $smarty->assign("contenedor", $contenedor);
     $medicion->load("id = $id_medicion");
     $smarty->assign("medicion", $medicion);
@@ -219,7 +219,7 @@ if ($modulo == 'cancelaretiqueta')
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 
-    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_SANITIZE_STRING);
     $medicion->load("id = $id_medicion");
     $smarty->assign('medicion', $medicion);
     $smarty->assign('contenedor', $contenedor);
@@ -231,7 +231,7 @@ if ($modulo == 'cancelarobservaciones')
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 
-    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_SANITIZE_STRING);
     $medicion->load("id = $id_medicion");
     $smarty->assign('medicion', $medicion);
     $smarty->assign('contenedor', $contenedor);
@@ -252,7 +252,7 @@ if ($modulo == 'grabarvalorreferencia')
 {
     $id_referencia = filter_input(INPUT_POST, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
 
-    $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $valor = filter_input(INPUT_POST, 'valor', FILTER_VALIDATE_FLOAT);
     $valor_referencia_medicion->load("id =$id_referencia");
     $valor_referencia_medicion->valor = $valor;
     $valor_referencia_medicion->save();
