@@ -83,7 +83,7 @@
                 <div class="col-lg-7">
                     {if $indicadores}
                         <div class="table-responsive">
-                            <table class="table datatable table-striped table-hover">
+                            <table class="table datatable_consulta table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>{$smarty.const.FIELD_COD}</th>

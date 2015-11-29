@@ -305,3 +305,10 @@ function quitarIndicador()
     $("#grafica").css("height", "400px");
     $.plot($("#grafica"), datos, opciones);
 }
+
+//Datatables
+$(document).ready(function () {
+    $('.datatable_consulta').DataTable({
+        "pagingType": "full_numbers"
+    });
+});

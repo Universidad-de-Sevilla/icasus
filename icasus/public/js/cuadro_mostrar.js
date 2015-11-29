@@ -560,13 +560,19 @@ $(".panel_tabla_multi").each(function () {
         $('#panel_' + id_panel).append(htmlTabla);
         $('#tabla_multi').DataTable({
             "pagingType": "full_numbers",
-            dom: "<'row'<'col-sm-6'l><'col-sm-6'f>>" +
-                    "<'row'<'col-sm-12'B>>" +
+            dom: "<'row'<'col-sm-3'l><'col-sm-3'B><'col-sm-6'f>>" +
                     "<'row'<'col-sm-12'tr>>" +
                     "<'row'<'col-sm-5'i><'col-sm-7'p>>",
             buttons: [
-                {extend: 'csv'},
-                {extend: 'print', text: 'Imprimir'}
+                {
+                    extend: 'collection',
+                    text: 'Exportar',
+                    buttons: [
+                        {extend: 'csv'},
+                        {extend: 'excel'},
+                        {extend: 'print', text: 'Imprimir/PDF'}
+                    ]
+                }
             ]
         });
     });
