@@ -1,9 +1,9 @@
 <?php
 
 define('IC_VERSION', "3.0.0");
-define('IC_FECHA_REVISION', "__/__/____");
+define('IC_FECHA_REVISION', "30/11/2015");
 
-// 3.0.0 - __/__/____ - Migración a Bootstrap de la capa de presentación.
+// 3.0.0 - 30/11/2015 - Migración a Bootstrap de la capa de presentación.
 // 2.24.3 - 30/07/2015 - Correcciones en las gráficas y en las mediciones de Indicadores/Datos para calcular y mostrar correctamente el total cuando es una mediana.
 // 2.24.2 - 27/07/2015 - Quitada la Unidad madre del cálculo agregado (no se puede asignar como subunidad en Indicadores/Datos de este tipo) sólo pueden asignarse subunidades. La Unidad madre en Indicadores/Datos agregados sólo aparece en la edición de mediciones para el caso de un cálculo con mediana.
 // 2.24.1 - 19/07/2015 - Se han cambiado la fecha de fin de grabación por defecto cuando se generan las mediciones de Indicadores/Datos. 
