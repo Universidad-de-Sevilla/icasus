@@ -444,82 +444,161 @@
                                                     </thead>
                                                     <tbody>
                                                         {foreach from=$subunidades_mediciones item=subunidades}
-                                                            <tr>
-                                                                <td>{$subunidades->etiqueta}</td>
-                                                                {foreach from=$subunidades->mediciones item=medicion}
-                                                                    <td {if $indicador->id_tipo_agregacion == 0 && $subunidades->id == $entidad->id}
-                                                                        {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
-                                                                            {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
-                                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                                            {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
-                                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                                            {else}
-                                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
-                                                                            {/if}
-                                                                        {/if}
-                                                                        {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
-                                                                            {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
-                                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                                            {else}
-                                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                                            {/if}
-                                                                        {/if}
-                                                                        {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
-                                                                            {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
-                                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                                            {else}
-                                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                                            {/if}
-                                                                        {/if}
-                                                                        {/if}>
+                                                            {if $subunidades->id != $entidad->id}
+                                                                <tr>
+                                                                    <td>{$subunidades->etiqueta}</td>
+                                                                    {foreach from=$subunidades->mediciones item=medicion}
+                                                                        <td>
                                                                             {if $medicion->medicion_valor->valor == NULL} 
                                                                                 --- 
                                                                             {else}
                                                                                 {$medicion->medicion_valor->valor|round:"2"}
-                                                                                {if $indicador->id_tipo_agregacion == 0}
-                                                                                    {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
-                                                                                        {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
-                                                                                            <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                                        {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
-                                                                                            <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                                        {else}
-                                                                                            <i class="fa fa-circle fa-fw" style="color:yellow"></i>
-                                                                                        {/if}
+                                                                            {/if}
+                                                                        </td>
+                                                                    {/foreach}
+                                                                </tr>
+                                                            {/if}
+                                                        {/foreach}
+                                                        {*Total en indicadores centralizados o agregados con mediana*}
+                                                        {foreach from=$subunidades_mediciones item=subunidades}
+                                                            {if $subunidades->id == $entidad->id && ($indicador->id_tipo_agregacion == 0 || $indicador->id_tipo_agregacion == 4)}
+                                                                <tr style="font-weight: bold">
+                                                                    <td>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta}</td>
+                                                                    {foreach from=$subunidades->mediciones item=medicion}
+                                                                        <td
+                                                                            {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
+                                                                                {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
+                                                                                    class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                                {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
+                                                                                    class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                                {else}
+                                                                                    class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
+                                                                                {/if}
+                                                                            {/if}
+                                                                            {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
+                                                                                {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
+                                                                                    class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                                {else}
+                                                                                    class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                                {/if}
+                                                                            {/if}
+                                                                            {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
+                                                                                {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
+                                                                                    class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                                {else}
+                                                                                    class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                                {/if}
+                                                                            {/if}>
+                                                                            {if $medicion->medicion_valor->valor == NULL} 
+                                                                                --- 
+                                                                            {else}
+                                                                                {$medicion->medicion_valor->valor|round:"2"}
+                                                                                {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
+                                                                                    {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
+                                                                                        <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                                    {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
+                                                                                        <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                                    {else}
+                                                                                        <i class="fa fa-circle fa-fw" style="color:yellow"></i>
                                                                                     {/if}
-                                                                                    {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
-                                                                                        {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
-                                                                                            <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                                        {else}
-                                                                                            <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                                        {/if}
+                                                                                {/if}
+                                                                                {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
+                                                                                    {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
+                                                                                        <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                                    {else}
+                                                                                        <i class="fa fa-circle fa-fw" style="color:red"></i>
                                                                                     {/if}
-                                                                                    {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
-                                                                                        {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
-                                                                                            <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                                        {else}
-                                                                                            <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                                        {/if}
+                                                                                {/if}
+                                                                                {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
+                                                                                    {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
+                                                                                        <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                                    {else}
+                                                                                        <i class="fa fa-circle fa-fw" style="color:green"></i>
                                                                                     {/if}
                                                                                 {/if}
                                                                             {/if}
                                                                         </td>
-                                                                        {/foreach}
-                                                                        </tr>
-                                                                        {/foreach}
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
-                                                                {else}
-                                                                    <div class="alert alert-info alert-dismissible">
-                                                                        <i class="fa fa-info-circle fa-fw"></i> 
-                                                                        {$smarty.const.MSG_INDIC_NO_VAL}
-                                                                    </div>
-                                                                    {/if}
-                                                                    </div>
-                                                                    <!-- /.panel-body -->        
-                                                                </div>
-                                                                <!-- /.panel -->
-                                                            </div>
-                                                            <!-- /.col-lg-12 -->
-                                                        </div>
-                                                        <!-- /.row -->
+                                                                    {/foreach}
+                                                                </tr>
+                                                            {/if}
+                                                        {/foreach}
+                                                        {*Total en indicadores agregados sin mediana*}
+                                                        {foreach from=$subunidades_mediciones item=subunidades}
+                                                            {if $subunidades->id == $entidad->id && $indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4}
+                                                                <tr style="font-weight: bold">
+                                                                    <td>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta}</td>
+                                                                    {foreach from=$subunidades->mediciones item=medicion}
+                                                                        <td 
+                                                                            {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
+                                                                                {if  $totales[$medicion->id] < $medicion_lim[$medicion->id]}
+                                                                                    class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                                {else if $totales[$medicion->id] >= $medicion_obj[$medicion->id]}
+                                                                                    class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                                {else}
+                                                                                    class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
+                                                                                {/if}
+                                                                            {/if}
+                                                                            {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
+                                                                                {if $totales[$medicion->id] >= $medicion_obj[$medicion->id] }
+                                                                                    class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                                {else}
+                                                                                    class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                                {/if}
+                                                                            {/if}
+                                                                            {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
+                                                                                {if $totales[$medicion->id] < $medicion_lim[$medicion->id] }
+                                                                                    class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                                {else}
+                                                                                    class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                                {/if}
+                                                                            {/if}>
+                                                                            {if $totales[$medicion->id] == NULL} 
+                                                                                --- 
+                                                                            {else}
+                                                                                {$totales[$medicion->id]|round:"2"}
+                                                                                {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
+                                                                                    {if  $totales[$medicion->id] < $medicion_lim[$medicion->id]}
+                                                                                        <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                                    {else if $totales[$medicion->id] >= $medicion_obj[$medicion->id]}
+                                                                                        <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                                    {else}
+                                                                                        <i class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                                                    {/if}
+                                                                                {/if}
+                                                                                {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
+                                                                                    {if $totales[$medicion->id] >= $medicion_obj[$medicion->id] }
+                                                                                        <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                                    {else}
+                                                                                        <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                                    {/if}
+                                                                                {/if}
+                                                                                {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
+                                                                                    {if $totales[$medicion->id] < $medicion_lim[$medicion->id] }
+                                                                                        <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                                    {else}
+                                                                                        <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                                    {/if}
+                                                                                {/if}
+                                                                            {/if}
+                                                                        </td>
+                                                                    {/foreach}
+                                                                </tr>
+                                                            {/if}
+                                                        {/foreach}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        {else}
+                                            <div class="alert alert-info alert-dismissible">
+                                                <i class="fa fa-info-circle fa-fw"></i> 
+                                                {$smarty.const.MSG_INDIC_NO_VAL}
+                                            </div>
+                                        {/if}
+                                    </div>
+                                    <!-- /.panel-body -->        
+                                </div>
+                                <!-- /.panel -->
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <!-- /.row -->

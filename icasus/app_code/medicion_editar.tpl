@@ -614,7 +614,7 @@
                                     {/if}
                                     {*El indicador/dato es no agregado*}
                                     {if $indicador->id_tipo_agregacion== 0}
-                                        <tr {if isset($medicion_lim) AND isset($medicion_obj)}
+                                        <tr style="font-weight: bold" {if isset($medicion_lim) AND isset($medicion_obj)}
                                             {if  $valor->valor < $medicion_lim}
                                                 class="danger"
                                             {else if $valor->valor >= $medicion_obj}
@@ -637,7 +637,7 @@
                                                 class="success"
                                             {/if}
                                         {/if}>
-                                        <td>{$valor->entidad->etiqueta}</td>
+                                        <td>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</td>
                                         <td>
                                             {if $permiso_editar && !$indicador->calculo}
                                                 <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
@@ -716,7 +716,7 @@
                                                             class="success"
                                                         {/if}
                                                     {/if}>
-                                                    <td style="border-left:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
+                                                    <td style="border-left:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</td>
                                                     <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
                                                         {if $total === NULL}
                                                             ---
@@ -754,7 +754,7 @@
                                                         {/if}
                                                     </td>
                                                     <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>
-                                                    <td style="border-right:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>  
+                                                    <td style="border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>  
                                                 </tr>
                                             {/if}
                                             {*El indicador/dato es agregado y se calcula por mediana*}
@@ -785,7 +785,7 @@
                                                                     class="success"
                                                                 {/if}
                                                             {/if}>
-                                                            <td style="border-left:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->nombre} ({$agregacion})</td>
+                                                            <td style="border-left:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</td>
                                                             <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
                                                                 {if $permiso_editar && !$indicador->calculo}
                                                                     <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
@@ -835,7 +835,7 @@
                                                             <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
                                                                 {$valor->fecha_recogida|date_format:"%d-%m-%Y"}
                                                             </td>
-                                                            <td style="border-right:solid 4px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                                            <td style="border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
                                                                 {$valor->usuario->nombre} {$valor->usuario->apellidos}
                                                             </td>  
                                                         </tr>
