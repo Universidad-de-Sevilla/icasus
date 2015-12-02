@@ -43,25 +43,17 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
+<!-- Indicadores del usuario -->
 <div class="row">
     <div class="col-lg-12">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#user_indic" title="{$smarty.const.TXT_USER_INDIC}" aria-controls="{$smarty.const.TXT_USER_INDIC}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}</a>
-            </li>
-            <li role="presentation">
-                <a href="#indic_todos" title="{$smarty.const.TXT_INDIC_TODOS}" aria-controls="{$smarty.const.TXT_INDIC_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_TODOS}</a>
-            </li>
-        </ul>
-        <!-- /Nav tabs -->
-        <br>
-        <!-- Tab panes -->
-        <div class="tab-content">
-
-            <!-- Indicadores del usuario -->
-            <div role="tabpanel" class="tab-pane active" id="user_indic">
-            {if $indicadores_propios}
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {if $indicadores_propios}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">
                             <thead>
@@ -204,11 +196,25 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /Indicadores del usuario -->
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Indicadores del usuario -->
 
-            <!-- Todos los indicadores -->
-            <div role="tabpanel" class="tab-pane" id="indic_todos">
-             {if $indicadores}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_TODOS}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {if $indicadores}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">
                             <thead>
@@ -282,10 +288,9 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /Todos los indicadores -->
-
+            <!-- /.panel-body -->        
         </div>
-        <!-- /Tab panes -->
+        <!-- /.panel -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
