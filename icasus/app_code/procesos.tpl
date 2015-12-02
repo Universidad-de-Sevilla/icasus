@@ -43,16 +43,24 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Procesos del usuario -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#user_procs" title="{$smarty.const.TXT_USER_PROCS}" aria-controls="{$smarty.const.TXT_USER_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</a>
+            </li>
+            <li role="presentation">
+                <a href="#proc_todos" title="{$smarty.const.TXT_PROC_TODOS}" aria-controls="{$smarty.const.TXT_PROC_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROC_TODOS}</a>
+            </li>
+        </ul>
+        <!-- /Nav tabs -->
+        <br>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!-- Procesos del usuario -->
+            <div role="tabpanel" class="tab-pane active" id="user_procs">
                 {if $procesos_propios}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -119,24 +127,10 @@
                     </div>
                 {/if}
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<!-- /Procesos del usuario -->
+            <!-- /Procesos del usuario -->
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROC_TODOS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+            <!-- Todos los procesos -->
+            <div role="tabpanel" class="tab-pane" id="proc_todos">
                 {if $procesos}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -194,9 +188,10 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /.panel-body -->        
+            <!-- /Todos los procesos -->
+
         </div>
-        <!-- /.panel -->
+        <!-- /Tab panes -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
