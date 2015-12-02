@@ -25,13 +25,22 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#user_unids" title="{$smarty.const.TXT_USER_UNIDS}" aria-controls="{$smarty.const.TXT_USER_UNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</a>
+            </li>
+            <li role="presentation">
+                <a href="#unid_todas" title="{$smarty.const.TXT_UNID_TODAS}" aria-controls="{$smarty.const.TXT_UNID_TODAS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_UNID_TODAS}</a>
+            </li>
+        </ul>
+        <!-- /Nav tabs -->
+        <br>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!-- Unidades del usuario -->
+            <div role="tabpanel" class="tab-pane active" id="user_unids">
                 {if $entidades_usuario }
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -71,23 +80,10 @@
                     </div>
                 {/if}
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+            <!-- /Unidades del usuario -->
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_UNID_TODAS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+            <!-- Todas las unidades -->
+            <div role="tabpanel" class="tab-pane" id="unid_todas">
                 {if isset($entidades)}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -122,9 +118,10 @@
                     </div>
                 {/if}
             </div>
-            <!-- /.panel-body -->        
+            <!-- /Todas las unidades -->
+
         </div>
-        <!-- /.panel -->
+        <!-- /Tab panes -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
