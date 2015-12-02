@@ -378,11 +378,11 @@ table.dataTable thead .sorting:after {
     background-color: #950717;
 }
 
-.panel-red table a {
+.panel-red table a, .tab-content table a {
     color: #950717;
 }
 
-.panel-red table a:hover {
+.panel-red table a:hover, .tab-content table a:hover {
     color: #880736;
 }
 

@@ -103,34 +103,16 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-
+<!-- Unidades del usuario -->
 <div class="row">
     <div class="col-lg-12">
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#user_unids" title="{$smarty.const.TXT_USER_UNIDS}" aria-controls="{$smarty.const.TXT_USER_UNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</a>
-            </li>
-            <li role="presentation">
-                <a href="#user_procs" title="{$smarty.const.TXT_USER_PROCS}" aria-controls="{$smarty.const.TXT_USER_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</a>
-            </li>
-            <li role="presentation">
-                <a href="#user_indic" title="{$smarty.const.TXT_USER_INDIC}" aria-controls="{$smarty.const.TXT_USER_INDIC}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}</a>
-            </li>
-            <li role="presentation">
-                <a href="#user_dato" title="{$smarty.const.TXT_USER_DATO}" aria-controls="{$smarty.const.TXT_USER_DATO}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</a>
-            </li>
-            <li role="presentation">
-                <a href="#user_cuadro" title="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" aria-controls="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</a>
-            </li>
-        </ul>
-        <!-- /Nav tabs -->
-        <br>
-        <!-- Tab panes -->
-        <div class="tab-content">
-
-            <!-- Unidades del usuario -->
-            <div role="tabpanel" class="tab-pane active" id="user_unids">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
                 {if $entidades_usuario }
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -170,11 +152,26 @@
                     </div>
                 {/if}
             </div>
-            <!-- /Unidades del usuario -->
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Unidades del usuario -->
 
-            <!-- Procesos del usuario -->
-            <div role="tabpanel" class="tab-pane" id="user_procs">
-                 {if $procesos_propios}
+<!-- Procesos del usuario -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {if $procesos_propios}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>
@@ -240,10 +237,25 @@
                     </div>
                 {/if}
             </div>
-            <!-- /Procesos del usuario -->
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Procesos del usuario -->
 
-            <!-- Indicadores del usuario -->
-            <div role="tabpanel" class="tab-pane" id="user_indic">
+<!-- Indicadores del usuario -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
                 {if $indicadores_propios}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">
@@ -387,10 +399,25 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /Indicadores del usuario -->
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Indicadores del usuario -->
 
-            <!-- Datos del usuario -->
-            <div role="tabpanel" class="tab-pane" id="user_dato">
+<!-- Datos del usuario -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
                 {if $datos_propios}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">
@@ -534,10 +561,25 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /Datos del usuario -->
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Datos del usuario -->
 
-            <!-- Cuadros de mando del usuario -->
-            <div role="tabpanel" class="tab-pane" id="user_cuadro">
+<!-- Cuadros de mando del usuario -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
                 {if $cuadros_propios|count > 0}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -582,11 +624,11 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /Cuadros de mando del usuario -->
-
+            <!-- /.panel-body -->        
         </div>
-        <!-- /Tab panes -->
+        <!-- /.panel -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+<!-- /Cuadros de mando del usuario -->
