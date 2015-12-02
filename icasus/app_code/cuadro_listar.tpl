@@ -47,9 +47,9 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
+            <div class="btn-group pull-right" role="group" aria-label="">
                 <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear" title="{$smarty.const.TXT_CUADRO_NUEVO}">
-                    <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_CUADRO_NUEVO}</a>
+                    <i class="fa fa-plus-circle fa-fw"></i></a>
             </div>
         </div>
     </div>
@@ -61,14 +61,23 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                {if $cuadros_propios|count > 0}
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#cuadros_propios" title="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" aria-controls="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</a>
+            </li>
+            <li role="presentation">
+                <a href="#cuadro_todos" title="{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}" aria-controls="{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO_PUBLIC}</a>
+            </li>
+        </ul>
+        <!-- /Nav tabs -->
+        <br>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!-- Cuadros de mando del usuario -->
+            <div role="tabpanel" class="tab-pane active" id="cuadros_propios">
+              {if $cuadros_propios|count > 0}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>
@@ -112,24 +121,11 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+            <!-- /Cuadros de mando del usuario -->
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO_PUBLIC}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                {if $cuadros_publicos|count > 0}
+            <!-- Todos los cuadros de mando -->
+            <div role="tabpanel" class="tab-pane" id="cuadro_todos">
+              {if $cuadros_publicos|count > 0}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>
@@ -171,9 +167,10 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /.panel-body -->        
+            <!-- /Todos los cuadros de mando -->
+
         </div>
-        <!-- /.panel -->
+        <!-- /Tab panes -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
