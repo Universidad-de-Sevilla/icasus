@@ -43,16 +43,24 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Datos del usuario -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#user_dato" title="{$smarty.const.TXT_USER_DATO}" aria-controls="{$smarty.const.TXT_USER_DATO}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</a>
+            </li>
+            <li role="presentation">
+                <a href="#dato_todos" title="{$smarty.const.TXT_DATO_TODOS}" aria-controls="{$smarty.const.TXT_DATO_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_DATO_TODOS}</a>
+            </li>
+        </ul>
+        <!-- /Nav tabs -->
+        <br>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!-- Datos del usuario -->
+            <div role="tabpanel" class="tab-pane active" id="user_dato">
                 {if $datos_propios}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">
@@ -196,24 +204,10 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<!-- /Datos del usuario -->
+            <!-- /Datos del usuario -->
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_DATO_TODOS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+            <!-- Todos los datos -->
+            <div role="tabpanel" class="tab-pane" id="dato_todos">
                 {if $datos}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">
@@ -282,9 +276,10 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /.panel-body -->        
+            <!-- /Todos los datos -->
+
         </div>
-        <!-- /.panel -->
+        <!-- /Tab panes -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
