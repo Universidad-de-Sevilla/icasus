@@ -72,13 +72,22 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-users fa-fw"></i> {$smarty.const.TXT_USERS_DISP}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#user_disp" title="{$smarty.const.TXT_USERS_DISP}" aria-controls="{$smarty.const.TXT_USERS_DISP}" role="tab" data-toggle="tab"><i class="fa fa-users fa-fw"></i> {$smarty.const.TXT_USERS_DISP}</a>
+            </li>
+            <li role="presentation">
+                <a href="#user_asig" title="{$smarty.const.TXT_USERS_ASIG}" aria-controls="{$smarty.const.TXT_USERS_ASIG}" role="tab" data-toggle="tab"><i class="fa fa-users fa-fw"></i> {$smarty.const.TXT_USERS_ASIG}</a>
+            </li>
+        </ul>
+        <!-- /Nav tabs -->
+        <br>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!-- Usuarios disponibles -->
+            <div role="tabpanel" class="tab-pane active" id="user_disp">
                 <form action='index.php?page=entidad_poblar&id_entidad={$entidad->id}' 
                       method='post' name='formpoblar' class="form-horizontal">
                     <div class="table-responsive">
@@ -154,23 +163,10 @@
 
                 </form>
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+            <!-- /Usuarios disponibles -->
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-users fa-fw"></i> {$smarty.const.TXT_USERS_ASIG}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+            <!-- Usuarios asignados actualmente -->
+            <div role="tabpanel" class="tab-pane" id="user_asig">
                 {if $usuarios}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -214,9 +210,10 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /.panel-body -->        
+            <!-- /Usuarios asignados actualmente -->
+
         </div>
-        <!-- /.panel -->
+        <!-- /Tab panes -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
