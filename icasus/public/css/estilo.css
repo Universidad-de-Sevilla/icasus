@@ -470,31 +470,31 @@ span:focus, .pagination > li > span:hover {
 }
 
 .panel-indicadores {
-    border-color: #FFC526;
+    border-color: #5CB85C;
 }
 
 .panel-indicadores .panel-heading {
+    border-color: #5CB85C;
+    color: #fff;
+    background-color: #5CB85C;
+}
+
+.panel-indicadores .panel-heading:hover {
+    background-color: #4CAE4C;
+}
+
+.panel-datos {
+    border-color: #FFC526;
+}
+
+.panel-datos .panel-heading {
     border-color: #FFC526;
     color: #fff;
     background-color: #FFC526;
 }
 
-.panel-indicadores .panel-heading:hover {
-    background-color: #df8a13;
-}
-
-.panel-datos {
-    border-color: #d9534f;
-}
-
-.panel-datos .panel-heading {
-    border-color: #d9534f;
-    color: #fff;
-    background-color: #d9534f;
-}
-
 .panel-datos .panel-heading:hover {
-    background-color: #b52b27;
+   background-color: #df8a13;
 }
 
 /*Consultas*/

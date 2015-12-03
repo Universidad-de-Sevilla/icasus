@@ -40,7 +40,6 @@ define('TXT_MANTENIMIENTO', 'Estamos realizando tareas de mantenimiento. Los ser
 define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
-define('TXT_NOTIFICACIONES', 'Notificaciones');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
@@ -79,7 +78,7 @@ define('TXT_CUADRO_MANDO', 'Cuadro de mando');
 define('TXT_CUADROS_MANDO_PUBLIC', 'Cuadros de mando públicos');
 define('TXT_CUADRO_NUEVO', 'Nuevo cuadro de mando');
 define('TXT_CUADRO_PARAM', 'Parámetros del cuadro de mando');
-define('TXT_CUADRO_MANDO_PROPIOS', 'Tus cuadros de mando');
+define('TXT_CUADRO_MANDO_PROPIOS', 'Cuadros de mando del usuario');
 define('TXT_CUADRO_EDIT', 'Editar cuadro de mando');
 define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
 //Paneles de los Cuadros de Mando
@@ -212,15 +211,11 @@ define('TXT_MED_TABLA', 'Tabla de mediciones');
 define('TXT_MED_ULTIMA', 'Última medición');
 
 //Menú Principal
-define('TXT_INICIO', 'Inicio');
+define('TXT_INICIO', 'Mi Icasus');
 define('TXT_CUADROS_MANDO', 'Cuadros de mando');
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
-define('TXT_ENLACES', 'Enlaces externos');
 define('TXT_UNIVERSIDAD', 'Universidad de Sevilla');
-define('TXT_RRHH', 'Recursos Humanos');
-define('TXT_BIBLIOTECA', 'Biblioteca');
-define('TXT_SECRETARIA', 'Secretaría Virtual');
 //Menú de Usuario
 define('TXT_USER_PERFIL', 'Perfil de usuario');
 define('TXT_MIS_NOTAS', 'Mis notas');
@@ -367,8 +362,8 @@ define('TXT_USERS_ALTA', 'Alta de usuarios');
 define('TXT_USERS_BAJA', 'Baja de usuarios');
 define('TXT_USER_UNIDS', 'Unidades del usuario');
 define('TXT_USER_PROCS', 'Procesos del usuario');
-define('TXT_USER_INDIC', 'Indicadores bajo su responsabilidad');
-define('TXT_USER_DATO', 'Datos bajo su responsabilidad');
+define('TXT_USER_INDIC', 'Indicadores del usuario');
+define('TXT_USER_DATO', 'Datos del usuario');
 define('TXT_USERS_ASIG', 'Usuarios asignados actualmente');
 define('TXT_USERS_DISP', 'Usuarios disponibles');
 define('TXT_USERS_VINC', 'Vincular usuarios');

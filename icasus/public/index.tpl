@@ -87,8 +87,8 @@
                         </li>
                         <!-- /.dropdown -->
                         <li class="dropdown">
-                            <a class="dropdown-toggle" title="{$smarty.const.TXT_NOTIFICACIONES}" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                            <a class="dropdown-toggle" title="{$smarty.const.TXT_INICIO}" data-toggle="dropdown" href="#">
+                                <i class="fa fa-home fa-fw"></i> <i class="fa fa-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
                                 <li>
