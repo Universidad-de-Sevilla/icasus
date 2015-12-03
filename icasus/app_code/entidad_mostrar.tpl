@@ -217,8 +217,6 @@
                             <a title="{$smarty.const.TXT_USERS_VINC}" class="btn btn-default btn-danger" href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'>
                                 <i class="fa fa-user-plus fa-fw"></i> {$smarty.const.TXT_USERS_VINC}
                             </a>
-                        </div>
-                        <div class="btn-group" role="group" aria-label="">
                             <a title="{$smarty.const.TXT_USERS_DESVINC}" class="btn btn-default btn-danger" href='index.php?page=entidad_despoblar&id_entidad={$entidad->id}'>
                                 <i class="fa fa-user-times fa-fw"></i> {$smarty.const.TXT_USERS_DESVINC}
                             </a>

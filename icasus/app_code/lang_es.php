@@ -55,7 +55,7 @@ define('TXT_ARCHIVOS_SUBIR', 'Subir archivos');
 define('TXT_ARCHIVO_ACTUALIZAR_DATOS', 'Actualizar datos del archivo');
 define('TXT_ARCHIVO_NUEVO', 'Nuevo archivo');
 define('TXT_ARCHIVO_BORRAR', 'Borrar archivo');
-define('TXT_ARCHIVOS', 'Archivos');
+define('TXT_ARCHIVOS', 'Gestión de archivos');
 define('TXT_ARCHIVO_SEL_IMPORT', 'Elija un archivo para importar');
 define('TXT_ARCHIVO_PROCESAR', 'Procesa archivo');
 define('TXT_ARCHIVOS_PROCESAR', 'Procesar archivos');

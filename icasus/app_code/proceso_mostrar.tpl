@@ -125,19 +125,19 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="btn-toolbar" role="toolbar" aria-label="">
-                <div class="btn-group" role="group" aria-label="">
-                    <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                        <i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_PROC_EDIT}
-                    </a>
-                    <a title="{$smarty.const.TXT_PROC_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
-                       data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                        <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PROC_BORRAR}
-                    </a>
-                </div> 
-                <div class="btn-group" role="group" aria-label="">
+                <div class="btn-group pull-right" role="group" aria-label="">
                     <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
                        title="{$smarty.const.TXT_ARCHIVOS}">
                         <i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}
+                    </a>
+                </div>
+                <div class="btn-group pull-right" role="group" aria-label="">
+                    <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                        <i class="fa fa-pencil fa-fw"></i>
+                    </a>
+                    <a title="{$smarty.const.TXT_PROC_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
+                       data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                        <i class="fa fa-trash fa-fw"></i>
                     </a>
                 </div>
             </div>
@@ -151,13 +151,37 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-gear fa-fw"></i> {$smarty.const.TXT_PROC_PARAM}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#proc_param" title="{$smarty.const.TXT_PROC_PARAM}" aria-controls="{$smarty.const.TXT_PROC_PARAM}" role="tab" data-toggle="tab"><i class="fa fa-gear fa-fw"></i> {$smarty.const.TXT_PROC_PARAM}</a>
+            </li>
+            <li role="presentation">
+                <a href="#proc_indics" title="{$smarty.const.TXT_PROC_INDICS}" aria-controls="{$smarty.const.TXT_PROC_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_PROC_INDICS}</a>
+            </li>
+            {if isset($flujograma)}
+                <li role="presentation">
+                    <a href="#proc_flujo" title="{$smarty.const.TXT_PROC_FLUJO}" aria-controls="{$smarty.const.TXT_PROC_FLUJO}" role="tab" data-toggle="tab"><i class="fa fa-random fa-fw"></i> {$smarty.const.TXT_PROC_FLUJO}</a>
+                </li>
+            {/if}
+            {if isset($archivos)}
+                <li role="presentation">
+                    <a href="#proc_archivos" title="{$smarty.const.TXT_PROC_ARCHIVOS}" aria-controls="{$smarty.const.TXT_PROC_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_PROC_ARCHIVOS}</a>
+                </li>
+            {/if}
+            {if $subprocesos}
+                <li role="presentation">
+                    <a href="#proc_subprocs" title="{$smarty.const.FIELD_SUBPROCS}" aria-controls="{$smarty.const.FIELD_SUBPROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_SUBPROCS}</a>
+                </li>
+            {/if}
+        </ul>
+        <!-- /Nav tabs -->
+        <br>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!-- Parámetros del proceso -->
+            <div role="tabpanel" class="tab-pane active" id="proc_param">
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <tbody>
@@ -315,23 +339,10 @@
                     </table>
                 </div>
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+            <!-- /Parámetros del proceso -->
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_PROC_INDICS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+            <!-- Indicadores del proceso -->
+            <div role="tabpanel" class="tab-pane" id="proc_indics">
                 {if $indicadores}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -369,45 +380,19 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+            <!-- /Indicadores del proceso -->
 
-{if isset($flujograma)}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-random fa-fw"></i> {$smarty.const.TXT_PROC_FLUJO}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
+            <!-- Flujograma del proceso -->
+            {if isset($flujograma)}
+                <div role="tabpanel" class="tab-pane" id="proc_flujo">
                     <img src="index.php?page=archivo_descargar&id={$flujograma->id}" alt="{$smarty.const.TXT_PROC_FLUJO}" class="img-rounded img-responsive" style="margin:0 auto">
                 </div>
-                <!-- /.panel-body -->        
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-{/if}
+            {/if}
+            <!-- /Flujograma del proceso -->
 
-{if isset($archivos)}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_PROC_ARCHIVOS}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
+            <!-- Archivos del proceso -->
+            {if isset($archivos)}
+                <div role="tabpanel" class="tab-pane" id="proc_archivos">
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>
@@ -438,25 +423,12 @@
                         </table>
                     </div>
                 </div>
-                <!-- /.panel-body -->        
-            </div>
-            <!-- /.panel -->
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-{/if}
+            {/if}
+            <!-- /Archivos del proceso -->
 
-{if $subprocesos}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_SUBPROCS}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
+            <!-- Subprocesos -->
+            {if $subprocesos}
+                <div role="tabpanel" class="tab-pane" id="proc_subprocs">
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>
@@ -516,11 +488,12 @@
                         </table>
                     </div>
                 </div>
-                <!-- /.panel-body -->        
-            </div>
-            <!-- /.panel -->
+            {/if}
+            <!-- /Subprocesos -->
+
         </div>
-        <!-- /.col-lg-12 -->
+        <!-- /Tab panes -->
     </div>
-    <!-- /.row -->
-{/if}
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
