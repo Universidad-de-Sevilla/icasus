@@ -95,9 +95,9 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="btn-toolbar" role="toolbar" aria-label="">
-                <div class="btn-group" role="group" aria-label="">
+                <div class="btn-group pull-right" role="group" aria-label="">
                     <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
-                        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_INDIC_CREAR}
+                        <i class="fa fa-plus-circle fa-fw"></i>
                     </a>
                 </div>
             </div>

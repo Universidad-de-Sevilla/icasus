@@ -207,7 +207,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
+            <div class="btn-group pull-right" role="group" aria-label="">
                 <a class="btn btn-danger" href="javascript:void(0)" title="{$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}" data-toggle="modal" data-target="#dialogo_crear">
                     <i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}
                 </a>

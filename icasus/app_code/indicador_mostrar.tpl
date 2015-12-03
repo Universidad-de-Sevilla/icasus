@@ -145,14 +145,14 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
+            <div class="btn-group pull-right" role="group" aria-label="">
                 {if $_control || $responsable}
                     <a title="{$smarty.const.TXT_INDIC_EDIT}" class="btn btn-danger" href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                        <i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_INDIC_EDIT}
+                        <i class="fa fa-pencil fa-fw"></i>
                     </a>
                     <a title="{$smarty.const.TXT_INDIC_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
                        data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                        <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_INDIC_BORRAR}
+                        <i class="fa fa-trash fa-fw"></i>
                     </a>
                 {/if}
             </div>
