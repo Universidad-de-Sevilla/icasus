@@ -225,21 +225,21 @@
                 <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}
                 </a>
+            </div>
+            <div class="btn-group pull-right" role="group" aria-label="">
                 {if !$indicador->calculo && $permiso_unidad}
                     <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
                     </a>
                 {/if}
-                {if $permiso_editar}
-                    <a class="btn btn-danger" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                        <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_MED_BORRAR}
-                    </a>
-                {/if}
-            </div>
-            <div class="btn-group" role="group" aria-label="">
                 <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}
                 </a>
+                {if $permiso_editar}
+                    <a class="btn btn-danger" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                        <i class="fa fa-trash fa-fw"></i>
+                    </a>
+                {/if}
             </div>
         </div>
     </div>
@@ -363,13 +363,22 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.TXT_MED_DATOS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#med_datos" title="{$smarty.const.TXT_MED_DATOS}" aria-controls="{$smarty.const.TXT_MED_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.TXT_MED_DATOS}</a>
+            </li>
+            <li role="presentation">
+                <a href="#med_valores" title="{$smarty.const.TXT_MED_VALORES}" aria-controls="{$smarty.const.TXT_MED_VALORES}" role="tab" data-toggle="tab"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_MED_VALORES}</a>
+            </li>
+        </ul>
+        <!-- /Nav tabs -->
+        <br>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!-- Datos de la medición -->
+            <div role="tabpanel" class="tab-pane active" id="med_datos">
                 <!-- Parámetros de la medición -->
                 <div class="col-lg-6">
                     <div class="table-responsive">
@@ -552,23 +561,10 @@
                 <!-- /.col-lg-6 -->
                 <!-- /Gráfica de tarta -->
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+            <!-- /Datos de la medición -->
 
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_MED_VALORES}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+            <!-- Valores de la medición -->
+            <div role="tabpanel" class="tab-pane" id="med_valores">
                 {if $valores}
                     <div id="valors" data-valor_min="{$indicador->valor_min}" data-valor_max="{$indicador->valor_max}" class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -852,10 +848,12 @@
                                         {$smarty.const.ERR_MED_NO_VAL}
                                     </div> 
                                     {/if}
+
                                     </div>
-                                    <!-- /.panel-body -->        
+                                    <!-- /Valores de la medición -->
+
                                 </div>
-                                <!-- /.panel -->
+                                <!-- /Tab panes -->
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>

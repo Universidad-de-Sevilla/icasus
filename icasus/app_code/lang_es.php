@@ -202,7 +202,7 @@ define('TXT_MED_ESTA', 'esta medición.');
 define('TXT_MED_BORRAR', 'Borrar medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
-define('TXT_MED_VALORES', 'Valor o conjunto de valores de la medición actual');
+define('TXT_MED_VALORES', 'Valores de la medición');
 define('TXT_MED_DATOS', 'Datos de la medición');
 define('TXT_MED_GESTION', 'Gestión de mediciones');
 define('TXT_MED_AGREGAR', 'Agregar medición');
