@@ -157,12 +157,14 @@
                 <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}
                 </a>
+            </div>
+            <div class="btn-group pull-right" role="group" aria-label="">    
                 {if $_control || $_usuario->id==$indicador->id_responsable}
                     <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
                     </a>
                 {/if}
-                 <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}
                 </a>
             </div>

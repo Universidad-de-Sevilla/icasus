@@ -165,7 +165,16 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
+            <div class="btn-group pull-right" role="group" aria-label="">
+                {if $_control || $responsable}
+                    <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-danger" href='javascript:void(0)' 
+                       data-toggle="modal" data-target="#dialogo_confirmar_generar">
+                        <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}
+                    </a>
+                   <!-- <a title="{$smarty.const.TXT_MED_AGREGAR}" class="btn btn-danger" href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}">
+                        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_MED_AGREGAR}
+                    </a>-->
+                {/if}
                 {if !$indicador->calculo && ($_control || $_usuario->id==$indicador->id_responsable)}
                     <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
@@ -179,17 +188,6 @@
                 <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}
                 </a>
-            </div>
-            <div class="btn-group pull-right" role="group" aria-label="">
-                {if $_control || $responsable}
-                    <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-danger" href='javascript:void(0)' 
-                       data-toggle="modal" data-target="#dialogo_confirmar_generar">
-                        <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}
-                    </a>
-                   <!-- <a title="{$smarty.const.TXT_MED_AGREGAR}" class="btn btn-danger" href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}">
-                        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_MED_AGREGAR}
-                    </a>-->
-                {/if}
             </div>
         </div>
     </div>

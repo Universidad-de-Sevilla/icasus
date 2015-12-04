@@ -215,31 +215,31 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
-            {if $permiso}
-                <div class="btn-group" role="group" aria-label="">
-                    <a href='javascript:void(0)' class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
-                        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_VAL_REF_CREAR}
-                    </a>
-                    <a href="javascript:void(0)" class="btn btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                        <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_VAL_REF_BORRAR}
-                    </a>
-                </div>
-            {/if}
             <div class="btn-group" role="group" aria-label="">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}
                 </a>
-                {if !$indicador->calculo && $permiso}
-                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                        <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
-                    </a>
-                {/if}
-                {if $permiso}
-                    <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                        <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
-                    </a>
-                {/if}
             </div>
+            {if $permiso}
+                <div class="btn-group pull-right" role="group" aria-label="">
+                    <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
+                        <i class="fa fa-plus-circle fa-fw"></i>
+                    </a>
+                    {if !$indicador->calculo && $permiso}
+                        <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                            <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
+                        </a>
+                    {/if}
+                    {if $permiso}
+                        <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                            <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
+                        </a>
+                    {/if}
+                    <a href="javascript:void(0)" title="{$smarty.const.TXT_VAL_REF_BORRAR}" class="btn btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                        <i class="fa fa-trash fa-fw"></i>
+                    </a>
+                </div>
+            {/if}
         </div>
     </div>
     <!-- /.col-lg-12 -->

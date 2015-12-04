@@ -95,9 +95,9 @@
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
             {if $_control}
-                <div class="btn-group" role="group" aria-label="">
+                <div class="btn-group pull-right" role="group" aria-label="">
                     <a class="btn btn-danger" href='index.php?page=dato_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATO_CREAR}">
-                        <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_DATO_CREAR}
+                        <i class="fa fa-plus-circle fa-fw"></i>
                     </a>
                 </div>
             {/if}
