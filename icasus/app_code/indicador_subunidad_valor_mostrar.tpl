@@ -13,7 +13,7 @@
             {foreach from=$subunidades_mediciones item=subunidades}
                 <tr data-subunidad="{$subunidades->etiqueta}" data-id_subunidad="{$subunidades->id}">
                     <td>
-                        <i title="{$smarty.const.TXT_ACT_DESACT}" class="fa fa-plus-square-o fa-fw activar_all clickable"></i>
+                        <i title="{$smarty.const.TXT_ACT_DESACT}" class="fa fa-check-square-o fa-fw activar_all clickable"></i>
                     </td>
                     <td>{$subunidades->etiqueta}</td>
                     {foreach from=$subunidades->mediciones item=medicion}
