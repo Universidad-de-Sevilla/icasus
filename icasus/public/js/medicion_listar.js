@@ -19,3 +19,24 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
     modal.find('#etiqueta_medicion').text(etiqueta_medicion);
     modal.find('#borrar').attr('href', link);
 });
+
+//Tabla de valores
+$('.tabla_valores').DataTable({
+   "bPaginate": false,
+   "bSort": false,
+    dom: "<'row'<'col-sm-12'B>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12'>>",
+    buttons: [
+        {extend: 'colvis', text: 'Ver columnas'},
+        {
+            extend: 'collection',
+            text: 'Exportar',
+            buttons: [
+                {extend: 'csv'},
+                {extend: 'excel'},
+                {extend: 'print', text: 'Imprimir/PDF'}
+            ]
+        }
+    ]
+});
