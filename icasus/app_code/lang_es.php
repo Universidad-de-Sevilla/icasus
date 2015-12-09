@@ -45,7 +45,6 @@ define('TXT_RESET', 'Reset');
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
 define('TXT_EXPORT_CSV', 'Exportar en CSV');
 define('TXT_LEYENDA', 'Leyenda');
-define('TXT_ACT_DESACT', 'Activar y desactivar');
 
 //Archivos
 define('TXT_ARCHIVOS_PROC', 'Archivos del proceso: ');
@@ -202,6 +201,7 @@ define('TXT_MED_ESTA', 'esta medición.');
 define('TXT_MED_BORRAR', 'Borrar medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
+define('TXT_MED_ASIG', ' Asignar la medición.');
 define('TXT_MED_VALORES', 'Valores de la medición');
 define('TXT_MED_DATOS', 'Datos de la medición');
 define('TXT_MED_GESTION', 'Gestión de mediciones');
@@ -312,7 +312,6 @@ define('TXT_SEL_UNO', 'Seleccionar uno');
 define('TXT_ELEG_UNO', 'Elegir uno si procede');
 define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
 define('TXT_SEL_RESP_GRABAR', 'Elegir nuevo responsable de grabación ...');
-define('TXT_CONFIRM', 'Por favor, confirme que desea:');
 
 //Tiempo/Periodicidad
 define('TXT_HISTORICO', 'Histórico anual');
