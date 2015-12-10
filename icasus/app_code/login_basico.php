@@ -26,6 +26,19 @@ if (filter_has_var(INPUT_POST, 'login') && filter_has_var(INPUT_POST, 'clave'))
         // Registra la entrada en el log
         $log = new Log();
         $log->add('login', 0, $usuario->id);
+        // Si el usuario tiene unidades asignadas
+        if ($usuario->entidades)
+        {
+            foreach ($usuario->entidades as $entidad)
+            {
+                //Le redirigimos a su unidad principal si la hay
+                if ($entidad->principal)
+                {
+                    header("location:index.php?page=entidad_mostrar&id_entidad=" . $entidad->entidad->id);
+                    exit();
+                }
+            }
+        }
         header("location:index.php");
     }
     else
