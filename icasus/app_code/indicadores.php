@@ -80,5 +80,5 @@ if ($indicadores_propios)
     $smarty->assign('medicion_lim', $medicion_lim);
 }
 $smarty->assign('_javascript', array('indicador_listar'));
-$smarty->assign('_nombre_pagina', FIELD_INDICS);
+$smarty->assign('_nombre_pagina', TXT_INDICS_US);
 $plantilla = 'indicadores.tpl';

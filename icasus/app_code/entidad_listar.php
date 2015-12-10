@@ -14,7 +14,7 @@ global $usuario;
 global $plantilla;
 
 $smarty->assign('_javascript', array('ordenatabla'));
-$smarty->assign('_nombre_pagina', FIELD_UNIDS);
+$smarty->assign('_nombre_pagina', TXT_UNIDS_US);
 
 // Entidades de este usuario
 $smarty->assign('entidades_usuario', $usuario->entidades);

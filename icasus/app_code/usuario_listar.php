@@ -12,7 +12,7 @@
 global $smarty;
 global $plantilla;
 
-$smarty->assign('_nombre_pagina', TXT_USERS);
+$smarty->assign('_nombre_pagina', TXT_USERS_US);
 
 $usuario = new Usuario();
 if (filter_has_var(INPUT_POST, 'criterio'))

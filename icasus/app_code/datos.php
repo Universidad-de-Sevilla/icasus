@@ -80,5 +80,5 @@ if ($datos_propios)
     $smarty->assign('medicion_lim', $medicion_lim);
 }
 $smarty->assign('_javascript', array('dato_listar'));
-$smarty->assign('_nombre_pagina', FIELD_DATOS);
+$smarty->assign('_nombre_pagina', TXT_DATOS_US);
 $plantilla = 'datos.tpl';

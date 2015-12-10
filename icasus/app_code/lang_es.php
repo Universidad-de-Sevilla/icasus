@@ -212,7 +212,13 @@ define('TXT_MED_ULTIMA', 'Última medición');
 
 //Menú Principal
 define('TXT_INICIO', 'Mi Icasus');
+define('TXT_UNIDS_US', 'Unidades US');
+define('TXT_PROCS_US', 'Procesos US');
+define('TXT_INDICS_US', 'Indicadores US');
+define('TXT_DATOS_US', 'Datos US');
+define('TXT_CUADROS_MANDO_US', 'Cuadros de mando US');
 define('TXT_CUADROS_MANDO', 'Cuadros de mando');
+define('TXT_USERS_US', 'Usuarios US');
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
 define('TXT_UNIVERSIDAD', 'Universidad de Sevilla');
