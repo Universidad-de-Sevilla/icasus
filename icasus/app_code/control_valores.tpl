@@ -393,6 +393,7 @@
         $(document).ready(function () {
             $('.datatable').DataTable({
                 "pagingType": "full_numbers",
+                "iDisplayLength": 25,
                 dom: "<'row'<'col-sm-3'l><'col-sm-3'B><'col-sm-6'f>>" +
                         "<'row'<'col-sm-12'tr>>" +
                         "<'row'<'col-sm-5'i><'col-sm-7'p>>",
