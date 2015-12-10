@@ -23,23 +23,34 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
     $persona->load_joined("id = $id_usuario");
     $smarty->assign('persona', $persona);
 
+    // Sólo administradores de Icasus pueden ver todas las responsabilidades de un usuario
+    $admin = false;
+    foreach ($usuario->entidades as $entidad)
+    {
+        if ($entidad->entidad->id == 1)
+        {
+            $admin = true;
+        }
+    }
+    $smarty->assign('admin', $admin);
+
     // Procesos propiedad del usuario
     $proceso = new Proceso();
-    $procesos_propios = $proceso->Find_joined("id_propietario=$usuario->id");
+    $procesos_propios = $proceso->Find_joined("id_propietario=$persona->id");
     $smarty->assign('procesos_propios', $procesos_propios);
 
     // Indicadores bajo la responsabilidad de este usuario
     $indicador = new Indicador();
-    $indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL");
+    $indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NOT NULL");
     $smarty->assign("indicadores_propios", $indicadores);
 
     // Datos bajo la responsabilidad de este usuario
-    $datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
+    $datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NULL");
     $smarty->assign("datos_propios", $datos);
 
     // Cuadros de mando del usuario
     $cuadro = new Cuadro();
-    $cuadros = $cuadro->Find("id_usuario = $usuario->id");
+    $cuadros = $cuadro->Find("id_usuario = $persona->id");
     $smarty->assign('cuadros_propios', $cuadros);
 
     if (is_array($indicadores) && is_array($datos))
@@ -90,17 +101,20 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
                     }
                 }
                 $valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion=" . $indicador->medicion->id);
-                foreach ($valores_referencia_medicion as $valor_referencia_medicion)
+                if ($valores_referencia_medicion)
                 {
-                    //Es la referencia Limite
-                    if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                    foreach ($valores_referencia_medicion as $valor_referencia_medicion)
                     {
-                        $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
-                    }
-                    //Es la referencia Objetivo
-                    if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
-                    {
-                        $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
+                        //Es la referencia Limite
+                        if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                        {
+                            $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
+                        }
+                        //Es la referencia Objetivo
+                        if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+                        {
+                            $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
+                        }
                     }
                 }
             }

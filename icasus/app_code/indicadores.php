@@ -57,17 +57,20 @@ if ($indicadores_propios)
                 }
             }
             $valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion=" . $indicador->medicion->id);
-            foreach ($valores_referencia_medicion as $valor_referencia_medicion)
+            if ($valores_referencia_medicion)
             {
-                //Es la referencia Limite
-                if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                foreach ($valores_referencia_medicion as $valor_referencia_medicion)
                 {
-                    $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
-                }
-                //Es la referencia Objetivo
-                if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
-                {
-                    $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
+                    //Es la referencia Limite
+                    if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                    {
+                        $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
+                    }
+                    //Es la referencia Objetivo
+                    if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+                    {
+                        $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
+                    }
                 }
             }
         }

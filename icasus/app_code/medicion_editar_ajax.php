@@ -298,19 +298,22 @@ if ($valores_referencia)
     $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
 
     //Control (Status) de valores limite y objetivo
-    foreach ($valores_referencia_medicion as $med_ref)
+    if ($valores_referencia_medicion)
     {
-        //Es la referencia Limite
-        if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
+        foreach ($valores_referencia_medicion as $med_ref)
         {
-            $medicion_lim = $med_ref->valor;
-            $smarty->assign('medicion_lim', $medicion_lim);
-        }
-        //Es la referencia Objetivo
-        if (strpos($med_ref->valor_referencia->etiqueta, 'bjetivo') !== false)
-        {
-            $medicion_obj = $med_ref->valor;
-            $smarty->assign('medicion_obj', $medicion_obj);
+            //Es la referencia Limite
+            if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
+            {
+                $medicion_lim = $med_ref->valor;
+                $smarty->assign('medicion_lim', $medicion_lim);
+            }
+            //Es la referencia Objetivo
+            if (strpos($med_ref->valor_referencia->etiqueta, 'bjetivo') !== false)
+            {
+                $medicion_obj = $med_ref->valor;
+                $smarty->assign('medicion_obj', $medicion_obj);
+            }
         }
     }
 }

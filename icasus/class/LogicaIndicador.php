@@ -497,14 +497,17 @@ class LogicaIndicador implements ILogicaIndicador
     {
         $total = null;
         //Significa que la medición no es centralizada
-        if (count($valores) > 1)
+        if ($valores)
         {
-            $total = $this->calcular_total_agregacion($indicador, $valores, $etiqueta);
-        }
-        //La medición esta centralizada por tanto sólo tenemos un valor
-        else
-        {
-            $total = $valores[0]->valor;
+            if (count($valores) > 1)
+            {
+                $total = $this->calcular_total_agregacion($indicador, $valores, $etiqueta);
+            }
+            //La medición esta centralizada por tanto sólo tenemos un valor
+            else
+            {
+                $total = $valores[0]->valor;
+            }
         }
         return $total;
     }

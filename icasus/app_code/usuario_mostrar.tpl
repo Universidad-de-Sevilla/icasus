@@ -104,15 +104,37 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
+{if $_usuario->id == $persona->id || $admin}
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-user fa-fw"></i> {$smarty.const.TXT_USER_DAT}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#user" title="{$smarty.const.TXT_USER_PERFIL}" aria-controls="{$smarty.const.TXT_USER_PERFIL}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_PERFIL}</a>
+            </li>
+            <li role="presentation">
+                <a href="#user_unids" title="{$smarty.const.TXT_USER_UNIDS}" aria-controls="{$smarty.const.TXT_USER_UNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</a>
+            </li>
+            <li role="presentation">
+                <a href="#user_procs" title="{$smarty.const.TXT_USER_PROCS}" aria-controls="{$smarty.const.TXT_USER_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</a>
+            </li>
+            <li role="presentation">
+                <a href="#user_indic" title="{$smarty.const.TXT_USER_INDIC}" aria-controls="{$smarty.const.TXT_USER_INDIC}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}</a>
+            </li>
+            <li role="presentation">
+                <a href="#user_dato" title="{$smarty.const.TXT_USER_DATO}" aria-controls="{$smarty.const.TXT_USER_DATO}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</a>
+            </li>
+            <li role="presentation">
+                <a href="#user_cuadro" title="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" aria-controls="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</a>
+            </li>
+        </ul>
+        <!-- /Nav tabs -->
+        <br>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            
+            <!-- Perfil del usuario -->
+            <div role="tabpanel" class="tab-pane active" id="user">
                 <table class="table table-striped table-hover">
                     <tbody>
                         <tr>
@@ -160,24 +182,10 @@
                     </tbody>
                 </table>
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-
-<!-- Unidades del usuario -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+            <!-- /Perfil del usuario -->
+            
+            <!-- Unidades del usuario -->
+            <div role="tabpanel" class="tab-pane" id="user_unids">
                 {if $persona->entidades }
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -192,10 +200,10 @@
                             <tbody>
                                 {foreach from=$persona->entidades item=entidad}
                                     <tr>
-                                        <td style="white-space:nowrap">{$entidad->entidad->codigo}</td>
+                                        <td><span class="label label-primary">{$entidad->entidad->codigo}</span></td>
                                         <td><a title="{$entidad->entidad->nombre}" href='index.php?page=entidad_mostrar&id_entidad={$entidad->entidad->id}'>{$entidad->entidad->nombre}</a></td>
                                         <td>{$entidad->rol->nombre}</td>
-                                        <td style="white-space:nowrap">
+                                        <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$entidad->entidad->id}'><i class="fa fa-folder fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-gears fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-dashboard fa-fw"></i></a>
@@ -217,26 +225,11 @@
                     </div>
                 {/if}
             </div>
-            <!-- /.panel-body -->     
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<!-- /Unidades del usuario -->
+            <!-- /Unidades del usuario -->
 
-<!-- Procesos del usuario -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                {if $procesos_propios}
+            <!-- Procesos del usuario -->
+            <div role="tabpanel" class="tab-pane" id="user_procs">
+                 {if $procesos_propios}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>
@@ -302,25 +295,10 @@
                     </div>
                 {/if}
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<!-- /Procesos del usuario -->
+            <!-- /Procesos del usuario -->
 
-<!-- Indicadores del usuario -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+            <!-- Indicadores del usuario -->
+            <div role="tabpanel" class="tab-pane" id="user_indic">
                 {if $indicadores_propios}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">
@@ -464,25 +442,10 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<!-- /Indicadores del usuario -->
+            <!-- /Indicadores del usuario -->
 
-<!-- Datos del usuario -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+            <!-- Datos del usuario -->
+            <div role="tabpanel" class="tab-pane" id="user_dato">
                 {if $datos_propios}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">
@@ -626,25 +589,10 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<!-- /Datos del usuario -->
+            <!-- /Datos del usuario -->
 
-<!-- Cuadros de mando del usuario -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+            <!-- Cuadros de mando del usuario -->
+            <div role="tabpanel" class="tab-pane" id="user_cuadro">
                 {if $cuadros_propios|count > 0}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -689,11 +637,76 @@
                     </div> 
                 {/if}
             </div>
+            <!-- /Cuadros de mando del usuario -->
+
+        </div>
+        <!-- /Tab panes -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->   
+{else}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-user fa-fw"></i> {$smarty.const.TXT_USER_PERFIL}</span>
+                <i class="fa fa-chevron-up pull-right clickable"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <table class="table table-striped table-hover">
+                    <tbody>
+                        <tr>
+                            <th>{$smarty.const.FIELD_NOMBRE}</th>
+                            <td>{$persona->nombre}</td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_APEL}</th>
+                            <td>{$persona->apellidos}</td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_LOGIN}</th>
+                            <td>{$persona->login}</td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_CORREO}</th>
+                            <td>
+                                {if $persona->correo}
+                                    <a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$persona->correo}'>{$persona->correo}</a>
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_TEL}</th>
+                            <td>
+                                {if $persona->telefono}
+                                    <a title="{$smarty.const.TXT_LLAMAR_TLF}" href='tel:+34{$persona->telefono}'>{$persona->telefono}</a>
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>{$smarty.const.FIELD_PUESTO}</th>
+                            <td>
+                                {if $persona->puesto}
+                                    {$persona->puesto}
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <!-- /.panel-body -->        
         </div>
         <!-- /.panel -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
-<!-- /.row -->
-<!-- /Cuadros de mando del usuario -->
+<!-- /.row --> 
+{/if}
