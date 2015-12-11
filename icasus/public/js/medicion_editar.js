@@ -8,109 +8,113 @@
 // -------------------------------------------------------
 
 //Variables: Valor mínimo y máximo permitido
-valor_min = $("#valors").data("valor_min");
-valor_max = $("#valors").data("valor_max");
+var valor_min = $("#valors").data("valor_min");
+var valor_max = $("#valors").data("valor_max");
 
 //Fechas de inicio y fin de grabación
-grabacion_inicio = $("#gi").data("grabacion_inicio");
-grabacion_fin = $("#gf").data("grabacion_fin");
+var grabacion_inicio = $("#gi").data("grabacion_inicio");
+var grabacion_fin = $("#gf").data("grabacion_fin");
 
-//Panel de tarta
-$("#container").each(function () {
-    var contenedor = $(this).attr('id');
-    var nomIndicador = $(this).data("nombre_indicador");
-    var id_indicador = $(this).data("id_indicador");
-    var id_medicion = $(this).data("id_medicion");
-    //Variables para guardar el nombre y total de la medición solicitada
-    var medicion, total = 0;
+actualizaGrafica();
 
-    var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador;
+function actualizaGrafica() {
+    //Panel de tarta
+    $("#container").each(function () {
+        var contenedor = $(this).attr('id');
+        var nomIndicador = $(this).data("nombre_indicador");
+        var id_indicador = $(this).data("id_indicador");
+        var id_medicion = $(this).data("id_medicion");
+        //Variables para guardar el nombre y total de la medición solicitada
+        var medicion, total = 0;
 
-    // contenedor para los datos del gráfico
-    var chartSerie = new HighchartSerie();
+        var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador;
 
-    $.ajax({
-        url: urlApi,
-        type: "GET",
-        dataType: "json",
-        success: onDataReceived
-    });
+        // contenedor para los datos del gráfico
+        var chartSerie = new HighchartSerie();
 
-    function onDataReceived(datos) {
-        //Buscamos la medición para luego obtener su total
-        while (!medicion) {
+        $.ajax({
+            url: urlApi,
+            type: "GET",
+            dataType: "json",
+            success: onDataReceived
+        });
+
+        function onDataReceived(datos) {
+            //Buscamos la medición para luego obtener su total
+            while (!medicion) {
+                datos.forEach(function (dato) {
+                    if (dato.id_medicion == id_medicion) {
+                        medicion = dato.medicion;
+                    }
+                });
+            }
             datos.forEach(function (dato) {
-                if (dato.id_medicion == id_medicion) {
-                    medicion = dato.medicion;
+                if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
+                    chartSerie.add(dato);
+                }
+                //Guardamos el total
+                if (medicion == dato.medicion && dato.id_unidad == 0) {
+                    total = parseFloat(dato.valor);
                 }
             });
-        }
-        datos.forEach(function (dato) {
-            if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
-                chartSerie.add(dato);
-            }
-            //Guardamos el total
-            if (medicion == dato.medicion && dato.id_unidad == 0) {
-                total = parseFloat(dato.valor);
-            }
-        });
 
-        //Redondeamos el total
-        total = Math.round(total * 100) / 100;
+            //Redondeamos el total
+            total = Math.round(total * 100) / 100;
 
-        //Pide las series de datos a chartSerie
-        var dataseries = chartSerie.getPieSerie();
+            //Pide las series de datos a chartSerie
+            var dataseries = chartSerie.getPieSerie();
 
-        //Gráfico de tarta
-        pintaGrafico({
-            chart: {
-                renderTo: contenedor,
-                events: {}
-            },
-            credits: {
-                enabled: false
-            },
-            title: {
-                text: nomIndicador,
-                style: {"fontSize": "14px"}
-            },
-            subtitle: {
-                text: 'Medición: ' + medicion + ' Total: ' + total
-            },
-            exporting: {
-                filename: nomIndicador + '(Medición: ' + medicion + ')'
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {
+            //Gráfico de tarta
+            pintaGrafico({
+                chart: {
+                    renderTo: contenedor,
+                    events: {}
+                },
+                credits: {
+                    enabled: false
+                },
                 title: {
-                    text: 'Valores'
-                }
-            },
-            plotOptions: {
-                series: {
-                    dataLabels: {
-                        enabled: true,
-                        formatter: function () {
-                            return this.y ? ((Math.round(this.y * 100)) / 100)
-                                    + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' : null;
+                    text: nomIndicador,
+                    style: {"fontSize": "14px"}
+                },
+                subtitle: {
+                    text: 'Medición: ' + medicion + ' Total: ' + total
+                },
+                exporting: {
+                    filename: nomIndicador + '(Medición: ' + medicion + ')'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Valores'
+                    }
+                },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return this.y ? ((Math.round(this.y * 100)) / 100)
+                                        + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' : null;
+                            }
                         }
                     }
-                }
-            },
-            tooltip: {
-                formatter: function () {
-                    html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                    html += '<span >\u25CF</span> ' + this.series.name + ': <b>' + this.y
-                            + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' + '</b><br/>';
-                    return html;
-                }
-            },
-            series: dataseries
-        });
-    }
-});
+                },
+                tooltip: {
+                    formatter: function () {
+                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                        html += '<span >\u25CF</span> ' + this.series.name + ': <b>' + this.y
+                                + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' + '</b><br/>';
+                        return html;
+                    }
+                },
+                series: dataseries
+            });
+        }
+    });
+}
 
 //Edición de la medición
 function fila_editar(medicion, id_valor)
@@ -146,7 +150,7 @@ function fila_grabar(id_valor, medicion)
                             data: {"id_valor": id_valor, "valor": value},
                             success: function (response) {
                                 $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                                location.reload();
+                                actualizaGrafica();
                             }
                         });
                     }
@@ -163,7 +167,7 @@ function fila_grabar(id_valor, medicion)
                             data: {"id_valor": id_valor, "valor": value},
                             success: function (response) {
                                 $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                                location.reload();
+                                actualizaGrafica();
                             }
                         });
                     }
@@ -180,7 +184,7 @@ function fila_grabar(id_valor, medicion)
                             data: {"id_valor": id_valor, "valor": value},
                             success: function (response) {
                                 $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                                location.reload();
+                                actualizaGrafica();
                             }
                         });
                     }
@@ -193,7 +197,7 @@ function fila_grabar(id_valor, medicion)
                         data: {"id_valor": id_valor, "valor": value},
                         success: function (response) {
                             $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                            location.reload();
+                            actualizaGrafica();
                         }
                     });
                 }
@@ -202,7 +206,7 @@ function fila_grabar(id_valor, medicion)
             {
                 $.post("index.php?page=medicion_editar_ajax&modulo=anularvalor&ajax=true", {id_valor: id_valor}, function () {
                     $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                    location.reload();
+                    actualizaGrafica();
                 });
             }
             else

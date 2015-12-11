@@ -361,7 +361,7 @@
                                         <td>
                                             <a title='{$indicador->nombre}: {$indicador->descripcion}' href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>{$indicador->nombre}</a>
                                         </td>
-                                        <td>
+                                        <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>{$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                         </td>
                                         <td>
@@ -409,7 +409,7 @@
                                             <td>
                                                 <a title='{$archivo->titulo|htmlentities}: {$archivo->descripcion}' href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo|htmlentities}</a>
                                             </td>
-                                            <td>
+                                            <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'>{$archivo->usuario->nombre|htmlentities} {$archivo->usuario->apellidos|htmlentities}</a>
                                             </td>
                                             <td style="white-space:nowrap">
@@ -460,7 +460,7 @@
                                                 ---
                                             {/if}
                                         </td>
-                                        <td>
+                                        <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$subproceso->propietario->id}">
                                                 {$subproceso->propietario->nombre}
                                                 {$subproceso->propietario->apellidos}

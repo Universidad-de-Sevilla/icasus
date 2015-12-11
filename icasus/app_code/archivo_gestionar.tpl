@@ -255,7 +255,7 @@
                                                    data-onstyle="success" data-offstyle="danger" data-size="mini"
                                                    data-off="{$smarty.const.TXT_NO}" {if $archivo->visible}checked{/if} />
                                         </td>
-                                        <td>
+                                        <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}">
                                                 {$archivo->usuario->nombre} {$archivo->usuario->apellidos}</a>
                                         </td> 

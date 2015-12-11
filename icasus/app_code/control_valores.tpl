@@ -41,7 +41,7 @@
                                             <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
                                         {/if}
                                     </td>
-                                    <td>{$valor.nombre_responsable} {$valor.apellidos_responsable}</td>
+                                    <td style="font-size: 12px">{$valor.nombre_responsable} {$valor.apellidos_responsable}</td>
                                     <td>{$valor.fecha}</td>
                                     <td>{if $valor.valor == NULL}
                                         <a href="index.php?page=medicion_editar&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$smarty.const.TXT_NULO}</a>{/if}

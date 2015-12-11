@@ -111,7 +111,7 @@
             <div class="panel-body">
                 {if $indicadores_subunidades}
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>   
                                     <th>{$smarty.const.FIELD_UNID}</th>
@@ -124,7 +124,7 @@
                                 {foreach from=$indicadores_subunidades item=indicador_subunidad}
                                     <tr>
                                         <td>{$indicador_subunidad->entidad->nombre}</td>
-                                        <td>{$indicador_subunidad->usuario->nombre} {$indicador_subunidad->usuario->apellidos}</td>
+                                        <td style="font-size: 12px">{$indicador_subunidad->usuario->nombre} {$indicador_subunidad->usuario->apellidos}</td>
                                         <td>{$indicador_subunidad->usuario->puesto}</td>
                                         <td>
                                             {if $indicador_subunidad->entidad->usuario}

@@ -106,8 +106,8 @@
                                                 </a>
                                             </td>
                                             <td>{$usuario->rol->nombre}</td>
-                                            <td>{$usuario->usuario->nombre}</td>
-                                            <td>{$usuario->usuario->apellidos}</td>
+                                            <td style="font-size: 12px">{$usuario->usuario->nombre}</td>
+                                            <td style="font-size: 12px">{$usuario->usuario->apellidos}</td>
                                             <td><a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->usuario->correo}'>{$usuario->usuario->correo}</a></td>
                                             <td>{$usuario->usuario->telefono}</td>
                                             <td style="white-space:nowrap">

@@ -52,8 +52,8 @@
                                             {$usuario->login}
                                         </a>
                                     </td>
-                                    <td>{$usuario->nombre}</td>
-                                    <td>{$usuario->apellidos}</td>       
+                                    <td style="font-size: 12px">{$usuario->nombre}</td>
+                                    <td style="font-size: 12px">{$usuario->apellidos}</td>       
                                     <td><a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->correo}'>{$usuario->correo}</a></td>
                                     <td><a title="{$smarty.const.TXT_LLAMAR_TLF}" href='tel:+34{$usuario->telefono}'>{$usuario->telefono}</a></td>
                                     <td style="white-space:nowrap">

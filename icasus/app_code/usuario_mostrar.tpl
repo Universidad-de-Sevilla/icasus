@@ -261,7 +261,7 @@
                                                 ---
                                             {/if}
                                         </td>
-                                        <td>
+                                        <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
                                                 {$proceso->propietario->nombre}
                                                 {$proceso->propietario->apellidos}
@@ -353,12 +353,12 @@
                                                 {$indicador->nombre}</a>
                                         </td>
                                         <td>{$indicador->periodicidad}</td>
-                                        <td>
+                                        <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
                                                 {$indicador->responsable->nombre} 
                                                 {$indicador->responsable->apellidos}</a>
                                         </td>
-                                        <td>
+                                        <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
                                                 {$indicador->responsable_medicion->nombre} 
                                                 {$indicador->responsable_medicion->apellidos}</a>
@@ -500,12 +500,12 @@
                                                 {$indicador->nombre}</a>
                                         </td>
                                         <td>{$indicador->periodicidad}</td>
-                                        <td>
+                                        <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
                                                 {$indicador->responsable->nombre} 
                                                 {$indicador->responsable->apellidos}</a>
                                         </td>
-                                        <td>
+                                        <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
                                                 {$indicador->responsable_medicion->nombre} 
                                                 {$indicador->responsable_medicion->apellidos}</a>

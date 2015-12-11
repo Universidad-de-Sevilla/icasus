@@ -156,12 +156,12 @@
                                                 {$dato->nombre}</a>
                                         </td>
                                         <td>{$dato->periodicidad}</td>
-                                        <td>
+                                        <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>
                                                 {$dato->responsable->nombre} 
                                                 {$dato->responsable->apellidos}</a>
                                         </td>
-                                        <td>
+                                        <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable_medicion}&id_entidad={$entidad->id}'>
                                                 {$dato->responsable_medicion->nombre} 
                                                 {$dato->responsable_medicion->apellidos}</a>

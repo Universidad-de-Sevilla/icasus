@@ -29,7 +29,7 @@
                             ---
                         </td>
                         <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
-                        <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
+                        <td style="font-size: 12px">{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
                     </tr>
                 {/if}
                 {*El indicador/dato es no agregado*}
@@ -98,7 +98,7 @@
                         {/if}
                     </td>
                     <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
-                    <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
+                    <td style="font-size: 12px">{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
                 </tr>
                 {/if}
                     {/foreach}
@@ -241,7 +241,7 @@
                                         <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
                                             {$valor->fecha_recogida|date_format:"%d-%m-%Y"}
                                         </td>
-                                        <td style="border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                        <td style="font-size: 12px;border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
                                             {$valor->usuario->nombre} {$valor->usuario->apellidos}
                                         </td>  
                                     </tr>
@@ -282,7 +282,7 @@
                             ---
                         </td>
                         <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
-                        <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
+                        <td style="font-size: 12px">{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
                     </tr>
                 {/if}
                 {*El indicador/dato es no agregado*}
@@ -348,7 +348,7 @@
                             {/if}
                         </td>
                         <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
-                        <td>{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
+                        <td style="font-size: 12px">{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
                     </tr>
                 {/if}
             {/foreach}
@@ -488,7 +488,7 @@
                             <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
                                 {$valor->fecha_recogida|date_format:"%d-%m-%Y"}
                             </td>
-                            <td style="border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                            <td style="font-size: 12px;border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
                                 {$valor->usuario->nombre} {$valor->usuario->apellidos}
                             </td>  
                         </tr>
