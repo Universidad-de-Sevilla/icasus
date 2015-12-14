@@ -718,7 +718,7 @@ class LogicaIndicador implements ILogicaIndicador
                 $calculable = false;
             }
         }
-        if (calculable)
+        if ($calculable)
         {
             //Si el Indicador/Dato se mide de forma centralizada en la Unidad superior 
             //entonces calculamos totales  de los influyentes y a partir de la 
@@ -1030,14 +1030,14 @@ class LogicaIndicador implements ILogicaIndicador
             return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo%'");
         }
         //Estamos en el segundo Trimestre
-        else if (fecha >= $anyo . "-04-01" && $fecha < $anyo . "-07-01")
+        else if ($fecha >= $anyo . "-04-01" && $fecha < $anyo . "-07-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.2T' "
                             . "OR etiqueta LIKE '$anyo.3T' "
                             . "OR etiqueta LIKE '$anyo.4T')");
         }
         //Estamos en el tercer Trimestre
-        else if (fecha >= $anyo . "-07-01" && $fecha < $anyo . "-10-01")
+        else if ($fecha >= $anyo . "-07-01" && $fecha < $anyo . "-10-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.3T' "
                             . "OR etiqueta LIKE '$anyo.4T')");
@@ -1061,7 +1061,7 @@ class LogicaIndicador implements ILogicaIndicador
             return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo%'");
         }
         //Estamos en Febrero
-        else if (fecha >= $anyo . "-02-01" && $fecha < $anyo . "-03-01")
+        else if ($fecha >= $anyo . "-02-01" && $fecha < $anyo . "-03-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.02' "
                             . "OR etiqueta LIKE '$anyo.03' "
@@ -1076,7 +1076,7 @@ class LogicaIndicador implements ILogicaIndicador
                             . "OR etiqueta LIKE '$anyo.12')");
         }
         //Estamos en Marzo
-        else if (fecha >= $anyo . "-03-01" && $fecha < $anyo . "-04-01")
+        else if ($fecha >= $anyo . "-03-01" && $fecha < $anyo . "-04-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.03' "
                             . "OR etiqueta LIKE '$anyo.04'"
@@ -1090,7 +1090,7 @@ class LogicaIndicador implements ILogicaIndicador
                             . "OR etiqueta LIKE '$anyo.12')");
         }
         //Estamos en Abril
-        else if (fecha >= $anyo . "-04-01" && $fecha < $anyo . "-05-01")
+        else if ($fecha >= $anyo . "-04-01" && $fecha < $anyo . "-05-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.04' "
                             . "OR etiqueta LIKE '$anyo.05'"
@@ -1103,7 +1103,7 @@ class LogicaIndicador implements ILogicaIndicador
                             . "OR etiqueta LIKE '$anyo.12')");
         }
         //Estamos en Mayo
-        else if (fecha >= $anyo . "-05-01" && $fecha < $anyo . "-06-01")
+        else if ($fecha >= $anyo . "-05-01" && $fecha < $anyo . "-06-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.05' "
                             . "OR etiqueta LIKE '$anyo.06'"
@@ -1115,7 +1115,7 @@ class LogicaIndicador implements ILogicaIndicador
                             . "OR etiqueta LIKE '$anyo.12')");
         }
         //Estamos en Junio
-        else if (fecha >= $anyo . "-06-01" && $fecha < $anyo . "-07-01")
+        else if ($fecha >= $anyo . "-06-01" && $fecha < $anyo . "-07-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.06' "
                             . "OR etiqueta LIKE '$anyo.07'"
@@ -1126,7 +1126,7 @@ class LogicaIndicador implements ILogicaIndicador
                             . "OR etiqueta LIKE '$anyo.12')");
         }
         //Estamos en Julio
-        else if (fecha >= $anyo . "-07-01" && $fecha < $anyo . "-08-01")
+        else if ($fecha >= $anyo . "-07-01" && $fecha < $anyo . "-08-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.07' "
                             . "OR etiqueta LIKE '$anyo.08'"
@@ -1136,7 +1136,7 @@ class LogicaIndicador implements ILogicaIndicador
                             . "OR etiqueta LIKE '$anyo.12')");
         }
         //Estamos en Agosto
-        else if (fecha >= $anyo . "-08-01" && $fecha < $anyo . "-09-01")
+        else if ($fecha >= $anyo . "-08-01" && $fecha < $anyo . "-09-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.08' "
                             . "OR etiqueta LIKE '$anyo.09'"
@@ -1145,7 +1145,7 @@ class LogicaIndicador implements ILogicaIndicador
                             . "OR etiqueta LIKE '$anyo.12')");
         }
         //Estamos en Septiembre
-        else if (fecha >= $anyo . "-09-01" && $fecha < $anyo . "-10-01")
+        else if ($fecha >= $anyo . "-09-01" && $fecha < $anyo . "-10-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.09' "
                             . "OR etiqueta LIKE '$anyo.10'"
@@ -1153,14 +1153,14 @@ class LogicaIndicador implements ILogicaIndicador
                             . "OR etiqueta LIKE '$anyo.12')");
         }
         //Estamos en Octubre
-        else if (fecha >= $anyo . "-10-01" && $fecha < $anyo . "-11-01")
+        else if ($fecha >= $anyo . "-10-01" && $fecha < $anyo . "-11-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.10' "
                             . "OR etiqueta LIKE '$anyo.11'"
                             . "OR etiqueta LIKE '$anyo.12')");
         }
         //Estamos en Noviembre
-        else if (fecha >= $anyo . "-11-01" && $fecha < $anyo . "-12-01")
+        else if ($fecha >= $anyo . "-11-01" && $fecha < $anyo . "-12-01")
         {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.11' "
                             . "OR etiqueta LIKE '$anyo.12')");
