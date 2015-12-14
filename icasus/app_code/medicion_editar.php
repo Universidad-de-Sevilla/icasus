@@ -17,7 +17,7 @@ $logicaIndicador = new LogicaIndicador();
 if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'))
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-    $tipo = filter_input(INPUT_GET, 'tipo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
     $smarty->assign("tipo", $tipo);
 
     $medicion = new Medicion();
@@ -104,19 +104,22 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
         $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
 
         //Control (Status) de valores limite y objetivo
-        foreach ($valores_referencia_medicion as $med_ref)
+        if ($valores_referencia_medicion)
         {
-            //Es la referencia Limite
-            if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
+            foreach ($valores_referencia_medicion as $med_ref)
             {
-                $medicion_lim = $med_ref->valor;
-                $smarty->assign('medicion_lim', $medicion_lim);
-            }
-            //Es la referencia Objetivo
-            if (strpos($med_ref->valor_referencia->etiqueta, 'bjetivo') !== false)
-            {
-                $medicion_obj = $med_ref->valor;
-                $smarty->assign('medicion_obj', $medicion_obj);
+                //Es la referencia Limite
+                if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
+                {
+                    $medicion_lim = $med_ref->valor;
+                    $smarty->assign('medicion_lim', $medicion_lim);
+                }
+                //Es la referencia Objetivo
+                if (strpos($med_ref->valor_referencia->etiqueta, 'bjetivo') !== false)
+                {
+                    $medicion_obj = $med_ref->valor;
+                    $smarty->assign('medicion_obj', $medicion_obj);
+                }
             }
         }
     }
@@ -129,40 +132,23 @@ if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    //Vemos si influye en otros Indicadores/Datos
+    $indicadores_dependientes = $logicaIndicador->calcular_influencias($indicador->id);
+    $smarty->assign('indicadores_dependientes', $indicadores_dependientes);
+
     //Si es calculado vemos los Indicadores/Datos de los que depende
     $indicadores_influyentes = $logicaIndicador->calcular_dependencias($indicador->id);
     $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
 
     //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
-    if ($indicador->id == 5071 OR
-            $indicador->id == 5077 OR
-            $indicador->id == 5020 OR
-            $indicador->id == 5258 OR
-            $indicador->id == 5061 OR
-            $indicador->id == 5040 OR
-            $indicador->id == 5078 OR
-            $indicador->id == 5063 OR
-            $indicador->id == 5034 OR
-            $indicador->id == 5033 OR
-            $indicador->id == 5032 OR
-            $indicador->id == 5036 OR
-            $indicador->id == 5259 OR
-            $indicador->id == 5035 OR
-            $indicador->id == 5080)
-    {
-        $total = $logicaIndicador->calcular_total_heredado($indicador, $medicion->etiqueta);
-    }
-    else
-    {
-        $total = $logicaIndicador->calcular_total($indicador, $valores);
-    }
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
     $tipo_agregacion = new Tipo_agregacion();
     $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
     $smarty->assign("agregacion", $tipo_agregacion->descripcion);
     $smarty->assign("total", $total);
 
     $smarty->assign("usuario", $usuario);
-    $smarty->assign("_nombre_pagina", TXT_MED_VER . ": " . " $medicion->etiqueta - $indicador->nombre");
+    $smarty->assign("_nombre_pagina", FIELD_MED . ": " . " $medicion->etiqueta - $indicador->nombre");
     $smarty->assign('_javascript', array('medicion_editar'));
     $plantilla = "medicion_editar.tpl";
 }
@@ -171,3 +157,4 @@ else
     $error = ERR_PARAM;
     header("location:index.php?error=$error");
 }
+   

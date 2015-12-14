@@ -53,6 +53,19 @@ if (filter_has_var(INPUT_GET, 'autenticar'))
                 $_SESSION['usuario'] = $usuario;
                 //$log = new $log;
                 //$log->add('login',0,$usuario->id);
+                // Si el usuario tiene unidades asignadas
+                if ($usuario->entidades)
+                {
+                    foreach ($usuario->entidades as $entidad)
+                    {
+                        //Le redirigimos a su unidad principal si la hay
+                        if ($entidad->principal)
+                        {
+                            header("location:index.php?page=entidad_mostrar&id_entidad=" . $entidad->entidad->id);
+                            exit();
+                        }
+                    }
+                }
                 header("location:index.php");
             }
             else
@@ -96,4 +109,3 @@ else
     $smarty->assign("_nombre_pagina", TXT_BIENVENIDO);
     $plantilla = "login_sso.tpl";
 }
-

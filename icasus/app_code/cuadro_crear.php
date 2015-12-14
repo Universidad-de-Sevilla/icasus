@@ -10,5 +10,3 @@
 
 $smarty->assign('_nombre_pagina', TXT_CUADRO_NUEVO);
 $plantilla = 'cuadro_crear.tpl';
-
-

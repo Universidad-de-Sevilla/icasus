@@ -20,24 +20,9 @@ $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 if (!empty($id_indicador) AND ! empty($id_entidad))
 {
     $indicador = new Indicador();
-    if ($indicador->permiso_crear_medicion($usuario->id, $id_indicador))
+    if ($indicador->permiso_crear_medicion($usuario->id, $id_indicador, $control))
     {
         $indicador_subunidad = new Indicador_subunidad();
-        if ($indicador_subunidad->actualizar_subunidades($id_indicador, $id_entidad))
-        {
-            //deberia escribir en el log un regitro de exito de actualizacion
-        }
-        else
-        {
-            //deberia escribir en el log un regitro de error por no poder actualizar
-        }
+        $indicador_subunidad->actualizar_subunidades($id_indicador, $id_entidad);
     }
-    else
-    {
-        //deberia escribir en el log un regitro de error por falta de permiso
-    }
-}
-else
-{
-    //deberia escribir en el log un regitro de error por falta de párametros
 }

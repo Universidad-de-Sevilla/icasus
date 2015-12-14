@@ -8,12 +8,13 @@
 //---------------------------------------------------------------------------------------------------
 // Muestra un listado de las mediciones establecidas para un indicador
 //---------------------------------------------------------------------------------------------------
+
 global $smarty;
 global $usuario;
 global $plantilla;
 //parametros que son comunes a todos los módulos
 
-$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 $entidad = new Entidad();
@@ -27,9 +28,9 @@ $indicador->load("id = $id_indicador");
 $smarty->assign('indicador', $indicador);
 
 
-$inicio = filter_input(INPUT_GET, 'inicio', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$inicio = filter_input(INPUT_GET, 'inicio', FILTER_SANITIZE_NUMBER_INT);
 
-$fin = filter_input(INPUT_GET, 'fin', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$fin = filter_input(INPUT_GET, 'fin', FILTER_SANITIZE_NUMBER_INT);
 
 $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 
@@ -39,15 +40,18 @@ $activo = filter_input(INPUT_GET, 'activo', FILTER_SANITIZE_NUMBER_INT);
 
 if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 {
-    if ($control || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+    if ($control || $indicador->id_responsable == $usuario->id)
     {
         switch ($modulo)
         {
             case 'actualizar_dato':
 
                 $id_valor = filter_input(INPUT_GET, 'id_valor', FILTER_SANITIZE_NUMBER_INT);
-
-                $value = filter_input(INPUT_GET, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+                $value = null;
+                if (filter_has_var(INPUT_GET, 'valor'))
+                {
+                    $value = filter_input(INPUT_GET, 'valor', FILTER_VALIDATE_FLOAT);
+                }
                 $valor = new Valor();
                 $valor->Load("id = $id_valor");
                 $valor->id_usuario = $usuario->id;
@@ -77,7 +81,9 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                     $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
                 }
                 break;
+
             case 'activar_uno':
+
                 $valor = new Valor();
                 $valor->load("id_medicion = $id_medicion AND id_entidad = $id_subunidad");
                 $valor->activo = $activo;
@@ -96,7 +102,9 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                     $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
                 }
                 break;
+
             case 'mostrar_valores':
+
                 $medicion = new Medicion();
 
                 if (filter_input(INPUT_GET, 'inicio') == 0)
@@ -110,17 +118,20 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                     $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
                 }
                 break;
+
             case 'seleccionar_años':
+
                 $medicion = new Medicion();
                 $years = $medicion->find_year_mediciones($id_indicador);
                 $smarty->assign('years', $years);
 
-                $smarty->assign('year_inicio', filter_input(INPUT_GET, 'inicio', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")));
+                $smarty->assign('year_inicio', filter_input(INPUT_GET, 'inicio', FILTER_SANITIZE_NUMBER_INT));
                 $cabeceras = '';
                 $subunidades_mediciones = '';
                 break;
 
             case 'activar_all':
+
                 $medicion = new Medicion();
 
                 if (filter_input(INPUT_GET, 'inicio') == 0)
@@ -153,4 +164,3 @@ else
 {
     //escribe un error de falta de parámetroe en log para poder tener registro del error ya que ajax no lo muestra al estar en segundo plano
 }
-

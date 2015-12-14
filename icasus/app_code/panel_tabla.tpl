@@ -5,114 +5,126 @@
     <input type="hidden" name="inicioMonth" value="01">
     <input type="hidden" name="finDay" value="31">
     <input type="hidden" name="finMonth" value="12">
-    <fieldset class="label_side top">
-        <label>{$smarty.const.FIELD_NOMBRE}</label>
-        <div>
-            <input class="required text" type="text" name="nombre">
-            <div class="required_tag tooltip hover left"></div>
-        </div>
-    </fieldset>
 
-    <fieldset class="label_side top">
-        <label>{$smarty.const.FIELD_ORDEN}</label>
-        <div class="clearfix">
-            <div class="col_25">
-                <input class="text required" type="text" name="orden">
-            </div>
-            <div class="required_tag tooltip hover left"></div>
+    <div class="form-group has-feedback">
+        <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+        <div class="col-sm-8">
+            <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
         </div>
-    </fieldset>
+    </div>
+    <div class="form-group has-feedback">
+        <label for="orden" class="col-sm-2 control-label">{$smarty.const.FIELD_ORDEN} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+        <div class="col-sm-8">
+            <input type="number" value="1" id='orden' name="orden" class="form-control" placeholder="{$smarty.const.FIELD_ORDEN}" min='1' required/>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+    </div>
+    <div class="form-group has-feedback">
+        <label for="ancho" class="col-sm-2 control-label">{$smarty.const.FIELD_ANCHO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+        <div class="col-sm-8">
+            <input type="number" value="{$panel->ancho_pred}" id='ancho' name="ancho" class="form-control" placeholder="{$smarty.const.FIELD_ANCHO}" min='2' max="12" required/>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inicio" class="col-sm-2 control-label">{$smarty.const.FIELD_FECHA_INIC}</label>
+        <div class="col-sm-8">
+            {html_select_date prefix="inicio" all_extra="class='form-control chosen-select'id='inicio'" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 
+            end_year=$smarty.now|date_format:"%Y" }
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="fin" class="col-sm-2 control-label">{$smarty.const.FIELD_FECHA_FIN}</label>
+        <div id="div_fecha_fin" class="col-sm-8">
+            {html_select_date prefix="inicio" all_extra="class='form-control chosen-select'id='fin'" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 
+            end_year=$smarty.now|date_format:"%Y"}
+        </div>
+    </div>
 
-    <fieldset class="label_side top">
-        <label>{$smarty.const.FIELD_ANCHO}<span></span></label>
-        <div class="clearfix">
-            <select name="ancho" class="required">
-                {section start=2 loop=17 name="size"}
-                    <option value="{$smarty.section.size.index}"
-                            {if $smarty.section.size.index == $panel->ancho_pred}selected="selected"{/if} >
-                        {$smarty.section.size.index}</option>
-                    {/section}
-            </select>
-            <div class="required_tag tooltip hover left"></div>
-        </div>
-    </fieldset>
+    <div class="form-group">
+        <label for="buscar_indicador" class="col-sm-2 control-label">{$smarty.const.FIELD_INDIC}/{$smarty.const.FIELD_DATO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+        <div class="col-sm-8">
+            <input data-id_entidad="{$id_entidad}" class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" name="buscar_indicador" id="buscar_indicador" type="text">
+        </div> 
+    </div>
 
-    <fieldset class="label_side top">
-        <label>{$smarty.const.FIELD_PERIODO}<span></span></label>
-        <div class="clearfix">
-            <div class="col_50">
-                {html_select_date prefix="inicio" class="required" year_empty="Fecha de incio" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 end_year=$smarty.now|date_format:"%Y"}
-                <div class="required_tag tooltip hover left"></div>
-            </div>
-            <div class="col_50" id="div_fecha_fin">
-            </div>
-        </div>
-    </fieldset>
+    <div class="form-group has-feedback hidden" id="listado_indicadores"></div>
 
-    <fieldset class="label_side top fieldset_indicadores">
-        <label>{$smarty.const.FIELD_INDICS}<span></span></label>
-        <div class="clearfix">
-            <div class="col_25">
-                <input data-id_entidad="{$id_entidad}" class="text" placeholder="{$smarty.const.TXT_BUSCAR}" name="buscar_indicador" id="buscar_indicador" type="text">
-            </div>
-        </div>
-        <div id="listado_indicadores">
-        </div>
-    </fieldset>
-
-    <fieldset id="subunidades" class="label_side top">
-    </fieldset>
+    <div class="form-group has-feedback hidden" id="subunidades"></div>
 {/if}
+
 {if $modulo == 'fecha_fin'}
-    {html_select_date prefix="fin" class="required" display_months=FALSE display_days=FALSE start_year=$fecha_inicio end_year=$smarty.now|date_format:"%Y"}
-
+    {html_select_date prefix="fin" all_extra="class='form-control chosen-select'id='fin'" display_months=FALSE display_days=FALSE start_year=$fecha_inicio end_year=$smarty.now|date_format:"%Y"}
 {/if}
+
 {if $modulo == 'subunidades'}
-    <label>{$smarty.const.FIELD_SUBUNIDS}<span></span></label>
-    <div class="clearfix">
-        <div class="col_50">
-            <input data-id_indicador="{$id_indicador}"class="required subunidad_seleccionada"  name="id_subunidades[]"type="checkbox" value="0"> {$smarty.const.FIELD_TOTAL}<br /> 
+    <label for="id_subunidad" class="col-sm-2 control-label">{$smarty.const.FIELD_SUBUNID} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+    <div class="col-sm-8" style="overflow-y: auto;height: 30vh;">
+        <ul class="list-unstyled">
+            <div class="radio">
+                <label>
+                    <input id="id_subunidad" data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
+                           name="id_subunidades[]" type="radio" value="0" data-nombre_indicador="{$nombre_indicador}" data-nombre_subunidad="Total" required>
+                    {$smarty.const.FIELD_TOTAL}
+                </label>
+            </div>
             {foreach name=subunidades from=$indicador_subunidades item=item}
-                {if $smarty.foreach.subunidades.iteration == floor($indicador_subunidades|@count/2)+1 }</div><div class="col_50 no_border">{/if}
-                <input data-id_indicador="{$id_indicador}"class="subunidad_seleccionada"  name="id_subunidades[]"type="checkbox" value="{$item->id_entidad}"> {$item->entidad->etiqueta}<br /> 
+                <li>
+                    <div class="radio">
+                        <label>
+                            <input id="id_subunidad" data-id_indicador="{$id_indicador}" class="subunidad_seleccionada" name="id_subunidades[]" type="radio" value="{$item->id_entidad}" required>
+                            {$item->entidad->etiqueta}
+                        </label>
+                    </div>
+                </li>
             {/foreach}
-        </div>
-        <div class="required_tag tooltip hover left"></div>
+        </ul>
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
     </div>
 {/if}
 {literal}
     <script>
-    var page = {/literal}"{$panel->clase_css}"{literal};
-    $(document).ready(function () {
-        $('.subunidad_seleccionada').on('click', function () {
-            if ($('.subunidad_seleccionada:checked').length < 1) {
-                $('#footer_tabs').hide();
-            }
-            else {
-                $('#footer_tabs').show();
-            }
-        });
-        $('select[name="inicioYear"]').on('change', function () {
-            var fecha_inicio = $(this).val();
-            $.ajax({
-                url: "index.php?page=" + page + "&ajax=true&modulo=fecha_fin&fecha_inicio=" + fecha_inicio,
-                success: function (datos) {
-                    $("#div_fecha_fin").html(datos);
+        var page = {/literal}"{$panel->clase_css}"{literal};
+        $(document).ready(function () {
+            $('.subunidad_seleccionada').on('click', function () {
+                if ($('.subunidad_seleccionada:checked').length < 1) {
+                    $('#footer_tabs').addClass('hidden');
+                }
+                else {
+                    $('#footer_tabs').removeClass('hidden');
                 }
             });
-        });
-        $('#buscar_indicador').on('keyup', function () {
-            var cadena = $(this).val();
-            var id_entidad = $(this).data('id_entidad');
-            $('#subunidades').html('');
-            $.ajax({
-                url: "index.php?page=panel_buscador&ajax=true&modulo=indicador_subunidades&id_entidad=" + id_entidad + "&cadena=" + cadena,
-                success: function (datos) {
-                    $('#listado_indicadores').html(datos);
-                }
+            $('select[name="inicioYear"]').on('change', function () {
+                var fecha_inicio = $(this).val();
+                $.ajax({
+                    url: "index.php?page=" + page + "&ajax=true&modulo=fecha_fin&fecha_inicio=" + fecha_inicio,
+                    success: function (datos) {
+                        $("#div_fecha_fin").html(datos);
+                    }
+                });
+            });
+            $('#buscar_indicador').on('keyup', function () {
+                $('#listado_indicadores').removeClass('hidden');
+                var cadena = $(this).val();
+                var id_entidad = $(this).data('id_entidad');
+                $('#subunidades').html('');
+                $.ajax({
+                    url: "index.php?page=panel_buscador&ajax=true&modulo=indicador_subunidades&id_entidad=" + id_entidad + "&cadena=" + cadena,
+                    success: function (datos) {
+                        $('#listado_indicadores').html(datos);
+                    }
+                });
+            });
+            //Chosen selects (añade búsqueda a los html select)
+            $(".chosen-select").chosen({
+                disable_search_threshold: 100,
+                no_results_text: "Oops, no se encuentran registros coincidentes"
             });
         });
-    });
     </script>
 {/literal}
-

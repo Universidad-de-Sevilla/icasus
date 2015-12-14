@@ -26,7 +26,7 @@ if (!is_object($smarty))
 //    $fichero = sanitize($_GET['fichero'], 2);
 //    $dir = sanitize($_GET['dir'], PARANOID);
     
-    $fichero = filter_input(INPUT_GET,'fichero',FILTER_CALLBACK,array("options"=>"Util::mysqlCleaner"));
+    $fichero = filter_input(INPUT_GET,'fichero',FILTER_SANITIZE_STRING);
     $dir = filter_input(INPUT_GET,'dir',FILTER_SANITIZE_STRING);
     
     unlink(IC_DIR_BASE . '/upload/' . $dir . '/' . $fichero);

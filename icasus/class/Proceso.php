@@ -16,6 +16,7 @@ class Proceso extends ADOdb_Active_Record
     public $propietario;
     public $error; //propiedad de uso interno para almacenar los errores
     public $madre;
+    public $entidad;
     public $indicadores = array();
 
     //devuelve los procesos de los indicadores de la unidad superior
@@ -82,6 +83,10 @@ class Proceso extends ADOdb_Active_Record
         {
             foreach ($procesos as & $proceso)
             {
+                $entidad = new Entidad();
+                $entidad->load("id=$proceso->id_entidad");
+                $proceso->entidad = $entidad;
+                
                 $propietario = new Usuario();
                 $propietario->load("id = $proceso->id_propietario");
                 $proceso->propietario = $propietario;

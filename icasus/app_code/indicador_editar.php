@@ -26,7 +26,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     // Comprueba permisos para el usuario: responsable unidad, responsable delegado,
     // responsable indicador, responsable medicion
     $usuario_entidad = new Usuario_entidad();
-    if ($control || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+    if ($control || $indicador->id_responsable == $usuario->id)
     {
         $entidad = new Entidad();
         $entidad->load("id = $indicador->id_entidad");
@@ -59,6 +59,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
         $smarty->assign("indicador_subunidades", $indicador_subunidades);
 
         $smarty->assign('_nombre_pagina', TXT_INDIC_EDIT . ': ' . $indicador->nombre);
+        $smarty->assign('_javascript', array('indicador_editar'));
         $plantilla = 'indicador_editar.tpl';
     }
     else

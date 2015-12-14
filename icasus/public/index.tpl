@@ -1,218 +1,431 @@
-<!doctype html public "✰">
-<!--[if lt IE 7]> <html lang="en-us" class="no-js ie6"> <![endif]-->
-<!--[if IE 7]>    <html lang="en-us" class="no-js ie7"> <![endif]-->
-<!--[if IE 8]>    <html lang="en-us" class="no-js ie8"> <![endif]-->
-<!--[if IE 9]>    <html lang="en-us" class="no-js ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> 
-<html lang="es-es" class="no-js"> 
-    <!--<![endif]-->
+<!DOCTYPE html>
+<html lang="es-ES">
+
     <head>
+
         <meta charset="utf-8">
-        <title>{$_nombre_pagina} - {$smarty.const.TXT_ICASUS} - {$smarty.const.TXT_UNIVERSIDAD}</title>
-        <meta name="description" content="Gestión de Indicadores de Calidad">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="application-name" content="{$smarty.const.TXT_ICASUS}">
+        <meta name="description" content="{$smarty.const.TXT_APP_DESCRIPCION}">
+        <meta name="author" content="Juan Antonio Ruíz Rivas">
+        <meta name="author" content="Juan Jesús Martín Corredera">
+        <meta name="author" content="Joaquín Valonero Zaera">
+
+        <title>{$_nombre_pagina} - {$smarty.const.TXT_ICASUS}</title>
+
+        <!-- Favicon -->
         <link rel=icon href=favicon.ico sizes="32x32 48x48" type="image/vnd.microsoft.icon">
 
-        <!-- iPhone, iPad and Android specific settings -->	
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <link rel="apple-touch-icon" href="theme/danpin/images/iOS_icon.png">
-        <link rel="apple-touch-startup-image" href="theme/danpin/images/iOS_startup.png">
+        <!-- Bootstrap Core CSS -->
+        <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Styles -->
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/reset.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/fancybox/jquery.fancybox-1.3.4.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/tinyeditor/style.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/slidernav/slidernav.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/syntax_highlighter/styles/shCore.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/syntax_highlighter/styles/shThemeDefault.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/uitotop/css/ui.totop.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/fullcalendar/fullcalendar.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/isotope/isotope.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/elfinder/css/elfinder.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/tiptip/tipTip.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/uniform/css/uniform.aristo.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/multiselect/css/ui.multiselect.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/selectbox/jquery.selectBox.css">
-        <!--<link rel="stylesheet" type="text/css" href="theme/danpin/scripts/colorpicker/css/colorpicker.css">-->
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/uistars/jquery.ui.stars.min.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/scripts/themeroller/Aristo.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/text.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/grid.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/main.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/theme_base.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/graficas.css">
+        <!-- Chosen CSS -->
+        <link href="lib/chosen/chosen.min.css" rel="stylesheet">
+        <link href="lib/chosen/chosen-bootstrap.css" rel="stylesheet">
 
-        <!-- Style Switcher  
-        The following stylesheet links are used by the styleswitcher to allow for dynamically changing how Adminica looks and acts.
-        Styleswitcher documentation: http://style-switcher.webfactoryltd.com/documentation/
-        
-        switcher1.php : layout - fluid by default.								(eg. styles/theme/switcher1.php?default=layout_fixed.css)
-        switcher2.php : header and sidebar positioning - sidebar by default.	(eg. styles/theme/switcher1.php?default=header_top.css)
-        switcher3.php : colour skin - black/grey by default.					(eg. styles/theme/switcher1.php?default=theme_red.css)
-        switcher4.php : background image - dark boxes by default.				(eg. styles/theme/switcher1.php?default=bg_honeycomb.css)
-        switcher5.php : controls the theme - dark by default.					(eg. styles/theme/switcher1.php?default=theme_light.css)
-        -->
+        <!-- Bootstrap DatePicker -->
+        <link href="lib/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher.css" media="screen">
-        <!--
-<link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher1.php?default=layout_fixed.css" media="screen" > -->
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher2.php?default=switcher.css" media="screen" >
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher3.php?default=theme_red.css" media="screen" >
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher4.php?default=bg_hemerocallis.css" media="screen" >
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/theme/switcher5.php?default=switcher.css" media="screen" >
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/colours.css">
-        <link rel="stylesheet" type="text/css" href="theme/danpin/styles/ie.css">
+        <!-- Bootstrap Toggle -->
+        <link href="lib/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
 
-        <!-- Scripts -->
+        <!-- Datatables -->
+        <link href="lib/dataTables/css/dataTables.bootstrap.css" rel="stylesheet">
 
-        <!-- Load JQuery -->		
-        <script src="theme/danpin/scripts/jquery/jquery171.min.js" type="text/javascript"></script>
-
-        <!-- Load JQuery UI -->
-        <script src="theme/danpin/scripts/jquery/jquery-ui1817.min.js" type="text/javascript"></script>
-
-        <!-- Global -->
-        <script src="theme/danpin/scripts/touchPunch/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
-        <script src="theme/danpin/scripts/uitotop/js/jquery.ui.totop.js" type="text/javascript"></script>
-
-        <!-- Forms -->
-        <script src="theme/danpin/scripts/uniform/jquery.uniform.min.js"></script>
-        <script src="theme/danpin/scripts/autogrow/jquery.autogrowtextarea.js"></script>
-        <script src="theme/danpin/scripts/multiselect/js/ui.multiselect.js"></script>
-        <script src="theme/danpin/scripts/selectbox/jquery.selectBox.min.js"></script>
-        <script src="theme/danpin/scripts/timepicker/jquery.timepicker.js"></script>
-        <script src="theme/danpin/scripts/colorpicker/js/colorpicker.js"></script>
-        <script src="theme/danpin/scripts/uistars/jquery.ui.stars.min.js"></script>
-        <script src="theme/danpin/scripts/tiptip/jquery.tipTip.minified.js"></script>
-        <script src="theme/danpin/scripts/validation/jquery.validate.min.js" type="text/javascript"></script>		
+        <!-- Datatables Buttons -->
+        <link href="lib/dataTables/css/buttons.bootstrap.min.css" rel="stylesheet">
 
         <!-- Highslide -->
-        <script type='text/javascript' src="js/highslide/highslide-full.min.js"></script>
-        <script type='text/javascript' src="js/highslide/highslide.config.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/highslide/highslide.css"/>
+        <link rel="stylesheet" type="text/css" href="lib/highslide/highslide.css"/>
+        <script type='text/javascript' src="lib/highslide/js/highslide-full.min.js"></script>
+        <script type='text/javascript' src="lib/highslide/js/highslide.config.js"></script>
 
-        <!--<script type='text/javascript' src="js/highslide-full.min.js"></script>
-        <script type='text/javascript' src="js/highslide.config.js"></script>
-        <link rel="stylesheet" type="text/css" href="css/highslide/highslide.css"/>-->
+        <!-- Custom CSS -->
+        <link href="css/estilo.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body {if !isset($_usuario)} class="login-page"{/if}>
+
+        {if isset($_usuario)}
+            {* Si se ha iniciado sesión *}
+            <div id="wrapper">
+
+                <!-- Navigation -->
+                <nav id="top" class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">{$smarty.const.TXT_MOSTAR_OCULTAR_NAV}</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" title="{$smarty.const.TXT_APP_DESCRIPCION}" href="index.php">
+                            <img class="logo pull-left" alt="{$smarty.const.TXT_UNIVERSIDAD}" src="images/logo.png">
+                            {$smarty.const.TXT_ICASUS}
+                        </a>
+                    </div>
+                    <!-- /.navbar-header -->
+
+                    <ul class="nav navbar-top-links navbar-right">
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" title="{$_usuario->login}">
+                                <span id="fecha_actual" title="{$smarty.const.FIELD_FECHA}: {$smarty.now|date_format:'%d-%m-%Y'}"><i class="fa fa-calendar fa-fw"></i> {$smarty.now|date_format:'%d-%m-%Y'}</span>
+                            </a>
+                        </li>
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" title="{$smarty.const.TXT_INICIO}" data-toggle="dropdown" href="#">
+                                <i class="fa fa-home fa-fw"></i> <i class="fa fa-caret-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts">
+                                <li>
+                                    <a title="{$smarty.const.TXT_UNIDS_US}" href='index.php?page=entidad_listar'>
+                                        <div>
+                                            <i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}:
+                                            <span class="pull-right badge">{$num_entidades_usuario}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_PROCS_US}" href='index.php?page=procesos'>
+                                        <div>
+                                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}:
+                                            <span class="pull-right badge">{$num_procesos_propios}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_INDICS_US}" href='index.php?page=indicadores'>
+                                        <div>
+                                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}:
+                                            <span class="pull-right badge">{$num_indicadores_propios}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_DATOS_US}" href='index.php?page=datos'>
+                                        <div>
+                                            <i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}:
+                                            <span class="pull-right badge">{$num_datos_propios}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_CUADROS_MANDO_US}" href='index.php?page=cuadro_listar'>
+                                        <div>
+                                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}:
+                                            <span class="pull-right badge">{$num_cuadros_propios}</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a class="text-center" title="{$smarty.const.TXT_VER} {$smarty.const.TXT_TODOS}" href="index.php">
+                                        <strong>{$smarty.const.TXT_VER} {$smarty.const.TXT_TODOS}</strong>
+                                        <i class="fa fa-angle-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-alerts -->
+                        </li>
+                        <!-- /.dropdown -->
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" title="{$_usuario->login}" data-toggle="dropdown" href="#">
+                                <i class="fa fa-user fa-fw"></i> {$_usuario->login} <i class="fa fa-caret-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li>
+                                    <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$_usuario->id}'><i class="fa fa-user fa-fw"></i> {$smarty.const.TXT_USER_PERFIL}</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_CERRAR_SESION}" href="index.php?page={$smarty.const.IC_TIPO_LOGIN}&logout=true"><i class="fa fa-sign-out fa-fw"></i> {$smarty.const.TXT_CERRAR_SESION}</a>
+                                </li>
+                            </ul>
+                            <!-- /.dropdown-menu -->
+                        </li>
+                        <!-- /.dropdown -->
+                    </ul>
+                    <!-- /.navbar-top-links -->
+
+                    <div class="navbar-default sidebar" role="navigation" >
+                        <div class="sidebar-nav navbar-collapse">
+                            <ul class="nav" id="side-menu">
+                                <li class="sidebar-search">
+                                    <form method="get" action="index.php">
+                                        <div class="input-group">
+                                            <input type="hidden" name="page" value="busqueda">
+                                            <input id="texto_buscar" name="texto_buscar" {if isset($texto) && $texto != ''}value='{$texto}'{/if} class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" type="text">
+                                            <span class="input-group-btn">
+                                                <button id="btn_buscar" title="{$smarty.const.TXT_BUSCAR}" class="btn btn-primary" type="submit">
+                                                    <i class="fa fa-search fa-fw"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                        <!-- /input-group -->
+                                    </form>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_INICIO}" href='index.php?page=inicio' accesskey='h'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x"></i></span>{$smarty.const.TXT_INICIO}</a>      
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_UNIDS_US}" href='index.php?page=entidad_listar'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span>{$smarty.const.TXT_UNIDS_US}</a>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_PROCS_US}" href='index.php?page=procesos'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-gears fa-stack-1x"></i></span>{$smarty.const.TXT_PROCS_US}</a>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_INDICS_US}" href='index.php?page=indicadores'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-stack-1x"></i></span>{$smarty.const.TXT_INDICS_US}</a>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_DATOS_US}" href='index.php?page=datos'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-database fa-stack-1x"></i></span>{$smarty.const.TXT_DATOS_US}</a>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_CUADROS_MANDO_US}" href='index.php?page=cuadro_listar'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span>{$smarty.const.TXT_CUADROS_MANDO_US}</a>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_USERS_US}" href='index.php?page=usuario_listar'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-users fa-stack-1x"></i></span>{$smarty.const.TXT_USERS_US}</a>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_AYUDA}" href='index.php?page=pagina_mostrar&alias=indice'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-question-circle fa-stack-1x"></i></span>{$smarty.const.TXT_AYUDA}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-default-sidebar -->
+
+                </nav> 
+                <!-- /Navigation -->
+
+                <!-- Page Content -->
+                <div id="page-wrapper">
+                    <div id="page-container" class="container-fluid">
+
+                        <!-- Notificaciones -->
+                        {if isset($smarty.get.error)}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-danger alert-dismissible notificacion">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <i class="fa fa-exclamation-circle fa-fw"></i> 
+                                        {$smarty.get.error}
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                            <!-- /.row -->
+                        {/if}
+                        {if isset($error)}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-danger alert-dismissible notificacion">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <i class="fa fa-exclamation-circle fa-fw"></i>  
+                                        {$error}
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                            <!-- /.row -->
+                        {/if}
+                        {if isset($smarty.get.aviso)}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-warning alert-dismissible notificacion">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <i class="fa fa-exclamation-triangle fa-fw"></i>
+                                        {$smarty.get.aviso}
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                            <!-- /.row -->
+                        {/if}
+                        {if isset($aviso)}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-warning alert-dismissible notificacion">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <i class="fa fa-exclamation-triangle fa-fw"></i> 
+                                        {$aviso}
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                            <!-- /.row -->
+                        {/if}           
+                        {if isset($smarty.get.exito)}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-success alert-dismissible notificacion">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <i class="fa fa-check fa-fw"></i>
+                                        {$smarty.get.exito}
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                            <!-- /.row -->
+                        {/if}
+                        {if isset($exito)}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="alert alert-success alert-dismissible notificacion">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
+                                            <span aria-hidden="true">&times;</span></button>
+                                        <i class="fa fa-check fa-fw"></i> 
+                                        {$exito}
+                                    </div>
+                                </div>
+                                <!-- /.col-lg-12 -->
+                            </div>
+                            <!-- /.row -->
+                        {/if}
+                        <!-- /Notificaciones -->
+
+                        {* El cuerpo del template va aqui *}
+                        {include file=$plantilla}
+
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- /#page-wrapper -->
+
+                <!-- Footer -->
+                <footer class="text-center footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <span class="h4">{$smarty.const.TXT_ICASUS}</span> - {$smarty.const.TXT_APP_DESCRIPCION}
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <!-- /.row -->
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <small>{$smarty.const.FIELD_VERSION}: {$smarty.const.IC_VERSION} - {$smarty.const.FIELD_FECHA_REV}: {$smarty.const.IC_FECHA_REVISION}</small>
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </footer>
+                <!-- /Footer -->
+
+                <!-- Back to Top -->
+                <a title="{$smarty.const.TXT_VOLVER_ARRIBA}" id="top-link-block" href="#top" class="btn btn-primary hidden"  
+                   {literal}
+                       onclick="$('html,body').animate({scrollTop: 0}, 'slow');
+                               return false;"
+                   {/literal}>
+                    <i class="fa fa-chevron-up"></i>
+                </a>
+                <!-- /Back to Top -->
+
+            </div>
+            <!-- /#wrapper -->
+        {else}
+            {* Si no hay sesión iniciada *}
+            <div class="container-fluid">
+                {* El cuerpo del template va aqui *}
+                {include file=$plantilla}
+            </div>
+            <!-- /.container-fluid -->  
+        {/if}
+
+        <!-- jQuery -->
+        <script src="lib/jquery/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Bootstrap Validator -->
+        <script src="lib/bootstrap-validator/validator.min.js"></script>
+
+        <!-- Bootstrap DatePicker -->
+        <script src="lib/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+        <script src="lib/bootstrap-datepicker/locales/bootstrap-datepicker.es.min.js"></script>
+
+        <!-- Bootstrap Toggle -->
+        <script src="lib/bootstrap-toggle/js/bootstrap-toggle.min.js"></script>
+
+        <!-- Bootstrap FileStyle -->
+        <script src="lib/bootstrap-filestyle/bootstrap-filestyle.min.js"></script>
+
+        <!-- Chosen Plugin JavaScript -->
+        <script src="lib/chosen/chosen.jquery.min.js"></script>
+
+        <!-- Map Responsive Plugin JavaScript -->
+        <script src="lib/jquery-rwdImageMaps/jquery.rwdImageMaps.min.js"></script>
+
+        <!-- Datatables -->
+        <script src="lib/dataTables/js/jquery.dataTables.min.js"></script>
+        <script src="lib/dataTables/js/dataTables.bootstrap.js"></script>
+
+        <!-- Datatables Buttons -->
+        <script src="lib/dataTables/js/dataTables.buttons.min.js"></script>
+        <script src="lib/dataTables/js/buttons.bootstrap.min.js"></script>
+        <script src="lib/dataTables/js/buttons.html5.min.js"></script>
+        <script src="lib/dataTables/js/buttons.print.min.js"></script>
+        <script src="lib/dataTables/js/buttons.colVis.min.js"></script>
+
+        <!-- JSZip -->
+        <script src="lib/jszip/jszip.min.js"></script>
+
+        <!-- Highcharts -->
+        <script src="lib/highcharts/highcharts.js"></script>
+        <script src="lib/highcharts/exporting.js"></script>
+        <script src="lib/highcharts/Conjunto.js"></script>
+        <script src="lib/highcharts/HighchartSerie.js"></script>
+
+        <!-- Flot -->
+        <script src="lib/flot/jquery.flot.min.js"></script>
+
+        <!-- Custom JavaScript -->
+        <script src="js/index.js"></script>
+
+        <!-- Validaciones personalizadas -->
+        <script src="js/validador.js"></script>
 
         <!-- Configuration Script -->
-        <script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_ui.js"></script>
-        <script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_forms.js"></script>
-        <script type="text/javascript" src="theme/danpin/scripts/adminica/adminica_mobile.js"></script>
         {if isset($_javascript)}
             {foreach from=$_javascript item=script} 
                 <script type='text/javascript' src="js/{$script}.js"></script>
             {/foreach}
         {/if}
-    </head>
-    <body>
-        <div id="wrapper">	
-            {if isset($_usuario)}
-                {include file='menu.tpl'}
-            {/if}
-            <div id="main_container" class="main_container container_16 clearfix">
-                <div id="nav_top" class="clearfix round_top">
 
-                    <script type="text/javascript">
-                        var currentPage = 6 - 1; // This is only used in php to tell the nav what the current page is
-                        $('#nav_top > ul > li').eq(currentPage).addClass("current");
-                        $('#nav_top > ul > li').addClass("icon_only").children("a").children("span").parent().parent().removeClass("icon_only");
-                    </script>
-
-                    <div id="mobile_nav">
-                        <!-- <div class="main"></div> -->
-                        <div class="side"></div>
-                    </div>
-
-                </div><!-- #nav_top -->
-                <div class="flat_area grid_16">
-
-                    {if isset($entidad)}
-                        <div>
-                            <h2>
-                                <span style="color:#BF2453;">{$smarty.const.TXT_UNID}:</span> {$entidad->nombre}
-                                <span style="float:right"> 
-                                    <span style="color:#BF2453">{$smarty.const.FIELD_ROL}:</span> {$_rol}</span>
-                                <hr>
-                                <span style="font-size:16px;">
-                                    <a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_datos&id_entidad={$entidad->id}'>
-                                        <img src='/icons/ff16/chart_organisation.png' /> {$smarty.const.TXT_UNID_FICHA}
-                                    </a>&nbsp;&nbsp;
-                                    <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
-                                        <img src='/icons/ff16/cog.png' />
-                                        {$smarty.const.TXT_PROCS}
-                                    </a>&nbsp;&nbsp;
-                                    <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                                        <img src='/icons/ff16/chart_curve.png' />
-                                        {$smarty.const.FIELD_INDICS}
-                                    </a>&nbsp;&nbsp;
-                                    <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                                        <img src='/icons/ff16/chart_bar.png' />
-                                        {$smarty.const.FIELD_DATOS}
-                                    </a>&nbsp;&nbsp;
-                                    <a title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'>
-                                        <img src='/icons/ff16/book.png' />
-                                        {$smarty.const.TXT_CONSULT}
-                                    </a>&nbsp;&nbsp;
-                                    <a title="{$smarty.const.TXT_CUAD_RES}" href='index.php?page=cuadro_unidad&id_entidad={$entidad->id}'>
-                                        <img src='/icons/ff16/table_go.png' />
-                                        {$smarty.const.TXT_CUAD_RES}
-                                    </a>
-                                    {if $_control} 
-                                        &nbsp;&nbsp;<a title="{$smarty.const.TXT_CONTROL}" href='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}'>
-                                            <img src='/icons/ff16/eye.png' /> 
-                                            {$smarty.const.TXT_CONTROL}
-                                        </a>
-                                    {/if}
-                                </span>
-                            </h2>
-                        </div>
-                    {/if}
-
-                    <div>
-                        <h2 style="color:#4C5766">{$_nombre_pagina}</h2>
-                    </div>
-
-                    {if isset($smarty.get.error)}
-                        <div>
-                            <div class="alert dissmisible alert_red">
-                                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alarm_bell.png"> 
-                                {$smarty.get.error}
-                            </div>
-                        </div>
-                    {/if}
-                    {if isset($error)}
-                        <div>
-                            <div class="alert dissmisible alert_red">
-                                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alarm_bell.png"> 
-                                {$error}
-                            </div>
-                        </div>
-                    {/if}
-                    {if isset($smarty.get.aviso)}
-                        <div>
-                            <div class="alert dissmisible alert_blue">
-                                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
-                                {$smarty.get.aviso}
-                            </div>
-                        </div>
-                    {/if}
-                    {if isset($aviso)}
-                        <div>
-                            <div class="alert dissmisible alert_blue">
-                                <img height="24" width="24" src="theme/danpin/images/icons/small/white/alert_2.png"> 
-                                {$aviso}
-                            </div>
-                        </div>
-                    {/if}
-
-                    {* el cuerpo del template va aqui *}
-                    {include file=$plantilla}
-                </div>
-            </div>
-        </div>
-        {*footer*}
-        {include file='footer.tpl'}
     </body>
+
 </html>

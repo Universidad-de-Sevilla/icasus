@@ -1,3 +1,19 @@
+<!-- Diálogo Subunidades -->
+<div class="modal fade" id="dialogo_subunidades" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><span></span> ({$smarty.const.FIELD_SUBUNIDS})</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row" id="lista_subunidades"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Subunidades -->
+
 {if $modulo == 'inicio'}
     <input type="hidden" name="tipo" value="{$panel->id}">
     <input type="hidden" name="id_medicion" value="0">
@@ -6,122 +22,107 @@
     <input type="hidden" name="inicioDay" value="01">
     <input type="hidden" name="finDay" value="31">
 
-    <!-- popup subunidades  -->
-    <div id="dialog_subunidades" style="display:none">
-        <div class="block" style="opacity: 1;" >
-            <div id="lista_subunidades" class="section" style="padding:20px">
-            </div>
+    <div class="form-group has-feedback">
+        <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+        <div class="col-sm-8">
+            <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+    </div>
+    <div class="form-group has-feedback">
+        <label for="orden" class="col-sm-2 control-label">{$smarty.const.FIELD_ORDEN} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+        <div class="col-sm-8">
+            <input type="number" value="1" id='orden' name="orden" class="form-control" placeholder="{$smarty.const.FIELD_ORDEN}" min='1' required/>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+    </div>
+    <div class="form-group has-feedback">
+        <label for="ancho" class="col-sm-2 control-label">{$smarty.const.FIELD_ANCHO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+        <div class="col-sm-8">
+            <input type="number" value="{$panel->ancho_pred}" id='ancho' name="ancho" class="form-control" placeholder="{$smarty.const.FIELD_ANCHO}" min='2' max="12" required/>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="periodicidad" class="col-sm-2 control-label">{$smarty.const.FIELD_PERIOD}</label>
+        <div class="col-sm-8">
+            <select class="form-control chosen-select" name="periodicidad" id='periodicidad'>
+                <option value="anual">{$smarty.const.TXT_ANUAL}</option>
+                <option value="mensual">{$smarty.const.TXT_MENSUAL}</option>     
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inicio" class="col-sm-2 control-label">{$smarty.const.FIELD_FECHA_INIC}</label>
+        <div class="col-sm-8">
+            {html_select_date prefix="inicio" all_extra="class='form-control chosen-select'id='inicio'" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 
+            end_year=$smarty.now|date_format:"%Y" }
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="fin" class="col-sm-2 control-label">{$smarty.const.FIELD_FECHA_FIN}</label>
+        <div id="div_fecha_fin" class="col-sm-8">
+            {html_select_date prefix="inicio" all_extra="class='form-control chosen-select'id='fin'" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 
+            end_year=$smarty.now|date_format:"%Y"}
         </div>
     </div>
 
-    <fieldset class="label_side">
-        <label>{$smarty.const.FIELD_NOMBRE}</label>
-        <div>
-            <input class="required text" type="text" name="nombre">
-            <div class="required_tag tooltip hover left"></div>
-        </div>
-    </fieldset>
+    <div class="form-group">
+        <label for="buscar_indicador" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+        <div class="col-sm-8">
+            <input data-id_entidad="{$id_entidad}" class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" name="buscar_indicador" id="buscar_indicador" type="text">
+        </div> 
+    </div>
 
-    <fieldset class="label_side">
-        <label>{$smarty.const.FIELD_ORDEN}</label>
-        <div class="clearfix">
-            <div class="col_25">
-                <input class="text required" type="text" name="orden">
-            </div>
-            <div class="required_tag tooltip hover left"></div>
-        </div>
-    </fieldset>
-
-    <fieldset class="label_side">
-        <label>{$smarty.const.FIELD_ANCHO}<span></span></label>
-        <div class="clearfix">
-            <select name="ancho" class="required">
-                {section start=2 loop=17 name="size"}
-                    <option value="{$smarty.section.size.index}"
-                            {if $smarty.section.size.index == $panel->ancho_pred} selected="selected"{/if} >
-                        {$smarty.section.size.index}</option> 
-                    {/section}
-            </select>
-            <div class="required_tag tooltip hover left"></div>
-        </div>
-    </fieldset>
-
-    <fieldset class="label_side">
-        <label>{$smarty.const.FIELD_PERIOD}</label>
-        <div>
-            <select name="periodicidad">
-                <option value="anual">{$smarty.const.TXT_ANUAL}</option>
-                <option value="mensual">{$smarty.const.TXT_MENSUAL}</option>
-            </select>
-        </div>
-    </fieldset>
-
-    <fieldset class="label_side">
-        <label>{$smarty.const.FIELD_FECHA_INIC}<span></span></label>
-        <div>
-            {html_select_date prefix="inicio" class="required" year_empty=" "
-    display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10
-    end_year=$smarty.now|date_format:"%Y"}
-            <div class="required_tag tooltip hover left"></div>
-        </div>
-    </fieldset>
-
-    <fieldset class="label_side" id="div_fecha_fin"> </fieldset>
-
-    <fieldset class="label_side">
-        <label>{$smarty.const.FIELD_INDICS}<span></span></label>
-        <div class="clearfix">
-            <table class="static" id="indicadores_subunidades_seleccionados">
+    <div id="indicadores_subunidades" class="form-group hidden">
+        <div class="col-sm-8  col-sm-offset-2">
+            <table class="table table-striped table-hover table-bordered" id="indicadores_subunidades_seleccionados">
             </table>
-            <div class="required_tag tooltip hover left"></div>
         </div>
-    </fieldset>
+    </div>
 
-    <fieldset class="label_side">
-        <label><span></span></label>
-        <div class="clearfix">
-            <div class="col_25">
-                <input data-id_entidad="{$id_entidad}"class="text" placeholder="{$smarty.const.TXT_BUSCAR}" name="buscar_indicador" id="buscar_indicador" type="text">
-            </div>
-        </div>
-        <div id="listado_indicadores" > </div>
-    </fieldset>
-{/if} <!-- modulo == inicio -->
+    <div class="form-group has-feedback hidden" id="listado_indicadores"></div>
+{/if} 
+<!-- /modulo == inicio -->
 
 {if $modulo == 'fecha_fin'}
-    <label>{$smarty.const.FIELD_FECHA_FIN}<span></span></label>
-    <div>
-        {html_select_date prefix="fin" class="required" display_months=FALSE display_days=FALSE start_year=$fecha_inicio end_year=$smarty.now|date_format:"%Y"}
-        <div class="required_tag tooltip hover left"></div>
-    </div>
+    {html_select_date prefix="fin" all_extra="class='form-control chosen-select'id='fin'" display_months=FALSE display_days=FALSE start_year=$fecha_inicio end_year=$smarty.now|date_format:"%Y"}
 {/if}
+<!-- /modulo == fecha_fin -->
 
 {if $modulo == 'subunidades'}
-    <div class="clearfix">
-        <div class="col_50">
-            <input data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
-                   name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}"data-nombre_subunidad="Total"> {$smarty.const.FIELD_TOTAL}<br /> 
+    <ul class="list-unstyled">
+        <div class="col-sm-6">
+            <li>
+                <input data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
+                       name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}" data-nombre_subunidad="{$smarty.const.FIELD_TOTAL}"> {$smarty.const.FIELD_TOTAL}
+            </li>
             {foreach name=subunidades from=$indicador_subunidades item=item}
                 {if $smarty.foreach.subunidades.iteration == floor($indicador_subunidades|@count/2)+1 }
-                </div><div class="col_50 no_border">
+                </div><div class="col-sm-6">
                 {/if}
-                <input data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
-                       name="id_subunidad"
-                       type="radio" value="{$item->id_entidad}" 
-                       data-nombre_indicador="{$nombre_indicador}"
-                       data-nombre_subunidad="{$item->entidad->etiqueta}"> 
-                {$item->entidad->etiqueta}<br /> 
+                <li>
+                    <input data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
+                           name="id_subunidad"
+                           type="radio" value="{$item->id_entidad}" 
+                           data-nombre_indicador="{$nombre_indicador}"
+                           data-nombre_subunidad="{$item->entidad->etiqueta}"> 
+                    {$item->entidad->etiqueta}
+                </li>
             {/foreach}
         </div>
-        <div class="required_tag tooltip hover left"></div>
-    </div>
+    </ul>
     {literal}
         <script>
-            $('#main_container').on('click', '.remove_seleccion', function (e) {
+            $('#wrapper').on('click', '.remove_seleccion', function (e) {
                 e.preventDefault();
                 $(this).parents('.fila_borrar').remove();
                 if ($('.remove_seleccion').length === 0) {
-                    $('#footer_tabs').hide();
+                    $('#indicadores_subunidades').addClass('hidden');
+                    $('#footer_tabs').addClass('hidden');
                 }
             });
             $('.subunidad_seleccionada').on('click', function () {
@@ -129,20 +130,22 @@
                 var id_indicador = $(this).data('id_indicador');
                 var indicador = $(this).data('nombre_indicador');
                 var subunidad = $(this).data('nombre_subunidad');
+                $('#indicadores_subunidades').removeClass('hidden');
                 $('#indicadores_subunidades_seleccionados').append('<tr class="fila_borrar">' +
-                        '<td>' +
-                        '<a class="remove_seleccion" href="#">X</a>' +
-                        '</td>' +
                         '<td><input type="hidden" name="id_indicadores[]" value="' + id_indicador + '">' + indicador +
                         '</td>' +
                         '<td><input type="hidden" name="id_subunidades[]" value="' + id_subunidad + '">' + subunidad +
+                        '</td>' +
+                        '<td class="text-center">' +
+                        '<a class="remove_seleccion" title="Quitar" href="#"><i class="fa fa-times fa-fw"></i></a>' +
                         '</td></tr>');
-                $('#dialog_subunidades').dialog('close');
-                $('#footer_tabs').show();
+                $('#dialogo_subunidades').modal('hide');
+                $('#footer_tabs').removeClass('hidden');
             });
         </script>
     {/literal}
-{/if} <!-- modulo == subunidades -->
+{/if}
+<!-- /modulo == subunidades -->
 
 {literal}
     <script>
@@ -157,8 +160,7 @@
                     }
                 });
             });
-
-            $('#main_container').on('click', '.indicador_seleccionado_linea', function () {
+            $('#wrapper').on('click', '.indicador_seleccionado_linea', function () {
                 var id_indicador = $(this).data('id_indicador');
                 var nombre_indicador = $(this).data('nombre_indicador');
                 $.ajax({
@@ -168,21 +170,24 @@
                         $("#lista_subunidades").html(datos);
                     }
                 });
-                $('#dialog_subunidades').dialog({
-                    autoOpen: true, modal: true, title: nombre_indicador, width: 500
-                });
+                $('#dialogo_subunidades .modal-title span').text(nombre_indicador);
+                $('#dialogo_subunidades').modal('show');
             });
-
             $('#buscar_indicador').on('keyup', function () {
+                $('#listado_indicadores').removeClass('hidden');
                 var cadena = $(this).val();
                 var id_entidad = $(this).data('id_entidad');
-                $('#subunidades').html('');
                 $.ajax({
                     url: "index.php?page=panel_buscador&ajax=true&modulo=indicadores_linea&id_entidad=" + id_entidad + "&cadena=" + cadena,
                     success: function (datos) {
                         $('#listado_indicadores').html(datos);
                     }
                 });
+            });
+            //Chosen selects (añade búsqueda a los html select)
+            $(".chosen-select").chosen({
+                disable_search_threshold: 100,
+                no_results_text: "Oops, no se encuentran registros coincidentes"
             });
         });
     </script>

@@ -89,6 +89,10 @@ class Indicador extends ADOdb_Active_Record
         {
             foreach ($indicadores as & $indicador)
             {
+                $entidad = new Entidad();
+                $entidad->load("id= $indicador->id_entidad");
+                $indicador->entidad = $entidad;
+
                 $proceso = new Proceso();
                 $proceso->load("id = $indicador->id_proceso");
                 $indicador->proceso = $proceso;
@@ -104,6 +108,48 @@ class Indicador extends ADOdb_Active_Record
                 $visibilidad = new Visibilidad();
                 $visibilidad->load("id = $indicador->id_visibilidad");
                 $indicador->visibilidad = $visibilidad;
+
+                $tipo_agregacion = new Tipo_agregacion();
+                $tipo_agregacion->load("id = $this->id_tipo_agregacion");
+                $indicador->tipo_agregacion = $tipo_agregacion;
+
+                $tipo_agregacion_temporal = new Tipo_agregacion();
+                $tipo_agregacion_temporal->load("id = $this->id_tipo_agregacion_temporal");
+                $indicador->tipo_agregacion_temporal = $tipo_agregacion_temporal;
+            }
+            return $indicadores;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function Find_joined_ultima_medicion($criterio)
+    {
+        if ($indicadores = $this->Find($criterio))
+        {
+            foreach ($indicadores as & $indicador)
+            {
+                $proceso = new Proceso();
+                $proceso->load("id = $indicador->id_proceso");
+                $indicador->proceso = $proceso;
+
+                $responsable = new Usuario();
+                $responsable->load("id = $indicador->id_responsable");
+                $indicador->responsable = $responsable;
+
+                $responsable_medicion = new Usuario();
+                $responsable_medicion->load("id = $indicador->id_responsable_medicion");
+                $indicador->responsable_medicion = $responsable_medicion;
+
+                $visibilidad = new Visibilidad();
+                $visibilidad->load("id = $indicador->id_visibilidad");
+                $indicador->visibilidad = $visibilidad;
+
+                $medicion = new Medicion();
+                $medicion->Load("id_indicador = $indicador->id ORDER BY periodo_inicio DESC LIMIT 1");
+                $indicador->medicion = $medicion;
             }
             return $indicadores;
         }
@@ -196,9 +242,9 @@ class Indicador extends ADOdb_Active_Record
     }
 
     // Permiso del usuario para asignar una subunidad a un indicador desde medicion_crear_ajax.php
-    public function permiso_crear_medicion($id_usuario, $id_indicador)
+    public function permiso_crear_medicion($id_usuario, $id_indicador, $control)
     {
-        if ($this->load("id = $id_indicador AND (id_responsable = $id_usuario OR id_responsable_medicion = $id_usuario)"))
+        if ($control OR $this->load("id = $id_indicador AND (id_responsable = $id_usuario OR id_responsable_medicion = $id_usuario)"))
         {
             return true;
         }

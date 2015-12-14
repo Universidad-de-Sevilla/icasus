@@ -8,15 +8,15 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Graba el contenido de un  fichero CSV en la base de datos
 //---------------------------------------------------------------------------------------------------
+
 global $smarty;
 global $plantilla;
 global $usuario;
+
 $usuario_entidad = new Usuario_entidad();
 
-//if (isset($_FILES, $_REQUEST['id_entidad']))
 if (filter_has_var(INPUT_POST, 'id_entidad'))
 {
-//	$id_entidad = sanitize($_REQUEST['id_entidad'],INT);
     $id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     // Comprobamos que el usuario esté autorizado
     if ($usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad))
@@ -26,7 +26,6 @@ if (filter_has_var(INPUT_POST, 'id_entidad'))
         $registros_ajenos = 0;    // los que no pertenecen a la entidad actual
         $lineas_totales = 0;      // total de líneas procesadas en todos los ficheros
         $lineas_fallidas = 0;     // líneas que no hacen referencia a ningún indicador
-
         foreach ($_FILES["fichero_csv"]["error"] as $indice => $error)
         {
             // Esto es una guarrería pero está sacada del manual oficial de php.net
@@ -36,7 +35,6 @@ if (filter_has_var(INPUT_POST, 'id_entidad'))
                 $tmp_name = $_FILES["fichero_csv"]["tmp_name"][$indice];
                 $name = $_FILES["fichero_csv"]["name"][$indice];
                 $manejador = fopen($tmp_name, "r");
-
                 if ($manejador !== FALSE)
                 {
                     $ficheros_procesados ++;
@@ -87,21 +85,25 @@ if (filter_has_var(INPUT_POST, 'id_entidad'))
                 // $indicador = new indicador();
             }
         }
-//        $aviso = "Se han grabado $registros_grabados mediciones. Se han procesado $ficheros_procesados ficheros y un total de $lineas_totales líneas.";
-        $aviso = MSG_MEDS_GRABADAS . ": $registros_grabados. ";
-        $aviso.= MSG_ARCHIVOS_PROCESADOS . ": $ficheros_procesados. ";
-        $aviso.= MSG_TOTAL_LINEAS . ": $lineas_totales. ";
+        $exito = MSG_MEDS_GRABADAS . ": $registros_grabados. ";
+        $exito.= MSG_ARCHIVOS_PROCESADOS . ": $ficheros_procesados. ";
+        $exito.= MSG_TOTAL_LINEAS . ": $lineas_totales. ";
         if ($registros_ajenos > 0)
         {
-//            $aviso .= " En la muestra había $registros_ajenos mediciones de indicadores que no pertenecen a la unidad actual.";
-            $aviso .= "$registros_ajenos " . MSG_MEDS_INDIC_NO_UNID;
+            $aviso = "$registros_ajenos " . MSG_MEDS_INDIC_NO_UNID;
         }
         if ($lineas_fallidas > 0)
         {
-//            $aviso .= " Ha habido $lineas_fallidas líneas que no referenciaban a ningún indicador.";
             $aviso .= " $lineas_fallidas " . MSG_LINEAS_NO_REF_INDIC;
         }
-        header("Location: index.php?page=csv_importar&id_entidad=$id_entidad&aviso=$aviso");
+        if ($aviso)
+        {
+            header("Location: index.php?page=entidad_mostrar&id_entidad=$id_entidad&exito=$exito&aviso=$aviso");
+        }
+        else
+        {
+            header("Location: index.php?page=entidad_mostrar&id_entidad=$id_entidad&exito=$exito");
+        }
     }
     else
     {

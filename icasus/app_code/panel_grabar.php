@@ -15,7 +15,7 @@ $panel_indicador = new Panel_indicador();
 if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'orden') && filter_has_var(INPUT_POST, 'tipo') && filter_has_var(INPUT_POST, 'ancho'))
 {
     $id_cuadro = filter_input(INPUT_POST, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
-    $nombre_panel = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $nombre_panel = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $orden = filter_input(INPUT_POST, 'orden', FILTER_SANITIZE_NUMBER_INT);
     $tipo = filter_input(INPUT_POST, 'tipo', FILTER_SANITIZE_NUMBER_INT);
     $ancho = filter_input(INPUT_POST, 'ancho', FILTER_SANITIZE_NUMBER_INT);
@@ -30,7 +30,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
     $panel->id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $panel->fecha_inicio = filter_input(INPUT_POST, 'inicioYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'inicioMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'inicioDay', FILTER_SANITIZE_NUMBER_INT);
     $panel->fecha_fin = filter_input(INPUT_POST, 'finYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finDay', FILTER_SANITIZE_NUMBER_INT);
-    $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : "todo";
+    $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_SANITIZE_STRING) : "todo";
 
     // Cuando se trata de un año completamos meses y días para coger el año completo 
     if (filter_has_var(INPUT_POST, 'fecha'))
@@ -67,9 +67,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     $panel_indicador->id_entidad = $id_entidad;
                     if ($panel_indicador->save())
                     {
-                        $aviso = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                        $smarty->assign("aviso", $aviso);
-                        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&aviso=$aviso");
+                        $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                        $smarty->assign("exito", $exito);
+                        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
                     }
                     else
                     {
@@ -103,9 +103,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         $panel_indicador->id_entidad = filter_var($id_subunidades[$i], FILTER_SANITIZE_NUMBER_INT);
                         if ($panel_indicador->save())
                         {
-                            $aviso = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                            $smarty->assign("aviso", $aviso);
-                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&aviso=$aviso");
+                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                            $smarty->assign("exito", $exito);
+                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
                         }
                         else
                         {
@@ -133,9 +133,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     $panel_indicador->id_entidad = $id_entidad;
                     if ($panel_indicador->save())
                     {
-                        $aviso = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                        $smarty->assign("aviso", $aviso);
-                        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&aviso=$aviso");
+                        $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                        $smarty->assign("exito", $exito);
+                        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
                     }
                     else
                     {
@@ -167,9 +167,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         $panel_indicador->id_indicador = filter_var($id_indicador, FILTER_SANITIZE_NUMBER_INT);
                         if ($panel_indicador->save())
                         {
-                            $aviso = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                            $smarty->assign("aviso", $aviso);
-                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&aviso=$aviso");
+                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                            $smarty->assign("exito", $exito);
+                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
                         }
                         else
                         {
@@ -203,9 +203,44 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         $panel_indicador->id_entidad = filter_var($subunidad, FILTER_SANITIZE_NUMBER_INT);
                         if ($panel_indicador->save())
                         {
-                            $aviso = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                            $smarty->assign("aviso", $aviso);
-                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&aviso=$aviso");
+                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                            $smarty->assign("exito", $exito);
+                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
+                        }
+                        else
+                        {
+                            // Error no se ha salvado el panel a la BD
+                            $error = ERR_GUARDAR;
+                            header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                        }
+                    }
+                }
+                else
+                {
+                    //Error faltan parámetros
+                    $error = ERR_PARAM;
+                    header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                }
+                break;
+            case 6:
+                //Panel tabla_multi
+                $id_entidad = filter_input(INPUT_POST, 'id_subunidad', FILTER_SANITIZE_NUMBER_INT);
+                $post_array = filter_input_array(INPUT_POST);
+                $id_indicadores = $post_array['id_indicadores'];
+                if ($id_indicadores)
+                {
+                    foreach ($id_indicadores as $id_indicador)
+                    {
+                        $panel_indicador = new Panel_indicador();
+                        $panel_indicador->id_panel = $panel->id;
+                        $panel_indicador->mostrar_referencias = 1;
+                        $panel_indicador->id_entidad = $id_entidad;
+                        $panel_indicador->id_indicador = filter_var($id_indicador, FILTER_SANITIZE_NUMBER_INT);
+                        if ($panel_indicador->save())
+                        {
+                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+                            $smarty->assign("exito", $exito);
+                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
                         }
                         else
                         {
@@ -237,4 +272,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
 }
-

@@ -14,7 +14,7 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 
 $fichero = new Fichero();
 $db = $fichero->DB();
@@ -23,13 +23,17 @@ if ($modulo == 'subir')
 {
 //    $ext = pathinfo($_FILES['sarchivo']['name']);
     $ext = $ext["extension"];
-    $fichero->titulo = filter_input(INPUT_POST, 'stitulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-    $fichero->descripcion = filter_input(INPUT_POST, 'sdescripcion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $fichero->titulo = filter_input(INPUT_POST, 'stitulo', FILTER_SANITIZE_STRING);
+    $fichero->descripcion = filter_input(INPUT_POST, 'sdescripcion', FILTER_SANITIZE_STRING);
     $fichero->id_objeto = filter_input(INPUT_POST, 'id_objeto', FILTER_SANITIZE_NUMBER_INT);
     $fichero->id_usuario = $usuario->id;
     $fichero->visible = filter_input(INPUT_POST, 'svisible', FILTER_SANITIZE_NUMBER_INT);
     $fichero->tipo_objeto = 'proceso';
     $fichero->extension = $ext;
+
+    //Obtenemos el proceso
+    $proceso = new Proceso();
+    $proceso->Load("id=$fichero->id_objeto");
 
     $subdir = "$fichero->id_objeto";
     $dir = IC_DIR_BASE . "upload/$fichero->tipo_objeto/";
@@ -39,7 +43,7 @@ if ($modulo == 'subir')
         if (!mkdir($dir, 0755))
         {
             $error = ERR_DIR;
-            header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&error=$error");
+            header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&error=$error");
         }
     }
     //comprobamos si el subdirectorio de la unidad existe.
@@ -48,7 +52,7 @@ if ($modulo == 'subir')
         if (!mkdir($dir . $subdir, 0755))
         {
             $error = ERR_SUBDIR;
-            header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&error=$error");
+            header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&error=$error");
         }
     }
     //grabamos el archivo
@@ -61,14 +65,14 @@ if ($modulo == 'subir')
         }
         else
         {
-            $aviso = MSG_ARCHIVO_SUBIDA_OK;
-            header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&aviso=$aviso");
+            $exito = MSG_ARCHIVO_SUBIDA_OK;
+            header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&exito=$exito");
         }
     }
     else
     {
         $error = ERR_ARCHIVO_GRABAR;
-        header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&error=$error");
+        header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&error=$error");
     }
 }
 
@@ -77,14 +81,26 @@ if ($modulo == 'actualizar')
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
     if ($fichero->load("id =$id"))
     {
-        $fichero->titulo = filter_input(INPUT_POST, 'titulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-        $fichero->descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+        $fichero->titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
+        $fichero->descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
         $fichero->id_usuario = $usuario->id;
         $fichero->visible = filter_input(INPUT_POST, 'visible', FILTER_SANITIZE_NUMBER_INT);
         //$db->execute("SET NAMES UTF8");
         $fichero->save();
     }
 }
+
+if ($modulo == 'visibilidad')
+{
+    $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+    if ($fichero->load("id =$id"))
+    {
+        $fichero->visible = filter_input(INPUT_POST, 'visible', FILTER_SANITIZE_NUMBER_INT);
+        //$db->execute("SET NAMES UTF8");
+        $fichero->save();
+    }
+}
+
 if ($modulo == 'borrar')
 {
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);

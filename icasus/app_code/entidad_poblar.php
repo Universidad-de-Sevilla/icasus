@@ -36,8 +36,8 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
                 $contador ++;
             }
         }
-        $aviso = MSG_UNID_USERS_AGREGADOS . ' ' . $contador . ' ' . TXT_USERS;
-        header("location:index.php?page=entidad_poblar&id_entidad=$id_entidad&aviso=$aviso");
+        $exito = MSG_UNID_USERS_AGREGADOS . ' ' . $contador . ' ' . TXT_USERS;
+        header("location:index.php?page=entidad_poblar&id_entidad=$id_entidad&exito=$exito");
     }
     // Si no vienen datos en el POST mostramos el formulario
     else
@@ -67,4 +67,3 @@ else
     $error = ERR_UNID_NO_SEL;
     header("location:index.php?error=$error");
 }
-
