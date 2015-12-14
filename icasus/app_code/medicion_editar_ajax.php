@@ -276,6 +276,38 @@ if ($modulo == 'editarvalorreferencia')
     $plantilla = 'medicion_editar_ajax.tpl';
 }
 
+if ($modulo == 'grafica')
+{
+    $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
+    $medicion->load("id = $id_medicion");
+    $indicador->load("id = $medicion->id_indicador");
+    $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
+
+    //Prepara el gráfico de tarta si hay valores
+    $pinta_grafico = false;
+    if ($valores)
+    {
+        foreach ($valores as $val)
+        {
+            if ($val->valor != null)
+            {
+                $pinta_grafico = true;
+            }
+        }
+        if ($pinta_grafico)
+        {
+            $panel = new Panel();
+            $panel->nombre = TXT_VALS_SUBUNID;
+            $smarty->assign("panel", $panel);
+        }
+    }
+    $smarty->assign("modulo", "grafica");
+    $smarty->assign("indicador", $indicador);
+    $smarty->assign('medicion', $medicion);
+    $smarty->assign("pinta_grafico", $pinta_grafico);
+    $plantilla = 'medicion_editar_ajax.tpl';
+}
+
 //Buscar todos valores ref del indicador y recorrer si no existe entrada 
 //en la tabla valores_ref _med creamos entrada y despues asignamos a la plantilla
 $valor_referencia_medicion = new Valor_referencia_medicion();

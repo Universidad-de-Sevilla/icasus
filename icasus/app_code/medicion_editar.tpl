@@ -366,7 +366,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#med_datos" title="{$smarty.const.TXT_MED_DATOS}" aria-controls="{$smarty.const.TXT_MED_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.TXT_MED_DATOS}</a>
+                <a id="tab_med_datos" href="#med_datos" title="{$smarty.const.TXT_MED_DATOS}" aria-controls="{$smarty.const.TXT_MED_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.TXT_MED_DATOS}</a>
             </li>
             <li role="presentation">
                 <a href="#med_valores" title="{$smarty.const.TXT_MED_VALORES}" aria-controls="{$smarty.const.TXT_MED_VALORES}" role="tab" data-toggle="tab"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_MED_VALORES}</a>

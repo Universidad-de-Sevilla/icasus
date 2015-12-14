@@ -644,3 +644,19 @@
         </a>
     {/if}
 {/if}
+
+{if $modulo == 'grafica'}
+    {if $pinta_grafico}
+        <strong class="panel-title"><i class="fa fa-pie-chart fa-fw"></i> {$panel->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}
+        <div id="container" 
+        data-id_indicador="{$indicador->id}" 
+        data-nombre_indicador="{$indicador->nombre}" 
+        data-id_medicion="{$medicion->id}">
+        </div>
+    {else}
+         <div class="alert alert-info alert-dismissible">
+             <i class="fa fa-info-circle fa-fw"></i> 
+             {$smarty.const.MSG_VAL_NO_ASIG}
+         </div>
+    {/if}
+{/if}
