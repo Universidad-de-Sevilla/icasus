@@ -1,50 +1,147 @@
-<style>
-    table.static tbody tr td input {
-        margin: 10px 0;
-        height: 20px;
-        line-height: 20px;
-        float:none;
-    }
-</style>
-<div class="button_bar clearfix">
-    <a href="index.php?page=dato_listar&id_entidad=14">{$smarty.const.TXT_VOLVER_LIST}</a>
+<!-- Nombre página -->
+<div class="row">
+    <div class="col-lg-12">
+        <h3 title="{$_nombre_pagina}" class="page-header">
+            <i class="fa fa-folder-open fa-fw"></i> {$_nombre_pagina}
+        </h3>
+    </div>
+    <!-- /.col-lg-12 -->
 </div>
-<form name="datos_directos" id="datos_directos" action="index.php?page=datos_rebiun_grabar" method="post" class="validate_form">
-    <input type="hidden" name="id_usuario" value="{$id_usuario}" />
-    <div style="opacity: 1;" class="box tabs" id="tab_entidades">
-        <ul class="tab_header">
-            {foreach $entidades as $entidad}
-                <li><a href="#{$entidad->etiqueta|replace:' ':'_'}" >{$entidad->etiqueta}</a></li>
-                {/foreach}
-        </ul>
-        {foreach $entidades as $entidad}
-            <div style="opacity: 1;" id="{$entidad->etiqueta|replace:' ':'_'}" class="block ui-tabs-panel ui-widget-content ui-corner-bottom">
-                <table class="static">
-                    <tbody>
-                        {foreach $entidad->valores as $valor}
-                            <tr>
-                                <td>
-                                    <input type="input" name="valor" id="valor" class="entrada_valor number" 
-                                           value="{$valor->valor_parcial}"
-                                           data-id_valor = "{$valor->id}"
-                                           data-id_entidad = "{$entidad->id}"
-                                           data-id_usuario = "{$id_usuario}"  
-                                           style="width:40px;" />
-                                </td>
-                                <td><b>{$valor->indicador->nombre}</b> ({$valor->medicion->etiqueta})
-                                    <br><span style="font-size:0.9em;">{$valor->indicador->descripcion}</span>
-                                </td>
-                            </tr>
-                        {/foreach}
-                    </tbody>
-                </table>
-            </div><!-- fin div entidad->etiqueta -->
-        {/foreach}
-        <div class="button_bar clearfix" id="footer_tabs">
-            <a href="index.php?page=dato_listar&id_entidad=14">{$smarty.const.TXT_VOLVER_LIST}</a>
+<!-- /.row -->
+<!-- /Nombre página -->
+
+<!-- Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
+            <li><a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}">
+                    {$entidad->nombre|truncate:30} <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}"><i class="fa fa-folder fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
+                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.TXT_PROCS}">({$num_procesos})</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
+                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
+                            <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
+                            <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
+                        </a>
+                    </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar'>
+                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO}
+                        </a>
+                    </li>
+                    {if $_control}
+                        <li class="divider"></li>
+                        <li>
+                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                                <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
+                            </a>
+                        </li>
+                    {/if}
+                </ul>
+                <!-- /.dropdown-menu -->
+            </li>
+            <!-- /.dropdown -->
+            <li><a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DATOS}</a></li>
+            <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
+        </ol>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Breadcrumbs -->
+
+<div class="row">
+    <!-- Selección de subunidades -->
+    <div class="col-md-4">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</span>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <!-- Nav tabs -->
+                <ul class="nav nav-pills nav-stacked" role="tablist">
+                    {foreach $entidades as $entidad}
+                        <li id="tab_{$entidad->etiqueta|replace:' ':'_'}" role="presentation" {if $entidad@first}class="active"{/if}>
+                            <a href="#{$entidad->etiqueta|replace:' ':'_'}" title="{$entidad->etiqueta}" aria-controls="{$entidad->etiqueta}" role="tab" data-toggle="tab">{$entidad->etiqueta}</a>
+                        </li> 
+                    {/foreach}
+                </ul>
+                <!-- /Nav tabs -->
+            </div>
+            <!-- /.panel-body --> 
         </div>
-    </div><!--fin #tab_entidades -->
-</form>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-md-4 -->
+    <!-- /Selección de subunidades -->
 
-<script src="js/datos_rebiun.js" type="text/javascript"></script>
+    <div class="col-md-8">
+        <!-- Tab panes -->
+        <div class="tab-content">
+            {foreach $entidades as $entidad}
 
+                <!-- Tab subunidades -->
+                <div id="{$entidad->etiqueta|replace:' ':'_'}" role="tabpanel" class="tab-pane {if $entidad@first}active{/if}">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VALS_SUBUNID} ({$entidad->etiqueta})</span>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <tbody>
+                                        {foreach $entidad->valores as $valor}
+                                            <tr>
+                                                <td>
+                                                    <input type="number" step="0.01" name="valor" id="valor" class="entrada_valor" 
+                                                           value="{$valor->valor_parcial}"
+                                                           data-id_valor = "{$valor->id}"
+                                                           data-id_entidad = "{$entidad->id}"
+                                                           data-id_usuario = "{$id_usuario}"/>
+                                                </td>
+                                                <td class="text-justify">
+                                                    <p><b><a title="{$valor->indicador->nombre} ({$valor->medicion->etiqueta})" href="index.php?page=medicion_editar&id_medicion={$valor->medicion->id}&id_entidad={$valor->indicador->id_entidad}&tipo=dato">
+                                                                {$valor->indicador->nombre} ({$valor->medicion->etiqueta})</a></b></p>
+                                                    <p><small>{$valor->indicador->descripcion}</small></p>   
+                                                </td>
+                                            </tr>
+                                        {/foreach}
+                                    </tbody>
+                                </table>
+                            </div>   
+                        </div>
+                        <!-- /.panel-body -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /Tab subunidades -->
+
+            {/foreach}
+        </div>
+        <!-- /Tab panes -->
+    </div>
+    <!-- /.col-md-8 -->
+</div>

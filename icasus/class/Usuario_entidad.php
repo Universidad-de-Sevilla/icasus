@@ -51,7 +51,7 @@ class Usuario_entidad extends ADOdb_Active_Record
         $usuarios_entidades = $this->Find($condicion);
         if ($usuarios_entidades)
         {
-            foreach ($usuarios_entidades as & $usuario_entidad)
+            foreach ($usuarios_entidades as $usuario_entidad)
             {
                 $entidad = new Entidad();
                 $entidad->load("id = $usuario_entidad->id_entidad");
@@ -59,6 +59,7 @@ class Usuario_entidad extends ADOdb_Active_Record
                 $usuario_entidad->rol = new Rol();
                 $usuario_entidad->rol->load("id = $usuario_entidad->id_rol");
             }
+            usort($usuarios_entidades, array($this, "compara_por_etiqueta"));
             return $usuarios_entidades;
         }
         else
@@ -72,7 +73,7 @@ class Usuario_entidad extends ADOdb_Active_Record
         $usuarios_entidades = $this->Find($condicion);
         if ($usuarios_entidades)
         {
-            foreach ($usuarios_entidades as & $usuario_entidad)
+            foreach ($usuarios_entidades as $usuario_entidad)
             {
                 $usuario_entidad->usuario = new Usuario();
                 $usuario_entidad->usuario->load("id = $usuario_entidad->id_usuario");
@@ -88,6 +89,20 @@ class Usuario_entidad extends ADOdb_Active_Record
         }
     }
 
+    // Función auxiliar para devolver un listado de usuarios ordenados por apellidos
+    // Se usa en: Find_usuarios()
+    function compara_por_etiqueta($a, $b)
+    {
+        $al = strtolower($a->entidad->etiqueta);
+        $bl = strtolower($b->entidad->etiqueta);
+        if ($al == $bl)
+        {
+            return 0;
+        }
+        return ($al > $bl) ? +1 : -1;
+    }
+    
+    
     // Función auxiliar para devolver un listado de usuarios ordenados por apellidos
     // Se usa en: Find_usuarios()
     function compara_por_apellidos($a, $b)

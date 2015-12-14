@@ -21,14 +21,14 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
         $indicadores = $indicador->Find("id_proceso = $id_proceso");
         if ($indicadores)
         {
-            $error = ERR_PROC_BORRAR;
-            header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
+            $aviso = ERR_PROC_BORRAR;
+            header("Location: index.php?page=proceso_mostrar&id_proceso=$id_proceso&id_entidad=$id_entidad&aviso=$aviso");
         }
         else
         {
             $proceso->delete();
-            $aviso = MSG_PROC_BORRADO . $proceso->nombre;
-            header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&aviso=$aviso");
+            $exito = MSG_PROC_BORRADO . $proceso->nombre;
+            header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&exito=$exito");
         }
     }
     else
@@ -42,4 +42,3 @@ else // falta id_indicador o id_entidad
     $error = ERR_PARAM;
     header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
 }
-

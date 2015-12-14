@@ -4,7 +4,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-//Incluye el código JavaScript para el fichero medicion_responsable.tpl
+// Incluye el código JavaScript para el fichero medicion_responsable.tpl
 //----------------------------------------------------------------------------
 
 $(document).ready(function () {
@@ -19,4 +19,3 @@ $(document).ready(function () {
         }
     });
 });
-

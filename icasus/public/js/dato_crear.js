@@ -8,88 +8,143 @@
 //----------------------------------------------------------------------------
 
 $(document).ready(function () {
-    $('#tab_crear_dato').tabs({disabled: [1, 2]});
-    //mostrar selección de agregación temporal
-    $('#periodicidad').on('click', function () {
-        var valor = $(this).attr('value');
-        if (valor === 'Bienal' || valor === 'Anual')
-        {
-            $('#total_anual').css('display', 'none');
+    //Navegación
+    //Botón siguiente dirige a otros
+    $('#btn_nxt_otros').on('click', function (e) {
+        e.preventDefault();
+        //Si no hay cálculo automático
+        if (!$('#activar_calculo').is(':checked')) {
+            //Retiramos de la validación el cálculo
+            $('#formula_calculo').removeClass('has-error');
         }
-        else
-        {
-
-            $('#total_anual').css('display', 'block');
+        //Si no hay intervalo
+        if (!$('#activar_intervalo').is(':checked')) {
+            //Retiramos de la validación el intervalo
+            $('#vmin,#vmax').removeClass('has-error');
+        }
+        var validar = $('form').validator('validate');
+        //Retiramos validación de páginas posteriores
+        $('#div_unidad').removeClass('has-error');
+        $('#div_subunidades').removeClass('has-error');
+        //Si no hay errores de validación avanzamos
+        if (!validar.has('.has-error').length) {
+            $('#tab_dato').removeClass('active');
+            $('#tab_dato').addClass('disabled');
+            $('#dato').removeClass('active');
+            $('#tab_otros').removeClass('disabled');
+            $('#tab_otros').addClass('active');
+            $('#otros').addClass('active');
         }
     });
+    //Botón anterior dirige a dato
+    $('#btn_prev_dato').on('click', function (e) {
+        e.preventDefault();
+        $('#tab_otros').removeClass('active');
+        $('#tab_otros').addClass('disabled');
+        $('#otros').removeClass('active');
+        $('#tab_dato').removeClass('disabled');
+        $('#tab_dato').addClass('active');
+        $('#dato').addClass('active');
+    });
+    //Botón siguiente dirige a subunidades
+    $('#btn_nxt_subunidades').on('click', function (e) {
+        e.preventDefault();
+        $('#tab_otros').removeClass('active');
+        $('#tab_otros').addClass('disabled');
+        $('#otros').removeClass('active');
+        $('#tab_subunidades').removeClass('disabled');
+        $('#tab_subunidades').addClass('active');
+        $('#subunidades').addClass('active');
+    });
+    //Botón anterior dirige a otros
+    $('#btn_prev_otros').on('click', function (e) {
+        e.preventDefault();
+        $('#tab_subunidades').removeClass('active');
+        $('#tab_subunidades').addClass('disabled');
+        $('#subunidades').removeClass('active');
+        $('#tab_otros').removeClass('disabled');
+        $('#tab_otros').addClass('active');
+        $('#otros').addClass('active');
+    });
+
     //mostrar tipo de medición
     $('.medicion').on('click', function () {
         var valor = $(this).attr('value');
+        //Agregado
         if (valor === '1' || valor === '2')
         {
-            $('#total').css('display', 'block');
-            $('#div_unidad').css('display', 'none');
-            $('#div_subunidades').css('display', 'block');
-            $(".subunidad").attr("checked", "checked");
+            $('#total').removeClass('hidden');
+            $('#div_unidad').addClass('hidden');
+            $('#div_subunidades').removeClass('hidden');
             $(".unidad").removeAttr("checked");
+            $(".subunidad").prop("checked", 'true');
         }
+        //No agregado
         else if (valor === '0')
         {
-            $('#total').css('display', 'none');
-            $('#div_unidad').css('display', 'block');
-            $('#div_subunidades').css('display', 'none');
+            $('#total').addClass('hidden');
+            $('#div_unidad').removeClass('hidden');
+            $('#div_subunidades').addClass('hidden');
             $(".subunidad").removeAttr("checked");
-            $(".unidad").attr("checked", "checked");
+            $(".unidad").prop("checked", 'true');
         }
     });
-    //validar formulario
-    var anyo = new Date().getFullYear();
-    var validator = $('#formdato').validate({
-        rules: {
-            codigo: {required: true},
-            id_responsable: {required: true},
-            id_responsable_medicion: {required: true},
-            nombre: {required: true},
-            historicos: {
-                required: true,
-                min: 2008,
-                max: anyo
-            },
-            tipo_seleccion_responsable: {required: true},
-            'subunidades[]': {required: true}
-        },
-        ignore: ':hidden',
-        messages: {
-            codigo: 'Debe insertar un código',
-            id_responsable: 'Debe seleccionar un responsable',
-            id_responsable_medicion: 'Seleccionar el responsable de medición',
-            nombre: 'Debe dar un nombre',
-            historicos: {
-                required: 'Debe indicar un año de inicio para el Histórico del Dato',
-                min: 'El Histórico debe ser igual o posterior al año 2008',
-                max: 'El Histórico debe ser igual o anterior al año actual'
-            },
-            tipo_seleccion_responsable: 'Seleccionar el tipo de medición',
-            'subunidades[]': 'Debe seleccionar al menos una Unidad'
+
+    $('#marcar_todos').on('click', function () {
+        $(".subunidad").prop("checked", 'true');
+    });
+
+    $('#desmarcar_todos').on('click', function () {
+        $(".subunidad").removeAttr("checked");
+    });
+
+    //Cálculo automático
+    $('#activar_calculo').change(function () {
+        if ($('#activar_calculo').is(':checked')) {
+            $('#formula_calculo').removeClass('hidden');
+            $('#intervalo').addClass('hidden');
+            $('#calculo').removeAttr('disabled');
+            $('.heredado').removeClass('hidden');
+            $("#id_tipo_agregacion").trigger("chosen:updated");
+        }
+        else {
+            $('#calculo').attr('disabled', 'disabled');
+            $('#formula_calculo').addClass('hidden');
+            $('#intervalo').removeClass('hidden');
+            $('.heredado').addClass('hidden');
+            $("#id_tipo_agregacion").trigger("chosen:updated");
         }
     });
-    //Boton previo
-    $('button.btnPrev').on('click', function () {
-        var actualTab = $('#tab_crear_dato').tabs('option', 'selected');
-        $('#tab_crear_dato').tabs('enable', actualTab - 1).tabs('select', actualTab - 1).tabs('disable', actualTab);
+
+    //Intervalo
+    $('#activar_intervalo').change(function () {
+        if ($('#activar_intervalo').is(':checked')) {
+            $('#vmin,#vmax').removeClass('hidden');
+            $('#calculo_automatico').addClass('hidden');
+            $('#valor_min,#valor_max').removeAttr('disabled');
+        }
+        else {
+            $('#valor_min,#valor_max').attr('disabled', 'disabled');
+            $('#vmin,#vmax').addClass('hidden');
+            $('#calculo_automatico').removeClass('hidden');
+        }
     });
-    //Boton next
-    $('button.btnNext').on('click', function () {
-        var actualTab = $('#tab_crear_dato').tabs('option', 'selected');
-        var estaValidado = $('#formdato').valid();
-        if (estaValidado === true)
+
+    //Periodicidad y mostrar selección de agregación temporal
+    $('#periodicidad').on('change', function () {
+        var valor = $("#periodicidad option:selected").text();
+        if (valor === 'Bienal' || valor === 'Anual')
         {
-            $('#tab_crear_dato').tabs('enable', actualTab + 1).tabs('select', actualTab + 1).tabs('disable', actualTab);
+            $('#total_anual').addClass('hidden');
         }
         else
         {
-            validator.focusInvalid();
+            $('#total_anual').removeClass('hidden');
         }
-        return false;
+    });
+
+    //Reset
+    $(':reset').click(function () {
+        $('#activar_calculo,#activar_intervalo').bootstrapToggle('off');
     });
 });

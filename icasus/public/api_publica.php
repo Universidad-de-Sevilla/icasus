@@ -26,9 +26,6 @@
 // obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 // subtotales_calculo($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 // ---------------------------------------------------------------
-
-require_once("../../cascara_core/function/sanitize.php");
-
 // Carga el app_config y conecta a la base de datos
 // Es necesario porque este fichero no depende del controlador principal index.php
 require_once("../app_code/app_config.php");
@@ -38,28 +35,28 @@ mysql_query("SET NAMES UTF8");
 if (mysql_select_db(IC_DB_DATABASE))
 {
     // Capturamos y procesamos los datos de la petición
-    if (isset($_REQUEST["metodo"]) AND ! empty($_REQUEST["metodo"]))
+    if (filter_has_var(INPUT_GET, 'metodo'))
     {
-        $metodo = $_REQUEST["metodo"];
+        $metodo = filter_input(INPUT_GET, 'metodo', FILTER_SANITIZE_STRING);
         if (function_exists($metodo))
         {
-            if (isset($_REQUEST["id"], $_REQUEST["fecha_inicio"], $_REQUEST["fecha_fin"]))
+            if (filter_has_var(INPUT_GET, 'id') && filter_has_var(INPUT_GET, 'fecha_inicio') && filter_has_var(INPUT_GET, 'fecha_fin'))
             {
-                $id = sanitize($_REQUEST["id"], INT);
-                $fecha_inicio = sanitize($_REQUEST["fecha_inicio"], SQL);
-                $fecha_fin = sanitize($_REQUEST["fecha_fin"], SQL);
-                $periodicidad = isset($_REQUEST["periodicidad"]) ? sanitize($_REQUEST["periodicidad"], SQL) : "todos";
+                $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+                $fecha_inicio = filter_input(INPUT_GET, 'fecha_inicio', FILTER_SANITIZE_STRING);
+                $fecha_fin = filter_input(INPUT_GET, 'fecha_fin', FILTER_SANITIZE_STRING);
+                $periodicidad = filter_has_var(INPUT_GET, 'periodicidad') ? filter_input(INPUT_GET, 'periodicidad', FILTER_SANITIZE_STRING) : "todos";
                 $metodo($id, $fecha_inicio, $fecha_fin, $periodicidad);
             }
-            else if (isset($_REQUEST["id"], $_REQUEST["periodicidad"]))
+            else if (filter_has_var(INPUT_GET, 'id') && filter_has_var(INPUT_GET, 'periodicidad'))
             {
-                $id = sanitize($_REQUEST["id"], INT);
-                $periodicidad = sanitize($_REQUEST["periodicidad"], SQL);
+                $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+                $periodicidad = filter_input(INPUT_GET, 'periodicidad', FILTER_SANITIZE_STRING);
                 $metodo($id, 0, 0, $periodicidad);
             }
-            else if (isset($_REQUEST["id"]))
+            else if (filter_has_var(INPUT_GET, 'id'))
             {
-                $id = sanitize($_REQUEST["id"], INT);
+                $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
                 $metodo($id);
             }
             else
@@ -213,8 +210,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
         $datos[] = $registro;
     }
 
-    // CORREGIDO NO ES NECESARIO DE MOMENTO
-//     Aquí van los totales, si el indicador es calculado usamos obtener_total_calculado
+    // Aquí van los totales, si el indicador es calculado usamos obtener_total_calculado
     if ($calculo)
     {
         $totales = obtener_total_calculado($id, $fecha_inicio, $fecha_fin, $periodicidad);

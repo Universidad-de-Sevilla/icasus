@@ -8,7 +8,5 @@
 // Descripcion: Graba los paneles nuevos
 //---------------------------------------------------------------------------------------------------
 
-
-$smarty->assign('_nombre_pagina', TXT_PANELES_INFO);
+$smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
 $plantilla = "panel_informacion.tpl";
-

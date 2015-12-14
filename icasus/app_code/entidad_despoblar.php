@@ -23,21 +23,21 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $usuario_entidad = new Usuario_entidad;
     $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
     $smarty->assign('usuarios', $usuarios);
-    
+
     $post_array = filter_input_array(INPUT_POST);
     $id_usuarios = $post_array['id_usuario'];
     if ($id_usuarios)
     {
         $contador = 0;
-        
+
         foreach ($id_usuarios as $id_usuario)
         {
             $id_usuario = filter_var($id_usuario, FILTER_SANITIZE_NUMBER_INT);
             $usuario_entidad->desasignar_usuario($id_entidad, $id_usuario);
             $contador ++;
         }
-        $aviso = MSG_UNID_USERS_BORRADOS . ' ' . $contador . ' ' . TXT_USERS;
-        header("location:index.php?page=entidad_despoblar&id_entidad=$id_entidad&aviso=$aviso");
+        $exito = MSG_UNID_USERS_BORRADOS . ' ' . $contador . ' ' . TXT_USERS;
+        header("location:index.php?page=entidad_despoblar&id_entidad=$id_entidad&exito=$exito");
     }
     else
     {

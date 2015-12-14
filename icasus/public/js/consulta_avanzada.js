@@ -27,7 +27,7 @@ function agregarIndicador()
     var id_indicador = $(this).attr('id_indicador');
     var serie = $(".activo").data("serie");
     $(".activo").empty();
-    $(this).clone().appendTo('.activo').wrap("<div />").after('<b id="borra' + serie + '" class="icon-remove pull-right">X</b>').toggleClass("indicador escogido");
+    $(this).clone().appendTo('.activo').wrap("<div />").after('<a id="borra' + serie + '" title="Retirar de la consulta" class="pull-right clickable" style="color:#950717"><i class="fa fa-times fa-fw"></i></a>').toggleClass("indicador escogido");
     $('#borra' + serie).bind('click', quitarIndicador);
     $.getJSON('api_publica.php?metodo=get_subunidades_indicador&id=' + id_indicador, function (data) {
         var items = [];
@@ -36,21 +36,16 @@ function agregarIndicador()
             items.push('<option id="' + subunidad.id + '">' + subunidad.etiqueta + '</option>');
         });
         $('<select/>', {
-            'class': 'subunidades',
+            'class': 'subunidades form-control chosen-select',
             html: items.join('')
         }).bind('change', mostrarIndicadorSubunidad).appendTo('.activo');
+        // Activamos chosen-select
+        $(".chosen-select").chosen({
+            disable_search_threshold: 10,
+            no_results_text: "Oops, no se encuentran registros coincidentes"
+        });
+        mostrarIndicador(serie);
     });
-    // Después de añadir el indicador activamos el siguiente receptor
-    // Si era el último creamos uno nuevo
-    //if ($(".activo").nextAll(".receptor:first") == 0)
-    //{
-    //crearReceptor();
-    //}
-    //else
-    //{
-    //$(".activo").nextAll(".receptor:first").trigger("click");
-    //}
-    mostrarIndicador(serie);
     return false;
 }
 
@@ -64,6 +59,8 @@ function mostrarIndicador(serie) {
         opciones = prepararOpciones(data);
         $("#grafica").css("height", "400px");
         $.plot($("#grafica"), datos, opciones);
+        // Después de mostrar el indicador activamos el siguiente receptor
+        $(".activo").nextAll(".receptor:first").trigger("click");
     });
 }
 
@@ -82,16 +79,11 @@ function generaTablaDatos(id_indicador, nombre_indicador, datos, serie)
     $.each(datos, function (i, dato) {
         if (dato.unidad === subunidad_actual)
         {
-            if (i % 2 === 0) {
-                paridad = "odd";
-            } else {
-                paridad = "even";
-            }
-            items.push('<tr class="' + paridad + '"><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
+            items.push('<tr><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
         }
     });
     $('#tabla' + serie).empty();
-    $('<table />', {'class': 'static',
+    $('<table />', {'class': 'table table-striped table-hover',
         'data-id_indicador': id_indicador,
         html: items.join('')
     }).appendTo('#tabla' + serie);
@@ -103,15 +95,10 @@ function generaTablaResultados(datos)
     items.push('<caption>Resultados</caption>');
     items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
     $.each(datos, function (i, dato) {
-        if (i % 2 === 0) {
-            paridad = "odd";
-        } else {
-            paridad = "even";
-        }
-        items.push('<tr class="' + paridad + '"><td>' + dato[0] + '</td><td>' + dato[1].toFixed(2) + '</td></tr>');
+        items.push('<tr><td>' + dato[0] + '</td><td>' + dato[1].toFixed(2) + '</td></tr>');
     });
     $('#tablar').empty();
-    $('<table />', {'class': 'static',
+    $('<table />', {'class': 'table table-striped table-hover',
         'data-id_indicador': 0,
         html: items.join('')
     }).appendTo('#tablar');
@@ -295,7 +282,6 @@ function calcularResultado()
     generaTablaResultados(resultado);
     // Generamos la grafica con los resultados a partir del objeto 'resultados'
     $.plot($("#grafica"), resultados, opciones_resultado);
-
 }
 
 function crearReceptor()
@@ -312,8 +298,6 @@ function activarReceptor()
 function quitarIndicador()
 {
     serie = $(this).closest(".receptor").data("serie");
-    //datos[serie] = 0;
-    //datos_json[serie] = 0;
     delete datos.serie;
     delete datos_json.serie;
     $(this).closest('.receptor').empty();
@@ -322,16 +306,9 @@ function quitarIndicador()
     $.plot($("#grafica"), datos, opciones);
 }
 
-// devuelve la posición si un array contiene a otro o -1 si no lo contiene
-function indexOfArray(val, array)
-{
-    var
-            hash = {},
-            indexes = {},
-            i, j;
-    for (i = 0; i < array.length; i++)
-    {
-        hash[array[i]] = i;
-    }
-    return (hash.hasOwnProperty(val)) ? hash[val] : -1;
-}
+//Datatables
+$(document).ready(function () {
+    $('.datatable_consulta').DataTable({
+        "pagingType": "full_numbers"
+    });
+});

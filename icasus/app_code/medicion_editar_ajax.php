@@ -16,7 +16,7 @@ global $plantilla;
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
-$modulo = filter_input(INPUT_GET, 'modulo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+$modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 $medicion = new Medicion();
 $indicador = new Indicador();
 $valor = new Valor();
@@ -80,7 +80,7 @@ if ($modulo == 'editarfila')
     $plantilla = 'medicion_editar_ajax.tpl';
 
     //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
-    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
     $tipo_agregacion = new Tipo_agregacion();
     $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
     $smarty->assign("agregacion", $tipo_agregacion->descripcion);
@@ -108,7 +108,7 @@ if ($modulo == 'cancelarfila')
     $plantilla = 'medicion_editar_ajax.tpl';
 
     //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
-    $total = $logicaIndicador->calcular_total($indicador, $valores);
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
     $tipo_agregacion = new Tipo_agregacion();
     $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
     $smarty->assign("agregacion", $tipo_agregacion->descripcion);
@@ -117,9 +117,9 @@ if ($modulo == 'cancelarfila')
 //etiquetas y fechas -----------------------------------------------------------
 if ($modulo == 'grabaretiqueta')
 {
-    $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $valor = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_STRING);
 
-    $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_SANITIZE_STRING);
 
     $id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $medicion->load("id = $id_medicion");
@@ -148,9 +148,9 @@ if ($modulo == 'grabaretiqueta')
 
 if ($modulo == 'grabarobservaciones')
 {
-    $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $valor = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_STRING);
 
-    $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_POST, 'contenedor', FILTER_SANITIZE_STRING);
 
     $id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $medicion->load("id = $id_medicion");
@@ -181,7 +181,7 @@ if ($modulo == 'editaretiqueta')
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 
-    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_SANITIZE_STRING);
     $smarty->assign("contenedor", $contenedor);
     $medicion->load("id = $id_medicion");
     $smarty->assign("medicion", $medicion);
@@ -200,7 +200,7 @@ if ($modulo == 'editarobservaciones')
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 
-    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_SANITIZE_STRING);
     $smarty->assign("contenedor", $contenedor);
     $medicion->load("id = $id_medicion");
     $smarty->assign("medicion", $medicion);
@@ -219,7 +219,7 @@ if ($modulo == 'cancelaretiqueta')
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 
-    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_SANITIZE_STRING);
     $medicion->load("id = $id_medicion");
     $smarty->assign('medicion', $medicion);
     $smarty->assign('contenedor', $contenedor);
@@ -231,7 +231,7 @@ if ($modulo == 'cancelarobservaciones')
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
 
-    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $contenedor = filter_input(INPUT_GET, 'contenedor', FILTER_SANITIZE_STRING);
     $medicion->load("id = $id_medicion");
     $smarty->assign('medicion', $medicion);
     $smarty->assign('contenedor', $contenedor);
@@ -252,7 +252,7 @@ if ($modulo == 'grabarvalorreferencia')
 {
     $id_referencia = filter_input(INPUT_POST, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
 
-    $valor = filter_input(INPUT_POST, 'valor', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $valor = filter_input(INPUT_POST, 'valor', FILTER_VALIDATE_FLOAT);
     $valor_referencia_medicion->load("id =$id_referencia");
     $valor_referencia_medicion->valor = $valor;
     $valor_referencia_medicion->save();
@@ -273,6 +273,38 @@ if ($modulo == 'editarvalorreferencia')
     $valor_referencia_medicion->load("id = $id_referencia");
     $smarty->assign("referencia", $valor_referencia_medicion);
     $smarty->assign("modulo", "editarvalorreferencia");
+    $plantilla = 'medicion_editar_ajax.tpl';
+}
+
+if ($modulo == 'grafica')
+{
+    $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
+    $medicion->load("id = $id_medicion");
+    $indicador->load("id = $medicion->id_indicador");
+    $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
+
+    //Prepara el gráfico de tarta si hay valores
+    $pinta_grafico = false;
+    if ($valores)
+    {
+        foreach ($valores as $val)
+        {
+            if ($val->valor != null)
+            {
+                $pinta_grafico = true;
+            }
+        }
+        if ($pinta_grafico)
+        {
+            $panel = new Panel();
+            $panel->nombre = TXT_VALS_SUBUNID;
+            $smarty->assign("panel", $panel);
+        }
+    }
+    $smarty->assign("modulo", "grafica");
+    $smarty->assign("indicador", $indicador);
+    $smarty->assign('medicion', $medicion);
+    $smarty->assign("pinta_grafico", $pinta_grafico);
     $plantilla = 'medicion_editar_ajax.tpl';
 }
 
@@ -298,19 +330,22 @@ if ($valores_referencia)
     $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
 
     //Control (Status) de valores limite y objetivo
-    foreach ($valores_referencia_medicion as $med_ref)
+    if ($valores_referencia_medicion)
     {
-        //Es la referencia Limite
-        if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
+        foreach ($valores_referencia_medicion as $med_ref)
         {
-            $medicion_lim = $med_ref->valor;
-            $smarty->assign('medicion_lim', $medicion_lim);
-        }
-        //Es la referencia Objetivo
-        if (strpos($med_ref->valor_referencia->etiqueta, 'bjetivo') !== false)
-        {
-            $medicion_obj = $med_ref->valor;
-            $smarty->assign('medicion_obj', $medicion_obj);
+            //Es la referencia Limite
+            if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
+            {
+                $medicion_lim = $med_ref->valor;
+                $smarty->assign('medicion_lim', $medicion_lim);
+            }
+            //Es la referencia Objetivo
+            if (strpos($med_ref->valor_referencia->etiqueta, 'bjetivo') !== false)
+            {
+                $medicion_obj = $med_ref->valor;
+                $smarty->assign('medicion_obj', $medicion_obj);
+            }
         }
     }
 }

@@ -19,7 +19,7 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $usuario_entidad = new Usuario_entidad;
     // Comprobamos permisos
-    if ($control)
+    if ($control || $dato->id_responsable == $usuario->id)
     {
         $dato = new Indicador();
         $dato->load_joined("id = $id_dato");
@@ -44,10 +44,11 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
         $usuarios_entidades = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
         $smarty->assign('usuarios_entidades', $usuarios_entidades);
 
-        $indicador_subunidad = new Indicador_subunidad();
-        $indicador_subunidades = $indicador_subunidad->Find_entidades("id_indicador = $id_dato");
-        $smarty->assign("indicador_subunidades", $indicador_subunidades);
+        $dato_subunidad = new Indicador_subunidad();
+        $dato_subunidades = $dato_subunidad->Find_entidades("id_indicador = $id_dato");
+        $smarty->assign("dato_subunidades", $dato_subunidades);
 
+        $smarty->assign('_javascript', array('dato_editar'));
         $smarty->assign('_nombre_pagina', TXT_DATO_EDIT . ": " . $dato->nombre);
         $plantilla = 'dato_editar.tpl';
     }
@@ -64,4 +65,3 @@ else
     $error = ERR_PARAM;
     header("Location:index.php?error=$error");
 }
-

@@ -1,19 +1,43 @@
-<div style='width: 335px; float:left; margin:5px;'>
-    <img src='images/cuadromando.png' alt='{$smarty.const.TXT_ICON_GRAF_LINEAL}' align='right' /><p><b>{$smarty.const.TXT_ICASUS}</b> {$smarty.const.TXT_LOGIN_PARTE1}
-        <a href="http://www.us.es/">{$smarty.const.TXT_UNIVERSIDAD}</a>.</p>
-
-    <p>{$smarty.const.TXT_LOGIN_PARTE2}</p>
-
-    <p>{$smarty.const.TXT_LOGIN_PARTE3} <a href="http://www.r2h2.us.es/">{$smarty.const.TXT_AREA_REC_HUM} </a> 
-        {$smarty.const.TXT_LOGIN_PARTE4} <a href="http://forja.rediris.es/projects/icasus/">{$smarty.const.TXT_SOFT_LIBRE}</a>.</p>
-
-    <p>{$smarty.const.TXT_LOGIN_PARTE5}<a href="http://icasus.us.es/upload/ayuda/icasus_manual_breve.pdf"> {$smarty.const.TXT_IC_MANUAL} </a>
-        {$smarty.const.TXT_LOGIN_PARTE6}</p>
-
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <!-- Nombre página -->
+        <div class="row">
+            <div class="col-md-12">
+                <h1 title="{$_nombre_pagina}" class="page-header">
+                    <img src='images/logo_big.png' alt='{$smarty.const.TXT_UNIVERSIDAD}'>{$_nombre_pagina}
+                </h1>
+            </div>
+            <!-- /.col-md-12 -->
+        </div>
+        <!-- /.row -->
+        <!-- /Nombre página -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-justify">
+                    <p>
+                        <b title="{$smarty.const.TXT_APP_DESCRIPCION}">{$smarty.const.TXT_ICASUS}</b> 
+                        {$smarty.const.TXT_LOGIN_PARTE1}
+                        <a title="{$smarty.const.TXT_UNIVERSIDAD}" target="_blank" href="http://www.us.es/">{$smarty.const.TXT_UNIVERSIDAD}</a>.
+                    </p>
+                    <p>{$smarty.const.TXT_LOGIN_PARTE2}</p>
+                    <p>
+                        <b title="{$smarty.const.TXT_APP_DESCRIPCION}">{$smarty.const.TXT_ICASUS}</b> 
+                        {$smarty.const.TXT_LOGIN_PARTE3} <a title="{$smarty.const.TXT_AREA_REC_HUM}" target="_blank" href="http://recursoshumanos.us.es/">{$smarty.const.TXT_AREA_REC_HUM}</a> 
+                        {$smarty.const.TXT_LOGIN_PARTE4} <a title="{$smarty.const.TXT_SOFT_LIBRE}" target="_blank" href="https://github.com/Universidad-de-Sevilla/icasus">{$smarty.const.TXT_SOFT_LIBRE}</a>.
+                    </p>
+                    <p>
+                        {$smarty.const.TXT_LOGIN_PARTE5} <a title="{$smarty.const.TXT_IC_MANUAL}" target="_blank" href="http://icasus.us.es/upload/ayuda/icasus_manual_breve.pdf">{$smarty.const.TXT_IC_MANUAL}</a>
+                        {$smarty.const.TXT_LOGIN_PARTE6}
+                    </p>
+                </div>
+                <button id="formlogin" title="{$smarty.const.TXT_LOGIN}" class="btn btn-success btn-block" type="button" onclick="location.href = 'index.php?page=login_sso&autenticar';">
+                    <i class="fa fa-sign-in fa-fw"></i> {$smarty.const.TXT_LOGIN}
+                </button>
+            </div>
+            <!-- /.col-md-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.col-md-8 -->
 </div>
-<div style='width: 250px; float:left; margin:20px;'>
-    <div id="formlogin" class="text-align:center"><h3><a href="index.php?page=entidad_listar&autenticar">{$smarty.const.TXT_LOGIN}</a></h3></div>
-</div>
-<!-- Novedades Icasus -->
-<p style="clear:both;">&nbsp;</p>
-{*$pagina->contenido*}
+<!-- /.row -->

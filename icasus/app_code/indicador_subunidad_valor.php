@@ -12,6 +12,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+//Variable para operar con Indicadores/Datos
+$logicaIndicador = new LogicaIndicador();
 
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
@@ -33,14 +35,13 @@ else
 
 if (isset($id_entidad))
 {
-
     $indicador = new Indicador();
     $indicador->load("id = $id_indicador");
     $smarty->assign('indicador', $indicador);
 
     // Comprueba permisos para el usuario: responsable unidad, responsable delegado, 
-    // responsable indicador, responsable medicion
-    if ($control || $indicador->id_responsable == $usuario->id || $indicador->id_responsable_medicion == $usuario->id)
+    // responsable indicador
+    if ($control || $indicador->id_responsable == $usuario->id)
     {
         $entidad = new Entidad();
         $entidad->load("id = $indicador->id_entidad");
@@ -56,8 +57,13 @@ if (isset($id_entidad))
         $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
         $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
 
+        //Vemos si influye en otros Indicadores/Datos
+        $indicadores_dependientes = $logicaIndicador->calcular_influencias($indicador->id);
+        $smarty->assign('indicadores_dependientes', $indicadores_dependientes);
+
         $smarty->assign("tipo", $tipo);
-        $smarty->assign('_nombre_pagina', TXT_INDIC_SUBUNID_VAL . ": $indicador->nombre");
+        $smarty->assign('_javascript', array('indicador_subunidad_valor'));
+        $smarty->assign('_nombre_pagina', TXT_VAL_EDIT . ": $indicador->nombre");
         $plantilla = 'indicador_subunidad_valor.tpl';
     }
     else

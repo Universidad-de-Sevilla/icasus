@@ -6,16 +6,16 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
+// Controlador que permite descargar archivos de icasus
+//------------------------------------------------------------------------------------------------
 
 global $smarty;
 global $plantilla;
 global $usuario;
 
-//if (isset($_REQUEST["id"]))
 if (filter_has_var(INPUT_GET, 'id'))
 {
-//	$id = sanitize($_REQUEST["id"],2);
-    $id = filter_input(INPUT_GET, 'id', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
 
     $a = new Fichero();
     if ($a->load("id = $id"))
@@ -45,4 +45,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?error=$error");
 }
-

@@ -22,4 +22,3 @@ else
 {
     header("Location: index.php?page=cuadro_listar");
 }
-

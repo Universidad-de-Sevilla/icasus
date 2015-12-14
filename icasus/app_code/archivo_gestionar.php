@@ -19,7 +19,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
-    
+
     // Datos del proceso
     $proceso = new Proceso();
     $proceso->load_joined("id = $id_proceso");
@@ -37,4 +37,3 @@ else
     //Si se llama a esta pagina si un id de proceso o de entidad se redirecciona al listado de unidades
     header('Location:index.php?page=entidad_listar');
 }
-

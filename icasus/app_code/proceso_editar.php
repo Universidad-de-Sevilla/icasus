@@ -25,32 +25,33 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
         $proceso = new Proceso();
         $proceso->load("id = $id_proceso");
         $proceso->id_madre = filter_has_var(INPUT_POST, 'madre') ? filter_input(INPUT_POST, 'madre', FILTER_SANITIZE_NUMBER_INT) : 0;
-        $proceso->codigo = filter_has_var(INPUT_POST, 'codigo') ? filter_input(INPUT_POST, 'codigo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->revision = filter_has_var(INPUT_POST, 'revision') ? filter_input(INPUT_POST, 'revision', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $fecha = filter_has_var(INPUT_POST, 'fecha_revision') ? filter_input(INPUT_POST, 'fecha_revision', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+        $proceso->codigo = filter_has_var(INPUT_POST, 'codigo') ? filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_STRING) : null;
+        $proceso->revision = filter_has_var(INPUT_POST, 'revision') ? filter_input(INPUT_POST, 'revision', FILTER_SANITIZE_STRING) : null;
+        $fecha = filter_has_var(INPUT_POST, 'fecha_revision') ? filter_input(INPUT_POST, 'fecha_revision', FILTER_SANITIZE_STRING) : null;
         $fecha = explode("/", $fecha);
         $fecha = $fecha[2] . "/" . $fecha[1] . "/" . $fecha[0];
         $proceso->fecha_revision = $fecha;
-        $proceso->nombre = filter_has_var(INPUT_POST, 'nombre') ? filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->alcance = filter_has_var(INPUT_POST, 'alcance') ? filter_input(INPUT_POST, 'alcance', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->mision = filter_has_var(INPUT_POST, 'mision') ? filter_input(INPUT_POST, 'mision', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->resultados_clave = filter_has_var(INPUT_POST, 'resultados_clave') ? filter_input(INPUT_POST, 'resultados_clave', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->entradas = filter_has_var(INPUT_POST, 'entradas') ? filter_input(INPUT_POST, 'entradas', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->proveedores = filter_has_var(INPUT_POST, 'proveedores') ? filter_input(INPUT_POST, 'proveedores', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->salidas = filter_has_var(INPUT_POST, 'salidas') ? filter_input(INPUT_POST, 'salidas', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->clientes = filter_has_var(INPUT_POST, 'clientes') ? filter_input(INPUT_POST, 'clientes', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->actividades = filter_has_var(INPUT_POST, 'actividades') ? filter_input(INPUT_POST, 'actividades', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->documentacion = filter_has_var(INPUT_POST, 'documentacion') ? filter_input(INPUT_POST, 'documentacion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->mediciones = filter_has_var(INPUT_POST, 'mediciones') ? filter_input(INPUT_POST, 'mediciones', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->registros = filter_has_var(INPUT_POST, 'registros') ? filter_input(INPUT_POST, 'registros', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->equipo_de_proceso = filter_has_var(INPUT_POST, 'equipo_de_proceso') ? filter_input(INPUT_POST, 'equipo_de_proceso', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-        $proceso->variables_control = filter_has_var(INPUT_POST, 'variables_control') ? filter_input(INPUT_POST, 'variables_control', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+        $proceso->nombre = filter_has_var(INPUT_POST, 'nombre') ? filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING) : null;
+        $proceso->alcance = filter_has_var(INPUT_POST, 'alcance') ? filter_input(INPUT_POST, 'alcance', FILTER_SANITIZE_STRING) : null;
+        $proceso->mision = filter_has_var(INPUT_POST, 'mision') ? filter_input(INPUT_POST, 'mision', FILTER_SANITIZE_STRING) : null;
+        $proceso->resultados_clave = filter_has_var(INPUT_POST, 'resultados_clave') ? filter_input(INPUT_POST, 'resultados_clave', FILTER_SANITIZE_STRING) : null;
+        $proceso->entradas = filter_has_var(INPUT_POST, 'entradas') ? filter_input(INPUT_POST, 'entradas', FILTER_SANITIZE_STRING) : null;
+        $proceso->proveedores = filter_has_var(INPUT_POST, 'proveedores') ? filter_input(INPUT_POST, 'proveedores', FILTER_SANITIZE_STRING) : null;
+        $proceso->salidas = filter_has_var(INPUT_POST, 'salidas') ? filter_input(INPUT_POST, 'salidas', FILTER_SANITIZE_STRING) : null;
+        $proceso->clientes = filter_has_var(INPUT_POST, 'clientes') ? filter_input(INPUT_POST, 'clientes', FILTER_SANITIZE_STRING) : null;
+        $proceso->actividades = filter_has_var(INPUT_POST, 'actividades') ? filter_input(INPUT_POST, 'actividades', FILTER_SANITIZE_STRING) : null;
+        $proceso->documentacion = filter_has_var(INPUT_POST, 'documentacion') ? filter_input(INPUT_POST, 'documentacion', FILTER_SANITIZE_STRING) : null;
+        $proceso->mediciones = filter_has_var(INPUT_POST, 'mediciones') ? filter_input(INPUT_POST, 'mediciones', FILTER_SANITIZE_STRING) : null;
+        $proceso->registros = filter_has_var(INPUT_POST, 'registros') ? filter_input(INPUT_POST, 'registros', FILTER_SANITIZE_STRING) : null;
+        $proceso->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_SANITIZE_STRING) : null;
+        $proceso->equipo_de_proceso = filter_has_var(INPUT_POST, 'equipo_de_proceso') ? filter_input(INPUT_POST, 'equipo_de_proceso', FILTER_SANITIZE_STRING) : null;
+        $proceso->variables_control = filter_has_var(INPUT_POST, 'variables_control') ? filter_input(INPUT_POST, 'variables_control', FILTER_SANITIZE_STRING) : null;
         $proceso->id_propietario = filter_has_var(INPUT_POST, 'id_propietario') ? filter_input(INPUT_POST, 'id_propietario', FILTER_SANITIZE_NUMBER_INT) : null;
 
         if ($proceso->save())
         {
-            header("Location: index.php?page=proceso_mostrar&id_proceso=$id_proceso&id_entidad=$id_entidad");
+            $exito = MSG_PROC_EDITADO;
+            header("Location: index.php?page=proceso_mostrar&id_proceso=$id_proceso&id_entidad=$id_entidad&exito=$exito");
         }
         else
         {
@@ -83,4 +84,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?page=error&error=$error");
 }
-

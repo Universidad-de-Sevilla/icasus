@@ -14,7 +14,6 @@ global $usuario;
 $logicaIndicador = new LogicaIndicador();
 
 $es_dato_nuevo = false;
-$aviso = MSG_DATO_ACTUALIZADO;
 
 if (
         filter_has_var(INPUT_POST, 'tipo_seleccion_responsable')
@@ -26,40 +25,39 @@ if (
 )
 {
     $dato = new Indicador();
-    if (filter_has_var(INPUT_POST, 'id_dato'))
+    if (filter_has_var(INPUT_GET, 'id_dato'))
     {
-        $id_dato = filter_input(INPUT_POST, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
+        $id_dato = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
         $dato->load("id = $id_dato");
-        $es_dato_nuevo = false;
         $tipo_agregacion_actual = $dato->id_tipo_agregacion;
         $periodicidad_actual = $dato->periodicidad;
-        $aviso = MSG_DATO_ACTUALIZADO;
+        $exito = MSG_DATO_ACTUALIZADO;
     }
     else
     {
         $es_dato_nuevo = true;
-        $aviso = MSG_DATO_CREADO;
+        $exito = MSG_DATO_CREADO;
     }
 
     $id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
     // Campos obligatorios
     $dato->id_entidad = $id_entidad;
-    $dato->codigo = filter_input(INPUT_POST, 'codigo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
-    $dato->nombre = filter_input(INPUT_POST, 'nombre', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $dato->codigo = filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_STRING);
+    $dato->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $dato->id_responsable = filter_input(INPUT_POST, 'id_responsable', FILTER_SANITIZE_NUMBER_INT);
     $dato->id_responsable_medicion = filter_input(INPUT_POST, 'id_responsable_medicion', FILTER_SANITIZE_NUMBER_INT);
     $dato->desagregado = filter_input(INPUT_POST, 'tipo_seleccion_responsable', FILTER_SANITIZE_NUMBER_INT);
     // Campos opcionales 
-    $dato->id_visibilidad = filter_has_var(INPUT_POST, 'id_visibilidad') ? filter_input(INPUT_POST, 'id_visibilidad', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $dato->descripcion = filter_has_var(INPUT_POST, 'descripcion') ? filter_input(INPUT_POST, 'descripcion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $dato->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $dato->calculo = filter_has_var(INPUT_POST, 'calculo') ? filter_input(INPUT_POST, 'calculo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $dato->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $dato->fuente_informacion = filter_has_var(INPUT_POST, 'fuente_informacion') ? filter_input(INPUT_POST, 'fuente_informacion', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $dato->fuente_datos = filter_has_var(INPUT_POST, 'fuente_datos') ? filter_input(INPUT_POST, 'fuente_datos', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+    $dato->id_visibilidad = filter_has_var(INPUT_POST, 'id_visibilidad') ? filter_input(INPUT_POST, 'id_visibilidad', FILTER_SANITIZE_NUMBER_INT) : null;
+    $dato->descripcion = filter_has_var(INPUT_POST, 'descripcion') ? filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING) : null;
+    $dato->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_SANITIZE_STRING) : null;
+    $dato->calculo = filter_has_var(INPUT_POST, 'calculo') ? filter_input(INPUT_POST, 'calculo', FILTER_SANITIZE_STRING) : null;
+    $dato->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_SANITIZE_STRING) : null;
+    $dato->fuente_informacion = filter_has_var(INPUT_POST, 'fuente_informacion') ? filter_input(INPUT_POST, 'fuente_informacion', FILTER_SANITIZE_STRING) : null;
+    $dato->fuente_datos = filter_has_var(INPUT_POST, 'fuente_datos') ? filter_input(INPUT_POST, 'fuente_datos', FILTER_SANITIZE_STRING) : null;
     $dato->historicos = filter_has_var(INPUT_POST, 'historicos') ? filter_input(INPUT_POST, 'historicos', FILTER_SANITIZE_NUMBER_INT) : null;
-    $dato->unidad_generadora = filter_has_var(INPUT_POST, 'unidad_generadora') ? filter_input(INPUT_POST, 'unidad_generadora', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
+    $dato->unidad_generadora = filter_has_var(INPUT_POST, 'unidad_generadora') ? filter_input(INPUT_POST, 'unidad_generadora', FILTER_SANITIZE_STRING) : null;
     $dato->activo = 1;
     $dato->fecha_creacion = date("Y-m-d");
     $dato->id_tipo_agregacion = filter_has_var(INPUT_POST, 'id_tipo_agregacion') ? filter_input(INPUT_POST, 'id_tipo_agregacion', FILTER_SANITIZE_NUMBER_INT) : 0;
@@ -299,20 +297,20 @@ if (
                     {
                         $logicaIndicador->generar_mediciones_por_anyo($dato, idate('Y'), "dato");
                     }
-                    $error = MSG_DATO_PERIODICIDAD;
+                    $aviso = MSG_DATO_PERIODICIDAD;
                 }
             }
         }
         // Si ha ido bien mostramos la ficha del dato 
-        if ($error)
+        if ($aviso)
         {
             //Si se cambio la periodicidad lanzamos además del aviso de 
             //actualización un mensaje de error para advertir del cambio
-            header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&aviso=$aviso&error=$error");
+            header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&exito=$exito&aviso=$aviso");
         }
         else
         {
-            header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&aviso=$aviso");
+            header("Location: index.php?page=dato_mostrar&id_dato=$dato->id&id_entidad=$id_entidad&exito=$exito");
         }
     }
     else

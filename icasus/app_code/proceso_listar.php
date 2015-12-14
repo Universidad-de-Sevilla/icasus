@@ -23,8 +23,8 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $procesos = $proceso->Find_joined("id_entidad = $id_entidad");
     $smarty->assign('procesos', $procesos);
 
-    $smarty->assign('_javascript', array('ordenatabla', 'proceso_borrar'));
-    $smarty->assign('_nombre_pagina', TXT_PROC_LIST . ": " . $entidad->nombre);
+    $smarty->assign('_javascript', array('proceso_listar'));
+    $smarty->assign('_nombre_pagina', TXT_PROCS . ": " . $entidad->nombre);
     $plantilla = 'proceso_listar.tpl';
 }
 else
@@ -32,4 +32,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?page=entidad_listar&error=$error");
 }
-

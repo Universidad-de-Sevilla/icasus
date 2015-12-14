@@ -8,106 +8,79 @@
 //----------------------------------------------------------------------------
 
 $(document).ready(function () {
-    //mostrar selección de agregación temporal
-    $('#periodicidad').on('click', function () {
-        var valor = $(this).attr('value');
-        if (valor === 'Bienal' || valor === 'Anual')
-        {
-            $('#total_anual').css('display', 'none');
-        }
-        else
-        {
-
-            $('#total_anual').css('display', 'block');
-        }
-    });
     //mostrar tipo de medición
     $('.medicion').on('click', function () {
         var valor = $(this).attr('value');
+        //Agregado
         if (valor === '1' || valor === '2')
         {
-            $('#total').css('display', 'block');
-            $('#div_unidad').css('display', 'none');
-            $('#div_subunidades').css('display', 'inline');
-            $(".subunidad").attr("checked", "checked");
+            $('#total').removeClass('hidden');
+            $('#div_unidad').addClass('hidden');
+            $('#div_subunidades').removeClass('hidden');
             $(".unidad").removeAttr("checked");
+            $(".subunidad").prop("checked", 'true');
         }
+        //No agregado
         else if (valor === '0')
         {
-            $('#total').css('display', 'none');
-            $('#div_unidad').css('display', 'inline');
-            $('#div_subunidades').css('display', 'none');
+            $('#total').addClass('hidden');
+            $('#div_unidad').removeClass('hidden');
+            $('#div_subunidades').addClass('hidden');
             $(".subunidad").removeAttr("checked");
-            $(".unidad").attr("checked", "checked");
+            $(".unidad").prop("checked", 'true');
         }
     });
-    //validar formulario
-    var anyo = new Date().getFullYear();
-    var validator = $('#formdato').validate({
-        rules: {
-            codigo: {required: true},
-            id_responsable: {required: true},
-            id_responsable_medicion: {required: true},
-            historicos: {
-                required: true,
-                min: 2008,
-                max: anyo
-            },
-            tipo_seleccion_responsable: {required: true},
-            nombre: {required: true},
-            'subunidades[]': {required: true}
-        },
-        ignore: ':hidden',
-        messages: {
-            codigo: 'Debe insertar un código',
-            id_responsable: 'Debe seleccionar un responsable',
-            id_responsable_medicion: 'Seleccionar el responsable de medición',
-            historicos: {
-                required: 'Debe indicar un año de inicio para el Histórico del Dato',
-                min: 'El Histórico debe ser igual o posterior al año 2008',
-                max: 'El Histórico debe ser igual o anterior al año actual'
-            },
-            nombre: 'Debe dar un nombre',
-            tipo_seleccion_responsable: 'Seleccionar el tipo de medición',
-            'subunidades[]': 'Debe seleccionar al menos una Unidad'
+
+    $('#marcar_todos').on('click', function () {
+        $(".subunidad").prop("checked", 'true');
+    });
+
+    $('#desmarcar_todos').on('click', function () {
+        $(".subunidad").removeAttr("checked");
+    });
+
+    //Cálculo automático
+    $('#activar_calculo').change(function () {
+        if ($('#activar_calculo').is(':checked')) {
+            $('#formula_calculo').removeClass('hidden');
+            $('#intervalo').addClass('hidden');
+            $('#calculo').removeAttr('disabled');
+            $('.heredado').removeClass('hidden');
+            $("#id_tipo_agregacion").trigger("chosen:updated");
+        }
+        else {
+            $('#calculo').attr('disabled', 'disabled');
+            $('#formula_calculo').addClass('hidden');
+            $('#intervalo').removeClass('hidden');
+            $('.heredado').addClass('hidden');
+            $("#id_tipo_agregacion").trigger("chosen:updated");
         }
     });
-    //Cambiar de pestaña y botón de grabar
-    $('button.green').on('click', function (e) {
-        var estavalidado = $('#formdato').valid();
-        if (!estavalidado)
+
+    //Intervalo
+    $('#activar_intervalo').change(function () {
+        if ($('#activar_intervalo').is(':checked')) {
+            $('#vmin,#vmax').removeClass('hidden');
+            $('#calculo_automatico').addClass('hidden');
+            $('#valor_min,#valor_max').removeAttr('disabled');
+        }
+        else {
+            $('#valor_min,#valor_max').attr('disabled', 'disabled');
+            $('#vmin,#vmax').addClass('hidden');
+            $('#calculo_automatico').removeClass('hidden');
+        }
+    });
+
+    //Periodicidad y mostrar selección de agregación temporal
+    $('#periodicidad').on('change', function () {
+        var valor = $("#periodicidad option:selected").text();
+        if (valor === 'Bienal' || valor === 'Anual')
         {
-            validator.focusInvalid();
+            $('#total_anual').addClass('hidden');
         }
-    });
-    $('#tab_datos').on('click', function (e) {
-        $(this).attr('href', '#dato');
-        var actualTab = $('#tab_crear_dato').tabs('option', 'selected');
-        var estavalidado = $('#formdato').valid();
-        if (!estavalidado)
+        else
         {
-            $(this).attr('href', '#');
-            validator.focusInvalid();
-        }
-    });
-    $('#tab_otras').on('click', function (e) {
-        $(this).attr('href', '#otras');
-        var actualTab = $('#tab_crear_dato').tabs('option', 'selected');
-        var estavalidado = $('#formdato').valid();
-        if (!estavalidado)
-        {
-            $(this).attr('href', '#');
-            validator.focusInvalid();
-        }
-    });
-    $('#tab_subunidades').on('click', function (e) {
-        $(this).attr('href', '#subunidades');
-        var actualTab = $('#tab_crear_dato').tabs('option', 'selected');
-        var estavalidado = $('#formdato').valid();
-        if (!estavalidado)
-        {
-            $(this).attr('href', '#');
-            validator.focusInvalid();
+            $('#total_anual').removeClass('hidden');
         }
     });
 });

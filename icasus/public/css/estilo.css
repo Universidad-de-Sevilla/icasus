@@ -1,0 +1,503 @@
+/*
+Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+Archivo: public/css/estilo.css
+Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+Joaquín Valonero Zaera (tecnibus1@us.es)
+--------------------------------------------------------------------------
+Fichero de estilo propio de Icasus
+----------------------------------------------------------------------------*/
+
+body{
+    background-color: #f8f8f8;
+} 
+
+nav a,.nav-tabs a, h2 a, p a,.breadcrumb a{
+    color: #950717;
+}
+
+.nav-tabs{
+    border-color: #FFC526; 
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, 
+.nav-tabs > li.active > a:hover {
+    border-color: #FFC526 #FFC526 transparent;
+    color: #880736;
+}
+
+nav a:hover, nav a:focus,
+h2 a:hover, h2 a:focus,
+p a:hover, p a:focus,
+.breadcrumb a:hover,.breadcrumb a:focus{
+    color: #880736;
+}
+
+hr, .divider{
+    border-color: #FFC526 !important;
+    background-color: #FFC526 !important;
+}
+
+.dropdown-menu {
+    border-color: #FFC526 !important;
+}
+
+#wrapper {
+    width: 100%;
+}
+
+#page-wrapper {
+    padding: 0 15px 40px;
+    min-height: 568px;
+    margin-top: 10px;
+    background: #fff url("../images/universidad_trans.jpg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 220px;
+        padding: 0 30px 40px;
+        border-left: 1px solid #FFC526;
+    }
+}
+
+.logo{
+    position:relative;
+    bottom: 10px;
+    margin-right: 10px;
+}
+
+.page-header{
+    margin-top: 20px;
+    border-color: #FFC526; 
+    color: #950717;
+}
+
+.notificacion{
+    margin-top: 20px;
+}
+
+.navbar-default{
+    border-color: #FFC526;
+}
+
+.navbar-brand{
+    font-size: 46px; 
+    color: #950717 !important;
+    font-weight: bold;
+}
+
+.navbar-top-links {
+    margin-right: 0;
+}
+
+.navbar-top-links li {
+    display: inline-block;
+}
+
+.navbar-top-links li:last-child {
+    margin-right: 15px;
+}
+
+.navbar-top-links li a {
+    padding: 15px;
+    min-height: 50px;
+}
+
+.navbar-top-links .dropdown-menu li {
+    display: block;
+}
+
+.navbar-top-links .dropdown-menu li:last-child {
+    margin-right: 0;
+}
+
+.navbar-top-links .dropdown-menu li a {
+    padding: 3px 20px;
+    min-height: 0;
+    color: #950717;
+}
+
+.dropdown-menu li a{
+    color: #950717;
+}
+
+.dropdown-menu li a:hover{
+    color: #880736;
+}
+
+.navbar-top-links .dropdown-menu li a div {
+    white-space: normal;
+}
+
+.navbar-top-links .dropdown-alerts {
+    width: 350px;
+    min-width: 0;
+}
+
+.navbar-top-links .dropdown-alerts {
+    margin-left: -125px;
+}
+
+.navbar-top-links .dropdown-user {
+    right: 0;
+    left: auto;
+}
+
+#fecha_actual{
+    color: #950717;
+}
+
+.sidebar .sidebar-nav.navbar-collapse {
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.sidebar .sidebar-search {
+    padding: 15px;
+}
+
+.sidebar ul li {
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.sidebar ul li a.active {
+    background-color: #eee;
+}
+
+.sidebar .arrow {
+    float: right;
+}
+
+.sidebar .fa.arrow:before {
+    content: "\f104";
+}
+
+.sidebar .active>a>.fa.arrow:before {
+    content: "\f107";
+}
+
+.sidebar .nav-second-level li,
+.sidebar .nav-third-level li {
+    border-bottom: 0!important;
+}
+
+.sidebar .nav-second-level li a {
+    padding-left: 37px;
+}
+
+.sidebar .nav-third-level li a {
+    padding-left: 52px;
+}
+
+@media(min-width:768px) {
+    .sidebar {
+        z-index: 1;
+        position: absolute;
+        width: 220px;
+        margin-top: 51px;
+    }
+
+    .navbar-top-links .dropdown-messages,
+    .navbar-top-links .dropdown-tasks,
+    .navbar-top-links .dropdown-alerts {
+        margin-left: auto;
+    }
+}
+
+@media(max-width:768px) {
+    .navbar-static-top + #page-wrapper {
+        margin-top: 0px;
+    }
+}
+
+.btn-outline {
+    color: inherit;
+    background-color: transparent;
+    transition: all .5s;
+}
+
+.btn-default.active, .btn-default:active, .open > .dropdown-toggle.btn-default {
+    color: #880736;
+}
+
+.btn-primary.btn-outline {
+    color: #428bca;
+}
+
+.btn-success.btn-outline {
+    color: #5cb85c;
+}
+
+.btn-info.btn-outline {
+    color: #5bc0de;
+}
+
+.btn-warning.btn-outline {
+    color: #f0ad4e;
+}
+
+.btn-danger.btn-outline {
+    color: #d9534f;
+}
+
+.btn-primary.btn-outline:hover,
+.btn-success.btn-outline:hover,
+.btn-info.btn-outline:hover,
+.btn-warning.btn-outline:hover,
+.btn-danger.btn-outline:hover {
+    color: #fff;
+}
+
+.btn-danger{
+    background-color: #950717;
+    border-color: #950717;
+}
+
+.btn-danger:hover,
+.btn-danger:focus {
+    background-color: #880736;
+}
+
+.btn-danger:active:hover,
+.btn-danger.active:hover,
+.open > .dropdown-toggle.btn-danger:hover,
+.btn-danger:active:focus,
+.btn-danger.active:focus,
+.open > .dropdown-toggle.btn-danger:focus,
+.btn-danger:active.focus,
+.btn-danger.active.focus,
+.open > .dropdown-toggle.btn-danger.focus {
+    background-color: #950717;
+}
+
+.dataTables_wrapper {
+    position: relative;
+    clear: both;
+}
+
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc,
+table.dataTable thead .sorting_desc,
+table.dataTable thead .sorting_asc_disabled,
+table.dataTable thead .sorting_desc_disabled {
+    background: 0 0;
+}
+
+table.dataTable thead .sorting_asc:after {
+    content: "\f0de";
+    float: right;
+    font-family: fontawesome;
+}
+
+table.dataTable thead .sorting_desc:after {
+    content: "\f0dd";
+    float: right;
+    font-family: fontawesome;
+}
+
+table.dataTable thead .sorting:after {
+    content: "\f0dc";
+    float: right;
+    font-family: fontawesome;
+    color: rgba(50,50,50,.5);
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.428571429;
+}
+
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    border-radius: 25px;
+    font-size: 18px;
+    line-height: 1.33;
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.show-grid [class^=col-] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #ddd;
+    background-color: #eee!important;
+}
+
+.show-grid {
+    margin: 15px 0;
+}
+
+.huge {
+    font-size: 40px;
+}
+
+.panel-green {
+    border-color: #5cb85c;
+}
+
+.panel-green .panel-heading {
+    border-color: #5cb85c;
+    color: #fff;
+    background-color: #5cb85c;
+}
+
+.panel-green a {
+    color: #5cb85c;
+}
+
+.panel-green a:hover {
+    color: #3d8b3d;
+}
+
+.panel-red {
+    border-color: #950717;
+}
+
+.panel-red .panel-heading {
+    border-color: #950717;
+    color: #fff;
+    background-color: #950717;
+}
+
+.panel-red table a, .tab-content table a {
+    color: #950717;
+}
+
+.panel-red table a:hover, .tab-content table a:hover {
+    color: #880736;
+}
+
+.panel-yellow {
+    border-color: #f0ad4e;
+}
+
+.panel-yellow .panel-heading {
+    border-color: #f0ad4e;
+    color: #fff;
+    background-color: #f0ad4e;
+}
+
+.panel-yellow a {
+    color: #f0ad4e;
+}
+
+.panel-yellow a:hover {
+    color: #df8a13;
+}
+
+.footer{
+    border-top: 1px solid #FFC526;
+    background-color: #950717;
+    color: #fff;
+    padding: 1%;
+}
+
+.clickable {
+    cursor: pointer;
+} 
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > 
+.active > a:hover, .pagination > .active > span, .pagination > .active > 
+span:focus, .pagination > .active > span:hover {
+    background-color:  #950717;
+    border-color:  #950717;
+}
+
+.pagination > li > a, .pagination > li > span {  
+    color: #950717;
+    text-decoration: none;
+}
+
+.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > 
+span:focus, .pagination > li > span:hover {
+    color: #880736;
+}
+
+/*Página de login*/
+.login-page {
+    background: url("../images/universidad.jpg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/*Back to top*/
+#top-link-block.affix-top {
+    position: absolute; /* allows it to "slide" up into view */
+    bottom: -82px; /* negative of the offset - height of link element */
+    right: 10px; /* padding from the right side of the window */
+}
+
+#top-link-block.affix {
+    position: fixed; /* keeps it on the bottom once in view */
+    bottom: 18px; /* height of link element */
+    right: 10px; /* padding from the right side of the window */
+}
+
+/*Menú de Unidades*/
+.panel-procesos {
+    border-color: #337AB7;
+}
+
+.panel-procesos .panel-heading {
+    border-color: #337AB7;
+    color: #fff;
+    background-color: #337AB7;
+}
+
+.panel-procesos .panel-heading:hover {
+    background-color: #23527C;
+}
+
+.panel-indicadores {
+    border-color: #5CB85C;
+}
+
+.panel-indicadores .panel-heading {
+    border-color: #5CB85C;
+    color: #fff;
+    background-color: #5CB85C;
+}
+
+.panel-indicadores .panel-heading:hover {
+    background-color: #4CAE4C;
+}
+
+.panel-datos {
+    border-color: #FFC526;
+}
+
+.panel-datos .panel-heading {
+    border-color: #FFC526;
+    color: #fff;
+    background-color: #FFC526;
+}
+
+.panel-datos .panel-heading:hover {
+   background-color: #df8a13;
+}
+
+/*Consultas*/
+.well.activo{
+    border: 1px solid #950717;
+}

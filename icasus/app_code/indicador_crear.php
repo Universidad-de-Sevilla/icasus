@@ -42,6 +42,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $smarty->assign("tipos_agregacion", $tipos_agregacion);
 
     $smarty->assign("_nombre_pagina", TXT_INDIC_NUEVO . " - " . $entidad->nombre);
+    $smarty->assign('_javascript', array('indicador_crear'));
     $plantilla = "indicador_crear.tpl";
 }
 else
@@ -49,4 +50,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?error=$error");
 }
-

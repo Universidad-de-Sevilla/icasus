@@ -3,9 +3,10 @@
 //--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
 // Archivo: index.php
-// Desarrolladores: Juanan Ruiz <juanan@us.es>, Jesús Martin <jjmc@us.es>
+// Desarrolladores: Juanan Ruiz <juanan@us.es>, Jesús Martin <jjmc@us.es>, 
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-// Descripcion: Esta es la página que carga a todas las demas en su seno maternal 
+// Descripción: Esta es la página que carga a todas las demás en su seno maternal 
 //--------------------------------------------------------------------------
 // Esto es para que se vean los errores
 ini_set('display_errors', '1');
@@ -16,10 +17,6 @@ include_once('../app_code/app_version.php');
 include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
 include_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
 include_once('../../cascara_core/lib/smarty/Smarty.class.php');
-include_once('../../cascara_core/function/caracteres.php');
-
-//Retirar cuando todo este bien con la función filter_input de PHP
-include_once('../../cascara_core/function/sanitize.php');
 
 //Fichero de idioma
 include_once('../app_code/' . IC_LANG_FILE);
@@ -56,9 +53,7 @@ $smarty->template_dir = '../app_code';
 $smarty->compile_dir = '../templates_c';
 $smarty->config_dir = '../configs';
 $smarty->cache_dir = '../cache';
-//$smarty->cache = false; 
-//Versión actual de icasus
-//$smarty->assign('_version', '1.1');
+//$smarty->cache = false;
 // Crea una sesión con un identificador encriptado para evitar ataques
 $session_key = substr(md5(IC_DIR_BASE), 0, 8);
 session_name('IC_SESSID' . $session_key);
@@ -73,15 +68,8 @@ if (!session_id())
     //@ini_set("session.gc_maxlifetime",10);
     session_start();
 }
-//
-//if (isset($_GET['page'])) {
-//    $page = sanitize($_GET['page'], 2);
-//} else {
-//    $page = "inicio";
-//}
 
 $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_URL);
-
 if ($page == null || $page == false)
 {
     $page = "inicio";
@@ -89,15 +77,26 @@ if ($page == null || $page == false)
 
 if (isset($_SESSION['usuario']))
 {
-    // Si viene id_entidad le asignamos su valor, si no, asignamos cero.
-    // Quitarlo cuando se aclare lo de los permisos
-    //$id_entidad = isset($_REQUEST['id_entidad']) ? sanitize($_REQUEST['id_entidad'], 16) : 0;
-
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
     if ($id_entidad == null || $id_entidad == false)
     {
         $id_entidad = 1;
+    }
+    else
+    {
+        //Cantidad de procesos, indicadores y datos
+        $proceso = new Proceso();
+        $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");
+        $smarty->assign('num_procesos', count($procesos));
+
+        $indicador = new Indicador();
+        $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
+        $smarty->assign('num_indicadores', count($indicadores));
+
+        $dato = new Indicador();
+        $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL");
+        $smarty->assign('num_datos', count($datos));
     }
 
     $usuario = $_SESSION['usuario'];
@@ -110,21 +109,35 @@ if (isset($_SESSION['usuario']))
     $logicaUsuario = new LogicaUsuario();
     $rol = $logicaUsuario->getRol($usuario, $id_entidad);
 
+    // Entidades de este usuario
+    $smarty->assign('num_entidades_usuario', count($usuario->entidades));
+
+    // Procesos propiedad del usuario
+    $proceso = new Proceso();
+    $procesos_propios = $proceso->Find("id_propietario=$usuario->id");
+    $smarty->assign('num_procesos_propios', count($procesos_propios));
+
+    // Indicadores bajo la responsabilidad de este usuario
+    $indicador = new Indicador();
+    $indicadores_propios = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL");
+    $smarty->assign("num_indicadores_propios", count($indicadores_propios));
+
+    // Datos bajo la responsabilidad de este usuario
+    $datos_propios = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
+    $smarty->assign("num_datos_propios", count($datos_propios));
+
+    // Cuadros de mando propios del usuario
+    $cuadro = new Cuadro();
+    $cuadros = $cuadro->Find("id_usuario = $usuario->id");
+    $smarty->assign('num_cuadros_propios', count($cuadros));
+
     $smarty->assign('_rol', $rol);
     $smarty->assign('_control', $control);
     $smarty->assign('_usuario', $usuario);
-    /*
-      // Comprueba si el usuario tiene permiso para realizar esta acción
-      if (! $usuario->autorizar($page, $id_entidad, $usuario->id_usuario, $id_usuario_url))
-      {
-      $smarty->assign('error', 'No tiene permisos para realizar esta acción');
-      $page = "error";
-      }
-     */
 }
 else
 {
-    // Si no se ha iniciado sesión cargamos la de login  
+    // Si no se ha iniciado sesión cargamos la página de login  
     $page = IC_TIPO_LOGIN;
 }
 
@@ -139,12 +152,6 @@ else
     require_once("../app_code/error.php");
 }
 
-//if (isset($_GET['ajax']) AND $_GET['ajax'] == 'true') {
-//    $template = $plantilla;
-//} else {
-//    $smarty->assign("plantilla", $plantilla);
-//    $template = 'index.tpl';
-//}
 //Comprobamos si hay una petición AJAX
 $ajax = filter_input(INPUT_GET, 'ajax', FILTER_VALIDATE_BOOLEAN);
 //Si es asi sólo recargaremos la sección afectada

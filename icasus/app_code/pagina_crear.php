@@ -16,13 +16,13 @@ if (filter_has_var(INPUT_POST, 'alias') && filter_has_var(INPUT_POST, 'titulo') 
     // Guardamos los datos que vienen del formulario
     $pagina = new Pagina();
     $pagina->alias = $pagina->alieniza(filter_input(INPUT_POST, 'alias'));
-    $pagina->titulo = filter_input(INPUT_POST, 'titulo',FILTER_SANITIZE_STRING);
+    $pagina->titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
     $pagina->contenido = filter_input(INPUT_POST, 'contenido');
     $pagina->modified = time();
     $pagina->save();
     $smarty->assign('pagina', $pagina);
-    $smarty->assign('_nombre_pagina', TXT_MANUAL . ': ' . $pagina->titulo);
-    $smarty->assign('aviso', MSG_PAG_NUEVA_OK);
+    $smarty->assign('_nombre_pagina', TXT_AYUDA . ': ' . $pagina->titulo);
+    $smarty->assign('exito', MSG_PAG_NUEVA_OK);
     $plantilla = 'pagina_mostrar.tpl';
 }
 else
@@ -31,4 +31,3 @@ else
     $smarty->assign('_nombre_pagina', TXT_PAG_AYUDA_NUEVA);
     $plantilla = 'pagina_crear.tpl';
 }
-

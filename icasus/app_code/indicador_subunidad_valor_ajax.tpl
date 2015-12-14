@@ -1,15 +1,37 @@
 {if $modulo == 'seleccionar_años'}
-<fieldset class="label">
-	<label>{$smarty.const.FIELD_FIN_PERIODO}</label>
-	<div>
-		<select name="fin"  id="fin" class="select_box">
-			{foreach from=$years item=year}
-         {if $year->periodo_inicio|truncate:4:'' >= $year_inicio} <option value="{$year->periodo_inicio|truncate:4:''}" >{$year->periodo_inicio|truncate:4:''}</option>{/if}
-			{/foreach}
-		</select>
-		<div class="required_tag"></div>
-	</div>
-</fieldset>
+    <label for="fin">{$smarty.const.FIELD_FIN_PERIODO}</label>            
+    <select class="form-control" name="fin" id="fin">
+        {foreach from=$years item=year}
+            {if $year->periodo_inicio|truncate:4:'' >= $year_inicio} <option value="{$year->periodo_inicio|truncate:4:''}" >{$year->periodo_inicio|truncate:4:''}</option>{/if}
+        {/foreach}
+    </select>                
 {elseif $modulo == 'mostrar_valores' OR $modulo == 'asignar_una_medicion' OR $modulo == 'activar_all' OR $modulo == 'activar_uno'}
-	{include file="indicador_subunidad_valor_mostrar.tpl"}
+    <!-- Valores de subunidades-mediciones -->
+    <div class="row">
+        <div class="col-lg-12" id="mostrar_valores">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA}</span>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    {include file="indicador_subunidad_valor_mostrar.tpl"}
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <!-- /Valores de subunidades-mediciones -->
 {/if}
+
+{*Recargamos script, chosen-select y boostrap-toggle tras petición ajax*}
+<script>
+    $('#fin').chosen({
+        disable_search_threshold: 10,
+        no_results_text: "Oops, no se encuentran registros coincidentes"
+    });
+    $(':checkbox').bootstrapToggle();
+</script>

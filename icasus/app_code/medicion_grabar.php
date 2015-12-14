@@ -21,7 +21,7 @@ $grabacion_fin = filter_input(INPUT_POST, 'gfYear', FILTER_SANITIZE_NUMBER_INT) 
 
 if (filter_has_var(INPUT_POST, 'id_indicador')and filter_input(INPUT_POST, 'tipo')and $periodo_inicio and $periodo_fin and $grabacion_inicio and $grabacion_fin)
 {
-    $tipo = filter_input(INPUT_POST, 'tipo', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner"));
+    $tipo = filter_input(INPUT_POST, 'tipo', FILTER_SANITIZE_STRING);
     $medicion = new Medicion();
 
     $medicion->id_indicador = filter_input(INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
@@ -30,13 +30,14 @@ if (filter_has_var(INPUT_POST, 'id_indicador')and filter_input(INPUT_POST, 'tipo
     $medicion->grabacion_inicio = $grabacion_inicio;
     $medicion->grabacion_fin = $grabacion_fin;
 
-    $medicion->etiqueta = filter_has_var(INPUT_POST, 'etiqueta') ? filter_input(INPUT_POST, 'etiqueta', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : null;
-    $medicion->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_CALLBACK, array("options" => "Util::mysqlCleaner")) : '';
+    $medicion->etiqueta = filter_has_var(INPUT_POST, 'etiqueta') ? filter_input(INPUT_POST, 'etiqueta', FILTER_SANITIZE_STRING) : null;
+    $medicion->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_SANITIZE_STRING) : '';
     if ($medicion->save())
     {
+        $post_array = filter_input_array(INPUT_POST);
         if (filter_has_var(INPUT_POST, 'valor_referencia'))
         {
-            $valores_referencia = filter_input(INPUT_POST, 'valor_referencia');
+            $valores_referencia = $post_array['valor_referencia'];
 
             foreach ($valores_referencia as $id_valor_referencia => $valor)
             {
@@ -48,7 +49,6 @@ if (filter_has_var(INPUT_POST, 'id_indicador')and filter_input(INPUT_POST, 'tipo
                 $valor_referencia_medicion->save();
             }
         }
-
         // Grabamos un valor en blanco a cada una de las unidades asociadas al indicador
         $indicador_subunidad = new Indicador_subunidad();
         $indicadores_subunidades = $indicador_subunidad->Find("id_indicador = $medicion->id_indicador");
@@ -61,8 +61,8 @@ if (filter_has_var(INPUT_POST, 'id_indicador')and filter_input(INPUT_POST, 'tipo
             $valor->activo = 1;
             $valor->save();
         }
-        $aviso = MSG_MED_CREADA . $numero_subunidades;
-        header("location:index.php?page=medicion_listar&id_{$tipo}=$medicion->id_indicador&aviso=$aviso");
+        $exito = MSG_MED_CREADA . $numero_subunidades;
+        header("location:index.php?page=medicion_listar&id_{$tipo}=$medicion->id_indicador&exito=$exito");
     }
     else
     {
