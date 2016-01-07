@@ -280,13 +280,6 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    {literal}
-        <script type="text/javascript">
-            $(document).ready(function () {
-                $('img[usemap]').rwdImageMaps();
-            });
-        </script>
-    {/literal}
 {else}
     <div class="row">
         <div class="col-lg-12">
@@ -386,3 +379,11 @@
     </div>
     <!-- /.row -->
 {/if}
+
+{literal}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('img[usemap]').rwdImageMaps();
+        });
+    </script>
+{/literal}
