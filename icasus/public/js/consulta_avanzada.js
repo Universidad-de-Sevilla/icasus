@@ -8,26 +8,50 @@
 //----------------------------------------------------------------------------
 
 /* --- Comienza la magia --- */
-//Están son las series iniciales que pintamos en pantalla, se agregarán más cuando se llenen
-var contador_series = 5;
-var datos = []; //Los datos de cada serie ya procesados
-var opciones; //Las opciones para mostrar los gráficos
-var datos_json = []; //Contiene los valores de los indicadores tal como vienen de la petición a la API
-$('.receptor:first').toggleClass('activo');
+var medicion_actual = 'Todos'; // Variable para guardar la medición donde estamos actualmente
+var nombres = [];// Contiene los nombres de los indicadores añadidos a la consulta 
+var datos_json = [];// Los datos de cada serie sin procesar
+var datos = []; // Los datos de cada serie ya procesados para líneas
+var datosB = []; // Los datos de cada serie ya procesados para barras
+// Guarda los datos de todas las series de cada indicador del panel de líneas
+var totalDataseries = new Array();
+// Guarda los datos de todas las series de cada indicador del panel de barras
+var totalDataseriesB = new Array();
 
+$('.receptor:first').toggleClass('activo');
 /* --- La declaración de eventos --- */
-$('#btn_mostrar_resultado').click(calcularResultado);
+$('#btn_mostrar_resultado1, #btn_mostrar_resultado2').click(calcularResultado);
+$('.label_receptor').click(function () {
+    $(this).next('.receptor').trigger('click');
+});
+$('#btn_incluir').click(agregarIndicador);//Comentar para selección por tabla
+
 $('.receptor').click(activarReceptor);
-$('.indicador').click(agregarIndicador);
+
+//Descomentar para selección por tabla
+//$('.indicador').click(agregarIndicador);
+
 $('.medicion').click(mostrarMedicion);
 
 /* --- Las funciones --- */
 function agregarIndicador()
 {
-    var id_indicador = $(this).attr('id_indicador');
+    //var id_indicador = $(this).attr('id_indicador'); descomentar para selección por tabla
+    var id_indicador = $('#indicadores').val();//Comentar para selección por tabla
     var serie = $(".activo").data("serie");
+    if ($("#resultados").hasClass('hidden')) {
+        $('#resultados').removeClass('hidden');
+    }
     $(".activo").empty();
-    $(this).clone().appendTo('.activo').wrap("<div />").after('<a id="borra' + serie + '" title="Retirar de la consulta" class="pull-right clickable" style="color:#950717"><i class="fa fa-times fa-fw"></i></a>').toggleClass("indicador escogido");
+    //descomentar para selección por tabla
+    //$(this).clone().appendTo('.activo').wrap("<div />").after('<a id="borra' + serie + '" title="Retirar de la consulta" class="pull-right clickable" style="color:#950717"><i class="fa fa-times fa-fw"></i></a>').toggleClass("indicador escogido");
+
+    //Comentar las 4 siguientes líneas para selección por tabla
+    var nombre_indicador = $('#indicadores option:selected').text();
+    $(".activo").append('<span title="' + nombre_indicador + '" class="escogido">' + nombre_indicador + '</span>');
+    $(".escogido").attr('id_indicador', id_indicador);
+    $(".activo").append('<a id="borra' + serie + '" title="Retirar de la consulta" class="pull-right clickable" style="color:#950717"><i class="fa fa-times fa-fw"></i></a>');
+
     $('#borra' + serie).bind('click', quitarIndicador);
     $.getJSON('api_publica.php?metodo=get_subunidades_indicador&id=' + id_indicador, function (data) {
         var items = [];
@@ -52,13 +76,54 @@ function agregarIndicador()
 function mostrarIndicador(serie) {
     var id_indicador = $('.activo').find('.escogido').attr('id_indicador');
     var nombre_indicador = $('.activo').find('.escogido').text();
+    nombres[serie] = nombre_indicador;
     $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador, function (data) {
-        generaTablaDatos(id_indicador, nombre_indicador, data, serie);
-        datos_json[serie] = {'serie': serie, 'nombre': nombre_indicador, 'data': data};
+        datos_json[serie] = data;
         datos[serie] = prepararDatos(data, serie);
-        opciones = prepararOpciones(data);
-        $("#grafica").css("height", "400px");
-        $.plot($("#grafica"), datos, opciones);
+        //Sacar los datos de la dataserie y hacer un push en 
+        //total_dataseries
+        datos[serie].forEach(function (dataserie) {
+            totalDataseries.push(dataserie);
+        });
+        //Gráfico de líneas
+        pintaGrafico({
+            chart: {
+                renderTo: 'grafica',
+                events: {}
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: 'Todos',
+                style: {"fontSize": "14px"}
+            },
+            subtitle: {
+                text: 'Haga click sobre el gráfico para aumentarlo'
+            },
+            exporting: {
+                filename: 'consulta'
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Valores'
+                }
+            },
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return this.y ? Math.round(this.y * 100) / 100 : null;
+                        }
+                    }
+                }
+            },
+            series: totalDataseries
+        });
         // Después de mostrar el indicador activamos el siguiente receptor
         $(".activo").nextAll(".receptor:first").trigger("click");
     });
@@ -70,223 +135,311 @@ function mostrarIndicadorSubunidad()
     mostrarIndicador(serie);
 }
 
-function generaTablaDatos(id_indicador, nombre_indicador, datos, serie)
-{
-    var items = [];
-    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
-    items.push('<caption>' + nombre_indicador + ' (' + subunidad_actual + ')</caption>');
-    items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
-    $.each(datos, function (i, dato) {
-        if (dato.unidad === subunidad_actual)
-        {
-            items.push('<tr><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
-        }
-    });
-    $('#tabla' + serie).empty();
-    $('<table />', {'class': 'table table-striped table-hover',
-        'data-id_indicador': id_indicador,
-        html: items.join('')
-    }).appendTo('#tabla' + serie);
-}
-
-function generaTablaResultados(datos)
-{
-    var items = [];
-    items.push('<caption>Resultados</caption>');
-    items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
-    $.each(datos, function (i, dato) {
-        items.push('<tr><td>' + dato[0] + '</td><td>' + dato[1].toFixed(2) + '</td></tr>');
-    });
-    $('#tablar').empty();
-    $('<table />', {'class': 'table table-striped table-hover',
-        'data-id_indicador': 0,
-        html: items.join('')
-    }).appendTo('#tablar');
-}
-
 function mostrarMedicion(e)
 {
     e.preventDefault();
     $('.medicion.actual').removeClass('actual');
     $(this).addClass('actual');
-    var medicion_actual = $(this).text();
+    medicion_actual = $(this).text();
     if (medicion_actual === "Todos")
     {
-        opciones = {colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']};
-        $("#grafica").css("height", "400px");
-        $.plot($("#grafica"), datos, opciones);
-        console.log(opciones);
-    }
-    else
-    {
-        var subunidades = [];
-        var ejeY = [];
-        var datos_flot = [];
-        $.each(datos_json, function (s, serie) {
-            if (serie.data)
-            {
-                $.each(serie.data, function (i, dato) {
-                    if (dato.medicion === medicion_actual && dato.unidad !== "Total")
-                    {
-                        if (subunidades.indexOf(dato.unidad) < 0) {
-                            subunidades.push(dato.unidad);
+        if (totalDataseries.length > 0) {
+            pintaGrafico({
+                chart: {
+                    renderTo: 'grafica',
+                    events: {}
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: 'Todos',
+                    style: {"fontSize": "14px"}
+                },
+                subtitle: {
+                    text: 'Haga click sobre el gráfico para aumentarlo'
+                },
+                exporting: {
+                    filename: 'consulta'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Valores'
+                    }
+                },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return this.y ? Math.round(this.y * 100) / 100 : null;
+                            }
                         }
                     }
-                });
-            }
-        });
-        subunidades.sort();
-        subunidades.reverse();
-        $.each(subunidades, function (s, subunidad) {
-            ejeY.push([s, subunidad]);
+                },
+                series: totalDataseries
+            });
+        }
+    }
+    else //Medición concreta
+    {
+        $.each(datos_json, function (i, dato_json) {
+            datosB[i] = prepararDatosB(dato_json, i);
+            datosB[i].forEach(function (dataserie) {
+                totalDataseriesB.push(dataserie);
+            });
         });
 
-        $.each(datos_json, function (s, serie) {
-            if (serie.data)
-            {
-                var items = [];
-                nombre_indicador = serie.nombre;
-                $.each(serie.data, function (i, dato) {
-                    if (dato.medicion === medicion_actual && dato.unidad !== "Total")
-                    {
-                        // Incrementa el valor orden en función de la serie para que las barras no se solapen
-                        orden = subunidades.indexOf(dato.unidad) + serie.serie / 5;
-                        items.push([dato.valor, orden]);
+        if (totalDataseriesB.length > 0) {
+            pintaGrafico({
+                chart: {
+                    renderTo: 'grafica',
+                    events: {}
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: medicion_actual,
+                    style: {"fontSize": "14px"}
+                },
+                subtitle: {
+                    text: 'Haga click sobre el gráfico para aumentarlo'
+                },
+                exporting: {
+                    filename: 'consulta'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Valores'
                     }
-                });
-                datos_flot.push({label: nombre_indicador + '(' + medicion_actual + ')', color: s, data: items});
-            }
-        });
-
-        opciones = {
-            series: {bars: {show: true, barWidth: 0.1, fill: 0.7, align: "center", horizontal: true}},
-            legend: {position: "ne"},
-            yaxis: {ticks: ejeY},
-            colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
-        };
-        //generaTablaMedicion(medicion_actual);
-        alto = opciones.yaxis.ticks.length * 30 + 50 + "px";
-        $("#grafica").css("height", alto);
-        $.plot($("#grafica"), datos_flot, opciones);
+                },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return this.y ? Math.round(this.y * 100) / 100 : null;
+                            }
+                        }
+                    }
+                },
+                series: totalDataseriesB
+            });
+        }
+        else {
+            $('#med_actual').text(medicion_actual);
+            $('#dialogo_sin_val').modal('show');
+        }
     }
 }
 
-// Tabla de datos de las mediciones, de momento no funciona ni se usa
-function generaTablaMedicion(medicion_actual)
+function prepararDatos(data, serie)
 {
-    var contenido_tabla = [];
-    $.each(datos_json, function (s, serie) {
-        if (serie.data)
-        {
-            nombre_indicador = serie.nombre;
-            if (s % 2 === 0) {
-                paridad = "odd";
-            } else {
-                paridad = "even";
-            }
-            contenido_tabla.push('<tr class="' + paridad + '"><td>' + serie.nombre + '</td>');
-            $.each(datos_json, function (i, dato) {
-                if (dato.medicion === medicion_actual && dato.unidad !== "Total")
-                {
-                    contenido_tabla.push('<td>' + dato.valor + '</td>');
-                }
-            });
-        }
+    //Actualizamos todas las series
+    delete datos[serie];
+    totalDataseries = [];
+    //Sacar los datos de la dataserie y hacer un push en 
+    //total_dataseries
+    datos.forEach(function (serie) {
+        serie.forEach(function (dataserie) {
+            totalDataseries.push(dataserie);
+        });
     });
-    $('#tabla_medicion').empty();
-    $('<table />', {'class': 'static',
-        html: contenido_tabla.join('')
-    }).appendTo('#tabla_medicion');
-}
-
-function prepararDatos(datos, serie)
-{
-    var items = [];
     var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
-    var nombre_indicador = $('.activo').find('.escogido').text();
-    $.each(datos, function (i, dato) {
-        if (dato.unidad === subunidad_actual)
-        {
-            items.push([dato.medicion, dato.valor]);
+    var chartSerie = new HighchartSerie();
+    chartSerie.categoryType = "año";
+    data.forEach(function (dato) {
+        // Seleccionamos sólo los datos de la unidad 
+        if (dato.unidad === subunidad_actual && (dato.valor !== null)) {
+            chartSerie.add(dato, true);
+        }
+        // Se incluyen también los valores de referencia
+        if (dato.referencia && (dato.valor !== null)) {
+            chartSerie.add(dato, true);
         }
     });
-    datos_flot = {label: nombre_indicador + '(' + subunidad_actual + ')', color: serie, data: items};
-    return datos_flot;
+    // Pide las series de datos a chartSerie
+    // A saber: Totales y Valores de referencia
+    var dataseries = chartSerie.getLinealSerie(nombres[serie], serie);
+    return dataseries;
 }
 
-function prepararOpciones(datos)
+function prepararDatosB(data, serie)
 {
-    var opciones = {
-        series: {lines: {show: true}, points: {show: true}},
-        legend: {position: "ne"},
-        xaxis: {tickDecimals: 0},
-        colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
-    };
-    return opciones;
+    //Actualizamos todas las series
+    delete datosB[serie];
+    totalDataseriesB = [];
+    //Sacar los datos de la dataserie y hacer un push en 
+    //total_dataseries
+    datosB.forEach(function (serie) {
+        serie.forEach(function (dataserie) {
+            totalDataseriesB.push(dataserie);
+        });
+    });
+    var chartSerie = new HighchartSerie();
+
+    data.forEach(function (dato) {
+        // Seleccionamos sólo los datos de la unidad 
+        if (dato.medicion === medicion_actual && dato.unidad !== "Total"
+                && !dato.referencia) {
+            chartSerie.add(dato);
+        }
+    });
+    // Pide las series de datos a chartSerie
+    // A saber: Totales y Valores de referencia
+    var dataseries = chartSerie.getBarSerie(nombres[serie]);
+    // Hacemos visible
+    if (dataseries.length > 0) {
+        dataseries[dataseries.length - 1].visible = true;
+        dataseries[dataseries.length - 1].selected = true;
+    }
+    return dataseries;
 }
-;
 
 function calcularResultado()
 {
-    var resultado = [];
-    $('.operador').each(function (indice, operador)
+    var serieHighchartResul = [];
+    var totalDataResul = [];
+    var nombre_consulta = '(';
+    var activar_resultado = false;//Activa la visualización del resultado de operaciones
+    $('.operador').each(function (i, operador)
     {
         var operacion = $(operador).find('option:selected').attr('value');
+        var serie = $(operador).data('serie');
         if (operacion !== 'cotejar')
         {
-            var serie = $(operador).data('serie');
+            activar_resultado = true;
             // Si es el primer operando inicializamos el array resultado con sus datos
-            if (resultado.length === 0)
+            if (totalDataResul.length === 0)
             {
-                // Recorremos cada una de las mediciones de la serie
-                for (i = 0; i < datos[serie].data.length; i++)
-                {
-                    resultado[i] = [parseInt(datos[serie].data[i][0]), parseFloat(datos[serie].data[i][1])];
-                }
+                var dataserie = datos[serie];
+                nombre_consulta += dataserie[0].name;
+                // Seleccionamos la primera, no queremos valores de referencia
+                dataserie[0].data.forEach(function (datos) {
+                    totalDataResul.push($.extend(true, {}, datos));
+                });
             }
-            // Comprobamos que ninguna de las dos series que operan esté vacia
-            if (datos[serie].data.length > 0 && datos[serie + 1].data.length > 0)
-            {
-                for (i = 0; i < datos[serie].data.length; i++)
+            if (datos[serie + 1]) {
+                var dataserieAux = datos[serie + 1];
+                //No tenemos en cuenta los datos de valores de referencia
+                var totalesAux = dataserieAux[0].data;
+                // Comprobamos que ninguna de las dos series que operan esté vacia
+                if (totalDataResul.length > 0 && totalesAux.length > 0)
                 {
-                    if (operacion === 'cociente')
+                    if (operacion === 'suma')
                     {
-                        resultado[i][1] /= parseFloat(datos[serie + 1].data[i][1]);
+                        nombre_consulta += ' + ' + dataserieAux[0].name;
+                        for (i = 0; i < totalDataResul.length; i++) {
+                            totalDataResul[i].y += totalesAux[i].y;
+                        }
+
                     }
-                    else if (operacion === 'suma')
+                    else if (operacion === 'cociente')
                     {
-                        resultado[i][1] += parseFloat(datos[serie + 1].data[i][1]);
+                        nombre_consulta += ') / ' + dataserieAux[0].name;
+                        for (i = 0; i < totalDataResul.length; i++) {
+                            totalDataResul[i].y /= totalesAux[i].y;
+                        }
+
                     }
                     else if (operacion === 'porcentaje')
                     {
-                        //no funciona el operando *= como queremos, de ahi que se vuelva a dividir
-                        resultado[i][1] /= parseFloat(datos[serie + 1].data[i][1] / 100);
+                        nombre_consulta += ' % ' + dataserieAux[0].name;
+                        for (i = 0; i < totalDataResul.length; i++) {
+                            //no funciona el operando *= como queremos, de ahi que se vuelva a dividir
+                            totalDataResul[i].y /= (totalesAux[i].y / 100);
+                        }
+                    }
+                }
+                else
+                {
+                    alert("No se puede calcular con los parámetros actuales");
+                }
+            }
+        }
+        //Cotejamos
+        else {
+            var dataserieCot = datos[serie];
+            if (serie === 0) {
+                dataserieCot.forEach(function (dataserie) {
+                    serieHighchartResul.push(dataserie);
+                });
+                if (datos[serie + 1] && !datos[serie + 2]) {
+                    dataserieCot = datos[serie + 1];
+                    dataserieCot.forEach(function (dataserie) {
+                        serieHighchartResul.push(dataserie);
+                    });
+                }
+            }
+            else {
+                if (datos[serie + 1] && !datos[serie + 2]) {
+                    dataserieCot = datos[serie + 1];
+                    dataserieCot.forEach(function (dataserie) {
+                        serieHighchartResul.push(dataserie);
+                    });
+                }
+            }
+        }
+    });
+    //Cerramos paréntesis abiertos
+    if (nombre_consulta.indexOf(')') === -1) {
+        nombre_consulta += ')';
+    }
+    //Incluimos el resultado
+    if (activar_resultado) {
+        serieHighchartResul.push({
+            type: 'line',
+            name: nombre_consulta,
+            data: totalDataResul,
+            color: '#4CAE4C'
+        });
+    }
+    //Pintamos el gráfico
+    pintaGrafico({
+        chart: {
+            renderTo: 'grafica',
+            events: {}
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            text: 'Resultado de la consulta',
+            style: {"fontSize": "14px"}
+        },
+        subtitle: {
+            text: 'Haga click sobre el gráfico para aumentarlo'
+        },
+        exporting: {
+            filename: 'consulta'
+        },
+        xAxis: {
+            type: 'category'
+        },
+        yAxis: {
+            title: {
+                text: 'Valores'
+            }
+        },
+        plotOptions: {
+            series: {
+                dataLabels: {
+                    enabled: true,
+                    formatter: function () {
+                        return this.y ? Math.round(this.y * 100) / 100 : null;
                     }
                 }
             }
-            else
-            {
-                alert("No puedo calcular con los parámetros actuales");
-            }
-            console.log(resultado);
-        }
+        },
+        series: serieHighchartResul
     });
-    resultados = [{label: 'Resultado', data: resultado}];
-    opciones_resultado = {
-        series: {lines: {show: true}, points: {show: true}},
-        xaxis: {tickDecimals: 0},
-        legend: {position: 'ne'},
-        colors: ['blue', 'black']
-    };
-    // Generamos la tabla de resultados a partir del array 'resultado'
-    generaTablaResultados(resultado);
-    // Generamos la grafica con los resultados a partir del objeto 'resultados'
-    $.plot($("#grafica"), resultados, opciones_resultado);
-}
-
-function crearReceptor()
-{
-    alert('Pendiente de implementar');
 }
 
 function activarReceptor()
@@ -297,13 +450,118 @@ function activarReceptor()
 
 function quitarIndicador()
 {
-    serie = $(this).closest(".receptor").data("serie");
-    delete datos.serie;
-    delete datos_json.serie;
+    //Actualizamos todas las series
+    var serie = $(this).closest(".receptor").data("serie");
+    datos_json[serie] = [];
+    delete datos[serie];
+    totalDataseries = [];
+    delete datosB[serie];
+    totalDataseriesB = [];
+    //Sacar los datos de la dataserie y hacer un push en 
+    //total_dataseries
+    datos.forEach(function (serie) {
+        serie.forEach(function (dataserie) {
+            totalDataseries.push(dataserie);
+        });
+    });
+    datosB.forEach(function (serie) {
+        serie.forEach(function (dataserie) {
+            totalDataseriesB.push(dataserie);
+        });
+    });
     $(this).closest('.receptor').empty();
-    $("#tabla" + serie).empty();
-    $("#grafica").css("height", "400px");
-    $.plot($("#grafica"), datos, opciones);
+    if (medicion_actual === "Todos")
+    {
+        if (totalDataseries.length > 0) {
+            pintaGrafico({
+                chart: {
+                    renderTo: 'grafica',
+                    events: {}
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: 'Todos',
+                    style: {"fontSize": "14px"}
+                },
+                subtitle: {
+                    text: 'Haga click sobre el gráfico para aumentarlo'
+                },
+                exporting: {
+                    filename: 'consulta'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Valores'
+                    }
+                },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return this.y ? Math.round(this.y * 100) / 100 : null;
+                            }
+                        }
+                    }
+                },
+                series: totalDataseries
+            });
+        }
+        else {
+            $('#resultados').addClass('hidden');
+        }
+    }
+    else
+    {
+        if (totalDataseriesB.length > 0) {
+            pintaGrafico({
+                chart: {
+                    renderTo: 'grafica',
+                    events: {}
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: medicion_actual,
+                    style: {"fontSize": "14px"}
+                },
+                subtitle: {
+                    text: 'Haga click sobre el gráfico para aumentarlo'
+                },
+                exporting: {
+                    filename: 'consulta'
+                },
+                xAxis: {
+                    type: 'category'
+                },
+                yAxis: {
+                    title: {
+                        text: 'Valores'
+                    }
+                },
+                plotOptions: {
+                    series: {
+                        dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return this.y ? Math.round(this.y * 100) / 100 : null;
+                            }
+                        }
+                    }
+                },
+                series: totalDataseriesB
+            });
+        }
+        else {
+            $('#resultados').addClass('hidden');
+        }
+    }
 }
 
 //Datatables
@@ -312,3 +570,37 @@ $(document).ready(function () {
         "pagingType": "full_numbers"
     });
 });
+
+//Función que pinta nuestra gráfica
+function pintaGrafico(chartOptions) {
+    $(document).ready(function () {
+        // Añadimos evento al hacer click en el gráfico
+        chartOptions.chart.events.click = function () {
+            hs.htmlExpand(document.getElementById(chartOptions.chart.renderTo), {
+                width: 9999,
+                height: 9999,
+                allowWidthReduction: true,
+                preserveContent: false
+            }, {
+                chartOptions: chartOptions
+            });
+        };
+        var chart = new Highcharts.Chart(chartOptions);
+    });
+}
+
+//Crea un nuevo gráfico con un popup de Highslide
+hs.zIndexCounter = 2000; //z-index del popup
+hs.Expander.prototype.onAfterExpand = function () {
+    if (this.custom.chartOptions) {
+        var chartOptions = this.custom.chartOptions;
+        if (!this.hasChart) {
+            chartOptions.chart.renderTo = $('.highslide-body')[0];
+            chartOptions.chart.height = $('.highslide-body').parent().height();
+            chartOptions.chart.events.click = function () {
+            };
+            var hsChart = new Highcharts.Chart(chartOptions);
+        }
+        this.hasChart = true;
+    }
+}; 

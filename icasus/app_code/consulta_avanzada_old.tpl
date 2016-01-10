@@ -161,13 +161,24 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_CONSULT_RESUL}</span>
+                <span class="panel-title"><i class="fa fa-table fa-fw"></i><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_CONSULT_RESUL}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
+                <!-- Tabla con los resultados obtenidos y los datos de partida -->
+                <div class="col-lg-4">
+                    <div class="table-responsive" id="tablar">
+                    </div>
+                    {for $i = 0 to 4}
+                        <div class="table-responsive" id="tabla{$i}">
+                        </div>
+                    {/for}
+                </div>
+                <!-- /.col-lg-4 -->
+                <!-- /Tabla con los resultados obtenidos y los datos de partida -->
                 <!-- Gráfica con los resultados obtenidos -->
-                <div class="col-lg-12">
+                <div class="col-lg-8">
                     <ul class="nav nav-pills mediciones">
                         <li>
                             <a class="btn btn-default medicion actual" href="#">{$smarty.const.TXT_TODOS}</a>
@@ -181,7 +192,7 @@
                     </ul>
                     <div id="grafica"></div>
                 </div>
-                <!-- /.col-lg-12 -->
+                <!-- /.col-lg-8 -->
                 <!-- /Gráfica con los resultados obtenidos -->
             </div>
             <!-- /.panel-body -->        

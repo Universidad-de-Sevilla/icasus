@@ -1,3 +1,22 @@
+<!-- Diálogo sin valores para la medición -->
+<div class="modal fade" id="dialogo_sin_val" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-info-circle fa-fw"></i> {$smarty.const.FIELD_MED} <span id="med_actual"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_VAL_NO_ASIG}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo sin valores para la medición -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -72,82 +91,27 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
+        <div id="resultados" class="panel panel-red hidden">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT_PARAM}</span>
+                <span class="panel-title"><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_CONSULT_RESUL}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <!-- Listado de indicadores/datos de la unidad -->
-                <div class="col-lg-7">
-                    {if $indicadores}
-                        <div class="table-responsive">
-                            <table class="table datatable_consulta table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>{$smarty.const.FIELD_COD}</th>
-                                        <th>{$smarty.const.FIELD_NOMBRE}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {foreach $indicadores as $indicador}
-                                        <tr>
-                                            <td><span class="label label-primary">{$indicador->codigo}</span></td>
-                                            <td title="{$smarty.const.TXT_CONSULT_INCLUIR}"><a href="javascript:void(0)" class="indicador" id_indicador="{$indicador->id}">{$indicador->nombre}</a></td>
-                                        </tr>
-                                    {/foreach}
-                                </tbody>
-                            </table>
-                        </div>
-                    {else}
-                        <div class="alert alert-info alert-dismissible">
-                            <i class="fa fa-info-circle fa-fw"></i> 
-                            {$smarty.const.MSG_UNID_NO_IND_NO_DAT}
-                        </div> 
-                    {/if}
+                <!-- Gráfica con los resultados obtenidos -->
+                <div class="col-lg-12">
+                    <div class="btn-toolbar mediciones">
+                        <button title="{$smarty.const.TXT_TODOS}" class="btn btn-default medicion actual">{$smarty.const.TXT_TODOS}</button>
+                        {$anyo_actual = $smarty.now|date_format:'%Y'}
+                        {for $anyo = $anyo_actual - 5 to $anyo_actual}
+                            <button title="{$anyo}" class="btn btn-default medicion">{$anyo}</button>
+                        {/for}
+                        <button id="btn_mostrar_resultado1" title="{$smarty.const.TXT_MOSTRAR_RESUL}" class="btn btn-success pull-right"><i class="fa fa-search fa-fw"></i> {$smarty.const.TXT_MOSTRAR_RESUL}</button>
+                    </div>
+                    <div id="grafica"></div>
                 </div>
-                <!-- /.col-lg-7 -->
-                <!-- /Listado de indicadores/datos de la unidad -->
-                <!-- Indicadores/datos agregados a la consulta -->
-                <div class="col-lg-5">
-                    <div class="well receptor" data-serie="0"></div>
-                    <div class="form-group">
-                        <select class="operador form-control chosen-select" data-serie="0">
-                            {foreach $operaciones as $operacion}
-                                <option value="{$operacion.0}">{$operacion.1}</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                    <div class="well receptor" data-serie="1"></div>
-                    <div class="form-group">
-                        <select class="operador form-control chosen-select" data-serie="1">
-                            {foreach $operaciones as $operacion}
-                                <option value="{$operacion.0}">{$operacion.1}</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                    <div class="well receptor" data-serie="2"></div>
-                    <div class="form-group">
-                        <select class="operador form-control chosen-select" data-serie="2">
-                            {foreach $operaciones as $operacion}
-                                <option value="{$operacion.0}">{$operacion.1}</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                    <div class="well receptor" data-serie="3"> </div>
-                    <div class="form-group">
-                        <select class="operador form-control chosen-select" data-serie="3">
-                            {foreach $operaciones as $operacion}
-                                <option value="{$operacion.0}">{$operacion.1}</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                    <div class="well receptor" data-serie="4"></div>
-                    <button title="{$smarty.const.TXT_MOSTRAR_RESUL}" class="btn btn-success pull-right" id="btn_mostrar_resultado"><i class="fa fa-search fa-fw"></i> {$smarty.const.TXT_MOSTRAR_RESUL}</button>
-                </div>
-                <!-- /.col-lg-5 -->
-                <!-- /Indicadores/datos agregados a la consulta -->
+                <!-- /.col-lg-12 -->
+                <!-- /Gráfica con los resultados obtenidos -->
             </div>
             <!-- /.panel-body -->        
         </div>
@@ -161,39 +125,101 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-table fa-fw"></i><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_CONSULT_RESUL}</span>
+                <span class="panel-title"><i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT_PARAM}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <!-- Tabla con los resultados obtenidos y los datos de partida -->
-                <div class="col-lg-4">
-                    <div class="table-responsive" id="tablar">
+                <!-- Listado de indicadores/datos de la unidad -->
+                <div class="col-lg-12">
+                    {if $indicadores}
+                        {* Seleccion por tabla - no habilitada *}
+                        <!-- <div class="table-responsive">
+                             <table class="table datatable_consulta table-striped table-hover">
+                                 <thead>
+                                     <tr>
+                                         <th>{$smarty.const.FIELD_COD}</th>
+                                         <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                        {foreach $indicadores as $indicador}
+                            <tr>
+                                <td><span class="label label-primary">{$indicador->codigo}</span></td>
+                                <td title="{$smarty.const.TXT_CONSULT_INCLUIR}"><a href="javascript:void(0)" class="indicador" id_indicador="{$indicador->id}">{$indicador->nombre}</a></td>
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>-->
+                        {*Seleccion por selectbox *}
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="indicadores">{$smarty.const.FIELD_INDIC}/{$smarty.const.FIELD_DATO}</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control chosen-select" id='indicadores'>
+                                        {foreach $indicadores as $indicador}
+                                            <option title="{$smarty.const.TXT_CONSULT_INCLUIR}" value="{$indicador->id}">{$indicador->nombre}</option>
+                                        {/foreach} 
+                                    </select>
+                                </div>
+                                <button id="btn_incluir" type="button" title="{$smarty.const.TXT_CONSULT_INCLUIR}" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw"></i></button>
+                            </div>
+                        </form>
+                    {else}
+                        <div class="alert alert-info alert-dismissible">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_UNID_NO_IND_NO_DAT}
+                        </div> 
+                    {/if}
+                </div>
+                <!-- /.col-lg-12 -->
+                <!-- /Listado de indicadores/datos de la unidad -->
+                <!-- Indicadores/datos agregados a la consulta -->
+                <div class="col-lg-12">
+                    <hr>
+                    <label class="label_receptor">{$smarty.const.TXT_CONSULT_OPERAND} 1</label>
+                    <div class="well receptor" data-serie="0"></div>
+                    <div class="form-group">
+                        <select title="{$smarty.const.TXT_CONSULT_OPER}" class="operador form-control chosen-select" data-serie="0">
+                            {foreach $operaciones as $operacion}
+                                <option title="{$operacion.1}" value="{$operacion.0}">{$operacion.1}</option>
+                            {/foreach}
+                        </select>
                     </div>
-                    {for $i = 0 to 4}
-                        <div class="table-responsive" id="tabla{$i}">
-                        </div>
-                    {/for}
+                    <label class="label_receptor">{$smarty.const.TXT_CONSULT_OPERAND} 2</label>
+                    <div class="well receptor" data-serie="1"></div>
+                    <div class="form-group">
+                        <select title="{$smarty.const.TXT_CONSULT_OPER}" class="operador form-control chosen-select" data-serie="1">
+                            {foreach $operaciones as $operacion}
+                                <option title="{$operacion.1}" value="{$operacion.0}">{$operacion.1}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <label class="label_receptor">{$smarty.const.TXT_CONSULT_OPERAND} 3</label>
+                    <div class="well receptor" data-serie="2"></div>
+                    <div class="form-group">
+                        <select title="{$smarty.const.TXT_CONSULT_OPER}" class="operador form-control chosen-select" data-serie="2">
+                            {foreach $operaciones as $operacion}
+                                <option title="{$operacion.1}" value="{$operacion.0}">{$operacion.1}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <label class="label_receptor">{$smarty.const.TXT_CONSULT_OPERAND} 4</label>
+                    <div class="well receptor" data-serie="3"> </div>
+                    <div class="form-group">
+                        <select title="{$smarty.const.TXT_CONSULT_OPER}" class="operador form-control chosen-select" data-serie="3">
+                            {foreach $operaciones as $operacion}
+                                <option title="{$operacion.1}" value="{$operacion.0}">{$operacion.1}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <label class="label_receptor">{$smarty.const.TXT_CONSULT_OPERAND} 5</label>
+                    <div class="well receptor" data-serie="4"></div>
+                    <button id="btn_mostrar_resultado2" title="{$smarty.const.TXT_MOSTRAR_RESUL}" class="btn btn-success pull-right"><i class="fa fa-search fa-fw"></i> {$smarty.const.TXT_MOSTRAR_RESUL}</button>
                 </div>
-                <!-- /.col-lg-4 -->
-                <!-- /Tabla con los resultados obtenidos y los datos de partida -->
-                <!-- Gráfica con los resultados obtenidos -->
-                <div class="col-lg-8">
-                    <ul class="nav nav-pills mediciones">
-                        <li>
-                            <a class="btn btn-default medicion actual" href="#">{$smarty.const.TXT_TODOS}</a>
-                        </li>
-                        {$anyo_actual = $smarty.now|date_format:'%Y'}
-                        {for $anyo = $anyo_actual - 5 to $anyo_actual}
-                            <li>
-                                <a class="btn btn-default medicion" href="javascript:void(0)">{$anyo}</a>
-                            </li>
-                        {/for}
-                    </ul>
-                    <div id="grafica"></div>
-                </div>
-                <!-- /.col-lg-8 -->
-                <!-- /Gráfica con los resultados obtenidos -->
+                <!-- /.col-lg-12 -->
+                <!-- /Indicadores/datos agregados a la consulta -->
             </div>
             <!-- /.panel-body -->        
         </div>
