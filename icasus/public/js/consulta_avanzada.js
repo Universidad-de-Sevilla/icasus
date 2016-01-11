@@ -261,12 +261,11 @@ function prepararDatos(data, serie)
             chartSerie.add(dato, true);
         }
         // Se incluyen también los valores de referencia
-        if (dato.referencia && (dato.valor !== null)) {
-            chartSerie.add(dato, true);
-        }
+//        if (dato.referencia && (dato.valor !== null)) {
+//            chartSerie.add(dato, true);
+//        }
     });
     // Pide las series de datos a chartSerie
-    // A saber: Totales y Valores de referencia
     var dataseries = chartSerie.getLinealSerie(nombres[serie], serie);
     return dataseries;
 }
@@ -293,7 +292,6 @@ function prepararDatosB(data, serie)
         }
     });
     // Pide las series de datos a chartSerie
-    // A saber: Totales y Valores de referencia
     var dataseries = chartSerie.getBarSerie(nombres[serie]);
     // Hacemos visible
     if (dataseries.length > 0) {
@@ -305,15 +303,16 @@ function prepararDatosB(data, serie)
 
 function calcularResultado()
 {
-    var serieHighchartResul = [];
-    var totalDataResul = [];
+    var serieHighchartResul = [];//Array de series finales resultado
+    var totalDataResul = [];//Array con los cálculos de las series
     var nombre_consulta = '(';
     var activar_resultado = false;//Activa la visualización del resultado de operaciones
+    var operacion = [];//Array con las operaciones
     $('.operador').each(function (i, operador)
     {
-        var operacion = $(operador).find('option:selected').attr('value');
         var serie = $(operador).data('serie');
-        if (operacion !== 'cotejar')
+        operacion[serie] = $(operador).find('option:selected').attr('value');
+        if (operacion[serie] !== 'cotejar')
         {
             activar_resultado = true;
             // Si es el primer operando inicializamos el array resultado con sus datos
@@ -333,7 +332,7 @@ function calcularResultado()
                 // Comprobamos que ninguna de las dos series que operan esté vacia
                 if (totalDataResul.length > 0 && totalesAux.length > 0)
                 {
-                    if (operacion === 'suma')
+                    if (operacion[serie] === 'suma')
                     {
                         nombre_consulta += ' + ' + dataserieAux[0].name;
                         for (i = 0; i < totalDataResul.length; i++) {
@@ -341,7 +340,7 @@ function calcularResultado()
                         }
 
                     }
-                    else if (operacion === 'cociente')
+                    else if (operacion[serie] === 'cociente')
                     {
                         nombre_consulta += ') / ' + dataserieAux[0].name;
                         for (i = 0; i < totalDataResul.length; i++) {
@@ -349,7 +348,7 @@ function calcularResultado()
                         }
 
                     }
-                    else if (operacion === 'porcentaje')
+                    else if (operacion[serie] === 'porcentaje')
                     {
                         nombre_consulta += ' % ' + dataserieAux[0].name;
                         for (i = 0; i < totalDataResul.length; i++) {
@@ -367,24 +366,36 @@ function calcularResultado()
         //Cotejamos
         else {
             var dataserieCot = datos[serie];
-            if (serie === 0) {
-                dataserieCot.forEach(function (dataserie) {
-                    serieHighchartResul.push(dataserie);
-                });
-                if (datos[serie + 1] && !datos[serie + 2]) {
-                    dataserieCot = datos[serie + 1];
+            switch (serie) {
+                case 0:
+                {
                     dataserieCot.forEach(function (dataserie) {
                         serieHighchartResul.push(dataserie);
                     });
+                    if (datos[serie + 1] && !datos[serie + 2]) {
+                        dataserieCot = datos[serie + 1];
+                        dataserieCot.forEach(function (dataserie) {
+                            serieHighchartResul.push(dataserie);
+                        });
+                    }
+                    break;
                 }
-            }
-            else {
-                if (datos[serie + 1] && !datos[serie + 2]) {
-                    dataserieCot = datos[serie + 1];
-                    dataserieCot.forEach(function (dataserie) {
-                        serieHighchartResul.push(dataserie);
-                    });
+                case 1:
+                {
+                    if (operacion[0] === 'cotejar') {
+                        dataserieCot.forEach(function (dataserie) {
+                            serieHighchartResul.push(dataserie);
+                        });
+                    }
+                    if (datos[serie + 1] && !datos[serie + 2]) {
+                        dataserieCot = datos[serie + 1];
+                        dataserieCot.forEach(function (dataserie) {
+                            serieHighchartResul.push(dataserie);
+                        });
+                    }
+                    break;
                 }
+                case 2:
             }
         }
     });
