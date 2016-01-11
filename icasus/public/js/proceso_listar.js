@@ -18,3 +18,7 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
     modal.find('#nombre_proceso').text(nombre_proceso);
     modal.find('#borrar').attr('href', link);
 });
+
+$(window).on('show.bs.tab', function () {
+    $(this).trigger('resize');
+});

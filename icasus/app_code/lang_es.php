@@ -69,6 +69,8 @@ define('TXT_POR_ANYO', 'Por año');
 //Consulta
 define('TXT_CONSULT', 'Consulta avanzada');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
+define('TXT_CONSULT_OPERAND', 'Operando');
+define('TXT_CONSULT_OPER', 'Operador');
 define('TXT_CONSULT_INCLUIR', 'Incluir en la consulta');
 define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 
@@ -234,10 +236,8 @@ define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de mando: paneles con informaci�
 define('TXT_CONSULTA_DESCRIPCION', 'Consulta: efectuar consultas y operaciones que muestran información sobre los indicadores y datos de la unidad.');
 define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones y valores de los distintos indicadores y datos de la unidad.');
 
-//Mostrar
-define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
-
 //Navegación
+define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
 define('TXT_MOSTAR_OCULTAR_NAV', 'Mostrar/Ocultar navegación');
 define('TXT_VER', 'Ver');
 define('TXT_SI', 'Si');
