@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.0.1");
-define('IC_FECHA_REVISION', "11/12/2015");
+define('IC_VERSION', "3.1.1");
+define('IC_FECHA_REVISION', "11/01/2016");
 
+// 3.1.1 - 11/01/2016 - Consultas avanzadas con Highcharts.
 // 3.0.1 - 11/12/2015 - Cambios generales de estilo, presentación y navegación.
 // 3.0.0 - 30/11/2015 - Migración a Bootstrap de la capa de presentación.
 // 2.24.3 - 30/07/2015 - Correcciones en las gráficas y en las mediciones de Indicadores/Datos para calcular y mostrar correctamente el total cuando es una mediana.

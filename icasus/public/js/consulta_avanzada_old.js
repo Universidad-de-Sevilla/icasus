@@ -52,78 +52,16 @@ function agregarIndicador()
 function mostrarIndicador(serie) {
     var id_indicador = $('.activo').find('.escogido').attr('id_indicador');
     var nombre_indicador = $('.activo').find('.escogido').text();
-    // Contenedor para los datos del gráfico
-    var chartSerie = new HighchartSerie();
-    chartSerie.categoryType = "año";
     $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + id_indicador, function (data) {
-//        generaTablaDatos(id_indicador, nombre_indicador, data, serie);
-//        datos_json[serie] = {'serie': serie, 'nombre': nombre_indicador, 'data': data};
-//        datos[serie] = prepararDatos(data, serie);
-//        opciones = prepararOpciones(data);
-//        $("#grafica").css("height", "400px");
-//        $.plot($("#grafica"), datos, opciones);
-
-        data.forEach(function (dato) {
-            // Agrega los que no tienen etiqueta_mini (total y referencias)
-            // descarta las mediciones de unidades (no sirven aquí)
-            if (!dato.etiqueta_mini && (dato.valor !== null)) {
-                chartSerie.add(dato);
-            }
-        });
-
-        // Pide las series de datos a chartSerie
-        // A saber: Totales y Valores de referencia
-        var dataseries = chartSerie.getLinealSerie();
-        // Si no es anual ocultamos valores de referencia
-        if (chartSerie.categoryType !== "año") {
-            dataseries.forEach(function (dataserie, index) {
-                if (index !== 0) {
-                    dataserie.visible = false;
-                }
-            });
-        }
-        //Gráfico de líneas
-        pintaGrafico({
-            chart: {
-                renderTo: 'grafica',
-                events: {}
-            },
-            credits: {
-                enabled: false
-            },
-            title: {
-                text: nombre_indicador,
-                style: {"fontSize": "14px"}
-            },
-            subtitle: {
-                text: 'Haga click sobre el gráfico para aumentarlo'
-            },
-            exporting: {
-                filename: nombre_indicador
-            },
-            xAxis: {
-                type: 'category'
-            },
-            yAxis: {
-                title: {
-                    text: 'Valores'
-                }
-            },
-            plotOptions: {
-                series: {
-                    dataLabels: {
-                        enabled: true,
-                        formatter: function () {
-                            return this.y ? Math.round(this.y * 100) / 100 : null;
-                        }
-                    }
-                }
-            },
-            series: dataseries
-        });
+        generaTablaDatos(id_indicador, nombre_indicador, data, serie);
+        datos_json[serie] = {'serie': serie, 'nombre': nombre_indicador, 'data': data};
+        datos[serie] = prepararDatos(data, serie);
+        opciones = prepararOpciones(data);
+        $("#grafica").css("height", "400px");
+        $.plot($("#grafica"), datos, opciones);
+        // Después de mostrar el indicador activamos el siguiente receptor
+        $(".activo").nextAll(".receptor:first").trigger("click");
     });
-    // Después de mostrar el indicador activamos el siguiente receptor
-    $(".activo").nextAll(".receptor:first").trigger("click");
 }
 
 function mostrarIndicadorSubunidad()
@@ -132,24 +70,24 @@ function mostrarIndicadorSubunidad()
     mostrarIndicador(serie);
 }
 
-//function generaTablaDatos(id_indicador, nombre_indicador, datos, serie)
-//{
-//    var items = [];
-//    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
-//    items.push('<caption>' + nombre_indicador + ' (' + subunidad_actual + ')</caption>');
-//    items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
-//    $.each(datos, function (i, dato) {
-//        if (dato.unidad === subunidad_actual)
-//        {
-//            items.push('<tr><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
-//        }
-//    });
-//    $('#tabla' + serie).empty();
-//    $('<table />', {'class': 'table table-striped table-hover',
-//        'data-id_indicador': id_indicador,
-//        html: items.join('')
-//    }).appendTo('#tabla' + serie);
-//}
+function generaTablaDatos(id_indicador, nombre_indicador, datos, serie)
+{
+    var items = [];
+    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
+    items.push('<caption>' + nombre_indicador + ' (' + subunidad_actual + ')</caption>');
+    items.push('<thead><tr><th>Periodo</th><th>Valor</th></tr></thead>');
+    $.each(datos, function (i, dato) {
+        if (dato.unidad === subunidad_actual)
+        {
+            items.push('<tr><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
+        }
+    });
+    $('#tabla' + serie).empty();
+    $('<table />', {'class': 'table table-striped table-hover',
+        'data-id_indicador': id_indicador,
+        html: items.join('')
+    }).appendTo('#tabla' + serie);
+}
 
 function generaTablaResultados(datos)
 {
@@ -233,60 +171,60 @@ function mostrarMedicion(e)
     }
 }
 
-//// Tabla de datos de las mediciones, de momento no funciona ni se usa
-//function generaTablaMedicion(medicion_actual)
-//{
-//    var contenido_tabla = [];
-//    $.each(datos_json, function (s, serie) {
-//        if (serie.data)
-//        {
-//            nombre_indicador = serie.nombre;
-//            if (s % 2 === 0) {
-//                paridad = "odd";
-//            } else {
-//                paridad = "even";
-//            }
-//            contenido_tabla.push('<tr class="' + paridad + '"><td>' + serie.nombre + '</td>');
-//            $.each(datos_json, function (i, dato) {
-//                if (dato.medicion === medicion_actual && dato.unidad !== "Total")
-//                {
-//                    contenido_tabla.push('<td>' + dato.valor + '</td>');
-//                }
-//            });
-//        }
-//    });
-//    $('#tabla_medicion').empty();
-//    $('<table />', {'class': 'static',
-//        html: contenido_tabla.join('')
-//    }).appendTo('#tabla_medicion');
-//}
+// Tabla de datos de las mediciones, de momento no funciona ni se usa
+function generaTablaMedicion(medicion_actual)
+{
+    var contenido_tabla = [];
+    $.each(datos_json, function (s, serie) {
+        if (serie.data)
+        {
+            nombre_indicador = serie.nombre;
+            if (s % 2 === 0) {
+                paridad = "odd";
+            } else {
+                paridad = "even";
+            }
+            contenido_tabla.push('<tr class="' + paridad + '"><td>' + serie.nombre + '</td>');
+            $.each(datos_json, function (i, dato) {
+                if (dato.medicion === medicion_actual && dato.unidad !== "Total")
+                {
+                    contenido_tabla.push('<td>' + dato.valor + '</td>');
+                }
+            });
+        }
+    });
+    $('#tabla_medicion').empty();
+    $('<table />', {'class': 'static',
+        html: contenido_tabla.join('')
+    }).appendTo('#tabla_medicion');
+}
 
-//function prepararDatos(datos, serie)
-//{
-//    var items = [];
-//    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
-//    var nombre_indicador = $('.activo').find('.escogido').text();
-//    $.each(datos, function (i, dato) {
-//        if (dato.unidad === subunidad_actual)
-//        {
-//            items.push([dato.medicion, dato.valor]);
-//        }
-//    });
-//    datos_flot = {label: nombre_indicador + '(' + subunidad_actual + ')', color: serie, data: items};
-//    return datos_flot;
-//}
-//
-//function prepararOpciones(datos)
-//{
-//    var opciones = {
-//        series: {lines: {show: true}, points: {show: true}},
-//        legend: {position: "ne"},
-//        xaxis: {tickDecimals: 0},
-//        colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
-//    };
-//    return opciones;
-//}
-//;
+function prepararDatos(datos, serie)
+{
+    var items = [];
+    var subunidad_actual = $('.activo').find('.subunidades').find("option:selected").text();
+    var nombre_indicador = $('.activo').find('.escogido').text();
+    $.each(datos, function (i, dato) {
+        if (dato.unidad === subunidad_actual)
+        {
+            items.push([dato.medicion, dato.valor]);
+        }
+    });
+    datos_flot = {label: nombre_indicador + '(' + subunidad_actual + ')', color: serie, data: items};
+    return datos_flot;
+}
+
+function prepararOpciones(datos)
+{
+    var opciones = {
+        series: {lines: {show: true}, points: {show: true}},
+        legend: {position: "ne"},
+        xaxis: {tickDecimals: 0},
+        colors: ['maroon', 'darkolivegreen', 'orange', 'green', 'pink', 'yellow', 'brown']
+    };
+    return opciones;
+}
+;
 
 function calcularResultado()
 {
@@ -346,6 +284,11 @@ function calcularResultado()
     $.plot($("#grafica"), resultados, opciones_resultado);
 }
 
+function crearReceptor()
+{
+    alert('Pendiente de implementar');
+}
+
 function activarReceptor()
 {
     $('.receptor').removeClass('activo');
@@ -369,78 +312,3 @@ $(document).ready(function () {
         "pagingType": "full_numbers"
     });
 });
-
-//Función que pinta nuestra gráfica
-function pintaGrafico(chartOptions, barras) {
-    $(document).ready(function () {
-        // Añadimos evento al hacer click en el gráfico
-        chartOptions.chart.events.click = function () {
-            hs.htmlExpand(document.getElementById(chartOptions.chart.renderTo), {
-                width: 9999,
-                height: 9999,
-                allowWidthReduction: true
-            }, {
-                chartOptions: chartOptions,
-                barras: barras
-            });
-        };
-        var chart = new Highcharts.Chart(chartOptions);
-        if (barras) {
-            // Pinta la media del último grupo de datos (último periodo)
-            chart.getSelectedSeries().forEach(function (selected) {
-                chart.yAxis[0].addPlotLine({
-                    label: {
-                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
-                        x: -50,
-                        y: 10,
-                        useHTML: true,
-                        style: {
-                            color: selected.color
-                        }
-                    },
-                    value: totales[selected.name],
-                    color: selected.color,
-                    width: 2,
-                    id: selected.name
-                });
-            });
-        }
-    });
-}
-
-// Crea un nuevo gráfico con un popup de Highslide
-var i = 0; //Contador de popups
-hs.zIndexCounter = 2000; //z-index del popup
-hs.Expander.prototype.onAfterExpand = function () {
-    if (this.custom.chartOptions) {
-        var chartOptions = this.custom.chartOptions;
-        chartOptions.chart.height = 600;
-        chartOptions.chart.renderTo = $('.highslide-body')[i];
-        chartOptions.chart.events.click = function () {
-        };
-        var hsChart = new Highcharts.Chart(chartOptions);
-        if (this.custom.barras) {
-            // Pinta la media del último grupo de datos (último periodo)
-            hsChart.getSelectedSeries().forEach(function (selected) {
-                hsChart.yAxis[0].addPlotLine({
-                    label: {
-                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
-                        x: -50,
-                        y: 10,
-                        useHTML: true,
-                        style: {
-                            color: selected.color
-                        }
-                    },
-                    value: totales[selected.name],
-                    color: selected.color,
-                    width: 2,
-                    id: selected.name
-                });
-            });
-        }
-        i++;
-    }
-};
