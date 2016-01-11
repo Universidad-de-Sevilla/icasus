@@ -280,9 +280,6 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-    <script>
-        $('img[usemap]').rwdImageMaps();
-    </script>
 {else}
     <div class="row">
         <div class="col-lg-12">
