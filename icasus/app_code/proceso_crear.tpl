@@ -134,10 +134,10 @@
                                 <label for="alcance" class="col-sm-2 control-label">{$smarty.const.FIELD_TIPO_PROC}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control chosen-select" name='alcance' id='alcance'>
+                                        <option value="1-Estratégico">{$smarty.const.TXT_ESTRATEGICO}</option>
+                                        <option value="2-Operativo">{$smarty.const.TXT_OPERATIVO}</option>
+                                        <option value="3-Apoyo">{$smarty.const.TXT_APOYO}</option>
                                         <option value="Indefinido">{$smarty.const.TXT_INDEF}</option>
-                                        <option value="Apoyo">{$smarty.const.TXT_APOYO}</option>
-                                        <option value="Operativo">{$smarty.const.TXT_OPERATIVO}</option>
-                                        <option value="Directivo/Gestion">{$smarty.const.TXT_DIR_GES}</option>
                                     </select>
                                 </div>
                             </div>

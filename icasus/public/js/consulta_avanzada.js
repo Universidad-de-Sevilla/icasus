@@ -365,37 +365,29 @@ function calcularResultado()
         }
         //Cotejamos
         else {
-            var dataserieCot = datos[serie];
-            switch (serie) {
-                case 0:
-                {
-                    dataserieCot.forEach(function (dataserie) {
+            if (serie === 0) {
+                datos[0].forEach(function (dataserie) {
+                    serieHighchartResul.push(dataserie);
+                });
+            }
+            else if (serie === 3) {
+                if (operacion[serie - 1] === 'cotejar' && datos[serie]) {
+                    datos[serie].forEach(function (dataserie) {
                         serieHighchartResul.push(dataserie);
                     });
-                    if (datos[serie + 1] && !datos[serie + 2]) {
-                        dataserieCot = datos[serie + 1];
-                        dataserieCot.forEach(function (dataserie) {
-                            serieHighchartResul.push(dataserie);
-                        });
-                    }
-                    break;
                 }
-                case 1:
-                {
-                    if (operacion[0] === 'cotejar') {
-                        dataserieCot.forEach(function (dataserie) {
-                            serieHighchartResul.push(dataserie);
-                        });
-                    }
-                    if (datos[serie + 1] && !datos[serie + 2]) {
-                        dataserieCot = datos[serie + 1];
-                        dataserieCot.forEach(function (dataserie) {
-                            serieHighchartResul.push(dataserie);
-                        });
-                    }
-                    break;
+                if (datos[4]) {
+                    datos[4].forEach(function (dataserie) {
+                        serieHighchartResul.push(dataserie);
+                    });
                 }
-                case 2:
+            }
+            else {
+                if (operacion[serie - 1] === 'cotejar' && datos[serie]) {
+                    datos[serie].forEach(function (dataserie) {
+                        serieHighchartResul.push(dataserie);
+                    });
+                }
             }
         }
     });

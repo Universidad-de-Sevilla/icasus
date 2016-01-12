@@ -340,9 +340,9 @@ define('TXT_RTF', 'Rtf');
 define('TXT_EXCEL', 'Excel');
 
 //Tipos de Proceso
-define('TXT_APOYO', 'Apoyo');
-define('TXT_OPERATIVO', 'Operativo/Clave');
-define('TXT_DIR_GES', 'Directivo/Estratégico/Gestión');
+define('TXT_ESTRATEGICO', '1-Estratégico');
+define('TXT_OPERATIVO', '2-Operativo');
+define('TXT_APOYO', '3-Apoyo');
 
 //Tipos de Representaciones Gráficas
 define('TXT_GRAFIC_INDIC_VAL', 'Gráfica con los valores del indicador');
