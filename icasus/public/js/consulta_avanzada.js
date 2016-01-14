@@ -24,40 +24,39 @@ $('#btn_mostrar_resultado1, #btn_mostrar_resultado2').click(calcularResultado);
 $('.label_receptor').click(function () {
     $(this).next('.receptor').trigger('click');
 });
-$('#btn_incluir').click(agregarIndicador);//Comentar para selección por tabla
-
+$('#btn_incluir').click(agregarIndicador);
+$('#btn_quitar').click(quitarIndicador);
 $('.receptor').click(activarReceptor);
-
-//Descomentar para selección por tabla
-//$('.indicador').click(agregarIndicador);
-
 $('.medicion').click(mostrarMedicion);
 
 /* --- Las funciones --- */
 function agregarIndicador()
 {
-    //var id_indicador = $(this).attr('id_indicador'); descomentar para selección por tabla
-    var id_indicador = $('#indicadores').val();//Comentar para selección por tabla
+    var id_indicador = $('#indicadores').val();
     var serie = $(".activo").data("serie");
     if ($("#resultados").hasClass('hidden')) {
         $('#resultados').removeClass('hidden');
     }
-    $(".activo").empty();
-    //descomentar para selección por tabla
-    //$(this).clone().appendTo('.activo').wrap("<div />").after('<a id="borra' + serie + '" title="Retirar de la consulta" class="pull-right clickable" style="color:#950717"><i class="fa fa-times fa-fw"></i></a>').toggleClass("indicador escogido");
+    if (!$("#sin_resultados").hasClass('hidden')) {
+        $('#sin_resultados').addClass('hidden');
+    }
+    if ($("#btn_mostrar_resultado1").hasClass('hidden')) {
+        $('#btn_mostrar_resultado1').removeClass('hidden');
+    }
+    if ($("#btn_quitar").hasClass('hidden')) {
+        $('#btn_quitar').removeClass('hidden');
+    }
 
-    //Comentar las 4 siguientes líneas para selección por tabla
+    $(".activo").empty();
+    $('.op' + serie).removeClass('hidden');
     var nombre_indicador = $('#indicadores option:selected').text();
     $(".activo").append('<span title="' + nombre_indicador + '" class="escogido">' + nombre_indicador + '</span>');
     $(".escogido").attr('id_indicador', id_indicador);
-    $(".activo").append('<a id="borra' + serie + '" title="Retirar de la consulta" class="pull-right clickable" style="color:#950717"><i class="fa fa-times fa-fw"></i></a>');
-
-    $('#borra' + serie).bind('click', quitarIndicador);
     $.getJSON('api_publica.php?metodo=get_subunidades_indicador&id=' + id_indicador, function (data) {
         var items = [];
-        items.push('<option id="total">Total</option>');
+        items.push('<option id="total" title="Total">Total</option>');
         $.each(data, function (i, subunidad) {
-            items.push('<option id="' + subunidad.id + '">' + subunidad.etiqueta + '</option>');
+            items.push('<option id="' + subunidad.id + '" title="' + subunidad.etiqueta + '">' + subunidad.etiqueta + '</option>');
         });
         $('<select/>', {
             'class': 'subunidades form-control chosen-select',
@@ -359,43 +358,35 @@ function calcularResultado()
                 }
                 else
                 {
-                    alert("No se puede calcular con los parámetros actuales");
+                    $('#dialogo_no_cal').modal('show');
                 }
             }
         }
         //Cotejamos
         else {
-            var dataserieCot = datos[serie];
-            switch (serie) {
-                case 0:
-                {
-                    dataserieCot.forEach(function (dataserie) {
+            if (serie === 0) {
+                datos[0].forEach(function (dataserie) {
+                    serieHighchartResul.push(dataserie);
+                });
+            }
+            else if (serie === 3) {
+                if (operacion[serie - 1] === 'cotejar' && datos[serie]) {
+                    datos[serie].forEach(function (dataserie) {
                         serieHighchartResul.push(dataserie);
                     });
-                    if (datos[serie + 1] && !datos[serie + 2]) {
-                        dataserieCot = datos[serie + 1];
-                        dataserieCot.forEach(function (dataserie) {
-                            serieHighchartResul.push(dataserie);
-                        });
-                    }
-                    break;
                 }
-                case 1:
-                {
-                    if (operacion[0] === 'cotejar') {
-                        dataserieCot.forEach(function (dataserie) {
-                            serieHighchartResul.push(dataserie);
-                        });
-                    }
-                    if (datos[serie + 1] && !datos[serie + 2]) {
-                        dataserieCot = datos[serie + 1];
-                        dataserieCot.forEach(function (dataserie) {
-                            serieHighchartResul.push(dataserie);
-                        });
-                    }
-                    break;
+                if (datos[4]) {
+                    datos[4].forEach(function (dataserie) {
+                        serieHighchartResul.push(dataserie);
+                    });
                 }
-                case 2:
+            }
+            else {
+                if (operacion[serie - 1] === 'cotejar' && datos[serie]) {
+                    datos[serie].forEach(function (dataserie) {
+                        serieHighchartResul.push(dataserie);
+                    });
+                }
             }
         }
     });
@@ -462,11 +453,28 @@ function activarReceptor()
 function quitarIndicador()
 {
     //Actualizamos todas las series
-    var serie = $(this).closest(".receptor").data("serie");
-    datos_json[serie] = [];
-    delete datos[serie];
+    var serie = $('.activo').data('serie');
+    var serie_ant = serie - 1;
+
+    if (serie > 0 && !datos[4]) {
+        datos_json[serie_ant] = [];
+        delete datos[serie_ant];
+        delete datosB[serie_ant];
+        $('.receptor.op' + serie_ant).empty();
+        $('.op' + serie_ant).addClass('hidden');
+        $('.receptor').removeClass('activo');
+        $('.receptor.op' + serie_ant).addClass('activo');
+
+    }
+    else {
+        datos_json[serie] = [];
+        delete datos[serie];
+        delete datosB[serie];
+        $('.receptor.op' + serie).empty();
+        $('.op' + serie).addClass('hidden');
+    }
+
     totalDataseries = [];
-    delete datosB[serie];
     totalDataseriesB = [];
     //Sacar los datos de la dataserie y hacer un push en 
     //total_dataseries
@@ -480,7 +488,7 @@ function quitarIndicador()
             totalDataseriesB.push(dataserie);
         });
     });
-    $(this).closest('.receptor').empty();
+
     if (medicion_actual === "Todos")
     {
         if (totalDataseries.length > 0) {
@@ -525,6 +533,9 @@ function quitarIndicador()
         }
         else {
             $('#resultados').addClass('hidden');
+            $('#btn_quitar').addClass('hidden');
+            $('#btn_mostrar_resultado1').addClass('hidden');
+            $('#sin_resultados').removeClass('hidden');
         }
     }
     else
@@ -571,6 +582,9 @@ function quitarIndicador()
         }
         else {
             $('#resultados').addClass('hidden');
+            $('#btn_quitar').addClass('hidden');
+            $('#btn_mostrar_resultado1').addClass('hidden');
+            $('#sin_resultados').removeClass('hidden');
         }
     }
 }
