@@ -31,6 +31,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
             $usuario_entidad->id_usuario = $id_usuario;
             $usuario_entidad->id_entidad = $id_entidad;
             $usuario_entidad->id_rol = $id_rol;
+            $usuario_entidad->principal = 0;
             if ($usuario_entidad->save())
             {
                 $contador ++;

@@ -40,6 +40,7 @@ define('TXT_MANTENIMIENTO', 'Estamos realizando tareas de mantenimiento. Los ser
 define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
+define('TXT_RESUL', 'Resultado');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
@@ -68,10 +69,12 @@ define('TXT_POR_ANYO', 'Por año');
 
 //Consulta
 define('TXT_CONSULT', 'Consulta avanzada');
+define('TXT_CONSULT_INFO', 'Para realizar la consulta incluya los indicadores/datos que desee. Puede añadir hasta un máximo de 5 operandos a la consulta.');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
 define('TXT_CONSULT_OPERAND', 'Operando');
 define('TXT_CONSULT_OPER', 'Operador');
-define('TXT_CONSULT_INCLUIR', 'Incluir en la consulta');
+define('TXT_CONSULT_INCLUIR', 'Incluir/cambiar operando de la consulta');
+define('TXT_CONSULT_QUITAR', 'Retirar último operando de la consulta');
 define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 
 //Cuadros de Mando
@@ -118,6 +121,7 @@ define('TXT_DIM_REL', 'Relación de dimensiones');
 
 //Entidades (Unidades)
 define('TXT_UNID', 'Unidad');
+define('TXT_UNID_PRINCIPAL', 'Unidad principal');
 define('TXT_UNID_PARAM', 'Parámetros de la unidad');
 define('TXT_UNID_SUP_INDIC', 'Indicadores de la unidad superior');
 define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la unidad');
@@ -340,9 +344,9 @@ define('TXT_RTF', 'Rtf');
 define('TXT_EXCEL', 'Excel');
 
 //Tipos de Proceso
-define('TXT_APOYO', 'Apoyo');
-define('TXT_OPERATIVO', 'Operativo/Clave');
-define('TXT_DIR_GES', 'Directivo/Estratégico/Gestión');
+define('TXT_ESTRATEGICO', '1-Estratégico');
+define('TXT_OPERATIVO', '2-Operativo');
+define('TXT_APOYO', '3-Apoyo');
 
 //Tipos de Representaciones Gráficas
 define('TXT_GRAFIC_INDIC_VAL', 'Gráfica con los valores del indicador');
@@ -428,6 +432,10 @@ define('MSG_ARCHIVO_RENOMBRAR', 'Recuerda que el nombre del archivo es el que se
 define('MSG_ARCHIVO_NOMBRE', 'IMPORTANTE: los nombres de los archivos no deben contener caracteres como ñ, acentos o espacios en blanco.');
 define('MSG_ARCHIVO_BORRADO', 'Se ha borrado el archivo.');
 define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
+
+//Consulta avanzada
+define('MSG_NO_CAL', 'No se puede calcular con los parámetros actuales.');
+define('MSG_NO_OPERANDOS', 'Todavía no se han añadido indicadores/datos a la consulta.');
 
 //Cuadros de Mando
 define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el cuadro de mando:');

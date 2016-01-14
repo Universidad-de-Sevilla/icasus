@@ -134,10 +134,10 @@
                                 <label for="alcance" class="col-sm-2 control-label">{$smarty.const.FIELD_TIPO_PROC}</label>
                                 <div class="col-sm-8">
                                     <select class="form-control chosen-select" name='alcance' id='alcance'>
+                                        <option value="1-Estratégico" {if $proceso->alcance == '1-Estratégico'} selected {/if}>{$smarty.const.TXT_ESTRATEGICO}</option>
+                                        <option value="2-Operativo" {if $proceso->alcance == '2-Operativo'} selected {/if}>{$smarty.const.TXT_OPERATIVO}</option>
+                                        <option value="3-Apoyo" {if $proceso->alcance == '3-Apoyo'} selected {/if}>{$smarty.const.TXT_APOYO}</option>
                                         <option value="Indefinido" {if $proceso->alcance == 'Indefinido'} selected {/if}>{$smarty.const.TXT_INDEF}</option>
-                                        <option value="Apoyo" {if $proceso->alcance == 'Apoyo'} selected {/if}>{$smarty.const.TXT_APOYO}</option>
-                                        <option value="Operativo" {if $proceso->alcance == 'Operativo'} selected {/if}>{$smarty.const.TXT_OPERATIVO}</option>
-                                        <option value="Directivo/Gestion" {if $proceso->alcance == 'Directivo/Gestion'} selected {/if}>{$smarty.const.TXT_DIR_GES}</option>
                                     </select>
                                 </div>
                             </div>
