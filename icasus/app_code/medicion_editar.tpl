@@ -456,17 +456,16 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_INICIO_GRABACION}</th>
                                     <td>
+                                        <span id="gi" data-grabacion_inicio="{$medicion->grabacion_inicio}"></span>
                                         {if $permiso_unidad == true && !$indicador->calculo}
                                             <div>
-                                                <span id="gi" data-grabacion_inicio="{$medicion->grabacion_inicio}">
-                                                    <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">
-                                                        {if $medicion->grabacion_inicio}
-                                                            {$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}
-                                                        {else}
-                                                            ---
-                                                        {/if}
-                                                    </a>
-                                                </span>
+                                                <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">
+                                                    {if $medicion->grabacion_inicio}
+                                                        {$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}
+                                                    {else}
+                                                        ---
+                                                    {/if}
+                                                </a>
                                             </div>
                                         {else}
                                             <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</div>
@@ -476,17 +475,16 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_FIN_GRABACION}</th>
                                     <td>
+                                        <span id="gf" data-grabacion_fin="{$medicion->grabacion_fin}"></span>
                                         {if $permiso_unidad == true && !$indicador->calculo}
                                             <div>
-                                                <span id="gf" data-grabacion_fin="{$medicion->grabacion_fin}">
-                                                    <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">
-                                                        {if $medicion->grabacion_fin}
-                                                            {$medicion->grabacion_fin|date_format:"%d-%m-%Y"}
-                                                        {else}
-                                                            ---
-                                                        {/if}
-                                                    </a>
-                                                </span>
+                                                <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">
+                                                    {if $medicion->grabacion_fin}
+                                                        {$medicion->grabacion_fin|date_format:"%d-%m-%Y"}
+                                                    {else}
+                                                        ---
+                                                    {/if}
+                                                </a>
                                             </div>
                                         {else}
                                             <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</div>
