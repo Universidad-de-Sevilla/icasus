@@ -37,6 +37,9 @@ function agregarIndicador()
     if ($("#resultados").hasClass('hidden')) {
         $('#resultados').removeClass('hidden');
     }
+    if (!$("#sin_resultados").hasClass('hidden')) {
+        $('#sin_resultados').addClass('hidden');
+    }
     if ($("#btn_mostrar_resultado1").hasClass('hidden')) {
         $('#btn_mostrar_resultado1').removeClass('hidden');
     }
@@ -51,9 +54,9 @@ function agregarIndicador()
     $(".escogido").attr('id_indicador', id_indicador);
     $.getJSON('api_publica.php?metodo=get_subunidades_indicador&id=' + id_indicador, function (data) {
         var items = [];
-        items.push('<option id="total">Total</option>');
+        items.push('<option id="total" title="Total">Total</option>');
         $.each(data, function (i, subunidad) {
-            items.push('<option id="' + subunidad.id + '">' + subunidad.etiqueta + '</option>');
+            items.push('<option id="' + subunidad.id + '" title="' + subunidad.etiqueta + '">' + subunidad.etiqueta + '</option>');
         });
         $('<select/>', {
             'class': 'subunidades form-control chosen-select',
@@ -451,7 +454,6 @@ function quitarIndicador()
 {
     //Actualizamos todas las series
     var serie = $('.activo').data('serie');
-//    alert('serie: ' + serie);
     var serie_ant = serie - 1;
 
     if (serie > 0 && !datos[4]) {
@@ -532,6 +534,8 @@ function quitarIndicador()
         else {
             $('#resultados').addClass('hidden');
             $('#btn_quitar').addClass('hidden');
+            $('#btn_mostrar_resultado1').addClass('hidden');
+            $('#sin_resultados').removeClass('hidden');
         }
     }
     else
@@ -579,6 +583,8 @@ function quitarIndicador()
         else {
             $('#resultados').addClass('hidden');
             $('#btn_quitar').addClass('hidden');
+            $('#btn_mostrar_resultado1').addClass('hidden');
+            $('#sin_resultados').removeClass('hidden');
         }
     }
 }

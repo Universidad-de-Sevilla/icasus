@@ -110,10 +110,21 @@
 
 <div class="row">
     <div class="col-lg-12">
+        <div class="alert alert-info alert-dismissible">
+            <i class="fa fa-info-circle fa-fw"></i> 
+            {$smarty.const.TXT_CONSULT_INFO}
+        </div> 
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+    <!-- Parámetros de la consulta -->
+    <div class="col-lg-4">
         <div class="panel panel-red">
             <div class="panel-heading">
                 <span class="panel-title"><i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT_PARAM}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
@@ -121,21 +132,19 @@
                 <div class="row">
                     <div class="col-lg-12">
                         {if $indicadores}
-                            <form class="form-horizontal">
+                            <form>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="indicadores">{$smarty.const.FIELD_INDIC}/{$smarty.const.FIELD_DATO}</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control chosen-select" id='indicadores'>
-                                            {foreach $indicadores as $indicador}
-                                                <option title="{$smarty.const.TXT_CONSULT_INCLUIR}" value="{$indicador->id}">{$indicador->nombre}</option>
-                                            {/foreach} 
-                                        </select>
-                                    </div>
-                                    <button id="btn_incluir" type="button" title="{$smarty.const.TXT_CONSULT_INCLUIR}" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw"></i></button>
-                                    <button id="btn_quitar" type="button" title="{$smarty.const.TXT_CONSULT_QUITAR}" class="btn btn-danger hidden"><i class="fa fa-minus-circle fa-fw"></i></button>
+                                    <label class="control-label" for="indicadores">{$smarty.const.FIELD_INDIC}/{$smarty.const.FIELD_DATO}</label>
+                                    <select class="form-control chosen-select" id='indicadores'>
+                                        {foreach $indicadores as $indicador}
+                                            <option title="{$indicador->nombre}" value="{$indicador->id}">{$indicador->nombre}</option>
+                                        {/foreach} 
+                                    </select>
                                 </div>
                             </form>
-                        {else}
+                            <button id="btn_incluir" type="button" title="{$smarty.const.TXT_CONSULT_INCLUIR}" class="btn btn-primary"><i class="fa fa-plus-circle fa-fw"></i></button>
+                            <button id="btn_quitar" type="button" title="{$smarty.const.TXT_CONSULT_QUITAR}" class="btn btn-danger hidden"><i class="fa fa-minus-circle fa-fw"></i></button>
+                            {else}
                             <div class="alert alert-info alert-dismissible">
                                 <i class="fa fa-info-circle fa-fw"></i> 
                                 {$smarty.const.MSG_UNID_NO_IND_NO_DAT}
@@ -198,30 +207,34 @@
         </div>
         <!-- /.panel -->
     </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
+    <!-- /.col-lg-4 -->
+    <!-- /Parámetros de la consulta -->
 
-<div class="row">
-    <div class="col-lg-12">
-        <div id="resultados" class="panel panel-red hidden">
+    <!-- Resultados de la consulta -->
+    <div class="col-lg-8">
+        <div class="panel panel-red">
             <div class="panel-heading">
                 <span class="panel-title"><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_CONSULT_RESUL}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
                 <!-- Gráfica con los resultados obtenidos -->
                 <div class="col-lg-12">
-                    <div class="btn-toolbar mediciones">
-                        <button title="{$smarty.const.TXT_TODOS}" class="btn btn-default medicion actual">{$smarty.const.TXT_TODOS}</button>
-                        {$anyo_actual = $smarty.now|date_format:'%Y'}
-                        {for $anyo = $anyo_actual - 5 to $anyo_actual}
-                            <button title="{$anyo}" class="btn btn-default medicion">{$anyo}</button>
-                        {/for}
-                        <button id="btn_mostrar_resultado2" title="{$smarty.const.TXT_RESUL}" class="btn btn-success">{$smarty.const.TXT_RESUL}</button>
+                    <div id="sin_resultados" class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_NO_OPERANDOS}
                     </div>
-                    <div id="grafica"></div>
+                    <div id="resultados" class="hidden">
+                        <div class="btn-toolbar mediciones">
+                            <button title="{$smarty.const.TXT_TODOS}" class="btn btn-default medicion actual">{$smarty.const.TXT_TODOS}</button>
+                            {$anyo_actual = $smarty.now|date_format:'%Y'}
+                            {for $anyo = $anyo_actual - 5 to $anyo_actual}
+                                <button title="{$anyo}" class="btn btn-default medicion">{$anyo}</button>
+                            {/for}
+                            <button id="btn_mostrar_resultado2" title="{$smarty.const.TXT_RESUL}" class="btn btn-success">{$smarty.const.TXT_RESUL}</button>
+                        </div>
+                        <div id="grafica"></div>
+                    </div>
                 </div>
                 <!-- /.col-lg-12 -->
                 <!-- /Gráfica con los resultados obtenidos -->
@@ -230,6 +243,7 @@
         </div>
         <!-- /.panel -->
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /.col-lg-8 -->
+    <!-- /Resultados de la consulta -->
 </div>
 <!-- /.row -->
