@@ -60,11 +60,33 @@ jQuery(function ($) {
 // Back to Top
 // Only enable if the document has a long scroll bar
 // Note the window height + offset
-if (($(window).height() + 100) < $(document).height()) {
-    $('#top-link-block').removeClass('hidden').affix({
-        // how far to scroll down before link "slides" into view
-        offset: {top: 100}
-    });
+backToTop();
+//Si cambia la longitud del documento
+onElementHeightChange(document.body, function () {
+    backToTop();
+});
+function backToTop() {
+    if (($(window).height() + 100) < $(document).height()) {
+        $('#top-link-block').removeClass('hidden').affix({
+            // how far to scroll down before link "slides" into view
+            offset: {top: 100}
+        });
+    }
+}
+//Detecta cambios de longitud del documento
+function onElementHeightChange(elm, callback) {
+    var lastHeight = elm.clientHeight, newHeight;
+    (function run() {
+        newHeight = elm.clientHeight;
+        if (lastHeight != newHeight)
+            callback();
+        lastHeight = newHeight;
+
+        if (elm.onElementHeightChangeTimer)
+            clearTimeout(elm.onElementHeightChangeTimer);
+
+        elm.onElementHeightChangeTimer = setTimeout(run, 200);
+    })();
 }
 
 //Datatables

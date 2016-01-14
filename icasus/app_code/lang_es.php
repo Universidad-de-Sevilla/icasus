@@ -40,6 +40,7 @@ define('TXT_MANTENIMIENTO', 'Estamos realizando tareas de mantenimiento. Los ser
 define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
+define('TXT_RESUL', 'Resultado');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
@@ -71,7 +72,8 @@ define('TXT_CONSULT', 'Consulta avanzada');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
 define('TXT_CONSULT_OPERAND', 'Operando');
 define('TXT_CONSULT_OPER', 'Operador');
-define('TXT_CONSULT_INCLUIR', 'Incluir en la consulta');
+define('TXT_CONSULT_INCLUIR', 'Incluir/cambiar operando de la consulta');
+define('TXT_CONSULT_QUITAR', 'Retirar último operando de la consulta');
 define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 
 //Cuadros de Mando
@@ -420,6 +422,7 @@ define('MSG_GUARDAR_OK', 'Se han guardado los cambios correctamente.');
 define('MSG_CAMPO_REQ', 'Campo obligatorio');
 define('MSG_BUSCAR_NO_RESUL', 'No existen resultados para la búsqueda solicitada.');
 define('MSG_BUSCAR_NO_TEXTO', 'No introdujo ningún texto para buscar.');
+define('MSG_NO_CAL', 'No se puede calcular con los parámetros actuales.');
 
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');
