@@ -121,7 +121,7 @@ define('TXT_DIM_REL', 'Relación de dimensiones');
 
 //Entidades (Unidades)
 define('TXT_UNID', 'Unidad');
-define('TXT_UNID_PRINCIPAL', 'Unidad principal');
+define('TXT_UNID_PRINCIPAL', 'Unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad.');
 define('TXT_UNID_PARAM', 'Parámetros de la unidad');
 define('TXT_UNID_SUP_INDIC', 'Indicadores de la unidad superior');
 define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la unidad');
@@ -217,7 +217,7 @@ define('TXT_MED_TABLA', 'Tabla de mediciones');
 define('TXT_MED_ULTIMA', 'Última medición');
 
 //Menú Principal
-define('TXT_INICIO', 'Mi Icasus');
+define('TXT_INICIO', 'Mi icasus');
 define('TXT_UNIDS_US', 'Unidades US');
 define('TXT_PROCS_US', 'Procesos US');
 define('TXT_INDICS_US', 'Indicadores US');

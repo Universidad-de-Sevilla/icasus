@@ -2,7 +2,36 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" class="page-header">
-            <i class="fa fa-folder fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}
+            <div class="row">
+                <div class="col-md-10">
+                    {if $principal}<i title="{$smarty.const.TXT_UNID_PRINCIPAL}" class="fa fa-star fa-fw"></i>{/if}<i class="fa fa-folder fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}
+                </div>
+                <!-- /.col-md-10 -->
+                <!-- Navegación -->
+                {if count($unidades)> 1 && $entidad->es_organica}
+                    <div class="col-md-2">
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=entidad_mostrar&id_entidad={$unidades[0]->id}'>
+                                    <i class="fa fa-step-backward fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ANT}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=entidad_mostrar&id_entidad={$unidades[$indice-1]->id}'>
+                                    <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_SIG}" class="btn btn-danger btn-xs {if $indice == (count($unidades)-1)}disabled{/if}" href='index.php?page=entidad_mostrar&id_entidad={$unidades[$indice+1]->id}'>
+                                    <i class="fa fa-play fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ULTIMO}" class="btn btn-danger btn-xs {if $indice == (count($unidades)-1)}disabled{/if}" href='index.php?page=entidad_mostrar&id_entidad={$unidades[(count($unidades)-1)]->id}'>
+                                    <i class="fa fa-step-forward fa-fw"></i>
+                                </a>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- /.col-md-2 -->
+                {/if}
+                <!-- /Navegación -->
+            </div>
+            <!-- /.row -->
         </h3>
     </div>
     <!-- /.col-lg-12 -->

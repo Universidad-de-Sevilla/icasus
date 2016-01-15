@@ -456,39 +456,41 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_INICIO_GRABACION}</th>
                                     <td>
-                                        <span id="gi" data-grabacion_inicio="{$medicion->grabacion_inicio}"></span>
-                                        {if $permiso_unidad == true && !$indicador->calculo}
-                                            <div>
-                                                <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">
-                                                    {if $medicion->grabacion_inicio}
-                                                        {$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}
-                                                    {else}
-                                                        ---
-                                                    {/if}
-                                                </a>
-                                            </div>
-                                        {else}
-                                            <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</div>
-                                        {/if}
+                                        <span id="gi" data-grabacion_inicio="{$medicion->grabacion_inicio}">
+                                            {if $permiso_unidad == true && !$indicador->calculo}
+                                                <div>
+                                                    <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">
+                                                        {if $medicion->grabacion_inicio}
+                                                            {$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}
+                                                        {else}
+                                                            ---
+                                                        {/if}
+                                                    </a>
+                                                </div>
+                                            {else}
+                                                <div>{$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}</div>
+                                            {/if}
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_FIN_GRABACION}</th>
                                     <td>
-                                        <span id="gf" data-grabacion_fin="{$medicion->grabacion_fin}"></span>
-                                        {if $permiso_unidad == true && !$indicador->calculo}
-                                            <div>
-                                                <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">
-                                                    {if $medicion->grabacion_fin}
-                                                        {$medicion->grabacion_fin|date_format:"%d-%m-%Y"}
-                                                    {else}
-                                                        ---
-                                                    {/if}
-                                                </a>
-                                            </div>
-                                        {else}
-                                            <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</div>
-                                        {/if}
+                                        <span id="gf" data-grabacion_fin="{$medicion->grabacion_fin}">
+                                            {if $permiso_unidad == true && !$indicador->calculo}
+                                                <div>
+                                                    <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">
+                                                        {if $medicion->grabacion_fin}
+                                                            {$medicion->grabacion_fin|date_format:"%d-%m-%Y"}
+                                                        {else}
+                                                            ---
+                                                        {/if}
+                                                    </a>
+                                                </div>
+                                            {else}
+                                                <div>{$medicion->grabacion_fin|date_format:"%d-%m-%Y"}</div>
+                                            {/if}
+                                        </span>
                                     </td>
                                 </tr>
                                 {if isset($valores_referencia_medicion)}
