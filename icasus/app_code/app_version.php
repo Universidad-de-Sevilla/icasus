@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.1.2");
-define('IC_FECHA_REVISION', "12/01/2016");
+define('IC_VERSION', "3.1.3");
+define('IC_FECHA_REVISION', "15/01/2016");
 
+// 3.1.3 - 15/01/2016 - Avance entre unidades. Enlaces externos a pestañas, otras correcciones...
 // 3.1.2 - 12/01/2016 - Corregido error en la asignación de usuarios a una Unidad. Se indica ahora con un icono estrellado cual es la unidad principal del usuario.
 // 3.1.1 - 11/01/2016 - Consultas avanzadas con Highcharts.
 // 3.0.1 - 11/12/2015 - Cambios generales de estilo, presentación y navegación.
