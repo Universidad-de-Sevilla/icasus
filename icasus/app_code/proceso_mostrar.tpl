@@ -385,6 +385,12 @@
                                                     {/if}>  
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
                                         <td>
+                                            {if $indicador->calculo}
+                                                <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
+                                            {/if}
+                                            {if $indicador->id_tipo_agregacion!= 0}
+                                                <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
+                                            {/if}
                                             <a title='{$indicador->nombre}: {$indicador->descripcion}' href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>{$indicador->nombre}</a>
                                         </td>
                                         <td style="font-size: 12px">
