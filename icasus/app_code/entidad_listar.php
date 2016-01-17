@@ -13,7 +13,7 @@ global $smarty;
 global $usuario;
 global $plantilla;
 
-$smarty->assign('_javascript', array('ordenatabla'));
+$smarty->assign('_javascript', array('inicio'));
 $smarty->assign('_nombre_pagina', TXT_UNIDS_US);
 
 // Entidades de este usuario

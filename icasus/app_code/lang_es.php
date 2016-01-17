@@ -121,6 +121,7 @@ define('TXT_DIM_REL', 'Relación de dimensiones');
 
 //Entidades (Unidades)
 define('TXT_UNID', 'Unidad');
+define('TXT_UNID_ASIG_PRINCIPAL', 'Convertir en unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad (sólo se puede asignar una unidad como principal).');
 define('TXT_UNID_PRINCIPAL', 'Unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad.');
 define('TXT_UNID_PARAM', 'Parámetros de la unidad');
 define('TXT_UNID_SUP_INDIC', 'Indicadores de la unidad superior');
