@@ -15,15 +15,15 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $entidad->load("id =  $id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    $cuadros = $cuadro->Find("privado = 0 AND id_entidad=$id_entidad");
+    $cuadros = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
     $smarty->assign('cuadros', $cuadros);
 
     $plantilla = 'cuadro_listar.tpl';
     $smarty->assign('_javascript', array('cuadro_listar'));
-    $smarty->assign('_nombre_pagina', TXT_CUADROS_MANDO. ': ' . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', TXT_CUADROS_MANDO . ': ' . $entidad->nombre);
 }
 else
 {
     $error = ERR_PARAM;
-    header("location:index.php?page=cuadro_listar&error=$error");
+    header("location:index.php?page=cuadros&error=$error");
 }

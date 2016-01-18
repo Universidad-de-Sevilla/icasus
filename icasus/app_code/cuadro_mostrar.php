@@ -9,9 +9,9 @@
 // Muestra un cuadro de mando con todos sus paneles
 //------------------------------------------------------------------------------
 
-if (filter_has_var(INPUT_GET, 'id'))
+if (filter_has_var(INPUT_GET, 'id_cuadro'))
 {
-    $id_cuadro = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
+    $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
     $smarty->assign("id_cuadro", $id_cuadro);
     $cuadro = new Cuadro();
     if ($cuadro->load("id = $id_cuadro AND (id_usuario = $usuario->id OR privado = 0)"))

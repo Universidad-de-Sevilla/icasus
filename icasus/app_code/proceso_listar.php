@@ -29,6 +29,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 }
 else
 {
-    $error = ERR_PARAM;
-    header("location:index.php?page=entidad_listar&error=$error");
+    $error = ERR_UNID;
+    header("location:index.php?page=procesos&error=$error");
 }

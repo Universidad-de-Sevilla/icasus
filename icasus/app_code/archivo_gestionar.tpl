@@ -177,7 +177,7 @@
                         </a>
                     </li>
                     <li>
-                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar'>
+                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
                             <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO}
                         </a>
                     </li>

@@ -33,9 +33,6 @@
                 <button id="formlogin" title="{$smarty.const.TXT_LOGIN}" class="btn btn-success btn-block" type="button" onclick="location.href = 'index.php?page=login_sso&autenticar';">
                     <i class="fa fa-sign-in fa-fw"></i> {$smarty.const.TXT_LOGIN}
                 </button>
-                <div class="alert alert-info" style="margin-top:20px;">
-                    <p><i class="fa fa-info-circle fa-2x"></i> Actualmente, ésta es la versión oficial de Icasus. Los cambios que realices aquí también se verán reflejados en la versión anterior.</p>
-                </div>
             </div>
             <!-- /.col-md-12 -->
         </div>

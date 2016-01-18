@@ -157,7 +157,7 @@
                     </div>
                     <!-- /.col-md-3 -->
                     <div class="col-md-3">
-                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" class="btn btn-danger btn-block" href='index.php?page=cuadro_listar'>
+                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" class="btn btn-danger btn-block" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
                             <h4><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO}</h4>
                         </a>
                     </div>

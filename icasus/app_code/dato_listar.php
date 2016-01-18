@@ -30,5 +30,5 @@ if ($id_entidad != 0)
 else
 {
     $error = ERR_UNID;
-    header("location:index.php?page=error&error=$error");
+    header("location:index.php?page=datos&error=$error");
 }
