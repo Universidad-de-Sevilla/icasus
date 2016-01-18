@@ -21,6 +21,38 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $entidad->load_joined("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    //Obtener todas las unidades para avanzar o retroceder 
+    $unidades = $entidad->Find("es_organica = 1");
+    $smarty->assign("unidades", $unidades);
+    $cont = 0;
+    foreach ($unidades as $unid)
+    {
+        if ($id_entidad == $unid->id)
+        {
+            $indice = $cont;
+            $smarty->assign("indice", $indice);
+        }
+        $cont++;
+    }
+
+    //Usuarios
+    $usuarios = $entidad->usuario;
+    $smarty->assign('usuarios', $usuarios);
+
+    //Comprobamos si es la entidad principal del usuario
+    $principal = false;
+    if ($entidad->usuario)
+    {
+        foreach ($entidad->usuario as $user)
+        {
+            if ($usuario->id == $user->id_usuario && $user->principal)
+            {
+                $principal = true;
+            }
+        }
+    }
+    $smarty->assign('principal', $principal);
+
     // Obtenemos los procesos de la unidad sus indicadores y datos
     $smarty->assign('procesos', $procesos);
     $i = new Indicador();
@@ -37,11 +69,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $subentidad = new Entidad();
     $subentidades = $subentidad->Find("id_madre = $id_entidad ORDER by codigo");
     $smarty->assign('subentidades', $subentidades);
-
-    //Usuarios
-    $usuario_entidad = new Usuario_entidad;
-    $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
-    $smarty->assign('usuarios', $usuarios);
 
     $anio_fin = date('Y') - 1;
     $smarty->assign('anio_fin', $anio_fin);

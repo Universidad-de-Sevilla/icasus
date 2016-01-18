@@ -7,6 +7,18 @@
 // Incluye el código JavaScript para el fichero inicio.tpl y usuario_mostrar.tpl
 //----------------------------------------------------------------------------
 
+//Unidad principal
+$('.principal').on('click', function () {
+    var id = $(this).data('id_user_unid');
+    var id_usuario = $(this).data('id_usuario');
+    $.ajax({
+        url: "index.php?page=inicio&id_principal=" + id + '&id_usuario=' + id_usuario,
+        success: function () {
+            location.reload();
+        }
+    });
+});
+
 //Borrado de procesos
 $('#dialogo_confirmar_borrado_proceso').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
