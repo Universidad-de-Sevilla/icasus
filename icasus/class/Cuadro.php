@@ -14,5 +14,38 @@ class Cuadro extends ADOdb_Active_Record
 {
 
     public $_table = 'cuadros';
+    public $entidad;
+
+    public function load_joined($condicion)
+    {
+        if ($this->load($condicion))
+        {
+            $this->entidad = new Entidad();
+            $this->entidad->load("id = $this->id_entidad");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function Find_joined($criterio)
+    {
+        if ($cuadros = $this->Find($criterio))
+        {
+            foreach ($cuadros as $cuadro)
+            {
+                $entidad = new Entidad();
+                $entidad->load("id= $cuadro->id_entidad");
+                $cuadro->entidad = $entidad;
+            }
+            return $cuadros;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
 }

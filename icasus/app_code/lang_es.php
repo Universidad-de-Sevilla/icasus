@@ -79,6 +79,7 @@ define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 
 //Cuadros de Mando
 define('TXT_CUADRO_MANDO', 'Cuadro de mando');
+define('TXT_CUADROS_MANDO', 'Cuadros de mando');
 define('TXT_CUADROS_MANDO_PUBLIC', 'Cuadros de mando públicos');
 define('TXT_CUADRO_NUEVO', 'Nuevo cuadro de mando');
 define('TXT_CUADRO_PARAM', 'Parámetros del cuadro de mando');
@@ -224,7 +225,6 @@ define('TXT_PROCS_US', 'Procesos US');
 define('TXT_INDICS_US', 'Indicadores US');
 define('TXT_DATOS_US', 'Datos US');
 define('TXT_CUADROS_MANDO_US', 'Cuadros de mando US');
-define('TXT_CUADROS_MANDO', 'Cuadros de mando');
 define('TXT_USERS_US', 'Usuarios US');
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
