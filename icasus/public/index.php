@@ -85,7 +85,7 @@ if (isset($_SESSION['usuario']))
     }
     else
     {
-        //Cantidad de procesos, indicadores y datos
+        //Cantidad de procesos, indicadores, datos y cuadros de mando
         $proceso = new Proceso();
         $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");
         $smarty->assign('num_procesos', count($procesos));
@@ -97,6 +97,10 @@ if (isset($_SESSION['usuario']))
         $dato = new Indicador();
         $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL");
         $smarty->assign('num_datos', count($datos));
+        
+        $cuadro = new Cuadro();
+        $cuadros = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
+        $smarty->assign('num_cuadros', count($cuadros));
     }
 
     $usuario = $_SESSION['usuario'];

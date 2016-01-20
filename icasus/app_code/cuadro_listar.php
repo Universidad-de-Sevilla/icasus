@@ -3,9 +3,10 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: cuadro_listar.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Lista los cuadros de mando definidos por este usuario
+// Descripcion: Lista los cuadros de mando para una unidad
 //---------------------------------------------------------------------------------------------------
 
 if (filter_has_var(INPUT_GET, 'id_entidad'))
@@ -15,6 +16,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $entidad->load("id =  $id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    $cuadro = new Cuadro();
     $cuadros = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
     $smarty->assign('cuadros', $cuadros);
 
@@ -24,6 +26,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 }
 else
 {
-    $error = ERR_PARAM;
+    $error = ERR_UNID;
     header("location:index.php?page=cuadros&error=$error");
 }

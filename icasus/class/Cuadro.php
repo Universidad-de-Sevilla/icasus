@@ -32,6 +32,7 @@ class Cuadro extends ADOdb_Active_Record
 
     public function Find_joined($criterio)
     {
+        $cuadros = Array();
         if ($cuadros = $this->Find($criterio))
         {
             foreach ($cuadros as $cuadro)
@@ -40,12 +41,8 @@ class Cuadro extends ADOdb_Active_Record
                 $entidad->load("id= $cuadro->id_entidad");
                 $cuadro->entidad = $entidad;
             }
-            return $cuadros;
         }
-        else
-        {
-            return false;
-        }
+        return $cuadros;
     }
 
 }

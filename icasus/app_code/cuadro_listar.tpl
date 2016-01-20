@@ -61,15 +61,15 @@
                         </a>
                     </li>
                     <li>
-                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
-                            <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
+                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
+                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cuadros} {$smarty.const.TXT_CUADROS_MANDO}">({$num_cuadros})</span>
                         </a>
                     </li>
                     <li>
-                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO}
+                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
+                            <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
-                    </li>
+                    </li>   
                     {if $_control}
                         <li class="divider"></li>
                         <li>
@@ -141,7 +141,7 @@
                                                 {if $cuadro->id_usuario == $_usuario->id}
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}'><i class="fa fa-pencil fa-fw"></i></a>   
                                                 <a class="btn btn-default btn-circle btn-xs" data-toggle="modal" data-target="#dialogo_confirmar_borrado"
-                                                   title="{$smarty.const.TXT_BORRAR}" data-nombre_cuadro="{$cuadro->nombre}" data-id_cuadro="{$cuadro->id}" data-id_entidad="{$cuadro->id_entidad}"
+                                                   title="{$smarty.const.TXT_BORRAR}" data-nombre_cuadro="{$cuadro->nombre}" data-id_cuadro="{$cuadro->id}"
                                                    href='javascript:void(0)'><i class="fa fa-trash fa-fw"></i></a>                                            
                                                 {/if}
                                         </td>

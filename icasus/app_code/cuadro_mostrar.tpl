@@ -11,7 +11,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" href='index.php?page=cuadro_borrar&id_cuadro={$cuadro->id}&id_entidad=14'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" href='index.php?page=cuadro_borrar&id_cuadro={$cuadro->id}'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
             </div>
         </div>
     </div>

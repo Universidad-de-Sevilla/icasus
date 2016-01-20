@@ -26,6 +26,7 @@ if (filter_has_var(INPUT_POST, 'nombre'))
             header("Location: index.php?page=cuadro_listar&error=error");
         }
     }
+    $cuadro->id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $cuadro->id_usuario = $usuario->id;
     $cuadro->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $cuadro->privado = 0;
@@ -35,11 +36,11 @@ if (filter_has_var(INPUT_POST, 'nombre'))
     }
     $cuadro->comentarios = filter_has_var(INPUT_POST, 'comentarios') ? filter_input(INPUT_POST, 'comentarios', FILTER_SANITIZE_STRING) : '';
     $cuadro->save();
-    header("Location: index.php?page=cuadro_mostrar&id=$cuadro->id&exito=$exito");
+    header("Location: index.php?page=cuadro_mostrar&id_cuadro=$cuadro->id&exito=$exito");
 }
 else
 {
     // Avisamos de error por falta de parametros
     $error = ERR_PARAM;
-    header("Location: index.php?page=cuadro_listar&error=error");
+    header("Location: index.php?page=cuadros&error=error");
 }

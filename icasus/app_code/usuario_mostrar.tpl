@@ -125,7 +125,7 @@
                 <a href="#user_dato" title="{$smarty.const.TXT_USER_DATO}" aria-controls="{$smarty.const.TXT_USER_DATO}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</a>
             </li>
             <li role="presentation">
-                <a href="#user_cuadro" title="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" aria-controls="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</a>
+                <a href="#user_cuadro" title="{$smarty.const.TXT_USER_CUADROS}" aria-controls="{$smarty.const.TXT_USER_CUADROS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_USER_CUADROS}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->

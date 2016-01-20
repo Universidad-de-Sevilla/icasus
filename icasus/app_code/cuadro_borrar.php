@@ -24,16 +24,16 @@ if (filter_has_var(INPUT_GET, 'id_cuadro'))
     {
         $exito = MSG_CUADRO_MANDO_BORRADO . " " . $cuadro->nombre;
         $cuadro->delete();
-        header("Location: index.php?page=cuadro_listar&exito=$exito");
+        header("Location: index.php?page=cuadro_listar&id_entidad=$cuadro->id_entidad&exito=$exito");
     }
     else
     {
         $aviso = MSG_CUADRO_MANDO_BORRAR;
-        header("Location: index.php?page=cuadro_listar&aviso=$aviso");
+        header("Location: index.php?page=cuadro_listar&id_entidad=$cuadro->id_entidad&aviso=$aviso");
     }
 }
 else
 {
     $error = ERR_PARAM;
-    header("Location: index.php?page=cuadro_listar&error=$error");
+    header("Location: index.php?page=cuadros&error=$error");
 }

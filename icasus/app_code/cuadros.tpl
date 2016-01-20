@@ -48,7 +48,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#cuadros_propios" title="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" aria-controls="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</a>
+                <a href="#cuadros_propios" title="{$smarty.const.TXT_USER_CUADROS}" aria-controls="{$smarty.const.TXT_USER_CUADROS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_USER_CUADROS}</a>
             </li>
             <li role="presentation">
                 <a href="#cuadro_todos" title="{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}" aria-controls="{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO_PUBLIC}</a>
@@ -66,6 +66,7 @@
                         <table class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_NOMBRE}</th>
                                     <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                     <th>{$smarty.const.FIELD_COMENTARIOS}</th>
@@ -75,6 +76,7 @@
                             <tbody>
                                 {foreach from=$cuadros_propios item=cuadro}
                                     <tr>
+                                        <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$cuadro->entidad->id}'>{$cuadro->entidad->etiqueta}</a></td>
                                         <td>
                                             <a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}">{$cuadro->nombre}</a>
                                         </td> 
@@ -90,7 +92,7 @@
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}"><i class="fa fa-eye fa-fw"></i></a>                 
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}'><i class="fa fa-pencil fa-fw"></i></a>   
                                             <a class="btn btn-default btn-circle btn-xs" data-toggle="modal" data-target="#dialogo_confirmar_borrado" 
-                                               title="{$smarty.const.TXT_BORRAR}" data-nombre_cuadro="{$cuadro->nombre}" data-id_cuadro="{$cuadro->id}" data-id_entidad="{$cuadro->id_entidad}"
+                                               title="{$smarty.const.TXT_BORRAR}" data-nombre_cuadro="{$cuadro->nombre}" data-id_cuadro="{$cuadro->id}"
                                                href='javascript:void(0)'><i class="fa fa-trash fa-fw"></i></a>                                            
                                         </td>
                                     </tr>
@@ -137,7 +139,7 @@
                                                 {if $cuadro->id_usuario == $_usuario->id}
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}'><i class="fa fa-pencil fa-fw"></i></a>   
                                                 <a class="btn btn-default btn-circle btn-xs" data-toggle="modal" data-target="#dialogo_confirmar_borrado"
-                                                   title="{$smarty.const.TXT_BORRAR}" data-nombre_cuadro="{$cuadro->nombre}" data-id_cuadro="{$cuadro->id}" data-id_entidad="{$cuadro->id_entidad}"
+                                                   title="{$smarty.const.TXT_BORRAR}" data-nombre_cuadro="{$cuadro->nombre}" data-id_cuadro="{$cuadro->id}"
                                                    href='javascript:void(0)'><i class="fa fa-trash fa-fw"></i></a>                                            
                                                 {/if}
                                         </td>

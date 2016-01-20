@@ -29,11 +29,11 @@ if (filter_has_var(INPUT_GET, 'id_cuadro'))
     else
     {
         $error = ERR_CUAD_MANDO;
-        header("location:index.php?page=error&error=$error");
+        header("location:index.php?page=cuadros&error=$error");
     }
 }
 else
 {
     $error = ERR_CUAD_MANDO_PARAM;
-    header("location:index.php?page=error&error=$error");
+    header("location:index.php?page=cuadros&error=$error");
 }
