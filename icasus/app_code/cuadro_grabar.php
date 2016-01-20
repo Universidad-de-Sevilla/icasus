@@ -16,14 +16,14 @@ if (filter_has_var(INPUT_POST, 'nombre'))
     $cuadro = new Cuadro();
     $exito = MSG_CUADRO_CREADO;
     // Si viene el id es que estamos editando uno existente
-    if (filter_has_var(INPUT_POST, 'id'))
+    if (filter_has_var(INPUT_POST, 'id_cuadro'))
     {
-        $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
+        $id_cuadro = filter_input(INPUT_POST, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
         $exito = MSG_CUADRO_EDITADO;
-        if ($cuadro->load("id = $id AND id_usuario = $usuario->id") == false)
+        if ($cuadro->load("id = $id_cuadro AND id_usuario = $usuario->id") == false)
         {
             $error = ERR_CUAD_MANDO_EDIT;
-            header("Location: index.php?page=cuadro_listar&error=error");
+            header("Location: index.php?page=cuadros&error=error");
         }
     }
     $cuadro->id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
@@ -36,7 +36,7 @@ if (filter_has_var(INPUT_POST, 'nombre'))
     }
     $cuadro->comentarios = filter_has_var(INPUT_POST, 'comentarios') ? filter_input(INPUT_POST, 'comentarios', FILTER_SANITIZE_STRING) : '';
     $cuadro->save();
-    header("Location: index.php?page=cuadro_mostrar&id_cuadro=$cuadro->id&exito=$exito");
+    header("Location: index.php?page=cuadro_mostrar&id_cuadro=$cuadro->id&id_entidad=$cuadro->id_entidad&exito=$exito");
 }
 else
 {

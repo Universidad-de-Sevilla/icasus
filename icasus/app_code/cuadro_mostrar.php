@@ -9,8 +9,13 @@
 // Muestra un cuadro de mando con todos sus paneles
 //------------------------------------------------------------------------------
 
-if (filter_has_var(INPUT_GET, 'id_cuadro'))
+if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    $entidad = new Entidad();
+    $entidad->load("id=$id_entidad");
+    $smarty->assign('entidad', $entidad);
+
     $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
     $smarty->assign("id_cuadro", $id_cuadro);
     $cuadro = new Cuadro();

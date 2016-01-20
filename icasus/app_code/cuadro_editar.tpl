@@ -81,7 +81,7 @@
             <div class="panel-body">
                 <form action='index.php?page=cuadro_grabar' method='post' id='formcuadro' name='formcuadro' 
                       data-toggle="validator" class="form-horizontal">
-                    <input type="hidden" name="id" value="{$cuadro->id}" />
+                    <input type="hidden" name="id_cuadro" value="{$cuadro->id}" />
                     <input type="hidden" name="id_entidad" value="{$entidad->id}">
                     <div class="form-group has-feedback">
                         <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE_CUADRO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
@@ -108,7 +108,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href='index.php?page=cuadro_mostrar&id={$cuadro->id}'>
+                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href='index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                                 <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                             </a>
                             <div class="pull-right">
