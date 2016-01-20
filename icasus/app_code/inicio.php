@@ -65,7 +65,7 @@ $smarty->assign("datos_propios", $datos);
 
 // Cuadros de mando del usuario
 $cuadro = new Cuadro();
-$cuadros = $cuadro->Find("id_usuario = $usuario->id");
+$cuadros = $cuadro->Find_joined("id_usuario = $usuario->id");
 $smarty->assign('cuadros_propios', $cuadros);
 
 if (is_array($indicadores) && is_array($datos))
