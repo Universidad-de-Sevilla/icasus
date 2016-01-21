@@ -50,7 +50,7 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
 
     // Cuadros de mando del usuario
     $cuadro = new Cuadro();
-    $cuadros = $cuadro->Find("id_usuario = $persona->id");
+    $cuadros = $cuadro->Find_joined("id_usuario = $persona->id");
     $smarty->assign('cuadros_propios', $cuadros);
 
     if (is_array($indicadores) && is_array($datos))

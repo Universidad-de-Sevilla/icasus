@@ -88,7 +88,7 @@
                         <!-- /.dropdown -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" title="{$smarty.const.TXT_INICIO}" data-toggle="dropdown" href="#">
-                                <i class="fa fa-th-list fa-fw"></i> <i class="fa fa-caret-down"></i>
+                                <i class="fa fa-bars fa-fw"></i> <i class="fa fa-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
                                 <li>
