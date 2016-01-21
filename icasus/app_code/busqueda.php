@@ -37,7 +37,7 @@ if (filter_has_var(INPUT_GET, 'texto_buscar'))
 
     //Buscar cuadros de mando
     $cuadro = new Cuadro();
-    $cuadros_public = $cuadro->Find("upper(nombre) LIKE '%$textob%' AND privado=0");
+    $cuadros_public = $cuadro->Find_joined("upper(nombre) LIKE '%$textob%' AND privado=0");
     $smarty->assign('cuadros_publicos', $cuadros_public);
 
     $smarty->assign("_nombre_pagina", TXT_BUSCAR_RESUL . '"' . $texto . '"');
