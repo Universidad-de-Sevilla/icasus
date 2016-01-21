@@ -41,15 +41,15 @@
                         </a>
                     </li>
                     <li>
-                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
-                            <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
+                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
+                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cuadros} {$smarty.const.TXT_CUADROS_MANDO}">({$num_cuadros})</span>
                         </a>
                     </li>
                     <li>
-                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO}
+                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
+                            <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
-                    </li>
+                    </li>   
                     {if $_control}
                         <li class="divider"></li>
                         <li>
@@ -62,7 +62,6 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            <li><a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_PROCS}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
