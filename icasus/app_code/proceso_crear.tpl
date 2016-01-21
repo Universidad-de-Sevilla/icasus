@@ -62,6 +62,7 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
+            <li><a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_PROCS}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
