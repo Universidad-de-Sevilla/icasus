@@ -147,7 +147,7 @@
                         </li>
                         <!-- /.dropdown -->
                         <li class="dropdown">
-                            <a class="dropdown-toggle" title="{$_usuario->login}" data-toggle="dropdown" href="#">
+                            <a class="dropdown-toggle" title="{$smarty.const.FIELD_USER}: {$_usuario->login}" data-toggle="dropdown" href="#">
                                 <i class="fa fa-user fa-fw"></i> {$_usuario->login} <i class="fa fa-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">

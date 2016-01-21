@@ -455,7 +455,7 @@ span:focus, .pagination > li > span:hover {
 }
 
 /*Menú de Unidades*/
-.panel-procesos {
+/*.panel-procesos {
     border-color: #337AB7;
 }
 
@@ -470,31 +470,59 @@ span:focus, .pagination > li > span:hover {
 }
 
 .panel-indicadores {
-    border-color: #5CB85C;
-}
-
-.panel-indicadores .panel-heading {
-    border-color: #5CB85C;
-    color: #fff;
-    background-color: #5CB85C;
-}
-
-.panel-indicadores .panel-heading:hover {
-    background-color: #4CAE4C;
-}
-
-.panel-datos {
     border-color: #FFC526;
 }
 
-.panel-datos .panel-heading {
+.panel-indicadores .panel-heading {
     border-color: #FFC526;
     color: #fff;
     background-color: #FFC526;
 }
 
+.panel-indicadores .panel-heading:hover {
+    background-color: #df8a13;
+}
+
+.panel-datos {
+    border-color:  #950717;
+}
+
+.panel-datos .panel-heading {
+    border-color:  #950717;
+    color: #fff;
+    background-color:  #950717;
+}
+
 .panel-datos .panel-heading:hover {
-   background-color: #df8a13;
+    background-color: #880736;
+}
+
+.panel-cuadros {
+    border-color: #5CB85C;
+}
+
+.panel-cuadros .panel-heading {
+    border-color: #5CB85C;
+    color: #fff;
+    background-color: #5CB85C;
+}
+
+.panel-cuadros .panel-heading:hover {
+    background-color: #4CAE4C;
+}*/
+
+.panel-resumen {
+    border-color:  #CCC;
+}
+
+.panel-resumen .panel-heading {
+    border-color:  #CCC;
+    color: #333;
+    background-color: #F5F5F5;;
+}
+
+.panel-resumen .panel-heading:hover {
+    background-color: #ddd;
 }
 
 /*Consultas*/
