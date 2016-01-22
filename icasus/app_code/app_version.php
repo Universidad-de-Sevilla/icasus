@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.2.3");
-define('IC_FECHA_REVISION', "18/01/2016");
+define('IC_VERSION', "3.3.3");
+define('IC_FECHA_REVISION', "22/01/2016");
 
+// 3.3.3 - 22/01/2016 - Cuadros de mando integrados con las unidades de Icasus.
 // 3.2.3 - 18/01/2016 - Gestión de la entidad principal de los usuarios permitiendo que éstos la modifiquen desde la propia aplicación.
 // 3.1.3 - 15/01/2016 - Avance entre unidades. Enlaces externos a pestañas, otras correcciones...
 // 3.1.2 - 12/01/2016 - Corregido error en la asignación de usuarios a una Unidad. Se indica ahora con un icono estrellado cual es la unidad principal del usuario.
