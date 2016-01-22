@@ -15,6 +15,7 @@ $panel_indicador = new Panel_indicador();
 if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'orden') && filter_has_var(INPUT_POST, 'tipo') && filter_has_var(INPUT_POST, 'ancho'))
 {
     $id_cuadro = filter_input(INPUT_POST, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
+    $id_ent = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $nombre_panel = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $orden = filter_input(INPUT_POST, 'orden', FILTER_SANITIZE_NUMBER_INT);
     $tipo = filter_input(INPUT_POST, 'tipo', FILTER_SANITIZE_NUMBER_INT);
@@ -69,20 +70,20 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     {
                         $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
                         $smarty->assign("exito", $exito);
-                        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
+                        header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                     }
                     else
                     {
                         // Error no se ha salvado el panel a la BD
                         $error = ERR_GUARDAR;
-                        header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                        header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                     }
                 }
                 else
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                 }
                 break;
 
@@ -105,13 +106,13 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         {
                             $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
                             $smarty->assign("exito", $exito);
-                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
+                            header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                         }
                         else
                         {
                             // Error no se ha salvado el panel a la BD
                             $error = ERR_GUARDAR;
-                            header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                            header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                         }
                     }
                 }
@@ -119,7 +120,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                 }
                 break;
 
@@ -135,20 +136,20 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     {
                         $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
                         $smarty->assign("exito", $exito);
-                        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
+                        header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                     }
                     else
                     {
                         // Error no se ha salvado el panel a la BD
                         $error = ERR_GUARDAR;
-                        header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                        header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                     }
                 }
                 else
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                 }
                 break;
 
@@ -169,13 +170,13 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         {
                             $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
                             $smarty->assign("exito", $exito);
-                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
+                            header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                         }
                         else
                         {
                             // Error no se ha salvado el panel a la BD
                             $error = ERR_GUARDAR;
-                            header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                            header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                         }
                     }
                 }
@@ -183,7 +184,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                 }
                 break;
 
@@ -205,13 +206,13 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         {
                             $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
                             $smarty->assign("exito", $exito);
-                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
+                            header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                         }
                         else
                         {
                             // Error no se ha salvado el panel a la BD
                             $error = ERR_GUARDAR;
-                            header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                            header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                         }
                     }
                 }
@@ -219,7 +220,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                 }
                 break;
             case 6:
@@ -240,13 +241,13 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         {
                             $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
                             $smarty->assign("exito", $exito);
-                            header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
+                            header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                         }
                         else
                         {
                             // Error no se ha salvado el panel a la BD
                             $error = ERR_GUARDAR;
-                            header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                            header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                         }
                     }
                 }
@@ -254,7 +255,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                 }
                 break;
         } //switch
@@ -263,12 +264,12 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
     {
         // Error no se ha salvado el panel a la BD
         $error = ERR_GUARDAR;
-        header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+        header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
     }
 }
 else
 {
     //Error faltan parámetros
     $error = ERR_PARAM;
-    header("location:index.php?page=cuadro_mostrar&id=$id_cuadro&error=$error");
+    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
 }
