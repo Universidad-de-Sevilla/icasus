@@ -168,7 +168,7 @@
                                     <div class="btn-toolbar pull-right" role="group" aria-label="">
                                         <a class="btn btn-default btn-xs" 
                                            title="{$smarty.const.TXT_EDIT}"
-                                           href="index.php?page=panel_editar&id_panel={$panel->id}&id_cuadro={$id_cuadro}">
+                                           href="index.php?page=panel_editar&id_panel={$panel->id}&id_cuadro={$id_cuadro}&id_entidad={$entidad->id}">
                                             <i class="fa fa-pencil fa-fw"></i> 
                                         </a>
                                         <a class="btn btn-default btn-xs" 

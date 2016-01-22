@@ -106,7 +106,7 @@
                             </div>
                             <div id="footer_tabs" class="hidden" class="form-group">
                                 <div class="col-sm-offset-2 col-sm-8">
-                                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href='index.php?page=cuadro_mostrar&id={$cuadro->id}'>
+                                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href='index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                                     </a>
                                     <div class="pull-right">
