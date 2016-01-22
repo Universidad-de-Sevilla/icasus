@@ -13,10 +13,15 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
 {
     $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-    $smarty->assign('id_entidad', $id_entidad);
+
+    $entidad = new Entidad();
+    $entidad->load("id=$id_entidad");
+    $smarty->assign('entidad', $entidad);
+
     $cuadro = new Cuadro();
     $cuadro->load("id=$id_cuadro");
     $smarty->assign('cuadro', $cuadro);
+
     $smarty->assign('_javascript', array('panel_nuevo'));
     $smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
     $plantilla = "panel_nuevo.tpl";

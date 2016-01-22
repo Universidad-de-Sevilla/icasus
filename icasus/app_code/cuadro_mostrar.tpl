@@ -117,9 +117,9 @@
         <div class="col-lg-12">
             <div class="btn-toolbar" role="toolbar" aria-label="">
                 <div class="btn-group" role="group" aria-label="">
-                    <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_PANEL_AGREGAR}" href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad=14'>
+                    <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_PANEL_AGREGAR}" href='index.php?page=panel_nuevo&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                         <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_PANEL_AGREGAR}</a>
-                    <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_EDIT_PROP}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'>
+                    <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_EDIT_PROP}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                         <i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_EDIT_PROP}</a>
                 </div> 
                 <div class="btn-group" role="group" aria-label="">
