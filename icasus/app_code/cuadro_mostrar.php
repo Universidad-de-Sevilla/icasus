@@ -23,6 +23,20 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     {
         $smarty->assign("cuadro", $cuadro);
 
+        //Obtener todos los cuadros para avanzar o retroceder 
+        $cuadros = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
+        $smarty->assign("cuadros", $cuadros);
+        $cont = 0;
+        foreach ($cuadros as $cuad)
+        {
+            if ($id_cuadro == $cuad->id)
+            {
+                $indice = $cont;
+                $smarty->assign("indice", $indice);
+            }
+            $cont++;
+        }
+
         $panel = new Panel();
         $paneles = $panel->Find_joined("id_cuadro = $id_cuadro ORDER BY orden");
         $smarty->assign("paneles", $paneles);

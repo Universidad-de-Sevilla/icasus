@@ -251,6 +251,7 @@ define('TXT_PRIMER', 'Primero/a');
 define('TXT_ULTIMO', 'Último/a');
 define('TXT_SIG', 'Siguiente');
 define('TXT_ANT', 'Anterior');
+define('TXT_DE', 'de');
 define('TXT_EDIT', 'Editar');
 define('TXT_BORRAR', 'Borrar');
 define('TXT_DESACT', 'Desactivar');
