@@ -88,7 +88,7 @@
                         <!-- /.dropdown -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" title="{$smarty.const.TXT_INICIO}" data-toggle="dropdown" href="#">
-                                <i class="fa fa-bars fa-fw"></i> <i class="fa fa-caret-down"></i>
+                                <i class="fa fa-th-list fa-fw"></i> <i class="fa fa-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
                                 <li>
@@ -138,6 +138,7 @@
                                 <li class="divider"></li>
                                 <li>
                                     <a class="text-center" title="{$smarty.const.TXT_VER} {$smarty.const.TXT_TODOS}" href="index.php">
+                                        <i class="fa fa-home fa-fw"></i>
                                         <strong>{$smarty.const.TXT_VER} {$smarty.const.TXT_TODOS}</strong>
                                         <i class="fa fa-angle-right"></i>
                                     </a>
