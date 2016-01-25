@@ -81,9 +81,39 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h2 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-user fa-fw"></i> {$_nombre_pagina}
-        </h2>
+        <h3 title="{$_nombre_pagina}" class="page-header">
+            <div class="row">
+                <div class="col-md-10">
+                    <i class="fa fa-user fa-fw"></i> {$_nombre_pagina}
+                </div>
+                <!-- /.col-md-10 -->
+                <!-- Navegación -->
+                {if count($usuarios)> 1}
+                    <div class="col-md-2">
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($usuarios)}</div>
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[0]->id}'>
+                                    <i class="fa fa-step-backward fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ANT}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[$indice-1]->id}'>
+                                    <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_SIG}" class="btn btn-danger btn-xs {if $indice == (count($usuarios)-1)}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[$indice+1]->id}'>
+                                    <i class="fa fa-play fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ULTIMO}" class="btn btn-danger btn-xs {if $indice == (count($usuarios)-1)}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[(count($usuarios)-1)]->id}'>
+                                    <i class="fa fa-step-forward fa-fw"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-md-2 -->
+                {/if}
+                <!-- /Navegación -->
+            </div>
+            <!-- /.row -->
+        </h3>
     </div>
     <!-- /.col-lg-12 -->
 </div>

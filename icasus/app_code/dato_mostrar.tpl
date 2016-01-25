@@ -30,6 +30,7 @@
                 <!-- Navegación -->
                 {if count($datos)> 1}
                     <div class="col-md-2">
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($datos)}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
                                 <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=dato_mostrar&id_entidad={$entidad->id}&id_dato={$datos[0]->id}'>

@@ -23,6 +23,20 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
     $persona->load_joined("id = $id_usuario");
     $smarty->assign('persona', $persona);
 
+    //Obtener todos los usuarios para avanzar o retroceder 
+    $usuarios = $persona->Find('1=1');
+    $smarty->assign("usuarios", $usuarios);
+    $cont = 0;
+    foreach ($usuarios as $user)
+    {
+        if ($id_usuario == $user->id)
+        {
+            $indice = $cont;
+            $smarty->assign("indice", $indice);
+        }
+        $cont++;
+    }
+
     // Sólo administradores de Icasus pueden ver todas las responsabilidades de un usuario
     $admin = false;
     foreach ($usuario->entidades as $entidad)

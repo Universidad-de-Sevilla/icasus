@@ -125,6 +125,7 @@
                 <!-- Navegación -->
                 {if count($mediciones)> 1}
                     <div class="col-md-2">
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($mediciones)}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
                                 <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[0]->id}&tipo={$tipo}'>
