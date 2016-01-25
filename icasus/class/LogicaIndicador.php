@@ -576,7 +576,16 @@ class LogicaIndicador implements ILogicaIndicador
                     $operando->Load("id=$id_operando");
                     $valores = $this->indicador_valores_medicion($operando, $etiqueta);
                     $valor_total = $this->calcular_total($operando, $valores, $etiqueta);
-                    $formula .= "$valor_total";
+                    //Si no se puede calcular un operando devolvemos null para evitar
+                    //errores de parseo
+                    if ($valor_total === NULL)
+                    {
+                        return NULL;
+                    }
+                    else
+                    {
+                        $formula .= "$valor_total";
+                    }
                 }
                 $es_variable = false;
                 continue;

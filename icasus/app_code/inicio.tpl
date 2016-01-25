@@ -120,7 +120,7 @@
                 <a href="#user_dato" title="{$smarty.const.TXT_USER_DATO}" aria-controls="{$smarty.const.TXT_USER_DATO}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</a>
             </li>
             <li role="presentation">
-                <a href="#user_cuadro" title="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" aria-controls="{$smarty.const.TXT_CUADRO_MANDO_PROPIOS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}</a>
+                <a href="#user_cuadro" title="{$smarty.const.TXT_USER_CUADROS}" aria-controls="{$smarty.const.TXT_USER_CUADROS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_USER_CUADROS}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -145,13 +145,14 @@
                                 {foreach from=$entidades_usuario item=entidad}
                                     <tr>
                                         <td><span class="label label-primary">{$entidad->entidad->codigo}</span></td>
-                                        <td>{if $entidad->principal}<i title="{$smarty.const.TXT_UNID_PRINCIPAL}" class="fa fa-star fa-fw"></i>{/if}<a title="{$entidad->entidad->nombre}" href='index.php?page=entidad_mostrar&id_entidad={$entidad->entidad->id}'>{$entidad->entidad->nombre}</a></td>
+                                        <td>{if $entidad->principal}<i title="{$smarty.const.TXT_UNID_PRINCIPAL}" class="fa fa-star fa-fw"></i>{else}<i title="{$smarty.const.TXT_UNID_ASIG_PRINCIPAL}" data-id_usuario="{$_usuario->id}" data-id_user_unid="{$entidad->id}" class="fa fa-star-o fa-fw principal clickable"></i>{/if} <a title="{$entidad->entidad->nombre}" href='index.php?page=entidad_mostrar&id_entidad={$entidad->entidad->id}'>{$entidad->entidad->nombre}</a></td>
                                         <td>{$entidad->rol->nombre}</td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$entidad->entidad->id}'><i class="fa fa-folder fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-gears fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-dashboard fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-database fa-fw"></i></a>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-th fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'><i class="fa fa-commenting fa-fw"></i></a>
                                                 {if $entidad->rol->id == 1 OR $entidad->rol->id == 2}
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_CONTROL}" href='index.php?page=control&modulo=inicio&id_entidad={$entidad->entidad->id}'><i class="fa fa-sliders fa-fw"></i></a>      
@@ -310,8 +311,13 @@
                                         <td>{$indicador->medicion->etiqueta}</td>
                                         <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
-                                               href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador">
-                                                <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
+                                               href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
+                                                {if $indicador->calculo}
+                                                        <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
+                                                    {else}
+                                                        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+                                                    {/if}
+                                            </a>
                                         </td>
                                          <td class="text-center"> 
                                             {if $totales[$indicador->id] != NULL}
@@ -457,8 +463,13 @@
                                         <td>{$indicador->medicion->etiqueta}</td>
                                         <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
-                                               href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato">
-                                                <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
+                                               href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
+                                                {if $indicador->calculo}
+                                                        <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
+                                                    {else}
+                                                        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+                                                    {/if}
+                                            </a>
                                         </td>
                                          <td class="text-center"> 
                                             {if $totales[$indicador->id] != NULL}
@@ -542,6 +553,7 @@
                         <table class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_NOMBRE}</th>
                                     <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                     <th>{$smarty.const.FIELD_COMENTARIOS}</th>
@@ -551,8 +563,9 @@
                             <tbody>
                                 {foreach from=$cuadros_propios item=cuadro}
                                     <tr>
+                                        <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$cuadro->entidad->id}'>{$cuadro->entidad->etiqueta}</a></td>
                                         <td>
-                                            <a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a>
+                                            <a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}">{$cuadro->nombre}</a>
                                         </td> 
                                         <td>
                                             {if $cuadro->privado == 0}
@@ -563,8 +576,8 @@
                                         </td>
                                         <td>{$cuadro->comentarios}</td>
                                         <td style="white-space:nowrap">
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}"><i class="fa fa-eye fa-fw"></i></a>                 
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><i class="fa fa-pencil fa-fw"></i></a>   
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}"><i class="fa fa-eye fa-fw"></i></a>                 
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}'><i class="fa fa-pencil fa-fw"></i></a>   
                                             <a class="btn btn-default btn-circle btn-xs" data-toggle="modal" data-target="#dialogo_confirmar_borrado_cuadro" 
                                                title="{$smarty.const.TXT_BORRAR}" data-nombre_cuadro="{$cuadro->nombre}" data-id_cuadro="{$cuadro->id}" 
                                                href='javascript:void(0)'><i class="fa fa-trash fa-fw"></i></a>                                            

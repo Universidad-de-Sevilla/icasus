@@ -31,5 +31,5 @@ if ($id_entidad > 0)
 else
 {
     $error = ERR_UNID_LIST_INDIC;
-    header("location:index.php?page=error&error=$error");
+    header("location:index.php?page=indicadores&error=$error");
 }

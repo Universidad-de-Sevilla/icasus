@@ -30,8 +30,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
         $indicador = new Indicador();
-//        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
-        $indicadores = $indicador->find("nombre LIKE '%$cadena%'");
+        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
         $smarty->assign('indicadores', $indicadores);
         $smarty->assign('id_entidad', $id_entidad);
     }
@@ -42,8 +41,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
         $indicador = new Indicador();
-//        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
-        $indicadores = $indicador->find("nombre LIKE '%$cadena%'");
+        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
         $smarty->assign('indicadores', $indicadores);
         $smarty->assign('id_entidad', $id_entidad);
     }
@@ -54,8 +52,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
         $indicador = new Indicador();
-//        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
-        $indicadores = $indicador->find("nombre LIKE '%$cadena%'");
+        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
         $smarty->assign('indicadores', $indicadores);
         $smarty->assign('id_entidad', $id_entidad);
     }
@@ -66,8 +63,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
         $indicador = new Indicador();
-//        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
-        $indicadores = $indicador->find("nombre LIKE '%$cadena%'");
+        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
         $smarty->assign('indicadores', $indicadores);
         $smarty->assign('id_entidad', $id_entidad);
     }
@@ -78,8 +74,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
         $indicador = new Indicador();
-//        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
-        $indicadores = $indicador->find("nombre LIKE '%$cadena%'");
+        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
         $smarty->assign('indicadores', $indicadores);
         $smarty->assign('id_entidad', $id_entidad);
     }
@@ -90,8 +85,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
         $indicador = new Indicador();
-//        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
-        $indicadores = $indicador->find("nombre LIKE '%$cadena%'");
+        $indicadores = $indicador->find("id_entidad = $id_entidad AND nombre LIKE '%$cadena%'");
         $smarty->assign('indicadores', $indicadores);
         $smarty->assign('id_entidad', $id_entidad);
     }

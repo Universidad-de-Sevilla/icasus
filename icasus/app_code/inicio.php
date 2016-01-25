@@ -18,6 +18,37 @@ $logicaIndicador = new LogicaIndicador();
 // Entidades de este usuario
 $smarty->assign('entidades_usuario', $usuario->entidades);
 
+// Entidad principal
+if (filter_has_var(INPUT_GET, 'id_principal') && filter_has_var(INPUT_GET, 'id_usuario'))
+{
+    $id_principal = filter_input(INPUT_GET, 'id_principal', FILTER_SANITIZE_NUMBER_INT);
+    $id_usuario = filter_input(INPUT_GET, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
+    $usuario_entidad = new Usuario_entidad();
+    $entidades_usuario = $usuario_entidad->Find_entidades("id_usuario = $id_usuario");
+    //Desasignamos todas para evitar conflictos
+    foreach ($entidades_usuario as $user_unid)
+    {
+        $usuario_entidad->Load("id=$user_unid->id");
+        $usuario_entidad->principal = 0;
+        $usuario_entidad->Save();
+    }
+    //Asignamos la unidad principal
+    foreach ($entidades_usuario as $user_unid)
+    {
+        if ($user_unid->id == $id_principal)
+        {
+            $usuario_entidad->Load("id=$id_principal");
+            $usuario_entidad->principal = 1;
+            $usuario_entidad->Save();
+        }
+    }
+    //Actualizamos el usuario
+    if ($id_usuario == $usuario->id)
+    { 
+        $usuario->entidades = $usuario_entidad->Find_entidades("id_usuario = $usuario->id");
+    }
+}
+
 // Procesos propiedad del usuario
 $proceso = new Proceso();
 $procesos_propios = $proceso->Find_joined("id_propietario=$usuario->id");
@@ -34,7 +65,7 @@ $smarty->assign("datos_propios", $datos);
 
 // Cuadros de mando del usuario
 $cuadro = new Cuadro();
-$cuadros = $cuadro->Find("id_usuario = $usuario->id");
+$cuadros = $cuadro->Find_joined("id_usuario = $usuario->id");
 $smarty->assign('cuadros_propios', $cuadros);
 
 if (is_array($indicadores) && is_array($datos))

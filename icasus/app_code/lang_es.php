@@ -79,10 +79,11 @@ define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 
 //Cuadros de Mando
 define('TXT_CUADRO_MANDO', 'Cuadro de mando');
+define('TXT_CUADROS_MANDO', 'Cuadros de mando');
+define('TXT_CUADRO_LIST', 'Lista de cuadros de mando');
 define('TXT_CUADROS_MANDO_PUBLIC', 'Cuadros de mando públicos');
 define('TXT_CUADRO_NUEVO', 'Nuevo cuadro de mando');
 define('TXT_CUADRO_PARAM', 'Parámetros del cuadro de mando');
-define('TXT_CUADRO_MANDO_PROPIOS', 'Cuadros de mando del usuario');
 define('TXT_CUADRO_EDIT', 'Editar cuadro de mando');
 define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
 //Paneles de los Cuadros de Mando
@@ -121,7 +122,8 @@ define('TXT_DIM_REL', 'Relación de dimensiones');
 
 //Entidades (Unidades)
 define('TXT_UNID', 'Unidad');
-define('TXT_UNID_PRINCIPAL', 'Unidad principal');
+define('TXT_UNID_ASIG_PRINCIPAL', 'Convertir en unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad (sólo se puede asignar una unidad como principal).');
+define('TXT_UNID_PRINCIPAL', 'Unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad.');
 define('TXT_UNID_PARAM', 'Parámetros de la unidad');
 define('TXT_UNID_SUP_INDIC', 'Indicadores de la unidad superior');
 define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la unidad');
@@ -217,13 +219,12 @@ define('TXT_MED_TABLA', 'Tabla de mediciones');
 define('TXT_MED_ULTIMA', 'Última medición');
 
 //Menú Principal
-define('TXT_INICIO', 'Mi Icasus');
+define('TXT_INICIO', 'Mi icasus');
 define('TXT_UNIDS_US', 'Unidades US');
 define('TXT_PROCS_US', 'Procesos US');
 define('TXT_INDICS_US', 'Indicadores US');
 define('TXT_DATOS_US', 'Datos US');
 define('TXT_CUADROS_MANDO_US', 'Cuadros de mando US');
-define('TXT_CUADROS_MANDO', 'Cuadros de mando');
 define('TXT_USERS_US', 'Usuarios US');
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
@@ -250,6 +251,7 @@ define('TXT_PRIMER', 'Primero/a');
 define('TXT_ULTIMO', 'Último/a');
 define('TXT_SIG', 'Siguiente');
 define('TXT_ANT', 'Anterior');
+define('TXT_DE', 'de');
 define('TXT_EDIT', 'Editar');
 define('TXT_BORRAR', 'Borrar');
 define('TXT_DESACT', 'Desactivar');
@@ -284,9 +286,9 @@ define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha del proces
 define('TXT_PROC_EDIT', 'Editar proceso');
 define('TXT_PROC_CREAR', 'Crear proceso');
 define('TXT_PROC_BORRAR', 'Borrar proceso');
-define('TXT_PROC_INDICS', 'Indicadores asociados al proceso');
+define('TXT_PROC_INDICS', 'Indicadores del proceso');
 define('TXT_PROC_FLUJO', 'Flujograma del proceso');
-define('TXT_PROC_ARCHIVOS', 'Archivos asociados al proceso');
+define('TXT_PROC_ARCHIVOS', 'Archivos del proceso');
 
 //Propiedades
 define('TXT_EDIT_PROP', 'Editar propiedades');
@@ -369,10 +371,11 @@ define('TXT_USERS_ASIGNAR', 'Asignar usuarios marcados');
 define('TXT_USERS_DESASIGNAR', 'Desasignar usuarios marcados');
 define('TXT_USERS_ALTA', 'Alta de usuarios');
 define('TXT_USERS_BAJA', 'Baja de usuarios');
-define('TXT_USER_UNIDS', 'Unidades del usuario');
-define('TXT_USER_PROCS', 'Procesos del usuario');
-define('TXT_USER_INDIC', 'Indicadores del usuario');
-define('TXT_USER_DATO', 'Datos del usuario');
+define('TXT_USER_UNIDS', 'Mis unidades');
+define('TXT_USER_PROCS', 'Mis procesos');
+define('TXT_USER_INDIC', 'Mis indicadores');
+define('TXT_USER_DATO', 'Mis Datos');
+define('TXT_USER_CUADROS', 'Mis cuadros de mando');
 define('TXT_USERS_ASIG', 'Usuarios asignados actualmente');
 define('TXT_USERS_DISP', 'Usuarios disponibles');
 define('TXT_USERS_VINC', 'Vincular usuarios');
@@ -477,6 +480,7 @@ define('MSG_UNID_EDITADA', 'La unidad se ha modificado con los datos que aparece
 define('MSG_UNID_NO_USERS', 'No se han vinculado usuarios a esta unidad.');
 define('MSG_UNID_NO_DATOS', 'No hay datos definidos para esta unidad.');
 define('MSG_UNID_NO_INDIC', 'No hay indicadores definidos para esta unidad.');
+define('MSG_UNID_NO_CUADROS', 'No hay cuadros de mando definidos para esta unidad.');
 define('MSG_UNID_NO_IND_NO_DAT', 'No hay indicadores ni datos definidos para esta unidad.');
 define('MSG_UNID_SUBUNIDS_NO_INDIC', 'No hay indicadores definidos para las subunidades de esta unidad.');
 define('MSG_UNID_SUP_NO_PROC', 'La unidad madre no tiene procesos.');

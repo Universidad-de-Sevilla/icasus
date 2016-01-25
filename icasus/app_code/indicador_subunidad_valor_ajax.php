@@ -64,10 +64,14 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
             case 'asignar_una_medicion':
 
                 $valor = new Valor();
-                $valor->id_medicion = $id_medicion;
-                $valor->id_entidad = $id_subunidad;
-                $valor->activo = $activo;
-                $valor->save();
+                if (!$valor->load("id_medicion = $id_medicion AND id_entidad = $id_subunidad"))
+                {
+                    $valor->id_medicion = $id_medicion;
+                    $valor->id_entidad = $id_subunidad;
+                    $valor->activo = $activo;
+                    $valor->save();
+                }
+
                 $medicion = new Medicion();
 
                 if (filter_input(INPUT_GET, 'inicio') == 0)

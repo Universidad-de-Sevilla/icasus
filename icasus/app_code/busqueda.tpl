@@ -72,6 +72,7 @@
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><i class="fa fa-gears fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><i class="fa fa-dashboard fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'><i class="fa fa-database fa-fw"></i></a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'><i class="fa fa-th fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->id}'><i class="fa fa-commenting fa-fw"></i></a>
                                             </td>
                                         </tr>
@@ -307,6 +308,7 @@
                             <table class="table datatable table-striped table-hover">
                                 <thead>
                                     <tr>
+                                        <th>{$smarty.const.FIELD_UNID}</th>
                                         <th>{$smarty.const.FIELD_NOMBRE}</th>
                                         <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                         <th>{$smarty.const.FIELD_COMENTARIOS}</th>
@@ -316,6 +318,7 @@
                                 <tbody>
                                     {foreach from=$cuadros_publicos item=cuadro}
                                         <tr>
+                                            <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$cuadro->entidad->id}'>{$cuadro->entidad->etiqueta}</a></td>
                                             <td><a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td>            
                                             <td>
                                                 {if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}

@@ -158,7 +158,7 @@ if ($modulo == 'filtrOnlyear')
 
     //Indicadores/Datos valores de referencia
     //Buscar todos valores ref de los indicadores/datos para el año actual
-    $indicadores = $indicador->Find_joined('1=1');
+    $indicadores = $indicador->Find_joined("id_entidad=$id_entidad");
     $medicion = new Medicion();
     $mediciones = array();
     $medicion_lim = array();

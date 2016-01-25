@@ -13,7 +13,7 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
     var nombre_cuadro = button.data('nombre_cuadro');
     var id_cuadro = button.data('id_cuadro');
     var modal = $(this);
-    var link = 'index.php?page=cuadro_borrar&id_cuadro=' + id_cuadro + '&id_entidad=14';
+    var link = 'index.php?page=cuadro_borrar&id_cuadro=' + id_cuadro;
     modal.find('#nombre_cuadro').text(nombre_cuadro);
     modal.find('#borrar').attr('href', link);
 });

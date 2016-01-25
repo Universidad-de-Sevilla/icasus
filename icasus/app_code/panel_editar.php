@@ -17,6 +17,11 @@ if (filter_has_var(INPUT_GET, 'id_panel') && filter_has_var(INPUT_GET, 'id_cuadr
     $cuadro = new Cuadro();
     $cuadro->Load("id=$id_cuadro");
     $smarty->assign("cuadro", $cuadro);
+
+    $entidad = new Entidad();
+    $entidad->load("id=$cuadro->id_entidad");
+    $smarty->assign("entidad", $entidad);
+
     $panel = new Panel();
     $panel->Load(("id = $id_panel"));
     //Guardamos los cambios
@@ -28,7 +33,7 @@ if (filter_has_var(INPUT_GET, 'id_panel') && filter_has_var(INPUT_GET, 'id_cuadr
         $panel->Save();
         $exito = MSG_PANEL_EDITADO . ' ' . $panel->nombre;
         $smarty->assign("exito", $exito);
-        header("Location: index.php?page=cuadro_mostrar&id=$id_cuadro&exito=$exito");
+        header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$cuadro->id_entidad&exito=$exito");
     }
     $smarty->assign('panel', $panel);
     $smarty->assign('_nombre_pagina', TXT_PANEL_EDITAR . ': ' . $panel->nombre);
@@ -38,5 +43,5 @@ else
 {
     // Faltan parametros avisamos error
     $error = ERR_PARAM;
-    header("Location: index.php?page=cuadro_listar&error=$error");
+    header("Location: index.php?page=cuadro_listar&id_entidad=$cuadro->id_entidad&error=$error");
 }

@@ -88,7 +88,7 @@
                         <!-- /.dropdown -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" title="{$smarty.const.TXT_INICIO}" data-toggle="dropdown" href="#">
-                                <i class="fa fa-home fa-fw"></i> <i class="fa fa-caret-down"></i>
+                                <i class="fa fa-bars fa-fw"></i> <i class="fa fa-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
                                 <li>
@@ -128,9 +128,9 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_CUADROS_MANDO_US}" href='index.php?page=cuadro_listar'>
+                                    <a title="{$smarty.const.TXT_CUADROS_MANDO_US}" href='index.php?page=cuadros'>
                                         <div>
-                                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_MANDO_PROPIOS}:
+                                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_USER_CUADROS}:
                                             <span class="pull-right badge">{$num_cuadros_propios}</span>
                                         </div>
                                     </a>
@@ -147,7 +147,7 @@
                         </li>
                         <!-- /.dropdown -->
                         <li class="dropdown">
-                            <a class="dropdown-toggle" title="{$_usuario->login}" data-toggle="dropdown" href="#">
+                            <a class="dropdown-toggle" title="{$smarty.const.FIELD_USER}: {$_usuario->login}" data-toggle="dropdown" href="#">
                                 <i class="fa fa-user fa-fw"></i> {$_usuario->login} <i class="fa fa-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-user">
@@ -203,7 +203,7 @@
                                         <span class="fa-stack fa-lg"><i class="fa fa-database fa-stack-1x"></i></span>{$smarty.const.TXT_DATOS_US}</a>
                                 </li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_CUADROS_MANDO_US}" href='index.php?page=cuadro_listar'>
+                                    <a title="{$smarty.const.TXT_CUADROS_MANDO_US}" href='index.php?page=cuadros'>
                                         <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span>{$smarty.const.TXT_CUADROS_MANDO_US}</a>
                                 </li>
                                 <li>

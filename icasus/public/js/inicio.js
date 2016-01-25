@@ -7,6 +7,18 @@
 // Incluye el código JavaScript para el fichero inicio.tpl y usuario_mostrar.tpl
 //----------------------------------------------------------------------------
 
+//Unidad principal
+$('.principal').on('click', function () {
+    var id = $(this).data('id_user_unid');
+    var id_usuario = $(this).data('id_usuario');
+    $.ajax({
+        url: "index.php?page=inicio&id_principal=" + id + '&id_usuario=' + id_usuario,
+        success: function () {
+            location.reload();
+        }
+    });
+});
+
 //Borrado de procesos
 $('#dialogo_confirmar_borrado_proceso').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
@@ -49,7 +61,7 @@ $('#dialogo_confirmar_borrado_cuadro').on('show.bs.modal', function (event) {
     var nombre_cuadro = button.data('nombre_cuadro');
     var id_cuadro = button.data('id_cuadro');
     var modal = $(this);
-    var link = 'index.php?page=cuadro_borrar&id_cuadro=' + id_cuadro + '&id_entidad=14';
+    var link = 'index.php?page=cuadro_borrar&id_cuadro=' + id_cuadro;
     modal.find('#nombre_cuadro').text(nombre_cuadro);
     modal.find('#borrar').attr('href', link);
 });

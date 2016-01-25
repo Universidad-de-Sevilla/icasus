@@ -26,29 +26,32 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $medicion = new Medicion();
     $mediciones = $medicion->Find("etiqueta like '$anyo%' AND id_indicador IN " . DATOS_REBIUN);
     $mediciones_anyo = array();
-    foreach ($mediciones as $med)
+    if ($mediciones)
     {
-        array_push($mediciones_anyo, $med->id);
-    }
-    $mediciones_sql = '(' . implode(',', $mediciones_anyo) . ')';
-
-    // Recorre las unidades que tiene asignadas el usuario para encontrar las que tiene con rol de responsable
-    foreach ($usuario->entidades as $usuario_entidad)
-    {
-        //Solamente entro en aquellas en las que es responsable
-        if ($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2)
+        foreach ($mediciones as $med)
         {
-            //Recorre las subunidades
-            foreach ($subentidades as $subentidad)
+            array_push($mediciones_anyo, $med->id);
+        }
+        $mediciones_sql = '(' . implode(',', $mediciones_anyo) . ')';
+
+        // Recorre las unidades que tiene asignadas el usuario para encontrar las que tiene con rol de responsable
+        foreach ($usuario->entidades as $usuario_entidad)
+        {
+            //Solamente entro en aquellas en las que es responsable
+            if ($usuario_entidad->id_rol == 1 OR $usuario_entidad->id_rol == 2)
             {
-                // Comprueba si el usuario es miembro de la subunidad actual
-                if ($usuario_entidad->id_entidad == $subentidad->id)
+                //Recorre las subunidades
+                foreach ($subentidades as $subentidad)
                 {
-                    // Añade la subunidad actual al array de entidades autorizadas
-                    $entidades_autorizadas[] = $subentidad;
-                    $valor = new Valor();
-                    $valores = $valor->Find_joined_indicador("id_entidad = $subentidad->id AND id_medicion IN " . "$mediciones_sql");
-                    $subentidad->valores = $valores;
+                    // Comprueba si el usuario es miembro de la subunidad actual
+                    if ($usuario_entidad->id_entidad == $subentidad->id)
+                    {
+                        // Añade la subunidad actual al array de entidades autorizadas
+                        $entidades_autorizadas[] = $subentidad;
+                        $valor = new Valor();
+                        $valores = $valor->Find_joined_indicador("id_entidad = $subentidad->id AND id_medicion IN " . "$mediciones_sql");
+                        $subentidad->valores = $valores;
+                    }
                 }
             }
         }
