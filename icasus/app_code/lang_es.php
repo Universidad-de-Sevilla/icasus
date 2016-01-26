@@ -374,7 +374,7 @@ define('TXT_USERS_BAJA', 'Baja de usuarios');
 define('TXT_USER_UNIDS', 'Mis unidades');
 define('TXT_USER_PROCS', 'Mis procesos');
 define('TXT_USER_INDIC', 'Mis indicadores');
-define('TXT_USER_DATO', 'Mis Datos');
+define('TXT_USER_DATO', 'Mis datos');
 define('TXT_USER_CUADROS', 'Mis cuadros de mando');
 define('TXT_USERS_ASIG', 'Usuarios asignados actualmente');
 define('TXT_USERS_DISP', 'Usuarios disponibles');

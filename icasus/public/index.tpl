@@ -137,7 +137,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a class="text-center" title="{$smarty.const.TXT_VER} {$smarty.const.TXT_TODOS}" href="index.php">
+                                    <a class="text-center" title="{$smarty.const.TXT_VER} {$smarty.const.TXT_TODOS} ({$smarty.const.TXT_INICIO})" href="index.php">
                                         <i class="fa fa-home fa-fw"></i>
                                         <strong>{$smarty.const.TXT_VER} {$smarty.const.TXT_TODOS}</strong>
                                         <i class="fa fa-angle-right"></i>
