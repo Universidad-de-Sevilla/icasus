@@ -23,6 +23,10 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $procesos = $proceso->Find_joined("id_entidad = $id_entidad");
     $smarty->assign('procesos', $procesos);
 
+    // Procesos propiedad del usuario
+    $procesos_propios = $proceso->Find_joined("id_propietario = $usuario->id AND id_entidad=$id_entidad");
+    $smarty->assign('procesos_propios', $procesos_propios);
+
     $smarty->assign('_javascript', array('proceso_listar'));
     $smarty->assign('_nombre_pagina', TXT_PROCS . ": " . $entidad->nombre);
     $plantilla = 'proceso_listar.tpl';

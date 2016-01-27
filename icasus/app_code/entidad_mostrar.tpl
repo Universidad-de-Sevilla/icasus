@@ -178,7 +178,7 @@
 
                 <div class="row">
                     <div class="col-md-4">
-                        <a title="{$smarty.const.TXT_INICIO}" class="btn btn-danger btn-block" href='index.php?page=inicio'>
+                        <a title="{$smarty.const.TXT_INICIO_DESCRIPCION}" class="btn btn-danger btn-block" href='index.php?page=inicio'>
                             <h4><i class="fa fa-home fa-fw"></i> {$smarty.const.TXT_INICIO}</h4>
                         </a>
                     </div>

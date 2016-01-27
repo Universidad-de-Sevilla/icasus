@@ -234,6 +234,7 @@ define('TXT_USER_PERFIL', 'Perfil de usuario');
 define('TXT_MIS_NOTAS', 'Mis notas');
 define('TXT_CERRAR_SESION', 'Cerrar sesión');
 //Menú de Unidades
+define('TXT_INICIO_DESCRIPCION', 'Mi icasus: listado de sus competencias/responsabilidades.');
 define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de procesos de la unidad e información sobre los mismos. ');
 define('TXT_INDICS_DESCRIPCION', 'Indicadores: listado de indicadores de la unidad e información sobre los mismos.');
 define('TXT_DATOS_DESCRIPCION', 'Datos: listado de datos de la unidad e información sobre los mismos.');
@@ -277,6 +278,7 @@ define('TXT_PROCS', 'Procesos');
 define('TXT_PROC_TODOS', 'Todos los procesos');
 define('TXT_PROC_VER', 'Ver proceso');
 define('TXT_PROC_MAP', 'Mapa de procesos');
+define('TXT_PROC_MAP_EDIT', 'Agregar/editar mapa de procesos');
 define('TXT_PROC_PARAM', 'Parámetros del proceso');
 define('TXT_PROC_FICHA', 'Ficha del proceso');
 define('TXT_PROC_NUEVO', 'Nuevo proceso');
@@ -541,6 +543,7 @@ define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo proceso para esta unidad.');
 define('MSG_PROC_EDITADO', 'Se ha modificado el proceso correctamente.');
 define('MSG_PROC_NO_INDIC', 'No se ha definido ningún indicador para este proceso.');
 define('MSG_PROC_ARCHIVO_NO', 'No se han subido archivos para este proceso.');
+define('MSG_PROC_MAPA', 'Para agregar/editar el mapa de procesos de su unidad, póngase en contacto con nosotros a través de la dirección: ');
 
 //Usuarios
 define('MSG_USER_BORRADO', 'Se ha borrado el usuario.');

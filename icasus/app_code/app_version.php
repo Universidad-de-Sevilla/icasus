@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.3.4");
-define('IC_FECHA_REVISION', "25/01/2016");
+define('IC_VERSION', "3.4.0");
+define('IC_FECHA_REVISION', "27/01/2016");
 
+// 3.4.0 - 27/01/2016 - Añadida gestión de mapas de procesos de las unidades, mejorado su listado, corregidos errores y otros cambios menores...
 // 3.3.4 - 25/01/2016 - Avances en el resto de categorías de Icasus e indicador numérico de la posición.
 // 3.3.3 - 22/01/2016 - Cuadros de mando integrados con las unidades de Icasus.
 // 3.2.3 - 18/01/2016 - Gestión de la entidad principal de los usuarios permitiendo que éstos la modifiquen desde la propia aplicación.
