@@ -20,6 +20,10 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $cuadros = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
     $smarty->assign('cuadros', $cuadros);
 
+    // Cuadros de mando del usuario
+    $cuadros_propios = $cuadro->Find_joined("id_usuario = $usuario->id AND id_entidad = $id_entidad");
+    $smarty->assign('cuadros_propios', $cuadros_propios);
+
     $plantilla = 'cuadro_listar.tpl';
     $smarty->assign('_javascript', array('cuadro_listar'));
     $smarty->assign('_nombre_pagina', TXT_CUADROS_MANDO . ': ' . $entidad->nombre);

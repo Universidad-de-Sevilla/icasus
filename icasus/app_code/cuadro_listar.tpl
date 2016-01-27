@@ -108,13 +108,24 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_LIST}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#cuadro_list" title="{$smarty.const.TXT_CUADRO_LIST}" aria-controls="{$smarty.const.TXT_CUADRO_LIST}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_LIST}</a>
+            </li>
+            {if $cuadros_propios}
+                <li role="presentation">
+                    <a href="#user_cuadro" title="{$smarty.const.TXT_USER_CUADROS}" aria-controls="{$smarty.const.TXT_USER_CUADROS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_USER_CUADROS}</a>
+                </li>
+            {/if}
+        </ul>
+        <!-- /Nav tabs -->
+        <br>
+        <!-- Tab panes -->
+        <div class="tab-content">
+
+            <!-- Lista de Cuadros de mando -->
+            <div role="tabpanel" class="tab-pane active" id="cuadro_list">
                 {if $cuadros}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -157,9 +168,55 @@
                     </div> 
                 {/if}
             </div>
-            <!-- /.panel-body -->        
+            <!-- /Lista de Cuadros de mando -->
+
+            <!-- Cuadros de mando del usuario -->
+            {if $cuadros_propios}
+                <div role="tabpanel" class="tab-pane" id="user_cuadro">
+                    <div class="table-responsive">
+                        <table class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_UNID}</th>
+                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
+                                    <th>{$smarty.const.FIELD_COMENTARIOS}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$cuadros_propios item=cuadro}
+                                    <tr>
+                                        <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$cuadro->entidad->id}'>{$cuadro->entidad->etiqueta}</a></td>
+                                        <td>
+                                            <a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}">{$cuadro->nombre}</a>
+                                        </td> 
+                                        <td>
+                                            {if $cuadro->privado == 0}
+                                                {$smarty.const.TXT_PUBLICO}
+                                            {else}
+                                                {$smarty.const.TXT_PRIVADO}
+                                            {/if}
+                                        </td>
+                                        <td>{$cuadro->comentarios}</td>
+                                        <td style="white-space:nowrap">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}"><i class="fa fa-eye fa-fw"></i></a>                 
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}'><i class="fa fa-pencil fa-fw"></i></a>   
+                                            <a class="btn btn-default btn-circle btn-xs" data-toggle="modal" data-target="#dialogo_confirmar_borrado" 
+                                               title="{$smarty.const.TXT_BORRAR}" data-nombre_cuadro="{$cuadro->nombre}" data-id_cuadro="{$cuadro->id}"
+                                               href='javascript:void(0)'><i class="fa fa-trash fa-fw"></i></a>                                            
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            {/if}
+            <!-- /Cuadros de mando del usuario -->
+
         </div>
-        <!-- /.panel -->
+        <!-- /Tab panes -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
