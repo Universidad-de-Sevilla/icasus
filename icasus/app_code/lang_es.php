@@ -248,7 +248,7 @@ define('TXT_MOSTAR_OCULTAR_NAV', 'Mostrar/Ocultar navegación');
 define('TXT_VER', 'Ver');
 define('TXT_SI', 'Si');
 define('TXT_NO', 'No');
-define('TXT_PRIMER', 'Primero/a');
+define('TXT_PRIMER', 'Primer/a');
 define('TXT_ULTIMO', 'Último/a');
 define('TXT_SIG', 'Siguiente');
 define('TXT_ANT', 'Anterior');

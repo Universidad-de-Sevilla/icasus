@@ -93,16 +93,16 @@
                         <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($usuarios)} {$smarty.const.TXT_USERS}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[0]->id}'>
+                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_USER}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[$indice-1]->id}'>
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_USER}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG}" class="btn btn-danger btn-xs {if $indice == (count($usuarios)-1)}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[$indice+1]->id}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_USER}" class="btn btn-danger btn-xs {if $indice == (count($usuarios)-1)}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ULTIMO}" class="btn btn-danger btn-xs {if $indice == (count($usuarios)-1)}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[(count($usuarios)-1)]->id}'>
+                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_USER}" class="btn btn-danger btn-xs {if $indice == (count($usuarios)-1)}disabled{/if}" href='index.php?page=usuario_mostrar&id_usuario={$usuarios[(count($usuarios)-1)]->id}'>
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>

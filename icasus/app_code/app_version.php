@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.4.3");
+define('IC_VERSION', "3.4.4");
 define('IC_FECHA_REVISION', "27/01/2016");
 
+// 3.4.4 - 27/01/2016 - Incluida la categoría sobre la que se navega también en los botones de avances de todos los menús de navegación de la aplicación.
 // 3.4.3 - 27/01/2016 - Mejorado listado de cuadros de una unidad incluyendo la gestión de cuadros de usuario.
 // 3.4.2 - 27/01/2016 - Mejorado listado de datos de una unidad incluyendo la gestión de datos de usuario.
 // 3.4.1 - 27/01/2016 - Mejorado listado de indicadores de una unidad incluyendo la gestión de indicadores de usuario.
