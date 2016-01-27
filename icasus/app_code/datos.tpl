@@ -47,11 +47,11 @@
     <div class="col-lg-12">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#user_dato" title="{$smarty.const.TXT_USER_DATO}" aria-controls="{$smarty.const.TXT_USER_DATO}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</a>
+             <li role="presentation" class="active">
+                <a href="#dato_todos" title="{$smarty.const.TXT_DATO_TODOS}" aria-controls="{$smarty.const.TXT_DATO_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_DATO_TODOS}</a>
             </li>
             <li role="presentation">
-                <a href="#dato_todos" title="{$smarty.const.TXT_DATO_TODOS}" aria-controls="{$smarty.const.TXT_DATO_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_DATO_TODOS}</a>
+                <a href="#user_dato" title="{$smarty.const.TXT_USER_DATO}" aria-controls="{$smarty.const.TXT_USER_DATO}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -60,7 +60,7 @@
         <div class="tab-content">
 
             <!-- Datos del usuario -->
-            <div role="tabpanel" class="tab-pane active" id="user_dato">
+            <div role="tabpanel" class="tab-pane" id="user_dato">
                 {if $datos_propios}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">
@@ -212,7 +212,7 @@
             <!-- /Datos del usuario -->
 
             <!-- Todos los datos -->
-            <div role="tabpanel" class="tab-pane" id="dato_todos">
+            <div role="tabpanel" class="tab-pane active" id="dato_todos">
                 {if $datos}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">

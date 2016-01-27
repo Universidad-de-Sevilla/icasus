@@ -48,10 +48,10 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#user_procs" title="{$smarty.const.TXT_USER_PROCS}" aria-controls="{$smarty.const.TXT_USER_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</a>
-            </li>
-            <li role="presentation">
                 <a href="#proc_todos" title="{$smarty.const.TXT_PROC_TODOS}" aria-controls="{$smarty.const.TXT_PROC_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROC_TODOS}</a>
+            </li>
+            <li role="presentation" >
+                <a href="#user_procs" title="{$smarty.const.TXT_USER_PROCS}" aria-controls="{$smarty.const.TXT_USER_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -60,7 +60,7 @@
         <div class="tab-content">
 
             <!-- Procesos del usuario -->
-            <div role="tabpanel" class="tab-pane active" id="user_procs">
+            <div role="tabpanel" class="tab-pane" id="user_procs">
                 {if $procesos_propios}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -130,7 +130,7 @@
             <!-- /Procesos del usuario -->
 
             <!-- Todos los procesos -->
-            <div role="tabpanel" class="tab-pane" id="proc_todos">
+            <div role="tabpanel" class="tab-pane active" id="proc_todos">
                 {if $procesos}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">

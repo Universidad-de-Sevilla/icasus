@@ -387,7 +387,6 @@ define('TXT_USER_NOTAS', 'Notas del usuario');
 define('TXT_USER_REL', 'Relación de usuarios');
 define('TXT_USER_CREAR', 'Crear usuario');
 define('TXT_USER_EDIT', 'Editar usuario');
-define('TXT_USER_LIST', 'Lista de usuarios');
 
 //Valores
 define('TXT_VALS', 'Valores');
