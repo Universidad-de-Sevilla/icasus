@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.4.1");
+define('IC_VERSION', "3.4.2");
 define('IC_FECHA_REVISION', "27/01/2016");
 
+// 3.4.2 - 27/01/2016 - Mejorado listado de datos de una unidad incluyendo la gestión de datos de usuario.
 // 3.4.1 - 27/01/2016 - Mejorado listado de indicadores de una unidad incluyendo la gestión de indicadores de usuario.
 // 3.4.0 - 27/01/2016 - Añadida gestión de mapas de procesos de las unidades, mejorado su listado, corregidos errores y otros cambios menores...
 // 3.3.4 - 25/01/2016 - Avances en el resto de categorías de Icasus e indicador numérico de la posición.

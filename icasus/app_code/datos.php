@@ -15,7 +15,7 @@ global $plantilla;
 $logicaIndicador = new LogicaIndicador();
 
 $dato = new Indicador();
-$datos = $dato->Find_joined("1 = 1 AND id_proceso IS NULL");
+$datos = $dato->Find_joined("id_proceso IS NULL");
 $smarty->assign('datos', $datos);
 
 // Datos bajo la responsabilidad de este usuario

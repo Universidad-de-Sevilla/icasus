@@ -15,7 +15,7 @@ global $plantilla;
 $logicaIndicador = new LogicaIndicador();
 
 $indicador = new Indicador();
-$indicadores = $indicador->Find_joined("1 = 1 AND id_proceso IS NOT NULL");
+$indicadores = $indicador->Find_joined("id_proceso IS NOT NULL");
 $smarty->assign('indicadores', $indicadores);
 
 // Indicadores bajo la responsabilidad de este usuario
