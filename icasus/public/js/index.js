@@ -123,13 +123,8 @@ $(".chosen-select").chosen({
     no_results_text: "Oops, no se encuentran registros coincidentes"
 });
 
-// Javascript to enable link to tab
+//Habilita enlaces directos a pestañas dentro de una página
 var url = document.location.toString();
 if (url.match('#')) {
     $('.nav-tabs a[href=#' + url.split('#')[1] + ']').tab('show');
 }
-
-// Change hash for page-reload
-$('.nav-tabs a').on('shown.bs.tab', function (e) {
-    window.location.hash = e.target.hash;
-});
