@@ -79,11 +79,12 @@
                     <!-- /.navbar-header -->
 
                     <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown">
+                            <span id="fecha_actual" title="{$smarty.const.FIELD_FECHA}: {$smarty.now|date_format:'%d-%m-%Y'}"><i class="fa fa-calendar fa-fw"></i> {$smarty.now|date_format:'%d-%m-%Y'}</span>
+                        </li>
                         <!-- /.dropdown -->
                         <li class="dropdown">
-                            <a class="dropdown-toggle" title="{$_usuario->login}">
-                                <span id="fecha_actual" title="{$smarty.const.FIELD_FECHA}: {$smarty.now|date_format:'%d-%m-%Y'}"><i class="fa fa-calendar fa-fw"></i> {$smarty.now|date_format:'%d-%m-%Y'}</span>
-                            </a>
+                            <a href='index.php?page=pagina_mostrar&alias=indice' title="{$smarty.const.TXT_AYUDA}"><i class="fa fa-question-circle fa-fw"></i></a>
                         </li>
                         <!-- /.dropdown -->
                         <li class="dropdown">
@@ -210,10 +211,6 @@
                                 <li>
                                     <a title="{$smarty.const.TXT_USERS_US}" href='index.php?page=usuario_listar'>
                                         <span class="fa-stack fa-lg"><i class="fa fa-users fa-stack-1x"></i></span>{$smarty.const.TXT_USERS_US}</a>
-                                </li>
-                                <li>
-                                    <a title="{$smarty.const.TXT_AYUDA}" href='index.php?page=pagina_mostrar&alias=indice'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-question-circle fa-stack-1x"></i></span>{$smarty.const.TXT_AYUDA}</a>
                                 </li>
                             </ul>
                         </div>
