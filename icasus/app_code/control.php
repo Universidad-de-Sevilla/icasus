@@ -65,37 +65,40 @@ if ($modulo == 'inicio')
     $valor_referencia_medicion = new Valor_referencia_medicion();
     $valor_referencia = new Valor_referencia();
 
-    foreach ($indicadores as $indicador)
+    if ($indicadores)
     {
-        $mediciones[$indicador->id] = $medicion->find("id_indicador=$indicador->id AND etiqueta like '$fecha%'");
-        $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
-        if ($valores_referencia)
+        foreach ($indicadores as $indicador)
         {
-            foreach ($mediciones[$indicador->id] as $med)
+            $mediciones[$indicador->id] = $medicion->find("id_indicador=$indicador->id AND etiqueta like '$fecha%'");
+            $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
+            if ($valores_referencia)
             {
-                foreach ($valores_referencia as $valor_referencia)
+                foreach ($mediciones[$indicador->id] as $med)
                 {
-                    $existe = $valor_referencia_medicion->Load("id_valor_referencia=$valor_referencia->id AND id_medicion=$med->id");
-                    if (!$existe)
+                    foreach ($valores_referencia as $valor_referencia)
                     {
-                        $valor_referencia_medicion = new Valor_referencia_medicion();
-                        $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
-                        $valor_referencia_medicion->id_medicion = $med->id;
-                        $valor_referencia_medicion->save();
+                        $existe = $valor_referencia_medicion->Load("id_valor_referencia=$valor_referencia->id AND id_medicion=$med->id");
+                        if (!$existe)
+                        {
+                            $valor_referencia_medicion = new Valor_referencia_medicion();
+                            $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
+                            $valor_referencia_medicion->id_medicion = $med->id;
+                            $valor_referencia_medicion->save();
+                        }
                     }
-                }
-                $mediciones_referencias[$med->id] = $valor_referencia_medicion->Find_joined("id_medicion=$med->id");
-                foreach ($mediciones_referencias[$med->id] as $valores_referencia_medicion)
-                {
-                    //Es la referencia Limite
-                    if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                    $mediciones_referencias[$med->id] = $valor_referencia_medicion->Find_joined("id_medicion=$med->id");
+                    foreach ($mediciones_referencias[$med->id] as $valores_referencia_medicion)
                     {
-                        $medicion_lim[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
-                    }
-                    //Es la referencia Objetivo
-                    if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
-                    {
-                        $medicion_obj[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
+                        //Es la referencia Limite
+                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                        {
+                            $medicion_lim[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
+                        }
+                        //Es la referencia Objetivo
+                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+                        {
+                            $medicion_obj[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
+                        }
                     }
                 }
             }
@@ -166,37 +169,40 @@ if ($modulo == 'filtrOnlyear')
     $valor_referencia_medicion = new Valor_referencia_medicion();
     $valor_referencia = new Valor_referencia();
 
-    foreach ($indicadores as $indicador)
+    if ($indicadores)
     {
-        $mediciones[$indicador->id] = $medicion->find("id_indicador=$indicador->id AND etiqueta like '$fecha%'");
-        $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
-        if ($valores_referencia)
+        foreach ($indicadores as $indicador)
         {
-            foreach ($mediciones[$indicador->id] as $med)
+            $mediciones[$indicador->id] = $medicion->find("id_indicador=$indicador->id AND etiqueta like '$fecha%'");
+            $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
+            if ($valores_referencia)
             {
-                foreach ($valores_referencia as $valor_referencia)
+                foreach ($mediciones[$indicador->id] as $med)
                 {
-                    $existe = $valor_referencia_medicion->Load("id_valor_referencia=$valor_referencia->id AND id_medicion=$med->id");
-                    if (!$existe)
+                    foreach ($valores_referencia as $valor_referencia)
                     {
-                        $valor_referencia_medicion = new Valor_referencia_medicion();
-                        $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
-                        $valor_referencia_medicion->id_medicion = $med->id;
-                        $valor_referencia_medicion->save();
+                        $existe = $valor_referencia_medicion->Load("id_valor_referencia=$valor_referencia->id AND id_medicion=$med->id");
+                        if (!$existe)
+                        {
+                            $valor_referencia_medicion = new Valor_referencia_medicion();
+                            $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
+                            $valor_referencia_medicion->id_medicion = $med->id;
+                            $valor_referencia_medicion->save();
+                        }
                     }
-                }
-                $mediciones_referencias[$med->id] = $valor_referencia_medicion->Find_joined("id_medicion=$med->id");
-                foreach ($mediciones_referencias[$med->id] as $valores_referencia_medicion)
-                {
-                    //Es la referencia Limite
-                    if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                    $mediciones_referencias[$med->id] = $valor_referencia_medicion->Find_joined("id_medicion=$med->id");
+                    foreach ($mediciones_referencias[$med->id] as $valores_referencia_medicion)
                     {
-                        $medicion_lim[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
-                    }
-                    //Es la referencia Objetivo
-                    if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
-                    {
-                        $medicion_obj[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
+                        //Es la referencia Limite
+                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                        {
+                            $medicion_lim[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
+                        }
+                        //Es la referencia Objetivo
+                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+                        {
+                            $medicion_obj[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
+                        }
                     }
                 }
             }

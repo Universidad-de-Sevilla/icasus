@@ -298,64 +298,66 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {foreach from=$indicadores item=indicador}
-                                {foreach $mediciones[$indicador->id] as $medicion}
-                                    <tr>
-                                        <td>
-                                            {if $indicador->id_proceso}
-                                                <a href="index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador->nombre}</a>
-                                            {else}
-                                                <a href="index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador->nombre}</a>
-                                            {/if}
-                                        </td>
-                                        <td>
-                                            {if $indicador->id_proceso}
-                                                <a href="index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_PROC_VER}">
-                                                    {$indicador->proceso->nombre}
-                                                </a>
-                                            {else}
-                                                {$smarty.const.FIELD_DATOS}
-                                            {/if}
-                                        </td>
-                                        <td>{$medicion->etiqueta}</td>
-                                        <td {if isset($medicion_lim[$indicador->id])}style="color:red"{/if}>
-                                            {if isset($medicion_lim[$indicador->id])}
-                                                {if ($medicion_lim[$indicador->id][$medicion->id])}
-                                                    {$medicion_lim[$indicador->id][$medicion->id]}
+                            {if $indicadores}
+                                {foreach from=$indicadores item=indicador}
+                                    {foreach $mediciones[$indicador->id] as $medicion}
+                                        <tr>
+                                            <td>
+                                                {if $indicador->id_proceso}
+                                                    <a href="index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador->nombre}</a>
                                                 {else}
-                                                    ---
+                                                    <a href="index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador->nombre}</a>
                                                 {/if}
-                                            {else}
-                                                {$smarty.const.MSG_NO_DEF}
-                                            {/if}
-                                        </td>
-                                        <td {if isset($medicion_obj[$indicador->id])}style="color:green"{/if}>
-                                            {if isset($medicion_obj[$indicador->id])}
-                                                {if ($medicion_obj[$indicador->id][$medicion->id])}
-                                                    {$medicion_obj[$indicador->id][$medicion->id]}
+                                            </td>
+                                            <td>
+                                                {if $indicador->id_proceso}
+                                                    <a href="index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_PROC_VER}">
+                                                        {$indicador->proceso->nombre}
+                                                    </a>
                                                 {else}
-                                                    ---
+                                                    {$smarty.const.FIELD_DATOS}
                                                 {/if}
-                                            {else}
-                                                {$smarty.const.MSG_NO_DEF}
-                                            {/if}
-                                        </td>
-                                        <td>
-                                            {if ($indicador->id_proceso)}
-                                                <a class="btn btn-default btn-circle btn-xs" 
-                                                   href="index.php?page=medicion_editar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador">
-                                                    <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
-                                                </a>
-                                            {else}
-                                                <a class="btn btn-default btn-circle btn-xs" 
-                                                   href="index.php?page=medicion_editar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato">
-                                                    <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
-                                                </a>
-                                            {/if}
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td>{$medicion->etiqueta}</td>
+                                            <td {if isset($medicion_lim[$indicador->id])}style="color:red"{/if}>
+                                                {if isset($medicion_lim[$indicador->id])}
+                                                    {if ($medicion_lim[$indicador->id][$medicion->id])}
+                                                        {$medicion_lim[$indicador->id][$medicion->id]}
+                                                    {else}
+                                                        ---
+                                                    {/if}
+                                                {else}
+                                                    {$smarty.const.MSG_NO_DEF}
+                                                {/if}
+                                            </td>
+                                            <td {if isset($medicion_obj[$indicador->id])}style="color:green"{/if}>
+                                                {if isset($medicion_obj[$indicador->id])}
+                                                    {if ($medicion_obj[$indicador->id][$medicion->id])}
+                                                        {$medicion_obj[$indicador->id][$medicion->id]}
+                                                    {else}
+                                                        ---
+                                                    {/if}
+                                                {else}
+                                                    {$smarty.const.MSG_NO_DEF}
+                                                {/if}
+                                            </td>
+                                            <td>
+                                                {if ($indicador->id_proceso)}
+                                                    <a class="btn btn-default btn-circle btn-xs" 
+                                                       href="index.php?page=medicion_editar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador">
+                                                        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+                                                    </a>
+                                                {else}
+                                                    <a class="btn btn-default btn-circle btn-xs" 
+                                                       href="index.php?page=medicion_editar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato">
+                                                        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+                                                    </a>
+                                                {/if}
+                                            </td>
+                                        </tr>
+                                    {/foreach}
                                 {/foreach}
-                            {/foreach}
+                            {/if}
                         </tbody>
                     </table>
                 </div>
