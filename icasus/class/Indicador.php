@@ -131,6 +131,10 @@ class Indicador extends ADOdb_Active_Record
         {
             foreach ($indicadores as & $indicador)
             {
+                $entidad = new Entidad();
+                $entidad->load("id= $indicador->id_entidad");
+                $indicador->entidad = $entidad;
+                
                 $proceso = new Proceso();
                 $proceso->load("id = $indicador->id_proceso");
                 $indicador->proceso = $proceso;
