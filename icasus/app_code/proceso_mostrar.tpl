@@ -121,35 +121,6 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Barra de botones -->
-{if $_control || $_usuario->id == $proceso->id_propietario}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="btn-toolbar" role="toolbar" aria-label="">
-                <div class="btn-group pull-right" role="group" aria-label="">
-                    <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
-                       title="{$smarty.const.TXT_ARCHIVOS}">
-                        <i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}
-                    </a>
-                </div>
-                <div class="btn-group pull-right" role="group" aria-label="">
-                    <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                        <i class="fa fa-pencil fa-fw"></i>
-                    </a>
-                    <a title="{$smarty.const.TXT_PROC_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
-                       data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                        <i class="fa fa-trash fa-fw"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <br>
-{/if}
-<!-- /Barra de botones -->
-
 <div class="row">
     <div class="col-lg-12">
         <!-- Nav tabs -->
@@ -180,6 +151,35 @@
         <br>
         <!-- Tab panes -->
         <div class="tab-content">
+            
+            <!-- Barra de botones -->
+            {if $_control || $_usuario->id == $proceso->id_propietario}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
+                                   title="{$smarty.const.TXT_ARCHIVOS}">
+                                    <i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}
+                                </a>
+                            </div>
+                            <div class="btn-group pull-right" role="group" aria-label="">
+                                <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                                    <i class="fa fa-pencil fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_PROC_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
+                                   data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                                    <i class="fa fa-trash fa-fw"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <br>
+            {/if}
+            <!-- /Barra de botones -->
 
             <!-- Parámetros del proceso -->
             <div role="tabpanel" class="tab-pane active" id="proc_param">
