@@ -90,31 +90,6 @@
             <div role="tabpanel" class="tab-pane active" id="user_disp">
                 <form action='index.php?page=entidad_poblar&id_entidad={$entidad->id}' 
                       method='post' name='formpoblar' class="form-horizontal">
-                    <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
-                            <thead>               
-                                <tr>
-                                    <th></th>
-                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
-                                    <th>{$smarty.const.FIELD_APEL}</th>
-                                    <th>{$smarty.const.FIELD_CORREO}</th>                                   
-                                    <th>{$smarty.const.FIELD_PUESTO}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$personas item=persona}
-                                    <tr>
-                                        <td><input title="{$smarty.const.TXT_SEL}" type='checkbox' name='id_usuario[]' value='{$persona.id}'/></td>
-                                        <td style="font-size: 12px">{$persona.nombre|upper}</td>
-                                        <td style="font-size: 12px">{$persona.apellidos|upper}</td>
-                                        <td>{$persona.correo}</td>
-                                        <td>{$persona.puesto}</td>
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
                     <div class="form-group">
                         <label for="id_rol" class="col-sm-2 control-label">{$smarty.const.FIELD_ROL}</label>
                         <div class="col-sm-8">
@@ -139,6 +114,30 @@
                                 </button>
                             </div>
                         </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table datatable table-striped table-hover">
+                            <thead>               
+                                <tr>
+                                    <th></th>
+                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <th>{$smarty.const.FIELD_APEL}</th>
+                                    <th>{$smarty.const.FIELD_CORREO}</th>                                   
+                                    <th>{$smarty.const.FIELD_PUESTO}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$personas item=persona}
+                                    <tr>
+                                        <td><input title="{$smarty.const.TXT_SEL}" type='checkbox' name='id_usuario[]' value='{$persona.id}'/></td>
+                                        <td style="font-size: 12px">{$persona.nombre|upper}</td>
+                                        <td style="font-size: 12px">{$persona.apellidos|upper}</td>
+                                        <td>{$persona.correo}</td>
+                                        <td>{$persona.puesto}</td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
                     </div>
 
                     <!-- Diálogo Confirmar Alta -->
