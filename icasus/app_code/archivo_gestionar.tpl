@@ -151,7 +151,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}">
                     {$entidad->nombre|truncate:30} <i class="fa fa-caret-down"></i>
                 </a>
-               <ul class="dropdown-menu">
+                <ul class="dropdown-menu">
                     <li>
                         <a title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}"><i class="fa fa-folder fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}</a>
                     </li>
@@ -222,67 +222,56 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_PROC_ARCHIVOS}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
+        {if isset($archivos)}
+            <div class="table-responsive">
+                <table class="table datatable table-striped table-hover">
+                    <thead>
+                        <tr>                     
+                            <th>{$smarty.const.FIELD_TITULO}</th>
+                            <th>{$smarty.const.FIELD_VISIB}</th>
+                            <th>{$smarty.const.FIELD_USER}</th>
+                            <th>{$smarty.const.FIELD_ACCIONES}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {foreach from=$archivos item=archivo}
+                            <tr>
+                                <td>
+                                    <a class="editar_archivo" title="{$archivo->titulo|htmlentities}: {$archivo->descripcion|htmlentities}" href="javascript:void(0)" id="l-titulo-{$archivo->id}" value="{$archivo->titulo|htmlentities}" data-toggle="modal" data-target="#dialogo_editar" >
+                                        {$archivo->titulo|htmlentities}
+                                    </a>
+                                    <span id="l-descripcion-{$archivo->id}" data-descripcion="{$archivo->descripcion|htmlentities}"></span>
+                                </td>
+                                <td>
+                                    <input id="l-visible-{$archivo->id}" type="checkbox" class="form-control visibilidad"
+                                           data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                           data-off="{$smarty.const.TXT_NO}" {if $archivo->visible}checked{/if} />
+                                </td>
+                                <td style="font-size: 12px">
+                                    <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}">
+                                        {$archivo->usuario->nombre} {$archivo->usuario->apellidos}</a>
+                                </td> 
+                                <td>
+                                    <a class="btn btn-default btn-circle btn-xs editar_archivo" title="{$smarty.const.TXT_ARCHIVO_ACTUALIZAR_DATOS}" href="javascript:void(0)" id="l-titulo-{$archivo->id}" data-toggle="modal" data-target="#dialogo_editar" >
+                                        <i class="fa fa-pencil fa-fw"></i>
+                                    </a>
+                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVO_DESCARGA}" href="index.php?page=archivo_descargar&id={$archivo->id}"><i class="fa fa-download fa-fw"></i></a> 
+                                    <a class="btn btn-default btn-circle btn-xs borrar_archivo" title="{$smarty.const.TXT_ARCHIVO_BORRAR}" href="javascript:void(0)" id="l-borrar-{$archivo->id}" data-toggle="modal" data-target="#dialogo_borrar">
+                                        <i class="fa fa-trash fa-fw"></i>
+                                    </a>
+                                </td>           
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
             </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                {if isset($archivos)}
-                    <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
-                            <thead>
-                                <tr>                     
-                                    <th>{$smarty.const.FIELD_TITULO}</th>
-                                    <th>{$smarty.const.FIELD_VISIB}</th>
-                                    <th>{$smarty.const.FIELD_USER}</th>
-                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$archivos item=archivo}
-                                    <tr>
-                                        <td>
-                                            <a class="editar_archivo" title="{$archivo->titulo|htmlentities}: {$archivo->descripcion|htmlentities}" href="javascript:void(0)" id="l-titulo-{$archivo->id}" value="{$archivo->titulo|htmlentities}" data-toggle="modal" data-target="#dialogo_editar" >
-                                                {$archivo->titulo|htmlentities}
-                                            </a>
-                                            <span id="l-descripcion-{$archivo->id}" data-descripcion="{$archivo->descripcion|htmlentities}"></span>
-                                        </td>
-                                        <td>
-                                            <input id="l-visible-{$archivo->id}" type="checkbox" class="form-control visibilidad"
-                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                   data-off="{$smarty.const.TXT_NO}" {if $archivo->visible}checked{/if} />
-                                        </td>
-                                        <td style="font-size: 12px">
-                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}">
-                                                {$archivo->usuario->nombre} {$archivo->usuario->apellidos}</a>
-                                        </td> 
-                                        <td>
-                                            <a class="btn btn-default btn-circle btn-xs editar_archivo" title="{$smarty.const.TXT_ARCHIVO_ACTUALIZAR_DATOS}" href="javascript:void(0)" id="l-titulo-{$archivo->id}" data-toggle="modal" data-target="#dialogo_editar" >
-                                                <i class="fa fa-pencil fa-fw"></i>
-                                            </a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVO_DESCARGA}" href="index.php?page=archivo_descargar&id={$archivo->id}"><i class="fa fa-download fa-fw"></i></a> 
-                                            <a class="btn btn-default btn-circle btn-xs borrar_archivo" title="{$smarty.const.TXT_ARCHIVO_BORRAR}" href="javascript:void(0)" id="l-borrar-{$archivo->id}" data-toggle="modal" data-target="#dialogo_borrar">
-                                                <i class="fa fa-trash fa-fw"></i>
-                                            </a>
-                                        </td>           
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_PROC_ARCHIVO_NO}
-                    </div> 
-                {/if}
-            </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
+        {else}
+            <div class="alert alert-info alert-dismissible">
+                <i class="fa fa-info-circle fa-fw"></i> 
+                {$smarty.const.MSG_PROC_ARCHIVO_NO}
+            </div> 
+        {/if}
     </div>
     <!-- /.col-lg-12 -->
 </div>
