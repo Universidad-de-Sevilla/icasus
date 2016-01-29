@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.4.7");
+define('IC_VERSION', "3.4.8");
 define('IC_FECHA_REVISION', "29/01/2016");
 
+// 3.4.8 - 29/01/2016 - Sólo los administradores de icasus pueden editar la sección de ayuda. Corregido fallo de comprobación de administrador en usuario_mostrar.
 // 3.4.7 - 29/01/2016 - Cambios menores en las interfaces para mejorar la usabilidad.
 // 3.4.6 - 29/01/2016 - Corregido el código de las clases entidad y pequeños cambios de interfaz.
 // 3.4.5 - 28/01/2016 - Se incluye la unidad a la que pertenecen los procesos,indicadores/datos y cuadros de mando en mi Icasus. Corrección de errores en la página de control.

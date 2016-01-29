@@ -23,6 +23,18 @@ else
     $alias = 'indice';
     $id_pagina = 0;
 }
+
+// Sólo administradores de Icasus pueden editar la ayuda
+$admin = false;
+foreach ($usuario->entidades as $entidad)
+{
+    if ($entidad->id_entidad == 1 && ($entidad->id_rol == 1 || $entidad->id_rol == 2))
+    {
+        $admin = true;
+    }
+}
+$smarty->assign('admin', $admin);
+
 $pagina = new Pagina();
 $pagina->load("alias = '$alias' OR id=$id_pagina");
 $smarty->assign('pagina', $pagina);

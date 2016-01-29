@@ -41,7 +41,7 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
     $admin = false;
     foreach ($usuario->entidades as $entidad)
     {
-        if ($entidad->entidad->id == 1)
+        if ($entidad->id_entidad == 1 && ($entidad->id_rol == 1 || $entidad->id_rol == 2))
         {
             $admin = true;
         }

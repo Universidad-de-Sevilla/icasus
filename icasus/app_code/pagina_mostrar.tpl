@@ -27,7 +27,7 @@
     <div class="col-lg-8">
         {$pagina->contenido}
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /.col-lg-8 -->
 </div>
 <!-- /.row -->
 <hr>
@@ -35,10 +35,12 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
-                <a title="{$smarty.const.TXT_PAG_NUEVA}" class="btn btn-default btn-danger" href="index.php?page=pagina_crear"><i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_PAG_NUEVA}</a>
-                <a title="{$smarty.const.TXT_PAG_EDIT}" class="btn btn-default btn-danger" href="index.php?page=pagina_editar&id_pagina={$pagina->id}"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_PAG_EDIT}</a>
-            </div>
+            {if $admin}
+                <div class="btn-group" role="group" aria-label="">
+                    <a title="{$smarty.const.TXT_PAG_NUEVA}" class="btn btn-default btn-danger" href="index.php?page=pagina_crear"><i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_PAG_NUEVA}</a>
+                    <a title="{$smarty.const.TXT_PAG_EDIT}" class="btn btn-default btn-danger" href="index.php?page=pagina_editar&id_pagina={$pagina->id}"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_PAG_EDIT}</a>
+                </div>
+            {/if}
             <div class="btn-group" role="group" aria-label="">
                 <a title="{$smarty.const.TXT_VOLVER_INDICE}" class="btn btn-default btn-danger" href='index.php?page=pagina_mostrar&alias=indice'><i class="fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_VOLVER_INDICE}</a>
             </div>
