@@ -90,32 +90,6 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Barra de botones -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            {if $_control}
-                <div class="btn-group pull-right" role="group" aria-label="">
-                    <a class="btn btn-danger" href='index.php?page=dato_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATO_CREAR}">
-                        <i class="fa fa-plus-circle fa-fw"></i>
-                    </a>
-                </div>
-            {/if}
-            {if $entidad->id == 14}
-                <div class="btn-group" role="group" aria-label="">
-                    <a class="btn btn-danger" href='index.php?page=datos_rebiun&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}">
-                        <i class="fa fa-folder-open fa-fw"></i> {$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}
-                    </a>
-                </div>
-            {/if} 
-        </div>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
-<!-- /Barra de botones -->
-
 <div class="row">
     <div class="col-lg-12">
         <!-- Nav tabs -->
@@ -133,6 +107,32 @@
         <br>
         <!-- Tab panes -->
         <div class="tab-content">
+            
+            <!-- Barra de botones -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="btn-toolbar" role="toolbar" aria-label="">
+                        {if $_control}
+                            <div class="btn-group pull-right" role="group" aria-label="">
+                                <a class="btn btn-danger" href='index.php?page=dato_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATO_CREAR}">
+                                    <i class="fa fa-plus-circle fa-fw"></i>
+                                </a>
+                            </div>
+                        {/if}
+                        {if $entidad->id == 14}
+                            <div class="btn-group" role="group" aria-label="">
+                                <a class="btn btn-danger" href='index.php?page=datos_rebiun&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}">
+                                    <i class="fa fa-folder-open fa-fw"></i> {$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}
+                                </a>
+                            </div>
+                        {/if} 
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <br>
+            <!-- /Barra de botones -->
 
             <!-- Lista de Datos -->
             <div role="tabpanel" class="tab-pane active" id="dato_list">
