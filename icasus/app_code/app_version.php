@@ -1,9 +1,10 @@
 <?php
 
-define('IC_VERSION', "3.4.5");
-define('IC_FECHA_REVISION', "28/01/2016");
+define('IC_VERSION', "3.4.6");
+define('IC_FECHA_REVISION', "29/01/2016");
 
-// 3.4.5 - 27/01/2016 - Se incluye la unidad a la que pertenecen los procesos,indicadores/datos y cuadros de mando en mi Icasus. Corrección de errores en la página de control.
+// 3.4.6 - 29/01/2016 - Corregido el código de las clases entidad y pequeños cambios de interfaz.
+// 3.4.5 - 28/01/2016 - Se incluye la unidad a la que pertenecen los procesos,indicadores/datos y cuadros de mando en mi Icasus. Corrección de errores en la página de control.
 // 3.4.4 - 27/01/2016 - Incluida la categoría sobre la que se navega también en los botones de avances de todos los menús de navegación de la aplicación.
 // 3.4.3 - 27/01/2016 - Mejorado listado de cuadros de una unidad incluyendo la gestión de cuadros de usuario.
 // 3.4.2 - 27/01/2016 - Mejorado listado de datos de una unidad incluyendo la gestión de datos de usuario.
