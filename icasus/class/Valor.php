@@ -76,7 +76,8 @@ class Valor extends ADOdb_Active_Record
 
     public function Find_joined_jjmc($id_medicion, $id_usuario_activo)
     {
-        if ($valores = $this->Find("id_medicion = $id_medicion"))
+        $valores = $this->Find("id_medicion = $id_medicion");
+        if ($valores)
         {
             foreach ($valores as & $valor)
             {
@@ -103,17 +104,14 @@ class Valor extends ADOdb_Active_Record
                 }
             }
             usort($valores, array($this, "compara_por_etiquetas"));
-            return $valores;
         }
-        else
-        {
-            return false;
-        }
+        return $valores;
     }
 
     public function Find_joined($condicion)
     {
-        if ($valores = $this->Find($condicion))
+        $valores = $this->Find($condicion);
+        if ($valores)
         {
             foreach ($valores as & $valor)
             {
@@ -124,17 +122,14 @@ class Valor extends ADOdb_Active_Record
                 $valor->usuario->load("id = $valor->id_usuario");
             }
             usort($valores, array($this, "compara_por_etiquetas"));
-            return $valores;
         }
-        else
-        {
-            return false;
-        }
+        return $valores;
     }
 
     public function Find_joined_indicador($condicion)
     {
-        if ($valores = $this->Find($condicion))
+        $valores = $this->Find($condicion);
+        if ($valores)
         {
             foreach ($valores as & $valor)
             {
@@ -144,12 +139,8 @@ class Valor extends ADOdb_Active_Record
                 $valor->indicador = new Indicador();
                 $valor->indicador->load("id = $id_indicador");
             }
-            return $valores;
         }
-        else
-        {
-            return false;
-        }
+        return $valores;
     }
 
     public function load_joined($id)

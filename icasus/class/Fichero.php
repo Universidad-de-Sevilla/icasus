@@ -19,11 +19,14 @@ class Fichero extends ADOdb_Active_Record
     public function find_joined($condicion)
     {
         $ficheros = $this->find($condicion);
-        foreach ($ficheros as $fichero)
+        if ($ficheros)
         {
-            $usuario = new Usuario();
-            $usuario->load("id = $fichero->id_usuario");
-            $fichero->usuario = $usuario;
+            foreach ($ficheros as $fichero)
+            {
+                $usuario = new Usuario();
+                $usuario->load("id = $fichero->id_usuario");
+                $fichero->usuario = $usuario;
+            }
         }
         return $ficheros;
     }

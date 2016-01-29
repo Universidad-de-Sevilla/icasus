@@ -48,7 +48,6 @@ class Proceso extends ADOdb_Active_Record
     //devuelve los procesos de un entidad con los indicadores propios.
     public function find_joined_indicadores($condicion)
     {
-        $procesos = array();
         $procesos = $this->find($condicion);
         foreach ($procesos as & $proceso)
         {
@@ -79,14 +78,15 @@ class Proceso extends ADOdb_Active_Record
 
     public function Find_joined($condition)
     {
-        if ($procesos = $this->Find($condition))
+        $procesos = $this->Find($condition);
+        if ($procesos)
         {
-            foreach ($procesos as & $proceso)
+            foreach ($procesos as $proceso)
             {
                 $entidad = new Entidad();
                 $entidad->load("id=$proceso->id_entidad");
                 $proceso->entidad = $entidad;
-                
+
                 $propietario = new Usuario();
                 $propietario->load("id = $proceso->id_propietario");
                 $proceso->propietario = $propietario;
@@ -96,12 +96,8 @@ class Proceso extends ADOdb_Active_Record
                 $madre->load("id = $proceso->id_madre");
                 $proceso->madre = $madre;
             }
-            return $procesos;
         }
-        else
-        {
-            return false;
-        }
+        return $procesos;
     }
 
     public function borrar($id_proceso)

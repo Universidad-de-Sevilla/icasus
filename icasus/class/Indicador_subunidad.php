@@ -43,6 +43,7 @@ class Indicador_subunidad extends ADOdb_Active_Record
     {
         $indicador = new Indicador();
         $indicador->load("id = $id_indicador");
+        $indicadores_subunidades = array();
 
         if ($indicador->id_responsable_medicion == $id_usuario OR $indicador->id_responsable == $id_usuario)
         {
@@ -66,17 +67,14 @@ class Indicador_subunidad extends ADOdb_Active_Record
             // Define la función personalizada para ordenar
 
             usort($indicadores_subunidades, array($this, "compara_por_etiquetas"));
-            return $indicadores_subunidades;
         }
-        else
-        {
-            return false;
-        }
+        return $indicadores_subunidades;
     }
 
     public function Find_entidades($criterio)
     {
-        if ($indicadores_subunidades = $this->Find($criterio))
+        $indicadores_subunidades = $this->Find($criterio);
+        if ($indicadores_subunidades)
         {
             foreach ($indicadores_subunidades as & $indicador_subunidad)
             {
@@ -84,12 +82,8 @@ class Indicador_subunidad extends ADOdb_Active_Record
                 $indicador_subunidad->entidad->load("id = $indicador_subunidad->id_entidad");
             }
             usort($indicadores_subunidades, array($this, 'ordenarPorEtiqueta'));
-            return $indicadores_subunidades;
         }
-        else
-        {
-            return false;
-        }
+        return $indicadores_subunidades;
     }
 
     private function quitar_tildes($cadena)

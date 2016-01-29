@@ -31,12 +31,8 @@ class Panel extends ADOdb_Active_Record
                 $panel->tipo = new Panel_tipo();
                 $panel->tipo->load("id = $panel->id_paneltipo");
             }
-            return $paneles;
         }
-        else
-        {
-            return false;
-        }
+        return $paneles;
     }
 
     public function permiso_panel($id_usuario, $id_panel)

@@ -18,10 +18,6 @@ if (filter_has_var(INPUT_GET, 'page') && filter_has_var(INPUT_GET, 'modulo'))
     $panel_tipo->load("clase_css = '$tipo'");
     $smarty->assign('panel', $panel_tipo);
 
-    $periodo = new Periodo();
-    $periodos = $periodo->Find("1 = 1");
-    $smarty->assign("periodos", $periodos);
-
     $smarty->assign('modulo', $modulo);
     $smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
     $plantilla = "$tipo.tpl";

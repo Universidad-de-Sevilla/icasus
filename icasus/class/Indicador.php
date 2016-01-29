@@ -30,11 +30,14 @@ class Indicador extends ADOdb_Active_Record
     public function find_medicion_joined($criterio)
     {
         $indicadores = $this->find($criterio);
-        foreach ($indicadores as $indicador)
+        if ($indicadores)
         {
-            $medicion = new Medicion();
-            $mediciones = $medicion->find("id_indicador = $indicador->id");
-            $indicador->medicion = $mediciones;
+            foreach ($indicadores as $indicador)
+            {
+                $medicion = new Medicion();
+                $mediciones = $medicion->find("id_indicador = $indicador->id");
+                $indicador->medicion = $mediciones;
+            }
         }
         return $indicadores;
     }
@@ -85,9 +88,10 @@ class Indicador extends ADOdb_Active_Record
 
     public function Find_joined($criterio)
     {
-        if ($indicadores = $this->Find($criterio))
+        $indicadores = $this->Find($criterio);
+        if ($indicadores)
         {
-            foreach ($indicadores as & $indicador)
+            foreach ($indicadores as $indicador)
             {
                 $entidad = new Entidad();
                 $entidad->load("id= $indicador->id_entidad");
@@ -117,24 +121,21 @@ class Indicador extends ADOdb_Active_Record
                 $tipo_agregacion_temporal->load("id = $this->id_tipo_agregacion_temporal");
                 $indicador->tipo_agregacion_temporal = $tipo_agregacion_temporal;
             }
-            return $indicadores;
         }
-        else
-        {
-            return false;
-        }
+        return $indicadores;
     }
 
     public function Find_joined_ultima_medicion($criterio)
     {
-        if ($indicadores = $this->Find($criterio))
+        $indicadores = $this->Find($criterio);
+        if ($indicadores)
         {
-            foreach ($indicadores as & $indicador)
+            foreach ($indicadores as $indicador)
             {
                 $entidad = new Entidad();
                 $entidad->load("id= $indicador->id_entidad");
                 $indicador->entidad = $entidad;
-                
+
                 $proceso = new Proceso();
                 $proceso->load("id = $indicador->id_proceso");
                 $indicador->proceso = $proceso;
@@ -155,17 +156,14 @@ class Indicador extends ADOdb_Active_Record
                 $medicion->Load("id_indicador = $indicador->id ORDER BY periodo_inicio DESC LIMIT 1");
                 $indicador->medicion = $medicion;
             }
-            return $indicadores;
         }
-        else
-        {
-            return false;
-        }
+        return $indicadores;
     }
 
     public function Find_con_pendientes($condicion, $usuario_id)
     {
-        if ($indicadores = $this->Find($condicion))
+        $indicadores = $this->Find($condicion);
+        if ($indicadores)
         {
             $query = "SELECT count(*) FROM indicadores_subunidades insu
             INNER JOIN mediciones me ON insu.id_indicador = me.id_indicador
@@ -177,17 +175,13 @@ class Indicador extends ADOdb_Active_Record
 
             $adodb = $this->DB();
 
-            foreach ($indicadores as & $indicador)
+            foreach ($indicadores as $indicador)
             {
                 $resultset = $adodb->Execute($query . $indicador->id);
                 $indicador->valores_pendientes = $resultset->fields[0];
             }
-            return $indicadores;
         }
-        else
-        {
-            return false;
-        }
+        return $indicadores;
     }
 
     // Obtiene los valores introducidos en este indicador con la fecha de recogida como campo clave
@@ -235,11 +229,14 @@ class Indicador extends ADOdb_Active_Record
     public function find_valor($condicion)
     {
         $indicadores = $this->find($condicion);
-        foreach ($indicadores as $indicador)
+        if ($indicadores)
         {
-            $valor = new Valor();
-            $valors = $valor->find("id_indicador = " . $indicador->id_indicador . " ORDER BY fecha_recogida DESC");
-            $indicador->valores = $valors;
+            foreach ($indicadores as $indicador)
+            {
+                $valor = new Valor();
+                $valors = $valor->find("id_indicador = " . $indicador->id_indicador . " ORDER BY fecha_recogida DESC");
+                $indicador->valores = $valors;
+            }
         }
         //print_r($indicadores);
         return $indicadores;

@@ -24,8 +24,8 @@ if (filter_has_var(INPUT_POST, 'login') && filter_has_var(INPUT_POST, 'clave'))
     {
         $_SESSION['usuario'] = $usuario;
         // Registra la entrada en el log
-        $log = new Log();
-        $log->add('login', 0, $usuario->id);
+//        $log = new Log();
+//        $log->add('login', 0, $usuario->id);
         // Si el usuario tiene unidades asignadas
         if ($usuario->entidades)
         {

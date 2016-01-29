@@ -38,12 +38,8 @@ class Usuario_entidad extends ADOdb_Active_Record
                 $e->load("id = $item->id_entidad");
                 $item->entidad = $e;
             }
-            return $ues;
         }
-        else
-        {
-            return false;
-        }
+        return $ues;
     }
 
     public function Find_entidades($condicion)
@@ -60,12 +56,8 @@ class Usuario_entidad extends ADOdb_Active_Record
                 $usuario_entidad->rol->load("id = $usuario_entidad->id_rol");
             }
             usort($usuarios_entidades, array($this, "compara_por_etiqueta"));
-            return $usuarios_entidades;
         }
-        else
-        {
-            return false;
-        }
+        return $usuarios_entidades;
     }
 
     public function Find_usuarios($condicion)
@@ -81,12 +73,8 @@ class Usuario_entidad extends ADOdb_Active_Record
                 $usuario_entidad->rol->load("id = $usuario_entidad->id_rol");
             }
             usort($usuarios_entidades, array($this, "compara_por_apellidos"));
-            return $usuarios_entidades;
         }
-        else
-        {
-            return false;
-        }
+        return $usuarios_entidades;
     }
 
     // Función auxiliar para devolver un listado de usuarios ordenados por apellidos
@@ -101,8 +89,7 @@ class Usuario_entidad extends ADOdb_Active_Record
         }
         return ($al > $bl) ? +1 : -1;
     }
-    
-    
+
     // Función auxiliar para devolver un listado de usuarios ordenados por apellidos
     // Se usa en: Find_usuarios()
     function compara_por_apellidos($a, $b)

@@ -32,8 +32,8 @@ class Cuadro extends ADOdb_Active_Record
 
     public function Find_joined($criterio)
     {
-        $cuadros = Array();
-        if ($cuadros = $this->Find($criterio))
+        $cuadros = $this->Find($criterio);
+        if ($cuadros)
         {
             foreach ($cuadros as $cuadro)
             {
