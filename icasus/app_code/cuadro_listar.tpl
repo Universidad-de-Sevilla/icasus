@@ -90,22 +90,6 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Barra de botones -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group pull-right" role="group" aria-label="">
-                <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_NUEVO}">
-                    <i class="fa fa-plus-circle fa-fw"></i></a>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
-<!-- /Barra de botones -->
-
 <div class="row">
     <div class="col-lg-12">
         <!-- Nav tabs -->
@@ -123,6 +107,22 @@
         <br>
         <!-- Tab panes -->
         <div class="tab-content">
+
+            <!-- Barra de botones -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="btn-toolbar" role="toolbar" aria-label="">
+                        <div class="btn-group pull-right" role="group" aria-label="">
+                            <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_NUEVO}">
+                                <i class="fa fa-plus-circle fa-fw"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <br>
+            <!-- /Barra de botones -->
 
             <!-- Lista de Cuadros de mando -->
             <div role="tabpanel" class="tab-pane active" id="cuadro_list">
