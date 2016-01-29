@@ -221,9 +221,6 @@
             </div>
             {if $permiso}
                 <div class="btn-group pull-right" role="group" aria-label="">
-                    <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
-                        <i class="fa fa-plus-circle fa-fw"></i>
-                    </a>
                     {if !$indicador->calculo && $permiso}
                         <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                             <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
@@ -234,6 +231,9 @@
                             <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
                         </a>
                     {/if}
+                    <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
+                        <i class="fa fa-plus-circle fa-fw"></i>
+                    </a>
                     <a href="javascript:void(0)" title="{$smarty.const.TXT_VAL_REF_BORRAR}" class="btn btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_borrado">
                         <i class="fa fa-trash fa-fw"></i>
                     </a>
@@ -249,82 +249,71 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                {if $indicador->valores_referencia}
-                    <form id="form_val_ref" action='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&borrar' method='post'>
-                        <div class="table-responsive">
-                            <table class="table datatable table-striped table-hover">
-                                <thead>
-                                    <tr>   
-                                        {if $permiso}
-                                            <th>
-                                            </th>
-                                        {/if}
-                                        <th>{$smarty.const.FIELD_ETIQUETA}</th>
-                                        <th>{$smarty.const.FIELD_VAL_REF}</th>
-                                        <th>{$smarty.const.FIELD_VISIB_GRAFIC}</th>
-                                        <th>{$smarty.const.FIELD_ACTIVO}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {foreach from=$indicador->valores_referencia item=item}
-                                        <tr class="gradeX">
-                                            {if $permiso}
-                                                <td>
-                                                    <input type="checkbox" name='id_val_ref[]' value="{$item->id}"/>
-                                                </td>
-                                                <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
-                                                <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
-                                                <td>
-                                                    <input type="checkbox" class="grafica" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                           data-off="{$smarty.const.TXT_NO}" {if $item->grafica}checked{/if}
-                                                           id="l-grafica-{$item->id}">
-                                                </td>
-                                                <td>
-                                                    <input type="checkbox" class="activo" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                           data-off="{$smarty.const.TXT_NO}" {if $item->activo}checked{/if} 
-                                                           id="l-activo-{$item->id}">
-                                                </td>
-                                            {else}
-                                                <td>{$item->etiqueta|htmlentities}</td>
-                                                <td>{$item->nombre|htmlentities}</td>
-                                                <td>
-                                                    <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                           data-off="{$smarty.const.TXT_NO}" {if $item->grafica}checked{/if} 
-                                                           disabled>
-                                                </td>
-                                                <td>
-                                                    <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                           data-off="{$smarty.const.TXT_NO}" {if $item->activo}checked{/if} 
-                                                           disabled>
-                                                </td>
-                                            {/if}
-                                        </tr>
-                                    {/foreach}
-                                </tbody>
-                            </table>
-                        </div>
-                    </form>
-                {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_INDIC_NO_VAL_REF}
-                    </div> 
-                {/if}
-            </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
+        {if $indicador->valores_referencia}
+            <form id="form_val_ref" action='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&borrar' method='post'>
+                <div class="table-responsive">
+                    <table class="table datatable table-striped table-hover">
+                        <thead>
+                            <tr>   
+                                {if $permiso}
+                                    <th>
+                                    </th>
+                                {/if}
+                                <th>{$smarty.const.FIELD_ETIQUETA}</th>
+                                <th>{$smarty.const.FIELD_VAL_REF}</th>
+                                <th>{$smarty.const.FIELD_VISIB_GRAFIC}</th>
+                                <th>{$smarty.const.FIELD_ACTIVO}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {foreach from=$indicador->valores_referencia item=item}
+                                <tr class="gradeX">
+                                    {if $permiso}
+                                        <td>
+                                            <input type="checkbox" name='id_val_ref[]' value="{$item->id}"/>
+                                        </td>
+                                        <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
+                                        <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
+                                        <td>
+                                            <input type="checkbox" class="grafica" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                   data-off="{$smarty.const.TXT_NO}" {if $item->grafica}checked{/if}
+                                                   id="l-grafica-{$item->id}">
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" class="activo" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                   data-off="{$smarty.const.TXT_NO}" {if $item->activo}checked{/if} 
+                                                   id="l-activo-{$item->id}">
+                                        </td>
+                                    {else}
+                                        <td>{$item->etiqueta|htmlentities}</td>
+                                        <td>{$item->nombre|htmlentities}</td>
+                                        <td>
+                                            <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                   data-off="{$smarty.const.TXT_NO}" {if $item->grafica}checked{/if} 
+                                                   disabled>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                   data-off="{$smarty.const.TXT_NO}" {if $item->activo}checked{/if} 
+                                                   disabled>
+                                        </td>
+                                    {/if}
+                                </tr>
+                            {/foreach}
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+        {else}
+            <div class="alert alert-info alert-dismissible">
+                <i class="fa fa-info-circle fa-fw"></i> 
+                {$smarty.const.MSG_INDIC_NO_VAL_REF}
+            </div> 
+        {/if}
     </div>
     <!-- /.col-lg-12 -->
 </div>
