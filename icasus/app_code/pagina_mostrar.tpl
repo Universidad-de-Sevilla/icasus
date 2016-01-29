@@ -24,7 +24,7 @@
 <!-- /Breadcrumbs -->
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-8">
         {$pagina->contenido}
     </div>
     <!-- /.col-lg-12 -->
