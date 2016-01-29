@@ -114,31 +114,6 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Barra de botones -->
-{if $_control}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="btn-toolbar" role="toolbar" aria-label="">
-                <div class="btn-group pull-right" role="group" aria-label="">
-                    <a class="btn btn-danger" href="index.php?page=proceso_crear&id_entidad={$entidad->id}"
-                       title="{$smarty.const.TXT_PROC_CREAR}">
-                        <i class="fa fa-plus-circle fa-fw"></i>
-                    </a>
-                    <button class="btn btn-danger" title="{$smarty.const.TXT_PROC_MAP_EDIT}"
-                            data-toggle="modal"
-                            data-target="#dialogo_mapa">
-                        <i class="fa fa-map fa-fw"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <br>
-{/if}
-<!-- /Barra de botones -->
-
 <div class="row">
     <div class="col-lg-12">
         <!-- Nav tabs -->
@@ -165,6 +140,31 @@
         <br>
         <!-- Tab panes -->
         <div class="tab-content">
+
+            <!-- Barra de botones -->
+            {if $_control}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group pull-right" role="group" aria-label="">
+                                <a class="btn btn-danger" href="index.php?page=proceso_crear&id_entidad={$entidad->id}"
+                                   title="{$smarty.const.TXT_PROC_CREAR}">
+                                    <i class="fa fa-plus-circle fa-fw"></i>
+                                </a>
+                                <button class="btn btn-danger" title="{$smarty.const.TXT_PROC_MAP_EDIT}"
+                                        data-toggle="modal"
+                                        data-target="#dialogo_mapa">
+                                    <i class="fa fa-map fa-fw"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+                <br>
+            {/if}
+            <!-- /Barra de botones -->
 
             <!-- Lista de procesos -->
             <div role="tabpanel" class="tab-pane active" id="proc_list">
