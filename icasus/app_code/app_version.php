@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.4.8");
-define('IC_FECHA_REVISION', "29/01/2016");
+define('IC_VERSION', "3.4.9");
+define('IC_FECHA_REVISION', "03/02/2016");
 
+// 3.4.9 - 03/02/2016 - Eliminada la tabla de series_tipo (no necesaria con los nuevos gráficos) y sus relaciones en la BD. Se ha modificado también el código de la api_publica para adaptarlo a los cambios.
 // 3.4.8 - 29/01/2016 - Sólo los administradores de icasus pueden editar la sección de ayuda. Corregido fallo de comprobación de administrador en usuario_mostrar.
 // 3.4.7 - 29/01/2016 - Cambios menores en las interfaces para mejorar la usabilidad.
 // 3.4.6 - 29/01/2016 - Corregido el código de las clases entidad y pequeños cambios de interfaz.
