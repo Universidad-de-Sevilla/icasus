@@ -37,8 +37,10 @@ $('.panel_linea').each(function () {
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var periodicidad = $(this).data("periodicidad");
-    var fecha_inicio = $(this).data("fecha_inicio");
-    var fecha_fin = $(this).data("fecha_fin");
+    var anyos_atras = $(this).data("anyos_atras");
+    var anyo_fin = new Date().getFullYear() - 1;
+    var fecha_inicio = anyo_fin - anyos_atras + '-01-01';
+    var fecha_fin = anyo_fin + '-12-31';
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
     //Ancho de la leyenda del gráfico

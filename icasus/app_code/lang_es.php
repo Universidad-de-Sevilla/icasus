@@ -92,6 +92,7 @@ define('TXT_PANEL_PARAM', 'Parámetros del panel');
 define('TXT_PANEL_AGREGAR', 'Agregar panel');
 define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
+define('TXT_PANEL_ANYOS_ATRAS', 'Años atrás');
 
 //Datos
 define('TXT_DATO_TODOS', 'Todos los datos');
