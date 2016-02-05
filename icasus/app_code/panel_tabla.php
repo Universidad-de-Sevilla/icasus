@@ -28,6 +28,7 @@ if (filter_has_var(INPUT_GET, 'page') && filter_has_var(INPUT_GET, 'modulo'))
 
         $smarty->assign('id_entidad', $id_entidad);
     }
+
     if ($modulo == 'subunidades')
     {
         $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
@@ -37,11 +38,7 @@ if (filter_has_var(INPUT_GET, 'page') && filter_has_var(INPUT_GET, 'modulo'))
         $smarty->assign("indicador_subunidades", $indicador_subunidades);
         $smarty->assign("id_indicador", $id_indicador);
     }
-    if ($modulo == 'fecha_fin')
-    {
-        $fecha_inicio = filter_input(INPUT_GET, 'fecha_inicio', FILTER_SANITIZE_NUMBER_INT);
-        $smarty->assign('fecha_inicio', $fecha_inicio);
-    }
+
     $smarty->assign('modulo', $modulo);
     $smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
     $plantilla = "$tipo.tpl";

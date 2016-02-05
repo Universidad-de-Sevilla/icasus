@@ -101,13 +101,13 @@
                     <div class="form-group has-feedback">
                         <label for="ancho" class="col-sm-2 control-label">{$smarty.const.FIELD_ANCHO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input type="number" value="{$panel->ancho}" id='ancho' name="ancho" class="form-control" placeholder="{$smarty.const.FIELD_ANCHO}" min='2' max="12" required/>
+                            <input type="number" value="{$panel->ancho}" id='ancho' name="ancho" class="form-control" placeholder="{$smarty.const.FIELD_ANCHO}" min='3' max="12" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
 
-                    {if $panel->id_paneltipo == 2 || $panel->id_paneltipo == 2}
+                    {if $panel->id_paneltipo == 2 || $panel->id_paneltipo == 5}
                         <div class="form-group has-feedback">
                             <label for="anyos_atras" class="col-sm-2 control-label">{$smarty.const.TXT_PANEL_ANYOS_ATRAS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                             <div class="col-sm-8">

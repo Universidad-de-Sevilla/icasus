@@ -678,8 +678,6 @@ define('FIELD_OBJP', 'Objetivo Pactado');
 define('FIELD_OBJC', 'Objetivo Carta de Servicio');
 define('FIELD_CREAC', 'Creación');
 define('FIELD_MOD', 'Modificación');
-define('FIELD_FECHA_INIC', 'Fecha inicio');
-define('FIELD_FECHA_FIN', 'Fecha fin');
 define('FIELD_FECHA_REV', 'Fecha de revisión');
 define('FIELD_FECHA_OBTENCION', 'Fecha de obtención');
 define('FIELD_FECHA_RECOGIDA', 'Fecha recogida');
