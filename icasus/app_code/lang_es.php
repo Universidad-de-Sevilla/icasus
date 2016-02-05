@@ -447,7 +447,7 @@ define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el cuadro de mando:');
 define('MSG_CUADRO_MANDO_CONFIRM_BORRAR', '¿Desea borrar el cuadro de mando?');
 define('MSG_CUADRO_MANDO_NO_PROPIO', 'No tiene ningún cuadro de mando propio todavía. Cree un nuevo cuadro de mando.');
 define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún cuadro de mando público todavía. Cree un nuevo cuadro de mando.');
-define('MSG_CUADRO_MANDO_BORRAR', 'No se puede borrar un cuadro de mando que contenga paneles. Bórralos primero.');
+define('MSG_CUADRO_MANDO_BORRAR', 'No se puede borrar un cuadro de mando que contenga paneles. Bórrelos primero.');
 define('MSG_CUADRO_CREADO', 'Se ha creado un nuevo cuadro de mando.');
 define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
 define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿esta seguro?');
