@@ -48,7 +48,7 @@
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
-                {if count($cuadros)> 1}
+                {if count($cuadros)> 1 && !$cuadro->privado}
                     <div class="col-md-2">
                         <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($cuadros)} {$smarty.const.TXT_CUADROS_MANDO}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
@@ -142,7 +142,7 @@
 <!-- /Breadcrumbs -->
 
 <!-- Barra de botones -->
-{if $cuadro->id_usuario == $_usuario->id}
+{if $cuadro->id_usuario == $_usuario->id || $_control}
     <div class="row">
         <div class="col-lg-12">
             <div class="btn-toolbar" role="toolbar" aria-label="">
@@ -194,7 +194,7 @@
                             </div>
                             <!-- /.col-xs-9 -->
                             <div class="col-xs-3">
-                                {if $_usuario->id eq $cuadro->id_usuario}
+                                {if $_usuario->id eq $cuadro->id_usuario || $_control}
                                     <div class="btn-toolbar pull-right" role="group" aria-label="">
                                         <a class="btn btn-default btn-xs" 
                                            title="{$smarty.const.TXT_EDIT}"
@@ -218,7 +218,7 @@
                         <!-- /.row --> 
                         <div class="row">
                             <div class="col-xs-12">
-                                {if $_usuario->id eq $cuadro->id_usuario}
+                                {if $_usuario->id eq $cuadro->id_usuario || $_control}
                                     <span title="{$smarty.const.FIELD_ANCHO}: {$panel->ancho}" class="label label-default">{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
                                 {/if}
                                 {if $panel->tipo->id == 2 || $panel->tipo->id == 3 || $panel->tipo->id == 4}

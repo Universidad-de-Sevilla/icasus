@@ -20,14 +20,18 @@ if (filter_has_var(INPUT_POST, 'nombre'))
     {
         $id_cuadro = filter_input(INPUT_POST, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
         $exito = MSG_CUADRO_EDITADO;
-        if ($cuadro->load("id = $id_cuadro AND id_usuario = $usuario->id") == false)
+        if ($cuadro->load("id = $id_cuadro") == false)
         {
             $error = ERR_CUAD_MANDO_EDIT;
             header("Location: index.php?page=cuadros&error=error");
         }
     }
+    // Estamos creando un cuadro nuevo y asumimos su propiedad
+    else
+    {
+        $cuadro->id_usuario = $usuario->id;
+    }
     $cuadro->id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-    $cuadro->id_usuario = $usuario->id;
     $cuadro->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $cuadro->privado = 0;
     if (filter_has_var(INPUT_POST, 'privado'))
