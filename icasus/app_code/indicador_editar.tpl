@@ -20,7 +20,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}">
                     {$entidad->nombre|truncate:30} <i class="fa fa-caret-down"></i>
                 </a>
-               <ul class="dropdown-menu">
+                <ul class="dropdown-menu">
                     <li>
                         <a title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}"><i class="fa fa-folder fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}</a>
                     </li>
@@ -158,7 +158,7 @@
                                 <div class="col-sm-8">
                                     <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
                                         {foreach $tipos_agregacion as $tipo_agregacion}
-                                            {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 6}
+                                            {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 4 && $tipo_agregacion->id != 6}
                                                 <option title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion_temporal == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
                                             {/if}
                                         {/foreach}

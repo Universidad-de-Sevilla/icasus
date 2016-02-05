@@ -3,7 +3,7 @@
 define('IC_VERSION', "3.5.0");
 define('IC_FECHA_REVISION', "05/02/2016");
 
-// 3.4.9 - 03/02/2016 - Paneles de líneas y tablas de los cuadros de mando actualizables automáticamente mostrando una serie de años atrás desde la fecha actual y la posibilidad de editar este valor. Posibilidad de exportar datos de tablas_simples. Cambiado el mínimo del ancho de paneles a 3 para evitar conflictos con las datatables. Corregido fallo en los paneles tabla_multi cuando no existían las mediciones. Pequeños cambios de estilo.
+// 3.5.0 - 05/02/2016 - Paneles de líneas y tablas de los cuadros de mando actualizables automáticamente mostrando una serie de años atrás desde la fecha actual y la posibilidad de editar este valor. Posibilidad de exportar datos de tablas_simples. Cambiado el mínimo del ancho de paneles a 3 para evitar conflictos con las datatables. Corregido fallo en los paneles tabla_multi cuando no existían las mediciones. Pequeños cambios de estilo.
 // 3.4.9 - 03/02/2016 - Eliminada la tabla de series_tipo (no necesaria con los nuevos gráficos) y sus relaciones en la BD. Se ha modificado también el código de la api_publica para adaptarlo a los cambios.
 // 3.4.8 - 29/01/2016 - Sólo los administradores de icasus pueden editar la sección de ayuda. Corregido fallo de comprobación de administrador en usuario_mostrar.
 // 3.4.7 - 29/01/2016 - Cambios menores en las interfaces para mejorar la usabilidad.

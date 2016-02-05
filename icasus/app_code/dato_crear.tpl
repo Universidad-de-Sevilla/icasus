@@ -139,7 +139,7 @@
                                 <div class="col-sm-8">
                                     <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
                                         {foreach $tipos_agregacion as $tipo_agregacion}
-                                            {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 6}
+                                            {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 4 && $tipo_agregacion->id != 6}
                                                 <option title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" >{$tipo_agregacion->descripcion}</option>
                                             {/if}
                                         {/foreach}
