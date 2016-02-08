@@ -12,7 +12,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
-//parametros que son comunes a todos los módulos
+//Variable para operar con Indicadores/Datos
+$logicaIndicador = new LogicaIndicador();
 
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 
@@ -59,6 +60,10 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                 $valor->valor_parcial = $value;
                 $valor->fecha_recogida = date("Y-m-j");
                 $valor->save();
+                //Chequeamos indicadores dependientes para el cálculo automático
+                $medicion = new Medicion();
+                $medicion->load("id=$valor->id_medicion");
+                $logicaIndicador->actualizar_valor_indicadores_calculados($medicion->id_indicador, $medicion->etiqueta, $valor->id_entidad);
                 break;
 
             case 'asignar_una_medicion':
