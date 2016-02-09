@@ -712,8 +712,9 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Función que calcula y graba el valor de un Indicador/Dato calculado. 
-    //Recibe como parámetros el Indicador/Dato calculado 
-    private function actualizar_valor($indicador, $etiqueta, $id_entidad)
+    //Recibe como parámetros el Indicador/Dato calculado la etiqueta de la medición
+    //y el id_entidad del valor a actualizar
+    public function actualizar_valor($indicador, $etiqueta, $id_entidad)
     {
         //Variable que nos dirá si es factible el cálculo
         $calculable = true;

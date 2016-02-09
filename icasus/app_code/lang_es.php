@@ -395,6 +395,8 @@ define('TXT_VAL_EDIT', 'Editar valores');
 define('TXT_VAL_AGREGAR', 'Agregar valor');
 define('TXT_VALS_SUBUNID', 'Valores por subunidad');
 define('TXT_VAL_IMPORT', 'Importar valores');
+define('TXT_VAL_CALCULAR', 'Calcular');
+define('TXT_VAL_CALC_DESCRIPCION', 'En indicadores/datos calculados actualiza los valores recalculando');
 define('TXT_VAL_ACTIVO', 'Activo');
 define('TXT_VAL_INACTIVO', 'Inactivo');
 define('TXT_VAL_REF', 'Valores de referencia');
@@ -557,6 +559,7 @@ define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado valores a esta medición.
 define('MSG_VAL_BORRADO', 'Se ha borrado un valor.');
 define('MSG_VAL_EXPORT', 'Exportando valores para:');
 define('MSG_VAL_GRABAR', 'El valor se ha grabado correctamente.');
+define('MSG_VALS_CALCULADOS', 'Se han calculado/actualizado los valores correctamente.');
 define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los valores marcados?');
 define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los valores de referencia marcados?');
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');

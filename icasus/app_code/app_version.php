@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.5.2");
-define('IC_FECHA_REVISION', "08/02/2016");
+define('IC_VERSION', "3.6.0");
+define('IC_FECHA_REVISION', "09/02/2016");
 
+// 3.6.0 - 09/02/2016 - Añadido botoń para actualizar valores en las mediciones de indicadores/datos calculados. Corregido problema con valores inactivos que permitián editarse, retirado tipo agregación manual en indicadores/datos calcualdos. Pequeños cambios de estilo en las interfaces de las mediciones.
 // 3.5.2 - 08/02/2016 - Corregido, ahora también se actualizan los valores para indicadores/datos calculados también desde la página de edición de valores.
 // 3.5.1 - 05/02/2016 - Corregidos permisos de cuadros de mando para que se tengan en cuenta los responsables de unidad.
 // 3.5.0 - 05/02/2016 - Paneles de líneas y tablas de los cuadros de mando actualizables automáticamente mostrando una serie de años atrás desde la fecha actual y la posibilidad de editar este valor. Posibilidad de exportar datos de tablas_simples. Cambiado el mínimo del ancho de paneles a 3 para evitar conflictos con las datatables. Corregido fallo en los paneles tabla_multi cuando no existían las mediciones. Pequeños cambios de estilo.

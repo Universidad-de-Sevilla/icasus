@@ -372,7 +372,7 @@
                                     <select class="form-control chosen-select" name="id_tipo_agregacion" id="id_tipo_agregacion">
                                         {foreach $tipos_agregacion as $tipo_agregacion}
                                             {if $tipo_agregacion->id != 0 AND $tipo_agregacion->id != 5}
-                                                <option {if $tipo_agregacion->id == 6 && !$indicador->calculo}class="hidden heredado"{else if $tipo_agregacion->id == 6 && $indicador->calculo}class="heredado"{/if} title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+                                                <option {if $tipo_agregacion->id == 6 && !$indicador->calculo}class="hidden heredado"{else if $tipo_agregacion->id == 6 && $indicador->calculo}class="heredado"{else if $tipo_agregacion->id == 4}class="manual"{/if} title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
                                             {/if}
                                         {/foreach}
                                     </select>

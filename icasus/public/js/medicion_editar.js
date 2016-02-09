@@ -368,4 +368,7 @@ hs.Expander.prototype.onAfterExpand = function () {
     }
 };
 
-$('#tab_med_datos').click(function(){actualizaGrafica();});
+//Actualización del gráfico
+$('#tab_med_datos').click(function () {
+    actualizaGrafica();
+});

@@ -6,15 +6,17 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Muestra los datos asociados a una medicion, si el usuario está autorizado le permite editarlo
+// Muestra los datos asociados a una medicion, si el usuario está autorizado 
+// le permite editarlos
 //---------------------------------------------------------------------------------------------------
+
 global $smarty;
 global $usuario;
 global $plantilla;
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
-if (filter_has_var(INPUT_GET, 'id_medicion')and filter_has_var(INPUT_GET, 'tipo'))
+if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'))
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
@@ -157,4 +159,3 @@ else
     $error = ERR_PARAM;
     header("location:index.php?error=$error");
 }
-   

@@ -380,11 +380,11 @@ table.dataTable thead .sorting:after {
     background-color: #950717;
 }
 
-.panel-red table a, .tab-content table a {
+.panel-red table a, .tab-content table a.btn-default {
     color: #950717;
 }
 
-.panel-red table a:hover, .tab-content table a:hover {
+.panel-red table a:hover, .tab-content table a.btn-default:hover {
     color: #880736;
 }
 
