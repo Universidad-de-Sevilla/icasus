@@ -37,8 +37,10 @@ $('.panel_linea').each(function () {
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var periodicidad = $(this).data("periodicidad");
-    var fecha_inicio = $(this).data("fecha_inicio");
-    var fecha_fin = $(this).data("fecha_fin");
+    var anyos_atras = $(this).data("anyos_atras");
+    var anyo_fin = new Date().getFullYear() - 1;
+    var fecha_inicio = anyo_fin - anyos_atras + '-01-01';
+    var fecha_fin = anyo_fin + '-12-31';
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
     //Ancho de la leyenda del gráfico
@@ -452,27 +454,49 @@ $(".panel_tarta").each(function () {
 //Paneles de tabla
 $(".panel_tabla").each(function () {
     var id_panel = $(this).data("id_panel");
+    var anyos_atras = $(this).data("anyos_atras");
+    var anyo_fin = new Date().getFullYear() - 1;
+    var fecha_inicio = anyo_fin - anyos_atras + '-01-01';
+    var fecha_fin = anyo_fin + '-12-31';
     var leyenda = $(this).parent().siblings('.panel-footer');
     leyenda.insertBefore($(this));
+    var htmlTabla = '<table class="table tabla_simple table-striped table-hover">';
+    //Creamos la cabecera de la tabla
+    htmlTabla += "<thead><tr><th>Medición</th><th>Valor</th></tr></thead><tbody>";
+
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function (indicadores) {
         // De momento cogemos solo el primer indicador por si viene mas de uno 
         var indicador = indicadores[0];
         leyenda.html('<p style="font-size:0.9em">' + indicador.nombre + '</p>');
-        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id, function (datos) {
-            var items = [];
-            items.push('<tr><th>Medición</th><th>Valor</th></tr>');
+        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin, function (datos) {
             // Tomamos la entidad a mostrar del panel_indicador actual
             var id_entidad = indicador.id_entidad;
             $.each(datos, function (i, dato) {
                 if (dato.id_unidad == id_entidad)
                 {
-                    items.push('<tr><td>' + dato.medicion + '</td><td>' + dato.valor + '</td></tr>');
+                    htmlTabla += '<tr><td>' + dato.medicion + '</td><td>' + Math.round(dato.valor * 100) / 100 + '</td></tr>';
                 }
             });
-            $('<table />', {'class': 'table table-striped table-hover',
-                'data-id_indicador': indicador.id,
-                html: items.join('')
-            }).appendTo('#panel_' + id_panel);
+            htmlTabla += '</tbody></table>';
+            $('#panel_' + id_panel).append(htmlTabla);
+            $('.tabla_simple').DataTable({
+                "pagingType": "full_numbers",
+                "iDisplayLength": 25,
+                dom: "<'row'<'col-sm-3'><'col-sm-3'B><'col-sm-6'>>" +
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-5'><'col-sm-7'>>",
+                buttons: [
+                    {
+                        extend: 'collection',
+                        text: 'Exportar',
+                        buttons: [
+                            {extend: 'csv'},
+                            {extend: 'excel'},
+                            {extend: 'print', text: 'Imprimir/PDF'}
+                        ]
+                    }
+                ]
+            });
         });
     });
 });
@@ -486,7 +510,7 @@ $(".panel_tabla_multi").each(function () {
     var fecha_inicio = anio_inicio + "-01-01";
     var fecha_fin = anio_fin + "-12-31";
     var id_panel = $(this).data("id_panel");
-    var htmlTabla = ' <div class="table-responsive"><table id="tabla_multi" class="table datatable table-striped table-hover">';
+    var htmlTabla = ' <div class="table-responsive"><table class="table tabla_multi table-striped table-hover">';
 
     //Creamos la cabecera de la tabla
     htmlTabla += "<thead><tr><th>Código</th><th>Nombre</th>";
@@ -516,6 +540,7 @@ $(".panel_tabla_multi").each(function () {
             function onDataReceived(datos) {
                 valor_anio_inicio = null;
                 valor_anio_fin = null;
+                evolucion = null;
                 datos.forEach(function (dato) {
                     //Buscamos el total del año inicial
                     if (dato.id_unidad == indicador.id_entidad && dato.medicion == anio_inicio) {
@@ -529,15 +554,9 @@ $(".panel_tabla_multi").each(function () {
                     }
                     if (dato.id_unidad == indicador.id_entidad && dato.medicion == anio_fin && valor_anio_inicio === null) {
                         valor_anio_fin = Math.round(dato.valor * 100) / 100;
-                        htmlTabla += '<td  style="white-space:nowrap">---</td><td title="Valor" style="white-space:nowrap">' + valor_anio_fin + '</td>';
+                        htmlTabla += '<td style="white-space:nowrap">---</td><td title="Valor" style="white-space:nowrap">' + valor_anio_fin + '</td>';
                     }
                 });
-                if (valor_anio_inicio === null && valor_anio_fin === null) {
-                    htmlTabla += '<td  style="white-space:nowrap">---</td>';
-                }
-                if (valor_anio_fin === null) {
-                    htmlTabla += '<td  style="white-space:nowrap">---</td>';
-                }
                 //Si existen ambos totales calculamos su diferencia
                 if (valor_anio_inicio !== null && valor_anio_fin !== null) {
                     evolucion = Math.round((valor_anio_fin - valor_anio_inicio) * 100) / 100;
@@ -551,14 +570,21 @@ $(".panel_tabla_multi").each(function () {
                         htmlTabla += '<td title="Constante" style="white-space:nowrap;font-weight:bold;">Constante</td></tr>';
                     }
                 }
-                else {
-                    htmlTabla += '<td style="white-space:nowrap">---</td>';
-                }
+            }
+            // Si no obtenemos resultados
+            if (valor_anio_inicio === null && valor_anio_fin === null) {
+                htmlTabla += '<td style="white-space:nowrap">---</td>';
+            }
+            if (valor_anio_fin === null) {
+                htmlTabla += '<td style="white-space:nowrap">---</td>';
+            }
+            if (evolucion === null) {
+                htmlTabla += '<td style="white-space:nowrap">---</td>';
             }
         });
         htmlTabla += '</tbody></table></div>';
         $('#panel_' + id_panel).append(htmlTabla);
-        $('#tabla_multi').DataTable({
+        $('.tabla_multi').DataTable({
             "pagingType": "full_numbers",
             "iDisplayLength": 25,
             dom: "<'row'<'col-sm-3'l><'col-sm-3'B><'col-sm-6'f>>" +

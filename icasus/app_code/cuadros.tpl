@@ -48,10 +48,10 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#cuadro_todos" title="{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}" aria-controls="{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO_PUBLIC}</a>
+                <a href="#cuadros_propios" title="{$smarty.const.TXT_USER_CUADROS}" aria-controls="{$smarty.const.TXT_USER_CUADROS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_USER_CUADROS}</a>
             </li>
             <li role="presentation">
-                <a href="#cuadros_propios" title="{$smarty.const.TXT_USER_CUADROS}" aria-controls="{$smarty.const.TXT_USER_CUADROS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_USER_CUADROS}</a>
+                <a href="#cuadro_todos" title="{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}" aria-controls="{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO_PUBLIC}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -60,7 +60,7 @@
         <div class="tab-content">
 
             <!-- Cuadros de mando del usuario -->
-            <div role="tabpanel" class="tab-pane" id="cuadros_propios">
+            <div role="tabpanel" class="tab-pane active" id="cuadros_propios">
                 {if $cuadros_propios|count > 0}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -110,7 +110,7 @@
             <!-- /Cuadros de mando del usuario -->
 
             <!-- Todos los cuadros de mando -->
-            <div role="tabpanel" class="tab-pane active" id="cuadro_todos">
+            <div role="tabpanel" class="tab-pane" id="cuadro_todos">
                 {if $cuadros_publicos|count > 0}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">

@@ -25,23 +25,17 @@
     <div class="form-group has-feedback">
         <label for="ancho" class="col-sm-2 control-label">{$smarty.const.FIELD_ANCHO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
         <div class="col-sm-8">
-            <input type="number" value="{$panel->ancho_pred}" id='ancho' name="ancho" class="form-control" placeholder="{$smarty.const.FIELD_ANCHO}" min='2' max="12" required/>
+            <input type="number" value="{$panel->ancho_pred}" id='ancho' name="ancho" class="form-control" placeholder="{$smarty.const.FIELD_ANCHO}" min='3' max="12" required/>
             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
             <div class="help-block with-errors"></div>
         </div>
     </div>
-    <div class="form-group">
-        <label for="inicio" class="col-sm-2 control-label">{$smarty.const.FIELD_FECHA_INIC}</label>
+    <div class="form-group has-feedback">
+        <label for="anyos_atras" class="col-sm-2 control-label">{$smarty.const.TXT_PANEL_ANYOS_ATRAS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
         <div class="col-sm-8">
-            {html_select_date prefix="inicio" all_extra="class='form-control chosen-select'id='inicio'" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 
-            end_year=$smarty.now|date_format:"%Y" }
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="fin" class="col-sm-2 control-label">{$smarty.const.FIELD_FECHA_FIN}</label>
-        <div id="div_fecha_fin" class="col-sm-8">
-            {html_select_date prefix="inicio" all_extra="class='form-control chosen-select'id='fin'" display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10 
-            end_year=$smarty.now|date_format:"%Y"}
+            <input type="number" value="5" name="anyos_atras" id='anyos_atras' class="form-control" placeholder="{$smarty.const.TXT_PANEL_ANYOS_ATRAS}" min='2' max="10" required/>
+            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+            <div class="help-block with-errors"></div>
         </div>
     </div>
 
@@ -98,15 +92,6 @@
                 else {
                     $('#footer_tabs').removeClass('hidden');
                 }
-            });
-            $('select[name="inicioYear"]').on('change', function () {
-                var fecha_inicio = $(this).val();
-                $.ajax({
-                    url: "index.php?page=" + page + "&ajax=true&modulo=fecha_fin&fecha_inicio=" + fecha_inicio,
-                    success: function (datos) {
-                        $("#div_fecha_fin").html(datos);
-                    }
-                });
             });
             $('#buscar_indicador').on('keyup', function () {
                 $('#listado_indicadores').removeClass('hidden');

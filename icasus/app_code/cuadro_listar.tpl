@@ -109,19 +109,21 @@
         <div class="tab-content">
 
             <!-- Barra de botones -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="btn-toolbar" role="toolbar" aria-label="">
-                        <div class="btn-group pull-right" role="group" aria-label="">
-                            <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_NUEVO}">
-                                <i class="fa fa-plus-circle fa-fw"></i></a>
+            {if $_control}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group pull-right" role="group" aria-label="">
+                                <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_NUEVO}">
+                                    <i class="fa fa-plus-circle fa-fw"></i></a>
+                            </div>
                         </div>
                     </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <br>
+                <!-- /.row -->
+                <br>
+            {/if}
             <!-- /Barra de botones -->
 
             <!-- Lista de Cuadros de mando -->
@@ -149,7 +151,7 @@
                                         <td>{$cuadro->comentarios}</td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}"><i class="fa fa-eye fa-fw"></i></a>
-                                                {if $cuadro->id_usuario == $_usuario->id}
+                                                {if $cuadro->id_usuario == $_usuario->id || $_control}
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}'><i class="fa fa-pencil fa-fw"></i></a>   
                                                 <a class="btn btn-default btn-circle btn-xs" data-toggle="modal" data-target="#dialogo_confirmar_borrado"
                                                    title="{$smarty.const.TXT_BORRAR}" data-nombre_cuadro="{$cuadro->nombre}" data-id_cuadro="{$cuadro->id}"

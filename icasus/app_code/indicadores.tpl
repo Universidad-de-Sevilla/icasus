@@ -48,10 +48,10 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#indic_todos" title="{$smarty.const.TXT_INDIC_TODOS}" aria-controls="{$smarty.const.TXT_INDIC_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_TODOS}</a>
+                <a href="#user_indic" title="{$smarty.const.TXT_USER_INDIC}" aria-controls="{$smarty.const.TXT_USER_INDIC}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}</a>
             </li>
             <li role="presentation">
-                <a href="#user_indic" title="{$smarty.const.TXT_USER_INDIC}" aria-controls="{$smarty.const.TXT_USER_INDIC}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}</a>
+                <a href="#indic_todos" title="{$smarty.const.TXT_INDIC_TODOS}" aria-controls="{$smarty.const.TXT_INDIC_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_TODOS}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -60,7 +60,7 @@
         <div class="tab-content">
 
             <!-- Indicadores del usuario -->
-            <div role="tabpanel" class="tab-pane" id="user_indic">
+            <div role="tabpanel" class="tab-pane active" id="user_indic">
             {if $indicadores_propios}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">
@@ -214,7 +214,7 @@
             <!-- /Indicadores del usuario -->
 
             <!-- Todos los indicadores -->
-            <div role="tabpanel" class="tab-pane active" id="indic_todos">
+            <div role="tabpanel" class="tab-pane" id="indic_todos">
              {if $indicadores}
                     <div class="table-responsive">
                         <table class="table table-condensed datatable table-striped table-hover">

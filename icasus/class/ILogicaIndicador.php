@@ -71,6 +71,11 @@ interface ILogicaIndicador
     //entidad cuyo id pasamos también como parámetro 
     public function actualizar_valor_indicadores_calculados($id, $etiqueta_medicion, $id_entidad);
 
+    //Función que calcula y graba el valor de un Indicador/Dato calculado. 
+    //Recibe como parámetros el Indicador/Dato calculado la etiqueta de la medición
+    //y el id_entidad del valor a actualizar
+    public function actualizar_valor($indicador, $etiqueta, $id_entidad);
+
     //--------------------------------------------------------------------------
     //UNIDADES
     //--------------------------------------------------------------------------

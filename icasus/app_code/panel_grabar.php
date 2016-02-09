@@ -29,17 +29,18 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
     $panel->ancho = $ancho;
 
     $panel->id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-    $panel->fecha_inicio = filter_input(INPUT_POST, 'inicioYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'inicioMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'inicioDay', FILTER_SANITIZE_NUMBER_INT);
-    $panel->fecha_fin = filter_input(INPUT_POST, 'finYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finDay', FILTER_SANITIZE_NUMBER_INT);
+//    $panel->fecha_inicio = filter_input(INPUT_POST, 'inicioYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'inicioMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'inicioDay', FILTER_SANITIZE_NUMBER_INT);
+//    $panel->fecha_fin = filter_input(INPUT_POST, 'finYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finDay', FILTER_SANITIZE_NUMBER_INT);
     $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_SANITIZE_STRING) : "todo";
-
+    $panel->anyos_atras = filter_input(INPUT_POST, 'anyos_atras', FILTER_SANITIZE_NUMBER_INT);
+    
     // Cuando se trata de un año completamos meses y días para coger el año completo 
-    if (filter_has_var(INPUT_POST, 'fecha'))
-    {
-        $panel->fecha_inicio = filter_input(INPUT_POST, 'fecha') . "-01-01";
-        $panel->fecha_fin = filter_input(INPUT_POST, 'fecha') . "-12-31";
-    }
-
+//    if (filter_has_var(INPUT_POST, 'fecha'))
+//    {
+//        $panel->fecha_inicio = filter_input(INPUT_POST, 'fecha') . "-01-01";
+//        $panel->fecha_fin = filter_input(INPUT_POST, 'fecha') . "-12-31";
+//    }
+    
     // Si se trata de una medición concreta cogemos las fechas de la propia medición
     if ($panel->id_medicion > 0)
     {

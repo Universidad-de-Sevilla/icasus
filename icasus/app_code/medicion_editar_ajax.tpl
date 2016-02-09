@@ -17,12 +17,14 @@
                     <tr>
                         <td>{$valor->entidad->etiqueta}</td>
                         <td style="white-space: nowrap">
-                            {if $valor->id == $valor_edit}
+                            {if $valor->id == $valor_edit && $valor->activo}
                                 <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}">
                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="fila_grabar('{$valor->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="fila_cancelar('{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
-                                {else}
+                            {else if $valor->activo}
                                 <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
+                            {else}
+                                {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
                             {/if}
                         </td>
                         <td class="text-center"> 
@@ -272,11 +274,17 @@
                     <tr>
                         <td>{$valor->entidad->etiqueta}</td>
                         <td>
+                            {if $valor->activo}
                             <a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">
                                 {if $valor->valor == NULL}---
                                 {else}{$valor->valor|round:"2"}
                                 {/if}
                             </a>
+                            {else}
+                                {if $valor->valor == NULL}---
+                                {else}{$valor->valor|round:"2"}
+                                {/if}
+                            {/if}
                         </td>
                         <td class="text-center"> 
                             ---

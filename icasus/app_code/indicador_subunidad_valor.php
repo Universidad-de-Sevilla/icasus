@@ -41,7 +41,7 @@ if (isset($id_entidad))
 
     // Comprueba permisos para el usuario: responsable unidad, responsable delegado, 
     // responsable indicador
-    if ($control || $indicador->id_responsable == $usuario->id)
+    if (($control || $indicador->id_responsable == $usuario->id) && !$indicador->calculo)
     {
         $entidad = new Entidad();
         $entidad->load("id = $indicador->id_entidad");

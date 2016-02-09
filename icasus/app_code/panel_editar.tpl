@@ -80,7 +80,7 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <form action="index.php?page=panel_editar&id_panel={$id_panel}&id_cuadro={$cuadro->id}" id="panel_editar" name="panel_editar" method='post' 
+                <form action="index.php?page=panel_editar&id_panel={$panel->id}&id_cuadro={$cuadro->id}" id="panel_editar" name="panel_editar" method='post' 
                       data-toggle="validator" class="form-horizontal">
                     <div class="form-group has-feedback">
                         <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
@@ -101,11 +101,23 @@
                     <div class="form-group has-feedback">
                         <label for="ancho" class="col-sm-2 control-label">{$smarty.const.FIELD_ANCHO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input type="number" value="{$panel->ancho}" id='ancho' name="ancho" class="form-control" placeholder="{$smarty.const.FIELD_ANCHO}" min='2' max="12" required/>
+                            <input type="number" value="{$panel->ancho}" id='ancho' name="ancho" class="form-control" placeholder="{$smarty.const.FIELD_ANCHO}" min='3' max="12" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
+
+                    {if $panel->id_paneltipo == 2 || $panel->id_paneltipo == 5}
+                        <div class="form-group has-feedback">
+                            <label for="anyos_atras" class="col-sm-2 control-label">{$smarty.const.TXT_PANEL_ANYOS_ATRAS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                            <div class="col-sm-8">
+                                <input type="number" value="{$panel->anyos_atras}" name="anyos_atras" id='anyos_atras' class="form-control" placeholder="{$smarty.const.TXT_PANEL_ANYOS_ATRAS}" min='2' max="10" required/>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    {/if}
+
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
                             <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href='index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}'>

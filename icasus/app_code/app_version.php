@@ -1,8 +1,13 @@
 <?php
 
-define('IC_VERSION', "3.4.8");
-define('IC_FECHA_REVISION', "29/01/2016");
+define('IC_VERSION', "3.6.0");
+define('IC_FECHA_REVISION', "09/02/2016");
 
+// 3.6.0 - 09/02/2016 - Añadido botoń para actualizar valores en las mediciones de indicadores/datos calculados. Corregido problema con valores inactivos que permitián editarse, retirado tipo agregación manual en indicadores/datos calcualdos. Pequeños cambios de estilo en las interfaces de las mediciones.
+// 3.5.2 - 08/02/2016 - Corregido, ahora también se actualizan los valores para indicadores/datos calculados también desde la página de edición de valores.
+// 3.5.1 - 05/02/2016 - Corregidos permisos de cuadros de mando para que se tengan en cuenta los responsables de unidad.
+// 3.5.0 - 05/02/2016 - Paneles de líneas y tablas de los cuadros de mando actualizables automáticamente mostrando una serie de años atrás desde la fecha actual y la posibilidad de editar este valor. Posibilidad de exportar datos de tablas_simples. Cambiado el mínimo del ancho de paneles a 3 para evitar conflictos con las datatables. Corregido fallo en los paneles tabla_multi cuando no existían las mediciones. Pequeños cambios de estilo.
+// 3.4.9 - 03/02/2016 - Eliminada la tabla de series_tipo (no necesaria con los nuevos gráficos) y sus relaciones en la BD. Se ha modificado también el código de la api_publica para adaptarlo a los cambios.
 // 3.4.8 - 29/01/2016 - Sólo los administradores de icasus pueden editar la sección de ayuda. Corregido fallo de comprobación de administrador en usuario_mostrar.
 // 3.4.7 - 29/01/2016 - Cambios menores en las interfaces para mejorar la usabilidad.
 // 3.4.6 - 29/01/2016 - Corregido el código de las clases entidad y pequeños cambios de interfaz.
