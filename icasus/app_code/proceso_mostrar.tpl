@@ -172,6 +172,11 @@
                                     <i class="fa fa-trash fa-fw"></i>
                                 </a>
                             </div>
+                            <div class="btn-group pull-right" role="group" aria-label="">
+                                <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}&id_proceso={$proceso->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
+                                    <i class="fa fa-plus fa-fw"></i><i class="fa fa-dashboard fa-fw"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                     <!-- /.col-lg-12 -->

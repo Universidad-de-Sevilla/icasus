@@ -29,6 +29,16 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $procesos = $proceso->Find("id_entidad = $id_entidad");
     $smarty->assign('procesos', $procesos);
 
+    $nombre_pagina = TXT_INDIC_NUEVO;
+    // Si creamos indicador desde la ficha de un proceso
+    if (filter_has_var(INPUT_GET, 'id_proceso'))
+    {
+        $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
+        $proceso->load("id = $id_proceso");
+        $nombre_pagina = $nombre_pagina . " - " . $proceso->nombre;
+        $smarty->assign('proceso', $proceso);
+    }
+
     $criterio = new Criterio_efqm();
     $criterios_efqm = $criterio->Find('1=1');
     $smarty->assign('criterios_efqm', $criterios_efqm);
@@ -41,7 +51,8 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $tipos_agregacion = $tipo_agregacion->Find("true ORDER BY id");
     $smarty->assign("tipos_agregacion", $tipos_agregacion);
 
-    $smarty->assign("_nombre_pagina", TXT_INDIC_NUEVO . " - " . $entidad->nombre);
+    $nombre_pagina = $nombre_pagina . " - " . $entidad->nombre;
+    $smarty->assign("_nombre_pagina", $nombre_pagina);
     $smarty->assign('_javascript', array('indicador_crear'));
     $plantilla = "indicador_crear.tpl";
 }
