@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.6.1");
+define('IC_VERSION', "3.6.2");
 define('IC_FECHA_REVISION', "10/02/2016");
 
+// 3.6.2 - 10/02/2016 - Añadidas acciones típicas sobre indicadores al listado de indicadores de un proceso.
 // 3.6.1 - 10/02/2016 - Añadida la posibilidad de crear indicadores para un proceso directamente desde su ficha.
 // 3.6.0 - 09/02/2016 - Añadido botoń para actualizar valores en las mediciones de indicadores/datos calculados. Corregido problema con valores inactivos que permitián editarse, retirado tipo agregación manual en indicadores/datos calcualdos. Pequeños cambios de estilo en las interfaces de las mediciones.
 // 3.5.2 - 08/02/2016 - Corregido, ahora también se actualizan los valores para indicadores/datos calculados también desde la página de edición de valores.

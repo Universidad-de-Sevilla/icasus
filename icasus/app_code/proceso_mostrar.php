@@ -120,6 +120,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    $smarty->assign('_javascript', array('inicio'));
     $smarty->assign('_nombre_pagina', TXT_PROC_FICHA . ": " . $proceso->nombre);
     $plantilla = 'proceso_mostrar.tpl';
 
