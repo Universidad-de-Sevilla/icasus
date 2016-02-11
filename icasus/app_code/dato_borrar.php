@@ -19,15 +19,15 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
     $id_dato = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
     $dato = new Indicador();
     $dato->load_joined("id = $id_dato");
-    // Comprobamos que el usuario es responsable de este indicador para permitirle borrar
+    // Comprobamos que el usuario es responsable de este dato para permitirle borrar
     if ($control || $usuario->id == $dato->id_responsable)
     {
         $medicion = new Medicion();
         $mediciones = $medicion->Find("id_indicador = $id_dato");
         $indicadores_dependientes = $logicaIndicador->calcular_influencias($dato->id);
-        //Si tiene mediciones y no es calculado no se puede borrar 
+        //Si tiene mediciones no se puede borrar 
         //hasta borrar las mediciones
-        if ($mediciones && !$dato->calculo)
+        if ($mediciones)
         {
             $aviso = ERR_DATO_BORRAR_MED;
             header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&aviso=$aviso");
@@ -45,8 +45,6 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
             if ($dato->calculo)
             {
                 $logicaIndicador->borrar_dependencias($id_dato);
-                //Borramos también sus mediciones
-                $logicaIndicador->borrar_mediciones($dato, "dato");
             }
             $dato->delete();
             //Borramos también las Unidades vinculadas al Dato

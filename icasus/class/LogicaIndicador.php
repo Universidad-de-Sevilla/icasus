@@ -433,12 +433,29 @@ class LogicaIndicador implements ILogicaIndicador
     //El tipo es: "indicador" o "dato"
     public function borrar_medicion($indicador, $tipo, $id_medicion)
     {
+        $medicion = new Medicion();
+        $medicion->load("id = $id_medicion");
+        $sin_dependencias = true;
         //Comprobar si el indicador influye en otros si es asi no se podra borrar la medicion
         $indicadores_dependientes = $this->calcular_influencias($indicador->id);
-        //Si no influye podemos borrar
-        if (count($indicadores_dependientes) == 0)
+        //Si influye comprobamos las mediciones existentes
+        if ($indicadores_dependientes)
         {
-            $medicion = new Medicion();
+            foreach ($indicadores_dependientes as $indicador_dependiente)
+            {
+                $mediciones = $medicion->Find("id_indicador = $indicador_dependiente->id ORDER BY periodo_inicio");
+                foreach ($mediciones as $med)
+                {
+                    if ($med->etiqueta === $medicion->etiqueta)
+                    {
+                        $sin_dependencias = false;
+                    }
+                }
+            }
+        }
+        //Si no influye podemos borrar
+        if ($sin_dependencias)
+        {
             $adodb = $medicion->db();
             // Consulta para borrar los valores
             $query1 = "DELETE FROM valores WHERE id_medicion = $id_medicion;\n";
@@ -464,25 +481,11 @@ class LogicaIndicador implements ILogicaIndicador
             $adodb->CompleteTrans();
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
         }
-        //Influye en otros, luego no podemos borrar la medición
         else
         {
             $aviso = ERR_MED_BORRAR;
             $estado = "aviso=$aviso";
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
-        }
-    }
-
-    //Borra todas las mediciones del indicador 
-    //cuyo identificador recibe como parámetro
-    //El tipo es: "indicador" o "dato"
-    public function borrar_mediciones($indicador, $tipo)
-    {
-        $medicion = new Medicion();
-        $mediciones_indicador = $medicion->Find("id_indicador=$indicador->id");
-        foreach ($mediciones_indicador as $medicion_indicador)
-        {
-            $this->borrar_medicion($indicador, $tipo, $medicion_indicador->id);
         }
     }
 

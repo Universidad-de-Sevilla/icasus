@@ -36,11 +36,6 @@ interface ILogicaIndicador
     //El tipo es: "indicador" o "dato"
     public function borrar_medicion($indicador, $tipo, $id_medicion);
 
-    //Borra todas las mediciones del indicador 
-    //cuyo identificador recibe como parámetro
-    //El tipo es: "indicador" o "dato"
-    public function borrar_mediciones($indicador, $tipo);
-
     //Calcula el total del indicador que recibe como parámetro para el conjunto 
     //de valores y para la medición cuya etiqueta también recibe parámetros
     // y en función de su tipo de agregación 
