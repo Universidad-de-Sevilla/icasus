@@ -231,12 +231,6 @@
                             <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
                         </a>
                     {/if}
-                    <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
-                        <i class="fa fa-plus-circle fa-fw"></i>
-                    </a>
-                    <a href="javascript:void(0)" title="{$smarty.const.TXT_VAL_REF_BORRAR}" class="btn btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                        <i class="fa fa-trash fa-fw"></i>
-                    </a>
                 </div>
             {/if}
         </div>
@@ -249,6 +243,21 @@
 
 <div class="row">
     <div class="col-lg-12">
+        <div class="btn-toolbar" role="toolbar" aria-label="">
+            {if $permiso}
+                <div class="btn-group pull-right" role="group" aria-label="">
+                    <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
+                        <i class="fa fa-plus-circle fa-fw"></i>
+                    </a>
+                    {if $indicador->valores_referencia}
+                        <a href="javascript:void(0)" title="{$smarty.const.TXT_VAL_REF_BORRAR}" class="btn btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                            <i class="fa fa-trash fa-fw"></i>
+                        </a>
+                    {/if}
+                </div>
+            {/if}
+        </div>
+        <br>
         {if $indicador->valores_referencia}
             <form id="form_val_ref" action='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&borrar' method='post'>
                 <div class="table-responsive">
@@ -257,6 +266,7 @@
                             <tr>   
                                 {if $permiso}
                                     <th>
+                                        {$smarty.const.TXT_BORRAR}
                                     </th>
                                 {/if}
                                 <th>{$smarty.const.FIELD_ETIQUETA}</th>
@@ -267,7 +277,7 @@
                         </thead>
                         <tbody>
                             {foreach from=$indicador->valores_referencia item=item}
-                                <tr class="gradeX">
+                                <tr>
                                     {if $permiso}
                                         <td>
                                             <input type="checkbox" name='id_val_ref[]' value="{$item->id}"/>

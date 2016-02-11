@@ -218,6 +218,7 @@ define('TXT_MED_AGREGAR', 'Agregar medición');
 define('TXT_MED_GENERAR', 'Generar medición/es');
 define('TXT_MED_TABLA', 'Tabla de mediciones');
 define('TXT_MED_ULTIMA', 'Última medición');
+define('TXT_MEDS_BORRAR', 'Borrar mediciones');
 
 //Menú Principal
 define('TXT_INICIO', 'Mi icasus');
@@ -516,8 +517,9 @@ define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores bajo su responsabilidad.'
 //Mediciones
 define('MSG_MED_NO_TIPO', 'Todavía no se han establecido mediciones para este');
 define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna medición.');
-define('MSG_MED_BORRADA', 'La medición se ha borrado con éxito.');
+define('MSG_MED_BORRADA', 'La/s medición/es se ha/n borrado con éxito.');
 define('MSG_MED_CONFIRM_BORRAR', 'Confirme si desea borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición.');
+define('MSG_MEDS_CONFIRM_BORRAR', 'Confirme si desea borrar las mediciones seleccionadas. Recuerde que se borrarán todos los valores y valores de referencia de las mediciones que sean eliminadas.');
 define('MSG_MEDS_GRABADAS', 'Mediciones grabadas');
 define('MSG_MED_ETIQUETA_NULA', 'La etiqueta no puede estar vacía. Puede restituir el valor anterior pulsando el icono "X" (cancelar).');
 define('MSG_MED_VAL_NO_PERIODO', 'No se pueden grabar valores, esta fuera del periodo de grabación:');

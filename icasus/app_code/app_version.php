@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.6.3");
+define('IC_VERSION', "3.6.4");
 define('IC_FECHA_REVISION', "11/02/2016");
 
+// 3.6.4 - 11/02/2016 - Se permite borrar varias mediciones de una sola vez. Pequeños cambios en las interfaces de medicion_listar y valor_referencia_crear.
 // 3.6.3 - 11/02/2016 - Se pueden borrar mediciones en indicadores/datos que influyen en el cálculo de otros, sólo si esas mediciones no existen en el indicador/dato dependiente.
 // 3.6.2 - 10/02/2016 - Añadidas acciones típicas sobre indicadores al listado de indicadores de un proceso.
 // 3.6.1 - 10/02/2016 - Añadida la posibilidad de crear indicadores para un proceso directamente desde su ficha.
