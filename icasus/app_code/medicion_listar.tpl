@@ -46,13 +46,26 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}: {$indicador->nombre}</h3>
             </div>
-            <div class="modal-body">
-                <p>{$smarty.const.MSG_MED_GENERAR}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="generar" id="generar" href="index.php?page=medicion_generar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
-            </div>
+            <form class="form-horizontal" id="form_generar" name="form_generar" data-toggle="validator">
+                <input type="hidden" name="id_entidad" value="{$indicador->id_entidad}"/>
+                <input type="hidden" name="id_indicador" value="{$indicador->id}"/>
+                <input type="hidden" name="tipo" value="{$tipo}"/>
+                <div class="modal-body">
+                    <p>{$smarty.const.MSG_MED_GENERAR}</p>
+                    <div class="form-group has-feedback">
+                        <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <div class="col-sm-4">
+                            <input type="number" value="{$smarty.now|date_format:'%Y'}" name="anyo" id='anyo' class="form-control" placeholder="{$smarty.const.FIELD_ANYO}" min='{$indicador->historicos}' max="{$smarty.now|date_format:'%Y'}" required/>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                    <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-success"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

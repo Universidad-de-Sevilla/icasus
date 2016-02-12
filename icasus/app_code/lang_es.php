@@ -529,7 +529,7 @@ define('MSG_MED_VAL_NOMUM', 'Está intentando introducir un dato que no es recon
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
 define('MSG_MEDS_GENERADA', 'Se ha/n generado correctamente la/s medición/es.');
-define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las mediciones (si no existen) del indicador/dato, desde su origen histórico y teniendo en cuenta la periodicidad del mismo. ¿Está seguro?');
+define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las mediciones (si no existen) del indicador/dato, desde el año fijado (mínimo el año de inicio de su histórico) hasta el año actual. ¿Está seguro?');
 define('MSG_MED_EXISTE', 'Ya existe/n medicion/es hasta este año.');
 
 //Páginas
@@ -635,7 +635,7 @@ define('ERR_INDIC_GRABAR', 'No se ha podido grabar el indicador.');
 define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el indicador, el identificador no existe en la base de datos.');
 
 //Mediciones
-define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de creación de medición.');
+define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de generar mediciones.');
 define('ERR_MED_AUT', 'No tiene permisos suficientes para agregar mediciones a este');
 define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en esta medición');
 define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');

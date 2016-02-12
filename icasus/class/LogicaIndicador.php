@@ -44,22 +44,22 @@ class LogicaIndicador implements ILogicaIndicador
     //-----------------------------------------------------------------
     //Genera las mediciones de un Indicador/Dato a partir de su Histórico. 
     //El tipo es: "indicador" o "dato"
-    public function generar_mediciones($indicador, $tipo)
+    public function generar_mediciones($indicador, $tipo, $anyo)
     {
         //Primero generamos mediciones para los Indicadores/Datos Calculados 
         //cuyo cálculo dependa del Indicador/Dato actual
-        $this->generar_mediciones_indicadores_dependientes($indicador);
+        $this->generar_mediciones_indicadores_dependientes($indicador, $anyo);
 
         if ($indicador->periodicidad == 'Bienal')
         {
-            for ($i = $indicador->historicos; $i < idate('Y') + 1; $i += 2)
+            for ($i = $anyo; $i < idate('Y') + 1; $i += 2)
             {
                 $this->generar_medicion_bienal($indicador, $i, $tipo);
             }
         }
         else
         {
-            for ($i = $indicador->historicos; $i < idate('Y') + 1; $i++)
+            for ($i = $anyo; $i < idate('Y') + 1; $i++)
             {
                 $this->generar_mediciones_por_anyo($indicador, $i, $tipo);
             }
@@ -68,7 +68,7 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Genera mediciones para todos los Indicadores cuyo cálculo 
     //dependa del Indicador que recibe como parámetro
-    private function generar_mediciones_indicadores_dependientes($indicador)
+    private function generar_mediciones_indicadores_dependientes($indicador, $anyo)
     {
         $indicador_dependencia = new Indicador_dependencia();
         $indicadores_dependientes = $indicador_dependencia->Find("id_operando=$indicador->id");
@@ -78,11 +78,11 @@ class LogicaIndicador implements ILogicaIndicador
             $indicador->load("id=$indicador_dependiente->id_calculado");
             if ($indicador->id_proceso)
             {
-                $this->generar_mediciones($indicador, "indicador");
+                $this->generar_mediciones($indicador, "indicador", $anyo);
             }
             else
             {
-                $this->generar_mediciones($indicador, "dato");
+                $this->generar_mediciones($indicador, "dato", $anyo);
             }
         }
     }
