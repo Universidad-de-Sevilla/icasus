@@ -14,40 +14,59 @@ global $usuario;
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
-if (filter_has_var(INPUT_GET, 'id_medicion') AND filter_has_var(INPUT_GET, 'tipo') AND filter_has_var(INPUT_GET, 'id_entidad'))
+if (filter_has_var(INPUT_GET, 'tipo') AND filter_has_var(INPUT_GET, 'id_entidad'))
 {
-    $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-
     $tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
 
-    $medicion = new Medicion();
-    $medicion->load("id = $id_medicion");
-    $indicador = new Indicador();
-    $indicador->load("id = $medicion->id_indicador");
+    //Borrar una sola medición
+    if (filter_has_var(INPUT_GET, 'id_medicion'))
+    {
+        $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
+        $medicion = new Medicion();
+        $medicion->load("id = $id_medicion");
+        $indicador = new Indicador();
+        $indicador->load("id = $medicion->id_indicador");
 
-    // Comprobamos si el usuario tiene autorización
-    if ($control)
-    {
-        $autorizado = true;
+        // Comprobamos si el usuario tiene autorización
+        if ($control)
+        {
+            $autorizado = true;
+        }
+        else if ($indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id)
+        {
+            $autorizado = true;
+        }
+        else
+        {
+            $autorizado = false;
+        }
+        if ($autorizado)
+        {
+            $logicaIndicador->borrar_medicion($indicador, $tipo, $id_medicion);
+        }
+        else
+        {
+            $error = ERR_AUT;
+            header("location:index.php?page=medicion_editar&id_medicion=$id_medicion&id_entidad=$id_entidad&tipo=$tipo&error=$error");
+        }
     }
-    else if ($indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id)
+    //Borrar varias mediciones
+    if (filter_has_var(INPUT_POST, 'id_mediciones'))
     {
-        $autorizado = true;
-    }
-    else
-    {
-        $autorizado = false;
-    }
-    if ($autorizado)
-    {
-        $logicaIndicador->borrar_medicion($indicador, $tipo, $id_medicion);
-    }
-    else
-    {
-        $error = ERR_AUT;
-        header("location:index.php?page=medicion_editar&id_medicion=$id_medicion&id_entidad=$id_entidad&tipo=$tipo&error=$error");
+        $post_array = filter_input_array(INPUT_POST);
+        $id_mediciones = $post_array['id_mediciones'];
+        if ($id_mediciones)
+        {
+            $medicion = new Medicion();
+            $medicion->load("id = $id_mediciones[0]");
+            $indicador = new Indicador();
+            $indicador->load("id = $medicion->id_indicador");
+            foreach ($id_mediciones as $id_med)
+            {
+                $logicaIndicador->borrar_medicion($indicador, $tipo, $id_med);
+            }
+        }
     }
 }
 else

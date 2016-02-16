@@ -44,22 +44,22 @@ class LogicaIndicador implements ILogicaIndicador
     //-----------------------------------------------------------------
     //Genera las mediciones de un Indicador/Dato a partir de su Histórico. 
     //El tipo es: "indicador" o "dato"
-    public function generar_mediciones($indicador, $tipo)
+    public function generar_mediciones($indicador, $tipo, $anyo)
     {
         //Primero generamos mediciones para los Indicadores/Datos Calculados 
         //cuyo cálculo dependa del Indicador/Dato actual
-        $this->generar_mediciones_indicadores_dependientes($indicador);
+        $this->generar_mediciones_indicadores_dependientes($indicador, $anyo);
 
         if ($indicador->periodicidad == 'Bienal')
         {
-            for ($i = $indicador->historicos; $i < idate('Y') + 1; $i += 2)
+            for ($i = $anyo; $i < idate('Y') + 1; $i += 2)
             {
                 $this->generar_medicion_bienal($indicador, $i, $tipo);
             }
         }
         else
         {
-            for ($i = $indicador->historicos; $i < idate('Y') + 1; $i++)
+            for ($i = $anyo; $i < idate('Y') + 1; $i++)
             {
                 $this->generar_mediciones_por_anyo($indicador, $i, $tipo);
             }
@@ -68,7 +68,7 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Genera mediciones para todos los Indicadores cuyo cálculo 
     //dependa del Indicador que recibe como parámetro
-    private function generar_mediciones_indicadores_dependientes($indicador)
+    private function generar_mediciones_indicadores_dependientes($indicador, $anyo)
     {
         $indicador_dependencia = new Indicador_dependencia();
         $indicadores_dependientes = $indicador_dependencia->Find("id_operando=$indicador->id");
@@ -78,11 +78,11 @@ class LogicaIndicador implements ILogicaIndicador
             $indicador->load("id=$indicador_dependiente->id_calculado");
             if ($indicador->id_proceso)
             {
-                $this->generar_mediciones($indicador, "indicador");
+                $this->generar_mediciones($indicador, "indicador", $anyo);
             }
             else
             {
-                $this->generar_mediciones($indicador, "dato");
+                $this->generar_mediciones($indicador, "dato", $anyo);
             }
         }
     }
@@ -97,8 +97,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -119,7 +119,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -164,8 +164,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -186,7 +186,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -208,8 +208,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -237,7 +237,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -259,8 +259,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -288,7 +288,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -310,8 +310,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -339,7 +339,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -368,8 +368,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -423,7 +423,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -433,12 +433,29 @@ class LogicaIndicador implements ILogicaIndicador
     //El tipo es: "indicador" o "dato"
     public function borrar_medicion($indicador, $tipo, $id_medicion)
     {
+        $medicion = new Medicion();
+        $medicion->load("id = $id_medicion");
+        $sin_dependencias = true;
         //Comprobar si el indicador influye en otros si es asi no se podra borrar la medicion
         $indicadores_dependientes = $this->calcular_influencias($indicador->id);
-        //Si no influye podemos borrar
-        if (count($indicadores_dependientes) == 0)
+        //Si influye comprobamos las mediciones existentes
+        if ($indicadores_dependientes)
         {
-            $medicion = new Medicion();
+            foreach ($indicadores_dependientes as $indicador_dependiente)
+            {
+                $mediciones = $medicion->Find("id_indicador = $indicador_dependiente->id ORDER BY periodo_inicio");
+                foreach ($mediciones as $med)
+                {
+                    if ($med->etiqueta === $medicion->etiqueta)
+                    {
+                        $sin_dependencias = false;
+                    }
+                }
+            }
+        }
+        //Si no influye podemos borrar
+        if ($sin_dependencias)
+        {
             $adodb = $medicion->db();
             // Consulta para borrar los valores
             $query1 = "DELETE FROM valores WHERE id_medicion = $id_medicion;\n";
@@ -464,25 +481,11 @@ class LogicaIndicador implements ILogicaIndicador
             $adodb->CompleteTrans();
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
         }
-        //Influye en otros, luego no podemos borrar la medición
         else
         {
             $aviso = ERR_MED_BORRAR;
             $estado = "aviso=$aviso";
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
-        }
-    }
-
-    //Borra todas las mediciones del indicador 
-    //cuyo identificador recibe como parámetro
-    //El tipo es: "indicador" o "dato"
-    public function borrar_mediciones($indicador, $tipo)
-    {
-        $medicion = new Medicion();
-        $mediciones_indicador = $medicion->Find("id_indicador=$indicador->id");
-        foreach ($mediciones_indicador as $medicion_indicador)
-        {
-            $this->borrar_medicion($indicador, $tipo, $medicion_indicador->id);
         }
     }
 

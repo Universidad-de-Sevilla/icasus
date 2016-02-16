@@ -1,8 +1,13 @@
 <?php
 
-define('IC_VERSION', "3.6.0");
-define('IC_FECHA_REVISION', "09/02/2016");
+define('IC_VERSION', "3.6.5");
+define('IC_FECHA_REVISION', "16/02/2016");
 
+// 3.6.5 - 16/02/2016 - Generación de mediciones mejorada con la posibilidad de seleccionar el año de inicio.
+// 3.6.4 - 11/02/2016 - Se permite borrar varias mediciones de una sola vez. Pequeños cambios en las interfaces de medicion_listar y valor_referencia_crear.
+// 3.6.3 - 11/02/2016 - Se pueden borrar mediciones en indicadores/datos que influyen en el cálculo de otros, sólo si esas mediciones no existen en el indicador/dato dependiente.
+// 3.6.2 - 10/02/2016 - Añadidas acciones típicas sobre indicadores al listado de indicadores de un proceso.
+// 3.6.1 - 10/02/2016 - Añadida la posibilidad de crear indicadores para un proceso directamente desde su ficha.
 // 3.6.0 - 09/02/2016 - Añadido botoń para actualizar valores en las mediciones de indicadores/datos calculados. Corregido problema con valores inactivos que permitián editarse, retirado tipo agregación manual en indicadores/datos calcualdos. Pequeños cambios de estilo en las interfaces de las mediciones.
 // 3.5.2 - 08/02/2016 - Corregido, ahora también se actualizan los valores para indicadores/datos calculados también desde la página de edición de valores.
 // 3.5.1 - 05/02/2016 - Corregidos permisos de cuadros de mando para que se tengan en cuenta los responsables de unidad.

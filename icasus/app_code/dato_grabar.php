@@ -173,7 +173,9 @@ if (
                 $indicador_subunidad->save();
             }
             //Por último, generamos las mediciones para el Dato
-            $logicaIndicador->generar_mediciones($dato, "dato");
+            //Retirado para mejorar fluidez de la aplicación cuando el histórico
+            //es antiguo y la periodicidad intraanual.
+//            $logicaIndicador->generar_mediciones($dato, "dato");
         }
         //---------------------------------------------------------------------------------
         //El dato ya existía (EDICIÓN)

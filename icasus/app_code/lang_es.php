@@ -218,6 +218,7 @@ define('TXT_MED_AGREGAR', 'Agregar medición');
 define('TXT_MED_GENERAR', 'Generar medición/es');
 define('TXT_MED_TABLA', 'Tabla de mediciones');
 define('TXT_MED_ULTIMA', 'Última medición');
+define('TXT_MEDS_BORRAR', 'Borrar mediciones');
 
 //Menú Principal
 define('TXT_INICIO', 'Mi icasus');
@@ -516,8 +517,9 @@ define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores bajo su responsabilidad.'
 //Mediciones
 define('MSG_MED_NO_TIPO', 'Todavía no se han establecido mediciones para este');
 define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna medición.');
-define('MSG_MED_BORRADA', 'La medición se ha borrado con éxito.');
+define('MSG_MED_BORRADA', 'La/s medición/es se ha/n borrado con éxito.');
 define('MSG_MED_CONFIRM_BORRAR', 'Confirme si desea borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición.');
+define('MSG_MEDS_CONFIRM_BORRAR', 'Confirme si desea borrar las mediciones seleccionadas. Recuerde que se borrarán todos los valores y valores de referencia de las mediciones que sean eliminadas.');
 define('MSG_MEDS_GRABADAS', 'Mediciones grabadas');
 define('MSG_MED_ETIQUETA_NULA', 'La etiqueta no puede estar vacía. Puede restituir el valor anterior pulsando el icono "X" (cancelar).');
 define('MSG_MED_VAL_NO_PERIODO', 'No se pueden grabar valores, esta fuera del periodo de grabación:');
@@ -526,9 +528,10 @@ define('MSG_MED_VAL_INTERVALO', 'Debe insertar un valor que este dentro del inte
 define('MSG_MED_VAL_NOMUM', 'Está intentando introducir un dato que no es reconocido como número.');
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
-define('MSG_MEDS_GENERADA', 'Se ha/n generado correctamente la/s medición/es.');
-define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las mediciones (si no existen) del indicador/dato, desde su origen histórico y teniendo en cuenta la periodicidad del mismo. ¿Está seguro?');
-define('MSG_MED_EXISTE', 'Ya existe/n medicion/es hasta este año.');
+define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las mediciones (si no existen), desde el año fijado (mínimo año del histórico) hasta el año actual. Tomará algo de tiempo en función del año seleccionado y la periodicidad del indicador/dato, ¿está seguro?');
+define('MSG_MED_GENERANDO', 'Generando mediciones... espere por favor.');
+define('MSG_MED_GENERADA', 'Se ha/n generado correctamente todas la/s medición/es.');
+define('MSG_MED_EXISTE', 'Se ha/n generado sólo la/s medición/es no existente/s desde el año seleccionado.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
@@ -633,7 +636,7 @@ define('ERR_INDIC_GRABAR', 'No se ha podido grabar el indicador.');
 define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el indicador, el identificador no existe en la base de datos.');
 
 //Mediciones
-define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de creación de medición.');
+define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de generar mediciones.');
 define('ERR_MED_AUT', 'No tiene permisos suficientes para agregar mediciones a este');
 define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en esta medición');
 define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');

@@ -7,7 +7,7 @@
 // Incluye el código JavaScript para el fichero medicion_listar.tpl
 //----------------------------------------------------------------------------
 
-//Borrado de procesos
+//Borrado de mediciones
 $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var etiqueta_medicion = button.data('etiqueta_medicion');
@@ -20,10 +20,19 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
     modal.find('#borrar').attr('href', link);
 });
 
+//Generación de mediciones
+$('#btn_confirm_generar').click(function (e) {
+    e.preventDefault();
+    var texto_generando = $(this).data('texto_generando');
+    $('#form_generar').submit();
+    $('#dialogo_confirmar_generar .modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_generando + "</h4>");
+    $('#dialogo_confirmar_generar .modal-footer').html();
+});
+
 //Tabla de valores
 $('.tabla_valores').DataTable({
-   "bPaginate": false,
-   "bSort": false,
+    "bPaginate": false,
+    "bSort": false,
     dom: "<'row'<'col-sm-12'B>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12'>>",

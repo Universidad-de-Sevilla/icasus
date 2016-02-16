@@ -17,9 +17,10 @@ interface ILogicaIndicador
     //-----------------------------------------------------------------
     //MEDICIONES
     //-----------------------------------------------------------------
-    //Genera las mediciones de un Indicador/Dato a partir de su Histórico. 
+    //Genera las mediciones de un Indicador/Dato a partir del año que recibe 
+    //como parámetro. 
     //El tipo es: "indicador" o "dato"
-    public function generar_mediciones($indicador, $tipo);
+    public function generar_mediciones($indicador, $tipo, $anyo);
 
     //Genera las mediciones de un Indicador/Dato para el año que recibe 
     //como parámetro en Indicadores/Datos con periodicidad Bienal. 
@@ -35,11 +36,6 @@ interface ILogicaIndicador
     //identificador recibe también como parámetro
     //El tipo es: "indicador" o "dato"
     public function borrar_medicion($indicador, $tipo, $id_medicion);
-
-    //Borra todas las mediciones del indicador 
-    //cuyo identificador recibe como parámetro
-    //El tipo es: "indicador" o "dato"
-    public function borrar_mediciones($indicador, $tipo);
 
     //Calcula el total del indicador que recibe como parámetro para el conjunto 
     //de valores y para la medición cuya etiqueta también recibe parámetros

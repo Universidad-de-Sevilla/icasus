@@ -195,8 +195,10 @@ if (
                     }
                 }
             }
-            //Por último, generamos las mediciones para el Indicador
-            $logicaIndicador->generar_mediciones($indicador, "indicador");
+            //Por último, generamos las mediciones para el Indicador,
+            //Retirado para mejorar fluidez de la aplicación cuando el histórico
+            //es antiguo y la periodicidad intraanual.
+//            $logicaIndicador->generar_mediciones($indicador, "indicador");
         }
         //---------------------------------------------------------------------------------
         //El indicador ya existe (EDICIÓN)

@@ -62,7 +62,12 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            <li><a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_INDICS}</a></li>
+            {if isset($proceso)}
+                <li><a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_PROCS}</a></li>
+                <li><a title="{$proceso->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>{$proceso->nombre|truncate:30}</a></li>
+            {else}
+                <li><a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_INDICS}</a></li>
+            {/if}
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -116,11 +121,16 @@
                             <div class="form-group">
                                 <label for="id_proceso" class="col-sm-2 control-label">{$smarty.const.FIELD_PROC}</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control chosen-select" name="id_proceso" id="id_proceso">
-                                        {foreach $procesos as $proceso}
-                                            <option value="{$proceso->id}">{$proceso->nombre}</option>
-                                        {/foreach}
-                                    </select>
+                                    {if isset($proceso)}
+                                        <input type='hidden' name="id_proceso" value="{$proceso->id}"/>
+                                        <input type='text' class="form-control" id="id_proceso" value="{$proceso->nombre}" readonly/>
+                                    {else}
+                                        <select class="form-control chosen-select" name="id_proceso" id="id_proceso">
+                                            {foreach $procesos as $proc}
+                                                <option value="{$proc->id}">{$proc->nombre}</option>
+                                            {/foreach}
+                                        </select>
+                                    {/if} 
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
@@ -199,7 +209,7 @@
                                 <div id="formula_calculo" class="form-group has-feedback hidden">
                                     <label for="calculo" class="col-sm-2 control-label">{$smarty.const.FIELD_FORMULA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                                     <div class="col-sm-8">
-                                        <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" class="form-control" rows="4" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" disabled="disabled" required></textarea>
+                                        <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" class="form-control" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" disabled="disabled" required></textarea>
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                         <div class="help-block with-errors"></div>
                                     </div>
@@ -236,9 +246,15 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-8">
-                                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                                        <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
-                                    </a>
+                                    {if isset($proceso)}
+                                        <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>
+                                            <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                        </a>
+                                    {else}
+                                        <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=indicador_listar&id_entidad={$entidad->id}'>
+                                            <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                        </a>
+                                    {/if}
                                     <div class="pull-right">
                                         <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
                                             <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
@@ -326,9 +342,15 @@
                                     <button id="btn_prev_indicador" title="{$smarty.const.TXT_ANT}" type="button" class="btn btn-primary btnPrev">
                                         <i class=" fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_ANT}
                                     </button>
-                                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                                        <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
-                                    </a>
+                                    {if isset($proceso)}
+                                        <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>
+                                            <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                        </a>
+                                    {else}
+                                        <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=indicador_listar&id_entidad={$entidad->id}'>
+                                            <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                        </a>
+                                    {/if}
                                     <div class="pull-right">
                                         <button id="btn_nxt_subunidades" title="{$smarty.const.TXT_SIG}" type="button" class="btn btn-primary btnNext">
                                             <i class="fa fa-arrow-right fa-fw"></i> {$smarty.const.TXT_SIG}
@@ -416,9 +438,15 @@
                                     <button id="btn_prev_otros" title="{$smarty.const.TXT_ANT}" type="button" class="btn btn-primary btnPrev">
                                         <i class=" fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_ANT}
                                     </button>
-                                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                                        <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
-                                    </a>     
+                                    {if isset($proceso)}
+                                        <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>
+                                            <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                        </a>
+                                    {else}
+                                        <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=indicador_listar&id_entidad={$entidad->id}'>
+                                            <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                        </a>
+                                    {/if}    
                                     <div class="pull-right">
                                         <button title="{$smarty.const.TXT_GRABAR}" type="submit" class="btn btn-success">
                                             <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}
