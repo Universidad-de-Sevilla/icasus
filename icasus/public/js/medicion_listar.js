@@ -21,20 +21,13 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
 });
 
 //Generación de mediciones
-//$('#form_generar').submit(function (e) {
-//    e.preventDefault();
-////    $('#dialogo_confirmar_generar .modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
-////    $('#dialogo_confirmar_generar .modal-footer').html('Generando... espere por favor.');
-//    $.ajax({
-//        type: 'post',
-//        url: 'index.php?page=medicion_generar',
-//        data: $('#form_generar').serialize(),
-//        success: function () {
-////            $('#dialogo_confirmar_generar').modal('hide');
-////            location.reload();
-//        }
-//    });
-//});
+$('#btn_confirm_generar').click(function (e) {
+    e.preventDefault();
+    var texto_generando = $(this).data('texto_generando');
+    $('#form_generar').submit();
+    $('#dialogo_confirmar_generar .modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_generando + "</h4>");
+    $('#dialogo_confirmar_generar .modal-footer').html();
+});
 
 //Tabla de valores
 $('.tabla_valores').DataTable({

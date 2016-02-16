@@ -97,8 +97,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -119,7 +119,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -164,8 +164,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -186,7 +186,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -208,8 +208,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -237,7 +237,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -259,8 +259,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -288,7 +288,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -310,8 +310,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -339,7 +339,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
@@ -368,8 +368,8 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
-            $aviso = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+            $exito = MSG_MED_EXISTE;
+            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -423,7 +423,7 @@ class LogicaIndicador implements ILogicaIndicador
             //Generamos valores de referencia para la medición
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
-            $exito = MSG_MEDS_GENERADA;
+            $exito = MSG_MED_GENERADA;
             header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }

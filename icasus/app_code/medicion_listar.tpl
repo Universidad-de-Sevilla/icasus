@@ -46,7 +46,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}: {$indicador->nombre}</h3>
             </div>
-            <form class="form-horizontal" id="form_generar" name="form_generar" data-toggle="validator">
+            <form class="form-horizontal" id="form_generar" name="form_generar" data-toggle="validator" method="post" action="index.php?page=medicion_generar">
                 <input type="hidden" name="id_entidad" value="{$indicador->id_entidad}"/>
                 <input type="hidden" name="id_indicador" value="{$indicador->id}"/>
                 <input type="hidden" name="tipo" value="{$tipo}"/>
@@ -63,7 +63,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                    <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-success"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                    <button id="btn_confirm_generar" type="submit" title="{$smarty.const.TXT_SI}" data-texto_generando="{$smarty.const.MSG_MED_GENERANDO}" class="btn btn-success"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
                 </div>
             </form>
         </div>

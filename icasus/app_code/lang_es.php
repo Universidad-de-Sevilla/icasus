@@ -528,9 +528,10 @@ define('MSG_MED_VAL_INTERVALO', 'Debe insertar un valor que este dentro del inte
 define('MSG_MED_VAL_NOMUM', 'Está intentando introducir un dato que no es reconocido como número.');
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
-define('MSG_MEDS_GENERADA', 'Se ha/n generado correctamente la/s medición/es.');
-define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las mediciones (si no existen) del indicador/dato, desde el año fijado (mínimo el año de inicio de su histórico) hasta el año actual. ¿Está seguro?');
-define('MSG_MED_EXISTE', 'Ya existe/n medicion/es hasta este año.');
+define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las mediciones (si no existen), desde el año fijado (mínimo año del histórico) hasta el año actual. Tomará algo de tiempo en función del año seleccionado y la periodicidad del indicador/dato, ¿está seguro?');
+define('MSG_MED_GENERANDO', 'Generando mediciones... espere por favor.');
+define('MSG_MED_GENERADA', 'Se ha/n generado correctamente todas la/s medición/es.');
+define('MSG_MED_EXISTE', 'Se ha/n generado sólo la/s medición/es no existente/s desde el año seleccionado.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
