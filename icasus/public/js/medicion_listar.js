@@ -37,14 +37,14 @@ $('.tabla_valores').DataTable({
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12'>>",
     buttons: [
-        {extend: 'colvis', text: 'Ver columnas'},
+        {extend: 'colvis', text: "<i title='Ver columnas' class='fa fa-columns fa-fw'></i>"},
         {
             extend: 'collection',
-            text: 'Exportar',
+            text: "<i title='Exportar' class='fa fa-share-square-o fa-fw'></i>",
             buttons: [
-                {extend: 'csv'},
-                {extend: 'excel'},
-                {extend: 'print', text: 'Imprimir/PDF'}
+                {extend: 'csv', text: "<i title='Exportar a CSV' class='fa fa-file-text-o fa-fw'></i> Exportar a CSV"},
+                {extend: 'excel', text: "<i title='Exportar a Excel' class='fa fa-file-excel-o fa-fw'></i> Exportar a Excel"},
+                {extend: 'print', text: "<i title='Imprimir/PDF' class='fa fa-print fa-fw'></i> Imprimir/PDF"}
             ]
         }
     ]
