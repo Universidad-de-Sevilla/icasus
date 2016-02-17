@@ -3,9 +3,10 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: panel_informacion.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es) 
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es) 
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Graba los paneles nuevos
+// Descripcion: Informa sobre los diferentes tipos de panel
 //---------------------------------------------------------------------------------------------------
 
 $smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
