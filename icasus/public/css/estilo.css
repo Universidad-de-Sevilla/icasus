@@ -457,62 +457,6 @@ span:focus, .pagination > li > span:hover {
 }
 
 /*Menú de Unidades*/
-/*.panel-procesos {
-    border-color: #337AB7;
-}
-
-.panel-procesos .panel-heading {
-    border-color: #337AB7;
-    color: #fff;
-    background-color: #337AB7;
-}
-
-.panel-procesos .panel-heading:hover {
-    background-color: #23527C;
-}
-
-.panel-indicadores {
-    border-color: #FFC526;
-}
-
-.panel-indicadores .panel-heading {
-    border-color: #FFC526;
-    color: #fff;
-    background-color: #FFC526;
-}
-
-.panel-indicadores .panel-heading:hover {
-    background-color: #df8a13;
-}
-
-.panel-datos {
-    border-color:  #950717;
-}
-
-.panel-datos .panel-heading {
-    border-color:  #950717;
-    color: #fff;
-    background-color:  #950717;
-}
-
-.panel-datos .panel-heading:hover {
-    background-color: #880736;
-}
-
-.panel-cuadros {
-    border-color: #5CB85C;
-}
-
-.panel-cuadros .panel-heading {
-    border-color: #5CB85C;
-    color: #fff;
-    background-color: #5CB85C;
-}
-
-.panel-cuadros .panel-heading:hover {
-    background-color: #4CAE4C;
-}*/
-
 .panel-resumen {
     border-color:  #CCC;
 }
@@ -525,6 +469,20 @@ span:focus, .pagination > li > span:hover {
 
 .panel-resumen .panel-heading:hover {
     background-color: #ddd;
+}
+
+/*Datatables*/
+.dt-button-collection.dropdown-menu{
+    border-color: #ccc !important;
+}
+
+.dt-button a{
+    color: #333 !important;
+}
+
+.dt-button.active a,
+.dt-button.active a:hover{
+    background-color: #e6e6e6;
 }
 
 /*Consultas*/
