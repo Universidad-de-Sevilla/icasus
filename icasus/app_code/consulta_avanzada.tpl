@@ -134,7 +134,7 @@
                         {if $indicadores}
                             <form>
                                 <div class="form-group">
-                                    <label class="control-label" for="indicadores">{$smarty.const.FIELD_INDIC}/{$smarty.const.FIELD_DATO}</label>
+                                    <label class="control-label" for="indicadores">{$smarty.const.TXT_CONSULT_BUSCAR}</label>
                                     <select class="form-control chosen-select" id='indicadores'>
                                         {foreach $indicadores as $indicador}
                                             <option title="{$indicador->nombre}" value="{$indicador->id}">{$indicador->nombre}</option>

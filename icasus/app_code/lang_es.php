@@ -69,13 +69,14 @@ define('TXT_POR_ANYO', 'Por año');
 
 //Consulta
 define('TXT_CONSULT', 'Consulta avanzada');
-define('TXT_CONSULT_INFO', 'Para realizar la consulta incluya los indicadores/datos que desee. Puede añadir hasta un máximo de 5 operandos a la consulta.');
+define('TXT_CONSULT_INFO', 'Para realizar la consulta busque e incluya los indicadores/datos que desee. Puede añadir hasta un máximo de 5 operandos a la consulta.');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
-define('TXT_CONSULT_OPERAND', 'Operando');
+define('TXT_CONSULT_OPERAND', 'Indicador/dato operando');
 define('TXT_CONSULT_OPER', 'Operador');
 define('TXT_CONSULT_INCLUIR', 'Incluir/cambiar operando de la consulta');
 define('TXT_CONSULT_QUITAR', 'Retirar último operando de la consulta');
 define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
+define('TXT_CONSULT_BUSCAR', 'Buscar indicador/dato');
 
 //Cuadros de Mando
 define('TXT_CUADRO_MANDO', 'Cuadro de mando');
