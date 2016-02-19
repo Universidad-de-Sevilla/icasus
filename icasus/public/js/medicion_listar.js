@@ -26,7 +26,6 @@ $('#btn_confirm_generar').click(function (e) {
     var texto_generando = $(this).data('texto_generando');
     $('#form_generar').submit();
     $('#dialogo_confirmar_generar .modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_generando + "</h4>");
-    $('#dialogo_confirmar_generar .modal-footer').html();
 });
 
 //Tabla de valores

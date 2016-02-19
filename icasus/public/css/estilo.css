@@ -489,3 +489,9 @@ span:focus, .pagination > li > span:hover {
 .well.activo{
     border: 1px solid #950717;
 }
+
+/*Highcharts*/
+.highcharts-contextmenu hr{
+    border-color:rgb(160, 160, 160) !important;
+    margin: 0px;
+}

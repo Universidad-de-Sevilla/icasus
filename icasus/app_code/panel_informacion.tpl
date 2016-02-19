@@ -1,19 +1,5 @@
 <div class="row">
     <div class="col-md-6">
-        <div class="well" title="{$smarty.const.TXT_METRICA}: {$smarty.const.TXT_METRICA_DESC}">
-            <div class="row">
-                <div class="col-xs-3">
-                    <i class="fa fa-calendar-check-o fa-4x"></i>
-                </div>
-                <div class="col-xs-9">
-                    <strong>{$smarty.const.TXT_METRICA}:</strong> {$smarty.const.TXT_METRICA_DESC}
-                </div>
-            </div>
-        </div>
-        <!-- /.well -->
-    </div>
-    <!-- /.col-md-6 -->
-    <div class="col-md-6">
         <div class="well" title="{$smarty.const.TXT_LINEAS}: {$smarty.const.TXT_LINEAS_DESC}">
             <div class="row">
                 <div class="col-xs-3">
@@ -21,23 +7,6 @@
                 </div>
                 <div class="col-xs-9">
                     <strong>{$smarty.const.TXT_LINEAS}:</strong> {$smarty.const.TXT_LINEAS_DESC}
-                </div>
-            </div>
-        </div>
-        <!-- /.well -->
-    </div>
-    <!-- /.col-md-6 -->
-</div>
-<!-- /.row -->
-<div class="row">
-    <div class="col-md-6">
-        <div class="well" title="{$smarty.const.TXT_TARTA}: {$smarty.const.TXT_TARTA_DESC}">
-            <div class="row">
-                <div class="col-xs-3">
-                    <i class="fa fa-pie-chart fa-4x"></i>
-                </div>
-                <div class="col-xs-9">
-                    <strong>{$smarty.const.TXT_TARTA}:</strong> {$smarty.const.TXT_TARTA_DESC}
                 </div>
             </div>
         </div>
@@ -52,6 +21,37 @@
                 </div>
                 <div class="col-xs-9">
                     <strong>{$smarty.const.TXT_BARRAS}:</strong> {$smarty.const.TXT_BARRAS_DESC}
+                </div>
+            </div>
+        </div>
+        <!-- /.well -->
+    </div>
+    <!-- /.col-md-6 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-md-6">
+        <div class="well" title="{$smarty.const.TXT_METRICA}: {$smarty.const.TXT_METRICA_DESC}">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-calendar-check-o fa-4x"></i>
+                </div>
+                <div class="col-xs-9">
+                    <strong>{$smarty.const.TXT_METRICA}:</strong> {$smarty.const.TXT_METRICA_DESC}
+                </div>
+            </div>
+        </div>
+        <!-- /.well -->
+    </div>
+    <!-- /.col-md-6 -->
+    <div class="col-md-6">
+        <div class="well" title="{$smarty.const.TXT_TARTA}: {$smarty.const.TXT_TARTA_DESC}">
+            <div class="row">
+                <div class="col-xs-3">
+                    <i class="fa fa-pie-chart fa-4x"></i>
+                </div>
+                <div class="col-xs-9">
+                    <strong>{$smarty.const.TXT_TARTA}:</strong> {$smarty.const.TXT_TARTA_DESC}
                 </div>
             </div>
         </div>
