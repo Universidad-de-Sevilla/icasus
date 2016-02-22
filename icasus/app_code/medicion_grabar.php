@@ -73,5 +73,5 @@ if (filter_has_var(INPUT_POST, 'id_indicador')and filter_input(INPUT_POST, 'tipo
 else
 {
     $error = ERR_PARAM;
-    header("location:index.php?error=$error");
+    header("location:index.php?page=error&error=$error");
 }

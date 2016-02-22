@@ -1,8 +1,10 @@
 <?php
 
-define('IC_VERSION', "3.6.5");
-define('IC_FECHA_REVISION', "16/02/2016");
+define('IC_VERSION', "3.7.0");
+define('IC_FECHA_REVISION', "19/02/2016");
 
+// 3.7.0 - 19/02/2016 - Mejorados paneles de los cuadros de mando: añadido botón desplegable con enlace a los indicadores/datos del panel, correcciones en paneles de métrica y de tablas. Pequeños cambios de estilo y correción en borrado de paneles.
+// 3.6.6 - 17/02/2016 - Revisión de todos los controladores donde se corrige la redirección a la página de error. Corrección del controlador para la recogida de datos rebiun (año anterior) y los permisos del borrado de paneles de los cuadros de mando.
 // 3.6.5 - 16/02/2016 - Generación de mediciones mejorada con la posibilidad de seleccionar el año de inicio.
 // 3.6.4 - 11/02/2016 - Se permite borrar varias mediciones de una sola vez. Pequeños cambios en las interfaces de medicion_listar y valor_referencia_crear.
 // 3.6.3 - 11/02/2016 - Se pueden borrar mediciones en indicadores/datos que influyen en el cálculo de otros, sólo si esas mediciones no existen en el indicador/dato dependiente.

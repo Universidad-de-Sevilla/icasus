@@ -8,23 +8,30 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Borra paneles 
 //---------------------------------------------------------------------------------------------------
-$id_usuario = $usuario->id;
 
-$id_panel = filter_input(INPUT_GET, 'id_panel', FILTER_SANITIZE_NUMBER_INT);
-if (!empty($id_panel))
+global $smarty;
+global $usuario;
+global $plantilla;
+
+if (filter_has_var(INPUT_GET, 'id_panel'))
 {
+    $id_panel = filter_input(INPUT_GET, 'id_panel', FILTER_SANITIZE_NUMBER_INT);
     $panel = new Panel();
-    if ($panel->permiso_panel($id_usuario, $id_panel))
+    $panel->load("id=$id_panel");
+    $cuadro = new Cuadro();
+    $cuadro->load("id=$panel->id_cuadro");
+    if ($cuadro->id_usuario == $usuario->id || $control)
     {
         $panel->borrar_panel("id = $id_panel");
     }
     else
     {
-        //escribir error de permiso en log
+        $error = ERR_PERMISOS;
+        header("location:index.php?page=error&error=$error");
     }
 }
 else
 {
-    echo ERR_PARAM;
+    $error = ERR_PARAM;
+    header("location:index.php?page=error&error=$error");
 }	
-

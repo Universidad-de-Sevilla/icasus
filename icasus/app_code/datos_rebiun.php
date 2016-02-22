@@ -22,7 +22,8 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $subentidades = $entidad->Find("id_madre = $id_entidad");
     $entidades_autorizadas = array();
     define('DATOS_REBIUN', '(5219,5102,5099,5100,5103,5104,5106,5107,5142)');
-    $anyo = idate('Y');
+    //Grabamos mediciones del año anterior
+    $anyo = idate('Y') - 1;
     $medicion = new Medicion();
     $mediciones = $medicion->Find("etiqueta like '$anyo%' AND id_indicador IN " . DATOS_REBIUN);
     $mediciones_anyo = array();
@@ -55,20 +56,25 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
                 }
             }
         }
-    }
-    if (count($entidades_autorizadas) > 0)
-    {
-        $smarty->assign("id_usuario", $usuario->id);
-        $smarty->assign("entidades", $entidades_autorizadas);
-        $smarty->assign("valores", $valores);
-        $smarty->assign('_javascript', array('datos_rebiun'));
-        $smarty->assign("_nombre_pagina", TXT_DATOS_REBIUN_RECOGIDA);
-        $plantilla = "datos_rebiun.tpl";
+        if (count($entidades_autorizadas) > 0)
+        {
+            $smarty->assign("id_usuario", $usuario->id);
+            $smarty->assign("entidades", $entidades_autorizadas);
+            $smarty->assign("valores", $valores);
+            $smarty->assign('_javascript', array('datos_rebiun'));
+            $smarty->assign("_nombre_pagina", TXT_DATOS_REBIUN_RECOGIDA);
+            $plantilla = "datos_rebiun.tpl";
+        }
+        else
+        {
+            $error = ERR_NO_AUT_MOD;
+            header("location:index.php?page=dato_listar&id_entidad=$entidad->id&error=$error");
+        }
     }
     else
     {
-        $error = ERR_NO_AUT_MOD;
-        header("location:index.php?page=dato_listar&id_entidad=$entidad->id&error=$error");
+        $aviso = MSG_MED_NO_REBIUN;
+        header("location:index.php?page=dato_listar&id_entidad=$entidad->id&aviso=$aviso");
     }
 }
 else

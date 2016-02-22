@@ -40,5 +40,5 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 else
 {
     $error = ERR_DATO_CREAR;
-    header("location:index.php?error=$error");
+    header("location:index.php?page=datos&error=$error");
 }

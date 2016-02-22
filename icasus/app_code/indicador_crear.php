@@ -59,5 +59,5 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 else
 {
     $error = ERR_PARAM;
-    header("location:index.php?error=$error");
+    header("location:index.php?page=error&error=$error");
 }

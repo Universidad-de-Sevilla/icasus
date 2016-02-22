@@ -37,11 +37,11 @@ if (filter_has_var(INPUT_GET, 'id'))
     else
     {
         $error = ERR_ARCHIVO_NO . " $id.";
-        header("location:index.php?error=$error");
+        header("location:index.php?page=error&error=$error");
     }
 }
 else
 {
     $error = ERR_PARAM;
-    header("location:index.php?error=$error");
+    header("location:index.php?page=error&error=$error");
 }

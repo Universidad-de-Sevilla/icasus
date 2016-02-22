@@ -24,10 +24,10 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PANEL_BORRAR}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PANEL_BORRAR}: <span id="nombre_panel"></span></h3>
             </div>
             <div class="modal-body">
-                <p>{$smarty.const.MSG_PANEL_BORRAR} <span id="nombre_panel"></span></p>
+                <p>{$smarty.const.MSG_PANEL_BORRAR}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
@@ -41,7 +41,7 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 title="{$_nombre_pagina}" class="page-header">
+        <h3 id="nombre_cuadro" title="{$_nombre_pagina}" class="page-header" data-id_unidad ="{$entidad->id}" data-nombre_unidad ="{$entidad->etiqueta}">
             <div class="row">
                 <div class="col-md-10">
                     <i class="fa fa-th fa-fw"></i> {$_nombre_pagina}
@@ -151,10 +151,8 @@
                         <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_PANEL_AGREGAR}</a>
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_EDIT_PROP}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                         <i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_EDIT_PROP}</a>
-                </div> 
-                <div class="btn-group" role="group" aria-label="">
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                        <i class="fa fa-trash fa-fw"></i> {$smarty.const.{$smarty.const.TXT_BORRAR}}</a>
+                        <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_BORRAR}</a>
                 </div>
             </div>
         </div>
@@ -188,14 +186,21 @@
                 <div class="panel panel-red">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="col-xs-9">
+                            <div class="col-xs-8">
                                 <span title="{$smarty.const.FIELD_ORDEN}" class="badge">{$panel->orden}</span>
                                 <strong><i class="fa fa-area-chart fa-fw"></i> {$panel->nombre}</strong>     
                             </div>
-                            <!-- /.col-xs-9 -->
-                            <div class="col-xs-3">
-                                {if $_usuario->id eq $cuadro->id_usuario || $_control}
-                                    <div class="btn-toolbar pull-right" role="group" aria-label="">
+                            <!-- /.col-xs-8 -->
+                            <div class="col-xs-4">
+                                <div class="btn-toolbar pull-right" role="group" aria-label="">
+                                    {* Sólo paneles que no sean de tabla múltiple*}
+                                    {if $panel->id_paneltipo != 6}
+                                        <button type="button" title="{$smarty.const.TXT_PANEL_INDICS}" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-dashboard fa-fw"></i> <i class="fa fa-caret-down"></i>
+                                        </button>
+                                        <ul id="panel_indics_{$panel->id}" class="dropdown-menu"></ul>
+                                    {/if}
+                                    {if $_usuario->id eq $cuadro->id_usuario || $_control}
                                         <a class="btn btn-default btn-xs" 
                                            title="{$smarty.const.TXT_EDIT}"
                                            href="index.php?page=panel_editar&id_panel={$panel->id}&id_cuadro={$id_cuadro}&id_entidad={$entidad->id}">
@@ -210,10 +215,10 @@
                                            data-target="#dialogo_borrado_panel">
                                             <i class="fa fa-trash fa-fw"></i>
                                         </a>
-                                    </div>
-                                {/if}
+                                    {/if}
+                                </div>
                             </div>
-                            <!-- /.col-xs-3 -->
+                            <!-- /.col-xs-4 -->
                         </div>
                         <!-- /.row --> 
                         <div class="row">
@@ -241,8 +246,6 @@
                         </div>
                     </div>
                     <!-- /.panel-body -->
-                    <!--<div class="panel-footer"></div>
-                    <!-- /.panel-footer -->
                 </div>
                 <!-- /.panel -->
             </div>

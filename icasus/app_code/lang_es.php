@@ -69,13 +69,14 @@ define('TXT_POR_ANYO', 'Por año');
 
 //Consulta
 define('TXT_CONSULT', 'Consulta avanzada');
-define('TXT_CONSULT_INFO', 'Para realizar la consulta incluya los indicadores/datos que desee. Puede añadir hasta un máximo de 5 operandos a la consulta.');
+define('TXT_CONSULT_INFO', 'Para realizar la consulta busque e incluya los indicadores/datos que desee. Puede añadir hasta un máximo de 5 operandos a la consulta.');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
-define('TXT_CONSULT_OPERAND', 'Operando');
+define('TXT_CONSULT_OPERAND', 'Indicador/dato operando');
 define('TXT_CONSULT_OPER', 'Operador');
 define('TXT_CONSULT_INCLUIR', 'Incluir/cambiar operando de la consulta');
 define('TXT_CONSULT_QUITAR', 'Retirar último operando de la consulta');
 define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
+define('TXT_CONSULT_BUSCAR', 'Buscar indicador/dato');
 
 //Cuadros de Mando
 define('TXT_CUADRO_MANDO', 'Cuadro de mando');
@@ -93,6 +94,7 @@ define('TXT_PANEL_AGREGAR', 'Agregar panel');
 define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
 define('TXT_PANEL_ANYOS_ATRAS', 'Años atrás');
+define('TXT_PANEL_INDICS', 'Indicadores/datos del panel');
 
 //Datos
 define('TXT_DATO_TODOS', 'Todos los datos');
@@ -453,19 +455,19 @@ define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún cuadro de mando público
 define('MSG_CUADRO_MANDO_BORRAR', 'No se puede borrar un cuadro de mando que contenga paneles. Bórrelos primero.');
 define('MSG_CUADRO_CREADO', 'Se ha creado un nuevo cuadro de mando.');
 define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
-define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿esta seguro?');
+define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿está seguro?');
 //Paneles de los Cuadros de Mando
-define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando el siguiente panel:');
+define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando este panel, ¿está seguro?');
 define('MSG_PANEL_EDITADO', "Panel editado correctamente:");
 define('MSG_PANEL_CREADO', "Se ha añadido al cuadro de mando el siguiente panel:");
-define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿esta seguro?');
+define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿está seguro?');
 
 //Datos
 define('MSG_DATOS_NO', 'No hay datos definidos para ninguna unidad.');
 define('MSG_DATO_BORRADO', 'Se ha borrado el dato: ');
 define('MSG_DATO_ACTUALIZADO', 'Se ha actualizado el dato');
 define('MSG_DATO_CONFIRM_BORRAR', '¿Realmente quiere borrar este dato?');
-define('MSG_DATO_CONFIRM_EDITAR', 'Va a editar este dato, ¿esta seguro?');
+define('MSG_DATO_CONFIRM_EDITAR', 'Va a editar este dato, ¿está seguro?');
 define('MSG_DATO_CREADO', 'Se ha creado un nuevo dato');
 define('MSG_DATO_EXPORT_OK', 'Los datos se han exportado correctamente: ');
 define('MSG_DATO_NO_SUBUNID_ASIG', 'No se han asignado subunidades a este dato (corregir)');
@@ -480,7 +482,7 @@ define('MSG_DIM_EDITADA', 'Se ha modificado una dimensión.');
 define('MSG_UNID_NO_PROC', 'No hay procesos definidos para esta unidad.');
 define('MSG_UNID_USERS_BORRADOS', 'Se han eliminado de la unidad');
 define('MSG_UNID_USERS_AGREGADOS', 'Se han agregado a la unidad');
-define('MSG_UNID_CONFIRM_EDITAR', 'Va a editar esta unidad, ¿esta seguro?');
+define('MSG_UNID_CONFIRM_EDITAR', 'Va a editar esta unidad, ¿está seguro?');
 define('MSG_UNID_EDITADA', 'La unidad se ha modificado con los datos que aparecen a continuación.');
 define('MSG_UNID_NO_USERS', 'No se han vinculado usuarios a esta unidad.');
 define('MSG_UNID_NO_DATOS', 'No hay datos definidos para esta unidad.');
@@ -503,7 +505,7 @@ define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.')
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores/datos.');
 define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este indicador?');
-define('MSG_INDIC_CONFIRM_EDITAR', 'Va a editar este indicador, ¿esta seguro?');
+define('MSG_INDIC_CONFIRM_EDITAR', 'Va a editar este indicador, ¿está seguro?');
 define('MSG_INDIC_BORRADO', 'Se ha borrado el indicador: ');
 define('MSG_INDIC_COPIADOS', 'Indicadores copiados.');
 define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los datos del indicador.');
@@ -516,6 +518,7 @@ define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores bajo su responsabilidad.'
 
 //Mediciones
 define('MSG_MED_NO_TIPO', 'Todavía no se han establecido mediciones para este');
+define('MSG_MED_NO_REBIUN', 'Todavía no se han generado las mediciones del año anterior para los datos Rebiun. Por favor, genere antes las mediciones.');
 define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna medición.');
 define('MSG_MED_BORRADA', 'La/s medición/es se ha/n borrado con éxito.');
 define('MSG_MED_CONFIRM_BORRAR', 'Confirme si desea borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición.');
@@ -535,14 +538,14 @@ define('MSG_MED_EXISTE', 'Se ha/n generado sólo la/s medición/es no existente/
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
-define('MSG_PAG_CONFIRM_EDITAR', 'Va a editar esta página, ¿esta seguro?');
+define('MSG_PAG_CONFIRM_EDITAR', 'Va a editar esta página, ¿está seguro?');
 define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
 define('MSG_PROC_NO_ASIG', 'No dispone de procesos en propiedad.');
 define('MSG_PROC_BORRADO', 'Se ha borrado el proceso: ');
-define('MSG_PROC_CONFIRM_EDITAR', 'Va a editar este proceso, ¿esta seguro?');
+define('MSG_PROC_CONFIRM_EDITAR', 'Va a editar este proceso, ¿está seguro?');
 define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este proceso?');
 define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo proceso para esta unidad.');
 define('MSG_PROC_EDITADO', 'Se ha modificado el proceso correctamente.');
