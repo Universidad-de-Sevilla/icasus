@@ -26,7 +26,6 @@ $('#btn_confirm_generar').click(function (e) {
     var texto_generando = $(this).data('texto_generando');
     $('#form_generar').submit();
     $('#dialogo_confirmar_generar .modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_generando + "</h4>");
-    $('#dialogo_confirmar_generar .modal-footer').html();
 });
 
 //Tabla de valores
@@ -37,14 +36,14 @@ $('.tabla_valores').DataTable({
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12'>>",
     buttons: [
-        {extend: 'colvis', text: 'Ver columnas'},
+        {extend: 'colvis', text: "<i title='Ver columnas' class='fa fa-columns fa-fw'></i> <i class='fa fa-caret-down'></i>"},
         {
             extend: 'collection',
-            text: 'Exportar',
+            text: "<i title='Exportar' class='fa fa-share-square-o fa-fw'></i> <i class='fa fa-caret-down'></i>",
             buttons: [
-                {extend: 'csv'},
-                {extend: 'excel'},
-                {extend: 'print', text: 'Imprimir/PDF'}
+                {extend: 'csv', text: "<i title='Exportar a CSV' class='fa fa-file-text-o fa-fw'></i> Exportar a CSV"},
+                {extend: 'excel', text: "<i title='Exportar a Excel' class='fa fa-file-excel-o fa-fw'></i> Exportar a Excel"},
+                {extend: 'print', text: "<i title='Imprimir/PDF' class='fa fa-print fa-fw'></i> Imprimir/PDF"}
             ]
         }
     ]

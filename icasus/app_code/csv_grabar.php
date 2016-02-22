@@ -108,7 +108,7 @@ if (filter_has_var(INPUT_POST, 'id_entidad'))
     else
     {
         $error = ERR_DATO_IMPORT_NO_AUT;
-        header('location:index.php?error=' . $error);
+        header("location:index.php?page=error&error=$error");
     }
 }
 else

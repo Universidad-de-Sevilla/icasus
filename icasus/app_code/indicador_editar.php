@@ -73,5 +73,5 @@ else
 {
     // Faltan parametros avisamos error
     $error = ERR_PARAM;
-    header("Location:index.php?error=$error");
+    header("location:index.php?page=error&error=$error");
 }

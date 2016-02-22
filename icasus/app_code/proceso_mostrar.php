@@ -140,7 +140,6 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
 }
 else
 {
-    //Si se llama a esta pagina si un id de proceso o de entidad se redirecciona a la página de inicio
     $error = ERR_PARAM;
-    header("Location:index.php?error=$error");
+    header("location:index.php?page=error&error=$error");
 }

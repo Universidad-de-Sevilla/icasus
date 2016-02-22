@@ -166,10 +166,12 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
     }
     else
     {
-        //escribe un error de falta de permisos en log para poder tener registro del error ya que ajax no lo muestra al estar en segundo plano
+        $error = ERR_PERMISOS;
+        header("location:index.php?page=error&error=$error");
     }
 }
 else
 {
-    //escribe un error de falta de parámetroe en log para poder tener registro del error ya que ajax no lo muestra al estar en segundo plano
+    $error = ERR_PARAM;
+    header("location:index.php?page=error&error=$error");
 }
