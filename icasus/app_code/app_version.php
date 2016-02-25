@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.8.0");
-define('IC_FECHA_REVISION', "24/02/2016");
+define('IC_VERSION', "3.8.1");
+define('IC_FECHA_REVISION', "25/02/2016");
 
+// 3.8.1 - 25/02/2016 - Corregido representación gráfica de indicadores/datos con agregacion manual y periodicidad no agregada (pendiente agregados).
 // 3.8.0 - 24/02/2016 - Cálculo del total anual y visualización en gráficos para indicadores/datos con periodicidad intranual y también para valores de referencia (pendiente evolutivo de valores de referencia). Correcciones y borrado de métodos innecesarios en la nueva versión del fichero api_publica.php.
 // 3.7.0 - 19/02/2016 - Mejorados paneles de los cuadros de mando: añadido botón desplegable con enlace a los indicadores/datos del panel, correcciones en paneles de métrica y de tablas. Pequeños cambios de estilo y correción en borrado de paneles.
 // 3.6.6 - 17/02/2016 - Revisión de todos los controladores donde se corrige la redirección a la página de error. Corrección del controlador para la recogida de datos rebiun (año anterior) y los permisos del borrado de paneles de los cuadros de mando.

@@ -116,8 +116,10 @@ function get_subunidades_indicador($id)
 // ---------------------------------------------------------------------------
 function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todos")
 {
+    // ------------------------------------------------------------------------------------------
     // Preparamos el tipo de operador que vamos a usar para calcular totales y agrupados
-    // También cogemos el id de la entidad para devolver la mediana (mediana con trampa que se coge directamente de la unidad madre) 
+    // --------------------------------------------------------------------------------------------------
+
     $query_operadores = "SELECT agregacion_unidad.operador as operador, agregacion_temporal.operador as operador_temporal, indicadores.id_entidad as id_entidad, indicadores.calculo as calculo
             FROM indicadores
             INNER JOIN tipo_agregacion as agregacion_unidad 
@@ -134,6 +136,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
         {
             $operador = $registro['operador'];
             $operador_temporal = $registro['operador_temporal'];
+            ;
             $id_entidad = $registro['id_entidad'];
             $calculo = $registro['calculo'];
         }
@@ -147,10 +150,13 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
         echo ERR_CONSULTA_EXE;
     }
 
+    //------------------------------------------------------------------------------
     // Devuelve los valores recogidos para todas las subunidades
     // mediciones.id as id_medicion, mediciones.etiqueta as medicion,
     // TRAMPA GORDA: uso el periodo de inicio como periodo de fin
     // para que las gráficas anuales sean más coherentes
+    //-----------------------------------------------------------------------------------
+
     $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
             UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin,
             entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
@@ -190,7 +196,10 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
         $datos[] = $registro;
     }
 
+    //-----------------------------------------------------------------------------------
     // Aquí van los totales, si el indicador es calculado usamos obtener_total_calculado
+    //------------------------------------------------------------------------------------
+
     if ($calculo)
     {
         $totales = obtener_total_calculado($id, $fecha_inicio, $fecha_fin, $periodicidad);
@@ -198,10 +207,10 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
     }
     else
     {
-        if ($operador == 'MANUAL')
+        if ($operador === 'MANUAL')
         {
-            // Si el operador de agregado es 'mediana' cogemos del tirón los valores de la unidad madre
-            $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+            // Si el operador de agregado es 'manual' cogemos del tirón los valores de la unidad madre
+            $query_unidades = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
               UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin,
               'Total' as unidad, 0 as id_unidad, valores.valor as valor
               FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
@@ -258,6 +267,13 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
             $query_temporal .= " GROUP BY YEAR(periodo_fin), MONTH(periodo_fin), DAY(periodo_fin)";
         }
         $query_temporal .= " ORDER BY periodo_fin";
+
+        // Si el operador de agregacion entre unidades es manual y la periodicidad
+        // no es intranual no tenemos en cuenta la agregación temporal
+        if ($operador === 'MANUAL')
+        {
+            $query_temporal = $query_unidades;
+        }
         $resultado = mysql_query($query_temporal);
         while ($registro = mysql_fetch_assoc($resultado))
         {
@@ -265,7 +281,10 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
         }
     }
 
+    //-----------------------------------------------------------------------------------------
     // Valores de referencia: objetivos, mínimos, etc.
+    //------------------------------------------------------------------------------------------
+
     if ($operador_temporal === 'LAST')
     {
         $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
