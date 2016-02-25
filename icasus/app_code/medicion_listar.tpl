@@ -187,6 +187,11 @@
             <li role="presentation" class="active">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" href="#"><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
+            {if $tipo == 'indicador'}
+                <li role="presentation">
+                    <a title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-newspaper-o fa-fw"></i> {$smarty.const.TXT_ANALISIS}</a>
+                </li>
+            {/if}
         </ul>
     </div>
     <!-- /.col-lg-12 -->

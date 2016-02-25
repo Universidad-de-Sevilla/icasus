@@ -47,6 +47,9 @@ define('TXT_FOTO_PERFIL', 'Foto de perfil');
 define('TXT_EXPORT_CSV', 'Exportar en CSV');
 define('TXT_LEYENDA', 'Leyenda');
 
+//Análisis de indicadores
+define('TXT_ANALISIS', 'Análisis');
+
 //Archivos
 define('TXT_ARCHIVOS_PROC', 'Archivos del proceso: ');
 define('TXT_ARCHIVO_SUBIR_NUEVO', 'Subir nuevo archivo');
