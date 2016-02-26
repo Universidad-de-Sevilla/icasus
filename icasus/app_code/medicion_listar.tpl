@@ -426,7 +426,7 @@
                                                 </td>
                                                 <td>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</td>
                                                 <td>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</td>
-                                                <td>{if $totales[$medicion->id]}{$totales[$medicion->id]|round:"2"}{else}---{/if}</td>
+                                                <td>{if $totales[$medicion->id] != NULL}{$totales[$medicion->id]|round:"2"}{else}---{/if}</td>
                                                 <td class="text-center">
                                                     {if $totales[$medicion->id] != NULL}
                                                         {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}

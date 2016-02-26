@@ -15,6 +15,13 @@ interface ILogicaIndicador
 {
 
     //-----------------------------------------------------------------
+    //ANÁLISIS
+    //-----------------------------------------------------------------
+    //Genera los análisis del Indicador que recibe como parámetro 
+    //desde su histórico hasta el año actual si no existen ya
+    public function generar_analisis($indicador);
+
+    //-----------------------------------------------------------------
     //MEDICIONES
     //-----------------------------------------------------------------
     //Genera las mediciones de un Indicador/Dato a partir del año que recibe 

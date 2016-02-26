@@ -49,6 +49,7 @@ define('TXT_LEYENDA', 'Leyenda');
 
 //Análisis de indicadores
 define('TXT_ANALISIS', 'Análisis');
+define('TXT_PLAN_ACCION', 'Plan de acción');
 
 //Archivos
 define('TXT_ARCHIVOS_PROC', 'Archivos del proceso: ');
