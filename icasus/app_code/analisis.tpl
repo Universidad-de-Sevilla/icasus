@@ -239,12 +239,11 @@
 
 <div class="row">
     <div class="col-lg-12">
-
         <div class="form-horizontal">
             <div class="form-group">
-                <label for="anyo" class="col-sm-2 col-sm-offset-2 control-label">{$smarty.const.FIELD_ANYO}</label>
+                <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO}</label>
                 <div class="col-sm-4">
-                    <select class="form-control chosen-select" id="anyo" name="anyo">
+                    <select class="form-control chosen-select" id="anyo" name="anyo" data-id_indicador='{$indicador->id}'>
                         {for $i=($smarty.now|date_format:"%Y") to $indicador->historicos step=-1}
                             <option value="{$i}">{$i}</option>
                         {/for}
@@ -252,37 +251,32 @@
                 </div>
             </div> 
         </div>
-
-        <div class="form-horizontal">
-            {if $_control || $responsable}
-                <div class="form-group">
-                    <label for="analisis" class="col-sm-2 control-label">{$smarty.const.TXT_ANALISIS}</label>
-                    <div class="col-sm-8">
-                        <textarea  class="form-control" id="analisis" name="analisis" placeholder="{$smarty.const.TXT_ANALISIS}">{$analisis_actual->analisis}</textarea>
+        <div id='analisis_plan'>
+            <div class="form-horizontal">
+                <div id="analisis" class="form-group">
+                    <label for="analisis" class="col-sm-2 control-label">{$smarty.const.TXT_ANALISIS} ({$analisis_actual->anyo})</label>
+                    <div class="col-sm-6">
+                        <textarea  class="form-control" id="texto_analisis" placeholder="{$smarty.const.TXT_ANALISIS}" rows="5" readonly>{$analisis_actual->analisis}</textarea>
                     </div>
+                    {if $_control || $responsable}
+                        <div class="col-sm-2">
+                            <a id="editar_analisis" title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-danger btn-xs btn-circle" data-id_indicador='{$indicador->id}' data-anyo='{$analisis_actual->anyo}'><i class="fa fa-pencil fa-fw"></i></a>
+                        </div>
+                    {/if}
                 </div>
-                <div class="form-group">
-                    <label for="plan_accion" class="col-sm-2 control-label">{$smarty.const.TXT_PLAN_ACCION}</label>
-                    <div class="col-sm-8">
-                        <textarea  class="form-control" id="plan_accion" name="plan_accion" placeholder="{$smarty.const.TXT_PLAN_ACCION}">{$analisis_actual->plan_accion}</textarea>
+                <div id="plan" class="form-group">
+                    <label for="plan_accion" class="col-sm-2 control-label">{$smarty.const.TXT_PLAN_ACCION} ({$analisis_actual->anyo})</label>
+                    <div class="col-sm-6">
+                        <textarea  class="form-control" id="texto_plan" placeholder="{$smarty.const.TXT_PLAN_ACCION}" rows="5" readonly>{$analisis_actual->plan_accion}</textarea>
                     </div>
+                    {if $_control || $responsable}
+                        <div class="col-sm-2">
+                            <a id="editar_plan" title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-danger btn-xs btn-circle" data-id_indicador='{$indicador->id}' data-anyo='{$analisis_actual->anyo}'><i class="fa fa-pencil fa-fw"></i></a>
+                        </div>
+                    {/if}
                 </div>
-            {else}
-                <div class="form-group">
-                    <label for="analisis" class="col-sm-2 control-label">{$smarty.const.TXT_ANALISIS}</label>
-                    <div class="col-sm-8">
-                        <textarea  class="form-control" id="analisis" name="analisis" placeholder="{$smarty.const.TXT_ANALISIS}" readonly>{$analisis_actual->analisis}</textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="plan_accion" class="col-sm-2 control-label">{$smarty.const.TXT_PLAN_ACCION}</label>
-                    <div class="col-sm-8">
-                        <textarea  class="form-control" id="plan_accion" name="plan_accion" placeholder="{$smarty.const.TXT_PLAN_ACCION}" readonly>{$analisis_actual->plan_accion}</textarea>
-                    </div>
-                </div>
-            {/if}
+            </div>
         </div>
-
     </div>
     <!-- /.col-lg-12 -->
 </div>

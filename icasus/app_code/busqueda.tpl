@@ -198,7 +198,8 @@
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}&id_entidad={$indicador->id_entidad}'>
                                                     {$indicador->responsable_medicion->nombre} 
-                                                    {$indicador->responsable_medicion->apellidos}</a>
+                                                    {$indicador->responsable_medicion->apellidos}
+                                                </a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_INDIC_MOSTRAR}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
@@ -208,10 +209,13 @@
                                                     <i class="fa fa-area-chart fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                                   title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
+                                                   title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}">
                                                     <i class="fa fa-clock-o fa-fw"></i>
                                                 </a>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                                    <i class="fa fa-newspaper-o fa-fw"></i>
+                                                </a>    
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                     <i class="fa fa-tags fa-fw"></i>
                                                 </a>
                                             </td>
@@ -280,10 +284,10 @@
                                                     <i class="fa fa-area-chart fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
-                                                   title="{$smarty.const.TXT_DATO_MEDICIONES}: {$dato->nombre}" target="_blank">
+                                                   title="{$smarty.const.TXT_DATO_MEDICIONES}: {$dato->nombre}">
                                                     <i class="fa fa-clock-o fa-fw"></i>
                                                 </a>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
                                                     <i class="fa fa-tags fa-fw"></i>
                                                 </a>
                                             </td>

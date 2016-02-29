@@ -59,14 +59,14 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
 
     //Actualizamos los análisis
     $logicaIndicador->generar_analisis($indicador);
-    //Recuperamos los análisis del indicador
+
+    //Recuperamos el análisis del indicador
     $analisis = new Analisis();
     $anyo = idate('Y');
     $analisis->load("id_indicador=$id_indicador AND anyo=$anyo");
     $smarty->assign('analisis_actual', $analisis);
-    $analisis_anyos = $analisis->Find("id_indicador=$id_indicador");
-    $smarty->assign('analisis', $analisis_anyos);
 
+    $smarty->assign('_javascript', array('analisis'));
     $smarty->assign('_nombre_pagina', TXT_ANALISIS . ": $indicador->nombre");
     $plantilla = 'analisis.tpl';
 }
