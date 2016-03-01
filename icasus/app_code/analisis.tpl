@@ -4,25 +4,25 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-area-chart fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-newspaper-o fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
                 {if count($indicadores)> 1}
                     <div class="col-md-2">
-                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($indicadores)} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDICS}{else}{$smarty.const.FIELD_DATOS}{/if}</div>
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($indicadores)} {$smarty.const.FIELD_INDICS}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=graficas_mostrar&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[0]->id}'>
+                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_INDIC}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=analisis&id_entidad={$entidad->id}&id_indicador={$indicadores[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=graficas_mostrar&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[$indice-1]->id}'>
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_INDIC}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=analisis&id_entidad={$entidad->id}&id_indicador={$indicadores[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=graficas_mostrar&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[$indice+1]->id}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_INDIC}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=analisis&id_entidad={$entidad->id}&id_indicador={$indicadores[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ULTIMO} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=graficas_mostrar&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[(count($indicadores)-1)]->id}'>
+                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_INDIC}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=analisis&id_entidad={$entidad->id}&id_indicador={$indicadores[(count($indicadores)-1)]->id}'>
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
@@ -92,7 +92,7 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            <li><a title="{if $tipo == 'indicador'}{$smarty.const.FIELD_INDICS}{else}{$smarty.const.FIELD_DATOS}{/if}" href='index.php?page={$tipo}_listar&id_entidad={$entidad->id}'>{if $tipo == 'indicador'}{$smarty.const.FIELD_INDICS}{else}{$smarty.const.FIELD_DATOS}{/if}</a></li>
+            <li><a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_INDICS}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -106,19 +106,17 @@
     <div class="col-lg-12">
         <ul class="nav nav-tabs">
             <li role="presentation">
-                <a title="{if $tipo == 'indicador'}{$smarty.const.TXT_INDIC_FICHA}{else}{$smarty.const.TXT_DATO_FICHA}{/if}" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i> {if $tipo == 'indicador'}{$smarty.const.TXT_INDIC_FICHA}{else}{$smarty.const.TXT_DATO_FICHA}{/if}</a>
-            </li>
-            <li role="presentation" class="active">
-                <a title="{$smarty.const.TXT_REP_GRAFIC}" href="#"><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
+                <a title="{$smarty.const.TXT_INDIC_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_INDIC_FICHA}</a>
             </li>
             <li role="presentation">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+                <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
             </li>
-            {if $tipo == 'indicador'}
-                <li role="presentation">
-                    <a title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-newspaper-o fa-fw"></i> {$smarty.const.TXT_ANALISIS}</a>
-                </li>
-            {/if}
+            <li role="presentation">
+                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+            </li>
+            <li role="presentation" class="active">
+                <a title="{$smarty.const.TXT_ANALISIS}" href="#"><i class="fa fa-newspaper-o fa-fw"></i> {$smarty.const.TXT_ANALISIS}</a>
+            </li>
         </ul>
     </div>
     <!-- /.col-lg-12 -->
@@ -134,10 +132,10 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-info-circle fa-fw"></i> {$smarty.const.TXT_CALC_AUTO}</span>
-                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
+                    <i class="fa fa-chevron-up pull-right clickable"></i>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body" style="display: none">
+                <div class="panel-body">
                     {$smarty.const.TXT_DEPENDE}
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -192,10 +190,10 @@
             <div class="panel panel-warning">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-exclamation-triangle fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_DEPENDIENTES}</span>
-                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
+                    <i class="fa fa-chevron-up pull-right clickable"></i>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body" style="display: none">
+                <div class="panel-body">
                     {$smarty.const.TXT_INFLUYE}
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -239,80 +237,47 @@
 {/if}
 <!-- /Indicadores/datos dependientes -->
 
-<!-- Gráficas -->
-<div class ="row">
-    {if $pinta_grafico}
-
-        {if $panel_res}
-            <div class="col-lg-{$panel_res->ancho}" >
-                <div class="panel panel-red">
-                    <div class="panel-heading">
-                        <span class="panel-title"><i class="fa fa-bar-chart fa-fw"></i><strong> {$panel_res->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}</span>
-                        <i class="fa fa-chevron-up pull-right clickable"></i>
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div  id="container" 
-                              data-id_indicador="{$indicador->id}" 
-                              data-nombre_indicador="{$indicador->nombre}" 
-                              data-periodicidad="{$panel_res->periodicidad}"
-                              data-valor_min="{$indicador->valor_min}" 
-                              data-valor_max="{$indicador->valor_max}">
-                        </div>
-                    </div>
-                    <!-- /.panel-body -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO}</label>
+                <div class="col-sm-4">
+                    <select class="form-control chosen-select" id="anyo" name="anyo" data-id_indicador='{$indicador->id}'>
+                        {for $i=($smarty.now|date_format:"%Y") to $indicador->historicos step=-1}
+                            <option value="{$i}">{$i}</option>
+                        {/for}
+                    </select>
                 </div>
-                <!-- /.panel -->
-            </div>
-            <!-- /.col-lg-{$panel->ancho} -->    
-        {/if}
-
-        {if isset($paneles)}
-            {foreach $paneles as $panel}
-                <div class="col-lg-{$panel->ancho}" >
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <span class="panel-title"><i class="fa fa-line-chart fa-fw"></i><strong> {$panel->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}</span>
-                            <i class="fa fa-chevron-up pull-right clickable"></i>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">  
-                            <div class="highchart {$panel->tipo->clase_css}" 
-                                 id="panel_{$panel->id}" 
-                                 data-id_indicador="{$indicador->id}" 
-                                 data-nombre_indicador="{$indicador->nombre}" 
-                                 data-valor_min="{$indicador->valor_min}" 
-                                 data-valor_max="{$indicador->valor_max}" 
-                                 data-fecha_inicio="{$panel->fecha_inicio}" 
-                                 data-fecha_fin="{$panel->fecha_fin}" 
-                                 data-periodicidad="{$panel->periodicidad}">
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
+            </div> 
+        </div>
+        <div id='analisis_plan'>
+            <div class="form-horizontal">
+                <div id="analisis" class="form-group">
+                    <label for="analisis" class="col-sm-2 control-label">{$smarty.const.TXT_ANALISIS} ({$anyo})</label>
+                    <div class="col-sm-6">
+                        <textarea  class="form-control" id="texto_analisis" placeholder="{$smarty.const.TXT_ANALISIS}" rows="5" readonly>{$analisis_actual->analisis}</textarea>
                     </div>
-                    <!-- /.panel -->
+                    {if $_control || $responsable}
+                        <div class="col-sm-2">
+                            <a id="editar_analisis" title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-danger btn-xs btn-circle" data-id_indicador='{$indicador->id}' data-anyo='{$anyo}'><i class="fa fa-pencil fa-fw"></i></a>
+                        </div>
+                    {/if}
                 </div>
-                <!-- /.col-lg-{$panel->ancho} -->
-            {/foreach} 
-        {/if}
-
-    {else if !$mediciones}
-        <div class="col-lg-12">
-            <div class="alert alert-info alert-dismissible">
-                <i class="fa fa-info-circle fa-fw"></i> 
-                {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
+                <div id="plan" class="form-group">
+                    <label for="plan_accion" class="col-sm-2 control-label">{$smarty.const.TXT_PLAN_ACCION} ({$anyo})</label>
+                    <div class="col-sm-6">
+                        <textarea  class="form-control" id="texto_plan" placeholder="{$smarty.const.TXT_PLAN_ACCION}" rows="5" readonly>{$analisis_actual->plan_accion}</textarea>
+                    </div>
+                    {if $_control || $responsable}
+                        <div class="col-sm-2">
+                            <a id="editar_plan" title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-danger btn-xs btn-circle" data-id_indicador='{$indicador->id}' data-anyo='{$anyo}'><i class="fa fa-pencil fa-fw"></i></a>
+                        </div>
+                    {/if}
+                </div>
             </div>
         </div>
-        <!-- /.col-lg-12 -->
-    {else}
-        <div class="col-lg-12">
-            <div class="alert alert-info alert-dismissible">
-                <i class="fa fa-info-circle fa-fw"></i> 
-                {$smarty.const.MSG_INDIC_NO_VAL}
-            </div>
-        </div>
-        <!-- /.col-lg-12 -->
-    {/if}
+    </div>
+    <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-<!-- /Gráficas -->

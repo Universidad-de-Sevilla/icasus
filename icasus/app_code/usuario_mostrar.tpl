@@ -449,6 +449,9 @@
                                                title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
                                                 <i class="fa fa-clock-o fa-fw"></i>
                                             </a>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
+                                                <i class="fa fa-newspaper-o fa-fw"></i>
+                                            </a>    
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
