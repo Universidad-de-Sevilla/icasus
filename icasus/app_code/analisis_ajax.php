@@ -30,6 +30,7 @@ if ($indicador->id_responsable == $usuario->id)
 $smarty->assign('responsable', $responsable);
 
 $anyo = filter_input(INPUT_GET, 'anyo', FILTER_SANITIZE_NUMBER_INT);
+$smarty->assign('anyo', $anyo);
 
 //Recuperamos el análisis del indicador
 $analisis = new Analisis();
@@ -39,11 +40,15 @@ $plantilla = 'analisis_ajax.tpl';
 
 if ($modulo === 'grabar_analisis')
 {
+    $analisis->id_indicador = $id_indicador;
+    $analisis->anyo = $anyo;
     $analisis->analisis = filter_input(INPUT_GET, 'texto', FILTER_SANITIZE_STRING);
     $analisis->Save();
 }
 if ($modulo == 'grabar_plan')
 {
+    $analisis->id_indicador = $id_indicador;
+    $analisis->anyo = $anyo;
     $analisis->plan_accion = filter_input(INPUT_GET, 'texto', FILTER_SANITIZE_STRING);
     $analisis->Save();
 }

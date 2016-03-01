@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.9.0");
+define('IC_VERSION', "3.9.1");
 define('IC_FECHA_REVISION', "01/03/2016");
 
+// 3.9.1 - 01/03/2016 - Optimizada gestión de análisis y planes de acción con grabación bajo demanda (antes se autogeneraban).
 // 3.9.0 - 01/03/2016 - Añadida gestión de análisis y planes de acción para los indicadores.
 // 3.8.1 - 25/02/2016 - Corregido representación gráfica de indicadores/datos con agregacion manual y periodicidad no agregada (pendiente agregados).
 // 3.8.0 - 24/02/2016 - Cálculo del total anual y visualización en gráficos para indicadores/datos con periodicidad intranual y también para valores de referencia (pendiente evolutivo de valores de referencia). Correcciones y borrado de métodos innecesarios en la nueva versión del fichero api_publica.php.

@@ -25,26 +25,6 @@ class LogicaIndicador implements ILogicaIndicador
         $this->logicaValores = new LogicaValores();
     }
 
-    //-----------------------------------------------------------------
-    //ANÁLISIS
-    //-----------------------------------------------------------------
-    //Genera los análisis del Indicador que recibe como parámetro 
-    //desde su histórico hasta el año actual si no existen ya
-    public function generar_analisis($indicador)
-    {
-        for ($i = $indicador->historicos; $i < idate('Y') + 1; $i++)
-        {
-            $analisis = new Analisis();
-            // Si no existe creamos el análisis
-            if (!($analisis->load("id_indicador=$indicador->id AND anyo=$i")))
-            {
-                $analisis->id_indicador = $indicador->id;
-                $analisis->anyo = $i;
-                $analisis->Save();
-            }
-        }
-    }
-
     //--------------------------------------------------------------------------
     //UNIDADES
     //--------------------------------------------------------------------------

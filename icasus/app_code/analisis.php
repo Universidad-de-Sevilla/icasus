@@ -57,12 +57,10 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     $indicadores_influyentes = $logicaIndicador->calcular_dependencias($id_indicador);
     $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
 
-    //Actualizamos los análisis
-    $logicaIndicador->generar_analisis($indicador);
-
     //Recuperamos el análisis del indicador
     $analisis = new Analisis();
     $anyo = idate('Y');
+    $smarty->assign('anyo', $anyo);
     $analisis->load("id_indicador=$id_indicador AND anyo=$anyo");
     $smarty->assign('analisis_actual', $analisis);
 
