@@ -495,7 +495,7 @@ class LogicaIndicador implements ILogicaIndicador
     //-----------------------------------------------------------------------------
     //Calcula el total del indicador que recibe como parámetro para el conjunto 
     //de valores que también recibe como parámetro y en función de su tipo de agregación 
-    //si es no agregado devolverá null.
+    //por defecto devolverá null.
     public function calcular_total($indicador, $valores, $etiqueta)
     {
         $total = null;
@@ -534,16 +534,14 @@ class LogicaIndicador implements ILogicaIndicador
                 {
                     return $this->logicaValores->maximo($valores);
                 }
-            //Mediana
+            //Manual
             case 4:
                 {
                     //Cálculo real de la mediana de los valores, no utilizado.
                     //return $this->logicaValores->mediana($valores);
-                    //Recoge la mediana del valor que tenga la Unidad madre
-                    return $this->logicaValores->mediana_manual($indicador, $valores);
+                    //Recoge el total del valor que tenga la Unidad madre
+                    return $this->logicaValores->manual($indicador, $valores);
                 }
-            //TODO: No agregados o evolutivos (temporal)
-            case 5:
             //Heredado de sus influyentes (sólo en indicadores/datos calculados)
             case 6:
                 {
@@ -555,7 +553,7 @@ class LogicaIndicador implements ILogicaIndicador
 
     //Calcula el total del indicador que recibe como parámetro del total de sus
     //indicadores inluyentes que también recibe como parámetros
-    public function calcular_total_heredado($indicador, $etiqueta)
+    private function calcular_total_heredado($indicador, $etiqueta)
     {
         // Recorremos la cadena $calculo para sacar y calcular las variables
         // Almacenamos el resultado en $formula
@@ -606,6 +604,183 @@ class LogicaIndicador implements ILogicaIndicador
         eval("\$valor_final = $formula;");
         $total = $valor_final;
         return $total;
+    }
+
+    //Calcula el total anual del indicador/dato que recibe como parámetro para la 
+    //unidad/subunidad y el año que también recibe parámetros
+    //y en función de su tipo de agregación 
+    public function calcular_total_temporal($indicador, $subunidad, $anyo)
+    {
+        switch ($indicador->id_tipo_agregacion_temporal)
+        {
+            //Media
+            case 1:
+                {
+                    return $this->calcular_total_temporal_media($indicador, $subunidad, $anyo);
+                }
+            //Sumatorio
+            case 2:
+                {
+                    return $this->calcular_total_temporal_sumatorio($indicador, $subunidad, $anyo);
+                }
+            //Máximo
+            case 3:
+                {
+                    return $this->calcular_total_temporal_maximo($indicador, $subunidad, $anyo);
+                }
+            //Evolutivo
+            case 5:
+                {
+                    return $this->calcular_total_temporal_evolutivo($indicador, $subunidad, $anyo);
+                }
+            default:return null;
+        }
+    }
+
+    //Calcula el total anual para un indicador/dato con agregacion temporal: media
+    private function calcular_total_temporal_media($indicador, $subunidad, $anyo)
+    {
+        //Si es el total en un indicador/dato agregado
+        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad)
+        {
+            $medicion = new Medicion();
+            $valor = new Valor();
+            $totales = array();
+            $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
+            foreach ($mediciones as $medicion)
+            {
+                $valores = $valor->Find("id_medicion=$medicion->id");
+                $total = $this->calcular_total($indicador, $valores, $medicion->etiqueta);
+                $valor_total = new Valor();
+                $valor_total->valor = $total;
+                array_push($totales, $valor_total);
+            }
+            return $this->logicaValores->media($totales);
+        }
+        else
+        {
+
+            $valores = array();
+            //Tomamos sólo los valores del año
+            foreach ($subunidad->mediciones as $medicion)
+            {
+                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false)
+                {
+                    array_push($valores, $medicion->medicion_valor);
+                }
+            }
+            return $this->logicaValores->media($valores);
+        }
+    }
+
+    //Calcula el total anual para un indicador/dato con agregacion temporal: sumatorio
+    private function calcular_total_temporal_sumatorio($indicador, $subunidad, $anyo)
+    {
+        //Si es el total en un indicador/dato agregado
+        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad)
+        {
+            $medicion = new Medicion();
+            $valor = new Valor();
+            $totales = array();
+            $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
+            foreach ($mediciones as $medicion)
+            {
+                $valores = $valor->Find("id_medicion=$medicion->id");
+                $total = $this->calcular_total($indicador, $valores, $medicion->etiqueta);
+                $valor_total = new Valor();
+                $valor_total->valor = $total;
+                array_push($totales, $valor_total);
+            }
+            return $this->logicaValores->sumatorio($totales);
+        }
+        else
+        {
+            $valores = array();
+            //Tomamos sólo los valores del año
+            foreach ($subunidad->mediciones as $medicion)
+            {
+                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false)
+                {
+                    array_push($valores, $medicion->medicion_valor);
+                }
+            }
+            return $this->logicaValores->sumatorio($valores);
+        }
+    }
+
+    //Calcula el total anual para un indicador/dato con agregacion temporal: máximo
+    private function calcular_total_temporal_maximo($indicador, $subunidad, $anyo)
+    {
+        //Si es el total en un indicador/dato agregado
+        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad)
+        {
+            $medicion = new Medicion();
+            $valor = new Valor();
+            $totales = array();
+            $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
+            foreach ($mediciones as $medicion)
+            {
+                $valores = $valor->Find("id_medicion=$medicion->id");
+                $total = $this->calcular_total($indicador, $valores, $medicion->etiqueta);
+                $valor_total = new Valor();
+                $valor_total->valor = $total;
+                array_push($totales, $valor_total);
+            }
+            return $this->logicaValores->maximo($totales);
+        }
+        else
+        {
+            $valores = array();
+            //Tomamos sólo los valores del año
+            foreach ($subunidad->mediciones as $medicion)
+            {
+                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false)
+                {
+                    array_push($valores, $medicion->medicion_valor);
+                }
+            }
+            return $this->logicaValores->maximo($valores);
+        }
+    }
+
+    //Calcula el total anual para un indicador/dato con agregacion temporal: evolutivo
+    private function calcular_total_temporal_evolutivo($indicador, $subunidad, $anyo)
+    {
+        //Si es el total en un indicador/dato agregado
+        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad)
+        {
+            $medicion = new Medicion();
+            $valor = new Valor();
+            $totales = array();
+            $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
+            foreach ($mediciones as $medicion)
+            {
+                $valores = $valor->Find("id_medicion=$medicion->id");
+                $total = $this->calcular_total($indicador, $valores, $medicion->etiqueta);
+                array_push($totales, $total);
+            }
+            return $totales[0];
+        }
+        else
+        {
+            $mediciones = array();
+            //Tomamos sólo las mediciones del año
+            foreach ($subunidad->mediciones as $medicion)
+            {
+                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false)
+                {
+                    array_push($mediciones, $medicion);
+                }
+            }
+            if ($mediciones)
+            {
+                return $mediciones[0]->medicion_valor->valor;
+            }
+            else
+            {
+                return NULL;
+            }
+        }
     }
 
     //-----------------------------------------------------------------------------

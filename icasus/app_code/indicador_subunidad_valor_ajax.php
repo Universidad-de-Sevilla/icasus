@@ -81,7 +81,7 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 
                 if (filter_input(INPUT_GET, 'inicio') == 0)
                 {
-                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
                     $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
                 }
                 else
@@ -102,7 +102,7 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 
                 if (filter_input(INPUT_GET, 'inicio') == 0)
                 {
-                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
                     $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
                 }
                 else
@@ -118,7 +118,7 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 
                 if (filter_input(INPUT_GET, 'inicio') == 0)
                 {
-                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
                     $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
                 }
                 else
@@ -147,7 +147,7 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                 {
                     $valores = new Valor();
                     $valores->valores_activar($id_indicador, $id_subunidad, $activo);
-                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
                     $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
                 }
                 else

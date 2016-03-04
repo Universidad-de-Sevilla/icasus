@@ -37,10 +37,19 @@ interface ILogicaIndicador
     //El tipo es: "indicador" o "dato"
     public function borrar_medicion($indicador, $tipo, $id_medicion);
 
-    //Calcula el total del indicador que recibe como parámetro para el conjunto 
+    //-----------------------------------------------------------------------------
+    // FUNCIONES PARA EL CÁLCULO DE TOTALES
+    // EN INDICADORES/DATOS
+    //-----------------------------------------------------------------------------
+    //Calcula el total del indicador/dato que recibe como parámetro para el conjunto 
     //de valores y para la medición cuya etiqueta también recibe parámetros
-    // y en función de su tipo de agregación 
+    //y en función de su tipo de agregación 
     public function calcular_total($indicador, $valores, $etiqueta);
+
+    //Calcula el total anual del indicador/dato que recibe como parámetro para la 
+    //unidad/subunidad y el año que también recibe parámetros
+    //y en función de su tipo de agregación 
+    public function calcular_total_temporal($indicador, $subunidad, $anyo);
 
     //-----------------------------------------------------------------------------
     // FUNCIONES PARA EL CÁLCULO DE DEPENDENCIAS 

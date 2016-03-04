@@ -51,7 +51,7 @@ if (isset($id_entidad))
         $years = $medicion->find_year_mediciones($id_indicador);
         $smarty->assign('years', $years);
 
-        $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+        $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
         $smarty->assign('mediciones', $mediciones);
 
         $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);

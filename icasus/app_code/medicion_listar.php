@@ -31,6 +31,7 @@ else
     header("location:index.php?page=error&error=$error");
 }
 
+//Avanzar entre indicadores/datos
 if ($tipo == "indicador")
 {
     //Obtener todos los indicadores para avanzar o retroceder 
@@ -81,7 +82,7 @@ $smarty->assign('tipo', $tipo);
 
 //Simplemente ver si hay mediciones
 $medicion = new Medicion();
-$mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+$mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
 $smarty->assign("mediciones", $mediciones);
 
 //array de subunidades con las mediciones y sus valores
@@ -98,6 +99,23 @@ foreach ($mediciones as $med)
     $totales[$med->id] = $total;
 }
 $smarty->assign('totales', $totales);
+
+//Si el indicador/dato tiene una periodicidad intranual
+if ($indicador->id_tipo_agregacion_temporal != 0)
+{
+    $totales_anuales = array();
+    //Calculamos el total del año en función del tipo de agregación temporal del
+    //indicador
+    for ($i = $indicador->historicos; $i != idate('Y') + 1; $i++)
+    {
+        //Lo calculamos para cada unidad del indicador/dato
+        foreach ($subunidades_mediciones as $subunidad)
+        {
+            $totales_anuales[$subunidad->id][$i] = $logicaIndicador->calcular_total_temporal($indicador, $subunidad, $i);
+        }
+    }
+    $smarty->assign('totales_anuales', $totales_anuales);
+}
 
 //Control (Status) de valores limite y objetivo
 $valor_referencia = new Valor_referencia();
