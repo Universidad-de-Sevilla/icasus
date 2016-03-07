@@ -1,9 +1,10 @@
 <?php
 
-define('IC_VERSION', "3.10.0");
-define('IC_FECHA_REVISION', "04/03/2016");
+define('IC_VERSION', "3.10.1");
+define('IC_FECHA_REVISION', "07/03/2016");
 
-// 3.10.0 - 04/03/2016 - Tablas de valores/mediciones de indicadores/datos ordenada al revés y tabla de valores anual para indicadores con periodicidad intraanual (pendiente calculo anual de valores de referencia). Cambiado icono de análisis de indicadores.
+// 3.10.1 - 07/03/2016 - Tabla de valores anual para indicadores/datos con periodicidad intraanual con cálculo anual de valores de referencia.
+// 3.10.0 - 04/03/2016 - Tablas de valores/mediciones de indicadores/datos ordenada al revés y tabla de valores anual para indicadores/datos con periodicidad intraanual (pendiente calculo anual de valores de referencia). Cambiado icono de análisis de indicadores.
 // 3.9.1 - 01/03/2016 - Optimizada gestión de análisis y planes de acción con grabación bajo demanda (antes se autogeneraban).
 // 3.9.0 - 01/03/2016 - Añadida gestión de análisis y planes de acción para los indicadores.
 // 3.8.1 - 25/02/2016 - Corregido representación gráfica de indicadores/datos con agregacion manual y periodicidad no agregada (pendiente agregados).

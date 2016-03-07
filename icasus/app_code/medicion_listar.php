@@ -158,7 +158,22 @@ if ($valores_referencia)
             }
         }
     }
+    //Si el indicador/dato tiene una periodicidad intranual
+    if ($indicador->id_tipo_agregacion_temporal != 0)
+    {
+        $ref_anuales = array();
+        //Calculamos el total del valor de referencia en función del tipo de 
+        //agregación temporal del indicador
+        for ($i = $indicador->historicos; $i != idate('Y') + 1; $i++)
+        {
+            $ref_anuales_lim[$i] = $logicaIndicador->calcular_ref_anual($indicador, $valores_referencia, $i, 'mite');
+            $ref_anuales_obj[$i] = $logicaIndicador->calcular_ref_anual($indicador, $valores_referencia, $i, 'bjetivo');
+        }
+        $smarty->assign('ref_anuales_lim', $ref_anuales_lim);
+        $smarty->assign('ref_anuales_obj', $ref_anuales_obj);
+    }
 }
+
 $smarty->assign('medicion_obj', $medicion_obj);
 $smarty->assign('medicion_lim', $medicion_lim);
 

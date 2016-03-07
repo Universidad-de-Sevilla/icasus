@@ -1039,9 +1039,9 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-//---------------------------------------------------------------------------
-//VALORES
-//-----------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
+    //VALORES
+    //-----------------------------------------------------------------------------
     //Devuelve todos los valores del Indicador/Dato para la medición 
     //cuya etiqueta recibe como parámetro
     public function indicador_valores_medicion($indicador, $etiqueta_medicion)
@@ -1052,12 +1052,163 @@ class LogicaIndicador implements ILogicaIndicador
         return $valor->Find("id_medicion=$medicion->id");
     }
 
-//-----------------------------------------------------------------------------
-// FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO
-//------------------------------------------------------------------------------
-// Actualiza mediciones y genera un valor en blanco para cada una de las unidades 
-// asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
-// cuando cambiamos el tipo de agregación
+    //Devuelve el valor total del año  para la referencia que recibe como parámetro 
+    //del indicador/dato con periodicidad intranual que también recibe como parámetro
+    public function calcular_ref_anual($indicador, $valores_referencia, $anyo, $referencia)
+    {
+        switch ($indicador->id_tipo_agregacion_temporal)
+        {
+            //Media
+            case 1:
+                {
+                    return $this->calcular_ref_anual_media($indicador, $valores_referencia, $anyo, $referencia);
+                }
+            //Sumatorio
+            case 2:
+                {
+                    return $this->calcular_ref_anual_sumatorio($indicador, $valores_referencia, $anyo, $referencia);
+                }
+            //Máximo
+            case 3:
+                {
+                    return $this->calcular_ref_anual_maximo($indicador, $valores_referencia, $anyo, $referencia);
+                }
+            //Evolutivo
+            case 5:
+                {
+                    return $this->calcular_ref_anual_evolutivo($indicador, $valores_referencia, $anyo, $referencia);
+                }
+            default:return null;
+        }
+    }
+
+    //Calcula el valor de referencia anual para un indicador/dato 
+    //con agregacion temporal: media
+    private function calcular_ref_anual_media($indicador, $valores_referencia, $anyo, $referencia)
+    {
+        //Extraemos los valores de referencia del año en cuestión para ello obtenemos
+        //primero las mediciones del año
+        $medicion = new Medicion();
+        $valores_ref_anyo = array();
+        $valor_referencia_medicion = new Valor_referencia_medicion();
+        $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
+        foreach ($mediciones as $medicion)
+        {
+            //Vemos la referencias para las mediciones de ese año
+            $medicion_referencias = $valor_referencia_medicion->Find_joined("id_medicion=$medicion->id");
+            if ($medicion_referencias)
+            {
+                foreach ($medicion_referencias as $med_ref)
+                {
+                    //Si es la referencia deseada
+                    if (strpos($med_ref->valor_referencia->etiqueta, $referencia))
+                    {
+                        $valor = new Valor();
+                        $valor->valor = $med_ref->valor;
+                        array_push($valores_ref_anyo, $valor);
+                    }
+                }
+            }
+        }
+        return $this->logicaValores->media($valores_ref_anyo);
+    }
+
+    //Calcula el valor de referencia anual para un indicador/dato 
+    //con agregacion temporal: sumatorio
+    private function calcular_ref_anual_sumatorio($indicador, $valores_referencia, $anyo, $referencia)
+    {
+        //Extraemos los valores de referencia del año en cuestión para ello obtenemos
+        //primero las mediciones del año
+        $medicion = new Medicion();
+        $valores_ref_anyo = array();
+        $valor_referencia_medicion = new Valor_referencia_medicion();
+        $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
+        foreach ($mediciones as $medicion)
+        {
+            //Vemos la referencias para las mediciones de ese año
+            $medicion_referencias = $valor_referencia_medicion->Find_joined("id_medicion=$medicion->id");
+            if ($medicion_referencias)
+            {
+                foreach ($medicion_referencias as $med_ref)
+                {
+                    //Si es la referencia deseada
+                    if (strpos($med_ref->valor_referencia->etiqueta, $referencia))
+                    {
+                        $valor = new Valor();
+                        $valor->valor = $med_ref->valor;
+                        array_push($valores_ref_anyo, $valor);
+                    }
+                }
+            }
+        }
+        return $this->logicaValores->sumatorio($valores_ref_anyo);
+    }
+
+    //Calcula el valor de referencia anual para un indicador/dato 
+    //con agregacion temporal: máximo
+    private function calcular_ref_anual_maximo($indicador, $valores_referencia, $anyo, $referencia)
+    {
+        //Extraemos los valores de referencia del año en cuestión para ello obtenemos
+        //primero las mediciones del año
+        $medicion = new Medicion();
+        $valores_ref_anyo = array();
+        $valor_referencia_medicion = new Valor_referencia_medicion();
+        $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
+        foreach ($mediciones as $medicion)
+        {
+            //Vemos la referencias para las mediciones de ese año
+            $medicion_referencias = $valor_referencia_medicion->Find_joined("id_medicion=$medicion->id");
+            if ($medicion_referencias)
+            {
+                foreach ($medicion_referencias as $med_ref)
+                {
+                    //Si es la referencia deseada
+                    if (strpos($med_ref->valor_referencia->etiqueta, $referencia))
+                    {
+                        $valor = new Valor();
+                        $valor->valor = $med_ref->valor;
+                        array_push($valores_ref_anyo, $valor);
+                    }
+                }
+            }
+        }
+        return $this->logicaValores->maximo($valores_ref_anyo);
+    }
+
+    //Calcula el valor de referencia anual para un indicador/dato 
+    //con agregacion temporal: evolutivo
+    private function calcular_ref_anual_evolutivo($indicador, $valores_referencia, $anyo, $referencia)
+    {
+        //Extraemos los valores de referencia del año en cuestión para ello obtenemos
+        //primero las mediciones del año
+        $medicion = new Medicion();
+        $valor_referencia_medicion = new Valor_referencia_medicion();
+        $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
+        foreach ($mediciones as $medicion)
+        {
+            //Vemos la referencias para las mediciones de ese año
+            $medicion_referencias = $valor_referencia_medicion->Find_joined("id_medicion=$medicion->id");
+            if ($medicion_referencias)
+            {
+                foreach ($medicion_referencias as $med_ref)
+                {
+                    //Si es la referencia deseada
+                    if (strpos($med_ref->valor_referencia->etiqueta, $referencia))
+                    {
+                        return $med_ref->valor;
+                    }
+                }
+            }
+        }
+        return NULL;
+    }
+
+    //-----------------------------------------------------------------------------
+    // FUNCIONES PARA ACTUALIZAR LAS UNIDADES EN LAS QUE SE MIDE UN INDICADOR/DATO
+    //------------------------------------------------------------------------------
+    // Actualiza mediciones y genera un valor en blanco para cada una de las unidades 
+    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
+    // cuando cambiamos el tipo de agregación
     public function actualizar_mediciones($indicador)
     {
         //Año y fecha actuales
@@ -1102,9 +1253,9 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-// Actualiza mediciones activando/desactivando las Unidades 
-// asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
-// cuando cambiamos las Unidades en Indicadores/Datos Agregados
+    // Actualiza mediciones activando/desactivando las Unidades 
+    // asociadas al Indicador/Dato en función de la fecha actual y su periodicidad 
+    // cuando cambiamos las Unidades en Indicadores/Datos Agregados
     public function actualizar_subunidades($indicador)
     {
         //Año y fecha actuales
@@ -1146,8 +1297,8 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-//bienal para el año que recibe como parámetro
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //bienal para el año que recibe como parámetro
     private function actualizar_mediciones_bienales($indicador, $anyo)
     {
         $medicion = new Medicion();
@@ -1156,17 +1307,17 @@ class LogicaIndicador implements ILogicaIndicador
                         . "OR etiqueta LIKE '$etiqueta-%')");
     }
 
-//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-//anual para el año que recibe como parámetro
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //anual para el año que recibe como parámetro
     private function actualizar_mediciones_anuales($indicador, $anyo)
     {
         $medicion = new Medicion();
         return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo'");
     }
 
-//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-//semestral en el año que recibe como parámetro y en función de la fecha que 
-//también recibe como parámetro
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //semestral en el año que recibe como parámetro y en función de la fecha que 
+    //también recibe como parámetro
     private function actualizar_mediciones_semestrales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
@@ -1182,9 +1333,9 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-//cuatrimestral en el año que recibe como parámetro y en función de la fecha que 
-//también recibe como parámetro
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //cuatrimestral en el año que recibe como parámetro y en función de la fecha que 
+    //también recibe como parámetro
     private function actualizar_mediciones_cuatrimestrales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
@@ -1206,9 +1357,9 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-//trimestral en el año que recibe como parámetro y en función de la fecha que 
-//también recibe como parámetro
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //trimestral en el año que recibe como parámetro y en función de la fecha que 
+    //también recibe como parámetro
     private function actualizar_mediciones_trimestrales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
@@ -1237,9 +1388,9 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-//Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
-//mensual en el año que recibe como parámetro y en función de la fecha que 
-//también recibe como parámetro
+    //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
+    //mensual en el año que recibe como parámetro y en función de la fecha que 
+    //también recibe como parámetro
     private function actualizar_mediciones_mensuales($indicador, $anyo, $fecha)
     {
         $medicion = new Medicion();
@@ -1360,11 +1511,11 @@ class LogicaIndicador implements ILogicaIndicador
         }
     }
 
-//------------------------------------------------------------------------
-//CRITERIOS EFQM
-//-------------------------------------------------------------------------
-//Asigna el criterio efqm cuyo id recibe al indicador cuyo identificador
-//tambien recibe como parámetro
+    //------------------------------------------------------------------------
+    //CRITERIOS EFQM
+    //-------------------------------------------------------------------------
+    //Asigna el criterio efqm cuyo id recibe al indicador cuyo identificador
+    //tambien recibe como parámetro
     public function grabar_criterio_efqm($id, $id_efqm)
     {
         $criterio_efqm_indicador = new Criterio_efqm_indicador();
@@ -1373,7 +1524,7 @@ class LogicaIndicador implements ILogicaIndicador
         $criterio_efqm_indicador->save();
     }
 
-//Borra todos los criterios efqm del indicador cuyo identificador recibe como parámetro
+    //Borra todos los criterios efqm del indicador cuyo identificador recibe como parámetro
     public function borrar_criterios_efqm($id)
     {
         $criterio_efqm_indicador = new Criterio_efqm_indicador();

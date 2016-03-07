@@ -117,4 +117,8 @@ interface ILogicaIndicador
     //Devuelve todos los valores del Indicador/Dato para la medición 
     //cuya etiqueta recibe como parámetro
     public function indicador_valores_medicion($indicador, $etiqueta_medicion);
+
+    //Devuelve el valor total del año  para la referencia que recibe como parámetro 
+    //del indicador/dato con periodicidad intranual que también recibe como parámetro
+    public function calcular_ref_anual($indicador, $valores_referencia, $anyo, $referencia);
 }
