@@ -124,6 +124,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="anotaciones" class="col-sm-2 control-label">{$smarty.const.FIELD_ANOTACION}</label>
+                        <div class="col-sm-8">
+                            <textarea  class="form-control" id="anotaciones" name="anotaciones" placeholder="{$smarty.const.FIELD_ANOTACION}">{$entidad->anotaciones}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
                             <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=entidad_mostrar&id_entidad={$entidad->id}'>
                                 <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}

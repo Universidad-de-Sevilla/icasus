@@ -4,7 +4,7 @@
         <h3 title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    {if $principal}<i title="{$smarty.const.TXT_UNID_PRINCIPAL}" class="fa fa-star fa-fw"></i>{/if}<i class="fa fa-folder fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}
+                    <i class="fa fa-sitemap fa-fw"></i>{if $principal}<sub style="font-size: 12px" title="{$smarty.const.TXT_UNID_PRINCIPAL}" class="fa fa-star fa-fw"></sub>{/if} {$smarty.const.FIELD_UNID}: {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -18,7 +18,7 @@
                                 </a>
                                 <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_UNID}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=entidad_mostrar&id_entidad={$unidades[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
-                                </a>
+                                </a> 
                                 <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_UNID}" class="btn btn-danger btn-xs {if $indice == (count($unidades)-1)}disabled{/if}" href='index.php?page=entidad_mostrar&id_entidad={$unidades[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
@@ -73,7 +73,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#unid_param" title="{$smarty.const.TXT_UNID_PARAM}" aria-controls="{$smarty.const.TXT_UNID_PARAM}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_UNID_PARAM}</a>
+                <a href="#unid_param" title="{$smarty.const.TXT_UNID_FICHA}" aria-controls="{$smarty.const.TXT_UNID_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_UNID_FICHA}</a>
             </li>
             <li role="presentation">
                 <a href="#unid_users" title="{$smarty.const.TXT_USERS}" aria-controls="{$smarty.const.TXT_USERS}" role="tab" data-toggle="tab"><i class="fa fa-users fa-fw"></i> {$smarty.const.TXT_USERS}</a>
@@ -82,7 +82,7 @@
                 <a href="#unid_subs" title="{$smarty.const.FIELD_SUBUNIDS}" aria-controls="{$smarty.const.FIELD_SUBUNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</a>
             </li>
             <li role="presentation">
-                <a href="#unid_res" title="{$smarty.const.TXT_RESUMEN} ({$smarty.const.TXT_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})" aria-controls="{$smarty.const.TXT_RESUMEN} ({$smarty.const.TXT_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})" role="tab" data-toggle="tab"><i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_RESUMEN} ({$smarty.const.TXT_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})</a>
+                <a href="#unid_res" title="{$smarty.const.TXT_RESUMEN} ({$smarty.const.TXT_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})" aria-controls="{$smarty.const.TXT_RESUMEN} ({$smarty.const.TXT_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})" role="tab" data-toggle="tab"><i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_RESUMEN}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -238,18 +238,26 @@
                                                 </td>
                                             </tr>
                                         {/if}
+                                        <tr>
+                                            <th>{$smarty.const.FIELD_ANOTACION}</th>
+                                            <td>
+                                                {if $entidad->anotaciones}
+                                                    {$entidad->anotaciones|nl2br}
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                                 {if $_control}
-                                    <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
                                         <div class="btn-group" role="group" aria-label="">
                                             <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger" href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
-                                                <i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_UNID_EDIT}
+                                                <i class="fa fa-sitemap fa-fw"></i><sub style="font-size: 12px" class="fa fa-pencil fa-fw"></sub>
                                             </a>
-                                        </div>
-                                        <div class="btn-group" role="group" aria-label="">
                                             <a title="{$smarty.const.TXT_VAL_IMPORT}" class="btn btn-default btn-danger" href='index.php?page=csv_importar&id_entidad={$entidad->id}'>
-                                                <i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_VAL_IMPORT}
+                                                <i class="fa fa-upload fa-fw"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -271,10 +279,10 @@
                     <div class="btn-toolbar" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
                             <a title="{$smarty.const.TXT_USERS_VINC}" class="btn btn-default btn-danger" href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-user-plus fa-fw"></i> {$smarty.const.TXT_USERS_VINC}
+                                <i class="fa fa-user-plus fa-fw"></i>
                             </a>
                             <a title="{$smarty.const.TXT_USERS_DESVINC}" class="btn btn-default btn-danger" href='index.php?page=entidad_despoblar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-user-times fa-fw"></i> {$smarty.const.TXT_USERS_DESVINC}
+                                <i class="fa fa-user-times fa-fw"></i>
                             </a>
                         </div>
                     </div>

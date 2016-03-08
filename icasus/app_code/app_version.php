@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.10.1");
-define('IC_FECHA_REVISION', "07/03/2016");
+define('IC_VERSION', "3.11.0");
+define('IC_FECHA_REVISION', "08/03/2016");
 
+// 3.11.0 - 08/03/2016 - Campo anotaciones para las unidades. Cambios de estilo en la presentación de las unidades.
 // 3.10.1 - 07/03/2016 - Tabla de valores anual para indicadores/datos con periodicidad intraanual con cálculo anual de valores de referencia.
 // 3.10.0 - 04/03/2016 - Tablas de valores/mediciones de indicadores/datos ordenada al revés y tabla de valores anual para indicadores/datos con periodicidad intraanual (pendiente calculo anual de valores de referencia). Cambiado icono de análisis de indicadores.
 // 3.9.1 - 01/03/2016 - Optimizada gestión de análisis y planes de acción con grabación bajo demanda (antes se autogeneraban).

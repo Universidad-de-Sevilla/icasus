@@ -751,6 +751,7 @@ define('FIELD_SUBUNID', 'Subunidad');
 define('FIELD_SUBUNIDS', 'Subunidades');
 define('FIELD_SUBUNID_AFECT', 'Unidad/Subunidades afectadas');
 define('FIELD_UNIDS', 'Unidades');
+define('FIELD_ANOTACION', 'Anotaciones');
 
 //Gráficas
 define('FIELD_VISIB_GRAFIC', 'Visible en gráfica');
