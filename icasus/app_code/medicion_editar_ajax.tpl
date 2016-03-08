@@ -11,8 +11,8 @@
         </thead>
         <tbody>
             {foreach $valores as $valor}
-                {*El indicador/dato es agregado pero por si se calcula por mediana nos cercioramos de no
-                listar la Unidad madre en orden, la pondremos al final*}
+                {*El indicador/dato es agregado pero por si su total se introduce 
+                manualmente nos cercioramos de no listar la Unidad madre en orden, la pondremos al final*}
                 {if $valor->id_entidad!=$entidad->id && $indicador->id_tipo_agregacion!= 0}
                     <tr>
                         <td>{$valor->entidad->etiqueta}</td>
@@ -105,7 +105,7 @@
                 {/if}
                     {/foreach}
                         <!-- TOTALES -->
-                        {*El indicador/dato es agregado y no se calcula por mediana*}
+                        {*El indicador/dato es agregado y su total no se introduce manualmente*}
                         {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
                             <tr style="font-weight: bold"
                                 {if isset($medicion_lim) AND isset($medicion_obj)}
@@ -172,7 +172,7 @@
                                 <td style="border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>  
                             </tr>
                         {/if}
-                        {*El indicador/dato es agregado y se calcula por mediana*}
+                        {*El indicador/dato es agregado y su total se introduce manualmente*}
                         {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion== 4}
                             {foreach $valores as $valor}
                                 {if $valor->id_entidad==$entidad->id}
@@ -268,14 +268,14 @@
         </thead>
         <tbody>
             {foreach $valores as $valor}
-                {*El indicador/dato es agregado pero por si se calcula por mediana nos cercioramos de no
+                {*El indicador/dato es agregado pero si su total se introduce manualmente nos cercioramos de no
                 listar la Unidad madre en orden, la pondremos al final*}
                 {if $valor->id_entidad!=$entidad->id && $indicador->id_tipo_agregacion!= 0}
                     <tr>
                         <td>{$valor->entidad->etiqueta}</td>
                         <td>
                             {if $valor->activo}
-                            <a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">
+                            <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">
                                 {if $valor->valor == NULL}---
                                 {else}{$valor->valor|round:"2"}
                                 {/if}
@@ -320,7 +320,7 @@
                     {/if}>
                         <td>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</td>
                         <td>
-                            <a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">
+                            <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">
                                 {if $valor->valor == NULL}---
                                 {else}{$valor->valor|round:"2"}
                                 {/if}
@@ -361,7 +361,7 @@
                 {/if}
             {/foreach}
             <!-- TOTALES -->
-            {*El indicador/dato es agregado y no se calcula por mediana*}
+            {*El indicador/dato es agregado y su total no se introduce manualmente*}
             {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
                 <tr style="font-weight: bold"
                     {if isset($medicion_lim) AND isset($medicion_obj)}
@@ -428,7 +428,7 @@
                     <td style="border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>  
                 </tr>
             {/if}
-            {*El indicador/dato es agregado y se calcula por mediana*}
+            {*El indicador/dato es agregado y su total se introduce manualmente*}
             {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion== 4}
                 {foreach $valores as $valor}
                     {if $valor->id_entidad==$entidad->id}
@@ -458,7 +458,7 @@
                                         {/if}>
                             <td style="border-left:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</td>
                             <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
-                                <a href="javascript:void(0)" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">
+                                <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">
                                     {if $valor->valor == NULL}---
                                     {else}{$valor->valor|round:"2"}
                                     {/if}
@@ -509,7 +509,7 @@
 {/if}
 
 {if $modulo == 'cancelarvalorreferencia'}
-    <a href="javascript:void(0)" onclick="referencia_editar('{$valor_referencia_medicion->id}');">
+    <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="referencia_editar('{$valor_referencia_medicion->id}');">
         {if $valor_referencia_medicion->valor == NULL}
             ---
         {else}
@@ -561,7 +561,7 @@
 
 {if $modulo == 'cancelaretiqueta'}
     {if $contenedor == 'et'}
-        <a href="javascript:void(0)" onclick="javascript:etiqueta_editar('{$medicion->id}', 'et', 'etiqueta');">
+        <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="javascript:etiqueta_editar('{$medicion->id}', 'et', 'etiqueta');">
             {if $medicion->etiqueta != NULL}
                 {$medicion->etiqueta}
             {else}
@@ -570,7 +570,7 @@
         </a>
     {/if}
     {if $contenedor == 'pi'}
-        <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pi');">
+        <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'pi');">
             {if $medicion->periodo_inicio != NULL}
                 {$medicion->periodo_inicio|date_format:"%d-%m-%Y"}
             {else}
@@ -579,7 +579,7 @@
         </a>
     {/if}
     {if $contenedor == 'pf'}
-        <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pf');">
+        <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'pf');">
             {if $medicion->periodo_fin != NULL}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}
             {else}
                 ---
@@ -587,7 +587,7 @@
         </a>
     {/if}
     {if $contenedor == 'gi'}
-        <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">
+        <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'gi');">
             {if $medicion->grabacion_inicio != NULL}
                 {$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}
             {else}
@@ -596,7 +596,7 @@
         </a>
     {/if}
     {if $contenedor == 'gf'}
-        <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">
+        <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'gf');">
             {if $medicion->grabacion_fin != NULL}
                 {$medicion->grabacion_fin|date_format:"%d-%m-%Y"}
             {else}
@@ -608,7 +608,7 @@
 
 {if $modulo == 'cancelarobservaciones'}
     {if $contenedor == 'ob'}
-        <a href="javascript:void(0)" onclick="javascript:observaciones_editar('{$medicion->id}', 'ob', 'observaciones');">
+        <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="javascript:observaciones_editar('{$medicion->id}', 'ob', 'observaciones');">
             {if $medicion->observaciones != ''}
                 {$medicion->observaciones}
             {else}
@@ -617,7 +617,7 @@
         </a>
     {/if}
     {if $contenedor == 'pi'}
-        <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pi');">
+        <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'pi');">
             {if $medicion->periodo_inicio != NULL}
                 {$medicion->periodo_inicio|date_format:"%d-%m-%Y"}
             {else}
@@ -626,7 +626,7 @@
         </a>
     {/if}
     {if $contenedor == 'pf'}
-        <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'pf');">
+        <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'pf');">
             {if $medicion->periodo_fin != NULL}{$medicion->periodo_fin|date_format:"%d-%m-%Y"}
             {else}
                 ---
@@ -634,7 +634,7 @@
         </a>
     {/if}
     {if $contenedor == 'gi'}
-        <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gi');">
+        <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'gi');">
             {if $medicion->grabacion_inicio != NULL}
                 {$medicion->grabacion_inicio|date_format:"%d-%m-%Y"}
             {else}
@@ -643,7 +643,7 @@
         </a>
     {/if}
     {if $contenedor == 'gf'}
-        <a href="javascript:void(0)" onclick="fecha_editar('{$medicion->id}', 'gf');">
+        <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'gf');">
             {if $medicion->grabacion_fin != NULL}
                 {$medicion->grabacion_fin|date_format:"%d-%m-%Y"}
             {else}

@@ -25,11 +25,12 @@ $smarty->assign('_nombre_pagina', TXT_UNID_EDIT . ': ' . $entidad->nombre);
 // Si vienen todos los datos necesarios del formulario grabamos
 if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'codigo') && filter_has_var(INPUT_POST, 'id_padre'))
 {
-    $nombre = filter_input(INPUT_POST, 'nombre');
+    $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $id_padre = filter_input(INPUT_POST, 'id_padre', FILTER_SANITIZE_NUMBER_INT);
     $web = filter_has_var(INPUT_POST, 'web') ? filter_input(INPUT_POST, 'web', FILTER_SANITIZE_URL) : '';
     $codigo = filter_has_var(INPUT_POST, 'codigo') ? filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_STRING) : '';
-    if ($entidad->actualizar($id_entidad, $id_padre, $nombre, $web, $codigo))
+    $anotaciones = filter_input(INPUT_POST, 'anotaciones', FILTER_SANITIZE_STRING);
+    if ($entidad->actualizar($id_entidad, $id_padre, $nombre, $web, $codigo, $anotaciones))
     {
         $smarty->assign('entidad', $entidad);
         $exito = MSG_UNID_EDITADA;

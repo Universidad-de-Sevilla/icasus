@@ -64,7 +64,7 @@ class Medicion extends ADOdb_Active_Record
     //indicador_subunidad_valor.php 
     public function mediciones_periodos($id_indicador, $inicio, $fin)
     {
-        $periodo = $this->find("id_indicador = $id_indicador AND date_format(periodo_inicio,'%Y') between '$inicio' AND '$fin' ORDER BY periodo_inicio");
+        $periodo = $this->find("id_indicador = $id_indicador AND date_format(periodo_inicio,'%Y') between '$inicio' AND '$fin' ORDER BY periodo_inicio DESC");
         return $periodo;
     }
 

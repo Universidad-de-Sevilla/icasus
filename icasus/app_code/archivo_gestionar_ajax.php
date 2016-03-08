@@ -36,7 +36,7 @@ if ($modulo == 'subir')
     $proceso->Load("id=$fichero->id_objeto");
 
     $subdir = "$fichero->id_objeto";
-    $dir = IC_DIR_BASE . "upload/$fichero->tipo_objeto/";
+    $dir = IC_DIR_BASE . "private_upload/$fichero->tipo_objeto/";
     //comprobamos si el directorio de la unidad existe.
     if (!file_exists($dir))
     {

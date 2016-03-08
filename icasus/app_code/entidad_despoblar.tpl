@@ -77,15 +77,15 @@
                   method='post' name='formdiv' class="form-horizontal">
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <a class="btn btn-danger pull-right" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=entidad_mostrar&id_entidad={$entidad->id}'>
+                        <a class="btn btn-danger pull-left" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=entidad_mostrar&id_entidad={$entidad->id}'>
                             <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                         </a>
-                        <div>
-                            <button title="{$smarty.const.TXT_USERS_DESASIGNAR}" type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo_confirmar_baja">
-                                <i class="fa fa-user-times fa-fw"></i> {$smarty.const.TXT_USERS_DESASIGNAR}
-                            </button>
+                        <div class="pull-right">
                             <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
                                 <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
+                            </button>
+                            <button title="{$smarty.const.TXT_USERS_DESASIGNAR}" type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo_confirmar_baja">
+                                <i class="fa fa-user-times fa-fw"></i> {$smarty.const.TXT_USERS_DESASIGNAR}
                             </button>
                         </div>
                     </div>

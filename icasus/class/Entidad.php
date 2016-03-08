@@ -28,7 +28,7 @@ class Entidad extends ADOdb_Active_Record
         foreach ($subunidades as $subunidad)
         {
             $medition = new Medicion();
-            $meditions = $medition->find("id_indicador = $id_indicador AND date_format(periodo_inicio,'%Y') between '$inicio' AND '$fin' ORDER BY periodo_inicio");
+            $meditions = $medition->find("id_indicador = $id_indicador AND date_format(periodo_inicio,'%Y') between '$inicio' AND '$fin' ORDER BY periodo_inicio DESC");
             foreach ($meditions as $medi)
             {
                 $valor = new Valor();
@@ -49,7 +49,7 @@ class Entidad extends ADOdb_Active_Record
         foreach ($subunidades as $subunidad)
         {
             $medicion = new Medicion();
-            $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+            $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
             foreach ($mediciones as $medicion)
             {
                 $valor = new Valor();
@@ -157,13 +157,14 @@ class Entidad extends ADOdb_Active_Record
         return $entidades;
     }
 
-    public function actualizar($id_entidad, $id_padre, $nombre, $web, $codigo)
+    public function actualizar($id_entidad, $id_padre, $nombre, $web, $codigo, $anotaciones)
     {
         $this->load("id = $id_entidad");
         $this->id_madre = $id_padre;
         $this->nombre = $nombre;
         $this->web = $web;
         $this->codigo = $codigo;
+        $this->anotaciones = $anotaciones;
         if ($this->save())
         {
             return true;

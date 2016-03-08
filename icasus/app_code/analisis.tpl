@@ -4,7 +4,7 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-newspaper-o fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-connectdevelop fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -115,7 +115,7 @@
                 <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
             <li role="presentation" class="active">
-                <a title="{$smarty.const.TXT_ANALISIS}" href="#"><i class="fa fa-newspaper-o fa-fw"></i> {$smarty.const.TXT_ANALISIS}</a>
+                <a title="{$smarty.const.TXT_ANALISIS}" href="#"><i class="fa fa-connectdevelop fa-fw"></i> {$smarty.const.TXT_ANALISIS}</a>
             </li>
         </ul>
     </div>
@@ -132,10 +132,10 @@
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-info-circle fa-fw"></i> {$smarty.const.TXT_CALC_AUTO}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
+                <div class="panel-body" style="display: none">
                     {$smarty.const.TXT_DEPENDE}
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
@@ -190,10 +190,10 @@
             <div class="panel panel-warning">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-exclamation-triangle fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_DEPENDIENTES}</span>
-                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
                 </div>
                 <!-- /.panel-heading -->
-                <div class="panel-body">
+                <div class="panel-body" style="display: none">
                     {$smarty.const.TXT_INFLUYE}
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">

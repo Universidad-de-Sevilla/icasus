@@ -88,9 +88,9 @@ class LogicaValores implements ILogicaValores
         }
     }
 
-    //Calcula la mediana de forma manual tomando el valor de la Unidad madre 
+    //Calcula el total de forma manual tomando el valor de la Unidad madre 
     //del indicador/dato del conjunto de valores que recibe como parámetro.
-    public function mediana_manual($indicador, $valores)
+    public function manual($indicador, $valores)
     {
         foreach ($valores as $valor)
         {

@@ -35,7 +35,6 @@ if (
     else
     {
         $exito = MSG_INDIC_CREADO;
-        $indicador->activo = 1;
     }
 
     $id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);

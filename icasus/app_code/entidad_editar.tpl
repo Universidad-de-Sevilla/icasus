@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-pencil fa-fw"></i> {$_nombre_pagina}
+            <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$_nombre_pagina}
         </h3>
     </div>
     <!-- /.col-lg-12 -->
@@ -121,6 +121,12 @@
                             <input type='url' name='web' id='web' class="form-control" value='{$entidad->web}' placeholder="URL"/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="anotaciones" class="col-sm-2 control-label">{$smarty.const.FIELD_ANOTACION}</label>
+                        <div class="col-sm-8">
+                            <textarea  class="form-control" id="anotaciones" name="anotaciones" placeholder="{$smarty.const.FIELD_ANOTACION}">{$entidad->anotaciones}</textarea>
                         </div>
                     </div>
                     <div class="form-group">

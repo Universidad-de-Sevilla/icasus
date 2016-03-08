@@ -186,31 +186,31 @@
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_INICIO}" href='index.php?page=inicio' accesskey='h'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-home fa-stack-1x"></i></span>{$smarty.const.TXT_INICIO}</a>      
+                                        <span class="fa-stack fa-lg"><i class="fa fa-home fa-fw"></i></span>{$smarty.const.TXT_INICIO}</a>      
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_UNIDS_US}" href='index.php?page=entidad_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-stack-1x"></i></span>{$smarty.const.TXT_UNIDS_US}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-fw"></i></span>{$smarty.const.TXT_UNIDS_US}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_PROCS_US}" href='index.php?page=procesos'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-gears fa-stack-1x"></i></span>{$smarty.const.TXT_PROCS_US}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-gears fa-fw"></i></span>{$smarty.const.TXT_PROCS_US}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_INDICS_US}" href='index.php?page=indicadores'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-stack-1x"></i></span>{$smarty.const.TXT_INDICS_US}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-fw"></i></span>{$smarty.const.TXT_INDICS_US}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_DATOS_US}" href='index.php?page=datos'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-database fa-stack-1x"></i></span>{$smarty.const.TXT_DATOS_US}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-database fa-fw"></i></span>{$smarty.const.TXT_DATOS_US}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO_US}" href='index.php?page=cuadros'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-stack-1x"></i></span>{$smarty.const.TXT_CUADROS_MANDO_US}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-th fa-fw"></i></span>{$smarty.const.TXT_CUADROS_MANDO_US}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_USERS_US}" href='index.php?page=usuario_listar'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-users fa-stack-1x"></i></span>{$smarty.const.TXT_USERS_US}</a>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-users fa-fw"></i></span>{$smarty.const.TXT_USERS_US}</a>
                                 </li>
                             </ul>
                         </div>
