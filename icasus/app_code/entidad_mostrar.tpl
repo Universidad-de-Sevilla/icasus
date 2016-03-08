@@ -4,7 +4,7 @@
         <h3 title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-sitemap fa-fw"></i>{if $principal}<sub style="font-size: 12px" title="{$smarty.const.TXT_UNID_PRINCIPAL}" class="fa fa-star fa-fw"></sub>{/if} {$smarty.const.FIELD_UNID}: {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}
+                    <i class="fa fa-sitemap fa-fw"></i>{if $principal}<sub title="{$smarty.const.TXT_UNID_PRINCIPAL}" class="fa fa-star fa-fw"></sub>{/if} {$smarty.const.FIELD_UNID}: {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -254,7 +254,7 @@
                                     <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
                                         <div class="btn-group" role="group" aria-label="">
                                             <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger" href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
-                                                <i class="fa fa-sitemap fa-fw"></i><sub style="font-size: 12px" class="fa fa-pencil fa-fw"></sub>
+                                                <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                                             </a>
                                             <a title="{$smarty.const.TXT_VAL_IMPORT}" class="btn btn-default btn-danger" href='index.php?page=csv_importar&id_entidad={$entidad->id}'>
                                                 <i class="fa fa-upload fa-fw"></i>

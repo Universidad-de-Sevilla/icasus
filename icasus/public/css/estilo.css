@@ -9,7 +9,7 @@ Fichero de estilo propio de Icasus
 
 body{
     background-color: #f8f8f8;
-} 
+}
 
 nav a,.nav-tabs a, h2 a, p a,.breadcrumb a, table a, table a.btn-default{
     color: #950717;
@@ -494,4 +494,8 @@ span:focus, .pagination > li > span:hover {
 .highcharts-contextmenu hr{
     border-color:rgb(160, 160, 160) !important;
     margin: 0px;
+}
+
+sub{
+    font-size: 12px !important;
 }

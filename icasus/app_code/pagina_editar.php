@@ -25,9 +25,8 @@ if (filter_has_var(INPUT_GET, 'id_pagina'))
         $pagina->contenido = filter_input(INPUT_POST, 'contenido');
         $pagina->modified = time();
         $pagina->save();
-        $smarty->assign('exito', MSG_PAG_EDIT_OK);
-        $smarty->assign('_nombre_pagina', TXT_AYUDA . ': ' . $pagina->titulo);
-        $plantilla = 'pagina_mostrar.tpl';
+        $exito = MSG_PAG_EDIT_OK;
+        header("Location: index.php?page=pagina_mostrar&alias=$pagina->alias&exito=$exito");
     }
     else
     {
