@@ -20,7 +20,7 @@ if (filter_has_var(INPUT_GET, 'id'))
     $a = new Fichero();
     if ($a->load("id = $id"))
     {
-        $file = IC_DIR_BASE . "upload/$a->tipo_objeto/$a->id_objeto/archivo_$a->id.$a->extension";
+        $file = IC_DIR_BASE . "private_upload/$a->tipo_objeto/$a->id_objeto/archivo_$a->id.$a->extension";
         //echo $file;
         header('Content-Description: File Transfer');
         header('Content-Type: application/octet-stream');
