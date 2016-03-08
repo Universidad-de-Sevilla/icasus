@@ -81,11 +81,9 @@
             <li role="presentation">
                 <a href="#unid_subs" title="{$smarty.const.FIELD_SUBUNIDS}" aria-controls="{$smarty.const.FIELD_SUBUNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</a>
             </li>
-            {if isset($archivos)}
-                <li role="presentation">
-                    <a href="#unid_archivos" title="{$smarty.const.TXT_PROC_ARCHIVOS}" aria-controls="{$smarty.const.TXT_PROC_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_PROC_ARCHIVOS}</a>
-                </li>
-            {/if}
+            <li role="presentation">
+                <a href="#unid_archivos" title="{$smarty.const.TXT_UNID_ARCHIVOS}" aria-controls="{$smarty.const.TXT_UNID_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_UNID_ARCHIVOS}</a>
+            </li>
             <li role="presentation">
                 <a href="#unid_res" title="{$smarty.const.TXT_RESUMEN} ({$smarty.const.TXT_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})" aria-controls="{$smarty.const.TXT_RESUMEN} ({$smarty.const.TXT_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})" role="tab" data-toggle="tab"><i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_RESUMEN}</a>
             </li>
@@ -378,6 +376,66 @@
                 {/if}
             </div>
             <!-- /Subunidades -->
+
+            <!-- Archivos de la unidad -->
+            <div role="tabpanel" class="tab-pane" id="unid_archivos">
+                <!-- Barra de botones -->
+                {if $_control}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="btn-toolbar" role="toolbar" aria-label="">
+                                <div class="btn-group" role="group" aria-label="">
+                                    <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_entidad={$entidad->id}' 
+                                       title="{$smarty.const.TXT_ARCHIVOS}">
+                                        <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <br>
+                {/if}
+                <!-- /Barra de botones -->
+                {if $archivos}
+                    <div class="table-responsive">
+                        <table class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_TITULO}</th>
+                                    <th>{$smarty.const.FIELD_USER}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$archivos item=archivo} 
+                                    {if $archivo->visible}
+                                        <tr>  
+                                            <td>
+                                                <a title='{$archivo->titulo|htmlentities}: {$archivo->descripcion}' href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo|htmlentities}</a>
+                                            </td>
+                                            <td style="font-size: 12px">
+                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'>{$archivo->usuario->nombre|htmlentities} {$archivo->usuario->apellidos|htmlentities}</a>
+                                            </td>
+                                            <td style="white-space:nowrap">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVO_DESCARGA}" href="index.php?page=archivo_descargar&id={$archivo->id}"><i class="fa fa-download fa-fw"></i></a>                 
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'><i class="fa fa-user fa-fw"></i></a>
+                                            </td>
+                                        </tr>
+                                    {/if}
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_UNID_NO_ARCHIVOS}
+                    </div> 
+                {/if}
+            </div>
+            <!-- /Archivos de la unidad -->
 
             <!-- Resumen -->
             <div role="tabpanel" class="tab-pane" id="unid_res">

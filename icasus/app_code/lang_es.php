@@ -52,7 +52,6 @@ define('TXT_ANALISIS', 'Análisis');
 define('TXT_PLAN_ACCION', 'Plan de acción');
 
 //Archivos
-define('TXT_ARCHIVOS_PROC', 'Archivos del proceso: ');
 define('TXT_ARCHIVO_SUBIR_NUEVO', 'Subir nuevo archivo');
 define('TXT_ARCHIVO_SUBIR', 'Subir archivo');
 define('TXT_ARCHIVOS_SUBIR', 'Subir archivos');
@@ -144,6 +143,7 @@ define('TXT_UNID_PROC_LIST', 'Lista de procesos de la unidad con sus indicadores
 define('TXT_UNID_EDIT', 'Editar unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
 define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, valores y fecha');
+define('TXT_UNID_ARCHIVOS', 'Archivos de la unidad');
 
 //Indicadores
 define('TXT_INDIC_TODOS', 'Todos los indicadores');
@@ -484,6 +484,7 @@ define('MSG_DIM_EDITADA', 'Se ha modificado una dimensión.');
 
 //Entidades (Unidades)
 define('MSG_UNID_NO_PROC', 'No hay procesos definidos para esta unidad.');
+define('MSG_UNID_NO_ARCHIVOS', 'No se han subido archivos en esta unidad.');
 define('MSG_UNID_USERS_BORRADOS', 'Se han eliminado de la unidad');
 define('MSG_UNID_USERS_AGREGADOS', 'Se han agregado a la unidad');
 define('MSG_UNID_CONFIRM_EDITAR', 'Va a editar esta unidad, ¿está seguro?');

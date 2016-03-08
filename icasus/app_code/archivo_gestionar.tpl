@@ -2,9 +2,13 @@
 <div class="modal fade" id="dialogo_crear" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <form action="index.php?page=archivo_gestionar_ajax&ajax=true&modulo=subir" name="subir" method="post" enctype="multipart/form-data" 
+            <form action="index.php?page=archivo_gestionar_ajax&ajax=true&id_entidad={$entidad->id}&modulo=subir&tipo={$tipo}" name="subir" method="post" enctype="multipart/form-data" 
                   data-toggle="validator" class="form-horizontal">
-                <input type="hidden" value="{$proceso->id}" name="id_objeto" >
+                {if isset($proceso)}
+                    <input type="hidden" value="{$proceso->id}" name="id_objeto" >
+                {else}
+                    <input type="hidden" value="{$entidad->id}" name="id_objeto" >
+                {/if}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{$smarty.const.TXT_CERRAR}"><span aria-hidden="true">&times;</span></button>
                     <h3 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_ARCHIVO_NUEVO}</h3>
@@ -133,7 +137,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-file fa-fw"></i> {$_nombre_pagina}
+            <i class="fa fa-archive fa-fw"></i> {$_nombre_pagina}
         </h3>
     </div>
     <!-- /.col-lg-12 -->
@@ -193,8 +197,14 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            <li><a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_PROCS}</a></li>
-            <li><a title="{$proceso->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>{$proceso->nombre|truncate:30}</a></li>
+            {if isset($proceso)}
+                <li>
+                    <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_PROCS}</a>
+                </li>
+                <li>
+                    <a title="{$proceso->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>{$proceso->nombre|truncate:30}</a>
+                </li>
+            {/if}
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
