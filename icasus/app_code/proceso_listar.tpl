@@ -123,16 +123,16 @@
                    aria-controls="{$smarty.const.TXT_PROC_LIST}" role="tab" data-toggle="tab"><i
                         class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROC_LIST}</a>
             </li>
+            {if $procesos_propios}
+                <li role="presentation">
+                    <a href="#user_procs" title="{$smarty.const.TXT_USER_PROCS}" aria-controls="{$smarty.const.TXT_USER_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</a>
+                </li>
+            {/if}
             {if $entidad->mapa}
                 <li role="presentation">
                     <a href="#proc_map" title="{$smarty.const.TXT_PROC_MAP}"
                        aria-controls="{$smarty.const.TXT_PROC_MAP}" role="tab" data-toggle="tab"><i
                             class="fa fa-map fa-fw"></i> {$smarty.const.TXT_PROC_MAP}</a>
-                </li>
-            {/if}
-            {if $procesos_propios}
-                <li role="presentation">
-                    <a href="#user_procs" title="{$smarty.const.TXT_USER_PROCS}" aria-controls="{$smarty.const.TXT_USER_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</a>
                 </li>
             {/if}
         </ul>
@@ -205,8 +205,7 @@
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}"
                                                href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
-                                                {$proceso->propietario->nombre}
-                                                {$proceso->propietario->apellidos}
+                                                {$proceso->propietario->nombre} {$proceso->propietario->apellidos}
                                             </a>
                                         </td>
                                         <td>
@@ -326,8 +325,7 @@
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
-                                                {$proceso->propietario->nombre}
-                                                {$proceso->propietario->apellidos}
+                                                {$proceso->propietario->nombre} {$proceso->propietario->apellidos}
                                             </a>
                                         </td>
                                         <td>

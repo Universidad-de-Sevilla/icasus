@@ -128,8 +128,7 @@
                                             </td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
-                                                    {$proceso->propietario->nombre}
-                                                    {$proceso->propietario->apellidos}
+                                                    {$proceso->propietario->nombre} {$proceso->propietario->apellidos}
                                                 </a>
                                             </td>
                                             <td>
@@ -192,13 +191,11 @@
                                             <td>{$indicador->periodicidad}</td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}&id_entidad={$indicador->id_entidad}'>
-                                                    {$indicador->responsable->nombre} 
-                                                    {$indicador->responsable->apellidos}</a>
+                                                    {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                             </td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}&id_entidad={$indicador->id_entidad}'>
-                                                    {$indicador->responsable_medicion->nombre} 
-                                                    {$indicador->responsable_medicion->apellidos}
+                                                    {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}
                                                 </a>
                                             </td>
                                             <td>
@@ -268,13 +265,11 @@
                                             <td>{$dato->periodicidad}</td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable}&id_entidad={$dato->id_entidad}'>
-                                                    {$dato->responsable->nombre} 
-                                                    {$dato->responsable->apellidos}</a>
+                                                    {$dato->responsable->nombre} {$dato->responsable->apellidos}</a>
                                             </td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable_medicion}&id_entidad={$dato->id_entidad}'>
-                                                    {$dato->responsable_medicion->nombre} 
-                                                    {$dato->responsable_medicion->apellidos}</a>
+                                                    {$dato->responsable_medicion->nombre} {$dato->responsable_medicion->apellidos}</a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_DATO_MOSTRAR}" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>

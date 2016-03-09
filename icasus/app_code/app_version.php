@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.12.0");
-define('IC_FECHA_REVISION', "08/03/2016");
+define('IC_VERSION', "3.12.1");
+define('IC_FECHA_REVISION', "09/03/2016");
 
+// 3.12.1 - 09/03/2016 - Corregido error con los nombres de usuarios en los listados que impedía la exportación de los mismos a excel en el formato adecuado.
 // 3.12.0 - 08/03/2016 - Gestión de archivos para las unidades.
 // 3.11.1 - 08/03/2016 - Corregido error de redirección al editar páginas de ayuda. Cambiados iconos.
 // 3.11.0 - 08/03/2016 - Campo anotaciones para las unidades. Cambios de estilo en la presentación de las unidades.
