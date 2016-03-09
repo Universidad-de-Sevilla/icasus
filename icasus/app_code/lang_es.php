@@ -41,6 +41,7 @@ define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
 define('TXT_RESUL', 'Resultado');
+define('TXT_FICHA', 'Ficha');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
@@ -138,7 +139,6 @@ define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la unidad a
 define('TXT_SUBUNID', 'La subunidad');
 define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes mediciones con los correspondientes valores');
 define('TXT_UNID_NUEVA', 'Nueva unidad');
-define('TXT_UNID_FICHA', 'Ficha de unidad');
 define('TXT_UNID_PROC_LIST', 'Lista de procesos de la unidad con sus indicadores');
 define('TXT_UNID_EDIT', 'Editar unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
