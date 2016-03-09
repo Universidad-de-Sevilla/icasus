@@ -21,8 +21,8 @@ $db = $fichero->DB();
 
 if ($modulo == 'subir')
 {
-//    $ext = pathinfo($_FILES['sarchivo']['name']);
-    $ext = $ext["extension"];
+    $extension = pathinfo($_FILES['sarchivo']['name']);
+    $ext = $extension["extension"];
     $fichero->titulo = filter_input(INPUT_POST, 'stitulo', FILTER_SANITIZE_STRING);
     $fichero->descripcion = filter_input(INPUT_POST, 'sdescripcion', FILTER_SANITIZE_STRING);
     $fichero->id_objeto = filter_input(INPUT_POST, 'id_objeto', FILTER_SANITIZE_NUMBER_INT);
