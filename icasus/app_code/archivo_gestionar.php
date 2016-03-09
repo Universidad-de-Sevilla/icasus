@@ -38,7 +38,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     else
     {
         $tipo = 'unidad';
-        $smarty->assign('_nombre_pagina', TXT_UNID_ARCHIVOS . ': ' . $entidad->nombre);
+        $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . $entidad->nombre);
         $archivos = $archivo->find_joined("id_objeto = $id_entidad");
     }
 

@@ -53,13 +53,14 @@ define('TXT_ANALISIS', 'Análisis');
 define('TXT_PLAN_ACCION', 'Plan de acción');
 
 //Archivos
+define('TXT_ARCHIVOS', 'Archivos');
 define('TXT_ARCHIVO_SUBIR_NUEVO', 'Subir nuevo archivo');
 define('TXT_ARCHIVO_SUBIR', 'Subir archivo');
 define('TXT_ARCHIVOS_SUBIR', 'Subir archivos');
 define('TXT_ARCHIVO_ACTUALIZAR_DATOS', 'Actualizar datos del archivo');
 define('TXT_ARCHIVO_NUEVO', 'Nuevo archivo');
 define('TXT_ARCHIVO_BORRAR', 'Borrar archivo');
-define('TXT_ARCHIVOS', 'Gestión de archivos');
+define('TXT_ARCHIVOS_GESTION', 'Gestión de archivos');
 define('TXT_ARCHIVO_SEL_IMPORT', 'Elija un archivo para importar');
 define('TXT_ARCHIVO_PROCESAR', 'Procesa archivo');
 define('TXT_ARCHIVOS_PROCESAR', 'Procesar archivos');
@@ -143,7 +144,6 @@ define('TXT_UNID_PROC_LIST', 'Lista de procesos de la unidad con sus indicadores
 define('TXT_UNID_EDIT', 'Editar unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
 define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, valores y fecha');
-define('TXT_UNID_ARCHIVOS', 'Archivos de la unidad');
 
 //Indicadores
 define('TXT_INDIC_TODOS', 'Todos los indicadores');
