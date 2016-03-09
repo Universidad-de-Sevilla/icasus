@@ -456,7 +456,7 @@
                                         <!-- /.col-lg-10 -->
                                         <div class="col-lg-2">
                                             <span title="{$proceso->nombre}: {$indicadores[$proceso->id]|@count} {$smarty.const.FIELD_INDICS}" class="badge">{$indicadores[$proceso->id]|@count} {$smarty.const.FIELD_INDICS}</span>
-                                            <a class="panel-title pull-right" title="{$smarty.const.TXT_PROC_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
+                                            <a class="panel-title pull-right" title="{$smarty.const.TXT_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a> 
                                         </div>

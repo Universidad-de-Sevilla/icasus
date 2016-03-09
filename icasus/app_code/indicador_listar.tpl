@@ -115,7 +115,7 @@
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group pull-right" role="group" aria-label="">
                                 <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
-                                    <i class="fa fa-plus-circle fa-fw"></i>
+                                    <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                 </a>
                             </div>
                         </div>
@@ -175,7 +175,7 @@
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_INDIC_MOSTRAR}" target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}'>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}'>
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" target="_blank" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}'>
@@ -328,7 +328,7 @@
                                             {/if}
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_INDIC_MOSTRAR}" target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" target="_blank" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>

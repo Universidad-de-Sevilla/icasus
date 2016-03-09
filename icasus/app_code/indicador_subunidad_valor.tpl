@@ -210,7 +210,7 @@
                                         <td><span class="badge">{$indicador_dependiente->id}</span></td>
                                         <td>
                                             <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$indicador_dependiente->nombre}">
+                                               title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
                                                 <i class="fa fa-dashboard fa-fw"></i> {$indicador_dependiente->nombre}
                                             </a>
                                         </td>

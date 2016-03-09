@@ -326,7 +326,7 @@
                                             {/if}
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_INDIC_MOSTRAR}" target="_blank" href='index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" target="_blank" href='index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" target="_blank" href='index.php?page=graficas_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}'>
