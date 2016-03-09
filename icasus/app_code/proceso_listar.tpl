@@ -149,7 +149,7 @@
                             <div class="btn-group pull-right" role="group" aria-label="">
                                 <a class="btn btn-danger" href="index.php?page=proceso_crear&id_entidad={$entidad->id}"
                                    title="{$smarty.const.TXT_PROC_CREAR}">
-                                    <i class="fa fa-gears fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                    <i class="fa fa-gear fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                 </a>
                                 <button class="btn btn-danger" title="{$smarty.const.TXT_PROC_MAP_EDIT}"
                                         data-toggle="modal"

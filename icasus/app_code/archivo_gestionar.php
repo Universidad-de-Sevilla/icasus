@@ -30,7 +30,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $proceso = new Proceso();
         $proceso->load_joined("id = $id_proceso");
         $tipo = 'proceso';
-        $smarty->assign('_nombre_pagina', TXT_PROC_ARCHIVOS . ': ' . $proceso->nombre);
+        $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . $proceso->nombre);
         $smarty->assign('proceso', $proceso);
         $archivos = $archivo->find_joined("id_objeto = $id_proceso");
     }

@@ -121,7 +121,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
     $smarty->assign('entidad', $entidad);
 
     $smarty->assign('_javascript', array('inicio'));
-    $smarty->assign('_nombre_pagina', TXT_PROC_FICHA . ": " . $proceso->nombre);
+    $smarty->assign('_nombre_pagina', FIELD_PROC . ": " . $proceso->nombre);
     $plantilla = 'proceso_mostrar.tpl';
 
     $flujograma = new Fichero();

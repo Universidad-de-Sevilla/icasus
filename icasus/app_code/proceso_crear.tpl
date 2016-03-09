@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-gears fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$_nombre_pagina}
+            <i class="fa fa-gear fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$_nombre_pagina}
         </h3>
     </div>
     <!-- /.col-lg-12 -->

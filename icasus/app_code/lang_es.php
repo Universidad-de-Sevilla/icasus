@@ -296,9 +296,7 @@ define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha del proces
 define('TXT_PROC_EDIT', 'Editar proceso');
 define('TXT_PROC_CREAR', 'Crear proceso');
 define('TXT_PROC_BORRAR', 'Borrar proceso');
-define('TXT_PROC_INDICS', 'Indicadores del proceso');
-define('TXT_PROC_FLUJO', 'Flujograma del proceso');
-define('TXT_PROC_ARCHIVOS', 'Archivos del proceso');
+define('TXT_PROC_FLUJO', 'Flujograma');
 
 //Propiedades
 define('TXT_EDIT_PROP', 'Editar propiedades');

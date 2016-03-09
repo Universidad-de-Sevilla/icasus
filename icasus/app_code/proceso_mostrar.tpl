@@ -44,7 +44,7 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-folder fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-gear fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -146,10 +146,10 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#proc_param" title="{$smarty.const.TXT_PROC_PARAM}" aria-controls="{$smarty.const.TXT_PROC_PARAM}" role="tab" data-toggle="tab"><i class="fa fa-gear fa-fw"></i> {$smarty.const.TXT_PROC_PARAM}</a>
+                <a href="#proc_param" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation">
-                <a href="#proc_indics" title="{$smarty.const.TXT_PROC_INDICS}" aria-controls="{$smarty.const.TXT_PROC_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_PROC_INDICS}</a>
+                <a href="#proc_indics" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</a>
             </li>
             {if isset($flujograma)}
                 <li role="presentation">
@@ -158,7 +158,7 @@
             {/if}
             {if isset($archivos)}
                 <li role="presentation">
-                    <a href="#proc_archivos" title="{$smarty.const.TXT_PROC_ARCHIVOS}" aria-controls="{$smarty.const.TXT_PROC_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_PROC_ARCHIVOS}</a>
+                    <a href="#proc_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
                 </li>
             {/if}
             {if $subprocesos}
@@ -179,13 +179,13 @@
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
                                 <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
-                                   title="{$smarty.const.TXT_ARCHIVOS}">
-                                    <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}
+                                   title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                    <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS_GESTION}
                                 </a>
                             </div>
                             <div class="btn-group pull-right" role="group" aria-label="">
                                 <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                                    <i class="fa fa-pencil fa-fw"></i>
+                                    <i class="fa fa-gear fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                                 </a>
                                 <a title="{$smarty.const.TXT_PROC_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
                                    data-toggle="modal" data-target="#dialogo_confirmar_borrado">
@@ -194,7 +194,7 @@
                             </div>
                             <div class="btn-group pull-right" role="group" aria-label="">
                                 <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}&id_proceso={$proceso->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
-                                    <i class="fa fa-plus fa-fw"></i><i class="fa fa-dashboard fa-fw"></i>
+                                    <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                 </a>
                             </div>
                         </div>
@@ -247,15 +247,14 @@
                             <tr>
                                 <th>{$smarty.const.FIELD_PROPIETARIO}</th>
                                 <td>
-                                    {$propietario->nombre} {$propietario->apellidos} 
-                                    {if $propietario->puesto} - {$propietario->puesto} {/if}
+                                    {$propietario->nombre} {$propietario->apellidos} {if $propietario->puesto} - {$propietario->puesto} {/if}
                                 </td>
                             </tr>
                             <tr>
                                 <th>{$smarty.const.FIELD_MISION}</th>
                                 <td> 
                                     {if $proceso->mision}
-                                        {$proceso->mision}
+                                        {$proceso->mision|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -265,7 +264,7 @@
                                 <th>{$smarty.const.FIELD_EQUIP_PROC}</th>
                                 <td> 
                                     {if $proceso->equipo_de_proceso}
-                                        {$proceso->equipo_de_proceso}
+                                        {$proceso->equipo_de_proceso|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -275,7 +274,7 @@
                                 <th>{$smarty.const.FIELD_RESULTS_CLAVE}</th>
                                 <td> 
                                     {if $proceso->resultados_clave}
-                                        {$proceso->resultados_clave}
+                                        {$proceso->resultados_clave|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -285,7 +284,7 @@
                                 <th>{$smarty.const.FIELD_ENTRADAS_PROV}</th>
                                 <td> 
                                     {if $proceso->entradas}
-                                        {$proceso->entradas}
+                                        {$proceso->entradas|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -295,7 +294,7 @@
                                 <th>{$smarty.const.FIELD_SALIDAS_CLIENTS}</th>
                                 <td> 
                                     {if $proceso->entradas or $proceso->salidas}
-                                        {$proceso->salidas}
+                                        {$proceso->salidas|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -305,7 +304,7 @@
                                 <th>{$smarty.const.FIELD_ACTIVIDADES}</th>
                                 <td> 
                                     {if $proceso->actividades}
-                                        {$proceso->actividades}
+                                        {$proceso->actividades|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -315,7 +314,7 @@
                                 <th>{$smarty.const.FIELD_VARS_CONTROL}</th>
                                 <td> 
                                     {if $proceso->variables_control}
-                                        {$proceso->variables_control}
+                                        {$proceso->variables_control|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -325,7 +324,7 @@
                                 <th>{$smarty.const.FIELD_DOCUMENTACION}</th>
                                 <td> 
                                     {if $proceso->documentacion}
-                                        {$proceso->documentacion}
+                                        {$proceso->documentacion|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -335,7 +334,7 @@
                                 <th>{$smarty.const.FIELD_MEDICIONES}</th>
                                 <td> 
                                     {if $proceso->mediciones}
-                                        {$proceso->mediciones}
+                                        {$proceso->mediciones|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -345,7 +344,7 @@
                                 <th>{$smarty.const.FIELD_REGISTROS}</th>
                                 <td> 
                                     {if $proceso->registros}
-                                        {$proceso->registros}
+                                        {$proceso->registros|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -355,7 +354,7 @@
                                 <th>{$smarty.const.FIELD_OBSERV}</th>
                                 <td> 
                                     {if $proceso->observaciones}
-                                        {$proceso->observaciones}
+                                        {$proceso->observaciones|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -424,8 +423,7 @@
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
-                                                {$indicador->responsable_medicion->nombre} 
-                                                {$indicador->responsable_medicion->apellidos}</a>
+                                                {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
                                         <td>{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}</td>
@@ -584,8 +582,7 @@
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$subproceso->propietario->id}">
-                                                {$subproceso->propietario->nombre}
-                                                {$subproceso->propietario->apellidos}
+                                                {$subproceso->propietario->nombre} {$subproceso->propietario->apellidos}
                                             </a>
                                         </td>
                                         <td>
