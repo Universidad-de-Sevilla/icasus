@@ -29,7 +29,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-map fa-fw"></i> {$smarty.const.TXT_PROC_MAP_EDIT}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-map fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_PROC_MAP_EDIT}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_PROC_MAPA} {mailto address="icasus@us.es" encode="javascript"}</p>
@@ -149,12 +149,12 @@
                             <div class="btn-group pull-right" role="group" aria-label="">
                                 <a class="btn btn-danger" href="index.php?page=proceso_crear&id_entidad={$entidad->id}"
                                    title="{$smarty.const.TXT_PROC_CREAR}">
-                                    <i class="fa fa-plus-circle fa-fw"></i>
+                                    <i class="fa fa-gears fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                 </a>
                                 <button class="btn btn-danger" title="{$smarty.const.TXT_PROC_MAP_EDIT}"
                                         data-toggle="modal"
                                         data-target="#dialogo_mapa">
-                                    <i class="fa fa-map fa-fw"></i>
+                                    <i class="fa fa-map fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                 </button>
                             </div>
                         </div>
@@ -218,7 +218,7 @@
                                                 <a class="btn btn-default btn-circle btn-xs"
                                                    title="{$smarty.const.TXT_ARCHIVOS}"
                                                    href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                                                    <i class="fa fa-file fa-fw"></i>
+                                                    <i class="fa fa-archive fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs"
                                                    title="{$smarty.const.TXT_EDIT}"
@@ -333,7 +333,7 @@
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS}" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                                                <i class="fa fa-file fa-fw"></i>
+                                                <i class="fa fa-archive fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                                                 <i class="fa fa-pencil fa-fw"></i>

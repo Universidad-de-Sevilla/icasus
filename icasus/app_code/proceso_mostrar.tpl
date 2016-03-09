@@ -158,7 +158,7 @@
             {/if}
             {if isset($archivos)}
                 <li role="presentation">
-                    <a href="#proc_archivos" title="{$smarty.const.TXT_PROC_ARCHIVOS}" aria-controls="{$smarty.const.TXT_PROC_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_PROC_ARCHIVOS}</a>
+                    <a href="#proc_archivos" title="{$smarty.const.TXT_PROC_ARCHIVOS}" aria-controls="{$smarty.const.TXT_PROC_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_PROC_ARCHIVOS}</a>
                 </li>
             {/if}
             {if $subprocesos}
@@ -180,7 +180,7 @@
                             <div class="btn-group" role="group" aria-label="">
                                 <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
                                    title="{$smarty.const.TXT_ARCHIVOS}">
-                                    <i class="fa fa-file fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}
+                                    <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}
                                 </a>
                             </div>
                             <div class="btn-group pull-right" role="group" aria-label="">
@@ -593,7 +593,7 @@
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>                 
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS}" href='index.php?page=archivo_gestionar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
-                                                <i class="fa fa-file fa-fw"></i>
+                                                <i class="fa fa-archive fa-fw"></i>
                                             </a>
                                             {if $_control}
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>

@@ -317,8 +317,7 @@
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
-                                                {$proceso->propietario->nombre}
-                                                {$proceso->propietario->apellidos}
+                                                {$proceso->propietario->nombre} {$proceso->propietario->apellidos}
                                             </a>
                                         </td>
                                         <td>
@@ -326,7 +325,7 @@
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS}" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                                                <i class="fa fa-file fa-fw"></i>
+                                                <i class="fa fa-archive fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                                                 <i class="fa fa-pencil fa-fw"></i>
@@ -411,13 +410,11 @@
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
-                                                {$indicador->responsable->nombre} 
-                                                {$indicador->responsable->apellidos}</a>
+                                                {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
-                                                {$indicador->responsable_medicion->nombre} 
-                                                {$indicador->responsable_medicion->apellidos}</a>
+                                                {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
                                         <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
@@ -568,13 +565,11 @@
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
-                                                {$indicador->responsable->nombre} 
-                                                {$indicador->responsable->apellidos}</a>
+                                                {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
-                                                {$indicador->responsable_medicion->nombre} 
-                                                {$indicador->responsable_medicion->apellidos}</a>
+                                                {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
                                         <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
