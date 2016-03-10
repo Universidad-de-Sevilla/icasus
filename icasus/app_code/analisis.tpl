@@ -4,7 +4,7 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-connectdevelop fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-dashboard fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -106,7 +106,7 @@
     <div class="col-lg-12">
         <ul class="nav nav-tabs">
             <li role="presentation">
-                <a title="{$smarty.const.TXT_INDIC_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_INDIC_FICHA}</a>
+                <a title="{$smarty.const.TXT_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation">
                 <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
@@ -281,3 +281,62 @@
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+
+<!-- Tabla de análisis y planes -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-connectdevelop fa-fw"></i> {$smarty.const.TXT_TABLA_ANAPLAN}</span>
+                <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body" style="display: none">
+                {if $lista_analisis}
+                    <div class="table-responsive">
+                        <table class="table datatable table-condensed table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_ANYO}</th> 
+                                    <th>{$smarty.const.TXT_ANALISIS}</th>
+                                    <th>{$smarty.const.TXT_PLAN_ACCION}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$lista_analisis item=anaplan}
+                                    <tr>
+                                        <td>{$anaplan->anyo}</td>
+                                        <td title="{$anaplan->analisis|nl2br}">
+                                            {if $anaplan->analisis }
+                                                {$anaplan->analisis|truncate:30}
+                                            {else}
+                                                ---
+                                            {/if}
+                                        </td>
+                                        <td title="{$anaplan->plan_accion|nl2br}">
+                                            {if $anaplan->plan_accion}
+                                                {$anaplan->plan_accion|truncate:30}
+                                            {else}
+                                                ---
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    {else}
+                        <div class="alert alert-info alert-dismissible">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_ANAPLAN_NO}
+                        </div>
+                    {/if}
+                </div>
+            </div>
+            <!-- /.panel-body -->        
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<!-- /Tabla de análisis y planes -->

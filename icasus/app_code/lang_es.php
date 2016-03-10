@@ -51,6 +51,7 @@ define('TXT_LEYENDA', 'Leyenda');
 //Análisis de indicadores
 define('TXT_ANALISIS', 'Análisis');
 define('TXT_PLAN_ACCION', 'Plan de acción');
+define('TXT_TABLA_ANAPLAN', 'Análisis y Planes de acción / Año');
 
 //Archivos
 define('TXT_ARCHIVOS', 'Archivos');
@@ -153,7 +154,6 @@ define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_PARAM', 'Parámetros del indicador');
 define('TXT_INDIC_NUEVO', 'Nuevo indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
-define('TXT_INDIC_FICHA', 'Ficha del indicador');
 define('TXT_INDIC_CREAR', 'Crear indicador');
 define('TXT_INDIC_LIST', 'Lista de indicadores');
 define('TXT_INDIC_EDIT', 'Editar indicador');
@@ -218,7 +218,6 @@ define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
 define('TXT_MED_ASIG', ' Asignar la medición.');
 define('TXT_MED_VALORES', 'Valores de la medición');
 define('TXT_MED_DATOS', 'Datos de la medición');
-define('TXT_MED_GESTION', 'Gestión de mediciones');
 define('TXT_MED_AGREGAR', 'Agregar medición');
 define('TXT_MED_GENERAR', 'Generar medición/es');
 define('TXT_MED_TABLA', 'Tabla de mediciones');
@@ -434,6 +433,9 @@ define('MSG_GUARDAR_OK', 'Se han guardado los cambios correctamente.');
 define('MSG_CAMPO_REQ', 'Campo obligatorio');
 define('MSG_BUSCAR_NO_RESUL', 'No existen resultados para la búsqueda solicitada.');
 define('MSG_BUSCAR_NO_TEXTO', 'No introdujo ningún texto para buscar.');
+
+//Análisis y planes de acción
+define('MSG_ANAPLAN_NO', 'Todavía no se ha registrado ningún análisis ni plan de acción para el indicador. Utilice el selector de la parte superior y los cuadros de texto para ello.');
 
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');

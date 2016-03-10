@@ -64,8 +64,12 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     $analisis->load("id_indicador=$id_indicador AND anyo=$anyo");
     $smarty->assign('analisis_actual', $analisis);
 
+    //Tabla de análisis y planes
+    $lista_analisis = $analisis->find("id_indicador=$id_indicador");
+    $smarty->assign('lista_analisis', $lista_analisis);
+
     $smarty->assign('_javascript', array('analisis'));
-    $smarty->assign('_nombre_pagina', TXT_ANALISIS . ": $indicador->nombre");
+    $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
     $plantilla = 'analisis.tpl';
 }
 else

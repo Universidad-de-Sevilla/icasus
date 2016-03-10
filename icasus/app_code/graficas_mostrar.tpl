@@ -4,7 +4,7 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-area-chart fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-dashboard fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -106,7 +106,7 @@
     <div class="col-lg-12">
         <ul class="nav nav-tabs">
             <li role="presentation">
-                <a title="{if $tipo == 'indicador'}{$smarty.const.TXT_INDIC_FICHA}{else}{$smarty.const.TXT_DATO_FICHA}{/if}" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i> {if $tipo == 'indicador'}{$smarty.const.TXT_INDIC_FICHA}{else}{$smarty.const.TXT_DATO_FICHA}{/if}</a>
+                <a title="{if $tipo == 'indicador'}{$smarty.const.TXT_FICHA}{else}{$smarty.const.TXT_DATO_FICHA}{/if}" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i> {if $tipo == 'indicador'}{$smarty.const.TXT_FICHA}{else}{$smarty.const.TXT_DATO_FICHA}{/if}</a>
             </li>
             <li role="presentation" class="active">
                 <a title="{$smarty.const.TXT_REP_GRAFIC}" href="#"><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
