@@ -238,7 +238,55 @@
 <!-- /Indicadores/datos dependientes -->
 
 <div class="row">
-    <div class="col-lg-12">
+
+    <!-- Gráficas -->
+    {if $pinta_grafico}
+        {if isset($panel)}
+            <div class="col-lg-{$panel->ancho}" >
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <span class="panel-title"><i class="fa fa-line-chart fa-fw"></i><strong> {$panel->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}</span>
+                        <i class="fa fa-chevron-up pull-right clickable"></i>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">  
+                        <div class="highchart {$panel->tipo->clase_css}" 
+                             id="panel_{$panel->id}" 
+                             data-id_indicador="{$indicador->id}" 
+                             data-nombre_indicador="{$indicador->nombre}" 
+                             data-valor_min="{$indicador->valor_min}" 
+                             data-valor_max="{$indicador->valor_max}" 
+                             data-fecha_inicio="{$panel->fecha_inicio}" 
+                             data-fecha_fin="{$panel->fecha_fin}" 
+                             data-periodicidad="{$panel->periodicidad}">
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-{$panel->ancho} -->
+        {/if}
+    {else if !$mediciones}
+        <div class="col-lg-6">
+            <div class="alert alert-info alert-dismissible">
+                <i class="fa fa-info-circle fa-fw"></i> 
+                {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
+            </div>
+        </div>
+        <!-- /.col-lg-6 -->
+    {else}
+        <div class="col-lg-6">
+            <div class="alert alert-info alert-dismissible">
+                <i class="fa fa-info-circle fa-fw"></i> 
+                {$smarty.const.MSG_INDIC_NO_VAL}
+            </div>
+        </div>
+        <!-- /.col-lg-6 -->
+    {/if}
+    <!-- /Gráficas -->
+
+    <div class="col-lg-6">
         <div class="form-horizontal">
             <div class="form-group">
                 <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO}</label>
@@ -256,7 +304,7 @@
                 <div id="analisis" class="form-group">
                     <label for="analisis" class="col-sm-2 control-label">{$smarty.const.TXT_ANALISIS} ({$anyo})</label>
                     <div class="col-sm-6">
-                        <textarea  class="form-control" id="texto_analisis" placeholder="{$smarty.const.TXT_ANALISIS}" rows="5" readonly>{$analisis_actual->analisis}</textarea>
+                        <textarea  class="form-control" id="texto_analisis" placeholder="{$smarty.const.TXT_ANALISIS}" rows="9" readonly>{$analisis_actual->analisis}</textarea>
                     </div>
                     {if $_control || $responsable}
                         <div class="col-sm-2">
@@ -267,7 +315,7 @@
                 <div id="plan" class="form-group">
                     <label for="plan_accion" class="col-sm-2 control-label">{$smarty.const.TXT_PLAN_ACCION} ({$anyo})</label>
                     <div class="col-sm-6">
-                        <textarea  class="form-control" id="texto_plan" placeholder="{$smarty.const.TXT_PLAN_ACCION}" rows="5" readonly>{$analisis_actual->plan_accion}</textarea>
+                        <textarea  class="form-control" id="texto_plan" placeholder="{$smarty.const.TXT_PLAN_ACCION}" rows="9" readonly>{$analisis_actual->plan_accion}</textarea>
                     </div>
                     {if $_control || $responsable}
                         <div class="col-sm-2">
@@ -278,65 +326,67 @@
             </div>
         </div>
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /.col-lg-6 -->
 </div>
 <!-- /.row -->
 
 <!-- Tabla de análisis y planes -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-connectdevelop fa-fw"></i> {$smarty.const.TXT_TABLA_ANAPLAN}</span>
-                <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body" style="display: none">
-                {if $lista_analisis}
-                    <div class="table-responsive">
-                        <table class="table datatable table-condensed table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>{$smarty.const.FIELD_ANYO}</th> 
-                                    <th>{$smarty.const.TXT_ANALISIS}</th>
-                                    <th>{$smarty.const.TXT_PLAN_ACCION}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$lista_analisis item=anaplan}
-                                    <tr>
-                                        <td>{$anaplan->anyo}</td>
-                                        <td title="{$anaplan->analisis|nl2br}">
-                                            {if $anaplan->analisis }
-                                                {$anaplan->analisis|truncate:30}
-                                            {else}
-                                                ---
-                                            {/if}
-                                        </td>
-                                        <td title="{$anaplan->plan_accion|nl2br}">
-                                            {if $anaplan->plan_accion}
-                                                {$anaplan->plan_accion|truncate:30}
-                                            {else}
-                                                ---
-                                            {/if}
-                                        </td>
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    {else}
-                        <div class="alert alert-info alert-dismissible">
-                            <i class="fa fa-info-circle fa-fw"></i> 
-                            {$smarty.const.MSG_ANAPLAN_NO}
-                        </div>
-                    {/if}
+<div id="tabla_analisis_plan">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-connectdevelop fa-fw"></i> {$smarty.const.TXT_TABLA_ANAPLAN}</span>
+                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
                 </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body" style="display: none">
+                    {if $lista_analisis}
+                        <div class="table-responsive">
+                            <table class="table datatable table-condensed table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>{$smarty.const.FIELD_ANYO}</th> 
+                                        <th>{$smarty.const.TXT_ANALISIS}</th>
+                                        <th>{$smarty.const.TXT_PLAN_ACCION}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach from=$lista_analisis item=anaplan}
+                                        <tr>
+                                            <td><span class="label label-primary">{$anaplan->anyo}</span></td>
+                                            <td title="{$anaplan->analisis}">
+                                                {if $anaplan->analisis }
+                                                    {$anaplan->analisis|nl2br}
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            </td>
+                                            <td title="{$anaplan->plan_accion}">
+                                                {if $anaplan->plan_accion}
+                                                    {$anaplan->plan_accion|nl2br}
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        {else}
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_ANAPLAN_NO}
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+                <!-- /.panel-body -->        
             </div>
-            <!-- /.panel-body -->        
+            <!-- /.panel -->
         </div>
-        <!-- /.panel -->
+        <!-- /.col-lg-12 -->
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /.row -->
 </div>
-<!-- /.row -->
 <!-- /Tabla de análisis y planes -->

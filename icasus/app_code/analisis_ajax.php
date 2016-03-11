@@ -38,17 +38,24 @@ $analisis->load("id_indicador=$id_indicador AND anyo=$anyo");
 $smarty->assign('analisis_actual', $analisis);
 $plantilla = 'analisis_ajax.tpl';
 
+if ($modulo === 'actualizar_tabla')
+{
+    //Tabla de análisis y planes
+    $lista_analisis = $analisis->find("id_indicador=$id_indicador");
+    $smarty->assign('lista_analisis', $lista_analisis);
+}
+
 if ($modulo === 'grabar_analisis')
 {
     $analisis->id_indicador = $id_indicador;
     $analisis->anyo = $anyo;
-    $analisis->analisis = filter_input(INPUT_GET, 'texto', FILTER_SANITIZE_STRING);
+    $analisis->analisis = filter_input(INPUT_POST, 'texto', FILTER_SANITIZE_STRING);
     $analisis->Save();
 }
 if ($modulo == 'grabar_plan')
 {
     $analisis->id_indicador = $id_indicador;
     $analisis->anyo = $anyo;
-    $analisis->plan_accion = filter_input(INPUT_GET, 'texto', FILTER_SANITIZE_STRING);
+    $analisis->plan_accion = filter_input(INPUT_POST, 'texto', FILTER_SANITIZE_STRING);
     $analisis->Save();
 }
