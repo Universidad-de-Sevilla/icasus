@@ -115,7 +115,7 @@
                         {if $_control}
                             <div class="btn-group pull-right" role="group" aria-label="">
                                 <a class="btn btn-danger" href='index.php?page=dato_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATO_CREAR}">
-                                    <i class="fa fa-plus-circle fa-fw"></i>
+                                    <i class="fa fa-database fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                 </a>
                             </div>
                         {/if}
