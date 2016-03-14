@@ -105,10 +105,8 @@ define('TXT_PANEL_INDICS', 'Indicadores/datos del panel');
 //Datos
 define('TXT_DATO_TODOS', 'Todos los datos');
 define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
-define('TXT_DATO_MOSTRAR', 'Mostrar ficha del dato');
 define('TXT_DATO_EDIT', 'Editar dato');
 define('TXT_DATO_BORRAR', 'Borrar dato');
-define('TXT_DATO_FICHA', 'Ficha del dato');
 define('TXT_DATO_NUEVO', 'Nuevo dato');
 define('TXT_DATO_PARAM', 'Parámetros del dato');
 define('TXT_DATO_CREAR', 'Crear dato');

@@ -159,7 +159,7 @@
                                         <td><span class="badge">{$indicador_influyente->id}</span></td>
                                         <td> 
                                             <a class="btn btn-info" href='index.php?page=dato_mostrar&id_dato={$indicador_influyente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_DATO_MOSTRAR}: {$indicador_influyente->nombre}">
+                                               title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
                                                 <i class="fa fa-database fa-fw"></i> {$indicador_influyente->nombre}
                                             </a>
                                         </td>
@@ -217,7 +217,7 @@
                                         <td><span class="badge">{$indicador_dependiente->id}</span></td>
                                         <td> 
                                             <a class="btn btn-warning" href='index.php?page=dato_mostrar&id_dato={$indicador_dependiente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_DATO_MOSTRAR}: {$indicador_dependiente->nombre}">
+                                               title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
                                                 <i class="fa fa-database fa-fw"></i> {$indicador_dependiente->nombre}
                                             </a>
                                         </td>
