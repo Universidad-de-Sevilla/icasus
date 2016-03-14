@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.12.2");
-define('IC_FECHA_REVISION', "11/03/2016");
+define('IC_VERSION', "3.13.0");
+define('IC_FECHA_REVISION', "14/03/2016");
 
+// 3.13.0 - 14/03/2016 - Cambios varios en textos e iconos, mejoras en análisis (inclusión de tablas y gráficos), gestión de archivos y anotaciones para unidades, corrección de saltos de línea en textareas y exportaciones, etc...
 // 3.12.2 - 11/03/2016 - Gestión de análisis mejorada con gráfica del histórico y corregido guardado de saltos de línea en textareas de los análisis.
 // 3.12.1 - 09/03/2016 - Corregido error con los nombres de usuarios en los listados que impedía la exportación de los mismos a excel en el formato adecuado.
 // 3.12.0 - 08/03/2016 - Gestión de archivos para las unidades.

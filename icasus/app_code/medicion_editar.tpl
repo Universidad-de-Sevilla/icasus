@@ -119,7 +119,7 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-clock-o fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-history fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -222,7 +222,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a id="tab_med_datos" href="#med_datos" title="{$smarty.const.TXT_MED_DATOS}" aria-controls="{$smarty.const.TXT_MED_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.TXT_MED_DATOS}</a>
+                <a id="tab_med_datos" href="#med_datos" title="{$smarty.const.TXT_MED_DATOS}" aria-controls="{$smarty.const.TXT_MED_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-history fa-fw"></i> {$smarty.const.TXT_MED_DATOS}</a>
             </li>
             <li role="presentation">
                 <a href="#med_valores" title="{$smarty.const.TXT_MED_VALORES}" aria-controls="{$smarty.const.TXT_MED_VALORES}" role="tab" data-toggle="tab"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_MED_VALORES}</a>
@@ -239,7 +239,7 @@
                     <div class="btn-toolbar" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
                             <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                <i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}
+                                <i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}
                             </a>
                         </div>
                         <div class="btn-group pull-right" role="group" aria-label="">

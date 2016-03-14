@@ -77,7 +77,7 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-dashboard fa-fw"></i> {$_nombre_pagina}
+                    {if $tipo == 'indicador'}<i class="fa fa-dashboard fa-fw"></i>{else}<i class="fa fa-database fa-fw"></i>{/if} {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -185,7 +185,7 @@
                 <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
             </li>
             <li role="presentation" class="active">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" href="#"><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+                <a title="{$smarty.const.FIELD_MEDICIONES}" href="#"><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
             {if $tipo == 'indicador'}
                 <li role="presentation">
@@ -343,7 +343,7 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.TXT_MED_TABLA}</span>
+                <span class="panel-title"><i class="fa fa-history fa-fw"></i> {$smarty.const.TXT_MED_TABLA}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
