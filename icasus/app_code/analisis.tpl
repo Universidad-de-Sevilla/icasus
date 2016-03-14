@@ -356,14 +356,14 @@
                                         <tr>
                                             <td><span class="label label-primary">{$anaplan->anyo}</span></td>
                                             <td title="{$anaplan->analisis}">
-                                                {if $anaplan->analisis }
+                                                {if $anaplan->analisis|count_characters}
                                                     {$anaplan->analisis|nl2br}
                                                 {else}
                                                     ---
                                                 {/if}
                                             </td>
                                             <td title="{$anaplan->plan_accion}">
-                                                {if $anaplan->plan_accion}
+                                                {if $anaplan->plan_accion|count_characters}
                                                     {$anaplan->plan_accion|nl2br}
                                                 {else}
                                                     ---

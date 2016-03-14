@@ -40,14 +40,13 @@ if ($tipo == "indicador")
 {
     //Obtener todos los indicadores para avanzar o retroceder 
     $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
-$smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
-    
+    $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
 }
 else
 {
     //Obtener todos los datos para avanzar o retroceder 
     $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NULL");
-$smarty->assign('_nombre_pagina', FIELD_DATO . ": $indicador->nombre");   
+    $smarty->assign('_nombre_pagina', FIELD_DATO . ": $indicador->nombre");
 }
 $smarty->assign("indicadores", $indicadores);
 $cont = 0;

@@ -110,7 +110,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     $smarty->assign('analisis_actual', $analisis);
 
     //Tabla de análisis y planes
-    $lista_analisis = $analisis->find("id_indicador=$id_indicador");
+    $lista_analisis = $analisis->find("id_indicador=$id_indicador ORDER BY anyo DESC");
     $smarty->assign('lista_analisis', $lista_analisis);
 
     $smarty->assign('_javascript', array('analisis'));

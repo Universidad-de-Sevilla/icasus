@@ -41,7 +41,7 @@ $plantilla = 'analisis_ajax.tpl';
 if ($modulo === 'actualizar_tabla')
 {
     //Tabla de análisis y planes
-    $lista_analisis = $analisis->find("id_indicador=$id_indicador");
+    $lista_analisis = $analisis->find("id_indicador=$id_indicador ORDER BY anyo DESC");
     $smarty->assign('lista_analisis', $lista_analisis);
 }
 

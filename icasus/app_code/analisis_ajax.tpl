@@ -92,14 +92,14 @@
                                         <tr>
                                             <td><span class="label label-primary">{$anaplan->anyo}</span></td>
                                             <td title="{$anaplan->analisis}">
-                                                {if $anaplan->analisis }
+                                                {if $anaplan->analisis|count_characters}
                                                     {$anaplan->analisis|nl2br}
                                                 {else}
                                                     ---
                                                 {/if}
                                             </td>
                                             <td title="{$anaplan->plan_accion}">
-                                                {if $anaplan->plan_accion}
+                                                {if $anaplan->plan_accion|count_characters}
                                                     {$anaplan->plan_accion|nl2br}
                                                 {else}
                                                     ---
@@ -149,6 +149,7 @@
                 $('.datatable').DataTable({
                     "pagingType": "full_numbers",
                     "iDisplayLength": 25,
+                    "bSort": false,
                     dom: "<'row'<'col-sm-2'B><'col-sm-5'l><'col-sm-5'f>>" +
                             "<'row'<'col-sm-12'tr>>" +
                             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
