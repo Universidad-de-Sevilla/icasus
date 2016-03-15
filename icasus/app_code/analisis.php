@@ -26,6 +26,8 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     $indicador = new Indicador();
     $indicador->load("id=$id_indicador");
     $smarty->assign('indicador', $indicador);
+    $tipo = 'indicador';
+    $smarty->assign('tipo', $tipo);
 
     //Responsables
     $responsable = false;
@@ -57,6 +59,49 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     $indicadores_influyentes = $logicaIndicador->calcular_dependencias($id_indicador);
     $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
 
+    //Simplemente ver si hay mediciones
+    $medicion = new Medicion();
+    $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+    $smarty->assign("mediciones", $mediciones);
+    if ($mediciones)
+    {
+        $panel = new Panel();
+        $panel->tipo = new Panel_tipo();
+        $panel->ancho = 6;
+        // Prepara el panel anual
+        $anio_inicio = $indicador->historicos;
+        $anio_fin = date('Y') - 1;
+        $panel->id = 1;
+        $panel->tipo->clase_css = "lineal";
+        $panel->nombre = TXT_HISTORICO;
+        $panel->fecha_inicio = $indicador->historicos . "-01-01";
+        $panel->fecha_fin = $anio_fin . "-12-31";
+        $panel->periodicidad = "anual";
+        $smarty->assign("panel", $panel);
+    }
+
+    //Comprobamos si hay valores para pintar los gráficos
+    $valor = new Valor();
+    $pinta_grafico = false;
+    if ($mediciones)
+    {
+        foreach ($mediciones as $med)
+        {
+            $valores = $valor->Find_joined_jjmc($med->id, $usuario->id);
+            if ($valores)
+            {
+                foreach ($valores as $val)
+                {
+                    if ($val->valor != null)
+                    {
+                        $pinta_grafico = true;
+                    }
+                }
+            }
+        }
+    }
+    $smarty->assign("pinta_grafico", $pinta_grafico);
+
     //Recuperamos el análisis del indicador
     $analisis = new Analisis();
     $anyo = idate('Y');
@@ -64,8 +109,12 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     $analisis->load("id_indicador=$id_indicador AND anyo=$anyo");
     $smarty->assign('analisis_actual', $analisis);
 
+    //Tabla de análisis y planes
+    $lista_analisis = $analisis->find("id_indicador=$id_indicador ORDER BY anyo DESC");
+    $smarty->assign('lista_analisis', $lista_analisis);
+
     $smarty->assign('_javascript', array('analisis'));
-    $smarty->assign('_nombre_pagina', TXT_ANALISIS . ": $indicador->nombre");
+    $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
     $plantilla = 'analisis.tpl';
 }
 else

@@ -4,7 +4,7 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-connectdevelop fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-dashboard fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -106,13 +106,13 @@
     <div class="col-lg-12">
         <ul class="nav nav-tabs">
             <li role="presentation">
-                <a title="{$smarty.const.TXT_INDIC_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_INDIC_FICHA}</a>
+                <a title="{$smarty.const.TXT_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation">
                 <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
             </li>
             <li role="presentation">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
             <li role="presentation" class="active">
                 <a title="{$smarty.const.TXT_ANALISIS}" href="#"><i class="fa fa-connectdevelop fa-fw"></i> {$smarty.const.TXT_ANALISIS}</a>
@@ -148,8 +148,8 @@
                                     <tr>
                                         <td><span class="badge">{$indicador_influyente->id}</span></td>
                                         <td>
-                                            <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$indicador_influyente->nombre}">
+                                            <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}' 
+                                               title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
                                                 <i class="fa fa-dashboard fa-fw"></i> {$indicador_influyente->nombre}
                                             </a>
                                         </td>
@@ -158,8 +158,8 @@
                                     <tr>
                                         <td><span class="badge">{$indicador_influyente->id}</span></td>
                                         <td> 
-                                            <a class="btn btn-info" href='index.php?page=dato_mostrar&id_dato={$indicador_influyente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_DATO_MOSTRAR}: {$indicador_influyente->nombre}">
+                                            <a class="btn btn-info" href='index.php?page=dato_mostrar&id_dato={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}' 
+                                               title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
                                                 <i class="fa fa-database fa-fw"></i> {$indicador_influyente->nombre}
                                             </a>
                                         </td>
@@ -206,8 +206,8 @@
                                     <tr>
                                         <td><span class="badge">{$indicador_dependiente->id}</span></td>
                                         <td>
-                                            <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$indicador_dependiente->nombre}">
+                                            <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}' 
+                                               title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
                                                 <i class="fa fa-dashboard fa-fw"></i> {$indicador_dependiente->nombre}
                                             </a>
                                         </td>
@@ -216,8 +216,8 @@
                                     <tr>
                                         <td><span class="badge">{$indicador_dependiente->id}</span></td>
                                         <td> 
-                                            <a class="btn btn-warning" href='index.php?page=dato_mostrar&id_dato={$indicador_dependiente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_DATO_MOSTRAR}: {$indicador_dependiente->nombre}">
+                                            <a class="btn btn-warning" href='index.php?page=dato_mostrar&id_dato={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}' 
+                                               title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
                                                 <i class="fa fa-database fa-fw"></i> {$indicador_dependiente->nombre}
                                             </a>
                                         </td>
@@ -238,7 +238,55 @@
 <!-- /Indicadores/datos dependientes -->
 
 <div class="row">
-    <div class="col-lg-12">
+
+    <!-- Gráficas -->
+    {if $pinta_grafico}
+        {if isset($panel)}
+            <div class="col-lg-{$panel->ancho}" >
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <span class="panel-title"><i class="fa fa-line-chart fa-fw"></i><strong> {$panel->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}</span>
+                        <i class="fa fa-chevron-up pull-right clickable"></i>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">  
+                        <div class="highchart {$panel->tipo->clase_css}" 
+                             id="panel_{$panel->id}" 
+                             data-id_indicador="{$indicador->id}" 
+                             data-nombre_indicador="{$indicador->nombre}" 
+                             data-valor_min="{$indicador->valor_min}" 
+                             data-valor_max="{$indicador->valor_max}" 
+                             data-fecha_inicio="{$panel->fecha_inicio}" 
+                             data-fecha_fin="{$panel->fecha_fin}" 
+                             data-periodicidad="{$panel->periodicidad}">
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel -->
+            </div>
+            <!-- /.col-lg-{$panel->ancho} -->
+        {/if}
+    {else if !$mediciones}
+        <div class="col-lg-6">
+            <div class="alert alert-info alert-dismissible">
+                <i class="fa fa-info-circle fa-fw"></i> 
+                {$smarty.const.MSG_MED_NO_TIPO} {$tipo}
+            </div>
+        </div>
+        <!-- /.col-lg-6 -->
+    {else}
+        <div class="col-lg-6">
+            <div class="alert alert-info alert-dismissible">
+                <i class="fa fa-info-circle fa-fw"></i> 
+                {$smarty.const.MSG_INDIC_NO_VAL}
+            </div>
+        </div>
+        <!-- /.col-lg-6 -->
+    {/if}
+    <!-- /Gráficas -->
+
+    <div class="col-lg-6">
         <div class="form-horizontal">
             <div class="form-group">
                 <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO}</label>
@@ -256,7 +304,7 @@
                 <div id="analisis" class="form-group">
                     <label for="analisis" class="col-sm-2 control-label">{$smarty.const.TXT_ANALISIS} ({$anyo})</label>
                     <div class="col-sm-6">
-                        <textarea  class="form-control" id="texto_analisis" placeholder="{$smarty.const.TXT_ANALISIS}" rows="5" readonly>{$analisis_actual->analisis}</textarea>
+                        <textarea  class="form-control" id="texto_analisis" placeholder="{$smarty.const.TXT_ANALISIS}" rows="9" readonly>{$analisis_actual->analisis}</textarea>
                     </div>
                     {if $_control || $responsable}
                         <div class="col-sm-2">
@@ -267,7 +315,7 @@
                 <div id="plan" class="form-group">
                     <label for="plan_accion" class="col-sm-2 control-label">{$smarty.const.TXT_PLAN_ACCION} ({$anyo})</label>
                     <div class="col-sm-6">
-                        <textarea  class="form-control" id="texto_plan" placeholder="{$smarty.const.TXT_PLAN_ACCION}" rows="5" readonly>{$analisis_actual->plan_accion}</textarea>
+                        <textarea  class="form-control" id="texto_plan" placeholder="{$smarty.const.TXT_PLAN_ACCION}" rows="9" readonly>{$analisis_actual->plan_accion}</textarea>
                     </div>
                     {if $_control || $responsable}
                         <div class="col-sm-2">
@@ -278,6 +326,67 @@
             </div>
         </div>
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /.col-lg-6 -->
 </div>
 <!-- /.row -->
+
+<!-- Tabla de análisis y planes -->
+<div id="tabla_analisis_plan">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-connectdevelop fa-fw"></i> {$smarty.const.TXT_TABLA_ANAPLAN}</span>
+                    <i class="fa fa-chevron-down pull-right clickable panel-collapsed"></i>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body" style="display: none">
+                    {if $lista_analisis}
+                        <div class="table-responsive">
+                            <table class="table datatable table-condensed table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>{$smarty.const.FIELD_ANYO}</th> 
+                                        <th>{$smarty.const.TXT_ANALISIS}</th>
+                                        <th>{$smarty.const.TXT_PLAN_ACCION}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach from=$lista_analisis item=anaplan}
+                                        <tr>
+                                            <td><span class="label label-primary">{$anaplan->anyo}</span></td>
+                                            <td title="{$anaplan->analisis}">
+                                                {if $anaplan->analisis|count_characters}
+                                                    {$anaplan->analisis|nl2br}
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            </td>
+                                            <td title="{$anaplan->plan_accion}">
+                                                {if $anaplan->plan_accion|count_characters}
+                                                    {$anaplan->plan_accion|nl2br}
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        {else}
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_ANAPLAN_NO}
+                            </div>
+                        {/if}
+                    </div>
+                </div>
+                <!-- /.panel-body -->        
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+</div>
+<!-- /Tabla de análisis y planes -->

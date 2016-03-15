@@ -115,7 +115,7 @@
                         {if $_control}
                             <div class="btn-group pull-right" role="group" aria-label="">
                                 <a class="btn btn-danger" href='index.php?page=dato_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATO_CREAR}">
-                                    <i class="fa fa-plus-circle fa-fw"></i>
+                                    <i class="fa fa-database fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                 </a>
                             </div>
                         {/if}
@@ -169,16 +169,14 @@
                                         <td>{$dato->periodicidad}</td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>
-                                                {$dato->responsable->nombre} 
-                                                {$dato->responsable->apellidos}</a>
+                                                {$dato->responsable->nombre} {$dato->responsable->apellidos}</a>
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable_medicion}&id_entidad={$entidad->id}'>
-                                                {$dato->responsable_medicion->nombre} 
-                                                {$dato->responsable_medicion->apellidos}</a>
+                                                {$dato->responsable_medicion->nombre} {$dato->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_DATO_MOSTRAR}" target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}'>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}'>
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" target="_blank" href='index.php?page=graficas_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}'>
@@ -186,7 +184,7 @@
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
                                                title="{$smarty.const.TXT_DATO_MEDICIONES}: {$dato->nombre}" target="_blank">
-                                                <i class="fa fa-clock-o fa-fw"></i>
+                                                <i class="fa fa-history fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
                                                 <i class="fa fa-tags fa-fw"></i>
@@ -281,13 +279,11 @@
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
-                                                {$indicador->responsable->nombre} 
-                                                {$indicador->responsable->apellidos}</a>
+                                                {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
-                                                {$indicador->responsable_medicion->nombre} 
-                                                {$indicador->responsable_medicion->apellidos}</a>
+                                                {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
                                         <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
@@ -330,7 +326,7 @@
                                             {/if}
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_INDIC_MOSTRAR}" target="_blank" href='index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" target="_blank" href='index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" target="_blank" href='index.php?page=graficas_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}'>
@@ -338,7 +334,7 @@
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
-                                                <i class="fa fa-clock-o fa-fw"></i>
+                                                <i class="fa fa-history fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                 <i class="fa fa-tags fa-fw"></i>

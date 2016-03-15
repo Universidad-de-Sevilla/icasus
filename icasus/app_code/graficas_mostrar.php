@@ -31,15 +31,21 @@ else
     header("location:index.php?page=error&error=$error");
 }
 
+$indicador = new Indicador();
+$indicador->load("id = $id_indicador");
+$smarty->assign('indicador', $indicador);
+
 if ($tipo == "indicador")
 {
     //Obtener todos los indicadores para avanzar o retroceder 
     $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
+    $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
 }
 else
 {
     //Obtener todos los datos para avanzar o retroceder 
     $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NULL");
+    $smarty->assign('_nombre_pagina', FIELD_DATO . ": $indicador->nombre");
 }
 $smarty->assign("indicadores", $indicadores);
 $cont = 0;
@@ -52,10 +58,6 @@ foreach ($indicadores as $ind)
     }
     $cont++;
 }
-
-$indicador = new Indicador();
-$indicador->load("id = $id_indicador");
-$smarty->assign('indicador', $indicador);
 
 //Responsables
 $responsable = false;
@@ -145,5 +147,4 @@ if ($mediciones)
 
 $smarty->assign("pinta_grafico", $pinta_grafico);
 $smarty->assign('_javascript', array('graficas_mostrar'));
-$smarty->assign('_nombre_pagina', TXT_REP_GRAFIC . ": $indicador->nombre");
 $plantilla = 'graficas_mostrar.tpl';

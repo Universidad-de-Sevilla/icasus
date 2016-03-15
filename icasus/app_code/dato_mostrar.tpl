@@ -24,7 +24,7 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-folder fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-database fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -126,13 +126,13 @@
     <div class="col-lg-12">
         <ul class="nav nav-tabs">
             <li role="presentation" class="active">
-                <a title="{$smarty.const.TXT_DATO_FICHA}" href="#"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_DATO_FICHA}</a>
+                <a title="{$smarty.const.TXT_FICHA}" href="#"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation">
                 <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
             </li>
             <li role="presentation">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><i class="fa fa-clock-o fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
         </ul>
     </div>
@@ -149,7 +149,7 @@
             <div class="btn-group pull-right" role="group" aria-label="">
                 {if $_control || $responsable}
                     <a title="{$smarty.const.TXT_DATO_EDIT}" class="btn btn-danger" href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
-                        <i class="fa fa-pencil fa-fw"></i>
+                        <i class="fa fa-database fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                     </a>
                     <a title="{$smarty.const.TXT_DATO_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
                        data-toggle="modal" data-target="#dialogo_confirmar_borrado">
@@ -188,8 +188,8 @@
                                     <tr>
                                         <td><span class="badge">{$dato_influyente->id}</span></td>
                                         <td>
-                                            <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$dato_influyente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$dato_influyente->nombre}">
+                                            <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$dato_influyente->id}&id_entidad={$dato_influyente->id_entidad}' 
+                                               title="{$smarty.const.TXT_FICHA}: {$dato_influyente->nombre}">
                                                 <i class="fa fa-dashboard fa-fw"></i> {$dato_influyente->nombre}
                                             </a>
                                         </td>
@@ -198,8 +198,8 @@
                                     <tr>
                                         <td><span class="badge">{$dato_influyente->id}</span></td>
                                         <td> 
-                                            <a class="btn btn-info" href='index.php?page=dato_mostrar&id_dato={$dato_influyente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_DATO_MOSTRAR}: {$dato_influyente->nombre}">
+                                            <a class="btn btn-info" href='index.php?page=dato_mostrar&id_dato={$dato_influyente->id}&id_entidad={$dato_influyente->id_entidad}' 
+                                               title="{$smarty.const.TXT_FICHA}: {$dato_influyente->nombre}">
                                                 <i class="fa fa-database fa-fw"></i> {$dato_influyente->nombre}
                                             </a>
                                         </td>
@@ -246,8 +246,8 @@
                                     <tr>
                                         <td><span class="badge">{$dato_dependiente->id}</span></td>
                                         <td>
-                                            <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$dato_dependiente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_INDIC_MOSTRAR}: {$dato_dependiente->nombre}">
+                                            <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$dato_dependiente->id}&id_entidad={$dato_dependiente->id_entidad}' 
+                                               title="{$smarty.const.TXT_FICHA}: {$dato_dependiente->nombre}">
                                                 <i class="fa fa-dashboard fa-fw"></i> {$dato_dependiente->nombre}
                                             </a>
                                         </td>
@@ -256,8 +256,8 @@
                                     <tr>
                                         <td><span class="badge">{$dato_dependiente->id}</span></td>
                                         <td> 
-                                            <a class="btn btn-warning" href='index.php?page=dato_mostrar&id_dato={$dato_dependiente->id}&id_entidad={$entidad->id}' 
-                                               title="{$smarty.const.TXT_DATO_MOSTRAR}: {$dato_dependiente->nombre}">
+                                            <a class="btn btn-warning" href='index.php?page=dato_mostrar&id_dato={$dato_dependiente->id}&id_entidad={$dato_dependiente->id_entidad}' 
+                                               title="{$smarty.const.TXT_FICHA}: {$dato_dependiente->nombre}">
                                                 <i class="fa fa-database fa-fw"></i> {$dato_dependiente->nombre}
                                             </a>
                                         </td>
@@ -305,7 +305,7 @@
                                 <th>{$smarty.const.FIELD_DESC}</th>
                                 <td> 
                                     {if $dato->descripcion != ""}
-                                        {$dato->descripcion}
+                                        {$dato->descripcion|nl2br}
                                     {else}
                                         ---
                                     {/if}
@@ -327,7 +327,7 @@
                                 <th>{$smarty.const.FIELD_OBSERV}</th>
                                 <td> 
                                     {if $dato->observaciones != ""}
-                                        {$dato->observaciones}
+                                        {$dato->observaciones|nl2br}
                                     {else}
                                         ---
                                     {/if}

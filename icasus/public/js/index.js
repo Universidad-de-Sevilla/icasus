@@ -94,6 +94,7 @@ $(document).ready(function () {
     $('.datatable').DataTable({
         "pagingType": "full_numbers",
         "iDisplayLength": 25,
+        "bSort": false,
         dom: "<'row'<'col-sm-2'B><'col-sm-5'l><'col-sm-5'f>>" +
                 "<'row'<'col-sm-12'tr>>" +
                 "<'row'<'col-sm-5'i><'col-sm-7'p>>",

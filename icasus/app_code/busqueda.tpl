@@ -68,7 +68,7 @@
                                             <td><span class="label label-primary">{$entidad->codigo}</span></td>
                                             <td><a title="{$entidad->nombre}" href='index.php?page=entidad_mostrar&id_entidad={$entidad->id}'>{$entidad->nombre}</a></td>
                                             <td>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i></a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'><i class="fa fa-gears fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'><i class="fa fa-dashboard fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'><i class="fa fa-database fa-fw"></i></a>
@@ -110,7 +110,7 @@
                                     {foreach from=$procesos item=proceso}
                                         <tr>    
                                             <td><span class="label label-primary">{$proceso->codigo}</span></td>
-                                            <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$proceso->entidad->id}'>{$proceso->entidad->etiqueta}</a></td>
+                                            <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$proceso->entidad->id}'>{$proceso->entidad->etiqueta}</a></td>
                                             <td>
                                                 <a title="{$proceso->nombre}: {$proceso->mision}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                     {$proceso->nombre}
@@ -128,12 +128,11 @@
                                             </td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
-                                                    {$proceso->propietario->nombre}
-                                                    {$proceso->propietario->apellidos}
+                                                    {$proceso->propietario->nombre} {$proceso->propietario->apellidos}
                                                 </a>
                                             </td>
                                             <td>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROC_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                     <i class="fa fa-folder fa-fw"></i>
                                                 </a>
                                             </td>
@@ -172,7 +171,7 @@
                                     {foreach from=$indicadores item=indicador} 
                                         <tr>
                                             <td><span class="label label-primary">{$indicador->codigo}</span></td>
-                                            <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
+                                            <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                             <td>
                                                 {if $indicador->calculo}
                                                     <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
@@ -192,17 +191,15 @@
                                             <td>{$indicador->periodicidad}</td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}&id_entidad={$indicador->id_entidad}'>
-                                                    {$indicador->responsable->nombre} 
-                                                    {$indicador->responsable->apellidos}</a>
+                                                    {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                             </td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}&id_entidad={$indicador->id_entidad}'>
-                                                    {$indicador->responsable_medicion->nombre} 
-                                                    {$indicador->responsable_medicion->apellidos}
+                                                    {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}
                                                 </a>
                                             </td>
                                             <td>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_INDIC_MOSTRAR}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                     <i class="fa fa-folder fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
@@ -210,7 +207,7 @@
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                    title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}">
-                                                    <i class="fa fa-clock-o fa-fw"></i>
+                                                    <i class="fa fa-history fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                     <i class="fa fa-connectdevelop fa-fw"></i>
@@ -253,7 +250,7 @@
                                     {foreach from=$datos item=dato} 
                                         <tr>
                                             <td><span class="label label-primary">{$dato->codigo}</span></td>
-                                            <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$dato->id_entidad}'>{$dato->entidad->etiqueta}</a></td>
+                                            <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$dato->id_entidad}'>{$dato->entidad->etiqueta}</a></td>
                                             <td>
                                                 {if $dato->calculo}
                                                     <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$dato->calculo}"></i>
@@ -268,16 +265,14 @@
                                             <td>{$dato->periodicidad}</td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable}&id_entidad={$dato->id_entidad}'>
-                                                    {$dato->responsable->nombre} 
-                                                    {$dato->responsable->apellidos}</a>
+                                                    {$dato->responsable->nombre} {$dato->responsable->apellidos}</a>
                                             </td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable_medicion}&id_entidad={$dato->id_entidad}'>
-                                                    {$dato->responsable_medicion->nombre} 
-                                                    {$dato->responsable_medicion->apellidos}</a>
+                                                    {$dato->responsable_medicion->nombre} {$dato->responsable_medicion->apellidos}</a>
                                             </td>
                                             <td>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_DATO_MOSTRAR}" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
                                                     <i class="fa fa-folder fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
@@ -285,7 +280,7 @@
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
                                                    title="{$smarty.const.TXT_DATO_MEDICIONES}: {$dato->nombre}">
-                                                    <i class="fa fa-clock-o fa-fw"></i>
+                                                    <i class="fa fa-history fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
                                                     <i class="fa fa-tags fa-fw"></i>
@@ -322,7 +317,7 @@
                                 <tbody>
                                     {foreach from=$cuadros_publicos item=cuadro}
                                         <tr>
-                                            <td><a title="{$smarty.const.TXT_UNID_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$cuadro->entidad->id}'>{$cuadro->entidad->etiqueta}</a></td>
+                                            <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$cuadro->entidad->id}'>{$cuadro->entidad->etiqueta}</a></td>
                                             <td><a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td>            
                                             <td>
                                                 {if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}

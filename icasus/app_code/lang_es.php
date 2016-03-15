@@ -41,6 +41,7 @@ define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
 define('TXT_RESUL', 'Resultado');
+define('TXT_FICHA', 'Ficha');
 
 //Accesibilidad (atributo alt de las imágenes)
 define('TXT_FOTO_PERFIL', 'Foto de perfil');
@@ -50,16 +51,17 @@ define('TXT_LEYENDA', 'Leyenda');
 //Análisis de indicadores
 define('TXT_ANALISIS', 'Análisis');
 define('TXT_PLAN_ACCION', 'Plan de acción');
+define('TXT_TABLA_ANAPLAN', 'Análisis y Planes de acción / Año');
 
 //Archivos
-define('TXT_ARCHIVOS_PROC', 'Archivos del proceso: ');
+define('TXT_ARCHIVOS', 'Archivos');
 define('TXT_ARCHIVO_SUBIR_NUEVO', 'Subir nuevo archivo');
 define('TXT_ARCHIVO_SUBIR', 'Subir archivo');
 define('TXT_ARCHIVOS_SUBIR', 'Subir archivos');
 define('TXT_ARCHIVO_ACTUALIZAR_DATOS', 'Actualizar datos del archivo');
 define('TXT_ARCHIVO_NUEVO', 'Nuevo archivo');
 define('TXT_ARCHIVO_BORRAR', 'Borrar archivo');
-define('TXT_ARCHIVOS', 'Gestión de archivos');
+define('TXT_ARCHIVOS_GESTION', 'Gestión de archivos');
 define('TXT_ARCHIVO_SEL_IMPORT', 'Elija un archivo para importar');
 define('TXT_ARCHIVO_PROCESAR', 'Procesa archivo');
 define('TXT_ARCHIVOS_PROCESAR', 'Procesar archivos');
@@ -103,10 +105,8 @@ define('TXT_PANEL_INDICS', 'Indicadores/datos del panel');
 //Datos
 define('TXT_DATO_TODOS', 'Todos los datos');
 define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
-define('TXT_DATO_MOSTRAR', 'Mostrar ficha del dato');
 define('TXT_DATO_EDIT', 'Editar dato');
 define('TXT_DATO_BORRAR', 'Borrar dato');
-define('TXT_DATO_FICHA', 'Ficha del dato');
 define('TXT_DATO_NUEVO', 'Nuevo dato');
 define('TXT_DATO_PARAM', 'Parámetros del dato');
 define('TXT_DATO_CREAR', 'Crear dato');
@@ -139,7 +139,6 @@ define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la unidad a
 define('TXT_SUBUNID', 'La subunidad');
 define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes mediciones con los correspondientes valores');
 define('TXT_UNID_NUEVA', 'Nueva unidad');
-define('TXT_UNID_FICHA', 'Ficha de unidad');
 define('TXT_UNID_PROC_LIST', 'Lista de procesos de la unidad con sus indicadores');
 define('TXT_UNID_EDIT', 'Editar unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
@@ -153,8 +152,6 @@ define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_PARAM', 'Parámetros del indicador');
 define('TXT_INDIC_NUEVO', 'Nuevo indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
-define('TXT_INDIC_MOSTRAR', 'Mostrar ficha del indicador');
-define('TXT_INDIC_FICHA', 'Ficha del indicador');
 define('TXT_INDIC_CREAR', 'Crear indicador');
 define('TXT_INDIC_LIST', 'Lista de indicadores');
 define('TXT_INDIC_EDIT', 'Editar indicador');
@@ -219,7 +216,6 @@ define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
 define('TXT_MED_ASIG', ' Asignar la medición.');
 define('TXT_MED_VALORES', 'Valores de la medición');
 define('TXT_MED_DATOS', 'Datos de la medición');
-define('TXT_MED_GESTION', 'Gestión de mediciones');
 define('TXT_MED_AGREGAR', 'Agregar medición');
 define('TXT_MED_GENERAR', 'Generar medición/es');
 define('TXT_MED_TABLA', 'Tabla de mediciones');
@@ -288,7 +284,6 @@ define('TXT_PROC_VER', 'Ver proceso');
 define('TXT_PROC_MAP', 'Mapa de procesos');
 define('TXT_PROC_MAP_EDIT', 'Agregar/editar mapa de procesos');
 define('TXT_PROC_PARAM', 'Parámetros del proceso');
-define('TXT_PROC_FICHA', 'Ficha del proceso');
 define('TXT_PROC_NUEVO', 'Nuevo proceso');
 define('TXT_PROC_LIST', 'Lista de procesos');
 define('TXT_PROC_ES_MADRE', 'Es un proceso madre');
@@ -296,9 +291,7 @@ define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha del proces
 define('TXT_PROC_EDIT', 'Editar proceso');
 define('TXT_PROC_CREAR', 'Crear proceso');
 define('TXT_PROC_BORRAR', 'Borrar proceso');
-define('TXT_PROC_INDICS', 'Indicadores del proceso');
-define('TXT_PROC_FLUJO', 'Flujograma del proceso');
-define('TXT_PROC_ARCHIVOS', 'Archivos del proceso');
+define('TXT_PROC_FLUJO', 'Flujograma');
 
 //Propiedades
 define('TXT_EDIT_PROP', 'Editar propiedades');
@@ -439,6 +432,9 @@ define('MSG_CAMPO_REQ', 'Campo obligatorio');
 define('MSG_BUSCAR_NO_RESUL', 'No existen resultados para la búsqueda solicitada.');
 define('MSG_BUSCAR_NO_TEXTO', 'No introdujo ningún texto para buscar.');
 
+//Análisis y planes de acción
+define('MSG_ANAPLAN_NO', 'Todavía no se ha registrado ningún análisis ni plan de acción para el indicador. Utilice el selector de la parte superior y los cuadros de texto para ello.');
+
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');
 define('MSG_ARCHIVO_SUBIDA_OK', 'Se ha subido correctamente el archivo.');
@@ -484,6 +480,7 @@ define('MSG_DIM_EDITADA', 'Se ha modificado una dimensión.');
 
 //Entidades (Unidades)
 define('MSG_UNID_NO_PROC', 'No hay procesos definidos para esta unidad.');
+define('MSG_UNID_NO_ARCHIVOS', 'No se han subido archivos en esta unidad.');
 define('MSG_UNID_USERS_BORRADOS', 'Se han eliminado de la unidad');
 define('MSG_UNID_USERS_AGREGADOS', 'Se han agregado a la unidad');
 define('MSG_UNID_CONFIRM_EDITAR', 'Va a editar esta unidad, ¿está seguro?');

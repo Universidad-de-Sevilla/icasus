@@ -6,8 +6,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Graba de manera asincrona los nuevos valores de referencias y los actualiza desde la 
-// plantilla valor_referencia_crear.tpl
+// Descripcion: Gestiona los archivos de unidades y procesos
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
@@ -15,25 +14,33 @@ global $usuario;
 global $plantilla;
 
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
+$tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
 
 $fichero = new Fichero();
 $db = $fichero->DB();
 
 if ($modulo == 'subir')
 {
-//    $ext = pathinfo($_FILES['sarchivo']['name']);
-    $ext = $ext["extension"];
+    $extension = pathinfo($_FILES['sarchivo']['name']);
+    $ext = $extension["extension"];
     $fichero->titulo = filter_input(INPUT_POST, 'stitulo', FILTER_SANITIZE_STRING);
     $fichero->descripcion = filter_input(INPUT_POST, 'sdescripcion', FILTER_SANITIZE_STRING);
     $fichero->id_objeto = filter_input(INPUT_POST, 'id_objeto', FILTER_SANITIZE_NUMBER_INT);
     $fichero->id_usuario = $usuario->id;
     $fichero->visible = filter_input(INPUT_POST, 'svisible', FILTER_SANITIZE_NUMBER_INT);
-    $fichero->tipo_objeto = 'proceso';
+    //Vemos si el archivo es para una unidad o para un proceso
+    if ($tipo == 'proceso')
+    {
+        $fichero->tipo_objeto = 'proceso';
+    }
+    else
+    {
+        $fichero->tipo_objeto = 'unidad';
+    }
     $fichero->extension = $ext;
 
-    //Obtenemos el proceso
-    $proceso = new Proceso();
-    $proceso->Load("id=$fichero->id_objeto");
+    //Obtenemos la entidad
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
     $subdir = "$fichero->id_objeto";
     $dir = IC_DIR_BASE . "private_upload/$fichero->tipo_objeto/";
@@ -43,7 +50,14 @@ if ($modulo == 'subir')
         if (!mkdir($dir, 0755))
         {
             $error = ERR_DIR;
-            header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&error=$error");
+            if ($tipo == 'proceso')
+            {
+                header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
+            }
+            else
+            {
+                header("Location: index.php?page=archivo_gestionar&id_entidad=$id_entidad&error=$error");
+            }
         }
     }
     //comprobamos si el subdirectorio de la unidad existe.
@@ -52,7 +66,14 @@ if ($modulo == 'subir')
         if (!mkdir($dir . $subdir, 0755))
         {
             $error = ERR_SUBDIR;
-            header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&error=$error");
+            if ($tipo == 'proceso')
+            {
+                header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
+            }
+            else
+            {
+                header("Location: index.php?page=archivo_gestionar&id_entidad=$id_entidad&error=$error");
+            }
         }
     }
     //grabamos el archivo
@@ -66,13 +87,27 @@ if ($modulo == 'subir')
         else
         {
             $exito = MSG_ARCHIVO_SUBIDA_OK;
-            header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&exito=$exito");
+            if ($tipo == 'proceso')
+            {
+                header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&exito=$exito");
+            }
+            else
+            {
+                header("Location: index.php?page=archivo_gestionar&id_entidad=$id_entidad&exito=$exito");
+            }
         }
     }
     else
     {
         $error = ERR_ARCHIVO_GRABAR;
-        header("location:index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$proceso->id_entidad&error=$error");
+        if ($tipo == 'proceso')
+        {
+            header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
+        }
+        else
+        {
+            header("Location: index.php?page=archivo_gestionar&id_entidad=$id_entidad&error=$error");
+        }
     }
 }
 
