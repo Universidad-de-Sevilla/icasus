@@ -759,7 +759,14 @@ class LogicaIndicador implements ILogicaIndicador
                 $total = $this->calcular_total($indicador, $valores, $medicion->etiqueta);
                 array_push($totales, $total);
             }
-            return $totales[0];
+            if ($totales)
+            {
+                return $totales[0];
+            }
+            else
+            {
+                return NULL;
+            }
         }
         else
         {
