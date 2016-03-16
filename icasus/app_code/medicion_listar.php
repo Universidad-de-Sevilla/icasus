@@ -84,9 +84,45 @@ $smarty->assign('tipo', $tipo);
 
 //Simplemente ver si hay mediciones
 $medicion = new Medicion();
-$mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+switch ($indicador->periodicidad)
+{
+    //Semestral
+    case 'Semestral':
+        {
+            $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            break;
+        }
+    //Cuatrimestral
+    case 'Cuatrimestral':
+        {
+
+            $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            break;
+        }
+    //Trimestral
+    case 'Trimestral':
+        {
+            $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            break;
+        }
+    //Mensual
+    case 'Mensual':
+        {
+            $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            break;
+        }
+    //Bienal/Anual
+    default:
+        {
+            $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+        }
+}
 $smarty->assign("mediciones", $mediciones);
 
+////Simplemente ver si hay mediciones
+//$medicion = new Medicion();
+//$mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+//$smarty->assign("mediciones", $mediciones);
 //array de subunidades con las mediciones y sus valores
 $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
 $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
