@@ -200,33 +200,6 @@
 <br>
 <!-- /Menú del indicador -->
 
-<!-- Barra de botones -->
-<div class="row">
-    <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group pull-right" role="group" aria-label="">
-                {if !$indicador->calculo && ($_control || $_usuario->id==$indicador->id_responsable)}
-                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                        <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
-                    </a>
-                {/if}
-                {if $_control || $_usuario->id==$indicador->id_responsable}
-                    <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                        <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
-                    </a>
-                {/if}
-                <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
-<!-- /Barra de botones -->
-
 <!-- Indicadores/datos calculados -->
 {if $indicador->calculo}
     <div class="row">
@@ -349,31 +322,44 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                {if $_control || $responsable}
-                    <div class="btn-toolbar" role="toolbar" aria-label="">
-                        <div class="btn-group" role="group" aria-label="">
-
+                
+                <!-- Barra de botones -->
+                <div class="btn-toolbar" role="toolbar" aria-label="">
+                    <div class="btn-group" role="group" aria-label="">
+                        {if $_control || $responsable}
                             <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-danger" href='javascript:void(0)' 
                                data-toggle="modal" data-target="#dialogo_confirmar_generar">
-                                <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}
+                                <i class="fa fa-refresh fa-fw"></i>
                             </a>
-                           <!-- <a title="{$smarty.const.TXT_MED_AGREGAR}" class="btn btn-danger" href="index.php?page=medicion_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}">
-                                <i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_MED_AGREGAR}
-                            </a>-->
-
-                        </div>
-                        {if $mediciones}
-                            <div class="btn-group pull-right" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_MEDS_BORRAR}" class="btn btn-default btn-danger" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_mediciones">
-                                    <i class="fa fa-trash fa-fw"></i>
-                                </a>
-                            </div>
                         {/if}
+                        {if !$indicador->calculo && ($_control || $_usuario->id==$indicador->id_responsable)}
+                            <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                <i class="fa fa-pencil-square-o fa-fw"></i>
+                            </a>
+                        {/if}
+                        {if $_control || $_usuario->id==$indicador->id_responsable}
+                            <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                <i class="fa fa-user fa-fw"></i>
+                            </a>
+                        {/if}
+                        <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                            <i class="fa fa-tags fa-fw"></i>
+                        </a>
                     </div>
-                    <br>
-                {/if}
+                    {if $mediciones && ($_control || $responsable)}
+                        <div class="btn-group pull-right" role="group" aria-label="">
+                            <a title="{$smarty.const.TXT_MEDS_BORRAR}" class="btn btn-default btn-danger" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_mediciones">
+                                <i class="fa fa-trash fa-fw"></i>
+                            </a>
+                        </div>
+                    {/if}
+                </div>
+                <br>
+                <!-- /Barra de botones -->
+                
                 {if $mediciones}
                     <form id="form_mediciones" action='index.php?page=medicion_borrar&id_entidad={$entidad->id}&tipo={$tipo}' method='post'>
+                        <input type="hidden" name="id_indicador" value="{$indicador->id}"/>
                         <div class="table-responsive">
                             <table class="table datatable table-striped table-hover">
                                 <thead>
@@ -428,7 +414,7 @@
                                                 <td>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</td>
                                                 <td>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</td>
                                                 <td>{if $totales[$medicion->id] != NULL}<span class="badge">{$totales[$medicion->id]|round:"2"}</span>{else}---{/if}</td>
-                                                <td class="text-center">
+                                                <td>
                                                     {if $totales[$medicion->id] != NULL}
                                                         {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
                                                             {if  $totales[$medicion->id] < $medicion_lim[$medicion->id]}
@@ -457,7 +443,13 @@
                                                         ---
                                                     {/if}
                                                 </td>
-                                                <td>{$medicion->observaciones|truncate:60}</td>
+                                                <td>
+                                                    {if $medicion->observaciones != ''}
+                                                        {$medicion->observaciones|truncate:60}
+                                                    {else}
+                                                        ---
+                                                    {/if}
+                                                </td>
                                                 <td>
                                                     <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}"><i class="fa fa-pencil fa-fw"></i></a>
                                                         {if $_control || $responsable}
@@ -531,7 +523,7 @@
                                     {*Totales*}
                                     {foreach from=$subunidades_mediciones item=subunidades}
                                         {if $subunidades->id == $entidad->id}
-                                            <tr class="info">
+                                            <tr>
                                                 <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta}</b></td>
                                                 {for $i=($smarty.now|date_format:"%Y") to $indicador->historicos step=-1}
                                                     <td 
@@ -653,7 +645,7 @@
                                     {*Total en indicadores centralizados o agregados de tipo manual*}
                                     {foreach from=$subunidades_mediciones item=subunidades}
                                         {if $subunidades->id == $entidad->id && ($indicador->id_tipo_agregacion == 0 || $indicador->id_tipo_agregacion == 4)}
-                                            <tr class="info">
+                                            <tr>
                                                 <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta}</b></td>
                                                 {foreach from=$subunidades->mediciones item=medicion}
                                                     <td
@@ -716,7 +708,7 @@
                                     {*Total en indicadores agregados de tipo no manual*}
                                     {foreach from=$subunidades_mediciones item=subunidades}
                                         {if $subunidades->id == $entidad->id && $indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4}
-                                            <tr class="info">
+                                            <tr>
                                                 <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta}</b></td>
                                                 {foreach from=$subunidades->mediciones item=medicion}
                                                     <td 

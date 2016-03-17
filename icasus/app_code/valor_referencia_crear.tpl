@@ -6,7 +6,7 @@
                 <input type="hidden"  name="c-id_indicador" value="{$indicador->id}"/>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{$smarty.const.TXT_CERRAR}"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_VAL_REF_CREAR}</h3>
+                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-tag fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_VAL_REF_CREAR}</h3>
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
@@ -65,7 +65,7 @@
                 <input type="hidden"  name="e-id_indicador" value="{$indicador->id}"/>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{$smarty.const.TXT_CERRAR}"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_VAL_REF_EDIT}</h3>
+                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-tag fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_VAL_REF_EDIT}</h3>
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
@@ -216,19 +216,27 @@
         <div class="btn-toolbar" role="toolbar" aria-label="">
             <div class="btn-group" role="group" aria-label="">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}
+                    <i class="fa fa-history fa-fw"></i>
                 </a>
+                {if !$indicador->calculo && $permiso}
+                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <i class="fa fa-pencil-square-o fa-fw"></i>
+                    </a>
+                {/if}
+                {if $permiso}
+                    <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <i class="fa fa-user fa-fw"></i>
+                    </a>
+                {/if}
             </div>
             {if $permiso}
                 <div class="btn-group pull-right" role="group" aria-label="">
-                    {if !$indicador->calculo && $permiso}
-                        <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                            <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
-                        </a>
-                    {/if}
-                    {if $permiso}
-                        <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                            <i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}
+                    <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
+                        <i class="fa fa-tag fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                    </a>
+                    {if $indicador->valores_referencia}
+                        <a href="javascript:void(0)" title="{$smarty.const.TXT_VAL_REF_BORRAR}" class="btn btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                            <i class="fa fa-trash fa-fw"></i>
                         </a>
                     {/if}
                 </div>
@@ -243,21 +251,6 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            {if $permiso}
-                <div class="btn-group pull-right" role="group" aria-label="">
-                    <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
-                        <i class="fa fa-plus-circle fa-fw"></i>
-                    </a>
-                    {if $indicador->valores_referencia}
-                        <a href="javascript:void(0)" title="{$smarty.const.TXT_VAL_REF_BORRAR}" class="btn btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                            <i class="fa fa-trash fa-fw"></i>
-                        </a>
-                    {/if}
-                </div>
-            {/if}
-        </div>
-        <br>
         {if $indicador->valores_referencia}
             <form id="form_val_ref" action='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&borrar' method='post'>
                 <div class="table-responsive">

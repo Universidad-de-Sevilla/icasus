@@ -216,7 +216,6 @@ define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
 define('TXT_MED_ASIG', ' Asignar la medición.');
 define('TXT_MED_VALORES', 'Valores de la medición');
 define('TXT_MED_DATOS', 'Datos de la medición');
-define('TXT_MED_AGREGAR', 'Agregar medición');
 define('TXT_MED_GENERAR', 'Generar medición/es');
 define('TXT_MED_TABLA', 'Tabla de mediciones');
 define('TXT_MED_ULTIMA', 'Última medición');
@@ -536,6 +535,7 @@ define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las me
 define('MSG_MED_GENERANDO', 'Generando mediciones... espere por favor.');
 define('MSG_MED_GENERADA', 'Se ha/n generado correctamente todas la/s medición/es.');
 define('MSG_MED_EXISTE', 'Se ha/n generado sólo la/s medición/es no existente/s desde el año seleccionado.');
+define('MSG_MEDS_NO_MARCADAS', 'No se ha marcado ninguna medición para borrar.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');

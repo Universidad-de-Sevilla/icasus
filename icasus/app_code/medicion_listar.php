@@ -83,48 +83,48 @@ $smarty->assign('entidad', $entidad);
 $smarty->assign('tipo', $tipo);
 
 //Simplemente ver si hay mediciones
-$medicion = new Medicion();
 switch ($indicador->periodicidad)
 {
     //Semestral
     case 'Semestral':
         {
-            $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            //Últimos 4 años
+            $limite = 8;
             break;
         }
     //Cuatrimestral
     case 'Cuatrimestral':
         {
-
-            $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            //Últimos 4 años
+            $limite = 12;
             break;
         }
     //Trimestral
     case 'Trimestral':
         {
-            $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            //Últimos 4 años
+            $limite = 16;
             break;
         }
     //Mensual
     case 'Mensual':
         {
-            $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            //Últimos 2 años
+            $limite = 24;
             break;
         }
     //Bienal/Anual
     default:
         {
-            $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            //Últimos 4 años
+            $limite = 4;
         }
 }
+$medicion = new Medicion();
+$mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC LIMIT $limite");
 $smarty->assign("mediciones", $mediciones);
 
-////Simplemente ver si hay mediciones
-//$medicion = new Medicion();
-//$mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
-//$smarty->assign("mediciones", $mediciones);
-//array de subunidades con las mediciones y sus valores
-$subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
+$subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id, $limite);
 $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
 
 //Totales

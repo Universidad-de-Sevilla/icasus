@@ -42,14 +42,21 @@ class Entidad extends ADOdb_Active_Record
 
     //obtener subunidades de una unidad con sus valores de todas las mediciones del indicador.
     //indicador_subunidad_valor.php 
-    public function find_subunidades_mediciones($id_indicador, $id_entidad)
+    public function find_subunidades_mediciones($id_indicador, $id_entidad, $limite = null)
     {
-
         $subunidades = $this->find("id = $id_entidad OR id_madre = $id_entidad ORDER BY etiqueta");
         foreach ($subunidades as $subunidad)
         {
             $medicion = new Medicion();
-            $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            if ($limite)
+            {
+                $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC LIMIT $limite");
+            }
+            else
+            {
+                $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+            }
+
             foreach ($mediciones as $medicion)
             {
                 $valor = new Valor();

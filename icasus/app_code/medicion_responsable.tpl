@@ -78,17 +78,15 @@
         <div class="btn-toolbar" role="toolbar" aria-label="">
             <div class="btn-group" role="group" aria-label="">    
                 <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}
+                    <i class="fa fa-history fa-fw"></i>
                 </a>
-            </div>
-            <div class="btn-group pull-right" role="group" aria-label="">
                 {if !$indicador->calculo && ($_control || $responsable)}
                     <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                        <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
+                        <i class="fa fa-pencil-square-o fa-fw"></i>
                     </a>
                 {/if}
                 <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}
+                    <i class="fa fa-tags fa-fw"></i>
                 </a>
             </div>
         </div>
