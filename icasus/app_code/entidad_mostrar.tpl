@@ -486,7 +486,7 @@
                                                             <div class="carousel-caption">
                                                                 <h3>
                                                                     <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}' 
-                                                                       title="{$indicador->nombre}: {$indicador->descripcion}"><i class="fa fa-line-chart fa-fw"></i> {$indicador->nombre}</a>
+                                                                       title="{$indicador->nombre}: {$indicador->descripcion}"><i class="fa fa-line-chart fa-fw"></i></a>
                                                                 </h3>
                                                                 <p style="color: #337AB7">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
                                                             </div>
@@ -566,7 +566,7 @@
                                                     <div class="carousel-caption">
                                                         <h3>
                                                             <a href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}' 
-                                                               title="{$dato->nombre}: {$dato->descripcion}"><i class="fa fa-line-chart fa-fw"></i> {$dato->nombre}</a>
+                                                               title="{$dato->nombre}: {$dato->descripcion}"><i class="fa fa-line-chart fa-fw"></i></a>
                                                         </h3>
                                                         <p style="color: #337AB7">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
                                                     </div>

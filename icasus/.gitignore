@@ -1,5 +1,5 @@
 templates_c/*
 cache/*
 app_code/app_config.php
-upload/*
+private_upload/*
 .idea/*
