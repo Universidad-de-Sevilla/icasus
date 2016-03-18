@@ -71,6 +71,36 @@
 </div>
 <!-- /Diálogo Confirmar Generar -->
 
+<!-- Diálogo Confirmar Cargar -->
+<div class="modal fade" id="dialogo_confirmar_cargar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_MED_CARGAR}: {$indicador->nombre}</h3>
+            </div>
+            <form class="form-horizontal" id="form_cargar" name="form_cargar" data-toggle="validator" method="post" action="index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}">
+                <div class="modal-body">
+                    <p>{$smarty.const.MSG_MED_CARGAR}</p>
+                    <div class="form-group has-feedback">
+                        <label for="registros" class="col-sm-3 control-label">{$smarty.const.FIELD_REGISTROS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <div class="col-sm-4">
+                            <input type="number" value="{$total_registros}" name="registros" id='registros' class="form-control" placeholder="{$smarty.const.FIELD_REGISTROS}" min='1' max="{$total_registros}" required/>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                    <button id="btn_confirm_cargar" type="submit" title="{$smarty.const.TXT_SI}" data-texto_cargando="{$smarty.const.MSG_MED_CARGANDO}" class="btn btn-success"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Cargar -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -317,7 +347,7 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-history fa-fw"></i> {$smarty.const.TXT_MED_TABLA}</span>
+                <span class="panel-title"><i class="fa fa-history fa-fw"></i> {$smarty.const.TXT_MED_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite==$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
@@ -330,6 +360,12 @@
                             <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-danger" href='javascript:void(0)' 
                                data-toggle="modal" data-target="#dialogo_confirmar_generar">
                                 <i class="fa fa-refresh fa-fw"></i>
+                            </a>
+                        {/if}
+                        {if $mediciones}
+                            <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger" href='javascript:void(0)' 
+                               data-toggle="modal" data-target="#dialogo_confirmar_cargar">
+                                <i class="fa fa-upload fa-fw"></i>
                             </a>
                         {/if}
                         {if !$indicador->calculo && ($_control || $_usuario->id==$indicador->id_responsable)}
@@ -487,18 +523,18 @@
         <div class="col-lg-12">
             <div class="panel panel-red">
                 <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA} ({$smarty.const.TXT_ANUAL})</span>
+                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA} ({$smarty.const.TXT_ANUAL}: {$smarty.const.TXT_DESDE} {$anyo_inicio})</span>
                     <i class="fa fa-chevron-up pull-right clickable"></i>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     {if $mediciones}
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover tabla_valores">
+                            <table class="table table-striped table-hover tabla_anual">
                                 <thead>
                                     <tr>
                                         <th>{$smarty.const.FIELD_UNID}</th>
-                                            {for $i=($smarty.now|date_format:"%Y") to $indicador->historicos step=-1}
+                                            {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
                                             <th>{$i}</th>
                                             {/for}
                                     </tr>
@@ -508,7 +544,7 @@
                                         {if $subunidades->id != $entidad->id}
                                             <tr>
                                                 <td><span class="label label-primary">{$subunidades->etiqueta}</span></td>
-                                                {for $i=($smarty.now|date_format:"%Y") to $indicador->historicos step=-1}
+                                                {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
                                                     <td>
                                                         {if $totales_anuales[$subunidades->id][$i]== NULL}
                                                             ---
@@ -525,7 +561,7 @@
                                         {if $subunidades->id == $entidad->id}
                                             <tr>
                                                 <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta}</b></td>
-                                                {for $i=($smarty.now|date_format:"%Y") to $indicador->historicos step=-1}
+                                                {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
                                                     <td 
                                                         {if isset($ref_anuales_lim[$i]) AND isset($ref_anuales_obj[$i])}
                                                             {if  $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
@@ -609,7 +645,7 @@
         <div class="col-lg-12">
             <div class="panel panel-red">
                 <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA}</span>
+                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite==$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
                     <i class="fa fa-chevron-up pull-right clickable"></i>
                 </div>
                 <!-- /.panel-heading -->
