@@ -15,7 +15,7 @@
                 manualmente nos cercioramos de no listar la Unidad madre en orden, la pondremos al final*}
                 {if $valor->id_entidad!=$entidad->id && $indicador->id_tipo_agregacion!= 0}
                     <tr>
-                        <td>{$valor->entidad->etiqueta}</td>
+                        <td><span class="label label-primary">{$valor->entidad->etiqueta}</span></td>
                         <td style="white-space: nowrap">
                             {if $valor->id == $valor_edit && $valor->activo}
                                 <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}">
@@ -27,7 +27,7 @@
                                 {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
                             {/if}
                         </td>
-                        <td class="text-center"> 
+                        <td> 
                             ---
                         </td>
                         <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
@@ -36,7 +36,7 @@
                 {/if}
                 {*El indicador/dato es no agregado*}
                 {if $indicador->id_tipo_agregacion== 0}
-                    <tr style="font-weight: bold" {if isset($medicion_lim) AND isset($medicion_obj)}
+                    <tr {if isset($medicion_lim) AND isset($medicion_obj)}
                         {if  $valor->valor < $medicion_lim}
                             class="danger"
                         {else if $valor->valor >= $medicion_obj}
@@ -59,7 +59,7 @@
                             class="success"
                         {/if}
                     {/if}>
-                    <td>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</td>
+                    <td><b>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</b></td>
                     <td>
                         {if $valor->id == $valor_edit}
                             {if $indicador->calculo}{$indicador->calculo}<br />{/if}
@@ -67,10 +67,10 @@
                             <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
                             <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
                             {else}
-                            <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
+                            <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}<span class="badge">{$valor->valor|round:"2"}</span>{/if}</a>
                         {/if}
                     </td>
-                    <td class="text-center"> 
+                    <td> 
                         {if $valor->valor != NULL}
                             {if isset($medicion_lim) AND isset($medicion_obj)}
                                 {if  $valor->valor < $medicion_lim}
@@ -107,7 +107,7 @@
                         <!-- TOTALES -->
                         {*El indicador/dato es agregado y su total no se introduce manualmente*}
                         {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
-                            <tr style="font-weight: bold"
+                            <tr
                                 {if isset($medicion_lim) AND isset($medicion_obj)}
                                     {if  $total < $medicion_lim}
                                         class="danger"
@@ -131,15 +131,15 @@
                                         class="success"
                                     {/if}
                                 {/if}>
-                                <td style="border-left:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</td>
-                                <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                <td><b>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</b></td>
+                                <td>
                                     {if $total === NULL}
                                         ---
                                     {else}
-                                        {$total|round:"2"}
+                                        <span class="badge">{$total|round:"2"}</span>
                                     {/if}
                                 </td>
-                                <td class="text-center" style="border-top:solid 2px #950717;border-bottom:solid 2px #950717"> 
+                                <td> 
                                     {if $total != NULL}
                                         {if isset($medicion_lim) AND isset($medicion_obj)}
                                             {if  $total < $medicion_lim}
@@ -168,15 +168,15 @@
                                         ---
                                     {/if}
                                 </td>
-                                <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>
-                                <td style="border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>  
+                                <td>---</td>
+                                <td>---</td>  
                             </tr>
                         {/if}
                         {*El indicador/dato es agregado y su total se introduce manualmente*}
                         {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion== 4}
                             {foreach $valores as $valor}
                                 {if $valor->id_entidad==$entidad->id}
-                                    <tr style="font-weight: bold"
+                                    <tr
                                         {if isset($medicion_lim) AND isset($medicion_obj)}
                                             {if  $valor->valor < $medicion_lim}
                                                 class="danger"
@@ -200,18 +200,18 @@
                                                 class="success"
                                             {/if}
                                         {/if}>
-                                        <td style="border-left:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</td>
-                                        <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717;white-space: nowrap">
+                                        <td><b>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</b></td>
+                                        <td>
                                             {if $valor->id == $valor_edit}
                                                 {if $indicador->calculo}{$indicador->calculo}<br />{/if}
                                                 <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}">
                                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
                                                 {else}
-                                                <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
+                                                <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}<span class="badge">{$valor->valor|round:"2"}</span>{/if}</a>
                                             {/if}
                                         </td>
-                                        <td class="text-center" style="border-top:solid 2px #950717;border-bottom:solid 2px #950717"> 
+                                        <td> 
                                             {if $valor->valor != NULL}
                                                 {if isset($medicion_lim) AND isset($medicion_obj)}
                                                     {if  $valor->valor < $medicion_lim}
@@ -240,10 +240,10 @@
                                                 ---
                                             {/if}
                                         </td>
-                                        <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                        <td>
                                             {$valor->fecha_recogida|date_format:"%d-%m-%Y"}
                                         </td>
-                                        <td style="font-size: 12px;border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                        <td>
                                             {$valor->usuario->nombre} {$valor->usuario->apellidos}
                                         </td>  
                                     </tr>
@@ -272,7 +272,7 @@
                 listar la Unidad madre en orden, la pondremos al final*}
                 {if $valor->id_entidad!=$entidad->id && $indicador->id_tipo_agregacion!= 0}
                     <tr>
-                        <td>{$valor->entidad->etiqueta}</td>
+                        <td><span class="label label-primary">{$valor->entidad->etiqueta}</span></td>
                         <td>
                             {if $valor->activo}
                             <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">
@@ -286,7 +286,7 @@
                                 {/if}
                             {/if}
                         </td>
-                        <td class="text-center"> 
+                        <td> 
                             ---
                         </td>
                         <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
@@ -295,7 +295,7 @@
                 {/if}
                 {*El indicador/dato es no agregado*}
                 {if $indicador->id_tipo_agregacion== 0}
-                    <tr style="font-weight: bold" {if isset($medicion_lim) AND isset($medicion_obj)}
+                    <tr {if isset($medicion_lim) AND isset($medicion_obj)}
                         {if  $valor->valor < $medicion_lim}
                             class="danger"
                         {else if $valor->valor >= $medicion_obj}
@@ -318,15 +318,15 @@
                             class="success"
                         {/if}
                     {/if}>
-                        <td>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</td>
+                    <td><b>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</b></td>
                         <td>
                             <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">
                                 {if $valor->valor == NULL}---
-                                {else}{$valor->valor|round:"2"}
+                                {else}<span class="badge">{$valor->valor|round:"2"}</span>
                                 {/if}
                             </a>
                         </td>
-                        <td class="text-center"> 
+                        <td> 
                             {if $valor->valor != NULL}
                                 {if isset($medicion_lim) AND isset($medicion_obj)}
                                     {if  $valor->valor < $medicion_lim}
@@ -363,7 +363,7 @@
             <!-- TOTALES -->
             {*El indicador/dato es agregado y su total no se introduce manualmente*}
             {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
-                <tr style="font-weight: bold"
+                <tr
                     {if isset($medicion_lim) AND isset($medicion_obj)}
                                     {if  $total < $medicion_lim}
                                         class="danger"
@@ -387,15 +387,15 @@
                                         class="success"
                                     {/if}
                                 {/if}>
-                    <td style="border-left:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</td>
-                    <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                    <td><b>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</b></td>
+                    <td>
                         {if $total === NULL}
                             ---
                         {else}
-                            {$total|round:"2"}
+                            <span class="badge">{$total|round:"2"}</span>
                         {/if}
                     </td>
-                    <td class="text-center" style="border-top:solid 2px #950717;border-bottom:solid 2px #950717"> 
+                    <td> 
                         {if $total != NULL}
                             {if isset($medicion_lim) AND isset($medicion_obj)}
                                 {if  $total < $medicion_lim}
@@ -424,15 +424,15 @@
                             ---
                         {/if}
                     </td>
-                    <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>
-                    <td style="border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>  
+                    <td>---</td>
+                    <td>---</td>  
                 </tr>
             {/if}
             {*El indicador/dato es agregado y su total se introduce manualmente*}
             {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion== 4}
                 {foreach $valores as $valor}
                     {if $valor->id_entidad==$entidad->id}
-                        <tr style="font-weight: bold"
+                        <tr
                             {if isset($medicion_lim) AND isset($medicion_obj)}
                                             {if  $valor->valor < $medicion_lim}
                                                 class="danger"
@@ -456,15 +456,15 @@
                                                 class="success"
                                             {/if}
                                         {/if}>
-                            <td style="border-left:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</td>
-                            <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                            <td><b>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</b></td>
+                            <td>
                                 <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion_edit}', '{$valor->id}');">
                                     {if $valor->valor == NULL}---
-                                    {else}{$valor->valor|round:"2"}
+                                    {else}<span class="badge">{$valor->valor|round:"2"}</span>
                                     {/if}
                                 </a>
                             </td>
-                            <td class="text-center" style="border-top:solid 2px #950717;border-bottom:solid 2px #950717"> 
+                            <td> 
                                 {if $valor->valor != NULL}
                                     {if isset($medicion_lim) AND isset($medicion_obj)}
                                         {if  $valor->valor < $medicion_lim}
@@ -493,10 +493,10 @@
                                     ---
                                 {/if}
                             </td>
-                            <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                            <td>
                                 {$valor->fecha_recogida|date_format:"%d-%m-%Y"}
                             </td>
-                            <td style="font-size: 12px;border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                            <td>
                                 {$valor->usuario->nombre} {$valor->usuario->apellidos}
                             </td>  
                         </tr>

@@ -68,6 +68,13 @@ if (filter_has_var(INPUT_GET, 'tipo') AND filter_has_var(INPUT_GET, 'id_entidad'
             }
         }
     }
+    //Si no marcamos ninguna casilla
+    if (filter_has_var(INPUT_POST, 'id_indicador') && !filter_has_var(INPUT_POST, 'id_mediciones'))
+    {
+        $id_indicador = filter_input(INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
+        $aviso = MSG_MEDS_NO_MARCADAS;
+        header("location:index.php?page=medicion_listar&id_$tipo=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
+    }
 }
 else
 {

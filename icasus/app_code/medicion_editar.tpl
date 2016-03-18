@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_MED_VAL_INTERVALO} <span id="intervalo"></span></p>
@@ -23,7 +23,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_MED_VAL_NO_PERIODO} <span id="periodo"></span></p>
@@ -42,7 +42,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_MED_VAL_NOMUM}</p>
@@ -61,7 +61,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_MED_VAL_NULO}</p>
@@ -80,7 +80,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_MED_ETIQUETA_NULA}</p>
@@ -239,23 +239,23 @@
                     <div class="btn-toolbar" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
                             <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                <i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}
+                                <i class="fa fa-history fa-fw"></i>
+                            </a>
+                            {if !$indicador->calculo && $permiso_unidad}
+                                <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                    <i class="fa fa-pencil-square-o fa-fw"></i>
+                                </a>
+                            {/if}
+                            <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                <i class="fa fa-tags fa-fw"></i>
                             </a>
                         </div>
                         <div class="btn-group pull-right" role="group" aria-label="">
                             {if $indicador->calculo && $permiso_editar}
                                 <a title="{$smarty.const.TXT_VAL_CALC_DESCRIPCION}" class="btn btn-danger" href='index.php?page=medicion_actualizar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo={$tipo}'>
-                                    <i class="fa fa-calculator fa-fw"></i> {$smarty.const.TXT_VAL_CALCULAR}
+                                    <i class="fa fa-calculator fa-fw"></i>
                                 </a>
                             {/if}
-                            {if !$indicador->calculo && $permiso_unidad}
-                                <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                    <i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}
-                                </a>
-                            {/if}
-                            <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                <i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}
-                            </a>
                             {if $permiso_editar}
                                 <a class="btn btn-danger" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
                                     <i class="fa fa-trash fa-fw"></i>
@@ -293,7 +293,7 @@
                                                 <tr>
                                                     <td><span class="badge">{$indicador_influyente->id}</span></td>
                                                     <td>
-                                                        <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$entidad->id}' 
+                                                        <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}' 
                                                            title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
                                                             <i class="fa fa-dashboard fa-fw"></i> {$indicador_influyente->nombre}
                                                         </a>
@@ -303,7 +303,7 @@
                                                 <tr>
                                                     <td><span class="badge">{$indicador_influyente->id}</span></td>
                                                     <td> 
-                                                        <a class="btn btn-info" href='index.php?page=dato_mostrar&id_dato={$indicador_influyente->id}&id_entidad={$entidad->id}' 
+                                                        <a class="btn btn-info" href='index.php?page=dato_mostrar&id_dato={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}' 
                                                            title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
                                                             <i class="fa fa-database fa-fw"></i> {$indicador_influyente->nombre}
                                                         </a>
@@ -351,7 +351,7 @@
                                                 <tr>
                                                     <td><span class="badge">{$indicador_dependiente->id}</span></td>
                                                     <td>
-                                                        <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$entidad->id}' 
+                                                        <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}' 
                                                            title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
                                                             <i class="fa fa-dashboard fa-fw"></i> {$indicador_dependiente->nombre}
                                                         </a>
@@ -361,7 +361,7 @@
                                                 <tr>
                                                     <td><span class="badge">{$indicador_dependiente->id}</span></td>
                                                     <td> 
-                                                        <a class="btn btn-warning" href='index.php?page=dato_mostrar&id_dato={$indicador_dependiente->id}&id_entidad={$entidad->id}' 
+                                                        <a class="btn btn-warning" href='index.php?page=dato_mostrar&id_dato={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}' 
                                                            title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
                                                             <i class="fa fa-database fa-fw"></i> {$indicador_dependiente->nombre}
                                                         </a>
@@ -588,7 +588,7 @@
                                     listar la Unidad madre en orden, la pondremos al final*}
                                     {if $valor->id_entidad!=$entidad->id && $indicador->id_tipo_agregacion!= 0}
                                         <tr>
-                                            <td>{$valor->entidad->etiqueta}</td>
+                                            <td><span class="label label-primary">{$valor->entidad->etiqueta}</span></td>
                                             <td>
                                                 {if $permiso_editar && !$indicador->calculo && $valor->activo}
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
@@ -606,7 +606,7 @@
                                                     {/if}
                                                 {/if}
                                             </td>
-                                            <td class="text-center"> 
+                                            <td> 
                                                 ---
                                             </td>
                                             <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
@@ -615,7 +615,7 @@
                                     {/if}
                                     {*El indicador/dato es no agregado*}
                                     {if $indicador->id_tipo_agregacion== 0}
-                                        <tr style="font-weight: bold" {if isset($medicion_lim) AND isset($medicion_obj)}
+                                        <tr {if isset($medicion_lim) AND isset($medicion_obj)}
                                             {if  $valor->valor < $medicion_lim}
                                                 class="danger"
                                             {else if $valor->valor >= $medicion_obj}
@@ -638,25 +638,25 @@
                                                 class="success"
                                             {/if}
                                         {/if}>
-                                        <td>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</td>
+                                        <td><b>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</b></td>
                                         <td>
                                             {if $permiso_editar && !$indicador->calculo}
                                                 <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
                                                     {if $valor->valor == NULL}
                                                         ---
                                                     {else}
-                                                        {$valor->valor|round:"2"}
+                                                        <span class="badge">{$valor->valor|round:"2"}</span>
                                                     {/if}
                                                 </a>
                                             {else}
                                                 {if $valor->valor == NULL}
                                                     ---
                                                 {else}
-                                                    {$valor->valor|round:"2"}
+                                                    <span class="badge">{$valor->valor|round:"2"}</span>
                                                 {/if}
                                             {/if}
                                         </td>
-                                        <td class="text-center"> 
+                                        <td> 
                                             {if $valor->valor != NULL}
                                                 {if isset($medicion_lim) AND isset($medicion_obj)}
                                                     {if  $valor->valor < $medicion_lim}
@@ -693,7 +693,7 @@
                                             <!-- TOTALES -->
                                             {*El indicador/dato es agregado y su total no se introduce manualmente*}
                                             {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
-                                                <tr style="font-weight: bold"
+                                                <tr
                                                     {if isset($medicion_lim) AND isset($medicion_obj)}
                                                         {if $total < $medicion_lim}
                                                             class="danger"
@@ -717,15 +717,15 @@
                                                             class="success"
                                                         {/if}
                                                     {/if}>
-                                                    <td style="border-left:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</td>
-                                                    <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                                    <td><b>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</b></td>
+                                                    <td>
                                                         {if $total === NULL}
                                                             ---
                                                         {else}
-                                                            {$total|round:"2"}
+                                                            <span class="badge">{$total|round:"2"}</span>
                                                         {/if}
                                                     </td>
-                                                    <td class="text-center" style="border-top:solid 2px #950717;border-bottom:solid 2px #950717"> 
+                                                    <td> 
                                                         {if $total != NULL}
                                                             {if isset($medicion_lim) AND isset($medicion_obj)}
                                                                 {if  $total < $medicion_lim}
@@ -754,8 +754,8 @@
                                                             ---
                                                         {/if}
                                                     </td>
-                                                    <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>
-                                                    <td style="border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">---</td>  
+                                                    <td>---</td>
+                                                    <td>---</td>  
                                                 </tr>
                                             {/if}
                                             {*El indicador/dato es agregado y su total se introduce manualmente*}
@@ -786,25 +786,25 @@
                                                                     class="success"
                                                                 {/if}
                                                             {/if}>
-                                                            <td style="border-left:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717;">{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</td>
-                                                            <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                                            <td><b>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</b></td>
+                                                            <td>
                                                                 {if $permiso_editar && !$indicador->calculo}
                                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
                                                                         {if $valor->valor == NULL}
                                                                             ---
                                                                         {else}
-                                                                            {$valor->valor|round:"2"}
+                                                                            <span class="badge">{$valor->valor|round:"2"}</span>
                                                                         {/if}
                                                                     </a>
                                                                 {else}
                                                                     {if $valor->valor == NULL}
                                                                         ---
                                                                     {else}
-                                                                        {$valor->valor|round:"2"}
+                                                                        <span class="badge">{$valor->valor|round:"2"}</span>
                                                                     {/if}
                                                                 {/if}
                                                             </td>
-                                                            <td class="text-center" style="border-top:solid 2px #950717;border-bottom:solid 2px #950717"> 
+                                                            <td> 
                                                                 {if $valor->valor != NULL}
                                                                     {if isset($medicion_lim) AND isset($medicion_obj)}
                                                                         {if  $valor->valor < $medicion_lim}
@@ -833,10 +833,10 @@
                                                                     ---
                                                                 {/if}
                                                             </td>
-                                                            <td style="border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                                            <td>
                                                                 {$valor->fecha_recogida|date_format:"%d-%m-%Y"}
                                                             </td>
-                                                            <td style="font-size: 12px;border-right:solid 2px #950717;border-top:solid 2px #950717;border-bottom:solid 2px #950717">
+                                                            <td>
                                                                 {$valor->usuario->nombre} {$valor->usuario->apellidos}
                                                             </td>  
                                                         </tr>

@@ -216,8 +216,8 @@ define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
 define('TXT_MED_ASIG', ' Asignar la medición.');
 define('TXT_MED_VALORES', 'Valores de la medición');
 define('TXT_MED_DATOS', 'Datos de la medición');
-define('TXT_MED_AGREGAR', 'Agregar medición');
 define('TXT_MED_GENERAR', 'Generar medición/es');
+define('TXT_MED_CARGAR', 'Cargar medición/es');
 define('TXT_MED_TABLA', 'Tabla de mediciones');
 define('TXT_MED_ULTIMA', 'Última medición');
 define('TXT_MEDS_BORRAR', 'Borrar mediciones');
@@ -247,8 +247,11 @@ define('TXT_CONSULTA_DESCRIPCION', 'Consulta: efectuar consultas y operaciones q
 define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones y valores de los distintos indicadores y datos de la unidad.');
 
 //Navegación
+define('TXT_MOSTRANDO', 'Mostrando');
 define('TXT_MOSTRAR_RESUL', 'Mostrar resultado');
 define('TXT_MOSTAR_OCULTAR_NAV', 'Mostrar/Ocultar navegación');
+define('TXT_REGS_TODOS', 'Todos los registros');
+define('TXT_DESDE', 'desde');
 define('TXT_VER', 'Ver');
 define('TXT_SI', 'Si');
 define('TXT_NO', 'No');
@@ -533,9 +536,12 @@ define('MSG_MED_VAL_NOMUM', 'Está intentando introducir un dato que no es recon
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
 define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las mediciones (si no existen), desde el año fijado (mínimo año del histórico) hasta el año actual. Tomará algo de tiempo en función del año seleccionado y la periodicidad del indicador/dato, ¿está seguro?');
+define('MSG_MED_CARGAR', 'Esta acción, cargará la cantidad indicada de registros de las mediciones del indicador/dato. Tomará algo de tiempo en función del número de registros seleccionado, ¿está seguro?');
 define('MSG_MED_GENERANDO', 'Generando mediciones... espere por favor.');
+define('MSG_MED_CARGANDO', 'Cargando mediciones... espere por favor.');
 define('MSG_MED_GENERADA', 'Se ha/n generado correctamente todas la/s medición/es.');
 define('MSG_MED_EXISTE', 'Se ha/n generado sólo la/s medición/es no existente/s desde el año seleccionado.');
+define('MSG_MEDS_NO_MARCADAS', 'No se ha marcado ninguna medición para borrar.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
