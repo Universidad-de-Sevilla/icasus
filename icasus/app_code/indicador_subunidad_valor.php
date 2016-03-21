@@ -39,6 +39,14 @@ if (isset($id_entidad))
     $indicador->load("id = $id_indicador");
     $smarty->assign('indicador', $indicador);
 
+    //Proceso del indicador
+    if ($tipo == 'indicador')
+    {
+        $proceso = new Proceso();
+        $proceso->load("id = $indicador->id_proceso");
+        $smarty->assign('proceso', $proceso);
+    }
+
     // Comprueba permisos para el usuario: responsable unidad, responsable delegado, 
     // responsable indicador
     if (($control || $indicador->id_responsable == $usuario->id) && !$indicador->calculo)
