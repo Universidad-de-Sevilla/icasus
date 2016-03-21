@@ -44,6 +44,15 @@ if ($indicador->id_responsable == $usuario->id)
     $responsable = true;
 }
 $smarty->assign('responsable', $responsable);
+
+//Proceso del indicador
+if ($tipo == 'indicador')
+{
+    $proceso = new Proceso();
+    $proceso->load("id = $indicador->id_proceso");
+    $smarty->assign('proceso', $proceso);
+}
+
 if ($control || $responsable)
 {
     $indicador_subunidad = new Indicador_subunidad();
