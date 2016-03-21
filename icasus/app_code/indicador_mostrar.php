@@ -44,7 +44,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $smarty->assign('proceso', $proceso);
 
     //Obtener todos los indicadores del proceso para avanzar o retroceder 
-    $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso=$proceso->id");
+    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id");
     $smarty->assign("indicadores", $indicadores);
     $cont = 0;
     foreach ($indicadores as $ind)

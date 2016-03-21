@@ -37,8 +37,12 @@ $smarty->assign('indicador', $indicador);
 
 if ($tipo == "indicador")
 {
+    //Proceso del indicador
+    $proceso = new Proceso();
+    $proceso->load("id = $indicador->id_proceso");
+    $smarty->assign('proceso', $proceso);
     //Obtener todos los indicadores para avanzar o retroceder 
-    $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
+    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id");
     $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
 }
 else
