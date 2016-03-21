@@ -37,8 +37,13 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     }
     $smarty->assign('responsable', $responsable);
 
+    //Proceso del indicador
+    $proceso = new Proceso();
+    $proceso->load("id = $indicador->id_proceso");
+    $smarty->assign('proceso', $proceso);
+
     //Obtener todos los indicadores para avanzar o retroceder 
-    $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
+    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id");
     $smarty->assign("indicadores", $indicadores);
     $cont = 0;
     foreach ($indicadores as $ind)
