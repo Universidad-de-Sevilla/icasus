@@ -42,9 +42,17 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 $indicador = new Indicador();
 $indicador->load_joined("id=$id_indicador");
 
-$entidad = new Entidad();
-$entidad->load("id = $indicador->id_entidad");
-$smarty->assign('entidad', $entidad);
+//Proceso del indicador
+if ($tipo == 'indicador')
+{
+    $proceso = new Proceso();
+    $proceso->load("id = $indicador->id_proceso");
+    $smarty->assign('proceso', $proceso);
+}
+
+//$entidad = new Entidad();
+//$entidad->load("id = $indicador->id_entidad");
+//$smarty->assign('entidad', $entidad);
 
 //Permiso para crear y borrar referencias
 $permiso = false;
