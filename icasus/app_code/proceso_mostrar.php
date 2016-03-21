@@ -26,7 +26,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
     $smarty->assign('proceso', $proceso);
 
     //Obtener todos los procesos para avanzar o retroceder 
-    $procesos = $proceso->Find_joined("id_entidad = $id_entidad ORDER BY codigo");
+    $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");
     $smarty->assign("procesos", $procesos);
     $cont = 0;
     foreach ($procesos as $proc)
