@@ -30,6 +30,14 @@ if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'
     $indicador->load("id = $medicion->id_indicador");
     $smarty->assign("indicador", $indicador);
 
+    //Proceso del indicador
+    if ($tipo == 'indicador')
+    {
+        $proceso = new Proceso();
+        $proceso->load("id = $indicador->id_proceso");
+        $smarty->assign('proceso', $proceso);
+    }
+
     //Obtener todas las mediciones para avanzar o retroceder 
     $mediciones = $medicion->Find("id_indicador = $indicador->id ORDER BY periodo_inicio");
     $smarty->assign("mediciones", $mediciones);
