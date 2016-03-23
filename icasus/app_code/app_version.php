@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.14.1");
-define('IC_FECHA_REVISION', "21/03/2016");
+define('IC_VERSION', "3.15.0");
+define('IC_FECHA_REVISION', "23/03/2016");
 
+// 3.15.0 - 23/03/2016 - Inclusión de la extensión FixedHeader para los datatables. Fijada la cabecera de todas las datatables.
 // 3.14.1 - 21/03/2016 - Se incluye el proceso al que pertenece un indicador dentro del menú de migas de pan.
 // 3.14.0 - 18/03/2016 - Cambios de estilo y mejoras varias en la gestión de las mediciones de indicadores/datos.
 // 3.13.1 - 15/03/2016 - Corregidos enlaces a unidades en desplegables de influencias/dependencias de cálculo. Corregido fallo en cálculos de totales anuales en indicadores/datos evolutivos cuando no existen todavía mediciones para el año.

@@ -583,7 +583,7 @@
             <div role="tabpanel" class="tab-pane" id="med_valores">
                 {if $valores}
                     <div id="valors" data-valor_min="{$indicador->valor_min}" data-valor_max="{$indicador->valor_max}" class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover tabla_valores">
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_UNID}</th>

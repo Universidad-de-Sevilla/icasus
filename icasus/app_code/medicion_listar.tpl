@@ -541,7 +541,7 @@
                 <div class="panel-body">
                     {if $mediciones}
                         <div class="table-responsive">
-                            <table class="table table-striped table-hover tabla_anual">
+                            <table class="table table-striped table-hover tabla_valores">
                                 <thead>
                                     <tr>
                                         <th>{$smarty.const.FIELD_UNID}</th>

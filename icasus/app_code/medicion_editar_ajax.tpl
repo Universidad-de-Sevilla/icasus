@@ -1,5 +1,5 @@
 {if $modulo == 'editarfila'}
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover tabla_valores">
         <thead>
             <tr>
                 <th>{$smarty.const.FIELD_UNID}</th>
@@ -256,7 +256,7 @@
                 {/if}
                     
 {if $modulo == 'cancelarfila'}
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover tabla_valores">
         <thead>
             <tr>
                 <th>{$smarty.const.FIELD_UNID}</th>

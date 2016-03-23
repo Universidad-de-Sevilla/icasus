@@ -36,10 +36,11 @@ $('#btn_confirm_cargar').click(function (e) {
     $('#dialogo_confirmar_cargar .modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_cargando + "</h4>");
 });
 
-//Tabla anual y de valores
-$('.tabla_valores,.tabla_anual').DataTable({
+//Tablas de valores
+tablas_valores = $('.tabla_valores').DataTable({
     "bPaginate": false,
     "bSort": false,
+    fixedHeader: true,
     dom: "<'row'<'col-sm-12'B>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12'>>",
@@ -55,4 +56,9 @@ $('.tabla_valores,.tabla_anual').DataTable({
             ]
         }
     ]
+});
+
+//Reajustamos las cabeceras de las datatables al hacer scroll
+$('.table-responsive').on('scroll', function () {
+    tablas_valores.fixedHeader.adjust();
 });
