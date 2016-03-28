@@ -41,7 +41,7 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
     $smarty->assign('entidad', $entidad);
 
     //Obtener todos los datos para avanzar o retroceder 
-    $datos = $dato->Find_joined("id_entidad = $id_entidad AND id_proceso IS NULL");
+    $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL");
     $smarty->assign("datos", $datos);
     $cont = 0;
     foreach ($datos as $dat)

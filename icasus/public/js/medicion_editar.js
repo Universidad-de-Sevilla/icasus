@@ -372,3 +372,23 @@ hs.Expander.prototype.onAfterExpand = function () {
 $('#tab_med_datos').click(function () {
     actualizaGrafica();
 });
+
+//Tablas de valores
+tablas_valores = $('.tabla_valores').DataTable({
+    "bPaginate": false,
+    "bSort": false,
+    fixedHeader: true,
+    dom: "<'row'<'col-sm-12'>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-12'>>"
+});
+
+//Reajustamos las cabeceras de las datatables al cambiar de pestaña
+$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    tablas_valores.fixedHeader.adjust();
+});
+
+//Reajustamos las cabeceras de las datatables al hacer scroll
+$('.table-responsive').on('scroll', function () {
+    tablas_valores.fixedHeader.adjust();
+});
