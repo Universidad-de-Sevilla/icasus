@@ -64,9 +64,6 @@ backToTop();
 //Si cambia la longitud del documento
 onElementHeightChange(document.body, function () {
     backToTop();
-    $('.datatable').each(function (tabla) {
-        $.fn.dataTable.FixedHeader(tabla);
-    });
 });
 
 function backToTop() {
