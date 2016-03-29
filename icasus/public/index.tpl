@@ -39,6 +39,9 @@
         <!-- Datatables FixedHeader -->
         <link href="lib/dataTables/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
 
+        <!-- Datatables FixedColumns -->
+        <link href="lib/dataTables/css/fixedColumns.bootstrap.min.css" rel="stylesheet">
+
         <!-- Highslide -->
         <link rel="stylesheet" type="text/css" href="lib/highslide/highslide.css"/>
         <script type='text/javascript' src="lib/highslide/js/highslide-full.min.js"></script>
@@ -395,8 +398,11 @@
         <script src="lib/dataTables/js/jquery.dataTables.min.js"></script>
         <script src="lib/dataTables/js/dataTables.bootstrap.js"></script>
 
-        <!-- Datatables FixedHeader-->
+        <!-- Datatables FixedHeader -->
         <script src="lib/dataTables/js/dataTables.fixedHeader.min.js"></script>
+
+        <!-- Datatables FixedColumns -->
+        <script src="lib/dataTables/js/dataTables.fixedColumns.min.js"></script>
 
         <!-- Datatables Buttons -->
         <script src="lib/dataTables/js/dataTables.buttons.min.js"></script>

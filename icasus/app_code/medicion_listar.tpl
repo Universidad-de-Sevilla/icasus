@@ -358,7 +358,7 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-history fa-fw"></i> {$smarty.const.TXT_MED_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite==$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
+                <span class="panel-title"><i class="fa fa-history fa-fw"></i> {$smarty.const.TXT_MED_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite==$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.TXT_DE} {$total_registros} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
@@ -540,7 +540,6 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     {if $mediciones}
-                        <div class="table-responsive">
                             <table class="table table-striped table-hover tabla_valores">
                                 <thead>
                                     <tr>
@@ -551,22 +550,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {foreach from=$subunidades_mediciones item=subunidades}
-                                        {if $subunidades->id != $entidad->id}
-                                            <tr>
-                                                <td><span class="label label-primary">{$subunidades->etiqueta}</span></td>
-                                                {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
-                                                    <td>
-                                                        {if $totales_anuales[$subunidades->id][$i]== NULL}
-                                                            ---
-                                                        {else}
-                                                            {$totales_anuales[$subunidades->id][$i]|round:"2"}
-                                                        {/if}
-                                                    </td>
-                                                {/for}
-                                            </tr>
-                                        {/if}
-                                    {/foreach}
+                                   {if $indicador->id_tipo_agregacion!=0} 
+                                        {foreach from=$subunidades_mediciones item=subunidades}
+                                            {if $subunidades->id != $entidad->id}
+                                                <tr>
+                                                    <td><span class="label label-primary">{$subunidades->etiqueta}</span></td>
+                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                                        <td>
+                                                            {if $totales_anuales[$subunidades->id][$i]== NULL}
+                                                                ---
+                                                            {else}
+                                                                {$totales_anuales[$subunidades->id][$i]|round:"2"}
+                                                            {/if}
+                                                        </td>
+                                                    {/for}
+                                                </tr>
+                                            {/if}
+                                        {/foreach}
+                                    {/if}
+                                </tbody>
+                                <tfoot>
                                     {*Totales*}
                                     {foreach from=$subunidades_mediciones item=subunidades}
                                         {if $subunidades->id == $entidad->id}
@@ -630,9 +633,8 @@
                                             </tr>
                                         {/if}
                                     {/foreach}
-                                </tbody>
+                                </tfoot>
                             </table>
-                        </div>
                     {else}
                         <div class="alert alert-info alert-dismissible">
                             <i class="fa fa-info-circle fa-fw"></i> 
@@ -656,13 +658,12 @@
         <div class="col-lg-12">
             <div class="panel panel-red">
                 <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite==$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
+                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite==$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.TXT_DE} {$total_registros} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
                     <i class="fa fa-chevron-up pull-right clickable"></i>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     {if $mediciones}
-                        <div class="table-responsive">
                             <table class="table table-striped table-hover tabla_valores">
                                 <thead>
                                     <tr>
@@ -689,6 +690,8 @@
                                             </tr>
                                         {/if}
                                     {/foreach}
+                                </tbody>
+                                <tfoot>
                                     {*Total en indicadores centralizados o agregados de tipo manual*}
                                     {foreach from=$subunidades_mediciones item=subunidades}
                                         {if $subunidades->id == $entidad->id && ($indicador->id_tipo_agregacion == 0 || $indicador->id_tipo_agregacion == 4)}
@@ -815,9 +818,8 @@
                                             </tr>
                                         {/if}
                                     {/foreach}
-                                </tbody>
+                                </tfoot>
                             </table>
-                        </div>
                     {else}
                         <div class="alert alert-info alert-dismissible">
                             <i class="fa fa-info-circle fa-fw"></i> 
