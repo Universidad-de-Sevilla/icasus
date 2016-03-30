@@ -253,16 +253,17 @@ $(function () {
 });
 
 //Tablas de valores
-tablas_valores = $('#tabla_valores').DataTable({
+$('#tabla_valores').DataTable({
     "bPaginate": false,
     "bSort": false,
-    fixedHeader: true,
+    scrollY: "400px",
+    scrollX: true,
+    scrollCollapse: true,
+    paging: false,
+    fixedColumns: {
+        leftColumns: 2
+    },
     dom: "<'row'<'col-sm-12'>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12'>>"
-});
-
-//Reajustamos las cabeceras de las datatables al hacer scroll
-$('.table-responsive').on('scroll', function () {
-    tablas_valores.fixedHeader.adjust();
 });

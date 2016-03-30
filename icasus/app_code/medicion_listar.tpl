@@ -540,41 +540,40 @@
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     {if $mediciones}
-                            <table class="table table-striped table-hover tabla_valores">
-                                <thead>
-                                    <tr>
-                                        <th>{$smarty.const.FIELD_UNID}</th>
-                                            {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
-                                            <th>{$i}</th>
-                                            {/for}
-                                    </tr>
-                                </thead>
+                        <table class="table table-striped table-hover tabla_valores">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_UNID}</th>
+                                        {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                        <th>{$i}</th>
+                                        {/for}
+                                </tr>
+                            </thead>
+                            {if $indicador->id_tipo_agregacion!=0} 
                                 <tbody>
-                                   {if $indicador->id_tipo_agregacion!=0} 
-                                        {foreach from=$subunidades_mediciones item=subunidades}
-                                            {if $subunidades->id != $entidad->id}
-                                                <tr>
-                                                    <td><span class="label label-primary">{$subunidades->etiqueta}</span></td>
-                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
-                                                        <td>
-                                                            {if $totales_anuales[$subunidades->id][$i]== NULL}
-                                                                ---
-                                                            {else}
-                                                                {$totales_anuales[$subunidades->id][$i]|round:"2"}
-                                                            {/if}
-                                                        </td>
-                                                    {/for}
-                                                </tr>
-                                            {/if}
-                                        {/foreach}
-                                    {/if}
+                                    {foreach from=$subunidades_mediciones item=subunidades}
+                                        {if $subunidades->id != $entidad->id}
+                                            <tr>
+                                                <td><span class="label label-primary">{$subunidades->etiqueta}</span></td>
+                                                {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                                    <td>
+                                                        {if $totales_anuales[$subunidades->id][$i]== NULL}
+                                                            ---
+                                                        {else}
+                                                            {$totales_anuales[$subunidades->id][$i]|round:"2"}
+                                                        {/if}
+                                                    </td>
+                                                {/for}
+                                            </tr>
+                                        {/if}
+                                    {/foreach}
                                 </tbody>
                                 <tfoot>
                                     {*Totales*}
                                     {foreach from=$subunidades_mediciones item=subunidades}
                                         {if $subunidades->id == $entidad->id}
                                             <tr>
-                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta}</b></td>
+                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion_temporal})</b></td>
                                                 {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
                                                     <td 
                                                         {if isset($ref_anuales_lim[$i]) AND isset($ref_anuales_obj[$i])}
@@ -634,7 +633,74 @@
                                         {/if}
                                     {/foreach}
                                 </tfoot>
-                            </table>
+                            {else}
+                                <tbody>
+                                {*Totales*}
+                                    {foreach from=$subunidades_mediciones item=subunidades}
+                                        {if $subunidades->id == $entidad->id}
+                                            <tr>
+                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion_temporal})</b></td>
+                                                {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                                    <td 
+                                                        {if isset($ref_anuales_lim[$i]) AND isset($ref_anuales_obj[$i])}
+                                                            {if  $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                            {else if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                            {else}
+                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
+                                                            {/if}
+                                                        {/if}
+                                                        {if isset($ref_anuales_obj[$i]) AND !isset($ref_anuales_lim[$i])}
+                                                            {if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                            {else}
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                            {/if}
+                                                        {/if}
+                                                        {if isset($ref_anuales_lim[$i]) AND !isset($ref_anuales_obj[$i])}
+                                                            {if $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                            {else}
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                            {/if}
+                                                        {/if}>
+                                                        {if $totales_anuales[$subunidades->id][$i]== NULL} 
+                                                            --- 
+                                                        {else}
+                                                            <span class="badge">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
+                                                            {if isset($ref_anuales_lim[$i]) AND isset($ref_anuales_obj[$i])}
+                                                                {if  $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
+                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                {else if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
+                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                {else}
+                                                                    <i class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                                {/if}
+                                                            {/if}
+                                                            {if isset($ref_anuales_obj[$i]) AND !isset($ref_anuales_lim[$i])}
+                                                                {if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
+                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                {else}
+                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                {/if}
+                                                            {/if}
+                                                            {if isset($ref_anuales_lim[$i]) AND !isset($ref_anuales_obj[$i])}
+                                                                {if $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
+                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                {else}
+                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                {/if}
+                                                            {/if}
+                                                        {/if}
+                                                    </td>
+                                                {/for}
+                                            </tr>
+                                        {/if}
+                                    {/foreach}
+                                </tbody>
+                            {/if}
+                        </table>
                     {else}
                         <div class="alert alert-info alert-dismissible">
                             <i class="fa fa-info-circle fa-fw"></i> 
@@ -696,7 +762,7 @@
                                     {foreach from=$subunidades_mediciones item=subunidades}
                                         {if $subunidades->id == $entidad->id && ($indicador->id_tipo_agregacion == 0 || $indicador->id_tipo_agregacion == 4)}
                                             <tr>
-                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta}</b></td>
+                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion})</b></td>
                                                 {foreach from=$subunidades->mediciones item=medicion}
                                                     <td
                                                         {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
@@ -759,7 +825,7 @@
                                     {foreach from=$subunidades_mediciones item=subunidades}
                                         {if $subunidades->id == $entidad->id && $indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4}
                                             <tr>
-                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta}</b></td>
+                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion})</b></td>
                                                 {foreach from=$subunidades->mediciones item=medicion}
                                                     <td 
                                                         {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}

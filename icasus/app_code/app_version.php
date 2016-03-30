@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.15.1");
-define('IC_FECHA_REVISION', "28/03/2016");
+define('IC_VERSION', "3.16.0");
+define('IC_FECHA_REVISION', "30/03/2016");
 
+// 3.16.0 - 30/03/2016 - Inclusión de la extensión FixedColumns de datatables para fijar la columna de las unidades en las las tablas de valores.
 // 3.15.1 - 28/03/2016 - Corrección en index.js llamada incorrecta/innecesaria a extensión FixedHeader de datatables.
 // 3.15.0 - 23/03/2016 - Inclusión de la extensión FixedHeader para los datatables. Fijada la cabecera de todas las datatables.
 // 3.14.1 - 21/03/2016 - Se incluye el proceso al que pertenece un indicador dentro del menú de migas de pan.

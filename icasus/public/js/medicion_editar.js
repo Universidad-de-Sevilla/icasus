@@ -374,7 +374,7 @@ $('#tab_med_datos').click(function () {
 });
 
 //Tablas de valores
-tablas_valores = $('.tabla_valores').DataTable({
+tablas_valores = $('#tabla_valores').DataTable({
     "bPaginate": false,
     "bSort": false,
     fixedHeader: true,

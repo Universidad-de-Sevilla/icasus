@@ -37,7 +37,7 @@ $('#btn_confirm_cargar').click(function (e) {
 });
 
 //Tablas de valores
-tablas_valores = $('.tabla_valores').DataTable({
+$('.tabla_valores').DataTable({
     "bPaginate": false,
     "bSort": false,
     scrollY: "400px",

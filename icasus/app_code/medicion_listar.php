@@ -157,6 +157,15 @@ if ($mediciones)
     }
     $smarty->assign('totales', $totales);
 
+    //Agregación entre unidades
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+
+    //Agregación entre periodos intranuales
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion_temporal");
+    $smarty->assign("agregacion_temporal", $tipo_agregacion->descripcion);
+
     //Si el indicador/dato tiene una periodicidad intranual
     if ($indicador->id_tipo_agregacion_temporal != 0)
     {
