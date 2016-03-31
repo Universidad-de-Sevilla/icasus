@@ -35,6 +35,14 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $cont++;
     }
 
+    //Cambio de carácter orgánico vía ajax
+    if (filter_has_var(INPUT_GET, 'organica'))
+    {
+        $organica = filter_input(INPUT_GET, 'organica', FILTER_SANITIZE_NUMBER_INT);
+        $entidad->es_organica = $organica;
+        $entidad->Save();
+    }
+
     //Usuarios
     $usuarios = $entidad->usuario;
     $smarty->assign('usuarios', $usuarios);

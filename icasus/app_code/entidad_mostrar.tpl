@@ -224,14 +224,8 @@
                                             <td>{$entidad->nombre}</td>
                                         </tr>
                                         <tr>
-                                            <th>{$smarty.const.FIELD_WEB}</th>
-                                            <td>
-                                                {if $entidad->web}
-                                                    <a title="{$entidad->web}" href='{$entidad->web}' target="_blank">{$entidad->web}</a>
-                                                {else}
-                                                    ---
-                                                {/if}
-                                            </td>
+                                            <th>{$smarty.const.FIELD_ETIQUETA} ({$smarty.const.FIELD_ETIQUETA_MINI})</th>
+                                            <td>{$entidad->etiqueta} ({$entidad->etiqueta_mini})</td>
                                         </tr>
                                         {if $entidad->madre->id !=0 && $entidad->madre->id !=1}
                                             <tr>
@@ -241,6 +235,32 @@
                                                 </td>
                                             </tr>
                                         {/if}
+                                        <tr>
+                                            <th>{$smarty.const.FIELD_WEB}</th>
+                                            <td>
+                                                {if $entidad->web}
+                                                    <a title="{$entidad->web}" href='{$entidad->web}' target="_blank">{$entidad->web}</a>
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>{$smarty.const.FIELD_ORGANICA}</th>
+                                            <td>
+                                                {if $_control}
+                                                    <input data-id_entidad="{$entidad->id}" type="checkbox" class="grafica" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                           data-off="{$smarty.const.TXT_NO}" {if $entidad->es_organica}checked{/if}
+                                                           id="organica">
+                                                {else}
+                                                    <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                           data-off="{$smarty.const.TXT_NO}" {if $entidad->es_organica}checked{/if} 
+                                                           disabled>
+                                                {/if}
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <th>{$smarty.const.FIELD_ANOTACION}</th>
                                             <td>

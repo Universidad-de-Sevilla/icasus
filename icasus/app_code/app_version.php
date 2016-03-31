@@ -1,9 +1,10 @@
 <?php
 
-define('IC_VERSION', "3.16.1");
+define('IC_VERSION', "3.16.2");
 define('IC_FECHA_REVISION', "31/03/2016");
 
-// 3.16.1 - 31/03/2016 - Cambiado el color a verde en las gráficas para valores de referencia con el nombre meta (sustituye al anterior nombre que era objetivo).
+// 3.16.2 - 31/03/2016 - Edición ampliada de los parámetros de una unidad (etiqueta, etiqueta_mini y es_organica). Cambiados textos archivos por gestión de archivos en listados de procesos.
+// 3.16.1 - 31/03/2016 - Cambiado el color a verde en las gráficas para valores de referencia con el nombre meta (sustituye al anterior nombre que era objetivo). 
 // 3.16.0 - 30/03/2016 - Inclusión de la extensión FixedColumns de datatables para fijar la columna de las unidades en las tablas de valores.
 // 3.15.1 - 28/03/2016 - Corrección en index.js llamada incorrecta/innecesaria a extensión FixedHeader de datatables.
 // 3.15.0 - 23/03/2016 - Inclusión de la extensión FixedHeader para los datatables. Fijada la cabecera de todas las datatables.

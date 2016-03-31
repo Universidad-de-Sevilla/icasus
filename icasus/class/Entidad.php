@@ -164,12 +164,15 @@ class Entidad extends ADOdb_Active_Record
         return $entidades;
     }
 
-    public function actualizar($id_entidad, $id_padre, $nombre, $web, $codigo, $anotaciones)
+    public function actualizar($id_entidad, $id_padre, $nombre, $etiqueta, $etiqueta_mini, $web, $organica, $codigo, $anotaciones)
     {
         $this->load("id = $id_entidad");
         $this->id_madre = $id_padre;
         $this->nombre = $nombre;
+        $this->etiqueta = $etiqueta;
+        $this->etiqueta_mini = $etiqueta_mini;
         $this->web = $web;
+        $this->es_organica = $organica;
         $this->codigo = $codigo;
         $this->anotaciones = $anotaciones;
         if ($this->save())

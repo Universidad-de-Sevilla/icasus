@@ -98,6 +98,22 @@
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
+                    <div class="form-group has-feedback">
+                        <label for="etiqueta" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <div class="col-sm-8">
+                            <input type='text' class="form-control" name='etiqueta' id='etiqueta' value='{$entidad->etiqueta}' placeholder="{$smarty.const.FIELD_ETIQUETA}" required/>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="etiqueta_mini" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA_MINI} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <div class="col-sm-8">
+                            <input title="{$smarty.const.TXT_ETIQUETA_MINI_DESCRIPCION}" type='text' maxlength="12" class="form-control" name='etiqueta_mini' id='etiqueta_mini' value='{$entidad->etiqueta_mini}' placeholder="{$smarty.const.FIELD_ETIQUETA_MINI}" required/>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
                     {if $entidad->id_madre!=0}
                         <div class="form-group">
                             <label for="id_padre" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID_SUP}</label>
@@ -121,6 +137,15 @@
                             <input type='url' name='web' id='web' class="form-control" value='{$entidad->web}' placeholder="URL"/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="organica" class="col-sm-2 control-label">{$smarty.const.FIELD_ORGANICA}</label>
+                        <div title="{$smarty.const.TXT_ORGANICA_DESCRIPCION}" class="col-sm-8">
+                            <input  type="checkbox" id="organica" name="organica" class="form-control" 
+                                    data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                    data-onstyle="success" data-offstyle="danger" data-size="small"
+                                    data-off="{$smarty.const.TXT_NO}" value="1" {if $entidad->es_organica}checked{/if} />         
                         </div>
                     </div>
                     <div class="form-group">

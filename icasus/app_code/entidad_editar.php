@@ -23,14 +23,21 @@ $smarty->assign('entidad', $entidad);
 $smarty->assign('_nombre_pagina', TXT_UNID_EDIT . ': ' . $entidad->nombre);
 
 // Si vienen todos los datos necesarios del formulario grabamos
-if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'codigo') && filter_has_var(INPUT_POST, 'id_padre'))
+if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'etiqueta') && filter_has_var(INPUT_POST, 'etiqueta_mini') && filter_has_var(INPUT_POST, 'codigo') && filter_has_var(INPUT_POST, 'id_padre'))
 {
     $nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+    $etiqueta = filter_input(INPUT_POST, 'etiqueta', FILTER_SANITIZE_STRING);
+    $etiqueta_mini = filter_input(INPUT_POST, 'etiqueta_mini', FILTER_SANITIZE_STRING);
     $id_padre = filter_input(INPUT_POST, 'id_padre', FILTER_SANITIZE_NUMBER_INT);
     $web = filter_has_var(INPUT_POST, 'web') ? filter_input(INPUT_POST, 'web', FILTER_SANITIZE_URL) : '';
+    $organica = filter_input(INPUT_POST, 'organica', FILTER_SANITIZE_NUMBER_INT);
+    if ($organica == NULL)
+    {
+        $organica = 0;
+    }
     $codigo = filter_has_var(INPUT_POST, 'codigo') ? filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_STRING) : '';
     $anotaciones = filter_input(INPUT_POST, 'anotaciones', FILTER_SANITIZE_STRING);
-    if ($entidad->actualizar($id_entidad, $id_padre, $nombre, $web, $codigo, $anotaciones))
+    if ($entidad->actualizar($id_entidad, $id_padre, $nombre, $etiqueta, $etiqueta_mini, $web, $organica, $codigo, $anotaciones))
     {
         $smarty->assign('entidad', $entidad);
         $exito = MSG_UNID_EDITADA;

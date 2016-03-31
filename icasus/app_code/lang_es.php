@@ -143,6 +143,8 @@ define('TXT_UNID_PROC_LIST', 'Lista de procesos de la unidad con sus indicadores
 define('TXT_UNID_EDIT', 'Editar unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
 define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, valores y fecha');
+define('TXT_ETIQUETA_MINI_DESCRIPCION', 'Indica como aparece el nombre de la unidad en las gráficas');
+define('TXT_ORGANICA_DESCRIPCION', 'Sólo aparecen en los listados las unidades orgánicas');
 
 //Indicadores
 define('TXT_INDIC_TODOS', 'Todos los indicadores');
@@ -708,6 +710,7 @@ define('FIELD_INICIO_GRABACION', 'Inicio de grabación');
 define('FIELD_FIN_GRABACION', 'Fin de grabación');
 define('FIELD_MEDIDOR', 'Medidor');
 define('FIELD_ETIQUETA', 'Etiqueta');
+define('FIELD_ETIQUETA_MINI', 'Etiqueta mini');
 define('FIELD_PENDIENTES', 'Pendientes');
 define('FIELD_EVENTO', 'Evento');
 define('FIELD_OBJETO', 'Objeto');
@@ -754,6 +757,7 @@ define('FIELD_SUBUNID', 'Subunidad');
 define('FIELD_SUBUNIDS', 'Subunidades');
 define('FIELD_SUBUNID_AFECT', 'Unidad/Subunidades afectadas');
 define('FIELD_UNIDS', 'Unidades');
+define('FIELD_ORGANICA', 'Orgánica');
 define('FIELD_ANOTACION', 'Anotaciones');
 
 //Gráficas
