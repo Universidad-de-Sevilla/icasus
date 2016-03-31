@@ -51,7 +51,7 @@ function HighchartSerie() {
             return '#FF0000';
         }
         //Los objetivos en verde
-        else if (unidad.indexOf('bjetivo') !== -1) {
+        else if (unidad.indexOf('eta') !== -1) {
             return '#00FF00';
         }
         //Los valores rebiun en negro
@@ -165,7 +165,7 @@ function HighchartSerie() {
             });
             //Colores para valores de referencia e indicadores de cuadros de mando
             if (unidad.indexOf('mite') !== -1
-                    || unidad.indexOf('bjetivo') !== -1
+                    || unidad.indexOf('eta') !== -1
                     || unidad.indexOf('ebiun') !== -1
                     || nomIndicador !== '') {
                 serieHighchart.push({

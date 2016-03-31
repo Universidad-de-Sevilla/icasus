@@ -409,7 +409,7 @@ define('TXT_VAL_REF_EDIT', 'Editar valor de referencia');
 define('TXT_VAL_REF_CREAR', 'Crear valor de referencia');
 define('TXT_VAL_REF_BORRAR', 'Borrar valores de referencia');
 define('TXT_VALS_DESACT', 'Desactivar valores');
-define('TXT_VAL_LOGRADO', 'Objetivo alcanzado');
+define('TXT_VAL_LOGRADO', 'Meta alcanzada');
 define('TXT_VAL_ACEPTABLE', 'Valor aceptable');
 define('TXT_VAL_MEJORABLE', 'Valor mejorable');
 
