@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.16.2");
-define('IC_FECHA_REVISION', "31/03/2016");
+define('IC_VERSION', "3.16.3");
+define('IC_FECHA_REVISION', "01/04/2016");
 
+// 3.16.3 - 01/04/2016 - Corregido fallo en código javascript de la gestión de archivos para hacer que el valor del campo visibilidad de la tabla coincida siempre con el del formulario de edición del archivo.
 // 3.16.2 - 31/03/2016 - Edición ampliada de los parámetros de una unidad (etiqueta, etiqueta_mini y es_organica). Cambiados textos archivos por gestión de archivos en listados de procesos.
 // 3.16.1 - 31/03/2016 - Cambiado el color a verde en las gráficas para valores de referencia con el nombre meta (sustituye al anterior nombre que era objetivo). 
 // 3.16.0 - 30/03/2016 - Inclusión de la extensión FixedColumns de datatables para fijar la columna de las unidades en las tablas de valores.

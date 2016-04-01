@@ -8,6 +8,7 @@
 //----------------------------------------------------------------------------
 
 $(document).ready(function () {
+    //Edición de archivos
     $(".editar_archivo").click(function () {
         var tag = $(this).attr('id');
         var ids = tag.split('-');
@@ -18,7 +19,11 @@ $(document).ready(function () {
         if ($('#l-visible-' + id).is(':checked')) {
             $('#evisible').bootstrapToggle('on');
         }
+        else {
+            $('#evisible').bootstrapToggle('off');
+        }
     });
+
     $("#egrabar").click(function () {
         var id = $('[name=id_fichero]').val();
         var titulo = $('[name=etitulo]').val();
@@ -34,6 +39,7 @@ $(document).ready(function () {
         }
     });
 
+    //Visibilidad de archivos
     $(".visibilidad").change(function () {
         var tag = $(this).attr('id');
         var ids = tag.split('-');
@@ -46,6 +52,7 @@ $(document).ready(function () {
         });
     });
 
+    //Borrado de archivos
     $("a.borrar_archivo").click(function () {
         var tag = $(this).attr('id');
         var ids = tag.split('-');
@@ -53,6 +60,7 @@ $(document).ready(function () {
         $('#id_borrar').attr('value', id);
         $('#titulo_borrar').html($('#l-titulo-' + id).attr('value'));
     });
+
     $("#borrar").click(function () {
         var id = $('[name=id_borrar]').val();
         $.post('index.php?page=archivo_gestionar_ajax&ajax=true&modulo=borrar', {id: id}, function () {
