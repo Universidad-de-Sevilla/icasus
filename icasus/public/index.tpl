@@ -15,7 +15,7 @@
         <title>{$_nombre_pagina} - {$smarty.const.TXT_ICASUS}</title>
 
         <!-- Favicon -->
-        <link rel=icon href=favicon.ico sizes="32x32 48x48" type="image/vnd.microsoft.icon">
+        <link rel="icon" href="favicon.ico">
 
         <!-- Bootstrap Core CSS -->
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
