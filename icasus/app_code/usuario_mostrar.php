@@ -93,7 +93,7 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
         }
         $smarty->assign('totales', $totales);
 
-        //Control (Status) de valores limite y objetivo
+        //Control (Status) de valores límite y metas
         $valor_referencia = new Valor_referencia();
         $valor_referencia_medicion = new Valor_referencia_medicion();
         $medicion_lim = array();
@@ -119,13 +119,13 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
                 {
                     foreach ($valores_referencia_medicion as $valor_referencia_medicion)
                     {
-                        //Es la referencia Limite
+                        //Es la referencia Límite
                         if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
                         {
                             $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
                         }
-                        //Es la referencia Objetivo
-                        if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+                        //Es la referencia Meta
+                        if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
                         {
                             $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
                         }

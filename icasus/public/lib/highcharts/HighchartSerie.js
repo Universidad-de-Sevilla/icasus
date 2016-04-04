@@ -50,7 +50,7 @@ function HighchartSerie() {
         if (unidad.indexOf('mite') !== -1) {
             return '#FF0000';
         }
-        //Los objetivos en verde
+        //Las metas en verde
         else if (unidad.indexOf('eta') !== -1) {
             return '#00FF00';
         }

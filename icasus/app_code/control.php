@@ -89,13 +89,13 @@ if ($modulo == 'inicio')
                     $mediciones_referencias[$med->id] = $valor_referencia_medicion->Find_joined("id_medicion=$med->id");
                     foreach ($mediciones_referencias[$med->id] as $valores_referencia_medicion)
                     {
-                        //Es la referencia Limite
+                        //Es la referencia Límite
                         if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
                         {
                             $medicion_lim[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
                         }
-                        //Es la referencia Objetivo
-                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+                        //Es la referencia Meta
+                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
                         {
                             $medicion_obj[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
                         }
@@ -193,13 +193,13 @@ if ($modulo == 'filtrOnlyear')
                     $mediciones_referencias[$med->id] = $valor_referencia_medicion->Find_joined("id_medicion=$med->id");
                     foreach ($mediciones_referencias[$med->id] as $valores_referencia_medicion)
                     {
-                        //Es la referencia Limite
+                        //Es la referencia Límite
                         if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
                         {
                             $medicion_lim[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
                         }
-                        //Es la referencia Objetivo
-                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+                        //Es la referencia Meta
+                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
                         {
                             $medicion_obj[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
                         }

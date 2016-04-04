@@ -293,7 +293,7 @@
                                 <th>{$smarty.const.FIELD_PROC}</th>
                                 <th>{$smarty.const.FIELD_MED}</th>
                                 <th>{$smarty.const.FIELD_LIMITE}</th>
-                                <th>{$smarty.const.FIELD_OBJ}</th>
+                                <th>{$smarty.const.FIELD_META}</th>
                                 <th>{$smarty.const.FIELD_ACCIONES}</th>
                             </tr>
                         </thead>
