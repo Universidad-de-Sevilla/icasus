@@ -37,10 +37,14 @@ $('#btn_confirm_cargar').click(function (e) {
 });
 
 //Tablas de valores
-tablas_valores = $('.tabla_valores').DataTable({
+$('.tabla_valores').DataTable({
     "bPaginate": false,
     "bSort": false,
-    fixedHeader: true,
+    scrollY: "400px",
+    scrollX: true,
+    scrollCollapse: true,
+    paging: false,
+    fixedColumns: true,
     dom: "<'row'<'col-sm-12'B>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12'>>",
@@ -56,9 +60,4 @@ tablas_valores = $('.tabla_valores').DataTable({
             ]
         }
     ]
-});
-
-//Reajustamos las cabeceras de las datatables al hacer scroll
-$('.table-responsive').on('scroll', function () {
-    tablas_valores.fixedHeader.adjust();
 });

@@ -143,6 +143,8 @@ define('TXT_UNID_PROC_LIST', 'Lista de procesos de la unidad con sus indicadores
 define('TXT_UNID_EDIT', 'Editar unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
 define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, valores y fecha');
+define('TXT_ETIQUETA_MINI_DESCRIPCION', 'Indica como aparece el nombre de la unidad en las gráficas');
+define('TXT_ORGANICA_DESCRIPCION', 'Sólo aparecen en los listados las unidades orgánicas');
 
 //Indicadores
 define('TXT_INDIC_TODOS', 'Todos los indicadores');
@@ -409,7 +411,7 @@ define('TXT_VAL_REF_EDIT', 'Editar valor de referencia');
 define('TXT_VAL_REF_CREAR', 'Crear valor de referencia');
 define('TXT_VAL_REF_BORRAR', 'Borrar valores de referencia');
 define('TXT_VALS_DESACT', 'Desactivar valores');
-define('TXT_VAL_LOGRADO', 'Objetivo alcanzado');
+define('TXT_VAL_LOGRADO', 'Meta alcanzada');
 define('TXT_VAL_ACEPTABLE', 'Valor aceptable');
 define('TXT_VAL_MEJORABLE', 'Valor mejorable');
 
@@ -689,9 +691,7 @@ define('FIELD_PERIODO', 'Periodo');
 define('FIELD_VISIBILIDAD', 'Visibilidad');
 define('FIELD_UMBRAL', 'Umbral');
 define('FIELD_LIMITE', 'Límite');
-define('FIELD_OBJ', 'Objetivo');
-define('FIELD_OBJP', 'Objetivo Pactado');
-define('FIELD_OBJC', 'Objetivo Carta de Servicio');
+define('FIELD_META', 'Meta');
 define('FIELD_CREAC', 'Creación');
 define('FIELD_MOD', 'Modificación');
 define('FIELD_FECHA_REV', 'Fecha de revisión');
@@ -708,9 +708,9 @@ define('FIELD_INICIO_GRABACION', 'Inicio de grabación');
 define('FIELD_FIN_GRABACION', 'Fin de grabación');
 define('FIELD_MEDIDOR', 'Medidor');
 define('FIELD_ETIQUETA', 'Etiqueta');
+define('FIELD_ETIQUETA_MINI', 'Etiqueta mini');
 define('FIELD_PENDIENTES', 'Pendientes');
 define('FIELD_EVENTO', 'Evento');
-define('FIELD_OBJETO', 'Objeto');
 define('FIELD_CAMBIO_A', 'Cambio a:');
 define('FIELD_ALIAS', 'Alias');
 define('FIELD_ORDEN', 'Orden');
@@ -754,6 +754,7 @@ define('FIELD_SUBUNID', 'Subunidad');
 define('FIELD_SUBUNIDS', 'Subunidades');
 define('FIELD_SUBUNID_AFECT', 'Unidad/Subunidades afectadas');
 define('FIELD_UNIDS', 'Unidades');
+define('FIELD_ORGANICA', 'Orgánica');
 define('FIELD_ANOTACION', 'Anotaciones');
 
 //Gráficas

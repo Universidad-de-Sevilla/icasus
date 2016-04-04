@@ -20,8 +20,14 @@ $(document).ready(function () {
         if ($('#l-grafica-' + id).is(':checked')) {
             $('#e-grafica').bootstrapToggle('on');
         }
+        else {
+            $('#e-grafica').bootstrapToggle('off');
+        }
         if ($('#l-activo-' + id).is(':checked')) {
             $('#e-activo').bootstrapToggle('on');
+        }
+        else {
+            $('#e-activo').bootstrapToggle('off');
         }
     });
     //Captura los valores de los campos y los envia con el formulario

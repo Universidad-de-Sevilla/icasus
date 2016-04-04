@@ -44,7 +44,7 @@ if (filter_has_var(INPUT_GET, 'id_principal') && filter_has_var(INPUT_GET, 'id_u
     }
     //Actualizamos el usuario
     if ($id_usuario == $usuario->id)
-    { 
+    {
         $usuario->entidades = $usuario_entidad->Find_entidades("id_usuario = $usuario->id");
     }
 }
@@ -94,7 +94,7 @@ if (isset($indicadores_datos))
     }
     $smarty->assign('totales', $totales);
 
-//Control (Status) de valores limite y objetivo
+    //Control (Status) de valores límite y metas
     $valor_referencia = new Valor_referencia();
     $valor_referencia_medicion = new Valor_referencia_medicion();
     $medicion_lim = array();
@@ -120,13 +120,13 @@ if (isset($indicadores_datos))
             {
                 foreach ($valores_referencia_medicion as $valor_referencia_medicion)
                 {
-                    //Es la referencia Limite
+                    //Es la referencia Límite
                     if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
                     {
                         $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
                     }
-                    //Es la referencia Objetivo
-                    if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+                    //Es la referencia Meta
+                    if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
                     {
                         $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
                     }
@@ -138,6 +138,7 @@ if (isset($indicadores_datos))
     $smarty->assign('medicion_obj', $medicion_obj);
     $smarty->assign('medicion_lim', $medicion_lim);
 }
+
 $smarty->assign('_javascript', array('inicio'));
 $smarty->assign('_nombre_pagina', TXT_INICIO);
 $plantilla = 'inicio.tpl';

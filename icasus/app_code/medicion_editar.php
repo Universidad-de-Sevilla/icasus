@@ -113,19 +113,19 @@ if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'
         $valores_referencia_medicion = $valor_referencia_medicion->Find_joined("id_medicion = $id_medicion");
         $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
 
-        //Control (Status) de valores limite y objetivo
+        //Control (Status) de valores límite y metas
         if ($valores_referencia_medicion)
         {
             foreach ($valores_referencia_medicion as $med_ref)
             {
-                //Es la referencia Limite
+                //Es la referencia Límite
                 if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
                 {
                     $medicion_lim = $med_ref->valor;
                     $smarty->assign('medicion_lim', $medicion_lim);
                 }
-                //Es la referencia Objetivo
-                if (strpos($med_ref->valor_referencia->etiqueta, 'bjetivo') !== false)
+                //Es la referencia Meta
+                if (strpos($med_ref->valor_referencia->etiqueta, 'eta') !== false)
                 {
                     $medicion_obj = $med_ref->valor;
                     $smarty->assign('medicion_obj', $medicion_obj);

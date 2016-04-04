@@ -19,6 +19,7 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
     modal.find('#borrar').attr('href', link);
 });
 
+//Habilita que el mapa de procesos sea responsivo al cambiar de pestaña
 $(window).on('show.bs.tab', function () {
     $(this).trigger('resize');
 });

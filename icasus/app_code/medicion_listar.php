@@ -157,6 +157,15 @@ if ($mediciones)
     }
     $smarty->assign('totales', $totales);
 
+    //Agregación entre unidades
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+
+    //Agregación entre periodos intranuales
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion_temporal");
+    $smarty->assign("agregacion_temporal", $tipo_agregacion->descripcion);
+
     //Si el indicador/dato tiene una periodicidad intranual
     if ($indicador->id_tipo_agregacion_temporal != 0)
     {
@@ -176,7 +185,7 @@ if ($mediciones)
         $smarty->assign('totales_anuales', $totales_anuales);
     }
 
-    //Control (Status) de valores limite y objetivo
+    //Control (Status) de valores límite y metas
     $valor_referencia = new Valor_referencia();
     $valor_referencia_medicion = new Valor_referencia_medicion();
     //Array que contiene las referencias para cada medicion del indicador
@@ -204,13 +213,13 @@ if ($mediciones)
             {
                 if ($valores_referencia_medicion)
                 {
-                    //Es la referencia Limite
+                    //Es la referencia Límite
                     if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
                     {
                         $medicion_lim[$med->id] = $valores_referencia_medicion->valor;
                     }
-                    //Es la referencia Objetivo
-                    if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+                    //Es la referencia Meta
+                    if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
                     {
                         $medicion_obj[$med->id] = $valores_referencia_medicion->valor;
                     }
@@ -226,7 +235,7 @@ if ($mediciones)
             for ($i = $anyo_inicio; $i != idate('Y') + 1; $i++)
             {
                 $ref_anuales_lim[$i] = $logicaIndicador->calcular_ref_anual($indicador, $valores_referencia, $i, 'mite');
-                $ref_anuales_obj[$i] = $logicaIndicador->calcular_ref_anual($indicador, $valores_referencia, $i, 'bjetivo');
+                $ref_anuales_obj[$i] = $logicaIndicador->calcular_ref_anual($indicador, $valores_referencia, $i, 'eta');
             }
             $smarty->assign('ref_anuales_lim', $ref_anuales_lim);
             $smarty->assign('ref_anuales_obj', $ref_anuales_obj);

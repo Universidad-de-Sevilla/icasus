@@ -589,7 +589,7 @@
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>                 
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS}" href='index.php?page=archivo_gestionar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS_GESTION}" href='index.php?page=archivo_gestionar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
                                                 <i class="fa fa-archive fa-fw"></i>
                                             </a>
                                             {if $_control}

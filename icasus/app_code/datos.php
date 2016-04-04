@@ -24,7 +24,7 @@ $smarty->assign("datos_propios", $datos_propios);
 
 if ($datos_propios)
 {
-// Valores totales de las últimas mediciones
+    // Valores totales de las últimas mediciones
     $totales = array();
     $valor = new Valor();
     foreach ($datos_propios as $indicador)
@@ -35,7 +35,7 @@ if ($datos_propios)
     }
     $smarty->assign('totales', $totales);
 
-//Control (Status) de valores limite y objetivo
+    //Control (Status) de valores límite y metas
     $valor_referencia = new Valor_referencia();
     $valor_referencia_medicion = new Valor_referencia_medicion();
     $medicion_lim = array();
@@ -61,13 +61,13 @@ if ($datos_propios)
             {
                 foreach ($valores_referencia_medicion as $valor_referencia_medicion)
                 {
-                    //Es la referencia Limite
+                    //Es la referencia Límite
                     if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
                     {
                         $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
                     }
-                    //Es la referencia Objetivo
-                    if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'bjetivo') !== false)
+                    //Es la referencia Meta
+                    if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
                     {
                         $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
                     }
@@ -79,6 +79,7 @@ if ($datos_propios)
     $smarty->assign('medicion_obj', $medicion_obj);
     $smarty->assign('medicion_lim', $medicion_lim);
 }
+
 $smarty->assign('_javascript', array('dato_listar'));
 $smarty->assign('_nombre_pagina', TXT_DATOS_US);
 $plantilla = 'datos.tpl';

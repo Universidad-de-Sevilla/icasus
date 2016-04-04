@@ -1,8 +1,14 @@
 <?php
 
-define('IC_VERSION', "3.15.1");
-define('IC_FECHA_REVISION', "28/03/2016");
+define('IC_VERSION', "3.16.5");
+define('IC_FECHA_REVISION', "04/04/2016");
 
+// 3.16.5 - 04/04/2016 - Cambiado el nombre del valor de referencia objetivo por el de meta (correcciones correspondientes en el código).
+// 3.16.4 - 04/04/2016 - Corregido fallo en código javascript de la gestión de valores de referencia para hacer que el valor de los campos visibilidad y activo de la tabla coincida siempre con el del formulario de edición del valor de referencia.
+// 3.16.3 - 01/04/2016 - Corregido fallo en código javascript de la gestión de archivos para hacer que el valor del campo visibilidad de la tabla coincida siempre con el del formulario de edición del archivo.
+// 3.16.2 - 31/03/2016 - Edición ampliada de los parámetros de una unidad (etiqueta, etiqueta_mini y es_organica). Cambiados textos archivos por gestión de archivos en listados de procesos.
+// 3.16.1 - 31/03/2016 - Cambiado el color a verde en las gráficas para valores de referencia con el nombre meta (sustituye al anterior nombre que era objetivo). 
+// 3.16.0 - 30/03/2016 - Inclusión de la extensión FixedColumns de datatables para fijar la columna de las unidades en las tablas de valores.
 // 3.15.1 - 28/03/2016 - Corrección en index.js llamada incorrecta/innecesaria a extensión FixedHeader de datatables.
 // 3.15.0 - 23/03/2016 - Inclusión de la extensión FixedHeader para los datatables. Fijada la cabecera de todas las datatables.
 // 3.14.1 - 21/03/2016 - Se incluye el proceso al que pertenece un indicador dentro del menú de migas de pan.

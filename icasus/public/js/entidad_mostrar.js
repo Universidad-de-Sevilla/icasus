@@ -4,9 +4,21 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-// Muestra los gráficos de los indicadores y datos en entidad_mostrar.tpl
+// Código javascript para entidad_mostrar.tpl
 //----------------------------------------------------------------------------
 
+//Unidades orgánicas
+$("#organica").change(function () {
+    var id_entidad = $(this).data('id_entidad');
+    var organica = 0;
+    if ($(this).is(":checked")) {
+        organica = 1;
+    }
+    $.get('index.php?page=entidad_mostrar&id_entidad=' + id_entidad + '&organica=' + organica, function () {
+    });
+});
+
+//Resumen de la unidad
 $('.proceso').click(function () {
     var id_proceso = $(this).data('id_proceso');
     // Para cada contenedor de clase highchart vamos a pintar el gráfico

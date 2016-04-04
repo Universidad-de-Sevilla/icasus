@@ -61,7 +61,8 @@ jQuery(function ($) {
 // Only enable if the document has a long scroll bar
 // Note the window height + offset
 backToTop();
-//Si cambia la longitud del documento
+
+//Si cambia la longitud del documento recargamos backToTop
 onElementHeightChange(document.body, function () {
     backToTop();
 });
