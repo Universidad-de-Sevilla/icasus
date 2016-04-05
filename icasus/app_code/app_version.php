@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.16.5");
-define('IC_FECHA_REVISION', "04/04/2016");
+define('IC_VERSION', "3.16.6");
+define('IC_FECHA_REVISION', "05/04/2016");
 
+// 3.16.6 - 05/04/2016 - Eliminados los filtros htmlentities de smarty en las cadenas de texto ya que producían conflictos con los caracteres españoles.
 // 3.16.5 - 04/04/2016 - Cambiado el nombre del valor de referencia objetivo por el de meta (correcciones correspondientes en el código).
 // 3.16.4 - 04/04/2016 - Corregido fallo en código javascript de la gestión de valores de referencia para hacer que el valor de los campos visibilidad y activo de la tabla coincida siempre con el del formulario de edición del valor de referencia.
 // 3.16.3 - 01/04/2016 - Corregido fallo en código javascript de la gestión de archivos para hacer que el valor del campo visibilidad de la tabla coincida siempre con el del formulario de edición del archivo.
