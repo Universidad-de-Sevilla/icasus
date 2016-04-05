@@ -113,6 +113,23 @@ $(document).ready(function () {
             }
         ]
     });
+
+    $('.ficha').DataTable({
+        "bPaginate": false,
+        "bSort": false,
+        dom: "<'row'<'col-sm-12'B<'#barra_botones'>>>",
+        buttons: [
+            {
+                extend: 'collection',
+                text: "<i title='Exportar' class='fa fa-share-square-o fa-fw'></i> <i class='fa fa-caret-down'></i>",
+                buttons: [
+                    {extend: 'csv', text: "<i title='Exportar a CSV' class='fa fa-file-text-o fa-fw'></i> Exportar a CSV"},
+                    {extend: 'excel', text: "<i title='Exportar a Excel' class='fa fa-file-excel-o fa-fw'></i> Exportar a Excel"},
+                    {extend: 'print', text: "<i title='Imprimir/PDF' class='fa fa-print fa-fw'></i> Imprimir/PDF"}
+                ]
+            }
+        ]
+    });
 });
 
 //Reajustamos las cabeceras de las datatables al cambiar de pestaña

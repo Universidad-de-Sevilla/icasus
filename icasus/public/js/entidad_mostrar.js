@@ -159,3 +159,9 @@ hs.Expander.prototype.onAfterExpand = function () {
         i++;
     }
 };
+
+//Barra de botones
+$(document).ready(function () {
+    var botones = $('#botones').html();
+    $('#barra_botones').addClass('dt-buttons btn-group pull-right').append(botones);
+});

@@ -213,7 +213,8 @@
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <table class="table table-striped table-hover">
+                                <table class="table table-striped table-hover ficha">
+                                    <thead><th></th><th></th></thead>
                                     <tbody>
                                         <tr>
                                             <th>{$smarty.const.FIELD_COD}</th>
@@ -274,15 +275,13 @@
                                     </tbody>
                                 </table>
                                 {if $_control}
-                                    <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
-                                        <div class="btn-group" role="group" aria-label="">
-                                            <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger" href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
-                                                <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
-                                            </a>
-                                            <a title="{$smarty.const.TXT_VAL_IMPORT}" class="btn btn-default btn-danger" href='index.php?page=csv_importar&id_entidad={$entidad->id}'>
-                                                <i class="fa fa-upload fa-fw"></i>
-                                            </a>
-                                        </div>
+                                    <div id="botones" class="hidden">
+                                        <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger" href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
+                                            <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
+                                        </a>
+                                        <a title="{$smarty.const.TXT_VAL_IMPORT}" class="btn btn-default btn-danger" href='index.php?page=csv_importar&id_entidad={$entidad->id}'>
+                                            <i class="fa fa-upload fa-fw"></i>
+                                        </a>
                                     </div>
                                 {/if}
                             </div>
