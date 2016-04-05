@@ -286,8 +286,8 @@
                                         <td>
                                             <input type="checkbox" name='id_val_ref[]' value="{$item->id}"/>
                                         </td>
-                                        <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta|htmlentities}</a></td>
-                                        <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre|htmlentities}</a></td>
+                                        <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta}</a></td>
+                                        <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre}</a></td>
                                         <td>
                                             <input type="checkbox" class="grafica" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                                    data-onstyle="success" data-offstyle="danger" data-size="mini"
@@ -301,8 +301,8 @@
                                                    id="l-activo-{$item->id}">
                                         </td>
                                     {else}
-                                        <td>{$item->etiqueta|htmlentities}</td>
-                                        <td>{$item->nombre|htmlentities}</td>
+                                        <td>{$item->etiqueta}</td>
+                                        <td>{$item->nombre}</td>
                                         <td>
                                             <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                                    data-onstyle="success" data-offstyle="danger" data-size="mini"

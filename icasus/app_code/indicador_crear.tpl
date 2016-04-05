@@ -313,7 +313,7 @@
                                     <select class="form-control chosen-select" name="criterios_efqm[]" id="criterios_efqm" multiple>
                                         {foreach $criterios_efqm as $criterio_efqm}
                                             <option value="{$criterio_efqm->id}">
-                                                {$criterio_efqm->codigo} - {$criterio_efqm->nombre|htmlentities}
+                                                {$criterio_efqm->codigo} - {$criterio_efqm->nombre}
                                             </option>
                                         {/foreach}
                                     </select>

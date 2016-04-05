@@ -377,7 +377,7 @@
                             </tr>
                             <tr>
                                 <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
-                                <td>{$dato->visibilidad->nombre|htmlentities}</td>
+                                <td>{$dato->visibilidad->nombre}</td>
                             </tr>
                             <tr>
                                 <th>{$smarty.const.FIELD_UNID_GEN}</th>
