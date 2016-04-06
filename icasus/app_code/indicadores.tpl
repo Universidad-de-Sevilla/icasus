@@ -67,8 +67,8 @@
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
-                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
+                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
                                     <th>{$smarty.const.FIELD_RESP_MED}</th>
@@ -104,7 +104,6 @@
                                                         {/if}
                                                     {/if}>
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
-                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                         <td>
                                             {if $indicador->calculo}
                                                 <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
@@ -116,6 +115,7 @@
                                                title="{$indicador->nombre}: {$indicador->descripcion}">
                                                 {$indicador->nombre}</a>
                                         </td>
+                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
@@ -126,7 +126,7 @@
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
+                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
                                                 {if $indicador->calculo}
@@ -222,8 +222,8 @@
                             <thead>
                                 <tr>   
                                     <th>{$smarty.const.FIELD_COD}</th>
-                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
+                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_PROC}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
@@ -235,7 +235,6 @@
                                 {foreach from=$indicadores item=indicador} 
                                     <tr>
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
-                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                         <td>
                                             {if $indicador->calculo}
                                                 <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
@@ -247,6 +246,7 @@
                                                title="{$indicador->nombre}: {$indicador->descripcion}">
                                                 {$indicador->nombre}</a>
                                         </td>
+                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                         <td>
                                             <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
                                                 {$indicador->proceso->nombre}
