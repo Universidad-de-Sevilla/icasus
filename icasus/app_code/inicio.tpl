@@ -180,8 +180,8 @@
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
+                                    <th>{$smarty.const.FIELD_PROC}</th>
                                     <th>{$smarty.const.FIELD_UNID}</th>
-                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
                                     <th>{$smarty.const.FIELD_TIPO_PROC}</th>
                                     <th>{$smarty.const.FIELD_PROC_MADRE}</th>         
                                     <th>{$smarty.const.FIELD_PROPIETARIO}</th>
@@ -192,12 +192,12 @@
                                 {foreach from=$procesos_propios item=proceso}
                                     <tr>    
                                         <td><span class="label label-primary">{$proceso->codigo}</span></td>
-                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$proceso->entidad->id}'>{$proceso->entidad->etiqueta}</a></td>
                                         <td>
                                             <a title="{$proceso->nombre}: {$proceso->mision}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                 {$proceso->nombre}
                                             </a>
                                         </td>
+                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$proceso->entidad->id}'>{$proceso->entidad->etiqueta}</a></td>
                                         <td>{$proceso->alcance}</td>
                                         <td>
                                             {if $proceso->madre->id > 0}
@@ -252,8 +252,8 @@
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
-                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
+                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
                                     <th>{$smarty.const.FIELD_RESP_MED}</th>
@@ -289,7 +289,6 @@
                                                         {/if}
                                                     {/if}>
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
-                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                         <td>
                                             {if $indicador->calculo}
                                                 <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
@@ -301,6 +300,7 @@
                                                title="{$indicador->nombre}: {$indicador->descripcion}">
                                                 {$indicador->nombre}</a>
                                         </td>
+                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
@@ -409,8 +409,8 @@
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
-                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_DATO}</th>
+                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
                                     <th>{$smarty.const.FIELD_RESP_MED}</th>
@@ -446,7 +446,6 @@
                                                         {/if}
                                                     {/if}>
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
-                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                         <td>
                                             {if $indicador->calculo}
                                                 <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
@@ -458,6 +457,7 @@
                                                title="{$indicador->nombre}: {$indicador->descripcion}">
                                                 {$indicador->nombre}</a>
                                         </td>
+                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
@@ -562,8 +562,8 @@
                         <table class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th>{$smarty.const.TXT_CUADRO_MANDO}</th>
                                     <th>{$smarty.const.FIELD_UNID}</th>
-                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
                                     <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                     <th>{$smarty.const.FIELD_COMENTARIOS}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
@@ -572,10 +572,10 @@
                             <tbody>
                                 {foreach from=$cuadros_propios item=cuadro}
                                     <tr>
-                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$cuadro->entidad->id}'>{$cuadro->entidad->etiqueta}</a></td>
                                         <td>
                                             <a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}">{$cuadro->nombre}</a>
-                                        </td> 
+                                        </td>
+                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$cuadro->entidad->id}'>{$cuadro->entidad->etiqueta}</a></td>
                                         <td>
                                             {if $cuadro->privado == 0}
                                                 {$smarty.const.TXT_PUBLICO}
