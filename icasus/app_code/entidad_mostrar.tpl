@@ -405,8 +405,8 @@
                             <div class="btn-toolbar" role="toolbar" aria-label="">
                                 <div class="btn-group" role="group" aria-label="">
                                     <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_entidad={$entidad->id}' 
-                                       title="{$smarty.const.TXT_ARCHIVOS}">
-                                        <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS_GESTION}
+                                       title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                        <i class="fa fa-archive fa-fw"></i>
                                     </a>
                                 </div>
                             </div>

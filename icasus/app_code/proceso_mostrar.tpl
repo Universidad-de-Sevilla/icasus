@@ -172,44 +172,24 @@
         <!-- Tab panes -->
         <div class="tab-content">
             
-            <!-- Barra de botones -->
-            {if $_control || $_usuario->id == $proceso->id_propietario}
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="btn-toolbar" role="toolbar" aria-label="">
-                            <div class="btn-group" role="group" aria-label="">
-                                <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
-                                   title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
-                                    <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS_GESTION}
-                                </a>
-                            </div>
-                            <div class="btn-group pull-right" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
-                                    <i class="fa fa-gear fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
-                                </a>
-                                <a title="{$smarty.const.TXT_PROC_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
-                                   data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                                    <i class="fa fa-trash fa-fw"></i>
-                                </a>
-                            </div>
-                            <div class="btn-group pull-right" role="group" aria-label="">
-                                <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}&id_proceso={$proceso->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
-                                    <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <br>
-            {/if}
-            <!-- /Barra de botones -->
-
             <!-- Parámetros del proceso -->
             <div role="tabpanel" class="tab-pane active" id="proc_param">
+                <!-- Barra de botones -->
+                {if $_control || $_usuario->id == $proceso->id_propietario}
+                    <div id="botones" class="hidden">
+                        <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
+                            <i class="fa fa-gear fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
+                        </a>
+                        <a title="{$smarty.const.TXT_PROC_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
+                           data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                            <i class="fa fa-trash fa-fw"></i>
+                        </a>
+                    </div>      
+                {/if}
+                <!-- /Barra de botones -->
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover ficha">
+                        <thead><th></th><th></th></thead>
                         <tbody>
                             <tr>
                                 <th>{$smarty.const.FIELD_COD}</th>
@@ -368,6 +348,24 @@
 
             <!-- Indicadores del proceso -->
             <div role="tabpanel" class="tab-pane" id="proc_indics">
+                <!-- Barra de botones -->
+                {if $_control || $_usuario->id == $proceso->id_propietario}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="btn-toolbar" role="toolbar" aria-label="">
+                                <div class="btn-group pull-right" role="group" aria-label="">
+                                    <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}&id_proceso={$proceso->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
+                                        <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <br>
+                {/if}
+                <!-- /Barra de botones -->
                 {if $indicadores}
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
@@ -513,6 +511,25 @@
             <!-- Archivos del proceso -->
             {if isset($archivos)}
                 <div role="tabpanel" class="tab-pane" id="proc_archivos">
+                    <!-- Barra de botones -->
+                    {if $_control || $_usuario->id == $proceso->id_propietario}
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
+                                           title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                            <i class="fa fa-archive fa-fw"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-lg-12 -->
+                        </div>
+                        <!-- /.row -->
+                        <br>
+                    {/if}
+                    <!-- /Barra de botones -->
                     <div class="table-responsive">
                         <table class="table datatable table-striped table-hover">
                             <thead>
