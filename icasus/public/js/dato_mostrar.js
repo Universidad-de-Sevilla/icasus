@@ -1,10 +1,10 @@
 //--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
-// Archivo: public/js/indicador_mostrar.js
+// Archivo: public/js/dato_mostrar.js
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-// Código javascript para indicador_mostrar.tpl
+// Código javascript para dato_mostrar.tpl
 //----------------------------------------------------------------------------
 
 //Barra de botones
