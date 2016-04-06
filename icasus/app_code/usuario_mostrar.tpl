@@ -141,7 +141,7 @@
         <ul class="nav nav-tabs" role="tablist">
             {if $_usuario->id == $persona->id}
                 <li role="presentation" class="active">
-                    <a href="#user" title="{$smarty.const.TXT_USER_PERFIL}" aria-controls="{$smarty.const.TXT_USER_PERFIL}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_USER_PERFIL}</a>
+                    <a href="#user" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
                 </li>
                 <li role="presentation">
                     <a href="#user_unids" title="{$smarty.const.TXT_USER_UNIDS}" aria-controls="{$smarty.const.TXT_USER_UNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</a>

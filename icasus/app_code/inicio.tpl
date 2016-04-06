@@ -313,7 +313,7 @@
                                                 {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
+                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
                                                 {if $indicador->calculo}
@@ -470,7 +470,7 @@
                                                 {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
+                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
                                                 {if $indicador->calculo}

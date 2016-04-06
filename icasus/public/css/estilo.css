@@ -499,3 +499,7 @@ span:focus, .pagination > li > span:hover {
 sub{
     font-size: 12px !important;
 }
+
+.fa-star,.fa-star-o{
+    color:#FFC526;
+}
