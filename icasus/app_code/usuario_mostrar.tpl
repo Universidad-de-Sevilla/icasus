@@ -186,7 +186,8 @@
             
             <!-- Perfil del usuario -->
             <div role="tabpanel" class="tab-pane active" id="user">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover ficha">
+                    <thead><th></th><th></th></thead>
                     <tbody>
                         <tr>
                             <th>{$smarty.const.FIELD_NOMBRE}</th>
@@ -716,63 +717,53 @@
 {else}
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_USER_PERFIL}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <table class="table table-striped table-hover">
-                    <tbody>
-                        <tr>
-                            <th>{$smarty.const.FIELD_NOMBRE}</th>
-                            <td>{$persona->nombre}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_APEL}</th>
-                            <td>{$persona->apellidos}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_LOGIN}</th>
-                            <td>{$persona->login}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_CORREO}</th>
-                            <td>
-                                {if $persona->correo}
-                                    <a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$persona->correo}'>{$persona->correo}</a>
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_TEL}</th>
-                            <td>
-                                {if $persona->telefono}
-                                    <a title="{$smarty.const.TXT_LLAMAR_TLF}" href='tel:+34{$persona->telefono}'>{$persona->telefono}</a>
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_PUESTO}</th>
-                            <td>
-                                {if $persona->puesto}
-                                    {$persona->puesto}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
+        <table class="table table-striped table-hover ficha">
+            <thead><th></th><th></th></thead>
+            <tbody>
+                <tr>
+                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                    <td>{$persona->nombre}</td>
+                </tr>
+                <tr>
+                    <th>{$smarty.const.FIELD_APEL}</th>
+                    <td>{$persona->apellidos}</td>
+                </tr>
+                <tr>
+                    <th>{$smarty.const.FIELD_LOGIN}</th>
+                    <td>{$persona->login}</td>
+                </tr>
+                <tr>
+                    <th>{$smarty.const.FIELD_CORREO}</th>
+                    <td>
+                        {if $persona->correo}
+                            <a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$persona->correo}'>{$persona->correo}</a>
+                        {else}
+                            ---
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{$smarty.const.FIELD_TEL}</th>
+                    <td>
+                        {if $persona->telefono}
+                            <a title="{$smarty.const.TXT_LLAMAR_TLF}" href='tel:+34{$persona->telefono}'>{$persona->telefono}</a>
+                        {else}
+                            ---
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{$smarty.const.FIELD_PUESTO}</th>
+                    <td>
+                        {if $persona->puesto}
+                            {$persona->puesto}
+                        {else}
+                            ---
+                        {/if}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <!-- /.col-lg-12 -->
 </div>
