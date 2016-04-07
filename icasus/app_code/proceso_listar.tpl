@@ -141,40 +141,25 @@
         <!-- Tab panes -->
         <div class="tab-content">
 
-            <!-- Barra de botones -->
-            {if $_control}
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="btn-toolbar" role="toolbar" aria-label="">
-                            <div class="btn-group pull-right" role="group" aria-label="">
-                                <a class="btn btn-danger" href="index.php?page=proceso_crear&id_entidad={$entidad->id}"
-                                   title="{$smarty.const.TXT_PROC_CREAR}">
-                                    <i class="fa fa-gear fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
-                                </a>
-                                <button class="btn btn-danger" title="{$smarty.const.TXT_PROC_MAP_EDIT}"
-                                        data-toggle="modal"
-                                        data-target="#dialogo_mapa">
-                                    <i class="fa fa-map fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <br>
-            {/if}
-            <!-- /Barra de botones -->
-
             <!-- Lista de procesos -->
             <div role="tabpanel" class="tab-pane active" id="proc_list">
+                <!-- Barra de botones -->
+                {if $_control}
+                    <div id="botones" class="hidden">
+                        <a class="btn btn-danger" href="index.php?page=proceso_crear&id_entidad={$entidad->id}"
+                           title="{$smarty.const.TXT_PROC_CREAR}">
+                            <i class="fa fa-gear fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                        </a>
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
                 {if $procesos}
                     <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
+                        <table id="tabla_procesos" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
-                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <th>{$smarty.const.FIELD_PROC}</th>
                                     <th>{$smarty.const.FIELD_TIPO_PROC}</th>
                                     <th>{$smarty.const.FIELD_PROC_MADRE}</th>
                                     <th>{$smarty.const.FIELD_PROPIETARIO}</th>
@@ -253,8 +238,21 @@
             <!-- Mapa de procesos -->
             {if $entidad->mapa}
                 <div role="tabpanel" class="tab-pane" id="proc_map">
-                    <img src="images/mapa_procesos_biblioteca.png" alt="{$smarty.const.TXT_PROC_MAP}" usemap="#Map"
-                         style="margin:0 auto">
+                    <!-- Barra de botones -->
+                    {if $_control}
+                        <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <button class="btn btn-danger" title="{$smarty.const.TXT_PROC_MAP_EDIT}"
+                                        data-toggle="modal"
+                                        data-target="#dialogo_mapa">
+                                    <i class="fa fa-map fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                </button>
+                            </div>
+                        </div>
+                        <br>
+                    {/if}
+                    <!-- /Barra de botones -->
+                    <img src="images/mapa_procesos_biblioteca.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}" usemap="#Map">
                     <map name="Map" id="Map">
                         <area shape="rect" coords="96,66,263,94" title="{$smarty.const.TXT_PROC_VER}"
                               href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1920"/>
@@ -297,7 +295,7 @@
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
-                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <th>{$smarty.const.FIELD_PROC}</th>
                                     <th>{$smarty.const.FIELD_TIPO_PROC}</th>
                                     <th>{$smarty.const.FIELD_PROC_MADRE}</th>         
                                     <th>{$smarty.const.FIELD_PROPIETARIO}</th>
