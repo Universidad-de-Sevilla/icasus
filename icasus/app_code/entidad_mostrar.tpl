@@ -206,88 +206,77 @@
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_UNID_PARAM}</span>
-                                <i class="fa fa-chevron-up pull-right clickable"></i>
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <table class="table table-striped table-hover ficha">
-                                    <thead><th></th><th></th></thead>
-                                    <tbody>
-                                        <tr>
-                                            <th>{$smarty.const.FIELD_COD}</th>
-                                            <td><span class="label label-primary">{$entidad->codigo}</span></td>
-                                        </tr>
-                                        <tr>
-                                            <th>{$smarty.const.FIELD_NOMBRE}</th>
-                                            <td>{$entidad->nombre}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>{$smarty.const.FIELD_ETIQUETA} ({$smarty.const.FIELD_ETIQUETA_MINI})</th>
-                                            <td>{$entidad->etiqueta} ({$entidad->etiqueta_mini})</td>
-                                        </tr>
-                                        {if $entidad->madre->id !=0 && $entidad->madre->id !=1}
-                                            <tr>
-                                                <th>{$smarty.const.FIELD_UNID_SUP}</th>
-                                                <td>
-                                                    <a title="{$entidad->madre->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
-                                                </td>
-                                            </tr>
-                                        {/if}
-                                        <tr>
-                                            <th>{$smarty.const.FIELD_WEB}</th>
-                                            <td>
-                                                {if $entidad->web}
-                                                    <a title="{$entidad->web}" href='{$entidad->web}' target="_blank">{$entidad->web}</a>
-                                                {else}
-                                                    ---
-                                                {/if}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>{$smarty.const.FIELD_ORGANICA}</th>
-                                            <td>
-                                                {if $_control}
-                                                    <input data-id_entidad="{$entidad->id}" type="checkbox" class="grafica" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                           data-off="{$smarty.const.TXT_NO}" {if $entidad->es_organica}checked{/if}
-                                                           id="organica">
-                                                {else}
-                                                    <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                           data-off="{$smarty.const.TXT_NO}" {if $entidad->es_organica}checked{/if} 
-                                                           disabled>
-                                                {/if}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th>{$smarty.const.FIELD_ANOTACION}</th>
-                                            <td>
-                                                {if $entidad->anotaciones}
-                                                    {$entidad->anotaciones|nl2br}
-                                                {else}
-                                                    ---
-                                                {/if}
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                                {if $_control}
-                                    <div id="botones" class="hidden">
-                                        <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger" href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
-                                            <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
-                                        </a>
-                                        <a title="{$smarty.const.TXT_VAL_IMPORT}" class="btn btn-default btn-danger" href='index.php?page=csv_importar&id_entidad={$entidad->id}'>
-                                            <i class="fa fa-upload fa-fw"></i>
-                                        </a>
-                                    </div>
+                        <table class="table table-striped table-hover ficha">
+                            <thead><th></th><th></th></thead>
+                            <tbody>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_COD}</th>
+                                    <td><span class="label label-primary">{$entidad->codigo}</span></td>
+                                </tr>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <td>{$entidad->nombre}</td>
+                                </tr>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_ETIQUETA} ({$smarty.const.FIELD_ETIQUETA_MINI})</th>
+                                    <td>{$entidad->etiqueta} ({$entidad->etiqueta_mini})</td>
+                                </tr>
+                                {if $entidad->madre->id !=0 && $entidad->madre->id !=1}
+                                    <tr>
+                                        <th>{$smarty.const.FIELD_UNID_SUP}</th>
+                                        <td>
+                                            <a title="{$entidad->madre->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
+                                        </td>
+                                    </tr>
                                 {/if}
+                                <tr>
+                                    <th>{$smarty.const.FIELD_WEB}</th>
+                                    <td>
+                                        {if $entidad->web}
+                                            <a title="{$entidad->web}" href='{$entidad->web}' target="_blank">{$entidad->web}</a>
+                                        {else}
+                                            ---
+                                        {/if}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_ORGANICA}</th>
+                                    <td>
+                                        {if $_control}
+                                            <input data-id_entidad="{$entidad->id}" type="checkbox" class="grafica" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                   data-off="{$smarty.const.TXT_NO}" {if $entidad->es_organica}checked{/if}
+                                                   id="organica">
+                                        {else}
+                                            <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                   data-off="{$smarty.const.TXT_NO}" {if $entidad->es_organica}checked{/if} 
+                                                   disabled>
+                                        {/if}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_ANOTACION}</th>
+                                    <td>
+                                        {if $entidad->anotaciones}
+                                            {$entidad->anotaciones|nl2br}
+                                        {else}
+                                            ---
+                                        {/if}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        {if $_control}
+                            <div id="botones" class="hidden">
+                                <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger" href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
+                                    <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
+                                </a>
+                                <a title="{$smarty.const.TXT_VAL_IMPORT}" class="btn btn-default btn-danger" href='index.php?page=csv_importar&id_entidad={$entidad->id}'>
+                                    <i class="fa fa-upload fa-fw"></i>
+                                </a>
                             </div>
-                            <!-- /.panel-body -->        
-                        </div>
-                        <!-- /.panel -->
+                        {/if}
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
