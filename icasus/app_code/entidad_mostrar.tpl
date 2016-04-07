@@ -343,7 +343,7 @@
                                 {$smarty.const.MSG_UNID_NO_USERS}
                             </div> 
                         </div>
-                        <!-- /.col-sm-10 -->
+                        <!-- /.col-sm-11 -->
                         <div class="col-sm-1">
                             {if $_control}
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
@@ -355,7 +355,7 @@
                                 </div>
                             {/if}
                         </div>
-                        <!-- /.col-sm-2 -->
+                        <!-- /.col-sm-1 -->
                     </div>
                     <!-- /.row -->
                 {/if}
@@ -455,7 +455,7 @@
                                 {$smarty.const.MSG_UNID_NO_ARCHIVOS}
                             </div> 
                         </div>
-                        <!-- /.col-sm-10 -->
+                        <!-- /.col-sm-11 -->
                         <div class="col-sm-1">
                             {if $_control}
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
@@ -468,7 +468,7 @@
                                 </div>
                             {/if}
                         </div>
-                        <!-- /.col-sm-2 -->
+                        <!-- /.col-sm-1 -->
                     </div>
                     <!-- /.row -->
                 {/if}

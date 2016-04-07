@@ -128,13 +128,11 @@
                     <a href="#user_procs" title="{$smarty.const.TXT_USER_PROCS}" aria-controls="{$smarty.const.TXT_USER_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</a>
                 </li>
             {/if}
-            {if $entidad->mapa}
-                <li role="presentation">
-                    <a href="#proc_map" title="{$smarty.const.TXT_PROC_MAP}"
-                       aria-controls="{$smarty.const.TXT_PROC_MAP}" role="tab" data-toggle="tab"><i
-                            class="fa fa-map fa-fw"></i> {$smarty.const.TXT_PROC_MAP}</a>
-                </li>
-            {/if}
+            <li role="presentation">
+                <a href="#proc_map" title="{$smarty.const.TXT_PROC_MAP}"
+                   aria-controls="{$smarty.const.TXT_PROC_MAP}" role="tab" data-toggle="tab"><i
+                        class="fa fa-map fa-fw"></i> {$smarty.const.TXT_PROC_MAP}</a>
+            </li>
         </ul>
         <!-- /Nav tabs -->
         <br>
@@ -234,7 +232,7 @@
                                 {$smarty.const.MSG_UNID_NO_PROC}
                             </div>
                         </div>
-                        <!-- /.col-sm-10 -->
+                        <!-- /.col-sm-11 -->
                         <div class="col-sm-1">
                             <!-- Barra de botones -->
                             {if $_control}
@@ -249,64 +247,12 @@
                             {/if}
                             <!-- /Barra de botones -->
                         </div>
-                        <!-- /.col-sm-2 -->
+                        <!-- /.col-sm-1 -->
                     </div>
                     <!-- /.row -->
                 {/if}
             </div>
             <!-- /Lista de procesos -->
-
-            <!-- Mapa de procesos -->
-            {if $entidad->mapa}
-                <div role="tabpanel" class="tab-pane" id="proc_map">
-                    <!-- Barra de botones -->
-                    {if $_control}
-                        <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
-                            <div class="btn-group" role="group" aria-label="">
-                                <button class="btn btn-danger" title="{$smarty.const.TXT_PROC_MAP_EDIT}"
-                                        data-toggle="modal"
-                                        data-target="#dialogo_mapa">
-                                    <i class="fa fa-map fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
-                                </button>
-                            </div>
-                        </div>
-                        <br>
-                    {/if}
-                    <!-- /Barra de botones -->
-                    <img src="images/mapa_procesos_biblioteca.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}" usemap="#Map">
-                    <map name="Map" id="Map">
-                        <area shape="rect" coords="96,66,263,94" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1920"/>
-                        <area shape="rect" coords="355,66,475,93" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1921"/>
-                        <area shape="rect" coords="287,169,362,190" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1913"/>
-                        <area shape="rect" coords="277,200,368,225" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1914"/>
-                        <area shape="rect" coords="197,264,272,301" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1915"/>
-                        <area shape="rect" coords="330,260,438,284" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1916"/>
-                        <area shape="rect" coords="330,286,437,311" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1917"/>
-                        <area shape="rect" coords="248,349,324,375" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1918"/>
-                        <area shape="rect" coords="328,349,398,374" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1919"/>
-                        <area shape="rect" coords="42,386,156,432" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1907"/>
-                        <area shape="rect" coords="164,387,256,480" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1922"/>
-                        <area shape="rect" coords="265,388,389,431" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1923"/>
-                        <area shape="rect" coords="393,387,484,432" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1911"/>
-                        <area shape="rect" coords="492,387,595,432" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1912"/>
-                    </map>
-                </div>
-            {/if}
-            <!-- /Mapa de procesos -->
 
             <!-- Procesos del usuario -->
             {if $procesos_propios}
@@ -371,6 +317,68 @@
                 </div>
             {/if}
             <!-- /Procesos del usuario -->
+
+            <!-- Mapa de procesos -->
+            <div role="tabpanel" class="tab-pane" id="proc_map">
+                <!-- Barra de botones -->
+                {if $_control}
+                    <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <button class="btn btn-danger" title="{$smarty.const.TXT_PROC_MAP_EDIT}"
+                                    data-toggle="modal"
+                                    data-target="#dialogo_mapa">
+                                <i class="fa fa-map fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            </button>
+                        </div>
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
+                {if $entidad->mapa}
+                    <img src="images/mapa_procesos_biblioteca.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}" usemap="#Map">
+                    <map name="Map" id="Map">
+                        <area shape="rect" coords="96,66,263,94" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1920"/>
+                        <area shape="rect" coords="355,66,475,93" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1921"/>
+                        <area shape="rect" coords="287,169,362,190" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1913"/>
+                        <area shape="rect" coords="277,200,368,225" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1914"/>
+                        <area shape="rect" coords="197,264,272,301" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1915"/>
+                        <area shape="rect" coords="330,260,438,284" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1916"/>
+                        <area shape="rect" coords="330,286,437,311" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1917"/>
+                        <area shape="rect" coords="248,349,324,375" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1918"/>
+                        <area shape="rect" coords="328,349,398,374" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1919"/>
+                        <area shape="rect" coords="42,386,156,432" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1907"/>
+                        <area shape="rect" coords="164,387,256,480" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1922"/>
+                        <area shape="rect" coords="265,388,389,431" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1923"/>
+                        <area shape="rect" coords="393,387,484,432" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1911"/>
+                        <area shape="rect" coords="492,387,595,432" title="{$smarty.const.TXT_PROC_VER}"
+                              href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1912"/>
+                    </map>
+                {else}
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i>
+                                {$smarty.const.MSG_UNID_NO_MAPA}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-11 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
+            </div>
+            <!-- /Mapa de procesos -->
 
         </div>
         <!-- /Tab panes -->

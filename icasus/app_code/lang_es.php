@@ -482,6 +482,7 @@ define('MSG_DIM_EDITADA', 'Se ha modificado una dimensión.');
 
 //Entidades (Unidades)
 define('MSG_UNID_NO_PROC', 'No hay procesos definidos para esta unidad.');
+define('MSG_UNID_NO_MAPA', 'No existe un mapa de procesos definido para esta unidad.');
 define('MSG_UNID_NO_ARCHIVOS', 'No se han subido archivos en esta unidad.');
 define('MSG_UNID_USERS_BORRADOS', 'Se han eliminado de la unidad');
 define('MSG_UNID_USERS_AGREGADOS', 'Se han agregado a la unidad');
