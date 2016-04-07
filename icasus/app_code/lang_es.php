@@ -289,7 +289,6 @@ define('TXT_PROC_VER', 'Ver proceso');
 define('TXT_PROC_MAP', 'Mapa de procesos');
 define('TXT_PROC_MAP_EDIT', 'Agregar/editar mapa de procesos');
 define('TXT_PROC_PARAM', 'Parámetros del proceso');
-define('TXT_PROC_NUEVO', 'Nuevo proceso');
 define('TXT_PROC_LIST', 'Lista de procesos');
 define('TXT_PROC_ES_MADRE', 'Es un proceso madre');
 define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha del proceso');
