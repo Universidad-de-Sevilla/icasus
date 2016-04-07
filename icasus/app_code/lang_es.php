@@ -57,7 +57,6 @@ define('TXT_TABLA_ANAPLAN', 'Análisis y Planes de acción / Año');
 define('TXT_ARCHIVOS', 'Archivos');
 define('TXT_ARCHIVO_SUBIR_NUEVO', 'Subir nuevo archivo');
 define('TXT_ARCHIVO_SUBIR', 'Subir archivo');
-define('TXT_ARCHIVOS_SUBIR', 'Subir archivos');
 define('TXT_ARCHIVO_ACTUALIZAR_DATOS', 'Actualizar datos del archivo');
 define('TXT_ARCHIVO_NUEVO', 'Nuevo archivo');
 define('TXT_ARCHIVO_BORRAR', 'Borrar archivo');
