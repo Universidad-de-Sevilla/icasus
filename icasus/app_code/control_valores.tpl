@@ -117,11 +117,11 @@
                     </div>
                     <br>
                     <div class="form-group">
-                        <div class="col-sm-8">
+                        <div class="col-sm-12">
                             <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
                                 <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                             </button>
-                            <button title="{$smarty.const.TXT_VALS_DESACT}" type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#dialogo_confirmar_desactivar">
+                            <button title="{$smarty.const.TXT_VALS_DESACT}" type="button" class="btn btn-default btn-success pull-right" data-toggle="modal" data-target="#dialogo_confirmar_desactivar">
                                 <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_VALS_DESACT}
                             </button>
                         </div>
