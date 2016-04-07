@@ -15,6 +15,7 @@ $("#organica").change(function () {
         organica = 1;
     }
     $.get('index.php?page=entidad_mostrar&id_entidad=' + id_entidad + '&organica=' + organica, function () {
+        location.reload();
     });
 });
 
@@ -160,8 +161,12 @@ hs.Expander.prototype.onAfterExpand = function () {
     }
 };
 
-//Barra de botones
+//Barras de botones
 $(document).ready(function () {
-    var botones = $('#botones').html();
-    $('#barra_botones').addClass('dt-buttons btn-group pull-right').append(botones);
+    var botones_ficha = $('#botones_ficha').html();
+    var botones_user = $('#botones_user').html();
+    var botones_archivo = $('#botones_archivo').html();
+    $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
+    $('#tabla_usuarios_filter').append(botones_user);
+    $('#tabla_archivos_filter').append(botones_archivo);
 });

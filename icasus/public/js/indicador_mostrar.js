@@ -10,5 +10,5 @@
 //Barra de botones
 $(document).ready(function () {
     var botones = $('#botones').html();
-    $('#barra_botones').addClass('dt-buttons btn-group pull-right').append(botones);
+    $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones);
 });

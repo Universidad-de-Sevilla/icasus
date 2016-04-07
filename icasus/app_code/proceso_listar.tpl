@@ -227,10 +227,31 @@
                         </table>
                     </div>
                 {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i>
-                        {$smarty.const.MSG_UNID_NO_PROC}
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i>
+                                {$smarty.const.MSG_UNID_NO_PROC}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-10 -->
+                        <div class="col-sm-1">
+                            <!-- Barra de botones -->
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href="index.php?page=proceso_crear&id_entidad={$entidad->id}"
+                                           title="{$smarty.const.TXT_PROC_CREAR}">
+                                            <i class="fa fa-gear fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                            <!-- /Barra de botones -->
+                        </div>
+                        <!-- /.col-sm-2 -->
                     </div>
+                    <!-- /.row -->
                 {/if}
             </div>
             <!-- /Lista de procesos -->

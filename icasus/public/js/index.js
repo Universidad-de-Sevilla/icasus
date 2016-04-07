@@ -117,7 +117,7 @@ $(document).ready(function () {
     $('.ficha').DataTable({
         "bPaginate": false,
         "bSort": false,
-        dom: "<'row'<'col-sm-12'B<'#barra_botones'>>>",
+        dom: "<'row'<'col-sm-12'B<'#btn_ficha'>>>",
         buttons: [
             {
                 extend: 'collection',

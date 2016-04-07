@@ -54,26 +54,14 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-{if ($entidad->madre->id!=0 AND $entidad->madre->id!=1)}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="alert alert-info alert-dismissible">
-                <i class="fa fa-info-circle fa-fw"></i> 
-                {$smarty.const.FIELD_UNID_SUP}: 
-                <a title="{$entidad->madre->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
-            </div> 
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-{/if}
+
 
 <div class="row">
     <div class="col-lg-12">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#unid_param" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
+                <a href="#unid_ficha" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation">
                 <a href="#unid_users" title="{$smarty.const.TXT_USERS}" aria-controls="{$smarty.const.TXT_USERS}" role="tab" data-toggle="tab"><i class="fa fa-users fa-fw"></i> {$smarty.const.TXT_USERS}</a>
@@ -94,7 +82,20 @@
         <div class="tab-content">
 
             <!-- Parámetros de la unidad -->
-            <div role="tabpanel" class="tab-pane active" id="unid_param">
+            <div role="tabpanel" class="tab-pane active" id="unid_ficha">
+                {if ($entidad->madre->id!=0 AND $entidad->madre->id!=1)}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.FIELD_UNID_SUP}: 
+                                <a title="{$entidad->madre->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
+                            </div> 
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
                 <div class="row">
                     <div class="col-md-3">
                         <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href="index.php?page=proceso_listar&id_entidad={$entidad->id}">
@@ -268,7 +269,7 @@
                             </tbody>
                         </table>
                         {if $_control}
-                            <div id="botones" class="hidden">
+                            <div id="botones_ficha" class="btn-toolbar hidden" role="toolbar" aria-label="">
                                 <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger" href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
                                     <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                                 </a>
@@ -287,7 +288,7 @@
             <!-- Usuarios de la unidad -->
             <div role="tabpanel" class="tab-pane" id="unid_users">
                 {if $_control}
-                    <div class="btn-toolbar" role="toolbar" aria-label="">
+                    <div id="botones_user" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
                             <a title="{$smarty.const.TXT_USERS_VINC}" class="btn btn-default btn-danger" href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'>
                                 <i class="fa fa-user-plus fa-fw"></i>
@@ -297,11 +298,10 @@
                             </a>
                         </div>
                     </div>
-                    <br>
                 {/if}
                 {if $usuarios}
                     <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
+                        <table id="tabla_usuarios" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_LOGIN}</th>
@@ -336,10 +336,28 @@
                         </table>
                     </div>
                 {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_UNID_NO_USERS}
-                    </div> 
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_UNID_NO_USERS}
+                            </div> 
+                        </div>
+                        <!-- /.col-sm-10 -->
+                        <div class="col-sm-1">
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a title="{$smarty.const.TXT_USERS_VINC}" class="btn btn-default btn-danger" href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'>
+                                            <i class="fa fa-user-plus fa-fw"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-2 -->
+                    </div>
+                    <!-- /.row -->
                 {/if}
             </div>
             <!-- /Usuarios de la unidad -->
@@ -389,21 +407,14 @@
             <div role="tabpanel" class="tab-pane" id="unid_archivos">
                 <!-- Barra de botones -->
                 {if $_control}
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="btn-toolbar" role="toolbar" aria-label="">
-                                <div class="btn-group" role="group" aria-label="">
-                                    <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_entidad={$entidad->id}' 
-                                       title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
-                                        <i class="fa fa-archive fa-fw"></i>
-                                    </a>
-                                </div>
-                            </div>
+                    <div id="botones_archivo" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_entidad={$entidad->id}' 
+                               title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                <i class="fa fa-archive fa-fw"></i>
+                            </a>
                         </div>
-                        <!-- /.col-lg-12 -->
                     </div>
-                    <!-- /.row -->
-                    <br>
                 {/if}
                 <!-- /Barra de botones -->
                 {if $archivos}
@@ -437,10 +448,29 @@
                         </table>
                     </div>
                 {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_UNID_NO_ARCHIVOS}
-                    </div> 
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_UNID_NO_ARCHIVOS}
+                            </div> 
+                        </div>
+                        <!-- /.col-sm-10 -->
+                        <div class="col-sm-1">
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_entidad={$entidad->id}' 
+                                           title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                            <i class="fa fa-archive fa-fw"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-2 -->
+                    </div>
+                    <!-- /.row -->
                 {/if}
             </div>
             <!-- /Archivos de la unidad -->
