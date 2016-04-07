@@ -79,33 +79,25 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <tbody>
-                                <tr>
-                                    <th>{$smarty.const.FIELD_ANYO}</th>
-                                    <td>
-                                        <div id="periodo" data-id_entidad="{$entidad->id}">
-                                            {html_select_date id="Year" prefix="" year_empty=$smarty.const.TXT_SEL
+                    <div class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO}</label>
+                            <div id="periodo" class="col-sm-8" data-id_entidad="{$entidad->id}">
+                                {html_select_date id="Year" prefix="" year_empty=$smarty.const.TXT_SEL all_extra="class='form-control chosen-select'"
                                             display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10
                                             end_year=$smarty.now|date_format:"%Y" time='' reverse_years=TRUE}
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>{$smarty.const.TXT_CONTROL}</th>
-                                    <td>
-                                        <div>
-                                            <a href="#tabla_agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}">{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a><br>
-                                            <a href="#tabla_nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</a><br>
-                                            <a href="#tabla_modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}">{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a><br>
-                                            <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</a><br>
-                                            <a href="#tabla_val_ref" title="{$smarty.const.TXT_INDIC_DAT_VAL_REF}">{$smarty.const.TXT_INDIC_DAT_VAL_REF}</a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">{$smarty.const.TXT_CONTROL}</label>
+                            <div class="col-sm-8">
+                                <a href="#tabla_agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}">{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a><br>
+                                <a href="#tabla_nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</a><br>
+                                <a href="#tabla_modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}">{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a><br>
+                                <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</a><br>
+                                <a href="#tabla_val_ref" title="{$smarty.const.TXT_INDIC_DAT_VAL_REF}">{$smarty.const.TXT_INDIC_DAT_VAL_REF}</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- /.panel-body -->        
