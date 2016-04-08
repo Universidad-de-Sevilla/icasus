@@ -156,11 +156,9 @@
                     <a href="#proc_flujo" title="{$smarty.const.TXT_PROC_FLUJO}" aria-controls="{$smarty.const.TXT_PROC_FLUJO}" role="tab" data-toggle="tab"><i class="fa fa-random fa-fw"></i> {$smarty.const.TXT_PROC_FLUJO}</a>
                 </li>
             {/if}
-            {if isset($archivos)}
-                <li role="presentation">
-                    <a href="#proc_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
-                </li>
-            {/if}
+            <li role="presentation">
+                <a href="#proc_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
+            </li>
             {if $subprocesos}
                 <li role="presentation">
                     <a href="#proc_subprocs" title="{$smarty.const.FIELD_SUBPROCS}" aria-controls="{$smarty.const.FIELD_SUBPROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_SUBPROCS}</a>
@@ -521,20 +519,20 @@
             <!-- /Flujograma del proceso -->
 
             <!-- Archivos del proceso -->
-            {if isset($archivos)}
-                <div role="tabpanel" class="tab-pane" id="proc_archivos">
-                    <!-- Barra de botones -->
-                    {if $_control || $_usuario->id == $proceso->id_propietario}
-                        <div id="botones_archivo" class="btn-toolbar hidden" role="toolbar" aria-label="">
-                            <div class="btn-group" role="group" aria-label="">
-                                <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
-                                   title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
-                                    <i class="fa fa-archive fa-fw"></i>
-                                </a>
-                            </div>
+            <div role="tabpanel" class="tab-pane" id="proc_archivos">
+                <!-- Barra de botones -->
+                {if $_control || $_usuario->id == $proceso->id_propietario}
+                    <div id="botones_archivo" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
+                               title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                <i class="fa fa-archive fa-fw"></i>
+                            </a>
                         </div>
-                    {/if}
-                    <!-- /Barra de botones -->
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
+                {if $archivos}
                     <div class="table-responsive">
                         <table id="tabla_archivos" class="table datatable table-striped table-hover">
                             <thead>
@@ -564,8 +562,32 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-            {/if}
+                {else}
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_PROC_NO_ARCHIVO}
+                            </div> 
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
+                                            title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                             <i class="fa fa-archive fa-fw"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-1 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
+            </div>
             <!-- /Archivos del proceso -->
 
             <!-- Subprocesos -->

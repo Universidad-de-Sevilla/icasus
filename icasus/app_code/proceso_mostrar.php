@@ -120,7 +120,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    $smarty->assign('_javascript', array('inicio','proceso_mostrar'));
+    $smarty->assign('_javascript', array('inicio', 'proceso_mostrar'));
     $smarty->assign('_nombre_pagina', FIELD_PROC . ": " . $proceso->nombre);
     $plantilla = 'proceso_mostrar.tpl';
 
@@ -133,10 +133,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
 
     $archivo = new Fichero();
     $archivos = $archivo->find_joined("id_objeto = $id_proceso AND tipo_objeto = 'proceso'");
-    if ($archivos)
-    {
-        $smarty->assign('archivos', $archivos);
-    }
+    $smarty->assign('archivos', $archivos);
 }
 else
 {

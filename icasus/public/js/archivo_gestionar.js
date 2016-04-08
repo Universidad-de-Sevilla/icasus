@@ -72,4 +72,8 @@ $(document).ready(function () {
     $(':reset').click(function () {
         $('#svisible').bootstrapToggle('on');
     });
+
+    //Barra de botones
+    var botones_archivo = $('#botones_archivo').html();
+    $('#tabla_archivos_filter').append(botones_archivo);
 });

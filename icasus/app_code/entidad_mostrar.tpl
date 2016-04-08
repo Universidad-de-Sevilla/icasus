@@ -453,7 +453,7 @@
                             <div class="alert alert-info alert-dismissible">
                                 <i class="fa fa-info-circle fa-fw"></i> 
                                 {$smarty.const.MSG_UNID_NO_ARCHIVOS}
-                            </div> 
+                            </div>
                         </div>
                         <!-- /.col-sm-11 -->
                         <div class="col-sm-1">
