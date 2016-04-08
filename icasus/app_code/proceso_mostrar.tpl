@@ -176,7 +176,7 @@
             <div role="tabpanel" class="tab-pane active" id="proc_param">
                 <!-- Barra de botones -->
                 {if $_control || $_usuario->id == $proceso->id_propietario}
-                    <div id="botones" class="hidden">
+                    <div id="botones_ficha" class="hidden">
                         <a title="{$smarty.const.TXT_PROC_EDIT}" class="btn btn-danger" href='index.php?page=proceso_editar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
                             <i class="fa fa-gear fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                         </a>
@@ -350,25 +350,18 @@
             <div role="tabpanel" class="tab-pane" id="proc_indics">
                 <!-- Barra de botones -->
                 {if $_control || $_usuario->id == $proceso->id_propietario}
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="btn-toolbar" role="toolbar" aria-label="">
-                                <div class="btn-group pull-right" role="group" aria-label="">
-                                    <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}&id_proceso={$proceso->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
-                                        <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
-                                    </a>
-                                </div>
-                            </div>
+                    <div id="botones_indics" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}&id_proceso={$proceso->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
+                                <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            </a>
                         </div>
-                        <!-- /.col-lg-12 -->
                     </div>
-                    <!-- /.row -->
-                    <br>
                 {/if}
                 <!-- /Barra de botones -->
                 {if $indicadores}
                     <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
+                        <table id="tabla_indics" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
@@ -424,7 +417,7 @@
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td>{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}</td>
+                                        <td>{if ($totales[$indicador->id])}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}</td>
                                         <td class="text-center"> 
                                             {if $totales[$indicador->id] != NULL}
                                                 {if isset($medicion_lim[$indicador->id]) AND isset($medicion_obj[$indicador->id])}
@@ -492,10 +485,29 @@
                         </table>
                     </div>
                 {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_PROC_NO_INDIC}
-                    </div> 
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_PROC_NO_INDIC}
+                            </div> 
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}&id_proceso={$proceso->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
+                                            <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-1 -->
+                    </div>
+                    <!-- /.row -->
+                    
                 {/if}
             </div>
             <!-- /Indicadores del proceso -->
@@ -513,25 +525,18 @@
                 <div role="tabpanel" class="tab-pane" id="proc_archivos">
                     <!-- Barra de botones -->
                     {if $_control || $_usuario->id == $proceso->id_propietario}
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="btn-toolbar" role="toolbar" aria-label="">
-                                    <div class="btn-group" role="group" aria-label="">
-                                        <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
-                                           title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
-                                            <i class="fa fa-archive fa-fw"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                        <div id="botones_archivo" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
+                                   title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                    <i class="fa fa-archive fa-fw"></i>
+                                </a>
                             </div>
-                            <!-- /.col-lg-12 -->
                         </div>
-                        <!-- /.row -->
-                        <br>
                     {/if}
                     <!-- /Barra de botones -->
                     <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
+                        <table id="tabla_archivos" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_TITULO}</th>

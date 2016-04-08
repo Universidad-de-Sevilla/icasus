@@ -27,5 +27,5 @@ $(window).on('show.bs.tab', function () {
 //Barra de botones
 $(document).ready(function () {
     var botones = $('#botones').html();
-    $('#tabla_procesos_filter').append(botones);
+    $('#tabla_procesos_filter, #tabla_mis_procesos_filter').append(botones);
 });

@@ -258,7 +258,7 @@
             {if $procesos_propios}
                 <div role="tabpanel" class="tab-pane" id="user_procs">
                     <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
+                        <table id='tabla_mis_procesos' class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>

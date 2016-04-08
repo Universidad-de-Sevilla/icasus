@@ -9,6 +9,10 @@
 
 //Barra de botones
 $(document).ready(function () {
-    var botones = $('#botones').html();
-    $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones);
+    var botones_ficha = $('#botones_ficha').html();
+    var botones_indics = $('#botones_indics').html();
+    var botones_archivo = $('#botones_archivo').html();
+    $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
+    $('#tabla_indics_filter').append(botones_indics);
+    $('#tabla_archivos_filter').append(botones_archivo);
 });
