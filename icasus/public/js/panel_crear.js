@@ -1,10 +1,10 @@
 //--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
-// Archivo: public/js/panel_nuevo.js
+// Archivo: public/js/panel_crear.js
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-//Incluye el código JavaScript para el fichero panel_nuevo.tpl
+//Incluye el código JavaScript para el fichero panel_crear.tpl
 //----------------------------------------------------------------------------
 
 $(function () {

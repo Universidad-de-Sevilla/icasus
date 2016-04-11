@@ -79,7 +79,7 @@
         <div class="well" title="{$smarty.const.TXT_TABLA_MULTI}: {$smarty.const.TXT_TABLA_MULTI_DESC}">
             <div class="row">
                 <div class="col-xs-3">
-                    <i class="fa fa-table fa-4x"></i>
+                    <i class="fa fa-table fa-4x"></i> <i class="fa fa-table fa-2x"></i>
                 </div>
                 <div class="col-xs-9">
                     <strong>{$smarty.const.TXT_TABLA_MULTI}:</strong> {$smarty.const.TXT_TABLA_MULTI_DESC}
