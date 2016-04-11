@@ -25,7 +25,7 @@ if (filter_has_var(INPUT_GET, 'page') && filter_has_var(INPUT_GET, 'modulo'))
     $smarty->assign('id_entidad', $id_entidad);
 
     $smarty->assign('modulo', $modulo);
-    $smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
+    $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR);
     $plantilla = "$tipo.tpl";
 }
 else

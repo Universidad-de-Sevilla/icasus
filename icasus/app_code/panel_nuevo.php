@@ -23,7 +23,7 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     $smarty->assign('cuadro', $cuadro);
 
     $smarty->assign('_javascript', array('panel_nuevo'));
-    $smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
+    $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR);
     $plantilla = "panel_nuevo.tpl";
 }
 else
