@@ -87,7 +87,6 @@ define('TXT_CUADROS_MANDO', 'Cuadros de mando');
 define('TXT_CUADRO_LIST', 'Lista de cuadros de mando');
 define('TXT_CUADROS_MANDO_PUBLIC', 'Cuadros de mando públicos');
 define('TXT_CUADRO_CREAR', 'Crear cuadro de mando');
-define('TXT_CUADRO_PARAM', 'Parámetros del cuadro de mando');
 define('TXT_CUADRO_EDIT', 'Editar cuadro de mando');
 define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
 //Paneles de los Cuadros de Mando
