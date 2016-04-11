@@ -148,7 +148,6 @@ define('TXT_INDIC_SUBUNID', 'Relación de indicadores de subunidades');
 define('TXT_INDIC_PROP', 'Indicadores propios de la unidad');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_PARAM', 'Parámetros del indicador');
-define('TXT_INDIC_NUEVO', 'Nuevo indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
 define('TXT_INDIC_CREAR', 'Crear indicador');
 define('TXT_INDIC_LIST', 'Lista de indicadores');
