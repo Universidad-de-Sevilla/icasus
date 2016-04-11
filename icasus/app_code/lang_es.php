@@ -268,9 +268,7 @@ define('TXT_TOGGLED', 'Plegar/desplegar menú lateral');
 
 //Páginas
 define('TXT_PAG', 'Página');
-define('TXT_PAG_NUEVA', 'Nueva página');
-define('TXT_PAG_PARAM', 'Parámetros de la página');
-define('TXT_PAG_AYUDA_NUEVA', 'Nueva página de ayuda');
+define('TXT_PAG_CREAR', 'Crear página');
 define('TXT_PAG_EDIT', 'Editar página');
 
 //Procesos
