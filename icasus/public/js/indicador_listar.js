@@ -18,3 +18,9 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
     modal.find('#nombre_indicador').text(nombre_indicador);
     modal.find('#borrar').attr('href', link);
 });
+
+//Barra de botones
+$(document).ready(function () {
+    var botones = $('#botones').html();
+    $('#tabla_indicadores_filter, #tabla_mis_indicadores_filter').append(botones);
+});

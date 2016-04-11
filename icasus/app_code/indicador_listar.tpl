@@ -108,30 +108,22 @@
         <!-- Tab panes -->
         <div class="tab-content">
             
-            <!-- Barra de botones -->
-            {if $_control}
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="btn-toolbar" role="toolbar" aria-label="">
-                            <div class="btn-group pull-right" role="group" aria-label="">
-                                <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
-                                    <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <br>
-            {/if}
-            <!-- /Barra de botones -->
-
             <!-- Lista de Indicadores -->
             <div role="tabpanel" class="tab-pane active" id="indic_list">
+                 <!-- Barra de botones -->
+                {if $_control}
+                    <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
+                                <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            </a>
+                        </div>
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
                 {if $indicadores}
                     <div class="table-responsive">
-                        <table class="table table-condensed datatable table-striped table-hover">
+                        <table id="tabla_indicadores" class="table table-condensed datatable table-striped table-hover">
                             <thead>
                                 <tr>   
                                     <th>{$smarty.const.FIELD_ID}</th>
@@ -215,10 +207,30 @@
                         </table>
                     </div>
                 {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_UNID_NO_INDIC}
-                    </div> 
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_UNID_NO_INDIC}
+                            </div> 
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            <!-- Barra de botones -->
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
+                                            <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                            <!-- /Barra de botones -->
+                        </div>
+                        <!-- /.col-sm-1 -->
+                    </div>
+                    <!-- /.row -->
                 {/if}
             </div>
             <!-- /Lista de Indicadores -->
@@ -227,7 +239,7 @@
             {if $indicadores_propios}
                 <div role="tabpanel" class="tab-pane" id="user_indic">
                     <div class="table-responsive">
-                        <table class="table table-condensed datatable table-striped table-hover">
+                        <table id="tabla_mis_indicadores" class="table table-condensed datatable table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
@@ -288,7 +300,7 @@
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
+                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
                                                 {if $indicador->calculo}
