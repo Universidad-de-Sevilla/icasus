@@ -107,38 +107,30 @@
         <br>
         <!-- Tab panes -->
         <div class="tab-content">
-            
-            <!-- Barra de botones -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="btn-toolbar" role="toolbar" aria-label="">
-                        {if $_control}
-                            <div class="btn-group pull-right" role="group" aria-label="">
-                                <a class="btn btn-danger" href='index.php?page=dato_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATO_CREAR}">
-                                    <i class="fa fa-database fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
-                                </a>
-                            </div>
-                        {/if}
-                        {if $entidad->id == 14}
-                            <div class="btn-group" role="group" aria-label="">
-                                <a class="btn btn-danger" href='index.php?page=datos_rebiun&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}">
-                                    <i class="fa fa-folder-open fa-fw"></i> {$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}
-                                </a>
-                            </div>
-                        {/if} 
-                    </div>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <br>
-            <!-- /Barra de botones -->
 
             <!-- Lista de Datos -->
             <div role="tabpanel" class="tab-pane active" id="dato_list">
+                <!-- Barra de botones -->
+                <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                    {if $_control}
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=dato_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATO_CREAR}">
+                                <i class="fa fa-database fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            </a>
+                        </div>
+                    {/if}
+                    {if $entidad->id == 14}
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=datos_rebiun&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}">
+                                <i class="fa fa-folder-open fa-fw"></i>
+                            </a>
+                        </div>
+                    {/if} 
+                </div>
+                <!-- /Barra de botones -->
                 {if $datos}
                     <div class="table-responsive">
-                        <table class="table table-condensed datatable table-striped table-hover">
+                        <table id="tabla_datos" class="table table-condensed datatable table-striped table-hover">
                             <thead>
                                 <tr>   
                                     <th>{$smarty.const.FIELD_ID}</th>
@@ -213,10 +205,35 @@
                         </table>
                     </div>
                 {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_UNID_NO_DATOS}
-                    </div> 
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_UNID_NO_DATOS}
+                            </div> 
+                        </div>
+                        <!-- /.col-sm-10 -->
+                        <div class="col-sm-2">
+                            <div id="botones" class="btn-toolbar" role="toolbar" aria-label="">
+                                {if $_control}
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=dato_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATO_CREAR}">
+                                            <i class="fa fa-database fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                {/if}
+                                {if $entidad->id == 14}
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=datos_rebiun&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}">
+                                            <i class="fa fa-folder-open fa-fw"></i>
+                                        </a>
+                                    </div>
+                                {/if} 
+                            </div>
+                        </div>
+                        <!-- /.col-sm-2 -->
+                    </div>
+                    <!-- /.row -->
                 {/if}
             </div>
             <!-- /Lista de Datos -->
@@ -225,7 +242,7 @@
             {if $datos_propios}
                 <div role="tabpanel" class="tab-pane" id="user_dato">
                     <div class="table-responsive">
-                        <table class="table table-condensed datatable table-striped table-hover">
+                        <table id="tabla_mis_datos" class="table table-condensed datatable table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
@@ -286,7 +303,7 @@
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
+                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
                                                 {if $indicador->calculo}
@@ -362,7 +379,6 @@
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             {/if}
             <!-- /Datos del usuario -->
