@@ -104,7 +104,6 @@ define('TXT_DATO_TODOS', 'Todos los datos');
 define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
 define('TXT_DATO_EDIT', 'Editar dato');
 define('TXT_DATO_BORRAR', 'Borrar dato');
-define('TXT_DATO_NUEVO', 'Nuevo dato');
 define('TXT_DATO_PARAM', 'Parámetros del dato');
 define('TXT_DATO_CREAR', 'Crear dato');
 define('TXT_DATOS_LIST', 'Lista de datos');
