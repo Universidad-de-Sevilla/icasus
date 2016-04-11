@@ -93,7 +93,7 @@ define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
 //Paneles de los Cuadros de Mando
 define('TXT_PANEL_NUEVO', 'Nuevo panel');
 define('TXT_PANEL_PARAM', 'Parámetros del panel');
-define('TXT_PANEL_AGREGAR', 'Agregar panel');
+define('TXT_PANEL_CREAR', 'Crear panel');
 define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
 define('TXT_PANEL_ANYOS_ATRAS', 'Años atrás');
@@ -289,7 +289,6 @@ define('TXT_PROC_BORRAR', 'Borrar proceso');
 define('TXT_PROC_FLUJO', 'Flujograma');
 
 //Propiedades
-define('TXT_EDIT_PROP', 'Editar propiedades');
 define('TXT_OTRAS_PROP', 'Otras propiedades');
 
 //Propiedades HTML: Titles, placeholders, values de botones...
@@ -297,7 +296,6 @@ define('TXT_CODIGO', 'Único, fácil de recordar, en mayúsculas y sin espacios'
 define('TXT_ESTA', 'Está aquí');
 define('TXT_CALCULO_TOTAL', 'Determina cómo se calcula el total entre todas las subunidades');
 define('TXT_CALCULO_TOTAL_ANUAL', 'Determina cómo se calcula el total anual entre todos los periodos');
-define('TXT_BORRAR_CONFIRM', 'Confirmar borrado');
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CANCEL', 'Cancelar');
 define('TXT_EXAMINAR', 'Examinar...');

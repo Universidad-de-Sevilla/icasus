@@ -115,7 +115,7 @@
                     <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
                             <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_CREAR}">
-                                <i class="fa fa-th fa-fw"></i><sub class="fa fa-plus-circle fa-fw"></sub></a>
+                                <i class="fa fa-th fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
                         </div>
                     </div>
                 {/if}
@@ -170,7 +170,7 @@
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                     <div class="btn-group" role="group" aria-label="">
                                         <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_CREAR}">
-                                            <i class="fa fa-th fa-fw"></i><sub class="fa fa-plus-circle fa-fw"></sub></a>
+                                            <i class="fa fa-th fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
                                     </div>
                                 </div>
                             {/if}
