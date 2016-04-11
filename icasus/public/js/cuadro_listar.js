@@ -17,3 +17,9 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
     modal.find('#nombre_cuadro').text(nombre_cuadro);
     modal.find('#borrar').attr('href', link);
 });
+
+//Barra de botones
+$(document).ready(function () {
+    var botones = $('#botones').html();
+    $('#tabla_cuadros_filter, #tabla_mis_cuadros_filter').append(botones);
+});
