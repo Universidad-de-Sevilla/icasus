@@ -34,7 +34,6 @@
             <!-- /.col-md-6 -->
             <div class="col-md-6">
                 <form role="form" method="post" action="index.php?page=login_basico" id="formlogin">
-                    <input type="hidden" name="redirige" value="{*$redirige*}" />
                     <input type="hidden" name="autenticar" value="true" />       
                     <fieldset>
                         <div class="form-group">

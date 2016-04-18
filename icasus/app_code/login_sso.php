@@ -102,6 +102,7 @@ if (filter_has_var(INPUT_GET, 'autenticar'))
 else if (filter_has_var(INPUT_GET, 'logout'))
 {
     session_unset();
+    session_destroy();
     $usuario_sso->logout(IC_URL_BASE);
 }
 else
