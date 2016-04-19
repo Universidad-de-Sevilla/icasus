@@ -158,3 +158,19 @@ var url = document.location.toString();
 if (url.match('#')) {
     $('.nav-tabs a[href=#' + url.split('#')[1] + ']').tab('show');
 }
+
+// Comprobamos via ajax si la sesión está abierta y 
+// avisamos si no estamos en la página de login
+var sesion_activa;
+function check_sesion() {
+    var on_login = $('body').data('on_login');
+    $.ajax({
+        url: "index.php?page=check_sesion&ajax=true",
+        success: function (res) {
+            if (res !== '1' && !on_login) {
+                $('#dialogo_sesion_expirada').modal('show');
+            }
+        }
+    });
+}
+sesion_activa = setInterval(check_sesion, 10000);

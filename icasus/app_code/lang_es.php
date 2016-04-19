@@ -414,11 +414,11 @@ define('MSG_EXITO_OP', 'Operación realizada con éxito.');
 define('MSG_NO_MET_SOL', 'No existe el método solicitado.');
 define('MSG_FALTAN_PARAM_MET', 'Faltan parámetros para ejecutar el método');
 define('MSG_ERR', 'Por favor inténtelo de nuevo, si el problema persiste póngase en contacto con nosotros en la dirección: ');
-define('MSG_NO_SESION', 'Debe iniciar sesión.');
 define('MSG_GUARDAR_OK', 'Se han guardado los cambios correctamente.');
 define('MSG_CAMPO_REQ', 'Campo obligatorio');
 define('MSG_BUSCAR_NO_RESUL', 'No existen resultados para la búsqueda solicitada.');
 define('MSG_BUSCAR_NO_TEXTO', 'No introdujo ningún texto para buscar.');
+define('MSG_NO_SESION', 'Su sesión ha expirado.');
 
 //Análisis y planes de acción
 define('MSG_ANAPLAN_NO', 'Todavía no se ha registrado ningún análisis ni plan de acción para el indicador. Utilice el selector de la parte superior y los cuadros de texto para ello.');

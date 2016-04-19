@@ -62,7 +62,7 @@
 
     </head>
 
-    <body {if !isset($_usuario)} class="login-page"{/if}>
+    <body {if !isset($_usuario)} class="login-page" data-on_login="true"{/if} data-on_login="false">
 
         {if isset($_usuario)}
             {* Si se ha iniciado sesión *}
@@ -432,6 +432,22 @@
                 <script type='text/javascript' src="js/{$script}.js"></script>
             {/foreach}
         {/if}
+
+        <!-- Diálogo Sesión expirada -->
+        <div class="modal fade" id="dialogo_sesion_expirada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sign-out fa-fw"></i>{$smarty.const.MSG_NO_SESION}</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal" onclick="location.reload();"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Diálogo Sesión expirada -->
 
     </body>
 
