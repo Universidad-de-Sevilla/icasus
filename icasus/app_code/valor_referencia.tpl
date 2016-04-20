@@ -240,18 +240,6 @@
                     </a>
                 {/if}
             </div>
-            {if $permiso}
-                <div class="btn-group pull-right" role="group" aria-label="">
-                    <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
-                        <i class="fa fa-tag fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
-                    </a>
-                    {if $indicador->valores_referencia}
-                        <a href="javascript:void(0)" title="{$smarty.const.TXT_VAL_REF_BORRAR}" class="btn btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                            <i class="fa fa-trash fa-fw"></i>
-                        </a>
-                    {/if}
-                </div>
-            {/if}
         </div>
     </div>
     <!-- /.col-lg-12 -->
@@ -262,10 +250,26 @@
 
 <div class="row">
     <div class="col-lg-12">
+        <!-- Barra de botones -->
+        {if $permiso}
+            <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                <div class="btn-group" role="group" aria-label="">
+                    <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
+                        <i class="fa fa-tag fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                    </a>
+                    {if $indicador->valores_referencia}
+                        <a href="javascript:void(0)" title="{$smarty.const.TXT_VAL_REF_BORRAR}" class="btn btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                            <i class="fa fa-trash fa-fw"></i>
+                        </a>
+                    {/if}
+                </div>
+            </div>
+        {/if}
+        <!-- /Barra de botones -->
         {if $indicador->valores_referencia}
-            <form id="form_val_ref" action='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&borrar' method='post'>
+            <form id="form_val_ref" action='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&borrar' method='post'>
                 <div class="table-responsive">
-                    <table class="table datatable table-striped table-hover">
+                    <table id='tabla_val_ref' class="table datatable table-striped table-hover">
                         <thead>
                             <tr>   
                                 {if $permiso}
@@ -323,10 +327,30 @@
                 </div>
             </form>
         {else}
-            <div class="alert alert-info alert-dismissible">
-                <i class="fa fa-info-circle fa-fw"></i> 
-                {$smarty.const.MSG_INDIC_NO_VAL_REF}
-            </div> 
+            <div class="row">
+                <div class="col-sm-11">
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_INDIC_NO_VAL_REF}
+                    </div> 
+                </div>
+                <!-- /.col-sm-11 -->
+                <div class="col-sm-1">
+                    <!-- Barra de botones -->
+                    {if $permiso}
+                        <div id="botones" class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
+                                    <i class="fa fa-tag fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                </a>
+                            </div>
+                        </div>
+                    {/if}
+                    <!-- /Barra de botones -->
+                </div>
+                <!-- /.col-sm-1 -->
+            </div>
+            <!-- /.row -->
         {/if}
     </div>
     <!-- /.col-lg-12 -->

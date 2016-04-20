@@ -2,12 +2,12 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (https://gestionproyectos.us.es/projects/r2h2-icasus)
-// Archivo: valor_referencia_crear.php
+// Archivo: valor_referencia.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Controlador para gestionar los valores de referencia de indicadores/datos asociado a
-// valor_referencia_crear.tpl
+// valor_referencia.tpl
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
@@ -94,7 +94,7 @@ if (filter_has_var(INPUT_GET, 'borrar'))
                 {
                     $aviso = ERR_VAL_REF_BORRAR . ' (' . $valor_ref->etiqueta . ')';
                     $smarty->assign("aviso", $aviso);
-                    header("Location: index.php?page=valor_referencia_crear&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+                    header("Location: index.php?page=valor_referencia&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
                     exit;
                 }
                 else
@@ -111,7 +111,7 @@ if (filter_has_var(INPUT_GET, 'borrar'))
             {
                 $exito = MSG_VALS_REF_BORRADO . ' ' . $contador . ' ' . TXT_VAL_REF;
                 $smarty->assign("exito", $exito);
-                header("Location:index.php?page=valor_referencia_crear&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+                header("Location:index.php?page=valor_referencia&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
             }
         }
     }
@@ -119,13 +119,13 @@ if (filter_has_var(INPUT_GET, 'borrar'))
     {
         $aviso = MSG_VALS_REF_NO_MARCADOS;
         $smarty->assign("aviso", $aviso);
-        header("Location: index.php?page=valor_referencia_crear&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+        header("Location: index.php?page=valor_referencia&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
     }
 }
 
-$smarty->assign('_javascript', array('valor_referencia_crear'));
+$smarty->assign('_javascript', array('valor_referencia'));
 $smarty->assign('indicador', $indicador);
 $smarty->assign('_nombre_pagina', TXT_VAL_REF . ': ' . $indicador->nombre);
 
 $smarty->assign('tipo', $tipo);
-$plantilla = 'valor_referencia_crear.tpl';
+$plantilla = 'valor_referencia.tpl';

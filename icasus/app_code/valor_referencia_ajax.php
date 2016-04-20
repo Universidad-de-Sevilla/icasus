@@ -7,7 +7,7 @@
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //------------------------------------------------------------------------------
 // Descripcion: Graba de manera asincrona los nuevos valores de referencias y 
-// los actualiza desde la plantilla valor_referencia_crear.tpl
+// los actualiza desde la plantilla valor_referencia.tpl
 //------------------------------------------------------------------------------
 
 global $smarty;

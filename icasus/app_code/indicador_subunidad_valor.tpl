@@ -183,7 +183,7 @@
                         <i class="fa fa-user fa-fw"></i>
                     </a>
                 {/if}
-                <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                     <i class="fa fa-tags fa-fw"></i>
                 </a>
             </div>

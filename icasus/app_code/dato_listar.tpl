@@ -178,7 +178,7 @@
                                                title="{$smarty.const.TXT_DATO_MEDICIONES}: {$dato->nombre}" target="_blank">
                                                 <i class="fa fa-history fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
                                             {if $_control OR $_usuario->id==$dato->id_responsable}
@@ -353,7 +353,7 @@
                                                title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
                                                 <i class="fa fa-history fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
                                             {if $_control OR $_usuario->id==$indicador->id_responsable}
