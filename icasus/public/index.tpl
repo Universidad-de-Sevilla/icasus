@@ -439,7 +439,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sign-out fa-fw"></i>{$smarty.const.MSG_NO_SESION}</h3>
+                        <h3 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-triangle fa-fw"></i> {$smarty.const.MSG_NO_SESION}</h3>
                     </div>
                     <div class="modal-footer">
                         <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal" onclick="location.reload();"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>

@@ -241,6 +241,45 @@
 <br>
 <!-- /Menú del indicador -->
 
+<!-- Barra de botones -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="btn-toolbar" role="toolbar" aria-label="">
+            <div class="btn-group" role="group" aria-label="">
+                {if $_control || $responsable}
+                    <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-danger" href='javascript:void(0)' 
+                       data-toggle="modal" data-target="#dialogo_confirmar_generar">
+                        <i class="fa fa-refresh fa-fw"></i>
+                    </a>
+                {/if}
+                {if $mediciones}
+                    <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger" href='javascript:void(0)' 
+                       data-toggle="modal" data-target="#dialogo_confirmar_cargar">
+                        <i class="fa fa-upload fa-fw"></i>
+                    </a>
+                {/if}
+                {if !$indicador->calculo && ($_control || $_usuario->id==$indicador->id_responsable)}
+                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <i class="fa fa-pencil-square-o fa-fw"></i>
+                    </a>
+                {/if}
+                {if $_control || $_usuario->id==$indicador->id_responsable}
+                    <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <i class="fa fa-user fa-fw"></i>
+                    </a>
+                {/if}
+                <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <i class="fa fa-tags fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<br>
+<!-- /Barra de botones -->
+                
 <!-- Indicadores/datos calculados -->
 {if $indicador->calculo}
     <div class="row">
@@ -365,50 +404,22 @@
             <div class="panel-body">
                 
                 <!-- Barra de botones -->
-                <div class="btn-toolbar" role="toolbar" aria-label="">
-                    <div class="btn-group" role="group" aria-label="">
-                        {if $_control || $responsable}
-                            <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-danger" href='javascript:void(0)' 
-                               data-toggle="modal" data-target="#dialogo_confirmar_generar">
-                                <i class="fa fa-refresh fa-fw"></i>
-                            </a>
-                        {/if}
-                        {if $mediciones}
-                            <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger" href='javascript:void(0)' 
-                               data-toggle="modal" data-target="#dialogo_confirmar_cargar">
-                                <i class="fa fa-upload fa-fw"></i>
-                            </a>
-                        {/if}
-                        {if !$indicador->calculo && ($_control || $_usuario->id==$indicador->id_responsable)}
-                            <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                <i class="fa fa-pencil-square-o fa-fw"></i>
-                            </a>
-                        {/if}
-                        {if $_control || $_usuario->id==$indicador->id_responsable}
-                            <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                <i class="fa fa-user fa-fw"></i>
-                            </a>
-                        {/if}
-                        <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                            <i class="fa fa-tags fa-fw"></i>
-                        </a>
-                    </div>
-                    {if $mediciones && ($_control || $responsable)}
-                        <div class="btn-group pull-right" role="group" aria-label="">
+                {if $mediciones && ($_control || $responsable)}
+                    <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
                             <a title="{$smarty.const.TXT_MEDS_BORRAR}" class="btn btn-default btn-danger" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_mediciones">
                                 <i class="fa fa-trash fa-fw"></i>
                             </a>
                         </div>
-                    {/if}
-                </div>
-                <br>
+                    </div>
+                {/if}
                 <!-- /Barra de botones -->
                 
                 {if $mediciones}
                     <form id="form_mediciones" action='index.php?page=medicion_borrar&id_entidad={$entidad->id}&tipo={$tipo}' method='post'>
                         <input type="hidden" name="id_indicador" value="{$indicador->id}"/>
                         <div class="table-responsive">
-                            <table class="table datatable table-striped table-hover">
+                            <table id="tabla_mediciones" class="table datatable table-striped table-hover">
                                 <thead>
                                     <tr>
                                         {if $_control || $responsable}
