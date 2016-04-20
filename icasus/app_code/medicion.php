@@ -2,7 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: medicion_editar.php
+// Archivo: medicion.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
@@ -159,8 +159,8 @@ if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'
 
     $smarty->assign("usuario", $usuario);
     $smarty->assign("_nombre_pagina", FIELD_MED . ": " . " $medicion->etiqueta - $indicador->nombre");
-    $smarty->assign('_javascript', array('medicion_editar'));
-    $plantilla = "medicion_editar.tpl";
+    $smarty->assign('_javascript', array('medicion'));
+    $plantilla = "medicion.tpl";
 }
 else
 {

@@ -1,10 +1,10 @@
 //--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
-// Archivo: public/js/medicion_editar.js
+// Archivo: public/js/medicion.js
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-// Funciones de la plantilla medicion_editar.tpl
+// Funciones de la plantilla medicion.tpl
 // -------------------------------------------------------
 
 //Variables: Valor mínimo y máximo permitido
@@ -119,7 +119,7 @@ function actualizaGrafica() {
 //Edición de la medición
 function fila_editar(medicion, id_valor)
 {
-    $('#valors').load("index.php?page=medicion_editar_ajax&modulo=editarfila&ajax=true&id_medicion=" + medicion + "&id_valor=" + id_valor);
+    $('#valors').load("index.php?page=medicion_ajax&modulo=editarfila&ajax=true&id_medicion=" + medicion + "&id_valor=" + id_valor);
 }
 
 function fila_grabar(id_valor, medicion)
@@ -146,11 +146,11 @@ function fila_grabar(id_valor, medicion)
                     else {
                         $.ajax({
                             type: "POST",
-                            url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                            url: "index.php?page=medicion_ajax&modulo=grabarfila&ajax=true",
                             data: {"id_valor": id_valor, "valor": value},
                             success: function (response) {
-                                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                                $('#grafica').load("index.php?page=medicion_editar_ajax&modulo=grafica&ajax=true&id_medicion=" + medicion);
+                                $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                                $('#grafica').load("index.php?page=medicion_ajax&modulo=grafica&ajax=true&id_medicion=" + medicion);
                             }
                         });
                     }
@@ -163,11 +163,11 @@ function fila_grabar(id_valor, medicion)
                     else {
                         $.ajax({
                             type: "POST",
-                            url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                            url: "index.php?page=medicion_ajax&modulo=grabarfila&ajax=true",
                             data: {"id_valor": id_valor, "valor": value},
                             success: function (response) {
-                                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                                $('#grafica').load("index.php?page=medicion_editar_ajax&modulo=grafica&ajax=true&id_medicion=" + medicion);
+                                $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                                $('#grafica').load("index.php?page=medicion_ajax&modulo=grafica&ajax=true&id_medicion=" + medicion);
                             }
                         });
                     }
@@ -180,11 +180,11 @@ function fila_grabar(id_valor, medicion)
                     else {
                         $.ajax({
                             type: "POST",
-                            url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                            url: "index.php?page=medicion_ajax&modulo=grabarfila&ajax=true",
                             data: {"id_valor": id_valor, "valor": value},
                             success: function (response) {
-                                $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                                $('#grafica').load("index.php?page=medicion_editar_ajax&modulo=grafica&ajax=true&id_medicion=" + medicion);
+                                $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                                $('#grafica').load("index.php?page=medicion_ajax&modulo=grafica&ajax=true&id_medicion=" + medicion);
                             }
                         });
                     }
@@ -193,20 +193,20 @@ function fila_grabar(id_valor, medicion)
                 else {
                     $.ajax({
                         type: "POST",
-                        url: "index.php?page=medicion_editar_ajax&modulo=grabarfila&ajax=true",
+                        url: "index.php?page=medicion_ajax&modulo=grabarfila&ajax=true",
                         data: {"id_valor": id_valor, "valor": value},
                         success: function (response) {
-                            $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                            $('#grafica').load("index.php?page=medicion_editar_ajax&modulo=grafica&ajax=true&id_medicion=" + medicion);
+                            $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                            $('#grafica').load("index.php?page=medicion_ajax&modulo=grafica&ajax=true&id_medicion=" + medicion);
                         }
                     });
                 }
             }
             else if (value === "---")
             {
-                $.post("index.php?page=medicion_editar_ajax&modulo=anularvalor&ajax=true", {id_valor: id_valor}, function () {
-                    $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                    $('#grafica').load("index.php?page=medicion_editar_ajax&modulo=grafica&ajax=true&id_medicion=" + medicion);
+                $.post("index.php?page=medicion_ajax&modulo=anularvalor&ajax=true", {id_valor: id_valor}, function () {
+                    $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                    $('#grafica').load("index.php?page=medicion_ajax&modulo=grafica&ajax=true&id_medicion=" + medicion);
                 });
             }
             else
@@ -226,17 +226,17 @@ function fila_grabar(id_valor, medicion)
 
 function fila_cancelar(medicion)
 {
-    $('#valors').load("index.php?page=medicion_editar_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+    $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
 }
 
 function etiqueta_editar(medicion, content)
 {
-    $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=editaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+    $('#' + content).load("index.php?page=medicion_ajax&modulo=editaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
 }
 
 function observaciones_editar(medicion, content)
 {
-    $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=editarobservaciones&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+    $('#' + content).load("index.php?page=medicion_ajax&modulo=editarobservaciones&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
 }
 
 function etiqueta_editar_grabar(content, medicion, tag)
@@ -246,8 +246,8 @@ function etiqueta_editar_grabar(content, medicion, tag)
         $('#dialogo_etiqueta_nula').modal('show');
     }
     else {
-        $.post("index.php?page=medicion_editar_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
-            $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+        $.post("index.php?page=medicion_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
+            $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
             location.reload();
         });
     }
@@ -256,24 +256,24 @@ function etiqueta_editar_grabar(content, medicion, tag)
 function observaciones_editar_grabar(content, medicion, tag)
 {
     var value = $("[name=" + tag + "]").val();
-    $.post("index.php?page=medicion_editar_ajax&modulo=grabarobservaciones&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
-        $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelarobservaciones&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+    $.post("index.php?page=medicion_ajax&modulo=grabarobservaciones&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
+        $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelarobservaciones&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
     });
 }
 
 function etiqueta_editar_cancelar(content, medicion)
 {
-    $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+    $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
 }
 
 function observaciones_editar_cancelar(content, medicion)
 {
-    $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelarobservaciones&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+    $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelarobservaciones&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
 }
 
 function fecha_editar(medicion, content)
 {
-    $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=editaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+    $('#' + content).load("index.php?page=medicion_ajax&modulo=editaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
 }
 
 function fecha_grabar(medicion, content)
@@ -283,20 +283,20 @@ function fecha_grabar(medicion, content)
     var mes = $("[name=" + content + "Month]").val();
     var year = $("[name=" + content + "Year]").val();
     var value = year + "-" + mes + "-" + dia;
-    $.post("index.php?page=medicion_editar_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
-        $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+    $.post("index.php?page=medicion_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
+        $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
     });
     $('#valors').load(location.reload());
 }
 
 function fecha_cancelar(content, medicion)
 {
-    $('#' + content).load("index.php?page=medicion_editar_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+    $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
 }
 
 function referencia_editar(id)
 {
-    $('#referencia_' + id).load("index.php?page=medicion_editar_ajax&modulo=editarvalorreferencia&ajax=true&id_referencia=" + id);
+    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=editarvalorreferencia&ajax=true&id_referencia=" + id);
 }
 
 function referencia_grabar(id)
@@ -308,15 +308,15 @@ function referencia_grabar(id)
     {
         if (isNaN(value) === false)
         {
-            $.post("index.php?page=medicion_editar_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
-                $('#referencia_' + id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
+            $.post("index.php?page=medicion_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
+                $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
                 $('#valors').load(location.reload());
             });
         }
         else if (value === "---")
         {
-            $.post("index.php?page=medicion_editar_ajax&modulo=anularvalorreferencia&ajax=true", {id_referencia: id}, function () {
-                $('#referencia_' + id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
+            $.post("index.php?page=medicion_ajax&modulo=anularvalorreferencia&ajax=true", {id_referencia: id}, function () {
+                $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
                 $('#valors').load(location.reload());
             });
         }
@@ -333,7 +333,7 @@ function referencia_grabar(id)
 
 function referencia_cancelar(id)
 {
-    $('#referencia_' + id).load("index.php?page=medicion_editar_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
+    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
 }
 
 //Función que pinta nuestra gráfica

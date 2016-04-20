@@ -44,7 +44,7 @@
                                     <td style="font-size: 12px">{$valor.nombre_responsable} {$valor.apellidos_responsable}</td>
                                     <td>{$valor.fecha}</td>
                                     <td>{if $valor.valor == NULL}
-                                        <a href="index.php?page=medicion_editar&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$smarty.const.TXT_NULO}</a>{/if}
+                                        <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$smarty.const.TXT_NULO}</a>{/if}
                                     </td>
                                 </tr>
                             {/foreach}
@@ -108,7 +108,7 @@
                                         </td>
                                         <td>{$valor.fecha}</td>
                                         <td>{if $valor.valor == NULL}
-                                            <a href="index.php?page=medicion_editar&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$smarty.const.TXT_NULO}</a>{/if}
+                                            <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$smarty.const.TXT_NULO}</a>{/if}
                                         </td>
                                     </tr>
                                 {/foreach}
@@ -204,7 +204,7 @@
                                     <td>{$valor.fecha}</td>
                                     <td>{$valor.fecha_recogida|date_format:"%d-%m-%Y"}</td>
                                     <td>
-                                        <a href="index.php?page=medicion_editar&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$valor.valor}</a>
+                                        <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$valor.valor}</a>
                                     </td>
                                 </tr>
                             {/foreach}
@@ -344,12 +344,12 @@
                                             <td>
                                                 {if ($indicador->id_proceso)}
                                                     <a class="btn btn-default btn-circle btn-xs" 
-                                                       href="index.php?page=medicion_editar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador">
+                                                       href="index.php?page=medicion&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador">
                                                         <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
                                                     </a>
                                                 {else}
                                                     <a class="btn btn-default btn-circle btn-xs" 
-                                                       href="index.php?page=medicion_editar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato">
+                                                       href="index.php?page=medicion&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato">
                                                         <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
                                                     </a>
                                                 {/if}
