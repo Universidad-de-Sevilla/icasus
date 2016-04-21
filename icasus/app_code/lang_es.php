@@ -205,8 +205,6 @@ define('TXT_MED_BORRAR', 'Borrar medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
 define('TXT_MED_ASIG', ' Asignar la medición.');
-define('TXT_MED_VALORES', 'Valores de la medición');
-define('TXT_MED_DATOS', 'Datos de la medición');
 define('TXT_MED_GENERAR', 'Generar medición/es');
 define('TXT_MED_CARGAR', 'Cargar medición/es');
 define('TXT_MED_TABLA', 'Tabla de mediciones');
@@ -388,7 +386,6 @@ define('TXT_VAL_CALC_DESCRIPCION', 'En indicadores/datos calculados actualiza lo
 define('TXT_VAL_ACTIVO', 'Activo');
 define('TXT_VAL_INACTIVO', 'Inactivo');
 define('TXT_VAL_REF', 'Valores de referencia');
-define('TXT_VAL_REC', 'Valores recogidos');
 define('TXT_VAL_TABLA', 'Tabla de valores');
 define('TXT_VAL_REF_EDIT', 'Editar valor de referencia');
 define('TXT_VAL_REF_CREAR', 'Crear valor de referencia');
