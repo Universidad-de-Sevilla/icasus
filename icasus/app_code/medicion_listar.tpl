@@ -220,13 +220,16 @@
     <div class="col-lg-12">
         <ul class="nav nav-tabs">
             <li role="presentation">
-                <a title="{if $tipo == 'indicador'}{$smarty.const.TXT_FICHA}{else}{$smarty.const.TXT_FICHA}{/if}" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i> {if $tipo == 'indicador'}{$smarty.const.TXT_FICHA}{else}{$smarty.const.TXT_FICHA}{/if}</a>
+                <a title="{$smarty.const.TXT_FICHA}" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation" >
                 <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
             </li>
             <li role="presentation" class="active">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" href="#"><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+            </li>
+            <li role="presentation">
+                <a title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</a>
             </li>
             {if $tipo == 'indicador'}
                 <li role="presentation">

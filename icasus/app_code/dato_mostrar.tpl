@@ -134,6 +134,9 @@
             <li role="presentation">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
+            <li role="presentation">
+                <a title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</a>
+            </li>
         </ul>
     </div>
     <!-- /.col-lg-12 -->

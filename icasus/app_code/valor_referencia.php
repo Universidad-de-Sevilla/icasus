@@ -42,17 +42,34 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 $indicador = new Indicador();
 $indicador->load_joined("id=$id_indicador");
 
-//Proceso del indicador
-if ($tipo == 'indicador')
+//Avanzar entre indicadores/datos
+if ($tipo == "indicador")
 {
+    //Proceso del indicador
     $proceso = new Proceso();
     $proceso->load("id = $indicador->id_proceso");
     $smarty->assign('proceso', $proceso);
+    //Obtener todos los indicadores del proceso para avanzar o retroceder 
+    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id");
+    $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
 }
-
-//$entidad = new Entidad();
-//$entidad->load("id = $indicador->id_entidad");
-//$smarty->assign('entidad', $entidad);
+else
+{
+    //Obtener todos los datos para avanzar o retroceder 
+    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NULL");
+    $smarty->assign('_nombre_pagina', FIELD_DATO . ": $indicador->nombre");
+}
+$smarty->assign("indicadores", $indicadores);
+$cont = 0;
+foreach ($indicadores as $ind)
+{
+    if ($id_indicador == $ind->id)
+    {
+        $indice = $cont;
+        $smarty->assign("indice", $indice);
+    }
+    $cont++;
+}
 
 //Permiso para crear y borrar referencias
 $permiso = false;
@@ -125,7 +142,6 @@ if (filter_has_var(INPUT_GET, 'borrar'))
 
 $smarty->assign('_javascript', array('valor_referencia'));
 $smarty->assign('indicador', $indicador);
-$smarty->assign('_nombre_pagina', TXT_VAL_REF . ': ' . $indicador->nombre);
 
 $smarty->assign('tipo', $tipo);
 $plantilla = 'valor_referencia.tpl';

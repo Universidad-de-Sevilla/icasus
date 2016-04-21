@@ -44,10 +44,8 @@ function onDataReceived(datos) {
             totales[d.medicion] = parseFloat(d.valor);
         }
     });
-}
 
-// Pinta y configura el gráfico resumen de valores por subunidad
-$(document).ajaxComplete(function () {
+    // Pinta y configura el gráfico resumen de valores por subunidad
     var serie = chartSerie.getBarSerie();
     // Hacemos visible el último año
     serie[serie.length - 1].visible = true;
@@ -118,7 +116,7 @@ $(document).ajaxComplete(function () {
         },
         series: serie
     }, true);
-});
+}
 
 // Pinta las gráficas con los totales anuales e intraanuales
 $('.highchart').each(function () {
