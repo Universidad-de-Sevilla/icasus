@@ -650,6 +650,7 @@ define('ERR_USER_EDIT_NO_AUT', 'No tiene permiso para editar a este usuario.');
 //Valores
 define('ERR_VAL_GRABAR', 'Se ha producido un error, no se ha grabado el valor.');
 define('ERR_VAL_REF_BORRAR', 'No se puede borrar un valor de referencia con valores asignados a alguna medición.');
+define('ERR_VAL_EDIT', 'No tiene permisos suficientes para editar valores en este');
 
 //-----------------------------------------------------------------------------------
 //CAMPOS DE LAS TABLAS: FIELD_[Nombre]
