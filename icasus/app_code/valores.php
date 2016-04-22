@@ -2,7 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Archivo: indicador_subunidad_valor.php
+// Archivo: valores.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
@@ -70,9 +70,9 @@ if (isset($id_entidad))
         $smarty->assign('indicadores_dependientes', $indicadores_dependientes);
 
         $smarty->assign("tipo", $tipo);
-        $smarty->assign('_javascript', array('indicador_subunidad_valor'));
+        $smarty->assign('_javascript', array('valores'));
         $smarty->assign('_nombre_pagina', TXT_VAL_EDIT . ": $indicador->nombre");
-        $plantilla = 'indicador_subunidad_valor.tpl';
+        $plantilla = 'valores.tpl';
     }
     else
     {

@@ -300,7 +300,7 @@
             </div>
             <!-- /.panel-heading -->
             <div id="panel_valores" data-valor_min="{$indicador->valor_min}" data-valor_max="{$indicador->valor_max}" class="panel-body">
-                {include file="indicador_subunidad_valor_mostrar.tpl"}
+                {include file="valores_mostrar.tpl"}
             </div>
             <!-- /.panel-body -->
         </div>

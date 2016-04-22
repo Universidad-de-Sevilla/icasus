@@ -245,7 +245,7 @@
                             <i class="fa fa-history fa-fw"></i>
                         </a>
                         {if !$indicador->calculo && $permiso_unidad}
-                            <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                            <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default" href='index.php?page=valores&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                 <i class="fa fa-pencil-square-o fa-fw"></i>
                             </a>
                         {/if}

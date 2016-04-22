@@ -144,7 +144,6 @@
 <br>
 <!-- /Menú del indicador -->
 
-
 <div class="row">
     <div class="col-lg-12">
         {if $_control || $_usuario->id==$indicador->id_responsable}

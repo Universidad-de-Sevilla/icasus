@@ -2,7 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: indicador_subunidad_valor_ajax.php
+// Archivo: valores_ajax.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
@@ -162,7 +162,7 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
         $smarty->assign('mediciones', $cabeceras);
         $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
         $smarty->assign("modulo", $modulo);
-        $plantilla = 'indicador_subunidad_valor_ajax.tpl';
+        $plantilla = 'valores_ajax.tpl';
     }
     else
     {

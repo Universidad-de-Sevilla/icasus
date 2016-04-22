@@ -479,7 +479,7 @@
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 {if !$indicador->calculo}
-                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                         <i class="fa fa-pencil-square-o fa-fw"></i> 
                                                     </a>
                                                 {/if}
@@ -631,7 +631,7 @@
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 {if !$indicador->calculo}
-                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=indicador_subunidad_valor&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                         <i class="fa fa-pencil-square-o fa-fw"></i> 
                                                     </a>
                                                 {/if}

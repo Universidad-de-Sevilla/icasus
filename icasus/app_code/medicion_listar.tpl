@@ -267,7 +267,7 @@
                     </a>
                 {/if}
                 {if !$indicador->calculo && ($_control || $_usuario->id==$indicador->id_responsable)}
-                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=valores&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                         <i class="fa fa-pencil-square-o fa-fw"></i>
                     </a>
                 {/if}
