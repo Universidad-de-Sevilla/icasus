@@ -122,7 +122,7 @@
                     {if $entidad->id == 14}
                         <div class="btn-group" role="group" aria-label="">
                             <a class="btn btn-danger" href='index.php?page=datos_rebiun&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}">
-                                <i class="fa fa-folder-open fa-fw"></i>
+                                <i class="fa fa-folder-open fa-fw"></i><sub>R</sub>
                             </a>
                         </div>
                     {/if} 

@@ -2,7 +2,37 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-user fa-fw"></i> {$_nombre_pagina}
+            <div class="row">
+                <div class="col-md-10">
+                    {if $tipo == 'indicador'}<i class="fa fa-dashboard fa-fw"></i>{else}<i class="fa fa-database fa-fw"></i>{/if} {$_nombre_pagina}
+                </div>
+                <!-- /.col-md-10 -->
+                <!-- Navegación -->
+                {if count($indicadores)> 1}
+                    <div class="col-md-2">
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($indicadores)} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDICS}{else}{$smarty.const.FIELD_DATOS}{/if}</div>
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a title="{$smarty.const.TXT_PRIMER} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion_responsable&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[0]->id}'>
+                                    <i class="fa fa-step-backward fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ANT} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion_responsable&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[$indice-1]->id}'>
+                                    <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_SIG} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=medicion_responsable&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[$indice+1]->id}'>
+                                    <i class="fa fa-play fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ULTIMO} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=medicion_responsable&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[(count($indicadores)-1)]->id}'>
+                                    <i class="fa fa-step-forward fa-fw"></i>
+                                </a>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- /.col-md-2 -->
+                {/if}
+                <!-- /Navegación -->
+            </div>
+            <!-- /.row -->
         </h3>
     </div>
     <!-- /.col-lg-12 -->
@@ -74,7 +104,6 @@
                     <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page={$tipo}_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DATOS}</a>
                 </li>
             {/if}
-            <li><a title="{$smarty.const.FIELD_MEDICIONES}: {$indicador->nombre}" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>{$smarty.const.FIELD_MEDICIONES}: {$indicador->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -83,86 +112,101 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Barra de botones -->
+<!-- Menú del indicador -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">    
-                <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <i class="fa fa-history fa-fw"></i>
-                </a>
-                {if !$indicador->calculo && ($_control || $responsable)}
-                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                        <i class="fa fa-pencil-square-o fa-fw"></i>
-                    </a>
-                {/if}
-                <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <i class="fa fa-tags fa-fw"></i>
-                </a>
-            </div>
-        </div>
+        <ul class="nav nav-tabs">
+            <li role="presentation">
+                <a title="{$smarty.const.TXT_FICHA}" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
+            </li>
+            <li role="presentation" >
+                <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
+            </li>
+            <li role="presentation">
+                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+            </li>
+            <li role="presentation" class="active">
+                <a title="{$smarty.const.FIELD_RESP_MED}" href="#"><i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}</a>
+            </li>
+            <li role="presentation">
+                <a title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</a>
+            </li>
+            {if $tipo == 'indicador'}
+                <li role="presentation">
+                    <a title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-connectdevelop fa-fw"></i> {$smarty.const.TXT_ANALISIS}</a>
+                </li>
+            {/if}
+        </ul>
     </div>
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
 <br>
-<!-- /Barra de botones -->
+<!-- /Menú del indicador -->
+
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_UNIDS_MEDS_INDIC}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                {if $indicadores_subunidades}
-                    <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
-                            <thead>
-                                <tr>   
-                                    <th>{$smarty.const.FIELD_UNID}</th>
-                                    <th>{$smarty.const.FIELD_RESP_GRABAR}</th>
-                                    <th>{$smarty.const.FIELD_PUESTO}</th>
-                                    <th>{$smarty.const.FIELD_CAMBIO_A}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$indicadores_subunidades item=indicador_subunidad}
-                                    <tr>
-                                        <td>{$indicador_subunidad->entidad->nombre}</td>
-                                        <td style="font-size: 12px">{$indicador_subunidad->usuario->nombre} {$indicador_subunidad->usuario->apellidos}</td>
-                                        <td>{$indicador_subunidad->usuario->puesto}</td>
-                                        <td>
-                                            {if $indicador_subunidad->entidad->usuario}
-                                                <select id="{$indicador_subunidad->id}" name="responsable" class="form-control chosen-select identificador">
-                                                    <option value="0">{$smarty.const.TXT_SEL_RESP_GRABAR}</option>
-                                                    {foreach from=$indicador_subunidad->entidad->usuario item=item}
-                                                        {if $item->id_usuario != $indicador_subunidad->id_usuario}
-                                                            <option value="{$item->usuario->id}">{$item->usuario->nombre} {$item->usuario->apellidos}</option>
-                                                        {/if}
-                                                    {/foreach}
-                                                </select>
-                                            {else}
-                                                ---
-                                            {/if}
-                                        </td>
+        {if $_control || $_usuario->id==$indicador->id_responsable}
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_UNIDS_MEDS_INDIC}</span>
+                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    {if $indicadores_subunidades}
+                        <div class="table-responsive">
+                            <table class="table datatable table-striped table-hover">
+                                <thead>
+                                    <tr>   
+                                        <th>{$smarty.const.FIELD_UNID}</th>
+                                        <th>{$smarty.const.FIELD_RESP_MED}</th>
+                                        <th>{$smarty.const.FIELD_PUESTO}</th>
+                                        <th>{$smarty.const.FIELD_CAMBIO_A}</th>
                                     </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_MED_NO_ASIG}
-                    </div> 
-                {/if}
+                                </thead>
+                                <tbody>
+                                    {foreach from=$indicadores_subunidades item=indicador_subunidad}
+                                        <tr>
+                                            <td>{$indicador_subunidad->entidad->nombre}</td>
+                                            <td style="font-size: 12px">{$indicador_subunidad->usuario->nombre} {$indicador_subunidad->usuario->apellidos}</td>
+                                            <td>{$indicador_subunidad->usuario->puesto}</td>
+                                            <td>
+                                                {if $indicador_subunidad->entidad->usuario}
+                                                    <select id="{$indicador_subunidad->id}" name="responsable" class="form-control chosen-select identificador">
+                                                        <option value="0">{$smarty.const.TXT_MED_RESP_SEL}</option>
+                                                        {foreach from=$indicador_subunidad->entidad->usuario item=item}
+                                                            {if $item->id_usuario != $indicador_subunidad->id_usuario}
+                                                                <option value="{$item->usuario->id}">{$item->usuario->nombre} {$item->usuario->apellidos}</option>
+                                                            {/if}
+                                                        {/foreach}
+                                                    </select>
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    {else}
+                        <div class="alert alert-info alert-dismissible">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_MED_NO_ASIG}
+                        </div> 
+                    {/if}
+                </div>
+                <!-- /.panel-body -->        
             </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
+            <!-- /.panel -->
+        {else}
+            <div class="alert alert-danger alert-dismissible">
+                <i class="fa fa-exclamation-circle fa-fw"></i> 
+                {$smarty.const.ERR_MED_RESP} {$tipo}.
+            </div> 
+        {/if}
     </div>
     <!-- /.col-lg-12 -->
 </div>

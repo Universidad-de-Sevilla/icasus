@@ -28,7 +28,6 @@ define('TXT_NO_ASIG', 'No asignado');
 define('TXT_REG_EVENTOS', 'Registro de eventos');
 define('TXT_NULO', 'NULO');
 define('TXT_CONTENIDO', 'Contenido de');
-define('TXT_RESPONSABLES_GRABAR', 'Responsables de grabación');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_REP_GRAFIC', 'Gráficas');
 define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores/datos:');
@@ -210,6 +209,7 @@ define('TXT_MED_CARGAR', 'Cargar medición/es');
 define('TXT_MED_TABLA', 'Tabla de mediciones');
 define('TXT_MED_ULTIMA', 'Última medición');
 define('TXT_MEDS_BORRAR', 'Borrar mediciones');
+define('TXT_MED_RESP_SEL', 'Elegir nuevo responsable de medición ...');
 
 //Menú Principal
 define('TXT_INICIO', 'Mi icasus');
@@ -312,7 +312,6 @@ define('TXT_SEL', 'Seleccionar');
 define('TXT_SEL_UNO', 'Seleccionar uno');
 define('TXT_ELEG_UNO', 'Elegir uno si procede');
 define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
-define('TXT_SEL_RESP_GRABAR', 'Elegir nuevo responsable de grabación ...');
 
 //Tiempo/Periodicidad
 define('TXT_HISTORICO', 'Histórico anual');
@@ -631,11 +630,11 @@ define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el indicador, el identificador 
 //Mediciones
 define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de generar mediciones.');
 define('ERR_MED_AUT', 'No tiene permisos suficientes para agregar mediciones a este');
-define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en esta medición');
 define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
 define('ERR_MED_NO_VAL', 'No existen valores pendientes ni recogidos para esta medición.');
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la medición, inténtelo de nuevo o contacte con los administradores de icasus.');
 define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el cálculo de otros indicadores/datos. Borre éstos primero');
+define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en este');
 
 //Procesos
 define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores.');
@@ -752,7 +751,6 @@ define('FIELD_FUENTE_INFO', 'Fuente de Información');
 define('FIELD_PERIOD', 'Periodicidad');
 define('FIELD_RESP', 'Responsable');
 define('FIELD_RESP_SEG', 'Responsable de Seguimiento');
-define('FIELD_RESP_GRABAR', 'Responsable de Grabación');
 define('FIELD_MET', 'Método de comprobación (evidencia)');
 define('FIELD_EFQM', 'Criterios EFQM');
 define('FIELD_HISTORICO', 'Histórico');
