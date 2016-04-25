@@ -443,6 +443,12 @@ span:focus, .pagination > li > span:hover {
     background-size: cover;
 }
 
+.footer-login{
+    bottom:0;
+    position:absolute;
+    width: 100%;
+}
+
 /*Back to top*/
 #top-link-block.affix-top {
     position: absolute; /* allows it to "slide" up into view */

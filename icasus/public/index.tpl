@@ -331,6 +331,17 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
+
+                                <!-- Back to Top -->
+                                <a title="{$smarty.const.TXT_VOLVER_ARRIBA}" id="top-link-block" href="#top" class="btn btn-primary hidden"  
+                                   {literal}
+                                       onclick="$('html,body').animate({scrollTop: 0}, 'slow');
+                                               return false;"
+                                   {/literal}>
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <!-- /Back to Top -->
+
                                 <span class="h4">{$smarty.const.TXT_ICASUS}</span> - {$smarty.const.TXT_APP_DESCRIPCION}
                             </div>
                             <!-- /.col-lg-12 -->
@@ -348,16 +359,6 @@
                 </footer>
                 <!-- /Footer -->
 
-                <!-- Back to Top -->
-                <a title="{$smarty.const.TXT_VOLVER_ARRIBA}" id="top-link-block" href="#top" class="btn btn-primary hidden"  
-                   {literal}
-                       onclick="$('html,body').animate({scrollTop: 0}, 'slow');
-                               return false;"
-                   {/literal}>
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <!-- /Back to Top -->
-
             </div>
             <!-- /#wrapper -->
         {else}
@@ -366,7 +367,29 @@
                 {* El cuerpo del template va aqui *}
                 {include file=$plantilla}
             </div>
-            <!-- /.container-fluid -->  
+            <!-- /.container-fluid --> 
+
+            <!-- Footer -->
+            <footer class="text-center footer footer-login">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span class="h4">{$smarty.const.TXT_ICASUS}</span> - {$smarty.const.TXT_APP_DESCRIPCION}
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <small>{$smarty.const.FIELD_VERSION}: {$smarty.const.IC_VERSION} - {$smarty.const.FIELD_FECHA_REV}: {$smarty.const.IC_FECHA_REVISION}</small>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </footer>
+            <!-- /Footer -->
         {/if}
 
         <!-- jQuery -->
