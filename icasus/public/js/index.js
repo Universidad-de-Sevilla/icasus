@@ -91,6 +91,11 @@ function onElementHeightChange(elm, callback) {
     })();
 }
 
+//Tooltips
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 //Datatables
 $(document).ready(function () {
     datatables = $('.datatable').DataTable({

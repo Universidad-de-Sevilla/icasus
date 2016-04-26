@@ -77,7 +77,7 @@
             <div class="form-group has-feedback">
                 <label for="codigo" class="col-sm-2 control-label">{$smarty.const.FIELD_COD} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                 <div class="col-sm-8">
-                    <input title="{$smarty.const.TXT_CODIGO}" type='text' name='codigo' id='codigo' 
+                    <input title="{$smarty.const.TXT_CODIGO}" data-toggle="tooltip" data-placement="left" type='text' name='codigo' id='codigo' 
                            pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
                            class="form-control" value='{$entidad->codigo}' placeholder="{$smarty.const.FIELD_COD}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -103,7 +103,7 @@
             <div class="form-group has-feedback">
                 <label for="etiqueta_mini" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA_MINI} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                 <div class="col-sm-8">
-                    <input title="{$smarty.const.TXT_ETIQUETA_MINI_DESCRIPCION}" type='text' maxlength="12" class="form-control" name='etiqueta_mini' id='etiqueta_mini' value='{$entidad->etiqueta_mini}' placeholder="{$smarty.const.FIELD_ETIQUETA_MINI}" required/>
+                    <input title="{$smarty.const.TXT_ETIQUETA_MINI_DESCRIPCION}" data-toggle="tooltip" data-placement="left" type='text' maxlength="12" class="form-control" name='etiqueta_mini' id='etiqueta_mini' value='{$entidad->etiqueta_mini}' placeholder="{$smarty.const.FIELD_ETIQUETA_MINI}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>
                 </div>
@@ -135,11 +135,12 @@
             </div>
             <div class="form-group">
                 <label for="organica" class="col-sm-2 control-label">{$smarty.const.FIELD_ORGANICA}</label>
-                <div title="{$smarty.const.TXT_ORGANICA_DESCRIPCION}" class="col-sm-8">
+                <div title="{$smarty.const.TXT_ORGANICA_DESCRIPCION}" data-toggle="tooltip" data-placement="left" class="col-sm-8">
+                    <div></div>
                     <input  type="checkbox" id="organica" name="organica" class="form-control" 
                             data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                             data-onstyle="success" data-offstyle="danger" data-size="small"
-                            data-off="{$smarty.const.TXT_NO}" value="1" {if $entidad->es_organica}checked{/if} />         
+                            data-off="{$smarty.const.TXT_NO}" value="1" {if $entidad->es_organica}checked{/if} />       
                 </div>
             </div>
             <div class="form-group">
@@ -170,7 +171,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_UNID_EDIT}: {$entidad->nombre}</h3>
+                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_UNID_EDIT}: {$entidad->nombre}</h3>
                         </div>
                         <div class="modal-body">
                             <p>{$smarty.const.MSG_UNID_CONFIRM_EDITAR}</p>
