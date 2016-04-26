@@ -256,25 +256,34 @@
 
 <!-- Barra de botones -->
 <div class="row">
-    <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
-                {if $_control || $responsable}
-                    <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-danger" href='javascript:void(0)' 
-                       data-toggle="modal" data-target="#dialogo_confirmar_generar">
-                        <i class="fa fa-refresh fa-fw"></i>
-                    </a>
-                {/if}
-                {if $mediciones}
-                    <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger" href='javascript:void(0)' 
-                       data-toggle="modal" data-target="#dialogo_confirmar_cargar">
-                        <i class="fa fa-upload fa-fw"></i>
-                    </a>
-                {/if}
-            </div>
-        </div>
+    {if $_control || $responsable}
+    <div class="col-lg-6">
+        <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
+            data-toggle="modal" data-target="#dialogo_confirmar_generar">
+                <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}
+        </a>
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /.col-lg-6 -->
+    <div class="col-lg-6">
+        {if $mediciones}
+            <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
+               accesskey=""data-toggle="modal" data-target="#dialogo_confirmar_cargar">
+                <i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_MED_CARGAR}
+            </a>
+        {/if}
+    </div>
+    <!-- /.col-lg-6 -->
+    {else}
+        <div class="col-lg-12">
+            {if $mediciones}
+                <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
+                   accesskey=""data-toggle="modal" data-target="#dialogo_confirmar_cargar">
+                    <i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_MED_CARGAR}
+                </a>
+            {/if}
+        </div>
+        <!-- /.col-lg-12 -->
+    {/if}
 </div>
 <!-- /.row -->
 <br>
@@ -476,23 +485,23 @@
                                                     {if $totales[$medicion->id] != NULL}
                                                         {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
                                                             {if  $totales[$medicion->id] < $medicion_lim[$medicion->id]}
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                             {else if $totales[$medicion->id] >= $medicion_obj[$medicion->id]}
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                             {else}
-                                                                <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                                             {/if}
                                                         {else if isset($medicion_obj[$medicion->id])}
                                                             {if $totales[$medicion->id] >= $medicion_obj[$medicion->id] }
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                             {else}
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                             {/if}
                                                         {else if isset($medicion_lim[$medicion->id])}
                                                             {if $totales[$medicion->id] < $medicion_lim[$medicion->id] }
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                             {else}
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                             {/if}
                                                         {else}
                                                             ---
@@ -589,25 +598,25 @@
                                                     <td 
                                                         {if isset($ref_anuales_lim[$i]) AND isset($ref_anuales_obj[$i])}
                                                             {if  $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})"
                                                             {else if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})"
                                                             {else}
-                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
+                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})"
                                                             {/if}
                                                         {/if}
                                                         {if isset($ref_anuales_obj[$i]) AND !isset($ref_anuales_lim[$i])}
                                                             {if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})"
                                                             {else}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})"
                                                             {/if}
                                                         {/if}
                                                         {if isset($ref_anuales_lim[$i]) AND !isset($ref_anuales_obj[$i])}
                                                             {if $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]})"
                                                             {else}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]})"
                                                             {/if}
                                                         {/if}>
                                                         {if $totales_anuales[$subunidades->id][$i]== NULL} 
@@ -655,25 +664,25 @@
                                                     <td 
                                                         {if isset($ref_anuales_lim[$i]) AND isset($ref_anuales_obj[$i])}
                                                             {if  $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})"
                                                             {else if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})"
                                                             {else}
-                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
+                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})"
                                                             {/if}
                                                         {/if}
                                                         {if isset($ref_anuales_obj[$i]) AND !isset($ref_anuales_lim[$i])}
                                                             {if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})"
                                                             {else}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})"
                                                             {/if}
                                                         {/if}
                                                         {if isset($ref_anuales_lim[$i]) AND !isset($ref_anuales_obj[$i])}
                                                             {if $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]})"
                                                             {else}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]})"
                                                             {/if}
                                                         {/if}>
                                                         {if $totales_anuales[$subunidades->id][$i]== NULL} 
@@ -778,25 +787,25 @@
                                                     <td
                                                         {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
                                                             {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})"
                                                             {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})"
                                                             {else}
-                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
+                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})"
                                                             {/if}
                                                         {/if}
                                                         {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
                                                             {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})"
                                                             {else}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})"
                                                             {/if}
                                                         {/if}
                                                         {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
-                                                            {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                            {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]})"
                                                             {else}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]})"
                                                             {/if}
                                                         {/if}>
                                                         {if $medicion->medicion_valor->valor == NULL} 
@@ -841,25 +850,25 @@
                                                     <td 
                                                         {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
                                                             {if  $totales[$medicion->id] < $medicion_lim[$medicion->id]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})"
                                                             {else if $totales[$medicion->id] >= $medicion_obj[$medicion->id]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})"
                                                             {else}
-                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
+                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})"
                                                             {/if}
                                                         {/if}
                                                         {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
                                                             {if $totales[$medicion->id] >= $medicion_obj[$medicion->id] }
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})"
                                                             {else}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})"
                                                             {/if}
                                                         {/if}
                                                         {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
                                                             {if $totales[$medicion->id] < $medicion_lim[$medicion->id] }
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
+                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]})"
                                                             {else}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]})"
                                                             {/if}
                                                         {/if}>
                                                         {if $totales[$medicion->id] == NULL} 

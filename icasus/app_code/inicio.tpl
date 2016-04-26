@@ -327,23 +327,23 @@
                                             {if $totales[$indicador->id] != NULL}
                                                 {if isset($medicion_lim[$indicador->id]) AND isset($medicion_obj[$indicador->id])}
                                                     {if  $totales[$indicador->id] < $medicion_lim[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else if $totales[$indicador->id] >= $medicion_obj[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                                     {/if}
                                                 {else if isset($medicion_obj[$indicador->id])}
                                                     {if $totales[$indicador->id] >= $medicion_obj[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {/if}
                                                 {else if isset($medicion_lim[$indicador->id])}
                                                     {if $totales[$indicador->id] < $medicion_lim[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {/if}
                                                 {else}
                                                     ---
@@ -484,23 +484,23 @@
                                             {if $totales[$indicador->id] != NULL}
                                                 {if isset($medicion_lim[$indicador->id]) AND isset($medicion_obj[$indicador->id])}
                                                     {if  $totales[$indicador->id] < $medicion_lim[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else if $totales[$indicador->id] >= $medicion_obj[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                                     {/if}
                                                 {else if isset($medicion_obj[$indicador->id])}
                                                     {if $totales[$indicador->id] >= $medicion_obj[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {/if}
                                                 {else if isset($medicion_lim[$indicador->id])}
                                                     {if $totales[$indicador->id] < $medicion_lim[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {/if}
                                                 {else}
                                                     ---
