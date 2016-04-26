@@ -16,6 +16,7 @@
                                 <th>{$smarty.const.FIELD_UNIDS}</th>
                                 <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
                                 <th>{$smarty.const.FIELD_RESP}</th>
+                                <th>{$smarty.const.FIELD_RESP_MED}</th>
                                 <th>{$smarty.const.FIELD_FECHA}</th>
                                 <th>{$smarty.const.FIELD_VAL}</th>
                             </tr>
@@ -42,6 +43,7 @@
                                         {/if}
                                     </td>
                                     <td style="font-size: 12px">{$valor.nombre_responsable} {$valor.apellidos_responsable}</td>
+                                    <td style="font-size: 12px">{$valor.nombre_responsable_med} {$valor.apellidos_responsable_med}</td>
                                     <td>{$valor.fecha}</td>
                                     <td>{if $valor.valor == NULL}
                                         <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$smarty.const.TXT_NULO}</a>{/if}

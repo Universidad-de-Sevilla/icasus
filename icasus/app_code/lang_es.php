@@ -721,7 +721,6 @@ define('FIELD_COMENTARIOS', 'Comentarios');
 
 //Datos
 define('FIELD_DATO', 'Dato');
-define('FIELD_RESP_DATO', 'Responsable del dato');
 define('FIELD_FUENTE_DAT', 'Fuente de datos');
 define('FIELD_DATOS', 'Datos');
 

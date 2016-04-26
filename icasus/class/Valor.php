@@ -317,12 +317,14 @@ class Valor extends ADOdb_Active_Record
             p.codigo as cod_proceso,p.id as id_proceso, i.nombre as indicador, 
             i.id_entidad as entidad_del_indicador,i.id as id_indicador,
             e.id as id_entidad,m.etiqueta as fecha,u.id as id_usuario,
-            u.nombre as nombre_responsable,u.apellidos as apellidos_responsable, 
+            u.nombre as nombre_responsable,u.apellidos as apellidos_responsable,
+            um.nombre as nombre_responsable_med,um.apellidos as apellidos_responsable_med,
             v.valor FROM `valores` v
 			LEFT JOIN mediciones m ON v.id_medicion = m.id
 			LEFT JOIN entidades e ON v.id_entidad = e.id
 			LEFT JOIN indicadores i ON m.id_indicador = i.id
-                        LEFT JOIN usuarios u ON i.id_responsable_medicion = u.id
+                        LEFT JOIN usuarios u ON i.id_responsable = u.id
+                        LEFT JOIN usuarios um ON i.id_responsable_medicion = um.id
 			LEFT JOIN procesos p ON p.id = i.id_proceso
 			WHERE v.valor IS NULL
 			$cadena 
