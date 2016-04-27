@@ -77,9 +77,9 @@
             <input type="hidden" name="id_entidad" value="{$entidad->id}" />
             <!-- Nav tabs -->
             <ul class="nav nav-pills" role="tablist">
-                <li id="tab_proceso" role="presentation" class="active" ><a title="{$smarty.const.FIELD_PROC}" aria-controls="{$smarty.const.FIELD_PROC}" role="tab" ><span class="badge">1</span> {$smarty.const.FIELD_PROC}</a></li>
+                <li id="tab_proceso" role="presentation" class="active" ><a title="{$smarty.const.FIELD_PROC}" aria-controls="{$smarty.const.FIELD_PROC}" role="tab" ><b>{$smarty.const.TXT_PASO} 1:</b> <span class="badge">{$smarty.const.FIELD_PROC}</span></a></li>
                 <li class="disabled" ><a><i class="fa fa-arrow-right fa-fw"></i></a></li>
-                <li id="tab_otros" role="presentation" class="disabled" ><a title="{$smarty.const.TXT_OTRAS_PROP}" aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" ><span class="badge">2</span> {$smarty.const.TXT_OTRAS_PROP}</a></li>
+                <li id="tab_otros" role="presentation" class="disabled" ><a title="{$smarty.const.TXT_OTRAS_PROP}" aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" ><b>{$smarty.const.TXT_PASO} 2: </b><span class="badge">{$smarty.const.TXT_OTRAS_PROP}</span></a></li>
             </ul>
             <!-- /Nav tabs -->
             <!-- Tab panes -->
@@ -91,7 +91,7 @@
                     <div class="form-group has-feedback">
                         <label for="codigo" class="col-sm-2 control-label">{$smarty.const.FIELD_COD} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input title="{$smarty.const.TXT_CODIGO}" type='text' name='codigo' id='codigo' 
+                            <input title="{$smarty.const.TXT_CODIGO}" data-toggle="tooltip" data-placement="left" type='text' name='codigo' id='codigo' 
                                    pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
                                    class="form-control" placeholder="{$smarty.const.FIELD_COD}" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

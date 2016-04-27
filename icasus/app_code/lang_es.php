@@ -244,6 +244,7 @@ define('TXT_DESDE', 'desde');
 define('TXT_VER', 'Ver');
 define('TXT_SI', 'Si');
 define('TXT_NO', 'No');
+define('TXT_PASO', 'Paso');
 define('TXT_PRIMER', 'Primer/a');
 define('TXT_ULTIMO', 'Último/a');
 define('TXT_SIG', 'Siguiente');
@@ -311,7 +312,6 @@ define('TXT_INTERVALO', 'Sólo si se quieren limitar los valores de las medicion
 define('TXT_SEL', 'Seleccionar');
 define('TXT_SEL_UNO', 'Seleccionar uno');
 define('TXT_ELEG_UNO', 'Elegir uno si procede');
-define('TXT_SEL_RAIZ_COD_UNID', 'Seleccionar la raíz del código de unidad para el grupo que desee:');
 
 //Tiempo/Periodicidad
 define('TXT_HISTORICO', 'Histórico anual');
@@ -328,10 +328,6 @@ define('TXT_2_ULT_ANYO', 'Dos últimos años');
 define('TXT_CALC_AUTO', 'Este indicador/dato es calculado automáticamente');
 define('TXT_INDEF', 'Indefinido');
 define('TXT_SUMA', 'Suma');
-
-//Tipos de Exportación
-define('TXT_RTF', 'Rtf');
-define('TXT_EXCEL', 'Excel');
 
 //Tipos de Proceso
 define('TXT_ESTRATEGICO', '1-Estratégico');
