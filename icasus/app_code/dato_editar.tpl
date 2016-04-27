@@ -93,7 +93,7 @@
                     <div class="form-group has-feedback">
                         <label for="codigo" class="col-sm-2 control-label">{$smarty.const.FIELD_COD} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input title="{$smarty.const.TXT_CODIGO}" type='text' name='codigo' id='codigo' 
+                            <input title="{$smarty.const.TXT_CODIGO}" data-toggle="tooltip" data-placement="left" type='text' name='codigo' id='codigo' 
                                    pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
                                    class="form-control" placeholder="{$smarty.const.FIELD_COD}" value="{$dato->codigo}" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -129,7 +129,7 @@
                             </select>
                         </div>
                     </div>
-                    <div id="total_anual" title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" class="form-group {if $dato->periodicidad == Anual OR $dato->periodicidad == Bienal}hidden{/if}">
+                    <div id="total_anual" title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" data-toggle="tooltip" class="form-group {if $dato->periodicidad == Anual OR $dato->periodicidad == Bienal}hidden{/if}">
                         <label for="id_tipo_agregacion_temporal" class="col-sm-2 control-label">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
@@ -165,7 +165,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">{$smarty.const.TXT_INDIC_DAT_CALCULADO}</label>
                             <div class="col-sm-8">
-                                <div title="{$smarty.const.TXT_SOLO_INDIC_CALC}">
+                                <div title="{$smarty.const.TXT_SOLO_INDIC_CALC}" data-toggle="tooltip" data-placement="left">
                                     <input type="checkbox" id="activar_calculo"  class="form-control" 
                                            data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                            data-onstyle="success" data-offstyle="danger"
@@ -176,7 +176,7 @@
                         <div id="formula_calculo" class="form-group has-feedback {if !$dato->calculo}hidden{/if}">
                             <label for="calculo" class="col-sm-2 control-label">{$smarty.const.FIELD_FORMULA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                             <div class="col-sm-8">
-                                <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" class="form-control" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" required>{$dato->calculo}</textarea>
+                                <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" data-toggle="tooltip" data-placement="left" class="form-control" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" required>{$dato->calculo}</textarea>
                                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -186,7 +186,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">{$smarty.const.FIELD_INTERVALO}</label>
                             <div class="col-sm-8">
-                                <div title="{$smarty.const.TXT_INTERVALO}">
+                                <div title="{$smarty.const.TXT_INTERVALO}" data-toggle="tooltip" data-placement="left">
                                     <input type="checkbox" id="activar_intervalo"  class="form-control" 
                                            data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                            data-onstyle="success" data-offstyle="danger"
@@ -318,7 +318,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="total" title="{$smarty.const.TXT_CALCULO_TOTAL}" class="form-group {if $dato->desagregado == 0}hidden{/if}">
+                    <div id="total" title="{$smarty.const.TXT_CALCULO_TOTAL}" data-toggle="tooltip" class="form-group {if $dato->desagregado == 0}hidden{/if}">
                         <label for="id_tipo_agregacion" class="col-sm-2 control-label">{$smarty.const.FIELD_CALC_TOTAL}</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name="id_tipo_agregacion" id="id_tipo_agregacion">
@@ -390,7 +390,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_DATO_EDIT}: {$dato->nombre}</h3>
+                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-database fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_DATO_EDIT}: {$dato->nombre}</h3>
                         </div>
                         <div class="modal-body">
                             <p>{$smarty.const.MSG_DATO_CONFIRM_EDITAR}</p>
