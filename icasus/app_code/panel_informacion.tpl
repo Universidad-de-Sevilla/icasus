@@ -47,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <!-- /.well -->
+        <!-- /.panel -->
     </div>
     <!-- /.col-md-6 -->
     <div class="col-md-6">
@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <!-- /.well -->
+        <!-- /.panel -->
     </div>
     <!-- /.col-md-6 -->
 </div>
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <!-- /.well -->
+        <!-- /.panel -->
     </div>
     <!-- /.col-md-6 -->
     <div class="col-md-6">
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-        <!-- /.well -->
+        <!-- /.panel -->
     </div>
     <!-- /.col-md-6 -->
 </div>
