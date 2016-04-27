@@ -83,11 +83,11 @@
             <input type="hidden" name="id_entidad" value="{$entidad->id}" /> 
             <!-- Nav tabs -->
             <ul class="nav nav-pills" role="tablist">
-                <li id="tab_indicador" role="presentation" class="active" ><a title="{$smarty.const.FIELD_INDIC}" aria-controls="{$smarty.const.FIELD_INDIC}" role="tab" ><span class="badge">1</span> {$smarty.const.FIELD_INDIC}</a></li>
+                <li id="tab_indicador" role="presentation" class="active" ><a title="{$smarty.const.FIELD_INDIC}" aria-controls="{$smarty.const.FIELD_INDIC}" role="tab" ><b>{$smarty.const.TXT_PASO} 1:</b> <span class="badge">{$smarty.const.FIELD_INDIC}</span></a></li>
                 <li class="disabled" ><a><i class="fa fa-arrow-right fa-fw"></i></a></li>
-                <li id="tab_otros" role="presentation" class="disabled" ><a title="{$smarty.const.TXT_OTRAS_PROP}" aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" ><span class="badge">2</span> {$smarty.const.TXT_OTRAS_PROP}</a></li>
+                <li id="tab_otros" role="presentation" class="disabled" ><a title="{$smarty.const.TXT_OTRAS_PROP}" aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" ><b>{$smarty.const.TXT_PASO} 2:</b> <span class="badge">{$smarty.const.TXT_OTRAS_PROP}</span></a></li>
                 <li class="disabled" ><a><i class="fa fa-arrow-right fa-fw"></i></a></li>
-                <li id="tab_subunidades" role="presentation" class="disabled" ><a title="{$smarty.const.FIELD_SUBUNID_AFECT}" aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" ><span class="badge">3</span> {$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
+                <li id="tab_subunidades" role="presentation" class="disabled" ><a title="{$smarty.const.FIELD_SUBUNID_AFECT}" aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" ><b>{$smarty.const.TXT_PASO} 3:</b> <span class="badge">{$smarty.const.FIELD_SUBUNID_AFECT}</span></a></li>
             </ul>
             <!-- /Nav tabs -->
             <!-- Tab panes -->
@@ -99,7 +99,7 @@
                     <div class="form-group has-feedback">
                         <label for="codigo" class="col-sm-2 control-label">{$smarty.const.FIELD_COD} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input title="{$smarty.const.TXT_CODIGO}" type='text' name='codigo' id='codigo' 
+                            <input title="{$smarty.const.TXT_CODIGO}" type='text' name='codigo' id='codigo' data-toggle="tooltip" data-placement="left"
                                    pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
                                    class="form-control" placeholder="{$smarty.const.FIELD_COD}" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -158,7 +158,7 @@
                             </select>
                         </div>
                     </div>
-                    <div id="total_anual" title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" class="form-group hidden">
+                    <div id="total_anual" title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" class="form-group hidden" data-toggle="tooltip">
                         <label for="id_tipo_agregacion_temporal" class="col-sm-2 control-label">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
@@ -194,7 +194,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">{$smarty.const.TXT_INDIC_DAT_CALCULADO}</label>
                             <div class="col-sm-8">
-                                <div title="{$smarty.const.TXT_SOLO_INDIC_CALC}">
+                                <div title="{$smarty.const.TXT_SOLO_INDIC_CALC}" data-toggle="tooltip" data-placement="left">
                                     <input type="checkbox" id="activar_calculo"  class="form-control" 
                                            data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                            data-onstyle="success" data-offstyle="danger"
@@ -205,7 +205,7 @@
                         <div id="formula_calculo" class="form-group has-feedback hidden">
                             <label for="calculo" class="col-sm-2 control-label">{$smarty.const.FIELD_FORMULA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                             <div class="col-sm-8">
-                                <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" class="form-control" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" disabled="disabled" required></textarea>
+                                <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" data-toggle="tooltip" data-placement="left" class="form-control" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" disabled="disabled" required></textarea>
                                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 <div class="help-block with-errors"></div>
                             </div>
@@ -215,7 +215,7 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">{$smarty.const.FIELD_INTERVALO}</label>
                             <div class="col-sm-8">
-                                <div title="{$smarty.const.TXT_INTERVALO}">
+                                <div title="{$smarty.const.TXT_INTERVALO}" data-toggle="tooltip" data-placement="left">
                                     <input type="checkbox" id="activar_intervalo"  class="form-control" 
                                            data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                            data-onstyle="success" data-offstyle="danger"
@@ -383,7 +383,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="total" title="{$smarty.const.TXT_CALCULO_TOTAL}" class="form-group hidden">
+                    <div id="total" title="{$smarty.const.TXT_CALCULO_TOTAL}" class="form-group hidden" data-toggle="tooltip">
                         <label for="id_tipo_agregacion" class="col-sm-2 control-label">{$smarty.const.FIELD_CALC_TOTAL}</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name="id_tipo_agregacion" id="id_tipo_agregacion">

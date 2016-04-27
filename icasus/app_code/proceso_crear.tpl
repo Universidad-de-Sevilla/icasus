@@ -79,7 +79,7 @@
             <ul class="nav nav-pills" role="tablist">
                 <li id="tab_proceso" role="presentation" class="active" ><a title="{$smarty.const.FIELD_PROC}" aria-controls="{$smarty.const.FIELD_PROC}" role="tab" ><b>{$smarty.const.TXT_PASO} 1:</b> <span class="badge">{$smarty.const.FIELD_PROC}</span></a></li>
                 <li class="disabled" ><a><i class="fa fa-arrow-right fa-fw"></i></a></li>
-                <li id="tab_otros" role="presentation" class="disabled" ><a title="{$smarty.const.TXT_OTRAS_PROP}" aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" ><b>{$smarty.const.TXT_PASO} 2: </b><span class="badge">{$smarty.const.TXT_OTRAS_PROP}</span></a></li>
+                <li id="tab_otros" role="presentation" class="disabled" ><a title="{$smarty.const.TXT_OTRAS_PROP}" aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" ><b>{$smarty.const.TXT_PASO} 2:</b> <span class="badge">{$smarty.const.TXT_OTRAS_PROP}</span></a></li>
             </ul>
             <!-- /Nav tabs -->
             <!-- Tab panes -->
