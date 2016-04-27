@@ -649,7 +649,7 @@ define('ERR_VAL_REF_BORRAR', 'No se puede borrar un valor de referencia con valo
 define('ERR_VAL_EDIT', 'No tiene permisos suficientes para editar valores en este');
 
 //-----------------------------------------------------------------------------------
-//CAMPOS DE LAS TABLAS: FIELD_[Nombre]
+//CAMPOS: FIELD_[Nombre]
 //-----------------------------------------------------------------------------------
 
 define('FIELD_ID', 'ID');
@@ -707,13 +707,10 @@ define('FIELD_OBSERV', 'Observaciones');
 define('FIELD_ACTIVO', 'Activo');
 define('FIELD_VERSION', 'Versión');
 define('FIELD_STATUS', 'Status');
+define('FIELD_COMENTARIOS', 'Comentarios');
 
 //Archivos
 define('FIELD_ARCHIVO', 'Archivo');
-
-//Cuadros de Mando
-define('FIELD_NOMBRE_CUADRO', 'Nombre del cuadro de mando');
-define('FIELD_COMENTARIOS', 'Comentarios');
 
 //Datos
 define('FIELD_DATO', 'Dato');

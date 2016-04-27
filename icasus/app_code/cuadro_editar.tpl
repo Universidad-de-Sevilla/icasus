@@ -79,9 +79,9 @@
             <input type="hidden" name="id_cuadro" value="{$cuadro->id}" />
             <input type="hidden" name="id_entidad" value="{$entidad->id}">
             <div class="form-group has-feedback">
-                <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE_CUADRO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                 <div class="col-sm-8">
-                    <input type='text' class="form-control" name='nombre' id='nombre' value="{$cuadro->nombre}" placeholder="{$smarty.const.FIELD_NOMBRE_CUADRO}" required/>
+                    <input type='text' class="form-control" name='nombre' id='nombre' value="{$cuadro->nombre}" placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>
                 </div>
@@ -123,7 +123,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil fa-fw"></i> {$smarty.const.TXT_CUADRO_EDIT}: {$cuadro->nombre}</h3>
+                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-th fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_CUADRO_EDIT}: {$cuadro->nombre}</h3>
                         </div>
                         <div class="modal-body">
                             <p>{$smarty.const.MSG_CUADRO_CONFIRM_EDITAR}</p>
