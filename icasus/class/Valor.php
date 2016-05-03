@@ -277,8 +277,8 @@ class Valor extends ADOdb_Active_Record
               FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion 
               WHERE mediciones.id = $id_medicion AND valor IS NOT NULL 
               GROUP BY mediciones.id";
-        $resultado = mysql_query($query);
-        $registro = mysql_fetch_assoc($resultado);
+        $resultado = $db->execute($query);
+        $registro = mysqli_fetch_assoc($resultado);
         return $registro['valor'];
     }
 

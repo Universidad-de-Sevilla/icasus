@@ -33,7 +33,7 @@ function __autoload($class_name)
 }
 
 // Conectamos a los datos con ADODB y ActiveRecord 
-$dsn = 'mysql://' . IC_DB_LOGIN . ':' . IC_DB_CLAVE . '@' . IC_DB_HOST . '/' . IC_DB_DATABASE;
+$dsn = 'mysqli://' . IC_DB_LOGIN . ':' . IC_DB_CLAVE . '@' . IC_DB_HOST . '/' . IC_DB_DATABASE;
 $adodb = NewADOConnection($dsn);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
 

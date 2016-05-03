@@ -11,22 +11,26 @@
 // ---------------------------------------------------------------
 // Métodos definidos:
 //
-// get_indicadores_panel($id)
-// get_subunidades_indicador($id)
-// get_valores_con_timestamp($id, $fecha_inicio, $fecha_fin, $periodicidad)
+// get_indicadores_panel($link,$id)
+// get_subunidades_indicador($link,$id)
+// get_valores_con_timestamp($link,$id, $fecha_inicio, $fecha_fin, $periodicidad)
 // ---------------------------------------------------------------
 // Funciones auxiliares
 //
-// obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
-// obtener_totales_simples($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
+// obtener_total_calculado($link,$id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
+// obtener_totales_simples($link,$id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 // ---------------------------------------------------------------
 // Carga el app_config y conecta a la base de datos
 // Es necesario porque este fichero no depende del controlador principal index.php
 require_once("../app_code/app_config.php");
-@mysql_connect(IC_DB_HOST, IC_DB_LOGIN, IC_DB_CLAVE);
-mysql_query("SET NAMES UTF8");
+//Fichero de idioma
+include_once('../app_code/' . IC_LANG_FILE);
 
-if (mysql_select_db(IC_DB_DATABASE))
+//Conexión con la BD
+$link = mysqli_connect(IC_DB_HOST, IC_DB_LOGIN, IC_DB_CLAVE);
+mysqli_query($link, "SET NAMES UTF8");
+
+if (mysqli_select_db($link, IC_DB_DATABASE))
 {
     // Capturamos y procesamos los datos de la petición
     if (filter_has_var(INPUT_GET, 'metodo'))
@@ -40,22 +44,22 @@ if (mysql_select_db(IC_DB_DATABASE))
                 $fecha_inicio = filter_input(INPUT_GET, 'fecha_inicio', FILTER_SANITIZE_STRING);
                 $fecha_fin = filter_input(INPUT_GET, 'fecha_fin', FILTER_SANITIZE_STRING);
                 $periodicidad = filter_has_var(INPUT_GET, 'periodicidad') ? filter_input(INPUT_GET, 'periodicidad', FILTER_SANITIZE_STRING) : "todos";
-                $metodo($id, $fecha_inicio, $fecha_fin, $periodicidad);
+                $metodo($link, $id, $fecha_inicio, $fecha_fin, $periodicidad);
             }
             else if (filter_has_var(INPUT_GET, 'id') && filter_has_var(INPUT_GET, 'periodicidad'))
             {
                 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
                 $periodicidad = filter_input(INPUT_GET, 'periodicidad', FILTER_SANITIZE_STRING);
-                $metodo($id, 0, 0, $periodicidad);
+                $metodo($link, $id, 0, 0, $periodicidad);
             }
             else if (filter_has_var(INPUT_GET, 'id'))
             {
                 $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);
-                $metodo($id);
+                $metodo($link, $id);
             }
             else
             {
-                $metodo();
+                $metodo($link);
             }
         }
         else
@@ -72,15 +76,15 @@ else
 // ---------------------------------------------------------------------------
 // Devuelve los indicadores asociados a un panel de un cuadro de mando
 // Se utiliza en cuadro_mostrar
-function get_indicadores_panel($id)
+function get_indicadores_panel($link, $id)
 {
     $query = "SELECT indicadores.id, indicadores.codigo, indicadores.nombre, panel_indicadores.id_entidad
   FROM indicadores
   INNER JOIN panel_indicadores ON indicadores.id = panel_indicadores.id_indicador
   WHERE panel_indicadores.id_panel = $id ORDER BY codigo";
 
-    $resultado = mysql_query($query);
-    while ($registro = mysql_fetch_assoc($resultado))
+    $resultado = mysqli_query($link, $query);
+    while ($registro = mysqli_fetch_assoc($resultado))
     {
         $datos[] = $registro;
     }
@@ -91,14 +95,14 @@ function get_indicadores_panel($id)
 // ---------------------------------------------------------------------------
 // Devuelve una lista de subunidades asociadas a la medición de un indicador
 // Se utiliza en consulta_avanzada
-function get_subunidades_indicador($id)
+function get_subunidades_indicador($link, $id)
 {
     $query = "SELECT entidades.id, entidades.etiqueta, entidades.nombre, entidades.etiqueta_mini as etiqueta_mini
             FROM entidades INNER JOIN indicadores_subunidades ON entidades.id = indicadores_subunidades.id_entidad
             WHERE indicadores_subunidades.id_indicador = $id
             ORDER BY entidades.orden";
-    $resultado = mysql_query($query);
-    while ($registro = mysql_fetch_assoc($resultado))
+    $resultado = mysqli_query($link, $query);
+    while ($registro = mysqli_fetch_assoc($resultado))
     {
         $datos[] = $registro;
     }
@@ -114,7 +118,7 @@ function get_subunidades_indicador($id)
 // Ejemplo de llamada:
 // http://localhost/icasus/api_publica.php?metodo=get_valores_con_timestamp&id=5018&fecha_inicio=2012-01-01&fecha_fin=2012-12-31&periodicidad=anual
 // ---------------------------------------------------------------------------
-function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todos")
+function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0, $periodicidad = "todos")
 {
     // ------------------------------------------------------------------------------------------
     // Preparamos el tipo de operador que vamos a usar para calcular totales y agrupados
@@ -130,13 +134,12 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
 
     $operador = 'SUM'; // valor por defecto
     $operador_temporal = 'SUM'; // valor por defecto
-    if ($resultado = mysql_query($query_operadores))
+    if ($resultado = mysqli_query($link, $query_operadores))
     {
-        if ($registro = mysql_fetch_assoc($resultado))
+        if ($registro = mysqli_fetch_assoc($resultado))
         {
             $operador = $registro['operador'];
             $operador_temporal = $registro['operador_temporal'];
-            ;
             $id_entidad = $registro['id_entidad'];
             $calculo = $registro['calculo'];
         }
@@ -186,12 +189,13 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
         $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
     }
     $query .= " ORDER BY mediciones.periodo_inicio";
-    if (!$resultado = mysql_query($query))
+
+    if (!$resultado = mysqli_query($link, $query))
     {
         echo ERR_CONSULTA_EXE;
     }
 
-    while ($registro = mysql_fetch_assoc($resultado))
+    while ($registro = mysqli_fetch_assoc($resultado))
     {
         $datos[] = $registro;
     }
@@ -202,7 +206,7 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
 
     if ($calculo)
     {
-        $totales = obtener_total_calculado($id, $fecha_inicio, $fecha_fin, $periodicidad);
+        $totales = obtener_total_calculado($link, $id, $fecha_inicio, $fecha_fin, $periodicidad);
         $datos = array_merge($datos, $totales);
     }
     else
@@ -274,8 +278,9 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
         {
             $query_temporal = $query_unidades;
         }
-        $resultado = mysql_query($query_temporal);
-        while ($registro = mysql_fetch_assoc($resultado))
+        //TODO $operador === 'MANUAL' y $operador_temporal != NULL (agregación temporal intranual) 
+        $resultado = mysqli_query($link, $query_temporal);
+        while ($registro = mysqli_fetch_assoc($resultado))
         {
             $datos[] = $registro;
         }
@@ -329,8 +334,8 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
         $query_ref .= " GROUP BY unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
     }
     $query_ref .= " ORDER BY mediciones.periodo_inicio";
-    $resultado = mysql_query($query_ref);
-    while ($registro = mysql_fetch_assoc($resultado))
+    $resultado = mysqli_query($link, $query_ref);
+    while ($registro = mysqli_fetch_assoc($resultado))
     {
         $datos[] = $registro;
     }
@@ -351,12 +356,12 @@ function get_valores_con_timestamp($id, $fecha_inicio = 0, $fecha_fin = 0, $peri
 // Ejemplo de llamada:
 // http://localhost/icasus/api_publica.php?metodo=obtener_total_calculado&id=5035&fecha_inicio=2010-01-01&fecha_fin=2013-12-31&periodicidad=anual
 // ---------------------------------------------------------------------------
-function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
+function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 {
     $elementos_calculo = array();
     $query = "SELECT i.calculo, ta.operador FROM indicadores i INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  WHERE i.id = $id_indicador";
-    $resultado = mysql_query($query);
-    $registro = mysql_fetch_assoc($resultado);
+    $resultado = mysqli_query($link, $query);
+    $registro = mysqli_fetch_assoc($resultado);
     $calculo = $registro['calculo'];
     $operador = $registro['operador'];
 
@@ -383,7 +388,7 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
             if (is_numeric($variable))
             {
                 $id_indicador_parcial = (int) $variable;
-                $totales[$id_indicador_parcial] = obtener_totales_simples($id_indicador_parcial, $fecha_inicio, $fecha_fin, $periodicidad);
+                $totales[$id_indicador_parcial] = obtener_totales_simples($link, $id_indicador_parcial, $fecha_inicio, $fecha_fin, $periodicidad);
                 $formula .= "\$totales['$id_indicador_parcial'][\$i]['valor']";
             }
             else
@@ -418,12 +423,12 @@ function obtener_total_calculado($id_indicador, $fecha_inicio, $fecha_fin, $peri
 
 // ---------------------------------------------------------------------------
 
-function obtener_totales_simples($id_indicador, $fecha_inicio = '0', $fecha_fin = '0', $periodicidad = 'todos')
+function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fecha_fin = '0', $periodicidad = 'todos')
 {
     // Obtenemos el operador o tipo de agregación del indicador
     $query = "SELECT ta.operador FROM indicadores i INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  WHERE i.id = $id_indicador";
-    $resultado = mysql_query($query);
-    $registro = mysql_fetch_assoc($resultado);
+    $resultado = mysqli_query($link, $query);
+    $registro = mysqli_fetch_assoc($resultado);
     $operador = $registro['operador'];
 
     // Aquí vienen los totales
@@ -455,8 +460,8 @@ function obtener_totales_simples($id_indicador, $fecha_inicio = '0', $fecha_fin 
         $query .= " GROUP BY YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
     }
     $query .= " ORDER BY mediciones.periodo_inicio";
-    $resultado = mysql_query($query);
-    while ($registro = mysql_fetch_assoc($resultado))
+    $resultado = mysqli_query($link, $query);
+    while ($registro = mysqli_fetch_assoc($resultado))
     {
         $datos[] = $registro;
     }

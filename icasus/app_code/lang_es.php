@@ -568,7 +568,7 @@ define('ERR_AUT', 'No está autorizado para realizar esta operación.');
 define('ERR_OP_BD', 'No ha podido realizarse la operación por un error en la base de datos.');
 define('ERR_CON_BD', 'Error de conexión a la base de datos.');
 define('ERR_CONSULTA_OP', 'Fallo en la consulta getOperador.');
-define('ERR_CONSULTA_EXE', 'Fallo en la consulta ejecución');
+define('ERR_CONSULTA_EXE', 'Fallo en la ejecución de la consulta');
 define('ERR_DIR', 'Error no se ha podido crear el directorio tipo objeto.');
 define('ERR_SUBDIR', 'Error no se ha podido crear el subdirectorio objeto.');
 define('ERR_NO_DIR_NAME', 'No se ha proporcionado un nombre de directorio.');
