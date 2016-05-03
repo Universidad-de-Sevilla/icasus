@@ -19,6 +19,7 @@
 //---------------------------------------------------------------------------------
 
 define('TXT_ICASUS', 'icasus');
+define('TXT_APP_WEB', 'icasus3.us.es');
 define('TXT_APP_DESCRIPCION', 'Indicadores de Calidad de los Servicios de la Universidad de Sevilla');
 define('TXT_DEPARTAMENTOS', 'Departamentos');
 define('TXT_BIBLIOTECAS', 'Bibliotecas');

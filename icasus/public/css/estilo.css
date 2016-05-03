@@ -413,6 +413,10 @@ table.dataTable thead .sorting:after {
     padding: 1%;
 }
 
+.footer a{
+    color: #fff;
+}
+
 .clickable {
     cursor: pointer;
 } 
