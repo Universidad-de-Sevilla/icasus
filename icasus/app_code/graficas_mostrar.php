@@ -118,7 +118,7 @@ if ($mediciones)
     }
     // Prepara el panel anual
     $anio_inicio = $indicador->historicos;
-    $anio_fin = date('Y') - 1;
+    $anio_fin = date('Y');
     $panel->id = 1;
     $panel->tipo->clase_css = "lineal";
     $panel->nombre = TXT_HISTORICO;
