@@ -18,7 +18,6 @@ $("#organica").change(function () {
         location.reload();
     });
 });
-
 //Resumen de la unidad
 $('.proceso').click(function () {
     var id_proceso = $(this).data('id_proceso');
@@ -47,7 +46,6 @@ $('.proceso').click(function () {
         var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
         // Contenedor para los datos del gráfico
         var chartSerie = new HighchartSerie();
-
         if (periodicidad === "anual") {
             chartSerie.categoryType = "año";
         }
@@ -55,14 +53,12 @@ $('.proceso').click(function () {
             chartSerie.categoryType = "medicion";
         }
         var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
-
         $.ajax({
             url: urlApi,
             type: "GET",
             dataType: "json",
             success: onDataReceived
         });
-
         function onDataReceived(datos) {
             datos.forEach(function (dato) {
                 // Agrega los que no tienen etiqueta_mini (total y referencias)
@@ -71,7 +67,6 @@ $('.proceso').click(function () {
                     chartSerie.add(dato);
                 }
             });
-
             // Pide las series de datos a chartSerie
             // A saber: Totales y Valores de referencia
             var dataseries = chartSerie.getLinealSerie();
@@ -109,6 +104,9 @@ $('.proceso').click(function () {
                     title: {
                         text: 'Valores'
                     },
+                    labels: {
+                        format: '{value:.2f}'
+                    },
                     min: valor_min,
                     max: valor_max,
                     tickInterval: tickInterval
@@ -128,7 +126,6 @@ $('.proceso').click(function () {
         }
     });
 });
-
 //Función que pinta nuestra gráfica
 function pintaGrafico(chartOptions) {
     $(document).ready(function () {
@@ -160,7 +157,6 @@ hs.Expander.prototype.onAfterExpand = function () {
         i++;
     }
 };
-
 //Barras de botones
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha').html();

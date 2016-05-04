@@ -89,6 +89,9 @@ function actualizaGrafica() {
                 yAxis: {
                     title: {
                         text: 'Valores'
+                    },
+                    labels: {
+                        format: '{value:.2f}'
                     }
                 },
                 plotOptions: {

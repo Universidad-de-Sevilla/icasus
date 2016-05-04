@@ -109,6 +109,9 @@ function mostrarIndicador(serie) {
             yAxis: {
                 title: {
                     text: 'Valores'
+                },
+                labels: {
+                    format: '{value:.2f}'
                 }
             },
             plotOptions: {
@@ -167,6 +170,9 @@ function mostrarMedicion(e)
                 yAxis: {
                     title: {
                         text: 'Valores'
+                    },
+                    labels: {
+                        format: '{value:.2f}'
                     }
                 },
                 plotOptions: {
@@ -217,6 +223,9 @@ function mostrarMedicion(e)
                 yAxis: {
                     title: {
                         text: 'Valores'
+                    },
+                    labels: {
+                        format: '{value:.2f}'
                     }
                 },
                 plotOptions: {
@@ -428,6 +437,9 @@ function calcularResultado()
         yAxis: {
             title: {
                 text: 'Valores'
+            },
+            labels: {
+                format: '{value:.2f}'
             }
         },
         plotOptions: {
@@ -516,6 +528,9 @@ function quitarIndicador()
                 yAxis: {
                     title: {
                         text: 'Valores'
+                    },
+                    labels: {
+                        format: '{value:.2f}'
                     }
                 },
                 plotOptions: {
@@ -565,6 +580,9 @@ function quitarIndicador()
                 yAxis: {
                     title: {
                         text: 'Valores'
+                    },
+                    labels: {
+                        format: '{value:.2f}'
                     }
                 },
                 plotOptions: {

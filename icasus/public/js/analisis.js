@@ -157,6 +157,9 @@ $('.highchart').each(function () {
                 title: {
                     text: 'Valores'
                 },
+                labels: {
+                    format: '{value:.2f}'
+                },
                 min: valor_min,
                 max: valor_max,
                 tickInterval: tickInterval

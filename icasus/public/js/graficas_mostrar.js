@@ -73,6 +73,9 @@ function onDataReceived(datos) {
             title: {
                 text: 'Valores'
             },
+            labels: {
+                format: '{value:.2f}'
+            },
             min: valor_min,
             max: valor_max,
             tickInterval: tickInterval
@@ -204,6 +207,9 @@ $('.highchart').each(function () {
             yAxis: {
                 title: {
                     text: 'Valores'
+                },
+                labels: {
+                    format: '{value:.2f}'
                 },
                 min: valor_min,
                 max: valor_max,

@@ -154,6 +154,9 @@ $('.panel_linea').each(function () {
                     yAxis: {
                         title: {
                             text: 'Valores'
+                        },
+                        labels: {
+                            format: '{value:.2f}'
                         }
                     },
                     plotOptions: {
@@ -277,6 +280,9 @@ $(".panel_barra").each(function () {
                     yAxis: {
                         title: {
                             text: 'Valores'
+                        },
+                        labels: {
+                            format: '{value:.2f}'
                         }
                     },
                     plotOptions: {
@@ -491,6 +497,9 @@ $(".panel_tarta").each(function () {
                     yAxis: {
                         title: {
                             text: 'Valores'
+                        },
+                        labels: {
+                            format: '{value:.2f}'
                         }
                     },
                     plotOptions: {
