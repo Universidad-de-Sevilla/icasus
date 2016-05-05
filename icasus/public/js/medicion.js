@@ -91,7 +91,9 @@ function actualizaGrafica() {
                         text: 'Valores'
                     },
                     labels: {
-                        format: '{value:.2f}'
+                        formatter: function () {
+                            return this.value ? Math.round(this.value * 100) / 100 : null;
+                        }
                     }
                 },
                 plotOptions: {
@@ -108,7 +110,7 @@ function actualizaGrafica() {
                 tooltip: {
                     formatter: function () {
                         html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                        html += '<span >\u25CF</span> ' + this.series.name + ': <b>' + this.y
+                        html += '<span style="color:' + this.point.color + '">\u25CF</span> ' + this.series.name + ': <b>' + this.y
                                 + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' + '</b><br/>';
                         return html;
                     }

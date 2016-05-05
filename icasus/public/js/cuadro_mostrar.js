@@ -156,7 +156,9 @@ $('.panel_linea').each(function () {
                             text: 'Valores'
                         },
                         labels: {
-                            format: '{value:.2f}'
+                            formatter: function () {
+                                return this.value ? Math.round(this.value * 100) / 100 : null;
+                            }
                         }
                     },
                     plotOptions: {
@@ -167,6 +169,13 @@ $('.panel_linea').each(function () {
                                     return this.y ? ((Math.round(this.y * 100)) / 100) : null;
                                 }
                             }
+                        }
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                            html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                            return html;
                         }
                     },
                     legend: {
@@ -282,7 +291,9 @@ $(".panel_barra").each(function () {
                             text: 'Valores'
                         },
                         labels: {
-                            format: '{value:.2f}'
+                            formatter: function () {
+                                return this.value ? Math.round(this.value * 100) / 100 : null;
+                            }
                         }
                     },
                     plotOptions: {
@@ -326,6 +337,13 @@ $(".panel_barra").each(function () {
                                     return this.y ? ((Math.round(this.y * 100)) / 100) : null;
                                 }
                             }
+                        }
+                    },
+                    tooltip: {
+                        formatter: function () {
+                            html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                            html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                            return html;
                         }
                     },
                     legend: {
@@ -499,7 +517,9 @@ $(".panel_tarta").each(function () {
                             text: 'Valores'
                         },
                         labels: {
-                            format: '{value:.2f}'
+                            formatter: function () {
+                                return this.value ? Math.round(this.value * 100) / 100 : null;
+                            }
                         }
                     },
                     plotOptions: {
@@ -516,7 +536,7 @@ $(".panel_tarta").each(function () {
                     tooltip: {
                         formatter: function () {
                             html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                            html += '<span >\u25CF</span> ' + this.series.name + ': <b>' + this.y
+                            html += '<span style="color:' + this.point.color + '">\u25CF</span> ' + this.series.name + ': <b>' + this.y
                                     + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' + '</b><br/>';
                             return html;
                         }

@@ -158,7 +158,9 @@ $('.highchart').each(function () {
                     text: 'Valores'
                 },
                 labels: {
-                    format: '{value:.2f}'
+                    formatter: function () {
+                        return this.value ? Math.round(this.value * 100) / 100 : null;
+                    }
                 },
                 min: valor_min,
                 max: valor_max,
@@ -172,6 +174,13 @@ $('.highchart').each(function () {
                             return this.y ? Math.round(this.y * 100) / 100 : null;
                         }
                     }
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                    html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                    return html;
                 }
             },
             series: dataseries

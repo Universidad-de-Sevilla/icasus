@@ -26,7 +26,6 @@ if (valor_min === 1 && valor_max === 9) {
 // Contenedor para los datos del gráfico
 var chartSerie = new HighchartSerie();
 var totales = [];
-
 // Consulta a la base de datos
 $.ajax({
     url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador,
@@ -34,7 +33,6 @@ $.ajax({
     dataType: "json",
     success: onDataReceived
 });
-
 // Guardado de datos en HighchartSerie y totales para las medias
 function onDataReceived(datos) {
     datos.forEach(function (d) {
@@ -44,7 +42,6 @@ function onDataReceived(datos) {
             totales[d.medicion] = parseFloat(d.valor);
         }
     });
-
     // Pinta y configura el gráfico resumen de valores por subunidad
     var serie = chartSerie.getBarSerie();
     // Hacemos visible el último año
@@ -74,7 +71,9 @@ function onDataReceived(datos) {
                 text: 'Valores'
             },
             labels: {
-                format: '{value:.2f}'
+                formatter: function () {
+                    return this.value ? Math.round(this.value * 100) / 100 : null;
+                }
             },
             min: valor_min,
             max: valor_max,
@@ -117,6 +116,13 @@ function onDataReceived(datos) {
                 }
             }
         },
+        tooltip: {
+            formatter: function () {
+                html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                return html;
+            }
+        },
         series: serie
     }, true);
 }
@@ -136,7 +142,7 @@ $('.highchart').each(function () {
     if ($.isNumeric($(this).data("valor_max"))) {
         valor_max = $(this).data("valor_max");
     }
-    //Intervalo para las encuestas
+//Intervalo para las encuestas
     if (valor_min === 1 && valor_max === 9) {
         tickInterval = 1;
     }
@@ -146,7 +152,6 @@ $('.highchart').each(function () {
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
     // Contenedor para los datos del gráfico
     var chartSerie = new HighchartSerie();
-
     if (periodicidad === "anual") {
         chartSerie.categoryType = "año";
     }
@@ -154,14 +159,12 @@ $('.highchart').each(function () {
         chartSerie.categoryType = "medicion";
     }
     var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
-
     $.ajax({
         url: urlApi,
         type: "GET",
         dataType: "json",
         success: onDataReceived
     });
-
     function onDataReceived(datos) {
         datos.forEach(function (dato) {
             // Agrega los que no tienen etiqueta_mini (total y referencias)
@@ -170,7 +173,6 @@ $('.highchart').each(function () {
                 chartSerie.add(dato);
             }
         });
-
         // Pide las series de datos a chartSerie
         // A saber: Totales y Valores de referencia
         var dataseries = chartSerie.getLinealSerie();
@@ -209,7 +211,9 @@ $('.highchart').each(function () {
                     text: 'Valores'
                 },
                 labels: {
-                    format: '{value:.2f}'
+                    formatter: function () {
+                        return this.value ? Math.round(this.value * 100) / 100 : null;
+                    }
                 },
                 min: valor_min,
                 max: valor_max,
@@ -223,6 +227,13 @@ $('.highchart').each(function () {
                             return this.y ? Math.round(this.y * 100) / 100 : null;
                         }
                     }
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                    html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                    return html;
                 }
             },
             series: dataseries

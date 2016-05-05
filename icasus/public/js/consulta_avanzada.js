@@ -111,7 +111,9 @@ function mostrarIndicador(serie) {
                     text: 'Valores'
                 },
                 labels: {
-                    format: '{value:.2f}'
+                    formatter: function () {
+                        return this.value ? Math.round(this.value * 100) / 100 : null;
+                    }
                 }
             },
             plotOptions: {
@@ -122,6 +124,13 @@ function mostrarIndicador(serie) {
                             return this.y ? Math.round(this.y * 100) / 100 : null;
                         }
                     }
+                }
+            },
+            tooltip: {
+                formatter: function () {
+                    html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                    html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                    return html;
                 }
             },
             series: totalDataseries
@@ -172,7 +181,9 @@ function mostrarMedicion(e)
                         text: 'Valores'
                     },
                     labels: {
-                        format: '{value:.2f}'
+                        formatter: function () {
+                            return this.value ? Math.round(this.value * 100) / 100 : null;
+                        }
                     }
                 },
                 plotOptions: {
@@ -183,6 +194,13 @@ function mostrarMedicion(e)
                                 return this.y ? Math.round(this.y * 100) / 100 : null;
                             }
                         }
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                        html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                        return html;
                     }
                 },
                 series: totalDataseries
@@ -225,7 +243,9 @@ function mostrarMedicion(e)
                         text: 'Valores'
                     },
                     labels: {
-                        format: '{value:.2f}'
+                        formatter: function () {
+                            return this.value ? Math.round(this.value * 100) / 100 : null;
+                        }
                     }
                 },
                 plotOptions: {
@@ -236,6 +256,13 @@ function mostrarMedicion(e)
                                 return this.y ? Math.round(this.y * 100) / 100 : null;
                             }
                         }
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                        html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                        return html;
                     }
                 },
                 series: totalDataseriesB
@@ -439,7 +466,9 @@ function calcularResultado()
                 text: 'Valores'
             },
             labels: {
-                format: '{value:.2f}'
+                formatter: function () {
+                    return this.value ? Math.round(this.value * 100) / 100 : null;
+                }
             }
         },
         plotOptions: {
@@ -450,6 +479,13 @@ function calcularResultado()
                         return this.y ? Math.round(this.y * 100) / 100 : null;
                     }
                 }
+            }
+        },
+        tooltip: {
+            formatter: function () {
+                html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                return html;
             }
         },
         series: serieHighchartResul
@@ -530,7 +566,9 @@ function quitarIndicador()
                         text: 'Valores'
                     },
                     labels: {
-                        format: '{value:.2f}'
+                        formatter: function () {
+                            return this.value ? Math.round(this.value * 100) / 100 : null;
+                        }
                     }
                 },
                 plotOptions: {
@@ -541,6 +579,13 @@ function quitarIndicador()
                                 return this.y ? Math.round(this.y * 100) / 100 : null;
                             }
                         }
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                        html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                        return html;
                     }
                 },
                 series: totalDataseries
@@ -582,7 +627,9 @@ function quitarIndicador()
                         text: 'Valores'
                     },
                     labels: {
-                        format: '{value:.2f}'
+                        formatter: function () {
+                            return this.value ? Math.round(this.value * 100) / 100 : null;
+                        }
                     }
                 },
                 plotOptions: {
@@ -593,6 +640,13 @@ function quitarIndicador()
                                 return this.y ? Math.round(this.y * 100) / 100 : null;
                             }
                         }
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                        html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                        return html;
                     }
                 },
                 series: totalDataseriesB

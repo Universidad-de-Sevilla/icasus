@@ -105,7 +105,9 @@ $('.proceso').click(function () {
                         text: 'Valores'
                     },
                     labels: {
-                        format: '{value:.2f}'
+                        formatter: function () {
+                            return this.value ? Math.round(this.value * 100) / 100 : null;
+                        }
                     },
                     min: valor_min,
                     max: valor_max,
@@ -121,11 +123,19 @@ $('.proceso').click(function () {
                         }
                     }
                 },
+                tooltip: {
+                    formatter: function () {
+                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
+                        html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
+                        return html;
+                    }
+                },
                 series: dataseries
             });
         }
     });
 });
+
 //Función que pinta nuestra gráfica
 function pintaGrafico(chartOptions) {
     $(document).ready(function () {
@@ -157,6 +167,7 @@ hs.Expander.prototype.onAfterExpand = function () {
         i++;
     }
 };
+
 //Barras de botones
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha').html();
