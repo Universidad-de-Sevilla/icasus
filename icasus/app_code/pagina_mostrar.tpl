@@ -35,15 +35,17 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="btn-toolbar" role="toolbar" aria-label="">
+            {if !$indice}
+                <div class="btn-group" role="group" aria-label="">
+                    <a title="{$smarty.const.TXT_VOLVER_INDICE}" class="btn btn-default btn-danger" href='index.php?page=pagina_mostrar&alias=indice'><i class="fa fa-file-text fa-fw"></i><sub class="fa fa-arrow-left fa-fw"></sub></a>
+                </div>
+            {/if}
             {if $admin}
                 <div class="btn-group" role="group" aria-label="">
                     <a title="{$smarty.const.TXT_PAG_CREAR}" class="btn btn-default btn-danger" href="index.php?page=pagina_crear"><i class="fa fa-file-text fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
                     <a title="{$smarty.const.TXT_PAG_EDIT}" class="btn btn-default btn-danger" href="index.php?page=pagina_editar&id_pagina={$pagina->id}"><i class="fa fa-file-text fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub></a>
                 </div>
             {/if}
-            <div class="btn-group" role="group" aria-label="">
-                <a title="{$smarty.const.TXT_VOLVER_INDICE}" class="btn btn-default btn-danger" href='index.php?page=pagina_mostrar&alias=indice'><i class="fa fa-arrow-left fa-fw"></i></a>
-            </div>
         </div>
     </div>
     <!-- /.col-lg-12 -->

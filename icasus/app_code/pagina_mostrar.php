@@ -24,6 +24,14 @@ else
     $id_pagina = 0;
 }
 
+//Comprobamos si estamos en el índice
+$indice = false;
+if ($alias === 'indice')
+{
+    $indice = true;
+}
+$smarty->assign('indice', $indice);
+
 // Sólo administradores de Icasus pueden editar la ayuda
 $admin = false;
 foreach ($usuario->entidades as $entidad)
