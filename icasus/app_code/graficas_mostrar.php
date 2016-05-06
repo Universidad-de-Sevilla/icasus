@@ -103,7 +103,7 @@ if ($mediciones)
     $panel = new Panel();
     $panel->tipo = new Panel_tipo();
     $panel->ancho = 12;
-    if ($indicador->periodicidad != "Anual")
+    if ($indicador->periodicidad != "Anual" && $indicador->periodicidad != "Bienal")
     {
         // Prepara el panel intraanual
         $anio_inicio = date('Y') - 2;

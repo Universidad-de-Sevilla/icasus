@@ -315,7 +315,7 @@ define('TXT_SEL_UNO', 'Seleccionar uno');
 define('TXT_ELEG_UNO', 'Elegir uno si procede');
 
 //Tiempo/Periodicidad
-define('TXT_HISTORICO', 'Histórico anual');
+define('TXT_HISTORICO', 'Histórico');
 define('TXT_RANGO_FECHAS', 'Rango de fechas');
 define('TXT_BIENAL', 'Bienal');
 define('TXT_ANUAL', 'Anual');
