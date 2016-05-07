@@ -111,27 +111,19 @@ function mostrarIndicador(serie) {
                     text: 'Valores'
                 },
                 labels: {
-                    formatter: function () {
-                        return this.value ? Math.round(this.value * 100) / 100 : null;
-                    }
+                    format: '{value:,.2f}'
                 }
             },
             plotOptions: {
                 series: {
                     dataLabels: {
                         enabled: true,
-                        formatter: function () {
-                            return this.y ? Math.round(this.y * 100) / 100 : null;
-                        }
+                        format: '{y:,.2f}'
                     }
                 }
             },
             tooltip: {
-                formatter: function () {
-                    html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                    html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
-                    return html;
-                }
+                pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
             },
             series: totalDataseries
         });
@@ -181,27 +173,19 @@ function mostrarMedicion(e)
                         text: 'Valores'
                     },
                     labels: {
-                        formatter: function () {
-                            return this.value ? Math.round(this.value * 100) / 100 : null;
-                        }
+                        format: '{value:,.2f}'
                     }
                 },
                 plotOptions: {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            formatter: function () {
-                                return this.y ? Math.round(this.y * 100) / 100 : null;
-                            }
+                            format: '{y:,.2f}'
                         }
                     }
                 },
                 tooltip: {
-                    formatter: function () {
-                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                        html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
-                        return html;
-                    }
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                 },
                 series: totalDataseries
             });
@@ -243,27 +227,19 @@ function mostrarMedicion(e)
                         text: 'Valores'
                     },
                     labels: {
-                        formatter: function () {
-                            return this.value ? Math.round(this.value * 100) / 100 : null;
-                        }
+                        format: '{value:,.2f}'
                     }
                 },
                 plotOptions: {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            formatter: function () {
-                                return this.y ? Math.round(this.y * 100) / 100 : null;
-                            }
+                            format: '{y:,.2f}'
                         }
                     }
                 },
                 tooltip: {
-                    formatter: function () {
-                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                        html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
-                        return html;
-                    }
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                 },
                 series: totalDataseriesB
             });
@@ -466,27 +442,19 @@ function calcularResultado()
                 text: 'Valores'
             },
             labels: {
-                formatter: function () {
-                    return this.value ? Math.round(this.value * 100) / 100 : null;
-                }
+                format: '{value:,.2f}'
             }
         },
         plotOptions: {
             series: {
                 dataLabels: {
                     enabled: true,
-                    formatter: function () {
-                        return this.y ? Math.round(this.y * 100) / 100 : null;
-                    }
+                    format: '{y:,.2f}'
                 }
             }
         },
         tooltip: {
-            formatter: function () {
-                html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
-                return html;
-            }
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
         },
         series: serieHighchartResul
     });
@@ -566,27 +534,19 @@ function quitarIndicador()
                         text: 'Valores'
                     },
                     labels: {
-                        formatter: function () {
-                            return this.value ? Math.round(this.value * 100) / 100 : null;
-                        }
+                        format: '{value:,.2f}'
                     }
                 },
                 plotOptions: {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            formatter: function () {
-                                return this.y ? Math.round(this.y * 100) / 100 : null;
-                            }
+                            format: '{y:,.2f}'
                         }
                     }
                 },
                 tooltip: {
-                    formatter: function () {
-                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                        html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
-                        return html;
-                    }
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                 },
                 series: totalDataseries
             });
@@ -627,27 +587,19 @@ function quitarIndicador()
                         text: 'Valores'
                     },
                     labels: {
-                        formatter: function () {
-                            return this.value ? Math.round(this.value * 100) / 100 : null;
-                        }
+                        format: '{value:,.2f}'
                     }
                 },
                 plotOptions: {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            formatter: function () {
-                                return this.y ? Math.round(this.y * 100) / 100 : null;
-                            }
+                            format: '{y:,.2f}'
                         }
                     }
                 },
                 tooltip: {
-                    formatter: function () {
-                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                        html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
-                        return html;
-                    }
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                 },
                 series: totalDataseriesB
             });

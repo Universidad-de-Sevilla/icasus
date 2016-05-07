@@ -158,9 +158,7 @@ $('.highchart').each(function () {
                     text: 'Valores'
                 },
                 labels: {
-                    formatter: function () {
-                        return this.value ? Math.round(this.value * 100) / 100 : null;
-                    }
+                    format: '{value:,.2f}'
                 },
                 min: valor_min,
                 max: valor_max,
@@ -170,18 +168,12 @@ $('.highchart').each(function () {
                 series: {
                     dataLabels: {
                         enabled: true,
-                        formatter: function () {
-                            return this.y ? Math.round(this.y * 100) / 100 : null;
-                        }
+                        format: '{y:,.2f}'
                     }
                 }
             },
             tooltip: {
-                formatter: function () {
-                    html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                    html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
-                    return html;
-                }
+                pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
             },
             series: dataseries
         });
@@ -189,7 +181,7 @@ $('.highchart').each(function () {
 });
 
 //Función que pinta nuestra gráfica
-function pintaGrafico(chartOptions, barras) {
+function pintaGrafico(chartOptions) {
     $(document).ready(function () {
         // Añadimos evento al hacer click en el gráfico
         chartOptions.chart.events.click = function () {
@@ -198,37 +190,15 @@ function pintaGrafico(chartOptions, barras) {
                 height: 9999,
                 allowWidthReduction: true
             }, {
-                chartOptions: chartOptions,
-                barras: barras
+                chartOptions: chartOptions
             });
         };
         var chart = new Highcharts.Chart(chartOptions);
-        if (barras) {
-            // Pinta la media del último grupo de datos (último periodo)
-            chart.getSelectedSeries().forEach(function (selected) {
-                chart.yAxis[0].addPlotLine({
-                    label: {
-                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
-                        x: -50,
-                        y: 10,
-                        useHTML: true,
-                        style: {
-                            color: selected.color
-                        }
-                    },
-                    value: totales[selected.name],
-                    color: selected.color,
-                    width: 2,
-                    id: selected.name
-                });
-            });
-        }
     });
 }
 
-// Crea un nuevo gráfico con un popup de Highslide
-var i = 0; //Contador de popups
+//Crea un nuevo gráfico con un popup de Highslide
+var i = 0; //Contador de popus
 hs.zIndexCounter = 2000; //z-index del popup
 hs.Expander.prototype.onAfterExpand = function () {
     if (this.custom.chartOptions) {
@@ -238,27 +208,6 @@ hs.Expander.prototype.onAfterExpand = function () {
         chartOptions.chart.events.click = function () {
         };
         var hsChart = new Highcharts.Chart(chartOptions);
-        if (this.custom.barras) {
-            // Pinta la media del último grupo de datos (último periodo)
-            hsChart.getSelectedSeries().forEach(function (selected) {
-                hsChart.yAxis[0].addPlotLine({
-                    label: {
-                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
-                        x: -50,
-                        y: 10,
-                        useHTML: true,
-                        style: {
-                            color: selected.color
-                        }
-                    },
-                    value: totales[selected.name],
-                    color: selected.color,
-                    width: 2,
-                    id: selected.name
-                });
-            });
-        }
         i++;
     }
 };

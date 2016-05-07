@@ -147,6 +147,14 @@ $('.table-responsive').on('scroll', function () {
     datatables.fixedHeader.adjust();
 });
 
+//Opciones generales de los gráficos
+Highcharts.setOptions({
+    lang: {
+        decimalPoint: ',',
+        thousandsSep: '.'
+    }
+});
+
 //Map Responsive
 $(document).ready(function () {
     $('img[usemap]').rwdImageMaps();

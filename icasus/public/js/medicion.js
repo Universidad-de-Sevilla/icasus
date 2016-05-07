@@ -59,7 +59,7 @@ function actualizaGrafica() {
             });
 
             //Redondeamos el total
-            total = Math.round(total * 100) / 100;
+            total = Highcharts.numberFormat(total, 2);
 
             //Pide las series de datos a chartSerie
             var dataseries = chartSerie.getPieSerie();
@@ -91,29 +91,19 @@ function actualizaGrafica() {
                         text: 'Valores'
                     },
                     labels: {
-                        formatter: function () {
-                            return this.value ? Math.round(this.value * 100) / 100 : null;
-                        }
+                        format: '{value:,.2f}'
                     }
                 },
                 plotOptions: {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            formatter: function () {
-                                return this.y ? ((Math.round(this.y * 100)) / 100)
-                                        + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' : null;
-                            }
+                            format: '{y:,.2f} ({percentage:,.2f} %)'
                         }
                     }
                 },
                 tooltip: {
-                    formatter: function () {
-                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                        html += '<span style="color:' + this.point.color + '">\u25CF</span> ' + this.series.name + ': <b>' + this.y
-                                + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' + '</b><br/>';
-                        return html;
-                    }
+                    pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f} ({point.percentage:,.2f} %)</b><br/>'
                 },
                 series: dataseries
             });

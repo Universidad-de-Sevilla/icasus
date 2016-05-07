@@ -71,9 +71,7 @@ function onDataReceived(datos) {
                 text: 'Valores'
             },
             labels: {
-                formatter: function () {
-                    return this.value ? Math.round(this.value * 100) / 100 : null;
-                }
+                format: '{value:,.2f}'
             },
             min: valor_min,
             max: valor_max,
@@ -89,8 +87,8 @@ function onDataReceived(datos) {
                         } else {
                             this.chart.yAxis[0].addPlotLine({
                                 label: {
-                                    text: '<span title="Total ' + this.name + ': ' + Math.round(totales[this.name] * 100) / 100 + '">Total: <b>'
-                                            + Math.round(totales[this.name] * 100) / 100 + '</b></span>',
+                                    text: '<span title="Total ' + this.name + ': ' + Highcharts.numberFormat(totales[this.name]) + '">Total: <b>'
+                                            + Highcharts.numberFormat(totales[this.name]) + '</b></span>',
                                     x: -50,
                                     y: 10,
                                     useHTML: true,
@@ -110,18 +108,12 @@ function onDataReceived(datos) {
             column: {
                 dataLabels: {
                     enabled: true,
-                    formatter: function () {
-                        return this.y ? Math.round(this.y * 100) / 100 : null;
-                    }
+                    format: '{y:,.2f}'
                 }
             }
         },
         tooltip: {
-            formatter: function () {
-                html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
-                return html;
-            }
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
         },
         series: serie
     }, true);
@@ -211,9 +203,7 @@ $('.highchart').each(function () {
                     text: 'Valores'
                 },
                 labels: {
-                    formatter: function () {
-                        return this.value ? Math.round(this.value * 100) / 100 : null;
-                    }
+                    format: '{value:,.2f}'
                 },
                 min: valor_min,
                 max: valor_max,
@@ -223,18 +213,12 @@ $('.highchart').each(function () {
                 series: {
                     dataLabels: {
                         enabled: true,
-                        formatter: function () {
-                            return this.y ? Math.round(this.y * 100) / 100 : null;
-                        }
+                        format: '{y:,.2f}'
                     }
                 }
             },
             tooltip: {
-                formatter: function () {
-                    html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                    html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
-                    return html;
-                }
+                pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
             },
             series: dataseries
         });
@@ -261,8 +245,8 @@ function pintaGrafico(chartOptions, barras) {
             chart.getSelectedSeries().forEach(function (selected) {
                 chart.yAxis[0].addPlotLine({
                     label: {
-                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                        text: '<span title="Total ' + selected.name + ': ' + Highcharts.numberFormat(totales[selected.name]) + '">Total: <b>'
+                                + Highcharts.numberFormat(totales[selected.name]) + '</b></span>',
                         x: -50,
                         y: 10,
                         useHTML: true,
@@ -296,8 +280,8 @@ hs.Expander.prototype.onAfterExpand = function () {
             hsChart.getSelectedSeries().forEach(function (selected) {
                 hsChart.yAxis[0].addPlotLine({
                     label: {
-                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                        text: '<span title="Total ' + selected.name + ': ' + Highcharts.numberFormat(totales[selected.name]) + '">Total: <b>'
+                                + Highcharts.numberFormat(totales[selected.name]) + '</b></span>',
                         x: -50,
                         y: 10,
                         useHTML: true,

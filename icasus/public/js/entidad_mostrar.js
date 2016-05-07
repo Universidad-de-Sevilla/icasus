@@ -105,9 +105,7 @@ $('.proceso').click(function () {
                         text: 'Valores'
                     },
                     labels: {
-                        formatter: function () {
-                            return this.value ? Math.round(this.value * 100) / 100 : null;
-                        }
+                        format: '{value:,.2f}'
                     },
                     min: valor_min,
                     max: valor_max,
@@ -117,18 +115,12 @@ $('.proceso').click(function () {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            formatter: function () {
-                                return this.y ? Math.round(this.y * 100) / 100 : null;
-                            }
+                            format: '{y:,.2f}'
                         }
                     }
                 },
                 tooltip: {
-                    formatter: function () {
-                        html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                        html += '<span style="color:' + this.series.color + '">\u25CF</span> ' + this.series.name + ': <b>' + (Math.round(this.y * 100) / 100) + '</b><br/>';
-                        return html;
-                    }
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                 },
                 series: dataseries
             });
