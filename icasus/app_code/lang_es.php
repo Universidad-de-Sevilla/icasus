@@ -27,7 +27,6 @@ define('TXT_CONTROL', 'Control');
 define('TXT_OTRO_OFIMATICA', 'Microsoft Office o cualquier otro programa de ofimática.');
 define('TXT_NO_ASIG', 'No asignado');
 define('TXT_REG_EVENTOS', 'Registro de eventos');
-define('TXT_NULO', 'NULO');
 define('TXT_CONTENIDO', 'Contenido de');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_REP_GRAFIC', 'Gráficas');
@@ -546,7 +545,7 @@ define('MSG_USER_EDITADO', 'El usuario se ha modificado correctamente.');
 define('MSG_USERS_CONFIRM_VINC', '¿Desea vincular a la unidad los usuarios marcados?');
 define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la unidad los usuarios marcados?');
 
-//valores
+//Valores
 define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado valores a esta medición.');
 define('MSG_VAL_BORRADO', 'Se ha borrado un valor.');
 define('MSG_VAL_EXPORT', 'Exportando valores para:');
@@ -557,6 +556,13 @@ define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los valores de referencia 
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
 define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia.');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
+
+//Control
+define('MSG_CONTROL_CARGA', 'Cargando datos de control, por favor espere.');
+define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado indicadores/datos con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');
+define('MSG_CONTROL_NO_VAL', 'No existen mediciones o no se han grabado valores durante el año seleccionado.');
+define('MSG_CONTROL_NO_MED', 'Todavía no se han creado mediciones para el año seleccionado.');
+define('MSG_CONTROL_MED', 'No existen indicadores/datos sin mediciones para el año seleccionado.');
 
 //----------------------------------------------------------------------------------
 //ERRORES: ERR_[Nombre]

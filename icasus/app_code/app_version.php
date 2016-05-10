@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.19.0");
-define('IC_FECHA_REVISION', "03/05/2016");
+define('IC_VERSION', "3.19.1");
+define('IC_FECHA_REVISION', "10/05/2016");
 
+// 3.19.1 - 10/05/2016 - Cambios en los gráficos (decimales, símbolos de puntuación...) y mejoras en la sección de control.
 // 3.19.0 - 03/05/2016 - Migración de mysql a mysqli.
 // 3.18.0 - 19/04/2016 - Añadido control del tiempo de expiración de las sesiones de los usuarios. Cambios varios de presentación y estilo.
 // 3.17.0 - 06/04/2016 - Añadida también la posibilidad de exportar a diferentes formatos las fichas de unidades, procesos, indicadores, datos y usuarios.
