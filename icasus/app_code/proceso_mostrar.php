@@ -98,12 +98,12 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
                     foreach ($valores_referencia_medicion as $valor_referencia_medicion)
                     {
                         //Es la referencia Límite
-                        if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                        if (strpos($valor_referencia_medicion->valor_referencia->nombre, 'mite') !== false)
                         {
                             $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
                         }
                         //Es la referencia Meta
-                        if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
+                        if (strpos($valor_referencia_medicion->valor_referencia->nombre, 'eta') !== false)
                         {
                             $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
                         }

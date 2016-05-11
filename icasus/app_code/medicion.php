@@ -119,13 +119,13 @@ if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'
             foreach ($valores_referencia_medicion as $med_ref)
             {
                 //Es la referencia Límite
-                if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
+                if (strpos($med_ref->valor_referencia->nombre, 'mite') !== false)
                 {
                     $medicion_lim = $med_ref->valor;
                     $smarty->assign('medicion_lim', $medicion_lim);
                 }
                 //Es la referencia Meta
-                if (strpos($med_ref->valor_referencia->etiqueta, 'eta') !== false)
+                if (strpos($med_ref->valor_referencia->nombre, 'eta') !== false)
                 {
                     $medicion_obj = $med_ref->valor;
                     $smarty->assign('medicion_obj', $medicion_obj);

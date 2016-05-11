@@ -388,7 +388,7 @@ define('TXT_VAL_REF_EDIT', 'Editar valor de referencia');
 define('TXT_VAL_REF_BORRAR', 'Borrar valores de referencia');
 define('TXT_VALS_DESACT', 'Desactivar valores');
 define('TXT_VAL_REF_NOMBRE', 'Los nombres "Meta" y/o "Límite" activarán el control por colores del status en las mediciones.');
-define('TXT_VAL_REF_ETIQ', 'La etiqueta indica el nombre con el que aparecerá el valor de referencia en las gráficas.');
+define('TXT_VAL_REF_ETIQ', 'La etiqueta indica el nombre con el que aparecerá el valor de referencia en las gráficas y en las mediciones.');
 //Status
 define('TXT_VAL_LOGRADO', 'Meta alcanzada');
 define('TXT_VAL_ACEPTABLE', 'Valor aceptable');

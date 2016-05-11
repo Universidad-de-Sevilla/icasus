@@ -90,12 +90,12 @@ if ($modulo == 'inicio')
                     foreach ($mediciones_referencias[$med->id] as $valores_referencia_medicion)
                     {
                         //Es la referencia Límite
-                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                        if (strpos($valores_referencia_medicion->valor_referencia->nombre, 'mite') !== false)
                         {
                             $medicion_lim[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
                         }
                         //Es la referencia Meta
-                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
+                        if (strpos($valores_referencia_medicion->valor_referencia->nombre, 'eta') !== false)
                         {
                             $medicion_obj[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
                         }
@@ -194,12 +194,12 @@ if ($modulo == 'filtrOnlyear')
                     foreach ($mediciones_referencias[$med->id] as $valores_referencia_medicion)
                     {
                         //Es la referencia Límite
-                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                        if (strpos($valores_referencia_medicion->valor_referencia->nombre, 'mite') !== false)
                         {
                             $medicion_lim[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
                         }
                         //Es la referencia Meta
-                        if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
+                        if (strpos($valores_referencia_medicion->valor_referencia->nombre, 'eta') !== false)
                         {
                             $medicion_obj[$indicador->id][$med->id] = $valores_referencia_medicion->valor;
                         }

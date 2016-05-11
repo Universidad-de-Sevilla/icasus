@@ -214,12 +214,12 @@ if ($mediciones)
                 if ($valores_referencia_medicion)
                 {
                     //Es la referencia Límite
-                    if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                    if (strpos($valores_referencia_medicion->valor_referencia->nombre, 'mite') !== false)
                     {
                         $medicion_lim[$med->id] = $valores_referencia_medicion->valor;
                     }
                     //Es la referencia Meta
-                    if (strpos($valores_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
+                    if (strpos($valores_referencia_medicion->valor_referencia->nombre, 'eta') !== false)
                     {
                         $medicion_obj[$med->id] = $valores_referencia_medicion->valor;
                     }
