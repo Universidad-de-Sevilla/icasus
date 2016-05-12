@@ -385,7 +385,7 @@
             <!-- Datos de la medición -->
             <div role="tabpanel" class="tab-pane active" id="med_datos">
                 <!-- Parámetros de la medición -->
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover ficha">
                             <thead><th></th><th></th></thead>
@@ -548,10 +548,10 @@
                         {/if}
                     </div>
                 </div>
-                <!-- /.col-lg-6 -->
+                <!-- /.col-md-6 -->
                 <!-- /Parámetros de la medición -->
                 <!-- Gráfica de tarta -->
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <div id="grafica">
                         {if $pinta_grafico} 
                             <strong class="panel-title"><i class="fa fa-pie-chart fa-fw"></i> {$panel->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}
@@ -568,7 +568,7 @@
                         {/if}
                     </div>
                 </div>
-                <!-- /.col-lg-6 -->
+                <!-- /.col-md-6 -->
                 <!-- /Gráfica de tarta -->
             </div>
             <!-- /Datos de la medición -->

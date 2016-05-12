@@ -273,15 +273,14 @@ function fecha_editar(medicion, content)
 
 function fecha_grabar(medicion, content)
 {
-
     var dia = $("[name=" + content + "Day]").val();
     var mes = $("[name=" + content + "Month]").val();
     var year = $("[name=" + content + "Year]").val();
     var value = year + "-" + mes + "-" + dia;
     $.post("index.php?page=medicion_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
         $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+        $('#valors').load(location.reload());
     });
-    $('#valors').load(location.reload());
 }
 
 function fecha_cancelar(content, medicion)
