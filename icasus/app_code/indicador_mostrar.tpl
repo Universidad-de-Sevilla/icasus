@@ -402,6 +402,16 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>{$smarty.const.FIELD_ESTIMACION}</th>
+                        <td title="{$smarty.const.TXT_ESTIMACION}"> 
+                            {if $indicador->inverso}
+                                {$smarty.const.TXT_DESCENDENTE}
+                            {else}
+                                {$smarty.const.TXT_ASCENDENTE}
+                            {/if}
+                        </td>
+                    </tr>
+                    <tr>
                         <th>{$smarty.const.FIELD_INTERVALO}</th>
                         <td>
                             {if $indicador->valor_min != NULL && $indicador->valor_max != NULL}

@@ -30,6 +30,8 @@ define('TXT_REG_EVENTOS', 'Registro de eventos');
 define('TXT_CONTENIDO', 'Contenido de');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_REP_GRAFIC', 'Gráficas');
+define('TXT_ASCENDENTE', 'Ascendente');
+define('TXT_DESCENDENTE', 'Descendente');
 define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores/datos:');
 define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores/datos:');
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
@@ -307,6 +309,7 @@ define('TXT_VAL_INSERT', 'Introduzca un número (dentro del intervalo si existe)
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
 define('TXT_GRAFICO_AUMENTAR', '(Haga click sobre el gráfico para aumentarlo)');
 define('TXT_INTERVALO', 'Sólo si se quieren limitar los valores de las mediciones a un intervalo (cerrado) de posibles valores. Por ejemplo, para resultados de encuestas. No es compatible con el cálculo automático.');
+define('TXT_ESTIMACION', 'Una estimación ascendente implica una evolución positiva cuanto más altos sean los valores de las mediciones, la estimación descendente implica lo contrario.');
 
 //Selecciones
 define('TXT_SEL', 'Seleccionar');
@@ -758,6 +761,7 @@ define('FIELD_RESP_SEG', 'Responsable de Seguimiento');
 define('FIELD_MET', 'Método de comprobación (evidencia)');
 define('FIELD_EFQM', 'Criterios EFQM');
 define('FIELD_HISTORICO', 'Histórico');
+define('FIELD_ESTIMACION', 'Estimación');
 define('FIELD_CALCULO', 'Cálculo');
 define('FIELD_CALC_TOTAL', 'Cálculo del total entre subunidades');
 define('FIELD_CALC_TOTAL_ANUAL', 'Cálculo del total anual');

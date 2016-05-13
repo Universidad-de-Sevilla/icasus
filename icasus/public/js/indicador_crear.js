@@ -147,6 +147,6 @@ $(document).ready(function () {
 
     //Reset
     $(':reset').click(function () {
-        $('#activar_calculo,#activar_intervalo').bootstrapToggle('off');
+        $('#activar_calculo,#activar_intervalo,#inverso').bootstrapToggle('off');
     });
 });
