@@ -168,21 +168,6 @@ define('TXT_INDIC_DAT_VAL_REF', 'Indicadores/datos: valores de referencia');
 define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
 define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
 
-//Informes
-define('TXT_INFORME_IC', 'Informe generado por ICASUS');
-define('TXT_INFORME_REBIUN', 'Informe Rebiun'); //2012
-define('TXT_INFORME_LIST', 'Lista de informes disponibles');
-define('TXT_INFORMES_CONSTRUCTOR', 'Constructor de informes');
-define('TXT_INFORME_SEL_INDIC', 'Seleccionar los indicadores que contendrá el informe:');
-define('TXT_INFORME_SEL_ANYO', 'Seleccionar los años que se reflejarán en el informe:');
-define('TXT_NUM_CONVOCATORIAS', 'Número de convocatorias');
-define('TXT_PLAZO_CONVOCATORIAS', 'Plazo convocatorias');
-define('TXT_INDICE_PARTICIPACION', 'Índice de participación');
-define('TXT_INDICE_SATISFACCION', 'Índice de satisfacción general');
-define('TXT_VOL_TRAMITACION', 'Volumen tramitación');
-define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Fiabilidad tramitación expedientes');
-define('TXT_PRESTAMO_USER', 'Préstamo por Usuario potencial');
-
 //Login
 define('TXT_BIENVENIDO', 'Bienvenido a icasus');
 define('TXT_LOGIN', 'Iniciar sesión');
@@ -393,7 +378,7 @@ define('TXT_VALS_DESACT', 'Desactivar valores');
 define('TXT_VAL_REF_NOMBRE', 'Los nombres "Meta" y/o "Límite" activarán el control por colores del status en las mediciones.');
 define('TXT_VAL_REF_ETIQ', 'La etiqueta indica el nombre con el que aparecerá el valor de referencia en las gráficas y en las mediciones.');
 //Status
-define('TXT_VAL_LOGRADO', 'Meta alcanzada');
+define('TXT_VAL_LOGRADO', 'Valor óptimo');
 define('TXT_VAL_ACEPTABLE', 'Valor aceptable');
 define('TXT_VAL_MEJORABLE', 'Valor mejorable');
 
