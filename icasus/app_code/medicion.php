@@ -13,7 +13,7 @@
 global $smarty;
 global $usuario;
 global $plantilla;
-//Variable para operar con Indicadores/Datos
+//Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 $logicaMedicion = new LogicaMedicion();
 
