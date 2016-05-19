@@ -6,14 +6,15 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //-------------------------------------------------------------------------------
-// Muestra un listado de las mediciones establecidas para un indicador
+// Muestra un listado de las mediciones establecidas para un indicador/dato
 //-------------------------------------------------------------------------------
 
 global $smarty;
 global $usuario;
 global $plantilla;
-//Variable para operar con Indicadores/Datos
+//Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
+$logicaMedicion = new LogicaMedicion();
 
 if (filter_has_var(INPUT_GET, 'id_indicador'))
 {
@@ -192,6 +193,12 @@ if ($mediciones)
     $mediciones_referencias = array();
     $medicion_lim = array();
     $medicion_obj = array();
+    //Incializamos ambos array de referencias a null por defecto
+    foreach ($mediciones as $med)
+    {
+        $medicion_lim[$med->id] = NULL;
+        $medicion_obj[$med->id] = NULL;
+    }
     $valores_referencia = $valor_referencia->Find("id_indicador = $id_indicador");
     if ($valores_referencia)
     {
@@ -214,17 +221,18 @@ if ($mediciones)
                 if ($valores_referencia_medicion)
                 {
                     //Es la referencia Límite
-                    if (strpos($valores_referencia_medicion->valor_referencia->nombre, 'mite') !== false)
+                    if (strpos($valores_referencia_medicion->valor_referencia->nombre, 'mite'))
                     {
                         $medicion_lim[$med->id] = $valores_referencia_medicion->valor;
                     }
                     //Es la referencia Meta
-                    if (strpos($valores_referencia_medicion->valor_referencia->nombre, 'eta') !== false)
+                    if (strpos($valores_referencia_medicion->valor_referencia->nombre, 'eta'))
                     {
                         $medicion_obj[$med->id] = $valores_referencia_medicion->valor;
                     }
                 }
             }
+            $status[$med->id] = $logicaMedicion->calcular_status_medicion($indicador->inverso, $totales[$med->id], $medicion_lim[$med->id], $medicion_obj[$med->id]);
         }
         //Si el indicador/dato tiene una periodicidad intranual
         if ($indicador->id_tipo_agregacion_temporal != 0)
@@ -237,12 +245,23 @@ if ($mediciones)
                 $ref_anuales_lim[$i] = $logicaIndicador->calcular_ref_anual($indicador, $valores_referencia, $i, 'mite');
                 $ref_anuales_obj[$i] = $logicaIndicador->calcular_ref_anual($indicador, $valores_referencia, $i, 'eta');
             }
+            //Calculamos los status anuales
+            for ($i = $anyo_inicio; $i != idate('Y') + 1; $i++)
+            {
+                //Lo calculamos para cada unidad del indicador/dato
+                foreach ($subunidades_mediciones as $subunidad)
+                {
+                    $status_anuales[$subunidad->id][$i] = $logicaMedicion->calcular_status_medicion($indicador->inverso, $totales_anuales[$subunidad->id][$i], $ref_anuales_lim[$i], $ref_anuales_obj[$i]);
+                }
+            }
             $smarty->assign('ref_anuales_lim', $ref_anuales_lim);
             $smarty->assign('ref_anuales_obj', $ref_anuales_obj);
+            $smarty->assign('status_anuales', $status_anuales);
         }
     }
     $smarty->assign('medicion_obj', $medicion_obj);
     $smarty->assign('medicion_lim', $medicion_lim);
+    $smarty->assign('status', $status);
 }
 
 $smarty->assign('_javascript', array('medicion_listar'));

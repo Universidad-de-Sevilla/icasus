@@ -499,7 +499,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th><span class="label label-primary">{$smarty.const.TXT_VAL_REF}:</span></th>
+                                    <th><span class="label label-primary">{$smarty.const.TXT_VAL_REF}</span></th>
                                     <td>
                                         <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-default btn-xs" href='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                             <i class="fa fa-tags fa-fw"></i>
@@ -510,7 +510,9 @@
                                     {foreach $valores_referencia_medicion as $valor_referencia_medicion}
                                         {if $valor_referencia_medicion->valor_referencia->activo}
                                             <tr>
-                                                <th {if strpos($valor_referencia_medicion->valor_referencia->nombre,'mite')}style="color:red"{else if strpos($valor_referencia_medicion->valor_referencia->nombre,'eta')}style="color:green"{/if}>{$valor_referencia_medicion->valor_referencia->etiqueta}</th>
+                                                <th>
+                                                    <span class="label {if strpos($valor_referencia_medicion->valor_referencia->nombre,'mite')}label-danger{else if strpos($valor_referencia_medicion->valor_referencia->nombre,'eta')}label-success{else}label-default{/if}">{$valor_referencia_medicion->valor_referencia->etiqueta}</span>
+                                                </th>
                                                 <td>
                                                     {if $permiso_editar == true}
                                                         <div>
@@ -621,7 +623,7 @@
                                     {*El indicador/dato es no agregado*}
                                     {if $indicador->id_tipo_agregacion== 0}
                                         <tr {if isset($status)}
-                                                {if  $status == 'red'}
+                                                {if $status == 'red'}
                                                     class="danger"
                                                 {else if $status == 'green'}
                                                     class="success"
@@ -649,7 +651,7 @@
                                             </td>
                                             <td>
                                                 {if isset($status)}
-                                                    {if  $status == 'red'}
+                                                    {if $status == 'red'}
                                                         <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
                                                     {else if $status == 'green'}
                                                         <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
@@ -671,7 +673,7 @@
                                 {*El indicador/dato es agregado y su total no se introduce manualmente*}
                                 {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
                                     <tr {if isset($status)}
-                                            {if  $status == 'red'}
+                                            {if $status == 'red'}
                                                 class="danger"
                                             {else if $status == 'green'}
                                                 class="success"
@@ -689,7 +691,7 @@
                                         </td>
                                         <td> 
                                             {if isset($status)}
-                                                {if  $status == 'red'}
+                                                {if $status == 'red'}
                                                     <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
                                                 {else if $status == 'green'}
                                                     <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
@@ -709,7 +711,7 @@
                                     {foreach $valores as $valor}
                                         {if $valor->id_entidad==$entidad->id}
                                             <tr {if isset($status)}
-                                                    {if  $status == 'red'}
+                                                    {if $status == 'red'}
                                                         class="danger"
                                                     {else if $status == 'green'}
                                                         class="success"
@@ -737,7 +739,7 @@
                                                 </td>
                                                 <td> 
                                                     {if isset($status)}
-                                                        {if  $status == 'red'}
+                                                        {if $status == 'red'}
                                                             <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
                                                         {else if $status == 'green'}
                                                             <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>

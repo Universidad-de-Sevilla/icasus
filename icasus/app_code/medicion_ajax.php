@@ -302,6 +302,14 @@ if ($modulo == 'grafica')
             $smarty->assign("panel", $panel);
         }
     }
+
+    //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+    $smarty->assign("total", $total);
+
     $smarty->assign("modulo", "grafica");
     $smarty->assign("indicador", $indicador);
     $smarty->assign('medicion', $medicion);
