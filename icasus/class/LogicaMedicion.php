@@ -15,9 +15,13 @@ class LogicaMedicion implements ILogicaMedicion
 {
 
     //Colores para el status de una medición
-    private $color_mejorable = 'red';
-    private $color_aceptable = 'yellow';
-    private $color_logrado = 'green';
+//    private $color_mejorable = 'red';
+//    private $color_aceptable = 'yellow';
+//    private $color_logrado = 'green';
+    
+    private $color_mejorable = 'danger';
+    private $color_aceptable = 'warning';
+    private $color_logrado = 'success';
 
     // Genera un valor nulo para cada una de las unidades asociadas 
     // al Indicador/Dato en la medición dada que recibe como parámetro
