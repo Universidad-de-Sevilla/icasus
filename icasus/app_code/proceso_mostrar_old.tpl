@@ -169,7 +169,7 @@
         <br>
         <!-- Tab panes -->
         <div class="tab-content">
-
+            
             <!-- Parámetros del proceso -->
             <div role="tabpanel" class="tab-pane active" id="proc_param">
                 <!-- Barra de botones -->
@@ -368,12 +368,21 @@
                                     <th>{$smarty.const.FIELD_RESP_MED}</th>
                                     <th>{$smarty.const.TXT_MED_ULTIMA}</th>
                                     <th>{$smarty.const.FIELD_VAL}</th>
+                                    <th>{$smarty.const.FIELD_STATUS}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {foreach from=$indicadores item=indicador}
-                                    <tr {if isset($status[$indicador->id])}class="{$status[$indicador->id]}"{/if}>  
+                                    <tr {if isset($status[$indicador->id])}
+                                            {if  $status[$indicador->id] == 'red'}
+                                                class="danger"
+                                            {else if $status[$indicador->id] == 'green'}
+                                                class="success"
+                                            {else}
+                                                class="warning"
+                                            {/if}
+                                        {/if}>  
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
                                         <td>
                                             {if $indicador->calculo}
@@ -392,18 +401,15 @@
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td>
-                                            {if ($totales[$indicador->id])!== NULL}
-                                                {if isset($status[$indicador->id])}
-                                                    {if $status[$indicador->id] == 'danger'}
-                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="label label-{$status[$indicador->id]}">{$totales[$indicador->id]|round:"2"}</span>
-                                                    {else if $status[$indicador->id] == 'success'}
-                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="label label-{$status[$indicador->id]}">{$totales[$indicador->id]|round:"2"}</span>
-                                                    {else}
-                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="label label-{$status[$indicador->id]}">{$totales[$indicador->id]|round:"2"}</span>
-                                                    {/if}
+                                        <td>{if ($totales[$indicador->id])!== NULL}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}</td>
+                                        <td class="text-center"> 
+                                            {if isset($status[$indicador->id])}
+                                                {if $status[$indicador->id] == 'red'}
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
+                                                {else if $status[$indicador->id] == 'green'}
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
                                                 {else}
-                                                    <span class="label label-default">{$totales[$indicador->id]|round:"2"}</span>
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
                                                 {/if}
                                             {else}
                                                 ---
@@ -539,8 +545,8 @@
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                     <div class="btn-group" role="group" aria-label="">
                                         <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
-                                           title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
-                                            <i class="fa fa-archive fa-fw"></i>
+                                            title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                             <i class="fa fa-archive fa-fw"></i>
                                         </a>
                                     </div>
                                 </div>
