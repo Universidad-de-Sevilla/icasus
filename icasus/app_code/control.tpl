@@ -1,3 +1,16 @@
+<!-- Diálogo cargando datos de control -->
+<div class="modal fade" id="dialogo_cargando_control" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-spinner fa-pulse"></i> {$smarty.const.MSG_CONTROL_CARGA}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo cargando datos de control -->
+
 {if $modulo == 'inicio'}
     <!-- Nombre página -->
     <div class="row">
@@ -91,11 +104,11 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">{$smarty.const.TXT_CONTROL}</label>
                             <div class="col-sm-8">
-                                <a href="#tabla_agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}">{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a><br>
-                                <a href="#tabla_nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}">{$smarty.const.TXT_INDIC_DAT_MED_NULA}</a><br>
-                                <a href="#tabla_modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}">{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a><br>
-                                <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}">{$smarty.const.TXT_INDIC_DAT_SIN_MED}</a><br>
-                                <a href="#tabla_val_ref" title="{$smarty.const.TXT_INDIC_DAT_VAL_REF}">{$smarty.const.TXT_INDIC_DAT_VAL_REF}</a>
+                                <a href="#tabla_agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}">[{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}]</a><br>
+                                <a href="#tabla_nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}">[{$smarty.const.TXT_INDIC_DAT_MED_NULA}]</a><br>
+                                <a href="#tabla_modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}">[{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}]</a><br>
+                                <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}">[{$smarty.const.TXT_INDIC_DAT_SIN_MED}]</a><br>
+                                <a href="#tabla_val_ref" title="{$smarty.const.TXT_INDIC_DAT_VAL_REF}">[{$smarty.const.TXT_INDIC_DAT_VAL_REF}]</a>
                             </div>
                         </div>
                     </div>
