@@ -107,10 +107,10 @@
         <br>
         <!-- Tab panes -->
         <div class="tab-content">
-
+            
             <!-- Lista de Indicadores -->
             <div role="tabpanel" class="tab-pane active" id="indic_list">
-                <!-- Barra de botones -->
+                 <!-- Barra de botones -->
                 {if $_control}
                     <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
@@ -249,12 +249,21 @@
                                     <th>{$smarty.const.FIELD_RESP_MED}</th>
                                     <th>{$smarty.const.TXT_MED_ULTIMA}</th>
                                     <th>{$smarty.const.FIELD_VAL}</th>
+                                    <th>{$smarty.const.FIELD_STATUS}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {foreach from=$indicadores_propios item=indicador} 
-                                    <tr {if isset($status[$indicador->id])}class="{$status[$indicador->id]}"{/if}>
+                                    <tr {if isset($status[$indicador->id])}
+                                            {if  $status[$indicador->id] == 'red'}
+                                                class="danger"
+                                            {else if $status[$indicador->id] == 'green'}
+                                                class="success"
+                                            {else}
+                                                class="warning"
+                                            {/if}
+                                        {/if}>
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
                                         <td>
                                             {if $indicador->calculo}
@@ -277,30 +286,28 @@
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td style="white-space: nowrap">
-                                            {if ($totales[$indicador->id])!== NULL}
-                                                {if isset($status[$indicador->id])}
-                                                    {if $status[$indicador->id] == 'danger'}
-                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="label label-{$status[$indicador->id]}">{$totales[$indicador->id]|round:"2"}</span>
-                                                    {else if $status[$indicador->id] == 'success'}
-                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="label label-{$status[$indicador->id]}">{$totales[$indicador->id]|round:"2"}</span>
+                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])!== NULL}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
+                                            <a class="btn btn-default btn-circle btn-xs" 
+                                               href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
+                                                {if $indicador->calculo}
+                                                        <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
                                                     {else}
-                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="label label-{$status[$indicador->id]}">{$totales[$indicador->id]|round:"2"}</span>
+                                                        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
                                                     {/if}
+                                            </a>
+                                        </td>
+                                         <td class="text-center"> 
+                                            {if isset($status[$indicador->id])}
+                                                {if $status[$indicador->id] == 'red'}
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
+                                                {else if $status[$indicador->id] == 'green'}
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
                                                 {else}
-                                                    <span class="label label-default">{$totales[$indicador->id]|round:"2"}</span>
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
                                                 {/if}
                                             {else}
                                                 ---
                                             {/if}
-                                            <a class="btn btn-default btn-circle btn-xs" 
-                                               href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
-                                                {if $indicador->calculo}
-                                                    <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
-                                                {else}
-                                                    <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
-                                                {/if}
-                                            </a>
                                         </td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
