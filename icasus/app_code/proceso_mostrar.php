@@ -98,12 +98,12 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
                     foreach ($valores_referencia_medicion as $valor_referencia_medicion)
                     {
                         //Es la referencia Límite
-                        if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                        if (strpos($valor_referencia_medicion->valor_referencia->nombre, 'mite') !== false)
                         {
                             $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
                         }
                         //Es la referencia Meta
-                        if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
+                        if (strpos($valor_referencia_medicion->valor_referencia->nombre, 'eta') !== false)
                         {
                             $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
                         }
@@ -120,7 +120,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    $smarty->assign('_javascript', array('inicio'));
+    $smarty->assign('_javascript', array('inicio', 'proceso_mostrar'));
     $smarty->assign('_nombre_pagina', FIELD_PROC . ": " . $proceso->nombre);
     $plantilla = 'proceso_mostrar.tpl';
 
@@ -133,10 +133,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
 
     $archivo = new Fichero();
     $archivos = $archivo->find_joined("id_objeto = $id_proceso AND tipo_objeto = 'proceso'");
-    if ($archivos)
-    {
-        $smarty->assign('archivos', $archivos);
-    }
+    $smarty->assign('archivos', $archivos);
 }
 else
 {

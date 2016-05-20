@@ -26,7 +26,6 @@ if (valor_min === 1 && valor_max === 9) {
 // Contenedor para los datos del gráfico
 var chartSerie = new HighchartSerie();
 var totales = [];
-
 // Consulta a la base de datos
 $.ajax({
     url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador,
@@ -34,7 +33,6 @@ $.ajax({
     dataType: "json",
     success: onDataReceived
 });
-
 // Guardado de datos en HighchartSerie y totales para las medias
 function onDataReceived(datos) {
     datos.forEach(function (d) {
@@ -44,10 +42,7 @@ function onDataReceived(datos) {
             totales[d.medicion] = parseFloat(d.valor);
         }
     });
-}
-
-// Pinta y configura el gráfico resumen de valores por subunidad
-$(document).ajaxComplete(function () {
+    // Pinta y configura el gráfico resumen de valores por subunidad
     var serie = chartSerie.getBarSerie();
     // Hacemos visible el último año
     serie[serie.length - 1].visible = true;
@@ -75,6 +70,9 @@ $(document).ajaxComplete(function () {
             title: {
                 text: 'Valores'
             },
+            labels: {
+                format: '{value:,.2f}'
+            },
             min: valor_min,
             max: valor_max,
             tickInterval: tickInterval
@@ -89,8 +87,8 @@ $(document).ajaxComplete(function () {
                         } else {
                             this.chart.yAxis[0].addPlotLine({
                                 label: {
-                                    text: '<span title="Total ' + this.name + ': ' + Math.round(totales[this.name] * 100) / 100 + '">Total: <b>'
-                                            + Math.round(totales[this.name] * 100) / 100 + '</b></span>',
+                                    text: '<span title="Total ' + this.name + ': ' + Highcharts.numberFormat(totales[this.name]) + '">Total: <b>'
+                                            + Highcharts.numberFormat(totales[this.name]) + '</b></span>',
                                     x: -50,
                                     y: 10,
                                     useHTML: true,
@@ -110,15 +108,16 @@ $(document).ajaxComplete(function () {
             column: {
                 dataLabels: {
                     enabled: true,
-                    formatter: function () {
-                        return this.y ? Math.round(this.y * 100) / 100 : null;
-                    }
+                    format: '{y:,.2f}'
                 }
             }
         },
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
+        },
         series: serie
     }, true);
-});
+}
 
 // Pinta las gráficas con los totales anuales e intraanuales
 $('.highchart').each(function () {
@@ -135,7 +134,7 @@ $('.highchart').each(function () {
     if ($.isNumeric($(this).data("valor_max"))) {
         valor_max = $(this).data("valor_max");
     }
-    //Intervalo para las encuestas
+//Intervalo para las encuestas
     if (valor_min === 1 && valor_max === 9) {
         tickInterval = 1;
     }
@@ -145,7 +144,6 @@ $('.highchart').each(function () {
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
     // Contenedor para los datos del gráfico
     var chartSerie = new HighchartSerie();
-
     if (periodicidad === "anual") {
         chartSerie.categoryType = "año";
     }
@@ -153,14 +151,12 @@ $('.highchart').each(function () {
         chartSerie.categoryType = "medicion";
     }
     var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + "&periodicidad=" + periodicidad;
-
     $.ajax({
         url: urlApi,
         type: "GET",
         dataType: "json",
         success: onDataReceived
     });
-
     function onDataReceived(datos) {
         datos.forEach(function (dato) {
             // Agrega los que no tienen etiqueta_mini (total y referencias)
@@ -169,7 +165,6 @@ $('.highchart').each(function () {
                 chartSerie.add(dato);
             }
         });
-
         // Pide las series de datos a chartSerie
         // A saber: Totales y Valores de referencia
         var dataseries = chartSerie.getLinealSerie();
@@ -207,6 +202,9 @@ $('.highchart').each(function () {
                 title: {
                     text: 'Valores'
                 },
+                labels: {
+                    format: '{value:,.2f}'
+                },
                 min: valor_min,
                 max: valor_max,
                 tickInterval: tickInterval
@@ -215,11 +213,12 @@ $('.highchart').each(function () {
                 series: {
                     dataLabels: {
                         enabled: true,
-                        formatter: function () {
-                            return this.y ? Math.round(this.y * 100) / 100 : null;
-                        }
+                        format: '{y:,.2f}'
                     }
                 }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
             },
             series: dataseries
         });
@@ -246,8 +245,8 @@ function pintaGrafico(chartOptions, barras) {
             chart.getSelectedSeries().forEach(function (selected) {
                 chart.yAxis[0].addPlotLine({
                     label: {
-                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                        text: '<span title="Total ' + selected.name + ': ' + Highcharts.numberFormat(totales[selected.name]) + '">Total: <b>'
+                                + Highcharts.numberFormat(totales[selected.name]) + '</b></span>',
                         x: -50,
                         y: 10,
                         useHTML: true,
@@ -281,8 +280,8 @@ hs.Expander.prototype.onAfterExpand = function () {
             hsChart.getSelectedSeries().forEach(function (selected) {
                 hsChart.yAxis[0].addPlotLine({
                     label: {
-                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                        text: '<span title="Total ' + selected.name + ': ' + Highcharts.numberFormat(totales[selected.name]) + '">Total: <b>'
+                                + Highcharts.numberFormat(totales[selected.name]) + '</b></span>',
                         x: -50,
                         y: 10,
                         useHTML: true,

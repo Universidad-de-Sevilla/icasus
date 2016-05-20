@@ -128,16 +128,16 @@
                         <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($mediciones)} {$smarty.const.FIELD_MEDICIONES}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[0]->id}&tipo={$tipo}'>
+                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[0]->id}&tipo={$tipo}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice-1]->id}&tipo={$tipo}'>
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice-1]->id}&tipo={$tipo}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == (count($mediciones)-1)}disabled{/if}" href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice+1]->id}&tipo={$tipo}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == (count($mediciones)-1)}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice+1]->id}&tipo={$tipo}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == (count($mediciones)-1)}disabled{/if}" href='index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$mediciones[(count($mediciones)-1)]->id}&tipo={$tipo}'>
+                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == (count($mediciones)-1)}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[(count($mediciones)-1)]->id}&tipo={$tipo}'>
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
@@ -233,53 +233,42 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a id="tab_med_datos" href="#med_datos" title="{$smarty.const.TXT_MED_DATOS}" aria-controls="{$smarty.const.TXT_MED_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-history fa-fw"></i> {$smarty.const.TXT_MED_DATOS}</a>
+                <a id="tab_med_datos" href="#med_datos" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation">
-                <a href="#med_valores" title="{$smarty.const.TXT_MED_VALORES}" aria-controls="{$smarty.const.TXT_MED_VALORES}" role="tab" data-toggle="tab"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_MED_VALORES}</a>
+                <a href="#med_valores" title="{$smarty.const.TXT_VALS}" aria-controls="{$smarty.const.TXT_VALS}" role="tab" data-toggle="tab"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VALS}</a>
+            </li>
+            <li class="pull-right">
+                <div class="btn-toolbar" role="toolbar" aria-label="">
+                    <div class="btn-group" role="group" aria-label="">
+                        <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-default" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                            <i class="fa fa-history fa-fw"></i>
+                        </a>
+                        {if !$indicador->calculo && $permiso_unidad}
+                            <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default" href='index.php?page=valores&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                <i class="fa fa-pencil-square-o fa-fw"></i>
+                            </a>
+                        {/if}
+                    </div>
+                    <div class="btn-group" role="group" aria-label="">
+                        {if $indicador->calculo && $permiso_editar}
+                            <a title="{$smarty.const.TXT_VAL_CALC_DESCRIPCION}" class="btn btn-default" href='index.php?page=medicion_actualizar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo={$tipo}'>
+                                <i class="fa fa-calculator fa-fw"></i>
+                            </a>
+                        {/if}
+                        {if $permiso_editar}
+                            <a class="btn btn-default" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                                <i class="fa fa-trash fa-fw"></i>
+                            </a>
+                        {/if}
+                    </div>
+                </div>
             </li>
         </ul>
         <!-- /Nav tabs -->
         <br>
         <!-- Tab panes -->
         <div class="tab-content">
-
-            <!-- Barra de botones -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="btn-toolbar" role="toolbar" aria-label="">
-                        <div class="btn-group" role="group" aria-label="">
-                            <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                <i class="fa fa-history fa-fw"></i>
-                            </a>
-                            {if !$indicador->calculo && $permiso_unidad}
-                                <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                    <i class="fa fa-pencil-square-o fa-fw"></i>
-                                </a>
-                            {/if}
-                            <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                <i class="fa fa-tags fa-fw"></i>
-                            </a>
-                        </div>
-                        <div class="btn-group pull-right" role="group" aria-label="">
-                            {if $indicador->calculo && $permiso_editar}
-                                <a title="{$smarty.const.TXT_VAL_CALC_DESCRIPCION}" class="btn btn-danger" href='index.php?page=medicion_actualizar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo={$tipo}'>
-                                    <i class="fa fa-calculator fa-fw"></i>
-                                </a>
-                            {/if}
-                            {if $permiso_editar}
-                                <a class="btn btn-danger" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
-                                    <i class="fa fa-trash fa-fw"></i>
-                                </a>
-                            {/if}
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
-            <!-- /.row -->
-            <br>
-            <!-- /Barra de botones -->
 
             <!-- Indicadores/datos calculados -->
             {if $indicador->calculo}
@@ -396,9 +385,10 @@
             <!-- Datos de la medición -->
             <div role="tabpanel" class="tab-pane active" id="med_datos">
                 <!-- Parámetros de la medición -->
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover ficha">
+                            <thead><th></th><th></th></thead>
                             <tbody>
                                 <tr>
                                     <th>{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></th>
@@ -468,7 +458,6 @@
                                         {/if}
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <th>{$smarty.const.FIELD_INICIO_GRABACION}</th>
                                     <td>
@@ -509,6 +498,14 @@
                                         </span>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th><span class="label label-primary">{$smarty.const.TXT_VAL_REF}:</span></th>
+                                    <td>
+                                        <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-default btn-xs" href='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <i class="fa fa-tags fa-fw"></i>
+                                        </a>
+                                    </td>
+                                </tr>
                                 {if isset($valores_referencia_medicion)}
                                     {foreach $valores_referencia_medicion as $valor_referencia_medicion}
                                         {if $valor_referencia_medicion->valor_referencia->activo}
@@ -540,24 +537,21 @@
                                             </tr>
                                         {/if}
                                     {/foreach}
-                                {else}
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="alert alert-info alert-dismissible">
-                                                <i class="fa fa-info-circle fa-fw"></i> 
-                                                {$smarty.const.MSG_INDIC_NO_VAL_REF}
-                                            </div>
-                                        </td>
-                                    </tr>
                                 {/if}
                             </tbody>
                         </table>
+                        {if !isset($valores_referencia_medicion)}
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_INDIC_NO_VAL_REF}
+                            </div>
+                        {/if}
                     </div>
                 </div>
-                <!-- /.col-lg-6 -->
+                <!-- /.col-md-6 -->
                 <!-- /Parámetros de la medición -->
                 <!-- Gráfica de tarta -->
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <div id="grafica">
                         {if $pinta_grafico} 
                             <strong class="panel-title"><i class="fa fa-pie-chart fa-fw"></i> {$panel->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}
@@ -574,7 +568,7 @@
                         {/if}
                     </div>
                 </div>
-                <!-- /.col-lg-6 -->
+                <!-- /.col-md-6 -->
                 <!-- /Gráfica de tarta -->
             </div>
             <!-- /Datos de la medición -->
@@ -671,23 +665,23 @@
                                             {if $valor->valor != NULL}
                                                 {if isset($medicion_lim) AND isset($medicion_obj)}
                                                     {if  $valor->valor < $medicion_lim}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else if $valor->valor >= $medicion_obj}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                                     {/if}
                                                 {else if isset($medicion_obj)}
                                                     {if $valor->valor >= $medicion_obj }
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {/if}
                                                 {else if isset($medicion_lim)}
                                                     {if $valor->valor < $medicion_lim }
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {/if}
                                                 {else}
                                                     ---
@@ -742,23 +736,23 @@
                                             {if $total != NULL}
                                                 {if isset($medicion_lim) AND isset($medicion_obj)}
                                                     {if  $total < $medicion_lim}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else if $total >= $medicion_obj}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                                     {/if}
                                                 {else if isset($medicion_obj)}
                                                     {if $total >= $medicion_obj }
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {/if}
                                                 {else if isset($medicion_lim)}
                                                     {if $total < $medicion_lim }
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {/if}
                                                 {else}
                                                     ---
@@ -821,23 +815,23 @@
                                                     {if $valor->valor != NULL}
                                                         {if isset($medicion_lim) AND isset($medicion_obj)}
                                                             {if  $valor->valor < $medicion_lim}
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                             {else if $valor->valor >= $medicion_obj}
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                             {else}
-                                                                <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                                             {/if}
                                                         {else if isset($medicion_obj)}
                                                             {if $valor->valor >= $medicion_obj }
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                             {else}
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                             {/if}
                                                         {else if isset($medicion_lim)}
                                                             {if $valor->valor < $medicion_lim }
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                             {else}
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                             {/if}
                                                         {else}
                                                             ---

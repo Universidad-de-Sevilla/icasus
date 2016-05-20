@@ -141,7 +141,7 @@
         <ul class="nav nav-tabs" role="tablist">
             {if $_usuario->id == $persona->id}
                 <li role="presentation" class="active">
-                    <a href="#user" title="{$smarty.const.TXT_USER_PERFIL}" aria-controls="{$smarty.const.TXT_USER_PERFIL}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_USER_PERFIL}</a>
+                    <a href="#user" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
                 </li>
                 <li role="presentation">
                     <a href="#user_unids" title="{$smarty.const.TXT_USER_UNIDS}" aria-controls="{$smarty.const.TXT_USER_UNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</a>
@@ -186,7 +186,8 @@
             
             <!-- Perfil del usuario -->
             <div role="tabpanel" class="tab-pane active" id="user">
-                <table class="table table-striped table-hover">
+                <table class="table table-striped table-hover ficha">
+                    <thead><th></th><th></th></thead>
                     <tbody>
                         <tr>
                             <th>{$smarty.const.FIELD_NOMBRE}</th>
@@ -419,7 +420,7 @@
                                         <td>{$indicador->medicion->etiqueta}</td>
                                         <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
-                                               href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
+                                               href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
                                                 {if $indicador->calculo}
                                                         <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
                                                     {else}
@@ -431,23 +432,23 @@
                                             {if $totales[$indicador->id] != NULL}
                                                 {if isset($medicion_lim[$indicador->id]) AND isset($medicion_obj[$indicador->id])}
                                                     {if  $totales[$indicador->id] < $medicion_lim[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else if $totales[$indicador->id] >= $medicion_obj[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                                     {/if}
                                                 {else if isset($medicion_obj[$indicador->id])}
                                                     {if $totales[$indicador->id] >= $medicion_obj[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {/if}
                                                 {else if isset($medicion_lim[$indicador->id])}
                                                     {if $totales[$indicador->id] < $medicion_lim[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {/if}
                                                 {else}
                                                     ---
@@ -470,7 +471,7 @@
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                 <i class="fa fa-connectdevelop fa-fw"></i>
                                             </a>    
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
                                             {if $_control OR $_usuario->id==$indicador->id_responsable}
@@ -478,7 +479,7 @@
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 {if !$indicador->calculo}
-                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=indicador_subunidad_valor&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                         <i class="fa fa-pencil-square-o fa-fw"></i> 
                                                     </a>
                                                 {/if}
@@ -574,7 +575,7 @@
                                         <td>{$indicador->medicion->etiqueta}</td>
                                         <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}{$totales[$indicador->id]|round:"2"}{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
-                                               href="index.php?page=medicion_editar&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
+                                               href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
                                                 {if $indicador->calculo}
                                                         <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
                                                     {else}
@@ -586,23 +587,23 @@
                                             {if $totales[$indicador->id] != NULL}
                                                 {if isset($medicion_lim[$indicador->id]) AND isset($medicion_obj[$indicador->id])}
                                                     {if  $totales[$indicador->id] < $medicion_lim[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else if $totales[$indicador->id] >= $medicion_obj[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                                     {/if}
                                                 {else if isset($medicion_obj[$indicador->id])}
                                                     {if $totales[$indicador->id] >= $medicion_obj[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {/if}
                                                 {else if isset($medicion_lim[$indicador->id])}
                                                     {if $totales[$indicador->id] < $medicion_lim[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
                                                     {else}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
                                                     {/if}
                                                 {else}
                                                     ---
@@ -622,7 +623,7 @@
                                                title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
                                                 <i class="fa fa-history fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia_crear&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
                                             {if $_control OR $_usuario->id==$indicador->id_responsable}
@@ -630,7 +631,7 @@
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 {if !$indicador->calculo}
-                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=indicador_subunidad_valor&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                         <i class="fa fa-pencil-square-o fa-fw"></i> 
                                                     </a>
                                                 {/if}
@@ -716,63 +717,53 @@
 {else}
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_USER_PERFIL}</span>
-                <i class="fa fa-chevron-up pull-right clickable"></i>
-            </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <table class="table table-striped table-hover">
-                    <tbody>
-                        <tr>
-                            <th>{$smarty.const.FIELD_NOMBRE}</th>
-                            <td>{$persona->nombre}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_APEL}</th>
-                            <td>{$persona->apellidos}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_LOGIN}</th>
-                            <td>{$persona->login}</td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_CORREO}</th>
-                            <td>
-                                {if $persona->correo}
-                                    <a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$persona->correo}'>{$persona->correo}</a>
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_TEL}</th>
-                            <td>
-                                {if $persona->telefono}
-                                    <a title="{$smarty.const.TXT_LLAMAR_TLF}" href='tel:+34{$persona->telefono}'>{$persona->telefono}</a>
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>{$smarty.const.FIELD_PUESTO}</th>
-                            <td>
-                                {if $persona->puesto}
-                                    {$persona->puesto}
-                                {else}
-                                    ---
-                                {/if}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <!-- /.panel-body -->        
-        </div>
-        <!-- /.panel -->
+        <table class="table table-striped table-hover ficha">
+            <thead><th></th><th></th></thead>
+            <tbody>
+                <tr>
+                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                    <td>{$persona->nombre}</td>
+                </tr>
+                <tr>
+                    <th>{$smarty.const.FIELD_APEL}</th>
+                    <td>{$persona->apellidos}</td>
+                </tr>
+                <tr>
+                    <th>{$smarty.const.FIELD_LOGIN}</th>
+                    <td>{$persona->login}</td>
+                </tr>
+                <tr>
+                    <th>{$smarty.const.FIELD_CORREO}</th>
+                    <td>
+                        {if $persona->correo}
+                            <a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$persona->correo}'>{$persona->correo}</a>
+                        {else}
+                            ---
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{$smarty.const.FIELD_TEL}</th>
+                    <td>
+                        {if $persona->telefono}
+                            <a title="{$smarty.const.TXT_LLAMAR_TLF}" href='tel:+34{$persona->telefono}'>{$persona->telefono}</a>
+                        {else}
+                            ---
+                        {/if}
+                    </td>
+                </tr>
+                <tr>
+                    <th>{$smarty.const.FIELD_PUESTO}</th>
+                    <td>
+                        {if $persona->puesto}
+                            {$persona->puesto}
+                        {else}
+                            ---
+                        {/if}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <!-- /.col-lg-12 -->
 </div>

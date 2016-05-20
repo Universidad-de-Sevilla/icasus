@@ -61,7 +61,6 @@ class Medicion extends ADOdb_Active_Record
     }
 
     //obtener array de los años selecionados por el usuario para mostrar los valores
-    //indicador_subunidad_valor.php 
     public function mediciones_periodos($id_indicador, $inicio, $fin)
     {
         $periodo = $this->find("id_indicador = $id_indicador AND date_format(periodo_inicio,'%Y') between '$inicio' AND '$fin' ORDER BY periodo_inicio DESC");
@@ -69,7 +68,6 @@ class Medicion extends ADOdb_Active_Record
     }
 
     //obtener registros únicos de fechas de medición para el selector de periodos en	
-    //indicador_subunidad_valor.php 
     public function find_year_mediciones($id_indicador)
     {
         $years_mediciones = $this->find("id_indicador = $id_indicador  GROUP BY date_format(periodo_inicio,'%Y') ORDER BY periodo_inicio");

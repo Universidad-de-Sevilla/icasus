@@ -154,17 +154,21 @@ $('.panel_linea').each(function () {
                     yAxis: {
                         title: {
                             text: 'Valores'
+                        },
+                        labels: {
+                            format: '{value:,.2f}'
                         }
                     },
                     plotOptions: {
                         series: {
                             dataLabels: {
                                 enabled: true,
-                                formatter: function () {
-                                    return this.y ? ((Math.round(this.y * 100)) / 100) : null;
-                                }
+                                format: '{y:,.2f}'
                             }
                         }
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                     },
                     legend: {
                         width: ancho_leyenda
@@ -277,15 +281,16 @@ $(".panel_barra").each(function () {
                     yAxis: {
                         title: {
                             text: 'Valores'
+                        },
+                        labels: {
+                            format: '{value:,.2f}'
                         }
                     },
                     plotOptions: {
                         series: {
                             dataLabels: {
                                 enabled: true,
-                                formatter: function () {
-                                    return this.y ? ((Math.round(this.y * 100)) / 100) : null;
-                                }
+                                format: '{y:,.2f}'
                             },
                             events: {
                                 // Pintamos la media al hacer click en él.
@@ -295,8 +300,8 @@ $(".panel_barra").each(function () {
                                     } else {
                                         this.chart.yAxis[0].addPlotLine({
                                             label: {
-                                                text: '<span title="Total ' + this.name + ': ' + Math.round(totales[this.name] * 100) / 100 + '">Total: <b>'
-                                                        + Math.round(totales[this.name] * 100) / 100 + '</b></span>',
+                                                text: '<span title="Total ' + this.name + ': ' + Highcharts.numberFormat(totales[this.name], 2) + '">Total: <b>'
+                                                        + Highcharts.numberFormat(totales[this.name], 2) + '</b></span>',
                                                 x: -50,
                                                 y: 10,
                                                 useHTML: true,
@@ -316,11 +321,12 @@ $(".panel_barra").each(function () {
                         column: {
                             dataLabels: {
                                 enabled: true,
-                                formatter: function () {
-                                    return this.y ? ((Math.round(this.y * 100)) / 100) : null;
-                                }
+                                format: '{y:,.2f}'
                             }
                         }
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                     },
                     legend: {
                         width: ancho_leyenda
@@ -461,7 +467,7 @@ $(".panel_tarta").each(function () {
                         + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
 
                 //Redondeamos el total
-                total = Math.round(total * 100) / 100;
+                total = Highcharts.numberFormat(total, 2);
 
                 //Pide las series de datos a chartSerie
                 var dataseries = chartSerie.getPieSerie();
@@ -491,26 +497,21 @@ $(".panel_tarta").each(function () {
                     yAxis: {
                         title: {
                             text: 'Valores'
+                        },
+                        labels: {
+                            format: '{value:,.2f}'
                         }
                     },
                     plotOptions: {
                         series: {
                             dataLabels: {
                                 enabled: true,
-                                formatter: function () {
-                                    return this.y ? ((Math.round(this.y * 100)) / 100)
-                                            + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' : null;
-                                }
+                                format: '{y:,.2f} ({percentage:,.2f} %)'
                             }
                         }
                     },
                     tooltip: {
-                        formatter: function () {
-                            html = '<span style="font-size: 10px">' + this.key + '</span><br/>';
-                            html += '<span >\u25CF</span> ' + this.series.name + ': <b>' + this.y
-                                    + ' (' + (Math.round(this.percentage * 100) / 100) + '%)' + '</b><br/>';
-                            return html;
-                        }
+                        pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f} ({point.percentage:,.2f} %)</b><br/>'
                     },
                     legend: {
                         width: ancho_leyenda
@@ -703,8 +704,8 @@ function pintaGrafico(chartOptions, totales) {
             chart.getSelectedSeries().forEach(function (selected) {
                 chart.yAxis[0].addPlotLine({
                     label: {
-                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                        text: '<span title="Total ' + selected.name + ': ' + Highcharts.numberFormat(totales[selected.name], 2) + '">Total: <b>'
+                                + Highcharts.numberFormat(totales[selected.name], 2) + '</b></span>',
                         x: -50,
                         y: 10,
                         useHTML: true,
@@ -739,8 +740,8 @@ hs.Expander.prototype.onAfterExpand = function () {
             hsChart.getSelectedSeries().forEach(function (selected) {
                 hsChart.yAxis[0].addPlotLine({
                     label: {
-                        text: '<span title="Total ' + selected.name + ': ' + Math.round(totales[selected.name] * 100) / 100 + '">Total: <b>'
-                                + Math.round(totales[selected.name] * 100) / 100 + '</b></span>',
+                        text: '<span title="Total ' + selected.name + ': ' + Highcharts.numberFormat(totales[selected.name], 2) + '">Total: <b>'
+                                + Highcharts.numberFormat(totales[selected.name], 2) + '</b></span>',
                         x: -50,
                         y: 10,
                         useHTML: true,

@@ -61,3 +61,9 @@ $('.tabla_valores').DataTable({
         }
     ]
 });
+
+//Barra de botones
+$(document).ready(function () {
+    var botones = $('#botones').html();
+    $('#tabla_mediciones_filter').append(botones);
+});

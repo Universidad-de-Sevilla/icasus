@@ -1,7 +1,8 @@
 <?php
+
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: config.php
+// Archivo: app_config.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
@@ -14,10 +15,14 @@
 // por IC (de icasus) para denotar su caracter global a toda la aplicación
 
 //Conexion a la base de datos
-define('IC_DB_HOST','localhost');           //escriba la dirección del servidor de bases de datos (BD)
-define('IC_DB_LOGIN','icasus');  //escriba el usuario de la BD.
-define('IC_DB_CLAVE','tarrupa25b');      //escriba la clave del usuario de la BD.
+define('IC_DB_HOST','localhost');//escriba la dirección del servidor de bases de datos (BD)
+define('IC_DB_LOGIN','icasus'); //escriba el usuario de la BD.
+define('IC_DB_CLAVE','tarrupa25b');//escriba la clave del usuario de la BD.
 define('IC_DB_DATABASE','icasus');//escriba el nombre de la BD.
+
+// Que tipo de autenticación va a utilizarse (login_sso ó login_basico).
+// Escribir mantenimiento para abrir con la página de mantenimiento.
+define('IC_TIPO_LOGIN','login_sso');
 
 // Establece que configuración SSO
 // Si en servidor de desarrollo (usuarios pruebapas, pruebaalumno y pruebapdi). Descomentar 'pre_11'.
@@ -25,12 +30,15 @@ define('IC_DB_DATABASE','icasus');//escriba el nombre de la BD.
 //define('CONFIG_PACK', 'prod_1013');
 define('CONFIG_PACK', 'pre_11');
 
-// Que tipo de autenticación va a utilizarse (login_sso ó login_basico).
-// Escribir mantenimiento para abrir con la página de mantenimiento.
-define('IC_TIPO_LOGIN','login_sso');
+// Define si estamos en entorno SSO producción o preproducción
+// Esto para cuando empecemos a usar la nueva libreria
+//define('CC_SSO_URL', 'ssopre.us.es_001');
+//define('CC_SSO_URL', 'sso.us.es_001');
 
-//Directorio base
+//Directorios
 define('IC_DIR_BASE','/home/jjmc/www/icasus/icasus/');
+//Si quiero comprobar login_sso contra el servidor de preproducción tengo que usar IP de la US
+//define('IC_URL_BASE', 'https://193.147.179.246/icasus');
 
 //Idioma base
 define('IC_LANG_FILE','lang_es.php');

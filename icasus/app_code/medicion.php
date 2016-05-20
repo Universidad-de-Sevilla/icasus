@@ -2,7 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: medicion_editar.php
+// Archivo: medicion.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
@@ -119,13 +119,13 @@ if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'
             foreach ($valores_referencia_medicion as $med_ref)
             {
                 //Es la referencia Límite
-                if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
+                if (strpos($med_ref->valor_referencia->nombre, 'mite') !== false)
                 {
                     $medicion_lim = $med_ref->valor;
                     $smarty->assign('medicion_lim', $medicion_lim);
                 }
                 //Es la referencia Meta
-                if (strpos($med_ref->valor_referencia->etiqueta, 'eta') !== false)
+                if (strpos($med_ref->valor_referencia->nombre, 'eta') !== false)
                 {
                     $medicion_obj = $med_ref->valor;
                     $smarty->assign('medicion_obj', $medicion_obj);
@@ -159,8 +159,8 @@ if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'
 
     $smarty->assign("usuario", $usuario);
     $smarty->assign("_nombre_pagina", FIELD_MED . ": " . " $medicion->etiqueta - $indicador->nombre");
-    $smarty->assign('_javascript', array('medicion_editar'));
-    $plantilla = "medicion_editar.tpl";
+    $smarty->assign('_javascript', array('medicion'));
+    $plantilla = "medicion.tpl";
 }
 else
 {

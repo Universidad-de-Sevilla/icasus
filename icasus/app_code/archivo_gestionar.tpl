@@ -5,13 +5,13 @@
             <form action="index.php?page=archivo_gestionar_ajax&ajax=true&id_entidad={$entidad->id}&modulo=subir&tipo={$tipo}" name="subir" method="post" enctype="multipart/form-data" 
                   data-toggle="validator" class="form-horizontal">
                 {if isset($proceso)}
-                    <input type="hidden" value="{$proceso->id}" name="id_objeto" >
+                    <input type="hidden" value="{$proceso->id}" name="id_objeto">
                 {else}
-                    <input type="hidden" value="{$entidad->id}" name="id_objeto" >
+                    <input type="hidden" value="{$entidad->id}" name="id_objeto">
                 {/if}
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="{$smarty.const.TXT_CERRAR}"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-plus-circle fa-fw"></i> {$smarty.const.TXT_ARCHIVO_NUEVO}</h3>
+                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_ARCHIVO_SUBIR}</h3>
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
@@ -213,28 +213,20 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Barra de botones -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group pull-right" role="group" aria-label="">
-                <a class="btn btn-danger" href="javascript:void(0)" title="{$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}" data-toggle="modal" data-target="#dialogo_crear">
-                    <i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_ARCHIVO_SUBIR_NUEVO}
+        <!-- Barra de botones -->
+        <div id='botones_archivo' class="btn-toolbar hidden" role="toolbar" aria-label="">
+            <div class="btn-group" role="group" aria-label="">
+                <a class="btn btn-danger" href="javascript:void(0)" title="{$smarty.const.TXT_ARCHIVO_SUBIR}" data-toggle="modal" data-target="#dialogo_crear">
+                    <i class="fa fa-upload fa-fw"></i>
                 </a>
             </div>
         </div>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
-<!-- /Barra de botones -->
-
-<div class="row">
-    <div class="col-lg-12">
-        {if isset($archivos)}
+        <!-- /Barra de botones -->
+        {if $archivos}
             <div class="table-responsive">
-                <table class="table datatable table-striped table-hover">
+                <table id='tabla_archivos' class="table datatable table-striped table-hover">
                     <thead>
                         <tr>                     
                             <th>{$smarty.const.FIELD_TITULO}</th>
@@ -277,10 +269,35 @@
                 </table>
             </div>
         {else}
-            <div class="alert alert-info alert-dismissible">
-                <i class="fa fa-info-circle fa-fw"></i> 
-                {$smarty.const.MSG_PROC_ARCHIVO_NO}
-            </div> 
+            <div class="row">
+                <div class="col-sm-11">
+                    {if isset($proceso)}
+                        <div class="alert alert-info alert-dismissible">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_PROC_NO_ARCHIVO}
+                        </div> 
+                    {else}
+                        <div class="alert alert-info alert-dismissible">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_UNID_NO_ARCHIVOS}
+                        </div>
+                    {/if}
+                </div>
+                <!-- /.col-sm-11 -->
+                <div class="col-sm-1">
+                    {if $_control}
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a class="btn btn-danger" href="javascript:void(0)" title="{$smarty.const.TXT_ARCHIVO_SUBIR}" data-toggle="modal" data-target="#dialogo_crear">
+                                    <i class="fa fa-upload fa-fw"></i>
+                                </a>
+                            </div>
+                        </div>
+                    {/if}
+                </div>
+                <!-- /.col-sm-1 -->
+            </div>
+            <!-- /.row -->
         {/if}
     </div>
     <!-- /.col-lg-12 -->

@@ -10,17 +10,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
-                        <label for="c-etiqueta" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="c-nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input type="text" name='c-etiqueta' id="c-etiqueta" value="" class="form-control" placeholder="{$smarty.const.FIELD_ETIQUETA}" required />                  
+                            <input title='{$smarty.const.TXT_VAL_REF_NOMBRE}' data-toggle="tooltip" data-placement="left" type="text" name='c-nombre' id="c-nombre" value="" class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="c-nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="c-etiqueta" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input type="text" name='c-nombre' id="c-nombre" value="" class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
+                            <input title="{$smarty.const.TXT_VAL_REF_ETIQ}" data-toggle="tooltip" data-placement="left" type="text" name='c-etiqueta' id="c-etiqueta" value="" class="form-control" placeholder="{$smarty.const.FIELD_ETIQUETA}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
@@ -69,17 +69,17 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
-                        <label for="e-etiqueta" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="e-nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input type="text" name='e-etiqueta' id="e-etiqueta" value="" class="form-control" placeholder="{$smarty.const.FIELD_ETIQUETA}" required />                  
+                            <input title='{$smarty.const.TXT_VAL_REF_NOMBRE}' data-toggle="tooltip" data-placement="left" type="text" name='e-nombre' id="e-nombre" value="" class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="e-nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="e-etiqueta" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input type="text" name='e-nombre' id="e-nombre" value="" class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
+                            <input title="{$smarty.const.TXT_VAL_REF_ETIQ}" data-toggle="tooltip" data-placement="left" type="text" name='e-etiqueta' id="e-etiqueta" value="" class="form-control" placeholder="{$smarty.const.FIELD_ETIQUETA}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
@@ -140,7 +140,37 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-tags fa-fw"></i> {$_nombre_pagina}
+            <div class="row">
+                <div class="col-md-10">
+                    {if $tipo == 'indicador'}<i class="fa fa-dashboard fa-fw"></i>{else}<i class="fa fa-database fa-fw"></i>{/if} {$_nombre_pagina}
+                </div>
+                <!-- /.col-md-10 -->
+                <!-- Navegación -->
+                {if count($indicadores)> 1}
+                    <div class="col-md-2">
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($indicadores)} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDICS}{else}{$smarty.const.FIELD_DATOS}{/if}</div>
+                        <div class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a title="{$smarty.const.TXT_PRIMER} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=valor_referencia&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[0]->id}'>
+                                    <i class="fa fa-step-backward fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ANT} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=valor_referencia&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[$indice-1]->id}'>
+                                    <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_SIG} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=valor_referencia&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[$indice+1]->id}'>
+                                    <i class="fa fa-play fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_ULTIMO} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=valor_referencia&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[(count($indicadores)-1)]->id}'>
+                                    <i class="fa fa-step-forward fa-fw"></i>
+                                </a>
+                            </div>
+                        </div> 
+                    </div>
+                    <!-- /.col-md-2 -->
+                {/if}
+                <!-- /Navegación -->
+            </div>
+            <!-- /.row -->
         </h3>
     </div>
     <!-- /.col-lg-12 -->
@@ -212,7 +242,6 @@
                     <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page={$tipo}_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DATOS}</a>
                 </li>
             {/if}
-            <li><a title="{$smarty.const.FIELD_MEDICIONES}: {$indicador->nombre}" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>{$smarty.const.FIELD_MEDICIONES}: {$indicador->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -221,27 +250,51 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-<!-- Barra de botones -->
+<!-- Menú del indicador -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="btn-toolbar" role="toolbar" aria-label="">
-            <div class="btn-group" role="group" aria-label="">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-danger" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                    <i class="fa fa-history fa-fw"></i>
-                </a>
-                {if !$indicador->calculo && $permiso}
-                    <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                        <i class="fa fa-pencil-square-o fa-fw"></i>
-                    </a>
-                {/if}
-                {if $permiso}
-                    <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                        <i class="fa fa-user fa-fw"></i>
-                    </a>
-                {/if}
-            </div>
-            {if $permiso}
-                <div class="btn-group pull-right" role="group" aria-label="">
+        <ul class="nav nav-tabs">
+            <li role="presentation">
+                <a title="{$smarty.const.TXT_FICHA}" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
+            </li>
+            <li role="presentation" >
+                <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
+            </li>
+            <li role="presentation">
+                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+            </li>
+            {if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo)}
+                <li role="presentation">
+                    <a title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
+                </li>
+            {/if}
+            {if $_control || $_usuario->id==$indicador->id_responsable}
+                <li role="presentation">
+                    <a title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}</a>
+                </li>
+            {/if}
+            <li role="presentation" class="active">
+                <a title="{$smarty.const.TXT_VAL_REF}" href="#"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</a>
+            </li>
+            {if $tipo == 'indicador'}
+                <li role="presentation">
+                    <a title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-connectdevelop fa-fw"></i> {$smarty.const.TXT_ANALISIS}</a>
+                </li>
+            {/if}
+        </ul>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<br>
+<!-- /Menú del indicador -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <!-- Barra de botones -->
+        {if $permiso}
+            <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                <div class="btn-group" role="group" aria-label="">
                     <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
                         <i class="fa fa-tag fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                     </a>
@@ -251,21 +304,13 @@
                         </a>
                     {/if}
                 </div>
-            {/if}
-        </div>
-    </div>
-    <!-- /.col-lg-12 -->
-</div>
-<!-- /.row -->
-<br>
-<!-- /Barra de botones -->
-
-<div class="row">
-    <div class="col-lg-12">
+            </div>
+        {/if}
+        <!-- /Barra de botones -->
         {if $indicador->valores_referencia}
-            <form id="form_val_ref" action='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&borrar' method='post'>
+            <form id="form_val_ref" action='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&borrar' method='post'>
                 <div class="table-responsive">
-                    <table class="table datatable table-striped table-hover">
+                    <table id='tabla_val_ref' class="table datatable table-striped table-hover">
                         <thead>
                             <tr>   
                                 {if $permiso}
@@ -273,8 +318,8 @@
                                         {$smarty.const.TXT_BORRAR}
                                     </th>
                                 {/if}
-                                <th>{$smarty.const.FIELD_ETIQUETA}</th>
                                 <th>{$smarty.const.FIELD_VAL_REF}</th>
+                                <th>{$smarty.const.FIELD_ETIQUETA}</th>
                                 <th>{$smarty.const.FIELD_VISIB_GRAFIC}</th>
                                 <th>{$smarty.const.FIELD_ACTIVO}</th>
                             </tr>
@@ -286,8 +331,8 @@
                                         <td>
                                             <input type="checkbox" name='id_val_ref[]' value="{$item->id}"/>
                                         </td>
-                                        <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta}</a></td>
                                         <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-nombre-{$item->id}" value="{$item->nombre}">{$item->nombre}</a></td>
+                                        <td><a href="javascript:void(0)" class="dialog_button" data-toggle="modal" data-target="#editar_referencia" title="{$smarty.const.TXT_VAL_REF_EDIT}" id="l-etiqueta-{$item->id}" value="{$item->etiqueta}">{$item->etiqueta}</a></td>
                                         <td>
                                             <input type="checkbox" class="grafica" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                                    data-onstyle="success" data-offstyle="danger" data-size="mini"
@@ -301,8 +346,8 @@
                                                    id="l-activo-{$item->id}">
                                         </td>
                                     {else}
-                                        <td>{$item->etiqueta}</td>
                                         <td>{$item->nombre}</td>
+                                        <td>{$item->etiqueta}</td>
                                         <td>
                                             <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                                    data-onstyle="success" data-offstyle="danger" data-size="mini"
@@ -323,10 +368,30 @@
                 </div>
             </form>
         {else}
-            <div class="alert alert-info alert-dismissible">
-                <i class="fa fa-info-circle fa-fw"></i> 
-                {$smarty.const.MSG_INDIC_NO_VAL_REF}
-            </div> 
+            <div class="row">
+                <div class="col-sm-11">
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_INDIC_NO_VAL_REF}
+                    </div> 
+                </div>
+                <!-- /.col-sm-11 -->
+                <div class="col-sm-1">
+                    <!-- Barra de botones -->
+                    {if $permiso}
+                        <div id="botones" class="btn-toolbar" role="toolbar" aria-label="">
+                            <div class="btn-group" role="group" aria-label="">
+                                <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
+                                    <i class="fa fa-tag fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                </a>
+                            </div>
+                        </div>
+                    {/if}
+                    <!-- /Barra de botones -->
+                </div>
+                <!-- /.col-sm-1 -->
+            </div>
+            <!-- /.row -->
         {/if}
     </div>
     <!-- /.col-lg-12 -->

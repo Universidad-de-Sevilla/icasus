@@ -109,17 +109,21 @@ function mostrarIndicador(serie) {
             yAxis: {
                 title: {
                     text: 'Valores'
+                },
+                labels: {
+                    format: '{value:,.2f}'
                 }
             },
             plotOptions: {
                 series: {
                     dataLabels: {
                         enabled: true,
-                        formatter: function () {
-                            return this.y ? Math.round(this.y * 100) / 100 : null;
-                        }
+                        format: '{y:,.2f}'
                     }
                 }
+            },
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
             },
             series: totalDataseries
         });
@@ -167,17 +171,21 @@ function mostrarMedicion(e)
                 yAxis: {
                     title: {
                         text: 'Valores'
+                    },
+                    labels: {
+                        format: '{value:,.2f}'
                     }
                 },
                 plotOptions: {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            formatter: function () {
-                                return this.y ? Math.round(this.y * 100) / 100 : null;
-                            }
+                            format: '{y:,.2f}'
                         }
                     }
+                },
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                 },
                 series: totalDataseries
             });
@@ -217,17 +225,21 @@ function mostrarMedicion(e)
                 yAxis: {
                     title: {
                         text: 'Valores'
+                    },
+                    labels: {
+                        format: '{value:,.2f}'
                     }
                 },
                 plotOptions: {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            formatter: function () {
-                                return this.y ? Math.round(this.y * 100) / 100 : null;
-                            }
+                            format: '{y:,.2f}'
                         }
                     }
+                },
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                 },
                 series: totalDataseriesB
             });
@@ -428,17 +440,21 @@ function calcularResultado()
         yAxis: {
             title: {
                 text: 'Valores'
+            },
+            labels: {
+                format: '{value:,.2f}'
             }
         },
         plotOptions: {
             series: {
                 dataLabels: {
                     enabled: true,
-                    formatter: function () {
-                        return this.y ? Math.round(this.y * 100) / 100 : null;
-                    }
+                    format: '{y:,.2f}'
                 }
             }
+        },
+        tooltip: {
+            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
         },
         series: serieHighchartResul
     });
@@ -516,17 +532,21 @@ function quitarIndicador()
                 yAxis: {
                     title: {
                         text: 'Valores'
+                    },
+                    labels: {
+                        format: '{value:,.2f}'
                     }
                 },
                 plotOptions: {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            formatter: function () {
-                                return this.y ? Math.round(this.y * 100) / 100 : null;
-                            }
+                            format: '{y:,.2f}'
                         }
                     }
+                },
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                 },
                 series: totalDataseries
             });
@@ -565,17 +585,21 @@ function quitarIndicador()
                 yAxis: {
                     title: {
                         text: 'Valores'
+                    },
+                    labels: {
+                        format: '{value:,.2f}'
                     }
                 },
                 plotOptions: {
                     series: {
                         dataLabels: {
                             enabled: true,
-                            formatter: function () {
-                                return this.y ? Math.round(this.y * 100) / 100 : null;
-                            }
+                            format: '{y:,.2f}'
                         }
                     }
+                },
+                tooltip: {
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
                 },
                 series: totalDataseriesB
             });

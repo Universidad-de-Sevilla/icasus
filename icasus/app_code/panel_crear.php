@@ -2,7 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
-// Archivo: panel_nuevo.php
+// Archivo: panel_crear.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
@@ -22,9 +22,9 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     $cuadro->load("id=$id_cuadro");
     $smarty->assign('cuadro', $cuadro);
 
-    $smarty->assign('_javascript', array('panel_nuevo'));
-    $smarty->assign('_nombre_pagina', TXT_PANEL_NUEVO);
-    $plantilla = "panel_nuevo.tpl";
+    $smarty->assign('_javascript', array('panel_crear'));
+    $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR);
+    $plantilla = "panel_crear.tpl";
 }
 else
 {

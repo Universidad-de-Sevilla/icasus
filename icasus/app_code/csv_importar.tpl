@@ -72,90 +72,80 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-red">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_ARCHIVOS_SUBIR}</span>
+        <form class="form-horizontal" id='importar_csv' enctype='multipart/form-data' action='index.php?page=csv_grabar' method='post' data-toggle="validator">
+            <input type='hidden' name='id_entidad' value='{$entidad->id}'>
+            <div class="form-group has-feedback">
+                <label for="fichero" class="col-sm-2 control-label">{$smarty.const.TXT_ARCHIVO_SEL_IMPORT} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <div class="col-sm-8">
+                    <input class="filestyle" data-buttonBefore="true" 
+                           data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 
+                           data-iconName="fa fa-folder-open fa-fw" 
+                           data-buttonName="btn-primary" 
+                           data-buttonText="{$smarty.const.TXT_EXAMINAR}" 
+                           type='file' name='fichero_csv[]' id='fichero' 
+                           data-validar_csv="validar_csv" required/>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>                     
+            <div class="form-group has-feedback">
+                <label for="fichero1" class="col-sm-2 control-label">{$smarty.const.TXT_ARCHIVO_SEL_IMPORT}</label>
+                <div class="col-sm-8">
+                    <input class="filestyle" data-buttonBefore="true" 
+                           data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 
+                           data-iconName="fa fa-folder-open fa-fw" 
+                           data-buttonName="btn-primary" 
+                           data-buttonText="{$smarty.const.TXT_EXAMINAR}" 
+                           type='file' name='fichero_csv[]' id='fichero1' 
+                           data-validar_csv="validar_csv"/>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    <div class="help-block with-errors"></div>
+                </div>
             </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-                <form class="form-horizontal" id='importar_csv' enctype='multipart/form-data' action='index.php?page=csv_grabar' method='post' data-toggle="validator">
-                    <input type='hidden' name='id_entidad' value='{$entidad->id}'>
-                    <div class="form-group has-feedback">
-                        <label for="fichero" class="col-sm-2 control-label">{$smarty.const.TXT_ARCHIVO_SEL_IMPORT} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
-                        <div class="col-sm-8">
-                            <input class="filestyle" data-buttonBefore="true" 
-                                   data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 
-                                   data-iconName="fa fa-folder-open fa-fw" 
-                                   data-buttonName="btn-primary" 
-                                   data-buttonText="{$smarty.const.TXT_EXAMINAR}" 
-                                   type='file' name='fichero_csv[]' id='fichero' 
-                                   data-validar_csv="validar_csv" required/>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>                     
-                    <div class="form-group has-feedback">
-                        <label for="fichero1" class="col-sm-2 control-label">{$smarty.const.TXT_ARCHIVO_SEL_IMPORT}</label>
-                        <div class="col-sm-8">
-                            <input class="filestyle" data-buttonBefore="true" 
-                                   data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 
-                                   data-iconName="fa fa-folder-open fa-fw" 
-                                   data-buttonName="btn-primary" 
-                                   data-buttonText="{$smarty.const.TXT_EXAMINAR}" 
-                                   type='file' name='fichero_csv[]' id='fichero1' 
-                                   data-validar_csv="validar_csv"/>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <label for="fichero2" class="col-sm-2 control-label">{$smarty.const.TXT_ARCHIVO_SEL_IMPORT}</label>
-                        <div class="col-sm-8">
-                            <input class="filestyle" data-buttonBefore="true" 
-                                   data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 
-                                   data-iconName="fa fa-folder-open fa-fw" 
-                                   data-buttonName="btn-primary" 
-                                   data-buttonText="{$smarty.const.TXT_EXAMINAR}" 
-                                   type='file' name='fichero_csv[]' id='fichero2' 
-                                   data-validar_csv="validar_csv"/>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <label for="fichero3" class="col-sm-2 control-label">{$smarty.const.TXT_ARCHIVO_SEL_IMPORT}</label>
-                        <div class="col-sm-8">
-                            <input class="filestyle" data-buttonBefore="true" 
-                                   data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 
-                                   data-iconName="fa fa-folder-open fa-fw" 
-                                   data-buttonName="btn-primary" 
-                                   data-buttonText="{$smarty.const.TXT_EXAMINAR}" 
-                                   type='file' name='fichero_csv[]' id='fichero3' 
-                                   data-validar_csv="validar_csv"/>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-8">
-                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=entidad_mostrar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
-                            </a>
-                            <div class="pull-right">
-                                <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
-                                    <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
-                                </button>
-                                <button title="{$smarty.const.TXT_ARCHIVOS_PROCESAR}" type="submit" class="btn btn-success">
-                                    <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_ARCHIVOS_PROCESAR}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+            <div class="form-group has-feedback">
+                <label for="fichero2" class="col-sm-2 control-label">{$smarty.const.TXT_ARCHIVO_SEL_IMPORT}</label>
+                <div class="col-sm-8">
+                    <input class="filestyle" data-buttonBefore="true" 
+                           data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 
+                           data-iconName="fa fa-folder-open fa-fw" 
+                           data-buttonName="btn-primary" 
+                           data-buttonText="{$smarty.const.TXT_EXAMINAR}" 
+                           type='file' name='fichero_csv[]' id='fichero2' 
+                           data-validar_csv="validar_csv"/>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    <div class="help-block with-errors"></div>
+                </div>
             </div>
-            <!-- /.panel-body --> 
-        </div>
-        <!-- /.panel -->
+            <div class="form-group has-feedback">
+                <label for="fichero3" class="col-sm-2 control-label">{$smarty.const.TXT_ARCHIVO_SEL_IMPORT}</label>
+                <div class="col-sm-8">
+                    <input class="filestyle" data-buttonBefore="true" 
+                           data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 
+                           data-iconName="fa fa-folder-open fa-fw" 
+                           data-buttonName="btn-primary" 
+                           data-buttonText="{$smarty.const.TXT_EXAMINAR}" 
+                           type='file' name='fichero_csv[]' id='fichero3' 
+                           data-validar_csv="validar_csv"/>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=entidad_mostrar&id_entidad={$entidad->id}'>
+                        <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                    </a>
+                    <div class="pull-right">
+                        <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
+                            <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
+                        </button>
+                        <button title="{$smarty.const.TXT_ARCHIVOS_PROCESAR}" type="submit" class="btn btn-success">
+                            <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_ARCHIVOS_PROCESAR}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
     <!-- /.col-lg-12 -->
 </div>

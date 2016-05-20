@@ -1108,7 +1108,7 @@ class LogicaIndicador implements ILogicaIndicador
                 foreach ($medicion_referencias as $med_ref)
                 {
                     //Si es la referencia deseada
-                    if (strpos($med_ref->valor_referencia->etiqueta, $referencia))
+                    if (strpos($med_ref->valor_referencia->nombre, $referencia))
                     {
                         $valor = new Valor();
                         $valor->valor = $med_ref->valor;
@@ -1139,7 +1139,7 @@ class LogicaIndicador implements ILogicaIndicador
                 foreach ($medicion_referencias as $med_ref)
                 {
                     //Si es la referencia deseada
-                    if (strpos($med_ref->valor_referencia->etiqueta, $referencia))
+                    if (strpos($med_ref->valor_referencia->nombre, $referencia))
                     {
                         $valor = new Valor();
                         $valor->valor = $med_ref->valor;
@@ -1170,7 +1170,7 @@ class LogicaIndicador implements ILogicaIndicador
                 foreach ($medicion_referencias as $med_ref)
                 {
                     //Si es la referencia deseada
-                    if (strpos($med_ref->valor_referencia->etiqueta, $referencia))
+                    if (strpos($med_ref->valor_referencia->nombre, $referencia))
                     {
                         $valor = new Valor();
                         $valor->valor = $med_ref->valor;
@@ -1200,7 +1200,7 @@ class LogicaIndicador implements ILogicaIndicador
                 foreach ($medicion_referencias as $med_ref)
                 {
                     //Si es la referencia deseada
-                    if (strpos($med_ref->valor_referencia->etiqueta, $referencia))
+                    if (strpos($med_ref->valor_referencia->nombre, $referencia))
                     {
                         return $med_ref->valor;
                     }

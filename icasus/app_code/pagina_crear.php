@@ -28,6 +28,6 @@ if (filter_has_var(INPUT_POST, 'alias') && filter_has_var(INPUT_POST, 'titulo') 
 else
 {
     // Mostramos el formulario
-    $smarty->assign('_nombre_pagina', TXT_PAG_AYUDA_NUEVA);
+    $smarty->assign('_nombre_pagina', TXT_PAG_CREAR);
     $plantilla = 'pagina_crear.tpl';
 }

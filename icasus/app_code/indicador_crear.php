@@ -29,7 +29,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $procesos = $proceso->Find("id_entidad = $id_entidad");
     $smarty->assign('procesos', $procesos);
 
-    $nombre_pagina = TXT_INDIC_NUEVO;
+    $nombre_pagina = TXT_INDIC_CREAR;
     // Si creamos indicador desde la ficha de un proceso
     if (filter_has_var(INPUT_GET, 'id_proceso'))
     {

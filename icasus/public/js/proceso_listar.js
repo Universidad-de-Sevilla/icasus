@@ -23,3 +23,9 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
 $(window).on('show.bs.tab', function () {
     $(this).trigger('resize');
 });
+
+//Barra de botones
+$(document).ready(function () {
+    var botones = $('#botones').html();
+    $('#tabla_procesos_filter, #tabla_mis_procesos_filter').append(botones);
+});

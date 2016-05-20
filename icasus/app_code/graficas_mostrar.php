@@ -103,7 +103,7 @@ if ($mediciones)
     $panel = new Panel();
     $panel->tipo = new Panel_tipo();
     $panel->ancho = 12;
-    if ($indicador->periodicidad != "Anual")
+    if ($indicador->periodicidad != "Anual" && $indicador->periodicidad != "Bienal")
     {
         // Prepara el panel intraanual
         $anio_inicio = date('Y') - 2;
@@ -118,7 +118,7 @@ if ($mediciones)
     }
     // Prepara el panel anual
     $anio_inicio = $indicador->historicos;
-    $anio_fin = date('Y') - 1;
+    $anio_fin = date('Y');
     $panel->id = 1;
     $panel->tipo->clase_css = "lineal";
     $panel->nombre = TXT_HISTORICO;

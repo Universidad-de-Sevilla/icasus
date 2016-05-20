@@ -15,7 +15,7 @@
         <title>{$_nombre_pagina} - {$smarty.const.TXT_ICASUS}</title>
 
         <!-- Favicon -->
-        <link rel="icon" href="favicon.ico">
+        <link rel="shortcut icon" href="favicon.ico">
 
         <!-- Bootstrap Core CSS -->
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -62,7 +62,7 @@
 
     </head>
 
-    <body {if !isset($_usuario)} class="login-page"{/if}>
+    <body {if !isset($_usuario)} class="login-page" data-on_login="true"{/if} data-on_login="false">
 
         {if isset($_usuario)}
             {* Si se ha iniciado sesión *}
@@ -331,7 +331,18 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
-                                <span class="h4">{$smarty.const.TXT_ICASUS}</span> - {$smarty.const.TXT_APP_DESCRIPCION}
+
+                                <!-- Back to Top -->
+                                <a title="{$smarty.const.TXT_VOLVER_ARRIBA}" id="top-link-block" href="#top" class="btn btn-primary hidden"  
+                                   {literal}
+                                       onclick="$('html,body').animate({scrollTop: 0}, 'slow');
+                                               return false;"
+                                   {/literal}>
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <!-- /Back to Top -->
+
+                                <span class="h4">{$smarty.const.TXT_ICASUS}</span> - {$smarty.const.TXT_APP_DESCRIPCION} - <a href="https://{$smarty.const.TXT_APP_WEB}">{$smarty.const.TXT_APP_WEB}</a>
                             </div>
                             <!-- /.col-lg-12 -->
                         </div>
@@ -348,16 +359,6 @@
                 </footer>
                 <!-- /Footer -->
 
-                <!-- Back to Top -->
-                <a title="{$smarty.const.TXT_VOLVER_ARRIBA}" id="top-link-block" href="#top" class="btn btn-primary hidden"  
-                   {literal}
-                       onclick="$('html,body').animate({scrollTop: 0}, 'slow');
-                               return false;"
-                   {/literal}>
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <!-- /Back to Top -->
-
             </div>
             <!-- /#wrapper -->
         {else}
@@ -366,7 +367,29 @@
                 {* El cuerpo del template va aqui *}
                 {include file=$plantilla}
             </div>
-            <!-- /.container-fluid -->  
+            <!-- /.container-fluid --> 
+
+            <!-- Footer -->
+            <footer class="text-center footer footer-login">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <span class="h4">{$smarty.const.TXT_ICASUS}</span> - {$smarty.const.TXT_APP_DESCRIPCION} - <a href="https://{$smarty.const.TXT_APP_WEB}">{$smarty.const.TXT_APP_WEB}</a>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <small>{$smarty.const.FIELD_VERSION}: {$smarty.const.IC_VERSION} - {$smarty.const.FIELD_FECHA_REV}: {$smarty.const.IC_FECHA_REVISION}</small>
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </footer>
+            <!-- /Footer -->
         {/if}
 
         <!-- jQuery -->
@@ -432,6 +455,22 @@
                 <script type='text/javascript' src="js/{$script}.js"></script>
             {/foreach}
         {/if}
+
+        <!-- Diálogo Sesión expirada -->
+        <div class="modal fade" id="dialogo_sesion_expirada" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="myModalLabel"><i class="fa fa-exclamation-triangle fa-fw"></i> {$smarty.const.MSG_NO_SESION}</h3>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal" onclick="location.reload();"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Diálogo Sesión expirada -->
 
     </body>
 

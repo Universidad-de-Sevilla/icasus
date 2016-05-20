@@ -74,23 +74,23 @@
                             {if $valor->valor != NULL}
                                 {if isset($medicion_lim) AND isset($medicion_obj)}
                                     {if  $valor->valor < $medicion_lim}
-                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                     {else if $valor->valor >= $medicion_obj}
-                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                     {else}
-                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                     {/if}
                                 {else if isset($medicion_obj)}
                                     {if $valor->valor >= $medicion_obj }
-                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                     {else}
-                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                     {/if}
                                 {else if isset($medicion_lim)}
                                     {if $valor->valor < $medicion_lim }
-                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:red"></i>
                                     {else}
-                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:green"></i>
                                     {/if}
                                 {else}
                                     ---
@@ -145,23 +145,23 @@
                         {if $total != NULL}
                             {if isset($medicion_lim) AND isset($medicion_obj)}
                                 {if  $total < $medicion_lim}
-                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                 {else if $total >= $medicion_obj}
-                                    <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                    <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                 {else}
-                                    <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                    <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                 {/if}
                             {else if isset($medicion_obj)}
                                 {if $total >= $medicion_obj }
-                                    <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                    <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                 {else}
-                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                 {/if}
                             {else if isset($medicion_lim)}
                                 {if $total < $medicion_lim }
-                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:red"></i>
                                 {else}
-                                    <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>>
+                                    <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:green"></i>>
                                 {/if}
                             {else}
                                 ---
@@ -217,23 +217,23 @@
                                 {if $valor->valor != NULL}
                                     {if isset($medicion_lim) AND isset($medicion_obj)}
                                         {if  $valor->valor < $medicion_lim}
-                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                         {else if $valor->valor >= $medicion_obj}
-                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                            <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                         {else}
-                                            <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                            <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                         {/if}
                                     {else if isset($medicion_obj)}
                                         {if $valor->valor >= $medicion_obj }
-                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                            <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                         {else}
-                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                         {/if}
                                     {else if isset($medicion_lim)}
                                         {if $valor->valor < $medicion_lim }
-                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:red"></i>
                                         {else}
-                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                            <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:green"></i>
                                         {/if}
                                     {else}
                                         ---
@@ -353,23 +353,23 @@
                             {if $valor->valor != NULL}
                                 {if isset($medicion_lim) AND isset($medicion_obj)}
                                     {if  $valor->valor < $medicion_lim}
-                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                     {else if $valor->valor >= $medicion_obj}
-                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                     {else}
-                                         <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                         <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                     {/if}
                                 {else if isset($medicion_obj)}
                                     {if $valor->valor >= $medicion_obj }
-                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                     {else}
-                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                     {/if}
                                 {else if isset($medicion_lim)}
                                     {if $valor->valor < $medicion_lim }
-                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:red"></i>
                                     {else}
-                                        <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:green"></i>
                                     {/if}
                                 {else}
                                     ---
@@ -424,23 +424,23 @@
                         {if $total != NULL}
                             {if isset($medicion_lim) AND isset($medicion_obj)}
                                 {if  $total < $medicion_lim}
-                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                 {else if $total >= $medicion_obj}
-                                    <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                    <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                 {else}
-                                     <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                     <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                 {/if}
                             {else if isset($medicion_obj)}
                                 {if $total >= $medicion_obj }
-                                    <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                    <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                 {else}
-                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                 {/if}
                             {else if isset($medicion_lim)}
                                 {if $total < $medicion_lim }
-                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                    <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:red"></i>
                                 {else}
-                                    <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                    <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:green"></i>
                                 {/if}
                             {else}
                                 ---
@@ -493,23 +493,23 @@
                                 {if $valor->valor != NULL}
                                     {if isset($medicion_lim) AND isset($medicion_obj)}
                                         {if  $valor->valor < $medicion_lim}
-                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                         {else if $valor->valor >= $medicion_obj}
-                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                            <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                         {else}
-                                             <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
+                                             <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:yellow"></i>
                                         {/if}
                                     {else if isset($medicion_obj)}
                                         {if $valor->valor >= $medicion_obj }
-                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                            <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:green"></i>
                                         {else}
-                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:red"></i>
                                         {/if}
                                     {else if isset($medicion_lim)}
                                         {if $valor->valor < $medicion_lim }
-                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
+                                            <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:red"></i>
                                         {else}
-                                            <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
+                                            <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim})" class="fa fa-circle fa-fw" style="color:green"></i>
                                         {/if}
                                     {else}
                                         ---
@@ -572,22 +572,22 @@
 
 {if $modulo == 'editarfecha'}
     {if $contenedor == 'pi'}
-        {html_select_date field_order='DMY' prefix="pi" month_format='%m' start_year="-10" end_year="+2" time=$medicion->periodo_inicio}
+        {html_select_date field_order='DMY' prefix="pi" month_format='%m' start_year="-10" end_year="+4" time=$medicion->periodo_inicio}
         <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'pi');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
         <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('pi', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
     {/if}
     {if $contenedor == 'pf'}
-        {html_select_date field_order='DMY' prefix="pf" month_format='%m' start_year="-10" end_year="+2" time=$medicion->periodo_fin}
+        {html_select_date field_order='DMY' prefix="pf" month_format='%m' start_year="-10" end_year="+4" time=$medicion->periodo_fin}
         <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'pf');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
         <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('pf', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
     {/if}
     {if $contenedor == 'gi'}
-        {html_select_date field_order='DMY' prefix="gi" month_format='%m' start_year="-10" end_year="+2" time=$medicion->grabacion_inicio}
+        {html_select_date field_order='DMY' prefix="gi" month_format='%m' start_year="-10" end_year="+4" time=$medicion->grabacion_inicio}
         <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'gi');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
         <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('gi', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
     {/if}
     {if $contenedor == 'gf'}
-        {html_select_date field_order='DMY' prefix="gf" month_format='%m' start_year="-10" end_year="+2" time=$medicion->grabacion_fin}
+        {html_select_date field_order='DMY' prefix="gf" month_format='%m' start_year="-10" end_year="+4" time=$medicion->grabacion_fin}
         <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'gf');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
         <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('gf', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
     {/if}

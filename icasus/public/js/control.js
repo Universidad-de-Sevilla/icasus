@@ -14,10 +14,12 @@ $('#Year').on('change', function () {
     if (fecha === '') {
         fecha = new Date().getFullYear();
     }
+    $('#dialogo_cargando_control').modal('show');
     $.ajax({
         url: "index.php?page=control&ajax=true&modulo=filtrOnlyear&id_entidad=" + id_entidad + "&fecha=" + fecha,
         success: function (datos) {
             $("#dt1").html(datos);
+            $('#dialogo_cargando_control').modal('hide');
         }
     });
 });

@@ -1,8 +1,13 @@
 <?php
 
-define('IC_VERSION', "3.16.6");
-define('IC_FECHA_REVISION', "05/04/2016");
+define('IC_VERSION', "3.19.2");
+define('IC_FECHA_REVISION', "11/05/2016");
 
+// 3.19.2 - 11/05/2016 - El status de los indicadores/datos se pondera en función del nombre que tengan asignados sus valores de referencia y no de la etiqueta asignada a éstos.
+// 3.19.1 - 10/05/2016 - Cambios en los gráficos (decimales, símbolos de puntuación...) y mejoras en la sección de control.
+// 3.19.0 - 03/05/2016 - Migración de mysql a mysqli.
+// 3.18.0 - 19/04/2016 - Añadido control del tiempo de expiración de las sesiones de los usuarios. Cambios varios de presentación y estilo.
+// 3.17.0 - 06/04/2016 - Añadida también la posibilidad de exportar a diferentes formatos las fichas de unidades, procesos, indicadores, datos y usuarios.
 // 3.16.6 - 05/04/2016 - Eliminados los filtros htmlentities de smarty en las cadenas de texto ya que producían conflictos con los caracteres españoles.
 // 3.16.5 - 04/04/2016 - Cambiado el nombre del valor de referencia objetivo por el de meta (correcciones correspondientes en el código).
 // 3.16.4 - 04/04/2016 - Corregido fallo en código javascript de la gestión de valores de referencia para hacer que el valor de los campos visibilidad y activo de la tabla coincida siempre con el del formulario de edición del valor de referencia.
