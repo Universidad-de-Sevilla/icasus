@@ -160,7 +160,18 @@
                                 {/foreach} 
                             </select>
                         </div>
-                    </div>              
+                    </div>
+                    <div class="form-group">
+                        <label for='inverso' class="col-sm-2 control-label">{$smarty.const.FIELD_ESTIMACION}</label>
+                        <div class="col-sm-8">
+                            <div title="{$smarty.const.TXT_ESTIMACION}" data-toggle="tooltip" data-placement="left">
+                                <input type="checkbox" name='inverso' id='inverso' class="form-control" 
+                                       data-toggle="toggle" data-on="{$smarty.const.TXT_DESCENDENTE}"
+                                       data-onstyle="danger" data-offstyle="success"
+                                       data-off="{$smarty.const.TXT_ASCENDENTE}" value="1" data-size="small" {if $dato->inverso}checked{/if}/>  
+                            </div>
+                        </div>
+                    </div>
                     <div id="calculo_automatico">
                         <div class="form-group">
                             <label class="col-sm-2 control-label">{$smarty.const.TXT_INDIC_DAT_CALCULADO}</label>

@@ -11,8 +11,9 @@
 
 global $smarty;
 global $plantilla;
-//Variable para operar con Indicadores/Datos
+//Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
+$logicaMedicion = new LogicaMedicion();
 
 $dato = new Indicador();
 $datos = $dato->Find_joined("id_proceso IS NULL");
@@ -40,6 +41,12 @@ if ($datos_propios)
     $valor_referencia_medicion = new Valor_referencia_medicion();
     $medicion_lim = array();
     $medicion_obj = array();
+    //Incializamos ambos arrays de referencias a null por defecto
+    foreach ($datos_propios as $indicador)
+    {
+        $medicion_lim[$indicador->id] = NULL;
+        $medicion_obj[$indicador->id] = NULL;
+    }
     foreach ($datos_propios as $indicador)
     {
         $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
@@ -73,11 +80,13 @@ if ($datos_propios)
                     }
                 }
             }
+            $status[$indicador->id] = $logicaMedicion->calcular_status_medicion($indicador->inverso, $totales[$indicador->id], $medicion_lim[$indicador->id], $medicion_obj[$indicador->id]);
         }
     }
 
     $smarty->assign('medicion_obj', $medicion_obj);
     $smarty->assign('medicion_lim', $medicion_lim);
+    $smarty->assign('status', $status);
 }
 
 $smarty->assign('_javascript', array('dato_listar'));

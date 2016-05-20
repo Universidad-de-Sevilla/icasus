@@ -49,6 +49,7 @@ if (
     $indicador->formulacion = filter_input(INPUT_POST, 'formulacion', FILTER_SANITIZE_STRING);
     $indicador->id_visibilidad = filter_input(INPUT_POST, 'id_visibilidad', FILTER_SANITIZE_NUMBER_INT);
     $tipo_seleccion_responsable = filter_input(INPUT_POST, 'tipo_seleccion_responsable');
+    $indicador->inverso = filter_has_var(INPUT_POST, 'inverso') ? filter_input(INPUT_POST, 'inverso', FILTER_SANITIZE_NUMBER_INT) : 0;
     // Campos opcionales 
     $indicador->descripcion = filter_has_var(INPUT_POST, 'descripcion') ? filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING) : null;
     $indicador->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_SANITIZE_STRING) : null;

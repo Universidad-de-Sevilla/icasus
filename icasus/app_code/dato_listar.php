@@ -11,8 +11,9 @@
 
 global $smarty;
 global $plantilla;
-//Variable para operar con Indicadores/Datos
+//Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
+$logicaMedicion = new LogicaMedicion();
 
 if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -47,6 +48,12 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $valor_referencia_medicion = new Valor_referencia_medicion();
         $medicion_lim = array();
         $medicion_obj = array();
+        //Incializamos ambos arrays de referencias a null por defecto
+        foreach ($datos_propios as $indicador)
+        {
+            $medicion_lim[$indicador->id] = NULL;
+            $medicion_obj[$indicador->id] = NULL;
+        }
         foreach ($datos_propios as $indicador)
         {
             $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
@@ -69,22 +76,24 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
                     foreach ($valores_referencia_medicion as $valor_referencia_medicion)
                     {
                         //Es la referencia Límite
-                        if (strpos($valor_referencia_medicion->valor_referencia->nombre, 'mite') !== false)
+                        if (strpos($valor_referencia_medicion->valor_referencia->nombre, 'mite'))
                         {
                             $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
                         }
                         //Es la referencia Meta
-                        if (strpos($valor_referencia_medicion->valor_referencia->nombre, 'eta') !== false)
+                        if (strpos($valor_referencia_medicion->valor_referencia->nombre, 'eta'))
                         {
                             $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
                         }
                     }
                 }
+                $status[$indicador->id] = $logicaMedicion->calcular_status_medicion($indicador->inverso, $totales[$indicador->id], $medicion_lim[$indicador->id], $medicion_obj[$indicador->id]);
             }
         }
 
         $smarty->assign('medicion_obj', $medicion_obj);
         $smarty->assign('medicion_lim', $medicion_lim);
+        $smarty->assign('status', $status);
     }
     $smarty->assign('_javascript', array('dato_listar'));
     $smarty->assign('_nombre_pagina', FIELD_DATOS . ": " . $entidad->nombre);

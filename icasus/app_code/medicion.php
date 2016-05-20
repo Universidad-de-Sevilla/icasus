@@ -13,8 +13,9 @@
 global $smarty;
 global $usuario;
 global $plantilla;
-//Variable para operar con Indicadores/Datos
+//Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
+$logicaMedicion = new LogicaMedicion();
 
 if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'))
 {
@@ -92,6 +93,13 @@ if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'
     }
     $smarty->assign("pinta_grafico", $pinta_grafico);
 
+    //Calculamos el total de la medición
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+    $smarty->assign("total", $total);
+
     //Buscar todos valores ref del indicador y recorrer si no existe entrada 
     //en la tabla valores_ref _med creamos entrada y despues asignamos a la plantilla
     $valor_referencia_medicion = new Valor_referencia_medicion();
@@ -114,23 +122,27 @@ if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'
         $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
 
         //Control (Status) de valores límite y metas
+        $medicion_lim = null;
+        $medicion_obj = null;
         if ($valores_referencia_medicion)
         {
             foreach ($valores_referencia_medicion as $med_ref)
             {
                 //Es la referencia Límite
-                if (strpos($med_ref->valor_referencia->nombre, 'mite') !== false)
+                if (strpos($med_ref->valor_referencia->nombre, 'mite'))
                 {
                     $medicion_lim = $med_ref->valor;
                     $smarty->assign('medicion_lim', $medicion_lim);
                 }
                 //Es la referencia Meta
-                if (strpos($med_ref->valor_referencia->nombre, 'eta') !== false)
+                if (strpos($med_ref->valor_referencia->nombre, 'eta'))
                 {
                     $medicion_obj = $med_ref->valor;
                     $smarty->assign('medicion_obj', $medicion_obj);
                 }
             }
+            $status = $logicaMedicion->calcular_status_medicion($indicador->inverso, $total, $medicion_lim, $medicion_obj);
+            $smarty->assign('status', $status);
         }
     }
 
@@ -149,13 +161,6 @@ if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'
     //Si es calculado vemos los Indicadores/Datos de los que depende
     $indicadores_influyentes = $logicaIndicador->calcular_dependencias($indicador->id);
     $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
-
-    //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
-    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
-    $tipo_agregacion = new Tipo_agregacion();
-    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
-    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
-    $smarty->assign("total", $total);
 
     $smarty->assign("usuario", $usuario);
     $smarty->assign("_nombre_pagina", FIELD_MED . ": " . " $medicion->etiqueta - $indicador->nombre");

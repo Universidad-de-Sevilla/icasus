@@ -265,29 +265,15 @@
                             </thead>
                             <tbody>
                                 {foreach from=$indicadores_propios item=indicador} 
-                                    <tr {if isset($medicion_lim[$indicador->id]) AND isset($medicion_obj[$indicador->id])}
-                                                        {if $totales[$indicador->id] < $medicion_lim[$indicador->id]}
-                                                            class="danger"
-                                                        {else if $totales[$indicador->id] >= $medicion_obj[$indicador->id]}
-                                                            class="success"
-                                                        {else}
-                                                            class="warning"
-                                                        {/if}
-                                                    {/if}
-                                                    {if isset($medicion_obj[$indicador->id]) AND !isset($medicion_lim[$indicador->id])}
-                                                        {if $totales[$indicador->id] >= $medicion_obj[$indicador->id]}
-                                                            class="success"
-                                                        {else}
-                                                            class="danger"
-                                                        {/if}
-                                                    {/if}
-                                                    {if isset($medicion_lim[$indicador->id]) AND !isset($medicion_obj[$indicador->id])}
-                                                        {if $totales[$indicador->id] < $medicion_lim[$indicador->id]}
-                                                            class="danger"
-                                                        {else}
-                                                            class="success"
-                                                        {/if}
-                                                    {/if}>
+                                    <tr {if isset($status[$indicador->id])}
+                                            {if  $status[$indicador->id] == 'red'}
+                                                class="danger"
+                                            {else if $status[$indicador->id] == 'green'}
+                                                class="success"
+                                            {else}
+                                                class="warning"
+                                            {/if}
+                                        {/if}>
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
                                         <td>
                                             {if $indicador->calculo}
@@ -313,7 +299,7 @@
                                                 {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
+                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])!== NULL}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
                                                 {if $indicador->calculo}
@@ -324,29 +310,13 @@
                                             </a>
                                         </td>
                                          <td class="text-center"> 
-                                            {if $totales[$indicador->id] != NULL}
-                                                {if isset($medicion_lim[$indicador->id]) AND isset($medicion_obj[$indicador->id])}
-                                                    {if  $totales[$indicador->id] < $medicion_lim[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                    {else if $totales[$indicador->id] >= $medicion_obj[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                    {else}
-                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:yellow"></i>
-                                                    {/if}
-                                                {else if isset($medicion_obj[$indicador->id])}
-                                                    {if $totales[$indicador->id] >= $medicion_obj[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                    {else}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                    {/if}
-                                                {else if isset($medicion_lim[$indicador->id])}
-                                                    {if $totales[$indicador->id] < $medicion_lim[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                    {else}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                    {/if}
+                                            {if isset($status[$indicador->id])}
+                                                {if $status[$indicador->id] == 'red'}
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
+                                                {else if $status[$indicador->id] == 'green'}
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
                                                 {else}
-                                                    ---
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
                                                 {/if}
                                             {else}
                                                 ---
@@ -422,29 +392,15 @@
                             </thead>
                             <tbody>
                                 {foreach from=$datos_propios item=indicador} 
-                                    <tr {if isset($medicion_lim[$indicador->id]) AND isset($medicion_obj[$indicador->id])}
-                                                        {if $totales[$indicador->id] < $medicion_lim[$indicador->id]}
-                                                            class="danger"
-                                                        {else if $totales[$indicador->id] >= $medicion_obj[$indicador->id]}
-                                                            class="success"
-                                                        {else}
-                                                            class="warning"
-                                                        {/if}
-                                                    {/if}
-                                                    {if isset($medicion_obj[$indicador->id]) AND !isset($medicion_lim[$indicador->id])}
-                                                        {if $totales[$indicador->id] >= $medicion_obj[$indicador->id]}
-                                                            class="success"
-                                                        {else}
-                                                            class="danger"
-                                                        {/if}
-                                                    {/if}
-                                                    {if isset($medicion_lim[$indicador->id]) AND !isset($medicion_obj[$indicador->id])}
-                                                        {if $totales[$indicador->id] < $medicion_lim[$indicador->id]}
-                                                            class="danger"
-                                                        {else}
-                                                            class="success"
-                                                        {/if}
-                                                    {/if}>
+                                    <tr {if isset($status[$indicador->id])}
+                                            {if  $status[$indicador->id] == 'red'}
+                                                class="danger"
+                                            {else if $status[$indicador->id] == 'green'}
+                                                class="success"
+                                            {else}
+                                                class="warning"
+                                            {/if}
+                                        {/if}>
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
                                         <td>
                                             {if $indicador->calculo}
@@ -470,7 +426,7 @@
                                                 {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
+                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])!== NULL}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
                                                 {if $indicador->calculo}
@@ -481,29 +437,13 @@
                                             </a>
                                         </td>
                                          <td class="text-center"> 
-                                            {if $totales[$indicador->id] != NULL}
-                                                {if isset($medicion_lim[$indicador->id]) AND isset($medicion_obj[$indicador->id])}
-                                                    {if  $totales[$indicador->id] < $medicion_lim[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                    {else if $totales[$indicador->id] >= $medicion_obj[$indicador->id]}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                    {else}
-                                                        <i title="{$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:yellow"></i>
-                                                    {/if}
-                                                {else if isset($medicion_obj[$indicador->id])}
-                                                    {if $totales[$indicador->id] >= $medicion_obj[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                    {else}
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                    {/if}
-                                                {else if isset($medicion_lim[$indicador->id])}
-                                                    {if $totales[$indicador->id] < $medicion_lim[$indicador->id] }
-                                                        <i title="{$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                    {else}
-                                                        <i title="{$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]})" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                    {/if}
+                                            {if isset($status[$indicador->id])}
+                                                {if $status[$indicador->id] == 'red'}
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
+                                                {else if $status[$indicador->id] == 'green'}
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
                                                 {else}
-                                                    ---
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="fa fa-circle fa-fw" style="color:{$status[$indicador->id]}"></i>
                                                 {/if}
                                             {else}
                                                 ---

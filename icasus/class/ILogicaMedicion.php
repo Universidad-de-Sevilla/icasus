@@ -27,6 +27,10 @@ interface ILogicaMedicion
     //recibe como parámetro de un Indicador/Dato
     public function generar_valores_referencia_medicion($medicion);
 
+    //Devuelve el status para una medición en función de su estimación(inverso),
+    //su valor total y sus valores de referencia
+    public function calcular_status_medicion($inverso, $valor, $limite, $meta);
+
     //Borra todos los valores de la medición cuyo identificador recibe 
     //como parámetro
     public function borrar_valores_medicion($id);

@@ -513,3 +513,10 @@ sub{
 .fa-star,.fa-star-o{
     color:#FFC526;
 }
+
+/*Quitamos bordes redondeados*/
+* {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+}

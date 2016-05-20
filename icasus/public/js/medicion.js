@@ -372,9 +372,7 @@ tablas_valores = $('#tabla_valores').DataTable({
     "bPaginate": false,
     "bSort": false,
     fixedHeader: true,
-    dom: "<'row'<'col-sm-12'>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12'>>"
+    dom: "<'row'<'col-sm-12'tr>>"
 });
 
 //Reajustamos las cabeceras de las datatables al cambiar de pestaña

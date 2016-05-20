@@ -48,6 +48,7 @@ if (
     $dato->id_responsable = filter_input(INPUT_POST, 'id_responsable', FILTER_SANITIZE_NUMBER_INT);
     $dato->id_responsable_medicion = filter_input(INPUT_POST, 'id_responsable_medicion', FILTER_SANITIZE_NUMBER_INT);
     $dato->desagregado = filter_input(INPUT_POST, 'tipo_seleccion_responsable', FILTER_SANITIZE_NUMBER_INT);
+    $dato->inverso = filter_has_var(INPUT_POST, 'inverso') ? filter_input(INPUT_POST, 'inverso', FILTER_SANITIZE_NUMBER_INT) : 0;
     // Campos opcionales 
     $dato->id_visibilidad = filter_has_var(INPUT_POST, 'id_visibilidad') ? filter_input(INPUT_POST, 'id_visibilidad', FILTER_SANITIZE_NUMBER_INT) : null;
     $dato->descripcion = filter_has_var(INPUT_POST, 'descripcion') ? filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING) : null;

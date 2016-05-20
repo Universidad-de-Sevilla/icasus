@@ -30,6 +30,8 @@ define('TXT_REG_EVENTOS', 'Registro de eventos');
 define('TXT_CONTENIDO', 'Contenido de');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_REP_GRAFIC', 'Gráficas');
+define('TXT_ASCENDENTE', 'Ascendente');
+define('TXT_DESCENDENTE', 'Descendente');
 define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores/datos:');
 define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores/datos:');
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
@@ -166,21 +168,6 @@ define('TXT_INDIC_DAT_VAL_REF', 'Indicadores/datos: valores de referencia');
 define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
 define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
 
-//Informes
-define('TXT_INFORME_IC', 'Informe generado por ICASUS');
-define('TXT_INFORME_REBIUN', 'Informe Rebiun'); //2012
-define('TXT_INFORME_LIST', 'Lista de informes disponibles');
-define('TXT_INFORMES_CONSTRUCTOR', 'Constructor de informes');
-define('TXT_INFORME_SEL_INDIC', 'Seleccionar los indicadores que contendrá el informe:');
-define('TXT_INFORME_SEL_ANYO', 'Seleccionar los años que se reflejarán en el informe:');
-define('TXT_NUM_CONVOCATORIAS', 'Número de convocatorias');
-define('TXT_PLAZO_CONVOCATORIAS', 'Plazo convocatorias');
-define('TXT_INDICE_PARTICIPACION', 'Índice de participación');
-define('TXT_INDICE_SATISFACCION', 'Índice de satisfacción general');
-define('TXT_VOL_TRAMITACION', 'Volumen tramitación');
-define('TXT_FIABILIDAD_TRAMIT_EXPED', 'Fiabilidad tramitación expedientes');
-define('TXT_PRESTAMO_USER', 'Préstamo por Usuario potencial');
-
 //Login
 define('TXT_BIENVENIDO', 'Bienvenido a icasus');
 define('TXT_LOGIN', 'Iniciar sesión');
@@ -204,7 +191,7 @@ define('TXT_MED_BORRAR', 'Borrar medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
 define('TXT_MED_ASIG', ' Asignar la medición.');
-define('TXT_MED_GENERAR', 'Generar medición/es');
+define('TXT_MED_CREAR', 'Crear medición/es');
 define('TXT_MED_CARGAR', 'Cargar medición/es');
 define('TXT_MED_TABLA', 'Tabla de mediciones');
 define('TXT_MED_ULTIMA', 'Última medición');
@@ -307,6 +294,7 @@ define('TXT_VAL_INSERT', 'Introduzca un número (dentro del intervalo si existe)
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
 define('TXT_GRAFICO_AUMENTAR', '(Haga click sobre el gráfico para aumentarlo)');
 define('TXT_INTERVALO', 'Sólo si se quieren limitar los valores de las mediciones a un intervalo (cerrado) de posibles valores. Por ejemplo, para resultados de encuestas. No es compatible con el cálculo automático.');
+define('TXT_ESTIMACION', 'Una estimación ascendente implica una evolución positiva cuanto más altos sean los valores de las mediciones, la estimación descendente implica lo contrario.');
 
 //Selecciones
 define('TXT_SEL', 'Seleccionar');
@@ -390,7 +378,7 @@ define('TXT_VALS_DESACT', 'Desactivar valores');
 define('TXT_VAL_REF_NOMBRE', 'Los nombres "Meta" y/o "Límite" activarán el control por colores del status en las mediciones.');
 define('TXT_VAL_REF_ETIQ', 'La etiqueta indica el nombre con el que aparecerá el valor de referencia en las gráficas y en las mediciones.');
 //Status
-define('TXT_VAL_LOGRADO', 'Meta alcanzada');
+define('TXT_VAL_LOGRADO', 'Valor óptimo');
 define('TXT_VAL_ACEPTABLE', 'Valor aceptable');
 define('TXT_VAL_MEJORABLE', 'Valor mejorable');
 
@@ -496,7 +484,7 @@ define('MSG_INDIC_BORRADO', 'Se ha borrado el indicador: ');
 define('MSG_INDIC_COPIADOS', 'Indicadores copiados.');
 define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los datos del indicador.');
 define('MSG_INDIC_NO_PUBLIC', 'Este indicador no está definido como público.');
-define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para este indicador/dato. Cree valores de referencia con el nombre "Meta" y/o "Límite" para activar el control del status por colores en las mediciones.');
+define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para este indicador/dato.');
 define('MSG_INDIC_NO_DATOS', 'Todavía no se han introducido datos en este indicador.');
 define('MSG_INDIC_NO_MED', 'Todavía no se han definido mediciones para este indicador.');
 define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del indicador. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
@@ -517,7 +505,7 @@ define('MSG_MED_VAL_INTERVALO', 'Debe insertar un valor que este dentro del inte
 define('MSG_MED_VAL_NOMUM', 'Está intentando introducir un dato que no es reconocido como número.');
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
-define('MSG_MED_GENERAR', 'Esta acción, generará automáticamente todas las mediciones (si no existen), desde el año fijado (mínimo año del histórico) hasta el año actual. Tomará algo de tiempo en función del año seleccionado y la periodicidad del indicador/dato, ¿está seguro?');
+define('MSG_MED_CREAR', 'Esta acción, creará automáticamente todas las mediciones (si no existen), desde el año fijado (mínimo año del histórico) hasta el año actual. Tomará algo de tiempo en función del año seleccionado y la periodicidad del indicador/dato, ¿está seguro?');
 define('MSG_MED_CARGAR', 'Esta acción, cargará la cantidad indicada de registros de las mediciones del indicador/dato. Tomará algo de tiempo en función del número de registros seleccionado, ¿está seguro?');
 define('MSG_MED_GENERANDO', 'Generando mediciones... espere por favor.');
 define('MSG_MED_CARGANDO', 'Cargando mediciones... espere por favor.');
@@ -559,6 +547,7 @@ define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los valores marcados?');
 define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los valores de referencia marcados?');
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
 define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia.');
+define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" y/o "Límite" para activar el control del status por colores en las mediciones.');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 
 //Control
@@ -758,6 +747,7 @@ define('FIELD_RESP_SEG', 'Responsable de Seguimiento');
 define('FIELD_MET', 'Método de comprobación (evidencia)');
 define('FIELD_EFQM', 'Criterios EFQM');
 define('FIELD_HISTORICO', 'Histórico');
+define('FIELD_ESTIMACION', 'Estimación');
 define('FIELD_CALCULO', 'Cálculo');
 define('FIELD_CALC_TOTAL', 'Cálculo del total entre subunidades');
 define('FIELD_CALC_TOTAL_ANUAL', 'Cálculo del total anual');

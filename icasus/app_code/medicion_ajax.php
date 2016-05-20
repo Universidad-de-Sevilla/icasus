@@ -13,8 +13,9 @@
 global $smarty;
 global $usuario;
 global $plantilla;
-//Variable para operar con Indicadores/Datos
+//Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
+$logicaMedicion = new LogicaMedicion();
 
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 $medicion = new Medicion();
@@ -301,6 +302,14 @@ if ($modulo == 'grafica')
             $smarty->assign("panel", $panel);
         }
     }
+
+    //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+    $smarty->assign("total", $total);
+
     $smarty->assign("modulo", "grafica");
     $smarty->assign("indicador", $indicador);
     $smarty->assign('medicion', $medicion);
@@ -329,22 +338,26 @@ if ($valores_referencia)
     $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
 
     //Control (Status) de valores límite y metas
+    $medicion_lim = null;
+    $medicion_obj = null;
     if ($valores_referencia_medicion)
     {
         foreach ($valores_referencia_medicion as $med_ref)
         {
             //Es la referencia Límite
-            if (strpos($med_ref->valor_referencia->nombre, 'mite') !== false)
+            if (strpos($med_ref->valor_referencia->nombre, 'mite'))
             {
                 $medicion_lim = $med_ref->valor;
                 $smarty->assign('medicion_lim', $medicion_lim);
             }
             //Es la referencia Meta
-            if (strpos($med_ref->valor_referencia->nombre, 'eta') !== false)
+            if (strpos($med_ref->valor_referencia->nombre, 'eta'))
             {
                 $medicion_obj = $med_ref->valor;
                 $smarty->assign('medicion_obj', $medicion_obj);
             }
         }
+        $status = $logicaMedicion->calcular_status_medicion($indicador->inverso, $total, $medicion_lim, $medicion_obj);
+        $smarty->assign('status', $status);
     }
 }

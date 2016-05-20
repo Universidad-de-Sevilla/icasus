@@ -42,6 +42,22 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 $indicador = new Indicador();
 $indicador->load_joined("id=$id_indicador");
 
+//Comprobamos que existe al menos un valor de referencia 'Límite' o 'Meta'
+//y si no es así avisaremos
+$aviso_ref = true;
+$num_val_ref = count($indicador->valores_referencia);
+$i = 0;
+while ($i < $num_val_ref && $aviso_ref)
+{
+    if (strpos($indicador->valores_referencia[$i]->nombre, 'mite') != false ||
+            strpos($indicador->valores_referencia[$i]->nombre, 'eta') != false)
+    {
+        $aviso_ref = false;
+    }
+    $i++;
+}
+$smarty->assign('aviso_ref', $aviso_ref);
+
 //Avanzar entre indicadores/datos
 if ($tipo == "indicador")
 {
