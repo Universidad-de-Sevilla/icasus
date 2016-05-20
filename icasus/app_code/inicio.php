@@ -82,7 +82,7 @@ if (is_array($datos) && !is_array($indicadores))
     $indicadores_datos = $datos;
 }
 
-if (isset($indicadores_datos))
+if ($indicadores_datos)
 {
     // Valores totales de las últimas mediciones
     $totales = array();

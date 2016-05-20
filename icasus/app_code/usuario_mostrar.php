@@ -81,7 +81,7 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
         $indicadores_datos = $datos;
     }
 
-    if (isset($indicadores_datos))
+    if ($indicadores_datos)
     {
         // Valores totales de las últimas mediciones
         $totales = array();

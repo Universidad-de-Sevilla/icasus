@@ -81,14 +81,14 @@
                             <tbody>
                                 {foreach from=$datos_propios item=indicador} 
                                     <tr {if isset($status[$indicador->id])}
-                                                {if  $status[$indicador->id] == 'red'}
-                                                    class="danger"
-                                                {else if $status[$indicador->id] == 'green'}
-                                                    class="success"
-                                                {else}
-                                                    class="warning"
-                                                {/if}
-                                            {/if}>
+                                            {if  $status[$indicador->id] == 'red'}
+                                                class="danger"
+                                            {else if $status[$indicador->id] == 'green'}
+                                                class="success"
+                                            {else}
+                                                class="warning"
+                                            {/if}
+                                        {/if}>
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
                                         <td>
                                             {if $indicador->calculo}
@@ -112,7 +112,7 @@
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>{$indicador->medicion->etiqueta}</td>
-                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
+                                        <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])!== NULL}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
                                                 {if $indicador->calculo}
