@@ -584,6 +584,7 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_VAL}</th>
+                                    <th>{$smarty.const.FIELD_STATUS}</th>
                                     <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
                                     <th>{$smarty.const.FIELD_USER_GRABA}</th>
                                 </tr>
@@ -612,49 +613,53 @@
                                                     {/if}
                                                 {/if}
                                             </td>
+                                            <td> 
+                                                ---
+                                            </td>
                                             <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
                                             <td style="font-size: 12px">{$valor->usuario->nombre} {$valor->usuario->apellidos}</td>  
                                         </tr>
                                     {/if}
-                                    {*El indicador/dato es centralizado*}
+                                    {*El indicador/dato es no agregado*}
                                     {if $indicador->id_tipo_agregacion== 0}
-                                        <tr {if isset($status)}class="{$status}"{/if}>
-                                            <th>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</th>
+                                        <tr {if isset($status)}
+                                                {if $status == 'red'}
+                                                    class="danger"
+                                                {else if $status == 'green'}
+                                                    class="success"
+                                                {else}
+                                                    class="warning"
+                                                {/if}
+                                            {/if}>
+                                            <td><b>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</b></td>
                                             <td>
                                                 {if $permiso_editar && !$indicador->calculo}
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
-                                                        {if $valor->valor!== NULL}
-                                                            {if isset($status)}
-                                                                {if $status == 'danger'}
-                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                                {else if $status == 'success'}
-                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                                {else}
-                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                                {/if}
-                                                            {else}
-                                                                <span class="label label-default">{$total|round:"2"}</span>
-                                                            {/if}
-                                                        {else}
+                                                        {if $valor->valor == NULL}
                                                             ---
+                                                        {else}
+                                                            <span class="badge">{$valor->valor|round:"2"}</span>
                                                         {/if}
                                                     </a>
                                                 {else}
-                                                    {if $valor->valor!== NULL}
-                                                        {if isset($status)}
-                                                            {if $status == 'danger'}
-                                                                <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                            {else if $status == 'success'}
-                                                                <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                            {else}
-                                                                <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                            {/if}
-                                                        {else}
-                                                            <span class="label label-default">{$total|round:"2"}</span>
-                                                        {/if}
-                                                    {else}
+                                                    {if $valor->valor == NULL}
                                                         ---
+                                                    {else}
+                                                        <span class="badge">{$valor->valor|round:"2"}</span>
                                                     {/if}
+                                                {/if}
+                                            </td>
+                                            <td>
+                                                {if isset($status)}
+                                                    {if $status == 'red'}
+                                                        <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
+                                                    {else if $status == 'green'}
+                                                        <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
+                                                    {else}
+                                                        <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
+                                                    {/if}
+                                                {else}
+                                                    ---
                                                 {/if}
                                             </td>
                                             <td>{$valor->fecha_recogida|date_format:"%d-%m-%Y"}</td>
@@ -667,20 +672,31 @@
                                 <!-- TOTALES -->
                                 {*El indicador/dato es agregado y su total no se introduce manualmente*}
                                 {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion!= 4}
-                                    <tr {if isset($status)}class="{$status}"{/if}>
-                                        <th>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</th>
+                                    <tr {if isset($status)}
+                                            {if $status == 'red'}
+                                                class="danger"
+                                            {else if $status == 'green'}
+                                                class="success"
+                                            {else}
+                                                class="warning"
+                                            {/if}
+                                        {/if}>
+                                        <td><b>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</b></td>
                                         <td>
-                                            {if $total!== NULL}
-                                                {if isset($status)}
-                                                    {if $status == 'danger'}
-                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$total|round:"2"}</span>
-                                                    {else if $status == 'success'}
-                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$total|round:"2"}</span>
-                                                    {else}
-                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$total|round:"2"}</span>
-                                                    {/if}
+                                            {if $total === NULL}
+                                                ---
+                                            {else}
+                                                <span class="badge">{$total|round:"2"}</span>
+                                            {/if}
+                                        </td>
+                                        <td> 
+                                            {if isset($status)}
+                                                {if $status == 'red'}
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
+                                                {else if $status == 'green'}
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
                                                 {else}
-                                                    <span class="label label-default">{$total|round:"2"}</span>
+                                                    <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
                                                 {/if}
                                             {else}
                                                 ---
@@ -694,43 +710,44 @@
                                 {if $indicador->id_tipo_agregacion!= 0 && $indicador->id_tipo_agregacion== 4}
                                     {foreach $valores as $valor}
                                         {if $valor->id_entidad==$entidad->id}
-                                            <tr {if isset($status)}class="{$status}"{/if}>
-                                                <th>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</th>
+                                            <tr {if isset($status)}
+                                                    {if $status == 'red'}
+                                                        class="danger"
+                                                    {else if $status == 'green'}
+                                                        class="success"
+                                                    {else}
+                                                        class="warning"
+                                                    {/if}
+                                                {/if}>
+                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</b></td>
                                                 <td>
                                                     {if $permiso_editar && !$indicador->calculo}
                                                         <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
-                                                            {if $valor->valor!== NULL}
-                                                                {if isset($status)}
-                                                                    {if $status == 'danger'}
-                                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                                    {else if $status == 'success'}
-                                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                                    {else}
-                                                                        <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                                    {/if}
-                                                                {else}
-                                                                    <span class="label label-default">{$total|round:"2"}</span>
-                                                                {/if}
-                                                            {else}
+                                                            {if $valor->valor == NULL}
                                                                 ---
+                                                            {else}
+                                                                <span class="badge">{$valor->valor|round:"2"}</span>
                                                             {/if}
                                                         </a>
                                                     {else}
-                                                        {if $valor->valor!== NULL}
-                                                            {if isset($status)}
-                                                                {if $status == 'danger'}
-                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                                {else if $status == 'success'}
-                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                                {else}
-                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="label label-{$status}">{$valor->valor|round:"2"}</span>
-                                                                {/if}
-                                                            {else}
-                                                                <span class="label label-default">{$total|round:"2"}</span>
-                                                            {/if}
-                                                        {else}
+                                                        {if $valor->valor == NULL}
                                                             ---
+                                                        {else}
+                                                            <span class="badge">{$valor->valor|round:"2"}</span>
                                                         {/if}
+                                                    {/if}
+                                                </td>
+                                                <td> 
+                                                    {if isset($status)}
+                                                        {if $status == 'red'}
+                                                            <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
+                                                        {else if $status == 'green'}
+                                                            <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
+                                                        {else}
+                                                            <i title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim}, {$smarty.const.FIELD_META}: {$medicion_obj})" class="fa fa-circle fa-fw" style="color:{$status}"></i>
+                                                        {/if}
+                                                    {else}
+                                                        ---
                                                     {/if}
                                                 </td>
                                                 <td>
