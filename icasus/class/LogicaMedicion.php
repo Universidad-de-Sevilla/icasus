@@ -15,13 +15,13 @@ class LogicaMedicion implements ILogicaMedicion
 {
 
     //Colores para el status de una medición
-//    private $color_mejorable = 'red';
-//    private $color_aceptable = 'yellow';
-//    private $color_logrado = 'green';
-    
-    private $color_mejorable = 'danger';
-    private $color_aceptable = 'warning';
-    private $color_logrado = 'success';
+//    private $mejorable = 'red';
+//    private $aceptable = 'yellow';
+//    private $logrado = 'green';
+
+    private $mejorable = 'danger';
+    private $aceptable = 'warning';
+    private $logrado = 'success';
 
     // Genera un valor nulo para cada una de las unidades asociadas 
     // al Indicador/Dato en la medición dada que recibe como parámetro
@@ -118,37 +118,37 @@ class LogicaMedicion implements ILogicaMedicion
         {
             if ($valor > $limite)
             {
-                return $this->color_mejorable;
+                return $this->mejorable;
             }
             else if ($valor <= $meta)
             {
-                return $this->color_logrado;
+                return $this->logrado;
             }
             else
             {
-                return $this->color_aceptable;
+                return $this->aceptable;
             }
         }
         if ($meta && !$limite)
         {
             if ($valor <= $meta)
             {
-                return $this->color_logrado;
+                return $this->logrado;
             }
             else
             {
-                return $this->color_mejorable;
+                return $this->mejorable;
             }
         }
         if ($limite && !$meta)
         {
             if ($valor > $limite)
             {
-                return $this->color_mejorable;
+                return $this->mejorable;
             }
             else
             {
-                return $this->color_logrado;
+                return $this->logrado;
             }
         }
         return NULL;
@@ -161,37 +161,37 @@ class LogicaMedicion implements ILogicaMedicion
         {
             if ($valor < $limite)
             {
-                return $this->color_mejorable;
+                return $this->mejorable;
             }
             else if ($valor >= $meta)
             {
-                return $this->color_logrado;
+                return $this->logrado;
             }
             else
             {
-                return $this->color_aceptable;
+                return $this->aceptable;
             }
         }
         if ($meta && !$limite)
         {
             if ($valor >= $meta)
             {
-                return $this->color_logrado;
+                return $this->logrado;
             }
             else
             {
-                return $this->color_mejorable;
+                return $this->mejorable;
             }
         }
         if ($limite && !$meta)
         {
             if ($valor < $limite)
             {
-                return $this->color_mejorable;
+                return $this->mejorable;
             }
             else
             {
-                return $this->color_logrado;
+                return $this->logrado;
             }
         }
         return NULL;

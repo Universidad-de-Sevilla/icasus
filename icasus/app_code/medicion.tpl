@@ -736,7 +736,7 @@
                                                 <td>
                                                     {$valor->fecha_recogida|date_format:"%d-%m-%Y"}
                                                 </td>
-                                                <td>
+                                                <td style="font-size: 12px">
                                                     {$valor->usuario->nombre} {$valor->usuario->apellidos}
                                                 </td>  
                                             </tr>
