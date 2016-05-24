@@ -255,6 +255,11 @@ define('TXT_PAG', 'Página');
 define('TXT_PAG_CREAR', 'Crear página');
 define('TXT_PAG_EDIT', 'Editar página');
 
+//Planes Estratégicos
+define('TXT_PLANES', 'Planes Estratégicos');
+define('TXT_PLAN_CREAR', 'Crear plan');
+define('TXT_PLAN_BORRAR', 'Borrar plan');
+
 //Procesos
 define('TXT_PROCS', 'Procesos');
 define('TXT_PROC_TODOS', 'Todos los procesos');
@@ -462,6 +467,7 @@ define('MSG_UNID_NO_USERS', 'No se han vinculado usuarios a esta unidad.');
 define('MSG_UNID_NO_DATOS', 'No hay datos definidos para esta unidad.');
 define('MSG_UNID_NO_INDIC', 'No hay indicadores definidos para esta unidad.');
 define('MSG_UNID_NO_CUADROS', 'No hay cuadros de mando definidos para esta unidad.');
+define('MSG_UNID_NO_PLANES', 'No hay planes estratégicos definidos para esta unidad.');
 define('MSG_UNID_NO_IND_NO_DAT', 'No hay indicadores ni datos definidos para esta unidad.');
 define('MSG_UNID_SUBUNIDS_NO_INDIC', 'No hay indicadores definidos para las subunidades de esta unidad.');
 define('MSG_UNID_SUP_NO_PROC', 'La unidad madre no tiene procesos.');
@@ -517,6 +523,9 @@ define('MSG_MEDS_NO_MARCADAS', 'No se ha marcado ninguna medición para borrar.'
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
 define('MSG_PAG_CONFIRM_EDITAR', 'Va a editar esta página, ¿está seguro?');
 define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
+
+//Planes
+define('MSG_PLAN_CONFIRM_BORRAR', '¿Realmente quiere borrar este plan?');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
@@ -763,6 +772,10 @@ define('FIELD_TIP_MED', 'Tipo de medición');
 
 //Páginas
 define('FIELD_PAG_CONTENIDO', 'Contenido de la página (HTML)');
+
+//Planes
+define('FIELD_SLOGAN', 'Slogan');
+define('FIELD_EJECUCION', 'Ejecución');
 
 //Procesos
 define('FIELD_PROC', 'Proceso');
