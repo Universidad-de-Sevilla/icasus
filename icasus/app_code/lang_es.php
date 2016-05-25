@@ -256,9 +256,9 @@ define('TXT_PAG_CREAR', 'Crear página');
 define('TXT_PAG_EDIT', 'Editar página');
 
 //Planes Estratégicos
-define('TXT_PLANES', 'Planes Estratégicos');
-define('TXT_PLAN_CREAR', 'Crear plan');
-define('TXT_PLAN_BORRAR', 'Borrar plan');
+define('TXT_PLANES', 'Planes estratégicos');
+define('TXT_PLAN_CREAR', 'Crear plan estratégico');
+define('TXT_PLAN_BORRAR', 'Borrar plan estratégico');
 
 //Procesos
 define('TXT_PROCS', 'Procesos');
@@ -526,6 +526,8 @@ define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
 
 //Planes
 define('MSG_PLAN_CONFIRM_BORRAR', '¿Realmente quiere borrar este plan?');
+define('MSG_PLAN_CREADO', 'Se ha creado un nuevo plan estratégico para esta unidad.');
+define('MSG_PLAN_EDITADO', 'Se ha editado el plan correctamente.');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
@@ -641,6 +643,9 @@ define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la medición, inténtel
 define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el cálculo de otros indicadores/datos. Borre éstos primero');
 define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en este');
 
+//Planes
+define('ERR_PLAN_EDIT', 'El plan estratégico no existe o no tiene permisos para editarlo.');
+
 //Procesos
 define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores.');
 define('ERR_PROC_BORRAR_NO_AUT', 'No tiene persimos para borrar el proceso.');
@@ -703,7 +708,6 @@ define('FIELD_ORDEN', 'Orden');
 define('FIELD_ANCHO', 'Ancho');
 define('FIELD_ANYO', 'Año');
 define('FIELD_TOTAL', 'Total');
-define('FIELD_MISION', 'Misión');
 define('FIELD_RESULTS_CLAVE', 'Resultados Clave');
 define('FIELD_ENTRADAS_PROV', 'Entradas/Proveedores');
 define('FIELD_SALIDAS_CLIENTS', 'Salidas/Clientes');
@@ -774,7 +778,13 @@ define('FIELD_TIP_MED', 'Tipo de medición');
 define('FIELD_PAG_CONTENIDO', 'Contenido de la página (HTML)');
 
 //Planes
-define('FIELD_SLOGAN', 'Slogan');
+define('FIELD_PLAN', 'Plan');
+define('FIELD_ANYO_INICIO', 'Año de inicio');
+define('FIELD_DURACION', 'Duración (años)');
+define('FIELD_MISION', 'Misión');
+define('FIELD_VISION', 'Visión');
+define('FIELD_VALORES', 'Valores');
+define('FIELD_FCE', 'FCE');
 define('FIELD_EJECUCION', 'Ejecución');
 
 //Procesos

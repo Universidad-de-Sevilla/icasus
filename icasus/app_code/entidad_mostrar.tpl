@@ -440,7 +440,7 @@
                 {if $_control}
                     <div id="botones_plan" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
-                            <a class="btn btn-danger" href='' 
+                            <a class="btn btn-danger" href='index.php?page=plan_crear&id_entidad={$entidad->id}' 
                                title="{$smarty.const.TXT_PLAN_CREAR}">
                                 <i class="fa fa-book fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                             </a>
@@ -453,8 +453,8 @@
                         <table id="tabla_planes" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>{$smarty.const.FIELD_PERIODO}</th>
-                                    <th>{$smarty.const.FIELD_SLOGAN}</th>
+                                    <th>{$smarty.const.FIELD_PLAN}</th>
+                                    <th>{$smarty.const.FIELD_TITULO}</th>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
@@ -463,18 +463,18 @@
                                 {foreach from=$planes item=plan} 
                                     <tr>  
                                         <td>
-                                            <span class="label label-primary">{$plan->anyo_inicio} - {$plan->anyo_fin}</span>
+                                            <span class="label label-primary">{$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}</span>
                                         </td>
                                         <td>
-                                            {if $plan->slogan}
-                                                <i>"{$plan->slogan}"</i>
+                                            {if $plan->titulo}
+                                                <i>"{$plan->titulo}"</i>
                                             {else}
                                                 ---
                                             {/if}
                                         </td>
                                         <td style="white-space:nowrap">
                                             <div class="progress">
-                                                <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" >= 75 && $plan->ejecucion|round:"2" < 100}progress-bar-info{else}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$plan->ejecucion|round:"2"}%">
+                                                <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$plan->ejecucion|round:"2"}%">
                                                     {$plan->ejecucion|round:"2"} %
                                                 </div>
                                             </div>
@@ -488,7 +488,7 @@
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PLAN_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_plan"
-                                                   data-id_plan="{$plan->id}" data-periodo_plan="{$plan->anyo_inicio} - {$plan->anyo_fin}" data-id_entidad="{$plan->id_entidad}">
+                                                   data-id_plan="{$plan->id}" data-periodo_plan="{$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}" data-id_entidad="{$plan->id_entidad}">
                                                     <i class="fa fa-trash fa-fw"></i>
                                                 </a>
                                             {/if}
@@ -511,7 +511,7 @@
                             {if $_control}
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                     <div class="btn-group" role="group" aria-label="">
-                                        <a class="btn btn-danger" href='' 
+                                        <a class="btn btn-danger" href='index.php?page=plan_crear&id_entidad={$entidad->id}' 
                                            title="{$smarty.const.TXT_PLAN_CREAR}">
                                             <i class="fa fa-book fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                         </a>
