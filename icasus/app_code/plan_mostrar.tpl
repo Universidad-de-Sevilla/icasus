@@ -243,7 +243,7 @@
                     <div class="col-md-6">
                         <div class="panel panel-red">
                             <div class="panel-heading">
-                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}</span>
+                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}</span>
                                 <i class="fa fa-chevron-up pull-right clickable"></i>
                             </div>
                             <!-- /.panel-heading -->

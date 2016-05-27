@@ -528,6 +528,7 @@ define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
 define('MSG_PLAN_CONFIRM_BORRAR', '¿Realmente quiere borrar este plan?');
 define('MSG_PLAN_CREADO', 'Se ha creado un nuevo plan estratégico para esta unidad.');
 define('MSG_PLAN_EDITADO', 'Se ha editado el plan correctamente.');
+define('MSG_PLAN_CONFIRM_EDITAR', 'Va a editar este plan, ¿está seguro?');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
