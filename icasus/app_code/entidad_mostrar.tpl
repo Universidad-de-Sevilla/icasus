@@ -93,7 +93,7 @@
                 <a href="#unid_subs" title="{$smarty.const.FIELD_SUBUNIDS}" aria-controls="{$smarty.const.FIELD_SUBUNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</a>
             </li>
             <li role="presentation">
-                <a href="#unid_planes" title="{$smarty.const.TXT_PLANES}" aria-controls="{$smarty.const.TXT_PLANES}" role="tab" data-toggle="tab"><i class="fa fa-book fa-fw"></i> {$smarty.const.TXT_PLANES}</a>
+                <a href="#unid_planes" title="{$smarty.const.FIELD_PLANES}" aria-controls="{$smarty.const.FIELD_PLANES}" role="tab" data-toggle="tab"><i class="fa fa-book fa-fw"></i> {$smarty.const.FIELD_PLANES}</a>
             </li>
             <li role="presentation">
                 <a href="#unid_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
@@ -463,7 +463,9 @@
                                 {foreach from=$planes item=plan} 
                                     <tr>  
                                         <td>
-                                            <span class="label label-primary">{$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}</span>
+                                            <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}" href="index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                                {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}
+                                            </a>
                                         </td>
                                         <td>
                                             {if $plan->titulo}
@@ -480,11 +482,11 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             {if $_control}
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=plan_editar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PLAN_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_plan"

@@ -256,8 +256,8 @@ define('TXT_PAG_CREAR', 'Crear página');
 define('TXT_PAG_EDIT', 'Editar página');
 
 //Planes Estratégicos
-define('TXT_PLANES', 'Planes estratégicos');
 define('TXT_PLAN_CREAR', 'Crear plan estratégico');
+define('TXT_PLAN_EDIT', 'Editar plan estratégico');
 define('TXT_PLAN_BORRAR', 'Borrar plan estratégico');
 
 //Procesos
@@ -678,7 +678,7 @@ define('FIELD_FECHA', 'Fecha');
 define('FIELD_FECHA_HORA', 'Fecha/Hora');
 define('FIELD_WEB', 'Sitio web');
 define('FIELD_FUENTE', 'Fuente');
-define('FIELD_PERIODO', 'Periodo');
+define('FIELD_PERIODO', 'Período');
 define('FIELD_VISIBILIDAD', 'Visibilidad');
 define('FIELD_UMBRAL', 'Umbral');
 define('FIELD_LIMITE', 'Límite');
@@ -778,7 +778,8 @@ define('FIELD_TIP_MED', 'Tipo de medición');
 define('FIELD_PAG_CONTENIDO', 'Contenido de la página (HTML)');
 
 //Planes
-define('FIELD_PLAN', 'Plan');
+define('FIELD_PLAN', 'Plan estratégico');
+define('FIELD_PLANES', 'Planes estratégicos');
 define('FIELD_ANYO_INICIO', 'Año de inicio');
 define('FIELD_DURACION', 'Duración (años)');
 define('FIELD_MISION', 'Misión');
@@ -786,6 +787,17 @@ define('FIELD_VISION', 'Visión');
 define('FIELD_VALORES', 'Valores');
 define('FIELD_FCE', 'FCE');
 define('FIELD_EJECUCION', 'Ejecución');
+
+//Líneas
+define('FIELD_LINEA', 'Línea estratégica');
+define('FIELD_LINEAS', 'Líneas estratégicas');
+
+//Objetivos
+define('FIELD_OBJ_EST', 'Objetivo estratégico');
+define('FIELD_OBJ_OP', 'Objetivo operacional');
+define('FIELD_OBJS_EST', 'Objetivos estratégicos');
+define('FIELD_OBJS_OP', 'Objetivos operacionales');
+
 
 //Procesos
 define('FIELD_PROC', 'Proceso');

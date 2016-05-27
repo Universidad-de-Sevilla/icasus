@@ -18,7 +18,7 @@ if (filter_has_var(INPUT_POST, 'anyo_inicio') && filter_has_var(INPUT_POST, 'dur
     if (filter_has_var(INPUT_POST, 'id_plan'))
     {
         $id_plan = filter_input(INPUT_POST, 'id_plan', FILTER_SANITIZE_NUMBER_INT);
-        $exito = MSG_CUADRO_EDITADO;
+        $exito = MSG_PLAN_EDITADO;
         if ($plan->load("id = $id_plan") == false)
         {
             $error = ERR_PLAN_EDIT;
@@ -36,7 +36,7 @@ if (filter_has_var(INPUT_POST, 'anyo_inicio') && filter_has_var(INPUT_POST, 'dur
     $plan->fce = filter_input(INPUT_POST, 'fce', FILTER_SANITIZE_STRING);
     $plan->ejecucion = 0;
     $plan->save();
-    header("Location: index.php?page=entidad_mostrar&id_entidad=$plan->id_entidad&exito=$exito");
+    header("Location: index.php?page=plan_mostrar&id_plan=$plan->id&id_entidad=$plan->id_entidad&exito=$exito");
 }
 else
 {
