@@ -529,6 +529,8 @@ define('MSG_PLAN_CONFIRM_BORRAR', '¿Realmente quiere borrar este plan?');
 define('MSG_PLAN_CREADO', 'Se ha creado un nuevo plan estratégico para esta unidad.');
 define('MSG_PLAN_EDITADO', 'Se ha editado el plan correctamente.');
 define('MSG_PLAN_CONFIRM_EDITAR', 'Va a editar este plan, ¿está seguro?');
+define('MSG_PLAN_BORRADO', 'Se ha eliminado el plan estratégico:');
+define('MSG_PLAN_BORRAR', 'No tiene permisos para borrar el plan o éste todavía contiene líneas estratégicas. Bórrelas primero.');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');

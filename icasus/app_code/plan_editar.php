@@ -9,7 +9,7 @@
 // Descripcion: Editar un plan estratégico existente
 //---------------------------------------------------------------------------------------------------
 
-if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entidad'))
+if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entidad') && $control)
 {
     $id_plan = filter_input(INPUT_GET, 'id_plan', FILTER_SANITIZE_NUMBER_INT);
     $plan = new Plan();
