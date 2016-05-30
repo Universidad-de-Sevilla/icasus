@@ -10,7 +10,19 @@
 //Barra de botones
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha').html();
+    var botones_linea = $('#botones_linea').html();
     $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
+    $('#tabla_lineas_filter').append(botones_linea);
 });
 
-
+//Borrado de líneas estratégicas
+$('#dialogo_confirmar_borrado_linea').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var nombre = button.data('nombre');
+    var id_linea = button.data('id_linea');
+    var id_plan = button.data('id_plan');
+    var modal = $(this);
+    var link = 'index.php?page=linea_borrar&id_plan=' + id_plan + '&id_linea=' + id_linea;
+    modal.find('#nombre_linea').text(nombre);
+    modal.find('#borrar').attr('href', link);
+});

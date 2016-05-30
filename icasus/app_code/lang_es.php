@@ -260,6 +260,16 @@ define('TXT_PLAN_CREAR', 'Crear plan estratégico');
 define('TXT_PLAN_EDIT', 'Editar plan estratégico');
 define('TXT_PLAN_BORRAR', 'Borrar plan estratégico');
 
+//Líneas Estratégicas
+define('TXT_LINEA_CREAR', 'Crear línea estratégica');
+define('TXT_LINEA_EDIT', 'Editar línea estratégica');
+define('TXT_LINEA_BORRAR', 'Borrar línea estratégica');
+
+//Líneas Estratégicas
+define('TXT_OBJEST_CREAR', 'Crear objetivo estratégico');
+define('TXT_OBJEST_EDIT', 'Editar objetivo estratégico');
+define('TXT_OBJEST_BORRAR', 'Borrar objetivo estratégico');
+
 //Procesos
 define('TXT_PROCS', 'Procesos');
 define('TXT_PROC_TODOS', 'Todos los procesos');
@@ -531,6 +541,10 @@ define('MSG_PLAN_EDITADO', 'Se ha editado el plan correctamente.');
 define('MSG_PLAN_CONFIRM_EDITAR', 'Va a editar este plan, ¿está seguro?');
 define('MSG_PLAN_BORRADO', 'Se ha eliminado el plan estratégico:');
 define('MSG_PLAN_BORRAR', 'No tiene permisos para borrar el plan o éste todavía contiene líneas estratégicas. Bórrelas primero.');
+define('MSG_PLAN_NO_LINEAS', 'No hay líneas estratégicas definidas para este plan.');
+
+//Líneas
+define('MSG_LINEA_CONFIRM_BORRAR', '¿Realmente quiere borrar esta línea?');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
@@ -794,13 +808,13 @@ define('FIELD_EJECUCION', 'Ejecución');
 //Líneas
 define('FIELD_LINEA', 'Línea estratégica');
 define('FIELD_LINEAS', 'Líneas estratégicas');
+define('FIELD_INDICE', 'Índice');
 
 //Objetivos
 define('FIELD_OBJ_EST', 'Objetivo estratégico');
 define('FIELD_OBJ_OP', 'Objetivo operacional');
 define('FIELD_OBJS_EST', 'Objetivos estratégicos');
 define('FIELD_OBJS_OP', 'Objetivos operacionales');
-
 
 //Procesos
 define('FIELD_PROC', 'Proceso');

@@ -54,6 +54,11 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
         $cont++;
     }
 
+    //Líneas
+    $linea = new Linea();
+    $lineas = $linea->Find("id_plan=$id_plan");
+    $smarty->assign('lineas', $lineas);
+
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);

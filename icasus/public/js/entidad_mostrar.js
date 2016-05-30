@@ -172,7 +172,7 @@ $(document).ready(function () {
     $('#tabla_archivos_filter').append(botones_archivo);
 });
 
-//Borrado de procesos
+//Borrado de planes estratégicos
 $('#dialogo_confirmar_borrado_plan').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var periodo_plan = button.data('periodo_plan');

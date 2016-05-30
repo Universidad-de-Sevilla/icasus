@@ -1,4 +1,4 @@
-<!-- Diálogo Confirmar Borrado Plan-->
+<!-- Diálogo Confirmar Borrado Plan -->
 <div class="modal fade" id="dialogo_confirmar_borrado_plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -21,7 +21,32 @@
         </div>
     </div>
 </div>
-<!-- /Diálogo Confirmar Borrado Plan-->
+<!-- /Diálogo Confirmar Borrado Plan -->
+
+<!-- Diálogo Confirmar Borrado Línea -->
+<div class="modal fade" id="dialogo_confirmar_borrado_linea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i
+                        class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_LINEA_BORRAR}: <span
+                        id="nombre_linea"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_LINEA_CONFIRM_BORRAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i
+                        class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar"><i
+                        class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Borrado Línea-->
 
 <!-- Nombre página -->
 <div class="row">
@@ -285,7 +310,89 @@
 
             <!-- Líneas estratégicas del plan -->
             <div role="tabpanel" class="tab-pane" id="plan_lineas">
-
+                <!-- Barra de botones -->
+                {if $_control}
+                    <div id="botones_linea" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=linea_crear&id_plan={$plan->id}' 
+                               title="{$smarty.const.TXT_LINEA_CREAR}">
+                                <i class="fa fa-long-arrow-right fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            </a>
+                        </div>
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
+                {if $lineas}
+                    <div class="table-responsive">
+                        <table id="tabla_lineas" class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_INDICE}</th>
+                                    <th>{$smarty.const.FIELD_LINEA}</th>
+                                    <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$lineas item=linea} 
+                                    <tr>  
+                                        <td>
+                                            <span class="label label-primary">{$linea->indice}</span>
+                                        </td>
+                                        <td>
+                                            {$linea->nombre}
+                                        </td>
+                                        <td style="white-space:nowrap">
+                                            <div class="progress">
+                                                <div class="progress-bar {if $linea->ejecucion|round:"2" < 25}progress-bar-danger{else if $linea->ejecucion|round:"2" >= 25 && $linea->ejecucion|round:"2" < 75}progress-bar-warning{else if $linea->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$linea->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$linea->ejecucion|round:"2"}%">
+                                                    {$linea->ejecucion|round:"2"} %
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_OBJEST_CREAR}" href="index.php?page=objest_crear&id_linea={$linea->id}">
+                                                <i class="fa fa-dot-circle-o fa-fw"></i>
+                                            </a>
+                                            {if $_control}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=linea_editar&id_plan={$plan->id}&id_linea={$linea->id}">
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_LINEA_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_linea"
+                                                   data-id_plan="{$plan->id}" data-nombre="{$linea->nombre}" data-id_linea="{$linea->id}">
+                                                    <i class="fa fa-trash fa-fw"></i>
+                                                </a>
+                                            {/if}
+                                        </td>
+                                    </tr>     
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_PLAN_NO_LINEAS}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=linea_crear&id_plan={$plan->id}' 
+                                           title="{$smarty.const.TXT_LINEA_CREAR}">
+                                            <i class="fa fa-long-arrow-right fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-1 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
             </div>
             <!-- /Líneas estratégicas del plan -->
 
