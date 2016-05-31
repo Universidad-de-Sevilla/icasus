@@ -358,7 +358,7 @@
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_LINEA_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_linea"
-                                                   data-id_plan="{$plan->id}" data-nombre="{$linea->nombre}" data-id_linea="{$linea->id}">
+                                                   data-id_plan="{$plan->id}" data-nombre="{$linea->indice}. {$linea->nombre}" data-id_linea="{$linea->id}">
                                                     <i class="fa fa-trash fa-fw"></i>
                                                 </a>
                                             {/if}

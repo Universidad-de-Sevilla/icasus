@@ -31,7 +31,7 @@ if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entida
     else
     {
         $aviso = MSG_PLAN_BORRAR;
-        header("Location: index.php?page=plan_mostrar&id_plan=$id_plan&id_entidad=$plan->id_entidad&aviso=$aviso");
+        header("Location: index.php?page=plan_mostrar&id_plan=$id_plan&id_entidad=$id_entidad&aviso=$aviso");
     }
 }
 else

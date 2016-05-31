@@ -548,6 +548,8 @@ define('MSG_LINEA_CONFIRM_BORRAR', '¿Realmente quiere borrar esta línea?');
 define('MSG_LINEA_CREADA', 'Se ha creado una nueva línea estratégica para este plan.');
 define('MSG_LINEA_EDITADA', 'Se ha editado la línea correctamente.');
 define('MSG_LINEA_CONFIRM_EDITAR', 'Va a editar esta línea, ¿está seguro?');
+define('MSG_LINEA_BORRADA', 'Se ha eliminado la línea estratégica:');
+define('MSG_LINEA_BORRAR', 'No tiene permisos para borrar la línea o ésta todavía contiene objetivos estratégicos. Bórrelos primero.');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
