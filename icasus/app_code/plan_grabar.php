@@ -25,6 +25,10 @@ if (filter_has_var(INPUT_POST, 'anyo_inicio') && filter_has_var(INPUT_POST, 'dur
             header("Location: index.php?page=error&error=error");
         }
     }
+    else
+    {
+        $plan->ejecucion = 0;
+    }
     // Guardamos los datos
     $plan->id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $plan->anyo_inicio = filter_input(INPUT_POST, 'anyo_inicio', FILTER_SANITIZE_NUMBER_INT);
@@ -34,7 +38,6 @@ if (filter_has_var(INPUT_POST, 'anyo_inicio') && filter_has_var(INPUT_POST, 'dur
     $plan->vision = filter_input(INPUT_POST, 'vision', FILTER_SANITIZE_STRING);
     $plan->valores = filter_input(INPUT_POST, 'valores', FILTER_SANITIZE_STRING);
     $plan->fce = filter_input(INPUT_POST, 'fce', FILTER_SANITIZE_STRING);
-    $plan->ejecucion = 0;
     $plan->save();
     header("Location: index.php?page=plan_mostrar&id_plan=$plan->id&id_entidad=$plan->id_entidad&exito=$exito");
 }

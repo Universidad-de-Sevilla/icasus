@@ -545,6 +545,8 @@ define('MSG_PLAN_NO_LINEAS', 'No hay líneas estratégicas definidas para este p
 
 //Líneas
 define('MSG_LINEA_CONFIRM_BORRAR', '¿Realmente quiere borrar esta línea?');
+define('MSG_LINEA_CREADA', 'Se ha creado una nueva línea estratégica para este plan.');
+define('MSG_LINEA_EDITADA', 'Se ha editado la línea correctamente.');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
@@ -662,6 +664,9 @@ define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables e
 
 //Planes
 define('ERR_PLAN_EDIT', 'El plan estratégico no existe o no tiene permisos para editarlo.');
+
+//Líneas
+define('ERR_LINEA_EDIT', 'La línea estratégica no existe o no tiene permisos para editarla.');
 
 //Procesos
 define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores.');
