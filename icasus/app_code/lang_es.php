@@ -265,10 +265,15 @@ define('TXT_LINEA_CREAR', 'Crear línea estratégica');
 define('TXT_LINEA_EDIT', 'Editar línea estratégica');
 define('TXT_LINEA_BORRAR', 'Borrar línea estratégica');
 
-//Líneas Estratégicas
+//Objetivos Estratégicos
 define('TXT_OBJEST_CREAR', 'Crear objetivo estratégico');
 define('TXT_OBJEST_EDIT', 'Editar objetivo estratégico');
 define('TXT_OBJEST_BORRAR', 'Borrar objetivo estratégico');
+
+//Objetivos Operacionales
+define('TXT_OBJOP_CREAR', 'Crear objetivo operacional');
+define('TXT_OBJOP_EDIT', 'Editar objetivo operacional');
+define('TXT_OBJOP_BORRAR', 'Borrar objetivo operacional');
 
 //Procesos
 define('TXT_PROCS', 'Procesos');
@@ -542,6 +547,7 @@ define('MSG_PLAN_CONFIRM_EDITAR', 'Va a editar este plan, ¿está seguro?');
 define('MSG_PLAN_BORRADO', 'Se ha eliminado el plan estratégico:');
 define('MSG_PLAN_BORRAR', 'No tiene permisos para borrar el plan o éste todavía contiene líneas estratégicas. Bórrelas primero.');
 define('MSG_PLAN_NO_LINEAS', 'No hay líneas estratégicas definidas para este plan.');
+define('MSG_PLAN_NO_OBJEST', 'No hay objetivos estratégicos definidos para las líneas estratégicas del plan.');
 
 //Líneas
 define('MSG_LINEA_CONFIRM_BORRAR', '¿Realmente quiere borrar esta línea?');
@@ -550,6 +556,14 @@ define('MSG_LINEA_EDITADA', 'Se ha editado la línea correctamente.');
 define('MSG_LINEA_CONFIRM_EDITAR', 'Va a editar esta línea, ¿está seguro?');
 define('MSG_LINEA_BORRADA', 'Se ha eliminado la línea estratégica:');
 define('MSG_LINEA_BORRAR', 'No tiene permisos para borrar la línea o ésta todavía contiene objetivos estratégicos. Bórrelos primero.');
+
+//Objetivos Estratégicos
+define('MSG_OBJEST_CONFIRM_BORRAR', '¿Realmente quiere borrar este objetivo estratégico?');
+define('MSG_OBJEST_CREADA', 'Se ha creado un nuevo objetivo estratégico para esta línea del plan.');
+define('MSG_OBJEST_EDITADA', 'Se ha editado el objetivo estratégico correctamente.');
+define('MSG_OBJEST_CONFIRM_EDITAR', 'Va a editar este objetivo estratégico, ¿está seguro?');
+define('MSG_OBJEST_BORRADA', 'Se ha eliminado el objetivo estratégico:');
+define('MSG_OBJEST_BORRAR', 'No tiene permisos para borrar el objetivo estratégico o éste todavía contiene objetivos operacionales. Bórrelos primero.');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');

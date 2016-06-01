@@ -7,7 +7,7 @@
 // Código javascript para plan_mostrar.tpl
 //----------------------------------------------------------------------------
 
-//Barra de botones
+//Barras de botones
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha').html();
     var botones_linea = $('#botones_linea').html();
@@ -24,5 +24,17 @@ $('#dialogo_confirmar_borrado_linea').on('show.bs.modal', function (event) {
     var modal = $(this);
     var link = 'index.php?page=linea_borrar&id_plan=' + id_plan + '&id_linea=' + id_linea;
     modal.find('#nombre_linea').text(nombre);
+    modal.find('#borrar').attr('href', link);
+});
+
+//Borrado de objetivos estratégicos
+$('#dialogo_confirmar_borrado_objest').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var nombre = button.data('nombre');
+    var id_linea = button.data('id_linea');
+    var id_objest = button.data('id_objest');
+    var modal = $(this);
+    var link = 'index.php?page=objest_borrar&id_objest=' + id_objest + '&id_linea=' + id_linea;
+    modal.find('#nombre_objest').text(nombre);
     modal.find('#borrar').attr('href', link);
 });

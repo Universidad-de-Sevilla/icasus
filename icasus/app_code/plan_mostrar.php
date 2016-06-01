@@ -59,6 +59,15 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
     $lineas = $linea->Find("id_plan=$id_plan");
     $smarty->assign('lineas', $lineas);
 
+    //Objetivos estratégicos
+    $objest = new ObjetivoEstrategico();
+    $objests = array();
+    foreach ($lineas as $linea)
+    {
+        $objests = array_merge($objests, $objest->Find_joined("id_linea=$linea->id"));
+    }
+    $smarty->assign('objests', $objests);
+
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);

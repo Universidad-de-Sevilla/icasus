@@ -46,7 +46,32 @@
         </div>
     </div>
 </div>
-<!-- /Diálogo Confirmar Borrado Línea-->
+<!-- /Diálogo Confirmar Borrado Línea -->
+
+<!-- Diálogo Confirmar Borrado Objetivo Estratégico -->
+<div class="modal fade" id="dialogo_confirmar_borrado_objest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i
+                        class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_OBJEST_BORRAR}: <span
+                        id="nombre_objest"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_OBJEST_CONFIRM_BORRAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i
+                        class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar"><i
+                        class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Borrado Objetivo Estratégico -->
 
 <!-- Nombre página -->
 <div class="row">
@@ -161,10 +186,10 @@
                 <a href="#plan_lineas" title="{$smarty.const.FIELD_LINEAS}" aria-controls="{$smarty.const.FIELD_LINEAS}" role="tab" data-toggle="tab"><i class="fa fa-long-arrow-right fa-fw"></i> {$smarty.const.FIELD_LINEAS}</a>
             </li>
             <li role="presentation">
-                <a href="#plan_obj_est" title="{$smarty.const.FIELD_OBJS_EST}" aria-controls="{$smarty.const.FIELD_OBJS_EST}" role="tab" data-toggle="tab"><i class="fa fa-dot-circle-o fa-fw"></i> {$smarty.const.FIELD_OBJS_EST}</a>
+                <a href="#plan_objest" title="{$smarty.const.FIELD_OBJS_EST}" aria-controls="{$smarty.const.FIELD_OBJS_EST}" role="tab" data-toggle="tab"><i class="fa fa-dot-circle-o fa-fw"></i> {$smarty.const.FIELD_OBJS_EST}</a>
             </li>
             <li role="presentation">
-                <a href="#plan_obj_op" title="{$smarty.const.FIELD_OBJS_OP}" aria-controls="{$smarty.const.FIELD_OBJS_OP}" role="tab" data-toggle="tab"><i class="fa fa-bullseye fa-fw"></i> {$smarty.const.FIELD_OBJS_OP}</a>
+                <a href="#plan_objop" title="{$smarty.const.FIELD_OBJS_OP}" aria-controls="{$smarty.const.FIELD_OBJS_OP}" role="tab" data-toggle="tab"><i class="fa fa-bullseye fa-fw"></i> {$smarty.const.FIELD_OBJS_OP}</a>
             </li>
             <li role="presentation">
                 <a href="#plan_res" title="{$smarty.const.TXT_RESUMEN} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" aria-controls="{$smarty.const.TXT_RESUMEN} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" role="tab" data-toggle="tab"><i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_RESUMEN}</a>
@@ -186,7 +211,7 @@
                             <tbody>
                                 <tr>
                                     <th>{$smarty.const.FIELD_PLAN}</th>
-                                    <td><span class="label label-primary">{$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}</span></td>
+                                    <td><span class="label label-default">{$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}</span></td>
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_TITULO}</th>
@@ -283,7 +308,7 @@
                                     <tbody>
                                         {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion)}}
                                             <tr>
-                                                <td><span class="label label-primary">{$i}</span></td>
+                                                <td><span class="label label-default">{$i}</span></td>
                                                 <td>
                                                     <div class="progress">
                                                         <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
@@ -337,7 +362,7 @@
                                 {foreach from=$lineas item=linea} 
                                     <tr>  
                                         <td>
-                                            <span class="label label-primary">{$linea->indice}</span>
+                                            <span class="label label-default">{$linea->indice}</span>
                                         </td>
                                         <td>
                                             {$linea->nombre}
@@ -397,13 +422,74 @@
             <!-- /Líneas estratégicas del plan -->
 
             <!-- Objetivos estratégicos del plan -->
-            <div role="tabpanel" class="tab-pane" id="plan_obj_est">
-
+            <div role="tabpanel" class="tab-pane" id="plan_objest">
+                {if $objests}
+                    <div class="table-responsive">
+                        <table id="tabla_objest" class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_INDICE}</th>
+                                    <th>{$smarty.const.FIELD_OBJ_EST}</th>
+                                    <th>{$smarty.const.FIELD_LINEA}</th>
+                                    <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$objests item=objest} 
+                                    <tr>  
+                                        <td>
+                                            <span class="label label-default">{$objest->linea->indice}.{$objest->indice}</span>
+                                        </td>
+                                        <td>
+                                            {$objest->nombre}
+                                        </td>
+                                        <td>
+                                            {$objest->linea->indice}. {$objest->linea->nombre}
+                                        </td>
+                                        <td style="white-space:nowrap">
+                                            <div class="progress">
+                                                <div class="progress-bar {if $objest->ejecucion|round:"2" < 25}progress-bar-danger{else if $objest->ejecucion|round:"2" >= 25 && $objest->ejecucion|round:"2" < 75}progress-bar-warning{else if $objest->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objest->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$objest->ejecucion|round:"2"}%">
+                                                    {$objest->ejecucion|round:"2"} %
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_OBJOP_CREAR}" href="index.php?page=objop_crear&id_objest={$objest->id}">
+                                                <i class="fa fa-bullseye fa-fw"></i>
+                                            </a>
+                                            {if $_control}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=objest_editar&id_objest={$objest->id}&id_linea={$objest->linea->id}">
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_LINEA_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_objest"
+                                                   data-id_linea="{$objest->linea->id}" data-nombre="{$objest->linea->indice}.{$objest->indice}. {$objest->nombre}" data-id_objest="{$objest->id}">
+                                                    <i class="fa fa-trash fa-fw"></i>
+                                                </a>
+                                            {/if}
+                                        </td>
+                                    </tr>     
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_PLAN_NO_OBJEST}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-12 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
             </div>
             <!-- /Objetivos estratégicos del plan -->
 
             <!-- Objetivos operacionales del plan -->
-            <div role="tabpanel" class="tab-pane" id="plan_obj_op">
+            <div role="tabpanel" class="tab-pane" id="plan_objop">
 
             </div>
             <!-- /Objetivos operacionales del plan -->
