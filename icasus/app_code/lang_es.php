@@ -559,10 +559,10 @@ define('MSG_LINEA_BORRAR', 'No tiene permisos para borrar la línea o ésta toda
 
 //Objetivos Estratégicos
 define('MSG_OBJEST_CONFIRM_BORRAR', '¿Realmente quiere borrar este objetivo estratégico?');
-define('MSG_OBJEST_CREADA', 'Se ha creado un nuevo objetivo estratégico para esta línea del plan.');
-define('MSG_OBJEST_EDITADA', 'Se ha editado el objetivo estratégico correctamente.');
+define('MSG_OBJEST_CREADO', 'Se ha creado un nuevo objetivo estratégico para esta línea del plan:');
+define('MSG_OBJEST_EDITADO', 'Se ha editado el objetivo estratégico correctamente.');
 define('MSG_OBJEST_CONFIRM_EDITAR', 'Va a editar este objetivo estratégico, ¿está seguro?');
-define('MSG_OBJEST_BORRADA', 'Se ha eliminado el objetivo estratégico:');
+define('MSG_OBJEST_BORRADO', 'Se ha eliminado el objetivo estratégico:');
 define('MSG_OBJEST_BORRAR', 'No tiene permisos para borrar el objetivo estratégico o éste todavía contiene objetivos operacionales. Bórrelos primero.');
 
 //Procesos
@@ -684,6 +684,9 @@ define('ERR_PLAN_EDIT', 'El plan estratégico no existe o no tiene permisos para
 
 //Líneas
 define('ERR_LINEA_EDIT', 'La línea estratégica no existe o no tiene permisos para editarla.');
+
+//Objeticos Estratégicos
+define('ERR_OBJEST_EDIT', 'El objetivo estratégico no existe o no tiene permisos para editarlo.');
 
 //Procesos
 define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores.');
