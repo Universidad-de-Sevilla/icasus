@@ -205,7 +205,7 @@
                 <div class="row">
 
                     <!-- Datos del plan -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <table class="table table-striped table-hover ficha">
                             <thead><th></th><th></th></thead>
                             <tbody>
@@ -286,11 +286,14 @@
                             </div>
                         {/if}
                     </div>
-                    <!-- /.col-md-6 -->
+                    <!-- /.col-md-12 -->
                     <!-- /Datos del plan -->
+                </div>
+                <!-- /.row -->
 
-                    <!-- Ejecución/año -->
-                    <div class="col-md-6">
+                <!-- Ejecución/año -->
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="panel panel-red">
                             <div class="panel-heading">
                                 <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}</span>
@@ -325,11 +328,11 @@
                         </div>
                         <!-- /.panel -->
                     </div>
-                    <!-- /.col-md-6 -->
-                    <!-- /Ejecución/año -->
-
+                    <!-- /.col-md-12 -->
                 </div>
                 <!-- /.row -->
+                <!-- /Ejecución/año -->
+
             </div>
             <!-- /Ficha del plan -->
 

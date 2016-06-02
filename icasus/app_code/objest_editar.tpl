@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-dot-circle-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$_nombre_pagina}
+            <i class="fa fa-dot-circle-o fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$_nombre_pagina}
         </h3>
     </div>
     <!-- /.col-lg-12 -->
@@ -75,11 +75,15 @@
     <div class="col-lg-12">
         <form action='index.php?page=objest_grabar' method='post' id='formobjes' name='formobjest' 
               data-toggle="validator" class="form-horizontal">
+            <input type="hidden" name="id_objest" value="{$objest->id}">
             <div class="form-group">
                 <label for="id_linea" class="col-sm-2 control-label">{$smarty.const.FIELD_LINEA}</label>
                 <div class="col-sm-8">
-                    <input type="hidden" name="id_linea" value="{$linea->id}">
-                    <input type='text' class="form-control" id="id_linea" value="{$linea->indice}. {$linea->nombre}" readonly/>
+                    <select class="form-control chosen-select" name="id_linea" id="id_linea">
+                        {foreach $lineas as $lin}
+                            <option data-indice="{$lin->indice}" value="{$lin->id}" {if $objest->id_linea == $lin->id}selected{/if}>{$lin->indice}. {$lin->nombre}</option>
+                        {/foreach}
+                    </select>
                 </div>
             </div>
             <div class="form-group has-feedback">
@@ -87,7 +91,7 @@
                 <div class="col-sm-8">
                     <div class="input-group">
                         <div class="input-group-addon">{$linea->indice}.</div>
-                        <input type='number' class="form-control" name='indice' id='indice' value="1" min="1" placeholder="{$smarty.const.FIELD_INDICE}" required/>
+                        <input type='number' class="form-control" name='indice' id='indice' value="{$objest->indice}" min="1" placeholder="{$smarty.const.FIELD_INDICE}" required/>
                     </div>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>
@@ -96,7 +100,7 @@
             <div class="form-group has-feedback">
                 <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                 <div class="col-sm-8">
-                    <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
+                    <input type='text' class="form-control" name='nombre' id='nombre' value="{$objest->nombre}" placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>
                 </div>
@@ -110,12 +114,33 @@
                         <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
                             <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                         </button>
-                        <button title="{$smarty.const.TXT_GRABAR}" type="submit" class="btn btn-success">
+                        <button title="{$smarty.const.TXT_GRABAR}" type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo_confirmar_edicion">
                             <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}
                         </button>
                     </div>
                 </div>
             </div>
+
+            <!-- Diálogo Confirmar Edición -->
+            <div class="modal fade" id="dialogo_confirmar_edicion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-dot-circle-o fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_OBJEST_EDIT}: {$objest->indice}. {$objest->nombre}</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>{$smarty.const.MSG_OBJEST_CONFIRM_EDITAR}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                            <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-success" name="editar" id="editar"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Diálogo Confirmar Edición -->
+
         </form>
     </div>
     <!-- /.col-lg-12 -->

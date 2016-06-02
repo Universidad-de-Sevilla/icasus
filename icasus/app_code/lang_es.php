@@ -827,7 +827,7 @@ define('FIELD_DURACION', 'Duración (años)');
 define('FIELD_MISION', 'Misión');
 define('FIELD_VISION', 'Visión');
 define('FIELD_VALORES', 'Valores');
-define('FIELD_FCE', 'FCE');
+define('FIELD_FCE', 'Factores clave del éxito');
 define('FIELD_EJECUCION', 'Ejecución');
 
 //Líneas
