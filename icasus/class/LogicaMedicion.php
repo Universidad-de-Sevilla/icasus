@@ -14,6 +14,15 @@
 class LogicaMedicion implements ILogicaMedicion
 {
 
+    //Colores para el status de una medición
+//    private $mejorable = 'red';
+//    private $aceptable = 'yellow';
+//    private $logrado = 'green';
+
+    private $mejorable = 'danger';
+    private $aceptable = 'warning';
+    private $logrado = 'success';
+
     // Genera un valor nulo para cada una de las unidades asociadas 
     // al Indicador/Dato en la medición dada que recibe como parámetro
     public function generar_valores_medicion($medicion)
@@ -84,8 +93,112 @@ class LogicaMedicion implements ILogicaMedicion
         }
     }
 
-//Genera valores nulos para los valores de referencia de la medición que 
-//recibe como parámetro de un Indicador/Dato
+    //Devuelve el status para una medición en función de su estimación(inverso),
+    //su valor total y sus valores de referencia
+    public function calcular_status_medicion($inverso, $valor, $limite, $meta)
+    {
+        $status = null;
+        //Estimación descendente
+        if ($inverso)
+        {
+            $status = $this->calcular_status_medicion_descendente($valor, $limite, $meta);
+        }
+        //Estimación ascendente
+        else
+        {
+            $status = $this->calcular_status_medicion_ascendente($valor, $limite, $meta);
+        }
+        return $status;
+    }
+
+    //Devuelve el status para una medición estimada descendentemente
+    private function calcular_status_medicion_descendente($valor, $limite, $meta)
+    {
+        if ($limite && $meta)
+        {
+            if ($valor > $limite)
+            {
+                return $this->mejorable;
+            }
+            else if ($valor <= $meta)
+            {
+                return $this->logrado;
+            }
+            else
+            {
+                return $this->aceptable;
+            }
+        }
+        if ($meta && !$limite)
+        {
+            if ($valor <= $meta)
+            {
+                return $this->logrado;
+            }
+            else
+            {
+                return $this->mejorable;
+            }
+        }
+        if ($limite && !$meta)
+        {
+            if ($valor > $limite)
+            {
+                return $this->mejorable;
+            }
+            else
+            {
+                return $this->logrado;
+            }
+        }
+        return NULL;
+    }
+
+    //Devuelve el status para una medición estimada ascendentemente
+    private function calcular_status_medicion_ascendente($valor, $limite, $meta)
+    {
+        if ($limite && $meta)
+        {
+            if ($valor < $limite)
+            {
+                return $this->mejorable;
+            }
+            else if ($valor >= $meta)
+            {
+                return $this->logrado;
+            }
+            else
+            {
+                return $this->aceptable;
+            }
+        }
+        if ($meta && !$limite)
+        {
+            if ($valor >= $meta)
+            {
+                return $this->logrado;
+            }
+            else
+            {
+                return $this->mejorable;
+            }
+        }
+        if ($limite && !$meta)
+        {
+            if ($valor < $limite)
+            {
+                return $this->mejorable;
+            }
+            else
+            {
+                return $this->logrado;
+            }
+        }
+        return NULL;
+    }
+
+    //Genera valores nulos para los valores de referencia de la medición que 
+    //recibe como parámetro de un Indicador/Dato
     public function generar_valores_referencia_medicion($medicion)
     {
         //Valores de referencia

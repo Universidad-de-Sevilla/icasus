@@ -48,7 +48,7 @@ if (filter_has_var(INPUT_GET, 'tipo') AND filter_has_var(INPUT_GET, 'id_entidad'
         else
         {
             $error = ERR_AUT;
-            header("location:index.php?page=medicion_editar&id_medicion=$id_medicion&id_entidad=$id_entidad&tipo=$tipo&error=$error");
+            header("location:index.php?page=medicion&id_medicion=$id_medicion&id_entidad=$id_entidad&tipo=$tipo&error=$error");
         }
     }
     //Borrar varias mediciones

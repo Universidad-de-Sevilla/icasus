@@ -7,50 +7,59 @@
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body">        
-                <div class="table-responsive">
-                    <table class="table datatable table-condensed table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>{$smarty.const.FIELD_PROC}</th>
-                                <th>{$smarty.const.FIELD_UNIDS}</th>
-                                <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
-                                <th>{$smarty.const.FIELD_RESP}</th>
-                                <th>{$smarty.const.FIELD_FECHA}</th>
-                                <th>{$smarty.const.FIELD_VAL}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {foreach from=$valores_agrupados item=valor}
+            <div class="panel-body">
+                {if $valores_agrupados}
+                    <div class="table-responsive">
+                        <table class="table datatable table-condensed table-striped table-hover">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        {if $valor.cod_proceso == ''}
-                                            {$smarty.const.FIELD_DATOS}
-                                        {else}
-                                            <span style="display:none">{$valor.proceso}</span> 
-                                            <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
-                                                {$valor.cod_proceso}
-                                            </a>
-                                        {/if}
-                                    </td>
-                                    <td>{$valor.subunidades}</td>
-                                    <td>
-                                        {if $valor.cod_proceso==''}
-                                            <a href="index.php?page=dato_mostrar&id_dato={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
-                                        {else}
-                                            <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
-                                        {/if}
-                                    </td>
-                                    <td style="font-size: 12px">{$valor.nombre_responsable} {$valor.apellidos_responsable}</td>
-                                    <td>{$valor.fecha}</td>
-                                    <td>{if $valor.valor == NULL}
-                                        <a href="index.php?page=medicion_editar&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$smarty.const.TXT_NULO}</a>{/if}
-                                    </td>
+                                    <th>{$smarty.const.FIELD_PROC}</th>
+                                    <th>{$smarty.const.FIELD_UNIDS}</th>
+                                    <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                                    <th>{$smarty.const.FIELD_RESP}</th>
+                                    <th>{$smarty.const.FIELD_RESP_MED}</th>
+                                    <th>{$smarty.const.FIELD_FECHA}</th>
+                                    <th>{$smarty.const.FIELD_VAL}</th>
                                 </tr>
-                            {/foreach}
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                {foreach from=$valores_agrupados item=valor}
+                                    <tr>
+                                        <td>
+                                            {if $valor.cod_proceso == ''}
+                                                {$smarty.const.FIELD_DATOS}
+                                            {else}
+                                                <span style="display:none">{$valor.proceso}</span> 
+                                                <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
+                                                    {$valor.cod_proceso}
+                                                </a>
+                                            {/if}
+                                        </td>
+                                        <td>{$valor.subunidades}</td>
+                                        <td>
+                                            {if $valor.cod_proceso==''}
+                                                <a href="index.php?page=dato_mostrar&id_dato={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
+                                            {else}
+                                                <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
+                                            {/if}
+                                        </td>
+                                        <td style="font-size: 12px">{$valor.nombre_responsable} {$valor.apellidos_responsable}</td>
+                                        <td style="font-size: 12px">{$valor.nombre_responsable_med} {$valor.apellidos_responsable_med}</td>
+                                        <td>{$valor.fecha}</td>
+                                        <td>{if $valor.valor == NULL}
+                                            <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>{/if}
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_CONTROL_NO_MED_NULO}
+                    </div> 
+                {/if}
             </div>
             <!-- /.panel-body -->        
         </div>
@@ -71,83 +80,90 @@
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                <form action='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}' method='post' name='formdiv' class="form-horizontal">      
-                    <div class="table-responsive">
-                        <table class="table datatable table-condensed table-striped table-hover">
-                            <thead>               
-                                <tr>
-                                    <th>{$smarty.const.TXT_DESACT}</th>
-                                    <th>{$smarty.const.FIELD_PROC}</th>
-                                    <th>{$smarty.const.FIELD_UNID}</th>
-                                    <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
-                                    <th>{$smarty.const.FIELD_FECHA}</th>
-                                    <th>{$smarty.const.FIELD_VAL}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$valores item=valor}
+                {if $valores}
+                    <form action='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}' method='post' name='formdiv' class="form-horizontal">      
+                        <div class="table-responsive">
+                            <table class="table datatable table-condensed table-striped table-hover">
+                                <thead>               
                                     <tr>
-                                        <td style="text-align: center"><input type='checkbox' name='id_valor[]' value='{$valor.id_valor}'/></td>
-                                        <td>
-                                            {if $valor.cod_proceso == ''}
-                                                {$smarty.const.FIELD_DATOS}
-                                            {else}
-                                                <span style="display:none">{$valor.proceso}</span> 
-                                                <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
-                                                    {$valor.cod_proceso}
-                                                </a>
-                                            {/if}
-                                        </td>
-                                        <td>{$valor.unidad}</td>
-                                        <td>
-                                            {if $valor.cod_proceso==''}
-                                                <a href="index.php?page=dato_mostrar&id_dato={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
-                                            {else}
-                                                <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
-                                            {/if}
-                                        </td>
-                                        <td>{$valor.fecha}</td>
-                                        <td>{if $valor.valor == NULL}
-                                            <a href="index.php?page=medicion_editar&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$smarty.const.TXT_NULO}</a>{/if}
-                                        </td>
+                                        <th>{$smarty.const.TXT_DESACT}</th>
+                                        <th>{$smarty.const.FIELD_PROC}</th>
+                                        <th>{$smarty.const.FIELD_UNID}</th>
+                                        <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                                        <th>{$smarty.const.FIELD_FECHA}</th>
+                                        <th>{$smarty.const.FIELD_VAL}</th>
                                     </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <div class="col-sm-8">
-                            <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
-                                <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
-                            </button>
-                            <button title="{$smarty.const.TXT_VALS_DESACT}" type="button" class="btn btn-default btn-success" data-toggle="modal" data-target="#dialogo_confirmar_desactivar">
-                                <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_VALS_DESACT}
-                            </button>
+                                </thead>
+                                <tbody>
+                                    {foreach from=$valores item=valor}
+                                        <tr>
+                                            <td style="text-align: center"><input type='checkbox' name='id_valor[]' value='{$valor.id_valor}'/></td>
+                                            <td>
+                                                {if $valor.cod_proceso == ''}
+                                                    {$smarty.const.FIELD_DATOS}
+                                                {else}
+                                                    <span style="display:none">{$valor.proceso}</span> 
+                                                    <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
+                                                        {$valor.cod_proceso}
+                                                    </a>
+                                                {/if}
+                                            </td>
+                                            <td>{$valor.unidad}</td>
+                                            <td>
+                                                {if $valor.cod_proceso==''}
+                                                    <a href="index.php?page=dato_mostrar&id_dato={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
+                                                {else}
+                                                    <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
+                                                {/if}
+                                            </td>
+                                            <td>{$valor.fecha}</td>
+                                            <td>{if $valor.valor == NULL}
+                                                <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>{/if}
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
+                        <br>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
+                                    <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
+                                </button>
+                                <button title="{$smarty.const.TXT_VALS_DESACT}" type="button" class="btn btn-default btn-success pull-right" data-toggle="modal" data-target="#dialogo_confirmar_desactivar">
+                                    <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_VALS_DESACT}
+                                </button>
+                            </div>
+                        </div>
 
-                    <!-- Diálogo Confirmar Desactivar -->
-                    <div class="modal fade" id="dialogo_confirmar_desactivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}: {$entidad->nombre}</h3>
-                                </div>
-                                <div class="modal-body">
-                                    <p>{$smarty.const.MSG_VALS_CONFIRM_DESACT}</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                                    <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="alta" id="alta"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                        <!-- Diálogo Confirmar Desactivar -->
+                        <div class="modal fade" id="dialogo_confirmar_desactivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}: {$entidad->nombre}</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>{$smarty.const.MSG_VALS_CONFIRM_DESACT}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-default btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                                        <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-default btn-success" name="alta" id="alta"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- /Diálogo Confirmar Desactivar -->
+                        <!-- /Diálogo Confirmar Desactivar -->
 
-                </form>
+                    </form>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_CONTROL_NO_MED_NULO}
+                    </div> 
+                {/if}
             </div>
             <!-- /.panel-body -->        
         </div>
@@ -167,50 +183,57 @@
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body">        
-                <div class="table-responsive">
-                    <table class="table datatable table-condensed table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>{$smarty.const.FIELD_PROC}</th> 
-                                <th>{$smarty.const.FIELD_UNID}</th>
-                                <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
-                                <th>{$smarty.const.FIELD_FECHA}</th>
-                                <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
-                                <th>{$smarty.const.FIELD_VAL}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {foreach from= $valores_ult_mod item=valor}
+            <div class="panel-body">
+                {if $valores_ult_mod}
+                    <div class="table-responsive">
+                        <table class="table datatable table-condensed table-striped table-hover">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        {if $valor.cod_proceso == ''}
-                                            {$smarty.const.FIELD_DATOS}
-                                        {else}
-                                            <span style="display:none">{$valor.proceso}</span> 
-                                            <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
-                                                {$valor.cod_proceso}
-                                            </a>
-                                        {/if}
-                                    </td>
-                                    <td>{$valor.unidad}</td>
-                                    <td>
-                                        {if $valor.cod_proceso==''}
-                                            <a href="index.php?page=dato_mostrar&id_dato={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
-                                        {else}
-                                            <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
-                                        {/if}
-                                    </td>
-                                    <td>{$valor.fecha}</td>
-                                    <td>{$valor.fecha_recogida|date_format:"%d-%m-%Y"}</td>
-                                    <td>
-                                        <a href="index.php?page=medicion_editar&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$valor.valor}</a>
-                                    </td>
+                                    <th>{$smarty.const.FIELD_PROC}</th> 
+                                    <th>{$smarty.const.FIELD_UNID}</th>
+                                    <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                                    <th>{$smarty.const.FIELD_FECHA}</th>
+                                    <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
+                                    <th>{$smarty.const.FIELD_VAL}</th>
                                 </tr>
-                            {/foreach}
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                {foreach from= $valores_ult_mod item=valor}
+                                    <tr>
+                                        <td>
+                                            {if $valor.cod_proceso == ''}
+                                                {$smarty.const.FIELD_DATOS}
+                                            {else}
+                                                <span style="display:none">{$valor.proceso}</span> 
+                                                <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
+                                                    {$valor.cod_proceso}
+                                                </a>
+                                            {/if}
+                                        </td>
+                                        <td>{$valor.unidad}</td>
+                                        <td>
+                                            {if $valor.cod_proceso==''}
+                                                <a href="index.php?page=dato_mostrar&id_dato={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
+                                            {else}
+                                                <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
+                                            {/if}
+                                        </td>
+                                        <td>{$valor.fecha}</td>
+                                        <td>{$valor.fecha_recogida|date_format:"%d-%m-%Y"}</td>
+                                        <td>
+                                            <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$valor.valor}</a>
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_CONTROL_NO_VAL}
+                    </div> 
+                {/if}
             </div>
             <!-- /.panel-body -->        
         </div>
@@ -230,41 +253,48 @@
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body">        
-                <div class="table-responsive">
-                    <table class="table datatable table-condensed table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>{$smarty.const.FIELD_PROC}</th>        
-                                <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
-                                <th>{$smarty.const.FIELD_FECHA}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {foreach from=$indicadores_sin_med item=indicador}
+            <div class="panel-body">
+                {if $indicadores_sin_med}
+                    <div class="table-responsive">
+                        <table class="table datatable table-condensed table-striped table-hover">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        {if $indicador.cod_proceso == ''}
-                                            {$smarty.const.FIELD_DATOS}
-                                        {else}
-                                            <a href="index.php?page=proceso_mostrar&id_proceso={$indicador.id_proceso}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_PROC_VER}">
-                                                {$indicador.proceso}
-                                            </a>
-                                        {/if}
-                                    </td>
-                                    <td>
-                                        {if $indicador.cod_proceso==''}
-                                            <a href="index.php?page=dato_mostrar&id_dato={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador.indicador}</a>
-                                        {else}
-                                            <a href="index.php?page=indicador_mostrar&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador.indicador}</a>
-                                        {/if}
-                                    </td>
-                                    <td>{$fecha}</td>
+                                    <th>{$smarty.const.FIELD_PROC}</th>        
+                                    <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                                    <th>{$smarty.const.FIELD_FECHA}</th>
                                 </tr>
-                            {/foreach}
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody>
+                                {foreach from=$indicadores_sin_med item=indicador}
+                                    <tr>
+                                        <td>
+                                            {if $indicador.cod_proceso == ''}
+                                                {$smarty.const.FIELD_DATOS}
+                                            {else}
+                                                <a href="index.php?page=proceso_mostrar&id_proceso={$indicador.id_proceso}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_PROC_VER}">
+                                                    {$indicador.proceso}
+                                                </a>
+                                            {/if}
+                                        </td>
+                                        <td>
+                                            {if $indicador.cod_proceso==''}
+                                                <a href="index.php?page=dato_mostrar&id_dato={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador.indicador}</a>
+                                            {else}
+                                                <a href="index.php?page=indicador_mostrar&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador.indicador}</a>
+                                            {/if}
+                                        </td>
+                                        <td>{$fecha}</td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_CONTROL_MED}
+                    </div> 
+                {/if}    
             </div>
             <!-- /.panel-body -->        
         </div>
@@ -284,21 +314,21 @@
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
-            <div class="panel-body">        
-                <div class="table-responsive">
-                    <table class="table datatable table-condensed table-striped table-hover">
-                        <thead>
-                            <tr>      
-                                <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
-                                <th>{$smarty.const.FIELD_PROC}</th>
-                                <th>{$smarty.const.FIELD_MED}</th>
-                                <th>{$smarty.const.FIELD_LIMITE}</th>
-                                <th>{$smarty.const.FIELD_META}</th>
-                                <th>{$smarty.const.FIELD_ACCIONES}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {if $indicadores}
+            <div class="panel-body">
+                {if $indicadores_sin_med|count != $indicadores|count}
+                    <div class="table-responsive">
+                        <table class="table datatable table-condensed table-striped table-hover">
+                            <thead>
+                                <tr>      
+                                    <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                                    <th>{$smarty.const.FIELD_PROC}</th>
+                                    <th>{$smarty.const.FIELD_MED}</th>
+                                    <th>{$smarty.const.FIELD_LIMITE}</th>
+                                    <th>{$smarty.const.FIELD_META}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 {foreach from=$indicadores item=indicador}
                                     {foreach $mediciones[$indicador->id] as $medicion}
                                         <tr>
@@ -344,12 +374,12 @@
                                             <td>
                                                 {if ($indicador->id_proceso)}
                                                     <a class="btn btn-default btn-circle btn-xs" 
-                                                       href="index.php?page=medicion_editar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador">
+                                                       href="index.php?page=medicion&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador">
                                                         <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
                                                     </a>
                                                 {else}
                                                     <a class="btn btn-default btn-circle btn-xs" 
-                                                       href="index.php?page=medicion_editar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato">
+                                                       href="index.php?page=medicion&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato">
                                                         <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
                                                     </a>
                                                 {/if}
@@ -357,10 +387,15 @@
                                         </tr>
                                     {/foreach}
                                 {/foreach}
-                            {/if}
-                        </tbody>
-                    </table>
-                </div>
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_CONTROL_NO_MED}
+                    </div> 
+                {/if}
             </div>
             <!-- /.panel-body -->        
         </div>

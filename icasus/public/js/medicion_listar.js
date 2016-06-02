@@ -49,7 +49,6 @@ $('.tabla_valores').DataTable({
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-12'>>",
     buttons: [
-        {extend: 'colvis', text: "<i title='Ver columnas' class='fa fa-columns fa-fw'></i> <i class='fa fa-caret-down'></i>"},
         {
             extend: 'collection',
             text: "<i title='Exportar' class='fa fa-share-square-o fa-fw'></i> <i class='fa fa-caret-down'></i>",
@@ -60,4 +59,10 @@ $('.tabla_valores').DataTable({
             ]
         }
     ]
+});
+
+//Barra de botones
+$(document).ready(function () {
+    var botones = $('#botones').html();
+    $('#tabla_mediciones_filter').append(botones);
 });

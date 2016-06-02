@@ -75,6 +75,7 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
     $dato_subunidades = $dato_subunidad->Find_entidades("id_indicador = $id_dato");
     $smarty->assign("dato_subunidades", $dato_subunidades);
 
+    $smarty->assign('_javascript', array('dato_mostrar'));
     $smarty->assign('_nombre_pagina', FIELD_DATO . ": $dato->nombre");
     $plantilla = 'dato_mostrar.tpl';
 }

@@ -2,12 +2,12 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (https://gestionproyectos.us.es/projects/r2h2-icasus)
-// Archivo: valor_referencia_crear.php
+// Archivo: valor_referencia.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
 // Controlador para gestionar los valores de referencia de indicadores/datos asociado a
-// valor_referencia_crear.tpl
+// valor_referencia.tpl
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
@@ -42,17 +42,50 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 $indicador = new Indicador();
 $indicador->load_joined("id=$id_indicador");
 
-//Proceso del indicador
-if ($tipo == 'indicador')
+//Comprobamos que existe al menos un valor de referencia 'Límite' o 'Meta'
+//y si no es así avisaremos
+$aviso_ref = true;
+$num_val_ref = count($indicador->valores_referencia);
+$i = 0;
+while ($i < $num_val_ref && $aviso_ref)
 {
+    if (strpos($indicador->valores_referencia[$i]->nombre, 'mite') != false ||
+            strpos($indicador->valores_referencia[$i]->nombre, 'eta') != false)
+    {
+        $aviso_ref = false;
+    }
+    $i++;
+}
+$smarty->assign('aviso_ref', $aviso_ref);
+
+//Avanzar entre indicadores/datos
+if ($tipo == "indicador")
+{
+    //Proceso del indicador
     $proceso = new Proceso();
     $proceso->load("id = $indicador->id_proceso");
     $smarty->assign('proceso', $proceso);
+    //Obtener todos los indicadores del proceso para avanzar o retroceder 
+    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id");
+    $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
 }
-
-//$entidad = new Entidad();
-//$entidad->load("id = $indicador->id_entidad");
-//$smarty->assign('entidad', $entidad);
+else
+{
+    //Obtener todos los datos para avanzar o retroceder 
+    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NULL");
+    $smarty->assign('_nombre_pagina', FIELD_DATO . ": $indicador->nombre");
+}
+$smarty->assign("indicadores", $indicadores);
+$cont = 0;
+foreach ($indicadores as $ind)
+{
+    if ($id_indicador == $ind->id)
+    {
+        $indice = $cont;
+        $smarty->assign("indice", $indice);
+    }
+    $cont++;
+}
 
 //Permiso para crear y borrar referencias
 $permiso = false;
@@ -94,7 +127,7 @@ if (filter_has_var(INPUT_GET, 'borrar'))
                 {
                     $aviso = ERR_VAL_REF_BORRAR . ' (' . $valor_ref->etiqueta . ')';
                     $smarty->assign("aviso", $aviso);
-                    header("Location: index.php?page=valor_referencia_crear&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+                    header("Location: index.php?page=valor_referencia&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
                     exit;
                 }
                 else
@@ -111,7 +144,7 @@ if (filter_has_var(INPUT_GET, 'borrar'))
             {
                 $exito = MSG_VALS_REF_BORRADO . ' ' . $contador . ' ' . TXT_VAL_REF;
                 $smarty->assign("exito", $exito);
-                header("Location:index.php?page=valor_referencia_crear&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+                header("Location:index.php?page=valor_referencia&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
             }
         }
     }
@@ -119,13 +152,12 @@ if (filter_has_var(INPUT_GET, 'borrar'))
     {
         $aviso = MSG_VALS_REF_NO_MARCADOS;
         $smarty->assign("aviso", $aviso);
-        header("Location: index.php?page=valor_referencia_crear&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
+        header("Location: index.php?page=valor_referencia&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&aviso=$aviso");
     }
 }
 
-$smarty->assign('_javascript', array('valor_referencia_crear'));
+$smarty->assign('_javascript', array('valor_referencia'));
 $smarty->assign('indicador', $indicador);
-$smarty->assign('_nombre_pagina', TXT_VAL_REF . ': ' . $indicador->nombre);
 
 $smarty->assign('tipo', $tipo);
-$plantilla = 'valor_referencia_crear.tpl';
+$plantilla = 'valor_referencia.tpl';

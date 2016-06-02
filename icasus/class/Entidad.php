@@ -21,7 +21,6 @@ class Entidad extends ADOdb_Active_Record
     public $mediciones;
 
     //obtener subunidades de una unidad con sus valores de las mediciones del indicador elegidas por el usuario.
-    //indicador_subunidad_valor_ajax.php
     public function find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin)
     {
         $subunidades = $this->find("id = $id_entidad OR id_madre = $id_entidad ORDER BY etiqueta");
@@ -41,7 +40,6 @@ class Entidad extends ADOdb_Active_Record
     }
 
     //obtener subunidades de una unidad con sus valores de todas las mediciones del indicador.
-    //indicador_subunidad_valor.php 
     public function find_subunidades_mediciones($id_indicador, $id_entidad, $limite = null)
     {
         $subunidades = $this->find("id = $id_entidad OR id_madre = $id_entidad ORDER BY etiqueta");

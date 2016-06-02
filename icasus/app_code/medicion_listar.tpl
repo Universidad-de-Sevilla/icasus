@@ -38,20 +38,20 @@
 </div>
 <!-- /Diálogo Confirmar Borrado Mediciones-->
 
-<!-- Diálogo Confirmar Generar -->
+<!-- Diálogo Confirmar Crear -->
 <div class="modal fade" id="dialogo_confirmar_generar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_MED_GENERAR}: {$indicador->nombre}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}: {$indicador->nombre}</h3>
             </div>
             <form class="form-horizontal" id="form_generar" name="form_generar" data-toggle="validator" method="post" action="index.php?page=medicion_generar">
                 <input type="hidden" name="id_entidad" value="{$indicador->id_entidad}"/>
                 <input type="hidden" name="id_indicador" value="{$indicador->id}"/>
                 <input type="hidden" name="tipo" value="{$tipo}"/>
                 <div class="modal-body">
-                    <p>{$smarty.const.MSG_MED_GENERAR}</p>
+                    <p>{$smarty.const.MSG_MED_CREAR}</p>
                     <div class="form-group has-feedback">
                         <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-4">
@@ -69,7 +69,7 @@
         </div>
     </div>
 </div>
-<!-- /Diálogo Confirmar Generar -->
+<!-- /Diálogo Confirmar Crear -->
 
 <!-- Diálogo Confirmar Cargar -->
 <div class="modal fade" id="dialogo_confirmar_cargar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -77,7 +77,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-upload fa-fw"></i> {$smarty.const.TXT_MED_CARGAR}: {$indicador->nombre}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-arrow-circle-up fa-fw"></sub> {$smarty.const.TXT_MED_CARGAR}: {$indicador->nombre}</h3>
             </div>
             <form class="form-horizontal" id="form_cargar" name="form_cargar" data-toggle="validator" method="post" action="index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}">
                 <div class="modal-body">
@@ -220,13 +220,26 @@
     <div class="col-lg-12">
         <ul class="nav nav-tabs">
             <li role="presentation">
-                <a title="{if $tipo == 'indicador'}{$smarty.const.TXT_FICHA}{else}{$smarty.const.TXT_FICHA}{/if}" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i> {if $tipo == 'indicador'}{$smarty.const.TXT_FICHA}{else}{$smarty.const.TXT_FICHA}{/if}</a>
+                <a title="{$smarty.const.TXT_FICHA}" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation" >
                 <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
             </li>
             <li role="presentation" class="active">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" href="#"><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+            </li>
+            {if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo)}
+                <li role="presentation">
+                    <a title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
+                </li>
+            {/if}
+            {if $_control || $_usuario->id==$indicador->id_responsable}
+                <li role="presentation">
+                    <a title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}</a>
+                </li>
+            {/if}
+            <li role="presentation">
+                <a title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</a>
             </li>
             {if $tipo == 'indicador'}
                 <li role="presentation">
@@ -240,6 +253,41 @@
 <!-- /.row -->
 <br>
 <!-- /Menú del indicador -->
+
+<!-- Barra de botones -->
+<div class="row">
+    {if $_control || $responsable}
+        <div class="col-lg-6">
+            <a title="{$smarty.const.TXT_MED_CREAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
+               data-toggle="modal" data-target="#dialogo_confirmar_generar">
+                <i class="fa fa-history fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}
+            </a>
+        </div>
+        <!-- /.col-lg-6 -->
+        <div class="col-lg-6">
+            {if $mediciones}
+                <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
+                   accesskey=""data-toggle="modal" data-target="#dialogo_confirmar_cargar">
+                    <i class="fa fa-history fa-fw"></i><sub class="fa fa-arrow-circle-up fa-fw"></sub> {$smarty.const.TXT_MED_CARGAR}
+                </a>
+            {/if}
+        </div>
+        <!-- /.col-lg-6 -->
+    {else}
+        <div class="col-lg-12">
+            {if $mediciones}
+                <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
+                   accesskey=""data-toggle="modal" data-target="#dialogo_confirmar_cargar">
+                    <i class="fa fa-history fa-fw"></i><sub class="fa fa-arrow-circle-up fa-fw"></sub> {$smarty.const.TXT_MED_CARGAR}
+                </a>
+            {/if}
+        </div>
+        <!-- /.col-lg-12 -->
+    {/if}
+</div>
+<!-- /.row -->
+<br>
+<!-- /Barra de botones -->
 
 <!-- Indicadores/datos calculados -->
 {if $indicador->calculo}
@@ -358,57 +406,29 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-history fa-fw"></i> {$smarty.const.TXT_MED_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite==$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.TXT_DE} {$total_registros} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
+                <span class="panel-title"><i class="fa fa-history fa-fw"></i> {$smarty.const.TXT_MED_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite>=$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.TXT_DE} {$total_registros} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body">
-                
+
                 <!-- Barra de botones -->
-                <div class="btn-toolbar" role="toolbar" aria-label="">
-                    <div class="btn-group" role="group" aria-label="">
-                        {if $_control || $responsable}
-                            <a title="{$smarty.const.TXT_MED_GENERAR}" class="btn btn-danger" href='javascript:void(0)' 
-                               data-toggle="modal" data-target="#dialogo_confirmar_generar">
-                                <i class="fa fa-refresh fa-fw"></i>
-                            </a>
-                        {/if}
-                        {if $mediciones}
-                            <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger" href='javascript:void(0)' 
-                               data-toggle="modal" data-target="#dialogo_confirmar_cargar">
-                                <i class="fa fa-upload fa-fw"></i>
-                            </a>
-                        {/if}
-                        {if !$indicador->calculo && ($_control || $_usuario->id==$indicador->id_responsable)}
-                            <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-danger" href='index.php?page=indicador_subunidad_valor&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                <i class="fa fa-pencil-square-o fa-fw"></i>
-                            </a>
-                        {/if}
-                        {if $_control || $_usuario->id==$indicador->id_responsable}
-                            <a title="{$smarty.const.FIELD_RESP_MED}" class="btn btn-danger" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                <i class="fa fa-user fa-fw"></i>
-                            </a>
-                        {/if}
-                        <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-danger" href='index.php?page=valor_referencia_crear&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                            <i class="fa fa-tags fa-fw"></i>
-                        </a>
-                    </div>
-                    {if $mediciones && ($_control || $responsable)}
-                        <div class="btn-group pull-right" role="group" aria-label="">
+                {if $mediciones && ($_control || $responsable)}
+                    <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
                             <a title="{$smarty.const.TXT_MEDS_BORRAR}" class="btn btn-default btn-danger" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_mediciones">
                                 <i class="fa fa-trash fa-fw"></i>
                             </a>
                         </div>
-                    {/if}
-                </div>
-                <br>
+                    </div>
+                {/if}
                 <!-- /Barra de botones -->
-                
+
                 {if $mediciones}
                     <form id="form_mediciones" action='index.php?page=medicion_borrar&id_entidad={$entidad->id}&tipo={$tipo}' method='post'>
                         <input type="hidden" name="id_indicador" value="{$indicador->id}"/>
                         <div class="table-responsive">
-                            <table class="table datatable table-striped table-hover">
+                            <table id="tabla_mediciones" class="table datatable table-striped table-hover">
                                 <thead>
                                     <tr>
                                         {if $_control || $responsable}
@@ -420,98 +440,62 @@
                                         <th>{$smarty.const.FIELD_INICIO_PERIODO}</th>
                                         <th>{$smarty.const.FIELD_FIN_PERIODO}</th>
                                         <th>{$smarty.const.FIELD_VAL}</th>
-                                        <th>{$smarty.const.FIELD_STATUS}</th>
                                         <th>{$smarty.const.FIELD_OBSERV}</th>
                                         <th>{$smarty.const.FIELD_ACCIONES}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {foreach $mediciones as $medicion}
-                                        <tr {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
-                                            {if  $totales[$medicion->id]< $medicion_lim[$medicion->id]}
-                                                class="danger"
-                                            {else if $totales[$medicion->id] >= $medicion_obj[$medicion->id]}
-                                                class="success"
-                                            {else}
-                                                class="warning"
-                                            {/if}
-                                            {/if}
-                                                {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
-                                                    {if $totales[$medicion->id] >= $medicion_obj[$medicion->id] }
-                                                        class="success"
-                                                    {else}
-                                                        class="danger"
-                                                    {/if}
-                                                {/if}
-                                                {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
-                                                    {if $totales[$medicion->id] < $medicion_lim[$medicion->id] }
-                                                        class="danger"
-                                                    {else}
-                                                        class="success"
-                                                    {/if}
-                                                {/if}>
-                                                {if $_control || $responsable}
-                                                    <td>
-                                                        <input type="checkbox" name='id_mediciones[]' value="{$medicion->id}"/>
-                                                    </td>
-                                                {/if}
+                                        <tr {if isset($status[$medicion->id])}class="{$status[$medicion->id]}"{/if}>
+                                            {if $_control || $responsable}
                                                 <td>
-                                                    <a title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}">{$medicion->etiqueta}</a>
+                                                    <input type="checkbox" name='id_mediciones[]' value="{$medicion->id}"/>
                                                 </td>
-                                                <td>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</td>
-                                                <td>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</td>
-                                                <td>{if $totales[$medicion->id] != NULL}<span class="badge">{$totales[$medicion->id]|round:"2"}</span>{else}---{/if}</td>
-                                                <td>
-                                                    {if $totales[$medicion->id] != NULL}
-                                                        {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
-                                                            {if  $totales[$medicion->id] < $medicion_lim[$medicion->id]}
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                            {else if $totales[$medicion->id] >= $medicion_obj[$medicion->id]}
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                            {else}
-                                                                <i title="{$smarty.const.TXT_VAL_ACEPTABLE}" class="fa fa-circle fa-fw" style="color:yellow"></i>
-                                                            {/if}
-                                                        {else if isset($medicion_obj[$medicion->id])}
-                                                            {if $totales[$medicion->id] >= $medicion_obj[$medicion->id] }
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                            {else}
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                            {/if}
-                                                        {else if isset($medicion_lim[$medicion->id])}
-                                                            {if $totales[$medicion->id] < $medicion_lim[$medicion->id] }
-                                                                <i title="{$smarty.const.TXT_VAL_MEJORABLE}" class="fa fa-circle fa-fw" style="color:red"></i>
-                                                            {else}
-                                                                <i title="{$smarty.const.TXT_VAL_LOGRADO}" class="fa fa-circle fa-fw" style="color:green"></i>
-                                                            {/if}
+                                            {/if}
+                                            <td>
+                                                <a title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}">{$medicion->etiqueta}</a>
+                                            </td>
+                                            <td>{$medicion->periodo_inicio|date_format:"%d-%m-%Y"}</td>
+                                            <td>{$medicion->periodo_fin|date_format:"%d-%m-%Y"}</td>
+                                            <td>
+                                                {if ($totales[$medicion->id])!== NULL}
+                                                    {if isset($status[$medicion->id])}
+                                                        {if $status[$medicion->id] == 'danger'}
+                                                            <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
+                                                        {else if $status[$medicion->id] == 'success'}
+                                                            <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
                                                         {else}
-                                                            ---
+                                                            <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
                                                         {/if}
                                                     {else}
-                                                        ---
+                                                        <span class="label label-default">{$totales[$medicion->id]|round:"2"}</span>
                                                     {/if}
-                                                </td>
-                                                <td>
-                                                    {if $medicion->observaciones != ''}
-                                                        {$medicion->observaciones|truncate:60}
-                                                    {else}
-                                                        ---
-                                                    {/if}
-                                                </td>
-                                                <td>
-                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion_editar&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}"><i class="fa fa-pencil fa-fw"></i></a>
-                                                        {if $_control || $responsable}
-                                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado"
-                                                           data-etiqueta_medicion="{$medicion->etiqueta}" data-id_medicion="{$medicion->id}" data-tipo="{$tipo}" data-id_entidad="{$entidad->id}">
-                                                            <i class="fa fa-trash fa-fw"></i>
-                                                        </a>
-                                                    {/if}
-                                                </td>
-                                            </tr>
-                                            {/foreach}
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </form>
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            </td>
+                                            <td>
+                                                {if $medicion->observaciones != ''}
+                                                    {$medicion->observaciones|truncate:60}
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}"><i class="fa fa-pencil fa-fw"></i></a>
+                                                    {if $_control || $responsable}
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado"
+                                                       data-etiqueta_medicion="{$medicion->etiqueta}" data-id_medicion="{$medicion->id}" data-tipo="{$tipo}" data-id_entidad="{$entidad->id}">
+                                                        <i class="fa fa-trash fa-fw"></i>
+                                                    </a>
+                                                {/if}
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
                 {else}
                     <div class="alert alert-info alert-dismissible">
                         <i class="fa fa-info-circle fa-fw"></i> 
@@ -555,9 +539,9 @@
                                         {if $subunidades->id != $entidad->id}
                                             <tr>
                                                 <td><span class="label label-primary">{$subunidades->etiqueta}</span></td>
-                                                {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
                                                     <td>
-                                                        {if $totales_anuales[$subunidades->id][$i]== NULL}
+                                                        {if $totales_anuales[$subunidades->id][$i]=== NULL}
                                                             ---
                                                         {else}
                                                             {$totales_anuales[$subunidades->id][$i]|round:"2"}
@@ -569,63 +553,27 @@
                                     {/foreach}
                                 </tbody>
                                 <tfoot>
-                                    {*Totales*}
+                                    {*Totales en agregados*}
                                     {foreach from=$subunidades_mediciones item=subunidades}
                                         {if $subunidades->id == $entidad->id}
                                             <tr>
-                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion_temporal})</b></td>
-                                                {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
-                                                    <td 
-                                                        {if isset($ref_anuales_lim[$i]) AND isset($ref_anuales_obj[$i])}
-                                                            {if  $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {else if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                <th>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion_temporal})</th>
+                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                                    <td {if isset($status_anuales[$subunidades->id][$i])}class="{$status_anuales[$subunidades->id][$i]}"{/if}>
+                                                        {if ($totales_anuales[$subunidades->id][$i])!== NULL}
+                                                            {if isset($status_anuales[$subunidades->id][$i])}
+                                                                {if $status_anuales[$subunidades->id][$i] == 'danger'}
+                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
+                                                                {else if $status_anuales[$subunidades->id][$i] == 'success'}
+                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
+                                                                {else}
+                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
+                                                                {/if}
                                                             {else}
-                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
+                                                                <span class="label label-default">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
                                                             {/if}
-                                                        {/if}
-                                                        {if isset($ref_anuales_obj[$i]) AND !isset($ref_anuales_lim[$i])}
-                                                            {if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                            {else}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {/if}
-                                                        {/if}
-                                                        {if isset($ref_anuales_lim[$i]) AND !isset($ref_anuales_obj[$i])}
-                                                            {if $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {else}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                            {/if}
-                                                        {/if}>
-                                                        {if $totales_anuales[$subunidades->id][$i]== NULL} 
-                                                            --- 
                                                         {else}
-                                                            <span class="badge">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
-                                                            {if isset($ref_anuales_lim[$i]) AND isset($ref_anuales_obj[$i])}
-                                                                {if  $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {else if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:yellow"></i>
-                                                                {/if}
-                                                            {/if}
-                                                            {if isset($ref_anuales_obj[$i]) AND !isset($ref_anuales_lim[$i])}
-                                                                {if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {/if}
-                                                            {/if}
-                                                            {if isset($ref_anuales_lim[$i]) AND !isset($ref_anuales_obj[$i])}
-                                                                {if $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {/if}
-                                                            {/if}
+                                                            ---
                                                         {/if}
                                                     </td>
                                                 {/for}
@@ -635,63 +583,27 @@
                                 </tfoot>
                             {else}
                                 <tbody>
-                                {*Totales*}
+                                    {*Totales en centralizados*}
                                     {foreach from=$subunidades_mediciones item=subunidades}
                                         {if $subunidades->id == $entidad->id}
                                             <tr>
-                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion_temporal})</b></td>
-                                                {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
-                                                    <td 
-                                                        {if isset($ref_anuales_lim[$i]) AND isset($ref_anuales_obj[$i])}
-                                                            {if  $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {else if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
+                                                <th>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion_temporal})</th>
+                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                                    <td {if isset($status_anuales[$subunidades->id][$i])}class="{$status_anuales[$subunidades->id][$i]}"{/if}>
+                                                        {if ($totales_anuales[$subunidades->id][$i])!== NULL}
+                                                            {if isset($status_anuales[$subunidades->id][$i])}
+                                                                {if $status_anuales[$subunidades->id][$i] == 'danger'}
+                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
+                                                                {else if $status_anuales[$subunidades->id][$i] == 'success'}
+                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
+                                                                {else}
+                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
+                                                                {/if}
                                                             {else}
-                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
+                                                                <span class="label label-default">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
                                                             {/if}
-                                                        {/if}
-                                                        {if isset($ref_anuales_obj[$i]) AND !isset($ref_anuales_lim[$i])}
-                                                            {if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                            {else}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {/if}
-                                                        {/if}
-                                                        {if isset($ref_anuales_lim[$i]) AND !isset($ref_anuales_obj[$i])}
-                                                            {if $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {else}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                            {/if}
-                                                        {/if}>
-                                                        {if $totales_anuales[$subunidades->id][$i]== NULL} 
-                                                            --- 
                                                         {else}
-                                                            <span class="badge">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
-                                                            {if isset($ref_anuales_lim[$i]) AND isset($ref_anuales_obj[$i])}
-                                                                {if  $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {else if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:yellow"></i>
-                                                                {/if}
-                                                            {/if}
-                                                            {if isset($ref_anuales_obj[$i]) AND !isset($ref_anuales_lim[$i])}
-                                                                {if $totales_anuales[$subunidades->id][$i] >= $ref_anuales_obj[$i]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {/if}
-                                                            {/if}
-                                                            {if isset($ref_anuales_lim[$i]) AND !isset($ref_anuales_obj[$i])}
-                                                                {if $totales_anuales[$subunidades->id][$i] < $ref_anuales_lim[$i]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {/if}
-                                                            {/if}
+                                                            ---
                                                         {/if}
                                                     </td>
                                                 {/for}
@@ -724,168 +636,69 @@
         <div class="col-lg-12">
             <div class="panel panel-red">
                 <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite==$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.TXT_DE} {$total_registros} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
+                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite>=$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.TXT_DE} {$total_registros} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
                     <i class="fa fa-chevron-up pull-right clickable"></i>
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
                     {if $mediciones}
-                            <table class="table table-striped table-hover tabla_valores">
-                                <thead>
-                                    <tr>
-                                        <th>{$smarty.const.FIELD_UNID}</th>
-                                            {foreach from=$mediciones item=medicion}
-                                            <th>{$medicion->etiqueta}</th>
+                        <table class="table table-striped table-hover tabla_valores">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_UNID}</th>
+                                        {foreach from=$mediciones item=medicion}
+                                        <th>{$medicion->etiqueta}</th>
+                                        {/foreach}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$subunidades_mediciones item=subunidades}
+                                    {if $subunidades->id != $entidad->id}
+                                        <tr>
+                                            <td><span class="label label-primary">{$subunidades->etiqueta}</span></td>
+                                                {foreach from=$subunidades->mediciones item=medicion}
+                                                <td>
+                                                    {if $medicion->medicion_valor->valor == NULL} 
+                                                        --- 
+                                                    {else}
+                                                        {$medicion->medicion_valor->valor|round:"2"}
+                                                    {/if}
+                                                </td>
                                             {/foreach}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {foreach from=$subunidades_mediciones item=subunidades}
-                                        {if $subunidades->id != $entidad->id}
-                                            <tr>
-                                                <td><span class="label label-primary">{$subunidades->etiqueta}</span></td>
+                                        </tr>
+                                    {/if}
+                                {/foreach}
+                            </tbody>
+                            <tfoot>
+                                {*Totales*}
+                                {foreach from=$subunidades_mediciones item=subunidades}
+                                    {if $subunidades->id == $entidad->id}
+                                        <tr>
+                                            <th>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion})</th>
                                                 {foreach from=$subunidades->mediciones item=medicion}
-                                                    <td>
-                                                        {if $medicion->medicion_valor->valor == NULL} 
-                                                            --- 
+                                                <td {if isset($status[$medicion->id])}class="{$status[$medicion->id]}"{/if}>
+                                                    {if ($totales[$medicion->id])!== NULL}
+                                                        {if isset($status[$medicion->id])}
+                                                            {if $status[$medicion->id] == 'danger'}
+                                                                <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
+                                                            {else if $status[$medicion->id] == 'success'}
+                                                                <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
+                                                            {else}
+                                                                <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
+                                                            {/if}
                                                         {else}
-                                                            {$medicion->medicion_valor->valor|round:"2"}
+                                                            <span class="label label-default">{$totales[$medicion->id]|round:"2"}</span>
                                                         {/if}
-                                                    </td>
-                                                {/foreach}
-                                            </tr>
-                                        {/if}
-                                    {/foreach}
-                                </tbody>
-                                <tfoot>
-                                    {*Total en indicadores centralizados o agregados de tipo manual*}
-                                    {foreach from=$subunidades_mediciones item=subunidades}
-                                        {if $subunidades->id == $entidad->id && ($indicador->id_tipo_agregacion == 0 || $indicador->id_tipo_agregacion == 4)}
-                                            <tr>
-                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion})</b></td>
-                                                {foreach from=$subunidades->mediciones item=medicion}
-                                                    <td
-                                                        {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
-                                                            {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                            {else}
-                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
-                                                            {/if}
-                                                        {/if}
-                                                        {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
-                                                            {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                            {else}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {/if}
-                                                        {/if}
-                                                        {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
-                                                            {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {else}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                            {/if}
-                                                        {/if}>
-                                                        {if $medicion->medicion_valor->valor == NULL} 
-                                                            --- 
-                                                        {else}
-                                                            <span class="badge">{$medicion->medicion_valor->valor|round:"2"}</span>
-                                                            {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
-                                                                {if  $medicion->medicion_valor->valor < $medicion_lim[$medicion->id]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {else if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:yellow"></i>
-                                                                {/if}
-                                                            {/if}
-                                                            {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
-                                                                {if $medicion->medicion_valor->valor >= $medicion_obj[$medicion->id] }
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {/if}
-                                                            {/if}
-                                                            {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
-                                                                {if $medicion->medicion_valor->valor < $medicion_lim[$medicion->id] }
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {/if}
-                                                            {/if}
-                                                        {/if}
-                                                    </td>
-                                                {/foreach}
-                                            </tr>
-                                        {/if}
-                                    {/foreach}
-                                    {*Total en indicadores agregados de tipo no manual*}
-                                    {foreach from=$subunidades_mediciones item=subunidades}
-                                        {if $subunidades->id == $entidad->id && $indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4}
-                                            <tr>
-                                                <td><b>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion})</b></td>
-                                                {foreach from=$subunidades->mediciones item=medicion}
-                                                    <td 
-                                                        {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
-                                                            {if  $totales[$medicion->id] < $medicion_lim[$medicion->id]}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {else if $totales[$medicion->id] >= $medicion_obj[$medicion->id]}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                            {else}
-                                                                class="warning" title="{$smarty.const.TXT_VAL_ACEPTABLE}"
-                                                            {/if}
-                                                        {/if}
-                                                        {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
-                                                            {if $totales[$medicion->id] >= $medicion_obj[$medicion->id] }
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                            {else}
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {/if}
-                                                        {/if}
-                                                        {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
-                                                            {if $totales[$medicion->id] < $medicion_lim[$medicion->id] }
-                                                                class="danger" title="{$smarty.const.TXT_VAL_MEJORABLE}"
-                                                            {else}
-                                                                class="success" title="{$smarty.const.TXT_VAL_LOGRADO}"
-                                                            {/if}
-                                                        {/if}>
-                                                        {if $totales[$medicion->id] == NULL} 
-                                                            --- 
-                                                        {else}
-                                                            <span class="badge">{$totales[$medicion->id]|round:"2"}</span>
-                                                            {if isset($medicion_lim[$medicion->id]) AND isset($medicion_obj[$medicion->id])}
-                                                                {if  $totales[$medicion->id] < $medicion_lim[$medicion->id]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {else if $totales[$medicion->id] >= $medicion_obj[$medicion->id]}
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:yellow"></i>
-                                                                {/if}
-                                                            {/if}
-                                                            {if isset($medicion_obj[$medicion->id]) AND !isset($medicion_lim[$medicion->id])}
-                                                                {if $totales[$medicion->id] >= $medicion_obj[$medicion->id] }
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {/if}
-                                                            {/if}
-                                                            {if isset($medicion_lim[$medicion->id]) AND !isset($medicion_obj[$medicion->id])}
-                                                                {if $totales[$medicion->id] < $medicion_lim[$medicion->id] }
-                                                                    <i class="fa fa-circle fa-fw" style="color:red"></i>
-                                                                {else}
-                                                                    <i class="fa fa-circle fa-fw" style="color:green"></i>
-                                                                {/if}
-                                                            {/if}
-                                                        {/if}
-                                                    </td>
-                                                {/foreach}
-                                            </tr>
-                                        {/if}
-                                    {/foreach}
-                                </tfoot>
-                            </table>
+                                                    {else}
+                                                        ---
+                                                    {/if}
+                                                </td>
+                                            {/foreach}
+                                        </tr>
+                                    {/if}
+                                {/foreach}
+                            </tfoot>
+                        </table>
                     {else}
                         <div class="alert alert-info alert-dismissible">
                             <i class="fa fa-info-circle fa-fw"></i> 

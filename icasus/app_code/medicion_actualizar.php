@@ -44,7 +44,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_med
         }
     }
     $exito = MSG_VALS_CALCULADOS; //Cambiar texto
-    header("location:index.php?page=medicion_editar&id_medicion=$medicion->id&id_entidad=$indicador->id_entidad&tipo=$tipo&exito=$exito");
+    header("location:index.php?page=medicion&id_medicion=$medicion->id&id_entidad=$indicador->id_entidad&tipo=$tipo&exito=$exito");
 }
 else
 {

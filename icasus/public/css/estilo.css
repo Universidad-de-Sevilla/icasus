@@ -413,6 +413,10 @@ table.dataTable thead .sorting:after {
     padding: 1%;
 }
 
+.footer a{
+    color: #fff;
+}
+
 .clickable {
     cursor: pointer;
 } 
@@ -441,6 +445,12 @@ span:focus, .pagination > li > span:hover {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.footer-login{
+    bottom:0;
+    position:absolute;
+    width: 100%;
 }
 
 /*Back to top*/
@@ -498,4 +508,15 @@ span:focus, .pagination > li > span:hover {
 
 sub{
     font-size: 12px !important;
+}
+
+.fa-star,.fa-star-o{
+    color:#FFC526;
+}
+
+/*Quitamos bordes redondeados*/
+* {
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
 }

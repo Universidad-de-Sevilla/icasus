@@ -1,10 +1,10 @@
 //--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
-// Archivo: public/js/indicador_subunidad_valor.js
+// Archivo: public/js/valores.js
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-// Incluye el código JavaScript para el fichero indicador_subunidad_valor.tpl
+// Incluye el código JavaScript para el fichero valores.tpl
 //----------------------------------------------------------------------------
 
 //Variables: Valor mínimo y máximo permitido
@@ -40,7 +40,7 @@ $(function () {
             var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
             $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
             $.ajax({
-                url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=asignar_una_medicion" + parametros,
+                url: "index.php?page=valores_ajax&ajax=true&modulo=asignar_una_medicion" + parametros,
                 success: function (datos) {
                     $("#mostrar_valores").html(datos);
                 }
@@ -65,7 +65,7 @@ $(function () {
         }
         var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
         $.ajax({
-            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=activar_uno" + parametros,
+            url: "index.php?page=valores_ajax&ajax=true&modulo=activar_uno" + parametros,
             success: function () {
                 if (activo) {
                     $('#' + id_valor).prop('disabled', false);
@@ -93,7 +93,7 @@ $(function () {
         $('#btn_confirm_all_' + id_subunidad).click(function () {
             $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
             $.ajax({
-                url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=activar_all" + parametros,
+                url: "index.php?page=valores_ajax&ajax=true&modulo=activar_all" + parametros,
                 success: function (datos) {
                     $("#mostrar_valores").html(datos);
                 }
@@ -117,7 +117,7 @@ $(function () {
         $('#btn_confirm_des_all_' + id_subunidad).click(function () {
             $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
             $.ajax({
-                url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=activar_all" + parametros,
+                url: "index.php?page=valores_ajax&ajax=true&modulo=activar_all" + parametros,
                 success: function (datos) {
                     $("#mostrar_valores").html(datos);
                 }
@@ -136,7 +136,7 @@ $(function () {
             {
                 var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + elegido + "&fin=" + fin + "&activo=" + activo;
                 $.ajax({
-                    url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=seleccionar_años" + parametros,
+                    url: "index.php?page=valores_ajax&ajax=true&modulo=seleccionar_años" + parametros,
                     success: function (datos) {
                         $("#end_year").html(datos);
                     }
@@ -155,7 +155,7 @@ $(function () {
         var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
         $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
         $.ajax({
-            url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=mostrar_valores" + parametros,
+            url: "index.php?page=valores_ajax&ajax=true&modulo=mostrar_valores" + parametros,
             success: function (datos) {
                 $("#mostrar_valores").html(datos);
             }
@@ -187,7 +187,7 @@ $(function () {
                 else {
                     var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
                     $.ajax({
-                        url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                        url: "index.php?page=valores_ajax&ajax=true&modulo=actualizar_dato" + parametros,
                         success: function () {
                             actualizar_dato.css("color", "#333");
                         }
@@ -203,7 +203,7 @@ $(function () {
                 else {
                     var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
                     $.ajax({
-                        url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                        url: "index.php?page=valores_ajax&ajax=true&modulo=actualizar_dato" + parametros,
                         success: function () {
                             actualizar_dato.css("color", "#333");
                         }
@@ -219,7 +219,7 @@ $(function () {
                 else {
                     var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
                     $.ajax({
-                        url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                        url: "index.php?page=valores_ajax&ajax=true&modulo=actualizar_dato" + parametros,
                         success: function () {
                             actualizar_dato.css("color", "#333");
                         }
@@ -230,7 +230,7 @@ $(function () {
             else {
                 var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor + "&valor=" + valor;
                 $.ajax({
-                    url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                    url: "index.php?page=valores_ajax&ajax=true&modulo=actualizar_dato" + parametros,
                     success: function () {
                         actualizar_dato.css("color", "#333");
                     }
@@ -240,7 +240,7 @@ $(function () {
         else if (actualizar_dato.val().length === 0) {
             var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo + "&id_valor=" + id_valor;
             $.ajax({
-                url: "index.php?page=indicador_subunidad_valor_ajax&ajax=true&modulo=actualizar_dato" + parametros,
+                url: "index.php?page=valores_ajax&ajax=true&modulo=actualizar_dato" + parametros,
                 success: function () {
                     actualizar_dato.css("color", "#333");
                 }

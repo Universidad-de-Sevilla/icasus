@@ -91,6 +91,11 @@ function onElementHeightChange(elm, callback) {
     })();
 }
 
+//Tooltips
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
 //Datatables
 $(document).ready(function () {
     datatables = $('.datatable').DataTable({
@@ -102,6 +107,23 @@ $(document).ready(function () {
                 "<'row'<'col-sm-5'i><'col-sm-7'p>>",
         buttons: [
             {extend: 'colvis', text: "<i title='Ver columnas' class='fa fa-columns fa-fw'></i> <i class='fa fa-caret-down'></i>"},
+            {
+                extend: 'collection',
+                text: "<i title='Exportar' class='fa fa-share-square-o fa-fw'></i> <i class='fa fa-caret-down'></i>",
+                buttons: [
+                    {extend: 'csv', text: "<i title='Exportar a CSV' class='fa fa-file-text-o fa-fw'></i> Exportar a CSV"},
+                    {extend: 'excel', text: "<i title='Exportar a Excel' class='fa fa-file-excel-o fa-fw'></i> Exportar a Excel"},
+                    {extend: 'print', text: "<i title='Imprimir/PDF' class='fa fa-print fa-fw'></i> Imprimir/PDF"}
+                ]
+            }
+        ]
+    });
+
+    $('.ficha').DataTable({
+        "bPaginate": false,
+        "bSort": false,
+        dom: "<'row'<'col-sm-12'B<'#btn_ficha'>>>",
+        buttons: [
             {
                 extend: 'collection',
                 text: "<i title='Exportar' class='fa fa-share-square-o fa-fw'></i> <i class='fa fa-caret-down'></i>",
@@ -125,6 +147,14 @@ $('.table-responsive').on('scroll', function () {
     datatables.fixedHeader.adjust();
 });
 
+//Opciones generales de los gráficos
+Highcharts.setOptions({
+    lang: {
+        decimalPoint: ',',
+        thousandsSep: '.'
+    }
+});
+
 //Map Responsive
 $(document).ready(function () {
     $('img[usemap]').rwdImageMaps();
@@ -141,3 +171,19 @@ var url = document.location.toString();
 if (url.match('#')) {
     $('.nav-tabs a[href=#' + url.split('#')[1] + ']').tab('show');
 }
+
+// Comprobamos via ajax si la sesión está abierta y 
+// avisamos si no estamos en la página de login
+var sesion_activa;
+function check_sesion() {
+    var on_login = $('body').data('on_login');
+    $.ajax({
+        url: "index.php?page=check_sesion&ajax=true",
+        success: function (res) {
+            if (res !== '1' && !on_login) {
+                $('#dialogo_sesion_expirada').modal('show');
+            }
+        }
+    });
+}
+sesion_activa = setInterval(check_sesion, 10000);

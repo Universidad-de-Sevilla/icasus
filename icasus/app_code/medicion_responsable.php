@@ -45,32 +45,42 @@ if ($indicador->id_responsable == $usuario->id)
 }
 $smarty->assign('responsable', $responsable);
 
-//Proceso del indicador
-if ($tipo == 'indicador')
+//Avanzar entre indicadores/datos
+if ($tipo == "indicador")
 {
+    //Proceso del indicador
     $proceso = new Proceso();
     $proceso->load("id = $indicador->id_proceso");
     $smarty->assign('proceso', $proceso);
-}
-
-if ($control || $responsable)
-{
-    $indicador_subunidad = new Indicador_subunidad();
-    $indicadores_subunidades = $indicador_subunidad->Find_entidades_responsables($id_indicador, $usuario->id);
-    $smarty->assign("_nombre_pagina", TXT_RESPONSABLES_GRABAR . ': ' . $indicador->nombre);
-    $smarty->assign("indicadores_subunidades", $indicadores_subunidades);
-
-    $entidad = new Entidad();
-    $entidad->load("id = $indicador->id_entidad");
-    $smarty->assign('entidad', $entidad);
-    $smarty->assign('tipo', $tipo);
-    $smarty->assign('_javascript', array('medicion_responsable'));
-    $smarty->assign('_nombre_pagina', FIELD_RESP_MED . ": $indicador->nombre");
-    $plantilla = "medicion_responsable.tpl";
+    //Obtener todos los indicadores del proceso para avanzar o retroceder 
+    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id");
+    $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
 }
 else
 {
-    // El usuario no tiene permisos avisamos error
-    $error = ERR_MED_RESP;
-    header("Location:index.php?page=$tipo _mostrar&id_$tipo=$id_indicador&id_entidad=$id_entidad&error=$error");
+    //Obtener todos los datos para avanzar o retroceder 
+    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NULL");
+    $smarty->assign('_nombre_pagina', FIELD_DATO . ": $indicador->nombre");
 }
+$smarty->assign("indicadores", $indicadores);
+$cont = 0;
+foreach ($indicadores as $ind)
+{
+    if ($id_indicador == $ind->id)
+    {
+        $indice = $cont;
+        $smarty->assign("indice", $indice);
+    }
+    $cont++;
+}
+
+$indicador_subunidad = new Indicador_subunidad();
+$indicadores_subunidades = $indicador_subunidad->Find_entidades_responsables($id_indicador, $usuario->id);
+$smarty->assign("indicadores_subunidades", $indicadores_subunidades);
+
+$entidad = new Entidad();
+$entidad->load("id = $indicador->id_entidad");
+$smarty->assign('entidad', $entidad);
+$smarty->assign('tipo', $tipo);
+$smarty->assign('_javascript', array('medicion_responsable'));
+$plantilla = "medicion_responsable.tpl";

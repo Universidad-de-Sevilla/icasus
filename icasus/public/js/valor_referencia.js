@@ -1,10 +1,10 @@
 //--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
-// Archivo: public/js/valor_referencia_crear.js
+// Archivo: public/js/valor_referencia.js
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
-// Incluye el código JavaScript para el fichero valor_referencia_crear.tpl
+// Incluye el código JavaScript para el fichero valor_referencia.tpl
 //----------------------------------------------------------------------------
 
 //carga inicial
@@ -100,4 +100,8 @@ $(document).ready(function () {
             });
         }
     });
+
+    //Barra de botones
+    var botones = $('#botones').html();
+    $('#tabla_val_ref_filter').append(botones);
 });

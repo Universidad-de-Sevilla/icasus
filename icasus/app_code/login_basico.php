@@ -52,6 +52,7 @@ else if (filter_has_var(INPUT_GET, 'logout'))
 {
     // Si no venía del formulario cerramos sesión y enviamos a inicio
     session_unset();
+    session_destroy();
     header("location:index.php");
 }
 else

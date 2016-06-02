@@ -108,32 +108,24 @@
         <!-- Tab panes -->
         <div class="tab-content">
 
-            <!-- Barra de botones -->
-            {if $_control}
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="btn-toolbar" role="toolbar" aria-label="">
-                            <div class="btn-group pull-right" role="group" aria-label="">
-                                <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_NUEVO}">
-                                    <i class="fa fa-plus-circle fa-fw"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /.col-lg-12 -->
-                </div>
-                <!-- /.row -->
-                <br>
-            {/if}
-            <!-- /Barra de botones -->
-
             <!-- Lista de Cuadros de mando -->
             <div role="tabpanel" class="tab-pane active" id="cuadro_list">
+                <!-- Barra de botones -->
+                {if $_control}
+                    <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_CREAR}">
+                                <i class="fa fa-th fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
+                        </div>
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
                 {if $cuadros}
                     <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
+                        <table id="tabla_cuadros" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <th>{$smarty.const.TXT_CUADRO_MANDO}</th>
                                     <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                     <th>{$smarty.const.FIELD_COMENTARIOS}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
@@ -164,10 +156,29 @@
                         </table>
                     </div>
                 {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_UNID_NO_CUADROS}
-                    </div> 
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_UNID_NO_CUADROS}
+                            </div> 
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            <!-- Barra de botones -->
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_CREAR}">
+                                            <i class="fa fa-th fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
+                                    </div>
+                                </div>
+                            {/if}
+                            <!-- /Barra de botones -->
+                        </div>
+                        <!-- /.col-sm-1 -->
+                    </div>
+                    <!-- /.row -->
                 {/if}
             </div>
             <!-- /Lista de Cuadros de mando -->
@@ -176,10 +187,10 @@
             {if $cuadros_propios}
                 <div role="tabpanel" class="tab-pane" id="user_cuadro">
                     <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
+                        <table id="tabla_mis_cuadros" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <th>{$smarty.const.TXT_CUADRO_MANDO}</th>
                                     <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                     <th>{$smarty.const.FIELD_COMENTARIOS}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>

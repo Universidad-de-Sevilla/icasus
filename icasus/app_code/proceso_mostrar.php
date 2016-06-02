@@ -11,8 +11,9 @@
 
 global $smarty;
 global $plantilla;
-//Variable para operar con Indicadores/Datos
+//Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
+$logicaMedicion = new LogicaMedicion();
 
 // Si vienen datos suficientes cargamos proceso con sus indicadores
 if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_entidad'))
@@ -76,6 +77,12 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
         $valor_referencia_medicion = new Valor_referencia_medicion();
         $medicion_lim = array();
         $medicion_obj = array();
+        //Incializamos ambos arrays de referencias a null por defecto
+        foreach ($indicadores as $indicador)
+        {
+            $medicion_lim[$indicador->id] = NULL;
+            $medicion_obj[$indicador->id] = NULL;
+        }
         foreach ($indicadores as $indicador)
         {
             $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
@@ -98,29 +105,31 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
                     foreach ($valores_referencia_medicion as $valor_referencia_medicion)
                     {
                         //Es la referencia Límite
-                        if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'mite') !== false)
+                        if (strpos($valor_referencia_medicion->valor_referencia->nombre, 'mite') !== false)
                         {
                             $medicion_lim[$indicador->id] = $valor_referencia_medicion->valor;
                         }
                         //Es la referencia Meta
-                        if (strpos($valor_referencia_medicion->valor_referencia->etiqueta, 'eta') !== false)
+                        if (strpos($valor_referencia_medicion->valor_referencia->nombre, 'eta') !== false)
                         {
                             $medicion_obj[$indicador->id] = $valor_referencia_medicion->valor;
                         }
                     }
                 }
+                $status[$indicador->id] = $logicaMedicion->calcular_status_medicion($indicador->inverso, $totales[$indicador->id], $medicion_lim[$indicador->id], $medicion_obj[$indicador->id]);
             }
         }
 
         $smarty->assign('medicion_obj', $medicion_obj);
         $smarty->assign('medicion_lim', $medicion_lim);
+        $smarty->assign('status', $status);
     }
 
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    $smarty->assign('_javascript', array('inicio'));
+    $smarty->assign('_javascript', array('inicio', 'proceso_mostrar'));
     $smarty->assign('_nombre_pagina', FIELD_PROC . ": " . $proceso->nombre);
     $plantilla = 'proceso_mostrar.tpl';
 
@@ -133,10 +142,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
 
     $archivo = new Fichero();
     $archivos = $archivo->find_joined("id_objeto = $id_proceso AND tipo_objeto = 'proceso'");
-    if ($archivos)
-    {
-        $smarty->assign('archivos', $archivos);
-    }
+    $smarty->assign('archivos', $archivos);
 }
 else
 {

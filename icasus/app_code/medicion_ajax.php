@@ -2,19 +2,20 @@
 
 //------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Archivo: medicion_editar_ajax.php
+// Archivo: medicion_ajax.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //------------------------------------------------------------------------------
 // Controlador que devuelve todas las peticiones que se hacen desde
-// medicion_editar.tpl en ajax
+// medicion.tpl en ajax
 //------------------------------------------------------------------------------
 
 global $smarty;
 global $usuario;
 global $plantilla;
-//Variable para operar con Indicadores/Datos
+//Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
+$logicaMedicion = new LogicaMedicion();
 
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 $medicion = new Medicion();
@@ -77,7 +78,7 @@ if ($modulo == 'editarfila')
     $smarty->assign("valores", $valores);
 
     $smarty->assign("modulo", "editarfila");
-    $plantilla = 'medicion_editar_ajax.tpl';
+    $plantilla = 'medicion_ajax.tpl';
 
     //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
     $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
@@ -105,7 +106,7 @@ if ($modulo == 'cancelarfila')
     $smarty->assign("valores", $valores);
 
     $smarty->assign("modulo", "cancelarfila");
-    $plantilla = 'medicion_editar_ajax.tpl';
+    $plantilla = 'medicion_ajax.tpl';
 
     //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
     $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
@@ -193,7 +194,7 @@ if ($modulo == 'editaretiqueta')
     {
         $smarty->assign("modulo", "editaretiqueta");
     }
-    $plantilla = 'medicion_editar_ajax.tpl';
+    $plantilla = 'medicion_ajax.tpl';
 }
 
 if ($modulo == 'editarobservaciones')
@@ -212,7 +213,7 @@ if ($modulo == 'editarobservaciones')
     {
         $smarty->assign("modulo", "editarobservaciones");
     }
-    $plantilla = 'medicion_editar_ajax.tpl';
+    $plantilla = 'medicion_ajax.tpl';
 }
 
 if ($modulo == 'cancelaretiqueta')
@@ -224,7 +225,7 @@ if ($modulo == 'cancelaretiqueta')
     $smarty->assign('medicion', $medicion);
     $smarty->assign('contenedor', $contenedor);
     $smarty->assign("modulo", "cancelaretiqueta");
-    $plantilla = 'medicion_editar_ajax.tpl';
+    $plantilla = 'medicion_ajax.tpl';
 }
 
 if ($modulo == 'cancelarobservaciones')
@@ -236,7 +237,7 @@ if ($modulo == 'cancelarobservaciones')
     $smarty->assign('medicion', $medicion);
     $smarty->assign('contenedor', $contenedor);
     $smarty->assign("modulo", "cancelarobservaciones");
-    $plantilla = 'medicion_editar_ajax.tpl';
+    $plantilla = 'medicion_ajax.tpl';
 }
 
 // valores de referencia ---------------------------------------------------------
@@ -264,7 +265,7 @@ if ($modulo == 'cancelarvalorreferencia')
     $valor_referencia_medicion->load("id = $id_referencia");
     $smarty->assign("valor_referencia_medicion", $valor_referencia_medicion);
     $smarty->assign("modulo", "cancelarvalorreferencia");
-    $plantilla = 'medicion_editar_ajax.tpl';
+    $plantilla = 'medicion_ajax.tpl';
 }
 
 if ($modulo == 'editarvalorreferencia')
@@ -273,7 +274,7 @@ if ($modulo == 'editarvalorreferencia')
     $valor_referencia_medicion->load("id = $id_referencia");
     $smarty->assign("referencia", $valor_referencia_medicion);
     $smarty->assign("modulo", "editarvalorreferencia");
-    $plantilla = 'medicion_editar_ajax.tpl';
+    $plantilla = 'medicion_ajax.tpl';
 }
 
 if ($modulo == 'grafica')
@@ -301,16 +302,23 @@ if ($modulo == 'grafica')
             $smarty->assign("panel", $panel);
         }
     }
+
+    //Calculamos el total si la medición de Indicador/Dato se divide en subunidades
+    $total = $logicaIndicador->calcular_total($indicador, $valores, $medicion->etiqueta);
+    $tipo_agregacion = new Tipo_agregacion();
+    $tipo_agregacion->Load("id=$indicador->id_tipo_agregacion");
+    $smarty->assign("agregacion", $tipo_agregacion->descripcion);
+    $smarty->assign("total", $total);
+
     $smarty->assign("modulo", "grafica");
     $smarty->assign("indicador", $indicador);
     $smarty->assign('medicion', $medicion);
     $smarty->assign("pinta_grafico", $pinta_grafico);
-    $plantilla = 'medicion_editar_ajax.tpl';
+    $plantilla = 'medicion_ajax.tpl';
 }
 
 //Buscar todos valores ref del indicador y recorrer si no existe entrada 
 //en la tabla valores_ref _med creamos entrada y despues asignamos a la plantilla
-$valor_referencia_medicion = new Valor_referencia_medicion();
 $valor_referencia = new Valor_referencia();
 $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
 if ($valores_referencia)
@@ -330,22 +338,26 @@ if ($valores_referencia)
     $smarty->assign("valores_referencia_medicion", $valores_referencia_medicion);
 
     //Control (Status) de valores límite y metas
+    $medicion_lim = null;
+    $medicion_obj = null;
     if ($valores_referencia_medicion)
     {
         foreach ($valores_referencia_medicion as $med_ref)
         {
             //Es la referencia Límite
-            if (strpos($med_ref->valor_referencia->etiqueta, 'mite') !== false)
+            if (strpos($med_ref->valor_referencia->nombre, 'mite'))
             {
                 $medicion_lim = $med_ref->valor;
                 $smarty->assign('medicion_lim', $medicion_lim);
             }
             //Es la referencia Meta
-            if (strpos($med_ref->valor_referencia->etiqueta, 'eta') !== false)
+            if (strpos($med_ref->valor_referencia->nombre, 'eta'))
             {
                 $medicion_obj = $med_ref->valor;
                 $smarty->assign('medicion_obj', $medicion_obj);
             }
         }
+        $status = $logicaMedicion->calcular_status_medicion($indicador->inverso, $total, $medicion_lim, $medicion_obj);
+        $smarty->assign('status', $status);
     }
 }
