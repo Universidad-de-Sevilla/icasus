@@ -37,7 +37,7 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
     $linea->indice = filter_input(INPUT_POST, 'indice', FILTER_SANITIZE_NUMBER_INT);
     $linea->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $linea->save();
-    header("Location: index.php?page=plan_mostrar&id_plan=$plan->id&id_entidad=$plan->id_entidad&exito=$exito");
+    header("Location: index.php?page=linea_mostrar&id_plan=$plan->id&id_linea=$linea->id&exito=$exito");
 }
 else
 {

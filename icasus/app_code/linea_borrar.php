@@ -33,7 +33,7 @@ if (filter_has_var(INPUT_GET, 'id_linea') && filter_has_var(INPUT_GET, 'id_plan'
     else
     {
         $aviso = MSG_LINEA_BORRAR;
-        header("Location: index.php?page=plan_mostrar&id_plan=$id_plan&id_entidad=$plan->id_entidad&aviso=$aviso");
+        header("Location: index.php?page=linea_mostrar&id_plan=$id_plan&id_linea=$linea->id&aviso=$aviso");
     }
 }
 else

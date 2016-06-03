@@ -15,7 +15,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && $control)
     $entidad = new Entidad();
     $entidad->load("id=$id_entidad");
     $smarty->assign('entidad', $entidad);
-    $smarty->assign('_nombre_pagina', TXT_PLAN_CREAR . " - " . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', TXT_PLAN_CREAR . ": " . $entidad->nombre);
     $plantilla = 'plan_crear.tpl';
 }
 else

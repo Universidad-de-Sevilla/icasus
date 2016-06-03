@@ -556,6 +556,7 @@ define('MSG_LINEA_EDITADA', 'Se ha editado la línea correctamente.');
 define('MSG_LINEA_CONFIRM_EDITAR', 'Va a editar esta línea, ¿está seguro?');
 define('MSG_LINEA_BORRADA', 'Se ha eliminado la línea estratégica:');
 define('MSG_LINEA_BORRAR', 'No tiene permisos para borrar la línea o ésta todavía contiene objetivos estratégicos. Bórrelos primero.');
+define('MSG_LINEA_NO_OBJEST', 'No hay objetivos estratégicos definidos para esta línea estratégica del plan.');
 
 //Objetivos Estratégicos
 define('MSG_OBJEST_CONFIRM_BORRAR', '¿Realmente quiere borrar este objetivo estratégico?');

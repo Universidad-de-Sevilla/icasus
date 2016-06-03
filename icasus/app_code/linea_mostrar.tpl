@@ -1,27 +1,3 @@
-<!-- Diálogo Confirmar Borrado Plan -->
-<div class="modal fade" id="dialogo_confirmar_borrado_plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                        aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel">
-                    <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PLAN_BORRAR}: {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}</h3>
-            </div>
-            <div class="modal-body">
-                <p>{$smarty.const.MSG_PLAN_CONFIRM_BORRAR}</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i
-                        class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href="index.php?page=plan_borrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}"><i
-                        class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /Diálogo Confirmar Borrado Plan -->
-
 <!-- Diálogo Confirmar Borrado Línea -->
 <div class="modal fade" id="dialogo_confirmar_borrado_linea" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -30,8 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title" id="myModalLabel"><i
-                        class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_LINEA_BORRAR}: <span
-                        id="nombre_linea"></span></h3>
+                        class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_LINEA_BORRAR}: {$linea->indice}. {$linea->nombre}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_LINEA_CONFIRM_BORRAR}</p>
@@ -39,7 +14,7 @@
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i
                         class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar"><i
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href="index.php?page=linea_borrar&id_plan={$plan->id}&id_linea={$linea->id}"><i
                         class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
             </div>
         </div>
@@ -78,25 +53,25 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-book fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-long-arrow-right fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
-                {if count($planes)> 1}
+                {if count($lineas)> 1}
                     <div class="col-md-2">
-                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($planes)} {$smarty.const.FIELD_PLANES}</div>
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($lineas)} {$smarty.const.FIELD_LINEAS}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_PLAN}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=plan_mostrar&id_entidad={$entidad->id}&id_plan={$planes[0]->id}'>
+                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_LINEA}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$lineas[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_PLAN}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=plan_mostrar&id_entidad={$entidad->id}&id_plan={$planes[$indice-1]->id}'>
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_LINEA}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$lineas[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_PLAN}" class="btn btn-danger btn-xs {if $indice == (count($planes)-1)}disabled{/if}" href='index.php?page=plan_mostrar&id_entidad={$entidad->id}&id_plan={$planes[$indice+1]->id}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_LINEA}" class="btn btn-danger btn-xs {if $indice == (count($lineas)-1)}disabled{/if}" href='index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$lineas[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_PLAN}" class="btn btn-danger btn-xs {if $indice == (count($planes)-1)}disabled{/if}" href='index.php?page=plan_mostrar&id_entidad={$entidad->id}&id_plan={$planes[(count($planes)-1)]->id}'>
+                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_LINEA}" class="btn btn-danger btn-xs {if $indice == (count($lineas)-1)}disabled{/if}" href='index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$lineas[(count($lineas)-1)]->id}'>
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
@@ -166,6 +141,7 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
+            <li><a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -179,19 +155,13 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#plan_ficha" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
+                <a href="#linea_ficha" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation">
-                <a href="#plan_lineas" title="{$smarty.const.FIELD_LINEAS}" aria-controls="{$smarty.const.FIELD_LINEAS}" role="tab" data-toggle="tab"><i class="fa fa-long-arrow-right fa-fw"></i> {$smarty.const.FIELD_LINEAS}</a>
+                <a href="#linea_objest" title="{$smarty.const.FIELD_OBJS_EST}" aria-controls="{$smarty.const.FIELD_OBJS_EST}" role="tab" data-toggle="tab"><i class="fa fa-dot-circle-o fa-fw"></i> {$smarty.const.FIELD_OBJS_EST}</a>
             </li>
             <li role="presentation">
-                <a href="#plan_objest" title="{$smarty.const.FIELD_OBJS_EST}" aria-controls="{$smarty.const.FIELD_OBJS_EST}" role="tab" data-toggle="tab"><i class="fa fa-dot-circle-o fa-fw"></i> {$smarty.const.FIELD_OBJS_EST}</a>
-            </li>
-            <li role="presentation">
-                <a href="#plan_objop" title="{$smarty.const.FIELD_OBJS_OP}" aria-controls="{$smarty.const.FIELD_OBJS_OP}" role="tab" data-toggle="tab"><i class="fa fa-bullseye fa-fw"></i> {$smarty.const.FIELD_OBJS_OP}</a>
-            </li>
-            <li role="presentation">
-                <a href="#plan_res" title="{$smarty.const.TXT_RESUMEN} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" aria-controls="{$smarty.const.TXT_RESUMEN} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" role="tab" data-toggle="tab"><i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_RESUMEN}</a>
+                <a href="#linea_objop" title="{$smarty.const.FIELD_OBJS_OP}" aria-controls="{$smarty.const.FIELD_OBJS_OP}" role="tab" data-toggle="tab"><i class="fa fa-bullseye fa-fw"></i> {$smarty.const.FIELD_OBJS_OP}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -199,87 +169,43 @@
         <!-- Tab panes -->
         <div class="tab-content">
 
-            <!-- Ficha del plan -->
-            <div role="tabpanel" class="tab-pane active" id="plan_ficha">
+            <!-- Ficha de la línea -->
+            <div role="tabpanel" class="tab-pane active" id="linea_ficha">
                 <div class="row">
 
-                    <!-- Datos del plan -->
+                    <!-- Datos de la línea -->
                     <div class="col-md-12">
                         <table class="table table-striped table-hover ficha">
                             <thead><th></th><th></th></thead>
                             <tbody>
                                 <tr>
-                                    <th>{$smarty.const.FIELD_PLAN}</th>
-                                    <td><span class="label label-default">{$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}</span></td>
+                                    <th>{$smarty.const.FIELD_INDICE}</th>
+                                    <td><span class="label label-default">{$linea->indice}</span></td>
                                 </tr>
                                 <tr>
-                                    <th>{$smarty.const.FIELD_TITULO}</th>
+                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
                                     <td> 
-                                        {if $plan->titulo}
-                                            <i>"{$plan->titulo}"</i>
-                                        {else}
-                                            ---
-                                        {/if}
+                                        {$linea->nombre}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <td> 
                                         <div class="progress">
-                                            <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$plan->ejecucion|round:"2"}%">
-                                                {$plan->ejecucion|round:"2"} %
+                                            <div class="progress-bar {if $linea->ejecucion|round:"2" < 25}progress-bar-danger{else if $linea->ejecucion|round:"2" >= 25 && $linea->ejecucion|round:"2" < 75}progress-bar-warning{else if $linea->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$linea->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$linea->ejecucion|round:"2"}%">
+                                                {$linea->ejecucion|round:"2"} %
                                             </div>
                                         </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>{$smarty.const.FIELD_MISION}</th>
-                                    <td>
-                                        {if $plan->mision}
-                                            {$plan->mision|nl2br}
-                                        {else}
-                                            ---
-                                        {/if}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>{$smarty.const.FIELD_VISION}</th>
-                                    <td>
-                                        {if $plan->vision}
-                                            {$plan->vision|nl2br}
-                                        {else}
-                                            ---
-                                        {/if}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>{$smarty.const.FIELD_VALORES}</th>
-                                    <td>
-                                        {if $plan->valores}
-                                            {$plan->valores|nl2br}
-                                        {else}
-                                            ---
-                                        {/if}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>{$smarty.const.FIELD_FCE}</th>
-                                    <td>
-                                        {if $plan->fce}
-                                            {$plan->fce|nl2br}
-                                        {else}
-                                            ---
-                                        {/if}
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         {if $_control}
                             <div id="botones_ficha" class="btn-toolbar hidden" role="toolbar" aria-label="">
-                                <a title="{$smarty.const.TXT_PLAN_EDIT}" class="btn btn-default btn-danger" href="index.php?page=plan_editar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
-                                    <i class="fa fa-book fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
+                                <a title="{$smarty.const.TXT_LINEA_EDIT}" class="btn btn-default btn-danger" href="index.php?page=linea_editar&id_plan={$linea->id_plan}&id_linea={$linea->id}">
+                                    <i class="fa fa-long-arrow-right fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                                 </a>
-                                <a title="{$smarty.const.TXT_PLAN_BORRAR}" class="btn btn-default btn-danger" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_plan">
+                                <a title="{$smarty.const.TXT_LINEA_BORRAR}" class="btn btn-default btn-danger" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_linea">
                                     <i class="fa fa-trash fa-fw"></i>
                                 </a>
                             </div>
@@ -295,7 +221,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-red">
                             <div class="panel-heading">
-                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}</span>
+                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}</span>
                                 <i class="fa fa-chevron-up pull-right clickable"></i>
                             </div>
                             <!-- /.panel-heading -->
@@ -335,99 +261,20 @@
             </div>
             <!-- /Ficha del plan -->
 
-            <!-- Líneas estratégicas del plan -->
-            <div role="tabpanel" class="tab-pane" id="plan_lineas">
+            <!-- Objetivos estratégicos de la línea -->
+            <div role="tabpanel" class="tab-pane" id="linea_objest">
                 <!-- Barra de botones -->
                 {if $_control}
-                    <div id="botones_linea" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                    <div id="botones_objest" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
-                            <a class="btn btn-danger" href='index.php?page=linea_crear&id_plan={$plan->id}' 
-                               title="{$smarty.const.TXT_LINEA_CREAR}">
-                                <i class="fa fa-long-arrow-right fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            <a class="btn btn-danger" href='index.php?page=objest_crear&id_linea={$linea->id}' 
+                               title="{$smarty.const.TXT_OBJEST_CREAR}">
+                                <i class="fa fa-dot-circle-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                             </a>
                         </div>
                     </div>
                 {/if}
                 <!-- /Barra de botones -->
-                {if $lineas}
-                    <div class="table-responsive">
-                        <table id="tabla_lineas" class="table datatable table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>{$smarty.const.FIELD_INDICE}</th>
-                                    <th>{$smarty.const.FIELD_LINEA}</th>
-                                    <th>{$smarty.const.FIELD_EJECUCION}</th>
-                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$lineas item=linea} 
-                                    <tr>  
-                                        <td>
-                                            <span class="label label-default">{$linea->indice}</span>
-                                        </td>
-                                        <td>
-                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$linea->id}">{$linea->nombre}</a>
-                                        </td>
-                                        <td style="white-space:nowrap">
-                                            <div class="progress">
-                                                <div class="progress-bar {if $linea->ejecucion|round:"2" < 25}progress-bar-danger{else if $linea->ejecucion|round:"2" >= 25 && $linea->ejecucion|round:"2" < 75}progress-bar-warning{else if $linea->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$linea->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$linea->ejecucion|round:"2"}%">
-                                                    {$linea->ejecucion|round:"2"} %
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$linea->id}">
-                                                <i class="fa fa-folder fa-fw"></i>
-                                            </a>
-                                            {if $_control}
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_OBJEST_CREAR}" href="index.php?page=objest_crear&id_linea={$linea->id}">
-                                                    <i class="fa fa-dot-circle-o fa-fw"></i>
-                                                </a>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=linea_editar&id_plan={$plan->id}&id_linea={$linea->id}">
-                                                    <i class="fa fa-pencil fa-fw"></i>
-                                                </a>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_LINEA_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_linea"
-                                                   data-id_plan="{$plan->id}" data-nombre="{$linea->indice}. {$linea->nombre}" data-id_linea="{$linea->id}">
-                                                    <i class="fa fa-trash fa-fw"></i>
-                                                </a>
-                                            {/if}
-                                        </td>
-                                    </tr>     
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                {else}
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="alert alert-info alert-dismissible">
-                                <i class="fa fa-info-circle fa-fw"></i> 
-                                {$smarty.const.MSG_PLAN_NO_LINEAS}
-                            </div>
-                        </div>
-                        <!-- /.col-sm-11 -->
-                        <div class="col-sm-1">
-                            {if $_control}
-                                <div class="btn-toolbar" role="toolbar" aria-label="">
-                                    <div class="btn-group" role="group" aria-label="">
-                                        <a class="btn btn-danger" href='index.php?page=linea_crear&id_plan={$plan->id}' 
-                                           title="{$smarty.const.TXT_LINEA_CREAR}">
-                                            <i class="fa fa-long-arrow-right fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
-                                        </a>
-                                    </div>
-                                </div>
-                            {/if}
-                        </div>
-                        <!-- /.col-sm-1 -->
-                    </div>
-                    <!-- /.row -->
-                {/if}
-            </div>
-            <!-- /Líneas estratégicas del plan -->
-
-            <!-- Objetivos estratégicos del plan -->
-            <div role="tabpanel" class="tab-pane" id="plan_objest">
                 {if $objests}
                     <div class="table-responsive">
                         <table id="tabla_objest" class="table datatable table-striped table-hover">
@@ -467,7 +314,7 @@
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=objest_editar&id_objest={$objest->id}&id_linea={$objest->linea->id}">
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_LINEA_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_objest"
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_OBJEST_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_objest"
                                                    data-id_linea="{$objest->linea->id}" data-nombre="{$objest->linea->indice}.{$objest->indice}. {$objest->nombre}" data-id_objest="{$objest->id}">
                                                     <i class="fa fa-trash fa-fw"></i>
                                                 </a>
@@ -480,30 +327,38 @@
                     </div>
                 {else}
                     <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-11">
                             <div class="alert alert-info alert-dismissible">
                                 <i class="fa fa-info-circle fa-fw"></i> 
-                                {$smarty.const.MSG_PLAN_NO_OBJEST}
+                                {$smarty.const.MSG_LINEA_NO_OBJEST}
                             </div>
                         </div>
-                        <!-- /.col-sm-12 -->
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=objest_crear&id_linea={$linea->id}' 
+                                           title="{$smarty.const.TXT_OBJEST_CREAR}">
+                                            <i class="fa fa-dot-circle-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-1 -->
                     </div>
                     <!-- /.row -->
                 {/if}
             </div>
-            <!-- /Objetivos estratégicos del plan -->
+            <!-- /Objetivos estratégicos de la línea -->
 
-            <!-- Objetivos operacionales del plan -->
-            <div role="tabpanel" class="tab-pane" id="plan_objop">
-
-            </div>
-            <!-- /Objetivos operacionales del plan -->
-
-            <!-- Resumen del plan -->
-            <div role="tabpanel" class="tab-pane" id="plan_res">
+            <!-- Objetivos operacionales de la línea -->
+            <div role="tabpanel" class="tab-pane" id="linea_objop">
 
             </div>
-            <!-- /Resumen del plan -->
+            <!-- /Objetivos operacionales de la línea -->
+
 
         </div>
         <!-- /Tab panes -->
