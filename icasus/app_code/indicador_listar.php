@@ -48,6 +48,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $valor_referencia_medicion = new Valor_referencia_medicion();
         $medicion_lim = array();
         $medicion_obj = array();
+        $status = array();
         //Incializamos ambos arrays de referencias a null por defecto
         foreach ($indicadores_propios as $indicador)
         {
