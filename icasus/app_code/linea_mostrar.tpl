@@ -212,7 +212,7 @@
                         {/if}
                     </div>
                     <!-- /.col-md-12 -->
-                    <!-- /Datos del plan -->
+                    <!-- /Datos de la línea -->
                 </div>
                 <!-- /.row -->
 
@@ -259,7 +259,7 @@
                 <!-- /Ejecución/año -->
 
             </div>
-            <!-- /Ficha del plan -->
+            <!-- /Ficha de la línea -->
 
             <!-- Objetivos estratégicos de la línea -->
             <div role="tabpanel" class="tab-pane" id="linea_objest">
@@ -294,7 +294,7 @@
                                             <span class="label label-default">{$objest->linea->indice}.{$objest->indice}</span>
                                         </td>
                                         <td>
-                                            {$objest->nombre}
+                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$objest->id_linea}">{$objest->nombre}</a>
                                         </td>
                                         <td>
                                             {$objest->linea->indice}. {$objest->linea->nombre}
@@ -307,15 +307,18 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_OBJOP_CREAR}" href="index.php?page=objop_crear&id_objest={$objest->id}">
-                                                <i class="fa fa-bullseye fa-fw"></i>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$objest->id_linea}">
+                                                <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             {if $_control}
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=objest_editar&id_objest={$objest->id}&id_linea={$objest->linea->id}">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_OBJOP_CREAR}" href="index.php?page=objop_crear&id_objest={$objest->id}">
+                                                    <i class="fa fa-bullseye fa-fw"></i>
+                                                </a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=objest_editar&id_objest={$objest->id}&id_linea={$objest->id_linea}">
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_OBJEST_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_objest"
-                                                   data-id_linea="{$objest->linea->id}" data-nombre="{$objest->linea->indice}.{$objest->indice}. {$objest->nombre}" data-id_objest="{$objest->id}">
+                                                   data-id_linea="{$objest->id_linea}" data-nombre="{$objest->linea->indice}.{$objest->indice}. {$objest->nombre}" data-id_objest="{$objest->id}">
                                                     <i class="fa fa-trash fa-fw"></i>
                                                 </a>
                                             {/if}
@@ -358,7 +361,6 @@
 
             </div>
             <!-- /Objetivos operacionales de la línea -->
-
 
         </div>
         <!-- /Tab panes -->

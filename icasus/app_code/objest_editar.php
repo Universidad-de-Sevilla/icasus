@@ -34,7 +34,7 @@ if (filter_has_var(INPUT_GET, 'id_linea') && filter_has_var(INPUT_GET, 'id_objes
     $smarty->assign('entidad', $entidad);
 
     $smarty->assign('_javascript', array('objest_editar'));
-    $smarty->assign('_nombre_pagina', TXT_OBJEST_EDIT . ' ' . $linea->indice . '.' . $objest->indice . '. ' . $objest->nombre . ': ' . FIELD_LINEA . " " . $linea->indice . ". " . $linea->nombre);
+    $smarty->assign('_nombre_pagina', TXT_OBJEST_EDIT . ': ' . $linea->indice . '.' . $objest->indice . '. ' . $objest->nombre);
     $plantilla = 'objest_editar.tpl';
 }
 else

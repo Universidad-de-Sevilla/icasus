@@ -7,7 +7,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Crea un nuevo plan estratégico para una unidad
+// Descripcion: Crea/Edita un plan estratégico para una unidad
 //---------------------------------------------------------------------------------------------------
 
 if (filter_has_var(INPUT_POST, 'anyo_inicio') && filter_has_var(INPUT_POST, 'duracion') && filter_has_var(INPUT_POST, 'id_entidad'))

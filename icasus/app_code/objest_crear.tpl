@@ -103,7 +103,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
-                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}'>
+                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$linea->id}'>
                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                     </a>
                     <div class="pull-right">

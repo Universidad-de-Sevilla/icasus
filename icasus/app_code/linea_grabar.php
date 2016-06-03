@@ -7,7 +7,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Crea una nueva línea estratégica para un plan
+// Descripcion: Crea/Edita una línea estratégica para un plan
 //---------------------------------------------------------------------------------------------------
 
 if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'id_plan'))

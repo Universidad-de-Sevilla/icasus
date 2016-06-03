@@ -69,7 +69,7 @@ if (filter_has_var(INPUT_GET, 'id_linea') AND filter_has_var(INPUT_GET, 'id_plan
     $smarty->assign('entidad', $entidad);
 
     $smarty->assign('_javascript', array('linea_mostrar'));
-    $smarty->assign('_nombre_pagina', FIELD_LINEA . " " . $linea->indice . ". " . $linea->nombre);
+    $smarty->assign('_nombre_pagina', FIELD_LINEA . ": " . $linea->indice . ". " . $linea->nombre);
     $plantilla = 'linea_mostrar.tpl';
 }
 else
