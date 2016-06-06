@@ -193,6 +193,7 @@ if ($mediciones)
     $mediciones_referencias = array();
     $medicion_lim = array();
     $medicion_obj = array();
+    $status = array();
     //Incializamos ambos arrays de referencias a null por defecto
     foreach ($mediciones as $med)
     {

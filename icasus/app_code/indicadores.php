@@ -41,6 +41,7 @@ if ($indicadores_propios)
     $valor_referencia_medicion = new Valor_referencia_medicion();
     $medicion_lim = array();
     $medicion_obj = array();
+    $status = array();
     //Incializamos ambos arrays de referencias a null por defecto
     foreach ($indicadores_propios as $indicador)
     {
