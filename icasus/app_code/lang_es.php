@@ -686,6 +686,7 @@ define('ERR_PLAN_VAL_ANYO', 'Ya existe un plan con el mismo año de inicio.');
 
 //Líneas
 define('ERR_LINEA_EDIT', 'La línea estratégica no existe o no tiene permisos para editarla.');
+define('ERR_LINEA_VAL_INDICE', 'Ya existe una línea con el mismo índice para este plan.');
 
 //Objeticos Estratégicos
 define('ERR_OBJEST_EDIT', 'El objetivo estratégico no existe o no tiene permisos para editarlo.');

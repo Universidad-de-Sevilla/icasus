@@ -26,6 +26,18 @@ if (filter_has_var(INPUT_GET, 'id_linea') && filter_has_var(INPUT_GET, 'id_plan'
     $entidad->load("id=$plan->id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    //Validar índice de una línea
+    $indices = array();
+    $lineas = $linea->Find("id_plan=$id_plan");
+    foreach ($lineas as $lin)
+    {
+        if ($lin->indice != $linea->indice)
+        {
+            array_push($indices, $lin->indice);
+        }
+    }
+    $smarty->assign('elementos', $indices);
+
     $smarty->assign('_nombre_pagina', TXT_LINEA_EDIT . ': ' . $linea->indice . '. ' . $linea->nombre);
     $plantilla = 'linea_editar.tpl';
 }
