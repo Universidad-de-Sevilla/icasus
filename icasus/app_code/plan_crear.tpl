@@ -78,7 +78,7 @@
             <div class="form-group has-feedback">
                 <label for="anyo_inicio" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO_INICIO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                 <div class="col-sm-8">
-                    <input type='number' class="form-control" name='anyo_inicio' id='anyo_inicio' value="{$smarty.now|date_format:'%Y'}" min="{$smarty.now|date_format:'%Y'}" placeholder="{$smarty.const.FIELD_ANYO_INICIO}" required/>
+                    <input type='number' class="form-control" name='anyo_inicio' id='anyo_inicio' value="{$smarty.now|date_format:'%Y'}" min="{$smarty.now|date_format:'%Y'}" placeholder="{$smarty.const.FIELD_ANYO_INICIO}" data-elementos='{$elementos|@json_encode}' data-validar_igual="validar_igual" data-validar_igual-error="{$smarty.const.ERR_PLAN_VAL_ANYO}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>
                 </div>

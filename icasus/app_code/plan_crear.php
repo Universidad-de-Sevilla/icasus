@@ -14,6 +14,17 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && $control)
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
     $entidad->load("id=$id_entidad");
+
+    //Validar año de inicio de un plan
+    $plan = new Plan();
+    $anyos = array();
+    $planes = $plan->Find("id_entidad=$id_entidad");
+    foreach ($planes as $pl)
+    {
+        array_push($anyos, $pl->anyo_inicio);
+    }
+    $smarty->assign('elementos', $anyos);
+
     $smarty->assign('entidad', $entidad);
     $smarty->assign('_nombre_pagina', TXT_PLAN_CREAR . ": " . $entidad->nombre);
     $plantilla = 'plan_crear.tpl';

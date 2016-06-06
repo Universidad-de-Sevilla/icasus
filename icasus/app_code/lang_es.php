@@ -682,6 +682,7 @@ define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables e
 
 //Planes
 define('ERR_PLAN_EDIT', 'El plan estratégico no existe o no tiene permisos para editarlo.');
+define('ERR_PLAN_VAL_ANYO', 'Ya existe un plan con el mismo año de inicio.');
 
 //Líneas
 define('ERR_LINEA_EDIT', 'La línea estratégica no existe o no tiene permisos para editarla.');
