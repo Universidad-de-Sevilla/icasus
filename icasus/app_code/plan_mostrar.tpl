@@ -450,7 +450,7 @@
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$objest->id_linea}">{$objest->nombre}</a>
                                         </td>
                                         <td>
-                                            {$objest->linea->indice}. {$objest->linea->nombre}
+                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$objest->id_linea}">{$objest->linea->indice}. {$objest->linea->nombre}</a>
                                         </td>
                                         <td style="white-space:nowrap">
                                             <div class="progress">

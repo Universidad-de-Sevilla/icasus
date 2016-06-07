@@ -282,7 +282,6 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_INDICE}</th>
                                     <th>{$smarty.const.FIELD_OBJ_EST}</th>
-                                    <th>{$smarty.const.FIELD_LINEA}</th>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
@@ -295,9 +294,6 @@
                                         </td>
                                         <td>
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$objest->id_linea}">{$objest->nombre}</a>
-                                        </td>
-                                        <td>
-                                            {$objest->linea->indice}. {$objest->linea->nombre}
                                         </td>
                                         <td style="white-space:nowrap">
                                             <div class="progress">
