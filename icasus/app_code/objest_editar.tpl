@@ -75,7 +75,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <form action='index.php?page=objest_grabar' method='post' id='formobjes' name='formobjest' 
+        <form action='index.php?page=objest_grabar' method='post' id='formobjest' name='formobjest' 
               data-toggle="validator" class="form-horizontal">
             <input type="hidden" name="id_objest" value="{$objest->id}">
             <div class="form-group">
@@ -93,7 +93,7 @@
                 <div class="col-sm-8">
                     <div class="input-group">
                         <div class="input-group-addon">{$linea->indice}.</div>
-                        <input type='number' class="form-control" name='indice' id='indice' value="{$objest->indice}" min="1" placeholder="{$smarty.const.FIELD_INDICE}" required/>
+                        <input type='number' class="form-control" name='indice' id='indice' value="{$objest->indice}" min="1" placeholder="{$smarty.const.FIELD_INDICE}" data-elementos_linea='{$elementos|@json_encode}' data-elementos='{$elementos[$linea->indice]|@json_encode}' data-validar_igual="validar_igual" data-validar_igual-error="{$smarty.const.ERR_OBJEST_VAL_INDICE}" required/>
                     </div>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>

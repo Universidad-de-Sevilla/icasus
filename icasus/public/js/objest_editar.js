@@ -10,7 +10,9 @@
 //Cambios del índice de las líneas
 $(document).ready(function () {
     $('#id_linea').change(function () {
-        var indice = $(this).find(':selected').data('indice') + '.';
-        $('.input-group-addon').html(indice);
+        var indice = $(this).find(':selected').data('indice');
+        var elementos = $('#indice').data('elementos_linea');
+        $('.input-group-addon').html(indice + '.');
+        $('#indice').data('elementos', elementos[indice]);
     });
 });

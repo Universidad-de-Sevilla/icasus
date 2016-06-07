@@ -33,6 +33,26 @@ if (filter_has_var(INPUT_GET, 'id_linea') && filter_has_var(INPUT_GET, 'id_objes
     $entidad->load("id=$plan->id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    //Validar índice de un objetivo estratégico
+    $indices = array();
+    foreach ($lineas as $ln)
+    {
+        $indices[$ln->indice] = array();
+        $objests = $objest->Find("id_linea=$ln->id");
+        foreach ($objests as $obj)
+        {
+            if ($objest->indice != $obj->indice)
+            {
+                array_push($indices[$ln->indice], $obj->indice);
+            }
+            else if ($id_linea != $ln->id)
+            {
+                array_push($indices[$ln->indice], $obj->indice);
+            }
+        }
+    }
+    $smarty->assign('elementos', $indices);
+
     $smarty->assign('_javascript', array('objest_editar'));
     $smarty->assign('_nombre_pagina', TXT_OBJEST_EDIT . ': ' . $linea->indice . '.' . $objest->indice . '. ' . $objest->nombre);
     $plantilla = 'objest_editar.tpl';

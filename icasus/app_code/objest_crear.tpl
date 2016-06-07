@@ -63,6 +63,7 @@
             </li>
             <!-- /.dropdown -->
             <li><a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}</a></li>
+            <li><a title="{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}" href='index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$linea->id}'>{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -73,7 +74,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <form action='index.php?page=objest_grabar' method='post' id='formobjes' name='formobjest' 
+        <form action='index.php?page=objest_grabar' method='post' id='formobjest' name='formobjest' 
               data-toggle="validator" class="form-horizontal">
             <div class="form-group">
                 <label for="id_linea" class="col-sm-2 control-label">{$smarty.const.FIELD_LINEA}</label>
@@ -87,7 +88,7 @@
                 <div class="col-sm-8">
                     <div class="input-group">
                         <div class="input-group-addon">{$linea->indice}.</div>
-                        <input type='number' class="form-control" name='indice' id='indice' value="1" min="1" placeholder="{$smarty.const.FIELD_INDICE}" required/>
+                        <input type='number' class="form-control" name='indice' id='indice' value="1" min="1" placeholder="{$smarty.const.FIELD_INDICE}" data-elementos='{$elementos|@json_encode}' data-validar_igual="validar_igual" data-validar_igual-error="{$smarty.const.ERR_OBJEST_VAL_INDICE}" required/>
                     </div>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>

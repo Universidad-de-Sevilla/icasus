@@ -24,6 +24,16 @@ if (filter_has_var(INPUT_GET, 'id_linea') && $control)
     $entidad->load("id=$plan->id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    //Validar índice de un objetivo estratégico
+    $objest = new ObjetivoEstrategico();
+    $indices = array();
+    $objests = $objest->Find("id_linea=$id_linea");
+    foreach ($objests as $obj)
+    {
+        array_push($indices, $obj->indice);
+    }
+    $smarty->assign('elementos', $indices);
+
     $smarty->assign('_nombre_pagina', TXT_OBJEST_CREAR . ': ' . FIELD_LINEA . " " . $linea->indice . '. ' . $linea->nombre);
     $plantilla = 'objest_crear.tpl';
 }

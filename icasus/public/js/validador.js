@@ -65,10 +65,10 @@ $('#indicador_crear,#indicador_editar,#dato_crear,#dato_editar,#medicion_crear')
 });
 
 //Función que valida que no se repita un nombre ya existente
-$('#formplan,#formlinea').validator({
+$('#formplan,#formlinea,#formobjest').validator({
     custom: {
         'validar_igual': function ($el) {
-            return !($el.data('elementos').indexOf($el.val()) !== -1);
+            return ($el.data('elementos').indexOf($el.val()) === -1);
         }
     },
     errors: {
