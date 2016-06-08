@@ -10,5 +10,19 @@
 //Barras de botones
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha').html();
+    var botones_objop = $('#botones_objop').html();
     $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
+    $('#tabla_objop_filter').append(botones_objop);
+});
+
+//Borrado de objetivos operacionales
+$('#dialogo_confirmar_borrado_objop').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var nombre = button.data('nombre');
+    var id_objop = button.data('id_objop');
+    var id_objest = button.data('id_objest');
+    var modal = $(this);
+    var link = 'index.php?page=objop_borrar&id_objest=' + id_objest + '&id_objop=' + id_objop;
+    modal.find('#nombre_objop').text(nombre);
+    modal.find('#borrar').attr('href', link);
 });

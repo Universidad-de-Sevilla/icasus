@@ -60,6 +60,11 @@ if (filter_has_var(INPUT_GET, 'id_linea') AND filter_has_var(INPUT_GET, 'id_obje
     }
     $smarty->assign("ejecucion_anual", $ejecucion_anual);
 
+    //Objetivos operacionales
+    $objop = new ObjetivoOperacional();
+    $objops = $objop->Find_joined("id_objest=$id_objest");
+    $smarty->assign('objops', $objops);
+
     $entidad = new Entidad();
     $id_entidad = $linea->plan->id_entidad;
     $entidad->load("id = $id_entidad");

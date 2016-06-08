@@ -68,6 +68,15 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
     }
     $smarty->assign('objests', $objests);
 
+    //Objetivos operacionales
+    $objop = new ObjetivoOperacional();
+    $objops = array();
+    foreach ($objests as $obj)
+    {
+        $objops = array_merge($objops, $objop->Find_joined("id_objest=$obj->id"));
+    }
+    $smarty->assign('objops', $objops);
+
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);

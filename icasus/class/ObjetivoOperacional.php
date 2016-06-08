@@ -15,13 +15,16 @@ class ObjetivoOperacional extends ADOdb_Active_Record
 
     public $_table = 'objetivos_operacionales';
     public $objest;
+    public $responsable;
 
     public function load_joined($condicion)
     {
         if ($this->load($condicion))
         {
             $this->objest = new ObjetivoEstrategico();
-            $this->objest->load("id = $this->id_objest");
+            $this->objest->load_joined("id = $this->id_objest");
+            $this->responsable = new Usuario();
+            $this->responsable->load("id=$this->id_responsable");
             return true;
         }
         else
@@ -38,8 +41,11 @@ class ObjetivoOperacional extends ADOdb_Active_Record
             foreach ($objetivos_op as $obj)
             {
                 $objest = new ObjetivoEstrategico();
-                $objest->load("id= $obj->id_objest");
+                $objest->load_joined("id= $obj->id_objest");
                 $obj->objest = $objest;
+                $responsable = new Usuario();
+                $responsable->load("id=$obj->id_responsable");
+                $obj->responsable = $responsable;
             }
         }
         return $objetivos_op;
