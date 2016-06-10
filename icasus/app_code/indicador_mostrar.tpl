@@ -424,7 +424,7 @@
                     <tr>
                         <th>{$smarty.const.FIELD_EFQM}</th>
                         <td>
-                            {if is_array($indicador->criterios_efqm)}
+                            {if ($indicador->criterios_efqm|@count) > 0}
                                 <ul> 
                                     {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
                                         <li>
