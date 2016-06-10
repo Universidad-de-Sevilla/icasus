@@ -17,7 +17,7 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
     $linea->load("id=$id_linea");
     $objest = new ObjetivoEstrategico();
     $exito = MSG_OBJEST_CREADO . ' ' . $linea->indice . '. ' . $linea->nombre;
-    // Si viene el id es que estamos editando una línea existente
+    // Si viene el id es que estamos editando un objetivo estratégico existente
     if (filter_has_var(INPUT_POST, 'id_objest'))
     {
         $id_objest = filter_input(INPUT_POST, 'id_objest', FILTER_SANITIZE_NUMBER_INT);

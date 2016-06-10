@@ -141,7 +141,6 @@ define('TXT_ORGANICA_DESCRIPCION', 'Sólo aparecen en los listados las unidades 
 //Indicadores
 define('TXT_INDIC_TODOS', 'Todos los indicadores');
 define('TXT_INDIC_SUBUNID', 'Relación de indicadores de subunidades');
-define('TXT_INDIC_PROP', 'Indicadores propios de la unidad');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
 define('TXT_INDIC_CREAR', 'Crear indicador');
@@ -154,7 +153,6 @@ define('TXT_INDICS_MIO', 'Mis indicadores');
 define('TXT_INDIC_DAT', 'Datos del indicador');
 define('TXT_INDIC_GEN_INFO_WORD', 'Generar un informe en Word de este indicador');
 define('TXT_INDIC_EXPORT_EXCEL', 'Exportar los datos del indicador a Excel');
-define('TXT_INDIC_PUBLIC', 'Indicadores públicos');
 define('TXT_INDIC_BUSCAR_BASE', 'Buscar indicador base');
 define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar indicadores complementarios');
 define('TXT_INDIC_SEG_DEPART', 'Seguimiento de indicadores de los departamentos');
@@ -274,6 +272,9 @@ define('TXT_OBJEST_BORRAR', 'Borrar objetivo estratégico');
 define('TXT_OBJOP_CREAR', 'Crear objetivo operacional');
 define('TXT_OBJOP_EDIT', 'Editar objetivo operacional');
 define('TXT_OBJOP_BORRAR', 'Borrar objetivo operacional');
+define('TXT_OBJOP_TIPO', 'Tipo de objetivo operacional');
+define('TXT_OBJOP_PROPIO', 'Propio');
+define('TXT_OBJOP_DESC', 'Descendente');
 
 //Procesos
 define('TXT_PROCS', 'Procesos');
@@ -705,7 +706,7 @@ define('ERR_OBJEST_VAL_INDICE', 'Ya existe un objetivo estratégico con el mismo
 
 //Objeticos Operacionales
 define('ERR_OBJOP_EDIT', 'El objetivo operacional no existe o no tiene permisos para editarlo.');
-define('ERR_OBJOP_VAL_INDICE', 'Ya existe un objetivo operacional con el mismo índice para el objetivo estratégico al que pertenece.');
+define('ERR_OBJOP_VAL_INDICE', 'Ya existe un objetivo operacional con el mismo índice para este objetivo estratégico de esta línea del plan.');
 
 //Procesos
 define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores.');
@@ -812,6 +813,8 @@ define('FIELD_INDIC', 'Indicador');
 define('FIELD_INDIC_BASE', 'Indicador/dato base');
 define('FIELD_INDIC_COMPLEMENT', 'Indicadores/datos complementarios');
 define('FIELD_INDICS', 'Indicadores');
+define('FIELD_INDICS_CORREL', 'Indicadores de correlación');
+define('FIELD_INDICS_CONTROL', 'Indicadores de control');
 define('FIELD_FORM', 'Formulación');
 define('FIELD_FORMULA', 'Fórmula de cálculo');
 define('FIELD_FUENTE_INFO', 'Fuente de Información');

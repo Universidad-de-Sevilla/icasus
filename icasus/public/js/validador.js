@@ -60,18 +60,22 @@ $('#indicador_crear,#indicador_editar,#dato_crear,#dato_editar,#medicion_crear')
     },
     errors: {
         validar_formula: 'La fórmula no tiene la sintaxis correcta. La sintaxis para referirse a indicadores/datos es la siguiente: [ID del indicador/dato]. Ejemplo: [1]+[2]',
-        validar_subunidades: 'Debe seleccionar al menos una Subunidad.'
+        validar_subunidades: 'Debe seleccionar al menos una subunidad.'
     }
 });
 
 //Función que valida que no se repita un nombre ya existente
-$('#formplan,#formlinea,#formobjest').validator({
+$('#formplan,#formlinea,#formobjest,#formobjop').validator({
     custom: {
         'validar_igual': function ($el) {
             return ($el.data('elementos').indexOf($el.val()) === -1);
+        },
+        'validar_subunidades': function ($el) {
+            return $("#div_subunidades input[type=checkbox]:checked").length > 0;
         }
     },
     errors: {
-        validar_igual: 'Ya existe un registro con idéntico valor para este campo.'
+        validar_igual: 'Ya existe un registro con idéntico valor para este campo.',
+        validar_subunidades: 'Debe seleccionar al menos una subunidad.'
     }
 });
