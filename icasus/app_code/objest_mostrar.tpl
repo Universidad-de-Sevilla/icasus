@@ -219,7 +219,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-red">
                             <div class="panel-heading">
-                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}</span>
+                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}</span>
                                 <i class="fa fa-chevron-up pull-right clickable"></i>
                             </div>
                             <!-- /.panel-heading -->
@@ -265,7 +265,7 @@
                 {if $_control}
                     <div id="botones_objop" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
-                            <a class="btn btn-danger" href='index.php?page=objop_crear&id_objest={$objest->id}' 
+                            <a class="btn btn-danger" href='index.php?page=objop_crear&id_objest={$objest->id}&id_entidad={$entidad->id}' 
                                title="{$smarty.const.TXT_OBJOP_CREAR}">
                                 <i class="fa fa-bullseye fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                             </a>
@@ -292,7 +292,7 @@
                                             <span class="label label-default">{$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}</span>
                                         </td>
                                         <td>
-                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_objest={$objop->id_objest}">{$objop->nombre}</a>
+                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$entidad->id}">{$objop->nombre}</a>
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$objop->id_responsable}'>
@@ -306,7 +306,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_objest={$objop->id_objest}">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$entidad->id}">
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             {if $_control}
@@ -337,7 +337,7 @@
                             {if $_control}
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                     <div class="btn-group" role="group" aria-label="">
-                                        <a class="btn btn-danger" href='index.php?page=objop_crear&id_objest={$objest->id}' 
+                                        <a class="btn btn-danger" href='index.php?page=objop_crear&id_objest={$objest->id}&id_entidad={$entidad->id}' 
                                            title="{$smarty.const.TXT_OBJOP_CREAR}">
                                             <i class="fa fa-bullseye fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                         </a>
