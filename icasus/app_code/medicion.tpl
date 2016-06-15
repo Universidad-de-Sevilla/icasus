@@ -244,7 +244,7 @@
                         <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-default" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                             <i class="fa fa-history fa-fw"></i>
                         </a>
-                        {if !$indicador->calculo && $permiso_unidad}
+                        {if !$indicador->calculo && ($permiso_unidad || $indicador->id_responsable == $_usuario->id)}
                             <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default" href='index.php?page=valores&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                 <i class="fa fa-pencil-square-o fa-fw"></i>
                             </a>
@@ -462,7 +462,7 @@
                                     <th>{$smarty.const.FIELD_INICIO_GRABACION}</th>
                                     <td>
                                         <span id="gi" data-grabacion_inicio="{$medicion->grabacion_inicio}">
-                                            {if $permiso_unidad == true && !$indicador->calculo}
+                                            {if ($permiso_unidad || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo}
                                                 <div>
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'gi');">
                                                         {if $medicion->grabacion_inicio}
@@ -482,7 +482,7 @@
                                     <th>{$smarty.const.FIELD_FIN_GRABACION}</th>
                                     <td>
                                         <span id="gf" data-grabacion_fin="{$medicion->grabacion_fin}">
-                                            {if $permiso_unidad == true && !$indicador->calculo}
+                                            {if ($permiso_unidad || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo}
                                                 <div>
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'gf');">
                                                         {if $medicion->grabacion_fin}

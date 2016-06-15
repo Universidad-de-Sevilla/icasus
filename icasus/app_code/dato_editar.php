@@ -17,14 +17,13 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
 {
     $id_dato = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-    $usuario_entidad = new Usuario_entidad;
+    $dato = new Indicador();
+    $dato->load_joined("id = $id_dato");
+    $smarty->assign('dato', $dato);
+
     // Comprobamos permisos
     if ($control || $dato->id_responsable == $usuario->id)
     {
-        $dato = new Indicador();
-        $dato->load_joined("id = $id_dato");
-        $smarty->assign('dato', $dato);
-
         $entidad = new Entidad();
         $entidad->load("id = $dato->id_entidad");
         $smarty->assign('entidad', $entidad);
