@@ -25,3 +25,20 @@ $smarty->assign('objop', $objop);
 $anyo = filter_input(INPUT_GET, 'anyo', FILTER_SANITIZE_NUMBER_INT);
 $smarty->assign('anyo', $anyo);
 $plantilla = 'objop_ajax.tpl';
+
+if ($modulo == 'grabar_ejecucion')
+{
+    $valor = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_NUMBER_INT);
+    $ejecucion = new Ejecucion();
+    $ejecucion->load("id_objop=$id_objop AND anyo=$anyo");
+    $ejecucion->valor = $valor;
+    $ejecucion->Save();
+}
+
+if ($modulo == 'actualizar_porcentaje')
+{
+    //Obtenemos sus ejecución anual
+    $ejecucion_anual = new Ejecucion();
+    $ejecucion_anual->Load("id_objop=$id_objop AND anyo=$anyo");
+    $smarty->assign("ejecucion_anual", $ejecucion_anual->valor);
+}

@@ -1,3 +1,22 @@
+<!-- Diálogo Valor invalido -->
+<div class="modal fade" id="dialogo_valor_invalido" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-bullseye fa-fw"></i><sub class="fa fa-tasks fa-fw"></sub> {$smarty.const.FIELD_OBJ_OP}: {$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_OBJOP_VALOR_EJ} <span id="intervalo"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Valor invalido -->
+
 <!-- Diálogo Confirmar Borrado Objetivo Operacional -->
 <div class="modal fade" id="dialogo_confirmar_borrado_objop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -172,6 +191,12 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>{$smarty.const.FIELD_OBJ_EST}</th>
+                                    <td> 
+                                        <a title="{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$linea->id}'>{$linea->indice}.{$objest->indice}. {$objest->nombre}</a>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <td> 
                                         <div class="progress">
@@ -209,7 +234,7 @@
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <div id="ejecuciones">
+                                <div class="table-responsive">
                                     <table class="table table-striped table-hover ficha">
                                         <thead>
                                             <tr>
@@ -224,7 +249,7 @@
                                             {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion)}}
                                                 <tr>
                                                     <td><span class="label label-default">{$i}</span></td>
-                                                    <td>
+                                                    <td id="porcentaje_{$i}">
                                                         <div class="progress">
                                                             <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
                                                                 {$ejecucion_anual[$i]|round:"2"} %
