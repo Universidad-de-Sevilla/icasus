@@ -46,10 +46,6 @@ class Indicador extends ADOdb_Active_Record
     {
         if ($this->load($criterio))
         {
-            $entidad = new Entidad();
-            $entidad->load("id= $this->id_entidad");
-            $this->entidad = $entidad;
-
             $proceso = new Proceso();
             $proceso->load_joined("id = $this->id_proceso");
             $this->proceso = $proceso;

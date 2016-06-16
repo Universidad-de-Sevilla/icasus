@@ -242,6 +242,7 @@
                                                 <th>{$smarty.const.FIELD_EJECUCION}</th>
                                                     {if $_control || $responsable}
                                                     <th></th>
+                                                    <th></th>
                                                     {/if}
                                             </tr>
                                         </thead>
@@ -261,6 +262,14 @@
                                                             <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$i}'>
                                                                 <i class="fa fa-pencil fa-fw"></i>
                                                             </a>
+                                                        </td>
+                                                        <td>
+                                                            <input class="form-control activar"  type="checkbox"
+                                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if}>
                                                         </td>
                                                     {/if}
                                                 </tr>
@@ -290,7 +299,6 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
-                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_PROC}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
@@ -313,11 +321,14 @@
                                                title="{$indicador->nombre}: {$indicador->descripcion}">
                                                 {$indicador->nombre}</a>
                                         </td>
-                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                         <td>
-                                            <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
-                                                {$indicador->proceso->nombre}
-                                            </a>
+                                            {if $indicador->id_proceso}
+                                                <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
+                                                    {$indicador->proceso->nombre}
+                                                </a>
+                                            {else}
+                                                {$smarty.const.FIELD_DATOS}
+                                            {/if}
                                         </td>
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
@@ -375,7 +386,6 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
-                                    <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_PROC}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
@@ -398,11 +408,14 @@
                                                title="{$indicador->nombre}: {$indicador->descripcion}">
                                                 {$indicador->nombre}</a>
                                         </td>
-                                        <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
                                         <td>
-                                            <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
-                                                {$indicador->proceso->nombre}
-                                            </a>
+                                            {if $indicador->id_proceso}
+                                                <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
+                                                    {$indicador->proceso->nombre}
+                                                </a>
+                                            {else}
+                                                {$smarty.const.FIELD_DATOS}
+                                            {/if}
                                         </td>
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">

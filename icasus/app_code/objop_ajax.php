@@ -42,3 +42,13 @@ if ($modulo == 'actualizar_porcentaje')
     $ejecucion_anual->Load("id_objop=$id_objop AND anyo=$anyo");
     $smarty->assign("ejecucion_anual", $ejecucion_anual->valor);
 }
+
+if ($modulo == 'activar_objetivo')
+{
+    $activo = filter_input(INPUT_GET, 'activo');
+    //Obtenemos sus ejecución anual
+    $ejecucion_anual = new Ejecucion();
+    $ejecucion_anual->Load("id_objop=$id_objop AND anyo=$anyo");
+    $ejecucion_anual->activo = $activo;
+    $ejecucion_anual->Save();
+}

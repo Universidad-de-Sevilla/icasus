@@ -53,21 +53,25 @@ if (filter_has_var(INPUT_GET, 'id_objop'))
     $smarty->assign('linea', $linea);
     $smarty->assign('plan', $linea->plan);
 
-    //Obtenemos sus ejecuciones anuales
+    //Obtenemos sus ejecuciones y activaciones anuales
     $ejecucion = new Ejecucion();
     $ejecucion_anual = array();
+    $activacion_anual = array();
     for ($i = $linea->plan->anyo_inicio; $i <= ($linea->plan->anyo_inicio + $linea->plan->duracion); $i++)
     {
         if ($ejecucion->Load("id_objop=$objop->id AND anyo=$i"))
         {
             $ejecucion_anual[$i] = $ejecucion->valor;
+            $activacion_anual[$i] = $ejecucion->activo;
         }
         else
         {
             $ejecucion_anual[$i] = 0;
+            $activacion_anual[$i] = 1;
         }
     }
     $smarty->assign("ejecucion_anual", $ejecucion_anual);
+    $smarty->assign("activacion_anual", $activacion_anual);
 
     //Indicadores del objetivo operacional
     $objetivo_indicador = new ObjetivoIndicador();

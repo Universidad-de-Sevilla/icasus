@@ -20,6 +20,7 @@ $('#page-wrapper').on('click', '.editar', function () {
     $("#page-wrapper #edicion_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=editar_ejecucion&id_objop=" + id_objop + "&anyo=" + anyo);
 });
 
+//Validación
 $('#page-wrapper').on('keyup', '.valor', function () {
     var actualizar_dato = $(this);
     var valor = $(this).val();
@@ -31,6 +32,7 @@ $('#page-wrapper').on('keyup', '.valor', function () {
     }
 });
 
+//Grabación de porcentajes
 $('#page-wrapper').on('click', '.grabar', function () {
     var id_objop = $(this).data('id_objop');
     var anyo = $(this).data('anyo');
@@ -51,8 +53,21 @@ $('#page-wrapper').on('click', '.grabar', function () {
     }
 });
 
+//Cancelar edición
 $('#page-wrapper').on('click', '.cancelar', function () {
     var id_objop = $(this).data('id_objop');
     var anyo = $(this).data('anyo');
     $("#page-wrapper #edicion_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=cancelar_ejecucion&id_objop=" + id_objop + "&anyo=" + anyo);
+});
+
+//Activar/Desactivar objetivo manualmente
+$(".activar").change(function () {
+    var id_objop = $(this).data('id_objop');
+    var anyo = $(this).data('anyo');
+    var activo = 0;
+    if ($(this).is(":checked")) {
+        activo = 1;
+    }
+    $.get('index.php?page=objop_ajax&ajax=true&modulo=activar_objetivo', {id_objop: id_objop, anyo: anyo, activo: activo}, function () {
+    });
 });
