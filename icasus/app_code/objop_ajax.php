@@ -7,7 +7,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Edita los grados de ejecucion anuales de un obejtivo operacional
+// Descripcion: Edita los grados de ejecucion anuales de un objetivo operacional
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
