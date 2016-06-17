@@ -197,6 +197,32 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>{$smarty.const.TXT_OBJOP_TIPO}</th>
+                                    <td> 
+                                        {if $objop->descendente}
+                                            {$smarty.const.TXT_OBJOP_DESC}
+                                        {else}
+                                            {$smarty.const.TXT_OBJOP_PROPIO}
+                                        {/if}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_SUBUNID_AFECT}</th>
+                                    <td>
+                                        {if $objetivo_subunidades}
+                                            <ul>
+                                                {foreach $objetivo_subunidades as $objetivo_subunidad}
+                                                    <li>
+                                                        <a title="{$objetivo_subunidad->entidad->etiqueta}" href="index.php?page=entidad_mostrar&id_entidad={$objetivo_subunidad->entidad->id}">{$objetivo_subunidad->entidad->etiqueta}</a>
+                                                    </li>
+                                                {/foreach}
+                                            </ul>
+                                        {else}
+                                            {$smarty.const.MSG_OBJOP_NO_SUBUNID_ASIG}
+                                        {/if}
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <td> 
                                         <div class="progress">

@@ -16,6 +16,8 @@ class ObjetivoOperacional extends ADOdb_Active_Record
     public $_table = 'objetivos_operacionales';
     public $objest;
     public $responsable;
+    public $indicadores_correlacion;
+    public $indicadores_control;
 
     public function load_joined($condicion)
     {
@@ -23,8 +25,17 @@ class ObjetivoOperacional extends ADOdb_Active_Record
         {
             $this->objest = new ObjetivoEstrategico();
             $this->objest->load_joined("id = $this->id_objest");
+
             $this->responsable = new Usuario();
             $this->responsable->load("id=$this->id_responsable");
+
+            $objetivo_indicador = new ObjetivoIndicador();
+            $objetivo_indicadores_correlacion = $objetivo_indicador->Find("id_objop = $this->id AND control=0");
+            $this->indicadores_correlacion = $objetivo_indicadores_correlacion;
+
+            $objetivo_indicadores_control = $objetivo_indicador->Find("id_objop = $this->id AND control=1");
+            $this->indicadores_control = $objetivo_indicadores_control;
+
             return true;
         }
         else
@@ -43,6 +54,7 @@ class ObjetivoOperacional extends ADOdb_Active_Record
                 $objest = new ObjetivoEstrategico();
                 $objest->load_joined("id= $obj->id_objest");
                 $obj->objest = $objest;
+
                 $responsable = new Usuario();
                 $responsable->load("id=$obj->id_responsable");
                 $obj->responsable = $responsable;

@@ -49,6 +49,7 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
     $objop->indice = filter_input(INPUT_POST, 'indice', FILTER_SANITIZE_NUMBER_INT);
     $objop->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $objop->id_responsable = filter_input(INPUT_POST, 'id_responsable', FILTER_SANITIZE_NUMBER_INT);
+    $objop->descendente = filter_input(INPUT_POST, 'tipo_objop', FILTER_SANITIZE_NUMBER_INT);
     $objop->save();
 
     $post_array = filter_input_array(INPUT_POST);

@@ -580,6 +580,7 @@ define('MSG_OBJOP_BORRAR', 'No tiene permisos para borrar el objetivo operaciona
 define('MSG_OBJOP_NO_INDICS_CORREL', 'No se han definido los indicadores de correlación para este objetivo operacional.');
 define('MSG_OBJOP_NO_INDICS_CONTROL', 'No se han definido los indicadores de control para este objetivo operacional.');
 define('MSG_OBJOP_VALOR_EJ', 'Debe introducir un valor para la ejecución entre 0 y 100 (%).');
+define('MSG_OBJOP_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este objetivo operacional (corregir).');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');

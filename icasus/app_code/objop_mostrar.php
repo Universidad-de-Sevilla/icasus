@@ -96,6 +96,11 @@ if (filter_has_var(INPUT_GET, 'id_objop'))
     }
     $smarty->assign('indicadores_control', $indicadores_control);
 
+    //Unidades
+    $objetivo_subunidad = new ObjetivoUnidad();
+    $objetivo_subunidades = $objetivo_subunidad->Find_entidades("id_objop = $id_objop");
+    $smarty->assign("objetivo_subunidades", $objetivo_subunidades);
+
     $entidad = new Entidad();
     $id_entidad = $linea->plan->id_entidad;
     $entidad->load("id = $id_entidad");
