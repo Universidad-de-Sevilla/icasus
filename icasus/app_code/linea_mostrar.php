@@ -14,9 +14,8 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
-if (filter_has_var(INPUT_GET, 'id_linea') AND filter_has_var(INPUT_GET, 'id_plan'))
+if (filter_has_var(INPUT_GET, 'id_linea'))
 {
-    $id_plan = filter_input(INPUT_GET, 'id_plan', FILTER_SANITIZE_NUMBER_INT);
     $id_linea = filter_input(INPUT_GET, 'id_linea', FILTER_SANITIZE_NUMBER_INT);
 
     //Obtenemos los datos de la línea
@@ -25,6 +24,7 @@ if (filter_has_var(INPUT_GET, 'id_linea') AND filter_has_var(INPUT_GET, 'id_plan
     $smarty->assign('linea', $linea);
 
     //Obtener todas las líneas para avanzar o retroceder 
+    $id_plan = $linea->id_plan;
     $lineas = $linea->Find("id_plan = $id_plan");
     $smarty->assign("lineas", $lineas);
     $cont = 0;

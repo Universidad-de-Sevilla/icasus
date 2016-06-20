@@ -9,15 +9,15 @@
 // Descripcion: Editar una línea estratégica existente
 //---------------------------------------------------------------------------------------------------
 
-if (filter_has_var(INPUT_GET, 'id_linea') && filter_has_var(INPUT_GET, 'id_plan') && $control)
+if (filter_has_var(INPUT_GET, 'id_linea') && $control)
 {
     $id_linea = filter_input(INPUT_GET, 'id_linea', FILTER_SANITIZE_NUMBER_INT);
-    $id_plan = filter_input(INPUT_GET, 'id_plan', FILTER_SANITIZE_NUMBER_INT);
 
     $linea = new Linea();
     $linea->load("id=$id_linea");
     $smarty->assign('linea', $linea);
 
+    $id_plan = $linea->id_plan;
     $plan = new Plan();
     $plan->load("id = $id_plan");
     $smarty->assign('plan', $plan);
