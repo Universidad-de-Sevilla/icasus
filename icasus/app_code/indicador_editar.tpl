@@ -307,7 +307,10 @@
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name="criterios_efqm[]" id="criterios_efqm" multiple>
                                 {foreach $criterios_efqm as $criterio_efqm}
-                                    <option value="{$criterio_efqm->id}" {if $indicador->criterios_efqm[0]->criterio_efqm->id == $criterio_efqm->id}selected{/if}>
+                                    <option value="{$criterio_efqm->id}" 
+                                            {foreach $indicador->criterios_efqm as $indi_efqm}
+                                                {if $indi_efqm->id_criterio_efqm == $criterio_efqm->id}selected{/if}
+                                            {/foreach}>
                                         {$criterio_efqm->codigo} - {$criterio_efqm->nombre}
                                     </option>
                                 {/foreach}
