@@ -14,7 +14,8 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
 {
     $id_linea = filter_input(INPUT_POST, 'id_linea', FILTER_SANITIZE_NUMBER_INT);
     $linea = new Linea();
-    $linea->load("id=$id_linea");
+    $linea->load_joined("id=$id_linea");
+    $id_entidad = $linea->plan->id_entidad;
     $objest = new ObjetivoEstrategico();
     $exito = MSG_OBJEST_CREADO . ' ' . $linea->indice . '. ' . $linea->nombre;
     // Si viene el id es que estamos editando un objetivo estratégico existente
@@ -37,7 +38,7 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
     $objest->indice = filter_input(INPUT_POST, 'indice', FILTER_SANITIZE_NUMBER_INT);
     $objest->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $objest->save();
-    header("Location: index.php?page=objest_mostrar&id_objest=$objest->id&id_linea=$linea->id&exito=$exito");
+    header("Location: index.php?page=objest_mostrar&id_objest=$objest->id&id_entidad=$id_entidad&exito=$exito");
 }
 else
 {

@@ -14,17 +14,17 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
-if (filter_has_var(INPUT_GET, 'id_linea') AND filter_has_var(INPUT_GET, 'id_objest'))
+if (filter_has_var(INPUT_GET, 'id_objest'))
 {
     $id_objest = filter_input(INPUT_GET, 'id_objest', FILTER_SANITIZE_NUMBER_INT);
-    $id_linea = filter_input(INPUT_GET, 'id_linea', FILTER_SANITIZE_NUMBER_INT);
 
     //Obtenemos los datos del objetivo estratégico
     $objest = new ObjetivoEstrategico();
     $objest->load("id = $id_objest");
     $smarty->assign('objest', $objest);
 
-    //Obtener todos los objetivos estratégicos para avanzar o retroceder 
+    //Obtener todos los objetivos estratégicos para avanzar o retroceder
+    $id_linea = $objest->id_linea;
     $objests = $objest->Find("id_linea = $id_linea");
     $smarty->assign("objests", $objests);
     $cont = 0;

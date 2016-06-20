@@ -14,7 +14,7 @@
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i
                         class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href="index.php?page=objest_borrar&id_objest={$objest->id}&id_linea={$linea->id}"><i
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href="index.php?page=objest_borrar&id_objest={$objest->id}&id_entidad={$entidad->id}"><i
                         class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
             </div>
         </div>
@@ -62,16 +62,16 @@
                         <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($objests)} {$smarty.const.FIELD_OBJS_EST}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_OBJ_EST}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objest_mostrar&id_linea={$linea->id}&id_objest={$objests[0]->id}'>
+                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_OBJ_EST}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}&id_objest={$objests[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_OBJ_EST}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objest_mostrar&id_linea={$linea->id}&id_objest={$objests[$indice-1]->id}'>
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_OBJ_EST}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}&id_objest={$objests[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_OBJ_EST}" class="btn btn-danger btn-xs {if $indice == (count($objests)-1)}disabled{/if}" href='index.php?page=objest_mostrar&id_linea={$linea->id}&id_objest={$objests[$indice+1]->id}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_OBJ_EST}" class="btn btn-danger btn-xs {if $indice == (count($objests)-1)}disabled{/if}" href='index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}&id_objest={$objests[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_OBJ_EST}" class="btn btn-danger btn-xs {if $indice == (count($objests)-1)}disabled{/if}" href='index.php?page=objest_mostrar&id_linea={$linea->id}&id_objest={$objests[(count($objests)-1)]->id}'>
+                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_OBJ_EST}" class="btn btn-danger btn-xs {if $indice == (count($objests)-1)}disabled{/if}" href='index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}&id_objest={$objests[(count($objests)-1)]->id}'>
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
@@ -142,7 +142,7 @@
             </li>
             <!-- /.dropdown -->
             <li><a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}</a></li>
-            <li><a title="{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}" href='index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$linea->id}'>{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}" href='index.php?page=linea_mostrar&id_entidad={$entidad->id}&id_linea={$linea->id}'>{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -187,6 +187,12 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>{$smarty.const.FIELD_LINEA}</th>
+                                    <td> 
+                                        <a title="{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}" href='index.php?page=linea_mostrar&id_entidad={$entidad->id}&id_linea={$linea->id}'>{$linea->indice}. {$linea->nombre}</a>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <td> 
                                         <div class="progress">
@@ -200,8 +206,8 @@
                         </table>
                         {if $_control}
                             <div id="botones_ficha" class="btn-toolbar hidden" role="toolbar" aria-label="">
-                                <a title="{$smarty.const.TXT_OBJEST_EDIT}" class="btn btn-default btn-danger" href="index.php?page=objest_editar&id_objest={$objest->id}&id_linea={$linea->id}">
-                                    <i class="fa fa-long-arrow-right fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
+                                <a title="{$smarty.const.TXT_OBJEST_EDIT}" class="btn btn-default btn-danger" href="index.php?page=objest_editar&id_objest={$objest->id}&id_entidad={$plan->id_entidad}">
+                                    <i class="fa fa-dot-circle-o fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                                 </a>
                                 <a title="{$smarty.const.TXT_OBJEST_BORRAR}" class="btn btn-default btn-danger" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_objest">
                                     <i class="fa fa-trash fa-fw"></i>
@@ -310,11 +316,11 @@
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
                                             {if $_control}
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=objop_editar&id_objop={$objop->id}&id_objest={$objop->id_objest}">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=objop_editar&id_objop={$objop->id}&id_entidad={$entidad->id}">
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_OBJOP_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_objop"
-                                                   data-id_objest="{$objop->id_objest}" data-nombre="{$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}" data-id_objop="{$objop->id}">
+                                                   data-id_entidad="{$plan->id_entidad}" data-nombre="{$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}" data-id_objop="{$objop->id}">
                                                     <i class="fa fa-trash fa-fw"></i>
                                                 </a>
                                             {/if}
