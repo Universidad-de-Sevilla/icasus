@@ -20,9 +20,9 @@ $('#dialogo_confirmar_borrado_linea').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var nombre = button.data('nombre');
     var id_linea = button.data('id_linea');
-    var id_plan = button.data('id_plan');
+    var id_entidad = button.data('id_entidad');
     var modal = $(this);
-    var link = 'index.php?page=linea_borrar&id_plan=' + id_plan + '&id_linea=' + id_linea;
+    var link = 'index.php?page=linea_borrar&id_entidad=' + id_entidad + '&id_linea=' + id_linea;
     modal.find('#nombre_linea').text(nombre);
     modal.find('#borrar').attr('href', link);
 });
@@ -31,10 +31,10 @@ $('#dialogo_confirmar_borrado_linea').on('show.bs.modal', function (event) {
 $('#dialogo_confirmar_borrado_objest').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var nombre = button.data('nombre');
-    var id_linea = button.data('id_linea');
+    var id_entidad = button.data('id_entidad');
     var id_objest = button.data('id_objest');
     var modal = $(this);
-    var link = 'index.php?page=objest_borrar&id_objest=' + id_objest + '&id_linea=' + id_linea;
+    var link = 'index.php?page=objest_borrar&id_objest=' + id_objest + '&id_entidad=' + id_entidad;
     modal.find('#nombre_objest').text(nombre);
     modal.find('#borrar').attr('href', link);
 });
@@ -44,9 +44,9 @@ $('#dialogo_confirmar_borrado_objop').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var nombre = button.data('nombre');
     var id_objop = button.data('id_objop');
-    var id_objest = button.data('id_objest');
+    var id_entidad = button.data('id_entidad');
     var modal = $(this);
-    var link = 'index.php?page=objop_borrar&id_objest=' + id_objest + '&id_objop=' + id_objop;
+    var link = 'index.php?page=objop_borrar&id_entidad=' + id_entidad + '&id_objop=' + id_objop;
     modal.find('#nombre_objop').text(nombre);
     modal.find('#borrar').attr('href', link);
 });
