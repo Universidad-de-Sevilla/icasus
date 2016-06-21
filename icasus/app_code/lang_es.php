@@ -660,6 +660,7 @@ define('ERR_CUAD_MANDO_EDIT', 'El cuadro de mando no existe o no tiene permisos 
 //Datos
 define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo dato.');
 define('ERR_DATO_BORRAR_MED', 'Tiene mediciones asociadas al dato, necesita borrar primero las mediciones.');
+define('ERR_DATO_BORRAR_OBJOP', 'No se puede borrar el dato, está asociado al menos con un objetivo operacional de un plan estratégico.');
 define('ERR_DATO_BORRAR_NO_AUT', 'No tiene permisos para borrar el dato.');
 define('ERR_DATO_GRABAR', 'No se ha podido grabar el dato.');
 define('ERR_DATO_MOSTRAR', 'No se puede mostrar el dato, el identificador no existe en la base de datos.');
@@ -682,6 +683,7 @@ define('ERR_PARAM_GRAFIC', 'Faltan parámetros para mostrar la gráfica.');
 //Indicadores
 define('ERR_INDIC_BORRAR_MED', 'Tiene mediciones asociadas al indicador, necesita borrar primero las mediciones.');
 define('ERR_INDIC_BORRAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
+define('ERR_INDIC_BORRAR_OBJOP', 'No se puede borrar el indicador, está asociado al menos con un objetivo operacional de un plan estratégico.');
 define('ERR_INDIC_BORRAR_NO_AUT', 'No tiene permisos para borrar el indicador.');
 define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar indicadores/datos de esta unidad');
 define('ERR_INDIC_GRABAR', 'No se ha podido grabar el indicador.');
