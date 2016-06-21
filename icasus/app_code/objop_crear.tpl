@@ -63,8 +63,8 @@
             </li>
             <!-- /.dropdown -->
             <li><a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}</a></li>
-            <li><a title="{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}" href='index.php?page=linea_mostrar&id_plan={$plan->id}&id_linea={$linea->id}'>{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre|truncate:30}</a></li>
-            <li><a title="{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$linea->id}'>{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}" href='index.php?page=linea_mostrar&id_entidad={$entidad->id}&id_linea={$linea->id}'>{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$linea->id}'>
+                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$plan->id_entidad}'>
                                 <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                             </a>
                             <div class="pull-right">
@@ -174,7 +174,7 @@
                             <button id="btn_prev_objop" title="{$smarty.const.TXT_ANT}" type="button" class="btn btn-primary btnPrev">
                                 <i class=" fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_ANT}
                             </button>
-                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$linea->id}'>
+                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$plan->id_entidad}'>
                                 <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                             </a>
                             <div class="pull-right">
@@ -246,7 +246,7 @@
                             <button id="btn_prev_indicadores" title="{$smarty.const.TXT_ANT}" type="button" class="btn btn-primary btnPrev">
                                 <i class=" fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_ANT}
                             </button>
-                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$linea->id}'>
+                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$plan->id_entidad}'>
                                 <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                             </a>   
                             <div class="pull-right">
