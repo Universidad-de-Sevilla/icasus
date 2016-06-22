@@ -531,6 +531,7 @@
                                     <th>{$smarty.const.FIELD_INDICE}</th>
                                     <th>{$smarty.const.FIELD_OBJ_OP}</th>
                                     <th>{$smarty.const.FIELD_OBJ_EST}</th>
+                                    <th>{$smarty.const.FIELD_LINEA}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
@@ -550,6 +551,9 @@
                                         </td>
                                         <td>
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objop->id_objest}&id_entidad={$plan->id_entidad}">{$objop->objest->linea->indice}.{$objop->objest->indice}. {$objop->objest->nombre}</a>
+                                        </td>
+                                        <td>
+                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=linea_mostrar&id_linea={$objop->objest->id_linea}&id_entidad={$plan->id_entidad}">{$objop->objest->linea->indice}. {$objop->objest->linea->nombre}</a>
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$objop->id_responsable}'>

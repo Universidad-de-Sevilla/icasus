@@ -68,6 +68,11 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
     $cuadros = $cuadro->Find_joined("id_usuario = $persona->id");
     $smarty->assign('cuadros_propios', $cuadros);
 
+    // Objetivos operacionales bajo la responsabilidad de este usuario
+    $objop = new ObjetivoOperacional();
+    $objops = $objop->Find_joined("id_responsable = $persona->id");
+    $smarty->assign('objops_propios', $objops);
+
     if (is_array($indicadores) && is_array($datos))
     {
         $indicadores_datos = array_merge($indicadores, $datos);

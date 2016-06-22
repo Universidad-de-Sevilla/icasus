@@ -134,6 +134,11 @@ if (isset($_SESSION['usuario']))
     // Cuadros de mando propios del usuario
     $cuadros_propios = $cuadro->Find("id_usuario = $usuario->id");
     $smarty->assign('num_cuadros_propios', count($cuadros_propios));
+
+    // Objetivos operacionales bajo la responsabilidad de este usuario
+    $objop = new ObjetivoOperacional();
+    $objops_propios = $objop->Find("id_responsable = $usuario->id");
+    $smarty->assign('num_objops_propios', count($objops_propios));
 }
 //Si no se ha iniciado sesión cargamos la página de login
 else

@@ -21,7 +21,7 @@ class Linea extends ADOdb_Active_Record
         if ($this->load($condicion))
         {
             $this->plan = new Plan();
-            $this->plan->load("id = $this->id_plan");
+            $this->plan->load_joined("id = $this->id_plan");
             return true;
         }
         else
@@ -38,7 +38,7 @@ class Linea extends ADOdb_Active_Record
             foreach ($lineas as $linea)
             {
                 $plan = new Plan();
-                $plan->load("id= $linea->id_plan");
+                $plan->load_joined("id= $linea->id_plan");
                 $linea->plan = $plan;
             }
         }

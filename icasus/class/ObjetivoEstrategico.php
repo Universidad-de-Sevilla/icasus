@@ -21,7 +21,7 @@ class ObjetivoEstrategico extends ADOdb_Active_Record
         if ($this->load($condicion))
         {
             $this->linea = new Linea();
-            $this->linea->load("id = $this->id_linea");
+            $this->linea->load_joined("id = $this->id_linea");
             return true;
         }
         else
@@ -38,7 +38,7 @@ class ObjetivoEstrategico extends ADOdb_Active_Record
             foreach ($objetivos_est as $obj)
             {
                 $linea = new Linea();
-                $linea->load("id= $obj->id_linea");
+                $linea->load_joined("id= $obj->id_linea");
                 $obj->linea = $linea;
             }
         }

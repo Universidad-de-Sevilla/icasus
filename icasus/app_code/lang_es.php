@@ -369,6 +369,7 @@ define('TXT_USER_PROCS', 'Mis procesos');
 define('TXT_USER_INDIC', 'Mis indicadores');
 define('TXT_USER_DATO', 'Mis datos');
 define('TXT_USER_CUADROS', 'Mis cuadros de mando');
+define('TXT_USER_OBJOPS', 'Mis objetivos operacionales');
 define('TXT_USERS_ASIG', 'Usuarios asignados actualmente');
 define('TXT_USERS_DISP', 'Usuarios disponibles');
 define('TXT_USERS_VINC', 'Vincular usuarios');
@@ -581,6 +582,7 @@ define('MSG_OBJOP_NO_INDICS_CORREL', 'No se han definido los indicadores de corr
 define('MSG_OBJOP_NO_INDICS_CONTROL', 'No se han definido los indicadores de control para este objetivo operacional.');
 define('MSG_OBJOP_VALOR_EJ', 'Debe introducir un valor para la ejecución entre 0 y 100 (%).');
 define('MSG_OBJOP_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este objetivo operacional (corregir).');
+define('MSG_OBJOP_NO_ASIG', 'No dispone de objetivos operacionales bajo su responsabilidad.');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
