@@ -24,7 +24,7 @@ if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entida
     $lineas_plan = $linea->Find("id_plan=$id_plan");
     if (!$lineas_plan && $control)
     {
-        $exito = MSG_PLAN_BORRADO . " " . $plan->anyo_inicio . "-" . ($plan->anyo_inicio + $plan->duracion);
+        $exito = MSG_PLAN_BORRADO . " " . $plan->anyo_inicio . "-" . ($plan->anyo_inicio + $plan->duracion - 1);
         $plan->delete();
         header("Location: index.php?page=entidad_mostrar&id_entidad=$id_entidad&exito=$exito");
     }

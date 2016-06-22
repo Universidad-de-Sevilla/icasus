@@ -33,7 +33,7 @@ if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entida
     }
     $smarty->assign('elementos', $anyos);
 
-    $smarty->assign('_nombre_pagina', TXT_PLAN_EDIT . ' ' . $plan->anyo_inicio . "-" . ($plan->anyo_inicio + $plan->duracion) . ': ' . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', TXT_PLAN_EDIT . ' ' . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion - 1) . ': ' . $entidad->nombre);
     $plantilla = 'plan_editar.tpl';
 }
 else

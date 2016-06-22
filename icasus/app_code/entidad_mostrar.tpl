@@ -463,8 +463,8 @@
                                 {foreach from=$planes item=plan} 
                                     <tr>  
                                         <td>
-                                            <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}" href="index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
-                                                {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}
+                                            <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}" href="index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                                {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}
                                             </a>
                                         </td>
                                         <td>
@@ -490,7 +490,7 @@
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PLAN_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_plan"
-                                                   data-id_plan="{$plan->id}" data-periodo_plan="{$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}" data-id_entidad="{$plan->id_entidad}">
+                                                   data-id_plan="{$plan->id}" data-periodo_plan="{$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}" data-id_entidad="{$plan->id_entidad}">
                                                     <i class="fa fa-trash fa-fw"></i>
                                                 </a>
                                             {/if}

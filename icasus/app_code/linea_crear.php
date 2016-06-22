@@ -29,7 +29,7 @@ if (filter_has_var(INPUT_GET, 'id_plan') && $control)
     $smarty->assign('elementos', $indices);
 
     $smarty->assign('entidad', $entidad);
-    $smarty->assign('_nombre_pagina', TXT_LINEA_CREAR . ': ' . FIELD_PLAN . " " . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion));
+    $smarty->assign('_nombre_pagina', TXT_LINEA_CREAR . ': ' . FIELD_PLAN . " " . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion - 1));
     $plantilla = 'linea_crear.tpl';
 }
 else

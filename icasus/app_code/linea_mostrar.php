@@ -46,7 +46,7 @@ if (filter_has_var(INPUT_GET, 'id_linea'))
     //Obtenemos sus ejecuciones anuales
     $ejecucion = new Ejecucion();
     $ejecucion_anual = array();
-    for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion); $i++)
+    for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
     {
         if ($ejecucion->Load("id_linea=$linea->id AND anyo=$i"))
         {

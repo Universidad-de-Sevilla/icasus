@@ -27,7 +27,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
     //Obtenemos sus ejecuciones anuales
     $ejecucion = new Ejecucion();
     $ejecucion_anual = array();
-    for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion); $i++)
+    for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
     {
         if ($ejecucion->Load("id_plan=$plan->id AND anyo=$i"))
         {
@@ -88,7 +88,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
     $smarty->assign('entidad', $entidad);
 
     $smarty->assign('_javascript', array('plan_mostrar'));
-    $smarty->assign('_nombre_pagina', FIELD_PLAN . " " . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion) . ': ' . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', FIELD_PLAN . " " . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion - 1) . ': ' . $entidad->nombre);
     $plantilla = 'plan_mostrar.tpl';
 }
 else

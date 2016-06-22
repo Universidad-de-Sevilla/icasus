@@ -100,7 +100,7 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
         $plan = new Plan();
         $id_plan = $objest->linea->id_plan;
         $plan->load("id=$id_plan");
-        for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion); $i++)
+        for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
         {
             $ejecucion = new Ejecucion();
             $ejecucion->id_objop = $objop->id;

@@ -6,7 +6,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                         aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title" id="myModalLabel">
-                    <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PLAN_BORRAR}: {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion}</h3>
+                    <i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PLAN_BORRAR}: {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_PLAN_CONFIRM_BORRAR}</p>
@@ -235,7 +235,7 @@
                             <tbody>
                                 <tr>
                                     <th>{$smarty.const.FIELD_PLAN}</th>
-                                    <td><span class="label label-default">{$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}</span></td>
+                                    <td><span class="label label-default">{$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}</span></td>
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_TITULO}</th>
@@ -320,7 +320,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-red">
                             <div class="panel-heading">
-                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion)}</span>
+                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}</span>
                                 <i class="fa fa-chevron-up pull-right clickable"></i>
                             </div>
                             <!-- /.panel-heading -->
@@ -333,7 +333,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion)}}
+                                        {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
                                             <tr>
                                                 <td><span class="label label-default">{$i}</span></td>
                                                 <td>
