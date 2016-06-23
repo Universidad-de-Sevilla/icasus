@@ -40,6 +40,26 @@ if (filter_has_var(INPUT_GET, 'texto_buscar'))
     $cuadros_public = $cuadro->Find_joined("upper(nombre) LIKE '%$textob%' AND privado=0");
     $smarty->assign('cuadros_publicos', $cuadros_public);
 
+    //Buscar planes estratégicos
+    $plan = new Plan();
+    $planes = $plan->Find_joined("upper(titulo) LIKE '%$textob%' OR CAST(anyo_inicio as char) LIKE '%$textob%' OR CAST((anyo_inicio+duracion-1) as char) LIKE '%$textob%'");
+    $smarty->assign('planes', $planes);
+
+    //Buscar líneas estratégicas
+    $linea = new Linea();
+    $lineas = $linea->Find_joined("upper(nombre) LIKE '%$textob%'");
+    $smarty->assign('lineas', $lineas);
+
+    //Buscar objetivos estratégicos
+    $objest = new ObjetivoEstrategico();
+    $objests = $objest->Find_joined("upper(nombre) LIKE '%$textob%'");
+    $smarty->assign('objests', $objests);
+
+    //Buscar objetivos operacionales
+    $objop = new ObjetivoOperacional();
+    $objops = $objop->Find_joined("upper(nombre) LIKE '%$textob%'");
+    $smarty->assign('objops', $objops);
+
     $smarty->assign("_nombre_pagina", TXT_BUSCAR_RESUL . '"' . $texto . '"');
     $plantilla = "busqueda.tpl";
 }
