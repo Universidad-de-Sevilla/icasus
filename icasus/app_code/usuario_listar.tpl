@@ -47,8 +47,8 @@
                             </td>
                             <td style="font-size: 12px">{$usuario->nombre}</td>
                             <td style="font-size: 12px">{$usuario->apellidos}</td>       
-                            <td><a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->correo}'>{$usuario->correo}</a></td>
-                            <td><a title="{$smarty.const.TXT_LLAMAR_TLF}" href='tel:+34{$usuario->telefono}'>{$usuario->telefono}</a></td>
+                            <td>{if $usuario->correo}<a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->correo}'>{$usuario->correo}</a>{else}---{/if}</td>
+                            <td>{if $usuario->telefono}<a title="{$smarty.const.TXT_LLAMAR_TLF}" href='tel:+34{$usuario->telefono}'>{$usuario->telefono}</a>{else}---{/if}</td>
                             <td style="white-space:nowrap">
                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'><i class="fa fa-user fa-fw"></i></a>                 
                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->correo}'><i class="fa fa-envelope fa-fw"></i></a>

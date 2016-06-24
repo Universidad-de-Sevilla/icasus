@@ -534,6 +534,7 @@ define('MSG_PROC_MAPA', 'Para agregar/editar el mapa de procesos de su unidad, p
 define('MSG_USER_BORRADO', 'Se ha borrado el usuario.');
 define('MSG_USER_CREADO', 'Se ha creado un nuevo usuario en el sistema.');
 define('MSG_USER_EDITADO', 'El usuario se ha modificado correctamente.');
+define('MSG_USER_CONFIRM_EDITAR', 'Va a editar este usuario, ¿está seguro?');
 define('MSG_USERS_CONFIRM_VINC', '¿Desea vincular a la unidad los usuarios marcados?');
 define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la unidad los usuarios marcados?');
 
@@ -641,7 +642,6 @@ define('ERR_PROC_GRABAR', 'Ha ocurrido un error al grabar el proceso.');
 define('ERR_LOGIN', 'Usuario o clave incorrecta.');
 define('ERR_LOGIN_SSO', 'El usuario pertenece al colectivo que tiene permiso para utilizar esta herramienta pero no se ha podido dar de alta en la herramienta. Contactar con icasus@us.es');
 define('ERR_LOGIN_SSO_AUT', 'La relacion de este usuario con la Universidad no es la definida para utilizar esta herramienta. Contactar con icasus@us.es');
-define('ERR_USER_EDIT_NO_AUT', 'No tiene permiso para editar a este usuario.');
 
 //Valores
 define('ERR_VAL_GRABAR', 'Se ha producido un error, no se ha grabado el valor.');
