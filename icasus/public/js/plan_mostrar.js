@@ -50,3 +50,16 @@ $('#dialogo_confirmar_borrado_objop').on('show.bs.modal', function (event) {
     modal.find('#nombre_objop').text(nombre);
     modal.find('#borrar').attr('href', link);
 });
+
+//Resúmenes
+$('#anyo').on('change', function () {
+    var id_plan = $('#anyo').data('id_plan');
+    var anyo = $('#anyo').val();
+    $('#plan_anyo').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
+    $.ajax({
+        url: "index.php?page=plan_ajax&ajax=true&id_plan=" + id_plan + "&anyo=" + anyo,
+        success: function () {
+            $('#plan_anyo').load("index.php?page=plan_ajax&ajax=true&id_plan=" + id_plan + "&anyo=" + anyo);
+        }
+    });
+});
