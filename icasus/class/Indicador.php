@@ -152,8 +152,14 @@ class Indicador extends ADOdb_Active_Record
                 $visibilidad->load("id = $indicador->id_visibilidad");
                 $indicador->visibilidad = $visibilidad;
 
+                $query = "SELECT m.id FROM mediciones m JOIN valores v ON m.id = v.id_medicion "
+                        . "WHERE m.id_indicador=$indicador->id AND v.valor is NOT NULL ORDER BY m.periodo_inicio DESC LIMIT 1";
+                $adodb = $this->DB();
+                $array_result = $adodb->getall($query);
+
                 $medicion = new Medicion();
-                $medicion->Load("id_indicador = $indicador->id ORDER BY periodo_inicio DESC LIMIT 1");
+                $id_medicion = $array_result[0][0];
+                $medicion->Load("id= $id_medicion");
                 $indicador->medicion = $medicion;
             }
         }
