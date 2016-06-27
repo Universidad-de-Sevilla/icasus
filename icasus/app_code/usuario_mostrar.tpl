@@ -233,7 +233,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div id="botones_ficha" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                    <div id="botones_ficha_usuario" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <a title="{$smarty.const.TXT_USER_EDIT}" class="btn btn-default btn-danger" href='index.php?page=usuario_editar&id_usuario={$persona->id}'>
                             <i class="fa fa-user fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                         </a>

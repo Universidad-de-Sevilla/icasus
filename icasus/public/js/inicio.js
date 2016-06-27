@@ -68,6 +68,6 @@ $('#dialogo_confirmar_borrado_cuadro').on('show.bs.modal', function (event) {
 
 //Botones de edición de usuario
 $(document).ready(function () {
-    var botones_ficha = $('#botones_ficha').html();
+    var botones_ficha = $('#botones_ficha_usuario').html();
     $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
 });
