@@ -65,3 +65,9 @@ $('#dialogo_confirmar_borrado_cuadro').on('show.bs.modal', function (event) {
     modal.find('#nombre_cuadro').text(nombre_cuadro);
     modal.find('#borrar').attr('href', link);
 });
+
+//Botones de edición de usuario
+$(document).ready(function () {
+    var botones_ficha = $('#botones_ficha_usuario').html();
+    $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
+});

@@ -285,8 +285,9 @@
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
-                                        <td>{$indicador->medicion->etiqueta}</td>
+                                        <td>{if $indicador->medicion->etiqueta}{$indicador->medicion->etiqueta}{else}---{/if}</td>
                                         <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])!== NULL}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
+                                            {if $indicador->medicion->etiqueta}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
                                                 {if $indicador->calculo}
@@ -295,6 +296,7 @@
                                                         <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
                                                     {/if}
                                             </a>
+                                            {/if}
                                         </td>
                                          <td class="text-center"> 
                                             {if isset($status[$indicador->id])}

@@ -87,7 +87,7 @@
                                                 {$smarty.const.TXT_PRIVADO}
                                             {/if}
                                         </td>
-                                        <td>{$cuadro->comentarios}</td>
+                                        <td>{if $cuadro->comentarios}{$cuadro->comentarios}{else}---{/if}</td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}"><i class="fa fa-eye fa-fw"></i></a>                 
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}'><i class="fa fa-pencil fa-fw"></i></a>   
@@ -133,7 +133,7 @@
                                             {else}{$smarty.const.TXT_PRIVADO}
                                             {/if}
                                         </td>
-                                        <td>{$cuadro->comentarios}</td>
+                                        <td>{if $cuadro->comentarios}{$cuadro->comentarios}{else}---{/if}</td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}"><i class="fa fa-eye fa-fw"></i></a>
                                                 {if $cuadro->id_usuario == $_usuario->id}
