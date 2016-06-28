@@ -105,6 +105,19 @@
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="madre" class="col-sm-2 control-label">{$smarty.const.FIELD_PROC_MADRE}</label>
+                        <div class="col-sm-8">
+                            <select class="form-control chosen-select" name='madre' id='madre'>
+                                <option value="0">{$smarty.const.TXT_PROC_ES_MADRE}</option>
+                                {foreach from=$procesos_madre item=proceso_madre}
+                                    <option value="{$proceso_madre->id}" {if $proceso_madre->id == $proceso->id_madre} selected {/if}>
+                                        {$proceso_madre->codigo} - {$proceso_madre->nombre}
+                                    </option>
+                                {/foreach} 
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group has-feedback">
                         <label for="revision" class="col-sm-2 control-label">{$smarty.const.FIELD_VERSION} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
@@ -132,19 +145,6 @@
                                 <option value="2-Operativo" {if $proceso->alcance == '2-Operativo'} selected {/if}>{$smarty.const.TXT_OPERATIVO}</option>
                                 <option value="3-Apoyo" {if $proceso->alcance == '3-Apoyo'} selected {/if}>{$smarty.const.TXT_APOYO}</option>
                                 <option value="Indefinido" {if $proceso->alcance == 'Indefinido'} selected {/if}>{$smarty.const.TXT_INDEF}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="madre" class="col-sm-2 control-label">{$smarty.const.FIELD_PROC_MADRE}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name='madre' id='madre'>
-                                <option value="0">{$smarty.const.TXT_PROC_ES_MADRE}</option>
-                                {foreach from=$procesos_madre item=proceso_madre}
-                                    <option value="{$proceso_madre->id}" {if $proceso_madre->id == $proceso->id_madre} selected {/if}>
-                                        {$proceso_madre->codigo} - {$proceso_madre->nombre}
-                                    </option>
-                                {/foreach} 
                             </select>
                         </div>
                     </div>
