@@ -279,7 +279,7 @@
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
-                                        <td>{$indicador->medicion->etiqueta}</td>
+                                        <td>{if $indicador->medicion->etiqueta}{$indicador->medicion->etiqueta}{else}---{/if}</td>
                                         <td style="white-space: nowrap">
                                             {if ($totales[$indicador->id])!== NULL}
                                                 {if isset($status[$indicador->id])}
@@ -296,14 +296,16 @@
                                             {else}
                                                 ---
                                             {/if}
-                                            <a class="btn btn-default btn-circle btn-xs" 
-                                               href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
-                                                {if $indicador->calculo}
-                                                    <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
-                                                {else}
-                                                    <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
-                                                {/if}
-                                            </a>
+                                            {if $indicador->medicion->etiqueta}
+                                                <a class="btn btn-default btn-circle btn-xs" 
+                                                   href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
+                                                    {if $indicador->calculo}
+                                                        <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
+                                                    {else}
+                                                        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+                                                    {/if}
+                                                </a>
+                                            {/if}
                                         </td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" target="_blank" href='index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}'>

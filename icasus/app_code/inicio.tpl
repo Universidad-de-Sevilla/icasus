@@ -289,7 +289,7 @@
                                                 {$indicador->responsable_medicion->nombre} 
                                                 {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
-                                        <td>{$indicador->medicion->etiqueta}</td>
+                                        <td>{if $indicador->medicion->etiqueta}{$indicador->medicion->etiqueta}{else}---{/if}</td>
                                         <td style="white-space: nowrap">
                                             {if ($totales[$indicador->id])!== NULL}
                                                 {if isset($status[$indicador->id])}
@@ -306,14 +306,16 @@
                                             {else}
                                                 ---
                                             {/if}
-                                            <a class="btn btn-default btn-circle btn-xs" 
-                                               href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
-                                                {if $indicador->calculo}
-                                                    <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
-                                                {else}
-                                                    <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
-                                                {/if}
-                                            </a>
+                                            {if $indicador->medicion->etiqueta}
+                                                <a class="btn btn-default btn-circle btn-xs" 
+                                                   href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
+                                                    {if $indicador->calculo}
+                                                        <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
+                                                    {else}
+                                                        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+                                                    {/if}
+                                                </a>
+                                            {/if}
                                         </td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
@@ -409,7 +411,7 @@
                                                 {$indicador->responsable_medicion->nombre} 
                                                 {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
-                                        <td>{$indicador->medicion->etiqueta}</td>
+                                        <td>{if $indicador->medicion->etiqueta}{$indicador->medicion->etiqueta}{else}---{/if}</td>
                                         <td style="white-space: nowrap">
                                             {if ($totales[$indicador->id])!== NULL}
                                                 {if isset($status[$indicador->id])}
@@ -426,14 +428,16 @@
                                             {else}
                                                 ---
                                             {/if}
-                                            <a class="btn btn-default btn-circle btn-xs" 
-                                               href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
-                                                {if $indicador->calculo}
-                                                    <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
-                                                {else}
-                                                    <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
-                                                {/if}
-                                            </a>
+                                            {if $indicador->medicion->etiqueta}
+                                                <a class="btn btn-default btn-circle btn-xs" 
+                                                   href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
+                                                    {if $indicador->calculo}
+                                                        <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
+                                                    {else}
+                                                        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+                                                    {/if}
+                                                </a>
+                                            {/if}
                                         </td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" target="_blank" href='index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}'>
@@ -509,7 +513,7 @@
                                                 {$smarty.const.TXT_PRIVADO}
                                             {/if}
                                         </td>
-                                        <td>{$cuadro->comentarios}</td>
+                                        <td>{if $cuadro->comentarios}{$cuadro->comentarios}{else}---{/if}</td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}"><i class="fa fa-eye fa-fw"></i></a>                 
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}'><i class="fa fa-pencil fa-fw"></i></a>   

@@ -158,8 +158,11 @@ class Indicador extends ADOdb_Active_Record
                 $array_result = $adodb->getall($query);
 
                 $medicion = new Medicion();
-                $id_medicion = $array_result[0][0];
-                $medicion->Load("id= $id_medicion");
+                if ($array_result)
+                {
+                    $id_medicion = $array_result[0][0];
+                    $medicion->Load("id= $id_medicion");
+                }
                 $indicador->medicion = $medicion;
             }
         }

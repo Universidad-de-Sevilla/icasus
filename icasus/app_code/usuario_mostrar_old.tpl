@@ -403,8 +403,9 @@
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
-                                        <td>{$indicador->medicion->etiqueta}</td>
+                                        <td>{if $indicador->medicion->etiqueta}{$indicador->medicion->etiqueta}{else}---{/if}</td>
                                         <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])!== NULL}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
+                                            {if $indicador->medicion->etiqueta}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
                                                 {if $indicador->calculo}
@@ -413,6 +414,7 @@
                                                         <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
                                                     {/if}
                                             </a>
+                                            {/if}
                                         </td>
                                          <td class="text-center"> 
                                             {if isset($status[$indicador->id])}
@@ -528,8 +530,9 @@
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
-                                        <td>{$indicador->medicion->etiqueta}</td>
+                                        <td>{if $indicador->medicion->etiqueta}{$indicador->medicion->etiqueta}{else}---{/if}</td>
                                         <td class="text-center" style="white-space: nowrap">{if ($totales[$indicador->id])!== NULL}<span class="badge">{$totales[$indicador->id]|round:"2"}</span>{else}---{/if}
+                                            {if $indicador->medicion->etiqueta}
                                             <a class="btn btn-default btn-circle btn-xs" 
                                                href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato#med_valores">
                                                 {if $indicador->calculo}
@@ -538,6 +541,7 @@
                                                         <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
                                                     {/if}
                                             </a>
+                                            {/if}
                                         </td>
                                          <td class="text-center"> 
                                             {if isset($status[$indicador->id])}
@@ -626,10 +630,10 @@
                                                 {$smarty.const.TXT_PRIVADO}
                                             {/if}
                                         </td>
-                                        <td>{$cuadro->comentarios}</td>
+                                        <td>{if $cuadro->comentarios}{$cuadro->comentarios}{else}---{/if}</td>
                                         <td style="white-space:nowrap">
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}"><i class="fa fa-eye fa-fw"></i></a>                 
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad=14'><i class="fa fa-pencil fa-fw"></i></a>   
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}&id_entidad={$cuadro->entidad->id}"><i class="fa fa-eye fa-fw"></i></a>                 
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->entidad->id}'><i class="fa fa-pencil fa-fw"></i></a>   
                                             <a class="btn btn-default btn-circle btn-xs" data-toggle="modal" data-target="#dialogo_confirmar_borrado_cuadro" 
                                                title="{$smarty.const.TXT_BORRAR}" data-nombre_cuadro="{$cuadro->nombre}" data-id_cuadro="{$cuadro->id}" 
                                                href='javascript:void(0)'><i class="fa fa-trash fa-fw"></i></a>                                            

@@ -391,7 +391,7 @@
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
-                                        <td>{$indicador->medicion->etiqueta}</td>
+                                        <td>{if $indicador->medicion->etiqueta}{$indicador->medicion->etiqueta}{else}---{/if}</td>
                                         <td>
                                             {if ($totales[$indicador->id])!== NULL}
                                                 {if isset($status[$indicador->id])}
