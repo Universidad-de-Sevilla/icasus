@@ -149,7 +149,7 @@ define('TXT_INDIC_LIST', 'Lista de indicadores');
 define('TXT_INDIC_EDIT', 'Editar indicador');
 define('TXT_INDIC_BORRAR', 'Borrar indicador');
 define('TXT_INDIC_ARCHIVAR', 'Archivar indicador');
-define('TXT_INDIC_ARCHIVADO', 'Indicador archivado');
+define('TXT_INDIC_ARCHIVADO', 'Indicador archivado: este indicador ya no está en uso.');
 define('TXT_INDIC_RESTAURAR', 'Restaurar indicador');
 define('TXT_INDICS_COPIAR', 'Copiar indicadores');
 define('TXT_INDICS_DIC', 'Diccionario de indicadores');

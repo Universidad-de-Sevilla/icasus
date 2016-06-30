@@ -18,6 +18,46 @@
 </div>
 <!-- /Diálogo Confirmar Borrado -->
 
+<!-- Diálogo Confirmar Archivado -->
+<div class="modal fade" id="dialogo_confirmar_archivado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hdd-o fa-fw"></i> {$smarty.const.TXT_DATO_ARCHIVAR}: {$dato->nombre}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_DATO_CONFIRM_ARCHIVAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href='index.php?page=dato_archivar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}&modulo=archivar'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Archivado -->
+
+<!-- Diálogo Confirmar Restaurar -->
+<div class="modal fade" id="dialogo_confirmar_restaurar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-recycle fa-fw"></i> {$smarty.const.TXT_DATO_RESTAURAR}: {$dato->nombre}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_DATO_CONFIRM_RESTAURAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href='index.php?page=dato_archivar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}&modulo=restaurar'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Restaurar -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">

@@ -24,7 +24,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
     {
         $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-        $indicadores_dependientes = $logicaIndicador->calcular_influencias($indicador->id);
+        $indicadores_dependientes = $logicaIndicador->calcular_influencias($id_indicador);
         $archivados = true;
         //Comprobamos que las dependencias estén archivadas
         foreach ($indicadores_dependientes as $indic)
@@ -46,14 +46,14 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
                 $indicador->archivado = date("Y-m-d");
                 $indicador->Save();
                 $exito = MSG_INDIC_ARCHIVADO . "$indicador->nombre";
-                header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&exito=$exito");
+                header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&exito=$exito");
             }
             if ($modulo == 'restaurar')
             {
                 $indicador->archivado = NULL;
                 $indicador->Save();
                 $exito = MSG_INDIC_RESTAURADO . "$indicador->nombre";
-                header("Location: index.php?page=indicador_mostrar&id_indicador=$indicador->id&id_entidad=$id_entidad&exito=$exito");
+                header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&exito=$exito");
             }
         }
     }
