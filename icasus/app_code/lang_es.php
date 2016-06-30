@@ -102,6 +102,9 @@ define('TXT_DATO_TODOS', 'Todos los datos');
 define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
 define('TXT_DATO_EDIT', 'Editar dato');
 define('TXT_DATO_BORRAR', 'Borrar dato');
+define('TXT_DATO_ARCHIVAR', 'Archivar dato');
+define('TXT_DATO_ARCHIVADO', 'Dato archivado: este dato ya no está en uso.');
+define('TXT_DATO_RESTAURAR', 'Restaurar dato');
 define('TXT_DATO_CREAR', 'Crear dato');
 define('TXT_DATOS_LIST', 'Lista de datos');
 define('TXT_DATOS_REBIUN', 'Datos Rebiun');
@@ -440,8 +443,12 @@ define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿está seguro?');
 //Datos
 define('MSG_DATOS_NO', 'No hay datos definidos para ninguna unidad.');
 define('MSG_DATO_BORRADO', 'Se ha borrado el dato: ');
+define('MSG_DATO_ARCHIVADO', 'Se ha archivado el dato: ');
+define('MSG_DATO_RESTAURADO', 'Se ha restaurado el dato: ');
 define('MSG_DATO_ACTUALIZADO', 'Se ha actualizado el dato');
 define('MSG_DATO_CONFIRM_BORRAR', '¿Realmente quiere borrar este dato?');
+define('MSG_DATO_CONFIRM_ARCHIVAR', 'El dato quedará archivado pero no se eliminará, ¿realmente desea archivar este dato?');
+define('MSG_DATO_CONFIRM_RESTAURAR', '¿Realmente quiere restaurar este dato?');
 define('MSG_DATO_CONFIRM_EDITAR', 'Va a editar este dato, ¿está seguro?');
 define('MSG_DATO_CREADO', 'Se ha creado un nuevo dato');
 define('MSG_DATO_EXPORT_OK', 'Los datos se han exportado correctamente: ');
@@ -603,8 +610,11 @@ define('ERR_CUAD_MANDO_EDIT', 'El cuadro de mando no existe o no tiene permisos 
 
 //Datos
 define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo dato.');
+define('ERR_DATO_ARCHIVAR_DEP', 'Este dato influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
 define('ERR_DATO_BORRAR_MED', 'Tiene mediciones asociadas al dato, necesita borrar primero las mediciones.');
 define('ERR_DATO_BORRAR_NO_AUT', 'No tiene permisos para borrar el dato.');
+define('ERR_DATO_ARCHIVAR_NO_AUT', 'No tiene permisos para archivar este dato.');
+define('ERR_DATO_RESTAURAR_NO_AUT', 'No tiene permisos para restaurar este dato.');
 define('ERR_DATO_GRABAR', 'No se ha podido grabar el dato.');
 define('ERR_DATO_MOSTRAR', 'No se puede mostrar el dato, el identificador no existe en la base de datos.');
 define('ERR_DATO_IMPORT_NO_AUT', 'No tiene autorización para importar datos en esta unidad.');

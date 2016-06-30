@@ -24,7 +24,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hdd-o fa-fw"></i> {$smarty.const.TXT_DATO_ARCHIVAR}: {$dato->nombre}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-inbox fa-fw"></i> {$smarty.const.TXT_DATO_ARCHIVAR}: {$dato->nombre}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_DATO_CONFIRM_ARCHIVAR}</p>
@@ -201,6 +201,12 @@
         <a title="{$smarty.const.TXT_DATO_EDIT}" class="btn btn-danger" href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
             <i class="fa fa-database fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
         </a>
+        {if !$dato->archivado}
+            <a title="{$smarty.const.TXT_DATO_ARCHIVAR}" class="btn btn-danger" href='javascript:void(0)' 
+               data-toggle="modal" data-target="#dialogo_confirmar_archivado">
+                <i class="fa fa-inbox fa-fw"></i>
+            </a>
+        {/if}
         <a title="{$smarty.const.TXT_DATO_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
            data-toggle="modal" data-target="#dialogo_confirmar_borrado">
             <i class="fa fa-trash fa-fw"></i>
@@ -209,6 +215,56 @@
     </div>
 {/if}
 <!-- /Barra de botones -->
+
+<!-- Datos archivados -->
+{if $dato->archivado}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <span class="panel-title">
+                                <i class="fa fa-inbox fa-fw"></i> {$smarty.const.TXT_DATO_ARCHIVADO}
+                            </span>
+                        </div>
+                        <!-- /.col-sm-10 -->
+                        <div class="col-sm-2">
+                            <a title="{$smarty.const.TXT_DATO_RESTAURAR}" class="btn btn-danger pull-right" href='javascript:void(0)' 
+                               data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
+                                <i class="fa fa-recycle fa-fw"></i>
+                            </a> 
+                        </div>
+                        <!-- /.col-sm-2 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_CREAC}</th>
+                                    <td>{$dato->fecha_creacion|date_format:"%d-%m-%Y"}</td>
+                                </tr>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_ARCHIVADO}</th>
+                                    <td>{$dato->archivado|date_format:"%d-%m-%Y"}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.panel-body --> 
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+{/if}
+<!-- /Datos archivados -->
 
 <!-- Indicadores/datos calculados -->
 {if $dato->calculo}

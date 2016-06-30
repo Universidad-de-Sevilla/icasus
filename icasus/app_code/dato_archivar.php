@@ -37,7 +37,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_dat
         if (!$archivados)
         {
             $aviso = ERR_DATO_ARCHIVAR_DEP;
-            header("Location: index.php?page=dato_mostrar&id_indicador=$id_dato&id_entidad=$id_entidad&aviso=$aviso");
+            header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&aviso=$aviso");
         }
         else
         {
