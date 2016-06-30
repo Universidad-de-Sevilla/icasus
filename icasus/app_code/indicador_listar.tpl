@@ -352,7 +352,7 @@
             <!-- /Indicadores del usuario -->
 
             <!-- Indicadores archivados -->
-            <div role="tabpanel" class="tab-pane active" id="indic_archivados">
+            <div role="tabpanel" class="tab-pane" id="indic_archivados">
                 {if $indicadores_archivados}
                     <div class="table-responsive">
                         <table id="tabla_indicadores_archivados" class="table table-condensed datatable table-striped table-hover">

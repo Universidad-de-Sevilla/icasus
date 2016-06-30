@@ -22,5 +22,5 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
 //Barra de botones
 $(document).ready(function () {
     var botones = $('#botones').html();
-    $('#tabla_datos_filter, #tabla_mis_datos_filter').append(botones);
+    $('#tabla_datos_filter, #tabla_mis_datos_filter, #tabla_datos_archivados_filter').append(botones);
 });
