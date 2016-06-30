@@ -153,6 +153,7 @@ define('TXT_INDIC_EDIT', 'Editar indicador');
 define('TXT_INDIC_BORRAR', 'Borrar indicador');
 define('TXT_INDIC_ARCHIVAR', 'Archivar indicador');
 define('TXT_INDIC_ARCHIVADO', 'Indicador archivado: este indicador ya no está en uso.');
+define('TXT_INDIC_ARCHIVADOS', 'Indicadores archivados');
 define('TXT_INDIC_RESTAURAR', 'Restaurar indicador');
 define('TXT_INDICS_COPIAR', 'Copiar indicadores');
 define('TXT_INDICS_DIC', 'Diccionario de indicadores');
@@ -483,6 +484,7 @@ define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen unidades orgánicas.');
 
 //Indicadores
 define('MSG_INDICS_NO', 'No hay indicadores definidos para ninguna unidad.');
+define('MSG_INDICS_NO_ARCHIVADOS', 'No hay indicadores archivados para ninguna unidad.');
 define('MSG_INDIC_NO_UNID_SUP', 'No hay indicadores definidos en la unidad superior.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.');
