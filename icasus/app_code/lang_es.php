@@ -104,6 +104,7 @@ define('TXT_DATO_EDIT', 'Editar dato');
 define('TXT_DATO_BORRAR', 'Borrar dato');
 define('TXT_DATO_ARCHIVAR', 'Archivar dato');
 define('TXT_DATO_ARCHIVADO', 'Dato archivado: este dato ya no está en uso.');
+define('TXT_DATO_ARCHIVADOS', 'Datos archivados');
 define('TXT_DATO_RESTAURAR', 'Restaurar dato');
 define('TXT_DATO_CREAR', 'Crear dato');
 define('TXT_DATOS_LIST', 'Lista de datos');
@@ -443,6 +444,7 @@ define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿está seguro?');
 
 //Datos
 define('MSG_DATOS_NO', 'No hay datos definidos para ninguna unidad.');
+define('MSG_DATOS_NO_ARCHIVADOS', 'No hay datos archivados para ninguna unidad.');
 define('MSG_DATO_BORRADO', 'Se ha borrado el dato: ');
 define('MSG_DATO_ARCHIVADO', 'Se ha archivado el dato: ');
 define('MSG_DATO_RESTAURADO', 'Se ha restaurado el dato: ');
