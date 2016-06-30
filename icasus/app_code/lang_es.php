@@ -472,6 +472,7 @@ define('MSG_UNID_EDITADA', 'La unidad se ha modificado con los datos que aparece
 define('MSG_UNID_NO_USERS', 'No se han vinculado usuarios a esta unidad.');
 define('MSG_UNID_NO_DATOS', 'No hay datos definidos para esta unidad.');
 define('MSG_UNID_NO_INDIC', 'No hay indicadores definidos para esta unidad.');
+define('MSG_UNID_NO_INDIC_ARCHIVADOS', 'No hay indicadores archivados en esta unidad.');
 define('MSG_UNID_NO_CUADROS', 'No hay cuadros de mando definidos para esta unidad.');
 define('MSG_UNID_NO_IND_NO_DAT', 'No hay indicadores ni datos definidos para esta unidad.');
 define('MSG_UNID_SUBUNIDS_NO_INDIC', 'No hay indicadores definidos para las subunidades de esta unidad.');
