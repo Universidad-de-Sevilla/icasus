@@ -40,8 +40,15 @@ if (filter_has_var(INPUT_GET, 'id_dato'))
     $entidad->load("id = $dato->id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    //Obtener todos los datos para avanzar o retroceder 
-    $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL");
+    //Obtener todos los datos para avanzar o retroceder
+    if ($dato->archivado)
+    {
+        $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado is NOT NULL");
+    }
+    else
+    {
+        $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado is NULL");
+    }
     $smarty->assign("datos", $datos);
     $cont = 0;
     foreach ($datos as $dat)

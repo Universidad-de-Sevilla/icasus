@@ -547,6 +547,7 @@ define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este proceso?');
 define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo proceso para esta unidad.');
 define('MSG_PROC_EDITADO', 'Se ha modificado el proceso correctamente.');
 define('MSG_PROC_NO_INDIC', 'No se ha definido ningún indicador para este proceso.');
+define('MSG_PROC_NO_INDIC_ARCHIVADOS', 'No hay indicadores archivados en este proceso.');
 define('MSG_PROC_NO_ARCHIVO', 'No se han subido archivos para este proceso.');
 define('MSG_PROC_MAPA', 'Para agregar/editar el mapa de procesos de su unidad, póngase en contacto con nosotros a través de la dirección: ');
 

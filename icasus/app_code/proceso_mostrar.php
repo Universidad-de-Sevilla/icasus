@@ -56,8 +56,12 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
 
     // Listado de indicadores
     $indicador = new Indicador();
-    $indicadores = $indicador->Find_joined_ultima_medicion("id_proceso = $id_proceso");
+    $indicadores = $indicador->Find_joined_ultima_medicion("id_proceso = $id_proceso AND archivado is NULL");
     $smarty->assign('indicadores', $indicadores);
+    
+    //Indicadores archivados
+    $indicadores_archivados = $indicador->Find_joined("id_proceso = $id_proceso AND id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado is NOT NULL");
+    $smarty->assign('indicadores_archivados', $indicadores_archivados);
 
     if ($indicadores)
     {
