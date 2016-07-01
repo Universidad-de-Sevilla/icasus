@@ -323,10 +323,12 @@
                         </div>
                         <!-- /.col-sm-10 -->
                         <div class="col-sm-2">
-                            <a title="{if $tipo=='indicador'}{$smarty.const.TXT_INDIC_RESTAURAR}{else}{$smarty.const.TXT_DATO_RESTAURAR}{/if}" class="btn btn-danger pull-right" href='javascript:void(0)' 
-                               data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
-                                <i class="fa fa-recycle fa-fw"></i>
-                            </a> 
+                            {if $_control || $permiso}
+                                <a title="{if $tipo=='indicador'}{$smarty.const.TXT_INDIC_RESTAURAR}{else}{$smarty.const.TXT_DATO_RESTAURAR}{/if}" class="btn btn-danger pull-right" href='javascript:void(0)' 
+                                   data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
+                                    <i class="fa fa-recycle fa-fw"></i>
+                                </a>
+                            {/if}
                         </div>
                         <!-- /.col-sm-2 -->
                     </div>

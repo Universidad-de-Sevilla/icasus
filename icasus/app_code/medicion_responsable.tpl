@@ -183,10 +183,12 @@
                         </div>
                         <!-- /.col-sm-10 -->
                         <div class="col-sm-2">
-                            <a title="{if $tipo=='indicador'}{$smarty.const.TXT_INDIC_RESTAURAR}{else}{$smarty.const.TXT_DATO_RESTAURAR}{/if}" class="btn btn-danger pull-right" href='javascript:void(0)' 
-                               data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
-                                <i class="fa fa-recycle fa-fw"></i>
-                            </a> 
+                            {if $_control || $responsable}
+                                <a title="{if $tipo=='indicador'}{$smarty.const.TXT_INDIC_RESTAURAR}{else}{$smarty.const.TXT_DATO_RESTAURAR}{/if}" class="btn btn-danger pull-right" href='javascript:void(0)' 
+                                   data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
+                                    <i class="fa fa-recycle fa-fw"></i>
+                                </a> 
+                            {/if}
                         </div>
                         <!-- /.col-sm-2 -->
                     </div>
@@ -221,7 +223,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        {if $_control || $_usuario->id==$indicador->id_responsable}
+        {if $_control || $responsable}
             <div class="panel panel-red">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_UNIDS_MEDS_INDIC}</span>
