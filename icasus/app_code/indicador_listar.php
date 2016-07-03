@@ -31,7 +31,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $smarty->assign('indicadores_archivados', $indicadores_archivados);
 
     // Indicadores bajo la responsabilidad de este usuario
-    $indicadores_propios = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL AND id_entidad=$id_entidad");
+    $indicadores_propios = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL AND id_entidad=$id_entidad AND archivado IS NULL");
     $smarty->assign("indicadores_propios", $indicadores_propios);
 
     if ($indicadores_propios)

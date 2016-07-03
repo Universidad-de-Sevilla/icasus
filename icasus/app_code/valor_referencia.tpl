@@ -318,7 +318,7 @@
                     <div class="row">
                         <div class="col-sm-10">
                             <span class="panel-title">
-                                <i class="fa fa-inbox fa-fw"></i> {if $tipo=='indicador'}{$smarty.const.TXT_INDIC_ARCHIVADO}{else}{$smarty.const.TXT_DATO_ARCHIVADO}{/if}
+                                <i class="fa fa-archive fa-fw"></i> {if $tipo=='indicador'}{$smarty.const.TXT_INDIC_ARCHIVADO}{else}{$smarty.const.TXT_DATO_ARCHIVADO}{/if}
                             </span>
                         </div>
                         <!-- /.col-sm-10 -->

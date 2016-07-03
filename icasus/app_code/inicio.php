@@ -57,11 +57,11 @@ $smarty->assign('procesos_propios', $procesos_propios);
 
 // Indicadores bajo la responsabilidad de este usuario
 $indicador = new Indicador();
-$indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL");
+$indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL AND archivado IS NULL");
 $smarty->assign("indicadores_propios", $indicadores);
 
 // Datos bajo la responsabilidad de este usuario
-$datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
+$datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL AND archivado IS NULL");
 $smarty->assign("datos_propios", $datos);
 
 // Cuadros de mando del usuario

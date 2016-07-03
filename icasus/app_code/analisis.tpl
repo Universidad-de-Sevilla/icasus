@@ -172,7 +172,7 @@
                     <div class="row">
                         <div class="col-sm-10">
                             <span class="panel-title">
-                                <i class="fa fa-inbox fa-fw"></i> {$smarty.const.TXT_INDIC_ARCHIVADO}
+                                <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_INDIC_ARCHIVADO}
                             </span>
                         </div>
                         <!-- /.col-sm-10 -->

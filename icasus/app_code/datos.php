@@ -24,7 +24,7 @@ $datos_archivados = $dato->Find_joined("id_proceso IS NULL AND archivado is NOT 
 $smarty->assign('datos_archivados', $datos_archivados);
 
 // Datos bajo la responsabilidad de este usuario
-$datos_propios = $dato->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
+$datos_propios = $dato->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL AND archivado IS NULL");
 $smarty->assign("datos_propios", $datos_propios);
 
 if ($datos_propios)

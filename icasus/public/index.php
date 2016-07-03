@@ -95,11 +95,11 @@ if (isset($_SESSION['usuario']))
     $smarty->assign('num_procesos', count($procesos));
 
     $indicador = new Indicador();
-    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NOT NULL");
+    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado IS NULL");
     $smarty->assign('num_indicadores', count($indicadores));
 
     $dato = new Indicador();
-    $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL");
+    $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado IS NULL");
     $smarty->assign('num_datos', count($datos));
 
     $cuadro = new Cuadro();
@@ -124,11 +124,11 @@ if (isset($_SESSION['usuario']))
     $smarty->assign('num_procesos_propios', count($procesos_propios));
 
     // Indicadores bajo la responsabilidad de este usuario
-    $indicadores_propios = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL");
+    $indicadores_propios = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL AND archivado IS NULL");
     $smarty->assign("num_indicadores_propios", count($indicadores_propios));
 
     // Datos bajo la responsabilidad de este usuario
-    $datos_propios = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL");
+    $datos_propios = $indicador->Find("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NULL AND archivado IS NULL");
     $smarty->assign("num_datos_propios", count($datos_propios));
 
     // Cuadros de mando propios del usuario

@@ -24,7 +24,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-inbox fa-fw"></i> {$smarty.const.TXT_DATO_ARCHIVAR}: {$dato->nombre}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_DATO_ARCHIVAR}: {$dato->nombre}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_DATO_CONFIRM_ARCHIVAR}</p>
@@ -204,7 +204,7 @@
         {if !$dato->archivado}
             <a title="{$smarty.const.TXT_DATO_ARCHIVAR}" class="btn btn-danger" href='javascript:void(0)' 
                data-toggle="modal" data-target="#dialogo_confirmar_archivado">
-                <i class="fa fa-inbox fa-fw"></i>
+                <i class="fa fa-archive fa-fw"></i>
             </a>
         {/if}
         <a title="{$smarty.const.TXT_DATO_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
@@ -225,7 +225,7 @@
                     <div class="row">
                         <div class="col-sm-10">
                             <span class="panel-title">
-                                <i class="fa fa-inbox fa-fw"></i> {$smarty.const.TXT_DATO_ARCHIVADO}
+                                <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_DATO_ARCHIVADO}
                             </span>
                         </div>
                         <!-- /.col-sm-10 -->

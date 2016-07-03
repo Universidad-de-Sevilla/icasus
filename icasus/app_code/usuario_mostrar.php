@@ -56,11 +56,11 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
 
     // Indicadores bajo la responsabilidad de este usuario
     $indicador = new Indicador();
-    $indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NOT NULL");
+    $indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NOT NULL AND archivado IS NULL");
     $smarty->assign("indicadores_propios", $indicadores);
 
     // Datos bajo la responsabilidad de este usuario
-    $datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NULL");
+    $datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NULL AND archivado IS NULL");
     $smarty->assign("datos_propios", $datos);
 
     // Cuadros de mando del usuario

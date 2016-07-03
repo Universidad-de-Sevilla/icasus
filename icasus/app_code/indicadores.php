@@ -24,7 +24,7 @@ $indicadores_archivados = $indicador->Find_joined("id_proceso IS NOT NULL AND ar
 $smarty->assign('indicadores_archivados', $indicadores_archivados);
 
 // Indicadores bajo la responsabilidad de este usuario
-$indicadores_propios = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL");
+$indicadores_propios = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL AND archivado IS NULL");
 $smarty->assign("indicadores_propios", $indicadores_propios);
 
 if ($indicadores_propios)
