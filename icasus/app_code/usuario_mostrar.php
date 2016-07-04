@@ -21,8 +21,15 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
 {
     $id_usuario = filter_input(INPUT_GET, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
     $persona = new Usuario();
-    $persona->load_joined("id = $id_usuario");
-    $smarty->assign('persona', $persona);
+    if ($persona->load_joined("id = $id_usuario"))
+    {
+        $smarty->assign('persona', $persona);
+    }
+    else
+    {
+        $error = ERR_USER_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
 
     //Obtener todos los usuarios para avanzar o retroceder 
     $usuarios = $persona->Find('1=1');
@@ -56,11 +63,11 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
 
     // Indicadores bajo la responsabilidad de este usuario
     $indicador = new Indicador();
-    $indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NOT NULL");
+    $indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NOT NULL AND archivado IS NULL");
     $smarty->assign("indicadores_propios", $indicadores);
 
     // Datos bajo la responsabilidad de este usuario
-    $datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NULL");
+    $datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NULL AND archivado IS NULL");
     $smarty->assign("datos_propios", $datos);
 
     // Cuadros de mando del usuario

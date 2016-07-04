@@ -1,8 +1,11 @@
 <?php
 
-define('IC_VERSION', "3.20.1");
-define('IC_FECHA_REVISION', "22/05/2016");
+define('IC_VERSION', "3.21.2");
+define('IC_FECHA_REVISION', "04/07/2016");
 
+// 3.21.2 - 04/07/2016 - Corrección en el controlador principal index.php cuando el identificador de unidad no existe en la base de datos.
+// 3.21.1 - 04/07/2016 - Pequeñas correcciones en algunos controladores.
+// 3.21.0 - 04/07/2016 - Archivado de indicadores/datos.
 // 3.20.1 - 22/05/2016 - Eliminada la columna status de las tablas (éste se refleja ahora sobre el valor). Pequeñas correcciones en los listados de mediciones.
 // 3.20.0 - 11/05/2016 - Indicadores/datos con estimación (ascendente/descendente) y control del status en función de ésta. Cambios de estilo y corrección de errores en los valores 0 (aparecían nulos).
 // 3.19.2 - 11/05/2016 - El status de los indicadores/datos se pondera en función del nombre que tengan asignados sus valores de referencia y no de la etiqueta asignada a éstos.

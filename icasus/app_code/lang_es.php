@@ -102,6 +102,10 @@ define('TXT_DATO_TODOS', 'Todos los datos');
 define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
 define('TXT_DATO_EDIT', 'Editar dato');
 define('TXT_DATO_BORRAR', 'Borrar dato');
+define('TXT_DATO_ARCHIVAR', 'Archivar dato');
+define('TXT_DATO_ARCHIVADO', 'Dato archivado: este dato ya no está en uso.');
+define('TXT_DATO_ARCHIVADOS', 'Datos archivados');
+define('TXT_DATO_RESTAURAR', 'Restaurar dato');
 define('TXT_DATO_CREAR', 'Crear dato');
 define('TXT_DATOS_LIST', 'Lista de datos');
 define('TXT_DATOS_REBIUN', 'Datos Rebiun');
@@ -148,6 +152,10 @@ define('TXT_INDIC_CREAR', 'Crear indicador');
 define('TXT_INDIC_LIST', 'Lista de indicadores');
 define('TXT_INDIC_EDIT', 'Editar indicador');
 define('TXT_INDIC_BORRAR', 'Borrar indicador');
+define('TXT_INDIC_ARCHIVAR', 'Archivar indicador');
+define('TXT_INDIC_ARCHIVADO', 'Indicador archivado: este indicador ya no está en uso.');
+define('TXT_INDIC_ARCHIVADOS', 'Indicadores archivados');
+define('TXT_INDIC_RESTAURAR', 'Restaurar indicador');
 define('TXT_INDICS_COPIAR', 'Copiar indicadores');
 define('TXT_INDICS_DIC', 'Diccionario de indicadores');
 define('TXT_INDICS_MIO', 'Mis indicadores');
@@ -436,9 +444,14 @@ define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿está seguro?');
 
 //Datos
 define('MSG_DATOS_NO', 'No hay datos definidos para ninguna unidad.');
+define('MSG_DATOS_NO_ARCHIVADOS', 'No hay datos archivados para ninguna unidad.');
 define('MSG_DATO_BORRADO', 'Se ha borrado el dato: ');
+define('MSG_DATO_ARCHIVADO', 'Se ha archivado el dato: ');
+define('MSG_DATO_RESTAURADO', 'Se ha restaurado el dato: ');
 define('MSG_DATO_ACTUALIZADO', 'Se ha actualizado el dato');
 define('MSG_DATO_CONFIRM_BORRAR', '¿Realmente quiere borrar este dato?');
+define('MSG_DATO_CONFIRM_ARCHIVAR', 'El dato quedará archivado pero no se eliminará, ¿realmente desea archivar este dato?');
+define('MSG_DATO_CONFIRM_RESTAURAR', '¿Realmente quiere restaurar este dato?');
 define('MSG_DATO_CONFIRM_EDITAR', 'Va a editar este dato, ¿está seguro?');
 define('MSG_DATO_CREADO', 'Se ha creado un nuevo dato');
 define('MSG_DATO_EXPORT_OK', 'Los datos se han exportado correctamente: ');
@@ -461,6 +474,8 @@ define('MSG_UNID_EDITADA', 'La unidad se ha modificado con los datos que aparece
 define('MSG_UNID_NO_USERS', 'No se han vinculado usuarios a esta unidad.');
 define('MSG_UNID_NO_DATOS', 'No hay datos definidos para esta unidad.');
 define('MSG_UNID_NO_INDIC', 'No hay indicadores definidos para esta unidad.');
+define('MSG_UNID_NO_INDIC_ARCHIVADOS', 'No hay indicadores archivados en esta unidad.');
+define('MSG_UNID_NO_DATO_ARCHIVADOS', 'No hay datos archivados en esta unidad.');
 define('MSG_UNID_NO_CUADROS', 'No hay cuadros de mando definidos para esta unidad.');
 define('MSG_UNID_NO_IND_NO_DAT', 'No hay indicadores ni datos definidos para esta unidad.');
 define('MSG_UNID_SUBUNIDS_NO_INDIC', 'No hay indicadores definidos para las subunidades de esta unidad.');
@@ -473,14 +488,19 @@ define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen unidades orgánicas.');
 
 //Indicadores
 define('MSG_INDICS_NO', 'No hay indicadores definidos para ninguna unidad.');
+define('MSG_INDICS_NO_ARCHIVADOS', 'No hay indicadores archivados para ninguna unidad.');
 define('MSG_INDIC_NO_UNID_SUP', 'No hay indicadores definidos en la unidad superior.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.');
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores/datos.');
+define('MSG_INDIC_CONFIRM_ARCHIVAR', 'El indicador quedará archivado pero no se eliminará, ¿realmente desea archivar este indicador?');
 define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este indicador?');
+define('MSG_INDIC_CONFIRM_RESTAURAR', '¿Realmente quiere restaurar este indicador?');
 define('MSG_INDIC_CONFIRM_EDITAR', 'Va a editar este indicador, ¿está seguro?');
 define('MSG_INDIC_BORRADO', 'Se ha borrado el indicador: ');
+define('MSG_INDIC_ARCHIVADO', 'Se ha archivado el indicador: ');
+define('MSG_INDIC_RESTAURADO', 'Se ha restaurado el indicador: ');
 define('MSG_INDIC_COPIADOS', 'Indicadores copiados.');
 define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los datos del indicador.');
 define('MSG_INDIC_NO_PUBLIC', 'Este indicador no está definido como público.');
@@ -527,6 +547,7 @@ define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este proceso?');
 define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo proceso para esta unidad.');
 define('MSG_PROC_EDITADO', 'Se ha modificado el proceso correctamente.');
 define('MSG_PROC_NO_INDIC', 'No se ha definido ningún indicador para este proceso.');
+define('MSG_PROC_NO_INDIC_ARCHIVADOS', 'No hay indicadores archivados en este proceso.');
 define('MSG_PROC_NO_ARCHIVO', 'No se han subido archivos para este proceso.');
 define('MSG_PROC_MAPA', 'Para agregar/editar el mapa de procesos de su unidad, póngase en contacto con nosotros a través de la dirección: ');
 
@@ -596,8 +617,11 @@ define('ERR_CUAD_MANDO_EDIT', 'El cuadro de mando no existe o no tiene permisos 
 
 //Datos
 define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo dato.');
+define('ERR_DATO_ARCHIVAR_DEP', 'Este dato influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
 define('ERR_DATO_BORRAR_MED', 'Tiene mediciones asociadas al dato, necesita borrar primero las mediciones.');
 define('ERR_DATO_BORRAR_NO_AUT', 'No tiene permisos para borrar el dato.');
+define('ERR_DATO_ARCHIVAR_NO_AUT', 'No tiene permisos para archivar este dato.');
+define('ERR_DATO_RESTAURAR_NO_AUT', 'No tiene permisos para restaurar este dato.');
 define('ERR_DATO_GRABAR', 'No se ha podido grabar el dato.');
 define('ERR_DATO_MOSTRAR', 'No se puede mostrar el dato, el identificador no existe en la base de datos.');
 define('ERR_DATO_IMPORT_NO_AUT', 'No tiene autorización para importar datos en esta unidad.');
@@ -609,6 +633,7 @@ define('ERR_DIM_CREAR', 'No se ha podido crear la dimensión.');
 
 //Entidades (Unidades)
 define('ERR_UNID', 'No ha especificado la unidad.');
+define('ERR_UNID_MOSTRAR', 'No se puede mostrar la unidad, el identificador no existe en la base de datos.');
 define('ERR_UNID_NO_SEL', 'No se ha especificado una unidad para asignar usuarios.');
 define('ERR_UNID_LIST_INDIC', 'No ha especificado la unidad cuyos indicadores desea listar.');
 define('ERR_UNID_EDIT', 'No se ha podido modificar la unidad');
@@ -619,7 +644,10 @@ define('ERR_PARAM_GRAFIC', 'Faltan parámetros para mostrar la gráfica.');
 //Indicadores
 define('ERR_INDIC_BORRAR_MED', 'Tiene mediciones asociadas al indicador, necesita borrar primero las mediciones.');
 define('ERR_INDIC_BORRAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
+define('ERR_INDIC_ARCHIVAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
 define('ERR_INDIC_BORRAR_NO_AUT', 'No tiene permisos para borrar el indicador.');
+define('ERR_INDIC_ARCHIVAR_NO_AUT', 'No tiene permisos para archivar este indicador.');
+define('ERR_INDIC_RESTAURAR_NO_AUT', 'No tiene permisos para restaurar este indicador.');
 define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar indicadores/datos de esta unidad');
 define('ERR_INDIC_GRABAR', 'No se ha podido grabar el indicador.');
 define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el indicador, el identificador no existe en la base de datos.');
@@ -634,11 +662,13 @@ define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el c�
 define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en este');
 
 //Procesos
+define('ERR_PROC_MOSTRAR', 'No se puede mostrar el proceso, el identificador no existe en la base de datos.');
 define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores.');
 define('ERR_PROC_BORRAR_NO_AUT', 'No tiene persimos para borrar el proceso.');
 define('ERR_PROC_GRABAR', 'Ha ocurrido un error al grabar el proceso.');
 
 //Usuarios
+define('ERR_USER_MOSTRAR', 'No se puede mostrar el usuario, el identificador no existe en la base de datos.');
 define('ERR_LOGIN', 'Usuario o clave incorrecta.');
 define('ERR_LOGIN_SSO', 'El usuario pertenece al colectivo que tiene permiso para utilizar esta herramienta pero no se ha podido dar de alta en la herramienta. Contactar con icasus@us.es');
 define('ERR_LOGIN_SSO_AUT', 'La relacion de este usuario con la Universidad no es la definida para utilizar esta herramienta. Contactar con icasus@us.es');
@@ -670,6 +700,7 @@ define('FIELD_UMBRAL', 'Umbral');
 define('FIELD_LIMITE', 'Límite');
 define('FIELD_META', 'Meta');
 define('FIELD_CREAC', 'Creación');
+define('FIELD_ARCHIVADO', 'Archivado');
 define('FIELD_MOD', 'Modificación');
 define('FIELD_FECHA_REV', 'Fecha de revisión');
 define('FIELD_FECHA_OBTENCION', 'Fecha de obtención');

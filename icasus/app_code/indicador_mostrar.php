@@ -31,7 +31,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     else
     {
         $error = ERR_INDIC_MOSTRAR;
-        header("location:index.php?error=$error");
+        header("location:index.php?page=error&error=$error");
     }
 
     $entidad = new Entidad();
@@ -43,8 +43,15 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $proceso->load("id = $indicador->id_proceso");
     $smarty->assign('proceso', $proceso);
 
-    //Obtener todos los indicadores del proceso para avanzar o retroceder 
-    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id");
+    //Obtener todos los indicadores del proceso para avanzar o retroceder
+    if ($indicador->archivado)
+    {
+        $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id AND archivado is NOT NULL");
+    }
+    else
+    {
+        $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id AND archivado is NULL");
+    }
     $smarty->assign("indicadores", $indicadores);
     $cont = 0;
     foreach ($indicadores as $ind)

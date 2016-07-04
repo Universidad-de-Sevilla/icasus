@@ -1,3 +1,23 @@
+<!-- Diálogo Confirmar Restaurar -->
+<div class="modal fade" id="dialogo_confirmar_restaurar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-recycle fa-fw"></i> {$smarty.const.TXT_INDIC_RESTAURAR}: {$indicador->nombre}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_INDIC_CONFIRM_RESTAURAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href='index.php?page=indicador_archivar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}&modulo=restaurar'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Restaurar -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -10,7 +30,7 @@
                 <!-- Navegación -->
                 {if count($indicadores)> 1}
                     <div class="col-md-2">
-                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($indicadores)} {$smarty.const.FIELD_INDICS}</div>
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($indicadores)} {if $indicador->archivado}{$smarty.const.TXT_INDIC_ARCHIVADOS}{else}{$smarty.const.FIELD_INDICS}{/if}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
                                 <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_INDIC}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=analisis&id_entidad={$entidad->id}&id_indicador={$indicadores[0]->id}'>
@@ -142,6 +162,58 @@
 <!-- /.row -->
 <br>
 <!-- /Menú del indicador -->
+
+<!-- Indicadores archivados -->
+{if $indicador->archivado}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <span class="panel-title">
+                                <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_INDIC_ARCHIVADO}
+                            </span>
+                        </div>
+                        <!-- /.col-sm-10 -->
+                        <div class="col-sm-2">
+                            {if $_control || $responsable}
+                                <a title="{$smarty.const.TXT_INDIC_RESTAURAR}" class="btn btn-danger pull-right" href='javascript:void(0)' 
+                                   data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
+                                    <i class="fa fa-recycle fa-fw"></i>
+                                </a>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-2 -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_CREAC}</th>
+                                    <td>{$indicador->fecha_creacion|date_format:"%d-%m-%Y"}</td>
+                                </tr>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_ARCHIVADO}</th>
+                                    <td>{$indicador->archivado|date_format:"%d-%m-%Y"}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.panel-body --> 
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+{/if}
+<!-- /Indicadores archivados -->
 
 <!-- Indicadores/datos calculados -->
 {if $indicador->calculo}

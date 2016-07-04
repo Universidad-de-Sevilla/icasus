@@ -102,6 +102,9 @@
                     <a href="#user_dato" title="{$smarty.const.TXT_USER_DATO}" aria-controls="{$smarty.const.TXT_USER_DATO}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</a>
                 </li>
             {/if}
+            <li role="presentation">
+                <a href="#dato_archivados" title="{$smarty.const.TXT_DATO_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_DATO_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_DATO_ARCHIVADOS}</a>
+            </li>
         </ul>
         <!-- /Nav tabs -->
         <br>
@@ -225,7 +228,7 @@
                                 {if $entidad->id == 14}
                                     <div class="btn-group" role="group" aria-label="">
                                         <a class="btn btn-danger" href='index.php?page=datos_rebiun&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}">
-                                            <i class="fa fa-folder-open fa-fw"></i>
+                                            <i class="fa fa-folder-open fa-fw"></i><sub>R</sub>
                                         </a>
                                     </div>
                                 {/if} 
@@ -347,6 +350,118 @@
                 </div>
             {/if}
             <!-- /Datos del usuario -->
+
+            <!-- Datos archivados -->
+            <div role="tabpanel" class="tab-pane" id="dato_archivados">
+                {if $datos_archivados}
+                    <div class="table-responsive">
+                        <table id="datos_archivados" class="table table-condensed datatable table-striped table-hover">
+                            <thead>
+                                <tr>   
+                                    <th>{$smarty.const.FIELD_ID}</th>
+                                    <th>{$smarty.const.FIELD_COD}</th>
+                                    <th>{$smarty.const.FIELD_DATO}</th>  
+                                    <th>{$smarty.const.FIELD_PERIOD}</th>
+                                    <th>{$smarty.const.FIELD_RESP}</th>
+                                    <th>{$smarty.const.FIELD_RESP_MED}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$datos_archivados item=dato} 
+                                    <tr>
+                                        <td><span class="badge">{$dato->id}</span></td>
+                                        <td><span class="label label-primary">{$dato->codigo}</span></td>
+                                        <td>
+                                            {if $dato->calculo}
+                                                <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$dato->calculo}"></i>
+                                            {/if}
+                                            {if $dato->id_tipo_agregacion!= 0}
+                                                <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
+                                            {/if}
+                                            <a target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}' 
+                                               title="{$dato->nombre}: {$dato->descripcion}">
+                                                {$dato->nombre}</a>
+                                        </td>
+                                        <td>{$dato->periodicidad}</td>
+                                        <td style="font-size: 12px">
+                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable}&id_entidad={$entidad->id}'>
+                                                {$dato->responsable->nombre} {$dato->responsable->apellidos}</a>
+                                        </td>
+                                        <td style="font-size: 12px">
+                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable_medicion}&id_entidad={$entidad->id}'>
+                                                {$dato->responsable_medicion->nombre} {$dato->responsable_medicion->apellidos}</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}'>
+                                                <i class="fa fa-folder fa-fw"></i>
+                                            </a>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" target="_blank" href='index.php?page=graficas_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}'>
+                                                <i class="fa fa-area-chart fa-fw"></i>
+                                            </a>
+                                            <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
+                                               title="{$smarty.const.TXT_DATO_MEDICIONES}: {$dato->nombre}" target="_blank">
+                                                <i class="fa fa-history fa-fw"></i>
+                                            </a>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
+                                                <i class="fa fa-tags fa-fw"></i>
+                                            </a>
+                                            {if $_control OR $_usuario->id==$dato->id_responsable}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>
+                                                {if !$dato->calculo}
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
+                                                        <i class="fa fa-pencil-square-o fa-fw"></i> 
+                                                    </a>
+                                                {/if}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
+                                                    <i class="fa fa-user fa-fw"></i>
+                                                </a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado"
+                                                   data-id_dato="{$dato->id}" data-nombre_dato="{$dato->nombre}" data-id_entidad="{$dato->id_entidad}">
+                                                    <i class="fa fa-trash fa-fw"></i>
+                                                </a>
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_UNID_NO_DATO_ARCHIVADOS}
+                            </div> 
+                        </div>
+                        <!-- /.col-sm-10 -->
+                        <div class="col-sm-2">
+                            <div id="botones" class="btn-toolbar" role="toolbar" aria-label="">
+                                {if $_control}
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=dato_crear&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATO_CREAR}">
+                                            <i class="fa fa-database fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                {/if}
+                                {if $entidad->id == 14}
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=datos_rebiun&id_entidad={$entidad->id}' title="{$smarty.const.TXT_DATOS_REBIUN_RECOGIDA}">
+                                            <i class="fa fa-folder-open fa-fw"></i><sub>R</sub>
+                                        </a>
+                                    </div>
+                                {/if} 
+                            </div>
+                        </div>
+                        <!-- /.col-sm-2 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
+            </div>
+            <!-- /Datos archivados -->
 
         </div>
         <!-- /Tab panes -->
