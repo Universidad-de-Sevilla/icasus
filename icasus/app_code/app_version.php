@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.21.0");
+define('IC_VERSION', "3.21.1");
 define('IC_FECHA_REVISION', "04/07/2016");
 
+// 3.21.1 - 04/07/2016 - Pequeñas correcciones en algunos controladores.
 // 3.21.0 - 04/07/2016 - Archivado de indicadores/datos.
 // 3.20.1 - 22/05/2016 - Eliminada la columna status de las tablas (éste se refleja ahora sobre el valor). Pequeñas correcciones en los listados de mediciones.
 // 3.20.0 - 11/05/2016 - Indicadores/datos con estimación (ascendente/descendente) y control del status en función de ésta. Cambios de estilo y corrección de errores en los valores 0 (aparecían nulos).
