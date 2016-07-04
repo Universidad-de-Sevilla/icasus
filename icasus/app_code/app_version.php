@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.21.1");
+define('IC_VERSION', "3.21.2");
 define('IC_FECHA_REVISION', "04/07/2016");
 
+// 3.21.2 - 04/07/2016 - Corrección en el controlador principal index.php cuando el identificador de unidad no existe en la base de datos.
 // 3.21.1 - 04/07/2016 - Pequeñas correcciones en algunos controladores.
 // 3.21.0 - 04/07/2016 - Archivado de indicadores/datos.
 // 3.20.1 - 22/05/2016 - Eliminada la columna status de las tablas (éste se refleja ahora sobre el valor). Pequeñas correcciones en los listados de mediciones.
