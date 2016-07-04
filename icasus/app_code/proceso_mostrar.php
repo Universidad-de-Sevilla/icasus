@@ -23,8 +23,15 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
 
     // Datos del proceso
     $proceso = new Proceso();
-    $proceso->load_joined("id = $id_proceso");
-    $smarty->assign('proceso', $proceso);
+    if ($proceso->load_joined("id = $id_proceso"))
+    {
+        $smarty->assign('proceso', $proceso);
+    }
+    else
+    {
+        $error = ERR_PROC_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
 
     //Obtener todos los procesos para avanzar o retroceder 
     $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");
@@ -58,7 +65,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
     $indicador = new Indicador();
     $indicadores = $indicador->Find_joined_ultima_medicion("id_proceso = $id_proceso AND archivado is NULL");
     $smarty->assign('indicadores', $indicadores);
-    
+
     //Indicadores archivados
     $indicadores_archivados = $indicador->Find_joined("id_proceso = $id_proceso AND id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado is NOT NULL");
     $smarty->assign('indicadores_archivados', $indicadores_archivados);

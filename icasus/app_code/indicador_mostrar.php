@@ -31,7 +31,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     else
     {
         $error = ERR_INDIC_MOSTRAR;
-        header("location:index.php?error=$error");
+        header("location:index.php?page=error&error=$error");
     }
 
     $entidad = new Entidad();

@@ -633,6 +633,7 @@ define('ERR_DIM_CREAR', 'No se ha podido crear la dimensi√≥n.');
 
 //Entidades (Unidades)
 define('ERR_UNID', 'No ha especificado la unidad.');
+define('ERR_UNID_MOSTRAR', 'No se puede mostrar la unidad, el identificador no existe en la base de datos.');
 define('ERR_UNID_NO_SEL', 'No se ha especificado una unidad para asignar usuarios.');
 define('ERR_UNID_LIST_INDIC', 'No ha especificado la unidad cuyos indicadores desea listar.');
 define('ERR_UNID_EDIT', 'No se ha podido modificar la unidad');
@@ -661,11 +662,13 @@ define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el c√
 define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en este');
 
 //Procesos
+define('ERR_PROC_MOSTRAR', 'No se puede mostrar el proceso, el identificador no existe en la base de datos.');
 define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores.');
 define('ERR_PROC_BORRAR_NO_AUT', 'No tiene persimos para borrar el proceso.');
 define('ERR_PROC_GRABAR', 'Ha ocurrido un error al grabar el proceso.');
 
 //Usuarios
+define('ERR_USER_MOSTRAR', 'No se puede mostrar el usuario, el identificador no existe en la base de datos.');
 define('ERR_LOGIN', 'Usuario o clave incorrecta.');
 define('ERR_LOGIN_SSO', 'El usuario pertenece al colectivo que tiene permiso para utilizar esta herramienta pero no se ha podido dar de alta en la herramienta. Contactar con icasus@us.es');
 define('ERR_LOGIN_SSO_AUT', 'La relacion de este usuario con la Universidad no es la definida para utilizar esta herramienta. Contactar con icasus@us.es');

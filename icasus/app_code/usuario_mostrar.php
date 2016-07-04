@@ -21,8 +21,15 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
 {
     $id_usuario = filter_input(INPUT_GET, 'id_usuario', FILTER_SANITIZE_NUMBER_INT);
     $persona = new Usuario();
-    $persona->load_joined("id = $id_usuario");
-    $smarty->assign('persona', $persona);
+    if ($persona->load_joined("id = $id_usuario"))
+    {
+        $smarty->assign('persona', $persona);
+    }
+    else
+    {
+        $error = ERR_USER_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
 
     //Obtener todos los usuarios para avanzar o retroceder 
     $usuarios = $persona->Find('1=1');

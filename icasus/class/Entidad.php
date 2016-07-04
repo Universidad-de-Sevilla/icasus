@@ -71,7 +71,7 @@ class Entidad extends ADOdb_Active_Record
     {
         if ($this->load($condicion))
         {
-            $this->madre = new Entidad;
+            $this->madre = new Entidad();
             $this->madre->load("id = $this->id_madre");
 
             $usuarios = new Usuario_entidad();
