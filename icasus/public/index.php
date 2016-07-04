@@ -82,39 +82,43 @@ if (isset($_SESSION['usuario']))
     $usuario = $_SESSION['usuario'];
     $smarty->assign('_usuario', $usuario);
 
+    $entidad = new Entidad();
+    $proceso = new Proceso();
+    $indicador = new Indicador();
+    $dato = new Indicador();
+    $cuadro = new Cuadro();
+
     //Unidad actual
     $id_entidad = 1; //por defecto
     if (filter_has_var(INPUT_GET, 'id_entidad'))
     {
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+        if ($entidad->load("id = $id_entidad"))
+        {
+            //Cantidad de procesos, indicadores, datos y cuadros de mando de la unidad
+            $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");
+            $smarty->assign('num_procesos', count($procesos));
+
+            $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado IS NULL");
+            $smarty->assign('num_indicadores', count($indicadores));
+
+            $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado IS NULL");
+            $smarty->assign('num_datos', count($datos));
+
+            $cuadros = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
+            $smarty->assign('num_cuadros', count($cuadros));
+
+            //Guardamos el rol del usuario para la entidad actual
+            $logicaUsuario = new LogicaUsuario();
+            $rol = $logicaUsuario->getRol($usuario, $id_entidad);
+            $smarty->assign('_rol', $rol);
+
+            //Control de unidades:
+            $usuario_entidad = new Usuario_entidad();
+            $control = $usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad);
+            $smarty->assign('_control', $control);
+        }
     }
-
-    //Cantidad de procesos, indicadores, datos y cuadros de mando de la unidad
-    $proceso = new Proceso();
-    $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");
-    $smarty->assign('num_procesos', count($procesos));
-
-    $indicador = new Indicador();
-    $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado IS NULL");
-    $smarty->assign('num_indicadores', count($indicadores));
-
-    $dato = new Indicador();
-    $datos = $dato->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado IS NULL");
-    $smarty->assign('num_datos', count($datos));
-
-    $cuadro = new Cuadro();
-    $cuadros = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
-    $smarty->assign('num_cuadros', count($cuadros));
-
-    //Guardamos el rol del usuario para la entidad actual
-    $logicaUsuario = new LogicaUsuario();
-    $rol = $logicaUsuario->getRol($usuario, $id_entidad);
-    $smarty->assign('_rol', $rol);
-
-    //Control de unidades:
-    $usuario_entidad = new Usuario_entidad();
-    $control = $usuario_entidad->comprobar_responsable_entidad($usuario->id, $id_entidad);
-    $smarty->assign('_control', $control);
 
     // Entidades de este usuario
     $smarty->assign('num_entidades_usuario', count($usuario->entidades));
