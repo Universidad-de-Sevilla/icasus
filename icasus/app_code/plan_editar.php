@@ -12,9 +12,18 @@
 if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entidad') && $control)
 {
     $id_plan = filter_input(INPUT_GET, 'id_plan', FILTER_SANITIZE_NUMBER_INT);
+
+    //Obtenemos los datos del plan
     $plan = new Plan();
-    $plan->load("id = $id_plan");
-    $smarty->assign('plan', $plan);
+    if ($plan->load("id = $id_plan"))
+    {
+        $smarty->assign('plan', $plan);
+    }
+    else
+    {
+        $error = ERR_PLAN_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
 
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();

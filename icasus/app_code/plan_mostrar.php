@@ -21,8 +21,15 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
 
     //Obtenemos los datos del plan
     $plan = new Plan();
-    $plan->load("id = $id_plan");
-    $smarty->assign('plan', $plan);
+    if ($plan->load("id = $id_plan"))
+    {
+        $smarty->assign('plan', $plan);
+    }
+    else
+    {
+        $error = ERR_PLAN_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
 
     //Obtenemos sus ejecuciones anuales
     $ejecucion = new Ejecucion();

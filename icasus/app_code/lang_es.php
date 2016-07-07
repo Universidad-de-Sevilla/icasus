@@ -701,6 +701,7 @@ define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el c�
 define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en este');
 
 //Planes
+define('ERR_PLAN_MOSTRAR', 'No se puede mostrar el plan, el identificador no existe en la base de datos.');
 define('ERR_PLAN_EDIT', 'El plan estratégico no existe o no tiene permisos para editarlo.');
 define('ERR_PLAN_VAL_ANYO', 'Ya existe un plan con el mismo año de inicio.');
 
