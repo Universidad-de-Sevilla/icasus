@@ -45,6 +45,7 @@ $('#page-wrapper').on('click', '.grabar', function () {
             success: function () {
                 $("#page-wrapper #edicion_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=cancelar_ejecucion&id_objop=" + id_objop + "&anyo=" + anyo);
                 $("#page-wrapper #porcentaje_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=actualizar_porcentaje&id_objop=" + id_objop + "&anyo=" + anyo);
+                $("#page-wrapper #ejecucion_global").load("index.php?page=objop_ajax&ajax=true&modulo=actualizar_global&id_objop=" + id_objop + "&anyo=" + anyo);
             }
         });
     }
@@ -69,5 +70,6 @@ $(".activar").change(function () {
         activo = 1;
     }
     $.get('index.php?page=objop_ajax&ajax=true&modulo=activar_objetivo', {id_objop: id_objop, anyo: anyo, activo: activo}, function () {
+        $("#page-wrapper #ejecucion_global").load("index.php?page=objop_ajax&ajax=true&modulo=actualizar_global&id_objop=" + id_objop + "&anyo=" + anyo);
     });
 });

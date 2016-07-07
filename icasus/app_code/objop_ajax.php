@@ -13,6 +13,8 @@
 global $smarty;
 global $plantilla;
 global $usuario;
+//Variable para operar con los planes
+$logicaPlan = new LogicaPlan();
 
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 $smarty->assign('modulo', $modulo);
@@ -33,6 +35,7 @@ if ($modulo == 'grabar_ejecucion')
     $ejecucion->load("id_objop=$id_objop AND anyo=$anyo");
     $ejecucion->valor = $valor;
     $ejecucion->Save();
+    $logicaPlan->actualizar_ejecucion_plan($id_objop, $anyo);
 }
 
 if ($modulo == 'actualizar_porcentaje')
@@ -51,4 +54,5 @@ if ($modulo == 'activar_objetivo')
     $ejecucion_anual->Load("id_objop=$id_objop AND anyo=$anyo");
     $ejecucion_anual->activo = $activo;
     $ejecucion_anual->Save();
+    $logicaPlan->actualizar_ejecucion_plan($id_objop, $anyo);
 }
