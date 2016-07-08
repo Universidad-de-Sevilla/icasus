@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.22.1");
+define('IC_VERSION', "3.22.2");
 define('IC_FECHA_REVISION', "08/07/2016");
 
+// 3.22.2 - 08/07/2016 - Sólo pueden gestionar valores de referencia los responsables de las unidades.
 // 3.22.1 - 08/07/2016 - Cambiada la gráfica de los análisis de indicadores para que se muestren valores hasta el año actual.
 // 3.22.0 - 08/07/2016 - Actualización de versión: Gestión de planes estratégicos.
 // 3.21.2 - 04/07/2016 - Corrección en el controlador principal index.php cuando el identificador de unidad no existe en la base de datos.
