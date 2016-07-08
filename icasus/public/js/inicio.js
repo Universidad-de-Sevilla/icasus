@@ -76,6 +76,8 @@ $('#dialogo_confirmar_borrado_objop').on('show.bs.modal', function (event) {
     var link = 'index.php?page=objop_borrar&id_entidad=' + id_entidad + '&id_objop=' + id_objop;
     modal.find('#nombre_objop').text(nombre);
     modal.find('#borrar').attr('href', link);
+});
+
 //Botones de edición de usuario
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha_usuario').html();

@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.21.2");
-define('IC_FECHA_REVISION', "04/07/2016");
+define('IC_VERSION', "3.22.0");
+define('IC_FECHA_REVISION', "08/07/2016");
 
+// 3.22.0 - 08/07/2016 - Actualización de versión: Gestión de planes estratégicos.
 // 3.21.2 - 04/07/2016 - Corrección en el controlador principal index.php cuando el identificador de unidad no existe en la base de datos.
 // 3.21.1 - 04/07/2016 - Pequeñas correcciones en algunos controladores.
 // 3.21.0 - 04/07/2016 - Archivado de indicadores/datos.
