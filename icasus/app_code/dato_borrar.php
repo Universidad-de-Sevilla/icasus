@@ -25,9 +25,16 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
         $medicion = new Medicion();
         $mediciones = $medicion->Find("id_indicador = $id_dato");
         $indicadores_dependientes = $logicaIndicador->calcular_influencias($dato->id);
+        $objetivo_indicador = new ObjetivoIndicador();
+        //Si está asociado a un objetivo operacional no podemos borrarlo
+        if ($objetivo_indicador->load("id_indicador=$id_dato"))
+        {
+            $aviso = ERR_DATO_BORRAR_OBJOP;
+            header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&aviso=$aviso");
+        }
         //Si tiene mediciones no se puede borrar 
         //hasta borrar las mediciones
-        if ($mediciones)
+        else if ($mediciones)
         {
             $aviso = ERR_DATO_BORRAR_MED;
             header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&aviso=$aviso");

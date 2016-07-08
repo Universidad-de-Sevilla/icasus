@@ -2,17 +2,17 @@
 
 //----------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Fichero: class/Indicador_dependencia.php
+// Fichero: class/Ejecucion.php
 // Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //----------------------------------------------------------------------------------
-// Relaciona los indicadores calculados con aquellos de los que depende su valor.
+// Mapea la tabla ejecuciones de la base de datos
 //----------------------------------------------------------------------------------
 
-class Indicador_dependencia extends ADOdb_Active_Record
+class Ejecucion extends ADOdb_Active_Record
 {
 
-    public $_table = 'indicadores_dependencias';
+    public $_table = 'ejecuciones';
 
 }

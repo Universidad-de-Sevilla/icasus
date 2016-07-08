@@ -164,8 +164,22 @@ hs.Expander.prototype.onAfterExpand = function () {
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha').html();
     var botones_user = $('#botones_user').html();
+    var botones_plan = $('#botones_plan').html();
     var botones_archivo = $('#botones_archivo').html();
     $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
     $('#tabla_usuarios_filter').append(botones_user);
+    $('#tabla_planes_filter').append(botones_plan);
     $('#tabla_archivos_filter').append(botones_archivo);
+});
+
+//Borrado de planes estratégicos
+$('#dialogo_confirmar_borrado_plan').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var periodo_plan = button.data('periodo_plan');
+    var id_plan = button.data('id_plan');
+    var id_entidad = button.data('id_entidad');
+    var modal = $(this);
+    var link = 'index.php?page=plan_borrar&id_plan=' + id_plan + '&id_entidad=' + id_entidad;
+    modal.find('#periodo_plan').text(periodo_plan);
+    modal.find('#borrar').attr('href', link);
 });
