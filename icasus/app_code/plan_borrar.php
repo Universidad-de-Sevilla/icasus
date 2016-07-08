@@ -22,7 +22,6 @@ if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entida
     $plan = new Plan();
     if ($plan->load("id = $id_plan"))
     {
-        $smarty->assign('plan', $plan);
         $linea = new Linea();
         $lineas_plan = $linea->Find("id_plan=$id_plan");
         if (!$lineas_plan && $control)

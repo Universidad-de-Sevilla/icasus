@@ -706,6 +706,7 @@ define('ERR_PLAN_EDIT', 'El plan estratégico no existe o no tiene permisos para
 define('ERR_PLAN_VAL_ANYO', 'Ya existe un plan con el mismo año de inicio.');
 
 //Líneas
+define('ERR_LINEA_MOSTRAR', 'No se puede mostrar la línea, el identificador no existe en la base de datos.');
 define('ERR_LINEA_EDIT', 'La línea estratégica no existe o no tiene permisos para editarla.');
 define('ERR_LINEA_VAL_INDICE', 'Ya existe una línea con el mismo índice para este plan.');
 

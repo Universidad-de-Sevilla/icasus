@@ -13,9 +13,18 @@ if (filter_has_var(INPUT_GET, 'id_linea') && $control)
 {
     $id_linea = filter_input(INPUT_GET, 'id_linea', FILTER_SANITIZE_NUMBER_INT);
 
+    //Obtenemos los datos de la línea
     $linea = new Linea();
-    $linea->load("id=$id_linea");
-    $smarty->assign('linea', $linea);
+    if ($linea->load("id = $id_linea"))
+    {
+        $smarty->assign('linea', $linea);
+    }
+    else
+    {
+
+        $error = ERR_LINEA_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
 
     $id_plan = $linea->id_plan;
     $plan = new Plan();

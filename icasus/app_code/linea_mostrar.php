@@ -20,8 +20,16 @@ if (filter_has_var(INPUT_GET, 'id_linea'))
 
     //Obtenemos los datos de la línea
     $linea = new Linea();
-    $linea->load("id = $id_linea");
-    $smarty->assign('linea', $linea);
+    if ($linea->load("id = $id_linea"))
+    {
+        $smarty->assign('linea', $linea);
+    }
+    else
+    {
+
+        $error = ERR_LINEA_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
 
     //Obtener todas las líneas para avanzar o retroceder 
     $id_plan = $linea->id_plan;
