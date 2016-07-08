@@ -12,9 +12,19 @@
 if (filter_has_var(INPUT_GET, 'id_objest') && $control)
 {
     $id_objest = filter_input(INPUT_GET, 'id_objest', FILTER_SANITIZE_NUMBER_INT);
+
+    //Obtenemos los datos del objetivo estratégico
     $objest = new ObjetivoEstrategico();
-    $objest->load("id = $id_objest");
-    $smarty->assign('objest', $objest);
+    if ($objest->load("id = $id_objest"))
+    {
+        $smarty->assign('objest', $objest);
+    }
+    else
+    {
+
+        $error = ERR_OBJEST_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
 
     $id_linea = $objest->id_linea;
     $linea = new Linea();

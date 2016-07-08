@@ -711,6 +711,7 @@ define('ERR_LINEA_EDIT', 'La línea estratégica no existe o no tiene permisos p
 define('ERR_LINEA_VAL_INDICE', 'Ya existe una línea con el mismo índice para este plan.');
 
 //Objeticos Estratégicos
+define('ERR_OBJEST_MOSTRAR', 'No se puede mostrar el objetivo estratégico, el identificador no existe en la base de datos.');
 define('ERR_OBJEST_EDIT', 'El objetivo estratégico no existe o no tiene permisos para editarlo.');
 define('ERR_OBJEST_VAL_INDICE', 'Ya existe un objetivo estratégico con el mismo índice para esta línea del plan.');
 
