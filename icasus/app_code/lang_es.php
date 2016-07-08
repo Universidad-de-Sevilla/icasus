@@ -716,6 +716,7 @@ define('ERR_OBJEST_EDIT', 'El objetivo estratégico no existe o no tiene permiso
 define('ERR_OBJEST_VAL_INDICE', 'Ya existe un objetivo estratégico con el mismo índice para esta línea del plan.');
 
 //Objeticos Operacionales
+define('ERR_OBJOP_MOSTRAR', 'No se puede mostrar el objetivo operacional, el identificador no existe en la base de datos.');
 define('ERR_OBJOP_EDIT', 'El objetivo operacional no existe o no tiene permisos para editarlo.');
 define('ERR_OBJOP_VAL_INDICE', 'Ya existe un objetivo operacional con el mismo índice para este objetivo estratégico de esta línea del plan.');
 

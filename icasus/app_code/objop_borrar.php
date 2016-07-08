@@ -17,19 +17,28 @@ if (filter_has_var(INPUT_GET, 'id_objop') && filter_has_var(INPUT_GET, 'id_entid
 {
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $id_objop = filter_input(INPUT_GET, 'id_objop', FILTER_SANITIZE_NUMBER_INT);
+
+    //Obtenemos los datos del objetivo operacional
     $objop = new ObjetivoOperacional();
-    $objop->load_joined("id=$id_objop");
-    $objest = $objop->objest;
-    if ($control || $objop->id_responsable == $usuario->id)
+    if ($objop->load_joined("id = $id_objop"))
     {
-        $exito = MSG_OBJOP_BORRADO . ' ' . $objest->linea->indice . '.' . $objest->indice . '.' . $objop->indice . '. ' . $objop->nombre;
-        $objop->delete();
-        header("Location: index.php?page=objest_mostrar&id_objest=$objest->id&id_entidad=$id_entidad&exito=$exito");
+        $objest = $objop->objest;
+        if ($control || $objop->id_responsable == $usuario->id)
+        {
+            $exito = MSG_OBJOP_BORRADO . ' ' . $objest->linea->indice . '.' . $objest->indice . '.' . $objop->indice . '. ' . $objop->nombre;
+            $objop->delete();
+            header("Location: index.php?page=objest_mostrar&id_objest=$objest->id&id_entidad=$id_entidad&exito=$exito");
+        }
+        else
+        {
+            $aviso = MSG_OBJOP_BORRAR;
+            header("Location: index.php?page=objop_mostrar&id_objop=$id_objop&id_entidad=$id_entidad&aviso=$aviso");
+        }
     }
     else
     {
-        $aviso = MSG_OBJOP_BORRAR;
-        header("Location: index.php?page=objop_mostrar&id_objop=$id_objop&id_entidad=$id_entidad&aviso=$aviso");
+        $error = ERR_OBJOP_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
     }
 }
 else

@@ -26,7 +26,6 @@ if (filter_has_var(INPUT_GET, 'id_linea'))
     }
     else
     {
-
         $error = ERR_LINEA_MOSTRAR;
         header("location:index.php?page=error&error=$error");
     }

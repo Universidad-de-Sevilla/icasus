@@ -41,7 +41,6 @@ if (filter_has_var(INPUT_GET, 'id_objest') && filter_has_var(INPUT_GET, 'id_enti
     }
     else
     {
-
         $error = ERR_OBJEST_MOSTRAR;
         header("location:index.php?page=error&error=$error");
     }

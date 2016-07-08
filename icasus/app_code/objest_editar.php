@@ -21,7 +21,6 @@ if (filter_has_var(INPUT_GET, 'id_objest') && $control)
     }
     else
     {
-
         $error = ERR_OBJEST_MOSTRAR;
         header("location:index.php?page=error&error=$error");
     }

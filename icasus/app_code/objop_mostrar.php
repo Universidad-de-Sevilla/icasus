@@ -20,8 +20,15 @@ if (filter_has_var(INPUT_GET, 'id_objop'))
 
     //Obtenemos los datos del objetivo operacional
     $objop = new ObjetivoOperacional();
-    $objop->load_joined("id = $id_objop");
-    $smarty->assign('objop', $objop);
+    if ($objop->load_joined("id = $id_objop"))
+    {
+        $smarty->assign('objop', $objop);
+    }
+    else
+    {
+        $error = ERR_OBJOP_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
 
     //Responsables
     $responsable = false;
