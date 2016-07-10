@@ -25,6 +25,18 @@ if (filter_has_var(INPUT_GET, 'id_panel') && filter_has_var(INPUT_GET, 'id_cuadr
     $entidad->load("id=$cuadro->id_entidad");
     $smarty->assign("entidad", $entidad);
 
+    //Validar orden del panel dentro del cuadro de mando
+    $ordenes = array();
+    $paneles = $panel->Find("id_cuadro=$id_cuadro");
+    foreach ($paneles as $pl)
+    {
+        if ($pl->orden != $panel->orden)
+        {
+            array_push($ordenes, $pl->orden);
+        }
+    }
+    $smarty->assign('elementos', $ordenes);
+
     //Guardamos los cambios
     if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'orden') && filter_has_var(INPUT_POST, 'ancho'))
     {

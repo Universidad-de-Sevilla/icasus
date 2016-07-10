@@ -680,6 +680,8 @@ define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.'
 define('ERR_CUAD_MANDO', 'El cuadro de mando no existe o no tiene permisos para consultarlo.');
 define('ERR_CUAD_MANDO_PARAM', 'Parámetros insuficientes para mostrar el cuadro de mando.');
 define('ERR_CUAD_MANDO_EDIT', 'El cuadro de mando no existe o no tiene permisos para editarlo.');
+//Paneles
+define('ERR_PANEL_VAL_ORDEN', 'Ya existe un panel con el mismo orden en este cuadro de mando.');
 
 //Datos
 define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo dato.');

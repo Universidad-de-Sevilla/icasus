@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.22.3");
+define('IC_VERSION', "3.22.4");
 define('IC_FECHA_REVISION', "11/07/2016");
 
+// 3.22.4 - 11/07/2016 - Se valida el orden de los paneles dentro de un cuadro de mando.
 // 3.22.3 - 11/07/2016 - No se permite la generación de mediciones en indicadores/datos calculados, ya que éstas se crean a partir de sus indicadores/datos influyentes.
 // 3.22.2 - 08/07/2016 - Sólo pueden gestionar valores de referencia los responsables de las unidades.
 // 3.22.1 - 08/07/2016 - Cambiada la gráfica de los análisis de indicadores para que se muestren valores hasta el año actual.

@@ -10,13 +10,14 @@
 $(function () {
     $('.tipo').on('click', function () {
         var id_entidad = $('#id_entidad').val();
+        var id_cuadro = $('#id_cuadro').val();
         var tipo = $(this).data('tipo');
         var nombre_panel = $(this).data('nombre_panel');
         $('#nombre_panel').text(': ' + nombre_panel);
         $('#datos_panel').removeClass('active');
         $('#footer_tabs').addClass('hidden');
         $.ajax({
-            url: "index.php?page=" + tipo + "&ajax=true&modulo=inicio&id_entidad=" + id_entidad,
+            url: "index.php?page=" + tipo + "&ajax=true&modulo=inicio&id_cuadro=" + id_cuadro + "&id_entidad=" + id_entidad,
             success: function (datos) {
                 $("#datos").html(datos);
             }
