@@ -30,7 +30,7 @@ $plantilla = 'objop_ajax.tpl';
 
 if ($modulo == 'grabar_ejecucion')
 {
-    $valor = filter_input(INPUT_POST, 'valor', FILTER_SANITIZE_NUMBER_INT);
+    $valor = filter_input(INPUT_POST, 'valor', FILTER_VALIDATE_FLOAT);
     $ejecucion = new Ejecucion();
     $ejecucion->load("id_objop=$id_objop AND anyo=$anyo");
     $ejecucion->valor = $valor;
