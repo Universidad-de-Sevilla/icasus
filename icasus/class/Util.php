@@ -33,8 +33,11 @@ class Util
         $num_valores = 0;
         foreach ($valores as $valor)
         {
-            $suma = $suma + $valor;
-            $num_valores++;
+            if ($valor !== null)
+            {
+                $suma = $suma + $valor;
+                $num_valores++;
+            }
         }
         if ($num_valores !== 0)
         {
