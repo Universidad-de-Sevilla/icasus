@@ -69,6 +69,11 @@ $cuadro = new Cuadro();
 $cuadros = $cuadro->Find_joined("id_usuario = $usuario->id");
 $smarty->assign('cuadros_propios', $cuadros);
 
+// Objetivos operacionales bajo la responsabilidad de este usuario
+$objop = new ObjetivoOperacional();
+$objops = $objop->Find_joined("id_responsable = $usuario->id");
+$smarty->assign('objops_propios', $objops);
+
 if (is_array($indicadores) && is_array($datos))
 {
     $indicadores_datos = array_merge($indicadores, $datos);

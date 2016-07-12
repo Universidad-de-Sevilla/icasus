@@ -1,3 +1,28 @@
+<!-- Diálogo Confirmar Borrado Plan-->
+<div class="modal fade" id="dialogo_confirmar_borrado_plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i
+                        class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PLAN_BORRAR}: <span
+                        id="periodo_plan"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_PLAN_CONFIRM_BORRAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i
+                        class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar"><i
+                        class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Borrado Plan-->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -54,8 +79,6 @@
 <!-- /.row -->
 <!-- /Breadcrumbs -->
 
-
-
 <div class="row">
     <div class="col-lg-12">
         <!-- Nav tabs -->
@@ -68,6 +91,9 @@
             </li>
             <li role="presentation">
                 <a href="#unid_subs" title="{$smarty.const.FIELD_SUBUNIDS}" aria-controls="{$smarty.const.FIELD_SUBUNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</a>
+            </li>
+            <li role="presentation">
+                <a href="#unid_planes" title="{$smarty.const.FIELD_PLANES}" aria-controls="{$smarty.const.FIELD_PLANES}" role="tab" data-toggle="tab"><i class="fa fa-book fa-fw"></i> {$smarty.const.FIELD_PLANES}</a>
             </li>
             <li role="presentation">
                 <a href="#unid_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
@@ -83,6 +109,7 @@
 
             <!-- Parámetros de la unidad -->
             <div role="tabpanel" class="tab-pane active" id="unid_ficha">
+
                 {if ($entidad->madre->id!=0 AND $entidad->madre->id!=1)}
                     <div class="row">
                         <div class="col-lg-12">
@@ -96,117 +123,9 @@
                     </div>
                     <!-- /.row -->
                 {/if}
-                <div class="row">
-                    <div class="col-md-3">
-                        <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href="index.php?page=proceso_listar&id_entidad={$entidad->id}">
-                            <div class="panel panel-resumen">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <i class="fa fa-gears fa-3x"></i>
-                                            <span class="huge">{$num_procesos}</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <span class="h3">{$smarty.const.TXT_PROCS}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.col-md-3 -->
-                    <div class="col-md-3">
-                        <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href="index.php?page=indicador_listar&id_entidad={$entidad->id}">
-                            <div class="panel panel-resumen">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <i class="fa fa-dashboard fa-3x"></i>
-                                            <span class="huge">{$num_indicadores}</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <span class="h3">{$smarty.const.FIELD_INDICS}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.col-md-3 -->
-                    <div class="col-md-3">
-                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href="index.php?page=dato_listar&id_entidad={$entidad->id}">
-                            <div class="panel panel-resumen">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <i class="fa fa-database fa-3x"></i>
-                                            <span class="huge">{$num_datos}</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <span class="h3">{$smarty.const.FIELD_DATOS}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.col-md-3 -->
-                    <div class="col-md-3">
-                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
-                            <div class="panel panel-resumen">
-                                <div class="panel-heading">
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <i class="fa fa-th fa-3x"></i>
-                                            <span class="huge">{$num_cuadros}</span>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-xs-12 text-center">
-                                            <span class="h3">{$smarty.const.TXT_CUADROS_MANDO}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <!-- /.col-md-3 -->
-                </div>
-                <!-- /.row -->
 
                 <div class="row">
-                    <div class="col-md-4">
-                        <a title="{$smarty.const.TXT_INICIO_DESCRIPCION}" class="btn btn-danger btn-block" href='index.php?page=inicio'>
-                            <h4><i class="fa fa-home fa-fw"></i> {$smarty.const.TXT_INICIO}</h4>
-                        </a>
-                    </div>
-                    <!-- /.col-md-4 -->
-                    <div class="col-md-4">
-                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" class="btn btn-danger btn-block" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
-                            <h4><i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}</h4>
-                        </a>
-                    </div>
-                    <!-- /.col-md-4 -->
-                    {if $_control}
-                        <div class="col-md-4">
-                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" class="btn btn-danger btn-block" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
-                                <h4><i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}</h4>
-                            </a>     
-                        </div>
-                        <!-- /.col-md-4 -->
-                    {/if}
-                </div>
-                <br>
-                <!-- /.row -->
-
-                <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-md-6">
                         <table class="table table-striped table-hover ficha">
                             <thead><th></th><th></th></thead>
                             <tbody>
@@ -279,7 +198,119 @@
                             </div>
                         {/if}
                     </div>
-                    <!-- /.col-lg-12 -->
+                    <!-- /.col-md-6 -->
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href="index.php?page=proceso_listar&id_entidad={$entidad->id}">
+                                    <div class="panel panel-resumen">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <i class="fa fa-gears fa-3x"></i>
+                                                    <span class="huge">{$num_procesos}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <span class="h3">{$smarty.const.TXT_PROCS}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- /.col-md-6 -->
+                            <div class="col-md-6">
+                                <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href="index.php?page=indicador_listar&id_entidad={$entidad->id}">
+                                    <div class="panel panel-resumen">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <i class="fa fa-dashboard fa-3x"></i>
+                                                    <span class="huge">{$num_indicadores}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <span class="h3">{$smarty.const.FIELD_INDICS}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- /.col-md-6 -->
+                        </div>
+                        <!-- /.row -->                   
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href="index.php?page=dato_listar&id_entidad={$entidad->id}">
+                                    <div class="panel panel-resumen">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <i class="fa fa-database fa-3x"></i>
+                                                    <span class="huge">{$num_datos}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <span class="h3">{$smarty.const.FIELD_DATOS}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- /.col-md-6 -->
+                            <div class="col-md-6">
+                                <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
+                                    <div class="panel panel-resumen">
+                                        <div class="panel-heading">
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <i class="fa fa-th fa-3x"></i>
+                                                    <span class="huge">{$num_cuadros}</span>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <span class="h3">{$smarty.const.TXT_CUADROS_MANDO}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- /.col-md-6 -->
+                        </div>
+                        <!-- /.row -->
+                    </div>
+                    <!-- /.col-md-6 -->
+                </div>
+                <!-- /.row -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" class="btn btn-danger btn-block" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
+                            <h4><i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}</h4>
+                        </a>
+                    </div>
+                    <!-- /.col-md-4 -->
+                    <div class="col-md-4">
+                        <a title="{$smarty.const.TXT_INICIO_DESCRIPCION}" class="btn btn-danger btn-block" href='index.php?page=inicio'>
+                            <h4><i class="fa fa-home fa-fw"></i> {$smarty.const.TXT_INICIO}</h4>
+                        </a>
+                    </div>
+                    <!-- /.col-md-4 -->
+                    {if $_control}
+                        <div class="col-md-4">
+                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" class="btn btn-danger btn-block" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                                <h4><i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}</h4>
+                            </a> 
+                        </div>
+                        <!-- /.col-md-4 -->
+                    {/if}
                 </div>
                 <!-- /.row -->
             </div>
@@ -403,6 +434,100 @@
             </div>
             <!-- /Subunidades -->
 
+            <!-- Planes de la unidad -->
+            <div role="tabpanel" class="tab-pane" id="unid_planes">
+                <!-- Barra de botones -->
+                {if $_control}
+                    <div id="botones_plan" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=plan_crear&id_entidad={$entidad->id}' 
+                               title="{$smarty.const.TXT_PLAN_CREAR}">
+                                <i class="fa fa-book fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            </a>
+                        </div>
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
+                {if $planes}
+                    <div class="table-responsive">
+                        <table id="tabla_planes" class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_PLAN}</th>
+                                    <th>{$smarty.const.FIELD_TITULO}</th>
+                                    <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$planes item=plan} 
+                                    <tr>  
+                                        <td>
+                                            <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}" href="index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                                {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {if $plan->titulo}
+                                                <i>"{$plan->titulo}"</i>
+                                            {else}
+                                                ---
+                                            {/if}
+                                        </td>
+                                        <td style="white-space:nowrap">
+                                            <div class="progress">
+                                                <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$plan->ejecucion|round:"2"}%">
+                                                    {$plan->ejecucion|round:"2"} %
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                                <i class="fa fa-folder fa-fw"></i>
+                                            </a>
+                                            {if $_control}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=plan_editar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PLAN_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_plan"
+                                                   data-id_plan="{$plan->id}" data-periodo_plan="{$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}" data-id_entidad="{$plan->id_entidad}">
+                                                    <i class="fa fa-trash fa-fw"></i>
+                                                </a>
+                                            {/if}
+                                        </td>
+                                    </tr>     
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_UNID_NO_PLANES}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=plan_crear&id_entidad={$entidad->id}' 
+                                           title="{$smarty.const.TXT_PLAN_CREAR}">
+                                            <i class="fa fa-book fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-1 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
+            </div>
+            <!-- /Planes de la unidad -->
+
             <!-- Archivos de la unidad -->
             <div role="tabpanel" class="tab-pane" id="unid_archivos">
                 <!-- Barra de botones -->
@@ -419,7 +544,7 @@
                 <!-- /Barra de botones -->
                 {if $archivos}
                     <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
+                        <table id="tabla_archivos" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_TITULO}</th>

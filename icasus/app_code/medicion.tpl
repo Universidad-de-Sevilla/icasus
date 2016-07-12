@@ -514,7 +514,7 @@
                                                     <span class="label {if strpos($valor_referencia_medicion->valor_referencia->nombre,'mite')}label-danger{else if strpos($valor_referencia_medicion->valor_referencia->nombre,'eta')}label-success{else}label-default{/if}">{$valor_referencia_medicion->valor_referencia->etiqueta}</span>
                                                 </th>
                                                 <td>
-                                                    {if $permiso_editar == true}
+                                                    {if $permiso_unidad}
                                                         <div>
                                                             <span id="referencia_{$valor_referencia_medicion->id}">
                                                                 <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="referencia_editar('{$valor_referencia_medicion->id}');">

@@ -1,4 +1,5 @@
 <?php
+
 //----------------------------------------------------------------------------------
 // Proyecto: Icasus
 // Fichero: class/Indicador_dependencia.php
@@ -11,5 +12,7 @@
 
 class Indicador_dependencia extends ADOdb_Active_Record
 {
-     public $_table = 'indicadores_dependencias';
+
+    public $_table = 'indicadores_dependencias';
+
 }

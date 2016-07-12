@@ -82,7 +82,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
         $panel->ancho = 6;
         // Prepara el panel anual
         $anio_inicio = $indicador->historicos;
-        $anio_fin = date('Y') - 1;
+        $anio_fin = date('Y');
         $panel->id = 1;
         $panel->tipo->clase_css = "lineal";
         $panel->nombre = TXT_HISTORICO;

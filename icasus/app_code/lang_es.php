@@ -145,7 +145,6 @@ define('TXT_ORGANICA_DESCRIPCION', 'Sólo aparecen en los listados las unidades 
 //Indicadores
 define('TXT_INDIC_TODOS', 'Todos los indicadores');
 define('TXT_INDIC_SUBUNID', 'Relación de indicadores de subunidades');
-define('TXT_INDIC_PROP', 'Indicadores propios de la unidad');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
 define('TXT_INDIC_CREAR', 'Crear indicador');
@@ -162,7 +161,6 @@ define('TXT_INDICS_MIO', 'Mis indicadores');
 define('TXT_INDIC_DAT', 'Datos del indicador');
 define('TXT_INDIC_GEN_INFO_WORD', 'Generar un informe en Word de este indicador');
 define('TXT_INDIC_EXPORT_EXCEL', 'Exportar los datos del indicador a Excel');
-define('TXT_INDIC_PUBLIC', 'Indicadores públicos');
 define('TXT_INDIC_BUSCAR_BASE', 'Buscar indicador base');
 define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar indicadores complementarios');
 define('TXT_INDIC_SEG_DEPART', 'Seguimiento de indicadores de los departamentos');
@@ -263,6 +261,29 @@ define('TXT_PAG', 'Página');
 define('TXT_PAG_CREAR', 'Crear página');
 define('TXT_PAG_EDIT', 'Editar página');
 
+//Planes Estratégicos
+define('TXT_PLAN_CREAR', 'Crear plan estratégico');
+define('TXT_PLAN_EDIT', 'Editar plan estratégico');
+define('TXT_PLAN_BORRAR', 'Borrar plan estratégico');
+
+//Líneas Estratégicas
+define('TXT_LINEA_CREAR', 'Crear línea estratégica');
+define('TXT_LINEA_EDIT', 'Editar línea estratégica');
+define('TXT_LINEA_BORRAR', 'Borrar línea estratégica');
+
+//Objetivos Estratégicos
+define('TXT_OBJEST_CREAR', 'Crear objetivo estratégico');
+define('TXT_OBJEST_EDIT', 'Editar objetivo estratégico');
+define('TXT_OBJEST_BORRAR', 'Borrar objetivo estratégico');
+
+//Objetivos Operacionales
+define('TXT_OBJOP_CREAR', 'Crear objetivo operacional');
+define('TXT_OBJOP_EDIT', 'Editar objetivo operacional');
+define('TXT_OBJOP_BORRAR', 'Borrar objetivo operacional');
+define('TXT_OBJOP_TIPO', 'Tipo de objetivo operacional');
+define('TXT_OBJOP_PROPIO', 'Propio');
+define('TXT_OBJOP_DESC', 'Descendente');
+
 //Procesos
 define('TXT_PROCS', 'Procesos');
 define('TXT_PROC_TODOS', 'Todos los procesos');
@@ -356,6 +377,7 @@ define('TXT_USER_PROCS', 'Mis procesos');
 define('TXT_USER_INDIC', 'Mis indicadores');
 define('TXT_USER_DATO', 'Mis datos');
 define('TXT_USER_CUADROS', 'Mis cuadros de mando');
+define('TXT_USER_OBJOPS', 'Mis objetivos operacionales');
 define('TXT_USERS_ASIG', 'Usuarios asignados actualmente');
 define('TXT_USERS_DISP', 'Usuarios disponibles');
 define('TXT_USERS_VINC', 'Vincular usuarios');
@@ -477,6 +499,7 @@ define('MSG_UNID_NO_INDIC', 'No hay indicadores definidos para esta unidad.');
 define('MSG_UNID_NO_INDIC_ARCHIVADOS', 'No hay indicadores archivados en esta unidad.');
 define('MSG_UNID_NO_DATO_ARCHIVADOS', 'No hay datos archivados en esta unidad.');
 define('MSG_UNID_NO_CUADROS', 'No hay cuadros de mando definidos para esta unidad.');
+define('MSG_UNID_NO_PLANES', 'No hay planes estratégicos definidos para esta unidad.');
 define('MSG_UNID_NO_IND_NO_DAT', 'No hay indicadores ni datos definidos para esta unidad.');
 define('MSG_UNID_SUBUNIDS_NO_INDIC', 'No hay indicadores definidos para las subunidades de esta unidad.');
 define('MSG_UNID_SUP_NO_PROC', 'La unidad madre no tiene procesos.');
@@ -537,6 +560,49 @@ define('MSG_MEDS_NO_MARCADAS', 'No se ha marcado ninguna medición para borrar.'
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
 define('MSG_PAG_CONFIRM_EDITAR', 'Va a editar esta página, ¿está seguro?');
 define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
+
+//Planes
+define('MSG_PLAN_CONFIRM_BORRAR', '¿Realmente quiere borrar este plan?');
+define('MSG_PLAN_CREADO', 'Se ha creado un nuevo plan estratégico para esta unidad.');
+define('MSG_PLAN_EDITADO', 'Se ha editado el plan correctamente.');
+define('MSG_PLAN_CONFIRM_EDITAR', 'Va a editar este plan, ¿está seguro?');
+define('MSG_PLAN_BORRADO', 'Se ha eliminado el plan estratégico:');
+define('MSG_PLAN_BORRAR', 'No tiene permisos para borrar el plan o éste todavía contiene líneas estratégicas. Bórrelas primero.');
+define('MSG_PLAN_NO_LINEAS', 'No hay líneas estratégicas definidas para este plan.');
+define('MSG_PLAN_NO_OBJEST', 'No hay objetivos estratégicos definidos para las líneas estratégicas del plan.');
+define('MSG_PLAN_NO_OBJOP', 'No hay objetivos operacionales definidos para los objetivos estratégicos de las líneas estratégicas del plan.');
+
+//Líneas
+define('MSG_LINEA_CONFIRM_BORRAR', '¿Realmente quiere borrar esta línea?');
+define('MSG_LINEA_CREADA', 'Se ha creado una nueva línea estratégica para este plan.');
+define('MSG_LINEA_EDITADA', 'Se ha editado la línea correctamente.');
+define('MSG_LINEA_CONFIRM_EDITAR', 'Va a editar esta línea, ¿está seguro?');
+define('MSG_LINEA_BORRADA', 'Se ha eliminado la línea estratégica:');
+define('MSG_LINEA_BORRAR', 'No tiene permisos para borrar la línea o ésta todavía contiene objetivos estratégicos. Bórrelos primero.');
+define('MSG_LINEA_NO_OBJEST', 'No hay objetivos estratégicos definidos para esta línea estratégica del plan.');
+define('MSG_LINEA_NO_OBJOP', 'No hay objetivos operacionales definidos para los objetivos estratégicos de esta línea estratégica del plan.');
+
+//Objetivos Estratégicos
+define('MSG_OBJEST_CONFIRM_BORRAR', '¿Realmente quiere borrar este objetivo estratégico?');
+define('MSG_OBJEST_CREADO', 'Se ha creado un nuevo objetivo estratégico para esta línea del plan:');
+define('MSG_OBJEST_EDITADO', 'Se ha editado el objetivo estratégico correctamente.');
+define('MSG_OBJEST_CONFIRM_EDITAR', 'Va a editar este objetivo estratégico, ¿está seguro?');
+define('MSG_OBJEST_BORRADO', 'Se ha eliminado el objetivo estratégico:');
+define('MSG_OBJEST_BORRAR', 'No tiene permisos para borrar el objetivo estratégico o éste todavía contiene objetivos operacionales. Bórrelos primero.');
+define('MSG_OBJEST_NO_OBJOP', 'No hay objetivos operacionales definidos para este objetivo estratégico de esta línea estratégica del plan.');
+
+//Objetivos Operacionales
+define('MSG_OBJOP_CONFIRM_BORRAR', '¿Realmente quiere borrar este objetivo operacional?');
+define('MSG_OBJOP_CREADO', 'Se ha creado un nuevo objetivo operacional para el actual objetivo estratégico:');
+define('MSG_OBJOP_EDITADO', 'Se ha editado el objetivo operacional correctamente.');
+define('MSG_OBJOP_CONFIRM_EDITAR', 'Va a editar este objetivo operacional, ¿está seguro?');
+define('MSG_OBJOP_BORRADO', 'Se ha eliminado el objetivo operacional:');
+define('MSG_OBJOP_BORRAR', 'No tiene permisos para borrar el objetivo operacional.');
+define('MSG_OBJOP_NO_INDICS_CORREL', 'No se han definido los indicadores de correlación para este objetivo operacional.');
+define('MSG_OBJOP_NO_INDICS_CONTROL', 'No se han definido los indicadores de control para este objetivo operacional.');
+define('MSG_OBJOP_VALOR_EJ', 'Debe introducir un valor para la ejecución entre 0 y 100 (%).');
+define('MSG_OBJOP_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este objetivo operacional (corregir).');
+define('MSG_OBJOP_NO_ASIG', 'No dispone de objetivos operacionales bajo su responsabilidad.');
 
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
@@ -614,11 +680,14 @@ define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.'
 define('ERR_CUAD_MANDO', 'El cuadro de mando no existe o no tiene permisos para consultarlo.');
 define('ERR_CUAD_MANDO_PARAM', 'Parámetros insuficientes para mostrar el cuadro de mando.');
 define('ERR_CUAD_MANDO_EDIT', 'El cuadro de mando no existe o no tiene permisos para editarlo.');
+//Paneles
+define('ERR_PANEL_VAL_ORDEN', 'Ya existe un panel con el mismo orden en este cuadro de mando.');
 
 //Datos
 define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo dato.');
 define('ERR_DATO_ARCHIVAR_DEP', 'Este dato influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
 define('ERR_DATO_BORRAR_MED', 'Tiene mediciones asociadas al dato, necesita borrar primero las mediciones.');
+define('ERR_DATO_BORRAR_OBJOP', 'No se puede borrar el dato, está asociado al menos con un objetivo operacional de un plan estratégico.');
 define('ERR_DATO_BORRAR_NO_AUT', 'No tiene permisos para borrar el dato.');
 define('ERR_DATO_ARCHIVAR_NO_AUT', 'No tiene permisos para archivar este dato.');
 define('ERR_DATO_RESTAURAR_NO_AUT', 'No tiene permisos para restaurar este dato.');
@@ -645,6 +714,7 @@ define('ERR_PARAM_GRAFIC', 'Faltan parámetros para mostrar la gráfica.');
 define('ERR_INDIC_BORRAR_MED', 'Tiene mediciones asociadas al indicador, necesita borrar primero las mediciones.');
 define('ERR_INDIC_BORRAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
 define('ERR_INDIC_ARCHIVAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
+define('ERR_INDIC_BORRAR_OBJOP', 'No se puede borrar el indicador, está asociado al menos con un objetivo operacional de un plan estratégico.');
 define('ERR_INDIC_BORRAR_NO_AUT', 'No tiene permisos para borrar el indicador.');
 define('ERR_INDIC_ARCHIVAR_NO_AUT', 'No tiene permisos para archivar este indicador.');
 define('ERR_INDIC_RESTAURAR_NO_AUT', 'No tiene permisos para restaurar este indicador.');
@@ -660,6 +730,26 @@ define('ERR_MED_NO_VAL', 'No existen valores pendientes ni recogidos para esta m
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la medición, inténtelo de nuevo o contacte con los administradores de icasus.');
 define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el cálculo de otros indicadores/datos. Borre éstos primero');
 define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en este');
+
+//Planes
+define('ERR_PLAN_MOSTRAR', 'No se puede mostrar el plan, el identificador no existe en la base de datos.');
+define('ERR_PLAN_EDIT', 'El plan estratégico no existe o no tiene permisos para editarlo.');
+define('ERR_PLAN_VAL_ANYO', 'Ya existe un plan con el mismo año de inicio.');
+
+//Líneas
+define('ERR_LINEA_MOSTRAR', 'No se puede mostrar la línea, el identificador no existe en la base de datos.');
+define('ERR_LINEA_EDIT', 'La línea estratégica no existe o no tiene permisos para editarla.');
+define('ERR_LINEA_VAL_INDICE', 'Ya existe una línea con el mismo índice para este plan.');
+
+//Objeticos Estratégicos
+define('ERR_OBJEST_MOSTRAR', 'No se puede mostrar el objetivo estratégico, el identificador no existe en la base de datos.');
+define('ERR_OBJEST_EDIT', 'El objetivo estratégico no existe o no tiene permisos para editarlo.');
+define('ERR_OBJEST_VAL_INDICE', 'Ya existe un objetivo estratégico con el mismo índice para esta línea del plan.');
+
+//Objeticos Operacionales
+define('ERR_OBJOP_MOSTRAR', 'No se puede mostrar el objetivo operacional, el identificador no existe en la base de datos.');
+define('ERR_OBJOP_EDIT', 'El objetivo operacional no existe o no tiene permisos para editarlo.');
+define('ERR_OBJOP_VAL_INDICE', 'Ya existe un objetivo operacional con el mismo índice para este objetivo estratégico de esta línea del plan.');
 
 //Procesos
 define('ERR_PROC_MOSTRAR', 'No se puede mostrar el proceso, el identificador no existe en la base de datos.');
@@ -694,7 +784,7 @@ define('FIELD_FECHA', 'Fecha');
 define('FIELD_FECHA_HORA', 'Fecha/Hora');
 define('FIELD_WEB', 'Sitio web');
 define('FIELD_FUENTE', 'Fuente');
-define('FIELD_PERIODO', 'Periodo');
+define('FIELD_PERIODO', 'Período');
 define('FIELD_VISIBILIDAD', 'Visibilidad');
 define('FIELD_UMBRAL', 'Umbral');
 define('FIELD_LIMITE', 'Límite');
@@ -725,7 +815,6 @@ define('FIELD_ORDEN', 'Orden');
 define('FIELD_ANCHO', 'Ancho');
 define('FIELD_ANYO', 'Año');
 define('FIELD_TOTAL', 'Total');
-define('FIELD_MISION', 'Misión');
 define('FIELD_RESULTS_CLAVE', 'Resultados Clave');
 define('FIELD_ENTRADAS_PROV', 'Entradas/Proveedores');
 define('FIELD_SALIDAS_CLIENTS', 'Salidas/Clientes');
@@ -769,6 +858,8 @@ define('FIELD_INDIC', 'Indicador');
 define('FIELD_INDIC_BASE', 'Indicador/dato base');
 define('FIELD_INDIC_COMPLEMENT', 'Indicadores/datos complementarios');
 define('FIELD_INDICS', 'Indicadores');
+define('FIELD_INDICS_CORREL', 'Indicadores de correlación');
+define('FIELD_INDICS_CONTROL', 'Indicadores de control');
 define('FIELD_FORM', 'Formulación');
 define('FIELD_FORMULA', 'Fórmula de cálculo');
 define('FIELD_FUENTE_INFO', 'Fuente de Información');
@@ -794,6 +885,28 @@ define('FIELD_TIP_MED', 'Tipo de medición');
 
 //Páginas
 define('FIELD_PAG_CONTENIDO', 'Contenido de la página (HTML)');
+
+//Planes
+define('FIELD_PLAN', 'Plan estratégico');
+define('FIELD_PLANES', 'Planes estratégicos');
+define('FIELD_ANYO_INICIO', 'Año de inicio');
+define('FIELD_DURACION', 'Duración (años)');
+define('FIELD_MISION', 'Misión');
+define('FIELD_VISION', 'Visión');
+define('FIELD_VALORES', 'Valores');
+define('FIELD_FCE', 'Factores clave del éxito');
+define('FIELD_EJECUCION', 'Ejecución');
+
+//Líneas
+define('FIELD_LINEA', 'Línea estratégica');
+define('FIELD_LINEAS', 'Líneas estratégicas');
+define('FIELD_INDICE', 'Índice');
+
+//Objetivos
+define('FIELD_OBJ_EST', 'Objetivo estratégico');
+define('FIELD_OBJ_OP', 'Objetivo operacional');
+define('FIELD_OBJS_EST', 'Objetivos estratégicos');
+define('FIELD_OBJS_OP', 'Objetivos operacionales');
 
 //Procesos
 define('FIELD_PROC', 'Proceso');

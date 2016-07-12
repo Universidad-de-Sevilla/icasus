@@ -328,7 +328,7 @@
 
 <!-- Barra de botones -->
 <div class="row">
-    {if $_control || $responsable}
+    {if ($_control || $responsable) && !$indicador->calculo}
         <div class="col-lg-6">
             <a title="{$smarty.const.TXT_MED_CREAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
                data-toggle="modal" data-target="#dialogo_confirmar_generar">
@@ -548,7 +548,7 @@
                                             </td>
                                             <td>
                                                 {if $medicion->observaciones != ''}
-                                                    {$medicion->observaciones|truncate:60}
+                                                    <span title="{$medicion->observaciones}">{$medicion->observaciones|truncate:60}</span>
                                                 {else}
                                                     ---
                                                 {/if}

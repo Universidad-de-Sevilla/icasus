@@ -31,6 +31,17 @@ if (filter_has_var(INPUT_GET, 'page') && filter_has_var(INPUT_GET, 'modulo'))
         $smarty->assign('indicadores', $indicadores);
 
         $smarty->assign('id_entidad', $id_entidad);
+
+        //Validar orden del panel dentro del cuadro de mando
+        $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
+        $panel = new Panel();
+        $ordenes = array();
+        $paneles = $panel->Find("id_cuadro=$id_cuadro");
+        foreach ($paneles as $pl)
+        {
+            array_push($ordenes, $pl->orden);
+        }
+        $smarty->assign('elementos', $ordenes);
     }
 
     if ($modulo == 'fecha_fin')

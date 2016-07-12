@@ -163,7 +163,8 @@ $(document).ready(function () {
 //Chosen selects (añade búsqueda a los html select)
 $(".chosen-select").chosen({
     disable_search_threshold: 10,
-    no_results_text: "Oops, no se encuentran registros coincidentes"
+    no_results_text: "No se encontraron registros coincidentes con:",
+    search_contains: true
 });
 
 //Habilita enlaces directos a pestañas dentro de una página
