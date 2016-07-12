@@ -31,6 +31,12 @@ if (filter_has_var(INPUT_GET, 'id_linea') && filter_has_var(INPUT_GET, 'id_entid
         {
             $exito = MSG_LINEA_BORRADA . ' ' . $linea->indice . '. ' . $linea->nombre;
             $linea->delete();
+            //Borrado de ejecuciones anuales
+            $ejecucion = new Ejecucion();
+            while ($ejecucion->load("id_linea = $id_linea"))
+            {
+                $ejecucion->delete();
+            }
             header("Location: index.php?page=plan_mostrar&id_plan=$id_plan&id_entidad=$id_entidad&exito=$exito");
         }
         else

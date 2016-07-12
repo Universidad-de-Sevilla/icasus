@@ -29,19 +29,9 @@ class Util
     //Media: calcula la media de un array de valores
     static function media($valores)
     {
-        $suma = 0;
-        $num_valores = 0;
-        foreach ($valores as $valor)
+        if (count($valores))
         {
-            if ($valor !== null)
-            {
-                $suma = $suma + $valor;
-                $num_valores++;
-            }
-        }
-        if ($num_valores !== 0)
-        {
-            return ($suma / $num_valores);
+            return array_sum($valores) / count($valores);
         }
         else
         {

@@ -27,6 +27,24 @@ if (filter_has_var(INPUT_GET, 'id_objop') && filter_has_var(INPUT_GET, 'id_entid
         {
             $exito = MSG_OBJOP_BORRADO . ' ' . $objest->linea->indice . '.' . $objest->indice . '.' . $objop->indice . '. ' . $objop->nombre;
             $objop->delete();
+            //Borrado de ejecuciones anuales
+            $ejecucion = new Ejecucion();
+            while ($ejecucion->load("id_objop = $id_objop"))
+            {
+                $ejecucion->delete();
+            }
+            //Borrado de unidades asociadas
+            $objetivo_unidad = new ObjetivoUnidad();
+            while ($objetivo_unidad->load("id_objop = $id_objop"))
+            {
+                $objetivo_unidad->delete();
+            }
+            //Borrado de indicadores asociados
+            $objetivo_indicador = new ObjetivoIndicador();
+            while ($objetivo_indicador->load("id_objop = $id_objop"))
+            {
+                $objetivo_indicador->delete();
+            }
             header("Location: index.php?page=objest_mostrar&id_objest=$objest->id&id_entidad=$id_entidad&exito=$exito");
         }
         else

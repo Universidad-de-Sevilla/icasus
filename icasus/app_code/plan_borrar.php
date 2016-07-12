@@ -28,6 +28,12 @@ if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entida
         {
             $exito = MSG_PLAN_BORRADO . " " . $plan->anyo_inicio . "-" . ($plan->anyo_inicio + $plan->duracion - 1);
             $plan->delete();
+            //Borrado de ejecuciones anuales
+            $ejecucion = new Ejecucion();
+            while ($ejecucion->load("id_plan = $id_plan"))
+            {
+                $ejecucion->delete();
+            }
             header("Location: index.php?page=entidad_mostrar&id_entidad=$id_entidad&exito=$exito");
         }
         else

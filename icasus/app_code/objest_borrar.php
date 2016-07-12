@@ -31,6 +31,12 @@ if (filter_has_var(INPUT_GET, 'id_objest') && filter_has_var(INPUT_GET, 'id_enti
         {
             $exito = MSG_OBJEST_BORRADO . ' ' . $linea->indice . '.' . $objest->indice . '. ' . $objest->nombre;
             $objest->delete();
+            //Borrado de ejecuciones anuales
+            $ejecucion = new Ejecucion();
+            while ($ejecucion->load("id_objest = $id_objest"))
+            {
+                $ejecucion->delete();
+            }
             header("Location: index.php?page=linea_mostrar&id_linea=$id_linea&id_entidad=$id_entidad&exito=$exito");
         }
         else

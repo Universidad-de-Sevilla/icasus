@@ -58,6 +58,11 @@ if ($anyo)
     $ejecucion_objests = array();
     $ejecucion_objops = array();
 
+    //Ejecución del plan
+    $ejecucion->load("id_plan=$id_plan AND anyo=$anyo");
+    $ejecucion_plan = $ejecucion->valor;
+    $smarty->assign("ejecucion_plan", $ejecucion_plan);
+
     //Ejecuciones lineas
     foreach ($lineas as $linea)
     {

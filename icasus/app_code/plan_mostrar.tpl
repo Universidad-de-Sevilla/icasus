@@ -622,6 +622,25 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <div id="plan_anyo">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-info">
+                                <div class="row">
+                                    <div class="col-sm-8 h4">
+                                        {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}
+                                    </div>
+                                    <!-- /.col-sm-8 -->
+                                    <div class="col-sm-4">
+                                        <div class="progress">
+                                            <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$plan->ejecucion|round:"2"}%">
+                                                {$plan->ejecucion|round:"2"} %
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.col-sm-4 -->
+                                </div>
+                                <!-- /.row -->
+                            </li>
+                        </ul>
                         <div class="panel-group" id="accordion_lineas" role="tablist" aria-multiselectable="true">
                             {foreach from=$lineas item=linea}
                                 <div class="panel panel-danger">
