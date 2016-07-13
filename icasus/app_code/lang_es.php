@@ -24,9 +24,7 @@ define('TXT_APP_DESCRIPCION', 'Indicadores de Calidad de los Servicios de la Uni
 define('TXT_DEPARTAMENTOS', 'Departamentos');
 define('TXT_BIBLIOTECAS', 'Bibliotecas');
 define('TXT_CONTROL', 'Control');
-define('TXT_OTRO_OFIMATICA', 'Microsoft Office o cualquier otro programa de ofimática.');
 define('TXT_NO_ASIG', 'No asignado');
-define('TXT_REG_EVENTOS', 'Registro de eventos');
 define('TXT_CONTENIDO', 'Contenido de');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_REP_GRAFIC', 'Gráficas');
@@ -43,11 +41,6 @@ define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
 define('TXT_RESUL', 'Resultado');
 define('TXT_FICHA', 'Ficha');
-
-//Accesibilidad (atributo alt de las imágenes)
-define('TXT_FOTO_PERFIL', 'Foto de perfil');
-define('TXT_EXPORT_CSV', 'Exportar en CSV');
-define('TXT_LEYENDA', 'Leyenda');
 
 //Análisis de indicadores
 define('TXT_ANALISIS', 'Análisis');
@@ -422,11 +415,8 @@ define('TXT_PRIVADO', 'Privado');
 define('MSG_NO_DEF', 'No se han definido.');
 define('MSG_TOTAL_LINEAS', 'Total de líneas');
 define('MSG_LINEAS_NO_REF_INDIC', 'líneas que no referenciaban a ningún indicador.');
-define('MSG_EXITO_OP', 'Operación realizada con éxito.');
 define('MSG_NO_MET_SOL', 'No existe el método solicitado.');
-define('MSG_FALTAN_PARAM_MET', 'Faltan parámetros para ejecutar el método');
 define('MSG_ERR', 'Por favor inténtelo de nuevo, si el problema persiste póngase en contacto con nosotros en la dirección: ');
-define('MSG_GUARDAR_OK', 'Se han guardado los cambios correctamente.');
 define('MSG_CAMPO_REQ', 'Campo obligatorio');
 define('MSG_BUSCAR_NO_RESUL', 'No existen resultados para la búsqueda solicitada.');
 define('MSG_BUSCAR_NO_TEXTO', 'No introdujo ningún texto para buscar.');
@@ -659,12 +649,7 @@ define('ERR_DIR', 'Error no se ha podido crear el directorio tipo objeto.');
 define('ERR_SUBDIR', 'Error no se ha podido crear el subdirectorio objeto.');
 define('ERR_NO_DIR_NAME', 'No se ha proporcionado un nombre de directorio.');
 define('ERR_PARAM', 'Faltan parámetros para realizar esta acción.');
-define('ERR_PARAM_INC', 'Parámetros incorrectos.');
-define('ERR_FALTAN_PAR_IMPORT', 'Faltan parámetros para la importación.');
-define('ERR_PARAM_PAG', 'Faltan parámetros para mostrar la página solicitada.');
-define('ERR_FALTAN_PARAM_CONSULTA', 'Parámetros insuficientes para realizar la consulta.');
 define('ERR_NO_AUT_MOD', 'No tiene permisos para acceder a este módulo de la aplicación.');
-define('ERR_INFORM_INDIC', 'No se puede generar el informe del indicador por falta de parámetros.');
 define('ERR_GUARDAR', 'Hubo un problema, no se han podido guardar los cambios.');
 
 //Archivos
