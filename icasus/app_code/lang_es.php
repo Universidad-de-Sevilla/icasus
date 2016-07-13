@@ -699,7 +699,6 @@ define('ERR_DATO_BORRAR_DEP', 'Este dato influye en el cálculo de otros indicad
 define('ERR_DIM_CREAR', 'No se ha podido crear la dimensión.');
 
 //Entidades (Unidades)
-define('ERR_UNID', 'No ha especificado la unidad.');
 define('ERR_UNID_MOSTRAR', 'No se puede mostrar la unidad, el identificador no existe en la base de datos.');
 define('ERR_UNID_NO_SEL', 'No se ha especificado una unidad para asignar usuarios.');
 define('ERR_UNID_LIST_INDIC', 'No ha especificado la unidad cuyos indicadores desea listar.');

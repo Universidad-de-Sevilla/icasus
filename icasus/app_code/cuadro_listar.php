@@ -30,6 +30,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 }
 else
 {
-    $error = ERR_UNID;
+    $error = ERR_PARAM;
     header("location:index.php?page=cuadros&error=$error");
 }
