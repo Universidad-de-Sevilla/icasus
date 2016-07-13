@@ -83,7 +83,6 @@ define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 define('TXT_CONSULT_BUSCAR', 'Buscar indicador/dato');
 
 //Cuadros de Mando
-define('TXT_CUADRO_MANDO', 'Cuadro de mando');
 define('TXT_CUADROS_MANDO', 'Cuadros de mando');
 define('TXT_CUADRO_LIST', 'Lista de cuadros de mando');
 define('TXT_CUADROS_MANDO_PUBLIC', 'Cuadros de mando públicos');
@@ -831,6 +830,9 @@ define('FIELD_COMENTARIOS', 'Comentarios');
 
 //Archivos
 define('FIELD_ARCHIVO', 'Archivo');
+
+//Cuadros de Mando
+define('FIELD_CUADRO_MANDO', 'Cuadro de mando');
 
 //Datos
 define('FIELD_DATO', 'Dato');
