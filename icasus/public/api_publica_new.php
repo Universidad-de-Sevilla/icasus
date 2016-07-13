@@ -167,7 +167,6 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
             FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
             INNER JOIN entidades ON entidades.id = valores.id_entidad
             WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
-
     if ($fecha_inicio > 0)
     {
         $query .= " AND mediciones.periodo_inicio >= '$fecha_inicio'";
@@ -290,27 +289,28 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     //-----------------------------------------------------------------------------------------
     // Valores de referencia: objetivos, mínimos, etc.
     //------------------------------------------------------------------------------------------
-
+    $agrega_parentesis = false;
+    $condicion_adicional = "";
     if ($operador_temporal === 'LAST')
     {
-        $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
-            UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin,
-            valores_referencia.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia
-            FROM valores_referencia
-            INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
-            INNER JOIN mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
-            WHERE mediciones.id_indicador = $id AND grafica = 1";
+        $operador_temporal = "";
+        $agrega_parentesis = true;
+        $condicion_adicional = " AND (periodo_inicio, id_valor_referencia) IN
+            (SELECT max(mediciones.periodo_inicio) as periodo_inicio, 
+                valores_referencia_mediciones.id_valor_referencia
+                FROM mediciones 
+                INNER JOIN valores_referencia_mediciones 
+                ON valores_referencia_mediciones.id_medicion = mediciones.id";
     }
-    else
-    {
-        $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+
+
+    $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
             UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin,
             valores_referencia.etiqueta as unidad, NULL as id_unidad, $operador_temporal(valor) as valor, TRUE as referencia
             FROM valores_referencia
             INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
             INNER JOIN mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
-            WHERE mediciones.id_indicador = $id AND grafica = 1";
-    }
+            WHERE mediciones.id_indicador = $id AND grafica = 1" . $condicion_adicional;
 
     if ($fecha_inicio > 0)
     {
@@ -323,22 +323,6 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     if ($periodicidad == "anual")
     {
         $query_ref .= " GROUP BY unidad, YEAR(mediciones.periodo_inicio)";
-
-        if ($operador_temporal === 'LAST')
-        {
-            $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
-                    UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
-                    valores_referencia.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia
-                    FROM mediciones 
-                    INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
-                    INNER JOIN valores_referencia ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id 
-                    WHERE (periodo_inicio, id_valor_referencia) IN
-                    (SELECT max(mediciones.periodo_inicio) as periodo_inicio, valores_referencia_mediciones.id_valor_referencia
-                    FROM mediciones 
-                    INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
-                    WHERE mediciones.id_indicador = $id AND valor IS NOT NULL AND grafica = 1
-                    GROUP BY valores_referencia_mediciones.id_valor_referencia, YEAR (periodo_inicio))";
-        }
     }
     else if ($periodicidad == "mensual")
     {
@@ -348,9 +332,14 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     {
         // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
         // Funcionará mientras Icasus no tenga mediciones intradiarias
-        $query_ref .= " GROUP BY unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
+        $query_ref .= " GROUP BY id_valor_referencia, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
     }
     $query_ref .= " ORDER BY mediciones.periodo_inicio";
+    
+    if ($agrega_parentesis)
+    { 
+        $query_ref .= ")";
+    }
 
     $resultado = mysqli_query($link, $query_ref);
     while ($registro = mysqli_fetch_assoc($resultado))
@@ -485,3 +474,4 @@ function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fec
     }
     return $datos;
 }
+

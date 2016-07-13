@@ -144,7 +144,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_USER_OBJOPS}" href='index.php'>
+                                    <a title="{$smarty.const.TXT_USER_OBJOPS}" href='index.php?page=inicio#user_objops'>
                                         <div>
                                             <i class="fa fa-bullseye fa-fw"></i> {$smarty.const.TXT_USER_OBJOPS}:
                                             <span class="pull-right badge">{$num_objops_propios}</span>
