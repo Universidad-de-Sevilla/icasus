@@ -377,28 +377,6 @@
                 {include file=$plantilla}
             </div>
             <!-- /.container-fluid --> 
-
-            <!-- Footer -->
-            <footer class="text-center footer footer-login">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <span class="h4">{$smarty.const.TXT_ICASUS}</span> - {$smarty.const.TXT_APP_DESCRIPCION} - <a href="https://{$smarty.const.TXT_APP_WEB}">{$smarty.const.TXT_APP_WEB}</a>
-                        </div>
-                        <!-- /.col-lg-12 -->
-                    </div>
-                    <!-- /.row -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <small>{$smarty.const.FIELD_VERSION}: {$smarty.const.IC_VERSION} - {$smarty.const.FIELD_FECHA_REV}: {$smarty.const.IC_FECHA_REVISION}</small>
-                        </div>
-                        <!-- /.col-lg-12 -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
-            </footer>
-            <!-- /Footer -->
         {/if}
 
         <!-- jQuery -->
