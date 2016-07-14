@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.22.6");
-define('IC_FECHA_REVISION', "13/07/2016");
+define('IC_VERSION', "3.22.7");
+define('IC_FECHA_REVISION', "14/07/2016");
 
+// 3.22.7 - 14/07/2016 - Pequeñas correcciones y cambios en las páginas de login.
 // 3.22.6 - 13/07/2016 - Se muestran correctamente en las gráficas los valores de referencia de los indicadores/datos con agregación temporal evolutiva.
 // 3.22.5 - 12/07/2016 - Correcciones varias en la gestión de planes estratégicos (grados de ejecución, borrado...).
 // 3.22.4 - 11/07/2016 - Se valida el orden de los paneles dentro de un cuadro de mando.
