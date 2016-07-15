@@ -3,13 +3,13 @@
         <div class="login-panel panel panel-default">
             <!-- Nombre página -->
             <div class="panel-heading">
-                <div class="row" title="{$_nombre_pagina}">
+                <div class="row" title="{$_nombre_pagina} {$smarty.const.TXT_ICASUS}">
                     <div class="col-sm-2">
                         <img class="img-circle img-responsive" src='images/logo_big.png' alt='{$smarty.const.TXT_UNIVERSIDAD}'>
                     </div>
                     <!-- /.col-sm-2 -->
                     <div class="col-sm-10">
-                        <h1>{$_nombre_pagina}</h1>
+                        <h1>{$_nombre_pagina} <b>{$smarty.const.TXT_ICASUS}</b></h1>
                     </div>
                     <!-- /.col-sm-10 -->
                 </div>

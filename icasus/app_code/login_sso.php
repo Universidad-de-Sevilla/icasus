@@ -107,6 +107,5 @@ else if (filter_has_var(INPUT_GET, 'logout'))
 }
 else
 {
-    $smarty->assign("_nombre_pagina", TXT_BIENVENIDO);
     $plantilla = "login_sso.tpl";
 }

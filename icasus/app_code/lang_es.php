@@ -166,7 +166,7 @@ define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
 define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
 
 //Login
-define('TXT_BIENVENIDO', 'Bienvenido a icasus');
+define('TXT_BIENVENIDO', 'Bienvenido a');
 define('TXT_LOGIN', 'Iniciar sesión');
 define('TXT_LOGIN_PARTE1', 'es una aplicación web para la gestión de la calidad en la');
 define('TXT_LOGIN_PARTE2', 'Para acceder al sistema es necesario ser miembro activo de alguno de los grupos de calidad de la Universidad de Sevilla y solicitar autorización de acceso al responsable de su grupo de calidad.');
