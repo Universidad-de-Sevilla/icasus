@@ -27,11 +27,29 @@ class Util
     }
 
     //Media: calcula la media de un array de valores
-    static function media($valores)
+    static function media(array $valores)
     {
         if (count($valores))
         {
             return array_sum($valores) / count($valores);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
+    //Media: calcula la media ponderada para un array de valores y otro de pesos
+    static function media_ponderada(array $valores, array $pesos)
+    {
+        if (count($valores))
+        {
+            $suma = 0;
+            foreach ($valores as $index => $valor)
+            {
+                $suma = $suma + ($valor * $pesos[$index]);
+            }
+            return $suma / array_sum($pesos);
         }
         else
         {

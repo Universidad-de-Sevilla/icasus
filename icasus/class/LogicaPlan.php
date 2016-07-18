@@ -36,6 +36,7 @@ class LogicaPlan implements ILogicaPlan
         //Obtenemos los objetivos operacionales con el mismo objetivo estratégico
         $objops = $objop->Find("id_objest=$id_objest");
         $valores = array();
+        $pesos = array();
         foreach ($objops as $obj)
         {
             $ejecucion_anual = new Ejecucion();
@@ -43,6 +44,7 @@ class LogicaPlan implements ILogicaPlan
             if ($ejecucion_anual->activo)
             {
                 array_push($valores, $ejecucion_anual->valor);
+                array_push($pesos, $obj->peso);
             }
         }
         //Grabamos el resultado
@@ -50,7 +52,7 @@ class LogicaPlan implements ILogicaPlan
         //Si existe actualizamos el grado de ejecución
         if ($ejecucion_total->load("id_objest=$id_objest AND anyo=$anyo"))
         {
-            $ejecucion_total->valor = Util::media($valores);
+            $ejecucion_total->valor = Util::media_ponderada($valores, $pesos);
             $ejecucion_total->Save();
         }
         //Si no existe creamos el grado de ejecución
@@ -58,7 +60,7 @@ class LogicaPlan implements ILogicaPlan
         {
             $ejecucion_total->id_objest = $id_objest;
             $ejecucion_total->anyo = $anyo;
-            $ejecucion_total->valor = Util::media($valores);
+            $ejecucion_total->valor = Util::media_ponderada($valores, $pesos);
             $ejecucion_total->activo = 1;
             $ejecucion_total->Save();
         }
