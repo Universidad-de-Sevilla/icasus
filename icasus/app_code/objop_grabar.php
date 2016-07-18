@@ -10,11 +10,12 @@
 // Descripcion: Crea/Edita un objetivo operacional para un objetivo estratégico de una línea de un plan
 //---------------------------------------------------------------------------------------------------
 
-if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'id_objest') && filter_has_var(INPUT_POST, 'id_responsable'))
+if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'id_objest') && filter_has_var(INPUT_POST, 'id_responsable') && filter_has_var(INPUT_POST, 'peso'))
 {
     $id_objest = filter_input(INPUT_POST, 'id_objest', FILTER_SANITIZE_NUMBER_INT);
     $objest = new ObjetivoEstrategico();
     $objest->load_joined("id=$id_objest");
+    $id_entidad = $objest->linea->plan->id_entidad;
     $objop = new ObjetivoOperacional();
     $exito = MSG_OBJOP_CREADO . ' ' . $objest->linea->indice . '.' . $objest->indice . '. ' . $objest->nombre;
     // Si viene el id es que estamos editando un objetivo operacional existente
@@ -50,6 +51,7 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
     $objop->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $objop->id_responsable = filter_input(INPUT_POST, 'id_responsable', FILTER_SANITIZE_NUMBER_INT);
     $objop->descendente = filter_input(INPUT_POST, 'tipo_objop', FILTER_SANITIZE_NUMBER_INT);
+    $objop->peso = filter_input(INPUT_POST, 'peso', FILTER_VALIDATE_FLOAT);
     $objop->save();
 
     $post_array = filter_input_array(INPUT_POST);
@@ -110,7 +112,7 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
             $ejecucion->Save();
         }
     }
-    header("Location: index.php?page=objop_mostrar&id_objop=$objop->id&id_objest=$id_objest&exito=$exito");
+    header("Location: index.php?page=objop_mostrar&id_objop=$objop->id&id_entidad=$id_entidad&exito=$exito");
 }
 else
 {

@@ -294,6 +294,7 @@ define('TXT_OTRAS_PROP', 'Otras propiedades');
 
 //Propiedades HTML: Titles, placeholders, values de botones...
 define('TXT_CODIGO', 'Único, fácil de recordar, en mayúsculas y sin espacios');
+define('TXT_PESO', 'El peso [0.01,1] indica la importancia del objetivo operacional dentro del objetivo estratégico al que pertenece. Influye por tanto en el grado de ejecución de éste.');
 define('TXT_ESTA', 'Está aquí');
 define('TXT_CALCULO_TOTAL', 'Determina cómo se calcula el total entre todas las subunidades');
 define('TXT_CALCULO_TOTAL_ANUAL', 'Determina cómo se calcula el total anual entre todos los periodos');
@@ -893,6 +894,7 @@ define('FIELD_OBJ_EST', 'Objetivo estratégico');
 define('FIELD_OBJ_OP', 'Objetivo operacional');
 define('FIELD_OBJS_EST', 'Objetivos estratégicos');
 define('FIELD_OBJS_OP', 'Objetivos operacionales');
+define('FIELD_PESO', 'Peso');
 
 //Procesos
 define('FIELD_PROC', 'Proceso');

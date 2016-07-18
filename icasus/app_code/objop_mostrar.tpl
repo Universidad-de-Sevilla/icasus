@@ -206,6 +206,12 @@
                                         </div>
                                     </td>
                                 </tr>
+                                <tr title="{$smarty.const.TXT_PESO}">
+                                    <th>{$smarty.const.FIELD_PESO}</th>
+                                    <td> 
+                                        {$objop->peso}
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th>{$smarty.const.TXT_OBJOP_TIPO}</th>
                                     <td> 

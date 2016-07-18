@@ -131,6 +131,14 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group has-feedback">
+                        <label for="peso" class="col-sm-2 control-label">{$smarty.const.FIELD_PESO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <div class="col-sm-8">
+                            <input id="peso" type="number" value="{$objop->peso}" step="0.01" min="0.01" max="1" name="peso" class="form-control" placeholder="{$smarty.const.FIELD_PESO}" title="{$smarty.const.TXT_PESO}" data-toggle="tooltip" data-placement="left" required/>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
                             <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$entidad->id}'>
