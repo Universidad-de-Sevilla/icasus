@@ -193,7 +193,7 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_OBJ_EST}</th>
                                     <td> 
-                                        <a title="{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$linea->id}'>{$linea->indice}.{$objest->indice}. {$objest->nombre}</a>
+                                        <a title="{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$entidad->id}'>{$linea->indice}.{$objest->indice}. {$objest->nombre}</a>
                                     </td>
                                 </tr>
                                 <tr>

@@ -10,12 +10,16 @@
 // Descripcion: Crea/Edita un objetivo operacional para un objetivo estratégico de una línea de un plan
 //---------------------------------------------------------------------------------------------------
 
+global $usuario;
+//Variable para operar con los planes
+$logicaPlan = new LogicaPlan();
+
 if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'id_objest') && filter_has_var(INPUT_POST, 'id_responsable') && filter_has_var(INPUT_POST, 'peso'))
 {
     $id_objest = filter_input(INPUT_POST, 'id_objest', FILTER_SANITIZE_NUMBER_INT);
     $objest = new ObjetivoEstrategico();
     $objest->load_joined("id=$id_objest");
-    $id_entidad = $objest->linea->plan->id_entidad;
+    $plan = $objest->linea->plan;
     $objop = new ObjetivoOperacional();
     $exito = MSG_OBJOP_CREADO . ' ' . $objest->linea->indice . '.' . $objest->indice . '. ' . $objest->nombre;
     // Si viene el id es que estamos editando un objetivo operacional existente
@@ -28,6 +32,9 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
             $error = ERR_OBJOP_EDIT;
             header("Location: index.php?page=error&error=error");
         }
+        //Guardamos su objetivo estratégico y peso por si cambia después
+        $id_objest_old = $objop->id_objest;
+        $peso_old = $objop->peso;
         //Eliminamos las unidades por si cambian luego
         $objetivo_unidad = new ObjetivoUnidad();
         while ($objetivo_unidad->load("id_objop = $id_objop"))
@@ -99,9 +106,6 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
     if (!isset($id_objop))
     {
         //Creamos ejecuciones anuales
-        $plan = new Plan();
-        $id_plan = $objest->linea->id_plan;
-        $plan->load("id=$id_plan");
         for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
         {
             $ejecucion = new Ejecucion();
@@ -111,8 +115,40 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
             $ejecucion->activo = 1;
             $ejecucion->Save();
         }
+        //Actualizamos ejecuciones
+        for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
+        {
+            $logicaPlan->actualizar_ejecucion_anual($id_objest, $i);
+        }
+        $logicaPlan->actualizar_ejecucion_global_objest($id_objest);
     }
-    header("Location: index.php?page=objop_mostrar&id_objop=$objop->id&id_entidad=$id_entidad&exito=$exito");
+    //Si hemos editado un objetivo operacional existente
+    else
+    {
+        //Si hemos cambiado el objetivo estratégico al que pertenece
+        if ($id_objest_old != $id_objest)
+        {
+            //Actualizamos ejecuciones
+            for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
+            {
+                $logicaPlan->actualizar_ejecucion_anual($id_objest_old, $i);
+                $logicaPlan->actualizar_ejecucion_anual($id_objest, $i);
+            }
+            $logicaPlan->actualizar_ejecucion_global_objest($id_objest_old);
+            $logicaPlan->actualizar_ejecucion_global_objest($id_objest);
+        }
+        //Si el peso cambio
+        else if ($peso_old != $objop->peso)
+        {
+            //Actualizamos ejecuciones
+            for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
+            {
+                $logicaPlan->actualizar_ejecucion_anual($id_objest, $i);
+            }
+            $logicaPlan->actualizar_ejecucion_global_objest($id_objest);
+        }
+    }
+    header("Location: index.php?page=objop_mostrar&id_objop=$objop->id&id_entidad=$plan->id_entidad&exito=$exito");
 }
 else
 {

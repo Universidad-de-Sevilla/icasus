@@ -9,9 +9,9 @@
 // Descripcion: Borra un objetivo operacional
 //---------------------------------------------------------------------------------------------------
 
-global $smarty;
-global $plantilla;
 global $usuario;
+//Variable para operar con los planes
+$logicaPlan = new LogicaPlan();
 
 if (filter_has_var(INPUT_GET, 'id_objop') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -45,6 +45,13 @@ if (filter_has_var(INPUT_GET, 'id_objop') && filter_has_var(INPUT_GET, 'id_entid
             {
                 $objetivo_indicador->delete();
             }
+            //Actualizamos ejecuciones
+            $plan = $objest->linea->plan;
+            for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
+            {
+                $logicaPlan->actualizar_ejecucion_anual($objest->id, $i);
+            }
+            $logicaPlan->actualizar_ejecucion_global_objest($objest->id);
             header("Location: index.php?page=objest_mostrar&id_objest=$objest->id&id_entidad=$id_entidad&exito=$exito");
         }
         else
