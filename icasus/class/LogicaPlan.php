@@ -62,7 +62,7 @@ class LogicaPlan implements ILogicaPlan
 
     //Actualiza el grado de ejecución para el año que recibe como parámetro
     //de la línea cuyo identificador recibe como parámetro.
-    private function actualizar_ejecucion_anual_linea($id_linea, $anyo)
+    public function actualizar_ejecucion_anual_linea($id_linea, $anyo)
     {
         //Obtenemos los objetivos estratégicos dentro de la misma línea
         $objest = new ObjetivoEstrategico();
@@ -181,7 +181,7 @@ class LogicaPlan implements ILogicaPlan
 
     //Actualiza el grado de ejecucion global de la línea cuyo 
     //identificador recibe como parámetro
-    private function actualizar_ejecucion_global_linea($id_linea)
+    public function actualizar_ejecucion_global_linea($id_linea)
     {
         $linea = new Linea();
         $linea->load("id=$id_linea");
