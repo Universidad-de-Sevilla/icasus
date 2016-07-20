@@ -23,6 +23,10 @@ interface ILogicaPlan
     //de la línea cuyo identificador recibe como parámetro.
     public function actualizar_ejecucion_anual_linea($id_linea, $anyo);
 
+    //Actualiza el grado de ejecución para el año que recibe como parámetro
+    //del plan cuyo identificador recibe como parámetro.
+    public function actualizar_ejecucion_anual_plan($id_plan, $anyo);
+
     //Actualiza los grados globales de ejecución de un plan al que pertenece
     //el identificador de objetivo operacional que recibe como parámetro
     public function actualizar_ejecucion_global($id_objop);
@@ -34,4 +38,8 @@ interface ILogicaPlan
     //Actualiza el grado de ejecucion global de la línea cuyo 
     //identificador recibe como parámetro
     public function actualizar_ejecucion_global_linea($id_linea);
+
+    //Actualiza el grado de ejecucion global del plan cuyo 
+    //identificador recibe como parámetro
+    public function actualizar_ejecucion_global_plan($id_plan);
 }
