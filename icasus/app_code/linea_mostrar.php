@@ -32,7 +32,7 @@ if (filter_has_var(INPUT_GET, 'id_linea'))
 
     //Obtener todas las líneas para avanzar o retroceder 
     $id_plan = $linea->id_plan;
-    $lineas = $linea->Find("id_plan = $id_plan");
+    $lineas = $linea->Find("id_plan = $id_plan order by indice");
     $smarty->assign("lineas", $lineas);
     $cont = 0;
     foreach ($lineas as $ln)

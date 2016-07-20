@@ -32,7 +32,7 @@ if (filter_has_var(INPUT_GET, 'id_objest'))
 
     //Obtener todos los objetivos estratégicos para avanzar o retroceder
     $id_linea = $objest->id_linea;
-    $objests = $objest->Find("id_linea = $id_linea");
+    $objests = $objest->Find("id_linea = $id_linea order by indice");
     $smarty->assign("objests", $objests);
     $cont = 0;
     foreach ($objests as $obj)

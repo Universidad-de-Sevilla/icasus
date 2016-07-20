@@ -56,16 +56,16 @@
                         <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($objops)} {$smarty.const.FIELD_OBJS_OP}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_OBJOP_OP}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[0]->id}'>
+                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_OBJ_OP}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_OBJOP_OP}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[$indice-1]->id}'>
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_OBJ_OP}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_OBJOP_OP}" class="btn btn-danger btn-xs {if $indice == (count($objops)-1)}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[$indice+1]->id}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_OBJ_OP}" class="btn btn-danger btn-xs {if $indice == (count($objops)-1)}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_OBJOP_OP}" class="btn btn-danger btn-xs {if $indice == (count($objops)-1)}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[(count($objops)-1)]->id}'>
+                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_OBJ_OP}" class="btn btn-danger btn-xs {if $indice == (count($objops)-1)}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[(count($objops)-1)]->id}'>
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
