@@ -392,7 +392,7 @@
                             <tbody>
                                 <tr>
                                     <th>{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></th>
-                                    <td>
+                                    <td style="white-space:nowrap">
                                         {if $permiso_editar == true && !$indicador->calculo}
                                             <div>
                                                 <span id="et">
@@ -406,7 +406,7 @@
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_OBSERV}</th>
-                                    <td>
+                                    <td style="white-space:nowrap">
                                         {if $permiso_editar == true}
                                             <div>
                                                 <span id="ob">
@@ -420,7 +420,7 @@
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_INICIO_PERIODO}</th>
-                                    <td>
+                                    <td style="white-space:nowrap">
                                         {if $permiso_editar == true && !$indicador->calculo}
                                             <div>
                                                 <span id="pi">
@@ -440,7 +440,7 @@
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_FIN_PERIODO}</th>
-                                    <td>
+                                    <td style="white-space:nowrap">
                                         {if $permiso_editar == true && !$indicador->calculo}
                                             <div>
                                                 <span id="pf">
@@ -460,7 +460,7 @@
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_INICIO_GRABACION}</th>
-                                    <td>
+                                    <td style="white-space:nowrap">
                                         <span id="gi" data-grabacion_inicio="{$medicion->grabacion_inicio}">
                                             {if ($permiso_unidad || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo}
                                                 <div>
@@ -480,7 +480,7 @@
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_FIN_GRABACION}</th>
-                                    <td>
+                                    <td style="white-space:nowrap">
                                         <span id="gf" data-grabacion_fin="{$medicion->grabacion_fin}">
                                             {if ($permiso_unidad || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo}
                                                 <div>
@@ -513,7 +513,7 @@
                                                 <th>
                                                     <span class="label {if strpos($valor_referencia_medicion->valor_referencia->nombre,'mite')}label-danger{else if strpos($valor_referencia_medicion->valor_referencia->nombre,'eta')}label-success{else}label-default{/if}">{$valor_referencia_medicion->valor_referencia->etiqueta}</span>
                                                 </th>
-                                                <td>
+                                                <td style="white-space:nowrap">
                                                     {if $permiso_unidad}
                                                         <div>
                                                             <span id="referencia_{$valor_referencia_medicion->id}">

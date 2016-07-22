@@ -17,10 +17,10 @@
                         <td><span class="label label-primary">{$valor->entidad->etiqueta}</span></td>
                         <td style="white-space: nowrap">
                             {if $valor->id == $valor_edit && $valor->activo}
-                                <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}">
+                                <input name="v_{$valor->id}" class="actualizar_dato" type="text" value="{$valor->valor_parcial}">
                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="fila_grabar('{$valor->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="fila_cancelar('{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
-                                {else if $valor->activo}
+                            {else if $valor->activo}
                                 <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
                             {else}
                             {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
@@ -36,7 +36,7 @@
                     <th>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</th>
                     <td>
                         {if $valor->id == $valor_edit}
-                            <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}">
+                            <input name="v_{$valor->id}" class="actualizar_dato" type="text" value="{$valor->valor_parcial}">
                             <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
                             <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
                             {else}
@@ -100,7 +100,7 @@
                         <th>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</th>
                         <td>
                             {if $valor->id == $valor_edit}
-                                <input name="v_{$valor->id}" type="text" value="{$valor->valor_parcial}">
+                                <input name="v_{$valor->id}" class="actualizar_dato" type="text" value="{$valor->valor_parcial}">
                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fila_grabar('{$valor->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fila_cancelar('{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
                                 {else}
@@ -321,7 +321,7 @@
 {/if}
 
 {if $modulo == 'editarvalorreferencia'}
-    <input id="input_referencia_{$referencia->id}" name="input_referencia_{$referencia->id}" type="text" value="{$referencia->valor}">
+    <input id="input_referencia_{$referencia->id}" name="input_referencia_{$referencia->id}" class="actualizar_dato" type="text" value="{$referencia->valor}">
     <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:referencia_grabar('{$referencia->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
     <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:referencia_cancelar('{$referencia->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
     {/if}

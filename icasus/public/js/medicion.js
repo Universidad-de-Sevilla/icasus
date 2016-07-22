@@ -384,3 +384,16 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 $('.table-responsive').on('scroll', function () {
     tablas_valores.fixedHeader.adjust();
 });
+
+//Validaciones
+$('#page-wrapper').on('keyup', '.actualizar_dato', function () {
+    var actualizar_dato = $(this);
+    var valor = $(this).val();
+    valor = valor.replace(',', '.');
+    if ($.isNumeric(valor) || valor === '---') {
+        actualizar_dato.css("border-color", "green");
+    }
+    else {
+        actualizar_dato.css("border-color", "red");
+    }
+});
