@@ -165,23 +165,27 @@ $(function () {
     //Actualizar valores
     $('#page-wrapper').on('keyup', '.actualizar_dato', function () {
         var actualizar_dato = $(this);
-        if ($.isNumeric(actualizar_dato.val())) {
-            actualizar_dato.css("color", "green");
+        var valor = $(this).val();
+        valor = valor.replace(',', '.');
+        if ($.isNumeric(valor) || valor.length === 0) {
+            actualizar_dato.css("border-color", "green");
         }
         else {
-            actualizar_dato.css("color", "red");
+            actualizar_dato.css("border-color", "red");
         }
     });
     $('#page-wrapper').on('blur', '.actualizar_dato', function () {
         var actualizar_dato = $(this);
+        var color_input = $(this).css('border-color');
         var id_valor = $(this).data('id_valor');
         var valor = $(this).val();
+        valor = valor.replace(',', '.');
         $('#intervalo').text('[' + valor_min + ', ' + valor_max + '].');
-        if ($.isNumeric(actualizar_dato.val())) {
+        if ($.isNumeric(valor)) {
             //Si hay un intervalo [min,max]
             if ($.isNumeric(valor_min) && $.isNumeric(valor_max)) {
                 if (valor < valor_min || valor > valor_max) {
-                    actualizar_dato.css("color", "red");
+                    actualizar_dato.css("border-color", "red");
                     $('#dialogo_valor_intervalo').modal('show');
                 }
                 else {
@@ -189,7 +193,8 @@ $(function () {
                     $.ajax({
                         url: "index.php?page=valores_ajax&ajax=true&modulo=actualizar_dato" + parametros,
                         success: function () {
-                            actualizar_dato.css("color", "#333");
+                            actualizar_dato.css("border-color", color_input);
+                            actualizar_dato.val(Math.round(valor * 100) / 100);
                         }
                     });
                 }
@@ -197,7 +202,7 @@ $(function () {
             //Si hay un valor mínimo
             else if ($.isNumeric(valor_min) && !$.isNumeric(valor_max)) {
                 if (valor < valor_min) {
-                    actualizar_dato.css("color", "red");
+                    actualizar_dato.css("border-color", "red");
                     $('#dialogo_valor_intervalo').modal('show');
                 }
                 else {
@@ -205,7 +210,8 @@ $(function () {
                     $.ajax({
                         url: "index.php?page=valores_ajax&ajax=true&modulo=actualizar_dato" + parametros,
                         success: function () {
-                            actualizar_dato.css("color", "#333");
+                            actualizar_dato.css("border-color", color_input);
+                            actualizar_dato.val(Math.round(valor * 100) / 100);
                         }
                     });
                 }
@@ -213,7 +219,7 @@ $(function () {
             //Si hay un valor máximo
             else if ($.isNumeric(valor_max) && !$.isNumeric(valor_min)) {
                 if (valor > valor_max) {
-                    actualizar_dato.css("color", "red");
+                    actualizar_dato.css("border-color", "red");
                     $('#dialogo_valor_intervalo').modal('show');
                 }
                 else {
@@ -221,7 +227,8 @@ $(function () {
                     $.ajax({
                         url: "index.php?page=valores_ajax&ajax=true&modulo=actualizar_dato" + parametros,
                         success: function () {
-                            actualizar_dato.css("color", "#333");
+                            actualizar_dato.css("border-color", color_input);
+                            actualizar_dato.val(Math.round(valor * 100) / 100);
                         }
                     });
                 }
@@ -232,7 +239,8 @@ $(function () {
                 $.ajax({
                     url: "index.php?page=valores_ajax&ajax=true&modulo=actualizar_dato" + parametros,
                     success: function () {
-                        actualizar_dato.css("color", "#333");
+                        actualizar_dato.css("border-color", color_input);
+                        actualizar_dato.val(Math.round(valor * 100) / 100);
                     }
                 });
             }
@@ -242,12 +250,13 @@ $(function () {
             $.ajax({
                 url: "index.php?page=valores_ajax&ajax=true&modulo=actualizar_dato" + parametros,
                 success: function () {
-                    actualizar_dato.css("color", "#333");
+                    actualizar_dato.css("border-color", color_input);
                 }
             });
         }
         else {
-            actualizar_dato.css("color", "red");
+            actualizar_dato.css("border-color", "red");
+            $('#dialogo_valor_num').modal('show');
         }
     });
 });

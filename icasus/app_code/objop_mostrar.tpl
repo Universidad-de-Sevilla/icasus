@@ -7,7 +7,7 @@
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-bullseye fa-fw"></i><sub class="fa fa-tasks fa-fw"></sub> {$smarty.const.FIELD_OBJ_OP}: {$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}</h3>
             </div>
             <div class="modal-body">
-                <p>{$smarty.const.MSG_OBJOP_VALOR_EJ} <span id="intervalo"></span></p>
+                <p>{$smarty.const.MSG_OBJOP_VALOR_EJ}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
@@ -274,8 +274,8 @@
                                                 <th>{$smarty.const.FIELD_EJECUCION}</th>
                                                     {if $_control || $responsable}
                                                     <th></th>
-                                                    <th></th>
                                                     {/if}
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -302,6 +302,15 @@
                                                                    data-off="{$smarty.const.TXT_VAL_INACTIVO}"
                                                                    data-id_objop='{$objop->id}' data-anyo='{$i}'
                                                                    {if $activacion_anual[$i] == 1}checked="checked"{/if}>
+                                                        </td>
+                                                    {else}
+                                                        <td>
+                                                            <input class="form-control activar"  type="checkbox"
+                                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if} disabled>
                                                         </td>
                                                     {/if}
                                                 </tr>
