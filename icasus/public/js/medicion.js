@@ -288,30 +288,46 @@ function fecha_cancelar(content, medicion)
     $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
 }
 
-function referencia_editar(id)
+function referencia_editar(id, medicion)
 {
-    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=editarvalorreferencia&ajax=true&id_referencia=" + id);
+    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=editarvalorreferencia&ajax=true&id_referencia=" + id + "&id_medicion=" + medicion);
 }
 
-function referencia_grabar(id)
+function referencia_grabar(id, medicion)
 {
     var value = $("[name=input_referencia_" + id + "]").val();
     value = value.replace(',', '.');
+    $('#intervalo').text('[' + valor_min + ', ' + valor_max + '].');
 
     if (value !== '')
     {
         if (isNaN(value) === false)
         {
-            $.post("index.php?page=medicion_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
-                $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
-                $('#valors').load(location.reload());
-            });
+            //Si hay un intervalo [min,max]
+            if ($.isNumeric(valor_min) && $.isNumeric(valor_max)) {
+                if (value < valor_min || value > valor_max) {
+                    $('#dialogo_valor_intervalo').modal('show');
+                }
+                else {
+                    $.post("index.php?page=medicion_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
+                        $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
+                        $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                    });
+                }
+            }
+            // Si no hay intervalo [min, max]
+            else {
+                $.post("index.php?page=medicion_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
+                    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
+                    $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                });
+            }
         }
         else if (value === "---")
         {
             $.post("index.php?page=medicion_ajax&modulo=anularvalorreferencia&ajax=true", {id_referencia: id}, function () {
-                $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
-                $('#valors').load(location.reload());
+                $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
+                $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
             });
         }
         else
@@ -325,9 +341,9 @@ function referencia_grabar(id)
     }
 }
 
-function referencia_cancelar(id)
+function referencia_cancelar(id, medicion)
 {
-    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
+    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
 }
 
 //Función que pinta nuestra gráfica
@@ -395,5 +411,16 @@ $('#page-wrapper').on('keyup', '.actualizar_dato', function () {
     }
     else {
         actualizar_dato.css("border-color", "red");
+    }
+});
+
+$('#page-wrapper').on('keyup', '.actualizar_etiqueta', function () {
+    var actualizar_etiqueta = $(this);
+    var valor = $(this).val();
+    if (valor.length === 0) {
+        actualizar_etiqueta.css("border-color", "red");
+    }
+    else {
+        actualizar_etiqueta.css("border-color", "green");
     }
 });

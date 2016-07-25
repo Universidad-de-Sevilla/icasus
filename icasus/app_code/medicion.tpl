@@ -517,7 +517,7 @@
                                                     {if $permiso_unidad}
                                                         <div>
                                                             <span id="referencia_{$valor_referencia_medicion->id}">
-                                                                <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="referencia_editar('{$valor_referencia_medicion->id}');">
+                                                                <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="referencia_editar('{$valor_referencia_medicion->id}', '{$medicion->id}');">
                                                                     {if $valor_referencia_medicion->valor == NULL}
                                                                         ---
                                                                     {else}

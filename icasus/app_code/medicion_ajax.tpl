@@ -20,7 +20,7 @@
                                 <input name="v_{$valor->id}" class="actualizar_dato" type="text" value="{$valor->valor_parcial}">
                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="fila_grabar('{$valor->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
                                 <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="fila_cancelar('{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
-                            {else if $valor->activo}
+                                {else if $valor->activo}
                                 <a href="javascript:void(0)" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">{if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}</a>
                             {else}
                             {if $valor->valor == NULL}---{else}{$valor->valor|round:"2"}{/if}
@@ -311,7 +311,7 @@
 {/if}
 
 {if $modulo == 'cancelarvalorreferencia'}
-    <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="referencia_editar('{$valor_referencia_medicion->id}');">
+    <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="referencia_editar('{$valor_referencia_medicion->id}', '{$medicion->id}');">
         {if $valor_referencia_medicion->valor == NULL}
             ---
         {else}
@@ -322,8 +322,8 @@
 
 {if $modulo == 'editarvalorreferencia'}
     <input id="input_referencia_{$referencia->id}" name="input_referencia_{$referencia->id}" class="actualizar_dato" type="text" value="{$referencia->valor}">
-    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:referencia_grabar('{$referencia->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
-    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:referencia_cancelar('{$referencia->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
+    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:referencia_grabar('{$referencia->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
+    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:referencia_cancelar('{$referencia->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
     {/if}
 
 {if $modulo == 'editarfecha'}
@@ -350,7 +350,7 @@
     {/if}
 
 {if $modulo == 'editaretiqueta'}
-    <input name="etiqueta" type="text" value="{$medicion->etiqueta}">
+    <input name="etiqueta" type="text" class="actualizar_etiqueta" value="{$medicion->etiqueta}">
     <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:etiqueta_editar_grabar('et', '{$medicion->id}', 'etiqueta');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
     <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:etiqueta_editar_cancelar('et', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
     {/if}
