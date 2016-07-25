@@ -279,7 +279,13 @@ function fecha_grabar(medicion, content)
     var value = year + "-" + mes + "-" + dia;
     $.post("index.php?page=medicion_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
         $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
-        $('#valors').load(location.reload());
+        //Si cambiamos periodos de grabación actualizamos valores globales
+        if (content === 'gi') {
+            grabacion_inicio = value;
+        }
+        if (content === 'gf') {
+            grabacion_fin = value;
+        }
     });
 }
 
