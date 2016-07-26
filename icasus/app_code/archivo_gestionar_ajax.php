@@ -28,8 +28,12 @@ if ($modulo == 'subir')
     $fichero->id_objeto = filter_input(INPUT_POST, 'id_objeto', FILTER_SANITIZE_NUMBER_INT);
     $fichero->id_usuario = $usuario->id;
     $fichero->visible = filter_input(INPUT_POST, 'svisible', FILTER_SANITIZE_NUMBER_INT);
-    //Vemos si el archivo es para una unidad o para un proceso
-    if ($tipo == 'proceso')
+    //Vemos si el archivo es para una unidad, plan estratégico o para un proceso
+    if ($tipo == 'plan')
+    {
+        $fichero->tipo_objeto = 'plan';
+    }
+    else if ($tipo == 'proceso')
     {
         $fichero->tipo_objeto = 'proceso';
     }
@@ -50,7 +54,11 @@ if ($modulo == 'subir')
         if (!mkdir($dir, 0755))
         {
             $error = ERR_DIR;
-            if ($tipo == 'proceso')
+            if ($tipo == 'plan')
+            {
+                header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
+            }
+            else if ($tipo == 'proceso')
             {
                 header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
             }
@@ -66,7 +74,11 @@ if ($modulo == 'subir')
         if (!mkdir($dir . $subdir, 0755))
         {
             $error = ERR_SUBDIR;
-            if ($tipo == 'proceso')
+            if ($tipo == 'plan')
+            {
+                header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
+            }
+            else if ($tipo == 'proceso')
             {
                 header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
             }
@@ -87,7 +99,11 @@ if ($modulo == 'subir')
         else
         {
             $exito = MSG_ARCHIVO_SUBIDA_OK;
-            if ($tipo == 'proceso')
+            if ($tipo == 'plan')
+            {
+                header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&exito=$exito");
+            }
+            else if ($tipo == 'proceso')
             {
                 header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&exito=$exito");
             }
@@ -100,7 +116,11 @@ if ($modulo == 'subir')
     else
     {
         $error = ERR_ARCHIVO_GRABAR;
-        if ($tipo == 'proceso')
+        if ($tipo == 'plan')
+        {
+            header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
+        }
+        else if ($tipo == 'proceso')
         {
             header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
         }

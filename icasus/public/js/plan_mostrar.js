@@ -11,8 +11,10 @@
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha').html();
     var botones_linea = $('#botones_linea').html();
+    var botones_archivo = $('#botones_archivo').html();
     $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
     $('#tabla_lineas_filter').append(botones_linea);
+    $('#tabla_archivos_filter').append(botones_archivo);
 });
 
 //Borrado de líneas estratégicas

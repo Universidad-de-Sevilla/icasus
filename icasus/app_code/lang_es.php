@@ -560,6 +560,7 @@ define('MSG_PLAN_BORRAR', 'No tiene permisos para borrar el plan o éste todaví
 define('MSG_PLAN_NO_LINEAS', 'No hay líneas estratégicas definidas para este plan.');
 define('MSG_PLAN_NO_OBJEST', 'No hay objetivos estratégicos definidos para las líneas estratégicas del plan.');
 define('MSG_PLAN_NO_OBJOP', 'No hay objetivos operacionales definidos para los objetivos estratégicos de las líneas estratégicas del plan.');
+define('MSG_PLAN_NO_ARCHIVOS', 'No se han subido archivos para este plan estratégico.');
 
 //Líneas
 define('MSG_LINEA_CONFIRM_BORRAR', '¿Realmente quiere borrar esta línea?');
@@ -603,7 +604,7 @@ define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo proceso para esta unidad.');
 define('MSG_PROC_EDITADO', 'Se ha modificado el proceso correctamente.');
 define('MSG_PROC_NO_INDIC', 'No se ha definido ningún indicador para este proceso.');
 define('MSG_PROC_NO_INDIC_ARCHIVADOS', 'No hay indicadores archivados en este proceso.');
-define('MSG_PROC_NO_ARCHIVO', 'No se han subido archivos para este proceso.');
+define('MSG_PROC_NO_ARCHIVOS', 'No se han subido archivos para este proceso.');
 define('MSG_PROC_MAPA', 'Para agregar/editar el mapa de procesos de su unidad, póngase en contacto con nosotros a través de la dirección: ');
 
 //Usuarios

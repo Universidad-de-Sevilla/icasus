@@ -4,7 +4,9 @@
         <div class="modal-content">
             <form action="index.php?page=archivo_gestionar_ajax&ajax=true&id_entidad={$entidad->id}&modulo=subir&tipo={$tipo}" name="subir" method="post" enctype="multipart/form-data" 
                   data-toggle="validator" class="form-horizontal">
-                {if isset($proceso)}
+                {if isset($plan)}
+                    <input type="hidden" value="{$plan->id}" name="id_objeto">
+                {else if isset($proceso)}
                     <input type="hidden" value="{$proceso->id}" name="id_objeto">
                 {else}
                     <input type="hidden" value="{$entidad->id}" name="id_objeto">
@@ -197,6 +199,11 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
+            {if isset($plan)}
+                <li>
+                    <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}</a>
+                </li>
+            {/if}
             {if isset($proceso)}
                 <li>
                     <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_PROCS}</a>
@@ -271,10 +278,15 @@
         {else}
             <div class="row">
                 <div class="col-sm-11">
-                    {if isset($proceso)}
+                    {if isset($plan)}
                         <div class="alert alert-info alert-dismissible">
                             <i class="fa fa-info-circle fa-fw"></i> 
-                            {$smarty.const.MSG_PROC_NO_ARCHIVO}
+                            {$smarty.const.MSG_PLAN_NO_ARCHIVOS}
+                        </div> 
+                    {else if isset($proceso)}
+                        <div class="alert alert-info alert-dismissible">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_PROC_NO_ARCHIVOS}
                         </div> 
                     {else}
                         <div class="alert alert-info alert-dismissible">
