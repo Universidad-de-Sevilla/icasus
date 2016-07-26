@@ -450,22 +450,23 @@ span:focus, .pagination > li > span:hover {
 .login-panel{
     margin-top: 10%;
     background: rgba(255, 255, 255, 0.8);
-    border-color: #FFC526;
+    border-color:  #950717;
 }
 
 .login-panel .panel-heading{
     color: #950717;
     background: rgba(255, 255, 255, 0.2);
-    border-color: #FFC526;
+    border-color:  #950717;
 }
 
 .login-panel .panel-heading h1{
-    margin-top:5%;
+    margin-top: 4%;
+    font-size: 7vh;
 }
 
 .login-panel .panel-footer{
     background: rgba(255, 255, 255, 0.2);
-    border-color: #FFC526;
+    border-color:  #950717;
 }
 
 .login-panel .panel-footer a{

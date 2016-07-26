@@ -52,6 +52,14 @@
                                 <button title="{$smarty.const.TXT_LOGIN}" class="btn btn-success btn-block" type="submit"><i class="fa fa-sign-in fa-fw"></i> {$smarty.const.TXT_LOGIN}</button>
                             </fieldset>
                         </form>
+                        {if isset($error)}
+                            <div class="alert alert-danger alert-dismissible notificacion">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="{$smarty.const.TXT_CERRAR}">
+                                    <span aria-hidden="true">&times;</span></button>
+                                <i class="fa fa-exclamation-circle fa-fw"></i> 
+                                {$error}
+                            </div>
+                        {/if}
                     </div>
                     <!-- /.col-md-6 -->
                 </div>

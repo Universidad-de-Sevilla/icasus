@@ -242,7 +242,7 @@ function etiqueta_editar_grabar(content, medicion, tag)
     }
     else {
         $.post("index.php?page=medicion_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
-            $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+//            $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
             location.reload();
         });
     }
