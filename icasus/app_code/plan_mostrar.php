@@ -92,7 +92,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
 
     //Archivos
     $archivo = new Fichero();
-    $archivos = $archivo->find_joined("id_objeto = $id_plan AND tipo_objeto = 'plan'");
+    $archivos = $archivo->find_joined("id_objeto = $id_plan AND tipo_objeto = 'plan' AND visible=1");
     $smarty->assign('archivos', $archivos);
 
     $entidad = new Entidad();
