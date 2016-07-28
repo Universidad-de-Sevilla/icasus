@@ -99,7 +99,7 @@
                 <a href="#unid_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
             </li>
             <li role="presentation">
-                <a href="#unid_res" title="{$smarty.const.TXT_RESUMEN} ({$smarty.const.TXT_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})" aria-controls="{$smarty.const.TXT_RESUMEN} ({$smarty.const.TXT_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})" role="tab" data-toggle="tab"><i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_RESUMEN}</a>
+                <a href="#unid_res" title="{$smarty.const.TXT_RESUMEN} ({$smarty.const.FIELD_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})" aria-controls="{$smarty.const.TXT_RESUMEN} ({$smarty.const.FIELD_PROCS}, {$smarty.const.FIELD_INDICS}, {$smarty.const.FIELD_DATOS})" role="tab" data-toggle="tab"><i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_RESUMEN}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -213,7 +213,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12 text-center">
-                                                    <span class="h3">{$smarty.const.TXT_PROCS}</span>
+                                                    <span class="h3">{$smarty.const.FIELD_PROCS}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -414,7 +414,7 @@
                                         </td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$subentidad->id}'><i class="fa fa-folder fa-fw"></i></a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$subentidad->id}'><i class="fa fa-gears fa-fw"></i></a>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$subentidad->id}'><i class="fa fa-gears fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$subentidad->id}'><i class="fa fa-dashboard fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$subentidad->id}'><i class="fa fa-database fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_CUADROS_MANDO}" href='index.php?page=cuadro_listar&id_entidad={$subentidad->id}'><i class="fa fa-th fa-fw"></i></a>
@@ -547,7 +547,7 @@
                         <table id="tabla_archivos" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>{$smarty.const.FIELD_TITULO}</th>
+                                    <th>{$smarty.const.FIELD_ARCHIVO}</th>
                                     <th>{$smarty.const.FIELD_USER}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>

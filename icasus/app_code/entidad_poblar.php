@@ -65,6 +65,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 }
 else
 {
-    $error = ERR_UNID_NO_SEL;
+    $error = ERR_PARAM;
     header("location:index.php?page=error&error=$error");
 }

@@ -62,7 +62,7 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
     }
     else
     {
-        $error = ERR_DATO_BORRAR_NO_AUT;
+        $error = ERR_PERMISOS;
         header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&error=$error");
     }
 }

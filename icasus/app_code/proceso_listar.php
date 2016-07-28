@@ -28,7 +28,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $smarty->assign('procesos_propios', $procesos_propios);
 
     $smarty->assign('_javascript', array('proceso_listar'));
-    $smarty->assign('_nombre_pagina', TXT_PROCS . ": " . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', FIELD_PROCS . ": " . $entidad->nombre);
     $plantilla = 'proceso_listar.tpl';
 }
 else

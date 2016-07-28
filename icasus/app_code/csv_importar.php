@@ -29,7 +29,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     }
     else
     {
-        $error = ERR_DATO_IMPORT_NO_AUT;
+        $error = ERR_PERMISOS;
         header("location:index.php?page=error&error=$error");
     }
 }

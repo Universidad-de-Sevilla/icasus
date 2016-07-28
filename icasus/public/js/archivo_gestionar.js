@@ -8,6 +8,10 @@
 //----------------------------------------------------------------------------
 
 $(document).ready(function () {
+
+    var texto_borrar = $('.borrar_archivo').data('texto_borrar');
+    var nombre_archivo;
+
     //Edición de archivos
     $(".editar_archivo").click(function () {
         var tag = $(this).attr('id');
@@ -58,13 +62,14 @@ $(document).ready(function () {
         var ids = tag.split('-');
         var id = ids[2];
         $('#id_borrar').attr('value', id);
-        $('#titulo_borrar').html($('#l-titulo-' + id).attr('value'));
+        nombre_archivo = $('#l-titulo-' + id).attr('value');
+        $('#titulo_borrar').html(nombre_archivo);
     });
 
     $("#borrar").click(function () {
         var id = $('[name=id_borrar]').val();
         $.post('index.php?page=archivo_gestionar_ajax&ajax=true&modulo=borrar', {id: id}, function () {
-            location.reload();
+            window.location.replace(location.href + "&exito=" + texto_borrar + ' ' + nombre_archivo);
         });
     });
 

@@ -59,14 +59,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_dat
     }
     else
     {
-        if ($modulo == 'archivar')
-        {
-            $error = ERR_DATO_ARCHIVAR_NO_AUT;
-        }
-        if ($modulo == 'restaurar')
-        {
-            $error = ERR_DATO_RESTAURAR_NO_AUT;
-        }
+        $error = ERR_PERMISOS;
         header("Location: index.php?page=dato_mostrar&id_dato=$id_dato&id_entidad=$id_entidad&error=$error");
     }
 }

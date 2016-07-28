@@ -50,7 +50,7 @@
                 <!-- Navegación -->
                 {if count($procesos)> 1}
                     <div class="col-md-2">
-                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($procesos)} {$smarty.const.TXT_PROCS}</div>
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($procesos)} {$smarty.const.FIELD_PROCS}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
                                 <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_PROC}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=proceso_mostrar&id_entidad={$entidad->id}&id_proceso={$procesos[0]->id}'>
@@ -97,7 +97,7 @@
                     <li class="divider"></li>
                     <li>
                         <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.TXT_PROCS}">({$num_procesos})</span>
+                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.FIELD_PROCS}">({$num_procesos})</span>
                         </a>
                     </li>
                     <li>
@@ -132,7 +132,7 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            <li><a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_PROCS}</a></li>
+            <li><a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -619,7 +619,7 @@
                         <table id="tabla_archivos" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>{$smarty.const.FIELD_TITULO}</th>
+                                    <th>{$smarty.const.FIELD_ARCHIVO}</th>
                                     <th>{$smarty.const.FIELD_USER}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
@@ -654,7 +654,7 @@
                         </div>
                         <!-- /.col-sm-11 -->
                         <div class="col-sm-1">
-                            {if $_control}
+                            {if $_control || $_usuario->id == $proceso->id_propietario}
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                     <div class="btn-group" role="group" aria-label="">
                                         <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 

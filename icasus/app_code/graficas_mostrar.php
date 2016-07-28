@@ -124,7 +124,7 @@ if ($mediciones)
         $panel->id = 2;
         $panel->tipo->clase_css = "lineal";
         $panel->ancho = 6;
-        $panel->nombre = TXT_2_ULT_ANYO;
+        $panel->nombre = TXT_DOS_ULT_ANYO;
         $panel->fecha_inicio = $anio_inicio . "-01-01";
         $panel->fecha_fin = date("Y-m-d");
         $panel->periodicidad = "todos";

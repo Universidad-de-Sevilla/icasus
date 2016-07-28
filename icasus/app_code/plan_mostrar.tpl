@@ -156,7 +156,7 @@
                     <li class="divider"></li>
                     <li>
                         <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.TXT_PROCS}">({$num_procesos})</span>
+                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.FIELD_PROCS}">({$num_procesos})</span>
                         </a>
                     </li>
                     <li>
@@ -622,7 +622,7 @@
                         <table id="tabla_archivos" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>{$smarty.const.FIELD_TITULO}</th>
+                                    <th>{$smarty.const.FIELD_ARCHIVO}</th>
                                     <th>{$smarty.const.FIELD_USER}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>

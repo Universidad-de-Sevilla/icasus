@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.23.1");
-define('IC_FECHA_REVISION', "26/07/2016");
+define('IC_VERSION', "3.24.0");
+define('IC_FECHA_REVISION', "28/07/2016");
 
+// 3.24.0 - 28/07/2016 - Gestión de archivos para los planes estratégicos. Mejoras en gestión de archivos y mediciones.
 // 3.23.1 - 26/07/2016 - Múltiples mejoras y cambios de estilo.
 // 3.23.0 - 20/07/2016 - Inclusión de pesos para objetivos operacionales, actualización automática de grados de ejecución y corrección de errores en planes estratégicos.
 // 3.22.8 - 15/07/2016 - Corregido: mientras icasus se encuentre en mantenimiento no se podrá navegar aunque se esté logeado (nueva página de mantenimiento).

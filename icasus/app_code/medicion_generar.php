@@ -46,7 +46,7 @@ if (filter_has_var(INPUT_POST, 'id_entidad') && filter_has_var(INPUT_POST, 'id_i
         else
         {
             // El usuario no tiene permisos avisamos error
-            $error = ERR_MED_AUT . " $tipo";
+            $error = ERR_PERMISOS;
             header("Location:index.php?page=medicion_listar&id_$tipo=$id_indicador&id_entidad=$id_entidad&error=$error");
         }
     }
@@ -58,6 +58,6 @@ if (filter_has_var(INPUT_POST, 'id_entidad') && filter_has_var(INPUT_POST, 'id_i
 }
 else
 {
-    $error = ERR_MED_CREAR;
+    $error = ERR_PARAM;
     header("location:index.php?page=error&error=$error");
 }

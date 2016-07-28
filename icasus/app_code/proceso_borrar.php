@@ -33,7 +33,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
     }
     else
     {
-        $error = ERR_PROC_BORRAR_NO_AUT;
+        $error = ERR_PERMISOS;
         header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
     }
 }

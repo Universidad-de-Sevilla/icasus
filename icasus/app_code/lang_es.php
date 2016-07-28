@@ -57,7 +57,6 @@ define('TXT_ARCHIVO_SEL_IMPORT', 'Elija un archivo para importar');
 define('TXT_ARCHIVO_PROCESAR', 'Procesa archivo');
 define('TXT_ARCHIVOS_PROCESAR', 'Procesar archivos');
 define('TXT_ARCHIVO_DESCARGA', 'Descargar archivo');
-define('TXT_ARCHIVO_ABRIR_CSV', 'El archivo .csv generado puede abrirse con: ');
 define('TXT_ARCHIVO_IMPORT_CSV', 'Importar archivo CSV');
 
 //Clasificación
@@ -101,41 +100,19 @@ define('TXT_DATO_CREAR', 'Crear dato');
 define('TXT_DATOS_LIST', 'Lista de datos');
 define('TXT_DATOS_REBIUN', 'Datos Rebiun');
 define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida de Datos Rebiun');
-define('TXT_DATOS_EXPORT', 'Exportar datos');
-define('TXT_DATOS_REBIUN_DET', 'Detalle datos Rebiun'); //2012
-define('TXT_DATOS_REBIUN_SUMA', 'Suma datos Rebiun');
-define('TXT_DATOS_REBIUN_PROMEDIO', 'Promedio datos Rebiun');
-define('TXT_DATOS_REBIUN_DET_EXPORT_CSV', 'Exportar en CSV detalle datos Rebiun');
-define('TXT_DATOS_REBIUN_SUMA_EXPORT_CSV', 'Exportar en CSV suma datos Rebiun');
-define('TXT_DATOS_REBIUN_PROMEDIO_EXPORT_CSV', 'Exportar en CSV promedio datos Rebiun');
-
-//Dimensiones
-define('TXT_DIM_CREAR', 'Crear dimensión');
-define('TXT_DIM_EDIT', 'Editar dimensión');
-define('TXT_DIM_LIST', 'Lista de dimensiones');
-define('TXT_DIM_REL', 'Relación de dimensiones');
 
 //Entidades (Unidades)
 define('TXT_UNID', 'Unidad');
 define('TXT_UNID_ASIG_PRINCIPAL', 'Convertir en unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad (sólo se puede asignar una unidad como principal).');
 define('TXT_UNID_PRINCIPAL', 'Unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad.');
-define('TXT_UNID_SUP_INDIC', 'Indicadores de la unidad superior');
-define('TXT_UNID_INDIC_SEG', 'Indicadores segregados en los que mide la unidad');
 define('TXT_UNID_TODAS', 'Todas las unidades');
-define('TXT_UNID_SEL', 'Seleccione o comience a teclear el nombre de la unidad a la que se copiará el indicador.');
-define('TXT_SUBUNID', 'La subunidad');
-define('TXT_SUBUNID_MEDS', 'tiene vinculada las siguientes mediciones con los correspondientes valores');
-define('TXT_UNID_NUEVA', 'Nueva unidad');
-define('TXT_UNID_PROC_LIST', 'Lista de procesos de la unidad con sus indicadores');
 define('TXT_UNID_EDIT', 'Editar unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
-define('TXT_UNIDS_UE01', 'Unidades UE01 con sus indicadores, valores y fecha');
 define('TXT_ETIQUETA_MINI_DESCRIPCION', 'Indica como aparece el nombre de la unidad en las gráficas');
 define('TXT_ORGANICA_DESCRIPCION', 'Sólo aparecen en los listados las unidades orgánicas');
 
 //Indicadores
 define('TXT_INDIC_TODOS', 'Todos los indicadores');
-define('TXT_INDIC_SUBUNID', 'Relación de indicadores de subunidades');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
 define('TXT_INDIC_CREAR', 'Crear indicador');
@@ -146,15 +123,10 @@ define('TXT_INDIC_ARCHIVAR', 'Archivar indicador');
 define('TXT_INDIC_ARCHIVADO', 'Indicador archivado: este indicador ya no está en uso.');
 define('TXT_INDIC_ARCHIVADOS', 'Indicadores archivados');
 define('TXT_INDIC_RESTAURAR', 'Restaurar indicador');
-define('TXT_INDICS_COPIAR', 'Copiar indicadores');
-define('TXT_INDICS_DIC', 'Diccionario de indicadores');
 define('TXT_INDICS_MIO', 'Mis indicadores');
 define('TXT_INDIC_DAT', 'Datos del indicador');
-define('TXT_INDIC_GEN_INFO_WORD', 'Generar un informe en Word de este indicador');
-define('TXT_INDIC_EXPORT_EXCEL', 'Exportar los datos del indicador a Excel');
 define('TXT_INDIC_BUSCAR_BASE', 'Buscar indicador base');
 define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar indicadores complementarios');
-define('TXT_INDIC_SEG_DEPART', 'Seguimiento de indicadores de los departamentos');
 define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta medición.');
 define('TXT_INDIC_ACT_MED', 'Indique si además quiere activarla: ');
 define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Indicadores y datos con mediciones nulas agrupados');
@@ -181,9 +153,8 @@ define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
 //Mediciones
 define('TXT_MED_UNICA', 'Medición única en la unidad actual.');
 define('TXT_MED_VER', 'Ver/Editar medición');
-define('TXT_MED_DES', 'Medición desagregada en las subunidades y cumplimentada por los responsables de las subunidades, o la persona delegada.');
-define('TXT_MED_DES_CEN', 'Medición desagregada en las subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
-define('TXT_MED_ESTA', 'esta medición.');
+define('TXT_MED_DES', 'Medición agregada en subunidades y cumplimentada por los responsables de las subunidades, o la persona delegada.');
+define('TXT_MED_DES_CEN', 'Medición agregada en subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
 define('TXT_MED_BORRAR', 'Borrar medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
@@ -208,7 +179,6 @@ define('TXT_AYUDA', 'Ayuda');
 define('TXT_UNIVERSIDAD', 'Universidad de Sevilla');
 //Menú de Usuario
 define('TXT_USER_PERFIL', 'Perfil de usuario');
-define('TXT_MIS_NOTAS', 'Mis notas');
 define('TXT_CERRAR_SESION', 'Cerrar sesión');
 //Menú de Unidades
 define('TXT_INICIO_DESCRIPCION', 'Mi icasus: listado de sus competencias/responsabilidades.');
@@ -240,12 +210,8 @@ define('TXT_DESACT', 'Desactivar');
 define('TXT_CERRAR', 'Cerrar');
 define('TXT_MARCAR', 'Marcar todos');
 define('TXT_DESMARCAR', 'Desmarcar todos');
-define('TXT_VOLVER', 'Volver al');
 define('TXT_VOLVER_ARRIBA', 'Volver arriba');
 define('TXT_VOLVER_INDICE', 'Volver al índice');
-define('TXT_VOLVER_LIST', 'Volver al listado de');
-define('TXT_VOLVER_CUADRO', 'Volver al Cuadro');
-define('TXT_TOGGLED', 'Plegar/desplegar menú lateral');
 
 //Páginas
 define('TXT_PAG', 'Página');
@@ -276,7 +242,6 @@ define('TXT_OBJOP_PROPIO', 'Propio');
 define('TXT_OBJOP_DESC', 'Descendente');
 
 //Procesos
-define('TXT_PROCS', 'Procesos');
 define('TXT_PROC_TODOS', 'Todos los procesos');
 define('TXT_PROC_VER', 'Ver proceso');
 define('TXT_PROC_MAP', 'Mapa de procesos');
@@ -301,11 +266,9 @@ define('TXT_CALCULO_TOTAL_ANUAL', 'Determina cómo se calcula el total anual ent
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CANCEL', 'Cancelar');
 define('TXT_EXAMINAR', 'Examinar...');
-define('TXT_GEN_INFO', 'Generar informe');
 define('TXT_NO_ARCHIVO_SEL', 'No se ha seleccionado ningún archivo.');
 define('TXT_BTN_ACEPTAR', 'Aceptar');
 define('TXT_BTN_GUARDAR', 'Guardar');
-define('TXT_BTN_GRABAR_NOTA', 'Grabar nota');
 define('TXT_SOLO_INDIC_CALC', 'Sólo si el valor del indicador/dato es calculado automáticamente (en función del valor de otros indicadores/datos). Deberá indicar una fórmula para el cálculo del mismo.');
 define('TXT_FORMULA', "Indique la fórmula para el cálculo, la sintaxis para referirse a indicadores/datos es la siguiente: [ID del indicador/dato]. Ejemplo: [1]+[2], el resultado será la suma del valor de indicador/dato con ID=1 más el indicador/dato con ID=2. IMPORTANTE: La periodicidad debe ser la misma para todos los indicadores/datos implicados, de lo contrario no será posible el cálculo.");
 define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el indicador/dato.');
@@ -331,12 +294,11 @@ define('TXT_MENSUAL', 'Mensual');
 define('TXT_TRIMESTRAL', 'Trimestral');
 define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
 define('TXT_SEMESTRAL', 'Semestral');
-define('TXT_2_ULT_ANYO', 'Dos últimos años');
+define('TXT_DOS_ULT_ANYO', 'Dos últimos años');
 
 //Tipos de Cálculo
 define('TXT_CALC_AUTO', 'Este indicador/dato es calculado automáticamente');
 define('TXT_INDEF', 'Indefinido');
-define('TXT_SUMA', 'Suma');
 
 //Tipos de Proceso
 define('TXT_ESTRATEGICO', '1-Estratégico');
@@ -344,8 +306,6 @@ define('TXT_OPERATIVO', '2-Operativo');
 define('TXT_APOYO', '3-Apoyo');
 
 //Tipos de Representaciones Gráficas
-define('TXT_GRAFIC_INDIC_VAL', 'Gráfica con los valores del indicador');
-define('TXT_GRAFIC_VAL_MED', 'Gráfica completa con los valores medios del indicador');
 define('TXT_BARRAS', 'Barras');
 define('TXT_BARRAS_DESC', 'Puede mostrar varios grupos de indicadores/datos para una subunidad determinada en forma de barras.');
 define('TXT_LINEAS', 'Líneas');
@@ -375,9 +335,6 @@ define('TXT_USERS_DISP', 'Usuarios disponibles');
 define('TXT_USERS_VINC', 'Vincular usuarios');
 define('TXT_USERS_DESVINC', 'Desvincular usuarios');
 define('TXT_USER_GESTION', 'Gestión de usuarios');
-define('TXT_USER_NOTAS', 'Notas del usuario');
-define('TXT_USER_REL', 'Relación de usuarios');
-define('TXT_USER_CREAR', 'Crear usuario');
 define('TXT_USER_EDIT', 'Editar usuario');
 
 //Valores
@@ -429,9 +386,7 @@ define('MSG_ANAPLAN_NO', 'Todavía no se ha registrado ningún análisis ni plan
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');
 define('MSG_ARCHIVO_SUBIDA_OK', 'Se ha subido correctamente el archivo.');
-define('MSG_ARCHIVO_RENOMBRAR', 'Recuerda que el nombre del archivo es el que se verá en la relación inferior, por ello renombra tu archivo antes de subirlo para que sea clarificador para los que vayan a descargarlo.');
-define('MSG_ARCHIVO_NOMBRE', 'IMPORTANTE: los nombres de los archivos no deben contener caracteres como ñ, acentos o espacios en blanco.');
-define('MSG_ARCHIVO_BORRADO', 'Se ha borrado el archivo.');
+define('MSG_ARCHIVO_BORRADO', 'Se ha borrado el archivo:');
 define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Consulta avanzada
@@ -470,10 +425,6 @@ define('MSG_DATO_NO_SUBUNID_ASIG', 'No se han asignado subunidades a este dato (
 define('MSG_DATO_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del dato. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
 define('MSG_DATO_NO_ASIG', 'No dispone de datos bajo su responsabilidad.');
 
-//Dimensiones
-define('MSG_DIM_CREADA', 'Se ha creado una dimensión.');
-define('MSG_DIM_EDITADA', 'Se ha modificado una dimensión.');
-
 //Entidades (Unidades)
 define('MSG_UNID_NO_PROC', 'No hay procesos definidos para esta unidad.');
 define('MSG_UNID_NO_MAPA', 'No existe un mapa de procesos definido para esta unidad.');
@@ -490,18 +441,13 @@ define('MSG_UNID_NO_DATO_ARCHIVADOS', 'No hay datos archivados en esta unidad.')
 define('MSG_UNID_NO_CUADROS', 'No hay cuadros de mando definidos para esta unidad.');
 define('MSG_UNID_NO_PLANES', 'No hay planes estratégicos definidos para esta unidad.');
 define('MSG_UNID_NO_IND_NO_DAT', 'No hay indicadores ni datos definidos para esta unidad.');
-define('MSG_UNID_SUBUNIDS_NO_INDIC', 'No hay indicadores definidos para las subunidades de esta unidad.');
-define('MSG_UNID_SUP_NO_PROC', 'La unidad madre no tiene procesos.');
-define('MSG_UNID_NO_SEG', 'Esta unidad no mide indicadores segregados.');
 define('MSG_UNID_NO_SUBUNIDS', 'Esta unidad no tiene subunidades.');
-define('MSG_UNID_CREADA', 'La unidad se ha creado correctamente con los datos que aparecen a continuación: ');
 define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna unidad.');
 define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen unidades orgánicas.');
 
 //Indicadores
 define('MSG_INDICS_NO', 'No hay indicadores definidos para ninguna unidad.');
 define('MSG_INDICS_NO_ARCHIVADOS', 'No hay indicadores archivados para ninguna unidad.');
-define('MSG_INDIC_NO_UNID_SUP', 'No hay indicadores definidos en la unidad superior.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.');
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
@@ -513,11 +459,8 @@ define('MSG_INDIC_CONFIRM_EDITAR', 'Va a editar este indicador, ¿está seguro?'
 define('MSG_INDIC_BORRADO', 'Se ha borrado el indicador: ');
 define('MSG_INDIC_ARCHIVADO', 'Se ha archivado el indicador: ');
 define('MSG_INDIC_RESTAURADO', 'Se ha restaurado el indicador: ');
-define('MSG_INDIC_COPIADOS', 'Indicadores copiados.');
 define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los datos del indicador.');
-define('MSG_INDIC_NO_PUBLIC', 'Este indicador no está definido como público.');
 define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para este indicador/dato.');
-define('MSG_INDIC_NO_DATOS', 'Todavía no se han introducido datos en este indicador.');
 define('MSG_INDIC_NO_MED', 'Todavía no se han definido mediciones para este indicador.');
 define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del indicador. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
 define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores bajo su responsabilidad.');
@@ -533,7 +476,7 @@ define('MSG_MEDS_GRABADAS', 'Mediciones grabadas');
 define('MSG_MED_ETIQUETA_NULA', 'La etiqueta no puede estar vacía. Puede restituir el valor anterior pulsando el icono "X" (cancelar).');
 define('MSG_MED_VAL_NO_PERIODO', 'No se pueden grabar valores, esta fuera del periodo de grabación:');
 define('MSG_MED_VAL_NULO', 'Está intentando introducir un valor vacío. Puede restituir el valor anterior pulsando el icono "X" (cancelar). Puede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---).');
-define('MSG_MED_VAL_INTERVALO', 'Debe insertar un valor que este dentro del intervalo de valores permitidos por el indicador/dato:');
+define('MSG_MED_VAL_INTERVALO', 'Debe insertar un valor que esté dentro del intervalo de valores permitidos por el indicador/dato:');
 define('MSG_MED_VAL_NOMUM', 'Está intentando introducir un dato que no es reconocido como número.');
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
@@ -608,7 +551,6 @@ define('MSG_PROC_NO_ARCHIVOS', 'No se han subido archivos para este proceso.');
 define('MSG_PROC_MAPA', 'Para agregar/editar el mapa de procesos de su unidad, póngase en contacto con nosotros a través de la dirección: ');
 
 //Usuarios
-define('MSG_USER_BORRADO', 'Se ha borrado el usuario.');
 define('MSG_USER_CREADO', 'Se ha creado un nuevo usuario en el sistema.');
 define('MSG_USER_EDITADO', 'El usuario se ha modificado correctamente.');
 define('MSG_USER_CONFIRM_EDITAR', 'Va a editar este usuario, ¿está seguro?');
@@ -617,9 +559,6 @@ define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la unidad los usuari
 
 //Valores
 define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado valores a esta medición.');
-define('MSG_VAL_BORRADO', 'Se ha borrado un valor.');
-define('MSG_VAL_EXPORT', 'Exportando valores para:');
-define('MSG_VAL_GRABAR', 'El valor se ha grabado correctamente.');
 define('MSG_VALS_CALCULADOS', 'Se han calculado/actualizado los valores correctamente.');
 define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los valores marcados?');
 define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los valores de referencia marcados?');
@@ -651,7 +590,6 @@ define('ERR_DIR', 'Error no se ha podido crear el directorio tipo objeto.');
 define('ERR_SUBDIR', 'Error no se ha podido crear el subdirectorio objeto.');
 define('ERR_NO_DIR_NAME', 'No se ha proporcionado un nombre de directorio.');
 define('ERR_PARAM', 'Faltan parámetros para realizar esta acción.');
-define('ERR_NO_AUT_MOD', 'No tiene permisos para acceder a este módulo de la aplicación.');
 define('ERR_GUARDAR', 'Hubo un problema, no se han podido guardar los cambios.');
 
 //Archivos
@@ -663,52 +601,31 @@ define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.'
 
 //Cuadros de Mando
 define('ERR_CUAD_MANDO', 'El cuadro de mando no existe o no tiene permisos para consultarlo.');
-define('ERR_CUAD_MANDO_PARAM', 'Parámetros insuficientes para mostrar el cuadro de mando.');
 define('ERR_CUAD_MANDO_EDIT', 'El cuadro de mando no existe o no tiene permisos para editarlo.');
 //Paneles
 define('ERR_PANEL_VAL_ORDEN', 'Ya existe un panel con el mismo orden en este cuadro de mando.');
 
 //Datos
-define('ERR_DATO_CREAR', 'Faltan parámetros para crear un nuevo dato.');
 define('ERR_DATO_ARCHIVAR_DEP', 'Este dato influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
 define('ERR_DATO_BORRAR_MED', 'Tiene mediciones asociadas al dato, necesita borrar primero las mediciones.');
 define('ERR_DATO_BORRAR_OBJOP', 'No se puede borrar el dato, está asociado al menos con un objetivo operacional de un plan estratégico.');
-define('ERR_DATO_BORRAR_NO_AUT', 'No tiene permisos para borrar el dato.');
-define('ERR_DATO_ARCHIVAR_NO_AUT', 'No tiene permisos para archivar este dato.');
-define('ERR_DATO_RESTAURAR_NO_AUT', 'No tiene permisos para restaurar este dato.');
 define('ERR_DATO_GRABAR', 'No se ha podido grabar el dato.');
 define('ERR_DATO_MOSTRAR', 'No se puede mostrar el dato, el identificador no existe en la base de datos.');
-define('ERR_DATO_IMPORT_NO_AUT', 'No tiene autorización para importar datos en esta unidad.');
-define('ERR_DATO_EDIT_NO_AUT', 'No tiene permisos suficientes para editar datos de esta unidad.');
 define('ERR_DATO_BORRAR_DEP', 'Este dato influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
-
-//Dimensiones
-define('ERR_DIM_CREAR', 'No se ha podido crear la dimensión.');
 
 //Entidades (Unidades)
 define('ERR_UNID_MOSTRAR', 'No se puede mostrar la unidad, el identificador no existe en la base de datos.');
-define('ERR_UNID_NO_SEL', 'No se ha especificado una unidad para asignar usuarios.');
-define('ERR_UNID_LIST_INDIC', 'No ha especificado la unidad cuyos indicadores desea listar.');
-define('ERR_UNID_EDIT', 'No se ha podido modificar la unidad');
-
-//Gráficas
-define('ERR_PARAM_GRAFIC', 'Faltan parámetros para mostrar la gráfica.');
+define('ERR_UNID_EDIT', 'No se ha podido modificar la unidad.');
 
 //Indicadores
 define('ERR_INDIC_BORRAR_MED', 'Tiene mediciones asociadas al indicador, necesita borrar primero las mediciones.');
 define('ERR_INDIC_BORRAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
 define('ERR_INDIC_ARCHIVAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
 define('ERR_INDIC_BORRAR_OBJOP', 'No se puede borrar el indicador, está asociado al menos con un objetivo operacional de un plan estratégico.');
-define('ERR_INDIC_BORRAR_NO_AUT', 'No tiene permisos para borrar el indicador.');
-define('ERR_INDIC_ARCHIVAR_NO_AUT', 'No tiene permisos para archivar este indicador.');
-define('ERR_INDIC_RESTAURAR_NO_AUT', 'No tiene permisos para restaurar este indicador.');
-define('ERR_INDIC_EDIT_NO_AUT', 'No tiene permisos suficientes para editar indicadores/datos de esta unidad');
 define('ERR_INDIC_GRABAR', 'No se ha podido grabar el indicador.');
 define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el indicador, el identificador no existe en la base de datos.');
 
 //Mediciones
-define('ERR_MED_CREAR', 'Faltan datos para procesar la petición de generar mediciones.');
-define('ERR_MED_AUT', 'No tiene permisos suficientes para agregar mediciones a este');
 define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
 define('ERR_MED_NO_VAL', 'No existen valores pendientes ni recogidos para esta medición.');
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la medición, inténtelo de nuevo o contacte con los administradores de icasus.');
@@ -738,7 +655,6 @@ define('ERR_OBJOP_VAL_INDICE', 'Ya existe un objetivo operacional con el mismo �
 //Procesos
 define('ERR_PROC_MOSTRAR', 'No se puede mostrar el proceso, el identificador no existe en la base de datos.');
 define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores.');
-define('ERR_PROC_BORRAR_NO_AUT', 'No tiene persimos para borrar el proceso.');
 define('ERR_PROC_GRABAR', 'Ha ocurrido un error al grabar el proceso.');
 
 //Usuarios
@@ -748,7 +664,6 @@ define('ERR_LOGIN_SSO', 'El usuario pertenece al colectivo que tiene permiso par
 define('ERR_LOGIN_SSO_AUT', 'La relacion de este usuario con la Universidad no es la definida para utilizar esta herramienta. Contactar con icasus@us.es');
 
 //Valores
-define('ERR_VAL_GRABAR', 'Se ha producido un error, no se ha grabado el valor.');
 define('ERR_VAL_REF_BORRAR', 'No se puede borrar un valor de referencia con valores asignados a alguna medición.');
 define('ERR_VAL_EDIT', 'No tiene permisos suficientes para editar valores en este');
 
@@ -765,52 +680,34 @@ define('FIELD_COD', 'Código');
 define('FIELD_NOMBRE', 'Nombre');
 define('FIELD_PROPIETARIO', 'Propietario');
 define('FIELD_FECHA', 'Fecha');
-define('FIELD_FECHA_HORA', 'Fecha/Hora');
 define('FIELD_WEB', 'Sitio web');
 define('FIELD_FUENTE', 'Fuente');
 define('FIELD_PERIODO', 'Período');
 define('FIELD_VISIBILIDAD', 'Visibilidad');
-define('FIELD_UMBRAL', 'Umbral');
 define('FIELD_LIMITE', 'Límite');
 define('FIELD_META', 'Meta');
 define('FIELD_CREAC', 'Creación');
 define('FIELD_ARCHIVADO', 'Archivado');
-define('FIELD_MOD', 'Modificación');
 define('FIELD_FECHA_REV', 'Fecha de revisión');
-define('FIELD_FECHA_OBTENCION', 'Fecha de obtención');
 define('FIELD_FECHA_RECOGIDA', 'Fecha recogida');
 define('FIELD_AGREG', 'Agregado');
 define('FIELD_INTERP', 'Interpretación');
-define('FIELD_STANDARD', 'Estándar');
-define('FIELD_INFORM', 'Informe');
-define('FIELD_NIVEL_DES', 'Nivel de desagregación');
 define('FIELD_INICIO_PERIODO', 'Inicio del periodo');
 define('FIELD_FIN_PERIODO', 'Fin del periodo');
 define('FIELD_INICIO_GRABACION', 'Inicio de grabación');
 define('FIELD_FIN_GRABACION', 'Fin de grabación');
-define('FIELD_MEDIDOR', 'Medidor');
 define('FIELD_ETIQUETA', 'Etiqueta');
 define('FIELD_ETIQUETA_MINI', 'Etiqueta mini');
-define('FIELD_PENDIENTES', 'Pendientes');
-define('FIELD_EVENTO', 'Evento');
 define('FIELD_CAMBIO_A', 'Cambio a:');
 define('FIELD_ALIAS', 'Alias');
 define('FIELD_ORDEN', 'Orden');
 define('FIELD_ANCHO', 'Ancho');
 define('FIELD_ANYO', 'Año');
 define('FIELD_TOTAL', 'Total');
-define('FIELD_RESULTS_CLAVE', 'Resultados Clave');
-define('FIELD_ENTRADAS_PROV', 'Entradas/Proveedores');
-define('FIELD_SALIDAS_CLIENTS', 'Salidas/Clientes');
-define('FIELD_ACTIVIDADES', 'Actividades');
-define('FIELD_VARS_CONTROL', 'Variables de control');
-define('FIELD_DOCUMENTACION', 'Documentación');
 define('FIELD_REGISTROS', 'Registros');
-define('FIELD_DET', 'Detalle');
 define('FIELD_OBSERV', 'Observaciones');
 define('FIELD_ACTIVO', 'Activo');
 define('FIELD_VERSION', 'Versión');
-define('FIELD_STATUS', 'Status');
 define('FIELD_COMENTARIOS', 'Comentarios');
 
 //Archivos
@@ -827,19 +724,14 @@ define('FIELD_DATOS', 'Datos');
 
 //Entidades (Unidades)
 define('FIELD_UNID', 'Unidad');
-define('FIELD_UNID_RPT', 'Unidad RPT');
 define('FIELD_UNID_SUP', 'Unidad superior');
 define('FIELD_UNID_GEN', 'Unidad generadora');
-define('FIELD_UNID_DEST', 'Unidad de destino');
 define('FIELD_SUBUNID', 'Subunidad');
 define('FIELD_SUBUNIDS', 'Subunidades');
 define('FIELD_SUBUNID_AFECT', 'Unidad/Subunidades afectadas');
 define('FIELD_UNIDS', 'Unidades');
 define('FIELD_ORGANICA', 'Orgánica');
 define('FIELD_ANOTACION', 'Anotaciones');
-
-//Gráficas
-define('FIELD_VISIB_GRAFIC', 'Visible en gráfica');
 
 //Indicadores
 define('FIELD_INDIC', 'Indicador');
@@ -899,16 +791,22 @@ define('FIELD_PESO', 'Peso');
 
 //Procesos
 define('FIELD_PROC', 'Proceso');
+define('FIELD_PROCS', 'Procesos');
 define('FIELD_PROC_MADRE', 'Proceso madre');
 define('FIELD_TIPO_PROC', 'Tipo de proceso');
 define('FIELD_SUBPROCS', 'Subprocesos');
 define('FIELD_EQUIP_PROC', 'Equipo de proceso');
+define('FIELD_RESULTS_CLAVE', 'Resultados Clave');
+define('FIELD_ENTRADAS_PROV', 'Entradas/Proveedores');
+define('FIELD_SALIDAS_CLIENTS', 'Salidas/Clientes');
+define('FIELD_ACTIVIDADES', 'Actividades');
+define('FIELD_VARS_CONTROL', 'Variables de control');
+define('FIELD_DOCUMENTACION', 'Documentación');
 
 //Usuarios
 define('FIELD_LOGIN', 'Login');
 define('FIELD_USER', 'Usuario');
 define('FIELD_CLAVE', 'Clave de acceso');
-define('FIELD_REP_CLAVE', 'Repetir clave de acceso');
 define('FIELD_APEL', 'Apellidos');
 define('FIELD_TEL', 'Teléfono');
 define('FIELD_CORREO', 'E-mail');
@@ -920,3 +818,4 @@ define('FIELD_PUESTO', 'Puesto de trabajo');
 //Valores
 define('FIELD_VAL', 'Valor');
 define('FIELD_VAL_REF', 'Valor de referencia');
+define('FIELD_VISIB_GRAFIC', 'Visible en gráfica');
