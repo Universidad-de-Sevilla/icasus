@@ -40,7 +40,7 @@ if ($tipo == "indicador")
 {
     //Proceso del indicador
     $proceso = new Proceso();
-    $proceso->load("id = $indicador->id_proceso");
+    $proceso->load_joined("id = $indicador->id_proceso");
     $smarty->assign('proceso', $proceso);
     //Obtener todos los indicadores del proceso para avanzar o retroceder
     if ($indicador->archivado)

@@ -65,6 +65,11 @@
             <li>
                 <a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a>
             </li>
+            {if $proceso->madre}
+                <li>
+                    <a title="{$proceso->madre->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->madre->id}&id_entidad={$entidad->id}'>{$proceso->madre->nombre|truncate:30}</a>
+                </li>
+            {/if}
             <li>
                 <a title="{$proceso->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>{$proceso->nombre|truncate:30}</a>
             </li>
@@ -368,13 +373,13 @@
                             <div class="radio">
                                 <label >
                                     <input id="tipo_seleccion_responsable" type="radio" name="tipo_seleccion_responsable" value="1" class="medicion" {if $indicador->desagregado == 1}checked{/if}>
-                                    {$smarty.const.TXT_MED_DES}
+                                    {$smarty.const.TXT_MED_AGRED}
                                 </label>
                             </div>
                             <div class="radio">
                                 <label >
                                     <input id="tipo_seleccion_responsable" type="radio" name="tipo_seleccion_responsable" value="2" class="medicion" {if $indicador->desagregado == 2}checked{/if}>
-                                    {$smarty.const.TXT_MED_DES_CEN}
+                                    {$smarty.const.TXT_MED_AGRED_CEN}
                                 </label>
                             </div>
                         </div>

@@ -132,7 +132,14 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            <li><a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a></li>
+            <li>
+                <a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a>
+            </li>
+            {if $proceso_madre}
+                <li>
+                    <a title="{$proceso_madre->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$entidad->id}'>{$proceso_madre->nombre|truncate:30}</a>
+                </li>
+            {/if}
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -149,24 +156,20 @@
                 <a href="#proc_param" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation">
+                <a href="#proc_subprocs" title="{$smarty.const.FIELD_SUBPROCS}" aria-controls="{$smarty.const.FIELD_SUBPROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_SUBPROCS}</a>
+            </li>
+            <li role="presentation">
                 <a href="#proc_indics" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</a>
             </li>
             <li role="presentation">
                 <a href="#proc_indics_archivados" title="{$smarty.const.TXT_INDIC_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_INDIC_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_ARCHIVADOS}</a>
             </li>
-            {if isset($flujograma)}
-                <li role="presentation">
-                    <a href="#proc_flujo" title="{$smarty.const.TXT_PROC_FLUJO}" aria-controls="{$smarty.const.TXT_PROC_FLUJO}" role="tab" data-toggle="tab"><i class="fa fa-random fa-fw"></i> {$smarty.const.TXT_PROC_FLUJO}</a>
-                </li>
-            {/if}
             <li role="presentation">
                 <a href="#proc_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
             </li>
-            {if $subprocesos}
-                <li role="presentation">
-                    <a href="#proc_subprocs" title="{$smarty.const.FIELD_SUBPROCS}" aria-controls="{$smarty.const.FIELD_SUBPROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_SUBPROCS}</a>
-                </li>
-            {/if}
+            <li role="presentation">
+                <a href="#proc_flujo" title="{$smarty.const.TXT_PROC_FLUJO}" aria-controls="{$smarty.const.TXT_PROC_FLUJO}" role="tab" data-toggle="tab"><i class="fa fa-random fa-fw"></i> {$smarty.const.TXT_PROC_FLUJO}</a>
+            </li>
         </ul>
         <!-- /Nav tabs -->
         <br>
@@ -215,7 +218,7 @@
                             <tr>
                                 <th>{$smarty.const.FIELD_PROC_MADRE}</th>
                                 <td>
-                                    {if $proceso_madre->id > 0}              
+                                    {if $proceso_madre}              
                                         <a title="{$proceso_madre->nombre}" 
                                            href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso->id_entidad}">
                                             {$proceso_madre->codigo} - {$proceso_madre->nombre}
@@ -346,6 +349,65 @@
                 </div>
             </div>
             <!-- /Parámetros del proceso -->
+
+            <!-- Subprocesos -->
+            <div role="tabpanel" class="tab-pane" id="proc_subprocs">
+                {if $subprocesos}
+                    <div class="table-responsive">
+                        <table class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>   
+                                    <th>{$smarty.const.FIELD_COD}</th>
+                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                    <th>{$smarty.const.FIELD_TIPO_PROC}</th>        
+                                    <th>{$smarty.const.FIELD_PROPIETARIO}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$subprocesos item=subproceso}
+                                    <tr>    
+                                        <td><span class="label label-primary">{$subproceso->codigo}</span></td>
+                                        <td>
+                                            <a title="{$subproceso->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
+                                                {$subproceso->nombre}
+                                            </a>
+                                        </td>
+                                        <td>{$subproceso->alcance}</td>
+                                        <td style="font-size: 12px">
+                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$subproceso->propietario->id}">
+                                                {$subproceso->propietario->nombre} {$subproceso->propietario->apellidos}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
+                                                <i class="fa fa-folder fa-fw"></i>
+                                            </a>                 
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS_GESTION}" href='index.php?page=archivo_gestionar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
+                                                <i class="fa fa-archive fa-fw"></i>
+                                            </a>
+                                            {if $_control}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>   
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_BORRAR}" href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}' onclick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');" >
+                                                    <i class="fa fa-trash fa-fw"></i>
+                                                </a>
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_PROC_NO_SUBPROCS}
+                    </div> 
+                {/if}
+            </div>
+            <!-- /Subprocesos -->
 
             <!-- Indicadores del proceso -->
             <div role="tabpanel" class="tab-pane" id="proc_indics">
@@ -592,14 +654,6 @@
             </div>
             <!-- /Indicadores archivados -->
 
-            <!-- Flujograma del proceso -->
-            {if isset($flujograma)}
-                <div role="tabpanel" class="tab-pane" id="proc_flujo">
-                    <img src="index.php?page=archivo_descargar&id={$flujograma->id}" alt="{$smarty.const.TXT_PROC_FLUJO}" class="img-rounded img-responsive" style="margin:0 auto">
-                </div>
-            {/if}
-            <!-- /Flujograma del proceso -->
-
             <!-- Archivos del proceso -->
             <div role="tabpanel" class="tab-pane" id="proc_archivos">
                 <!-- Barra de botones -->
@@ -672,69 +726,37 @@
             </div>
             <!-- /Archivos del proceso -->
 
-            <!-- Subprocesos -->
-            {if $subprocesos}
-                <div role="tabpanel" class="tab-pane" id="proc_subprocs">
-                    <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
-                            <thead>
-                                <tr>   
-                                    <th>{$smarty.const.FIELD_COD}</th>
-                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
-                                    <th>{$smarty.const.FIELD_TIPO_PROC}</th>
-                                    <th>{$smarty.const.FIELD_PROC_MADRE}</th>         
-                                    <th>{$smarty.const.FIELD_PROPIETARIO}</th>
-                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$subprocesos item=subproceso}
-                                    <tr>    
-                                        <td><span class="label label-primary">{$subproceso->codigo}</span></td>
-                                        <td>
-                                            <a title="{$subproceso->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
-                                                {$subproceso->nombre}
-                                            </a>
-                                        </td>
-                                        <td>{$subproceso->alcance}</td>
-                                        <td>
-                                            {if $subproceso->madre->id > 0}
-                                                <a title="{$subproceso->madre->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->madre->id}&id_entidad={$subproceso->madre->id_entidad}">
-                                                    {$subproceso->madre->nombre}
-                                                </a>
-                                            {else}
-                                                ---
-                                            {/if}
-                                        </td>
-                                        <td style="font-size: 12px">
-                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$subproceso->propietario->id}">
-                                                {$subproceso->propietario->nombre} {$subproceso->propietario->apellidos}
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}">
-                                                <i class="fa fa-folder fa-fw"></i>
-                                            </a>                 
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS_GESTION}" href='index.php?page=archivo_gestionar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
-                                                <i class="fa fa-archive fa-fw"></i>
-                                            </a>
-                                            {if $_control}
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
-                                                    <i class="fa fa-pencil fa-fw"></i>
-                                                </a>   
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_BORRAR}" href='index.php?page=proceso_borrar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}' onclick="return confirm('{$smarty.const.MSG_PROC_CONFIRM_BORRAR}');" >
-                                                    <i class="fa fa-trash fa-fw"></i>
-                                                </a>
-                                            {/if}
-                                        </td>
-                                    </tr>
-                                {/foreach}
-                            </tbody>
-                        </table>
+            <!-- Flujograma del proceso -->
+            <div role="tabpanel" class="tab-pane" id="proc_flujo">
+                {if isset($flujograma)}
+                    <img src="index.php?page=archivo_descargar&id={$flujograma->id}" alt="{$smarty.const.TXT_PROC_FLUJO}" class="img-rounded img-responsive" style="margin:0 auto">
+                {else}
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_PROC_NO_FLUJO}
+                            </div> 
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            {if $_control || $_usuario->id == $proceso->id_propietario}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}' 
+                                           title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                            <i class="fa fa-archive fa-fw"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-1 -->
                     </div>
-                </div>
-            {/if}
-            <!-- /Subprocesos -->
+                    <!-- /.row -->
+                {/if}
+            </div>
+            <!-- /Flujograma del proceso -->
 
         </div>
         <!-- /Tab panes -->

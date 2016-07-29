@@ -65,9 +65,12 @@ class Proceso extends ADOdb_Active_Record
             $propietario->load("id = $this->id_propietario");
             $this->propietario = $propietario;
 
-            $madre = new Proceso();
-            $madre->load("id = $this->id_madre");
-            $this->madre = $madre;
+            if ($this->id_madre)
+            {
+                $madre = new Proceso();
+                $madre->load("id = $this->id_madre");
+                $this->madre = $madre;
+            }
             return true;
         }
         else

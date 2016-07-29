@@ -48,14 +48,10 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
     }
 
     //Datos del proceso madre
-    $proceso_madre = new Proceso();
-    $proceso_madre->load("id = $proceso->id_madre");
-    $smarty->assign('proceso_madre', $proceso_madre);
+    $smarty->assign('proceso_madre', $proceso->madre);
 
     //Datos del propietario
-    $propietario = new Usuario();
-    $propietario->load("id = $proceso->id_propietario");
-    $smarty->assign('propietario', $propietario);
+    $smarty->assign('propietario', $proceso->propietario);
 
     // Listado de subprocesos
     $subprocesos = $proceso->Find_joined("id_madre = $id_proceso");

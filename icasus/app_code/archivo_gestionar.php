@@ -40,7 +40,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
         // Datos del proceso
         $proceso = new Proceso();
-        $proceso->load("id = $id_proceso");
+        $proceso->load_joined("id = $id_proceso");
         $tipo = 'proceso';
         $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . $proceso->nombre);
         $smarty->assign('proceso', $proceso);

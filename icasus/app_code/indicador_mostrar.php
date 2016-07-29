@@ -39,8 +39,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $smarty->assign('entidad', $entidad);
 
     //Proceso del indicador
-    $proceso = new Proceso();
-    $proceso->load("id = $indicador->id_proceso");
+    $proceso = $indicador->proceso;
     $smarty->assign('proceso', $proceso);
 
     //Obtener todos los indicadores del proceso para avanzar o retroceder

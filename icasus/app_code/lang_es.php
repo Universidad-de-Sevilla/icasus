@@ -153,8 +153,8 @@ define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
 //Mediciones
 define('TXT_MED_UNICA', 'Medición única en la unidad actual.');
 define('TXT_MED_VER', 'Ver/Editar medición');
-define('TXT_MED_DES', 'Medición agregada en subunidades y cumplimentada por los responsables de las subunidades, o la persona delegada.');
-define('TXT_MED_DES_CEN', 'Medición agregada en subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
+define('TXT_MED_AGRED', 'Medición agregada en subunidades y cumplimentada por los responsables de las subunidades, o la persona delegada.');
+define('TXT_MED_AGRED_CEN', 'Medición agregada en subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
 define('TXT_MED_BORRAR', 'Borrar medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
@@ -540,6 +540,8 @@ define('MSG_OBJOP_NO_ASIG', 'No dispone de objetivos operacionales bajo su respo
 //Procesos
 define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
 define('MSG_PROC_NO_ASIG', 'No dispone de procesos en propiedad.');
+define('MSG_PROC_NO_SUBPROCS', 'Este proceso no tiene subprocesos.');
+define('MSG_PROC_NO_FLUJO', 'Este proceso no tiene flujograma. Suba el archivo de imagen correspondiente y defina su descripción como flujograma.');
 define('MSG_PROC_BORRADO', 'Se ha borrado el proceso: ');
 define('MSG_PROC_CONFIRM_EDITAR', 'Va a editar este proceso, ¿está seguro?');
 define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este proceso?');

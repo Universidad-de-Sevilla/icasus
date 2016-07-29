@@ -319,13 +319,13 @@
                             <div class="radio">
                                 <label >
                                     <input id="tipo_seleccion_responsable" type="radio" name="tipo_seleccion_responsable" value="1" class="medicion">
-                                    {$smarty.const.TXT_MED_DES}
+                                    {$smarty.const.TXT_MED_AGRED}
                                 </label>
                             </div>
                             <div class="radio">
                                 <label >
                                     <input id="tipo_seleccion_responsable" type="radio" name="tipo_seleccion_responsable" value="2" class="medicion">
-                                    {$smarty.const.TXT_MED_DES_CEN}
+                                    {$smarty.const.TXT_MED_AGRED_CEN}
                                 </label>
                             </div>
                         </div>

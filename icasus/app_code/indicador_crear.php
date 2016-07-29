@@ -34,7 +34,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     if (filter_has_var(INPUT_GET, 'id_proceso'))
     {
         $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
-        $proceso->load("id = $id_proceso");
+        $proceso->load_joined("id = $id_proceso");
         $nombre_pagina = $nombre_pagina . " - " . $proceso->nombre;
         $smarty->assign('proceso', $proceso);
     }

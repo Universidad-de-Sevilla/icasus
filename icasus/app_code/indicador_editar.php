@@ -24,8 +24,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     $smarty->assign('indicador', $indicador);
 
     //Proceso del indicador
-    $proceso = new Proceso();
-    $proceso->load("id = $indicador->id_proceso");
+    $proceso = $indicador->proceso;
     $smarty->assign('proceso', $proceso);
 
     // Comprueba permisos para el usuario: responsable unidad, responsable delegado,
