@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.25.0");
-define('IC_FECHA_REVISION', "29/07/2016");
+define('IC_VERSION', "3.25.1");
+define('IC_FECHA_REVISION', "01/09/2016");
 
+// 3.25.1 - 01/09/2016 - Se muestra el botón de análisis en los listados de indicadores de un proceso.
 // 3.25.0 - 29/07/2016 - Gestión de subprocesos mejorada incluyéndose éstos en el breadcrumbs. Cambios en la interfaz de un proceso y en algunas constantes de lenguaje.
 // 3.24.0 - 28/07/2016 - Gestión de archivos para los planes estratégicos. Mejoras en gestión de archivos y mediciones.
 // 3.23.1 - 26/07/2016 - Múltiples mejoras y cambios de estilo.
