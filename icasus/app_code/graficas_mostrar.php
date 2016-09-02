@@ -133,6 +133,10 @@ if ($mediciones)
     // Prepara el panel anual
     $anio_inicio = $indicador->historicos;
     $anio_fin = date('Y');
+    if ($indicador->periodicidad == "Bienal")
+    {
+        $anio_fin = date('Y') + 2;
+    }
     $panel->id = 1;
     $panel->tipo->clase_css = "lineal";
     $panel->nombre = TXT_HISTORICO;

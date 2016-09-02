@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.25.1");
-define('IC_FECHA_REVISION', "01/09/2016");
+define('IC_VERSION', "3.25.2");
+define('IC_FECHA_REVISION', "02/09/2016");
 
+// 3.25.2 - 02/09/2016 - Se muestra en los gráficos la medición siguiente al año actual en los indicadores/datos con periodicidad bienal. Esto permite ver los valores de referencia esperados.
 // 3.25.1 - 01/09/2016 - Se muestra el botón de análisis en los listados de indicadores de un proceso.
 // 3.25.0 - 29/07/2016 - Gestión de subprocesos mejorada incluyéndose éstos en el breadcrumbs. Cambios en la interfaz de un proceso y en algunas constantes de lenguaje.
 // 3.24.0 - 28/07/2016 - Gestión de archivos para los planes estratégicos. Mejoras en gestión de archivos y mediciones.
