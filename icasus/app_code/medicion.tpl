@@ -36,6 +36,32 @@
 </div>
 <!-- /Diálogo Valor fuera de período -->
 
+<!-- Diálogo Validar Valores de Referencia -->
+<div class="modal fade" id="dialogo_valor_referencia" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.FIELD_ESTIMACION}: 
+                    {if $indicador->inverso}
+                        {$smarty.const.TXT_DESCENDENTE}
+                    {else}
+                        {$smarty.const.TXT_ASCENDENTE}
+                    {/if}
+                </p>
+                <p>{$smarty.const.MSG_VAL_REF_NO_VALIDO}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Validar Valores de Referencia -->
+
 <!-- Diálogo Valor no numérico -->
 <div class="modal fade" id="dialogo_valor_num" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -388,7 +414,7 @@
             <!-- /Indicadores/datos dependientes -->
 
             <!-- Datos de la medición -->
-            <div role="tabpanel" class="tab-pane active" id="med_datos">
+            <div role="tabpanel" class="tab-pane active" id="med_datos" data-inverso="{$indicador->inverso}">
                 <!-- Parámetros de la medición -->
                 <div class="col-md-6">
                     <div class="table-responsive">
@@ -514,7 +540,7 @@
                                 {if isset($valores_referencia_medicion)}
                                     {foreach $valores_referencia_medicion as $valor_referencia_medicion}
                                         {if $valor_referencia_medicion->valor_referencia->activo}
-                                            <tr>
+                                            <tr {if strpos($valor_referencia_medicion->valor_referencia->nombre,'mite')}id='limite' data-limite="{$valor_referencia_medicion->valor|round:"2"}"{else if strpos($valor_referencia_medicion->valor_referencia->nombre,'eta')}id='meta' data-meta="{$valor_referencia_medicion->valor|round:"2"}"{/if} >
                                                 <th>
                                                     <span class="label {if strpos($valor_referencia_medicion->valor_referencia->nombre,'mite')}label-danger{else if strpos($valor_referencia_medicion->valor_referencia->nombre,'eta')}label-success{else}label-default{/if}">{$valor_referencia_medicion->valor_referencia->etiqueta}</span>
                                                 </th>

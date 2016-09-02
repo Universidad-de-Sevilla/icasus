@@ -7,6 +7,11 @@
 // Funciones de la plantilla medicion.tpl
 // -------------------------------------------------------
 
+//Estimación del indicador/dato
+var inverso = $("#med_datos").data("inverso");
+var limite = $("#limite").data("limite");
+var meta = $("#meta").data("meta");
+
 //Variables: Valor mínimo y máximo permitido
 var valor_min = $("#valors").data("valor_min");
 var valor_max = $("#valors").data("valor_max");
@@ -299,7 +304,7 @@ function referencia_editar(id, medicion)
     $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=editarvalorreferencia&ajax=true&id_referencia=" + id + "&id_medicion=" + medicion);
 }
 
-function referencia_grabar(id, medicion)
+function referencia_grabar(id, medicion, nombre_ref)
 {
     var value = $("[name=input_referencia_" + id + "]").val();
     value = value.replace(',', '.');
@@ -309,29 +314,42 @@ function referencia_grabar(id, medicion)
     {
         if (isNaN(value) === false)
         {
-            //Si hay un intervalo [min,max]
-            if ($.isNumeric(valor_min) && $.isNumeric(valor_max)) {
-                if (value < valor_min || value > valor_max) {
-                    $('#dialogo_valor_intervalo').modal('show');
+            //Validamos y grabamos
+            if (validar_referencia(nombre_ref, value))
+            {
+                //Si hay un intervalo [min,max]
+                if ($.isNumeric(valor_min) && $.isNumeric(valor_max)) {
+                    if (value < valor_min || value > valor_max) {
+                        $('#dialogo_valor_intervalo').modal('show');
+                    }
+                    else {
+                        $.post("index.php?page=medicion_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
+                            //Si es limite o meta actualizamos
+                            actualizar_estimacion(nombre_ref, value);
+                            $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
+                            $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                        });
+                    }
                 }
+                // Si no hay intervalo [min, max]
                 else {
                     $.post("index.php?page=medicion_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
+                        //Si es limite o meta actualizamos
+                        actualizar_estimacion(nombre_ref, value);
                         $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
                         $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
                     });
                 }
             }
-            // Si no hay intervalo [min, max]
             else {
-                $.post("index.php?page=medicion_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
-                    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
-                    $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
-                });
+                $('#dialogo_valor_referencia').modal('show');
             }
         }
         else if (value === "---")
         {
             $.post("index.php?page=medicion_ajax&modulo=anularvalorreferencia&ajax=true", {id_referencia: id}, function () {
+                //Si es limite o meta actualizamos
+                actualizar_estimacion(nombre_ref, null);
                 $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
                 $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
             });
@@ -344,6 +362,54 @@ function referencia_grabar(id, medicion)
     else
     {
         $('#dialogo_valor_nulo').modal('show');
+    }
+}
+
+//Valida que el valor de una referencia sea correcto si es una meta o límite
+function validar_referencia(nombre_ref, value) {
+    var validado = true;
+    //El indicador/dato tiene estimación descendente
+    if (inverso) {
+        //Estamos grabando el límite
+        if (nombre_ref.indexOf('mite') !== -1) {
+            if (value <= meta && meta !== null) {
+                validado = false;
+            }
+        }
+        //Estamos grabando la meta
+        if (nombre_ref.indexOf('eta') !== -1) {
+            if (value >= limite && limite !== null) {
+                validado = false;
+            }
+        }
+    }
+    //El indicador/dato tiene estimación ascendente
+    else {
+        //Estamos grabando el límite
+        if (nombre_ref.indexOf('mite') !== -1) {
+            if (value >= meta && meta !== null) {
+                validado = false;
+            }
+        }
+        //Estamos grabando la meta
+        if (nombre_ref.indexOf('eta') !== -1) {
+            if (value <= limite && limite !== null) {
+                validado = false;
+            }
+        }
+    }
+    return validado;
+}
+
+//Actualiza los valores globales de la meta y el límite después de ser grabados
+function actualizar_estimacion(nombre_ref, value) {
+    //Hemos grabado el límite
+    if (nombre_ref.indexOf('mite') !== -1) {
+        limite = value;
+    }
+    //Hemos grabado la meta
+    if (nombre_ref.indexOf('eta') !== -1) {
+        meta = value;
     }
 }
 

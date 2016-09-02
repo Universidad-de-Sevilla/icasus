@@ -322,44 +322,72 @@
 
 {if $modulo == 'editarvalorreferencia'}
     <input id="input_referencia_{$referencia->id}" name="input_referencia_{$referencia->id}" class="actualizar_dato" type="text" value="{$referencia->valor}">
-    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:referencia_grabar('{$referencia->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
-    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:referencia_cancelar('{$referencia->id}', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
-    {/if}
+    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:referencia_grabar('{$referencia->id}', '{$medicion->id}', '{$referencia->valor_referencia->nombre}');">
+        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+    </a>
+    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:referencia_cancelar('{$referencia->id}', '{$medicion->id}');">
+        <i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i>
+    </a>
+{/if}
 
 {if $modulo == 'editarfecha'}
     {if $contenedor == 'pi'}
         {html_select_date field_order='DMY' prefix="pi" month_format='%m' start_year="-10" end_year="+4" time=$medicion->periodo_inicio}
-        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'pi');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
-        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('pi', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
-        {/if}
-        {if $contenedor == 'pf'}
-            {html_select_date field_order='DMY' prefix="pf" month_format='%m' start_year="-10" end_year="+4" time=$medicion->periodo_fin}
-        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'pf');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
-        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('pf', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
-        {/if}
-        {if $contenedor == 'gi'}
-            {html_select_date field_order='DMY' prefix="gi" month_format='%m' start_year="-10" end_year="+4" time=$medicion->grabacion_inicio}
-        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'gi');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
-        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('gi', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
-        {/if}
-        {if $contenedor == 'gf'}
-            {html_select_date field_order='DMY' prefix="gf" month_format='%m' start_year="-10" end_year="+4" time=$medicion->grabacion_fin}
-        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'gf');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
-        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('gf', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
-        {/if}
+        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'pi');">
+            <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+        </a>
+        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('pi', '{$medicion->id}');">
+            <i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i>
+        </a>
     {/if}
+    {if $contenedor == 'pf'}
+        {html_select_date field_order='DMY' prefix="pf" month_format='%m' start_year="-10" end_year="+4" time=$medicion->periodo_fin}
+        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'pf');">
+            <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+        </a>
+        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('pf', '{$medicion->id}');">
+            <i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i>
+        </a>
+    {/if}
+    {if $contenedor == 'gi'}
+        {html_select_date field_order='DMY' prefix="gi" month_format='%m' start_year="-10" end_year="+4" time=$medicion->grabacion_inicio}
+        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'gi');">
+            <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+        </a>
+        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('gi', '{$medicion->id}');">
+            <i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i>
+        </a>
+    {/if}
+    {if $contenedor == 'gf'}
+        {html_select_date field_order='DMY' prefix="gf" month_format='%m' start_year="-10" end_year="+4" time=$medicion->grabacion_fin}
+        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_grabar('{$medicion->id}', 'gf');">
+            <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+        </a>
+        <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:fecha_cancelar('gf', '{$medicion->id}');">
+            <i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i>
+        </a>
+    {/if}
+{/if}
 
 {if $modulo == 'editaretiqueta'}
     <input name="etiqueta" type="text" class="actualizar_etiqueta" value="{$medicion->etiqueta}">
-    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:etiqueta_editar_grabar('et', '{$medicion->id}', 'etiqueta');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
-    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:etiqueta_editar_cancelar('et', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
-    {/if}
+    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:etiqueta_editar_grabar('et', '{$medicion->id}', 'etiqueta');">
+        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+    </a>
+    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:etiqueta_editar_cancelar('et', '{$medicion->id}');">
+        <i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i>
+    </a>
+{/if}
 
 {if $modulo == 'editarobservaciones'}
     <textarea name="observaciones" id="observaciones">{$medicion->observaciones}</textarea>
-    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:observaciones_editar_grabar('ob', '{$medicion->id}', 'observaciones');"><i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i></a>
-    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:observaciones_editar_cancelar('ob', '{$medicion->id}');"><i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i></a>
-    {/if}
+    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:observaciones_editar_grabar('ob', '{$medicion->id}', 'observaciones');">
+        <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+    </a>
+    <a class="btn btn-default btn-circle btn-xs" href="javascript:void(0)" onclick="javascript:observaciones_editar_cancelar('ob', '{$medicion->id}');">
+        <i title='{$smarty.const.TXT_CANCEL}' class="fa fa-times fa-fw"></i>
+    </a>
+{/if}
 
 {if $modulo == 'cancelaretiqueta'}
     {if $contenedor == 'et'}

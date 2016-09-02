@@ -267,7 +267,7 @@ if ($modulo == 'editarvalorreferencia')
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $id_referencia = filter_input(INPUT_GET, 'id_referencia', FILTER_SANITIZE_NUMBER_INT);
     $medicion->load("id = $id_medicion");
-    $valor_referencia_medicion->load("id = $id_referencia");
+    $valor_referencia_medicion->load_joined("id = $id_referencia");
     $smarty->assign("medicion", $medicion);
     $smarty->assign("referencia", $valor_referencia_medicion);
     $smarty->assign("modulo", "editarvalorreferencia");

@@ -17,6 +17,20 @@ class Valor_referencia_medicion extends ADOdb_Active_Record
     public $medicion;
     public $valor_referencia;
 
+    public function load_joined($condicion)
+    {
+        if ($this->load($condicion))
+        {
+            $this->valor_referencia = new Valor_referencia();
+            $this->valor_referencia->load("id = $this->id_valor_referencia");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public function Find_joined($condicion)
     {
         $valores_referencia_mediciones = $this->Find($condicion);
