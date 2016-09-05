@@ -39,7 +39,7 @@ if (filter_has_var(INPUT_GET, 'id_objop'))
     $smarty->assign('responsable', $responsable);
 
     //Obtener todos los objetivos operacionales para avanzar o retroceder 
-    $objops = $objop->Find("id_objest = $objop->id_objest");
+    $objops = $objop->Find("id_objest = $objop->id_objest order by indice");
     $smarty->assign("objops", $objops);
     $cont = 0;
     foreach ($objops as $obj)

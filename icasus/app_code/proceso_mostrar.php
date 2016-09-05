@@ -48,14 +48,10 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
     }
 
     //Datos del proceso madre
-    $proceso_madre = new Proceso();
-    $proceso_madre->load("id = $proceso->id_madre");
-    $smarty->assign('proceso_madre', $proceso_madre);
+    $smarty->assign('proceso_madre', $proceso->madre);
 
     //Datos del propietario
-    $propietario = new Usuario();
-    $propietario->load("id = $proceso->id_propietario");
-    $smarty->assign('propietario', $propietario);
+    $smarty->assign('propietario', $proceso->propietario);
 
     // Listado de subprocesos
     $subprocesos = $proceso->Find_joined("id_madre = $id_proceso");
@@ -137,14 +133,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
         $smarty->assign('status', $status);
     }
 
-    $entidad = new Entidad();
-    $entidad->load("id = $id_entidad");
-    $smarty->assign('entidad', $entidad);
-
-    $smarty->assign('_javascript', array('inicio', 'proceso_mostrar'));
-    $smarty->assign('_nombre_pagina', FIELD_PROC . ": " . $proceso->nombre);
-    $plantilla = 'proceso_mostrar.tpl';
-
+    //Flujograma
     $flujograma = new Fichero();
     $condicion = "id_objeto= $id_proceso AND tipo_objeto = 'proceso' AND descripcion = 'flujograma' AND extension IN ('PNG','GIF','JPG','JPEG');";
     if ($flujograma->load($condicion))
@@ -152,9 +141,18 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
         $smarty->assign('flujograma', $flujograma);
     }
 
+    //Archivos
     $archivo = new Fichero();
-    $archivos = $archivo->find_joined("id_objeto = $id_proceso AND tipo_objeto = 'proceso'");
+    $archivos = $archivo->find_joined("id_objeto = $id_proceso AND tipo_objeto = 'proceso' AND visible=1");
     $smarty->assign('archivos', $archivos);
+
+    $entidad = new Entidad();
+    $entidad->load("id = $id_entidad");
+    $smarty->assign('entidad', $entidad);
+
+    $smarty->assign('_javascript', array('inicio', 'proceso_mostrar'));
+    $smarty->assign('_nombre_pagina', FIELD_PROC . ": " . $proceso->nombre);
+    $plantilla = 'proceso_mostrar.tpl';
 }
 else
 {

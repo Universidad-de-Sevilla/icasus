@@ -66,7 +66,7 @@
                         <table class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>{$smarty.const.TXT_CUADRO_MANDO}</th>
+                                    <th>{$smarty.const.FIELD_CUADRO_MANDO}</th>
                                     <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                     <th>{$smarty.const.FIELD_COMENTARIOS}</th>
@@ -116,7 +116,7 @@
                         <table class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>{$smarty.const.TXT_CUADRO_MANDO}</th>
+                                    <th>{$smarty.const.FIELD_CUADRO_MANDO}</th>
                                     <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                     <th>{$smarty.const.FIELD_COMENTARIOS}</th>

@@ -27,7 +27,7 @@
                                    data-off="{$smarty.const.TXT_VAL_INACTIVO}"
                                    data-id_valor="{$medicion->medicion_valor->id}"
                                    {if $medicion->medicion_valor->activo == 1}checked="checked"{/if}>
-                            <input title="{$smarty.const.TXT_VAL_INSERT}" id="{$medicion->medicion_valor->id}" class="actualizar_dato" data-id_valor="{$medicion->medicion_valor->id}" type="text" value="{$medicion->medicion_valor->valor}" {if $medicion->medicion_valor->activo == 0}disabled="disabled"{/if}>
+                            <input title="{$smarty.const.TXT_VAL_INSERT}" id="{$medicion->medicion_valor->id}" class="actualizar_dato" data-id_valor="{$medicion->medicion_valor->id}" type="text" {if $medicion->medicion_valor->valor !== NULL}value="{$medicion->medicion_valor->valor|round:'2'}"{/if} {if $medicion->medicion_valor->activo == 0}disabled="disabled"{/if}>
                         {else}
                             <span title="{$smarty.const.TXT_MED_ASIG}" class="badge no_asignada clickable">{$smarty.const.TXT_NO_ASIG}</span>
                         {/if}

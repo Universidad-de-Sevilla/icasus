@@ -22,8 +22,20 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 
     $archivo = new Fichero();
 
+    //Gestión de archivos de un plan estratégico
+    if (filter_has_var(INPUT_GET, 'id_plan'))
+    {
+        $id_plan = filter_input(INPUT_GET, 'id_plan', FILTER_SANITIZE_NUMBER_INT);
+        // Datos del plan estratégico
+        $plan = new Plan();
+        $plan->load("id = $id_plan");
+        $tipo = 'plan';
+        $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . FIELD_PLAN . " " . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion - 1));
+        $smarty->assign('plan', $plan);
+        $archivos = $archivo->find_joined("id_objeto = $id_plan AND tipo_objeto = 'plan'");
+    }
     //Gestión de archivos de un proceso
-    if (filter_has_var(INPUT_GET, 'id_proceso'))
+    else if (filter_has_var(INPUT_GET, 'id_proceso'))
     {
         $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
         // Datos del proceso
@@ -32,14 +44,14 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $tipo = 'proceso';
         $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . $proceso->nombre);
         $smarty->assign('proceso', $proceso);
-        $archivos = $archivo->find_joined("id_objeto = $id_proceso");
+        $archivos = $archivo->find_joined("id_objeto = $id_proceso AND tipo_objeto = 'proceso'");
     }
     //Gestión de archivos de una unidad
     else
     {
         $tipo = 'unidad';
         $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . $entidad->nombre);
-        $archivos = $archivo->find_joined("id_objeto = $id_entidad");
+        $archivos = $archivo->find_joined("id_objeto = $id_entidad AND tipo_objeto = 'unidad'");
     }
 
     $smarty->assign('tipo', $tipo);

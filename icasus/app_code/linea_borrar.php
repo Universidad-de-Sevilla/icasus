@@ -9,9 +9,9 @@
 // Descripcion: Borra una línea estratégica
 //---------------------------------------------------------------------------------------------------
 
-global $smarty;
-global $plantilla;
 global $usuario;
+//Variable para operar con los planes
+$logicaPlan = new LogicaPlan();
 
 if (filter_has_var(INPUT_GET, 'id_linea') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -37,6 +37,12 @@ if (filter_has_var(INPUT_GET, 'id_linea') && filter_has_var(INPUT_GET, 'id_entid
             {
                 $ejecucion->delete();
             }
+            //Actualizamos ejecuciones
+            for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
+            {
+                $logicaPlan->actualizar_ejecucion_anual_plan($id_plan, $i);
+            }
+            $logicaPlan->actualizar_ejecucion_global_plan($id_plan);
             header("Location: index.php?page=plan_mostrar&id_plan=$id_plan&id_entidad=$id_entidad&exito=$exito");
         }
         else

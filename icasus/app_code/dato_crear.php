@@ -39,6 +39,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 }
 else
 {
-    $error = ERR_DATO_CREAR;
+    $error = ERR_PARAM;
     header("location:index.php?page=datos&error=$error");
 }

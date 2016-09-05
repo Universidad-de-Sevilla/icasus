@@ -7,7 +7,7 @@
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-bullseye fa-fw"></i><sub class="fa fa-tasks fa-fw"></sub> {$smarty.const.FIELD_OBJ_OP}: {$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}</h3>
             </div>
             <div class="modal-body">
-                <p>{$smarty.const.MSG_OBJOP_VALOR_EJ} <span id="intervalo"></span></p>
+                <p>{$smarty.const.MSG_OBJOP_VALOR_EJ}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
@@ -56,16 +56,16 @@
                         <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($objops)} {$smarty.const.FIELD_OBJS_OP}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_OBJOP_OP}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[0]->id}'>
+                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_OBJ_OP}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_OBJOP_OP}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[$indice-1]->id}'>
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_OBJ_OP}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_OBJOP_OP}" class="btn btn-danger btn-xs {if $indice == (count($objops)-1)}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[$indice+1]->id}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_OBJ_OP}" class="btn btn-danger btn-xs {if $indice == (count($objops)-1)}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_OBJOP_OP}" class="btn btn-danger btn-xs {if $indice == (count($objops)-1)}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[(count($objops)-1)]->id}'>
+                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_OBJ_OP}" class="btn btn-danger btn-xs {if $indice == (count($objops)-1)}disabled{/if}" href='index.php?page=objop_mostrar&id_entidad={$entidad->id}&id_objop={$objops[(count($objops)-1)]->id}'>
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
@@ -100,7 +100,7 @@
                     <li class="divider"></li>
                     <li>
                         <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.TXT_PROCS}">({$num_procesos})</span>
+                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.FIELD_PROCS}">({$num_procesos})</span>
                         </a>
                     </li>
                     <li>
@@ -115,7 +115,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cuadros} {$smarty.const.TXT_CUADROS_MANDO}">({$num_cuadros})</span>
+                            <i class="fa fa-th fa-fw"></i> {$smarty.const.FIELD_CUADROS_MANDO} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cuadros} {$smarty.const.FIELD_CUADROS_MANDO}">({$num_cuadros})</span>
                         </a>
                     </li>
                     <li>
@@ -193,7 +193,7 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_OBJ_EST}</th>
                                     <td> 
-                                        <a title="{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_linea={$linea->id}'>{$linea->indice}.{$objest->indice}. {$objest->nombre}</a>
+                                        <a title="{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$entidad->id}'>{$linea->indice}.{$objest->indice}. {$objest->nombre}</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -204,6 +204,12 @@
                                                 {$objop->ejecucion|round:"2"} %
                                             </div>
                                         </div>
+                                    </td>
+                                </tr>
+                                <tr title="{$smarty.const.TXT_PESO}">
+                                    <th>{$smarty.const.FIELD_PESO}</th>
+                                    <td> 
+                                        {$objop->peso}
                                     </td>
                                 </tr>
                                 <tr>
@@ -268,8 +274,8 @@
                                                 <th>{$smarty.const.FIELD_EJECUCION}</th>
                                                     {if $_control || $responsable}
                                                     <th></th>
-                                                    <th></th>
                                                     {/if}
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -296,6 +302,15 @@
                                                                    data-off="{$smarty.const.TXT_VAL_INACTIVO}"
                                                                    data-id_objop='{$objop->id}' data-anyo='{$i}'
                                                                    {if $activacion_anual[$i] == 1}checked="checked"{/if}>
+                                                        </td>
+                                                    {else}
+                                                        <td>
+                                                            <input class="form-control activar"  type="checkbox"
+                                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if} disabled>
                                                         </td>
                                                     {/if}
                                                 </tr>

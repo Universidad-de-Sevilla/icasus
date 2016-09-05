@@ -67,7 +67,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         }
         else
         {
-            $error = ERR_NO_AUT_MOD;
+            $error = ERR_PERMISOS;
             header("location:index.php?page=dato_listar&id_entidad=$entidad->id&error=$error");
         }
     }

@@ -54,7 +54,7 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
     else
     {
         // El usuario no tiene permisos avisamos error
-        $error = ERR_DATO_EDIT_NO_AUT;
+        $error = ERR_PERMISOS;
         header("Location:index.php?page=dato_mostrar&id_dato=$id_dato&error=$error");
     }
 }

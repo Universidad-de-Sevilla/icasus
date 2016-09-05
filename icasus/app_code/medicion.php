@@ -35,7 +35,7 @@ if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'
     if ($tipo == 'indicador')
     {
         $proceso = new Proceso();
-        $proceso->load("id = $indicador->id_proceso");
+        $proceso->load_joined("id = $indicador->id_proceso");
         $smarty->assign('proceso', $proceso);
     }
 

@@ -26,10 +26,10 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 
     $plantilla = 'cuadro_listar.tpl';
     $smarty->assign('_javascript', array('cuadro_listar'));
-    $smarty->assign('_nombre_pagina', TXT_CUADROS_MANDO . ': ' . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', FIELD_CUADROS_MANDO . ': ' . $entidad->nombre);
 }
 else
 {
-    $error = ERR_UNID;
+    $error = ERR_PARAM;
     header("location:index.php?page=cuadros&error=$error");
 }

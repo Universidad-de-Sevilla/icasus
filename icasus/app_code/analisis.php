@@ -39,7 +39,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
 
     //Proceso del indicador
     $proceso = new Proceso();
-    $proceso->load("id = $indicador->id_proceso");
+    $proceso->load_joined("id = $indicador->id_proceso");
     $smarty->assign('proceso', $proceso);
 
     //Obtener todos los indicadores para avanzar o retroceder 
@@ -83,6 +83,10 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
         // Prepara el panel anual
         $anio_inicio = $indicador->historicos;
         $anio_fin = date('Y');
+        if ($indicador->periodicidad == "Bienal")
+        {
+            $anio_fin = date('Y') + 2;
+        }
         $panel->id = 1;
         $panel->tipo->clase_css = "lineal";
         $panel->nombre = TXT_HISTORICO;

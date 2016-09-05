@@ -85,10 +85,10 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 
     //Archivos
     $archivo = new Fichero();
-    $archivos = $archivo->find_joined("id_objeto = $id_entidad AND tipo_objeto = 'unidad'");
+    $archivos = $archivo->find_joined("id_objeto = $id_entidad AND tipo_objeto = 'unidad' AND visible=1");
     $smarty->assign('archivos', $archivos);
 
-    $anio_fin = date('Y') - 1;
+    $anio_fin = date('Y');
     $smarty->assign('anio_fin', $anio_fin);
 
     $smarty->assign('_javascript', array('entidad_mostrar'));

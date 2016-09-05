@@ -75,8 +75,8 @@ if (filter_has_var(INPUT_GET, 'page'))
     $page = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
 }
 
-//Si se ha iniciado sesión
-if (isset($_SESSION['usuario']))
+//Si se ha iniciado sesión y no estamos en mantenimiento
+if (isset($_SESSION['usuario']) && IC_TIPO_LOGIN != 'mantenimiento')
 {
     //Variable global que almacena el usuario
     $usuario = $_SESSION['usuario'];

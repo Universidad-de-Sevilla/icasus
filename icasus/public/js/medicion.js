@@ -7,6 +7,11 @@
 // Funciones de la plantilla medicion.tpl
 // -------------------------------------------------------
 
+//Estimación del indicador/dato
+var inverso = $("#med_datos").data("inverso");
+var limite = $("#limite").data("limite");
+var meta = $("#meta").data("meta");
+
 //Variables: Valor mínimo y máximo permitido
 var valor_min = $("#valors").data("valor_min");
 var valor_max = $("#valors").data("valor_max");
@@ -242,7 +247,7 @@ function etiqueta_editar_grabar(content, medicion, tag)
     }
     else {
         $.post("index.php?page=medicion_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
-            $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
+//            $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
             location.reload();
         });
     }
@@ -279,7 +284,13 @@ function fecha_grabar(medicion, content)
     var value = year + "-" + mes + "-" + dia;
     $.post("index.php?page=medicion_ajax&modulo=grabaretiqueta&ajax=true", {id_medicion: medicion, contenedor: content, valor: value}, function () {
         $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
-        $('#valors').load(location.reload());
+        //Si cambiamos periodos de grabación actualizamos valores globales
+        if (content === 'gi') {
+            grabacion_inicio = value;
+        }
+        if (content === 'gf') {
+            grabacion_fin = value;
+        }
     });
 }
 
@@ -288,30 +299,59 @@ function fecha_cancelar(content, medicion)
     $('#' + content).load("index.php?page=medicion_ajax&modulo=cancelaretiqueta&ajax=true&id_medicion=" + medicion + "&contenedor=" + content);
 }
 
-function referencia_editar(id)
+function referencia_editar(id, medicion)
 {
-    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=editarvalorreferencia&ajax=true&id_referencia=" + id);
+    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=editarvalorreferencia&ajax=true&id_referencia=" + id + "&id_medicion=" + medicion);
 }
 
-function referencia_grabar(id)
+function referencia_grabar(id, medicion, nombre_ref)
 {
     var value = $("[name=input_referencia_" + id + "]").val();
     value = value.replace(',', '.');
+    $('#intervalo').text('[' + valor_min + ', ' + valor_max + '].');
 
     if (value !== '')
     {
         if (isNaN(value) === false)
         {
-            $.post("index.php?page=medicion_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
-                $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
-                $('#valors').load(location.reload());
-            });
+            //Validamos y grabamos
+            if (validar_referencia(nombre_ref, value))
+            {
+                //Si hay un intervalo [min,max]
+                if ($.isNumeric(valor_min) && $.isNumeric(valor_max)) {
+                    if (value < valor_min || value > valor_max) {
+                        $('#dialogo_valor_intervalo').modal('show');
+                    }
+                    else {
+                        $.post("index.php?page=medicion_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
+                            //Si es limite o meta actualizamos
+                            actualizar_estimacion(nombre_ref, value);
+                            $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
+                            $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                        });
+                    }
+                }
+                // Si no hay intervalo [min, max]
+                else {
+                    $.post("index.php?page=medicion_ajax&modulo=grabarvalorreferencia&ajax=true", {id_referencia: id, valor: value}, function () {
+                        //Si es limite o meta actualizamos
+                        actualizar_estimacion(nombre_ref, value);
+                        $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
+                        $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
+                    });
+                }
+            }
+            else {
+                $('#dialogo_valor_referencia').modal('show');
+            }
         }
         else if (value === "---")
         {
             $.post("index.php?page=medicion_ajax&modulo=anularvalorreferencia&ajax=true", {id_referencia: id}, function () {
-                $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
-                $('#valors').load(location.reload());
+                //Si es limite o meta actualizamos
+                actualizar_estimacion(nombre_ref, null);
+                $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
+                $('#valors').load("index.php?page=medicion_ajax&modulo=cancelarfila&ajax=true&id_medicion=" + medicion);
             });
         }
         else
@@ -325,9 +365,57 @@ function referencia_grabar(id)
     }
 }
 
-function referencia_cancelar(id)
+//Valida que el valor de una referencia sea correcto si es una meta o límite
+function validar_referencia(nombre_ref, value) {
+    var validado = true;
+    //El indicador/dato tiene estimación descendente
+    if (inverso) {
+        //Estamos grabando el límite
+        if (nombre_ref.indexOf('mite') !== -1) {
+            if (value <= meta && meta !== null) {
+                validado = false;
+            }
+        }
+        //Estamos grabando la meta
+        if (nombre_ref.indexOf('eta') !== -1) {
+            if (value >= limite && limite !== null) {
+                validado = false;
+            }
+        }
+    }
+    //El indicador/dato tiene estimación ascendente
+    else {
+        //Estamos grabando el límite
+        if (nombre_ref.indexOf('mite') !== -1) {
+            if (value >= meta && meta !== null) {
+                validado = false;
+            }
+        }
+        //Estamos grabando la meta
+        if (nombre_ref.indexOf('eta') !== -1) {
+            if (value <= limite && limite !== null) {
+                validado = false;
+            }
+        }
+    }
+    return validado;
+}
+
+//Actualiza los valores globales de la meta y el límite después de ser grabados
+function actualizar_estimacion(nombre_ref, value) {
+    //Hemos grabado el límite
+    if (nombre_ref.indexOf('mite') !== -1) {
+        limite = value;
+    }
+    //Hemos grabado la meta
+    if (nombre_ref.indexOf('eta') !== -1) {
+        meta = value;
+    }
+}
+
+function referencia_cancelar(id, medicion)
 {
-    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id);
+    $('#referencia_' + id).load("index.php?page=medicion_ajax&modulo=cancelarvalorreferencia&ajax=true&id=" + id + "&id_medicion=" + medicion);
 }
 
 //Función que pinta nuestra gráfica
@@ -383,4 +471,28 @@ $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
 //Reajustamos las cabeceras de las datatables al hacer scroll
 $('.table-responsive').on('scroll', function () {
     tablas_valores.fixedHeader.adjust();
+});
+
+//Validaciones
+$('#page-wrapper').on('keyup', '.actualizar_dato', function () {
+    var actualizar_dato = $(this);
+    var valor = $(this).val();
+    valor = valor.replace(',', '.');
+    if ($.isNumeric(valor) || valor === '---') {
+        actualizar_dato.css("border-color", "green");
+    }
+    else {
+        actualizar_dato.css("border-color", "red");
+    }
+});
+
+$('#page-wrapper').on('keyup', '.actualizar_etiqueta', function () {
+    var actualizar_etiqueta = $(this);
+    var valor = $(this).val();
+    if (valor.length === 0) {
+        actualizar_etiqueta.css("border-color", "red");
+    }
+    else {
+        actualizar_etiqueta.css("border-color", "green");
+    }
 });

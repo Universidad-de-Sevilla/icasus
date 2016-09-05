@@ -50,19 +50,19 @@
                 <!-- Navegación -->
                 {if count($cuadros)> 1 && !$cuadro->privado}
                     <div class="col-md-2">
-                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($cuadros)} {$smarty.const.TXT_CUADROS_MANDO}</div>
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($cuadros)} {$smarty.const.FIELD_CUADROS_MANDO}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.TXT_CUADRO_MANDO}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[0]->id}'>
+                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_CUADRO_MANDO}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.TXT_CUADRO_MANDO}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice-1]->id}'>
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_CUADRO_MANDO}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.TXT_CUADRO_MANDO}" class="btn btn-danger btn-xs {if $indice == (count($cuadros)-1)}disabled{/if}" href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice+1]->id}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_CUADRO_MANDO}" class="btn btn-danger btn-xs {if $indice == (count($cuadros)-1)}disabled{/if}" href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.TXT_CUADRO_MANDO}" class="btn btn-danger btn-xs {if $indice == (count($cuadros)-1)}disabled{/if}" href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[(count($cuadros)-1)]->id}'>
+                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_CUADRO_MANDO}" class="btn btn-danger btn-xs {if $indice == (count($cuadros)-1)}disabled{/if}" href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[(count($cuadros)-1)]->id}'>
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
@@ -97,7 +97,7 @@
                     <li class="divider"></li>
                     <li>
                         <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.TXT_PROCS}">({$num_procesos})</span>
+                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.FIELD_PROCS}">({$num_procesos})</span>
                         </a>
                     </li>
                     <li>
@@ -112,7 +112,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cuadros} {$smarty.const.TXT_CUADROS_MANDO}">({$num_cuadros})</span>
+                            <i class="fa fa-th fa-fw"></i> {$smarty.const.FIELD_CUADROS_MANDO} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cuadros} {$smarty.const.FIELD_CUADROS_MANDO}">({$num_cuadros})</span>
                         </a>
                     </li>
                     <li>
@@ -132,7 +132,7 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            <li><a title="{$smarty.const.TXT_CUADROS_MANDO}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_CUADROS_MANDO}</a></li>
+            <li><a title="{$smarty.const.FIELD_CUADROS_MANDO}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_CUADROS_MANDO}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>

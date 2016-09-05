@@ -10,6 +10,10 @@
 // Descripcion: Crea/Edita una línea estratégica para un plan
 //---------------------------------------------------------------------------------------------------
 
+global $usuario;
+//Variable para operar con los planes
+$logicaPlan = new LogicaPlan();
+
 if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'id_plan'))
 {
     $linea = new Linea();
@@ -37,6 +41,17 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
     $linea->indice = filter_input(INPUT_POST, 'indice', FILTER_SANITIZE_NUMBER_INT);
     $linea->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $linea->save();
+
+    //Si estamos creando una nueva línea estratégica
+    if (!isset($id_linea))
+    {
+        //Actualizamos ejecuciones
+        for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
+        {
+            $logicaPlan->actualizar_ejecucion_anual_plan($id_plan, $i);
+        }
+        $logicaPlan->actualizar_ejecucion_global_plan($id_plan);
+    }
     header("Location: index.php?page=linea_mostrar&id_entidad=$plan->id_entidad&id_linea=$linea->id&exito=$exito");
 }
 else

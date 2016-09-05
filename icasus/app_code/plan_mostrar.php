@@ -90,6 +90,11 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
     $smarty->assign('objops', $objops);
     $smarty->assign('objops_objests', $objops_objests);
 
+    //Archivos
+    $archivo = new Fichero();
+    $archivos = $archivo->find_joined("id_objeto = $id_plan AND tipo_objeto = 'plan' AND visible=1");
+    $smarty->assign('archivos', $archivos);
+
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);

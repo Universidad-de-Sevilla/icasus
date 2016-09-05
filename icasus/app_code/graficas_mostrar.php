@@ -40,7 +40,7 @@ if ($tipo == "indicador")
 {
     //Proceso del indicador
     $proceso = new Proceso();
-    $proceso->load("id = $indicador->id_proceso");
+    $proceso->load_joined("id = $indicador->id_proceso");
     $smarty->assign('proceso', $proceso);
     //Obtener todos los indicadores del proceso para avanzar o retroceder
     if ($indicador->archivado)
@@ -124,7 +124,7 @@ if ($mediciones)
         $panel->id = 2;
         $panel->tipo->clase_css = "lineal";
         $panel->ancho = 6;
-        $panel->nombre = TXT_2_ULT_ANYO;
+        $panel->nombre = TXT_DOS_ULT_ANYO;
         $panel->fecha_inicio = $anio_inicio . "-01-01";
         $panel->fecha_fin = date("Y-m-d");
         $panel->periodicidad = "todos";
@@ -133,6 +133,10 @@ if ($mediciones)
     // Prepara el panel anual
     $anio_inicio = $indicador->historicos;
     $anio_fin = date('Y');
+    if ($indicador->periodicidad == "Bienal")
+    {
+        $anio_fin = date('Y') + 2;
+    }
     $panel->id = 1;
     $panel->tipo->clase_css = "lineal";
     $panel->nombre = TXT_HISTORICO;

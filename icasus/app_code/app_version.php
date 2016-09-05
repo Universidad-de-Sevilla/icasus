@@ -1,8 +1,17 @@
 <?php
 
-define('IC_VERSION', "3.22.6");
-define('IC_FECHA_REVISION', "13/07/2016");
+define('IC_VERSION', "3.25.3");
+define('IC_FECHA_REVISION', "02/09/2016");
 
+// 3.25.3 - 02/09/2016 - Se valida que en función de la estimación del indicador/dato los valores de referencia límite y meta tengan un valor correcto (ascendente: límite < meta y descendente: límite > meta).
+// 3.25.2 - 02/09/2016 - Se muestra en los gráficos la medición siguiente al año actual en los indicadores/datos con periodicidad bienal. Esto permite ver los valores de referencia esperados.
+// 3.25.1 - 01/09/2016 - Se muestra el botón de análisis en los listados de indicadores de un proceso.
+// 3.25.0 - 29/07/2016 - Gestión de subprocesos mejorada incluyéndose éstos en el breadcrumbs. Cambios en la interfaz de un proceso y en algunas constantes de lenguaje.
+// 3.24.0 - 28/07/2016 - Gestión de archivos para los planes estratégicos. Mejoras en gestión de archivos y mediciones.
+// 3.23.1 - 26/07/2016 - Múltiples mejoras y cambios de estilo.
+// 3.23.0 - 20/07/2016 - Inclusión de pesos para objetivos operacionales, actualización automática de grados de ejecución y corrección de errores en planes estratégicos.
+// 3.22.8 - 15/07/2016 - Corregido: mientras icasus se encuentre en mantenimiento no se podrá navegar aunque se esté logeado (nueva página de mantenimiento).
+// 3.22.7 - 14/07/2016 - Pequeñas correcciones y cambios en las páginas de login.
 // 3.22.6 - 13/07/2016 - Se muestran correctamente en las gráficas los valores de referencia de los indicadores/datos con agregación temporal evolutiva.
 // 3.22.5 - 12/07/2016 - Correcciones varias en la gestión de planes estratégicos (grados de ejecución, borrado...).
 // 3.22.4 - 11/07/2016 - Se valida el orden de los paneles dentro de un cuadro de mando.

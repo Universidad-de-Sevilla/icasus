@@ -56,7 +56,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
         else
         {
             $error = ERR_PROC_GRABAR;
-            header("location:index.php?error=$error");
+            header("location:index.php?page=error&error=$error");
         }
     }
     // Si no vienen datos mostramos el formulario

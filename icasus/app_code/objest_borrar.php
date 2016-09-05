@@ -9,9 +9,9 @@
 // Descripcion: Borra un objetivo estratégico
 //---------------------------------------------------------------------------------------------------
 
-global $smarty;
-global $plantilla;
 global $usuario;
+//Variable para operar con los planes
+$logicaPlan = new LogicaPlan();
 
 if (filter_has_var(INPUT_GET, 'id_objest') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -20,11 +20,9 @@ if (filter_has_var(INPUT_GET, 'id_objest') && filter_has_var(INPUT_GET, 'id_enti
 
     //Obtenemos los datos del objetivo estratégico
     $objest = new ObjetivoEstrategico();
-    if ($objest->load("id = $id_objest"))
+    if ($objest->load_joined("id = $id_objest"))
     {
-        $id_linea = $objest->id_linea;
-        $linea = new Linea();
-        $linea->load("id = $id_linea");
+        $linea = $objest->linea;
         $objop = new ObjetivoOperacional();
         $objop_objest = $objop->Find("id_objest=$id_objest");
         if (!$objop_objest && $control)
@@ -37,7 +35,14 @@ if (filter_has_var(INPUT_GET, 'id_objest') && filter_has_var(INPUT_GET, 'id_enti
             {
                 $ejecucion->delete();
             }
-            header("Location: index.php?page=linea_mostrar&id_linea=$id_linea&id_entidad=$id_entidad&exito=$exito");
+            //Actualizamos ejecuciones
+            $plan = $linea->plan;
+            for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
+            {
+                $logicaPlan->actualizar_ejecucion_anual_linea($linea->id, $i);
+            }
+            $logicaPlan->actualizar_ejecucion_global_linea($linea->id);
+            header("Location: index.php?page=linea_mostrar&id_linea=$linea->id&id_entidad=$id_entidad&exito=$exito");
         }
         else
         {

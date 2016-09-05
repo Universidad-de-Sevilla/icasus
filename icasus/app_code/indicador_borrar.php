@@ -64,7 +64,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
     }
     else
     {
-        $error = ERR_INDIC_BORRAR_NO_AUT;
+        $error = ERR_PERMISOS;
         header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&error=$error");
     }
 }

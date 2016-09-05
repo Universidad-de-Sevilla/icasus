@@ -107,6 +107,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 }
 else
 {
-    $error = ERR_UNID_LIST_INDIC;
+    $error = ERR_PARAM;
     header("location:index.php?page=indicadores&error=$error");
 }

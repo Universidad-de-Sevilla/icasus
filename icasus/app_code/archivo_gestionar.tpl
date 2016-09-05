@@ -4,7 +4,9 @@
         <div class="modal-content">
             <form action="index.php?page=archivo_gestionar_ajax&ajax=true&id_entidad={$entidad->id}&modulo=subir&tipo={$tipo}" name="subir" method="post" enctype="multipart/form-data" 
                   data-toggle="validator" class="form-horizontal">
-                {if isset($proceso)}
+                {if isset($plan)}
+                    <input type="hidden" value="{$plan->id}" name="id_objeto">
+                {else if isset($proceso)}
                     <input type="hidden" value="{$proceso->id}" name="id_objeto">
                 {else}
                     <input type="hidden" value="{$entidad->id}" name="id_objeto">
@@ -15,9 +17,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
-                        <label for="stitulo" class="col-sm-2 control-label">{$smarty.const.FIELD_TITULO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="stitulo" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input type="text" name="stitulo" id="stitulo" class="form-control" placeholder="{$smarty.const.FIELD_TITULO}" required />                  
+                            <input type="text" name="stitulo" id="stitulo" class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
@@ -76,9 +78,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
-                        <label for="etitulo" class="col-sm-2 control-label">{$smarty.const.FIELD_TITULO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="etitulo" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
-                            <input type="text" id="etitulo" name='etitulo' class="form-control" placeholder="{$smarty.const.FIELD_TITULO}" required />                  
+                            <input type="text" id="etitulo" name='etitulo' class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
@@ -162,7 +164,7 @@
                     <li class="divider"></li>
                     <li>
                         <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.TXT_PROCS}">({$num_procesos})</span>
+                            <i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.FIELD_PROCS}">({$num_procesos})</span>
                         </a>
                     </li>
                     <li>
@@ -177,7 +179,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cuadros} {$smarty.const.TXT_CUADROS_MANDO}">({$num_cuadros})</span>
+                            <i class="fa fa-th fa-fw"></i> {$smarty.const.FIELD_CUADROS_MANDO} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cuadros} {$smarty.const.FIELD_CUADROS_MANDO}">({$num_cuadros})</span>
                         </a>
                     </li>
                     <li>
@@ -197,10 +199,20 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
+            {if isset($plan)}
+                <li>
+                    <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}</a>
+                </li>
+            {/if}
             {if isset($proceso)}
                 <li>
-                    <a title="{$smarty.const.TXT_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.TXT_PROCS}</a>
+                    <a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a>
                 </li>
+                {if $proceso->madre}
+                    <li>
+                        <a title="{$proceso->madre->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->madre->id}&id_entidad={$entidad->id}'>{$proceso->madre->nombre|truncate:30}</a>
+                    </li>
+                {/if}
                 <li>
                     <a title="{$proceso->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>{$proceso->nombre|truncate:30}</a>
                 </li>
@@ -229,7 +241,7 @@
                 <table id='tabla_archivos' class="table datatable table-striped table-hover">
                     <thead>
                         <tr>                     
-                            <th>{$smarty.const.FIELD_TITULO}</th>
+                            <th>{$smarty.const.FIELD_ARCHIVO}</th>
                             <th>{$smarty.const.FIELD_VISIB}</th>
                             <th>{$smarty.const.FIELD_USER}</th>
                             <th>{$smarty.const.FIELD_ACCIONES}</th>
@@ -259,7 +271,7 @@
                                         <i class="fa fa-pencil fa-fw"></i>
                                     </a>
                                     <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVO_DESCARGA}" href="index.php?page=archivo_descargar&id={$archivo->id}"><i class="fa fa-download fa-fw"></i></a> 
-                                    <a class="btn btn-default btn-circle btn-xs borrar_archivo" title="{$smarty.const.TXT_ARCHIVO_BORRAR}" href="javascript:void(0)" id="l-borrar-{$archivo->id}" data-toggle="modal" data-target="#dialogo_borrar">
+                                    <a class="btn btn-default btn-circle btn-xs borrar_archivo" data-texto_borrar="{$smarty.const.MSG_ARCHIVO_BORRADO}" title="{$smarty.const.TXT_ARCHIVO_BORRAR}" href="javascript:void(0)" id="l-borrar-{$archivo->id}" data-toggle="modal" data-target="#dialogo_borrar">
                                         <i class="fa fa-trash fa-fw"></i>
                                     </a>
                                 </td>           
@@ -271,10 +283,15 @@
         {else}
             <div class="row">
                 <div class="col-sm-11">
-                    {if isset($proceso)}
+                    {if isset($plan)}
                         <div class="alert alert-info alert-dismissible">
                             <i class="fa fa-info-circle fa-fw"></i> 
-                            {$smarty.const.MSG_PROC_NO_ARCHIVO}
+                            {$smarty.const.MSG_PLAN_NO_ARCHIVOS}
+                        </div> 
+                    {else if isset($proceso)}
+                        <div class="alert alert-info alert-dismissible">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_PROC_NO_ARCHIVOS}
                         </div> 
                     {else}
                         <div class="alert alert-info alert-dismissible">
@@ -285,15 +302,13 @@
                 </div>
                 <!-- /.col-sm-11 -->
                 <div class="col-sm-1">
-                    {if $_control}
-                        <div class="btn-toolbar" role="toolbar" aria-label="">
-                            <div class="btn-group" role="group" aria-label="">
-                                <a class="btn btn-danger" href="javascript:void(0)" title="{$smarty.const.TXT_ARCHIVO_SUBIR}" data-toggle="modal" data-target="#dialogo_crear">
-                                    <i class="fa fa-upload fa-fw"></i>
-                                </a>
-                            </div>
+                    <div class="btn-toolbar" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href="javascript:void(0)" title="{$smarty.const.TXT_ARCHIVO_SUBIR}" data-toggle="modal" data-target="#dialogo_crear">
+                                <i class="fa fa-upload fa-fw"></i>
+                            </a>
                         </div>
-                    {/if}
+                    </div>
                 </div>
                 <!-- /.col-sm-1 -->
             </div>

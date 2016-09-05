@@ -24,6 +24,7 @@ $('#page-wrapper').on('click', '.editar', function () {
 $('#page-wrapper').on('keyup', '.valor', function () {
     var actualizar_dato = $(this);
     var valor = $(this).val();
+    valor = valor.replace(',', '.');
     if ($.isNumeric(valor) && valor >= 0 && valor <= 100) {
         actualizar_dato.css("border-color", "green");
     }
@@ -37,6 +38,7 @@ $('#page-wrapper').on('click', '.grabar', function () {
     var id_objop = $(this).data('id_objop');
     var anyo = $(this).data('anyo');
     var valor = $('#page-wrapper #valor_' + anyo).val();
+    valor = valor.replace(',', '.');
     if ($.isNumeric(valor) && valor >= 0 && valor <= 100) {
         $.ajax({
             type: "POST",

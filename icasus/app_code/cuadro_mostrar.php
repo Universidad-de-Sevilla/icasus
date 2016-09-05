@@ -42,7 +42,7 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
         $smarty->assign("paneles", $paneles);
 
         $smarty->assign('_javascript', array('cuadro_mostrar'));
-        $smarty->assign("_nombre_pagina", TXT_CUADRO_MANDO . ': ' . "$cuadro->nombre");
+        $smarty->assign("_nombre_pagina", FIELD_CUADRO_MANDO . ': ' . "$cuadro->nombre");
         $plantilla = "cuadro_mostrar.tpl";
     }
     else
@@ -53,6 +53,6 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
 }
 else
 {
-    $error = ERR_CUAD_MANDO_PARAM;
+    $error = ERR_PARAM;
     header("location:index.php?page=cuadros&error=$error");
 }
