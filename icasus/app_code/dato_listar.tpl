@@ -158,7 +158,7 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
                                             <a target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}' 
-                                               title="{$dato->nombre}: {$dato->descripcion}">
+                                               title="{$dato->nombre}: {$dato->descripcion|replace:"\r\n":" "}">
                                                 {$dato->nombre}</a>
                                         </td>
                                         <td>{$dato->periodicidad}</td>
@@ -270,7 +270,7 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
                                             <a target="_blank" href='index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                               title="{$indicador->nombre}: {$indicador->descripcion}">
+                                               title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
                                                 {$indicador->nombre}</a>
                                         </td>
                                         <td>{$indicador->periodicidad}</td>
@@ -380,7 +380,7 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
                                             <a target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}' 
-                                               title="{$dato->nombre}: {$dato->descripcion}">
+                                               title="{$dato->nombre}: {$dato->descripcion|replace:"\r\n":" "}">
                                                 {$dato->nombre}</a>
                                         </td>
                                         <td>{$dato->periodicidad}</td>

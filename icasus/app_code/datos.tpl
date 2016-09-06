@@ -92,7 +92,7 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
                                             <a target="_blank" href='index.php?page=dato_mostrar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                               title="{$indicador->nombre}: {$indicador->descripcion}">
+                                               title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
                                                 {$indicador->nombre}</a>
                                         </td>
                                         <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$indicador->id_entidad}'>{$indicador->entidad->etiqueta}</a></td>
@@ -207,7 +207,7 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
                                             <a target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
-                                               title="{$dato->nombre}: {$dato->descripcion}">
+                                               title="{$dato->nombre}: {$dato->descripcion|replace:"\r\n":" "}">
                                                 {$dato->nombre}</a>
                                         </td>
                                         <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$dato->id_entidad}'>{$dato->entidad->etiqueta}</a></td>
@@ -277,7 +277,7 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
                                             <a target="_blank" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
-                                               title="{$dato->nombre}: {$dato->descripcion}">
+                                               title="{$dato->nombre}: {$dato->descripcion|replace:"\r\n":" "}">
                                                 {$dato->nombre}</a>
                                         </td>
                                         <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$dato->id_entidad}'>{$dato->entidad->etiqueta}</a></td>
