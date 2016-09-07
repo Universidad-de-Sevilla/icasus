@@ -563,7 +563,7 @@ define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la unidad los usuari
 define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado valores a esta medición.');
 define('MSG_VALS_CALCULADOS', 'Se han calculado/actualizado los valores correctamente.');
 define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los valores marcados?');
-define('MSG_VAL_REF_NO_VALIDO', 'Valor de referencia incorrecto: en indicadores/datos con estimación ascendente se ha de cumplir siempre que límite < meta. Para una estimación descendente: limite > meta');
+define('MSG_VAL_REF_NO_VALIDO', 'Valor de referencia incorrecto para la estimación actual');
 define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los valores de referencia marcados?');
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
 define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia.');

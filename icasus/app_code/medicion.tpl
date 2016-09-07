@@ -45,14 +45,33 @@
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
-                <p>{$smarty.const.FIELD_ESTIMACION}: 
+                <div class="alert alert-danger"><i class="fa fa-exclamation-circle fa-fw"></i> {$smarty.const.MSG_VAL_REF_NO_VALIDO} 
                     {if $indicador->inverso}
-                        {$smarty.const.TXT_DESCENDENTE}
+                        ({$smarty.const.TXT_DESCENDENTE})
                     {else}
-                        {$smarty.const.TXT_ASCENDENTE}
-                    {/if}
-                </p>
-                <p>{$smarty.const.MSG_VAL_REF_NO_VALIDO}</p>
+                        ({$smarty.const.TXT_ASCENDENTE})
+                    {/if}.
+                </div>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>{$smarty.const.FIELD_ESTIMACION}</th>
+                                <th>{$smarty.const.FIELD_VAL_REF}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr {if !$indicador->inverso}class="success"{/if}>
+                                <td>{$smarty.const.TXT_ASCENDENTE}</td>
+                                <td><span class="label label-danger">{$smarty.const.FIELD_LIMITE}</span><i class="fa fa-angle-left fa-fw"></i><span class="label label-success">{$smarty.const.FIELD_META}</span></td>
+                            </tr>
+                            <tr {if $indicador->inverso}class="success"{/if}>
+                                <td>{$smarty.const.TXT_DESCENDENTE}</td>
+                                <td><span class="label label-danger">{$smarty.const.FIELD_LIMITE}</span><i class="fa fa-angle-right fa-fw"></i><span class="label label-success">{$smarty.const.FIELD_META}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
@@ -282,11 +301,11 @@
                         {/if}
                     </div>
                     <div class="btn-group" role="group" aria-label="">
-                        {if $indicador->calculo && $permiso_editar}
+                        <!--{if $indicador->calculo && $permiso_editar}
                             <a title="{$smarty.const.TXT_VAL_CALC_DESCRIPCION}" class="btn btn-default" href='index.php?page=medicion_actualizar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo={$tipo}'>
                                 <i class="fa fa-calculator fa-fw"></i>
                             </a>
-                        {/if}
+                        {/if}-->
                         {if $permiso_editar}
                             <a class="btn btn-default" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
                                 <i class="fa fa-trash fa-fw"></i>
