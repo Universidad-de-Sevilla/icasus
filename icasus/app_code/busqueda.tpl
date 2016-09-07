@@ -124,7 +124,7 @@
                                             <td><span class="label label-primary">{$proceso->codigo}</span></td>
                                             <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$proceso->entidad->id}'>{$proceso->entidad->etiqueta}</a></td>
                                             <td>
-                                                <a title="{$proceso->nombre}: {$proceso->mision}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
+                                                <a title="{$proceso->nombre}: {$proceso->mision|replace:"\r\n":" "}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                     {$proceso->nombre}
                                                 </a>
                                             </td>
@@ -192,7 +192,7 @@
                                                     <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                                 {/if}
                                                 <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                                   title="{$indicador->nombre}: {$indicador->descripcion}">
+                                                   title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
                                                     {$indicador->nombre}</a>
                                             </td>
                                             <td>
@@ -271,7 +271,7 @@
                                                     <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                                 {/if}
                                                 <a href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
-                                                   title="{$dato->nombre}: {$dato->descripcion}">
+                                                   title="{$dato->nombre}: {$dato->descripcion|replace:"\r\n":" "}">
                                                     {$dato->nombre}</a>
                                             </td>
                                             <td>{$dato->periodicidad}</td>

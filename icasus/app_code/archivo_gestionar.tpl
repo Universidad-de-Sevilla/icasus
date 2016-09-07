@@ -251,7 +251,7 @@
                         {foreach from=$archivos item=archivo}
                             <tr>
                                 <td>
-                                    <a class="editar_archivo" title="{$archivo->titulo}: {$archivo->descripcion}" href="javascript:void(0)" id="l-titulo-{$archivo->id}" value="{$archivo->titulo}" data-toggle="modal" data-target="#dialogo_editar" >
+                                    <a class="editar_archivo" title="{$archivo->titulo}: {$archivo->descripcion|replace:"\r\n":" "}" href="javascript:void(0)" id="l-titulo-{$archivo->id}" value="{$archivo->titulo}" data-toggle="modal" data-target="#dialogo_editar" >
                                         {$archivo->titulo}
                                     </a>
                                     <span id="l-descripcion-{$archivo->id}" data-descripcion="{$archivo->descripcion}"></span>

@@ -169,7 +169,7 @@
                                     <tr>
                                         <td><span class="label label-primary">{$proceso->codigo}</span></td>
                                         <td>
-                                            <a title="{$proceso->nombre}: {$proceso->mision}"
+                                            <a title="{$proceso->nombre}: {$proceso->mision|replace:"\r\n":" "}"
                                                href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                 {$proceso->nombre}
                                             </a>
@@ -274,7 +274,7 @@
                                     <tr>    
                                         <td><span class="label label-primary">{$proceso->codigo}</span></td>
                                         <td>
-                                            <a title="{$proceso->nombre}: {$proceso->mision}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
+                                            <a title="{$proceso->nombre}: {$proceso->mision|replace:"\r\n":" "}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                 {$proceso->nombre}
                                             </a>
                                         </td>

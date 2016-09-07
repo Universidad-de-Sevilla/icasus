@@ -557,7 +557,7 @@
                                     {if $archivo->visible}
                                         <tr>  
                                             <td>
-                                                <a title='{$archivo->titulo}: {$archivo->descripcion}' href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo}</a>
+                                                <a title='{$archivo->titulo}: {$archivo->descripcion|replace:"\r\n":" "}' href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo}</a>
                                             </td>
                                             <td style="font-size: 12px">
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'>{$archivo->usuario->nombre} {$archivo->usuario->apellidos}</a>
