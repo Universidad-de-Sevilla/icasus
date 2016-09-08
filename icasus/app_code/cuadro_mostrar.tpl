@@ -210,6 +210,7 @@
                                            title="{$smarty.const.TXT_BORRAR}"
                                            data-id_panel="{$panel->id}" 
                                            data-nombre_panel="{$panel->nombre}"
+                                           data-texto_borrar="{$smarty.const.MSG_PANEL_BORRADO}"
                                            href='javascript:void(0)' 
                                            data-toggle="modal" 
                                            data-target="#dialogo_borrado_panel">

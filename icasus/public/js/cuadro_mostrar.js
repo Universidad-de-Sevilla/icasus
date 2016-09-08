@@ -13,6 +13,7 @@ $('#dialogo_borrado_panel').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var nombre_panel = button.data('nombre_panel');
     var id_panel = button.data('id_panel');
+    var texto_borrar = button.data('texto_borrar');
     var modal = $(this);
     modal.find('#nombre_panel').text(nombre_panel);
     modal.find('#borrar').click(function () {
@@ -21,6 +22,7 @@ $('#dialogo_borrado_panel').on('show.bs.modal', function (event) {
             success: function () {
                 button.parents(".panel").remove();
                 $('#dialogo_borrado_panel').modal('hide');
+                window.location.replace(location.href + "&exito=" + texto_borrar + ' ' + nombre_panel);
             }
         });
     });
@@ -530,6 +532,7 @@ $(".panel_tabla").each(function () {
     var anyo_fin = new Date().getFullYear() - 1;
     var fecha_inicio = anyo_fin - anyos_atras + '-01-01';
     var fecha_fin = anyo_fin + '-12-31';
+    var unidad = '---'; //etiqueta de la unidad a mostrar
     //Indicadores/datos del panel
     var panel_indics = $('#panel_indics_' + id_panel);
     var htmlTabla = '<table id="tabla_simple' + id_panel + '" class="table table-striped table-hover">';
@@ -547,13 +550,20 @@ $(".panel_tabla").each(function () {
         $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin, function (datos) {
             // Tomamos la entidad a mostrar del panel_indicador actual
             var id_entidad = indicador.id_entidad;
+            if (id_entidad == 0) {
+                unidad = nombre_unidad;
+            }
             $.each(datos, function (i, dato) {
                 if (dato.id_unidad == id_entidad)
                 {
-                    htmlTabla += '<tr><td>' + dato.medicion + '</td><td>' + Math.round(dato.valor * 100) / 100 + '</td></tr>';
+                    htmlTabla += '<tr><td>' + dato.medicion + '</td><td><span class="badge">' + Math.round(dato.valor * 100) / 100 + '</span></td></tr>';
+                    if (unidad === '---') {
+                        unidad = dato.unidad;
+                    }
                 }
             });
             htmlTabla += '</tbody></table>';
+            htmlTabla += "<h4 title='Unidad' class='text-center'>Unidad: " + unidad + "</h4>";
             $('#panel_' + id_panel).append(htmlTabla);
             $('#tabla_simple' + id_panel).DataTable({
                 "pagingType": "full_numbers",

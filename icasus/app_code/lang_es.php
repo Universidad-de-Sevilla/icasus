@@ -387,7 +387,7 @@ define('MSG_ANAPLAN_NO', 'Todavía no se ha registrado ningún análisis ni plan
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');
 define('MSG_ARCHIVO_SUBIDA_OK', 'Se ha subido correctamente el archivo.');
-define('MSG_ARCHIVO_BORRADO', 'Se ha borrado el archivo:');
+define('MSG_ARCHIVO_BORRADO', 'Se ha eliminado con éxito el archivo:');
 define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Consulta avanzada
@@ -405,6 +405,7 @@ define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
 define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿está seguro?');
 //Paneles de los Cuadros de Mando
 define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando este panel, ¿está seguro?');
+define('MSG_PANEL_BORRADO', 'Se ha eliminado con éxito el panel:');
 define('MSG_PANEL_EDITADO', "Panel editado correctamente:");
 define('MSG_PANEL_CREADO', "Se ha añadido al cuadro de mando el siguiente panel:");
 define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿está seguro?');
