@@ -44,6 +44,7 @@ define('TXT_FICHA', 'Ficha');
 
 //Análisis de indicadores
 define('TXT_ANALISIS', 'Análisis');
+define('TXT_ANALISIS_DESC', 'Análisis: para el año seleccionado comente los resultados obtenidos en años anteriores.');
 define('TXT_PLAN_ACCION', 'Plan de acción');
 define('TXT_TABLA_ANAPLAN', 'Análisis y Planes de acción / Año');
 

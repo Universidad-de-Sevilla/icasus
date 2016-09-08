@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.25.5");
-define('IC_FECHA_REVISION', "07/09/2016");
+define('IC_VERSION', "3.25.6");
+define('IC_FECHA_REVISION', "08/09/2016");
 
+// 3.25.6 - 08/09/2016 - Cambio de interfaz y añadido de comentario aclaratorio en la sección de análisis de los indicadores.
 // 3.25.5 - 07/09/2016 - Correcciones menores en la gestión de indicadores/datos calculados.
 // 3.25.4 - 06/09/2016 - Se corrige error de exportación de tablas cuando la etiqueta title de una celda contiene saltos de línea.
 // 3.25.3 - 02/09/2016 - Se valida que en función de la estimación del indicador/dato los valores de referencia límite y meta tengan un valor correcto (ascendente: límite < meta y descendente: límite > meta).
