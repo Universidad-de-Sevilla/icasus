@@ -29,12 +29,19 @@
         <div class="help-block with-errors"></div>
     </div>
 </div>
-
+<div class="form-group has-feedback">
+    <label for="anyos_atras" class="col-sm-2 control-label">{$smarty.const.TXT_PANEL_ANYOS_ATRAS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+    <div class="col-sm-8">
+        <input type="number" value="5" name="anyos_atras" id='anyos_atras' class="form-control" placeholder="{$smarty.const.TXT_PANEL_ANYOS_ATRAS}" min='2' max="10" required/>
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+        <div class="help-block with-errors"></div>
+    </div>
+</div>
 <div class="form-group">
     <label for="id_subunidad" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID}</label>
     <div class="col-sm-8">
         <select id="id_subunidad" name="id_subunidad" class="form-control chosen-select" required>
-            <option value="0">{$smarty.const.FIELD_TOTAL}</option>
+            <option value="0">{$smarty.const.FIELD_TOTAL} - {$entidad->nombre}</option>
             {foreach $subunidades as $subunidad}
                 <option value="{$subunidad->id}">{$subunidad->etiqueta}</option>
             {/foreach}
@@ -45,7 +52,7 @@
 <div id="content_buscador_indicadores_complementarios" class="form-group">
     <label for="buscar_indicador_complementario" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
     <div class="col-sm-8">
-        <input data-id_entidad="{$id_entidad}" class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" name="buscar_indicador_complementario" id="buscar_indicador_complementario" type="text">
+        <input data-id_entidad="{$entidad->id}" class="form-control" placeholder="{$smarty.const.TXT_BUSCAR}" name="buscar_indicador_complementario" id="buscar_indicador_complementario" type="text">
     </div> 
 </div>
 

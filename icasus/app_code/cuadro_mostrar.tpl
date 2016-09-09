@@ -168,6 +168,8 @@
                 <div class="btn-group" role="group" aria-label="">
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_PANEL_CREAR}" href='index.php?page=panel_crear&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                         <i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
+                </div>
+                <div class="btn-group pull-right" role="group" aria-label="">    
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_CUADRO_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                         <i class="fa fa-th fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub></a>
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_CUADRO_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">

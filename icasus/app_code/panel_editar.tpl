@@ -101,7 +101,7 @@
                 </div>
             </div>
 
-            {if $panel->id_paneltipo == 2 || $panel->id_paneltipo == 5}
+            {if $panel->id_paneltipo == 2 || $panel->id_paneltipo == 5 || $panel->id_paneltipo == 6}
                 <div class="form-group has-feedback">
                     <label for="anyos_atras" class="col-sm-2 control-label">{$smarty.const.TXT_PANEL_ANYOS_ATRAS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                     <div class="col-sm-8">

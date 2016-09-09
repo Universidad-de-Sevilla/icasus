@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.25.6");
-define('IC_FECHA_REVISION', "08/09/2016");
+define('IC_VERSION', "3.26.0");
+define('IC_FECHA_REVISION', "09/09/2016");
 
+// 3.26.0 - 09/09/2016 - Mejoras y correcciones en los paneles de los cuadros de mando (borrado y paneles de tablas).
 // 3.25.6 - 08/09/2016 - Cambio de interfaz y añadido de comentario aclaratorio en la sección de análisis de los indicadores.
 // 3.25.5 - 07/09/2016 - Correcciones menores en la gestión de indicadores/datos calculados.
 // 3.25.4 - 06/09/2016 - Se corrige error de exportación de tablas cuando la etiqueta title de una celda contiene saltos de línea.

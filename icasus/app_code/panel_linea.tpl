@@ -87,7 +87,7 @@
         <div class="col-sm-6">
             <li>
                 <input data-id_indicador="{$id_indicador}" class="subunidad_seleccionada"
-                       name="id_subunidad"type="radio" value="0" data-nombre_indicador="{$nombre_indicador}" data-nombre_subunidad="{$smarty.const.FIELD_TOTAL}"> {$smarty.const.FIELD_TOTAL}
+                       name="id_subunidad" type="radio" value="0" data-nombre_indicador="{$nombre_indicador}" data-nombre_subunidad="{$smarty.const.FIELD_TOTAL}"> {$smarty.const.FIELD_TOTAL}
             </li>
             {foreach name=subunidades from=$indicador_subunidades item=item}
                 {if $smarty.foreach.subunidades.iteration == floor($indicador_subunidades|@count/2)+1 }

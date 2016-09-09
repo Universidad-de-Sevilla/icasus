@@ -20,9 +20,10 @@ if (filter_has_var(INPUT_GET, 'page') && filter_has_var(INPUT_GET, 'modulo'))
 
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
+    $entidad->Load("id=$id_entidad");
     $subunidades = $entidad->Find("id_madre=$id_entidad ORDER BY etiqueta");
     $smarty->assign('subunidades', $subunidades);
-    $smarty->assign('id_entidad', $id_entidad);
+    $smarty->assign('entidad', $entidad);
 
     //Validar orden del panel dentro del cuadro de mando
     $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);

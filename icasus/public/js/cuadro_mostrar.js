@@ -13,7 +13,6 @@ $('#dialogo_borrado_panel').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget);
     var nombre_panel = button.data('nombre_panel');
     var id_panel = button.data('id_panel');
-    var texto_borrar = button.data('texto_borrar');
     var modal = $(this);
     modal.find('#nombre_panel').text(nombre_panel);
     $('#nombre_panel_borrado').text(nombre_panel);
@@ -595,8 +594,9 @@ $(".panel_tabla").each(function () {
 //Paneles de tabla multi
 //Se usa en "la biblioteca en cifras" y en datos Rebiun
 $(".panel_tabla_multi").each(function () {
+    var anyos_atras = $(this).data("anyos_atras");
     var fecha = new Date();
-    var anio_inicio = fecha.getFullYear() - 2;
+    var anio_inicio = fecha.getFullYear() - anyos_atras;
     var anio_fin = fecha.getFullYear() - 1;
     var fecha_inicio = anio_inicio + "-01-01";
     var fecha_fin = anio_fin + "-12-31";

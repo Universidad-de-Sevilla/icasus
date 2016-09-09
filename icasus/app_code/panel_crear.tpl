@@ -83,6 +83,12 @@
             <li id="tab_tabla" role="presentation"><a title="{$smarty.const.TXT_TABLA}: {$smarty.const.TXT_TABLA_DESC}" aria-controls="{$smarty.const.TXT_TABLA}: {$smarty.const.TXT_TABLA_DESC}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla" data-nombre_panel="{$smarty.const.TXT_TABLA}" href="#datos_panel"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a></li>
             <li id="tab_tabla_multi" role="presentation"><a title="{$smarty.const.TXT_TABLA_MULTI}: {$smarty.const.TXT_TABLA_MULTI_DESC}" aria-controls="{$smarty.const.TXT_TABLA_MULTI}: {$smarty.const.TXT_TABLA_MULTI_DESC}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_tabla_multi" data-nombre_panel="{$smarty.const.TXT_TABLA_MULTI}" href="#datos_panel"><i class="fa fa-table fa-fw"></i><sub class="fa fa-table fa-fw"></sub> {$smarty.const.TXT_TABLA_MULTI}</a></li>
             <li id="tab_info" role="presentation" class="active" ><a title="{$smarty.const.TXT_AYUDA}" aria-controls="{$smarty.const.TXT_AYUDA}" role="tab" data-toggle="tab" class="tipo" data-tipo="panel_informacion" data-nombre_panel="{$smarty.const.TXT_AYUDA}" href="#datos_panel"><i class="fa fa-question-circle fa-fw"></i> {$smarty.const.TXT_AYUDA}</a></li>
+            <li class="pull-right">
+                <div class="btn-group" role="group" aria-label=""><a class="btn btn-default" title="{$smarty.const.TXT_CANCEL}" href='index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
+                        <i class="fa fa-times fa-fw"></i>
+                    </a>
+                </div>
+            </li>
         </ul>
         <!-- /Nav tabs -->
         <form method="post" action="index.php?page=panel_grabar" id="panel_nuevo" name="panel_nuevo"
