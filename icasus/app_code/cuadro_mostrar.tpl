@@ -38,6 +38,25 @@
 </div>
 <!-- /Diálogo Confirmar Borrado panel -->
 
+<!-- Diálogo Notificar Borrado panel -->
+<div class="modal fade" id="dialogo_notificar_borrado_panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PANEL_BORRAR}: <span id="nombre_panel_borrado"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_PANEL_BORRADO}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Notificar Borrado panel -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -210,7 +229,6 @@
                                            title="{$smarty.const.TXT_BORRAR}"
                                            data-id_panel="{$panel->id}" 
                                            data-nombre_panel="{$panel->nombre}"
-                                           data-texto_borrar="{$smarty.const.MSG_PANEL_BORRADO}"
                                            href='javascript:void(0)' 
                                            data-toggle="modal" 
                                            data-target="#dialogo_borrado_panel">

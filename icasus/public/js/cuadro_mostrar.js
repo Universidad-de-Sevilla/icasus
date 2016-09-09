@@ -16,16 +16,21 @@ $('#dialogo_borrado_panel').on('show.bs.modal', function (event) {
     var texto_borrar = button.data('texto_borrar');
     var modal = $(this);
     modal.find('#nombre_panel').text(nombre_panel);
+    $('#nombre_panel_borrado').text(nombre_panel);
     modal.find('#borrar').click(function () {
         $.ajax({
             url: "index.php?page=panel_borrar&ajax=true&id_panel=" + id_panel,
             success: function () {
                 button.parents(".panel").remove();
                 $('#dialogo_borrado_panel').modal('hide');
-                window.location.replace(location.href + "&exito=" + texto_borrar + ' ' + nombre_panel);
+                $('#dialogo_notificar_borrado_panel').modal('show');
             }
         });
     });
+});
+$('#dialogo_borrado_panel').on('hide.bs.modal', function () {
+    var modal = $(this);
+    modal.find('#borrar').unbind('click');
 });
 
 //----------------------------------------------------------------------------------------
