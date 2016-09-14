@@ -57,7 +57,7 @@ if ($modulo == 'inicio')
 
     //Indicadores/Datos valores de referencia
     //Buscar todos valores ref de los indicadores/datos para el año actual
-    $indicadores = $indicador->Find_joined("id_entidad=$id_entidad");
+    $indicadores = $indicador->Find_joined("id_entidad=$id_entidad AND archivado is NULL");
     $medicion = new Medicion();
     $mediciones = array();
     $medicion_lim = array();
@@ -161,7 +161,7 @@ if ($modulo == 'filtrOnlyear')
 
     //Indicadores/Datos valores de referencia
     //Buscar todos valores ref de los indicadores/datos para el año actual
-    $indicadores = $indicador->Find_joined("id_entidad=$id_entidad");
+    $indicadores = $indicador->Find_joined("id_entidad=$id_entidad AND archivado is NULL");
     $medicion = new Medicion();
     $mediciones = array();
     $medicion_lim = array();

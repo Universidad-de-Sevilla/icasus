@@ -302,7 +302,8 @@ class Valor extends ADOdb_Active_Record
 			LEFT JOIN indicadores i ON m.id_indicador = i.id
 			LEFT JOIN procesos p ON p.id = i.id_proceso
 			WHERE v.valor IS NULL
-			$cadena 
+			$cadena
+                        AND i.archivado IS NULL
 			AND v.activo = 1 
 			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
 			ORDER BY  i.nombre,e.etiqueta";
@@ -327,7 +328,8 @@ class Valor extends ADOdb_Active_Record
                         LEFT JOIN usuarios um ON i.id_responsable_medicion = um.id
 			LEFT JOIN procesos p ON p.id = i.id_proceso
 			WHERE v.valor IS NULL
-			$cadena 
+			$cadena
+                        AND i.archivado IS NULL
 			AND v.activo = 1 
 			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
 			GROUP BY  i.id,m.id ORDER BY i.nombre,m.etiqueta";
@@ -348,7 +350,8 @@ class Valor extends ADOdb_Active_Record
 			LEFT JOIN indicadores i ON m.id_indicador = i.id
 			LEFT JOIN procesos p ON p.id = i.id_proceso
 			WHERE v.valor IS NOT NULL
-			$cadena 
+			$cadena
+                        AND i.archivado IS NULL
 			AND v.activo = 1 
 			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
                         AND DATE_FORMAT( v.fecha_recogida, '%Y' ) = $fecha

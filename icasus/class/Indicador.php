@@ -312,7 +312,8 @@ class Indicador extends ADOdb_Active_Record
                 . "LEFT JOIN procesos p ON i.id_proceso = p.id "
                 . "WHERE i.id NOT IN (SELECT id_indicador FROM mediciones m "
                 . "WHERE DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha) "
-                . "AND i.id_entidad = {$id_entidad}";
+                . "AND i.id_entidad = {$id_entidad} "
+                . "AND i.archivado is NULL ";
         $db = $this->DB();
         return $db->getall($sql);
     }
