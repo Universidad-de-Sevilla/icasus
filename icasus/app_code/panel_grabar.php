@@ -27,27 +27,10 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
     $panel->orden = $orden;
     $panel->id_paneltipo = $tipo;
     $panel->ancho = $ancho;
-
     $panel->id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-//    $panel->fecha_inicio = filter_input(INPUT_POST, 'inicioYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'inicioMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'inicioDay', FILTER_SANITIZE_NUMBER_INT);
-//    $panel->fecha_fin = filter_input(INPUT_POST, 'finYear', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finMonth', FILTER_SANITIZE_NUMBER_INT) . '-' . filter_input(INPUT_POST, 'finDay', FILTER_SANITIZE_NUMBER_INT);
     $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_SANITIZE_STRING) : "todos";
-    $panel->anyos_atras = filter_input(INPUT_POST, 'anyos_atras', FILTER_SANITIZE_NUMBER_INT);
-
-    // Cuando se trata de un año completamos meses y días para coger el año completo 
-//    if (filter_has_var(INPUT_POST, 'fecha'))
-//    {
-//        $panel->fecha_inicio = filter_input(INPUT_POST, 'fecha') . "-01-01";
-//        $panel->fecha_fin = filter_input(INPUT_POST, 'fecha') . "-12-31";
-//    }
-    // Si se trata de una medición concreta cogemos las fechas de la propia medición
-    if ($panel->id_medicion > 0)
-    {
-        $medicion = new Medicion();
-        $medicion->load("id = $panel->id_medicion");
-        $panel->fecha_inicio = $medicion->periodo_inicio;
-        $panel->fecha_fin = $medicion->periodo_fin;
-    }
+    $panel->anyos_atras = filter_has_var(INPUT_POST, 'anyos_atras') ? filter_input(INPUT_POST, 'anyos_atras', FILTER_SANITIZE_NUMBER_INT) : null;
+    $panel->anyo_fin = filter_has_var(INPUT_POST, 'anyo_fin') ? filter_input(INPUT_POST, 'anyo_fin', FILTER_SANITIZE_NUMBER_INT) : null;
 
     //Guardamos los datos genéricos y comprobamos el tipo del panel
     if ($panel->save())

@@ -20,7 +20,7 @@ $('#dialogo_borrado_panel').on('show.bs.modal', function (event) {
         $.ajax({
             url: "index.php?page=panel_borrar&ajax=true&id_panel=" + id_panel,
             success: function () {
-                button.parents(".panel").remove();
+                button.parents(".panel").parent().remove();
                 $('#dialogo_borrado_panel').modal('hide');
                 $('#dialogo_notificar_borrado_panel').modal('show');
             }
@@ -595,17 +595,16 @@ $(".panel_tabla").each(function () {
 //Se usa en "la biblioteca en cifras" y en datos Rebiun
 $(".panel_tabla_multi").each(function () {
     var anyos_atras = $(this).data("anyos_atras");
-    var fecha = new Date();
-    var anio_inicio = fecha.getFullYear() - anyos_atras;
-    var anio_fin = fecha.getFullYear() - 1;
-    var fecha_inicio = anio_inicio + "-01-01";
-    var fecha_fin = anio_fin + "-12-31";
+    var anyo_fin = $(this).data("anyo_fin");
+    var anyo_inicio = anyo_fin - anyos_atras;
+    var fecha_inicio = anyo_inicio + "-01-01";
+    var fecha_fin = anyo_fin + "-12-31";
     var id_panel = $(this).data("id_panel");
     var htmlTabla = ' <div class="table-responsive"><table id="tabla_multi' + id_panel + '" class="table table-striped table-hover">';
 
     //Creamos la cabecera de la tabla
     htmlTabla += "<thead><tr><th>Código</th><th>Nombre</th>";
-    htmlTabla += "<th>" + anio_inicio + "</th><th>" + anio_fin + "</th>";
+    htmlTabla += "<th>" + anyo_inicio + "</th><th>" + anyo_fin + "</th>";
     htmlTabla += "<th>Evolución</th></tr></thead><tbody>";
 
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
@@ -615,7 +614,7 @@ $(".panel_tabla_multi").each(function () {
                     + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></td>';
 
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
-                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin;
+                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + '&periodicidad=anual';
 
             $.ajax({
                 url: urlApi,
@@ -625,33 +624,33 @@ $(".panel_tabla_multi").each(function () {
                 success: onDataReceived
             });
 
-            var valor_anio_inicio;
-            var valor_anio_fin;
+            var valor_anyo_inicio;
+            var valor_anyo_fin;
             var evolucion;
 
             function onDataReceived(datos) {
-                valor_anio_inicio = null;
-                valor_anio_fin = null;
+                valor_anyo_inicio = null;
+                valor_anyo_fin = null;
                 evolucion = null;
                 datos.forEach(function (dato) {
                     //Buscamos el total del año inicial
-                    if (dato.id_unidad == indicador.id_entidad && dato.medicion == anio_inicio) {
-                        valor_anio_inicio = Math.round(dato.valor * 100) / 100;
-                        htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anio_inicio + '</td>';
+                    if (dato.id_unidad == indicador.id_entidad && (dato.medicion).split('.')[0] == anyo_inicio) {
+                        valor_anyo_inicio = Math.round(dato.valor * 100) / 100;
+                        htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anyo_inicio + '</td>';
                     }
                     //Buscamos el total del año final
-                    if (dato.id_unidad == indicador.id_entidad && dato.medicion == anio_fin && valor_anio_inicio !== null) {
-                        valor_anio_fin = Math.round(dato.valor * 100) / 100;
-                        htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anio_fin + '</td>';
+                    if (dato.id_unidad == indicador.id_entidad && (dato.medicion).split('.')[0] == anyo_fin && valor_anyo_inicio !== null) {
+                        valor_anyo_fin = Math.round(dato.valor * 100) / 100;
+                        htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anyo_fin + '</td>';
                     }
-                    if (dato.id_unidad == indicador.id_entidad && dato.medicion == anio_fin && valor_anio_inicio === null) {
-                        valor_anio_fin = Math.round(dato.valor * 100) / 100;
-                        htmlTabla += '<td style="white-space:nowrap">---</td><td title="Valor" style="white-space:nowrap">' + valor_anio_fin + '</td>';
+                    if (dato.id_unidad == indicador.id_entidad && (dato.medicion).split('.')[0] == anyo_fin && valor_anyo_inicio === null) {
+                        valor_anyo_fin = Math.round(dato.valor * 100) / 100;
+                        htmlTabla += '<td style="white-space:nowrap">---</td><td title="Valor" style="white-space:nowrap">' + valor_anyo_fin + '</td>';
                     }
                 });
                 //Si existen ambos totales calculamos su diferencia
-                if (valor_anio_inicio !== null && valor_anio_fin !== null) {
-                    evolucion = Math.round((valor_anio_fin - valor_anio_inicio) * 100) / 100;
+                if (valor_anyo_inicio !== null && valor_anyo_fin !== null) {
+                    evolucion = Math.round((valor_anyo_fin - valor_anyo_inicio) * 100) / 100;
                     if (evolucion > 0) {
                         htmlTabla += '<td title="Incremento" style="color:green;white-space:nowrap;font-weight:bold;">' + evolucion + '</td></tr>';
                     }
@@ -664,10 +663,10 @@ $(".panel_tabla_multi").each(function () {
                 }
             }
             // Si no obtenemos resultados
-            if (valor_anio_inicio === null && valor_anio_fin === null) {
+            if (valor_anyo_inicio === null && valor_anyo_fin === null) {
                 htmlTabla += '<td style="white-space:nowrap">---</td>';
             }
-            if (valor_anio_fin === null) {
+            if (valor_anyo_fin === null) {
                 htmlTabla += '<td style="white-space:nowrap">---</td>';
             }
             if (evolucion === null) {

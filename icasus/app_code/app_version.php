@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.26.0");
-define('IC_FECHA_REVISION', "09/09/2016");
+define('IC_VERSION', "3.27.0");
+define('IC_FECHA_REVISION', "14/09/2016");
 
+// 3.27.0 - 14/09/2016 - Se permite fijar una año de fin en los paneles de tabla multi de los cuadros de mando e incluir indicadores/datos con periodicidad intranual. Cuando se borran paneles de un cuadro se recupera el espacio que este ocupaba.
 // 3.26.0 - 09/09/2016 - Mejoras y correcciones en los paneles de los cuadros de mando (borrado y paneles de tablas).
 // 3.25.6 - 08/09/2016 - Cambio de interfaz y añadido de comentario aclaratorio en la sección de análisis de los indicadores.
 // 3.25.5 - 07/09/2016 - Correcciones menores en la gestión de indicadores/datos calculados.

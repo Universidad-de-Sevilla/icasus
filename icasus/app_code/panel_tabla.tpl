@@ -1,10 +1,6 @@
 {if $modulo == 'inicio'}
     <input type="hidden" name="id_medicion" value="0">
     <input type="hidden" name="tipo" value="{$panel->id}">
-    <input type="hidden" name="inicioDay" value="01">
-    <input type="hidden" name="inicioMonth" value="01">
-    <input type="hidden" name="finDay" value="31">
-    <input type="hidden" name="finMonth" value="12">
 
     <div class="form-group has-feedback">
         <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
@@ -31,9 +27,9 @@
         </div>
     </div>
     <div class="form-group has-feedback">
-        <label for="anyos_atras" class="col-sm-2 control-label">{$smarty.const.TXT_PANEL_ANYOS_ATRAS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+        <label for="anyos_atras" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYOS_ATRAS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
         <div class="col-sm-8">
-            <input type="number" value="5" name="anyos_atras" id='anyos_atras' class="form-control" placeholder="{$smarty.const.TXT_PANEL_ANYOS_ATRAS}" min='2' max="10" required/>
+            <input type="number" value="5" name="anyos_atras" id='anyos_atras' class="form-control" placeholder="{$smarty.const.FIELD_ANYOS_ATRAS}" min='2' max="10" required/>
             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
             <div class="help-block with-errors"></div>
         </div>

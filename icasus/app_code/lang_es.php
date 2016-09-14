@@ -85,7 +85,6 @@ define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
 define('TXT_PANEL_CREAR', 'Crear panel');
 define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
-define('TXT_PANEL_ANYOS_ATRAS', 'Años atrás');
 define('TXT_PANEL_INDICS', 'Indicadores/datos del panel');
 
 //Datos
@@ -313,7 +312,7 @@ define('TXT_LINEAS', 'Líneas');
 define('TXT_LINEAS_DESC', 'Muestra varios indicadores/datos para distintas subunidades como gráfica de líneas.');
 define('TXT_TABLA', 'Tabla');
 define('TXT_TABLA_MULTI', 'Tabla múltiple');
-define('TXT_TABLA_MULTI_DESC', 'Tabla que muestra varios indicadores/datos y su evolución para una subunidad concreta.');
+define('TXT_TABLA_MULTI_DESC', 'Tabla que muestra varios indicadores/datos y su evolución total o de una subunidad concreta para un período dado.');
 define('TXT_TABLA_DESC', 'Puede mostrar un indicador/dato con sus mediciones para una subunidad en forma de tabla de datos.');
 define('TXT_TARTA', 'Tarta');
 define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador/dato entre las subunidades afectadas como gráfica de tarta.');
@@ -721,6 +720,9 @@ define('FIELD_ARCHIVO', 'Archivo');
 //Cuadros de Mando
 define('FIELD_CUADRO_MANDO', 'Cuadro de mando');
 define('FIELD_CUADROS_MANDO', 'Cuadros de mando');
+//Paneles de los Cuadros de Mando
+define('FIELD_ANYOS_ATRAS', 'Años atrás');
+define('FIELD_ANYO_FIN', 'Año de fin');
 
 //Datos
 define('FIELD_DATO', 'Dato');

@@ -263,6 +263,7 @@
                              data-titulo_panel ="{$panel->nombre}"
                              data-id_medicion="{$panel->id_medicion}" 
                              data-anyos_atras="{$panel->anyos_atras}"
+                             data-anyo_fin="{$panel->anyo_fin}"
                              data-periodicidad="{$panel->periodicidad}">
                         </div>
                     </div>

@@ -1,11 +1,5 @@
 {if $modulo == 'inicio'}
     <input type="hidden" name="tipo" value="{$panel->id}">
-    <input type="hidden" name="inicioYear" value="0000">
-    <input type="hidden" name="finYear" value="0000">
-    <input type="hidden" name="inicioMonth" value="00">
-    <input type="hidden" name="finMonth" value="00">
-    <input type="hidden" name="inicioDay" value="00">
-    <input type="hidden" name="finDay" value="00">
 
     <div class="form-group has-feedback">
         <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
