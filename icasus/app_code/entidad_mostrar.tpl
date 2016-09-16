@@ -303,14 +303,12 @@
                         </a>
                     </div>
                     <!-- /.col-md-4 -->
-                    {if $_control}
-                        <div class="col-md-4">
-                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" class="btn btn-danger btn-block" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
-                                <h4><i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}</h4>
-                            </a> 
-                        </div>
-                        <!-- /.col-md-4 -->
-                    {/if}
+                    <div class="col-md-4">
+                        <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" class="btn btn-danger btn-block" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                            <h4><i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}</h4>
+                        </a> 
+                    </div>
+                    <!-- /.col-md-4 -->
                 </div>
                 <!-- /.row -->
             </div>

@@ -240,14 +240,11 @@
                             <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
                     </li>   
-                    {if $_control}
-                        <li class="divider"></li>
-                        <li>
-                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
-                                <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
-                            </a>
-                        </li>
-                    {/if}
+                    <li>
+                        <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                            <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
+                        </a>
+                    </li>
                 </ul>
                 <!-- /.dropdown-menu -->
             </li>
@@ -301,11 +298,6 @@
                         {/if}
                     </div>
                     <div class="btn-group" role="group" aria-label="">
-                        <!--{if $indicador->calculo && $permiso_editar}
-                            <a title="{$smarty.const.TXT_VAL_CALC_DESCRIPCION}" class="btn btn-default" href='index.php?page=medicion_actualizar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo={$tipo}'>
-                                <i class="fa fa-calculator fa-fw"></i>
-                            </a>
-                        {/if}-->
                         {if $permiso_editar}
                             <a class="btn btn-default" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
                                 <i class="fa fa-trash fa-fw"></i>
