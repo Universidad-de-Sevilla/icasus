@@ -109,26 +109,35 @@ if ($modulo == 'inicio')
     $smarty->assign('medicion_lim', $medicion_lim);
     $smarty->assign('medicion_obj', $medicion_obj);
 
-    //Comprobamos si existen valores a desactivar
-    if (filter_has_var(INPUT_POST, 'id_valor'))
+    if (filter_has_var(INPUT_GET, 'desactivar'))
     {
-        $post_array = filter_input_array(INPUT_POST);
-        $id_valores = $post_array['id_valor'];
-        if ($id_valores)
+        //Comprobamos si existen valores a desactivar
+        if (filter_has_var(INPUT_POST, 'id_valor'))
         {
-            $contador = 0;
-            foreach ($id_valores as $id_valor)
+            $post_array = filter_input_array(INPUT_POST);
+            $id_valores = $post_array['id_valor'];
+            if ($id_valores)
             {
-                //Desactiva el valor
-                $id_val = filter_var($id_valor, FILTER_SANITIZE_NUMBER_INT);
-                $valor->load("id = $id_val");
-                $valor->activo = 0;
-                $valor->Save();
-                $contador ++;
+                $contador = 0;
+                foreach ($id_valores as $id_valor)
+                {
+                    //Desactiva el valor
+                    $id_val = filter_var($id_valor, FILTER_SANITIZE_NUMBER_INT);
+                    $valor->load("id = $id_val");
+                    $valor->activo = 0;
+                    $valor->Save();
+                    $contador ++;
+                }
+                $exito = MSG_VALS_DESACT . ' ' . $contador . ' ' . TXT_VALS;
+                $smarty->assign("exito", $exito);
+                header("index.php?page=control&modulo=inicio&id_entidad=$entidad->id&exito=$exito");
             }
-            $exito = MSG_VALS_DESACT . ' ' . $contador . ' ' . TXT_VALS;
-            $smarty->assign("exito", $exito);
-            header("index.php?page=control&modulo=inicio&id_entidad=$entidad->id&exito=$exito");
+        }
+        else
+        {
+            $aviso = MSG_VALS_NO_MARCADOS;
+            $smarty->assign("aviso", $aviso);
+            header("index.php?page=control&modulo=inicio&id_entidad=$entidad->id&aviso=$aviso");
         }
     }
 }

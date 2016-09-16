@@ -81,7 +81,7 @@
     <!-- Mediciones nulas/Unidad -->
     <div role="tabpanel" class="tab-pane" id="tabla_nulos">
         {if $valores}
-            <form action='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}' method='post' name='formdiv' class="form-horizontal">      
+            <form action='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}&desactivar' method='post' name='formdiv' class="form-horizontal">      
                 <div class="table-responsive">
                     <table class="table datatable table-condensed table-striped table-hover">
                         <thead>               
