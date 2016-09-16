@@ -573,6 +573,7 @@ define('MSG_VALS_NO_MARCADOS', 'No se ha seleccionado ningún valor para desacti
 
 //Control
 define('MSG_CONTROL_INFO', 'El control de indicadores/datos se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores/datos bajo su responsabilidad o todos si también es responsable de la Unidad.');
+define('MSG_CONTROL_NO_RESPONSABLE', 'Usted no es responsable de esta unidad y tampoco de ningún indicador/dato de la misma.');
 define('MSG_CONTROL_CARGA', 'Cargando datos de control, por favor espere.');
 define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado indicadores/datos con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');
 define('MSG_CONTROL_NO_VAL', 'No existen mediciones o no se han grabado valores durante el año seleccionado.');

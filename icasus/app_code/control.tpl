@@ -84,49 +84,63 @@
     <!-- /.row -->
     <!-- /Breadcrumbs -->
 
-    <!-- Selección del año de consulta -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-calendar fa-fw"></i> {$smarty.const.FIELD_PERIODO}</span>
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="alert alert-info">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_CONTROL_INFO}
+    {if $_control || $num_indicadores_propios > 0 || $num_datos_propios > 0}
+        <!-- Selección del año de consulta -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <span class="panel-title"><i class="fa fa-calendar fa-fw"></i> {$smarty.const.FIELD_PERIODO}</span>
                     </div>
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-1 control-label">{$smarty.const.FIELD_ANYO}</label>
-                            <div id="periodo" class="col-sm-4" data-id_entidad="{$entidad->id}">
-                                {html_select_date id="Year" prefix="" all_extra="class='form-control chosen-select'"
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="alert alert-info">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_CONTROL_INFO}
+                        </div>
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-1 control-label">{$smarty.const.FIELD_ANYO}</label>
+                                <div id="periodo" class="col-sm-4" data-id_entidad="{$entidad->id}">
+                                    {html_select_date id="Year" prefix="" all_extra="class='form-control chosen-select'"
                                             display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-9
                                             end_year=$smarty.now|date_format:"%Y" time='' reverse_years=TRUE}
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- /.panel-body --> 
                 </div>
-                <!-- /.panel-body --> 
+                <!-- /.panel -->
             </div>
-            <!-- /.panel -->
+            <!-- /.col-lg-12 -->
         </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-    <!-- /Selección del año de consulta -->
+        <!-- /.row -->
+        <!-- /Selección del año de consulta -->
 
-    <div class="row">
-        <div class="col-lg-12">
-            <div id="datos_control">
-                {include file="control_valores.tpl"}
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="datos_control">
+                    {include file="control_valores.tpl"}
+                </div>
+                <!-- /#datos_control -->
             </div>
-            <!-- /#datos_control -->
+            <!-- /.col-lg-12 -->
         </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
+        <!-- /.row -->
+    {else}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="alert alert-info alert-dismissible">
+                    <i class="fa fa-info-circle fa-fw"></i> 
+                    {$smarty.const.MSG_CONTROL_NO_RESPONSABLE}
+                </div> 
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    {/if}
+
 {/if}
 
 {if $modulo == 'filtrOnlyear'}
