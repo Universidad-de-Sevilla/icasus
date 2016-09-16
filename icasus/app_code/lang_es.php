@@ -129,13 +129,13 @@ define('TXT_INDIC_BUSCAR_BASE', 'Buscar indicador base');
 define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar indicadores complementarios');
 define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta medición.');
 define('TXT_INDIC_ACT_MED', 'Indique si además quiere activarla: ');
-define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Indicadores y datos con mediciones nulas agrupados');
-define('TXT_INDIC_DAT_MED_NULA', 'Indicadores y datos con mediciones nulas');
-define('TXT_INDIC_DAT_ULTIMA_MOD', 'Indicadores y datos, última modificación');
-define('TXT_INDIC_DAT_SIN_MED', 'Indicadores y datos sin mediciones');
-define('TXT_INDIC_DAT_VAL_REF', 'Indicadores/datos: valores de referencia');
 define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
 define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
+//Control
+define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Mediciones nulas');
+define('TXT_INDIC_DAT_MED_NULA', 'Medición nula/Unidad');
+define('TXT_INDIC_DAT_ULTIMA_MOD', 'Última modificación');
+define('TXT_INDIC_DAT_SIN_MED', 'Sin mediciones');
 
 //Login
 define('TXT_BIENVENIDO', 'Bienvenido a');
@@ -287,7 +287,6 @@ define('TXT_ELEG_UNO', 'Elegir uno si procede');
 
 //Tiempo/Periodicidad
 define('TXT_HISTORICO', 'Histórico');
-define('TXT_RANGO_FECHAS', 'Rango de fechas');
 define('TXT_BIENAL', 'Bienal');
 define('TXT_ANUAL', 'Anual');
 define('TXT_MENSUAL', 'Mensual');
@@ -572,6 +571,7 @@ define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" y
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 
 //Control
+define('MSG_CONTROL_INFO', 'El control de indicadores/datos se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores/datos bajo su responsabilidad o todos si también es responsable de la Unidad.');
 define('MSG_CONTROL_CARGA', 'Cargando datos de control, por favor espere.');
 define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado indicadores/datos con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');
 define('MSG_CONTROL_NO_VAL', 'No existen mediciones o no se han grabado valores durante el año seleccionado.');
@@ -696,8 +696,8 @@ define('FIELD_FECHA_REV', 'Fecha de revisión');
 define('FIELD_FECHA_RECOGIDA', 'Fecha recogida');
 define('FIELD_AGREG', 'Agregado');
 define('FIELD_INTERP', 'Interpretación');
-define('FIELD_INICIO_PERIODO', 'Inicio del periodo');
-define('FIELD_FIN_PERIODO', 'Fin del periodo');
+define('FIELD_INICIO_PERIODO', 'Inicio del período');
+define('FIELD_FIN_PERIODO', 'Fin del período');
 define('FIELD_INICIO_GRABACION', 'Inicio de grabación');
 define('FIELD_FIN_GRABACION', 'Fin de grabación');
 define('FIELD_ETIQUETA', 'Etiqueta');

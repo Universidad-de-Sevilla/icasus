@@ -389,7 +389,7 @@
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}">
-                                                <i class="fa fa-history fa-fw"></i>
+                                                <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             {if $indicador->id_proceso}
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
@@ -478,7 +478,7 @@
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}">
-                                                <i class="fa fa-history fa-fw"></i>
+                                                <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             {if $indicador->id_proceso}
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>

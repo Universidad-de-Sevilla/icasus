@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_MED_VAL_INTERVALO} <span id="intervalo"></span></p>
@@ -23,7 +23,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_MED_VAL_NO_PERIODO} <span id="periodo"></span></p>
@@ -42,7 +42,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <div class="alert alert-danger"><i class="fa fa-exclamation-circle fa-fw"></i> {$smarty.const.MSG_VAL_REF_NO_VALIDO} 
@@ -87,7 +87,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_MED_VAL_NOMUM}</p>
@@ -106,7 +106,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_MED_VAL_NULO}</p>
@@ -125,7 +125,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_MED_VER}: {$medicion->etiqueta}</h3>
             </div>
             <div class="modal-body">
                 <p>{$smarty.const.MSG_MED_ETIQUETA_NULA}</p>
@@ -164,7 +164,7 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-history fa-fw"></i> {$_nombre_pagina}
+                    <i class="fa fa-hourglass fa-fw"></i> {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -292,7 +292,7 @@
                 <div class="btn-toolbar" role="toolbar" aria-label="">
                     <div class="btn-group" role="group" aria-label="">
                         <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-default" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                            <i class="fa fa-history fa-fw"></i>
+                            <i class="fa fa-hourglass fa-fw"></i>
                         </a>
                         {if !$indicador->calculo && ($permiso_unidad || $indicador->id_responsable == $_usuario->id)}
                             <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default" href='index.php?page=valores&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>

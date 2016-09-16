@@ -87,6 +87,7 @@
     <!-- /.row -->
     <!-- /Breadcrumbs -->
 
+    <!-- Selección del año de consulta -->
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-red">
@@ -95,39 +96,36 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
+                    <div class="alert alert-info">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_CONTROL_INFO}
+                    </div>
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO}</label>
-                            <div id="periodo" class="col-sm-8" data-id_entidad="{$entidad->id}">
-                                {html_select_date id="Year" prefix="" year_empty=$smarty.const.TXT_SEL all_extra="class='form-control chosen-select'"
-                                            display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-10
+                            <label class="col-sm-1 control-label">{$smarty.const.FIELD_ANYO}</label>
+                            <div id="periodo" class="col-sm-4" data-id_entidad="{$entidad->id}">
+                                {html_select_date id="Year" prefix="" all_extra="class='form-control chosen-select'"
+                                            display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-9
                                             end_year=$smarty.now|date_format:"%Y" time='' reverse_years=TRUE}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{$smarty.const.TXT_CONTROL}</label>
-                            <div class="col-sm-8">
-                                <a href="#tabla_agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}">[{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}]</a><br>
-                                <a href="#tabla_nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}">[{$smarty.const.TXT_INDIC_DAT_MED_NULA}]</a><br>
-                                <a href="#tabla_modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}">[{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}]</a><br>
-                                <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}">[{$smarty.const.TXT_INDIC_DAT_SIN_MED}]</a><br>
-                                <a href="#tabla_val_ref" title="{$smarty.const.TXT_INDIC_DAT_VAL_REF}">[{$smarty.const.TXT_INDIC_DAT_VAL_REF}]</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- /.panel-body -->        
+                <!-- /.panel-body --> 
             </div>
             <!-- /.panel -->
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
+    <!-- /Selección del año de consulta -->
+
     <div class="row">
         <div class="col-lg-12">
-            <div id="dt1" class="no_margin">
+            <div id="datos_control">
                 {include file="control_valores.tpl"}
-            </div><!-- #dt1 .no_margin -->
+            </div>
+            <!-- /#datos_control -->
         </div>
         <!-- /.col-lg-12 -->
     </div>

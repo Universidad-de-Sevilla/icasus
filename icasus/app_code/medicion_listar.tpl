@@ -44,7 +44,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}: {$indicador->nombre}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}: {$indicador->nombre}</h3>
             </div>
             <form class="form-horizontal" id="form_generar" name="form_generar" data-toggle="validator" method="post" action="index.php?page=medicion_generar">
                 <input type="hidden" name="id_entidad" value="{$indicador->id_entidad}"/>
@@ -77,7 +77,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-history fa-fw"></i><sub class="fa fa-arrow-circle-up fa-fw"></sub> {$smarty.const.TXT_MED_CARGAR}: {$indicador->nombre}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-arrow-circle-up fa-fw"></sub> {$smarty.const.TXT_MED_CARGAR}: {$indicador->nombre}</h3>
             </div>
             <form class="form-horizontal" id="form_cargar" name="form_cargar" data-toggle="validator" method="post" action="index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}">
                 <div class="modal-body">
@@ -251,7 +251,7 @@
                 <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
             </li>
             <li role="presentation" class="active">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" href="#"><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+                <a title="{$smarty.const.FIELD_MEDICIONES}" href="#"><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
             {if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo)}
                 <li role="presentation">
@@ -337,7 +337,7 @@
         <div class="col-lg-6">
             <a title="{$smarty.const.TXT_MED_CREAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
                data-toggle="modal" data-target="#dialogo_confirmar_generar">
-                <i class="fa fa-history fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}
+                <i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}
             </a>
         </div>
         <!-- /.col-lg-6 -->
@@ -345,7 +345,7 @@
             {if $mediciones}
                 <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
                    accesskey=""data-toggle="modal" data-target="#dialogo_confirmar_cargar">
-                    <i class="fa fa-history fa-fw"></i><sub class="fa fa-arrow-circle-up fa-fw"></sub> {$smarty.const.TXT_MED_CARGAR}
+                    <i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-arrow-circle-up fa-fw"></sub> {$smarty.const.TXT_MED_CARGAR}
                 </a>
             {/if}
         </div>
@@ -355,7 +355,7 @@
             {if $mediciones}
                 <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
                    accesskey=""data-toggle="modal" data-target="#dialogo_confirmar_cargar">
-                    <i class="fa fa-history fa-fw"></i><sub class="fa fa-arrow-circle-up fa-fw"></sub> {$smarty.const.TXT_MED_CARGAR}
+                    <i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-arrow-circle-up fa-fw"></sub> {$smarty.const.TXT_MED_CARGAR}
                 </a>
             {/if}
         </div>
@@ -483,7 +483,7 @@
     <div class="col-lg-12">
         <div class="panel panel-red">
             <div class="panel-heading">
-                <span class="panel-title"><i class="fa fa-history fa-fw"></i> {$smarty.const.TXT_MED_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite>=$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.TXT_DE} {$total_registros} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
+                <span class="panel-title"><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.TXT_MED_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite>=$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.TXT_DE} {$total_registros} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
                 <i class="fa fa-chevron-up pull-right clickable"></i>
             </div>
             <!-- /.panel-heading -->
