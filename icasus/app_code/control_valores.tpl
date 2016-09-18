@@ -1,19 +1,19 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active">
-        <a href="#tabla_agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}" aria-controls="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}" role="tab" data-toggle="tab"><i class="fa fa-hourglass-o fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a>
+        <a href="#agrupados" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}" aria-controls="{$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}" role="tab" data-toggle="tab"><i class="fa fa-hourglass-o fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_MED_NULA_AGRUPADOS}</a>
     </li>
     <li role="presentation">
-        <a href="#tabla_nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}" aria-controls="{$smarty.const.TXT_INDIC_DAT_MED_NULA}" role="tab" data-toggle="tab"><i class="fa fa-hourglass-o fa-fw"></i>/<i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_MED_NULA}</a>
+        <a href="#nulos" title="{$smarty.const.TXT_INDIC_DAT_MED_NULA}" aria-controls="{$smarty.const.TXT_INDIC_DAT_MED_NULA}" role="tab" data-toggle="tab"><i class="fa fa-hourglass-o fa-fw"></i>/<i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_MED_NULA}</a>
     </li>
     <li role="presentation">
-        <a href="#tabla_modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}" aria-controls="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}" role="tab" data-toggle="tab"><i class="fa fa-hourglass-end fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a>
+        <a href="#modificados" title="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}" aria-controls="{$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}" role="tab" data-toggle="tab"><i class="fa fa-hourglass-end fa-fw"></i> {$smarty.const.TXT_INDIC_DAT_ULTIMA_MOD}</a>
     </li>
     <li role="presentation">
-        <a href="#tabla_sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}" aria-controls="{$smarty.const.TXT_INDIC_DAT_SIN_MED}" role="tab" data-toggle="tab"><i class="fa fa-ban fa-fw"></i><sub class="fa fa-hourglass fa-fw"></sub> {$smarty.const.TXT_INDIC_DAT_SIN_MED}</a>
+        <a href="#sin_med" title="{$smarty.const.TXT_INDIC_DAT_SIN_MED}" aria-controls="{$smarty.const.TXT_INDIC_DAT_SIN_MED}" role="tab" data-toggle="tab"><i class="fa fa-ban fa-fw"></i><sub class="fa fa-hourglass fa-fw"></sub> {$smarty.const.TXT_INDIC_DAT_SIN_MED}</a>
     </li>
     <li role="presentation">
-        <a href="#tabla_val_ref" title="{$smarty.const.TXT_VAL_REF}" aria-controls="{$smarty.const.TXT_VAL_REF}" role="tab" data-toggle="tab"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</a>
+        <a href="#val_ref" title="{$smarty.const.TXT_VAL_REF}" aria-controls="{$smarty.const.TXT_VAL_REF}" role="tab" data-toggle="tab"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</a>
     </li>
 </ul>
 <!-- /Nav tabs -->
@@ -22,7 +22,7 @@
 <div class="tab-content">
 
     <!-- Mediciones nulas -->
-    <div role="tabpanel" class="tab-pane active" id="tabla_agrupados">
+    <div role="tabpanel" class="tab-pane active" id="agrupados">
         {if $valores_agrupados}
             <div class="table-responsive">
                 <table class="table datatable table-condensed table-striped table-hover">
@@ -79,11 +79,22 @@
     <!-- /Mediciones nulas -->
 
     <!-- Mediciones nulas/Unidad -->
-    <div role="tabpanel" class="tab-pane" id="tabla_nulos">
+    <div role="tabpanel" class="tab-pane" id="nulos">
         {if $valores}
             <form action='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}&desactivar' method='post' name='formdiv' class="form-horizontal">      
+
+                <!-- Barra de botones -->
+                <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                    <div class="btn-group" role="group" aria-label="">
+                        <button title="{$smarty.const.TXT_VALS_DESACT}" type="button" class="btn btn-default btn-danger" data-toggle="modal" data-target="#dialogo_confirmar_desactivar">
+                            <i class="fa fa-stop fa-fw"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /Barra de botones -->
+
                 <div class="table-responsive">
-                    <table class="table datatable table-condensed table-striped table-hover">
+                    <table id="tabla_nulos" class="table datatable table-condensed table-striped table-hover">
                         <thead>               
                             <tr>
                                 <th>{$smarty.const.TXT_DESACT}</th>
@@ -125,17 +136,6 @@
                         </tbody>
                     </table>
                 </div>
-                <br>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <button type="reset" class="btn btn-default btn-warning" title="{$smarty.const.TXT_RESET}">
-                            <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
-                        </button>
-                        <button title="{$smarty.const.TXT_VALS_DESACT}" type="button" class="btn btn-default btn-success pull-right" data-toggle="modal" data-target="#dialogo_confirmar_desactivar">
-                            <i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_VALS_DESACT}
-                        </button>
-                    </div>
-                </div>
 
                 <!-- Diálogo Confirmar Desactivar -->
                 <div class="modal fade" id="dialogo_confirmar_desactivar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -168,7 +168,7 @@
     <!-- /Mediciones nulas/Unidad -->
 
     <!-- Última modificación -->
-    <div role="tabpanel" class="tab-pane" id="tabla_modificados">
+    <div role="tabpanel" class="tab-pane" id="modificados">
         {if $valores_ult_mod}
             <div class="table-responsive">
                 <table class="table datatable table-condensed table-striped table-hover">
@@ -223,7 +223,7 @@
     <!-- /Última modificación -->
 
     <!-- Sin Mediciones -->
-    <div role="tabpanel" class="tab-pane" id="tabla_sin_med">
+    <div role="tabpanel" class="tab-pane" id="sin_med">
         {if $indicadores_sin_med}
             <div class="table-responsive">
                 <table class="table datatable table-condensed table-striped table-hover">
@@ -269,7 +269,7 @@
     <!-- /Sin Mediciones -->
 
     <!-- Valores de referencia -->
-    <div role="tabpanel" class="tab-pane" id="tabla_val_ref">
+    <div role="tabpanel" class="tab-pane" id="val_ref">
         {if $indicadores_sin_med|count != $indicadores|count}
             <div class="table-responsive">
                 <table class="table datatable table-condensed table-striped table-hover">
@@ -355,41 +355,3 @@
     <!-- /Valores de referencia -->
 
 </div>
-
-{*Recargamos script para datatables*}
-{literal}
-    <script>
-        //Datatables
-        $(document).ready(function () {
-            datatables = $('.datatable').DataTable({
-                "pagingType": "full_numbers",
-                "iDisplayLength": 25,
-                fixedHeader: true,
-                dom: "<'row'<'col-sm-2'B><'col-sm-5'l><'col-sm-5'f>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
-                buttons: [
-                    {extend: 'colvis', text: "<i title='Ver columnas' class='fa fa-columns fa-fw'></i> <i class='fa fa-caret-down'></i>"},
-                    {
-                        extend: 'collection',
-                        text: "<i title='Exportar' class='fa fa-share-square-o fa-fw'></i> <i class='fa fa-caret-down'></i>",
-                        buttons: [
-                            {extend: 'csv', text: "<i title='Exportar a CSV' class='fa fa-file-text-o fa-fw'></i> Exportar a CSV"},
-                            {extend: 'excel', text: "<i title='Exportar a Excel' class='fa fa-file-excel-o fa-fw'></i> Exportar a Excel"},
-                            {extend: 'print', text: "<i title='Imprimir/PDF' class='fa fa-print fa-fw'></i> Imprimir/PDF"}
-                        ]
-                    }
-                ]
-            });
-        });
-        //Reajustamos las cabeceras de las datatables al cambiar de pestaña
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            datatables.fixedHeader.adjust();
-        });
-
-        //Reajustamos las cabeceras de las datatables al hacer scroll
-        $('.table-responsive').on('scroll', function () {
-            datatables.fixedHeader.adjust();
-        });
-    </script>
-{/literal}

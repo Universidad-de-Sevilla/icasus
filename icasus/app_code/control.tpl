@@ -145,4 +145,46 @@
 
 {if $modulo == 'filtrOnlyear'}
     {include file="control_valores.tpl"}
+    {*Recargamos script para datatables y botones*}
+    {literal}
+        <script>
+            //Datatables
+            $(document).ready(function () {
+                datatables = $('.datatable').DataTable({
+                    "pagingType": "full_numbers",
+                    "iDisplayLength": 25,
+                    fixedHeader: true,
+                    dom: "<'row'<'col-sm-2'B><'col-sm-5'l><'col-sm-5'f>>" +
+                            "<'row'<'col-sm-12'tr>>" +
+                            "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                    buttons: [
+                        {extend: 'colvis', text: "<i title='Ver columnas' class='fa fa-columns fa-fw'></i> <i class='fa fa-caret-down'></i>"},
+                        {
+                            extend: 'collection',
+                            text: "<i title='Exportar' class='fa fa-share-square-o fa-fw'></i> <i class='fa fa-caret-down'></i>",
+                            buttons: [
+                                {extend: 'csv', text: "<i title='Exportar a CSV' class='fa fa-file-text-o fa-fw'></i> Exportar a CSV"},
+                                {extend: 'excel', text: "<i title='Exportar a Excel' class='fa fa-file-excel-o fa-fw'></i> Exportar a Excel"},
+                                {extend: 'print', text: "<i title='Imprimir/PDF' class='fa fa-print fa-fw'></i> Imprimir/PDF"}
+                            ]
+                        }
+                    ]
+                });
+
+                //Reajustamos las cabeceras de las datatables al cambiar de pestaña
+                $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                    datatables.fixedHeader.adjust();
+                });
+
+                //Reajustamos las cabeceras de las datatables al hacer scroll
+                $('.table-responsive').on('scroll', function () {
+                    datatables.fixedHeader.adjust();
+                });
+
+                //Barra de botones
+                var botones = $('#botones').html();
+                $('#tabla_nulos_filter').append(botones);
+            });
+        </script>
+    {/literal}
 {/if}

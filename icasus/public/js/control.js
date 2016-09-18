@@ -23,3 +23,9 @@ $('#Year').on('change', function () {
         }
     });
 });
+
+//Barra de botones
+$(document).ready(function () {
+    var botones = $('#botones').html();
+    $('#tabla_nulos_filter').append(botones);
+});
