@@ -50,18 +50,16 @@
                             <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
                     </li>   
-                    {if $_control}
-                        <li class="divider"></li>
-                        <li>
-                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
-                                <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
-                            </a>
-                        </li>
-                    {/if}
+                    <li>
+                        <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                            <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
+                        </a>
+                    </li>
                 </ul>
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
+            <li><a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>

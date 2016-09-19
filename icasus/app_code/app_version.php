@@ -1,8 +1,17 @@
 <?php
 
-define('IC_VERSION', "3.25.4");
-define('IC_FECHA_REVISION', "06/09/2016");
+define('IC_VERSION', "3.28.0");
+define('IC_FECHA_REVISION', "19/09/2016");
 
+// 3.28.0 - 19/09/2016 - Control mejorado de indicadores/datos que tiene en cuenta las responsabilidades de cada usuario.
+// 3.27.4 - 16/09/2016 - Se permite el acceso a la sección de control a todos los usuarios.
+// 3.27.3 - 16/09/2016 - En la sección de control se manda un aviso cuando no se seleccionaron valores para desactivar al enviar el formulario correspondiente.
+// 3.27.2 - 16/09/2016 - Nueva interfaz mejorada para la sección de control con pestañas en vez de paneles. Cambios en iconos de mediciones.
+// 3.27.1 - 15/09/2016 - Actualización del número de versión. No se tienen en cuenta en el control los indicadores/datos archivados.
+// 3.27.0 - 14/09/2016 - Se permite fijar una año de fin en los paneles de tabla multi de los cuadros de mando e incluir indicadores/datos con periodicidad intranual. Cuando se borran paneles de un cuadro se recupera el espacio que este ocupaba.
+// 3.26.0 - 09/09/2016 - Mejoras y correcciones en los paneles de los cuadros de mando (borrado y paneles de tablas).
+// 3.25.6 - 08/09/2016 - Cambio de interfaz y añadido de comentario aclaratorio en la sección de análisis de los indicadores.
+// 3.25.5 - 07/09/2016 - Correcciones menores en la gestión de indicadores/datos calculados.
 // 3.25.4 - 06/09/2016 - Se corrige error de exportación de tablas cuando la etiqueta title de una celda contiene saltos de línea.
 // 3.25.3 - 02/09/2016 - Se valida que en función de la estimación del indicador/dato los valores de referencia límite y meta tengan un valor correcto (ascendente: límite < meta y descendente: límite > meta).
 // 3.25.2 - 02/09/2016 - Se muestra en los gráficos la medición siguiente al año actual en los indicadores/datos con periodicidad bienal. Esto permite ver los valores de referencia esperados.

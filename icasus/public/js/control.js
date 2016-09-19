@@ -18,8 +18,14 @@ $('#Year').on('change', function () {
     $.ajax({
         url: "index.php?page=control&ajax=true&modulo=filtrOnlyear&id_entidad=" + id_entidad + "&fecha=" + fecha,
         success: function (datos) {
-            $("#dt1").html(datos);
+            $("#datos_control").html(datos);
             $('#dialogo_cargando_control').modal('hide');
         }
     });
+});
+
+//Barra de botones
+$(document).ready(function () {
+    var botones = $('#botones').html();
+    $('#tabla_nulos_filter').append(botones);
 });

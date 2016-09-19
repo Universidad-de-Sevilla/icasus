@@ -50,14 +50,11 @@
                             <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
                     </li>   
-                    {if $_control}
-                        <li class="divider"></li>
-                        <li>
-                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
-                                <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
-                            </a>
-                        </li>
-                    {/if}
+                    <li>
+                        <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                            <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
+                        </a>
+                    </li>
                 </ul>
                 <!-- /.dropdown-menu -->
             </li>
@@ -215,7 +212,7 @@
                         <div id="formula_calculo" class="form-group has-feedback {if !$indicador->calculo}hidden{/if}">
                             <label for="calculo" class="col-sm-2 control-label">{$smarty.const.FIELD_FORMULA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                             <div class="col-sm-8">
-                                <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" class="form-control" data-toggle="tooltip" data-placement="left" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" required>{$indicador->calculo}</textarea>
+                                <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" class="form-control" data-toggle="tooltip" data-placement="left" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" required {if !$indicador->calculo}disabled{/if}>{$indicador->calculo}</textarea>
                                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 <div class="help-block with-errors"></div>
                             </div>

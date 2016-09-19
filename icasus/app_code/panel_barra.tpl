@@ -1,11 +1,5 @@
 {if $modulo == 'inicio'}   
     <input type="hidden" name="tipo" value="{$panel->id}">
-    <input type="hidden" name="inicioYear" value="01">
-    <input type="hidden" name="inicioMonth" value="01">
-    <input type="hidden" name="inicioDay" value="01">
-    <input type="hidden" name="finYear" value="12">
-    <input type="hidden" name="finMonth" value="12">
-    <input type="hidden" name="finDay" value="31">
     <input type="hidden" name="periodicidad" value="anual">
     <input type="hidden" name="id_medicion" value="0">
 

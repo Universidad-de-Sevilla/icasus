@@ -11,6 +11,7 @@
 
 global $smarty;
 global $plantilla;
+global $usuario;
 
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
@@ -28,6 +29,18 @@ else
 {
     $cadena = "AND (e.id_madre = $id_entidad OR e.id= $id_entidad)";
 }
+
+// Indicadores/datos bajo la responsabilidad de este usuario
+$indicador = new Indicador();
+$indicadores_datos_propios = $indicador->Find_joined("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_entidad=$id_entidad AND archivado IS NULL");
+$smarty->assign("indicadores_datos_propios", $indicadores_datos_propios);
+$cadena_aux = '';
+if (!$control && $indicadores_datos_propios)
+{
+    $cadena_aux = "AND (i.id_responsable = $usuario->id OR i.id_responsable_medicion = $usuario->id)";
+    $cadena = $cadena . ' ' . $cadena_aux;
+}
+
 $fecha = date("Y");
 
 //------------------------------------------------------------------------------
@@ -51,13 +64,19 @@ if ($modulo == 'inicio')
     $smarty->assign("valores_ult_mod", $valores_ult_mod);
 
     //Indicadores/Datos sin Mediciones 
-    $indicador = new Indicador();
-    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad, $fecha);
+    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad, $fecha, $cadena_aux);
     $smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 
     //Indicadores/Datos valores de referencia
     //Buscar todos valores ref de los indicadores/datos para el año actual
-    $indicadores = $indicador->Find_joined("id_entidad=$id_entidad");
+    if (!$control && $indicadores_datos_propios)
+    {
+        $indicadores = $indicadores_datos_propios;
+    }
+    else
+    {
+        $indicadores = $indicador->Find_joined("id_entidad=$id_entidad AND archivado is NULL");
+    }
     $medicion = new Medicion();
     $mediciones = array();
     $medicion_lim = array();
@@ -109,26 +128,35 @@ if ($modulo == 'inicio')
     $smarty->assign('medicion_lim', $medicion_lim);
     $smarty->assign('medicion_obj', $medicion_obj);
 
-    //Comprobamos si existen valores a desactivar
-    if (filter_has_var(INPUT_POST, 'id_valor'))
+    if (filter_has_var(INPUT_GET, 'desactivar'))
     {
-        $post_array = filter_input_array(INPUT_POST);
-        $id_valores = $post_array['id_valor'];
-        if ($id_valores)
+        //Comprobamos si existen valores a desactivar
+        if (filter_has_var(INPUT_POST, 'id_valor'))
         {
-            $contador = 0;
-            foreach ($id_valores as $id_valor)
+            $post_array = filter_input_array(INPUT_POST);
+            $id_valores = $post_array['id_valor'];
+            if ($id_valores)
             {
-                //Desactiva el valor
-                $id_val = filter_var($id_valor, FILTER_SANITIZE_NUMBER_INT);
-                $valor->load("id = $id_val");
-                $valor->activo = 0;
-                $valor->Save();
-                $contador ++;
+                $contador = 0;
+                foreach ($id_valores as $id_valor)
+                {
+                    //Desactiva el valor
+                    $id_val = filter_var($id_valor, FILTER_SANITIZE_NUMBER_INT);
+                    $valor->load("id = $id_val");
+                    $valor->activo = 0;
+                    $valor->Save();
+                    $contador ++;
+                }
+                $exito = MSG_VALS_DESACT . ' ' . $contador . ' ' . TXT_VALS;
+                $smarty->assign("exito", $exito);
+                header("index.php?page=control&modulo=inicio&id_entidad=$entidad->id&exito=$exito");
             }
-            $exito = MSG_VALS_DESACT . ' ' . $contador . ' ' . TXT_VALS;
-            $smarty->assign("exito", $exito);
-            header("index.php?page=control&modulo=inicio&id_entidad=$entidad->id&exito=$exito");
+        }
+        else
+        {
+            $aviso = MSG_VALS_NO_MARCADOS;
+            $smarty->assign("aviso", $aviso);
+            header("index.php?page=control&modulo=inicio&id_entidad=$entidad->id&aviso=$aviso");
         }
     }
 }
@@ -155,13 +183,19 @@ if ($modulo == 'filtrOnlyear')
     $smarty->assign("valores_ult_mod", $valores_ult_mod);
 
     //Indicadores/Datos sin Mediciones 
-    $indicador = new Indicador();
-    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad, $fecha);
+    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad, $fecha, $cadena_aux);
     $smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 
     //Indicadores/Datos valores de referencia
     //Buscar todos valores ref de los indicadores/datos para el año actual
-    $indicadores = $indicador->Find_joined("id_entidad=$id_entidad");
+    if (!$control && $indicadores_datos_propios)
+    {
+        $indicadores = $indicadores_datos_propios;
+    }
+    else
+    {
+        $indicadores = $indicador->Find_joined("id_entidad=$id_entidad AND archivado is NULL");
+    }
     $medicion = new Medicion();
     $mediciones = array();
     $medicion_lim = array();

@@ -44,6 +44,7 @@ define('TXT_FICHA', 'Ficha');
 
 //Análisis de indicadores
 define('TXT_ANALISIS', 'Análisis');
+define('TXT_ANALISIS_DESC', 'Análisis: para el año seleccionado comente los resultados obtenidos en años anteriores.');
 define('TXT_PLAN_ACCION', 'Plan de acción');
 define('TXT_TABLA_ANAPLAN', 'Análisis y Planes de acción / Año');
 
@@ -84,7 +85,6 @@ define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
 define('TXT_PANEL_CREAR', 'Crear panel');
 define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
-define('TXT_PANEL_ANYOS_ATRAS', 'Años atrás');
 define('TXT_PANEL_INDICS', 'Indicadores/datos del panel');
 
 //Datos
@@ -129,13 +129,13 @@ define('TXT_INDIC_BUSCAR_BASE', 'Buscar indicador base');
 define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar indicadores complementarios');
 define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta medición.');
 define('TXT_INDIC_ACT_MED', 'Indique si además quiere activarla: ');
-define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Indicadores y datos con mediciones nulas agrupados');
-define('TXT_INDIC_DAT_MED_NULA', 'Indicadores y datos con mediciones nulas');
-define('TXT_INDIC_DAT_ULTIMA_MOD', 'Indicadores y datos, última modificación');
-define('TXT_INDIC_DAT_SIN_MED', 'Indicadores y datos sin mediciones');
-define('TXT_INDIC_DAT_VAL_REF', 'Indicadores/datos: valores de referencia');
 define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
 define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
+//Control
+define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Mediciones nulas');
+define('TXT_INDIC_DAT_MED_NULA', 'Medición nula/Subunidad');
+define('TXT_INDIC_DAT_ULTIMA_MOD', 'Última modificación');
+define('TXT_INDIC_DAT_SIN_MED', 'Sin mediciones');
 
 //Login
 define('TXT_BIENVENIDO', 'Bienvenido a');
@@ -287,7 +287,6 @@ define('TXT_ELEG_UNO', 'Elegir uno si procede');
 
 //Tiempo/Periodicidad
 define('TXT_HISTORICO', 'Histórico');
-define('TXT_RANGO_FECHAS', 'Rango de fechas');
 define('TXT_BIENAL', 'Bienal');
 define('TXT_ANUAL', 'Anual');
 define('TXT_MENSUAL', 'Mensual');
@@ -312,7 +311,7 @@ define('TXT_LINEAS', 'Líneas');
 define('TXT_LINEAS_DESC', 'Muestra varios indicadores/datos para distintas subunidades como gráfica de líneas.');
 define('TXT_TABLA', 'Tabla');
 define('TXT_TABLA_MULTI', 'Tabla múltiple');
-define('TXT_TABLA_MULTI_DESC', 'Tabla que muestra varios indicadores/datos y su evolución en los dos últimos años para una subunidad concreta.');
+define('TXT_TABLA_MULTI_DESC', 'Tabla que muestra varios indicadores/datos y su evolución total o de una subunidad concreta para un período dado.');
 define('TXT_TABLA_DESC', 'Puede mostrar un indicador/dato con sus mediciones para una subunidad en forma de tabla de datos.');
 define('TXT_TARTA', 'Tarta');
 define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador/dato entre las subunidades afectadas como gráfica de tarta.');
@@ -386,7 +385,7 @@ define('MSG_ANAPLAN_NO', 'Todavía no se ha registrado ningún análisis ni plan
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');
 define('MSG_ARCHIVO_SUBIDA_OK', 'Se ha subido correctamente el archivo.');
-define('MSG_ARCHIVO_BORRADO', 'Se ha borrado el archivo:');
+define('MSG_ARCHIVO_BORRADO', 'Se ha eliminado con éxito el archivo:');
 define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Consulta avanzada
@@ -404,6 +403,7 @@ define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
 define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿está seguro?');
 //Paneles de los Cuadros de Mando
 define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando este panel, ¿está seguro?');
+define('MSG_PANEL_BORRADO', 'Se ha eliminado con éxito el panel seleccionado.');
 define('MSG_PANEL_EDITADO', "Panel editado correctamente:");
 define('MSG_PANEL_CREADO', "Se ha añadido al cuadro de mando el siguiente panel:");
 define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿está seguro?');
@@ -563,18 +563,21 @@ define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la unidad los usuari
 define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado valores a esta medición.');
 define('MSG_VALS_CALCULADOS', 'Se han calculado/actualizado los valores correctamente.');
 define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los valores marcados?');
-define('MSG_VAL_REF_NO_VALIDO', 'Valor de referencia incorrecto: en indicadores/datos con estimación ascendente se ha de cumplir siempre que límite < meta. Para una estimación descendente: limite > meta');
+define('MSG_VAL_REF_NO_VALIDO', 'Valor de referencia incorrecto para la estimación actual');
 define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los valores de referencia marcados?');
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
 define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia.');
 define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" y/o "Límite" para activar el control del status por colores en las mediciones.');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
+define('MSG_VALS_NO_MARCADOS', 'No se ha seleccionado ningún valor para desactivar.');
 
 //Control
+define('MSG_CONTROL_INFO', 'El control de indicadores/datos se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores/datos bajo su responsabilidad o todos si también es responsable de la Unidad.');
+define('MSG_CONTROL_NO_RESPONSABLE', 'Usted no es responsable de esta unidad y tampoco de ningún indicador/dato de la misma.');
 define('MSG_CONTROL_CARGA', 'Cargando datos de control, por favor espere.');
 define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado indicadores/datos con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');
 define('MSG_CONTROL_NO_VAL', 'No existen mediciones o no se han grabado valores durante el año seleccionado.');
-define('MSG_CONTROL_NO_MED', 'Todavía no se han creado mediciones para el año seleccionado.');
+define('MSG_CONTROL_NO_MED', 'No se han creado mediciones para el año seleccionado.');
 define('MSG_CONTROL_MED', 'No existen indicadores/datos sin mediciones para el año seleccionado.');
 
 //----------------------------------------------------------------------------------
@@ -695,8 +698,8 @@ define('FIELD_FECHA_REV', 'Fecha de revisión');
 define('FIELD_FECHA_RECOGIDA', 'Fecha recogida');
 define('FIELD_AGREG', 'Agregado');
 define('FIELD_INTERP', 'Interpretación');
-define('FIELD_INICIO_PERIODO', 'Inicio del periodo');
-define('FIELD_FIN_PERIODO', 'Fin del periodo');
+define('FIELD_INICIO_PERIODO', 'Inicio del período');
+define('FIELD_FIN_PERIODO', 'Fin del período');
 define('FIELD_INICIO_GRABACION', 'Inicio de grabación');
 define('FIELD_FIN_GRABACION', 'Fin de grabación');
 define('FIELD_ETIQUETA', 'Etiqueta');
@@ -719,6 +722,9 @@ define('FIELD_ARCHIVO', 'Archivo');
 //Cuadros de Mando
 define('FIELD_CUADRO_MANDO', 'Cuadro de mando');
 define('FIELD_CUADROS_MANDO', 'Cuadros de mando');
+//Paneles de los Cuadros de Mando
+define('FIELD_ANYOS_ATRAS', 'Años atrás');
+define('FIELD_ANYO_FIN', 'Año de fin');
 
 //Datos
 define('FIELD_DATO', 'Dato');

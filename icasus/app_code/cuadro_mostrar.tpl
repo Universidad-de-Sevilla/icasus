@@ -38,6 +38,25 @@
 </div>
 <!-- /Diálogo Confirmar Borrado panel -->
 
+<!-- Diálogo Notificar Borrado panel -->
+<div class="modal fade" id="dialogo_notificar_borrado_panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_PANEL_BORRAR}: <span id="nombre_panel_borrado"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_PANEL_BORRADO}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Notificar Borrado panel -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -120,14 +139,11 @@
                             <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
                     </li>   
-                    {if $_control}
-                        <li class="divider"></li>
-                        <li>
-                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
-                                <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
-                            </a>
-                        </li>
-                    {/if}
+                    <li>
+                        <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                            <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
+                        </a>
+                    </li>
                 </ul>
                 <!-- /.dropdown-menu -->
             </li>
@@ -149,6 +165,8 @@
                 <div class="btn-group" role="group" aria-label="">
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_PANEL_CREAR}" href='index.php?page=panel_crear&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                         <i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
+                </div>
+                <div class="btn-group pull-right" role="group" aria-label="">    
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_CUADRO_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                         <i class="fa fa-th fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub></a>
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_CUADRO_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
@@ -242,6 +260,7 @@
                              data-titulo_panel ="{$panel->nombre}"
                              data-id_medicion="{$panel->id_medicion}" 
                              data-anyos_atras="{$panel->anyos_atras}"
+                             data-anyo_fin="{$panel->anyo_fin}"
                              data-periodicidad="{$panel->periodicidad}">
                         </div>
                     </div>

@@ -43,10 +43,14 @@ if (filter_has_var(INPUT_GET, 'id_panel') && filter_has_var(INPUT_GET, 'id_cuadr
         $panel->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
         $panel->orden = filter_input(INPUT_POST, 'orden', FILTER_SANITIZE_NUMBER_INT);
         $panel->ancho = filter_input(INPUT_POST, 'ancho', FILTER_SANITIZE_NUMBER_INT);
-        //Si es un panel de líneas o de tipo tabla simple
-        if ($panel->id_paneltipo == 2 || $panel->id_paneltipo == 5)
+        //Si es un panel de líneas, de tipo tabla simple o multi
+        if ($panel->id_paneltipo == 2 || $panel->id_paneltipo == 5 || $panel->id_paneltipo == 6)
         {
             $panel->anyos_atras = filter_input(INPUT_POST, 'anyos_atras', FILTER_SANITIZE_NUMBER_INT);
+            if ($panel->id_paneltipo == 6)
+            {
+                $panel->anyo_fin = filter_input(INPUT_POST, 'anyo_fin', FILTER_SANITIZE_NUMBER_INT);
+            }
         }
         $panel->Save();
         $exito = MSG_PANEL_EDITADO . ' ' . $panel->nombre;

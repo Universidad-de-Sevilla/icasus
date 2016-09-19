@@ -135,16 +135,16 @@ $(document).ready(function () {
             }
         ]
     });
-});
 
-//Reajustamos las cabeceras de las datatables al cambiar de pestaña
-$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-    datatables.fixedHeader.adjust();
-});
+    //Reajustamos las cabeceras de las datatables al cambiar de pestaña
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        datatables.fixedHeader.adjust();
+    });
 
-//Reajustamos las cabeceras de las datatables al hacer scroll
-$('.table-responsive').on('scroll', function () {
-    datatables.fixedHeader.adjust();
+    //Reajustamos las cabeceras de las datatables al hacer scroll
+    $('.table-responsive').on('scroll', function () {
+        datatables.fixedHeader.adjust();
+    });
 });
 
 //Opciones generales de los gráficos

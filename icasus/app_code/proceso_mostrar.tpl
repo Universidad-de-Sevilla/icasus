@@ -120,14 +120,11 @@
                             <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
                     </li>   
-                    {if $_control}
-                        <li class="divider"></li>
-                        <li>
-                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
-                                <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
-                            </a>
-                        </li>
-                    {/if}
+                    <li>
+                        <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                            <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
+                        </a>
+                    </li>
                 </ul>
                 <!-- /.dropdown-menu -->
             </li>
@@ -483,7 +480,7 @@
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
-                                                <i class="fa fa-history fa-fw"></i>
+                                                <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                 <i class="fa fa-connectdevelop fa-fw"></i>
@@ -597,7 +594,7 @@
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
-                                                <i class="fa fa-history fa-fw"></i>
+                                                <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                 <i class="fa fa-connectdevelop fa-fw"></i>

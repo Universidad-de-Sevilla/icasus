@@ -100,14 +100,11 @@
                             <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
                     </li>   
-                    {if $_control}
-                        <li class="divider"></li>
-                        <li>
-                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
-                                <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
-                            </a>
-                        </li>
-                    {/if}
+                    <li>
+                        <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                            <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
+                        </a>
+                    </li>
                 </ul>
                 <!-- /.dropdown-menu -->
             </li>
@@ -148,7 +145,7 @@
                 <a title="{$smarty.const.TXT_REP_GRAFIC}" href="#"><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
             </li>
             <li role="presentation">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
             {if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo)}
                 <li role="presentation">

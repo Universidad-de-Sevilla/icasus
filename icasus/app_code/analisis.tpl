@@ -99,15 +99,12 @@
                         <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
                             <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
-                    </li>   
-                    {if $_control}
-                        <li class="divider"></li>
-                        <li>
-                            <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
-                                <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
-                            </a>
-                        </li>
-                    {/if}
+                    </li>
+                    <li>
+                        <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                            <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
+                        </a>
+                    </li>
                 </ul>
                 <!-- /.dropdown-menu -->
             </li>
@@ -142,7 +139,7 @@
                 <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
             </li>
             <li role="presentation">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-history fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
             {if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo)}
                 <li role="presentation">
@@ -399,7 +396,7 @@
                 <div id="analisis" class="form-group">
                     <label for="analisis" class="col-sm-2 control-label">{$smarty.const.TXT_ANALISIS} ({$anyo})</label>
                     <div class="col-sm-6">
-                        <textarea  class="form-control" id="texto_analisis" placeholder="{$smarty.const.TXT_ANALISIS}" rows="9" readonly>{$analisis_actual->analisis}</textarea>
+                        <textarea  class="form-control" id="texto_analisis" placeholder="{$smarty.const.TXT_ANALISIS_DESC}" rows="9" readonly>{$analisis_actual->analisis}</textarea>
                     </div>
                     {if $_control || $responsable}
                         <div class="col-sm-2">

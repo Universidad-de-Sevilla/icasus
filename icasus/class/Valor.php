@@ -293,7 +293,7 @@ class Valor extends ADOdb_Active_Record
     {
         $db = $this->DB();
         $sql = "SELECT  v.id as id_valor, m.id as id_medicion,p.nombre as proceso,
-            p.codigo as cod_proceso,p.id as id_proceso,e.etiqueta as unidad, 
+            p.id as id_proceso,e.etiqueta as unidad, 
             i.nombre as indicador, i.id_entidad as entidad_del_indicador,
             i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, 
             v.valor FROM `valores` v
@@ -302,7 +302,8 @@ class Valor extends ADOdb_Active_Record
 			LEFT JOIN indicadores i ON m.id_indicador = i.id
 			LEFT JOIN procesos p ON p.id = i.id_proceso
 			WHERE v.valor IS NULL
-			$cadena 
+			$cadena
+                        AND i.archivado IS NULL
 			AND v.activo = 1 
 			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
 			ORDER BY  i.nombre,e.etiqueta";
@@ -314,7 +315,7 @@ class Valor extends ADOdb_Active_Record
     {
         $db = $this->DB();
         $sql = "SELECT  COUNT(v.id) as subunidades, v.id as id_valor, m.id as id_medicion,p.nombre as proceso,
-            p.codigo as cod_proceso,p.id as id_proceso, i.nombre as indicador, 
+            p.id as id_proceso, i.nombre as indicador, 
             i.id_entidad as entidad_del_indicador,i.id as id_indicador,
             e.id as id_entidad,m.etiqueta as fecha,u.id as id_usuario,
             u.nombre as nombre_responsable,u.apellidos as apellidos_responsable,
@@ -327,7 +328,8 @@ class Valor extends ADOdb_Active_Record
                         LEFT JOIN usuarios um ON i.id_responsable_medicion = um.id
 			LEFT JOIN procesos p ON p.id = i.id_proceso
 			WHERE v.valor IS NULL
-			$cadena 
+			$cadena
+                        AND i.archivado IS NULL
 			AND v.activo = 1 
 			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
 			GROUP BY  i.id,m.id ORDER BY i.nombre,m.etiqueta";
@@ -339,7 +341,7 @@ class Valor extends ADOdb_Active_Record
     {
         $db = $this->DB();
         $sql = "SELECT  v.id as id_valor,v.fecha_recogida, m.id as id_medicion,p.nombre as proceso,
-            p.codigo as cod_proceso,p.id as id_proceso,e.etiqueta as unidad, 
+            p.id as id_proceso,e.etiqueta as unidad, 
             i.nombre as indicador, i.id_entidad as entidad_del_indicador,
             i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, 
             v.valor FROM `valores` v
@@ -348,11 +350,12 @@ class Valor extends ADOdb_Active_Record
 			LEFT JOIN indicadores i ON m.id_indicador = i.id
 			LEFT JOIN procesos p ON p.id = i.id_proceso
 			WHERE v.valor IS NOT NULL
-			$cadena 
+			$cadena
+                        AND i.archivado IS NULL
 			AND v.activo = 1 
-			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
-                        AND DATE_FORMAT( v.fecha_recogida, '%Y' ) = $fecha
-			ORDER BY  v.fecha_recogida, i.nombre";
+			AND (DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
+                        OR DATE_FORMAT( v.fecha_recogida, '%Y' ) = $fecha)
+			ORDER BY  m.periodo_inicio,v.fecha_recogida, i.nombre";
         return $db->getall($sql);
     }
 

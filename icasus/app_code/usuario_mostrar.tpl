@@ -298,9 +298,7 @@
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-database fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_CUADROS_MANDO}" href='index.php?page=cuadro_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-th fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$entidad->entidad->id}'><i class="fa fa-commenting fa-fw"></i></a>
-                                                    {if $entidad->rol->id == 1 OR $entidad->rol->id == 2}
-                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_CONTROL}" href='index.php?page=control&modulo=inicio&id_entidad={$entidad->entidad->id}'><i class="fa fa-sliders fa-fw"></i></a>      
-                                                    {/if}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_CONTROL}" href='index.php?page=control&modulo=inicio&id_entidad={$entidad->entidad->id}'><i class="fa fa-sliders fa-fw"></i></a>
                                             </td>
                                         </tr>
                                     {/foreach}
@@ -467,7 +465,7 @@
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                    title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
-                                                    <i class="fa fa-history fa-fw"></i>
+                                                    <i class="fa fa-hourglass fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                     <i class="fa fa-connectdevelop fa-fw"></i>
@@ -587,7 +585,7 @@
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                    title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
-                                                    <i class="fa fa-history fa-fw"></i>
+                                                    <i class="fa fa-hourglass fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                     <i class="fa fa-tags fa-fw"></i>
