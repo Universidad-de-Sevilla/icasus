@@ -304,16 +304,16 @@ class Indicador extends ADOdb_Active_Record
         return $db->getall($sql);
     }
 
-    public function find_sin_mediciones($id_entidad, $fecha)
+    public function find_sin_mediciones($id_entidad, $fecha, $cadena)
     {
         $sql = "SELECT i.id as id_indicador,i.id_entidad, i.nombre as indicador, "
-                . "p.nombre as proceso, p.codigo as cod_proceso, p.id as id_proceso "
+                . "p.nombre as proceso, p.id as id_proceso "
                 . "FROM indicadores i "
                 . "LEFT JOIN procesos p ON i.id_proceso = p.id "
                 . "WHERE i.id NOT IN (SELECT id_indicador FROM mediciones m "
                 . "WHERE DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha) "
                 . "AND i.id_entidad = {$id_entidad} "
-                . "AND i.archivado is NULL ";
+                . "AND i.archivado is NULL $cadena";
         $db = $this->DB();
         return $db->getall($sql);
     }

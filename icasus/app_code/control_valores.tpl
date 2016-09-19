@@ -29,11 +29,11 @@
                     <thead>
                         <tr>
                             <th>{$smarty.const.FIELD_PROC}</th>
-                            <th>{$smarty.const.FIELD_UNIDS}</th>
+                            <th>{$smarty.const.FIELD_SUBUNIDS}</th>
                             <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
                             <th>{$smarty.const.FIELD_RESP}</th>
                             <th>{$smarty.const.FIELD_RESP_MED}</th>
-                            <th>{$smarty.const.FIELD_FECHA}</th>
+                            <th>{$smarty.const.FIELD_MED}</th>
                             <th>{$smarty.const.FIELD_VAL}</th>
                         </tr>
                     </thead>
@@ -41,18 +41,17 @@
                         {foreach from=$valores_agrupados item=valor}
                             <tr>
                                 <td>
-                                    {if $valor.cod_proceso == ''}
+                                    {if $valor.proceso == ''}
                                         {$smarty.const.FIELD_DATOS}
-                                    {else}
-                                        <span style="display:none">{$valor.proceso}</span> 
+                                    {else} 
                                         <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
-                                            {$valor.cod_proceso}
+                                            {$valor.proceso}
                                         </a>
                                     {/if}
                                 </td>
                                 <td>{$valor.subunidades}</td>
                                 <td>
-                                    {if $valor.cod_proceso==''}
+                                    {if $valor.proceso==''}
                                         <a href="index.php?page=dato_mostrar&id_dato={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
                                     {else}
                                         <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
@@ -62,7 +61,7 @@
                                 <td style="font-size: 12px">{$valor.nombre_responsable_med} {$valor.apellidos_responsable_med}</td>
                                 <td>{$valor.fecha}</td>
                                 <td>{if $valor.valor == NULL}
-                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>{/if}
+                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>{/if}
                                 </td>
                             </tr>
                         {/foreach}
@@ -78,7 +77,7 @@
     </div>
     <!-- /Mediciones nulas -->
 
-    <!-- Mediciones nulas/Unidad -->
+    <!-- Mediciones nulas/Subunidad -->
     <div role="tabpanel" class="tab-pane" id="nulos">
         {if $valores}
             <form action='index.php?page=control&modulo=inicio&id_entidad={$entidad->id}&desactivar' method='post' name='formdiv' class="form-horizontal">      
@@ -99,9 +98,9 @@
                             <tr>
                                 <th>{$smarty.const.TXT_DESACT}</th>
                                 <th>{$smarty.const.FIELD_PROC}</th>
-                                <th>{$smarty.const.FIELD_UNID}</th>
+                                <th>{$smarty.const.FIELD_SUBUNID}</th>
                                 <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
-                                <th>{$smarty.const.FIELD_FECHA}</th>
+                                <th>{$smarty.const.FIELD_MED}</th>
                                 <th>{$smarty.const.FIELD_VAL}</th>
                             </tr>
                         </thead>
@@ -110,18 +109,17 @@
                                 <tr>
                                     <td style="text-align: center"><input type='checkbox' name='id_valor[]' value='{$valor.id_valor}'/></td>
                                     <td>
-                                        {if $valor.cod_proceso == ''}
+                                        {if $valor.proceso == ''}
                                             {$smarty.const.FIELD_DATOS}
                                         {else}
-                                            <span style="display:none">{$valor.proceso}</span> 
                                             <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
-                                                {$valor.cod_proceso}
+                                                {$valor.proceso}
                                             </a>
                                         {/if}
                                     </td>
                                     <td>{$valor.unidad}</td>
                                     <td>
-                                        {if $valor.cod_proceso==''}
+                                        {if $valor.proceso==''}
                                             <a href="index.php?page=dato_mostrar&id_dato={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
                                         {else}
                                             <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
@@ -129,7 +127,7 @@
                                     </td>
                                     <td>{$valor.fecha}</td>
                                     <td>{if $valor.valor == NULL}
-                                        <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>{/if}
+                                        <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>{/if}
                                     </td>
                                 </tr>
                             {/foreach}
@@ -165,7 +163,7 @@
             </div> 
         {/if}
     </div>
-    <!-- /Mediciones nulas/Unidad -->
+    <!-- /Mediciones nulas/Subunidad -->
 
     <!-- Última modificación -->
     <div role="tabpanel" class="tab-pane" id="modificados">
@@ -175,9 +173,9 @@
                     <thead>
                         <tr>
                             <th>{$smarty.const.FIELD_PROC}</th> 
-                            <th>{$smarty.const.FIELD_UNID}</th>
+                            <th>{$smarty.const.FIELD_SUBUNID}</th>
                             <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
-                            <th>{$smarty.const.FIELD_FECHA}</th>
+                            <th>{$smarty.const.FIELD_MED}</th>
                             <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
                             <th>{$smarty.const.FIELD_VAL}</th>
                         </tr>
@@ -186,18 +184,17 @@
                         {foreach from= $valores_ult_mod item=valor}
                             <tr>
                                 <td>
-                                    {if $valor.cod_proceso == ''}
+                                    {if $valor.proceso == ''}
                                         {$smarty.const.FIELD_DATOS}
                                     {else}
-                                        <span style="display:none">{$valor.proceso}</span> 
                                         <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
-                                            {$valor.cod_proceso}
+                                            {$valor.proceso}
                                         </a>
                                     {/if}
                                 </td>
                                 <td>{$valor.unidad}</td>
                                 <td>
-                                    {if $valor.cod_proceso==''}
+                                    {if $valor.proceso==''}
                                         <a href="index.php?page=dato_mostrar&id_dato={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
                                     {else}
                                         <a href="index.php?page=indicador_mostrar&id_indicador={$valor.id_indicador}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_INDIC_IR}">{$valor.indicador}</a>
@@ -206,7 +203,7 @@
                                 <td>{$valor.fecha}</td>
                                 <td>{$valor.fecha_recogida|date_format:"%d-%m-%Y"}</td>
                                 <td>
-                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.cod_proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$valor.valor}</a>
+                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$valor.valor}</a>
                                 </td>
                             </tr>
                         {/foreach}
@@ -238,7 +235,7 @@
                         {foreach from=$indicadores_sin_med item=indicador}
                             <tr>
                                 <td>
-                                    {if $indicador.cod_proceso == ''}
+                                    {if $indicador.proceso == ''}
                                         {$smarty.const.FIELD_DATOS}
                                     {else}
                                         <a href="index.php?page=proceso_mostrar&id_proceso={$indicador.id_proceso}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_PROC_VER}">
@@ -247,7 +244,7 @@
                                     {/if}
                                 </td>
                                 <td>
-                                    {if $indicador.cod_proceso==''}
+                                    {if $indicador.proceso==''}
                                         <a href="index.php?page=dato_mostrar&id_dato={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador.indicador}</a>
                                     {else}
                                         <a href="index.php?page=indicador_mostrar&id_indicador={$indicador.id_indicador}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_INDIC_IR}">{$indicador.indicador}</a>

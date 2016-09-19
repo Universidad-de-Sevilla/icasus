@@ -133,7 +133,7 @@ define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
 define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
 //Control
 define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Mediciones nulas');
-define('TXT_INDIC_DAT_MED_NULA', 'Medición nula/Unidad');
+define('TXT_INDIC_DAT_MED_NULA', 'Medición nula/Subunidad');
 define('TXT_INDIC_DAT_ULTIMA_MOD', 'Última modificación');
 define('TXT_INDIC_DAT_SIN_MED', 'Sin mediciones');
 
@@ -577,7 +577,7 @@ define('MSG_CONTROL_NO_RESPONSABLE', 'Usted no es responsable de esta unidad y t
 define('MSG_CONTROL_CARGA', 'Cargando datos de control, por favor espere.');
 define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado indicadores/datos con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');
 define('MSG_CONTROL_NO_VAL', 'No existen mediciones o no se han grabado valores durante el año seleccionado.');
-define('MSG_CONTROL_NO_MED', 'Todavía no se han creado mediciones para el año seleccionado.');
+define('MSG_CONTROL_NO_MED', 'No se han creado mediciones para el año seleccionado.');
 define('MSG_CONTROL_MED', 'No existen indicadores/datos sin mediciones para el año seleccionado.');
 
 //----------------------------------------------------------------------------------

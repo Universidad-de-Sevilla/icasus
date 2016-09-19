@@ -84,7 +84,7 @@
     <!-- /.row -->
     <!-- /Breadcrumbs -->
 
-    {if $_control || $num_indicadores_propios > 0 || $num_datos_propios > 0}
+    {if $_control || $indicadores_datos_propios}
         <!-- Selección del año de consulta -->
         <div class="row">
             <div class="col-lg-12">

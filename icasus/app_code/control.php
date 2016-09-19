@@ -11,6 +11,7 @@
 
 global $smarty;
 global $plantilla;
+global $usuario;
 
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
@@ -28,6 +29,18 @@ else
 {
     $cadena = "AND (e.id_madre = $id_entidad OR e.id= $id_entidad)";
 }
+
+// Indicadores/datos bajo la responsabilidad de este usuario
+$indicador = new Indicador();
+$indicadores_datos_propios = $indicador->Find_joined("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_entidad=$id_entidad AND archivado IS NULL");
+$smarty->assign("indicadores_datos_propios", $indicadores_datos_propios);
+$cadena_aux = '';
+if (!$control && $indicadores_datos_propios)
+{
+    $cadena_aux = "AND (i.id_responsable = $usuario->id OR i.id_responsable_medicion = $usuario->id)";
+    $cadena = $cadena . ' ' . $cadena_aux;
+}
+
 $fecha = date("Y");
 
 //------------------------------------------------------------------------------
@@ -51,13 +64,19 @@ if ($modulo == 'inicio')
     $smarty->assign("valores_ult_mod", $valores_ult_mod);
 
     //Indicadores/Datos sin Mediciones 
-    $indicador = new Indicador();
-    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad, $fecha);
+    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad, $fecha, $cadena_aux);
     $smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 
     //Indicadores/Datos valores de referencia
     //Buscar todos valores ref de los indicadores/datos para el año actual
-    $indicadores = $indicador->Find_joined("id_entidad=$id_entidad AND archivado is NULL");
+    if (!$control && $indicadores_datos_propios)
+    {
+        $indicadores = $indicadores_datos_propios;
+    }
+    else
+    {
+        $indicadores = $indicador->Find_joined("id_entidad=$id_entidad AND archivado is NULL");
+    }
     $medicion = new Medicion();
     $mediciones = array();
     $medicion_lim = array();
@@ -164,13 +183,19 @@ if ($modulo == 'filtrOnlyear')
     $smarty->assign("valores_ult_mod", $valores_ult_mod);
 
     //Indicadores/Datos sin Mediciones 
-    $indicador = new Indicador();
-    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad, $fecha);
+    $indicadores_sin_med = $indicador->find_sin_mediciones($id_entidad, $fecha, $cadena_aux);
     $smarty->assign("indicadores_sin_med", $indicadores_sin_med);
 
     //Indicadores/Datos valores de referencia
     //Buscar todos valores ref de los indicadores/datos para el año actual
-    $indicadores = $indicador->Find_joined("id_entidad=$id_entidad AND archivado is NULL");
+    if (!$control && $indicadores_datos_propios)
+    {
+        $indicadores = $indicadores_datos_propios;
+    }
+    else
+    {
+        $indicadores = $indicador->Find_joined("id_entidad=$id_entidad AND archivado is NULL");
+    }
     $medicion = new Medicion();
     $mediciones = array();
     $medicion_lim = array();
