@@ -634,16 +634,16 @@ $(".panel_tabla_multi").each(function () {
                 evolucion = null;
                 datos.forEach(function (dato) {
                     //Buscamos el total del año inicial
-                    if (dato.id_unidad == indicador.id_entidad && (dato.medicion).split('.')[0] == anyo_inicio) {
+                    if (dato.id_unidad == indicador.id_entidad && String((dato.medicion)).split('.')[0] == anyo_inicio) {
                         valor_anyo_inicio = Math.round(dato.valor * 100) / 100;
                         htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anyo_inicio + '</td>';
                     }
                     //Buscamos el total del año final
-                    if (dato.id_unidad == indicador.id_entidad && (dato.medicion).split('.')[0] == anyo_fin && valor_anyo_inicio !== null) {
+                    if (dato.id_unidad == indicador.id_entidad && String((dato.medicion)).split('.')[0] == anyo_fin && valor_anyo_inicio !== null) {
                         valor_anyo_fin = Math.round(dato.valor * 100) / 100;
                         htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anyo_fin + '</td>';
                     }
-                    if (dato.id_unidad == indicador.id_entidad && (dato.medicion).split('.')[0] == anyo_fin && valor_anyo_inicio === null) {
+                    if (dato.id_unidad == indicador.id_entidad && String((dato.medicion)).split('.')[0] == anyo_fin && valor_anyo_inicio === null) {
                         valor_anyo_fin = Math.round(dato.valor * 100) / 100;
                         htmlTabla += '<td style="white-space:nowrap">---</td><td title="Valor" style="white-space:nowrap">' + valor_anyo_fin + '</td>';
                     }

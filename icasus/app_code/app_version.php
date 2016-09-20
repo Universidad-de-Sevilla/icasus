@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.28.0");
-define('IC_FECHA_REVISION', "19/09/2016");
+define('IC_VERSION', "3.28.1");
+define('IC_FECHA_REVISION', "20/09/2016");
 
+// 3.28.1 - 20/09/2016 - Corregidos paneles tabla_multi que ahora si muestran los calculados y los responsables de un indicador ahora pueden editar sus valores de referencia.
 // 3.28.0 - 19/09/2016 - Control mejorado de indicadores/datos que tiene en cuenta las responsabilidades de cada usuario.
 // 3.27.4 - 16/09/2016 - Se permite el acceso a la sección de control a todos los usuarios.
 // 3.27.3 - 16/09/2016 - En la sección de control se manda un aviso cuando no se seleccionaron valores para desactivar al enviar el formulario correspondiente.
