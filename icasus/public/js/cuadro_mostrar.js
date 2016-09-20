@@ -597,8 +597,6 @@ $(".panel_tabla_multi").each(function () {
     var anyos_atras = $(this).data("anyos_atras");
     var anyo_fin = $(this).data("anyo_fin");
     var anyo_inicio = anyo_fin - anyos_atras;
-    var fecha_inicio = anyo_inicio + "-01-01";
-    var fecha_fin = anyo_fin + "-12-31";
     var id_panel = $(this).data("id_panel");
     var htmlTabla = ' <div class="table-responsive"><table id="tabla_multi' + id_panel + '" class="table table-striped table-hover">';
 
@@ -613,8 +611,7 @@ $(".panel_tabla_multi").each(function () {
             htmlTabla += '<tr><td style="white-space:nowrap">' + indicador.codigo + '</td><td><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
                     + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></td>';
 
-            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
-                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin + '&periodicidad=anual';
+            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + '&periodicidad=anual';
 
             $.ajax({
                 url: urlApi,
@@ -634,16 +631,16 @@ $(".panel_tabla_multi").each(function () {
                 evolucion = null;
                 datos.forEach(function (dato) {
                     //Buscamos el total del año inicial
-                    if (dato.id_unidad == indicador.id_entidad && String((dato.medicion)).split('.')[0] == anyo_inicio) {
+                    if (dato.id_unidad == indicador.id_entidad && (String(dato.medicion).split('.')[0] == anyo_inicio || String(dato.medicion).split('-')[0] == anyo_inicio || String(dato.medicion).split('-')[1] == anyo_inicio)) {
                         valor_anyo_inicio = Math.round(dato.valor * 100) / 100;
                         htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anyo_inicio + '</td>';
                     }
                     //Buscamos el total del año final
-                    if (dato.id_unidad == indicador.id_entidad && String((dato.medicion)).split('.')[0] == anyo_fin && valor_anyo_inicio !== null) {
+                    if (dato.id_unidad == indicador.id_entidad && (String(dato.medicion).split('.')[0] == anyo_fin || String(dato.medicion).split('-')[0] == anyo_fin || String(dato.medicion).split('-')[1] == anyo_fin) && valor_anyo_inicio !== null) {
                         valor_anyo_fin = Math.round(dato.valor * 100) / 100;
                         htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anyo_fin + '</td>';
                     }
-                    if (dato.id_unidad == indicador.id_entidad && String((dato.medicion)).split('.')[0] == anyo_fin && valor_anyo_inicio === null) {
+                    if (dato.id_unidad == indicador.id_entidad && (String(dato.medicion).split('.')[0] == anyo_fin || String(dato.medicion).split('-')[0] == anyo_fin || String(dato.medicion).split('-')[1] == anyo_fin) && valor_anyo_inicio === null) {
                         valor_anyo_fin = Math.round(dato.valor * 100) / 100;
                         htmlTabla += '<td style="white-space:nowrap">---</td><td title="Valor" style="white-space:nowrap">' + valor_anyo_fin + '</td>';
                     }
