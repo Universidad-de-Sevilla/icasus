@@ -88,6 +88,9 @@ $('.panel_linea').each(function () {
             if (periodicidad === "anual") {
                 chartSerie.categoryType = "año";
             }
+            else if (periodicidad === "bienal") {
+                chartSerie.categoryType = "bienal";
+            }
             else {
                 chartSerie.categoryType = "medicion";
             }
@@ -132,7 +135,7 @@ $('.panel_linea').each(function () {
                 // Pide las series de datos a chartSerie
                 var dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
                 // Si es no anual ocultamos valores de referencia
-                if (chartSerie.categoryType !== "año") {
+                if (chartSerie.categoryType !== "año" && chartSerie.categoryType !== "bienal") {
                     dataseries.forEach(function (dataserie, index) {
                         if (index !== 0) {
                             dataserie.visible = false;

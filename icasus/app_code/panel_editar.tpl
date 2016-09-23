@@ -117,6 +117,18 @@
                         </div>
                     </div>
                 {/if}
+                {if $panel->id_paneltipo == 2}
+                    <div class="form-group">
+                        <label for="periodicidad" class="col-sm-2 control-label">{$smarty.const.FIELD_PERIOD}</label>
+                        <div class="col-sm-8">
+                            <select class="form-control chosen-select" name="periodicidad" id='periodicidad'>
+                                <option value="anual" {if $panel->periodicidad == "anual"}selected{/if}>{$smarty.const.TXT_ANUAL}</option>
+                                <option value="bienal" {if $panel->periodicidad == "bienal"}selected{/if}>{$smarty.const.TXT_BIENAL}</option>
+                                <option value="mensual" {if $panel->periodicidad == "mensual"}selected{/if}>{$smarty.const.TXT_MENSUAL}</option>     
+                            </select>
+                        </div>
+                    </div>
+                {/if}
             {/if}
 
             <div class="form-group">
