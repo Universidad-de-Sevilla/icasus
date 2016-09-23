@@ -51,6 +51,10 @@ if (filter_has_var(INPUT_GET, 'id_panel') && filter_has_var(INPUT_GET, 'id_cuadr
             {
                 $panel->anyo_fin = filter_input(INPUT_POST, 'anyo_fin', FILTER_SANITIZE_NUMBER_INT);
             }
+            if ($panel->id_paneltipo == 2)
+            {
+                $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_SANITIZE_STRING) : "todos";
+            }
         }
         $panel->Save();
         $exito = MSG_PANEL_EDITADO . ' ' . $panel->nombre;

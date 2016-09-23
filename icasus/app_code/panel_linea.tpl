@@ -47,6 +47,7 @@
         <div class="col-sm-8">
             <select class="form-control chosen-select" name="periodicidad" id='periodicidad'>
                 <option value="anual">{$smarty.const.TXT_ANUAL}</option>
+                <option value="bienal">{$smarty.const.TXT_BIENAL}</option>
                 <option value="mensual">{$smarty.const.TXT_MENSUAL}</option>     
             </select>
         </div>

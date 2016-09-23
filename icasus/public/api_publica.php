@@ -184,7 +184,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     {
         $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio)";
     }
-    else if ($periodicidad == "todos")
+    else if ($periodicidad == "todos" || $periodicidad = "bienal")
     {
         // Funcionará mientras icasus no tenga mediciones intradiarias
         $query .= " GROUP BY id_unidad, YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), DAY(mediciones.periodo_inicio)";
