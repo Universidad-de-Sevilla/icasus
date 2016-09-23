@@ -57,6 +57,22 @@
 </div>
 <!-- /Diálogo Notificar Borrado panel -->
 
+<!-- Diálogo Carga de Paneles -->
+<div class="modal fade" id="dialogo_cargando_paneles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-th fa-fw"></i> {$_nombre_pagina}</h3>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center"><i class='fa fa-spinner fa-pulse'></i> {$smarty.const.MSG_PANEL_CARGANDO}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Carga de Paneles -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -197,7 +213,7 @@
 <!-- /Comentarios del cuadro -->
 
 <!-- Paneles -->
-<div class ="row">
+<div id="paneles" class ="row" data-num_paneles="{$paneles|@count}">
     {if $paneles}
         {foreach $paneles as $panel}
             <div class="col-lg-{$panel->ancho}" >

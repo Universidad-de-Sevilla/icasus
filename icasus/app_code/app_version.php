@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.28.2");
-define('IC_FECHA_REVISION', "20/09/2016");
+define('IC_VERSION', "3.28.3");
+define('IC_FECHA_REVISION', "23/09/2016");
 
+// 3.28.3 - 23/09/2016 - Diálogos de carga para los paneles de los cuadros de mando y también para los del resumen de una entidad. Redondeados valores en control y cambio de include_once por require_once en el controlador index.php.
 // 3.28.2 - 20/09/2016 - Paneles tabla multi muestran correctamente indicadores/datos bienales. Reestablecida restricción de edición de valores de referencia para los responsables de indicadores/datos.
 // 3.28.1 - 20/09/2016 - Corregidos paneles tabla_multi que ahora si muestran los calculados y los responsables de un indicador ahora pueden editar sus valores de referencia.
 // 3.28.0 - 19/09/2016 - Control mejorado de indicadores/datos que tiene en cuenta las responsabilidades de cada usuario.

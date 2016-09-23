@@ -39,6 +39,17 @@ $('#dialogo_borrado_panel').on('hide.bs.modal', function () {
 //Unidad del cuadro de mando
 var unidad_cuadro = $('#nombre_cuadro').data('id_unidad');
 var nombre_unidad = $('#nombre_cuadro').data('nombre_unidad');
+var num_paneles = $('#paneles').data('num_paneles');
+
+//Si hay paneles en el cuadro de mando
+if (num_paneles) {
+    //Diálogo de carga de paneles
+    $('#dialogo_cargando_paneles').modal('show');
+    //Carga de los paneles completada
+    $(document).ajaxStop(function () {
+        $('#dialogo_cargando_paneles').modal('hide');
+    });
+}
 
 //Paneles de líneas
 $('.panel_linea').each(function () {
