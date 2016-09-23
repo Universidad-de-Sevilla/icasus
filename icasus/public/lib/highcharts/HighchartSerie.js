@@ -93,7 +93,7 @@ function HighchartSerie() {
         if (this.categoryType === "año") {
             category = new Date(parseInt(elem.periodo_fin)).getFullYear();
         }
-        else if (this.categoryType === "medicion") {
+        else if (this.categoryType === "medicion" || this.categoryType === "bienal") {
             category = elem.medicion;
         }
         else if (this.categoryType === "unidad") {

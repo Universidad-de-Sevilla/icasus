@@ -265,7 +265,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
         {
             $query_temporal .= " GROUP BY YEAR(periodo_fin), MONTH(periodo_fin)";
         }
-        else if ($periodicidad == "todos")
+        else if ($periodicidad == "todos" || $periodicidad = "bienal")
         {
             // Truco para agrupar sin agrupar cuando se quieren todas las mediciones
             // Funcionará mientras icasus no tenga mediciones intradiarias
