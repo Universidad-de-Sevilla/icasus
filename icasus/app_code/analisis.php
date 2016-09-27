@@ -80,7 +80,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
         $panel = new Panel();
         $panel->tipo = new Panel_tipo();
         $panel->ancho = 6;
-        // Prepara el panel anual
+        // Prepara el panel anual o bienal
         $anio_inicio = $indicador->historicos;
         $anio_fin = date('Y');
         if ($indicador->periodicidad == "Bienal")
@@ -93,6 +93,10 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
         $panel->fecha_inicio = $indicador->historicos . "-01-01";
         $panel->fecha_fin = $anio_fin . "-12-31";
         $panel->periodicidad = "anual";
+        if ($indicador->periodicidad == "Bienal")
+        {
+            $panel->periodicidad = "bienal";
+        }
         $smarty->assign("panel", $panel);
     }
 

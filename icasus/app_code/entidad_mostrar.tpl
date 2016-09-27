@@ -23,6 +23,22 @@
 </div>
 <!-- /Diálogo Confirmar Borrado Plan-->
 
+<!-- Diálogo Carga de Paneles -->
+<div class="modal fade" id="dialogo_cargando_paneles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sitemap fa-fw"></i> {$_nombre_pagina}</h3>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center"><i class='fa fa-spinner fa-pulse'></i> {$smarty.const.MSG_PANEL_CARGANDO}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Carga de Paneles -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -107,7 +123,7 @@
         <!-- Tab panes -->
         <div class="tab-content">
 
-            <!-- Parámetros de la unidad -->
+            <!-- Ficha de la unidad -->
             <div role="tabpanel" class="tab-pane active" id="unid_ficha">
 
                 {if ($entidad->madre->id!=0 AND $entidad->madre->id!=1)}
@@ -312,7 +328,7 @@
                 </div>
                 <!-- /.row -->
             </div>
-            <!-- /Parámetros de la unidad -->
+            <!-- /Ficha de la unidad -->
 
             <!-- Usuarios de la unidad -->
             <div role="tabpanel" class="tab-pane" id="unid_users">
@@ -609,7 +625,7 @@
                                     <div class="row">
                                         <div class="col-lg-10">
                                             <h4 class="panel-title">
-                                                <a title="{$proceso->nombre}: {$proceso->mision}" role="button" data-toggle="collapse" data-parent="#accordion" href="#{$proceso->id}" aria-expanded="false" aria-controls="" class="proceso" data-id_proceso="{$proceso->id}">
+                                                <a title="{$proceso->nombre}: {$proceso->mision}" role="button" data-toggle="collapse" data-parent="#accordion" href="#{$proceso->id}" aria-expanded="false" aria-controls="">
                                                     <i class="fa fa-gear fa-fw"></i> {$smarty.const.FIELD_PROC}: {$proceso->nombre}
                                                 </a>
                                             </h4>
@@ -626,14 +642,14 @@
                                     <!-- /.row -->
                                 </div>
                                 <!-- /.panel-heading -->
-                                <div id="{$proceso->id}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="">
+                                <div id="{$proceso->id}" class="panel-collapse collapse proceso" role="tabpanel" aria-labelledby="" data-num_indic="{$indicadores[$proceso->id]|@count}">
                                     <div class="panel-body">
                                         {if $indicadores[$proceso->id]}
                                             <div id="carousel-{$proceso->id}" class="carousel slide" data-ride="carousel">
                                                 <!-- Wrapper for slides -->
                                                 <div class="carousel-inner" role="listbox">
                                                     {foreach $indicadores[$proceso->id] as $indicador}
-                                                        <div class="item {if $indicador@index eq 0}active{/if}">
+                                                        <div class="item {if $indicador@first}active{/if}">
                                                             <div class="{$proceso->id} highchart" 
                                                                  id="panel_{$indicador->id}" 
                                                                  data-id_indicador="{$indicador->id}" 
@@ -692,7 +708,7 @@
                                 <div class="row">
                                     <div class="col-lg-10">
                                         <h4 class="panel-title">
-                                            <a title="{$smarty.const.FIELD_DATOS}" role="button" data-toggle="collapse" data-parent="#accordion" href="#datos" aria-expanded="false" aria-controls="" class="proceso" data-id_proceso="datos">
+                                            <a title="{$smarty.const.FIELD_DATOS}" role="button" data-toggle="collapse" data-parent="#accordion" href="#datos" aria-expanded="false" aria-controls="">
                                                 <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}
                                             </a>
                                         </h4>
@@ -706,9 +722,8 @@
                                 <!-- /.row -->
                             </div>
                             <!-- /.panel-heading -->
-                            <div id="datos" class="panel-collapse collapse" role="tabpanel" aria-labelledby="">
+                            <div id="datos" class="panel-collapse collapse proceso" role="tabpanel" aria-labelledby="" data-num_indic="{$datos|@count}">
                                 <div class="panel-body">
-
                                     <div id="carousel-datos" class="carousel slide" data-ride="carousel">
                                         <!-- Wrapper for slides -->
                                         <div class="carousel-inner" role="listbox">

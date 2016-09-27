@@ -60,8 +60,8 @@
                                 <td style="font-size: 12px">{$valor.nombre_responsable} {$valor.apellidos_responsable}</td>
                                 <td style="font-size: 12px">{$valor.nombre_responsable_med} {$valor.apellidos_responsable_med}</td>
                                 <td>{$valor.fecha}</td>
-                                <td>{if $valor.valor == NULL}
-                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>{/if}
+                                <td>
+                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>
                                 </td>
                             </tr>
                         {/foreach}
@@ -126,8 +126,8 @@
                                         {/if}
                                     </td>
                                     <td>{$valor.fecha}</td>
-                                    <td>{if $valor.valor == NULL}
-                                        <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>{/if}
+                                    <td>
+                                        <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>
                                     </td>
                                 </tr>
                             {/foreach}
@@ -203,7 +203,7 @@
                                 <td>{$valor.fecha}</td>
                                 <td>{$valor.fecha_recogida|date_format:"%d-%m-%Y"}</td>
                                 <td>
-                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$valor.valor}</a>
+                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$valor.valor|round:"2"}</a>
                                 </td>
                             </tr>
                         {/foreach}
@@ -304,7 +304,7 @@
                                     <td {if isset($medicion_lim[$indicador->id])}style="color:red"{/if}>
                                         {if isset($medicion_lim[$indicador->id])}
                                             {if ($medicion_lim[$indicador->id][$medicion->id])}
-                                                {$medicion_lim[$indicador->id][$medicion->id]}
+                                                {$medicion_lim[$indicador->id][$medicion->id]|round:"2"}
                                             {else}
                                                 ---
                                             {/if}
@@ -315,7 +315,7 @@
                                     <td {if isset($medicion_obj[$indicador->id])}style="color:green"{/if}>
                                         {if isset($medicion_obj[$indicador->id])}
                                             {if ($medicion_obj[$indicador->id][$medicion->id])}
-                                                {$medicion_obj[$indicador->id][$medicion->id]}
+                                                {$medicion_obj[$indicador->id][$medicion->id]|round:"2"}
                                             {else}
                                                 ---
                                             {/if}

@@ -1,25 +1,27 @@
 <?php
 
-//--------------------------------------------------------------------------
-// Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
-// Archivo: index.php
-// Desarrolladores: Juanan Ruiz <juanan@us.es>, Jesús Martin <jjmc@us.es>, 
-// Joaquín Valonero Zaera (tecnibus1@us.es)
-//--------------------------------------------------------------------------
-// Descripción: Esta es la página que carga a todas las demás en su seno maternal 
-//--------------------------------------------------------------------------
-// Esto es para que se vean los errores
+/* --------------------------------------------------------------------------
+  Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+  Archivo: index.php
+  Desarrolladores: Juanan Ruiz <juanan@us.es>, Jesús Martin <jjmc@us.es>,
+  Joaquín Valonero Zaera (tecnibus1@us.es)
+  --------------------------------------------------------------------------
+  Descripción: Esta es la página que carga a todas las demás en su seno maternal
+  --------------------------------------------------------------------------
+ */
+
+// Esto es para que se vean los errores comentar en producción
 ini_set('display_errors', '1');
 error_reporting(E_ALL & ~E_DEPRECATED);
 
-include_once('../app_code/app_config.php');
-include_once('../app_code/app_version.php');
-include_once('../../cascara_core/lib/adodb5/adodb.inc.php');
-include_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
-include_once('../../cascara_core/lib/smarty/Smarty.class.php');
+require_once('../app_code/app_config.php');
+require_once('../app_code/app_version.php');
+require_once('../../cascara_core/lib/adodb5/adodb.inc.php');
+require_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
+require_once('../../cascara_core/lib/smarty/Smarty.class.php');
 
 //Fichero de idioma
-include_once('../app_code/' . IC_LANG_FILE);
+require_once('../app_code/' . IC_LANG_FILE);
 
 // Carga las clases necesarias automaticamente
 spl_autoload_register('__autoload');
@@ -52,7 +54,8 @@ $smarty->template_dir = '../app_code';
 $smarty->compile_dir = '../templates_c';
 $smarty->config_dir = '../configs';
 $smarty->cache_dir = '../cache';
-//$smarty->cache = false;
+//Descomentar en producción
+//$smarty->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
 // Crea una sesión con un identificador encriptado para evitar ataques
 $session_key = substr(md5(IC_DIR_BASE), 0, 8);
 session_name('IC_SESSID' . $session_key);

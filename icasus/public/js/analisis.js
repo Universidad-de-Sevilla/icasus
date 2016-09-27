@@ -95,9 +95,11 @@ $('.highchart').each(function () {
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
     // Contenedor para los datos del gráfico
     var chartSerie = new HighchartSerie();
-
     if (periodicidad === "anual") {
         chartSerie.categoryType = "año";
+    }
+    else if (periodicidad === "bienal") {
+        chartSerie.categoryType = "bienal";
     }
     else {
         chartSerie.categoryType = "medicion";
@@ -123,8 +125,8 @@ $('.highchart').each(function () {
         // Pide las series de datos a chartSerie
         // A saber: Totales y Valores de referencia
         var dataseries = chartSerie.getLinealSerie();
-        // Si no es anual ocultamos valores de referencia
-        if (chartSerie.categoryType !== "año") {
+        // Si no es anual o bienal ocultamos valores de referencia
+        if (chartSerie.categoryType !== "año" && chartSerie.categoryType !== "bienal") {
             dataseries.forEach(function (dataserie, index) {
                 if (index !== 0) {
                     dataserie.visible = false;

@@ -130,7 +130,7 @@ if ($mediciones)
         $panel->periodicidad = "todos";
         $paneles[] = clone($panel);
     }
-    // Prepara el panel anual
+    // Prepara el panel anual o bienal
     $anio_inicio = $indicador->historicos;
     $anio_fin = date('Y');
     if ($indicador->periodicidad == "Bienal")
@@ -143,6 +143,10 @@ if ($mediciones)
     $panel->fecha_inicio = $indicador->historicos . "-01-01";
     $panel->fecha_fin = $anio_fin . "-12-31";
     $panel->periodicidad = "anual";
+    if ($indicador->periodicidad == "Bienal")
+    {
+        $panel->periodicidad = "bienal";
+    }
     $paneles[] = clone($panel);
     $smarty->assign("paneles", $paneles);
 }

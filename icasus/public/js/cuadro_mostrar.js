@@ -39,6 +39,17 @@ $('#dialogo_borrado_panel').on('hide.bs.modal', function () {
 //Unidad del cuadro de mando
 var unidad_cuadro = $('#nombre_cuadro').data('id_unidad');
 var nombre_unidad = $('#nombre_cuadro').data('nombre_unidad');
+var num_paneles = $('#paneles').data('num_paneles');
+
+//Si hay paneles en el cuadro de mando
+if (num_paneles) {
+    //Diálogo de carga de paneles
+    $('#dialogo_cargando_paneles').modal('show');
+    //Carga de los paneles completada
+    $(document).ajaxStop(function () {
+        $('#dialogo_cargando_paneles').modal('hide');
+    });
+}
 
 //Paneles de líneas
 $('.panel_linea').each(function () {
@@ -76,6 +87,9 @@ $('.panel_linea').each(function () {
 
             if (periodicidad === "anual") {
                 chartSerie.categoryType = "año";
+            }
+            else if (periodicidad === "bienal") {
+                chartSerie.categoryType = "bienal";
             }
             else {
                 chartSerie.categoryType = "medicion";
@@ -121,7 +135,7 @@ $('.panel_linea').each(function () {
                 // Pide las series de datos a chartSerie
                 var dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
                 // Si es no anual ocultamos valores de referencia
-                if (chartSerie.categoryType !== "año") {
+                if (chartSerie.categoryType !== "año" && chartSerie.categoryType !== "bienal") {
                     dataseries.forEach(function (dataserie, index) {
                         if (index !== 0) {
                             dataserie.visible = false;
