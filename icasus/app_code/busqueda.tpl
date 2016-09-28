@@ -330,7 +330,7 @@
                                     {foreach from=$cuadros_publicos item=cuadro}
                                         <tr>
                                             <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$cuadro->entidad->id}'>{$cuadro->entidad->etiqueta}</a></td>
-                                            <td><a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}">{$cuadro->nombre}</a></td>            
+                                            <td><a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->entidad->id}">{$cuadro->nombre}</a></td>            
                                             <td>
                                                 {if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}
                                                 {else}{$smarty.const.TXT_PRIVADO}
@@ -338,7 +338,7 @@
                                             </td>
                                             <td>{$cuadro->comentarios}</td>
                                             <td>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id={$cuadro->id}"><i class="fa fa-eye fa-fw"></i></a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->entidad->id}"><i class="fa fa-eye fa-fw"></i></a>
                                             </td>
                                         </tr>
                                     {/foreach}
