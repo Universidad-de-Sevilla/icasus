@@ -7,7 +7,7 @@
             </div>
             {if $_control || $responsable}
                 <div class="col-sm-2">
-                    <a id="editar_analisis" title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-danger btn-xs btn-circle" data-id_indicador='{$indicador->id}' data-anyo='{$anyo}' ><i class="fa fa-pencil fa-fw"></i></a>
+                    <a id="editar_analisis" title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-danger btn-xs btn-circle {if $indicador->archivado}disabled{/if}" data-id_indicador='{$indicador->id}' data-anyo='{$anyo}' ><i class="fa fa-pencil fa-fw"></i></a>
                 </div>
             {/if}
         </div>
@@ -18,7 +18,7 @@
             </div>
             {if $_control || $responsable}
                 <div class="col-sm-2">
-                    <a id="editar_plan" title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-danger btn-xs btn-circle" data-id_indicador='{$indicador->id}' data-anyo='{$anyo}' ><i class="fa fa-pencil fa-fw"></i></a>
+                    <a id="editar_plan" title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-danger btn-xs btn-circle {if $indicador->archivado}disabled{/if}" data-id_indicador='{$indicador->id}' data-anyo='{$anyo}' ><i class="fa fa-pencil fa-fw"></i></a>
                 </div>
             {/if}
         </div>

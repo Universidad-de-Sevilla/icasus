@@ -366,7 +366,7 @@
 <div class="row">
     <div class="col-lg-12">
         <!-- Barra de botones -->
-        {if $_control}
+        {if $_control && !$indicador->archivado}
             <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
                 <div class="btn-group" role="group" aria-label="">
                     <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">
@@ -387,7 +387,7 @@
                     <table id='tabla_val_ref' class="table datatable table-striped table-hover">
                         <thead>
                             <tr>   
-                                {if $_control}
+                                {if $_control && !$indicador->archivado}
                                     <th>
                                         {$smarty.const.TXT_BORRAR}
                                     </th>
@@ -401,7 +401,7 @@
                         <tbody>
                             {foreach from=$indicador->valores_referencia item=item}
                                 <tr>
-                                    {if $_control}
+                                    {if $_control && !$indicador->archivado}
                                         <td>
                                             <input type="checkbox" name='id_val_ref[]' value="{$item->id}"/>
                                         </td>
@@ -452,7 +452,7 @@
                 <!-- /.col-sm-11 -->
                 <div class="col-sm-1">
                     <!-- Barra de botones -->
-                    {if $_control}
+                    {if $_control && !$indicador->archivado}
                         <div id="botones" class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
                                 <a href='javascript:void(0)' title="{$smarty.const.TXT_VAL_REF_CREAR}" class="btn btn-danger" data-toggle="modal" data-target="#crear_referencia">

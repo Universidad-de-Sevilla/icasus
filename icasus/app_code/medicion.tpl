@@ -158,6 +158,26 @@
 </div>
 <!-- /Diálogo Confirmar Borrado -->
 
+<!-- Diálogo Confirmar Restaurar -->
+<div class="modal fade" id="dialogo_confirmar_restaurar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-recycle fa-fw"></i> {if $tipo == 'indicador'}{$smarty.const.TXT_INDIC_RESTAURAR}{else}{$smarty.const.TXT_DATO_RESTAURAR}{/if}: {$indicador->nombre}</h3>
+            </div>
+            <div class="modal-body">
+                <p>{if $tipo == 'indicador'}{$smarty.const.MSG_INDIC_CONFIRM_RESTAURAR}{else}{$smarty.const.MSG_DATO_CONFIRM_RESTAURAR}{/if}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href='index.php?page={$tipo}_archivar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&modulo=restaurar'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Restaurar -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -299,7 +319,7 @@
                     </div>
                     <div class="btn-group" role="group" aria-label="">
                         {if $permiso_editar}
-                            <a class="btn btn-default" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
+                            <a class="btn btn-default {if $indicador->archivado}disabled{/if}" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado">
                                 <i class="fa fa-trash fa-fw"></i>
                             </a>
                         {/if}
@@ -311,6 +331,58 @@
         <br>
         <!-- Tab panes -->
         <div class="tab-content">
+
+            <!-- Indicadores/Datos archivados -->
+            {if $indicador->archivado}
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-sm-10">
+                                        <span class="panel-title">
+                                            <i class="fa fa-archive fa-fw"></i> {if $tipo=='indicador'}{$smarty.const.TXT_INDIC_ARCHIVADO}{else}{$smarty.const.TXT_DATO_ARCHIVADO}{/if}
+                                        </span>
+                                    </div>
+                                    <!-- /.col-sm-10 -->
+                                    <div class="col-sm-2">
+                                        {if $_control || $permiso}
+                                            <a title="{if $tipo=='indicador'}{$smarty.const.TXT_INDIC_RESTAURAR}{else}{$smarty.const.TXT_DATO_RESTAURAR}{/if}" class="btn btn-danger pull-right" href='javascript:void(0)' 
+                                               data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
+                                                <i class="fa fa-recycle fa-fw"></i>
+                                            </a>
+                                        {/if}
+                                    </div>
+                                    <!-- /.col-sm-2 -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <th>{$smarty.const.FIELD_CREAC}</th>
+                                                <td>{$indicador->fecha_creacion|date_format:"%d-%m-%Y"}</td>
+                                            </tr>
+                                            <tr>
+                                                <th>{$smarty.const.FIELD_ARCHIVADO}</th>
+                                                <td>{$indicador->archivado|date_format:"%d-%m-%Y"}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.panel-body --> 
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            {/if}
+            <!-- /Indicadores/Datos archivados -->
 
             <!-- Indicadores/datos calculados -->
             {if $indicador->calculo}
@@ -435,7 +507,7 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></th>
                                     <td style="white-space:nowrap">
-                                        {if $permiso_editar == true && !$indicador->calculo}
+                                        {if $permiso_editar == true && !$indicador->calculo && !$indicador->archivado}
                                             <div>
                                                 <span id="et">
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="javascript:etiqueta_editar('{$medicion->id}', 'et', 'etiqueta');">{if $medicion->etiqueta != NULL}{$medicion->etiqueta}{else}---{/if}</a>
@@ -449,7 +521,7 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_OBSERV}</th>
                                     <td style="white-space:nowrap">
-                                        {if $permiso_editar == true}
+                                        {if $permiso_editar == true && !$indicador->archivado}
                                             <div>
                                                 <span id="ob">
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="javascript:observaciones_editar('{$medicion->id}', 'ob', 'observaciones');">{if $medicion->observaciones != ''}{$medicion->observaciones}{else}---{/if}</a>
@@ -463,7 +535,7 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_INICIO_PERIODO}</th>
                                     <td style="white-space:nowrap">
-                                        {if $permiso_editar == true && !$indicador->calculo}
+                                        {if $permiso_editar == true && !$indicador->calculo && !$indicador->archivado}
                                             <div>
                                                 <span id="pi">
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'pi');">
@@ -483,7 +555,7 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_FIN_PERIODO}</th>
                                     <td style="white-space:nowrap">
-                                        {if $permiso_editar == true && !$indicador->calculo}
+                                        {if $permiso_editar == true && !$indicador->calculo && !$indicador->archivado}
                                             <div>
                                                 <span id="pf">
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'pf');">
@@ -504,7 +576,7 @@
                                     <th>{$smarty.const.FIELD_INICIO_GRABACION}</th>
                                     <td style="white-space:nowrap">
                                         <span id="gi" data-grabacion_inicio="{$medicion->grabacion_inicio}">
-                                            {if ($permiso_unidad || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo}
+                                            {if ($permiso_unidad || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo && !$indicador->archivado}
                                                 <div>
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'gi');">
                                                         {if $medicion->grabacion_inicio}
@@ -524,7 +596,7 @@
                                     <th>{$smarty.const.FIELD_FIN_GRABACION}</th>
                                     <td style="white-space:nowrap">
                                         <span id="gf" data-grabacion_fin="{$medicion->grabacion_fin}">
-                                            {if ($permiso_unidad || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo}
+                                            {if ($permiso_unidad || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo && !$indicador->archivado}
                                                 <div>
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'gf');">
                                                         {if $medicion->grabacion_fin}
@@ -556,7 +628,7 @@
                                                     <span class="label {if strpos($valor_referencia_medicion->valor_referencia->nombre,'mite')}label-danger{else if strpos($valor_referencia_medicion->valor_referencia->nombre,'eta')}label-success{else}label-default{/if}">{$valor_referencia_medicion->valor_referencia->etiqueta}</span>
                                                 </th>
                                                 <td style="white-space:nowrap">
-                                                    {if $permiso_unidad}
+                                                    {if $permiso_unidad && !$indicador->archivado}
                                                         <div>
                                                             <span id="referencia_{$valor_referencia_medicion->id}">
                                                                 <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="referencia_editar('{$valor_referencia_medicion->id}', '{$medicion->id}');">
@@ -638,7 +710,7 @@
                                         <tr>
                                             <td><span class="label label-primary">{$valor->entidad->etiqueta}</span></td>
                                             <td>
-                                                {if $permiso_editar && !$indicador->calculo && $valor->activo}
+                                                {if $permiso_editar && !$indicador->calculo && $valor->activo && !$indicador->archivado}
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
                                                         {if $valor->valor == NULL}
                                                             ---
@@ -663,7 +735,7 @@
                                         <tr {if isset($status)}class="{$status}"{/if}>
                                             <th>{$smarty.const.FIELD_TOTAL}: {$valor->entidad->etiqueta}</th>
                                             <td>
-                                                {if $permiso_editar && !$indicador->calculo}
+                                                {if $permiso_editar && !$indicador->calculo && !$indicador->archivado}
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
                                                         {if $valor->valor!== NULL}
                                                             {if isset($status)}
@@ -739,7 +811,7 @@
                                             <tr {if isset($status)}class="{$status}"{/if}>
                                                 <th>{$smarty.const.FIELD_TOTAL}: {$entidad->etiqueta} ({$agregacion})</th>
                                                 <td>
-                                                    {if $permiso_editar && !$indicador->calculo}
+                                                    {if $permiso_editar && !$indicador->calculo && !$indicador->archivado}
                                                         <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fila_editar('{$medicion->id}', '{$valor->id}');">
                                                             {if $valor->valor!== NULL}
                                                                 {if isset($status)}

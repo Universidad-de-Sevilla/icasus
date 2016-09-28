@@ -403,23 +403,6 @@
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
-                                            {if $_control OR $_usuario->id==$dato->id_responsable}
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
-                                                    <i class="fa fa-pencil fa-fw"></i>
-                                                </a>
-                                                {if !$dato->calculo}
-                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
-                                                        <i class="fa fa-pencil-square-o fa-fw"></i> 
-                                                    </a>
-                                                {/if}
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' target="_blank">
-                                                    <i class="fa fa-user fa-fw"></i>
-                                                </a>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado"
-                                                   data-id_dato="{$dato->id}" data-nombre_dato="{$dato->nombre}" data-id_entidad="{$dato->id_entidad}">
-                                                    <i class="fa fa-trash fa-fw"></i>
-                                                </a>
-                                            {/if}
                                         </td>
                                     </tr>
                                 {/foreach}

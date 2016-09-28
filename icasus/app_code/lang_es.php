@@ -488,6 +488,7 @@ define('MSG_MED_CARGANDO', 'Cargando mediciones... espere por favor.');
 define('MSG_MED_GENERADA', 'Se ha/n generado correctamente todas la/s medición/es.');
 define('MSG_MED_EXISTE', 'Se ha/n generado sólo la/s medición/es no existente/s desde el año seleccionado.');
 define('MSG_MEDS_NO_MARCADAS', 'No se ha marcado ninguna medición para borrar.');
+define('MSG_MED_RESP_ARCHIVADO', 'No se pueden editar responsables de medición en indicadores/datos archivados. Restaure primero el indicador/dato.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
@@ -571,6 +572,7 @@ define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia
 define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" y/o "Límite" para activar el control del status por colores en las mediciones.');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 define('MSG_VALS_NO_MARCADOS', 'No se ha seleccionado ningún valor para desactivar.');
+define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en indicadores/datos archivados. Restaure primero el indicador/dato.');
 
 //Control
 define('MSG_CONTROL_INFO', 'El control de indicadores/datos se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores/datos bajo su responsabilidad o todos si también es responsable de la Unidad.');

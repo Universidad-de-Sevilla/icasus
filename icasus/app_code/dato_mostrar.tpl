@@ -195,7 +195,7 @@
 <!-- Barra de botones -->
 {if $_control || $responsable}
     <div id="botones" class="hidden">
-        <a title="{$smarty.const.TXT_DATO_EDIT}" class="btn btn-danger" href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
+        <a title="{$smarty.const.TXT_DATO_EDIT}" class="btn btn-danger {if $dato->archivado}disabled{/if}" href='index.php?page=dato_editar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
             <i class="fa fa-database fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
         </a>
         {if !$dato->archivado}
@@ -204,7 +204,7 @@
                 <i class="fa fa-archive fa-fw"></i>
             </a>
         {/if}
-        <a title="{$smarty.const.TXT_DATO_BORRAR}" class="btn btn-danger" href='javascript:void(0)' 
+        <a title="{$smarty.const.TXT_DATO_BORRAR}" class="btn btn-danger {if $dato->archivado}disabled{/if}" href='javascript:void(0)' 
            data-toggle="modal" data-target="#dialogo_confirmar_borrado">
             <i class="fa fa-trash fa-fw"></i>
         </a>
