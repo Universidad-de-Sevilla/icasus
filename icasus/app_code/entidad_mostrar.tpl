@@ -224,7 +224,7 @@
                                             <div class="row">
                                                 <div class="col-xs-12 text-center">
                                                     <i class="fa fa-gears fa-3x"></i>
-                                                    <span class="huge">{$num_procesos}</span>
+                                                    <span class="huge counter">{$num_procesos}</span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -244,7 +244,7 @@
                                             <div class="row">
                                                 <div class="col-xs-12 text-center">
                                                     <i class="fa fa-dashboard fa-3x"></i>
-                                                    <span class="huge">{$num_indicadores}</span>
+                                                    <span class="huge counter">{$num_indicadores}</span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -267,7 +267,7 @@
                                             <div class="row">
                                                 <div class="col-xs-12 text-center">
                                                     <i class="fa fa-database fa-3x"></i>
-                                                    <span class="huge">{$num_datos}</span>
+                                                    <span class="huge counter">{$num_datos}</span>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -287,7 +287,7 @@
                                             <div class="row">
                                                 <div class="col-xs-12 text-center">
                                                     <i class="fa fa-th fa-3x"></i>
-                                                    <span class="huge">{$num_cuadros}</span>
+                                                    <span class="huge counter">{$num_cuadros}</span>
                                                 </div>
                                             </div>
                                             <div class="row">

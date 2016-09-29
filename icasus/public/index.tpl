@@ -430,6 +430,10 @@
         <script src="lib/highcharts/Conjunto.js"></script>
         <script src="lib/highcharts/HighchartSerie.js"></script>
 
+        <!-- Counter Up -->
+        <script src="lib/counterup/waypoints.min.js"></script>
+        <script src="lib/counterup/jquery.counterup.min.js"></script>
+
         <!-- Custom JavaScript -->
         <script src="js/index.js"></script>
 
