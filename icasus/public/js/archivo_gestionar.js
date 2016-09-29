@@ -63,13 +63,15 @@ $(document).ready(function () {
         var id = ids[2];
         $('#id_borrar').attr('value', id);
         nombre_archivo = $('#l-titulo-' + id).attr('value');
-        $('#titulo_borrar').html(nombre_archivo);
+        $('#titulo_borrar, #titulo_borrado').html(nombre_archivo);
     });
 
     $("#borrar").click(function () {
         var id = $('[name=id_borrar]').val();
         $.post('index.php?page=archivo_gestionar_ajax&ajax=true&modulo=borrar', {id: id}, function () {
-            window.location.replace(location.href + "&exito=" + texto_borrar + ' ' + nombre_archivo);
+            $('#l-borrar-' + id).parents('tr').remove();
+            $('#dialogo_borrar').modal('hide');
+            $('#dialogo_notificar_borrado_archivo').modal('show');
         });
     });
 

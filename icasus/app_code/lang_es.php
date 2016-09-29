@@ -385,7 +385,7 @@ define('MSG_ANAPLAN_NO', 'Todavía no se ha registrado ningún análisis ni plan
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');
 define('MSG_ARCHIVO_SUBIDA_OK', 'Se ha subido correctamente el archivo.');
-define('MSG_ARCHIVO_BORRADO', 'Se ha eliminado con éxito el archivo:');
+define('MSG_ARCHIVO_BORRADO', 'Se ha eliminado con éxito el archivo.');
 define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Consulta avanzada
