@@ -287,7 +287,7 @@
                                         <i class="fa fa-pencil fa-fw"></i>
                                     </a>
                                     <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVO_DESCARGA}" href="index.php?page=archivo_descargar&id={$archivo->id}"><i class="fa fa-download fa-fw"></i></a> 
-                                    <a class="btn btn-default btn-circle btn-xs borrar_archivo" data-texto_borrar="{$smarty.const.MSG_ARCHIVO_BORRADO}" title="{$smarty.const.TXT_ARCHIVO_BORRAR}" href="javascript:void(0)" id="l-borrar-{$archivo->id}" data-toggle="modal" data-target="#dialogo_borrar">
+                                    <a class="btn btn-default btn-circle btn-xs borrar_archivo" title="{$smarty.const.TXT_ARCHIVO_BORRAR}" href="javascript:void(0)" id="l-borrar-{$archivo->id}" data-toggle="modal" data-target="#dialogo_borrar">
                                         <i class="fa fa-trash fa-fw"></i>
                                     </a>
                                 </td>           

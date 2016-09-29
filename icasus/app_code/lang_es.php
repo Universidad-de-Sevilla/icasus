@@ -567,6 +567,8 @@ define('MSG_VALS_CALCULADOS', 'Se han calculado/actualizado los valores correcta
 define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los valores marcados?');
 define('MSG_VAL_REF_NO_VALIDO', 'Valor de referencia incorrecto para la estimación actual');
 define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los valores de referencia marcados?');
+define('MSG_VAL_REF_CREADO', 'Se ha añadido correctamente el valor de referencia:');
+define('MSG_VAL_REF_EDITADO', 'Se ha editado correctamente el valor de referencia:');
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
 define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia.');
 define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" y/o "Límite" para activar el control del status por colores en las mediciones.');

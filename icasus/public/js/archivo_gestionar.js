@@ -9,7 +9,6 @@
 
 $(document).ready(function () {
 
-    var texto_borrar = $('.borrar_archivo').data('texto_borrar');
     var nombre_archivo;
 
     //Edición de archivos
