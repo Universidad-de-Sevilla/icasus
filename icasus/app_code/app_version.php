@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.30.2");
-define('IC_FECHA_REVISION', "29/09/2016");
+define('IC_VERSION', "3.31.0");
+define('IC_FECHA_REVISION', "30/09/2016");
 
+// 3.31.0 - 30/09/2016 - Se puede asociar, si se desea, un cuadro de mando a cada proceso de una unidad de manera que éstos queden vinculados (proceso y cuadro).
 // 3.30.2 - 29/09/2016 - Correcciones en ajax, js y añadido de notificaciones en la gestión de archivos y valores de referencia de indicadores/datos.
 // 3.30.1 - 29/09/2016 - Se hace una cuenta arriba de los procesos indicadores/datos y cuadros de mando cuando se accede a la ficha de una unidad (detalle visual).
 // 3.30.0 - 28/09/2016 - Se impide por seguridad modificar los indicadores/datos archivados para cualquier usuario. Si se desea hay que restaurarlo previamente.

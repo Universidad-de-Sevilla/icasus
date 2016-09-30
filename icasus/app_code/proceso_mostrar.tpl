@@ -232,6 +232,19 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th>{$smarty.const.FIELD_CUADRO_MANDO}</th>
+                                <td>
+                                    {if $proceso->id_cuadro}              
+                                        <a title="{$proceso->cuadro->nombre}" 
+                                           href="index.php?page=cuadro_mostrar&id_cuadro={$proceso->id_cuadro}&id_entidad={$proceso->id_entidad}">
+                                            {$proceso->cuadro->nombre}
+                                        </a>
+                                    {else}
+                                        ---
+                                    {/if}
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>{$smarty.const.FIELD_MISION}</th>
                                 <td> 
                                     {if $proceso->mision}

@@ -16,6 +16,7 @@ class Proceso extends ADOdb_Active_Record
     public $propietario;
     public $error; //propiedad de uso interno para almacenar los errores
     public $madre;
+    public $cuadro;
     public $entidad;
     public $indicadores = array();
 
@@ -70,6 +71,12 @@ class Proceso extends ADOdb_Active_Record
                 $madre = new Proceso();
                 $madre->load("id = $this->id_madre");
                 $this->madre = $madre;
+            }
+            if ($this->id_cuadro)
+            {
+                $cuadro = new Cuadro();
+                $cuadro->load("id = $this->id_cuadro");
+                $this->cuadro = $cuadro;
             }
             return true;
         }

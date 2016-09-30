@@ -14,6 +14,7 @@ if (filter_has_var(INPUT_POST, 'alcance') && filter_has_var(INPUT_POST, 'nombre'
 {
     $proceso = new Proceso();
     $proceso->id_madre = filter_has_var(INPUT_POST, 'madre') ? filter_input(INPUT_POST, 'madre', FILTER_SANITIZE_NUMBER_INT) : 0;
+    $proceso->id_cuadro = filter_has_var(INPUT_POST, 'cuadro') ? filter_input(INPUT_POST, 'cuadro', FILTER_SANITIZE_NUMBER_INT) : 0;
     $proceso->codigo = filter_has_var(INPUT_POST, 'codigo') ? filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_STRING) : null;
     $proceso->revision = filter_has_var(INPUT_POST, 'revision') ? filter_input(INPUT_POST, 'revision', FILTER_SANITIZE_STRING) : null;
     $fecha = filter_has_var(INPUT_POST, 'fecha_revision') ? filter_input(INPUT_POST, 'fecha_revision', FILTER_SANITIZE_STRING) : null;
@@ -44,7 +45,7 @@ if (filter_has_var(INPUT_POST, 'alcance') && filter_has_var(INPUT_POST, 'nombre'
     }
     else
     {
-        $error = $proceso->error;
+        $error = ERR_PROC_GRABAR;
         header("Location:index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
     }
 }
@@ -54,5 +55,3 @@ else
     $error = ERR_PARAM;
     header("Location:index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
 }
-
-

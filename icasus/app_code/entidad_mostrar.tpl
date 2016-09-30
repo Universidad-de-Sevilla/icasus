@@ -623,21 +623,22 @@
                             <div class="panel panel-info">
                                 <div class="panel-heading" role="tab" id="">
                                     <div class="row">
-                                        <div class="col-lg-10">
+                                        <div class="col-md-10">
                                             <h4 class="panel-title">
                                                 <a title="{$proceso->nombre}: {$proceso->mision}" role="button" data-toggle="collapse" data-parent="#accordion" href="#{$proceso->id}" aria-expanded="false" aria-controls="">
                                                     <i class="fa fa-gear fa-fw"></i> {$smarty.const.FIELD_PROC}: {$proceso->nombre}
                                                 </a>
                                             </h4>
                                         </div>
-                                        <!-- /.col-lg-10 -->
-                                        <div class="col-lg-2">
-                                            <span title="{$proceso->nombre}: {$indicadores[$proceso->id]|@count} {$smarty.const.FIELD_INDICS}" class="badge">{$indicadores[$proceso->id]|@count} {$smarty.const.FIELD_INDICS}</span>
-                                            <a class="panel-title pull-right" title="{$smarty.const.TXT_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
-                                                <i class="fa fa-folder fa-fw"></i>
-                                            </a> 
+                                        <!-- /.col-md-10 -->
+                                        <div class="col-md-2">
+                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><i class="fa fa-folder fa-fw"></i></a>
+                                                {if $proceso->id_cuadro}
+                                                <a title="{$smarty.const.FIELD_CUADRO_MANDO}" href="index.php?page=cuadro_mostrar&id_cuadro={$proceso->id_cuadro}&id_entidad={$proceso->id_entidad}"><i class="fa fa-th fa-fw"></i></a>
+                                                {/if}
+                                            <span title="{$proceso->nombre}: {$indicadores[$proceso->id]|@count} {$smarty.const.FIELD_INDICS}" class="badge pull-right">{$indicadores[$proceso->id]|@count} {$smarty.const.FIELD_INDICS}</span>
                                         </div>
-                                        <!-- /.col-lg-2 -->
+                                        <!-- /.col-md-2 -->
                                     </div>
                                     <!-- /.row -->
                                 </div>
@@ -706,18 +707,18 @@
                         <div class="panel panel-danger">
                             <div class="panel-heading" role="tab" id="">
                                 <div class="row">
-                                    <div class="col-lg-10">
+                                    <div class="col-md-10">
                                         <h4 class="panel-title">
                                             <a title="{$smarty.const.FIELD_DATOS}" role="button" data-toggle="collapse" data-parent="#accordion" href="#datos" aria-expanded="false" aria-controls="">
                                                 <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}
                                             </a>
                                         </h4>
                                     </div>
-                                    <!-- /.col-lg-10 -->
-                                    <div class="col-lg-2">
-                                        <span title="{$entidad->nombre}: {$datos|@count} {$smarty.const.FIELD_DATOS}" class="badge">{$datos|@count} {$smarty.const.FIELD_DATOS}</span> 
+                                    <!-- /.col-md-10 -->
+                                    <div class="col-md-2">
+                                        <span title="{$entidad->nombre}: {$datos|@count} {$smarty.const.FIELD_DATOS}" class="badge pull-right">{$datos|@count} {$smarty.const.FIELD_DATOS}</span> 
                                     </div>
-                                    <!-- /.col-lg-2 -->
+                                    <!-- /.col-md-2 -->
                                 </div>
                                 <!-- /.row -->
                             </div>

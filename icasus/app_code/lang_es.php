@@ -245,6 +245,7 @@ define('TXT_OBJOP_DESC', 'Descendente');
 define('TXT_PROC_TODOS', 'Todos los procesos');
 define('TXT_PROC_VER', 'Ver proceso');
 define('TXT_PROC_MAP', 'Mapa de procesos');
+define('TXT_PROC_CUADRO', 'Sin cuadro de mando asociado (opcional: seleccione un cuadro del desplegable).');
 define('TXT_PROC_MAP_EDIT', 'Agregar/editar mapa de procesos');
 define('TXT_PROC_LIST', 'Lista de procesos');
 define('TXT_PROC_ES_MADRE', 'Es un proceso madre');
