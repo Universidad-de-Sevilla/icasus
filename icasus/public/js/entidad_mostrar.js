@@ -192,3 +192,9 @@ $('#dialogo_confirmar_borrado_plan').on('show.bs.modal', function (event) {
     modal.find('#periodo_plan').text(periodo_plan);
     modal.find('#borrar').attr('href', link);
 });
+
+//Conteo de procesos, indicadores/datos, etc..
+$('.counter').counterUp({
+    delay: 10,
+    time: 1000
+});

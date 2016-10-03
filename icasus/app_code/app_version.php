@@ -1,8 +1,13 @@
 <?php
 
-define('IC_VERSION', "3.29.0");
-define('IC_FECHA_REVISION', "23/09/2016");
+define('IC_VERSION', "3.31.0");
+define('IC_FECHA_REVISION', "30/09/2016");
 
+// 3.31.0 - 30/09/2016 - Se puede asociar, si se desea, un cuadro de mando a cada proceso de una unidad de manera que éstos queden vinculados (proceso y cuadro).
+// 3.30.2 - 29/09/2016 - Correcciones en ajax, js y añadido de notificaciones en la gestión de archivos y valores de referencia de indicadores/datos.
+// 3.30.1 - 29/09/2016 - Se hace una cuenta arriba de los procesos indicadores/datos y cuadros de mando cuando se accede a la ficha de una unidad (detalle visual).
+// 3.30.0 - 28/09/2016 - Se impide por seguridad modificar los indicadores/datos archivados para cualquier usuario. Si se desea hay que restaurarlo previamente.
+// 3.29.1 - 28/09/2016 - Corregidos enlaces a los cuadros de mando en la sección de búsqueda.
 // 3.29.0 - 23/09/2016 - Se incluye la periodicidad bienal para los paneles de líneas de los cuadros de mando y se permite editar la misma.
 // 3.28.4 - 23/09/2016 - Se muestra correctamente la periodicidad bienal en las secciones gráficas y análisis de indicadores/datos.
 // 3.28.3 - 23/09/2016 - Diálogos de carga para los paneles de los cuadros de mando y también para los del resumen de una entidad. Redondeados valores en control y cambio de include_once por require_once en el controlador index.php.

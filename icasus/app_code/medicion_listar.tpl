@@ -332,7 +332,7 @@
 <div class="row">
     {if ($_control || $responsable) && !$indicador->calculo}
         <div class="col-lg-6">
-            <a title="{$smarty.const.TXT_MED_CREAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
+            <a title="{$smarty.const.TXT_MED_CREAR}" class="btn btn-danger btn-block {if $indicador->archivado}disabled{/if}" href='javascript:void(0)' 
                data-toggle="modal" data-target="#dialogo_confirmar_generar">
                 <i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}
             </a>
@@ -490,7 +490,7 @@
                 {if $mediciones && ($_control || $responsable)}
                     <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
-                            <a title="{$smarty.const.TXT_MEDS_BORRAR}" class="btn btn-default btn-danger" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_mediciones">
+                            <a title="{$smarty.const.TXT_MEDS_BORRAR}" class="btn btn-default btn-danger {if $indicador->archivado}disabled{/if}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_mediciones">
                                 <i class="fa fa-trash fa-fw"></i>
                             </a>
                         </div>
@@ -504,12 +504,8 @@
                         <div class="table-responsive">
                             <table id="tabla_mediciones" class="table datatable table-striped table-hover">
                                 <thead>
-                                    <tr>
-                                        {if $_control || $responsable}
-                                            <th>
-                                                {$smarty.const.TXT_BORRAR}
-                                            </th>
-                                        {/if}
+                                    <tr> 
+                                        <th>{$smarty.const.TXT_BORRAR}</th>
                                         <th>{$smarty.const.FIELD_ETIQUETA}</th>
                                         <th>{$smarty.const.FIELD_INICIO_PERIODO}</th>
                                         <th>{$smarty.const.FIELD_FIN_PERIODO}</th>
@@ -521,11 +517,9 @@
                                 <tbody>
                                     {foreach $mediciones as $medicion}
                                         <tr {if isset($status[$medicion->id])}class="{$status[$medicion->id]}"{/if}>
-                                            {if $_control || $responsable}
-                                                <td>
-                                                    <input type="checkbox" name='id_mediciones[]' value="{$medicion->id}"/>
-                                                </td>
-                                            {/if}
+                                            <td>
+                                                <input type="checkbox" name='id_mediciones[]' value="{$medicion->id}"/>
+                                            </td>
                                             <td>
                                                 <a title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}">{$medicion->etiqueta}</a>
                                             </td>
@@ -558,7 +552,7 @@
                                             <td>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_VER}" href="index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$medicion->id}&tipo={$tipo}"><i class="fa fa-pencil fa-fw"></i></a>
                                                     {if $_control || $responsable}
-                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado"
+                                                    <a class="btn btn-default btn-circle btn-xs {if $indicador->archivado}disabled{/if}" title="{$smarty.const.TXT_MED_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado"
                                                        data-etiqueta_medicion="{$medicion->etiqueta}" data-id_medicion="{$medicion->id}" data-tipo="{$tipo}" data-id_entidad="{$entidad->id}">
                                                         <i class="fa fa-trash fa-fw"></i>
                                                     </a>

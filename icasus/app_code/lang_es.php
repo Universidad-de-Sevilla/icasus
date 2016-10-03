@@ -245,6 +245,7 @@ define('TXT_OBJOP_DESC', 'Descendente');
 define('TXT_PROC_TODOS', 'Todos los procesos');
 define('TXT_PROC_VER', 'Ver proceso');
 define('TXT_PROC_MAP', 'Mapa de procesos');
+define('TXT_PROC_CUADRO', 'Sin cuadro de mando asociado (opcional: seleccione un cuadro del desplegable).');
 define('TXT_PROC_MAP_EDIT', 'Agregar/editar mapa de procesos');
 define('TXT_PROC_LIST', 'Lista de procesos');
 define('TXT_PROC_ES_MADRE', 'Es un proceso madre');
@@ -385,7 +386,7 @@ define('MSG_ANAPLAN_NO', 'Todavía no se ha registrado ningún análisis ni plan
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');
 define('MSG_ARCHIVO_SUBIDA_OK', 'Se ha subido correctamente el archivo.');
-define('MSG_ARCHIVO_BORRADO', 'Se ha eliminado con éxito el archivo:');
+define('MSG_ARCHIVO_BORRADO', 'Se ha eliminado con éxito el archivo.');
 define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Consulta avanzada
@@ -488,6 +489,7 @@ define('MSG_MED_CARGANDO', 'Cargando mediciones... espere por favor.');
 define('MSG_MED_GENERADA', 'Se ha/n generado correctamente todas la/s medición/es.');
 define('MSG_MED_EXISTE', 'Se ha/n generado sólo la/s medición/es no existente/s desde el año seleccionado.');
 define('MSG_MEDS_NO_MARCADAS', 'No se ha marcado ninguna medición para borrar.');
+define('MSG_MED_RESP_ARCHIVADO', 'No se pueden editar responsables de medición en indicadores/datos archivados. Restaure primero el indicador/dato.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
@@ -566,11 +568,14 @@ define('MSG_VALS_CALCULADOS', 'Se han calculado/actualizado los valores correcta
 define('MSG_VALS_CONFIRM_DESACT', '¿Desea desactivar los valores marcados?');
 define('MSG_VAL_REF_NO_VALIDO', 'Valor de referencia incorrecto para la estimación actual');
 define('MSG_VALS_REF_CONFIRM_BORRAR', '¿Desea borrar los valores de referencia marcados?');
+define('MSG_VAL_REF_CREADO', 'Se ha añadido correctamente el valor de referencia:');
+define('MSG_VAL_REF_EDITADO', 'Se ha editado correctamente el valor de referencia:');
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
 define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia.');
 define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" y/o "Límite" para activar el control del status por colores en las mediciones.');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 define('MSG_VALS_NO_MARCADOS', 'No se ha seleccionado ningún valor para desactivar.');
+define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en indicadores/datos archivados. Restaure primero el indicador/dato.');
 
 //Control
 define('MSG_CONTROL_INFO', 'El control de indicadores/datos se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores/datos bajo su responsabilidad o todos si también es responsable de la Unidad.');

@@ -10,6 +10,9 @@
 //carga inicial
 $(document).ready(function () {
     var id;
+    var texto_crear = $('#valor_nuevo_crear').data('texto_crear');
+    var texto_editar = $('#valor_editar').data('texto_editar');
+
     //Editar valores de referencia
     $("a.dialog_button").click(function () {
         var tag = $(this).attr('id');
@@ -49,7 +52,7 @@ $(document).ready(function () {
                 url: 'index.php?page=valor_referencia_ajax&ajax=true&modulo=editar',
                 data: {'id_valor': id, 'id_indicador': id_indicador, 'etiqueta': etiqueta, 'nombre': nombre, 'grafica': grafica, 'activo': activo},
                 success: function () {
-                    location.reload();
+                    window.location.replace(location.href + "&exito=" + texto_editar + ' ' + nombre);
                 }
             });
         }
@@ -96,7 +99,8 @@ $(document).ready(function () {
         }
         if (!(etiqueta === '') && !(nombre === '')) {
             $.post('index.php?page=valor_referencia_ajax&ajax=true&modulo=crear', {id_indicador: id_indicador, etiqueta: etiqueta, nombre: nombre, grafica: grafica, activo: activo}, function () {
-                location.reload();
+//                location.reload();
+                window.location.replace(location.href + "&exito=" + texto_crear + ' ' + nombre);
             });
         }
     });

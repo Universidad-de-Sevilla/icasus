@@ -158,6 +158,19 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="cuadro" class="col-sm-2 control-label">{$smarty.const.FIELD_CUADRO_MANDO}</label>
+                        <div class="col-sm-8">
+                            <select class="form-control chosen-select" name='cuadro' id='cuadro'>
+                                <option value="0">{$smarty.const.TXT_PROC_CUADRO}</option>
+                                {foreach from=$cuadros_proceso item=cuadro_proc}
+                                    <option value="{$cuadro_proc->id}">
+                                        {$cuadro_proc->nombre}
+                                    </option>
+                                {/foreach} 
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="mision" class="col-sm-2 control-label">{$smarty.const.FIELD_MISION}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="mision" name="mision" placeholder="{$smarty.const.FIELD_MISION}"></textarea>

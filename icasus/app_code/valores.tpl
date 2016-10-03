@@ -441,7 +441,7 @@
 {/if}
 <!-- /Indicadores/datos dependientes -->
 
-{if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo)}
+{if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo) && !$indicador->archivado}
     <!-- Selección de periodos a consultar -->
     <div class="row">
         <div class="col-lg-12">
@@ -507,5 +507,10 @@
     <div class="alert alert-danger alert-dismissible">
         <i class="fa fa-exclamation-circle fa-fw"></i> 
         {$smarty.const.ERR_VAL_EDIT} {$tipo}.
+    </div> 
+{else if $indicador->archivado}
+    <div class="alert alert-warning alert-dismissible">
+        <i class="fa fa-exclamation-triangle fa-fw"></i> 
+        {$smarty.const.MSG_VAL_ARCHIVADO}
     </div> 
 {/if}

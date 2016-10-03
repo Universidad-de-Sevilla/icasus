@@ -225,7 +225,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        {if $_control || $responsable}
+        {if ($_control || $responsable) && !$indicador->archivado}
             <div class="panel panel-red">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_UNIDS_MEDS_INDIC}</span>
@@ -279,6 +279,11 @@
                 <!-- /.panel-body -->        
             </div>
             <!-- /.panel -->
+        {else if $indicador->archivado}
+            <div class="alert alert-warning alert-dismissible">
+                <i class="fa fa-exclamation-triangle fa-fw"></i> 
+                {$smarty.const.MSG_MED_RESP_ARCHIVADO}
+            </div> 
         {else}
             <div class="alert alert-danger alert-dismissible">
                 <i class="fa fa-exclamation-circle fa-fw"></i> 
