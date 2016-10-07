@@ -26,6 +26,34 @@ class Util
         }
     }
 
+    //Calcula el maximo del array de valores que recibe como parámetro.
+    static function maximo(array $valores)
+    {
+        $maximo = null;
+        foreach ($valores as $valor)
+        {
+            if ($valor !== null && $valor > $maximo)
+            {
+                $maximo = $valor;
+            }
+        }
+        return $maximo;
+    }
+
+    //Calcula el sumatorio del array de valores que recibe como parámetro.
+    static function sumatorio(array $valores)
+    {
+        $suma = null;
+        foreach ($valores as $valor)
+        {
+            if ($valor !== null)
+            {
+                $suma = $suma + $valor;
+            }
+        }
+        return $suma;
+    }
+
     //Media: calcula la media de un array de valores
     static function media(array $valores)
     {
