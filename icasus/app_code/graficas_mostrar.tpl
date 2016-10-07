@@ -355,7 +355,9 @@
                               data-nombre_indicador="{$indicador->nombre}" 
                               data-periodicidad="{$panel_res->periodicidad}"
                               data-valor_min="{$indicador->valor_min}" 
-                              data-valor_max="{$indicador->valor_max}">
+                              data-valor_max="{$indicador->valor_max}"
+                              data-id_entidad="{$indicador->id_entidad}"
+                              data-agregacion="{$indicador->id_tipo_agregacion}">
                         </div>
                     </div>
                     <!-- /.panel-body -->
