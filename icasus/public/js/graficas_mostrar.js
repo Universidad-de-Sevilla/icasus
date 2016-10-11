@@ -41,6 +41,7 @@ $.ajax({
 // Guardado de datos en HighchartSerie y totales para las medias
 function onDataReceived(datos) {
     datos.forEach(function (d) {
+        //Si el indicador/dato es manual no consideramos la unidad del mismo
         if (d.etiqueta_mini && !(d.id_unidad == id_entidad && id_tipo_agregacion === 4)) {
             chartSerie.add(d);
         } else if (d.id_unidad == 0) {
