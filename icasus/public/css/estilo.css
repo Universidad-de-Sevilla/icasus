@@ -448,8 +448,8 @@ span:focus, .pagination > li > span:hover {
 }
 
 .login-panel{
-    margin-top: 10%;
-    background: rgba(255, 255, 255, 0.8);
+    /*margin-top: 10%;*/
+    background: rgba(255, 255, 255, 0.5);
     border-color:  #950717;
 }
 
@@ -461,6 +461,7 @@ span:focus, .pagination > li > span:hover {
 
 .login-panel .panel-heading h1{
     margin-top: 4%;
+    font-size: 46px;
 }
 
 .login-panel .panel-footer{
@@ -543,4 +544,13 @@ sub{
     -webkit-border-radius: 0 !important;
     -moz-border-radius: 0 !important;
     border-radius: 0 !important;
+}
+
+/*Centrado vertical*/
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
