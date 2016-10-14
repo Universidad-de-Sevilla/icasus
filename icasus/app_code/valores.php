@@ -15,8 +15,6 @@ global $plantilla;
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
-$id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-
 if (filter_has_var(INPUT_GET, 'id_indicador'))
 {
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
@@ -33,8 +31,10 @@ else
     header("location:index.php?page=error&error=$error");
 }
 
-if (isset($id_entidad))
+if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+
     $indicador = new Indicador();
     $indicador->load("id = $id_indicador");
     $smarty->assign('indicador', $indicador);
@@ -90,10 +90,49 @@ if (isset($id_entidad))
     $years = $medicion->find_year_mediciones($id_indicador);
     $smarty->assign('years', $years);
 
-    $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
+    //Simplemente ver si hay mediciones: fijamos un límite de registros
+    switch ($indicador->periodicidad)
+    {
+        //Semestral
+        case 'Semestral':
+            {
+                //Últimos 4 años
+                $limite = 8;
+                break;
+            }
+        //Cuatrimestral
+        case 'Cuatrimestral':
+            {
+                //Últimos 4 años
+                $limite = 12;
+                break;
+            }
+        //Trimestral
+        case 'Trimestral':
+            {
+                //Últimos 4 años
+                $limite = 16;
+                break;
+            }
+        //Mensual
+        case 'Mensual':
+            {
+                //Últimos 2 años
+                $limite = 24;
+                break;
+            }
+        //Bienal/Anual
+        default:
+            {
+                //Últimos 4 años
+                $limite = 4;
+            }
+    }
+
+    $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC LIMIT $limite");
     $smarty->assign('mediciones', $mediciones);
 
-    $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
+    $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id, $limite);
     $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
 
     //Vemos si influye en otros Indicadores/Datos

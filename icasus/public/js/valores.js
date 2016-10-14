@@ -149,11 +149,12 @@ $(function () {
     $('#btn_mostrar').on('click', function () {
         var inicio = $("#inicio").val();
         var fin = $("#fin").val();
+        var texto_cargando = $(this).data('texto_cargando');
         if (inicio === 0) {
             fin = 0;
         }
         var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
-        $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
+        $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_cargando + "</h4>");
         $.ajax({
             url: "index.php?page=valores_ajax&ajax=true&modulo=mostrar_valores" + parametros,
             success: function (datos) {
@@ -259,20 +260,20 @@ $(function () {
             $('#dialogo_valor_num').modal('show');
         }
     });
-});
 
-//Tablas de valores
-$('#tabla_valores').DataTable({
-    "bPaginate": false,
-    "bSort": false,
-    scrollY: "400px",
-    scrollX: true,
-    scrollCollapse: true,
-    paging: false,
-    fixedColumns: {
-        leftColumns: 2
-    },
-    dom: "<'row'<'col-sm-12'>>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-12'>>"
+    //Tablas de valores
+    $('#tabla_valores').DataTable({
+        "bPaginate": false,
+        "bSort": false,
+        scrollY: "400px",
+        scrollX: true,
+        scrollCollapse: true,
+        paging: false,
+        fixedColumns: {
+            leftColumns: 2
+        },
+        dom: "<'row'<'col-sm-12'>>" +
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-12'>>"
+    });
 });

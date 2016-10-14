@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.32.1");
+define('IC_VERSION', "3.33.0");
 define('IC_FECHA_REVISION', "14/10/2016");
 
+// 3.33.0 - 14/10/2016 - Carga limitada de registros de las mediciones en la sección de edición de valores de indicadores/datos.
 // 3.32.1 - 14/10/2016 - Mejoras de estilo: panel de login centrado vertical y horizontalmente y sticky footer.
 // 3.32.0 - 11/10/2016 - Gráficas de barras con resumen por unidad/año para indicadores/datos con periodicidad intranual.
 // 3.31.3 - 07/10/2016 - Si la unidad no tiene subunidades, no aparecen las opciones de agregación al crear/editar indicadores/datos.

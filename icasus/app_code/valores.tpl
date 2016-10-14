@@ -470,6 +470,7 @@
                         <button id="btn_mostrar"
                                 data-id_indicador="{$indicador->id}"
                                 data-id_entidad="{$entidad->id}"
+                                data-texto_cargando="{$smarty.const.MSG_MED_CARGANDO}"
                                 class="btn btn-success">
                             <i class="fa fa-search fa-fw"></i> {$smarty.const.TXT_MOSTRAR_RESUL}
                         </button>
