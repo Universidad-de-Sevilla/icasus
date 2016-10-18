@@ -23,8 +23,10 @@
 // Carga el app_config y conecta a la base de datos
 // Es necesario porque este fichero no depende del controlador principal index.php
 require_once("../app_code/app_config.php");
+//Clase Utiilidad para los cálculos
+require_once ('../class/Util.php');
 //Fichero de idioma
-include_once('../app_code/' . IC_LANG_FILE);
+require_once('../app_code/' . IC_LANG_FILE);
 
 //Conexión con la BD
 $link = mysqli_connect(IC_DB_HOST, IC_DB_LOGIN, IC_DB_CLAVE);
@@ -204,14 +206,23 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     //-----------------------------------------------------------------------------------
     // Aquí van los totales, si el indicador es calculado usamos obtener_total_calculado
     //------------------------------------------------------------------------------------
-
+    //Indicadores/datos calculados
     if ($calculo)
     {
         $totales = obtener_total_calculado($link, $id, $fecha_inicio, $fecha_fin, $periodicidad);
         $datos = array_merge($datos, $totales);
     }
+    //Indicadores/datos no calculados
     else
     {
+        $query_unidades = "SELECT MIN(mediciones.id) as id_medicion,
+		MIN(mediciones.etiqueta) as medicion,MIN(mediciones.periodo_inicio) 
+                as periodo_fin, 'Total' as unidad, 0 as id_unidad, 
+                $operador(valores.valor) as valor FROM mediciones 
+                INNER JOIN valores ON mediciones.id = valores.id_medicion 
+                WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
+
+        //Indicadores/datos con agregación de unidades manual
         if ($operador === 'MANUAL')
         {
             // Si el operador de agregado es 'manual' cogemos del tirón los valores de la unidad madre
@@ -221,15 +232,14 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
               FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
               WHERE valores.id_entidad = $id_entidad AND mediciones.id_indicador = $id AND valor IS NOT NULL";
         }
-        else
+        //Indicadores/datos con agregación de unidades manual y agregación temporal (vista anual)
+        if ($operador === 'MANUAL' && $operador_temporal !== NULL && $periodicidad == "anual")
         {
-            $query_unidades = "SELECT MIN(mediciones.id) as id_medicion,
-		MIN(mediciones.etiqueta) as medicion,MIN(mediciones.periodo_inicio) 
-                as periodo_fin, 'Total' as unidad, 0 as id_unidad, 
-                $operador(valores.valor) as valor FROM mediciones 
-                INNER JOIN valores ON mediciones.id = valores.id_medicion 
-                WHERE mediciones.id_indicador = $id AND valor IS NOT NULL";
+            //Debido a la particularidad de este caso generaremos 
+            //nuestro propio json
+            $array_manual = calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link);
         }
+
         if ($fecha_inicio > 0)
         {
             $query_unidades .= " AND mediciones.periodo_inicio >=  '$fecha_inicio'";
@@ -279,11 +289,35 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
         {
             $query_temporal = $query_unidades;
         }
-        //TODO $operador === 'MANUAL' y $operador_temporal != NULL (agregación temporal intranual) 
-        $resultado = mysqli_query($link, $query_temporal);
-        while ($registro = mysqli_fetch_assoc($resultado))
+
+        //Indicadores/datos intranuales: valores parciales unidad/año
+        if ($operador_temporal !== NULL && $periodicidad == "todos")
         {
-            $datos[] = $registro;
+            //Debido a la particularidad de este caso generaremos 
+            //nuestro propio json
+            $array_parciales = calcular_parciales_intranual($id, $operador_temporal, $link);
+            //Añadimos los datos
+            foreach ($array_parciales as $array)
+            {
+                $datos[] = $array;
+            }
+        }
+
+        //Indicadores/datos con agregación de unidades manual y agregación temporal (vista anual)
+        if ($operador === 'MANUAL' && $operador_temporal !== NULL && $periodicidad == "anual")
+        {
+            foreach ($array_manual as $array)
+            {
+                $datos[] = $array;
+            }
+        }
+        else
+        {
+            $resultado = mysqli_query($link, $query_temporal);
+            while ($registro = mysqli_fetch_assoc($resultado))
+            {
+                $datos[] = $registro;
+            }
         }
     }
 
@@ -484,4 +518,160 @@ function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fec
         $datos[] = $registro;
     }
     return $datos;
+}
+
+//Función que devuelve el array en formato json con el resultado del 
+//calculo anual en indicadores/datos manuales intranuales
+function calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link)
+{
+    $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+              UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin,
+              'Total' as unidad, 0 as id_unidad, valores.valor as valor
+              FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
+              WHERE valores.id_entidad = $id_entidad AND mediciones.id_indicador = $id "
+            . "AND valor IS NOT NULL GROUP BY YEAR(mediciones.periodo_inicio), "
+            . "MONTH(mediciones.periodo_inicio)";
+
+    $result = mysqli_query($link, $query);
+
+    //Años para los que se han recogido valores
+    $anyos = array();
+    //Valores recogidos durante un año
+    $parciales = array();
+
+    foreach ($result as $row)
+    {
+        $medicion = $row['medicion'];
+        $anyo = explode('.', $medicion)[0];
+        if ($parciales[$anyo])
+        {
+            array_push($parciales[$anyo], $row['valor']);
+        }
+        else
+        {
+            $parciales[$anyo] = array();
+            array_push($anyos, $anyo);
+            array_push($parciales[$anyo], $row['valor']);
+        }
+    }
+
+    //Totales recogidos durante un año
+    $totales = array();
+    $totales_json = array();
+    foreach ($anyos as $anyo)
+    {
+        switch ($operador_temporal)
+        {
+            case 'LAST':
+                $totales[$anyo] = $parciales[$anyo][count($parciales) - 1];
+                break;
+            case 'MAX':
+                $totales[$anyo] = Util::maximo($parciales[$anyo]);
+                break;
+            case 'SUM':
+                $totales[$anyo] = Util::sumatorio($parciales[$anyo]);
+                break;
+            case 'AVG':
+                $totales[$anyo] = Util::media($parciales[$anyo]);
+                break;
+            default:
+                break;
+        }
+        array_push($totales_json, array(
+            "id_medicion" => 0,
+            "medicion" => $anyo,
+            "periodo_fin" => mktime(0, 0, 0, 12, 31, $anyo) * 1000,
+            "unidad" => "Total",
+            "id_unidad" => "0",
+            "valor" => $totales[$anyo]
+        ));
+    }
+
+    return $totales_json;
+}
+
+//Para indicadores/datos intranuales calcula los valores parciales del año por unidad
+function calcular_parciales_intranual($id, $operador_temporal, $link)
+{
+
+    $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
+            UNIX_TIMESTAMP(MIN(mediciones.periodo_inicio))*1000 as periodo_fin,
+            entidades.etiqueta as unidad, entidades.id as id_unidad, valores.valor,
+            entidades.etiqueta_mini as etiqueta_mini
+            FROM mediciones INNER JOIN valores ON mediciones.id = valores.id_medicion
+            INNER JOIN entidades ON entidades.id = valores.id_entidad
+            WHERE mediciones.id_indicador = $id AND valor IS NOT NULL GROUP BY id_unidad, "
+            . "YEAR(mediciones.periodo_inicio), MONTH(mediciones.periodo_inicio), "
+            . "DAY(mediciones.periodo_inicio)";
+
+    //Agrupamos por unidad y año
+    $result = mysqli_query($link, $query);
+
+    //Años para los que se han recogido valores
+    $anyos = array();
+    //Unidades para las que existen valores
+    $unidades = array();
+    //Valores recogidos durante un año por unidad
+    $parciales = array();
+
+    foreach ($result as $row)
+    {
+        $medicion = $row['medicion'];
+        $id_unidad = $row['id_unidad'];
+        $anyo = explode('.', $medicion)[0];
+        if ($parciales[$anyo][$id_unidad])
+        {
+            array_push($parciales[$anyo][$id_unidad], $row['valor']);
+        }
+        else
+        {
+            $unidades[$id_unidad] = $row['etiqueta_mini'];
+            $parciales[$anyo][$id_unidad] = array();
+            array_push($anyos, $anyo);
+            array_push($parciales[$anyo][$id_unidad], $row['valor']);
+        }
+    }
+
+    //Totales recogidos durante un año por unidad
+    $totales = array();
+    $totales_json = array();
+    foreach ($anyos as $anyo)
+    {
+        foreach ($unidades as $id_unidad => $unidad)
+        {
+            //Comprobar si existen mediciones de esa unidad para ese año no procesadas
+            if ($parciales[$anyo][$id_unidad] && !$totales[$anyo][$id_unidad])
+            {
+                switch ($operador_temporal)
+                {
+
+                    case 'LAST':
+                        $totales[$anyo][$id_unidad] = $parciales[$anyo][$id_unidad][count($parciales[$anyo][$id_unidad]) - 1];
+                        break;
+                    case 'MAX':
+                        $totales[$anyo][$id_unidad] = Util::maximo($parciales[$anyo][$id_unidad]);
+                        break;
+                    case 'SUM':
+                        $totales[$anyo][$id_unidad] = Util::sumatorio($parciales[$anyo][$id_unidad]);
+                        break;
+                    case 'AVG':
+                        $totales[$anyo][$id_unidad] = Util::media($parciales[$anyo][$id_unidad]);
+                        break;
+                    default:
+                        break;
+                }
+                array_push($totales_json, array(
+                    "id_medicion" => 0,
+                    "medicion" => $anyo,
+                    "periodo_fin" => mktime(0, 0, 0, 12, 31, $anyo) * 1000,
+                    "unidad" => "Total_parcial",
+                    "etiqueta_mini" => "$unidad",
+                    "id_unidad" => $id_unidad,
+                    "valor" => $totales[$anyo][$id_unidad]
+                ));
+            }
+        }
+    }
+
+    return $totales_json;
 }

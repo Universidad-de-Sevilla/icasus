@@ -172,6 +172,11 @@ var url = document.location.toString();
 if (url.match('#')) {
     $('.nav-tabs a[href=#' + url.split('#')[1] + ']').tab('show');
 }
+//Si queremos modificar el historial para volver atrás a la misma pestaña
+//$('a[data-toggle="tab"]').click(function () {
+//    var url = document.location.toString();
+//    history.replaceState(null, '', url.split('#')[0] + $(this).attr("href"));
+//});
 
 // Comprobamos via ajax si la sesión está abierta y 
 // avisamos si no estamos en la página de login

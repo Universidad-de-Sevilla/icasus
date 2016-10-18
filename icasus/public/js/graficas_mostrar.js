@@ -23,6 +23,11 @@ if ($.isNumeric($("#container").data("valor_max"))) {
 if (valor_min === 1 && valor_max === 9) {
     tickInterval = 1;
 }
+
+//Indicadores/datos con intranuales con agregación manual de unidades
+var id_entidad = $("#container").data("id_entidad");
+var id_tipo_agregacion = $("#container").data("agregacion");
+
 // Contenedor para los datos del gráfico
 var chartSerie = new HighchartSerie();
 var totales = [];
@@ -36,7 +41,8 @@ $.ajax({
 // Guardado de datos en HighchartSerie y totales para las medias
 function onDataReceived(datos) {
     datos.forEach(function (d) {
-        if (d.etiqueta_mini) {
+        //Si el indicador/dato es manual no consideramos la unidad del mismo
+        if (d.etiqueta_mini && !(d.id_unidad == id_entidad && id_tipo_agregacion === 4)) {
             chartSerie.add(d);
         } else if (d.id_unidad == 0) {
             totales[d.medicion] = parseFloat(d.valor);
@@ -147,7 +153,7 @@ $('.highchart').each(function () {
     if (periodicidad === "anual") {
         chartSerie.categoryType = "año";
     }
-    else if (periodicidad === "bienal"){
+    else if (periodicidad === "bienal") {
         chartSerie.categoryType = "bienal";
     }
     else {

@@ -313,18 +313,20 @@
                                     {$smarty.const.TXT_MED_UNICA}
                                 </label>
                             </div>
-                            <div class="radio">
-                                <label >
-                                    <input id="tipo_seleccion_responsable" type="radio" name="tipo_seleccion_responsable" value="1" class="medicion">
-                                    {$smarty.const.TXT_MED_AGRED}
-                                </label>
-                            </div>
-                            <div class="radio">
-                                <label >
-                                    <input id="tipo_seleccion_responsable" type="radio" name="tipo_seleccion_responsable" value="2" class="medicion">
-                                    {$smarty.const.TXT_MED_AGRED_CEN}
-                                </label>
-                            </div>
+                            {if $subunidades}
+                                <div class="radio">
+                                    <label >
+                                        <input id="tipo_seleccion_responsable" type="radio" name="tipo_seleccion_responsable" value="1" class="medicion">
+                                        {$smarty.const.TXT_MED_AGRED}
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label >
+                                        <input id="tipo_seleccion_responsable" type="radio" name="tipo_seleccion_responsable" value="2" class="medicion">
+                                        {$smarty.const.TXT_MED_AGRED_CEN}
+                                    </label>
+                                </div>
+                            {/if}
                         </div>
                     </div>
                     <div id="total" title="{$smarty.const.TXT_CALCULO_TOTAL}" data-toggle="tooltip" class="form-group hidden">
@@ -340,7 +342,7 @@
                         </div>
                     </div>
                     <div id="div_unidad" class="form-group has-feedback">
-                        <label for="lista_subunidades" class="col-sm-2 control-label">{$smarty.const.FIELD_SUBUNIDS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="lista_subunidades" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
                         <div class="col-sm-8">
                             <div class="checkbox">
                                 <label>

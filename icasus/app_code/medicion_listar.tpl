@@ -331,22 +331,30 @@
 <!-- Barra de botones -->
 <div class="row">
     {if ($_control || $responsable) && !$indicador->calculo}
-        <div class="col-lg-6">
-            <a title="{$smarty.const.TXT_MED_CREAR}" class="btn btn-danger btn-block {if $indicador->archivado}disabled{/if}" href='javascript:void(0)' 
-               data-toggle="modal" data-target="#dialogo_confirmar_generar">
-                <i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}
-            </a>
-        </div>
-        <!-- /.col-lg-6 -->
-        <div class="col-lg-6">
-            {if $mediciones}
+        {if $mediciones}
+            <div class="col-lg-6">
+                <a title="{$smarty.const.TXT_MED_CREAR}" class="btn btn-danger btn-block {if $indicador->archivado}disabled{/if}" href='javascript:void(0)' 
+                   data-toggle="modal" data-target="#dialogo_confirmar_generar">
+                    <i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}
+                </a>
+            </div>
+            <!-- /.col-lg-6 -->
+            <div class="col-lg-6">
                 <a title="{$smarty.const.TXT_MED_CARGAR}" class="btn btn-danger btn-block" href='javascript:void(0)' 
                    accesskey=""data-toggle="modal" data-target="#dialogo_confirmar_cargar">
                     <i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-arrow-circle-up fa-fw"></sub> {$smarty.const.TXT_MED_CARGAR}
                 </a>
-            {/if}
-        </div>
-        <!-- /.col-lg-6 -->
+            </div>
+            <!-- /.col-lg-6 -->
+        {else}
+            <div class="col-lg-12">
+                <a title="{$smarty.const.TXT_MED_CREAR}" class="btn btn-danger btn-block {if $indicador->archivado}disabled{/if}" href='javascript:void(0)' 
+                   data-toggle="modal" data-target="#dialogo_confirmar_generar">
+                    <i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}
+                </a>
+            </div>
+            <!-- /.col-lg-12 -->
+        {/if}
     {else}
         <div class="col-lg-12">
             {if $mediciones}
@@ -586,7 +594,7 @@
         <div class="col-lg-12">
             <div class="panel panel-red">
                 <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA} ({$smarty.const.TXT_ANUAL}: {$smarty.const.TXT_DESDE} {$anyo_inicio})</span>
+                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA}: {$smarty.const.FIELD_UNID}/{$smarty.const.FIELD_ANYO} {if $mediciones}({$smarty.const.TXT_DESDE} {$anyo_inicio}){/if}</span>
                     <i class="fa fa-chevron-up pull-right clickable"></i>
                 </div>
                 <!-- /.panel-heading -->
@@ -704,7 +712,7 @@
         <div class="col-lg-12">
             <div class="panel panel-red">
                 <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite>=$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.TXT_DE} {$total_registros} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
+                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA}: {$smarty.const.FIELD_UNID}/{$smarty.const.FIELD_MED} {if $mediciones}({$smarty.const.TXT_MOSTRANDO}: {if $limite>=$total_registros}{$smarty.const.TXT_REGS_TODOS}{else}{$limite} {$smarty.const.TXT_DE} {$total_registros} {$smarty.const.FIELD_REGISTROS}{/if}){/if}</span>
                     <i class="fa fa-chevron-up pull-right clickable"></i>
                 </div>
                 <!-- /.panel-heading -->

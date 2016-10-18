@@ -338,7 +338,7 @@
                                             </td>
                                             <td>{$cuadro->comentarios}</td>
                                             <td>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->entidad->id}"><i class="fa fa-eye fa-fw"></i></a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->entidad->id}"><i class="fa fa-th fa-fw"></i></a>
                                             </td>
                                         </tr>
                                     {/foreach}

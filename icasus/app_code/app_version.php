@@ -1,8 +1,14 @@
 <?php
 
-define('IC_VERSION', "3.31.0");
-define('IC_FECHA_REVISION', "30/09/2016");
+define('IC_VERSION', "3.33.0");
+define('IC_FECHA_REVISION', "14/10/2016");
 
+// 3.33.0 - 14/10/2016 - Carga limitada de registros de las mediciones en la sección de edición de valores de indicadores/datos.
+// 3.32.1 - 14/10/2016 - Mejoras de estilo: panel de login centrado vertical y horizontalmente y sticky footer.
+// 3.32.0 - 11/10/2016 - Gráficas de barras con resumen por unidad/año para indicadores/datos con periodicidad intranual.
+// 3.31.3 - 07/10/2016 - Si la unidad no tiene subunidades, no aparecen las opciones de agregación al crear/editar indicadores/datos.
+// 3.31.2 - 07/10/2016 - En las gráficas de barras para indicadores/datos con agregación manual ya no aparece la unidad madre (se refleja como total, como ocurre en los demás tipos de agregación).
+// 3.31.1 - 07/10/2016 - Correcciones en las mediciones y en los gráficos: se muestran correctamente los indicadores/datos intranuales con agregacion por unidades manual.
 // 3.31.0 - 30/09/2016 - Se puede asociar, si se desea, un cuadro de mando a cada proceso de una unidad de manera que éstos queden vinculados (proceso y cuadro).
 // 3.30.2 - 29/09/2016 - Correcciones en ajax, js y añadido de notificaciones en la gestión de archivos y valores de referencia de indicadores/datos.
 // 3.30.1 - 29/09/2016 - Se hace una cuenta arriba de los procesos indicadores/datos y cuadros de mando cuando se accede a la ficha de una unidad (detalle visual).
