@@ -559,32 +559,32 @@ function calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link)
     //Totales recogidos durante un año
     $totales = array();
     $totales_json = array();
-    foreach ($anyos as $anyo)
+    foreach ($anyos as $a)
     {
         switch ($operador_temporal)
         {
             case 'LAST':
-                $totales[$anyo] = $parciales[$anyo][count($parciales) - 1];
+                $totales[$a] = $parciales[$a][count($parciales) - 1];
                 break;
             case 'MAX':
-                $totales[$anyo] = Util::maximo($parciales[$anyo]);
+                $totales[$a] = Util::maximo($parciales[$a]);
                 break;
             case 'SUM':
-                $totales[$anyo] = Util::sumatorio($parciales[$anyo]);
+                $totales[$a] = Util::sumatorio($parciales[$a]);
                 break;
             case 'AVG':
-                $totales[$anyo] = Util::media($parciales[$anyo]);
+                $totales[$a] = Util::media($parciales[$a]);
                 break;
             default:
                 break;
         }
         array_push($totales_json, array(
             "id_medicion" => 0,
-            "medicion" => $anyo,
-            "periodo_fin" => mktime(0, 0, 0, 12, 31, $anyo) * 1000,
+            "medicion" => $a,
+            "periodo_fin" => mktime(0, 0, 0, 12, 31, $a) * 1000,
             "unidad" => "Total",
             "id_unidad" => "0",
-            "valor" => $totales[$anyo]
+            "valor" => $totales[$a]
         ));
     }
 
@@ -637,39 +637,39 @@ function calcular_parciales_intranual($id, $operador_temporal, $link)
     //Totales recogidos durante un año por unidad
     $totales = array();
     $totales_json = array();
-    foreach ($anyos as $anyo)
+    foreach ($anyos as $a)
     {
         foreach ($unidades as $id_unidad => $unidad)
         {
             //Comprobar si existen mediciones de esa unidad para ese año no procesadas
-            if ($parciales[$anyo][$id_unidad] && $totales[$anyo][$id_unidad] == NULL)
+            if ($parciales[$a][$id_unidad] && $totales[$a][$id_unidad] == NULL)
             {
                 switch ($operador_temporal)
                 {
 
                     case 'LAST':
-                        $totales[$anyo][$id_unidad] = $parciales[$anyo][$id_unidad][count($parciales[$anyo][$id_unidad]) - 1];
+                        $totales[$a][$id_unidad] = $parciales[$a][$id_unidad][count($parciales[$a][$id_unidad]) - 1];
                         break;
                     case 'MAX':
-                        $totales[$anyo][$id_unidad] = Util::maximo($parciales[$anyo][$id_unidad]);
+                        $totales[$a][$id_unidad] = Util::maximo($parciales[$a][$id_unidad]);
                         break;
                     case 'SUM':
-                        $totales[$anyo][$id_unidad] = Util::sumatorio($parciales[$anyo][$id_unidad]);
+                        $totales[$a][$id_unidad] = Util::sumatorio($parciales[$a][$id_unidad]);
                         break;
                     case 'AVG':
-                        $totales[$anyo][$id_unidad] = Util::media($parciales[$anyo][$id_unidad]);
+                        $totales[$a][$id_unidad] = Util::media($parciales[$a][$id_unidad]);
                         break;
                     default:
                         break;
                 }
                 array_push($totales_json, array(
                     "id_medicion" => 0,
-                    "medicion" => $anyo,
-                    "periodo_fin" => mktime(0, 0, 0, 12, 31, $anyo) * 1000,
+                    "medicion" => $a,
+                    "periodo_fin" => mktime(0, 0, 0, 12, 31, $a) * 1000,
                     "unidad" => "Total_parcial",
                     "etiqueta_mini" => "$unidad",
                     "id_unidad" => $id_unidad,
-                    "valor" => $totales[$anyo][$id_unidad]
+                    "valor" => $totales[$a][$id_unidad]
                 ));
             }
         }
