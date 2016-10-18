@@ -542,7 +542,8 @@ function calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link)
     foreach ($result as $row)
     {
         $medicion = $row['medicion'];
-        $anyo = explode('.', $medicion)[0];
+        $anyo_intra = explode('.', $medicion);
+        $anyo = $anyo_intra[0];
         if ($parciales[$anyo])
         {
             array_push($parciales[$anyo], $row['valor']);
@@ -618,7 +619,8 @@ function calcular_parciales_intranual($id, $operador_temporal, $link)
     {
         $medicion = $row['medicion'];
         $id_unidad = $row['id_unidad'];
-        $anyo = explode('.', $medicion)[0];
+        $anyo_intra = explode('.', $medicion);
+        $anyo = $anyo_intra[0];
         if ($parciales[$anyo][$id_unidad])
         {
             array_push($parciales[$anyo][$id_unidad], $row['valor']);
