@@ -90,7 +90,7 @@ function get_indicadores_panel($link, $id)
     {
         $datos[] = $registro;
     }
-    $datos = json_encode($datos);
+    $datos = json_encode($datos, JSON_UNESCAPED_UNICODE);
     echo $datos;
 }
 
@@ -108,7 +108,7 @@ function get_subunidades_indicador($link, $id)
     {
         $datos[] = $registro;
     }
-    $datos = json_encode($datos);
+    $datos = json_encode($datos, JSON_UNESCAPED_UNICODE);
     echo $datos;
 }
 
@@ -204,15 +204,16 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     }
 
     //-----------------------------------------------------------------------------------
-    // Aquí van los totales, si el indicador es calculado usamos obtener_total_calculado
+    // Aquí van los totales, si el indicador es calculado por herencia 
+    // usamos obtener_total_calculado
     //------------------------------------------------------------------------------------
-    //Indicadores/datos calculados
-    if ($calculo)
+    //Indicadores/datos calculados con herencia
+    if ($operador === 'INHERIT')
     {
         $totales = obtener_total_calculado($link, $id, $fecha_inicio, $fecha_fin, $periodicidad);
         $datos = array_merge($datos, $totales);
     }
-    //Indicadores/datos no calculados
+    //Indicadores/datos no calculados con herencia
     else
     {
         $query_unidades = "SELECT MIN(mediciones.id) as id_medicion,
@@ -388,7 +389,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     }
 
     // Convertimos las tres 'tacadas' de datos a json
-    if ($datos = json_encode($datos))
+    if ($datos = json_encode($datos, JSON_UNESCAPED_UNICODE))
     {
         echo $datos;
     }
@@ -462,7 +463,8 @@ function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin
             "id_medicion" => (int) $totales[$id_indicador_parcial][$i]['id_medicion'],
             "medicion" => (int) $totales[$id_indicador_parcial][$i]['medicion'],
             "periodo_fin" => (int) $totales[$id_indicador_parcial][$i]['periodo_fin'],
-            "unidad" => "Total", "id_unidad" => 0,
+            "unidad" => "Total",
+            "id_unidad" => 0,
             "valor" => $total_calculado);
     }
     return $totales_calculados;
@@ -477,6 +479,12 @@ function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fec
     $resultado = mysqli_query($link, $query);
     $registro = mysqli_fetch_assoc($resultado);
     $operador = $registro['operador'];
+
+    //TODO: si el indicador/dato es calculado o de agregación manual
+    if ($operador === 'INHERIT' || $operador === 'MANUAL')
+    {
+        $operador = NULL;
+    }
 
     // Aquí vienen los totales
     $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
@@ -671,7 +679,7 @@ function calcular_intranual($id, $operador_temporal, $link)
         }
     }
 
-    //TODO Totales anuales centralizados
+//TODO: Totales anuales centralizados
 //    $totalcentral = array();
 //    $parcialcentral = array();
 //    $mediciones = array();
