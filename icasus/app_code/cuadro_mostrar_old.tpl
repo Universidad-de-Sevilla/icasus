@@ -18,92 +18,6 @@
 </div>
 <!-- /Diálogo Confirmar Borrado cuadro -->
 
-<!-- Diálogo Crear panel -->
-<div class="modal fade" id="dialogo_crear_panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_PANEL_CREAR}</h3>
-            </div>
-            <div class="modal-body">
-                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_LINEAS}: {$smarty.const.TXT_LINEAS_DESC}" onclick="$('#tab_lineas a').trigger('click');">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <i class="fa fa-line-chart fa-2x"></i>
-                            </div>
-                            <div class="col-xs-11">
-                                <strong>{$smarty.const.TXT_LINEAS}:</strong> {$smarty.const.TXT_LINEAS_DESC}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.panel -->
-                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_BARRAS}: {$smarty.const.TXT_BARRAS_DESC}" onclick="$('#tab_barras a').trigger('click');">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <i class="fa fa-bar-chart fa-2x"></i>
-                            </div>
-                            <div class="col-xs-11">
-                                <strong>{$smarty.const.TXT_BARRAS}:</strong> {$smarty.const.TXT_BARRAS_DESC}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.panel -->
-                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_MIXTO}: {$smarty.const.TXT_MIXTO_DESC}" onclick="$('#tab_metrica a').trigger('click');">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <span class="fa-stack fa-1x">
-                                    <i class="fa fa-line-chart fa-stack-2x"></i>
-                                    <i class="fa fa-bar-chart fa-stack-2x"></i>
-                                </span>
-                            </div>
-                            <div class="col-xs-11">
-                                <strong>{$smarty.const.TXT_MIXTO}:</strong> {$smarty.const.TXT_MIXTO_DESC}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.panel -->
-                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_TARTA}: {$smarty.const.TXT_TARTA_DESC}" onclick="$('#tab_tarta a').trigger('click');">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <i class="fa fa-pie-chart fa-2x"></i>
-                            </div>
-                            <div class="col-xs-11">
-                                <strong>{$smarty.const.TXT_TARTA}:</strong> {$smarty.const.TXT_TARTA_DESC}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.panel -->
-                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_TABLA}: {$smarty.const.TXT_TABLA_DESC}" onclick="$('#tab_tabla_multi a').trigger('click');">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-1">
-                                <i class="fa fa-table fa-2x"></i>
-                            </div>
-                            <div class="col-xs-11">
-                                <strong>{$smarty.const.TXT_TABLA}:</strong> {$smarty.const.TXT_TABLA_DESC}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.panel -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- /Diálogo Crear panel -->
-
 <!-- Diálogo Confirmar Borrado panel -->
 <div class="modal fade" id="dialogo_borrado_panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -265,7 +179,7 @@
         <div class="col-lg-12">
             <div class="btn-toolbar" role="toolbar" aria-label="">
                 <div class="btn-group" role="group" aria-label="">
-                    <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_PANEL_CREAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_crear_panel">
+                    <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_PANEL_CREAR}" href='index.php?page=panel_crear&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                         <i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
                 </div>
                 <div class="btn-group pull-right" role="group" aria-label="">    
@@ -313,7 +227,7 @@
                             <!-- /.col-xs-8 -->
                             <div class="col-xs-4">
                                 <div class="btn-toolbar pull-right" role="group" aria-label="">
-                                    {* Sólo paneles que no sean de tipo tabla*}
+                                    {* Sólo paneles que no sean de tabla múltiple*}
                                     {if $panel->id_paneltipo != 6}
                                         <button type="button" title="{$smarty.const.TXT_PANEL_INDICS}" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-dashboard fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -343,6 +257,9 @@
                         <!-- /.row --> 
                         <div class="row">
                             <div class="col-xs-12">
+                                {if $_usuario->id eq $cuadro->id_usuario || $_control}
+                                    <span title="{$smarty.const.FIELD_ANCHO}: {$panel->ancho}" class="label label-default">{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
+                                {/if}
                                 {if $panel->tipo->id == 2 || $panel->tipo->id == 3 || $panel->tipo->id == 4}
                                     {$smarty.const.TXT_GRAFICO_AUMENTAR} 
                                 {/if}

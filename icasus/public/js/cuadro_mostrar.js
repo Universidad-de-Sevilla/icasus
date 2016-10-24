@@ -200,8 +200,8 @@ $('.panel_linea').each(function () {
     });
 });
 
-//Paneles de barras
-$(".panel_barra").each(function () {
+//Paneles mixtos: barras y líneas
+$(".panel_mixto").each(function () {
     var contenedor = $(this).attr('id');
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
@@ -543,8 +543,8 @@ $(".panel_tarta").each(function () {
     });
 });
 
-//Paneles de tabla
-$(".panel_tabla").each(function () {
+//Paneles de tabla simple
+$(".panel_tabla_simple").each(function () {
     var id_panel = $(this).data("id_panel");
     var anyos_atras = $(this).data("anyos_atras");
     var anyo_fin = new Date().getFullYear() - 1;
@@ -605,9 +605,8 @@ $(".panel_tabla").each(function () {
     });
 });
 
-//Paneles de tabla multi
-//Se usa en "la biblioteca en cifras" y en datos Rebiun
-$(".panel_tabla_multi").each(function () {
+//Paneles de tabla
+$(".panel_tabla").each(function () {
     var anyos_atras = $(this).data("anyos_atras");
     var anyo_fin = $(this).data("anyo_fin");
     var anyo_inicio = anyo_fin - anyos_atras;

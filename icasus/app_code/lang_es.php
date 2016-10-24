@@ -305,19 +305,17 @@ define('TXT_ESTRATEGICO', '1-Estratégico');
 define('TXT_OPERATIVO', '2-Operativo');
 define('TXT_APOYO', '3-Apoyo');
 
-//Tipos de Representaciones Gráficas
-define('TXT_BARRAS', 'Barras');
-define('TXT_BARRAS_DESC', 'Puede mostrar varios grupos de indicadores/datos para una subunidad determinada en forma de barras.');
+//Tipos de Representaciones Gráficas: paneles
 define('TXT_LINEAS', 'Líneas');
 define('TXT_LINEAS_DESC', 'Muestra varios indicadores/datos para distintas subunidades como gráfica de líneas.');
+define('TXT_BARRAS', 'Barras');
+define('TXT_BARRAS_DESC', 'Muestra varios indicadores/datos para distintas subunidades como gráfica de barras.');
+define('TXT_MIXTO', 'Mixto');
+define('TXT_MIXTO_DESC', 'Muestra un indicador/dato base como gráfica de barras y el resto de indicadores/datos complementarios como gráficas de líneas.');
 define('TXT_TABLA', 'Tabla');
-define('TXT_TABLA_MULTI', 'Tabla múltiple');
-define('TXT_TABLA_MULTI_DESC', 'Tabla que muestra varios indicadores/datos y su evolución total o de una subunidad concreta para un período dado.');
-define('TXT_TABLA_DESC', 'Puede mostrar un indicador/dato con sus mediciones para una subunidad en forma de tabla de datos.');
+define('TXT_TABLA_DESC', 'Tabla que muestra varios indicadores/datos y su evolución total o de una subunidad concreta para un período dado.');
 define('TXT_TARTA', 'Tarta');
 define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador/dato entre las subunidades afectadas como gráfica de tarta.');
-define('TXT_METRICA', 'Métrica');
-define('TXT_METRICA_DESC', 'Muestra una medición puntual para una unidad y un indicador/dato en forma de dígitos.');
 
 //Usuarios
 define('TXT_USERS_ASIGNAR', 'Asignar usuarios marcados');
