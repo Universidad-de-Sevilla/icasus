@@ -27,7 +27,7 @@
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_PANEL_CREAR}</h3>
             </div>
             <div class="modal-body">
-                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_LINEAS}: {$smarty.const.TXT_LINEAS_DESC}" onclick="$('#tab_lineas a').trigger('click');">
+                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_LINEAS}: {$smarty.const.TXT_LINEAS_DESC}" onclick="location.href = 'index.php?page=panel_linea&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-1">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <!-- /.panel -->
-                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_BARRAS}: {$smarty.const.TXT_BARRAS_DESC}" onclick="$('#tab_barras a').trigger('click');">
+                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_BARRAS}: {$smarty.const.TXT_BARRAS_DESC}" onclick="location.href = 'index.php?page=panel_barra&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-1">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <!-- /.panel -->
-                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_MIXTO}: {$smarty.const.TXT_MIXTO_DESC}" onclick="$('#tab_metrica a').trigger('click');">
+                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_MIXTO}: {$smarty.const.TXT_MIXTO_DESC}" onclick="location.href = 'index.php?page=panel_mixto&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-1">
@@ -69,7 +69,7 @@
                     </div>
                 </div>
                 <!-- /.panel -->
-                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_TARTA}: {$smarty.const.TXT_TARTA_DESC}" onclick="$('#tab_tarta a').trigger('click');">
+                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_TARTA}: {$smarty.const.TXT_TARTA_DESC}" onclick="location.href = 'index.php?page=panel_tarta&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-1">
@@ -82,7 +82,7 @@
                     </div>
                 </div>
                 <!-- /.panel -->
-                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_TABLA}: {$smarty.const.TXT_TABLA_DESC}" onclick="$('#tab_tabla_multi a').trigger('click');">
+                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_TABLA}: {$smarty.const.TXT_TABLA_DESC}" onclick="location.href = 'index.php?page=panel_tabla&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-1">
@@ -359,6 +359,7 @@
                              data-titulo_panel ="{$panel->nombre}"
                              data-id_medicion="{$panel->id_medicion}" 
                              data-anyos_atras="{$panel->anyos_atras}"
+                             data-anyo_inicio="{$panel->anyo_inicio}"
                              data-anyo_fin="{$panel->anyo_fin}"
                              data-periodicidad="{$panel->periodicidad}">
                         </div>

@@ -30,6 +30,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
     $panel->id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_SANITIZE_STRING) : "todos";
     $panel->anyos_atras = filter_has_var(INPUT_POST, 'anyos_atras') ? filter_input(INPUT_POST, 'anyos_atras', FILTER_SANITIZE_NUMBER_INT) : null;
+    $panel->anyo_inicio = filter_has_var(INPUT_POST, 'anyo_inicio') ? filter_input(INPUT_POST, 'anyo_inicio', FILTER_SANITIZE_NUMBER_INT) : null;
     $panel->anyo_fin = filter_has_var(INPUT_POST, 'anyo_fin') ? filter_input(INPUT_POST, 'anyo_fin', FILTER_SANITIZE_NUMBER_INT) : null;
 
     //Guardamos los datos genéricos y comprobamos el tipo del panel

@@ -85,7 +85,15 @@ define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
 define('TXT_PANEL_CREAR', 'Crear panel');
 define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
+define('TXT_PANEL_NORMAL', 'Normal');
+define('TXT_PANEL_GRANDE', 'Grande');
+define('TXT_PANEL_DATOS', 'Datos del panel');
+define('TXT_PANEL_VENTANA', 'Ventana de tiempo');
+define('TXT_PANEL_VENTANA_DESC', 'Establece una ventana temporal para el panel. - Variable: periodo variable, finaliza en el año actual y comienza en un número fijo de años hacia atrás. - Fija: periodo fijo, con un año de inicio y otro de fin. ');
+define('TXT_PANEL_VENTANA_FIJA', 'Fija');
+define('TXT_PANEL_VENTANA_VAR', 'Variable');
 define('TXT_PANEL_INDICS', 'Indicadores/datos del panel');
+define('TXT_PANEL_INCLUIR', 'Añadir indicador/dato al panel');
 
 //Datos
 define('TXT_DATO_TODOS', 'Todos los datos');
@@ -290,6 +298,7 @@ define('TXT_ELEG_UNO', 'Elegir uno si procede');
 define('TXT_HISTORICO', 'Histórico');
 define('TXT_BIENAL', 'Bienal');
 define('TXT_ANUAL', 'Anual');
+define('TXT_INTRANUAL', 'Intranual');
 define('TXT_MENSUAL', 'Mensual');
 define('TXT_TRIMESTRAL', 'Trimestral');
 define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
@@ -307,15 +316,15 @@ define('TXT_APOYO', '3-Apoyo');
 
 //Tipos de Representaciones Gráficas: paneles
 define('TXT_LINEAS', 'Líneas');
-define('TXT_LINEAS_DESC', 'Muestra varios indicadores/datos para distintas subunidades como gráfica de líneas.');
+define('TXT_LINEAS_DESC', 'Muestra varios indicadores/datos para distintas unidades como gráfica de líneas.');
 define('TXT_BARRAS', 'Barras');
-define('TXT_BARRAS_DESC', 'Muestra varios indicadores/datos para distintas subunidades como gráfica de barras.');
+define('TXT_BARRAS_DESC', 'Muestra varios indicadores/datos para distintas unidades como gráfica de barras.');
 define('TXT_MIXTO', 'Mixto');
 define('TXT_MIXTO_DESC', 'Muestra un indicador/dato base como gráfica de barras y el resto de indicadores/datos complementarios como gráficas de líneas.');
 define('TXT_TABLA', 'Tabla');
-define('TXT_TABLA_DESC', 'Tabla que muestra varios indicadores/datos y su evolución total o de una subunidad concreta para un período dado.');
+define('TXT_TABLA_DESC', 'Tabla que muestra varios indicadores/datos y su evolución total o de una unidad concreta para un período dado.');
 define('TXT_TARTA', 'Tarta');
-define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador/dato entre las subunidades afectadas como gráfica de tarta.');
+define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador/dato entre las unidades afectadas como gráfica de tarta.');
 
 //Usuarios
 define('TXT_USERS_ASIGNAR', 'Asignar usuarios marcados');
@@ -401,6 +410,7 @@ define('MSG_CUADRO_CREADO', 'Se ha creado un nuevo cuadro de mando.');
 define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
 define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿está seguro?');
 //Paneles de los Cuadros de Mando
+define('MSG_PANEL_INDIC_UNID', 'Seleccione la unidad del indicador/dato para la que desea ver sus valores:');
 define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando este panel, ¿está seguro?');
 define('MSG_PANEL_BORRADO', 'Se ha eliminado con éxito el panel seleccionado.');
 define('MSG_PANEL_CARGANDO', 'Cargando paneles, por favor espere.');
