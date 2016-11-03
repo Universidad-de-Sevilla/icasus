@@ -24,7 +24,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_PANEL_CREAR}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_PANEL_CREAR}: {$smarty.const.TXT_PANEL_TIPO}</h3>
             </div>
             <div class="modal-body">
                 <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_LINEAS}: {$smarty.const.TXT_LINEAS_DESC}" onclick="location.href = 'index.php?page=panel_linea&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">

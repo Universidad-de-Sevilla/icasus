@@ -81,9 +81,45 @@
 {else}
     <!-- Nombre página -->
     <div class="row">
-        <div class="col-lg-12">     
+        <div class="col-lg-12">
             <h3 title="{$_nombre_pagina}" class="page-header">
-                <i class="fa fa-line-chart fa-fw"></i> {$_nombre_pagina}
+                <div class="row">
+                    <div class="col-sm-11">
+                        <i class="fa fa-line-chart fa-fw"></i> {$_nombre_pagina}
+                    </div>
+                    <!-- /.col-sm-11 -->
+                    <!-- Tipos de panel -->                 
+                    <div class="col-sm-1">
+                        <button type="button" title="{$smarty.const.TXT_PANEL_TIPO}" class="btn btn-danger btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-columns fa-fw"></i> <i class="fa fa-caret-down"></i>
+                        </button>
+                        <ul id="paneles_tipos" class="dropdown-menu">
+                            <li class="active">
+                                <a title="{$smarty.const.TXT_LINEAS}"><i class="fa fa-line-chart fa-fw"></i> <span>{$smarty.const.TXT_LINEAS}</span></a>
+                            </li>
+                            <li>
+                                <a title="{$smarty.const.TXT_BARRAS}" href='index.php?page=panel_barra&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-bar-chart fa-fw"></i> {$smarty.const.TXT_BARRAS}</a>
+                            </li>
+                            <li>
+                                <a title="{$smarty.const.TXT_MIXTO}" href='index.php?page=panel_mixto&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
+                                    <span class="fa-stack fa-1x">
+                                        <i class="fa fa-line-chart fa-stack-1x"></i>
+                                        <i class="fa fa-bar-chart fa-stack-1x"></i>
+                                    </span> {$smarty.const.TXT_MIXTO}
+                                </a>
+                            </li>
+                            <li>
+                                <a title="{$smarty.const.TXT_TARTA}" href='index.php?page=panel_tarta&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-pie-chart fa-fw"></i> {$smarty.const.TXT_TARTA}</a>
+                            </li>
+                            <li>
+                                <a title="{$smarty.const.TXT_TABLA}" href='index.php?page=panel_tabla&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.col-sm-1 -->                 
+                    <!-- /Tipos de panel -->
+                </div>
+                <!-- /.row -->
             </h3>
         </div>
         <!-- /.col-lg-12 -->
@@ -149,38 +185,6 @@
     </div>
     <!-- /.row -->
     <!-- /Breadcrumbs -->
-
-    <!-- Menú de paneles 
-    <div class="row">
-        <div class="col-lg-12">
-            <ul class="nav nav-pills h4 nav-justified">
-                <li role="presentation" class="active">
-                    <a title="{$smarty.const.TXT_LINEAS}" href="#"><i class="fa fa-line-chart fa-fw"></i> {$smarty.const.TXT_LINEAS}</a>
-                </li>
-                <li role="presentation">
-                    <a title="{$smarty.const.TXT_BARRAS}" href='index.php?page=panel_barra&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-bar-chart fa-fw"></i> {$smarty.const.TXT_BARRAS}</a>
-                </li>
-                <li role="presentation">
-                    <a title="{$smarty.const.TXT_MIXTO}" href='index.php?page=panel_mixto&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
-                        <span class="fa-stack fa-1x">
-                            <i class="fa fa-line-chart fa-stack-1x"></i>
-                            <i class="fa fa-bar-chart fa-stack-1x"></i>
-                        </span> {$smarty.const.TXT_MIXTO}
-                    </a>
-                </li>
-                <li role="presentation">
-                    <a title="{$smarty.const.TXT_TARTA}" href='index.php?page=panel_tarta&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-pie-chart fa-fw"></i> {$smarty.const.TXT_TARTA}</a>
-                </li>
-                <li role="presentation">
-                    <a title="{$smarty.const.TXT_TABLA}" href='index.php?page=panel_tabla&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a>
-                </li>
-            </ul>
-        </div>
-    <!-- /.col-lg-12 
-</div>
-    <!-- /.row 
-    <br>
-    <!-- /Menú de paneles -->
 
     <div class="row">
         <div class="col-lg-12">

@@ -83,6 +83,7 @@ define('TXT_CUADRO_EDIT', 'Editar cuadro de mando');
 define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
 //Paneles de los Cuadros de Mando
 define('TXT_PANEL_CREAR', 'Crear panel');
+define('TXT_PANEL_TIPO', 'Tipo de panel');
 define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
 define('TXT_PANEL_NORMAL', 'Normal');

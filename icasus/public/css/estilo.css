@@ -518,6 +518,16 @@ span:focus, .pagination > li > span:hover {
     background-color: #ddd;
 }
 
+/*Creacion de paneles*/
+#paneles_tipos {
+    min-width: 60px;
+    right: auto;
+}
+
+#paneles_tipos .fa-stack{
+    width: 18px;
+}
+
 /*Datatables*/
 .dt-button-collection.dropdown-menu{
     border-color: #ccc !important;

@@ -71,8 +71,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 }
                 break;
 
-            // Panel Línea
+            // Panel Línea y Panel Barra
             case 2:
+            case 7:
                 $post_array = filter_input_array(INPUT_POST);
                 $id_indicadores = $post_array['id_indicadores'];
                 $id_subunidades = $post_array['id_subunidades'];
@@ -137,8 +138,8 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 }
                 break;
 
+            // Panel Mixto
             case 4:
-                // Panel Barras
                 $post_array = filter_input_array(INPUT_POST);
                 $id_indicadores = $post_array['id_indicadores'];
                 if ($id_indicadores)
@@ -172,8 +173,8 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 }
                 break;
 
+            // Panel Tabla
             case 5:
-                // Panel Tabla
                 $id_indicador = filter_input(INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
                 $post_array = filter_input_array(INPUT_POST);
                 $subunidades = $post_array['id_subunidades'];
@@ -207,8 +208,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                 }
                 break;
+
+            //Panel tabla_multi
             case 6:
-                //Panel tabla_multi
                 $id_entidad = filter_input(INPUT_POST, 'id_subunidad', FILTER_SANITIZE_NUMBER_INT);
                 $post_array = filter_input_array(INPUT_POST);
                 $id_indicadores = $post_array['id_indicadores'];
