@@ -521,11 +521,18 @@ span:focus, .pagination > li > span:hover {
 /*Creacion de paneles*/
 #paneles_tipos {
     min-width: 60px;
-    right: auto;
+    margin-left: -40px;
 }
 
 #paneles_tipos .fa-stack{
     width: 18px;
+}
+
+#panel_mixto .fa-stack{
+    width: 30.85px;
+    height: 24px;
+    line-height: 24px;
+    margin-bottom: 6px;
 }
 
 /*Datatables*/

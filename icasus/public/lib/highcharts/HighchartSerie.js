@@ -62,7 +62,7 @@ function HighchartSerie() {
         else if (nomIndicador !== '') {
             var colors = ['#7CB5EC', '#880736', '#BF921D', '#F77205', '#900787'];
             var color = colors[index];
-            if (index > 4) {
+            if (index > 4 || index === 'random') {
                 //Generamos un color al azar
                 color = '#' + (function lol(m, s, c) {
                     return s[m.floor(m.random() * s.length)] +

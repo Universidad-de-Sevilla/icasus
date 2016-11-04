@@ -134,8 +134,6 @@ define('TXT_INDIC_ARCHIVADOS', 'Indicadores archivados');
 define('TXT_INDIC_RESTAURAR', 'Restaurar indicador');
 define('TXT_INDICS_MIO', 'Mis indicadores');
 define('TXT_INDIC_DAT', 'Datos del indicador');
-define('TXT_INDIC_BUSCAR_BASE', 'Buscar indicador base');
-define('TXT_INDIC_BUSCAR_COMPLEMENT', 'Buscar indicadores complementarios');
 define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta medición.');
 define('TXT_INDIC_ACT_MED', 'Indique si además quiere activarla: ');
 define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');

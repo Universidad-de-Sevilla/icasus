@@ -365,6 +365,17 @@ $(".panel_mixto").each(function () {
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var periodicidad = $(this).data("periodicidad");
+    var anyo_inicio = $(this).data("anyo_inicio");
+    var anyo_fin = $(this).data("anyo_fin");
+    var anyos_atras = $(this).data("anyos_atras");
+    if (anyos_atras) {
+        anyo_fin = new Date().getFullYear() - 1;
+        anyo_inicio = anyo_fin - anyos_atras;
+    }
+    var fecha_inicio = anyo_inicio + '-01-01';
+    var fecha_fin = anyo_fin + '-12-31';
+    var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
+    var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
     //Ancho de la leyenda del gráfico
     var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Indicadores/datos del panel
@@ -382,8 +393,9 @@ $(".panel_mixto").each(function () {
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
         $.each(indicadores, function (index, indicador) {
 
-            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id
-                    + "&periodicidad=" + periodicidad;
+            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
+                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
+                    +"&periodicidad=" + periodicidad;
 
             // contenedor para los datos del indicador
             var chartSerie = new HighchartSerie();
@@ -418,14 +430,16 @@ $(".panel_mixto").each(function () {
                 var dataseries = [];
                 //Indicador base gráfico de barras
                 if (index === 0) {
-                    dataseries = chartSerie.getBarSerie(indicador.nombre);
-                    // Hacemos visible el último año
-                    dataseries[dataseries.length - 1].visible = true;
-                    dataseries[dataseries.length - 1].selected = true;
+                    dataseries = chartSerie.getBarSerie(indicador.nombre, 'random');
+                    // Hacemos visible sólo el último año
+                    for (i = 0; i < dataseries.length - 1; i++) {
+                        dataseries[i].visible = false;
+                        dataseries[i].selected = false;
+                    }
                 }
                 //Resto de indicadores gráficos de líneas
                 else if (index !== 0) {
-                    dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
+                    dataseries = chartSerie.getLinealSerie(indicador.nombre, 'random');
                     //Ocultamos los últimos años
                     for (var i = 0, n = dataseries.length - 1; i !== n; i++) {
                         dataseries[i].visible = false;
@@ -451,8 +465,11 @@ $(".panel_mixto").each(function () {
                         text: titulo,
                         style: {"fontSize": "14px"}
                     },
+                    subtitle: {
+                        text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
+                    },
                     exporting: {
-                        filename: titulo
+                        filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
                     },
                     xAxis: {
                         type: 'category'

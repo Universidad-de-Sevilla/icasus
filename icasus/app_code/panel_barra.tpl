@@ -95,7 +95,7 @@
                         </button>
                         <ul id="paneles_tipos" class="dropdown-menu">
                             <li>
-                                <a title="{$smarty.const.TXT_LINEAS}" href='index.php?page=panel_linea&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-line-chart fa-fw"></i> <span>{$smarty.const.TXT_LINEAS}</span></a>
+                                <a title="{$smarty.const.TXT_LINEAS}" href='index.php?page=panel_linea&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-line-chart fa-fw"></i> {$smarty.const.TXT_LINEAS}</a>
                             </li>
                             <li class="active">
                                 <a title="{$smarty.const.TXT_BARRAS}"><i class="fa fa-bar-chart fa-fw"></i> {$smarty.const.TXT_BARRAS}</a>

@@ -37,7 +37,7 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     }
     $smarty->assign('elementos', $ordenes);
 
-    $smarty->assign('_javascript', array('panel_linea'));
+    $smarty->assign('_javascript', array('panel_lb'));
     $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR . ': ' . TXT_BARRAS);
     $plantilla = "panel_barra.tpl";
 }
