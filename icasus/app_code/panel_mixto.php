@@ -22,7 +22,7 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     $cuadro->load("id=$id_cuadro");
     $smarty->assign('cuadro', $cuadro);
 
-    //Tipo de panel: líneas
+    //Tipo de panel: mixto
     $panel_tipo = new Panel_tipo();
     $panel_tipo->load("nombre = 'mixto'");
     $smarty->assign('panel_tipo', $panel_tipo);

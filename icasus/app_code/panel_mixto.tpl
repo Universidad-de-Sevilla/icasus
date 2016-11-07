@@ -207,7 +207,7 @@
                 <div class="form-group">
                     <label for="indicador_base" class="col-sm-2 control-label">{$smarty.const.FIELD_INDIC_BASE}</label>
                     <div class="col-sm-8">
-                        <select class="form-control chosen-select" name="id_indicadores[]" id="indicador_base" required>
+                        <select class="form-control chosen-select" name="id_indicadores[]" id="indicador_base">
                             {foreach $indicadores as $indicador}
                                 <option title="{$indicador->nombre}" value="{$indicador->id}">{$indicador->nombre}</option>
                             {/foreach}

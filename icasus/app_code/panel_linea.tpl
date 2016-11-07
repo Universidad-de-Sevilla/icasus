@@ -47,7 +47,7 @@
         </div>
     {/if}
 
-    {*Cálculo de subunidades dato/indicador*}
+    {*Cálculo de subunidades del indicador/dato*}
     {if $modulo == 'subunidades'}
         <form id="form_unidades">
             <div class="col-sm-6">
