@@ -783,9 +783,13 @@ $(".panel_tabla_simple").each(function () {
 
 //Paneles de tabla
 $(".panel_tabla").each(function () {
-    var anyos_atras = $(this).data("anyos_atras");
+    var anyo_inicio = $(this).data("anyo_inicio");
     var anyo_fin = $(this).data("anyo_fin");
-    var anyo_inicio = anyo_fin - anyos_atras;
+    var anyos_atras = $(this).data("anyos_atras");
+    if (anyos_atras) {
+        anyo_fin = new Date().getFullYear() - 1;
+        anyo_inicio = anyo_fin - anyos_atras;
+    }
     var id_panel = $(this).data("id_panel");
     var htmlTabla = ' <div class="table-responsive"><table id="tabla_multi' + id_panel + '" class="table table-striped table-hover">';
 

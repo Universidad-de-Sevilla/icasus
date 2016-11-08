@@ -1,58 +1,57 @@
 <?php
 
 //---------------------------------------------------------------------------------------------------
-// Proyecto: Icasus 
+// Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: panel_tabla.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Controlador para la creación de paneles de tabla
+// Descripcion: Controlador para la creación de paneles tabla
 //---------------------------------------------------------------------------------------------------
 
-if (filter_has_var(INPUT_GET, 'page') && filter_has_var(INPUT_GET, 'modulo'))
+if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
-    $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
-    $tipo = filter_input(INPUT_GET, 'page', FILTER_SANITIZE_STRING);
+    $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
+    $entidad = new Entidad();
+    $entidad->load("id=$id_entidad");
+    $smarty->assign('entidad', $entidad);
+    $subunidades = $entidad->Find("id_madre=$id_entidad ORDER BY etiqueta");
+    $smarty->assign('subunidades', $subunidades);
+    $smarty->assign('entidad', $entidad);
+
+    $cuadro = new Cuadro();
+    $cuadro->load("id=$id_cuadro");
+    $smarty->assign('cuadro', $cuadro);
+
+    //Tipo de panel: tabla
     $panel_tipo = new Panel_tipo();
-    $panel_tipo->load("clase_css = '$tipo'");
-    $smarty->assign('panel', $panel_tipo);
+    $panel_tipo->load("nombre = 'tabla'");
+    $smarty->assign('panel_tipo', $panel_tipo);
 
-    if ($modulo == 'inicio')
+    //Validar orden del panel dentro del cuadro de mando
+    $panel = new Panel();
+    $ordenes = array();
+    $paneles = $panel->Find("id_cuadro=$id_cuadro");
+    foreach ($paneles as $pl)
     {
-        $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-
-        $indicador = new Indicador();
-        $indicadores = $indicador->find("id_entidad = $id_entidad");
-        $smarty->assign('indicadores', $indicadores);
-
-        $smarty->assign('id_entidad', $id_entidad);
-
-        //Validar orden del panel dentro del cuadro de mando
-        $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
-        $panel = new Panel();
-        $ordenes = array();
-        $paneles = $panel->Find("id_cuadro=$id_cuadro");
-        foreach ($paneles as $pl)
-        {
-            array_push($ordenes, $pl->orden);
-        }
-        $smarty->assign('elementos', $ordenes);
+        array_push($ordenes, $pl->orden);
     }
+    $smarty->assign('elementos', $ordenes);
 
-    if ($modulo == 'subunidades')
-    {
-        $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
+    //Indicadores
+    $indicador = new Indicador();
+    $indicadores = $indicador->find("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado is NULL");
+    $smarty->assign('indicadores', $indicadores);
 
-        $indicador_subunidad = new Indicador_subunidad();
-        $indicador_subunidades = $indicador_subunidad->find_entidades("id_indicador = $id_indicador");
-        $smarty->assign("indicador_subunidades", $indicador_subunidades);
-        $smarty->assign("id_indicador", $id_indicador);
-    }
+    //Datos
+    $datos = $indicador->find("id_entidad = $id_entidad AND id_proceso is NULL AND archivado is NULL");
+    $smarty->assign('datos', $datos);
 
-    $smarty->assign('modulo', $modulo);
-    $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR);
-    $plantilla = "$tipo.tpl";
+    $smarty->assign('_javascript', array('panel_tabla'));
+    $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR . ': ' . TXT_TABLA);
+    $plantilla = "panel_tabla.tpl";
 }
 else
 {

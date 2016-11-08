@@ -190,7 +190,7 @@
                     <div class="form-group has-feedback">
                         <label for="anyos_atras" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ANYOS_ATRAS}</label>
                         <div class="col-sm-8">
-                            <input type="number" value="5" name="anyos_atras" id='anyos_atras' class="form-control" placeholder="{$smarty.const.FIELD_ANYOS_ATRAS}" min='2' max="10" required/>
+                            <input type="number" value="5" name="anyos_atras" id='anyos_atras' class="form-control" placeholder="{$smarty.const.FIELD_ANYOS_ATRAS}" min='1' max="10" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                             <div class="help-block with-errors"></div>
                         </div>
@@ -217,7 +217,7 @@
                 <!-- /Indicador/dato base -->
 
                 <!-- Indicadores/datos complementarios -->
-                <div class="form-group has-feedback">
+                <div class="form-group">
                     <label for="indicadores_complementarios" class="col-sm-2 control-label">{$smarty.const.FIELD_INDIC_COMPLEMENT}</label>
                     <div class="col-sm-8">
                         <select class="form-control chosen-select" name="id_indicadores[]" id="indicadores_complementarios" multiple>
