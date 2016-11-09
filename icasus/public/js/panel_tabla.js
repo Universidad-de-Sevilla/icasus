@@ -45,22 +45,22 @@ $(document).ready(function () {
         $('#wrapper #panel_nuevo').validator();
     });
 
-    $('#marcar_todos_indics').on('click', function () {
+    $('#sel_todos_indics').on('click', function () {
         $("#indicadores option").prop("selected", true).trigger('chosen:updated');
         $('#indicadores').trigger('change');
     });
 
-    $('#desmarcar_todos_indics').on('click', function () {
+    $('#desel_todos_indics').on('click', function () {
         $("#indicadores option").prop("selected", false).trigger('chosen:updated');
         $('#indicadores').trigger('change');
     });
 
-    $('#marcar_todos_datos').on('click', function () {
+    $('#sel_todos_datos').on('click', function () {
         $("#datos option").prop("selected", true).trigger('chosen:updated');
         $('#datos').trigger('change');
     });
 
-    $('#desmarcar_todos_datos').on('click', function () {
+    $('#desel_todos_datos').on('click', function () {
         $("#datos option").prop("selected", false).trigger('chosen:updated');
         $('#datos').trigger('change');
     });

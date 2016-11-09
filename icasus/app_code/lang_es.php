@@ -217,6 +217,11 @@ define('TXT_DESACT', 'Desactivar');
 define('TXT_CERRAR', 'Cerrar');
 define('TXT_MARCAR', 'Marcar todos');
 define('TXT_DESMARCAR', 'Desmarcar todos');
+define('TXT_SEL', 'Seleccionar');
+define('TXT_SEL_TODOS', 'Seleccionar todos');
+define('TXT_DESEL_TODOS', 'Deseleccionar todos');
+define('TXT_SEL_UNO', 'Seleccionar uno');
+define('TXT_ELEG_UNO', 'Elegir uno si procede');
 define('TXT_VOLVER_ARRIBA', 'Volver arriba');
 define('TXT_VOLVER_INDICE', 'Volver al índice');
 
@@ -287,11 +292,6 @@ define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
 define('TXT_GRAFICO_AUMENTAR', '(Haga click sobre el gráfico para aumentarlo)');
 define('TXT_INTERVALO', 'Sólo si se quieren limitar los valores de las mediciones a un intervalo (cerrado) de posibles valores. Por ejemplo, para resultados de encuestas. No es compatible con el cálculo automático.');
 define('TXT_ESTIMACION', 'Una estimación ascendente implica una evolución positiva cuanto más altos sean los valores de las mediciones, la estimación descendente implica lo contrario.');
-
-//Selecciones
-define('TXT_SEL', 'Seleccionar');
-define('TXT_SEL_UNO', 'Seleccionar uno');
-define('TXT_ELEG_UNO', 'Elegir uno si procede');
 
 //Tiempo/Periodicidad
 define('TXT_HISTORICO', 'Histórico');

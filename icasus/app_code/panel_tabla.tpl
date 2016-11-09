@@ -14,13 +14,13 @@
                     </button>
                     <ul id="paneles_tipos" class="dropdown-menu">
                         <li>
-                            <a title="{$smarty.const.TXT_LINEAS}" href='index.php?page=panel_linea&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-line-chart fa-fw"></i> {$smarty.const.TXT_LINEAS}</a>
+                            <a title="{$smarty.const.TXT_LINEAS}: {$smarty.const.TXT_LINEAS_DESC}" href='index.php?page=panel_linea&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-line-chart fa-fw"></i> {$smarty.const.TXT_LINEAS}</a>
                         </li>
                         <li>
-                            <a title="{$smarty.const.TXT_BARRAS}" href='index.php?page=panel_barra&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-bar-chart fa-fw"></i> {$smarty.const.TXT_BARRAS}</a>
+                            <a title="{$smarty.const.TXT_BARRAS}: {$smarty.const.TXT_BARRAS_DESC}" href='index.php?page=panel_barra&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-bar-chart fa-fw"></i> {$smarty.const.TXT_BARRAS}</a>
                         </li>
                         <li>
-                            <a title="{$smarty.const.TXT_MIXTO}" href='index.php?page=panel_mixto&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
+                            <a title="{$smarty.const.TXT_MIXTO}: {$smarty.const.TXT_MIXTO_DESC}" href='index.php?page=panel_mixto&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
                                 <span class="fa-stack fa-1x">
                                     <i class="fa fa-line-chart fa-stack-1x"></i>
                                     <i class="fa fa-bar-chart fa-stack-1x"></i>
@@ -28,10 +28,10 @@
                             </a>
                         </li>
                         <li>
-                            <a title="{$smarty.const.TXT_TARTA}" href='index.php?page=panel_tarta&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-pie-chart fa-fw"></i> {$smarty.const.TXT_TARTA}</a>
+                            <a title="{$smarty.const.TXT_TARTA}: {$smarty.const.TXT_TARTA_DESC}" href='index.php?page=panel_tarta&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-pie-chart fa-fw"></i> {$smarty.const.TXT_TARTA}</a>
                         </li>
                         <li class="active">
-                            <a title="{$smarty.const.TXT_TABLA}"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a>
+                            <a title="{$smarty.const.TXT_TABLA}: {$smarty.const.TXT_TABLA_DESC}"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a>
                         </li>
                     </ul>
                 </div>
@@ -107,6 +107,10 @@
 
 <div class="row">
     <div class="col-lg-12">
+        <div class="alert alert-info alert-dismissible">
+            <i class="fa fa-info-circle fa-fw"></i> 
+            {$smarty.const.TXT_TABLA_DESC}
+        </div>
         <form method="post" action="index.php?page=panel_grabar" id="panel_nuevo" name="panel_nuevo"
               data-toggle="validator" class="form-horizontal">
             <input type="hidden" name="id_entidad" value="{$entidad->id}" id="id_entidad">
@@ -215,10 +219,10 @@
                         </select>
                     </div>
                     <div class="col-sm-2">
-                        <button id="marcar_todos_indics" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_MARCAR}" >
+                        <button id="sel_todos_indics" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_SEL_TODOS}" >
                             <i class="fa fa-check-square-o fa-fw"></i>
                         </button>
-                        <button id="desmarcar_todos_indics" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_DESMARCAR}" >
+                        <button id="desel_todos_indics" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_DESEL_TODOS}" >
                             <i class="fa fa-square-o fa-fw"></i>
                         </button>
                     </div>
@@ -236,10 +240,10 @@
                         </select>
                     </div>
                     <div class="col-sm-2">
-                        <button id="marcar_todos_datos" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_MARCAR}" >
+                        <button id="sel_todos_datos" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_SEL_TODOS}" >
                             <i class="fa fa-check-square-o fa-fw"></i>
                         </button>
-                        <button id="desmarcar_todos_datos" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_DESMARCAR}" >
+                        <button id="desel_todos_datos" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_DESEL_TODOS}" >
                             <i class="fa fa-square-o fa-fw"></i>
                         </button>
                     </div>
