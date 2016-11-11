@@ -299,12 +299,9 @@
 <!-- /Comentarios del cuadro -->
 
 <!-- Paneles -->
-<div id="paneles" data-num_paneles="{$paneles|@count}">
+<div id="paneles" class ="row" data-num_paneles="{$paneles|@count}">
     {if $paneles}
         {foreach $paneles as $panel}
-            {if $panel->ancho>6 || ($panel@index +1)%2==0}
-                <div class="row">
-            {/if}
             <div class="col-lg-{$panel->ancho}" >
                 <div class="panel panel-red">
                     <div class="panel-heading">
@@ -372,9 +369,6 @@
                 <!-- /.panel -->
             </div>
             <!-- /.col-lg-{$panel->ancho} -->
-            {if $panel->ancho>6 || ($panel@index +1)%2==0}
-                </div>
-            {/if}
         {/foreach} 
     {/if}
 </div>
