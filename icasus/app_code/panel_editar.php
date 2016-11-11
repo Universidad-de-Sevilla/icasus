@@ -37,30 +37,92 @@ if (filter_has_var(INPUT_GET, 'id_panel') && filter_has_var(INPUT_GET, 'id_cuadr
     }
     $smarty->assign('elementos', $ordenes);
 
-    //Guardamos los cambios
-    if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'orden') && filter_has_var(INPUT_POST, 'ancho'))
+    //Indicadores/datos del panel
+    $panel_indicador = new Panel_indicador();
+    $panel_indicadores = $panel_indicador->Find("id_panel=$id_panel");
+
+    $indicadores = array();
+    $unidades = array();
+
+    foreach ($panel_indicadores as $pi)
     {
-        $panel->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-        $panel->orden = filter_input(INPUT_POST, 'orden', FILTER_SANITIZE_NUMBER_INT);
-        $panel->ancho = filter_input(INPUT_POST, 'ancho', FILTER_SANITIZE_NUMBER_INT);
-        //Si es un panel de líneas, de tipo tabla simple o multi
-        if ($panel->id_paneltipo == 2 || $panel->id_paneltipo == 5 || $panel->id_paneltipo == 6)
+        $indicador = new Indicador();
+        $entidad = new Entidad();
+        $indicador->load("id=$pi->id_indicador");
+        $indicadores[$pi->id] = $indicador;
+        //Si es la unidad madre a la que pertenece el cuadro
+        if ($pi->id_entidad == 0)
         {
-            $panel->anyos_atras = filter_input(INPUT_POST, 'anyos_atras', FILTER_SANITIZE_NUMBER_INT);
-            if ($panel->id_paneltipo == 6)
-            {
-                $panel->anyo_fin = filter_input(INPUT_POST, 'anyo_fin', FILTER_SANITIZE_NUMBER_INT);
-            }
-            if ($panel->id_paneltipo == 2)
-            {
-                $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_SANITIZE_STRING) : "todos";
-            }
+            $entidad->id = 0;
+            $entidad->etiqueta = 'Total';
         }
-        $panel->Save();
-        $exito = MSG_PANEL_EDITADO . ' ' . $panel->nombre;
-        $smarty->assign("exito", $exito);
-        header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$cuadro->id_entidad&exito=$exito");
+        else
+        {
+            $entidad->load("id=$pi->id_entidad");
+        }
+        $unidades[$pi->id] = $entidad;
     }
+
+    $smarty->assign('panel_indicadores', $panel_indicadores);
+    $smarty->assign('indicadores', $indicadores);
+    $smarty->assign('unidades', $unidades);
+
+    //Indicadores y datos de la unidad
+    $indicador = new Indicador();
+    $indicadores_unidad = $indicador->find("id_entidad = $cuadro->id_entidad AND archivado is NULL");
+    $smarty->assign('indicadores_unidad', $indicadores_unidad);
+    //Primer indicador del panel, necesario para paneles tarta y mixtos
+    $id_indicador = reset($indicadores)->id;
+    $smarty->assign('id_indicador', $id_indicador);
+
+    //Paneles de tarta
+    if ($panel->id_paneltipo == 3)
+    {
+        //Mediciones    
+        $medicion = new Medicion();
+        $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+        $smarty->assign('mediciones', $mediciones);
+    }
+
+    //Paneles de tabla
+    if ($panel->id_paneltipo == 6)
+    {
+        //Sólo indicadores
+        $indicadores_unidad_no_datos = $indicador->find("id_entidad = $cuadro->id_entidad AND id_proceso is NOT NULL AND archivado is NULL");
+        $smarty->assign('indicadores_unidad_no_datos', $indicadores_unidad_no_datos);
+        //Sólo datos
+        $datos_unidad = $indicador->find("id_entidad = $cuadro->id_entidad AND id_proceso is NULL AND archivado is NULL");
+        $smarty->assign('datos_unidad', $datos_unidad);
+        //Unidad del panel
+        $id_unidad = reset($unidades)->id;
+        $smarty->assign('id_unidad', $id_unidad);
+        $smarty->assign('datos_unidad', $datos_unidad);
+        $subunidades = $entidad->Find("id_madre=$id_entidad ORDER BY etiqueta");
+        $smarty->assign('subunidades', $subunidades);
+    }
+
+    //Determinamos el js a cargar en función del tipo de panel
+    switch ($panel->id_paneltipo)
+    {
+        case 1: break;
+        case 2:
+        case 7:
+            $smarty->assign('_javascript', array('panel_lb'));
+            break;
+        case 3:
+            $smarty->assign('_javascript', array('panel_tarta'));
+            break;
+        case 4:
+            $smarty->assign('_javascript', array('panel_mixto'));
+            break;
+        case 5: break;
+        case 6:
+            $smarty->assign('_javascript', array('panel_tabla'));
+            break;
+        default :
+            break;
+    }
+
     $smarty->assign('_nombre_pagina', TXT_PANEL_EDITAR . ': ' . $panel->nombre);
     $plantilla = 'panel_editar.tpl';
 }

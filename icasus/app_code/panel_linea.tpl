@@ -6,7 +6,6 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_SEL} {$smarty.const.FIELD_UNID} - <span></span></h3>
             </div>
-
             <div class="modal-body">
                 <b>{$smarty.const.MSG_PANEL_INDIC_UNID}</b>
                 <div class="row" id="lista_subunidades"></div>
@@ -14,7 +13,6 @@
             <div class="modal-footer">
                 <button form="form_unidades" type="submit" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary subunidad_seleccionar"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
             </div>
-
         </div>
     </div>
 </div>
