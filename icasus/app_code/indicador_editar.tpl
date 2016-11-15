@@ -98,7 +98,7 @@
                 <div role="tabpanel" class="tab-pane active" id="indicador">
                     <br>
                     <div class="form-group has-feedback">
-                        <label for="codigo" class="col-sm-2 control-label">{$smarty.const.FIELD_COD} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="codigo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_COD}</label>
                         <div class="col-sm-8">
                             <input title="{$smarty.const.TXT_CODIGO}" type='text' name='codigo' id='codigo' data-toggle="tooltip" data-placement="left" 
                                    pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                         <div class="col-sm-8">
                             <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" value="{$indicador->nombre}" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -126,7 +126,7 @@
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="formulacion" class="col-sm-2 control-label">{$smarty.const.FIELD_FORM} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="formulacion" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORM}</label>
                         <div class="col-sm-8">
                             <textarea  class="form-control" id="formulacion" name="formulacion" placeholder="{$smarty.const.FIELD_FORM}" required>{$indicador->formulacion}</textarea>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -134,7 +134,7 @@
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="historicos" class="col-sm-2 control-label">{$smarty.const.FIELD_HISTORICO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="historicos" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_HISTORICO}</label>
                         <div class="col-sm-8">
                             <input type="number" id='historicos' name="historicos" class="form-control" placeholder="{$smarty.const.FIELD_HISTORICO}" min='2000' max="{$smarty.now|date_format:'%Y'}" value="{$indicador->historicos}" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -210,7 +210,7 @@
                             </div>
                         </div>
                         <div id="formula_calculo" class="form-group has-feedback {if !$indicador->calculo}hidden{/if}">
-                            <label for="calculo" class="col-sm-2 control-label">{$smarty.const.FIELD_FORMULA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                            <label for="calculo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORMULA}</label>
                             <div class="col-sm-8">
                                 <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" class="form-control" data-toggle="tooltip" data-placement="left" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" required {if !$indicador->calculo}disabled{/if}>{$indicador->calculo}</textarea>
                                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -231,7 +231,7 @@
                             </div>
                         </div>
                         <div id="vmin" class="form-group has-feedback {if !$indicador->valor_min}hidden{/if}">
-                            <label for="valor_min" class="col-sm-2 control-label">{$smarty.const.FIELD_VALOR_MIN} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                            <label for="valor_min" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VALOR_MIN}</label>
                             <div class="col-sm-8">
                                 <input type="number" step="0.01" id='valor_min' name="valor_min" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MIN}" value="{$indicador->valor_min}" required/>
                                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -239,7 +239,7 @@
                             </div>
                         </div>
                         <div id="vmax" class="form-group has-feedback {if !$indicador->valor_max}hidden{/if}">
-                            <label for="valor_max" class="col-sm-2 control-label">{$smarty.const.FIELD_VALOR_MAX} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                            <label for="valor_max" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VALOR_MAX}</label>
                             <div class="col-sm-8">
                                 <input type="number" step="0.01" id='valor_max' name="valor_max" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MAX}" value="{$indicador->valor_max}" required/>
                                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -396,7 +396,7 @@
                         </div>
                     </div>
                     <div id="div_unidad" class="form-group has-feedback {if $indicador->desagregado != 0}hidden{/if}">
-                        <label for="lista_subunidades" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="lista_subunidades" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_UNID}</label>
                         <div class="col-sm-8">
                             <div class="checkbox">
                                 <label>
@@ -409,7 +409,7 @@
                         </div>
                     </div>
                     <div id="div_subunidades" class="form-group has-feedback {if $indicador->desagregado == 0}hidden{/if}">
-                        <label for="lista_subunidades" class="col-sm-2 control-label">{$smarty.const.FIELD_SUBUNIDS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="lista_subunidades" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</label>
                         <div class="col-sm-8">
                             <button id="marcar_todos" type="button" class="btn btn-default btn-circle btn-primary btn-xs" title="{$smarty.const.TXT_MARCAR}" >
                                 <i class="fa fa-check-square-o fa-fw"></i>

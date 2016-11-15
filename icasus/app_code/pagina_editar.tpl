@@ -28,7 +28,7 @@
     <div class="col-lg-12">
         <form method='post' name='formpagina' id='formpagina' action='index.php?page=pagina_editar&id_pagina={$pagina->id}' data-toggle="validator" class="form-horizontal">
             <div class="form-group has-feedback">
-                <label for="titulo" class="col-sm-2 control-label">{$smarty.const.FIELD_TITULO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="titulo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_TITULO}</label>
                 <div class="col-sm-8">
                     <input type='text' class="form-control" id='titulo' name='titulo' placeholder="{$smarty.const.FIELD_TITULO}" value='{$pagina->titulo}' required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="alias" class="col-sm-2 control-label">{$smarty.const.FIELD_ALIAS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="alias" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ALIAS}</label>
                 <div class="col-sm-8">
                     <input type='text' class="form-control" id='alias' name='alias' placeholder="{$smarty.const.FIELD_ALIAS}" value='{$pagina->alias}' required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="contenido" class="col-sm-2 control-label">{$smarty.const.FIELD_PAG_CONTENIDO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="contenido" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_PAG_CONTENIDO}</label>
                 <div class="col-sm-8">
                     <textarea class="form-control" id='contenido' name='contenido' placeholder="{$smarty.const.FIELD_PAG_CONTENIDO}" rows='25' required>{$pagina->contenido}</textarea>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

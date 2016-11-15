@@ -75,7 +75,7 @@
             <input type="hidden" name="id_entidad" value="{$entidad->id}">
             <input type="hidden" name="id_plan" value="{$plan->id}">
             <div class="form-group has-feedback">
-                <label for="anyo_inicio" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO_INICIO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="anyo_inicio" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ANYO_INICIO}</label>
                 <div class="col-sm-8">
                     <input type='number' class="form-control" name='anyo_inicio' id='anyo_inicio' value="{$plan->anyo_inicio}" min="{$smarty.now|date_format:'%Y'}" placeholder="{$smarty.const.FIELD_ANYO_INICIO}" data-elementos='{$elementos|@json_encode}' data-validar_igual="validar_igual" data-validar_igual-error="{$smarty.const.ERR_PLAN_VAL_ANYO}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="duracion" class="col-sm-2 control-label">{$smarty.const.FIELD_DURACION} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="duracion" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_DURACION}</label>
                 <div class="col-sm-8">
                     <input type='number' class="form-control" name='duracion' id='duracion' value="{$plan->duracion}" min="1" placeholder="{$smarty.const.FIELD_DURACION}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

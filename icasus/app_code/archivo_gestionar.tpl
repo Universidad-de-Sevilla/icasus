@@ -17,7 +17,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
-                        <label for="stitulo" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="stitulo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                         <div class="col-sm-8">
                             <input type="text" name="stitulo" id="stitulo" class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="sarchivo" class="col-sm-2 control-label">{$smarty.const.FIELD_ARCHIVO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="sarchivo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ARCHIVO}</label>
                         <div class="col-sm-8">
                             <input class="filestyle" data-buttonBefore="true" 
                                    data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 
@@ -78,7 +78,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
-                        <label for="etitulo" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="etitulo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                         <div class="col-sm-8">
                             <input type="text" id="etitulo" name='etitulo' class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

@@ -505,7 +505,7 @@
                             <thead><th></th><th></th></thead>
                             <tbody>
                                 <tr>
-                                    <th>{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></th>
+                                    <th><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ETIQUETA}</th>
                                     <td style="white-space:nowrap">
                                         {if $permiso_editar == true && !$indicador->calculo && !$indicador->archivado}
                                             <div>

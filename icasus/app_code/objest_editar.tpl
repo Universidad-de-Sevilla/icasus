@@ -86,7 +86,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="indice" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="indice" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_INDICE}</label>
                 <div class="col-sm-8">
                     <div class="input-group">
                         <div class="input-group-addon">{$linea->indice}.</div>
@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                 <div class="col-sm-8">
                     <input type='text' class="form-control" name='nombre' id='nombre' value="{$objest->nombre}" placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

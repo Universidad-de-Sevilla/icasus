@@ -86,7 +86,7 @@
                 <div role="tabpanel" class="tab-pane active" id="proceso">
                     <br>
                     <div class="form-group has-feedback">
-                        <label for="codigo" class="col-sm-2 control-label">{$smarty.const.FIELD_COD} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="codigo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_COD}</label>
                         <div class="col-sm-8">
                             <input title="{$smarty.const.TXT_CODIGO}" data-toggle="tooltip" data-placement="left" type='text' name='codigo' id='codigo' 
                                    pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
@@ -96,7 +96,7 @@
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                         <div class="col-sm-8">
                             <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="revision" class="col-sm-2 control-label">{$smarty.const.FIELD_VERSION} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="revision" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VERSION}</label>
                         <div class="col-sm-8">
                             <input type='text' class="form-control" name='revision' id='revision' placeholder="{$smarty.const.TXT_PROC_VERSION}" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -125,7 +125,7 @@
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="fecha_revision" class="col-sm-2 control-label">{$smarty.const.FIELD_FECHA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="fecha_revision" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FECHA}</label>
                         <div class="col-sm-8">
                             <div class="input-group date" data-provide="datepicker" data-date-language="es" data-date-autoclose="true">
                                 <div class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></div>

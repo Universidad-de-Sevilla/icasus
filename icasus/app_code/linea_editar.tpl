@@ -76,7 +76,7 @@
             <input type="hidden" name="id_plan" value="{$plan->id}">
             <input type="hidden" name="id_linea" value="{$linea->id}">
             <div class="form-group has-feedback">
-                <label for="indice" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="indice" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_INDICE}</label>
                 <div class="col-sm-8">
                     <input type='number' class="form-control" name='indice' id='indice' value="{$linea->indice}" min="1" placeholder="{$smarty.const.FIELD_INDICE}" data-elementos='{$elementos|@json_encode}' data-validar_igual="validar_igual" data-validar_igual-error="{$smarty.const.ERR_LINEA_VAL_INDICE}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -84,7 +84,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                 <div class="col-sm-8">
                     <input type='text' class="form-control" name='nombre' id='nombre' value="{$linea->nombre}" placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

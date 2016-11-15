@@ -132,7 +132,7 @@
             <fieldset>
                 <legend>{$smarty.const.TXT_PANEL_DATOS}</legend>
                 <div class="form-group has-feedback">
-                    <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                    <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                     <div class="col-sm-8">
                         <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" value="{$panel->nombre}" required/>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -140,7 +140,7 @@
                     </div>
                 </div>
                 <div class="form-group has-feedback">
-                    <label for="orden" class="col-sm-2 control-label">{$smarty.const.FIELD_ORDEN} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                    <label for="orden" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ORDEN}</label>
                     <div class="col-sm-8">
                         <input type="number" id='orden' name="orden" class="form-control" placeholder="{$smarty.const.FIELD_ORDEN}" min='1' value="{$panel->orden}" data-elementos='{$elementos|@json_encode}' data-validar_igual="validar_igual" data-validar_igual-error="{$smarty.const.ERR_PANEL_VAL_ORDEN}" required/>
                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

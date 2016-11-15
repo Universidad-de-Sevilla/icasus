@@ -10,7 +10,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
-                        <label for="c-nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="c-nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                         <div class="col-sm-8">
                             <input title='{$smarty.const.TXT_VAL_REF_NOMBRE}' data-toggle="tooltip" data-placement="left" type="text" name='c-nombre' id="c-nombre" value="" class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="c-etiqueta" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="c-etiqueta" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ETIQUETA}</label>
                         <div class="col-sm-8">
                             <input title="{$smarty.const.TXT_VAL_REF_ETIQ}" data-toggle="tooltip" data-placement="left" type="text" name='c-etiqueta' id="c-etiqueta" value="" class="form-control" placeholder="{$smarty.const.FIELD_ETIQUETA}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group has-feedback">
-                        <label for="e-nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="e-nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                         <div class="col-sm-8">
                             <input title='{$smarty.const.TXT_VAL_REF_NOMBRE}' data-toggle="tooltip" data-placement="left" type="text" name='e-nombre' id="e-nombre" value="" class="form-control" placeholder="{$smarty.const.FIELD_NOMBRE}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                     <div class="form-group has-feedback">
-                        <label for="e-etiqueta" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="e-etiqueta" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ETIQUETA}</label>
                         <div class="col-sm-8">
                             <input title="{$smarty.const.TXT_VAL_REF_ETIQ}" data-toggle="tooltip" data-placement="left" type="text" name='e-etiqueta' id="e-etiqueta" value="" class="form-control" placeholder="{$smarty.const.FIELD_ETIQUETA}" required />                  
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

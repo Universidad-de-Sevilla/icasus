@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.35.0");
+define('IC_VERSION', "3.35.1");
 define('IC_FECHA_REVISION', "15/11/2016");
 
+// 3.35.1 - 15/11/2016 - Cambiado el orden de los asteriscos en los formularios para los campos requeridos (delante del nombre).
 // 3.35.0 - 15/11/2016 - Nueva versión de los cuadros de mando revisada y mejorada con nuevos tipos de paneles, edición y opciones.
 // 3.34.0 - 21/10/2016 - Inclusión de Google Analytics para la web https://icasus3.us.es
 // 3.33.0 - 14/10/2016 - Carga limitada de registros de las mediciones en la sección de edición de valores de indicadores/datos.
