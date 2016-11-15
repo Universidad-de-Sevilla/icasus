@@ -194,6 +194,26 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>{$smarty.const.FIELD_DESC}</th>
+                                    <td> 
+                                        {if $objop->descripcion}
+                                            {$objop->descripcion|nl2br}
+                                        {else}
+                                            ---
+                                        {/if}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_OBSERV}</th>
+                                    <td> 
+                                        {if $objop->observaciones}
+                                            {$objop->observaciones|nl2br}
+                                        {else}
+                                            ---
+                                        {/if}
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <td id="ejecucion_global"> 
                                         <div class="progress">

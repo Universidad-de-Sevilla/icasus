@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.35.1");
+define('IC_VERSION', "3.36.0");
 define('IC_FECHA_REVISION', "15/11/2016");
 
+// 3.36.0 - 15/11/2016 - Añadidos campos descripción y observaciones a los objetivos operacionales. No se les puede asociar indicadores/datos archivados.
 // 3.35.1 - 15/11/2016 - Cambiado el orden de los asteriscos en los formularios para los campos requeridos (delante del nombre).
 // 3.35.0 - 15/11/2016 - Nueva versión de los cuadros de mando revisada y mejorada con nuevos tipos de paneles, edición y opciones.
 // 3.34.0 - 21/10/2016 - Inclusión de Google Analytics para la web https://icasus3.us.es

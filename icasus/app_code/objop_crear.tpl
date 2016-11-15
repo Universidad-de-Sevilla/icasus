@@ -125,6 +125,18 @@
                             </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="descripcion" class="col-sm-2 control-label">{$smarty.const.FIELD_DESC}</label>
+                        <div class="col-sm-8">
+                            <textarea  class="form-control" id="descripcion" name="descripcion" placeholder="{$smarty.const.FIELD_DESC}"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="observaciones" class="col-sm-2 control-label">{$smarty.const.FIELD_OBSERV}</label>
+                        <div class="col-sm-8">
+                            <textarea  class="form-control" id="observaciones" name="observaciones" placeholder="{$smarty.const.FIELD_OBSERV}"></textarea>
+                        </div>
+                    </div>
                     <div class="form-group has-feedback">
                         <label for="peso" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_PESO}</label>
                         <div class="col-sm-8">
@@ -213,7 +225,7 @@
                         </div>
                     </div>
                     <div id="div_unidad" class="form-group has-feedback">
-                        <label for="lista_subunidades" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</label>
+                        <label for="lista_subunidades" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_UNID}</label>
                         <div class="col-sm-8">
                             <div class="checkbox">
                                 <label>

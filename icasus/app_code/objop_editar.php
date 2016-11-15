@@ -42,7 +42,7 @@ if (filter_has_var(INPUT_GET, 'id_objop'))
 
             //Indicadores
             $indicador = new Indicador();
-            $indicadores = $indicador->Find("id_entidad=$plan->id_entidad");
+            $indicadores = $indicador->Find("id_entidad=$plan->id_entidad AND archivado IS NULL");
             $smarty->assign("indicadores", $indicadores);
 
             //Unidades
