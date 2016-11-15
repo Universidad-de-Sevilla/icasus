@@ -301,8 +301,15 @@
 <!-- Paneles -->
 <div id="paneles" data-num_paneles="{$paneles|@count}">
     {if $paneles}
+        {$cuenta=0}
         {foreach $paneles as $panel}
-            {if $panel->ancho>6 || ($panel@index +1)%2==0}
+            {*Si la cuenta es impar y el panel es ancho*}
+            {if ($cuenta +1)%2==0 && $panel->ancho>6}
+                {$cuenta=$cuenta+1}
+                </div>
+            {/if}
+            {*Creamos una fila al empezar, cada dos paneles normales o si es grande*}
+            {if $cuenta%2==0}
                 <div class="row">
             {/if}
             <div class="col-lg-{$panel->ancho}" >
@@ -371,12 +378,19 @@
                 </div>
                 <!-- /.panel -->
             </div>
-            <!-- /.col-lg-{$panel->ancho} -->
-            {if $panel->ancho>6 || ($panel@index +1)%2==0}
+            <!-- /.col-lg-{$panel->ancho} -->     
+            {*Cerramos la fila cada dos paneles normales si el panel 
+            es grande y al terminar*}
+            {if ($cuenta +1)%2==0 || $panel@last || $panel->ancho>6}
                 </div>
+            {/if}
+            {*Incrementamos la cuenta en función del ancho del panel*}
+            {if $panel->ancho>6}
+                {$cuenta = $cuenta+2}
+            {else}
+                {$cuenta = $cuenta+1}
             {/if}
         {/foreach} 
     {/if}
 </div>
-<!-- /.row -->
 <!-- /Paneles -->
