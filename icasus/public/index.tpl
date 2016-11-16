@@ -343,6 +343,17 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-lg-12">
+
+                                <!-- Back to Top -->
+                                <a title="{$smarty.const.TXT_VOLVER_ARRIBA}" id="top-link-block" href="#top" class="btn btn-primary hidden"  
+                                   {literal}
+                                       onclick="$('html,body').animate({scrollTop: 0}, 'slow');
+                                               return false;"
+                                   {/literal}>
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <!-- /Back to Top -->
+
                                 <span class="h4">{$smarty.const.TXT_ICASUS}</span> - {$smarty.const.TXT_APP_DESCRIPCION} - <a href="https://{$smarty.const.TXT_APP_WEB}">{$smarty.const.TXT_APP_WEB}</a>
                             </div>
                             <!-- /.col-lg-12 -->
@@ -359,16 +370,6 @@
                     <!-- /.container-fluid -->
                 </footer>
                 <!-- /Footer -->
-
-                <!-- Back to Top -->
-                <a title="{$smarty.const.TXT_VOLVER_ARRIBA}" id="top-link-block" href="#top" class="btn btn-primary hidden"  
-                   {literal}
-                       onclick="$('html,body').animate({scrollTop: 0}, 'slow');
-                               return false;"
-                   {/literal}>
-                    <i class="fa fa-chevron-up"></i>
-                </a>
-                <!-- /Back to Top -->
 
             </div>
             <!-- /#wrapper -->
