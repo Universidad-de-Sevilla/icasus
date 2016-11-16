@@ -318,7 +318,22 @@
                         <div class="row">
                             <div class="col-xs-8">
                                 <span title="{$smarty.const.FIELD_ORDEN}" class="badge">{$panel->orden}</span>
-                                <strong><i class="fa fa-area-chart fa-fw"></i> {$panel->nombre}</strong>     
+                                <strong>
+                                    {if $panel->id_paneltipo == 2}
+                                        <i class="fa fa-line-chart fa-fw"></i>
+                                    {else if $panel->id_paneltipo == 3}
+                                        <i class="fa fa-pie-chart fa-fw"></i>
+                                    {else if $panel->id_paneltipo == 4}
+                                        <span class="fa-stack fa-1x">
+                                            <i class="fa fa-line-chart fa-stack-1x"></i>
+                                            <i class="fa fa-bar-chart fa-stack-1x"></i>
+                                        </span>
+                                    {else if $panel->id_paneltipo == 6}
+                                        <i class="fa fa-table fa-fw"></i>
+                                    {else if $panel->id_paneltipo == 7}
+                                        <i class="fa fa-bar-chart fa-fw"></i>
+                                    {/if} {$panel->nombre}
+                                </strong>     
                             </div>
                             <!-- /.col-xs-8 -->
                             <div class="col-xs-4">
