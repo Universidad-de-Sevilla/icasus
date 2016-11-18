@@ -237,20 +237,24 @@
                             </div>
                         </div>
                     </div>
-                    <div id="div_unidad" class="form-group has-feedback {if $objop->descendente}hidden{/if}">
-                        <label for="lista_subunidades" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_UNID}</label>
+                    <div id="div_unidad" class="form-group {if $objop->descendente}hidden{/if}">
+                        <label for="lista_unidades" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID}</label>
                         <div class="col-sm-8">
-                            <div class="checkbox">
-                                <label>
-                                    <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad" {if $objop->descendente == 0}checked="checked"{/if} required>
-                                    {$entidad->etiqueta}
-                                </label>
-                            </div>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
+                            <select id="lista_unidades" class="form-control chosen-select" name="subunidades[]" {if $objop->descendente}disabled{/if}>
+                                <option value="{$entidad->id}"
+                                        {foreach $objetivo_subunidades as $objetivo_subunidad}
+                                            {if $objetivo_subunidad->id_entidad == $entidad->id && !$objop->descendente}selected{/if}
+                                        {/foreach}>{$entidad->etiqueta}</option>
+                                {foreach name="subunidad" from=$subunidades item="subunidad"}
+                                    <option value="{$subunidad->id}"
+                                            {foreach $objetivo_subunidades as $objetivo_subunidad}
+                                                {if $objetivo_subunidad->id_entidad == $subunidad->id && !$objop->descendente}selected{/if}
+                                            {/foreach}>{$subunidad->etiqueta}</option> 
+                                {/foreach}
+                            </select>
                         </div>
                     </div>
-                    <div id="div_subunidades" class="form-group has-feedback {if $objop->descendente == 0}hidden{/if}">
+                    <div id="div_subunidades" class="form-group has-feedback {if !$objop->descendente}hidden{/if}">
                         <label for="lista_subunidades" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</label>
                         <div class="col-sm-8">
                             <button id="marcar_todos" type="button" class="btn btn-default btn-circle btn-primary btn-xs" title="{$smarty.const.TXT_MARCAR}" >
@@ -264,8 +268,8 @@
                                     <label>
                                         <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad" data-validar_subunidades="validar_subunidades" 
                                                {foreach $objetivo_subunidades as $objetivo_subunidad}
-                                                   {if $objetivo_subunidad->id_entidad == $subunidad->id} checked{/if}
-                                               {/foreach}>
+                                                   {if $objetivo_subunidad->id_entidad == $subunidad->id && $objop->descendente || !$objop->descendente}checked{/if}
+                                               {/foreach} {if !$objop->descendente}disabled{/if}>
                                         {$subunidad->etiqueta}
                                     </label>
                                 </div>

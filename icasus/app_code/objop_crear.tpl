@@ -224,17 +224,15 @@
                             </div>
                         </div>
                     </div>
-                    <div id="div_unidad" class="form-group has-feedback">
-                        <label for="lista_subunidades" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_UNID}</label>
+                    <div id="div_unidad" class="form-group">
+                        <label for="lista_unidades" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID}</label>
                         <div class="col-sm-8">
-                            <div class="checkbox">
-                                <label>
-                                    <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad" checked="checked" required>
-                                    {$entidad->etiqueta}
-                                </label>
-                            </div>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
+                            <select id="lista_unidades" class="form-control chosen-select" name="subunidades[]">
+                                <option value="{$entidad->id}">{$entidad->etiqueta}</option>
+                                {foreach name="subunidad" from=$subunidades item="subunidad"}
+                                    <option value="{$subunidad->id}">{$subunidad->etiqueta}</option> 
+                                {/foreach}
+                            </select>
                         </div>
                     </div>
                     <div id="div_subunidades" class="form-group has-feedback hidden">
@@ -249,7 +247,7 @@
                             {foreach name="subunidad" from=$subunidades item="subunidad"}
                                 <div class="checkbox">
                                     <label>
-                                        <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad" data-validar_subunidades="validar_subunidades" >
+                                        <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad" data-validar_subunidades="validar_subunidades" checked>
                                         {$subunidad->etiqueta}
                                     </label>
                                 </div>

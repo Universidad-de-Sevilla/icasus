@@ -14,7 +14,6 @@ $(document).ready(function () {
         e.preventDefault();
         var validar = $('form').validator('validate');
         //Retiramos validación de páginas posteriores
-        $('#div_unidad').removeClass('has-error');
         $('#div_subunidades').removeClass('has-error');
         //Si no hay errores de validación avanzamos
         if (!validar.has('.has-error').length) {
@@ -63,26 +62,34 @@ $(document).ready(function () {
         //Propio
         if (valor === '0')
         {
-            $('#div_unidad').removeClass('hidden');
             $('#div_subunidades').addClass('hidden');
-            $(".subunidad").removeAttr("checked");
-            $(".unidad").prop("checked", 'true');
+            $('#lista_unidades').prop('disabled', false);
+            $(".subunidad").prop("disabled", true);
+            $('#div_unidad').removeClass('hidden');
+
         }
         //Descendente
         if (valor === '1')
         {
             $('#div_unidad').addClass('hidden');
+            $('#lista_unidades').prop('disabled', true);
             $('#div_subunidades').removeClass('hidden');
-            $(".unidad").removeAttr("checked");
-            $(".subunidad").prop("checked", 'true');
+            $(".subunidad").prop("disabled", false);
         }
+        $('.subunidad').trigger('change');
     });
 
     $('#marcar_todos').on('click', function () {
-        $(".subunidad").prop("checked", 'true');
+        $(".subunidad").prop("checked", true);
+        $('.subunidad').trigger('change');
     });
 
     $('#desmarcar_todos').on('click', function () {
-        $(".subunidad").removeAttr("checked");
+        $(".subunidad").prop("checked", false);
+        $('.subunidad').trigger('change');
+    });
+
+    $('.subunidad').click(function () {
+        $('.subunidad').trigger('change');
     });
 });

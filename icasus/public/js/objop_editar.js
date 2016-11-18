@@ -14,27 +14,36 @@ $(document).ready(function () {
         //Propio
         if (valor === '0')
         {
-            $('#div_unidad').removeClass('hidden');
             $('#div_subunidades').addClass('hidden');
-            $(".subunidad").removeAttr("checked");
-            $(".unidad").prop("checked", 'true');
+            $('#lista_unidades').prop('disabled', false);
+            $('#lista_unidades').trigger('chosen:updated');
+            $(".subunidad").prop("disabled", true);
+            $('#div_unidad').removeClass('hidden');
+
         }
         //Descendente
         if (valor === '1')
         {
             $('#div_unidad').addClass('hidden');
+            $('#lista_unidades').prop('disabled', true);
             $('#div_subunidades').removeClass('hidden');
-            $(".unidad").removeAttr("checked");
-            $(".subunidad").prop("checked", 'true');
+            $(".subunidad").prop("disabled", false);
         }
+        $('.subunidad').trigger('change');
     });
 
     $('#marcar_todos').on('click', function () {
-        $(".subunidad").prop("checked", 'true');
+        $(".subunidad").prop("checked", true);
+        $('.subunidad').trigger('change');
     });
 
     $('#desmarcar_todos').on('click', function () {
-        $(".subunidad").removeAttr("checked");
+        $(".subunidad").prop("checked", false);
+        $('.subunidad').trigger('change');
+    });
+
+    $('.subunidad').click(function () {
+        $('.subunidad').trigger('change');
     });
 
     //Cambios del índice de los objetivos estratégicos

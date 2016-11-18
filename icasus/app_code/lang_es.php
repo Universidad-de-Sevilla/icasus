@@ -802,7 +802,7 @@ define('FIELD_EJECUCION', 'Ejecución');
 //Líneas
 define('FIELD_LINEA', 'Línea estratégica');
 define('FIELD_LINEAS', 'Líneas estratégicas');
-define('FIELD_INDICE', 'Índice');
+define('FIELD_INDICE', 'Número');
 
 //Objetivos
 define('FIELD_OBJ_EST', 'Objetivo estratégico');
