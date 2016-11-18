@@ -19,7 +19,7 @@ intuitiva.
 Toda la información de procesos, indicadores y cuadros de mando se 
 encuentra centralizada y actualizada constantemente.
 
-https://icasus3.us.es/images/captura_icasus.png
+!https://icasus3.us.es/images/captura_icasus.png
 
 Se ha desarrollado en la Universidad de Sevilla por el personal 
 informático de la Dirección de Recursos Humanos y con la colaboración 
