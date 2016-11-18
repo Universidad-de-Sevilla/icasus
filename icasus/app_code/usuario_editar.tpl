@@ -31,13 +31,13 @@
               data-toggle="validator" class="form-horizontal">
             <input type="hidden" name="id_usuario" value="{$persona->id}">
             <div class="form-group">
-                <label for="login" class="col-sm-2 control-label">{$smarty.const.FIELD_LOGIN} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="login" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_LOGIN}</label>
                 <div class="col-sm-8">
                     <input type='text' class="form-control" id='login' value="{$persona->login}" placeholder="{$smarty.const.FIELD_LOGIN}" readonly>
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                 <div class="col-sm-8">
                     <input type='text' class="form-control" name='nombre' id='nombre' value="{$persona->nombre}" placeholder="{$smarty.const.FIELD_NOMBRE}" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="apellidos" class="col-sm-2 control-label">{$smarty.const.FIELD_APEL} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="apellidos" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_APEL}</label>
                 <div class="col-sm-8">
                     <input type='text' class="form-control" name='apellidos' id='apellidos' value="{$persona->apellidos}" placeholder="{$smarty.const.FIELD_APEL}" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="correo" class="col-sm-2 control-label">{$smarty.const.FIELD_CORREO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="correo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_CORREO}</label>
                 <div class="col-sm-8">
                     <input type='email' class="form-control" name='correo' id='correo' value="{$persona->correo}" placeholder="{$smarty.const.FIELD_CORREO}" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

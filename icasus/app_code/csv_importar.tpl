@@ -72,7 +72,7 @@
         <form class="form-horizontal" id='importar_csv' enctype='multipart/form-data' action='index.php?page=csv_grabar' method='post' data-toggle="validator">
             <input type='hidden' name='id_entidad' value='{$entidad->id}'>
             <div class="form-group has-feedback">
-                <label for="fichero" class="col-sm-2 control-label">{$smarty.const.TXT_ARCHIVO_SEL_IMPORT} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="fichero" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.TXT_ARCHIVO_SEL_IMPORT}</label>
                 <div class="col-sm-8">
                     <input class="filestyle" data-buttonBefore="true" 
                            data-placeholder="{$smarty.const.TXT_NO_ARCHIVO_SEL}" 

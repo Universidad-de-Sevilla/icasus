@@ -18,6 +18,92 @@
 </div>
 <!-- /Diálogo Confirmar Borrado cuadro -->
 
+<!-- Diálogo Crear panel -->
+<div class="modal fade" id="dialogo_crear_panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_PANEL_CREAR}: {$smarty.const.TXT_PANEL_TIPO}</h3>
+            </div>
+            <div class="modal-body">
+                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_LINEAS}: {$smarty.const.TXT_LINEAS_DESC}" onclick="location.href = 'index.php?page=panel_linea&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <i class="fa fa-line-chart fa-2x"></i>
+                            </div>
+                            <div class="col-xs-11">
+                                <strong>{$smarty.const.TXT_LINEAS}:</strong> {$smarty.const.TXT_LINEAS_DESC}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel -->
+                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_BARRAS}: {$smarty.const.TXT_BARRAS_DESC}" onclick="location.href = 'index.php?page=panel_barra&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <i class="fa fa-bar-chart fa-2x"></i>
+                            </div>
+                            <div class="col-xs-11">
+                                <strong>{$smarty.const.TXT_BARRAS}:</strong> {$smarty.const.TXT_BARRAS_DESC}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel -->
+                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_MIXTO}: {$smarty.const.TXT_MIXTO_DESC}" onclick="location.href = 'index.php?page=panel_mixto&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <span class="fa-stack fa-1x">
+                                    <i class="fa fa-line-chart fa-stack-2x"></i>
+                                    <i class="fa fa-bar-chart fa-stack-2x"></i>
+                                </span>
+                            </div>
+                            <div class="col-xs-11">
+                                <strong>{$smarty.const.TXT_MIXTO}:</strong> {$smarty.const.TXT_MIXTO_DESC}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel -->
+                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_TARTA}: {$smarty.const.TXT_TARTA_DESC}" onclick="location.href = 'index.php?page=panel_tarta&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <i class="fa fa-pie-chart fa-2x"></i>
+                            </div>
+                            <div class="col-xs-11">
+                                <strong>{$smarty.const.TXT_TARTA}:</strong> {$smarty.const.TXT_TARTA_DESC}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel -->
+                <div class="panel panel-resumen clickable" title="{$smarty.const.TXT_TABLA}: {$smarty.const.TXT_TABLA_DESC}" onclick="location.href = 'index.php?page=panel_tabla&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}';">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-1">
+                                <i class="fa fa-table fa-2x"></i>
+                            </div>
+                            <div class="col-xs-11">
+                                <strong>{$smarty.const.TXT_TABLA}:</strong> {$smarty.const.TXT_TABLA_DESC}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Crear panel -->
+
 <!-- Diálogo Confirmar Borrado panel -->
 <div class="modal fade" id="dialogo_borrado_panel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -179,7 +265,7 @@
         <div class="col-lg-12">
             <div class="btn-toolbar" role="toolbar" aria-label="">
                 <div class="btn-group" role="group" aria-label="">
-                    <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_PANEL_CREAR}" href='index.php?page=panel_crear&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
+                    <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_PANEL_CREAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_crear_panel">
                         <i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
                 </div>
                 <div class="btn-group pull-right" role="group" aria-label="">    
@@ -213,9 +299,19 @@
 <!-- /Comentarios del cuadro -->
 
 <!-- Paneles -->
-<div id="paneles" class ="row" data-num_paneles="{$paneles|@count}">
+<div id="paneles" data-num_paneles="{$paneles|@count}">
     {if $paneles}
+        {$cuenta=0}
         {foreach $paneles as $panel}
+            {*Si la cuenta es impar y el panel es ancho*}
+            {if ($cuenta +1)%2==0 && $panel->ancho>6}
+                {$cuenta=$cuenta+1}
+                </div>
+            {/if}
+            {*Creamos una fila al empezar, cada dos paneles normales o si es grande*}
+            {if $cuenta%2==0}
+                <div class="row">
+            {/if}
             <div class="col-lg-{$panel->ancho}" >
                 <div class="panel panel-red">
                     <div class="panel-heading">
@@ -227,7 +323,7 @@
                             <!-- /.col-xs-8 -->
                             <div class="col-xs-4">
                                 <div class="btn-toolbar pull-right" role="group" aria-label="">
-                                    {* Sólo paneles que no sean de tabla múltiple*}
+                                    {* Sólo paneles que no sean de tipo tabla*}
                                     {if $panel->id_paneltipo != 6}
                                         <button type="button" title="{$smarty.const.TXT_PANEL_INDICS}" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fa fa-dashboard fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -257,9 +353,6 @@
                         <!-- /.row --> 
                         <div class="row">
                             <div class="col-xs-12">
-                                {if $_usuario->id eq $cuadro->id_usuario || $_control}
-                                    <span title="{$smarty.const.FIELD_ANCHO}: {$panel->ancho}" class="label label-default">{$smarty.const.FIELD_ANCHO}: {$panel->ancho}</span>
-                                {/if}
                                 {if $panel->tipo->id == 2 || $panel->tipo->id == 3 || $panel->tipo->id == 4}
                                     {$smarty.const.TXT_GRAFICO_AUMENTAR} 
                                 {/if}
@@ -276,6 +369,7 @@
                              data-titulo_panel ="{$panel->nombre}"
                              data-id_medicion="{$panel->id_medicion}" 
                              data-anyos_atras="{$panel->anyos_atras}"
+                             data-anyo_inicio="{$panel->anyo_inicio}"
                              data-anyo_fin="{$panel->anyo_fin}"
                              data-periodicidad="{$panel->periodicidad}">
                         </div>
@@ -284,9 +378,19 @@
                 </div>
                 <!-- /.panel -->
             </div>
-            <!-- /.col-lg-{$panel->ancho} -->
+            <!-- /.col-lg-{$panel->ancho} -->     
+            {*Cerramos la fila cada dos paneles normales si el panel 
+            es grande y al terminar*}
+            {if ($cuenta +1)%2==0 || $panel@last || $panel->ancho>6}
+                </div>
+            {/if}
+            {*Incrementamos la cuenta en función del ancho del panel*}
+            {if $panel->ancho>6}
+                {$cuenta = $cuenta+2}
+            {else}
+                {$cuenta = $cuenta+1}
+            {/if}
         {/foreach} 
     {/if}
 </div>
-<!-- /.row -->
 <!-- /Paneles -->

@@ -3,8 +3,11 @@
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
-                <div class="col-sm-11">
-                    <i class="fa fa-table fa-fw"></i> {$_nombre_pagina}
+                <div id="panel_mixto" class="col-sm-11">
+                    <span class="fa-stack">
+                        <i class="fa fa-line-chart fa-stack-1x"></i>
+                        <i class="fa fa-bar-chart fa-stack-1x"></i>
+                    </span> {$_nombre_pagina}
                 </div>
                 <!-- /.col-sm-11 -->
                 <!-- Tipos de panel -->                 
@@ -19,8 +22,8 @@
                         <li>
                             <a title="{$smarty.const.TXT_BARRAS}: {$smarty.const.TXT_BARRAS_DESC}" href='index.php?page=panel_barra&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-bar-chart fa-fw"></i> {$smarty.const.TXT_BARRAS}</a>
                         </li>
-                        <li>
-                            <a title="{$smarty.const.TXT_MIXTO}: {$smarty.const.TXT_MIXTO_DESC}" href='index.php?page=panel_mixto&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'>
+                        <li class="active">
+                            <a title="{$smarty.const.TXT_MIXTO}: {$smarty.const.TXT_MIXTO_DESC}">
                                 <span class="fa-stack fa-1x">
                                     <i class="fa fa-line-chart fa-stack-1x"></i>
                                     <i class="fa fa-bar-chart fa-stack-1x"></i>
@@ -30,8 +33,8 @@
                         <li>
                             <a title="{$smarty.const.TXT_TARTA}: {$smarty.const.TXT_TARTA_DESC}" href='index.php?page=panel_tarta&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-pie-chart fa-fw"></i> {$smarty.const.TXT_TARTA}</a>
                         </li>
-                        <li class="active">
-                            <a title="{$smarty.const.TXT_TABLA}: {$smarty.const.TXT_TABLA_DESC}"><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a>
+                        <li>
+                            <a title="{$smarty.const.TXT_TABLA}: {$smarty.const.TXT_TABLA_DESC}" href='index.php?page=panel_tabla&id_cuadro={$cuadro->id}&id_entidad={$entidad->id}'><i class="fa fa-table fa-fw"></i> {$smarty.const.TXT_TABLA}</a>
                         </li>
                     </ul>
                 </div>
@@ -109,7 +112,7 @@
     <div class="col-lg-12">
         <div class="alert alert-info alert-dismissible">
             <i class="fa fa-info-circle fa-fw"></i> 
-            {$smarty.const.TXT_TABLA_DESC}
+            {$smarty.const.TXT_MIXTO_DESC}
         </div>
         <form method="post" action="index.php?page=panel_grabar" id="panel_nuevo" name="panel_nuevo"
               data-toggle="validator" class="form-horizontal">
@@ -143,6 +146,16 @@
                         <select class="form-control chosen-select" id='ancho' name="ancho">
                             <option value="6" {if $panel_tipo->ancho_pred == 6}selected{/if}>{$smarty.const.TXT_PANEL_NORMAL}</option>
                             <option value="12" {if $panel_tipo->ancho_pred == 12}selected{/if}>{$smarty.const.TXT_PANEL_GRANDE}</option> 
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="periodicidad" class="col-sm-2 control-label">{$smarty.const.FIELD_PERIOD}</label>
+                    <div class="col-sm-8">
+                        <select class="form-control chosen-select" name="periodicidad" id='periodicidad'>
+                            <option value="anual">{$smarty.const.TXT_ANUAL}</option>
+                            <option value="bienal">{$smarty.const.TXT_BIENAL}</option>
+                            <option value="mensual">{$smarty.const.TXT_INTRANUAL}</option>     
                         </select>
                     </div>
                 </div>
@@ -194,68 +207,31 @@
             <fieldset>
                 <legend>{$smarty.const.TXT_PANEL_INDICS}</legend>
 
-                <!-- Unidad -->
+                <!-- Indicador/dato base -->
                 <div class="form-group">
-                    <label for="id_subunidad" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID}</label>
+                    <label for="indicador_base" class="col-sm-2 control-label">{$smarty.const.FIELD_INDIC_BASE}</label>
                     <div class="col-sm-8">
-                        <select id="id_subunidad" name="id_subunidad" class="form-control chosen-select" required>
-                            <option value="0">{$smarty.const.FIELD_TOTAL} - {$entidad->nombre}</option>
-                            {foreach $subunidades as $subunidad}
-                                <option value="{$subunidad->id}">{$subunidad->etiqueta}</option>
-                            {/foreach}
-                        </select>
-                    </div>
-                </div>
-                <!-- /Unidad -->
-
-                <!-- Indicadores -->
-                <div class="form-group">
-                    <label for="indicadores" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS}</label>
-                    <div class="col-sm-8">
-                        <select class="form-control chosen-select" name="id_indicadores[]" id="indicadores" multiple>
+                        <select class="form-control chosen-select" name="id_indicadores[]" id="indicador_base">
                             {foreach $indicadores as $indicador}
                                 <option title="{$indicador->nombre}" value="{$indicador->id}">{$indicador->nombre}</option>
                             {/foreach}
                         </select>
                     </div>
-                    <div class="col-sm-2">
-                        <button id="sel_todos_indics" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_SEL_TODOS}" >
-                            <i class="fa fa-check-square-o fa-fw"></i>
-                        </button>
-                        <button id="desel_todos_indics" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_DESEL_TODOS}" >
-                            <i class="fa fa-square-o fa-fw"></i>
-                        </button>
-                    </div>
                 </div>
-                <!-- /Indicadores -->
+                <!-- /Indicador/dato base -->
 
-                <!-- Datos -->
+                <!-- Indicadores/datos complementarios -->
                 <div class="form-group">
-                    <label for="datos" class="col-sm-2 control-label">{$smarty.const.FIELD_DATOS}</label>
+                    <label for="indicadores_complementarios" class="col-sm-2 control-label">{$smarty.const.FIELD_INDIC_COMPLEMENT}</label>
                     <div class="col-sm-8">
-                        <select class="form-control chosen-select" name="id_indicadores[]" id="datos" multiple>
-                            {foreach $datos as $dato}
-                                <option title="{$dato->nombre}" value="{$dato->id}">{$dato->nombre}</option>
+                        <select class="form-control chosen-select" name="id_indicadores[]" id="indicadores_complementarios" multiple>
+                            {foreach $indicadores as $indicador}
+                                <option title="{$indicador->nombre}" value="{$indicador->id}">{$indicador->nombre}</option>
                             {/foreach}
                         </select>
                     </div>
-                    <div class="col-sm-2">
-                        <button id="sel_todos_datos" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_SEL_TODOS}" >
-                            <i class="fa fa-check-square-o fa-fw"></i>
-                        </button>
-                        <button id="desel_todos_datos" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_DESEL_TODOS}" >
-                            <i class="fa fa-square-o fa-fw"></i>
-                        </button>
-                    </div>
                 </div>
-                <!-- /Datos -->
-
-                <div class="form-group has-feedback">
-                    <div class="col-sm-offset-2 col-sm-8">
-                        <input type="text" class="invisible" id="indicadores_datos" required>
-                        <div class="help-block with-errors"></div>
-                    </div>
-                </div>
+                <!-- /Indicadores/datos complementarios -->
 
             </fieldset>
             <!-- /Indicadores/datos -->

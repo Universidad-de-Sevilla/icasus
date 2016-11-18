@@ -53,7 +53,7 @@
                 <div class="modal-body">
                     <p>{$smarty.const.MSG_MED_CREAR}</p>
                     <div class="form-group has-feedback">
-                        <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="anyo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ANYO}</label>
                         <div class="col-sm-4">
                             <input type="number" value="{$smarty.now|date_format:'%Y'}" name="anyo" id='anyo' class="form-control" placeholder="{$smarty.const.FIELD_ANYO}" min='{$indicador->historicos}' max="{$smarty.now|date_format:'%Y'}" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -83,7 +83,7 @@
                 <div class="modal-body">
                     <p>{$smarty.const.MSG_MED_CARGAR}</p>
                     <div class="form-group has-feedback">
-                        <label for="registros" class="col-sm-3 control-label">{$smarty.const.FIELD_REGISTROS} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                        <label for="registros" class="col-sm-3 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_REGISTROS}</label>
                         <div class="col-sm-4">
                             <input type="number" value="{$total_registros}" name="registros" id='registros' class="form-control" placeholder="{$smarty.const.FIELD_REGISTROS}" min='1' max="{$total_registros}" required/>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

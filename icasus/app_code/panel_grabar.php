@@ -6,11 +6,8 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesús Martín (jjmc@us.es) 
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Graba los paneles nuevos
+// Descripcion: Graba los paneles de los cuadros de mando
 //---------------------------------------------------------------------------------------------------
-
-$panel = new Panel();
-$panel_indicador = new Panel_indicador();
 
 if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'orden') && filter_has_var(INPUT_POST, 'tipo') && filter_has_var(INPUT_POST, 'ancho'))
 {
@@ -21,6 +18,25 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
     $tipo = filter_input(INPUT_POST, 'tipo', FILTER_SANITIZE_NUMBER_INT);
     $ancho = filter_input(INPUT_POST, 'ancho', FILTER_SANITIZE_NUMBER_INT);
 
+    $panel = new Panel();
+    $panel_indicador = new Panel_indicador();
+
+    //Si estamos creando un nuevo panel
+    $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
+    //Si estamos editando un panel existente
+    if (filter_has_var(INPUT_POST, 'id_panel'))
+    {
+        $id_panel = filter_input(INPUT_POST, 'id_panel', FILTER_SANITIZE_NUMBER_INT);
+        //Eliminamos los indicadores/datos asociados
+        while ($panel_indicador->load("id_panel = $id_panel"))
+        {
+            $panel_indicador->delete();
+        }
+        $panel->load("id=$id_panel");
+        $exito = MSG_PANEL_EDITADO . ' ' . $nombre_panel;
+    }
+    $smarty->assign("exito", $exito);
+
     // Datos genéricos del panel
     $panel->id_cuadro = $id_cuadro;
     $panel->nombre = $nombre_panel;
@@ -30,6 +46,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
     $panel->id_medicion = filter_input(INPUT_POST, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $panel->periodicidad = filter_has_var(INPUT_POST, 'periodicidad') ? filter_input(INPUT_POST, 'periodicidad', FILTER_SANITIZE_STRING) : "todos";
     $panel->anyos_atras = filter_has_var(INPUT_POST, 'anyos_atras') ? filter_input(INPUT_POST, 'anyos_atras', FILTER_SANITIZE_NUMBER_INT) : null;
+    $panel->anyo_inicio = filter_has_var(INPUT_POST, 'anyo_inicio') ? filter_input(INPUT_POST, 'anyo_inicio', FILTER_SANITIZE_NUMBER_INT) : null;
     $panel->anyo_fin = filter_has_var(INPUT_POST, 'anyo_fin') ? filter_input(INPUT_POST, 'anyo_fin', FILTER_SANITIZE_NUMBER_INT) : null;
 
     //Guardamos los datos genéricos y comprobamos el tipo del panel
@@ -41,7 +58,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
         //Comprobamos el tipo de panel
         switch ($panel->id_paneltipo)
         {
-            // Panel Métrica
+            // Panel Métrica (no se usa ya)
             case 1:
                 if (filter_has_var(INPUT_POST, 'id_indicador') && filter_has_var(INPUT_POST, 'id_subunidad'))
                 {
@@ -51,8 +68,6 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     $panel_indicador->id_entidad = $id_entidad;
                     if ($panel_indicador->save())
                     {
-                        $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                        $smarty->assign("exito", $exito);
                         header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                     }
                     else
@@ -70,8 +85,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 }
                 break;
 
-            // Panel Línea
+            // Panel Línea y Panel Barra
             case 2:
+            case 7:
                 $post_array = filter_input_array(INPUT_POST);
                 $id_indicadores = $post_array['id_indicadores'];
                 $id_subunidades = $post_array['id_subunidades'];
@@ -87,8 +103,6 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         $panel_indicador->id_entidad = filter_var($id_subunidades[$i], FILTER_SANITIZE_NUMBER_INT);
                         if ($panel_indicador->save())
                         {
-                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                            $smarty->assign("exito", $exito);
                             header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                         }
                         else
@@ -117,8 +131,6 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     $panel_indicador->id_entidad = $id_entidad;
                     if ($panel_indicador->save())
                     {
-                        $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                        $smarty->assign("exito", $exito);
                         header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                     }
                     else
@@ -136,8 +148,8 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 }
                 break;
 
+            // Panel Mixto
             case 4:
-                // Panel Barras
                 $post_array = filter_input_array(INPUT_POST);
                 $id_indicadores = $post_array['id_indicadores'];
                 if ($id_indicadores)
@@ -151,8 +163,6 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         $panel_indicador->id_indicador = filter_var($id_indicador, FILTER_SANITIZE_NUMBER_INT);
                         if ($panel_indicador->save())
                         {
-                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                            $smarty->assign("exito", $exito);
                             header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                         }
                         else
@@ -171,8 +181,8 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 }
                 break;
 
+            // Panel tabla_simple (no se usa ya)
             case 5:
-                // Panel Tabla
                 $id_indicador = filter_input(INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
                 $post_array = filter_input_array(INPUT_POST);
                 $subunidades = $post_array['id_subunidades'];
@@ -187,8 +197,6 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         $panel_indicador->id_entidad = filter_var($subunidad, FILTER_SANITIZE_NUMBER_INT);
                         if ($panel_indicador->save())
                         {
-                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                            $smarty->assign("exito", $exito);
                             header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                         }
                         else
@@ -206,8 +214,9 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                     header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
                 }
                 break;
+
+            //Panel tabla
             case 6:
-                //Panel tabla_multi
                 $id_entidad = filter_input(INPUT_POST, 'id_subunidad', FILTER_SANITIZE_NUMBER_INT);
                 $post_array = filter_input_array(INPUT_POST);
                 $id_indicadores = $post_array['id_indicadores'];
@@ -222,8 +231,6 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                         $panel_indicador->id_indicador = filter_var($id_indicador, FILTER_SANITIZE_NUMBER_INT);
                         if ($panel_indicador->save())
                         {
-                            $exito = MSG_PANEL_CREADO . ' ' . $nombre_panel;
-                            $smarty->assign("exito", $exito);
                             header("Location: index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&exito=$exito");
                         }
                         else

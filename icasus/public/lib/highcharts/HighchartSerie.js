@@ -62,7 +62,7 @@ function HighchartSerie() {
         else if (nomIndicador !== '') {
             var colors = ['#7CB5EC', '#880736', '#BF921D', '#F77205', '#900787'];
             var color = colors[index];
-            if (index > 4) {
+            if (index > 4 || index === 'random') {
                 //Generamos un color al azar
                 color = '#' + (function lol(m, s, c) {
                     return s[m.floor(m.random() * s.length)] +
@@ -127,7 +127,7 @@ function HighchartSerie() {
     };
 
     //Devuelve una serie Highchart para un gráfico de barras
-    this.getBarSerie = function (nomIndicador) {
+    this.getBarSerie = function (nomIndicador, index) {
         var serieHighchart = [];
         //Valor por defecto para el nombre del indicador/dato que sólo se muestra en los 
         //paneles de los cuadros de mando
@@ -138,12 +138,27 @@ function HighchartSerie() {
             for (m in arrayMedicion) {
                 arrayMedicion[m].x = this.categories.position(arrayMedicion[m].id);
             }
-            serieHighchart.push({
-                type: 'column',
-                name: medicion + nomIndicador,
-                data: arrayMedicion,
-                visible: false
-            });
+            //Colores para valores de referencia e indicadores de cuadros de mando
+            if (medicion.indexOf('mite') !== -1
+                    || medicion.indexOf('eta') !== -1
+                    || medicion.indexOf('ebiun') !== -1
+                    || nomIndicador !== '') {
+                serieHighchart.push({
+                    type: 'column',
+                    name: medicion + nomIndicador,
+                    data: arrayMedicion,
+                    color: color(medicion, nomIndicador, index)
+                });
+            }
+            //Colores para el resto de las series
+            else {
+                serieHighchart.push({
+                    type: 'column',
+                    name: medicion + nomIndicador,
+                    data: arrayMedicion,
+                    visible: false
+                });
+            }
         }
         return serieHighchart;
     };

@@ -74,7 +74,7 @@
               data-toggle="validator" class="form-horizontal">
             <input type="hidden" name="id_entidad" value="{$entidad->id}">
             <div class="form-group has-feedback">
-                <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                 <div class="col-sm-8">
                     <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

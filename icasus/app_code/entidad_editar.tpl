@@ -72,7 +72,7 @@
         <form method='post' action='index.php?page=entidad_editar&id_entidad={$entidad->id}' 
               data-toggle="validator" class="form-horizontal">
             <div class="form-group has-feedback">
-                <label for="codigo" class="col-sm-2 control-label">{$smarty.const.FIELD_COD} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="codigo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_COD}</label>
                 <div class="col-sm-8">
                     <input title="{$smarty.const.TXT_CODIGO}" data-toggle="tooltip" data-placement="left" type='text' name='codigo' id='codigo' 
                            pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                 <div class="col-sm-8">
                     <input type='text' class="form-control" name='nombre' id='nombre' value='{$entidad->nombre}' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="etiqueta" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="etiqueta" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ETIQUETA}</label>
                 <div class="col-sm-8">
                     <input type='text' class="form-control" name='etiqueta' id='etiqueta' value='{$entidad->etiqueta}' placeholder="{$smarty.const.FIELD_ETIQUETA}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -98,7 +98,7 @@
                 </div>
             </div>
             <div class="form-group has-feedback">
-                <label for="etiqueta_mini" class="col-sm-2 control-label">{$smarty.const.FIELD_ETIQUETA_MINI} <i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i></label>
+                <label for="etiqueta_mini" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ETIQUETA_MINI}</label>
                 <div class="col-sm-8">
                     <input title="{$smarty.const.TXT_ETIQUETA_MINI_DESCRIPCION}" data-toggle="tooltip" data-placement="left" type='text' maxlength="12" class="form-control" name='etiqueta_mini' id='etiqueta_mini' value='{$entidad->etiqueta_mini}' placeholder="{$smarty.const.FIELD_ETIQUETA_MINI}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>

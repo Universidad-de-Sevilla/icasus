@@ -2,11 +2,11 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
-// Archivo: panel_crear.php
+// Archivo: panel_mixto.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Controlador principal para generar paneles
+// Descripcion: Controlador para la creación de paneles mixtos
 //---------------------------------------------------------------------------------------------------
 
 if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_entidad'))
@@ -22,9 +22,29 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     $cuadro->load("id=$id_cuadro");
     $smarty->assign('cuadro', $cuadro);
 
-    $smarty->assign('_javascript', array('panel_crear'));
-    $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR);
-    $plantilla = "panel_crear.tpl";
+    //Tipo de panel: mixto
+    $panel_tipo = new Panel_tipo();
+    $panel_tipo->load("nombre = 'mixto'");
+    $smarty->assign('panel_tipo', $panel_tipo);
+
+    //Validar orden del panel dentro del cuadro de mando
+    $panel = new Panel();
+    $ordenes = array();
+    $paneles = $panel->Find("id_cuadro=$id_cuadro");
+    foreach ($paneles as $pl)
+    {
+        array_push($ordenes, $pl->orden);
+    }
+    $smarty->assign('elementos', $ordenes);
+
+    //Indicadores/datos
+    $indicador = new Indicador();
+    $indicadores = $indicador->find("id_entidad = $id_entidad AND archivado is NULL");
+    $smarty->assign('indicadores', $indicadores);
+
+    $smarty->assign('_javascript', array('panel_mixto'));
+    $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR . ': ' . TXT_MIXTO);
+    $plantilla = "panel_mixto.tpl";
 }
 else
 {

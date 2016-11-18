@@ -57,9 +57,14 @@ $('.panel_linea').each(function () {
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var periodicidad = $(this).data("periodicidad");
+    var anyo_inicio = $(this).data("anyo_inicio");
+    var anyo_fin = $(this).data("anyo_fin");
     var anyos_atras = $(this).data("anyos_atras");
-    var anyo_fin = new Date().getFullYear() - 1;
-    var fecha_inicio = anyo_fin - anyos_atras + '-01-01';
+    if (anyos_atras) {
+        anyo_fin = new Date().getFullYear() - 1;
+        anyo_inicio = anyo_fin - anyos_atras;
+    }
+    var fecha_inicio = anyo_inicio + '-01-01';
     var fecha_fin = anyo_fin + '-12-31';
     var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
     var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
@@ -201,11 +206,176 @@ $('.panel_linea').each(function () {
 });
 
 //Paneles de barras
-$(".panel_barra").each(function () {
+$('.panel_barra').each(function () {
     var contenedor = $(this).attr('id');
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var periodicidad = $(this).data("periodicidad");
+    var anyo_inicio = $(this).data("anyo_inicio");
+    var anyo_fin = $(this).data("anyo_fin");
+    var anyos_atras = $(this).data("anyos_atras");
+    if (anyos_atras) {
+        anyo_fin = new Date().getFullYear() - 1;
+        anyo_inicio = anyo_fin - anyos_atras;
+    }
+    var fecha_inicio = anyo_inicio + '-01-01';
+    var fecha_fin = anyo_fin + '-12-31';
+    var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
+    var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
+    //Ancho de la leyenda del gráfico
+    var ancho_leyenda = $(this).width() - ($(this).width() / 20);
+    //Indicadores/datos del panel
+    var panel_indics = $('#panel_indics_' + id_panel);
+    //Guarda el identificador de los indicadores representados para evitar 
+    //la repetición de nombres y de valores de referencia
+    var indicadores_procesados = new Array();
+    //Guarda los datos de todas las series de cada indicador del panel
+    var totalDataseries = new Array();
+
+    //Obtenemos la lista de indicadores que forman el panel 
+    //y los recorremos para sacar su serie
+    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
+        $.each(indicadores, function (index, indicador) {
+
+            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
+                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
+                    "&periodicidad=" + periodicidad;
+
+            //Contenedor para los datos del gráfico
+            var chartSerie = new HighchartSerie();
+
+            if (periodicidad === "anual") {
+                chartSerie.categoryType = "año";
+            }
+            else if (periodicidad === "bienal") {
+                chartSerie.categoryType = "bienal";
+            }
+            else {
+                chartSerie.categoryType = "medicion";
+            }
+
+            $.ajax({
+                url: urlApi,
+                type: "GET",
+                dataType: "json",
+                success: onDataReceived
+            });
+
+            function onDataReceived(datos) {
+                datos.forEach(function (dato) {
+                    //Si es un Total
+                    if (indicador.id_entidad == 0) {
+                        if (!dato.etiqueta_mini && !dato.referencia
+                                && (dato.valor !== null)) {
+                            chartSerie.add(dato);
+                        }
+                    }
+                    //Si es una Unidad
+                    else {
+                        if (indicador.id_entidad == dato.id_unidad
+                                && (dato.valor !== null)) {
+                            chartSerie.add(dato, true);
+                        }
+                    }
+                    //Si es una referencia
+                    if (dato.referencia && (dato.valor !== null)
+                            && indicadores_procesados.indexOf(indicador.id) === -1) {
+                        chartSerie.add(dato);
+                    }
+                });
+
+                //Incluye en listado de indicadores el indicador relacionado si no estaba ya
+                if (indicadores_procesados.indexOf(indicador.id) === -1) {
+                    panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
+                            + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
+                    indicadores_procesados.push(indicador.id);
+                }
+
+                // Pide las series de datos a chartSerie
+                var dataseries = chartSerie.getBarSerie(indicador.nombre, index);
+                // Si es no anual ocultamos valores de referencia
+                if (chartSerie.categoryType !== "año" && chartSerie.categoryType !== "bienal") {
+                    dataseries.forEach(function (dataserie, index) {
+                        if (index !== 0) {
+                            dataserie.visible = false;
+                        }
+                    });
+                }
+
+                //Sacar los datos de la dataserie y hacer un push en 
+                //total_dataseries donde el nombre es el del indicador.
+                dataseries.forEach(function (dataserie) {
+                    totalDataseries.push(dataserie);
+                });
+
+                //Gráfico de líneas
+                pintaGrafico({
+                    chart: {
+                        renderTo: contenedor,
+                        events: {}
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    title: {
+                        text: titulo,
+                        style: {"fontSize": "14px"}
+                    },
+                    subtitle: {
+                        text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
+                    },
+                    exporting: {
+                        filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
+                    },
+                    xAxis: {
+                        type: 'category'
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Valores'
+                        },
+                        labels: {
+                            format: '{value:,.2f}'
+                        }
+                    },
+                    plotOptions: {
+                        series: {
+                            dataLabels: {
+                                enabled: true,
+                                format: '{y:,.2f}'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
+                    },
+                    legend: {
+                        width: ancho_leyenda
+                    },
+                    series: totalDataseries
+                });
+            }
+        });
+    });
+});
+
+//Paneles mixtos: barras y líneas
+$(".panel_mixto").each(function () {
+    var contenedor = $(this).attr('id');
+    var id_panel = $(this).data("id_panel");
+    var titulo = $(this).data("titulo_panel");
+    var periodicidad = $(this).data("periodicidad");
+    var anyo_inicio = $(this).data("anyo_inicio");
+    var anyo_fin = $(this).data("anyo_fin");
+    var anyos_atras = $(this).data("anyos_atras");
+    if (anyos_atras) {
+        anyo_fin = new Date().getFullYear() - 1;
+        anyo_inicio = anyo_fin - anyos_atras;
+    }
+    var fecha_inicio = anyo_inicio + '-01-01';
+    var fecha_fin = anyo_fin + '-12-31';
+    var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
+    var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
     //Ancho de la leyenda del gráfico
     var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Indicadores/datos del panel
@@ -223,8 +393,9 @@ $(".panel_barra").each(function () {
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
         $.each(indicadores, function (index, indicador) {
 
-            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id
-                    + "&periodicidad=" + periodicidad;
+            var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
+                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
+                    +"&periodicidad=" + periodicidad;
 
             // contenedor para los datos del indicador
             var chartSerie = new HighchartSerie();
@@ -259,14 +430,16 @@ $(".panel_barra").each(function () {
                 var dataseries = [];
                 //Indicador base gráfico de barras
                 if (index === 0) {
-                    dataseries = chartSerie.getBarSerie(indicador.nombre);
-                    // Hacemos visible el último año
-                    dataseries[dataseries.length - 1].visible = true;
-                    dataseries[dataseries.length - 1].selected = true;
+                    dataseries = chartSerie.getBarSerie(indicador.nombre, 'random');
+                    // Hacemos visible sólo el último año
+                    for (i = 0; i < dataseries.length - 1; i++) {
+                        dataseries[i].visible = false;
+                        dataseries[i].selected = false;
+                    }
                 }
                 //Resto de indicadores gráficos de líneas
                 else if (index !== 0) {
-                    dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
+                    dataseries = chartSerie.getLinealSerie(indicador.nombre, 'random');
                     //Ocultamos los últimos años
                     for (var i = 0, n = dataseries.length - 1; i !== n; i++) {
                         dataseries[i].visible = false;
@@ -292,8 +465,11 @@ $(".panel_barra").each(function () {
                         text: titulo,
                         style: {"fontSize": "14px"}
                     },
+                    subtitle: {
+                        text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
+                    },
                     exporting: {
-                        filename: titulo
+                        filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
                     },
                     xAxis: {
                         type: 'category'
@@ -543,8 +719,8 @@ $(".panel_tarta").each(function () {
     });
 });
 
-//Paneles de tabla
-$(".panel_tabla").each(function () {
+//Paneles de tabla simple
+$(".panel_tabla_simple").each(function () {
     var id_panel = $(this).data("id_panel");
     var anyos_atras = $(this).data("anyos_atras");
     var anyo_fin = new Date().getFullYear() - 1;
@@ -605,12 +781,15 @@ $(".panel_tabla").each(function () {
     });
 });
 
-//Paneles de tabla multi
-//Se usa en "la biblioteca en cifras" y en datos Rebiun
-$(".panel_tabla_multi").each(function () {
-    var anyos_atras = $(this).data("anyos_atras");
+//Paneles de tabla
+$(".panel_tabla").each(function () {
+    var anyo_inicio = $(this).data("anyo_inicio");
     var anyo_fin = $(this).data("anyo_fin");
-    var anyo_inicio = anyo_fin - anyos_atras;
+    var anyos_atras = $(this).data("anyos_atras");
+    if (anyos_atras) {
+        anyo_fin = new Date().getFullYear() - 1;
+        anyo_inicio = anyo_fin - anyos_atras;
+    }
     var id_panel = $(this).data("id_panel");
     var htmlTabla = ' <div class="table-responsive"><table id="tabla_multi' + id_panel + '" class="table table-striped table-hover">';
 
