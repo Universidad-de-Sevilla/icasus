@@ -240,10 +240,16 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>{$smarty.const.FIELD_SUBUNID_AFECT}</th>
+                                    <th>
+                                        {if $objop->descendente}
+                                            {$smarty.const.FIELD_SUBUNIDS}
+                                        {else}
+                                            {$smarty.const.FIELD_UNID}
+                                        {/if}
+                                    </th>
                                     <td>
                                         {if $objetivo_subunidades}
-                                            <ul>
+                                            <ul class="list-unstyled">
                                                 {foreach $objetivo_subunidades as $objetivo_subunidad}
                                                     <li>
                                                         <a title="{$objetivo_subunidad->entidad->etiqueta}" href="index.php?page=entidad_mostrar&id_entidad={$objetivo_subunidad->entidad->id}">{$objetivo_subunidad->entidad->etiqueta}</a>

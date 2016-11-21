@@ -80,7 +80,7 @@
                 <li class="disabled"><a><i class="fa fa-arrow-right fa-fw"></i></a></li>
                 <li id="tab_indicadores" role="presentation" class="disabled"><a title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" ><b>{$smarty.const.TXT_PASO} 2:</b> <span class="badge">{$smarty.const.FIELD_INDICS}</span></a></li>
                 <li class="disabled"><a><i class="fa fa-arrow-right fa-fw"></i></a></li>
-                <li id="tab_subunidades" role="presentation" class="disabled"><a title="{$smarty.const.FIELD_SUBUNID_AFECT}" aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" ><b>{$smarty.const.TXT_PASO} 3:</b> <span class="badge">{$smarty.const.FIELD_SUBUNID_AFECT}</span></a></li>
+                <li id="tab_subunidades" role="presentation" class="disabled"><a title="{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}" aria-controls="{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}" role="tab" ><b>{$smarty.const.TXT_PASO} 3:</b> <span class="badge">{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}</span></a></li>
             </ul>
             <!-- /Nav tabs -->
             <!-- Tab panes -->

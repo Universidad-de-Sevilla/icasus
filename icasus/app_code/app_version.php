@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.37.0");
-define('IC_FECHA_REVISION', "18/11/2016");
+define('IC_VERSION', "3.37.1");
+define('IC_FECHA_REVISION', "21/11/2016");
 
+// 3.37.1 - 21/11/2016 - Cambios en interfaces de indicadores/datos y objetivos operacionales en función de si afectan a una unidad o a varias subunidades.
 // 3.37.0 - 18/11/2016 - Se permite crear objetivos operacionales que sean propios y de una subunidad no sólo descendentes.
 // 3.36.0 - 15/11/2016 - Añadidos campos descripción y observaciones a los objetivos operacionales. No se les puede asociar indicadores/datos archivados.
 // 3.35.1 - 15/11/2016 - Cambiado el orden de los asteriscos en los formularios para los campos requeridos (delante del nombre).

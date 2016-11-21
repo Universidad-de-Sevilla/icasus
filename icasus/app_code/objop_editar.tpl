@@ -80,7 +80,7 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li id="tab_objop" role="presentation" class="active"><a href="#objop" title="{$smarty.const.FIELD_OBJ_OP}" aria-controls="{$smarty.const.FIELD_OBJ_OP}" role="tab" data-toggle="tab">{$smarty.const.FIELD_OBJ_OP}</a></li>
                 <li id="tab_indicadores" role="presentation"><a href="#indicadores" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab">{$smarty.const.FIELD_INDICS}</a></li>
-                <li id="tab_subunidades" role="presentation"><a href="#subunidades" title="{$smarty.const.FIELD_SUBUNID_AFECT}" aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" data-toggle="tab">{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
+                <li id="tab_subunidades" role="presentation"><a href="#subunidades" title="{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}" aria-controls="{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}" role="tab" data-toggle="tab">{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}</a></li>
             </ul>
             <!-- /Nav tabs -->
             <!-- Tab panes -->

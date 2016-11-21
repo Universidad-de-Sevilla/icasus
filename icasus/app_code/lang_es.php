@@ -750,7 +750,6 @@ define('FIELD_UNID_SUP', 'Unidad superior');
 define('FIELD_UNID_GEN', 'Unidad generadora');
 define('FIELD_SUBUNID', 'Subunidad');
 define('FIELD_SUBUNIDS', 'Subunidades');
-define('FIELD_SUBUNID_AFECT', 'Unidad/Subunidades afectadas');
 define('FIELD_UNIDS', 'Unidades');
 define('FIELD_ORGANICA', 'Orgánica');
 define('FIELD_ANOTACION', 'Anotaciones');

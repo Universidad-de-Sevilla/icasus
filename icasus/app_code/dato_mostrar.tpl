@@ -412,7 +412,7 @@
                     <tr>
                         <th>{$smarty.const.FIELD_PERIOD}</th>
                         <td>{$dato->periodicidad}</td>
-                    </tr>      
+                    </tr>
                     <tr>
                         <th title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</th>
                         <td title="{$dato->tipo_agregacion_temporal->explicacion}">{$dato->tipo_agregacion_temporal->descripcion}</td>
@@ -494,10 +494,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>{$smarty.const.FIELD_SUBUNID_AFECT}</th>
+                        <th>
+                            {if $dato->id_tipo_agregacion}
+                                {$smarty.const.FIELD_SUBUNIDS}
+                            {else}
+                                {$smarty.const.FIELD_UNID}
+                            {/if}
+                        </th>
                         <td>
                             {if $dato_subunidades}
-                                <ul>
+                                <ul class="list-unstyled">
                                     {foreach $dato_subunidades as $dato_subunidad}
                                         <li>
                                             <a title="{$dato_subunidad->entidad->etiqueta}" href="index.php?page=entidad_mostrar&id_entidad={$dato_subunidad->entidad->id}">{$dato_subunidad->entidad->etiqueta}</a>
