@@ -552,10 +552,16 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>{$smarty.const.FIELD_SUBUNID_AFECT}</th>
+                        <th>
+                            {if $indicador->id_tipo_agregacion}
+                                {$smarty.const.FIELD_SUBUNIDS}
+                            {else}
+                                {$smarty.const.FIELD_UNID}
+                            {/if}
+                        </th>
                         <td>
                             {if $indicador_subunidades}
-                                <ul>
+                                <ul class="list-unstyled">
                                     {foreach $indicador_subunidades as $indicador_subunidad}
                                         <li>
                                             <a title="{$indicador_subunidad->entidad->etiqueta}" href="index.php?page=entidad_mostrar&id_entidad={$indicador_subunidad->entidad->id}">{$indicador_subunidad->entidad->etiqueta}</a>

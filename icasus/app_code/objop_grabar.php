@@ -57,6 +57,8 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
     $objop->indice = filter_input(INPUT_POST, 'indice', FILTER_SANITIZE_NUMBER_INT);
     $objop->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $objop->id_responsable = filter_input(INPUT_POST, 'id_responsable', FILTER_SANITIZE_NUMBER_INT);
+    $objop->descripcion = filter_has_var(INPUT_POST, 'descripcion') ? filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING) : null;
+    $objop->observaciones = filter_has_var(INPUT_POST, 'observaciones') ? filter_input(INPUT_POST, 'observaciones', FILTER_SANITIZE_STRING) : null;
     $objop->descendente = filter_input(INPUT_POST, 'tipo_objop', FILTER_SANITIZE_NUMBER_INT);
     $objop->peso = filter_input(INPUT_POST, 'peso', FILTER_VALIDATE_FLOAT);
     $objop->save();

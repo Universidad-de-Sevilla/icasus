@@ -750,7 +750,6 @@ define('FIELD_UNID_SUP', 'Unidad superior');
 define('FIELD_UNID_GEN', 'Unidad generadora');
 define('FIELD_SUBUNID', 'Subunidad');
 define('FIELD_SUBUNIDS', 'Subunidades');
-define('FIELD_SUBUNID_AFECT', 'Unidad/Subunidades afectadas');
 define('FIELD_UNIDS', 'Unidades');
 define('FIELD_ORGANICA', 'Orgánica');
 define('FIELD_ANOTACION', 'Anotaciones');
@@ -802,7 +801,7 @@ define('FIELD_EJECUCION', 'Ejecución');
 //Líneas
 define('FIELD_LINEA', 'Línea estratégica');
 define('FIELD_LINEAS', 'Líneas estratégicas');
-define('FIELD_INDICE', 'Índice');
+define('FIELD_INDICE', 'Número');
 
 //Objetivos
 define('FIELD_OBJ_EST', 'Objetivo estratégico');

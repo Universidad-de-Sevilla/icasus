@@ -78,7 +78,7 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li id="tab_dato" role="presentation" class="active" ><a href="#dato" title="{$smarty.const.FIELD_DATO}" aria-controls="{$smarty.const.FIELD_DATO}" role="tab" data-toggle="tab">{$smarty.const.FIELD_DATO}</a></li>
                 <li id="tab_otros" role="presentation" ><a href="#otros" title="{$smarty.const.TXT_OTRAS_PROP}" aria-controls="{$smarty.const.TXT_OTRAS_PROP}" role="tab" data-toggle="tab">{$smarty.const.TXT_OTRAS_PROP}</a></li>
-                <li id="tab_subunidades" role="presentation" ><a href="#subunidades" title="{$smarty.const.FIELD_SUBUNID_AFECT}" aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" data-toggle="tab">{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
+                <li id="tab_subunidades" role="presentation" ><a href="#subunidades" title="{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}" aria-controls="{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}" role="tab" data-toggle="tab">{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}</a></li>
             </ul>
             <!-- /Nav tabs -->
             <!-- Tab panes -->

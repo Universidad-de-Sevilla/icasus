@@ -80,7 +80,7 @@
                 <li class="disabled"><a><i class="fa fa-arrow-right fa-fw"></i></a></li>
                 <li id="tab_indicadores" role="presentation" class="disabled"><a title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" ><b>{$smarty.const.TXT_PASO} 2:</b> <span class="badge">{$smarty.const.FIELD_INDICS}</span></a></li>
                 <li class="disabled"><a><i class="fa fa-arrow-right fa-fw"></i></a></li>
-                <li id="tab_subunidades" role="presentation" class="disabled"><a title="{$smarty.const.FIELD_SUBUNID_AFECT}" aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" ><b>{$smarty.const.TXT_PASO} 3:</b> <span class="badge">{$smarty.const.FIELD_SUBUNID_AFECT}</span></a></li>
+                <li id="tab_subunidades" role="presentation" class="disabled"><a title="{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}" aria-controls="{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}" role="tab" ><b>{$smarty.const.TXT_PASO} 3:</b> <span class="badge">{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}</span></a></li>
             </ul>
             <!-- /Nav tabs -->
             <!-- Tab panes -->
@@ -123,6 +123,18 @@
                                     <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}</option>
                                 {/foreach} 
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion" class="col-sm-2 control-label">{$smarty.const.FIELD_DESC}</label>
+                        <div class="col-sm-8">
+                            <textarea  class="form-control" id="descripcion" name="descripcion" placeholder="{$smarty.const.FIELD_DESC}"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="observaciones" class="col-sm-2 control-label">{$smarty.const.FIELD_OBSERV}</label>
+                        <div class="col-sm-8">
+                            <textarea  class="form-control" id="observaciones" name="observaciones" placeholder="{$smarty.const.FIELD_OBSERV}"></textarea>
                         </div>
                     </div>
                     <div class="form-group has-feedback">
@@ -212,17 +224,15 @@
                             </div>
                         </div>
                     </div>
-                    <div id="div_unidad" class="form-group has-feedback">
-                        <label for="lista_subunidades" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</label>
+                    <div id="div_unidad" class="form-group">
+                        <label for="lista_unidades" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID}</label>
                         <div class="col-sm-8">
-                            <div class="checkbox">
-                                <label>
-                                    <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad" checked="checked" required>
-                                    {$entidad->etiqueta}
-                                </label>
-                            </div>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
+                            <select id="lista_unidades" class="form-control chosen-select" name="subunidades[]">
+                                <option value="{$entidad->id}">{$entidad->etiqueta}</option>
+                                {foreach name="subunidad" from=$subunidades item="subunidad"}
+                                    <option value="{$subunidad->id}">{$subunidad->etiqueta}</option> 
+                                {/foreach}
+                            </select>
                         </div>
                     </div>
                     <div id="div_subunidades" class="form-group has-feedback hidden">
@@ -237,7 +247,7 @@
                             {foreach name="subunidad" from=$subunidades item="subunidad"}
                                 <div class="checkbox">
                                     <label>
-                                        <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad" data-validar_subunidades="validar_subunidades" >
+                                        <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad" data-validar_subunidades="validar_subunidades" checked>
                                         {$subunidad->etiqueta}
                                     </label>
                                 </div>

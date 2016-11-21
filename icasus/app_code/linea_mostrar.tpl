@@ -310,6 +310,7 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_INDICE}</th>
                                     <th>{$smarty.const.FIELD_OBJ_EST}</th>
+                                    <th>Nº {$smarty.const.FIELD_OBJS_OP}</th>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
@@ -322,6 +323,9 @@
                                         </td>
                                         <td>
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$plan->id_entidad}">{$objest->nombre}</a>
+                                        </td>
+                                        <td>
+                                            {$objops_objests[$objest->id]|@count}
                                         </td>
                                         <td style="white-space:nowrap">
                                             <div class="progress">

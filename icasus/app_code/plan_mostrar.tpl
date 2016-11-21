@@ -458,9 +458,10 @@
                         <table id="tabla_objest" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th>{$smarty.const.FIELD_LINEA}</th>
                                     <th>{$smarty.const.FIELD_INDICE}</th>
                                     <th>{$smarty.const.FIELD_OBJ_EST}</th>
-                                    <th>{$smarty.const.FIELD_LINEA}</th>
+                                    <th>Nº {$smarty.const.FIELD_OBJS_OP}</th>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
@@ -469,13 +470,16 @@
                                 {foreach from=$objests item=objest} 
                                     <tr>  
                                         <td>
+                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=linea_mostrar&id_entidad={$plan->id_entidad}&id_linea={$objest->id_linea}">{$objest->linea->indice}. {$objest->linea->nombre}</a>
+                                        </td>
+                                        <td>
                                             <span class="label label-default">{$objest->linea->indice}.{$objest->indice}</span>
                                         </td>
                                         <td>
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$plan->id_entidad}">{$objest->nombre}</a>
                                         </td>
                                         <td>
-                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=linea_mostrar&id_entidad={$plan->id_entidad}&id_linea={$objest->id_linea}">{$objest->linea->indice}. {$objest->linea->nombre}</a>
+                                            {$objops_objests[$objest->id]|@count}
                                         </td>
                                         <td style="white-space:nowrap">
                                             <div class="progress">

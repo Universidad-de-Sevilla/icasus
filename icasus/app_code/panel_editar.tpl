@@ -217,7 +217,6 @@
                 <!-- /Ventana temporal -->
             {/if}
 
-
             <!-- Indicadores/datos -->
             <fieldset>
                 <legend>{$smarty.const.TXT_PANEL_INDICS}</legend>

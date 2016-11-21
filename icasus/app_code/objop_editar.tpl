@@ -80,7 +80,7 @@
             <ul class="nav nav-tabs" role="tablist">
                 <li id="tab_objop" role="presentation" class="active"><a href="#objop" title="{$smarty.const.FIELD_OBJ_OP}" aria-controls="{$smarty.const.FIELD_OBJ_OP}" role="tab" data-toggle="tab">{$smarty.const.FIELD_OBJ_OP}</a></li>
                 <li id="tab_indicadores" role="presentation"><a href="#indicadores" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab">{$smarty.const.FIELD_INDICS}</a></li>
-                <li id="tab_subunidades" role="presentation"><a href="#subunidades" title="{$smarty.const.FIELD_SUBUNID_AFECT}" aria-controls="{$smarty.const.FIELD_SUBUNID_AFECT}" role="tab" data-toggle="tab">{$smarty.const.FIELD_SUBUNID_AFECT}</a></li>
+                <li id="tab_subunidades" role="presentation"><a href="#subunidades" title="{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}" aria-controls="{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}" role="tab" data-toggle="tab">{$smarty.const.FIELD_UNID} / {$smarty.const.FIELD_SUBUNIDS}</a></li>
             </ul>
             <!-- /Nav tabs -->
             <!-- Tab panes -->
@@ -126,6 +126,18 @@
                                     <option value="{$usuario_entidad->usuario->id}" {if $objop->id_responsable == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}</option>
                                 {/foreach} 
                             </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion" class="col-sm-2 control-label">{$smarty.const.FIELD_DESC}</label>
+                        <div class="col-sm-8">
+                            <textarea  class="form-control" id="descripcion" name="descripcion" placeholder="{$smarty.const.FIELD_DESC}">{$objop->descripcion}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="observaciones" class="col-sm-2 control-label">{$smarty.const.FIELD_OBSERV}</label>
+                        <div class="col-sm-8">
+                            <textarea  class="form-control" id="observaciones" name="observaciones" placeholder="{$smarty.const.FIELD_OBSERV}">{$objop->observaciones}</textarea>
                         </div>
                     </div>
                     <div class="form-group has-feedback">
@@ -225,20 +237,24 @@
                             </div>
                         </div>
                     </div>
-                    <div id="div_unidad" class="form-group has-feedback {if $objop->descendente}hidden{/if}">
-                        <label for="lista_subunidades" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</label>
+                    <div id="div_unidad" class="form-group {if $objop->descendente}hidden{/if}">
+                        <label for="lista_unidades" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID}</label>
                         <div class="col-sm-8">
-                            <div class="checkbox">
-                                <label>
-                                    <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$entidad->id}" class="unidad" {if $objop->descendente == 0}checked="checked"{/if} required>
-                                    {$entidad->etiqueta}
-                                </label>
-                            </div>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
+                            <select id="lista_unidades" class="form-control chosen-select" name="subunidades[]" {if $objop->descendente}disabled{/if}>
+                                <option value="{$entidad->id}"
+                                        {foreach $objetivo_subunidades as $objetivo_subunidad}
+                                            {if $objetivo_subunidad->id_entidad == $entidad->id && !$objop->descendente}selected{/if}
+                                        {/foreach}>{$entidad->etiqueta}</option>
+                                {foreach name="subunidad" from=$subunidades item="subunidad"}
+                                    <option value="{$subunidad->id}"
+                                            {foreach $objetivo_subunidades as $objetivo_subunidad}
+                                                {if $objetivo_subunidad->id_entidad == $subunidad->id && !$objop->descendente}selected{/if}
+                                            {/foreach}>{$subunidad->etiqueta}</option> 
+                                {/foreach}
+                            </select>
                         </div>
                     </div>
-                    <div id="div_subunidades" class="form-group has-feedback {if $objop->descendente == 0}hidden{/if}">
+                    <div id="div_subunidades" class="form-group has-feedback {if !$objop->descendente}hidden{/if}">
                         <label for="lista_subunidades" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_SUBUNIDS}</label>
                         <div class="col-sm-8">
                             <button id="marcar_todos" type="button" class="btn btn-default btn-circle btn-primary btn-xs" title="{$smarty.const.TXT_MARCAR}" >
@@ -252,8 +268,8 @@
                                     <label>
                                         <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad" data-validar_subunidades="validar_subunidades" 
                                                {foreach $objetivo_subunidades as $objetivo_subunidad}
-                                                   {if $objetivo_subunidad->id_entidad == $subunidad->id} checked{/if}
-                                               {/foreach}>
+                                                   {if $objetivo_subunidad->id_entidad == $subunidad->id && $objop->descendente || !$objop->descendente}checked{/if}
+                                               {/foreach} {if !$objop->descendente}disabled{/if}>
                                         {$subunidad->etiqueta}
                                     </label>
                                 </div>

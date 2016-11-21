@@ -406,22 +406,6 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 
-/*Sticky footer*/
-#page-wrapper {
-    min-height: 100%;
-    /* equal to footer height */
-    margin-bottom: -80px; 
-}
-
-#page-wrapper:after {
-    content: "";
-    display: block;
-}
-
-.footer, #page-wrapper:after {
-    height: 80px; 
-}
-
 .footer{
     border-top: 1px solid #FFC526;
     background-color: #950717;
