@@ -74,11 +74,14 @@ if (filter_has_var(INPUT_GET, 'id_linea'))
     //Objetivos operacionales
     $objop = new ObjetivoOperacional();
     $objops = array();
+    $objops_objests = array();
     foreach ($objests as $obj)
     {
         $objops = array_merge($objops, $objop->Find_joined("id_objest=$obj->id"));
+        $objops_objests[$obj->id] = $objop->Find("id_objest=$obj->id order by indice");
     }
     $smarty->assign('objops', $objops);
+    $smarty->assign('objops_objests', $objops_objests);
 
     $entidad = new Entidad();
     $entidad->load("id = $plan->id_entidad");
