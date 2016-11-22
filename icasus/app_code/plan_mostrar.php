@@ -90,6 +90,15 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
     $smarty->assign('objops', $objops);
     $smarty->assign('objops_objests', $objops_objests);
 
+    //Unidades de los objetivos operacionales
+    $objop_unidad = new ObjetivoUnidad();
+    $objops_unids = array();
+    foreach ($objops as $obj)
+    {
+        $objops_unids[$obj->id] = $objop_unidad->Find("id_objop=$obj->id");
+    }
+    $smarty->assign('objops_unids', $objops_unids);
+
     //Archivos
     $archivo = new Fichero();
     $archivos = $archivo->find_joined("id_objeto = $id_plan AND tipo_objeto = 'plan' AND visible=1");

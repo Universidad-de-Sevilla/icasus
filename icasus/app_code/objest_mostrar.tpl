@@ -285,6 +285,7 @@
                                     <th>{$smarty.const.FIELD_OBJ_OP}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                    <th>Nº {$smarty.const.FIELD_UNIDS}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
                             </thead>
@@ -310,6 +311,13 @@
                                                     {$objop->ejecucion|round:"2"} %
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td>
+                                            {if $objop->descendente}
+                                                {$objops_unids[$objop->id]|@count}
+                                            {else}
+                                                1
+                                            {/if}
                                         </td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$entidad->id}">

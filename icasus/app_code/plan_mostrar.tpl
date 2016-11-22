@@ -532,18 +532,21 @@
                         <table id="tabla_objop" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>
+                                    <th>{$smarty.const.FIELD_OBJ_EST}</th>
                                     <th>{$smarty.const.FIELD_INDICE}</th>
                                     <th>{$smarty.const.FIELD_OBJ_OP}</th>
-                                    <th>{$smarty.const.FIELD_OBJ_EST}</th>
-                                    <th>{$smarty.const.FIELD_LINEA}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                    <th>Nº {$smarty.const.FIELD_UNIDS}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {foreach from=$objops item=objop} 
                                     <tr>  
+                                        <td>
+                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objop->id_objest}&id_entidad={$plan->id_entidad}">{$objop->objest->linea->indice}.{$objop->objest->indice}. {$objop->objest->nombre}</a>
+                                        </td>
                                         <td>
                                             <span class="label label-default">{$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}</span>
                                         </td>
@@ -552,12 +555,6 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.TXT_OBJOP_DESC}"></i>
                                             {/if}
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$entidad->id}">{$objop->nombre}</a>
-                                        </td>
-                                        <td>
-                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objop->id_objest}&id_entidad={$plan->id_entidad}">{$objop->objest->linea->indice}.{$objop->objest->indice}. {$objop->objest->nombre}</a>
-                                        </td>
-                                        <td>
-                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=linea_mostrar&id_linea={$objop->objest->id_linea}&id_entidad={$plan->id_entidad}">{$objop->objest->linea->indice}. {$objop->objest->linea->nombre}</a>
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$objop->id_responsable}'>
@@ -569,6 +566,13 @@
                                                     {$objop->ejecucion|round:"2"} %
                                                 </div>
                                             </div>
+                                        </td>
+                                        <td>
+                                            {if $objop->descendente}
+                                                {$objops_unids[$objop->id]|@count}
+                                            {else}
+                                                1
+                                            {/if}
                                         </td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$plan->id_entidad}">

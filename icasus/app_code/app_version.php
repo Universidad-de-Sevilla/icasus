@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.37.2");
-define('IC_FECHA_REVISION', "21/11/2016");
+define('IC_VERSION', "3.37.3");
+define('IC_FECHA_REVISION', "22/11/2016");
 
+// 3.37.3 - 22/11/2016 - Se muestran en los listados de objetivos operacionales el número de unidades al que afectan.
 // 3.37.2 - 21/11/2016 - Cambios en listados de objetivos estratégicos, la línea se lista primero y se muestran el número de objetivos operacionales que contiene.
 // 3.37.1 - 21/11/2016 - Cambios en interfaces de indicadores/datos y objetivos operacionales en función de si afectan a una unidad o a varias subunidades.
 // 3.37.0 - 18/11/2016 - Se permite crear objetivos operacionales que sean propios y de una subunidad no sólo descendentes.

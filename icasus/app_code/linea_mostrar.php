@@ -83,6 +83,15 @@ if (filter_has_var(INPUT_GET, 'id_linea'))
     $smarty->assign('objops', $objops);
     $smarty->assign('objops_objests', $objops_objests);
 
+    //Unidades de los objetivos operacionales
+    $objop_unidad = new ObjetivoUnidad();
+    $objops_unids = array();
+    foreach ($objops as $obj)
+    {
+        $objops_unids[$obj->id] = $objop_unidad->Find("id_objop=$obj->id");
+    }
+    $smarty->assign('objops_unids', $objops_unids);
+
     $entidad = new Entidad();
     $entidad->load("id = $plan->id_entidad");
     $smarty->assign('entidad', $entidad);
