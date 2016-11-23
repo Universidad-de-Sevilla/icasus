@@ -90,6 +90,22 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
     $smarty->assign('objops', $objops);
     $smarty->assign('objops_objests', $objops_objests);
 
+    //Años de ejecución de los objetivos operacionales
+    $objops_anyos = array();
+    foreach ($objops as $obj)
+    {
+        $objops_anyos[$obj->id] = array();
+        $ejecuciones = $ejecucion->Find("id_objop=$obj->id order by anyo");
+        foreach ($ejecuciones as $ejec)
+        {
+            if ($ejec->activo)
+            {
+                array_push($objops_anyos[$obj->id], $ejec->anyo);
+            }
+        }
+    }
+    $smarty->assign('objops_anyos', $objops_anyos);
+
     //Unidades de los objetivos operacionales
     $objop_unidad = new ObjetivoUnidad();
     $objops_unids = array();

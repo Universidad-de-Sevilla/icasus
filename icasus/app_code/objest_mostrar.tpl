@@ -284,6 +284,7 @@
                                     <th>{$smarty.const.FIELD_INDICE}</th>
                                     <th>{$smarty.const.FIELD_OBJ_OP}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
+                                    <th>{$smarty.const.FIELD_DURACION}</th>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <th>Nº {$smarty.const.FIELD_UNIDS}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
@@ -304,6 +305,28 @@
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$objop->id_responsable}'>
                                                 {$objop->responsable->nombre} {$objop->responsable->apellidos}</a>
+                                        </td>
+                                        <td>
+                                            {if $objops_anyos[$objop->id]}
+                                                {foreach $objops_anyos[$objop->id] as $anyo}
+                                                    {if $anyo@first}
+                                                        {$anyo}{$escrito=true}
+                                                    {else if $anyo_anterior+1 == $anyo and !$anyo@last}
+                                                        {$escrito=false}
+                                                    {else if $anyo_anterior+1 != $anyo and !$escrito}
+                                                        - {$anyo_anterior}, {$anyo}
+                                                        {$escrito=true}
+                                                    {else if $anyo_anterior+1 != $anyo}
+                                                        , {$anyo}
+                                                        {$escrito=true}
+                                                    {else if $anyo@last && $objops_anyos[$objop->id]|@count>1}
+                                                        - {$anyo}
+                                                    {/if}
+                                                    {$anyo_anterior=$anyo}
+                                                {/foreach}
+                                            {else}
+                                                ---
+                                            {/if}
                                         </td>
                                         <td style="white-space:nowrap">
                                             <div class="progress">
