@@ -67,7 +67,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $indicadores = array();
     foreach ($procesos as $proceso)
     {
-        $indicadores_proc = $i->find("id_proceso = $proceso->id AND id_entidad = $id_entidad");
+        $indicadores_proc = $i->find("id_proceso = $proceso->id AND id_entidad = $id_entidad AND archivado IS NULL");
         $indicadores[$proceso->id] = $indicadores_proc;
     }
     $smarty->assign('indicadores', $indicadores);

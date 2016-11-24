@@ -125,6 +125,7 @@ define('TXT_INDIC_TODOS', 'Todos los indicadores');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
 define('TXT_INDIC_CREAR', 'Crear indicador');
+define('TXT_INDIC_CREAR_CONTROL', 'Crear indicador de control');
 define('TXT_INDIC_LIST', 'Lista de indicadores');
 define('TXT_INDIC_EDIT', 'Editar indicador');
 define('TXT_INDIC_BORRAR', 'Borrar indicador');
@@ -513,6 +514,7 @@ define('MSG_PLAN_BORRAR', 'No tiene permisos para borrar el plan o éste todaví
 define('MSG_PLAN_NO_LINEAS', 'No hay líneas estratégicas definidas para este plan.');
 define('MSG_PLAN_NO_OBJEST', 'No hay objetivos estratégicos definidos para las líneas estratégicas del plan.');
 define('MSG_PLAN_NO_OBJOP', 'No hay objetivos operacionales definidos para los objetivos estratégicos de las líneas estratégicas del plan.');
+define('MSG_PLAN_NO_INDICS_CONTROL', 'No se han definido los indicadores de control para este plan estratégico.');
 define('MSG_PLAN_NO_ARCHIVOS', 'No se han subido archivos para este plan estratégico.');
 
 //Líneas
