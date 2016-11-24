@@ -78,11 +78,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $subentidades = $subentidad->Find("id_madre = $id_entidad ORDER by codigo");
     $smarty->assign('subentidades', $subentidades);
 
-    //Planes
-    $plan = new Plan();
-    $planes = $plan->Find("id_entidad=$id_entidad");
-    $smarty->assign('planes', $planes);
-
     //Archivos
     $archivo = new Fichero();
     $archivos = $archivo->find_joined("id_objeto = $id_entidad AND tipo_objeto = 'unidad' AND visible=1");

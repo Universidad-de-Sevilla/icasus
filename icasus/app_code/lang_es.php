@@ -190,12 +190,13 @@ define('TXT_USER_PERFIL', 'Perfil de usuario');
 define('TXT_CERRAR_SESION', 'Cerrar sesión');
 //Menú de Unidades
 define('TXT_INICIO_DESCRIPCION', 'Mi icasus: listado de sus competencias/responsabilidades.');
-define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de procesos de la unidad e información sobre los mismos. ');
-define('TXT_INDICS_DESCRIPCION', 'Indicadores: listado de indicadores de la unidad e información sobre los mismos.');
-define('TXT_DATOS_DESCRIPCION', 'Datos: listado de datos de la unidad e información sobre los mismos.');
-define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de mando: paneles con información variada sobre indicadores y datos.');
+define('TXT_PLANES_DESCRIPCION', 'Planes estratégicos: listado de planes estratégicos de la unidad y gestión de los mismos.');
+define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de procesos de la unidad y gestión de los mismos. ');
+define('TXT_INDICS_DESCRIPCION', 'Indicadores: listado de indicadores de la unidad y gestión de los mismos.');
+define('TXT_DATOS_DESCRIPCION', 'Datos: listado de datos de la unidad y gestión de los mismos.');
+define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de mando: listado de cuadros de mando de la unidad y gestión de los mismos.');
 define('TXT_CONSULTA_DESCRIPCION', 'Consulta: efectuar consultas y operaciones que muestran información sobre los indicadores y datos de la unidad.');
-define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones y valores de los distintos indicadores y datos de la unidad.');
+define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones y valores de los distintos indicadores y datos de la unidad bajo su responsabilidad.');
 
 //Navegación
 define('TXT_MOSTRANDO', 'Mostrando');
