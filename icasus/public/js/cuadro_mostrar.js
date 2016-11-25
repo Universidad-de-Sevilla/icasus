@@ -39,6 +39,7 @@ $('#dialogo_borrado_panel').on('hide.bs.modal', function () {
 //Unidad del cuadro de mando
 var unidad_cuadro = $('#nombre_cuadro').data('id_unidad');
 var nombre_unidad = $('#nombre_cuadro').data('nombre_unidad');
+var panel_vacio = $('#nombre_cuadro').data('panel_vacio');
 var num_paneles = $('#paneles').data('num_paneles');
 
 //Si hay paneles en el cuadro de mando
@@ -54,6 +55,11 @@ if (num_paneles) {
 //Paneles de líneas
 $('.panel_linea').each(function () {
     var contenedor = $(this).attr('id');
+    var panel = $(this);
+    //Aviso de panel vacío
+    var aviso = false;
+    //Cuenta los indicadores/datos que no tienen valores
+    var vacios = 0;
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var periodicidad = $(this).data("periodicidad");
@@ -108,27 +114,6 @@ $('.panel_linea').each(function () {
             });
 
             function onDataReceived(datos) {
-                datos.forEach(function (dato) {
-                    //Si es un Total
-                    if (indicador.id_entidad == 0) {
-                        if (!dato.etiqueta_mini && !dato.referencia
-                                && (dato.valor !== null)) {
-                            chartSerie.add(dato);
-                        }
-                    }
-                    //Si es una Unidad
-                    else {
-                        if (indicador.id_entidad == dato.id_unidad
-                                && (dato.valor !== null)) {
-                            chartSerie.add(dato, true);
-                        }
-                    }
-                    //Si es una referencia
-                    if (dato.referencia && (dato.valor !== null)
-                            && indicadores_procesados.indexOf(indicador.id) === -1) {
-                        chartSerie.add(dato);
-                    }
-                });
 
                 //Incluye en listado de indicadores el indicador relacionado si no estaba ya
                 if (indicadores_procesados.indexOf(indicador.id) === -1) {
@@ -137,69 +122,102 @@ $('.panel_linea').each(function () {
                     indicadores_procesados.push(indicador.id);
                 }
 
-                // Pide las series de datos a chartSerie
-                var dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
-                // Si es no anual ocultamos valores de referencia
-                if (chartSerie.categoryType !== "año" && chartSerie.categoryType !== "bienal") {
-                    dataseries.forEach(function (dataserie, index) {
-                        if (index !== 0) {
-                            dataserie.visible = false;
-                        }
-                    });
-                }
-
-                //Sacar los datos de la dataserie y hacer un push en 
-                //total_dataseries donde el nombre es el del indicador.
-                dataseries.forEach(function (dataserie) {
-                    totalDataseries.push(dataserie);
-                });
-
-                //Gráfico de líneas
-                pintaGrafico({
-                    chart: {
-                        renderTo: contenedor,
-                        events: {}
-                    },
-                    credits: {
-                        enabled: false
-                    },
-                    title: {
-                        text: titulo,
-                        style: {"fontSize": "14px"}
-                    },
-                    subtitle: {
-                        text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
-                    },
-                    exporting: {
-                        filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
-                    },
-                    xAxis: {
-                        type: 'category'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Valores'
-                        },
-                        labels: {
-                            format: '{value:,.2f}'
-                        }
-                    },
-                    plotOptions: {
-                        series: {
-                            dataLabels: {
-                                enabled: true,
-                                format: '{y:,.2f}'
+                //Si tenemos valores
+                if (datos) {
+                    datos.forEach(function (dato) {
+                        //Si es un Total
+                        if (indicador.id_entidad == 0) {
+                            if (!dato.etiqueta_mini && !dato.referencia
+                                    && (dato.valor !== null)) {
+                                chartSerie.add(dato);
                             }
                         }
-                    },
-                    tooltip: {
-                        pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
-                    },
-                    legend: {
-                        width: ancho_leyenda
-                    },
-                    series: totalDataseries
-                });
+                        //Si es una Unidad
+                        else {
+                            if (indicador.id_entidad == dato.id_unidad
+                                    && (dato.valor !== null)) {
+                                chartSerie.add(dato, true);
+                            }
+                        }
+                        //Si es una referencia
+                        if (dato.referencia && (dato.valor !== null)
+                                && indicadores_procesados.indexOf(indicador.id) === -1) {
+                            chartSerie.add(dato);
+                        }
+                    });
+
+                    // Pide las series de datos a chartSerie
+                    var dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
+                    // Si es no anual ocultamos valores de referencia
+                    if (chartSerie.categoryType !== "año" && chartSerie.categoryType !== "bienal") {
+                        dataseries.forEach(function (dataserie, index) {
+                            if (index !== 0) {
+                                dataserie.visible = false;
+                            }
+                        });
+                    }
+
+                    //Sacar los datos de la dataserie y hacer un push en 
+                    //total_dataseries donde el nombre es el del indicador.
+                    dataseries.forEach(function (dataserie) {
+                        totalDataseries.push(dataserie);
+                    });
+
+                    //Gráfico de líneas
+                    pintaGrafico({
+                        chart: {
+                            renderTo: contenedor,
+                            events: {}
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        title: {
+                            text: titulo,
+                            style: {"fontSize": "14px"}
+                        },
+                        subtitle: {
+                            text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
+                        },
+                        exporting: {
+                            filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
+                        },
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Valores'
+                            },
+                            labels: {
+                                format: '{value:,.2f}'
+                            }
+                        },
+                        plotOptions: {
+                            series: {
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{y:,.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
+                        },
+                        legend: {
+                            width: ancho_leyenda
+                        },
+                        series: totalDataseries
+                    });
+                }
+                else {
+                    vacios++;
+                }
+                //Si no hay ningún valor para ningún indicador del cuadro
+                if (vacios === indicadores_procesados.length && !aviso) {
+                    panel.append('<div class="alert alert-info alert-dismissible"><i class="fa fa-info-circle fa-fw"></i> ' + panel_vacio + '</div>');
+                    aviso = true;
+                }
             }
         });
     });
@@ -208,6 +226,11 @@ $('.panel_linea').each(function () {
 //Paneles de barras
 $('.panel_barra').each(function () {
     var contenedor = $(this).attr('id');
+    var panel = $(this);
+    //Aviso de panel vacío
+    var aviso = false;
+    //Cuenta los indicadores/datos que no tienen valores
+    var vacios = 0;
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var periodicidad = $(this).data("periodicidad");
@@ -262,27 +285,6 @@ $('.panel_barra').each(function () {
             });
 
             function onDataReceived(datos) {
-                datos.forEach(function (dato) {
-                    //Si es un Total
-                    if (indicador.id_entidad == 0) {
-                        if (!dato.etiqueta_mini && !dato.referencia
-                                && (dato.valor !== null)) {
-                            chartSerie.add(dato);
-                        }
-                    }
-                    //Si es una Unidad
-                    else {
-                        if (indicador.id_entidad == dato.id_unidad
-                                && (dato.valor !== null)) {
-                            chartSerie.add(dato, true);
-                        }
-                    }
-                    //Si es una referencia
-                    if (dato.referencia && (dato.valor !== null)
-                            && indicadores_procesados.indexOf(indicador.id) === -1) {
-                        chartSerie.add(dato);
-                    }
-                });
 
                 //Incluye en listado de indicadores el indicador relacionado si no estaba ya
                 if (indicadores_procesados.indexOf(indicador.id) === -1) {
@@ -291,69 +293,102 @@ $('.panel_barra').each(function () {
                     indicadores_procesados.push(indicador.id);
                 }
 
-                // Pide las series de datos a chartSerie
-                var dataseries = chartSerie.getBarSerie(indicador.nombre, index);
-                // Si es no anual ocultamos valores de referencia
-                if (chartSerie.categoryType !== "año" && chartSerie.categoryType !== "bienal") {
-                    dataseries.forEach(function (dataserie, index) {
-                        if (index !== 0) {
-                            dataserie.visible = false;
-                        }
-                    });
-                }
-
-                //Sacar los datos de la dataserie y hacer un push en 
-                //total_dataseries donde el nombre es el del indicador.
-                dataseries.forEach(function (dataserie) {
-                    totalDataseries.push(dataserie);
-                });
-
-                //Gráfico de líneas
-                pintaGrafico({
-                    chart: {
-                        renderTo: contenedor,
-                        events: {}
-                    },
-                    credits: {
-                        enabled: false
-                    },
-                    title: {
-                        text: titulo,
-                        style: {"fontSize": "14px"}
-                    },
-                    subtitle: {
-                        text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
-                    },
-                    exporting: {
-                        filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
-                    },
-                    xAxis: {
-                        type: 'category'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Valores'
-                        },
-                        labels: {
-                            format: '{value:,.2f}'
-                        }
-                    },
-                    plotOptions: {
-                        series: {
-                            dataLabels: {
-                                enabled: true,
-                                format: '{y:,.2f}'
+                //Si tenemos valores
+                if (datos) {
+                    datos.forEach(function (dato) {
+                        //Si es un Total
+                        if (indicador.id_entidad == 0) {
+                            if (!dato.etiqueta_mini && !dato.referencia
+                                    && (dato.valor !== null)) {
+                                chartSerie.add(dato);
                             }
                         }
-                    },
-                    tooltip: {
-                        pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
-                    },
-                    legend: {
-                        width: ancho_leyenda
-                    },
-                    series: totalDataseries
-                });
+                        //Si es una Unidad
+                        else {
+                            if (indicador.id_entidad == dato.id_unidad
+                                    && (dato.valor !== null)) {
+                                chartSerie.add(dato, true);
+                            }
+                        }
+                        //Si es una referencia
+                        if (dato.referencia && (dato.valor !== null)
+                                && indicadores_procesados.indexOf(indicador.id) === -1) {
+                            chartSerie.add(dato);
+                        }
+                    });
+
+                    // Pide las series de datos a chartSerie
+                    var dataseries = chartSerie.getBarSerie(indicador.nombre, index);
+                    // Si es no anual ocultamos valores de referencia
+                    if (chartSerie.categoryType !== "año" && chartSerie.categoryType !== "bienal") {
+                        dataseries.forEach(function (dataserie, index) {
+                            if (index !== 0) {
+                                dataserie.visible = false;
+                            }
+                        });
+                    }
+
+                    //Sacar los datos de la dataserie y hacer un push en 
+                    //total_dataseries donde el nombre es el del indicador.
+                    dataseries.forEach(function (dataserie) {
+                        totalDataseries.push(dataserie);
+                    });
+
+                    //Gráfico de líneas
+                    pintaGrafico({
+                        chart: {
+                            renderTo: contenedor,
+                            events: {}
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        title: {
+                            text: titulo,
+                            style: {"fontSize": "14px"}
+                        },
+                        subtitle: {
+                            text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
+                        },
+                        exporting: {
+                            filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
+                        },
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Valores'
+                            },
+                            labels: {
+                                format: '{value:,.2f}'
+                            }
+                        },
+                        plotOptions: {
+                            series: {
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{y:,.2f}'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
+                        },
+                        legend: {
+                            width: ancho_leyenda
+                        },
+                        series: totalDataseries
+                    });
+                }
+                else {
+                    vacios++;
+                }
+                //Si no hay ningún valor para ningún indicador del cuadro
+                if (vacios === indicadores_procesados.length && !aviso) {
+                    panel.append('<div class="alert alert-info alert-dismissible"><i class="fa fa-info-circle fa-fw"></i> ' + panel_vacio + '</div>');
+                    aviso = true;
+                }
             }
         });
     });
@@ -362,6 +397,11 @@ $('.panel_barra').each(function () {
 //Paneles mixtos: barras y líneas
 $(".panel_mixto").each(function () {
     var contenedor = $(this).attr('id');
+    var panel = $(this);
+    //Aviso de panel vacío
+    var aviso = false;
+    //Cuenta los indicadores/datos que no tienen valores
+    var vacios = 0;
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var periodicidad = $(this).data("periodicidad");
@@ -408,16 +448,6 @@ $(".panel_mixto").each(function () {
             });
 
             function onDataReceived(datos) {
-                datos.forEach(function (dato) {
-                    if (dato.etiqueta_mini) {
-                        chartSerie.add(dato);
-                    }
-                    //Total para el indicador base
-                    else if (dato.id_unidad == 0 && index === 0) {
-                        var pos = dato.medicion + ' - ' + indicador.nombre;
-                        totales[pos] = parseFloat(dato.valor);
-                    }
-                });
 
                 //Incluye en listado de indicadores el indicador relacionado si no estaba ya
                 if (indicadores_procesados.indexOf(indicador.id) === -1) {
@@ -426,115 +456,136 @@ $(".panel_mixto").each(function () {
                     indicadores_procesados.push(indicador.id);
                 }
 
-                // Pide las series de datos a chartSerie
-                var dataseries = [];
-                //Indicador base gráfico de barras
-                if (index === 0) {
-                    dataseries = chartSerie.getBarSerie(indicador.nombre, 'random');
-                    // Hacemos visible sólo el último año
-                    for (i = 0; i < dataseries.length - 1; i++) {
-                        dataseries[i].visible = false;
-                        dataseries[i].selected = false;
-                    }
-                }
-                //Resto de indicadores gráficos de líneas
-                else if (index !== 0) {
-                    dataseries = chartSerie.getLinealSerie(indicador.nombre, 'random');
-                    //Ocultamos los últimos años
-                    for (var i = 0, n = dataseries.length - 1; i !== n; i++) {
-                        dataseries[i].visible = false;
-                    }
-                }
-
-                //Sacar los datos de la dataserie y hacer un push en 
-                //total_dataseries donde el nombre es el del indicador.
-                dataseries.forEach(function (dataserie) {
-                    totalDataseries.push(dataserie);
-                });
-
-                //Gráfico combinado (barras y líneas)
-                pintaGrafico({
-                    chart: {
-                        renderTo: contenedor,
-                        events: {}
-                    },
-                    credits: {
-                        enabled: false
-                    },
-                    title: {
-                        text: titulo,
-                        style: {"fontSize": "14px"}
-                    },
-                    subtitle: {
-                        text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
-                    },
-                    exporting: {
-                        filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
-                    },
-                    xAxis: {
-                        type: 'category'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Valores'
-                        },
-                        labels: {
-                            format: '{value:,.2f}'
+                if (datos) {
+                    datos.forEach(function (dato) {
+                        if (dato.etiqueta_mini) {
+                            chartSerie.add(dato);
                         }
-                    },
-                    plotOptions: {
-                        series: {
-                            dataLabels: {
-                                enabled: true,
-                                format: '{y:,.2f}'
+                        //Total para el indicador base
+                        else if (dato.id_unidad == 0 && index === 0) {
+                            var pos = dato.medicion + ' - ' + indicador.nombre;
+                            totales[pos] = parseFloat(dato.valor);
+                        }
+                    });
+
+                    // Pide las series de datos a chartSerie
+                    var dataseries = [];
+                    //Indicador base gráfico de barras
+                    if (index === 0) {
+                        dataseries = chartSerie.getBarSerie(indicador.nombre, 'random');
+                        // Hacemos visible sólo el último año
+                        for (i = 0; i < dataseries.length - 1; i++) {
+                            dataseries[i].visible = false;
+                            dataseries[i].selected = false;
+                        }
+                    }
+                    //Resto de indicadores gráficos de líneas
+                    else if (index !== 0) {
+                        dataseries = chartSerie.getLinealSerie(indicador.nombre, 'random');
+                        //Ocultamos los últimos años
+                        for (var i = 0, n = dataseries.length - 1; i !== n; i++) {
+                            dataseries[i].visible = false;
+                        }
+                    }
+
+                    //Sacar los datos de la dataserie y hacer un push en 
+                    //total_dataseries donde el nombre es el del indicador.
+                    dataseries.forEach(function (dataserie) {
+                        totalDataseries.push(dataserie);
+                    });
+
+                    //Gráfico combinado (barras y líneas)
+                    pintaGrafico({
+                        chart: {
+                            renderTo: contenedor,
+                            events: {}
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        title: {
+                            text: titulo,
+                            style: {"fontSize": "14px"}
+                        },
+                        subtitle: {
+                            text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
+                        },
+                        exporting: {
+                            filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
+                        },
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Valores'
                             },
-                            events: {
-                                // Pintamos la media al hacer click en él.
-                                legendItemClick: function (event) {
-                                    if (this.visible) {
-                                        this.chart.yAxis[0].removePlotLine(this.name);
-                                    } else {
-                                        this.chart.yAxis[0].addPlotLine({
-                                            label: {
-                                                text: '<span title="Total ' + this.name + ': ' + Highcharts.numberFormat(totales[this.name], 2) + '">Total: <b>'
-                                                        + Highcharts.numberFormat(totales[this.name], 2) + '</b></span>',
-                                                x: -50,
-                                                y: 10,
-                                                useHTML: true,
-                                                style: {
-                                                    color: this.color
-                                                }
-                                            },
-                                            value: totales[this.name],
-                                            color: this.color,
-                                            width: 2,
-                                            id: this.name
-                                        });
+                            labels: {
+                                format: '{value:,.2f}'
+                            }
+                        },
+                        plotOptions: {
+                            series: {
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{y:,.2f}'
+                                },
+                                events: {
+                                    // Pintamos la media al hacer click en él.
+                                    legendItemClick: function (event) {
+                                        if (this.visible) {
+                                            this.chart.yAxis[0].removePlotLine(this.name);
+                                        } else {
+                                            this.chart.yAxis[0].addPlotLine({
+                                                label: {
+                                                    text: '<span title="Total ' + this.name + ': ' + Highcharts.numberFormat(totales[this.name], 2) + '">Total: <b>'
+                                                            + Highcharts.numberFormat(totales[this.name], 2) + '</b></span>',
+                                                    x: -50,
+                                                    y: 10,
+                                                    useHTML: true,
+                                                    style: {
+                                                        color: this.color
+                                                    }
+                                                },
+                                                value: totales[this.name],
+                                                color: this.color,
+                                                width: 2,
+                                                id: this.name
+                                            });
+                                        }
                                     }
+                                }
+                            },
+                            column: {
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{y:,.2f}'
                                 }
                             }
                         },
-                        column: {
-                            dataLabels: {
-                                enabled: true,
-                                format: '{y:,.2f}'
-                            }
-                        }
-                    },
-                    tooltip: {
-                        pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
-                    },
-                    legend: {
-                        width: ancho_leyenda
-                    },
-                    series: totalDataseries
-                }, totales);
+                        tooltip: {
+                            pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f}</b><br/>'
+                        },
+                        legend: {
+                            width: ancho_leyenda
+                        },
+                        series: totalDataseries
+                    }, totales);
+                }
+                else {
+                    vacios++;
+                }
+                //Si no hay ningún valor para ningún indicador del cuadro
+                if (vacios === indicadores_procesados.length && !aviso) {
+                    panel.append('<div class="alert alert-info alert-dismissible"><i class="fa fa-info-circle fa-fw"></i> ' + panel_vacio + '</div>');
+                    aviso = true;
+                }
             }
         });
     });
 });
 
-//Paneles de métrica
+//Paneles de métrica: DESACTIVADOS
 $(".panel_metrica").each(function () {
     var id_panel = $(this).data("id_panel");
     var id_medicion = $(this).data("id_medicion");
@@ -612,6 +663,9 @@ $(".panel_metrica").each(function () {
 //Paneles de tarta
 $(".panel_tarta").each(function () {
     var contenedor = $(this).attr('id');
+    var panel = $(this);
+    //Cuenta los indicadores/datos que no tienen valores
+    var vacios = 0;
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var id_medicion = $(this).data("id_medicion");
@@ -640,86 +694,96 @@ $(".panel_tarta").each(function () {
             });
 
             function onDataReceived(datos) {
-                //Buscamos la medición para luego obtener su total
-                while (!medicion) {
-                    datos.forEach(function (dato) {
-                        if (dato.id_medicion == id_medicion) {
-                            medicion = dato.medicion;
-                        }
-                    });
-                }
-                datos.forEach(function (dato) {
-                    if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
-                        chartSerie.add(dato);
-                    }
-                    //Guardamos el total
-                    if (medicion == dato.medicion && dato.id_unidad == 0) {
-                        total = parseFloat(dato.valor);
-                    }
-                });
 
                 //Incluye en listado de indicadores el indicador relacionado
                 panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
                         + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
 
-                //Redondeamos el total
-                total = Highcharts.numberFormat(total, 2);
-
-                //Pide las series de datos a chartSerie
-                var dataseries = chartSerie.getPieSerie();
-
-                //Gráfico de tarta
-                pintaGrafico({
-                    chart: {
-                        renderTo: contenedor,
-                        events: {}
-                    },
-                    credits: {
-                        enabled: false
-                    },
-                    title: {
-                        text: titulo,
-                        style: {"fontSize": "14px"}
-                    },
-                    subtitle: {
-                        text: 'Medición: ' + medicion + ' Total: ' + total
-                    },
-                    exporting: {
-                        filename: titulo + '(Medición: ' + medicion + ')'
-                    },
-                    xAxis: {
-                        type: 'category'
-                    },
-                    yAxis: {
-                        title: {
-                            text: 'Valores'
-                        },
-                        labels: {
-                            format: '{value:,.2f}'
-                        }
-                    },
-                    plotOptions: {
-                        series: {
-                            dataLabels: {
-                                enabled: true,
-                                format: '{y:,.2f} ({percentage:,.2f} %)'
+                if (datos) {
+                    //Buscamos la medición para luego obtener su total
+                    while (!medicion) {
+                        datos.forEach(function (dato) {
+                            if (dato.id_medicion == id_medicion) {
+                                medicion = dato.medicion;
                             }
+                        });
+                    }
+                    datos.forEach(function (dato) {
+                        if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
+                            chartSerie.add(dato);
                         }
-                    },
-                    tooltip: {
-                        pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f} ({point.percentage:,.2f} %)</b><br/>'
-                    },
-                    legend: {
-                        width: ancho_leyenda
-                    },
-                    series: dataseries
-                });
+                        //Guardamos el total
+                        if (medicion == dato.medicion && dato.id_unidad == 0) {
+                            total = parseFloat(dato.valor);
+                        }
+                    });
+
+                    //Redondeamos el total
+                    total = Highcharts.numberFormat(total, 2);
+
+                    //Pide las series de datos a chartSerie
+                    var dataseries = chartSerie.getPieSerie();
+
+                    //Gráfico de tarta
+                    pintaGrafico({
+                        chart: {
+                            renderTo: contenedor,
+                            events: {}
+                        },
+                        credits: {
+                            enabled: false
+                        },
+                        title: {
+                            text: titulo,
+                            style: {"fontSize": "14px"}
+                        },
+                        subtitle: {
+                            text: 'Medición: ' + medicion + ' Total: ' + total
+                        },
+                        exporting: {
+                            filename: titulo + '(Medición: ' + medicion + ')'
+                        },
+                        xAxis: {
+                            type: 'category'
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'Valores'
+                            },
+                            labels: {
+                                format: '{value:,.2f}'
+                            }
+                        },
+                        plotOptions: {
+                            series: {
+                                dataLabels: {
+                                    enabled: true,
+                                    format: '{y:,.2f} ({percentage:,.2f} %)'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            pointFormat: '<span style="color:{point.color}">\u25CF</span> {series.name}: <b>{point.y:,.2f} ({point.percentage:,.2f} %)</b><br/>'
+                        },
+                        legend: {
+                            width: ancho_leyenda
+                        },
+                        series: dataseries
+                    });
+                }
+                else {
+                    vacios++;
+                }
+                //Si no hay ningún valor para ningún indicador del cuadro
+                if (vacios > 0) {
+                    panel.append('<div class="alert alert-info alert-dismissible"><i class="fa fa-info-circle fa-fw"></i> ' + panel_vacio + '</div>');
+                }
             }
         });
     });
 });
 
-//Paneles de tabla simple
+//Paneles de tabla simple: DESACTIVADOS
 $(".panel_tabla_simple").each(function () {
     var id_panel = $(this).data("id_panel");
     var anyos_atras = $(this).data("anyos_atras");
@@ -822,33 +886,36 @@ $(".panel_tabla").each(function () {
                 valor_anyo_inicio = null;
                 valor_anyo_fin = null;
                 evolucion = null;
-                datos.forEach(function (dato) {
-                    //Buscamos el total del año inicial
-                    if (dato.id_unidad == indicador.id_entidad && (String(dato.medicion).split('.')[0] == anyo_inicio || String(dato.medicion).split('-')[0] == anyo_inicio || String(dato.medicion).split('-')[1] == anyo_inicio)) {
-                        valor_anyo_inicio = Math.round(dato.valor * 100) / 100;
-                        htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anyo_inicio + '</td>';
-                    }
-                    //Buscamos el total del año final
-                    if (dato.id_unidad == indicador.id_entidad && (String(dato.medicion).split('.')[0] == anyo_fin || String(dato.medicion).split('-')[0] == anyo_fin || String(dato.medicion).split('-')[1] == anyo_fin) && valor_anyo_inicio !== null) {
-                        valor_anyo_fin = Math.round(dato.valor * 100) / 100;
-                        htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anyo_fin + '</td>';
-                    }
-                    if (dato.id_unidad == indicador.id_entidad && (String(dato.medicion).split('.')[0] == anyo_fin || String(dato.medicion).split('-')[0] == anyo_fin || String(dato.medicion).split('-')[1] == anyo_fin) && valor_anyo_inicio === null) {
-                        valor_anyo_fin = Math.round(dato.valor * 100) / 100;
-                        htmlTabla += '<td style="white-space:nowrap">---</td><td title="Valor" style="white-space:nowrap">' + valor_anyo_fin + '</td>';
-                    }
-                });
-                //Si existen ambos totales calculamos su diferencia
-                if (valor_anyo_inicio !== null && valor_anyo_fin !== null) {
-                    evolucion = Math.round((valor_anyo_fin - valor_anyo_inicio) * 100) / 100;
-                    if (evolucion > 0) {
-                        htmlTabla += '<td title="Incremento" style="color:green;white-space:nowrap;font-weight:bold;">' + evolucion + '</td></tr>';
-                    }
-                    else if (evolucion < 0) {
-                        htmlTabla += '<td title="Descenso" style="color:red;white-space:nowrap;font-weight:bold;">' + evolucion + '</td></tr>';
-                    }
-                    else {
-                        htmlTabla += '<td title="Constante" style="white-space:nowrap;font-weight:bold;">Constante</td></tr>';
+
+                if (datos) {
+                    datos.forEach(function (dato) {
+                        //Buscamos el total del año inicial
+                        if (dato.id_unidad == indicador.id_entidad && (String(dato.medicion).split('.')[0] == anyo_inicio || String(dato.medicion).split('-')[0] == anyo_inicio || String(dato.medicion).split('-')[1] == anyo_inicio)) {
+                            valor_anyo_inicio = Math.round(dato.valor * 100) / 100;
+                            htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anyo_inicio + '</td>';
+                        }
+                        //Buscamos el total del año final
+                        if (dato.id_unidad == indicador.id_entidad && (String(dato.medicion).split('.')[0] == anyo_fin || String(dato.medicion).split('-')[0] == anyo_fin || String(dato.medicion).split('-')[1] == anyo_fin) && valor_anyo_inicio !== null) {
+                            valor_anyo_fin = Math.round(dato.valor * 100) / 100;
+                            htmlTabla += '<td title="Valor" style="white-space:nowrap">' + valor_anyo_fin + '</td>';
+                        }
+                        if (dato.id_unidad == indicador.id_entidad && (String(dato.medicion).split('.')[0] == anyo_fin || String(dato.medicion).split('-')[0] == anyo_fin || String(dato.medicion).split('-')[1] == anyo_fin) && valor_anyo_inicio === null) {
+                            valor_anyo_fin = Math.round(dato.valor * 100) / 100;
+                            htmlTabla += '<td style="white-space:nowrap">---</td><td title="Valor" style="white-space:nowrap">' + valor_anyo_fin + '</td>';
+                        }
+                    });
+                    //Si existen ambos totales calculamos su diferencia
+                    if (valor_anyo_inicio !== null && valor_anyo_fin !== null) {
+                        evolucion = Math.round((valor_anyo_fin - valor_anyo_inicio) * 100) / 100;
+                        if (evolucion > 0) {
+                            htmlTabla += '<td title="Incremento" style="color:green;white-space:nowrap;font-weight:bold;">' + evolucion + '</td></tr>';
+                        }
+                        else if (evolucion < 0) {
+                            htmlTabla += '<td title="Descenso" style="color:red;white-space:nowrap;font-weight:bold;">' + evolucion + '</td></tr>';
+                        }
+                        else {
+                            htmlTabla += '<td title="Constante" style="white-space:nowrap;font-weight:bold;">Constante</td></tr>';
+                        }
                     }
                 }
             }
