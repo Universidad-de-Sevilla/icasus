@@ -26,6 +26,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
         $mediciones = $medicion->Find("id_indicador = $id_indicador");
         $indicadores_dependientes = $logicaIndicador->calcular_influencias($indicador->id);
         $objetivo_indicador = new ObjetivoIndicador();
+        $panel_indicador = new Panel_indicador();
         //Si está asociado a un objetivo operacional no podemos borrarlo
         if ($objetivo_indicador->load("id_indicador=$id_indicador"))
         {
@@ -43,6 +44,12 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
         else if (count($indicadores_dependientes) != 0)
         {
             $aviso = ERR_INDIC_BORRAR_DEP;
+            header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
+        }
+        //Si está asociado a un cuadro de mando debemos desasociarlo primero
+        else if ($panel_indicador->load("id_indicador=$id_indicador"))
+        {
+            $aviso = ERR_INDIC_BORRAR_PANEL;
             header("Location: index.php?page=indicador_mostrar&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
         }
         else

@@ -409,6 +409,7 @@ define('MSG_CUADRO_CREADO', 'Se ha creado un nuevo cuadro de mando.');
 define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
 define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿está seguro?');
 //Paneles de los Cuadros de Mando
+define('MSG_PANEL_NO_VAL', 'No hay valores recogidos para los indicadores/datos de este panel.');
 define('MSG_PANEL_INDIC_UNID', 'Seleccione la unidad del indicador/dato para la que desea ver sus valores:');
 define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando este panel, ¿está seguro?');
 define('MSG_PANEL_BORRADO', 'Se ha eliminado con éxito el panel seleccionado.');
@@ -628,6 +629,7 @@ define('ERR_PANEL_VAL_ORDEN', 'Ya existe un panel con el mismo orden en este cua
 define('ERR_DATO_ARCHIVAR_DEP', 'Este dato influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
 define('ERR_DATO_BORRAR_MED', 'Tiene mediciones asociadas al dato, necesita borrar primero las mediciones.');
 define('ERR_DATO_BORRAR_OBJOP', 'No se puede borrar el dato, está asociado al menos con un objetivo operacional de un plan estratégico.');
+define('ERR_DATO_BORRAR_PANEL', 'No se puede borrar el dato, está asociado al menos con un panel de los cuadros de mando. Debe quitarse antes del panel.');
 define('ERR_DATO_GRABAR', 'No se ha podido grabar el dato.');
 define('ERR_DATO_MOSTRAR', 'No se puede mostrar el dato, el identificador no existe en la base de datos.');
 define('ERR_DATO_BORRAR_DEP', 'Este dato influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
@@ -641,6 +643,7 @@ define('ERR_INDIC_BORRAR_MED', 'Tiene mediciones asociadas al indicador, necesit
 define('ERR_INDIC_BORRAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
 define('ERR_INDIC_ARCHIVAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
 define('ERR_INDIC_BORRAR_OBJOP', 'No se puede borrar el indicador, está asociado al menos con un objetivo operacional de un plan estratégico.');
+define('ERR_INDIC_BORRAR_PANEL', 'No se puede borrar el indicador, está asociado al menos con un panel de los cuadros de mando. Debe quitarse antes del panel.');
 define('ERR_INDIC_GRABAR', 'No se ha podido grabar el indicador.');
 define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el indicador, el identificador no existe en la base de datos.');
 

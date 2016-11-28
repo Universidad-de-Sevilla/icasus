@@ -162,7 +162,7 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 id="nombre_cuadro" title="{$_nombre_pagina}" class="page-header" data-id_unidad ="{$entidad->id}" data-nombre_unidad ="{$entidad->etiqueta}">
+        <h3 id="nombre_cuadro" title="{$_nombre_pagina}" class="page-header" data-id_unidad ="{$entidad->id}" data-nombre_unidad ="{$entidad->etiqueta}" data-panel_vacio="{$smarty.const.MSG_PANEL_NO_VAL}">
             <div class="row">
                 <div class="col-md-10">
                     <i class="fa fa-th fa-fw"></i> {$_nombre_pagina}
