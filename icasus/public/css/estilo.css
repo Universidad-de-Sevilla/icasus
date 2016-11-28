@@ -213,7 +213,7 @@ hr, .divider{
 
 @media(max-width:768px) {
     .navbar-static-top + #page-wrapper {
-        margin-top: 0px;
+        margin-top: 0;
     }
 }
 
@@ -419,11 +419,10 @@ table.dataTable thead .sorting:after {
 
 .clickable {
     cursor: pointer;
-} 
+}
 
-.pagination > .active > a, .pagination > .active > a:focus, .pagination > 
-.active > a:hover, .pagination > .active > span, .pagination > .active > 
-span:focus, .pagination > .active > span:hover {
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover,
+.pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
     background-color:  #950717;
     border-color:  #950717;
 }
@@ -433,8 +432,8 @@ span:focus, .pagination > .active > span:hover {
     text-decoration: none;
 }
 
-.pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > 
-span:focus, .pagination > li > span:hover {
+.pagination > li > a:focus, .pagination > li > a:hover,
+.pagination > li > span:focus, .pagination > li > span:hover {
     color: #880736;
 }
 
@@ -513,7 +512,7 @@ span:focus, .pagination > li > span:hover {
 }
 
 #panel_mixto .fa-stack{
-    width: 30.85px;
+    width: 31px;
     height: 24px;
     line-height: 24px;
     margin-bottom: 6px;
@@ -541,7 +540,7 @@ span:focus, .pagination > li > span:hover {
 /*Highcharts*/
 .highcharts-contextmenu hr{
     border-color:rgb(160, 160, 160) !important;
-    margin: 0px;
+    margin: 0;
 }
 
 sub{
