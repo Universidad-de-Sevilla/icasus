@@ -115,13 +115,6 @@ $('.panel_linea').each(function () {
 
             function onDataReceived(datos) {
 
-                //Incluye en listado de indicadores el indicador relacionado si no estaba ya
-                if (indicadores_procesados.indexOf(indicador.id) === -1) {
-                    panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                            + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
-                    indicadores_procesados.push(indicador.id);
-                }
-
                 //Si tenemos valores
                 if (datos) {
                     datos.forEach(function (dato) {
@@ -213,6 +206,14 @@ $('.panel_linea').each(function () {
                 else {
                     vacios++;
                 }
+
+                //Incluye en listado de indicadores el indicador relacionado si no estaba ya
+                if (indicadores_procesados.indexOf(indicador.id) === -1) {
+                    panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
+                            + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
+                    indicadores_procesados.push(indicador.id);
+                }
+
                 //Si no hay ningún valor para ningún indicador del cuadro
                 if (vacios === indicadores_procesados.length && !aviso) {
                     panel.append('<div class="alert alert-info alert-dismissible"><i class="fa fa-info-circle fa-fw"></i> ' + panel_vacio + '</div>');
@@ -285,13 +286,6 @@ $('.panel_barra').each(function () {
             });
 
             function onDataReceived(datos) {
-
-                //Incluye en listado de indicadores el indicador relacionado si no estaba ya
-                if (indicadores_procesados.indexOf(indicador.id) === -1) {
-                    panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                            + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
-                    indicadores_procesados.push(indicador.id);
-                }
 
                 //Si tenemos valores
                 if (datos) {
@@ -384,6 +378,14 @@ $('.panel_barra').each(function () {
                 else {
                     vacios++;
                 }
+
+                //Incluye en listado de indicadores el indicador relacionado si no estaba ya
+                if (indicadores_procesados.indexOf(indicador.id) === -1) {
+                    panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
+                            + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
+                    indicadores_procesados.push(indicador.id);
+                }
+
                 //Si no hay ningún valor para ningún indicador del cuadro
                 if (vacios === indicadores_procesados.length && !aviso) {
                     panel.append('<div class="alert alert-info alert-dismissible"><i class="fa fa-info-circle fa-fw"></i> ' + panel_vacio + '</div>');
@@ -448,13 +450,6 @@ $(".panel_mixto").each(function () {
             });
 
             function onDataReceived(datos) {
-
-                //Incluye en listado de indicadores el indicador relacionado si no estaba ya
-                if (indicadores_procesados.indexOf(indicador.id) === -1) {
-                    panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                            + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
-                    indicadores_procesados.push(indicador.id);
-                }
 
                 if (datos) {
                     datos.forEach(function (dato) {
@@ -575,87 +570,20 @@ $(".panel_mixto").each(function () {
                 else {
                     vacios++;
                 }
+
+                //Incluye en listado de indicadores el indicador relacionado si no estaba ya
+                if (indicadores_procesados.indexOf(indicador.id) === -1) {
+                    panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
+                            + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
+                    indicadores_procesados.push(indicador.id);
+                }
+
                 //Si no hay ningún valor para ningún indicador del cuadro
                 if (vacios === indicadores_procesados.length && !aviso) {
                     panel.append('<div class="alert alert-info alert-dismissible"><i class="fa fa-info-circle fa-fw"></i> ' + panel_vacio + '</div>');
                     aviso = true;
                 }
             }
-        });
-    });
-});
-
-//Paneles de métrica: DESACTIVADOS
-$(".panel_metrica").each(function () {
-    var id_panel = $(this).data("id_panel");
-    var id_medicion = $(this).data("id_medicion");
-    //Indicadores/datos del panel
-    var panel_indics = $('#panel_indics_' + id_panel);
-    var medicion = '---'; //etiqueta de la medición a mostrar
-    var unidad = '---'; //etiqueta de la unidad a mostrar
-
-    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
-        // De momento cogemos solo el primer indicador por si viene mas de uno 
-        var indicador = indicadores[0];
-
-        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id).done(function (datos) {
-            var html = "";
-            // Tomamos la entidad a mostrar del panel_indicador actual
-            var id_entidad = indicador.id_entidad;
-            //Buscamos y guardamos la medición 
-            while (medicion === '---') {
-                $.each(datos, function (i, dato) {
-                    if (dato.id_medicion == id_medicion)
-                    {
-                        medicion = dato.medicion;
-                    }
-                });
-            }
-            //Buscamos y guardamos la unidad
-            while (unidad === '---') {
-                $.each(datos, function (i, dato) {
-                    if (id_entidad == dato.id_unidad)
-                    {
-                        unidad = dato.unidad;
-                    }
-                });
-            }
-            //Si es un valor total
-            if (id_entidad == 0) {
-                var total = '---';
-                //Guardada la medición localizamos el total
-                $.each(datos, function (i, dato) {
-                    if (dato.medicion == medicion && dato.id_unidad == 0)
-                    {
-                        total = parseFloat(dato.valor);
-                        //Redondeamos el total
-                        total = Math.round(total * 100) / 100;
-                    }
-                });
-                html = "<h3 title='Valor'><strong>" + total + "</strong></h3>";
-                html += "<h4 title='Medición - Unidad'>" + medicion + " - " + nombre_unidad + "</h4>";
-            }
-            //Si es el valor de una unidad concreta
-            else {
-                var valor = '---';
-                $.each(datos, function (i, dato) {
-                    if (dato.medicion == medicion && id_entidad == dato.id_unidad)
-                    {
-                        valor = parseFloat(dato.valor);
-                        //Redondeamos el valor
-                        valor = Math.round(valor * 100) / 100;
-                    }
-                });
-                html = "<h3 title='Valor'><strong>" + valor + "</strong></h3>";
-                html += "<h4 title='Medición - Unidad'>" + medicion + " - " + unidad + "</h4>";
-            }
-            $('<div/>', {'class': 'text-center',
-                html: html
-            }).appendTo('#panel_' + id_panel);
-
-            //Incluye en listado de indicadores el indicador relacionado
-            panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                    + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
         });
     });
 });
@@ -694,10 +622,6 @@ $(".panel_tarta").each(function () {
             });
 
             function onDataReceived(datos) {
-
-                //Incluye en listado de indicadores el indicador relacionado
-                panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                        + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
 
                 if (datos) {
                     //Buscamos la medición para luego obtener su total
@@ -774,73 +698,16 @@ $(".panel_tarta").each(function () {
                 else {
                     vacios++;
                 }
+
+                //Incluye en listado de indicadores el indicador relacionado
+                panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
+                        + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
+
                 //Si no hay ningún valor para ningún indicador del cuadro
                 if (vacios > 0) {
                     panel.append('<div class="alert alert-info alert-dismissible"><i class="fa fa-info-circle fa-fw"></i> ' + panel_vacio + '</div>');
                 }
             }
-        });
-    });
-});
-
-//Paneles de tabla simple: DESACTIVADOS
-$(".panel_tabla_simple").each(function () {
-    var id_panel = $(this).data("id_panel");
-    var anyos_atras = $(this).data("anyos_atras");
-    var anyo_fin = new Date().getFullYear() - 1;
-    var fecha_inicio = anyo_fin - anyos_atras + '-01-01';
-    var fecha_fin = anyo_fin + '-12-31';
-    var unidad = '---'; //etiqueta de la unidad a mostrar
-    //Indicadores/datos del panel
-    var panel_indics = $('#panel_indics_' + id_panel);
-    var htmlTabla = '<table id="tabla_simple' + id_panel + '" class="table table-striped table-hover">';
-    //Creamos la cabecera de la tabla
-    htmlTabla += "<thead><tr><th>Medición</th><th>Valor</th></tr></thead><tbody>";
-
-    $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel, function (indicadores) {
-        // De momento cogemos solo el primer indicador por si viene mas de uno 
-        var indicador = indicadores[0];
-
-        //Incluye en listado de indicadores el indicador relacionado
-        panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
-
-        $.getJSON("api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin, function (datos) {
-            // Tomamos la entidad a mostrar del panel_indicador actual
-            var id_entidad = indicador.id_entidad;
-            if (id_entidad == 0) {
-                unidad = nombre_unidad;
-            }
-            $.each(datos, function (i, dato) {
-                if (dato.id_unidad == id_entidad)
-                {
-                    htmlTabla += '<tr><td>' + dato.medicion + '</td><td><span class="badge">' + Math.round(dato.valor * 100) / 100 + '</span></td></tr>';
-                    if (unidad === '---') {
-                        unidad = dato.unidad;
-                    }
-                }
-            });
-            htmlTabla += '</tbody></table>';
-            htmlTabla += "<h4 title='Unidad' class='text-center'>Unidad: " + unidad + "</h4>";
-            $('#panel_' + id_panel).append(htmlTabla);
-            $('#tabla_simple' + id_panel).DataTable({
-                "pagingType": "full_numbers",
-                "iDisplayLength": 25,
-                dom: "<'row'<'col-sm-12'B>>" +
-                        "<'row'<'col-sm-12'tr>>" +
-                        "<'row'<'col-sm-5'><'col-sm-7'>>",
-                buttons: [
-                    {
-                        extend: 'collection',
-                        text: "<i title='Exportar' class='fa fa-share-square-o fa-fw'></i> <i class='fa fa-caret-down'></i>",
-                        buttons: [
-                            {extend: 'csv', text: "<i title='Exportar a CSV' class='fa fa-file-text-o fa-fw'></i> Exportar a CSV"},
-                            {extend: 'excel', text: "<i title='Exportar a Excel' class='fa fa-file-excel-o fa-fw'></i> Exportar a Excel"},
-                            {extend: 'print', text: "<i title='Imprimir/PDF' class='fa fa-print fa-fw'></i> Imprimir/PDF"}
-                        ]
-                    }
-                ]
-            });
         });
     });
 });
