@@ -80,6 +80,32 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
     $objops = $objop->Find_joined("id_responsable = $persona->id");
     $smarty->assign('objops_propios', $objops);
 
+    //Años de ejecución de los objetivos operacionales
+    $ejecucion = new Ejecucion();
+    $objops_anyos = array();
+    foreach ($objops as $obj)
+    {
+        $objops_anyos[$obj->id] = array();
+        $ejecuciones = $ejecucion->Find("id_objop=$obj->id order by anyo");
+        foreach ($ejecuciones as $ejec)
+        {
+            if ($ejec->activo)
+            {
+                array_push($objops_anyos[$obj->id], $ejec->anyo);
+            }
+        }
+    }
+    $smarty->assign('objops_anyos', $objops_anyos);
+
+    //Unidades de los objetivos operacionales
+    $objop_unidad = new ObjetivoUnidad();
+    $objops_unids = array();
+    foreach ($objops as $obj)
+    {
+        $objops_unids[$obj->id] = $objop_unidad->Find("id_objop=$obj->id");
+    }
+    $smarty->assign('objops_unids', $objops_unids);
+
     if (is_array($indicadores) && is_array($datos))
     {
         $indicadores_datos = array_merge($indicadores, $datos);
