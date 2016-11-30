@@ -115,11 +115,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
     }
     $smarty->assign('objops_unids', $objops_unids);
 
-    //TODO Indicadores de control
-    $indicadores_control = array();
-//    $indicadores_control=$indicador->find('');
-    $smarty->assign('indicadores_control', $indicadores_control);
-
     //Archivos
     $archivo = new Fichero();
     $archivos = $archivo->find_joined("id_objeto = $id_plan AND tipo_objeto = 'plan' AND visible=1");
