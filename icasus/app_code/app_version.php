@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.38.0");
-define('IC_FECHA_REVISION', "25/11/2016");
+define('IC_VERSION', "3.39.0");
+define('IC_FECHA_REVISION', "01/12/2016");
 
+// 3.39.0 - 01/12/2016 - Creadas nuevas interfaces para una mejor usabilidad, y gestión de los planes estratégicos.
 // 3.38.0 - 25/11/2016 - Los paneles de los cuadros de mando informan cuando sus indicadores/datos no tienen valores recogidos y así no se bloquea el diálogo de carga. Tampoco se pueden borrar indicadores/datos que estén asociados a paneles.
 // 3.37.4 - 23/11/2016 - Se muestran en los listados de objetivos operacionales la duración (los años) que éstos están activos.
 // 3.37.3 - 22/11/2016 - Se muestran en los listados de objetivos operacionales el número de unidades al que afectan.
