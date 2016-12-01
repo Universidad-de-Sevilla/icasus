@@ -233,6 +233,7 @@ define('TXT_PAG_CREAR', 'Crear página');
 define('TXT_PAG_EDIT', 'Editar página');
 
 //Planes Estratégicos
+define('TXT_PLANES_US', 'Planes estratégicos US');
 define('TXT_PLAN_CREAR', 'Crear plan estratégico');
 define('TXT_PLAN_EDIT', 'Editar plan estratégico');
 define('TXT_PLAN_BORRAR', 'Borrar plan estratégico');
@@ -506,6 +507,7 @@ define('MSG_PAG_CONFIRM_EDITAR', 'Va a editar esta página, ¿está seguro?');
 define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
 
 //Planes
+define('MSG_PLANES_NO', 'No hay planes estratégicos definidos para ninguna unidad.');
 define('MSG_PLAN_CONFIRM_BORRAR', '¿Realmente quiere borrar este plan?');
 define('MSG_PLAN_CREADO', 'Se ha creado un nuevo plan estratégico para esta unidad.');
 define('MSG_PLAN_EDITADO', 'Se ha editado el plan correctamente.');
@@ -515,7 +517,6 @@ define('MSG_PLAN_BORRAR', 'No tiene permisos para borrar el plan o éste todaví
 define('MSG_PLAN_NO_LINEAS', 'No hay líneas estratégicas definidas para este plan.');
 define('MSG_PLAN_NO_OBJEST', 'No hay objetivos estratégicos definidos para las líneas estratégicas del plan.');
 define('MSG_PLAN_NO_OBJOP', 'No hay objetivos operacionales definidos para los objetivos estratégicos de las líneas estratégicas del plan.');
-define('MSG_PLAN_NO_INDICS_CONTROL', 'No se han definido los indicadores de control para este plan estratégico.');
 define('MSG_PLAN_NO_ARCHIVOS', 'No se han subido archivos para este plan estratégico.');
 
 //Líneas
