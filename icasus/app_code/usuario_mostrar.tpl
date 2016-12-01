@@ -293,6 +293,7 @@
                                             <td>{$entidad->rol->nombre}</td>
                                             <td>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$entidad->entidad->id}'><i class="fa fa-folder fa-fw"></i></a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_PLANES}" href='index.php?page=plan_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-book fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-gears fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-dashboard fa-fw"></i></a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->entidad->id}'><i class="fa fa-database fa-fw"></i></a>
@@ -684,7 +685,9 @@
                                         <th>{$smarty.const.FIELD_PLAN}</th>
                                         <th>{$smarty.const.FIELD_UNID}</th>
                                         <th>{$smarty.const.FIELD_RESP}</th>
+                                        <th>{$smarty.const.FIELD_DURACION}</th>
                                         <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                        <th>Nº {$smarty.const.FIELD_UNIDS}</th>
                                         <th>{$smarty.const.FIELD_ACCIONES}</th>
                                     </tr>
                                 </thead>
@@ -708,12 +711,41 @@
                                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$objop->id_responsable}'>
                                                     {$objop->responsable->nombre} {$objop->responsable->apellidos}</a>
                                             </td>
+                                            <td>
+                                                {if $objops_anyos[$objop->id]}
+                                                    {foreach $objops_anyos[$objop->id] as $anyo}
+                                                        {if $anyo@first}
+                                                            {$anyo}{$escrito=true}
+                                                        {else if $anyo_anterior+1 == $anyo and !$anyo@last}
+                                                            {$escrito=false}
+                                                        {else if $anyo_anterior+1 != $anyo and !$escrito}
+                                                            - {$anyo_anterior}, {$anyo}
+                                                            {$escrito=true}
+                                                        {else if $anyo_anterior+1 != $anyo}
+                                                            , {$anyo}
+                                                            {$escrito=true}
+                                                        {else if $anyo@last && $objops_anyos[$objop->id]|@count>1}
+                                                            - {$anyo}
+                                                        {/if}
+                                                        {$anyo_anterior=$anyo}
+                                                    {/foreach}
+                                                {else}
+                                                    ---
+                                                {/if}
+                                            </td>
                                             <td style="white-space:nowrap">
                                                 <div class="progress">
                                                     <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{else if $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{else if $objop->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$objop->ejecucion|round:"2"}%">
                                                         {$objop->ejecucion|round:"2"} %
                                                     </div>
                                                 </div>
+                                            </td>
+                                            <td>
+                                                {if $objop->descendente}
+                                                    {$objops_unids[$objop->id]|@count}
+                                                {else}
+                                                    1
+                                                {/if}
                                             </td>
                                             <td>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$objop->objest->linea->plan->id_entidad}">

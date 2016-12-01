@@ -125,6 +125,7 @@ define('TXT_INDIC_TODOS', 'Todos los indicadores');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
 define('TXT_INDIC_CREAR', 'Crear indicador');
+define('TXT_INDIC_CREAR_CONTROL', 'Crear indicador de control');
 define('TXT_INDIC_LIST', 'Lista de indicadores');
 define('TXT_INDIC_EDIT', 'Editar indicador');
 define('TXT_INDIC_BORRAR', 'Borrar indicador');
@@ -189,12 +190,13 @@ define('TXT_USER_PERFIL', 'Perfil de usuario');
 define('TXT_CERRAR_SESION', 'Cerrar sesión');
 //Menú de Unidades
 define('TXT_INICIO_DESCRIPCION', 'Mi icasus: listado de sus competencias/responsabilidades.');
-define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de procesos de la unidad e información sobre los mismos. ');
-define('TXT_INDICS_DESCRIPCION', 'Indicadores: listado de indicadores de la unidad e información sobre los mismos.');
-define('TXT_DATOS_DESCRIPCION', 'Datos: listado de datos de la unidad e información sobre los mismos.');
-define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de mando: paneles con información variada sobre indicadores y datos.');
+define('TXT_PLANES_DESCRIPCION', 'Planes estratégicos: listado de planes estratégicos de la unidad y gestión de los mismos.');
+define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de procesos de la unidad y gestión de los mismos. ');
+define('TXT_INDICS_DESCRIPCION', 'Indicadores: listado de indicadores de la unidad y gestión de los mismos.');
+define('TXT_DATOS_DESCRIPCION', 'Datos: listado de datos de la unidad y gestión de los mismos.');
+define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de mando: listado de cuadros de mando de la unidad y gestión de los mismos.');
 define('TXT_CONSULTA_DESCRIPCION', 'Consulta: efectuar consultas y operaciones que muestran información sobre los indicadores y datos de la unidad.');
-define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones y valores de los distintos indicadores y datos de la unidad.');
+define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones y valores de los distintos indicadores y datos de la unidad bajo su responsabilidad.');
 
 //Navegación
 define('TXT_MOSTRANDO', 'Mostrando');
@@ -231,6 +233,7 @@ define('TXT_PAG_CREAR', 'Crear página');
 define('TXT_PAG_EDIT', 'Editar página');
 
 //Planes Estratégicos
+define('TXT_PLANES_US', 'Planes estratégicos US');
 define('TXT_PLAN_CREAR', 'Crear plan estratégico');
 define('TXT_PLAN_EDIT', 'Editar plan estratégico');
 define('TXT_PLAN_BORRAR', 'Borrar plan estratégico');
@@ -505,6 +508,7 @@ define('MSG_PAG_CONFIRM_EDITAR', 'Va a editar esta página, ¿está seguro?');
 define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
 
 //Planes
+define('MSG_PLANES_NO', 'No hay planes estratégicos definidos para ninguna unidad.');
 define('MSG_PLAN_CONFIRM_BORRAR', '¿Realmente quiere borrar este plan?');
 define('MSG_PLAN_CREADO', 'Se ha creado un nuevo plan estratégico para esta unidad.');
 define('MSG_PLAN_EDITADO', 'Se ha editado el plan correctamente.');

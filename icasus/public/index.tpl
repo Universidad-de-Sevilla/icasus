@@ -147,7 +147,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_USER_OBJOPS}" href='index.php?page=inicio#user_objops'>
+                                    <a title="{$smarty.const.TXT_USER_OBJOPS}" href='index.php?page=planes'>
                                         <div>
                                             <i class="fa fa-bullseye fa-fw"></i> {$smarty.const.TXT_USER_OBJOPS}:
                                             <span class="pull-right badge">{$num_objops_propios}</span>
@@ -209,6 +209,10 @@
                                 <li>
                                     <a title="{$smarty.const.TXT_UNIDS_US}" href='index.php?page=entidad_listar'>
                                         <span class="fa-stack fa-lg"><i class="fa fa-sitemap fa-fw"></i></span>{$smarty.const.TXT_UNIDS_US}</a>
+                                </li>
+                                <li>
+                                    <a title="{$smarty.const.TXT_PLANES_US}" href='index.php?page=planes'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-book fa-fw"></i></span>{$smarty.const.TXT_PLANES_US}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_PROCS_US}" href='index.php?page=procesos'>
