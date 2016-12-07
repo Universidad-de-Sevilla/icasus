@@ -121,9 +121,9 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#proc_list" title="{$smarty.const.TXT_PROC_LIST}"
-                   aria-controls="{$smarty.const.TXT_PROC_LIST}" role="tab" data-toggle="tab"><i
-                        class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROC_LIST}</a>
+                <a href="#proc_list" title="{$smarty.const.FIELD_PROCS}"
+                   aria-controls="{$smarty.const.FIELD_PROCS}" role="tab" data-toggle="tab"><i
+                        class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_PROCS}</a>
             </li>
             {if $procesos_propios}
                 <li role="presentation">

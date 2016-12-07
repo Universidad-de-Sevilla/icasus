@@ -31,7 +31,7 @@
                 <a href="#user_unids" title="{$smarty.const.TXT_USER_UNIDS}" aria-controls="{$smarty.const.TXT_USER_UNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_USER_UNIDS}</a>
             </li>
             <li role="presentation">
-                <a href="#unid_todas" title="{$smarty.const.TXT_UNID_TODAS}" aria-controls="{$smarty.const.TXT_UNID_TODAS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.TXT_UNID_TODAS}</a>
+                <a href="#unid_todas" title="{$smarty.const.FIELD_UNIDS}" aria-controls="{$smarty.const.FIELD_UNIDS}" role="tab" data-toggle="tab"><i class="fa fa-sitemap fa-fw"></i> {$smarty.const.FIELD_UNIDS}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->

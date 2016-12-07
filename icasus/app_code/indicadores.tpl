@@ -51,10 +51,10 @@
                 <a href="#user_indic" title="{$smarty.const.TXT_USER_INDIC}" aria-controls="{$smarty.const.TXT_USER_INDIC}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_USER_INDIC}</a>
             </li>
             <li role="presentation">
-                <a href="#indic_todos" title="{$smarty.const.TXT_INDIC_TODOS}" aria-controls="{$smarty.const.TXT_INDIC_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_TODOS}</a>
+                <a href="#indic_todos" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</a>
             </li>
             <li role="presentation">
-                <a href="#indic_archivados" title="{$smarty.const.TXT_INDIC_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_INDIC_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_ARCHIVADOS}</a>
+                <a href="#indic_archivados" title="{$smarty.const.TXT_INDIC_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_INDIC_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-archive fa-fw"></sub> {$smarty.const.TXT_INDIC_ARCHIVADOS}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->

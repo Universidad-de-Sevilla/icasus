@@ -97,7 +97,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#dato_list" title="{$smarty.const.TXT_DATOS_LIST}" aria-controls="{$smarty.const.TXT_DATOS_LIST}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_DATOS_LIST}</a>
+                <a href="#dato_list" title="{$smarty.const.FIELD_DATOS}" aria-controls="{$smarty.const.FIELD_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}</a>
             </li>
             {if $datos_propios}
                 <li role="presentation">

@@ -109,161 +109,192 @@
                 <!-- Tab indicador -->
                 <div role="tabpanel" class="tab-pane active" id="indicador">
                     <br>
-                    <div class="form-group has-feedback">
-                        <label for="codigo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_COD}</label>
-                        <div class="col-sm-8">
-                            <input title="{$smarty.const.TXT_CODIGO}" type='text' name='codigo' id='codigo' data-toggle="tooltip" data-placement="left"
-                                   pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
-                                   class="form-control" placeholder="{$smarty.const.FIELD_COD}" required/>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
+
+                    <fieldset>
+                        <legend>{$smarty.const.TXT_DEFINICION}</legend>
+                        <div class="form-group has-feedback">
+                            <label for="codigo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_COD}</label>
+                            <div class="col-sm-8">
+                                <input title="{$smarty.const.TXT_CODIGO}" type='text' name='codigo' id='codigo' data-toggle="tooltip" data-placement="left"
+                                       pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
+                                       class="form-control" placeholder="{$smarty.const.FIELD_COD}" required/>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                <div class="help-block with-errors"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
-                        <div class="col-sm-8">
-                            <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
+                        <div class="form-group has-feedback">
+                            <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
+                            <div class="col-sm-8">
+                                <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                <div class="help-block with-errors"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="id_proceso" class="col-sm-2 control-label">{$smarty.const.FIELD_PROC}</label>
-                        <div class="col-sm-8">
-                            {if isset($proceso)}
-                                <input type='hidden' name="id_proceso" value="{$proceso->id}"/>
-                                <input type='text' class="form-control" id="id_proceso" value="{$proceso->nombre}" readonly/>
-                            {else}
-                                <select class="form-control chosen-select" name="id_proceso" id="id_proceso">
-                                    {foreach $procesos as $proc}
-                                        <option value="{$proc->id}">{$proc->nombre}</option>
+                        <div class="form-group has-feedback">
+                            <label for="formulacion" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORM}</label>
+                            <div class="col-sm-8">
+                                <textarea  class="form-control" id="formulacion" name="formulacion" placeholder="{$smarty.const.FIELD_FORM}" required></textarea>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>{$smarty.const.FIELD_INDIC_TIPO}</legend>
+                        {if !isset($proceso)}
+                            <div id="control" class="form-group">
+                                <label for='activar_control' class="col-sm-2 control-label">{$smarty.const.TXT_CONTROL}</label>
+                                <div class="col-sm-8">
+                                    <div title="{$smarty.const.TXT_CONTROL}">
+                                        <input type="checkbox" name='control' id=activar_control class="form-control" 
+                                               data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                               data-onstyle="success" data-offstyle="danger"
+                                               data-off="{$smarty.const.TXT_NO}" value=1 data-size="small" />  
+                                    </div>
+                                </div>
+                            </div>
+                        {/if}
+                        <div id="proceso" class="form-group">
+                            <label for="id_proceso" class="col-sm-2 control-label">{$smarty.const.FIELD_PROC}</label>
+                            <div class="col-sm-8">
+                                {if isset($proceso)}
+                                    <input type='hidden' name="id_proceso" value="{$proceso->id}"/>
+                                    <input type='text' class="form-control" id="id_proceso" value="{$proceso->nombre}" readonly/>
+                                {else}
+                                    <select class="form-control chosen-select" name="id_proceso" id="id_proceso">
+                                        <option value="0">{$smarty.const.TXT_INDIC_NO_PROC} ({$smarty.const.FIELD_DATO})</option>
+                                        {foreach $procesos as $proc}
+                                            <option value="{$proc->id}">{$proc->nombre}</option>
+                                        {/foreach}
+                                    </select>
+                                {/if} 
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>{$smarty.const.FIELD_MED}</legend>
+                        <div class="form-group has-feedback">
+                            <label for="historicos" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_HISTORICO}</label>
+                            <div class="col-sm-8">
+                                <input type="number" value="2008" id='historicos' name="historicos" class="form-control" placeholder="{$smarty.const.FIELD_HISTORICO}" min='2000' max="{$smarty.now|date_format:'%Y'}" required/>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="periodicidad" class="col-sm-2 control-label">{$smarty.const.FIELD_PERIOD}</label>
+                            <div class="col-sm-8">
+                                <select class="form-control chosen-select" name="periodicidad" id="periodicidad">
+                                    <option value="Bienal">{$smarty.const.TXT_BIENAL}</option>
+                                    <option value="Anual" selected>{$smarty.const.TXT_ANUAL}</option>
+                                    <option value="Semestral">{$smarty.const.TXT_SEMESTRAL}</option>
+                                    <option value="Cuatrimestral">{$smarty.const.TXT_CUATRIMESTRAL}</option>
+                                    <option value="Trimestral">{$smarty.const.TXT_TRIMESTRAL}</option>
+                                    <option value="Mensual">{$smarty.const.TXT_MENSUAL}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="total_anual" title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" class="form-group hidden" data-toggle="tooltip">
+                            <label for="id_tipo_agregacion_temporal" class="col-sm-2 control-label">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
+                            <div class="col-sm-8">
+                                <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
+                                    {foreach $tipos_agregacion as $tipo_agregacion}
+                                        {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 4 && $tipo_agregacion->id != 6}
+                                            <option title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" >{$tipo_agregacion->descripcion}</option>
+                                        {/if}
                                     {/foreach}
                                 </select>
-                            {/if} 
-                        </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <label for="formulacion" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORM}</label>
-                        <div class="col-sm-8">
-                            <textarea  class="form-control" id="formulacion" name="formulacion" placeholder="{$smarty.const.FIELD_FORM}" required></textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <label for="historicos" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_HISTORICO}</label>
-                        <div class="col-sm-8">
-                            <input type="number" value="2008" id='historicos' name="historicos" class="form-control" placeholder="{$smarty.const.FIELD_HISTORICO}" min='2000' max="{$smarty.now|date_format:'%Y'}" required/>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="periodicidad" class="col-sm-2 control-label">{$smarty.const.FIELD_PERIOD}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name="periodicidad" id="periodicidad">
-                                <option value="Bienal">{$smarty.const.TXT_BIENAL}</option>
-                                <option value="Anual" selected>{$smarty.const.TXT_ANUAL}</option>
-                                <option value="Semestral">{$smarty.const.TXT_SEMESTRAL}</option>
-                                <option value="Cuatrimestral">{$smarty.const.TXT_CUATRIMESTRAL}</option>
-                                <option value="Trimestral">{$smarty.const.TXT_TRIMESTRAL}</option>
-                                <option value="Mensual">{$smarty.const.TXT_MENSUAL}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div id="total_anual" title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" class="form-group hidden" data-toggle="tooltip">
-                        <label for="id_tipo_agregacion_temporal" class="col-sm-2 control-label">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
-                                {foreach $tipos_agregacion as $tipo_agregacion}
-                                    {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 4 && $tipo_agregacion->id != 6}
-                                        <option title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" >{$tipo_agregacion->descripcion}</option>
-                                    {/if}
-                                {/foreach}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="id_responsable" class="col-sm-2 control-label">{$smarty.const.FIELD_RESP_SEG}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name="id_responsable" id="id_responsable">
-                                {foreach $usuarios_entidad as $usuario_entidad}
-                                    <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}</option>
-                                {/foreach} 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="id_responsable_medicion" class="col-sm-2 control-label">{$smarty.const.FIELD_RESP_MED}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name="id_responsable_medicion" id="id_responsable_medicion">
-                                {foreach $usuarios_entidad as $usuario_entidad}
-                                    <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}</option>
-                                {/foreach} 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for='inverso' class="col-sm-2 control-label">{$smarty.const.FIELD_ESTIMACION}</label>
-                        <div class="col-sm-8">
-                            <div title="{$smarty.const.TXT_ESTIMACION}" data-toggle="tooltip" data-placement="left">
-                                <input type="checkbox" name='inverso' id='inverso' class="form-control" 
-                                       data-toggle="toggle" data-on="{$smarty.const.TXT_DESCENDENTE}"
-                                       data-onstyle="danger" data-offstyle="success"
-                                       data-off="{$smarty.const.TXT_ASCENDENTE}" value="1" data-size="small"/>  
                             </div>
                         </div>
-                    </div>
-                    <div id="calculo_automatico">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">{$smarty.const.TXT_INDIC_DAT_CALCULADO}</label>
+                            <label for='inverso' class="col-sm-2 control-label">{$smarty.const.FIELD_ESTIMACION}</label>
                             <div class="col-sm-8">
-                                <div title="{$smarty.const.TXT_SOLO_INDIC_CALC}" data-toggle="tooltip" data-placement="left">
-                                    <input type="checkbox" id="activar_calculo"  class="form-control" 
-                                           data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                           data-onstyle="success" data-offstyle="danger"
-                                           data-off="{$smarty.const.TXT_NO}" data-size="small"/>  
+                                <div title="{$smarty.const.TXT_ESTIMACION}" data-toggle="tooltip" data-placement="left">
+                                    <input type="checkbox" name='inverso' id='inverso' class="form-control" 
+                                           data-toggle="toggle" data-on="{$smarty.const.TXT_DESCENDENTE}"
+                                           data-onstyle="danger" data-offstyle="success"
+                                           data-off="{$smarty.const.TXT_ASCENDENTE}" value="1" data-size="small"/>  
                                 </div>
                             </div>
                         </div>
-                        <div id="formula_calculo" class="form-group has-feedback hidden">
-                            <label for="calculo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORMULA}</label>
-                            <div class="col-sm-8">
-                                <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" data-toggle="tooltip" data-placement="left" class="form-control" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" disabled="disabled" required></textarea>
-                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <div class="help-block with-errors"></div>
+                        <div id="calculo_automatico">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$smarty.const.TXT_INDIC_DAT_CALCULADO}</label>
+                                <div class="col-sm-8">
+                                    <div title="{$smarty.const.TXT_SOLO_INDIC_CALC}" data-toggle="tooltip" data-placement="left">
+                                        <input type="checkbox" id="activar_calculo"  class="form-control" 
+                                               data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                               data-onstyle="success" data-offstyle="danger"
+                                               data-off="{$smarty.const.TXT_NO}" data-size="small"/>  
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div id="intervalo">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{$smarty.const.FIELD_INTERVALO}</label>
-                            <div class="col-sm-8">
-                                <div title="{$smarty.const.TXT_INTERVALO}" data-toggle="tooltip" data-placement="left">
-                                    <input type="checkbox" id="activar_intervalo"  class="form-control" 
-                                           data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                           data-onstyle="success" data-offstyle="danger"
-                                           data-off="{$smarty.const.TXT_NO}" data-size="small"/>  
+                            <div id="formula_calculo" class="form-group has-feedback hidden">
+                                <label for="calculo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORMULA}</label>
+                                <div class="col-sm-8">
+                                    <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" data-toggle="tooltip" data-placement="left" class="form-control" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" disabled="disabled" required></textarea>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <div class="help-block with-errors"></div>
                                 </div>
                             </div>
                         </div>
-                        <div id="vmin" class="form-group has-feedback hidden">
-                            <label for="valor_min" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VALOR_MIN}</label>
-                            <div class="col-sm-8">
-                                <input type="number" step="0.01" id='valor_min' name="valor_min" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MIN}" disabled="disabled" required/>
-                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <div class="help-block with-errors"></div>
+                        <div id="intervalo">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$smarty.const.FIELD_INTERVALO}</label>
+                                <div class="col-sm-8">
+                                    <div title="{$smarty.const.TXT_INTERVALO}" data-toggle="tooltip" data-placement="left">
+                                        <input type="checkbox" id="activar_intervalo"  class="form-control" 
+                                               data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                               data-onstyle="success" data-offstyle="danger"
+                                               data-off="{$smarty.const.TXT_NO}" data-size="small"/>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="vmin" class="form-group has-feedback hidden">
+                                <label for="valor_min" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VALOR_MIN}</label>
+                                <div class="col-sm-8">
+                                    <input type="number" step="0.01" id='valor_min' name="valor_min" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MIN}" disabled="disabled" required/>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div id="vmax" class="form-group has-feedback hidden">
+                                <label for="valor_max" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VALOR_MAX}</label>
+                                <div class="col-sm-8">
+                                    <input type="number" step="0.01" id='valor_max' name="valor_max" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MAX}" disabled="disabled" required/>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <div class="help-block with-errors"></div>
+                                </div>
                             </div>
                         </div>
-                        <div id="vmax" class="form-group has-feedback hidden">
-                            <label for="valor_max" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VALOR_MAX}</label>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>{$smarty.const.TXT_USERS}</legend>
+                        <div class="form-group">
+                            <label for="id_responsable" class="col-sm-2 control-label">{$smarty.const.FIELD_RESP_SEG}</label>
                             <div class="col-sm-8">
-                                <input type="number" step="0.01" id='valor_max' name="valor_max" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MAX}" disabled="disabled" required/>
-                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <div class="help-block with-errors"></div>
+                                <select class="form-control chosen-select" name="id_responsable" id="id_responsable">
+                                    {foreach $usuarios_entidad as $usuario_entidad}
+                                        <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}</option>
+                                    {/foreach} 
+                                </select>
                             </div>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="id_responsable_medicion" class="col-sm-2 control-label">{$smarty.const.FIELD_RESP_MED}</label>
+                            <div class="col-sm-8">
+                                <select class="form-control chosen-select" name="id_responsable_medicion" id="id_responsable_medicion">
+                                    {foreach $usuarios_entidad as $usuario_entidad}
+                                        <option value="{$usuario_entidad->usuario->id}">{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}</option>
+                                    {/foreach} 
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
                             {if isset($proceso)}
@@ -328,6 +359,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="unidad_generadora" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID_GEN}</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="unidad_generadora" name="unidad_generadora" placeholder="{$smarty.const.FIELD_UNID_GEN}">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="criterios_efqm" class="col-sm-2 control-label">{$smarty.const.FIELD_EFQM}</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name="criterios_efqm[]" id="criterios_efqm" multiple>
@@ -349,12 +386,6 @@
                                     </option>
                                 {/foreach}
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="unidad_generadora" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID_GEN}</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="unidad_generadora" name="unidad_generadora" placeholder="{$smarty.const.FIELD_UNID_GEN}">
                         </div>
                     </div>
                     <div class="form-group">

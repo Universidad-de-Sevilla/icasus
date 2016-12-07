@@ -23,6 +23,7 @@ define('TXT_APP_WEB', 'icasus3.us.es');
 define('TXT_APP_DESCRIPCION', 'Indicadores de Calidad de los Servicios de la Universidad de Sevilla');
 define('TXT_DEPARTAMENTOS', 'Departamentos');
 define('TXT_BIBLIOTECAS', 'Bibliotecas');
+define('TXT_DEFINICION', 'Definición');
 define('TXT_CONTROL', 'Control');
 define('TXT_NO_ASIG', 'No asignado');
 define('TXT_CONTENIDO', 'Contenido de');
@@ -76,8 +77,6 @@ define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 define('TXT_CONSULT_BUSCAR', 'Buscar indicador/dato');
 
 //Cuadros de Mando
-define('TXT_CUADRO_LIST', 'Lista de cuadros de mando');
-define('TXT_CUADROS_MANDO_PUBLIC', 'Cuadros de mando públicos');
 define('TXT_CUADRO_CREAR', 'Crear cuadro de mando');
 define('TXT_CUADRO_EDIT', 'Editar cuadro de mando');
 define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
@@ -97,7 +96,6 @@ define('TXT_PANEL_INDICS', 'Indicadores/datos del panel');
 define('TXT_PANEL_INCLUIR', 'Añadir indicador/dato al panel');
 
 //Datos
-define('TXT_DATO_TODOS', 'Todos los datos');
 define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
 define('TXT_DATO_EDIT', 'Editar dato');
 define('TXT_DATO_BORRAR', 'Borrar dato');
@@ -106,7 +104,6 @@ define('TXT_DATO_ARCHIVADO', 'Dato archivado: este dato ya no está en uso.');
 define('TXT_DATO_ARCHIVADOS', 'Datos archivados');
 define('TXT_DATO_RESTAURAR', 'Restaurar dato');
 define('TXT_DATO_CREAR', 'Crear dato');
-define('TXT_DATOS_LIST', 'Lista de datos');
 define('TXT_DATOS_REBIUN', 'Datos Rebiun');
 define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida de Datos Rebiun');
 
@@ -114,21 +111,18 @@ define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida de Datos Rebiun');
 define('TXT_UNID', 'Unidad');
 define('TXT_UNID_ASIG_PRINCIPAL', 'Convertir en unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad (sólo se puede asignar una unidad como principal).');
 define('TXT_UNID_PRINCIPAL', 'Unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad.');
-define('TXT_UNID_TODAS', 'Todas las unidades');
 define('TXT_UNID_EDIT', 'Editar unidad');
 define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
 define('TXT_ETIQUETA_MINI_DESCRIPCION', 'Indica como aparece el nombre de la unidad en las gráficas');
 define('TXT_ORGANICA_DESCRIPCION', 'Sólo aparecen en los listados las unidades orgánicas');
 
 //Indicadores
-define('TXT_INDIC_TODOS', 'Todos los indicadores');
 define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
 define('TXT_INDIC_CREAR', 'Crear indicador');
-define('TXT_INDIC_CREAR_CONTROL', 'Crear indicador de control');
-define('TXT_INDIC_LIST', 'Lista de indicadores');
 define('TXT_INDIC_EDIT', 'Editar indicador');
 define('TXT_INDIC_BORRAR', 'Borrar indicador');
+define('TXT_INDIC_NO_PROC', 'Sin proceso asociado');
 define('TXT_INDIC_ARCHIVAR', 'Archivar indicador');
 define('TXT_INDIC_ARCHIVADO', 'Indicador archivado: este indicador ya no está en uso.');
 define('TXT_INDIC_ARCHIVADOS', 'Indicadores archivados');
@@ -257,12 +251,10 @@ define('TXT_OBJOP_PROPIO', 'Propio');
 define('TXT_OBJOP_DESC', 'Descendente');
 
 //Procesos
-define('TXT_PROC_TODOS', 'Todos los procesos');
 define('TXT_PROC_VER', 'Ver proceso');
 define('TXT_PROC_MAP', 'Mapa de procesos');
 define('TXT_PROC_CUADRO', 'Sin cuadro de mando asociado (opcional: seleccione un cuadro del desplegable).');
 define('TXT_PROC_MAP_EDIT', 'Agregar/editar mapa de procesos');
-define('TXT_PROC_LIST', 'Lista de procesos');
 define('TXT_PROC_ES_MADRE', 'Es un proceso madre');
 define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha del proceso');
 define('TXT_PROC_EDIT', 'Editar proceso');
@@ -306,15 +298,14 @@ define('TXT_TRIMESTRAL', 'Trimestral');
 define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
 define('TXT_SEMESTRAL', 'Semestral');
 define('TXT_DOS_ULT_ANYO', 'Dos últimos años');
-
 //Tipos de Cálculo
 define('TXT_CALC_AUTO', 'Este indicador/dato es calculado automáticamente');
-define('TXT_INDEF', 'Indefinido');
 
 //Tipos de Proceso
 define('TXT_ESTRATEGICO', '1-Estratégico');
 define('TXT_OPERATIVO', '2-Operativo');
 define('TXT_APOYO', '3-Apoyo');
+define('TXT_INDEF', 'Indefinido');
 
 //Tipos de Representaciones Gráficas: paneles
 define('TXT_LINEAS', 'Líneas');
@@ -763,6 +754,7 @@ define('FIELD_ANOTACION', 'Anotaciones');
 
 //Indicadores
 define('FIELD_INDIC', 'Indicador');
+define('FIELD_INDIC_TIPO', 'Tipo de indicador');
 define('FIELD_INDIC_BASE', 'Indicador/dato base');
 define('FIELD_INDIC_COMPLEMENT', 'Indicadores/datos complementarios');
 define('FIELD_INDICS', 'Indicadores');

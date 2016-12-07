@@ -12,16 +12,15 @@ global $usuario;
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
-if (
-        filter_has_var(INPUT_POST, 'codigo')
+if (filter_has_var(INPUT_POST, 'codigo')
         AND filter_has_var(INPUT_POST, 'nombre')
         AND filter_has_var(INPUT_POST, 'id_responsable')
         AND filter_has_var(INPUT_POST, 'id_responsable_medicion')
         AND filter_has_var(INPUT_POST, 'formulacion')
-        AND filter_has_var(INPUT_POST, 'id_proceso')
         AND filter_has_var(INPUT_POST, 'id_entidad')
         AND filter_has_var(INPUT_POST, 'tipo_seleccion_responsable'))
 {
+
     $indicador = new Indicador();
 
     if (filter_has_var(INPUT_GET, 'id_indicador'))
@@ -40,7 +39,18 @@ if (
     $id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
     // Campos obligatorios
-    $indicador->id_proceso = filter_input(INPUT_POST, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
+    if (filter_has_var(INPUT_POST, 'id_proceso'))
+    {
+        $id_proceso = filter_input(INPUT_POST, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
+        if ($id_proceso == 0)
+        {
+            $indicador->id_proceso = NULL;
+        }
+        else
+        {
+            $indicador->id_proceso = $id_proceso;
+        }
+    }
     $indicador->id_responsable = filter_input(INPUT_POST, 'id_responsable', FILTER_SANITIZE_NUMBER_INT);
     $indicador->id_responsable_medicion = filter_input(INPUT_POST, 'id_responsable_medicion', FILTER_SANITIZE_NUMBER_INT);
     $indicador->id_entidad = $id_entidad;
@@ -49,6 +59,7 @@ if (
     $indicador->formulacion = filter_input(INPUT_POST, 'formulacion', FILTER_SANITIZE_STRING);
     $indicador->id_visibilidad = filter_input(INPUT_POST, 'id_visibilidad', FILTER_SANITIZE_NUMBER_INT);
     $tipo_seleccion_responsable = filter_input(INPUT_POST, 'tipo_seleccion_responsable');
+    $indicador->control = filter_has_var(INPUT_POST, 'control') ? filter_input(INPUT_POST, 'control', FILTER_SANITIZE_NUMBER_INT) : 0;
     $indicador->inverso = filter_has_var(INPUT_POST, 'inverso') ? filter_input(INPUT_POST, 'inverso', FILTER_SANITIZE_NUMBER_INT) : 0;
     // Campos opcionales 
     $indicador->descripcion = filter_has_var(INPUT_POST, 'descripcion') ? filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING) : null;
@@ -366,5 +377,5 @@ else
 {
     // Avisamos de error por falta de parametros
     $error = ERR_PARAM;
-    header("Location: index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
+    header("location:index.php?page=error&error=$error");
 }

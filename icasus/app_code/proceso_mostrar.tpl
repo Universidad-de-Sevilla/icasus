@@ -164,7 +164,7 @@
                 <a href="#proc_indics" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</a>
             </li>
             <li role="presentation">
-                <a href="#proc_indics_archivados" title="{$smarty.const.TXT_INDIC_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_INDIC_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_ARCHIVADOS}</a>
+                <a href="#proc_indics_archivados" title="{$smarty.const.TXT_INDIC_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_INDIC_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-archive fa-fw"></sub> {$smarty.const.TXT_INDIC_ARCHIVADOS}</a>
             </li>
             <li role="presentation">
                 <a href="#proc_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>

@@ -97,7 +97,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#indic_list" title="{$smarty.const.TXT_INDIC_LIST}" aria-controls="{$smarty.const.TXT_INDIC_LIST}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_LIST}</a>
+                <a href="#indic_list" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</a>
             </li>
             {if $indicadores_propios}
                 <li role="presentation">
@@ -105,7 +105,7 @@
                 </li>
             {/if}
             <li role="presentation">
-                <a href="#indic_archivados" title="{$smarty.const.TXT_INDIC_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_INDIC_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_ARCHIVADOS}</a>
+                <a href="#indic_archivados" title="{$smarty.const.TXT_INDIC_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_INDIC_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-archive fa-fw"></sub> {$smarty.const.TXT_INDIC_ARCHIVADOS}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->

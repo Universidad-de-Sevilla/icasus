@@ -51,7 +51,7 @@
                 <a href="#user_dato" title="{$smarty.const.TXT_USER_DATO}" aria-controls="{$smarty.const.TXT_USER_DATO}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}</a>
             </li>
             <li role="presentation">
-                <a href="#dato_todos" title="{$smarty.const.TXT_DATO_TODOS}" aria-controls="{$smarty.const.TXT_DATO_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_DATO_TODOS}</a>
+                <a href="#dato_todos" title="{$smarty.const.FIELD_DATOS}" aria-controls="{$smarty.const.FIELD_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}</a>
             </li>
             <li role="presentation">
                 <a href="#dato_archivados" title="{$smarty.const.TXT_DATO_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_DATO_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_DATO_ARCHIVADOS}</a>

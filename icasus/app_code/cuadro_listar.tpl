@@ -97,7 +97,7 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#cuadro_list" title="{$smarty.const.TXT_CUADRO_LIST}" aria-controls="{$smarty.const.TXT_CUADRO_LIST}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADRO_LIST}</a>
+                <a href="#cuadro_list" title="{$smarty.const.FIELD_CUADROS_MANDO}" aria-controls="{$smarty.const.FIELD_CUADROS_MANDO}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.FIELD_CUADROS_MANDO}</a>
             </li>
             {if $cuadros_propios}
                 <li role="presentation">

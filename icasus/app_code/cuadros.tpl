@@ -51,7 +51,7 @@
                 <a href="#cuadros_propios" title="{$smarty.const.TXT_USER_CUADROS}" aria-controls="{$smarty.const.TXT_USER_CUADROS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_USER_CUADROS}</a>
             </li>
             <li role="presentation">
-                <a href="#cuadro_todos" title="{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}" aria-controls="{$smarty.const.TXT_CUADROS_MANDO_PUBLIC}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_CUADROS_MANDO_PUBLIC}</a>
+                <a href="#cuadro_todos" title="{$smarty.const.FIELD_CUADROS_MANDO}" aria-controls="{$smarty.const.FIELD_CUADROS_MANDO}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.FIELD_CUADROS_MANDO}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
