@@ -22,16 +22,39 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    //Indicadores de procesos
     $indicador = new Indicador();
     $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado is NULL");
     $smarty->assign('indicadores', $indicadores);
 
+    //Indicadores de control
+    $indicadores_ctl = $indicador->Find_joined("id_entidad = $id_entidad AND control=1 AND archivado is NULL");
+    $smarty->assign('indicadores_ctl', $indicadores_ctl);
+
+    //Objetivos operacionales de indicadores de control
+    $objops = array();
+    $objop = new ObjetivoOperacional();
+    $objetivo_indicador = new ObjetivoIndicador();
+    foreach ($indicadores_ctl as $indicador)
+    {
+        if ($objetivo_indicador->load("id_indicador=$indicador->id AND control=1"))
+        {
+            $objop->load("id=$objetivo_indicador->id_objop");
+            $objops[$indicador->id]=$objop;
+        }
+    }
+    $smarty->assign('objops', $objops);
+
+    //Indicadores (datos)
+    $datos = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NULL AND control=0 AND archivado is NULL");
+    $smarty->assign('datos', $datos);
+
     //Indicadores archivados
-    $indicadores_archivados = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado is NOT NULL");
+    $indicadores_archivados = $indicador->Find_joined("id_entidad = $id_entidad AND archivado is NOT NULL");
     $smarty->assign('indicadores_archivados', $indicadores_archivados);
 
-    // Indicadores bajo la responsabilidad de este usuario
-    $indicadores_propios = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_proceso IS NOT NULL AND id_entidad=$id_entidad AND archivado IS NULL");
+    //Indicadores bajo la responsabilidad de este usuario
+    $indicadores_propios = $indicador->Find_joined_ultima_medicion("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_entidad=$id_entidad AND archivado IS NULL");
     $smarty->assign("indicadores_propios", $indicadores_propios);
 
     if ($indicadores_propios)

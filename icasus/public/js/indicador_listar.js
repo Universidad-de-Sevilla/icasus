@@ -22,5 +22,7 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
 //Barra de botones
 $(document).ready(function () {
     var botones = $('#botones').html();
-    $('#tabla_indicadores_filter, #tabla_mis_indicadores_filter,#tabla_indicadores_archivados_filter').append(botones);
+    var boton_rebiun = $('#boton_rebiun').html();
+    $('#tabla_indicadores_filter,#tabla_indicadores_ctl_filter,#tabla_datos_filter,#tabla_mis_indicadores_filter,#tabla_indicadores_archivados_filter').append(botones);
+    $('#tabla_datos_filter').append(boton_rebiun);
 });
