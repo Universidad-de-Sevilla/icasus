@@ -86,6 +86,7 @@ if (isset($_SESSION['usuario']) && IC_TIPO_LOGIN != 'mantenimiento')
     $smarty->assign('_usuario', $usuario);
 
     $entidad = new Entidad();
+    $plan = new Plan();
     $proceso = new Proceso();
     $indicador = new Indicador();
     $dato = new Indicador();
@@ -100,7 +101,10 @@ if (isset($_SESSION['usuario']) && IC_TIPO_LOGIN != 'mantenimiento')
 
     if ($entidad->load("id = $id_entidad"))
     {
-        //Cantidad de procesos, indicadores, datos y cuadros de mando de la unidad
+        //Cantidad de planes, procesos, indicadores, datos y cuadros de mando de la unidad
+        $planes = $plan->Find("id_entidad = $id_entidad ORDER BY anyo_inicio DESC");
+        $smarty->assign('num_planes', count($planes));
+
         $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");
         $smarty->assign('num_procesos', count($procesos));
 
