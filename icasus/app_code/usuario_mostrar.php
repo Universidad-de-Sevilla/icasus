@@ -63,12 +63,8 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
 
     // Indicadores bajo la responsabilidad de este usuario
     $indicador = new Indicador();
-    $indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NOT NULL AND archivado IS NULL");
+    $indicadores = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND archivado IS NULL");
     $smarty->assign("indicadores_propios", $indicadores);
-
-    // Datos bajo la responsabilidad de este usuario
-    $datos = $indicador->Find_joined_ultima_medicion("(id_responsable = $persona->id OR id_responsable_medicion = $persona->id) AND id_proceso IS NULL AND archivado IS NULL");
-    $smarty->assign("datos_propios", $datos);
 
     // Cuadros de mando del usuario
     $cuadro = new Cuadro();
@@ -106,25 +102,12 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
     }
     $smarty->assign('objops_unids', $objops_unids);
 
-    if (is_array($indicadores) && is_array($datos))
-    {
-        $indicadores_datos = array_merge($indicadores, $datos);
-    }
-    if (is_array($indicadores) && !is_array($datos))
-    {
-        $indicadores_datos = $indicadores;
-    }
-    if (is_array($datos) && !is_array($indicadores))
-    {
-        $indicadores_datos = $datos;
-    }
-
-    if ($indicadores_datos)
+    if ($indicadores)
     {
         // Valores totales de las últimas mediciones
         $totales = array();
         $valor = new Valor();
-        foreach ($indicadores_datos as $indicador)
+        foreach ($indicadores as $indicador)
         {
             $valores = $valor->find("id_medicion=" . $indicador->medicion->id);
             $total = $logicaIndicador->calcular_total($indicador, $valores, $indicador->medicion->etiqueta);
@@ -139,12 +122,12 @@ if (filter_has_var(INPUT_GET, 'id_usuario'))
         $medicion_obj = array();
         $status = array();
         //Incializamos ambos arrays de referencias a null por defecto
-        foreach ($indicadores_datos as $indicador)
+        foreach ($indicadores as $indicador)
         {
             $medicion_lim[$indicador->id] = NULL;
             $medicion_obj[$indicador->id] = NULL;
         }
-        foreach ($indicadores_datos as $indicador)
+        foreach ($indicadores as $indicador)
         {
             $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
             if ($valores_referencia)
