@@ -413,7 +413,7 @@ define('MSG_PANEL_CREADO', "Se ha añadido al cuadro de mando el siguiente panel
 define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿está seguro?');
 
 //Datos
-define('MSG_DATOS_NO', 'No hay datos definidos para ninguna unidad.');
+define('MSG_DATOS_NO', 'No hay indicadores (datos) activos.');
 define('MSG_DATOS_NO_ARCHIVADOS', 'No hay datos archivados para ninguna unidad.');
 define('MSG_DATO_BORRADO', 'Se ha borrado el dato: ');
 define('MSG_DATO_ARCHIVADO', 'Se ha archivado el dato: ');
@@ -451,7 +451,8 @@ define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna unidad.');
 define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen unidades orgánicas.');
 
 //Indicadores
-define('MSG_INDICS_NO', 'No hay indicadores definidos para ninguna unidad.');
+define('MSG_INDICS_NO', 'No hay indicadores (proceso) activos.');
+define('MSG_INDICS_NO_CONTROL', 'No hay indicadores (control) activos.');
 define('MSG_INDICS_NO_ARCHIVADOS', 'No hay indicadores archivados.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.');

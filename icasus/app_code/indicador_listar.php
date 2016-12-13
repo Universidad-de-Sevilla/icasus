@@ -40,7 +40,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         if ($objetivo_indicador->load("id_indicador=$indicador->id AND control=1"))
         {
             $objop->load("id=$objetivo_indicador->id_objop");
-            $objops[$indicador->id]=$objop;
+            $objops[$indicador->id] = $objop;
         }
     }
     $smarty->assign('objops', $objops);
