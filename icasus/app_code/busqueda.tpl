@@ -38,9 +38,6 @@
                 <li id="tab_indicadores" role="presentation">
                     <a href="#indicadores" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</a>
                 </li>
-                <li id="tab_datos" role="presentation">
-                    <a href="#datos" title="{$smarty.const.FIELD_DATOS}" aria-controls="{$smarty.const.FIELD_DATOS}" role="tab" data-toggle="tab"><i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}</a>
-                </li>
                 <li id="tab_cuadros" role="presentation">
                     <a href="#cuadros" title="{$smarty.const.FIELD_CUADROS_MANDO}" aria-controls="{$smarty.const.FIELD_CUADROS_MANDO}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.FIELD_CUADROS_MANDO}</a>
                 </li>
@@ -112,7 +109,7 @@
                                     <tr>   
                                         <th>{$smarty.const.FIELD_COD}</th>
                                         <th>{$smarty.const.FIELD_UNID}</th>
-                                        <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                        <th>{$smarty.const.FIELD_PROC}</th>
                                         <th>{$smarty.const.FIELD_TIPO_PROC}</th>
                                         <th>{$smarty.const.FIELD_PROC_MADRE}</th>         
                                         <th>{$smarty.const.FIELD_PROPIETARIO}</th>
@@ -173,7 +170,6 @@
                                         <th>{$smarty.const.FIELD_COD}</th>
                                         <th>{$smarty.const.FIELD_UNID}</th>
                                         <th>{$smarty.const.FIELD_INDIC}</th>
-                                        <th>{$smarty.const.FIELD_PROC}</th>
                                         <th>{$smarty.const.FIELD_PERIOD}</th>
                                         <th>{$smarty.const.FIELD_RESP}</th>
                                         <th>{$smarty.const.FIELD_RESP_MED}</th>
@@ -195,11 +191,6 @@
                                                 <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                    title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
                                                     {$indicador->nombre}</a>
-                                            </td>
-                                            <td>
-                                                <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
-                                                    {$indicador->proceso->nombre}
-                                                </a>
                                             </td>
                                             <td>{$indicador->periodicidad}</td>
                                             <td style="font-size: 12px">
@@ -243,76 +234,6 @@
                 </div>
                 <!-- /Tab indicadores -->
 
-                <!-- Tab datos -->
-                <div id="datos" role="tabpanel" class="tab-pane">
-                    {if $datos}
-                        <div class="table-responsive">
-                            <table class="table table-condensed datatable table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>{$smarty.const.FIELD_COD}</th>
-                                        <th>{$smarty.const.FIELD_UNID}</th>
-                                        <th>{$smarty.const.FIELD_DATO}</th>  
-                                        <th>{$smarty.const.FIELD_PERIOD}</th>
-                                        <th>{$smarty.const.FIELD_RESP}</th>
-                                        <th>{$smarty.const.FIELD_RESP_MED}</th>
-                                        <th>{$smarty.const.FIELD_ACCIONES}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {foreach from=$datos item=dato} 
-                                        <tr>
-                                            <td><span class="label label-primary">{$dato->codigo}</span></td>
-                                            <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$dato->id_entidad}'>{$dato->entidad->etiqueta}</a></td>
-                                            <td>
-                                                {if $dato->calculo}
-                                                    <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$dato->calculo}"></i>
-                                                {/if}
-                                                {if $dato->id_tipo_agregacion!= 0}
-                                                    <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
-                                                {/if}
-                                                <a href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
-                                                   title="{$dato->nombre}: {$dato->descripcion|replace:"\r\n":" "}">
-                                                    {$dato->nombre}</a>
-                                            </td>
-                                            <td>{$dato->periodicidad}</td>
-                                            <td style="font-size: 12px">
-                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable}&id_entidad={$dato->id_entidad}'>
-                                                    {$dato->responsable->nombre} {$dato->responsable->apellidos}</a>
-                                            </td>
-                                            <td style="font-size: 12px">
-                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$dato->id_responsable_medicion}&id_entidad={$dato->id_entidad}'>
-                                                    {$dato->responsable_medicion->nombre} {$dato->responsable_medicion->apellidos}</a>
-                                            </td>
-                                            <td>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
-                                                    <i class="fa fa-folder fa-fw"></i>
-                                                </a>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
-                                                    <i class="fa fa-area-chart fa-fw"></i>
-                                                </a>
-                                                <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_dato={$dato->id}&id_entidad={$dato->id_entidad}' 
-                                                   title="{$smarty.const.TXT_DATO_MEDICIONES}: {$dato->nombre}">
-                                                    <i class="fa fa-hourglass fa-fw"></i>
-                                                </a>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_dato={$dato->id}&id_entidad={$dato->id_entidad}'>
-                                                    <i class="fa fa-tags fa-fw"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                    {/foreach}
-                                </tbody>
-                            </table>
-                        </div>
-                    {else}
-                        <div class="alert alert-info alert-dismissible">
-                            <i class="fa fa-info-circle fa-fw"></i> 
-                            {$smarty.const.MSG_BUSCAR_NO_RESUL}
-                        </div> 
-                    {/if}
-                </div>
-                <!-- /Tab datos -->
-
                 <!-- Tab cuadros -->
                 <div id="cuadros" role="tabpanel" class="tab-pane">
                     {if $cuadros_publicos}
@@ -321,7 +242,7 @@
                                 <thead>
                                     <tr>
                                         <th>{$smarty.const.FIELD_UNID}</th>
-                                        <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                        <th>{$smarty.const.FIELD_CUADRO_MANDO}</th>
                                         <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                         <th>{$smarty.const.FIELD_COMENTARIOS}</th>
                                         <th>{$smarty.const.FIELD_ACCIONES}</th>
@@ -337,7 +258,7 @@
                                                 {else}{$smarty.const.TXT_PRIVADO}
                                                 {/if}
                                             </td>
-                                            <td>{$cuadro->comentarios}</td>
+                                            <td>{if $cuadro->comentarios}{$cuadro->comentarios}{else}---{/if}</td>
                                             <td>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->entidad->id}"><i class="fa fa-th fa-fw"></i></a>
                                             </td>
