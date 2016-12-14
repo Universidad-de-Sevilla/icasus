@@ -30,7 +30,7 @@
                         <tr>
                             <th>{$smarty.const.FIELD_PROC}</th>
                             <th>{$smarty.const.FIELD_SUBUNIDS}</th>
-                            <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                            <th>{$smarty.const.FIELD_INDIC}</th>
                             <th>{$smarty.const.FIELD_RESP}</th>
                             <th>{$smarty.const.FIELD_RESP_MED}</th>
                             <th>{$smarty.const.FIELD_MED}</th>
@@ -99,7 +99,7 @@
                                 <th>{$smarty.const.TXT_DESACT}</th>
                                 <th>{$smarty.const.FIELD_PROC}</th>
                                 <th>{$smarty.const.FIELD_SUBUNID}</th>
-                                <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                                <th>{$smarty.const.FIELD_INDIC}</th>
                                 <th>{$smarty.const.FIELD_MED}</th>
                                 <th>{$smarty.const.FIELD_VAL}</th>
                             </tr>
@@ -174,7 +174,7 @@
                         <tr>
                             <th>{$smarty.const.FIELD_PROC}</th> 
                             <th>{$smarty.const.FIELD_SUBUNID}</th>
-                            <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                            <th>{$smarty.const.FIELD_INDIC}</th>
                             <th>{$smarty.const.FIELD_MED}</th>
                             <th>{$smarty.const.FIELD_FECHA_RECOGIDA}</th>
                             <th>{$smarty.const.FIELD_VAL}</th>
@@ -227,7 +227,7 @@
                     <thead>
                         <tr>
                             <th>{$smarty.const.FIELD_PROC}</th>        
-                            <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                            <th>{$smarty.const.FIELD_INDIC}</th>
                             <th>{$smarty.const.FIELD_FECHA}</th>
                         </tr>
                     </thead>
@@ -272,7 +272,7 @@
                 <table class="table datatable table-condensed table-striped table-hover">
                     <thead>
                         <tr>      
-                            <th>{$smarty.const.FIELD_INDIC} / {$smarty.const.FIELD_DATO}</th>
+                            <th>{$smarty.const.FIELD_INDIC}</th>
                             <th>{$smarty.const.FIELD_PROC}</th>
                             <th>{$smarty.const.FIELD_MED}</th>
                             <th><span class="label label-danger">{$smarty.const.FIELD_LIMITE}</span></th>
