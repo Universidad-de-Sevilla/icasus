@@ -8,7 +8,7 @@
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
 // Descripcion: Clase que implementa los métodos para la Lógica de Negocio 
-// de los Indicadores/Datos en Icasus.
+// de los Indicadores en Icasus.
 //--------------------------------------------------------------------------
 
 class LogicaIndicador implements ILogicaIndicador
@@ -44,7 +44,7 @@ class LogicaIndicador implements ILogicaIndicador
     //-----------------------------------------------------------------
     //Genera las mediciones de un Indicador/Dato a partir de su Histórico. 
     //El tipo es: "indicador" o "dato"
-    public function generar_mediciones($indicador, $tipo, $anyo)
+    public function generar_mediciones($indicador, $anyo)
     {
         //Primero generamos mediciones para los Indicadores/Datos Calculados 
         //cuyo cálculo dependa del Indicador/Dato actual
@@ -54,14 +54,14 @@ class LogicaIndicador implements ILogicaIndicador
         {
             for ($i = $anyo; $i < idate('Y') + 1; $i += 2)
             {
-                $this->generar_medicion_bienal($indicador, $i, $tipo);
+                $this->generar_medicion_bienal($indicador, $i);
             }
         }
         else
         {
             for ($i = $anyo; $i < idate('Y') + 1; $i++)
             {
-                $this->generar_mediciones_por_anyo($indicador, $i, $tipo);
+                $this->generar_mediciones_por_anyo($indicador, $i);
             }
         }
     }
@@ -90,7 +90,7 @@ class LogicaIndicador implements ILogicaIndicador
     //Genera las mediciones de un Indicador/Dato para el año que recibe 
     //como parámetro en Indicadores/Datos con periodicidad Bienal. 
     //El tipo es: "indicador" o "dato"
-    public function generar_medicion_bienal($indicador, $anyo, $tipo)
+    public function generar_medicion_bienal($indicador, $anyo)
     {
         $medicion = new Medicion();
         $etiqueta = $anyo . '-' . ($anyo + 2);
@@ -98,7 +98,7 @@ class LogicaIndicador implements ILogicaIndicador
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
             $exito = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -120,44 +120,44 @@ class LogicaIndicador implements ILogicaIndicador
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
             $exito = MSG_MED_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
     //Genera las mediciones de un Indicador/Dato para el año que recibe 
     //como parámetro en función de su periodicidad. El tipo es: "indicador" o "dato"
-    public function generar_mediciones_por_anyo($indicador, $anyo, $tipo)
+    public function generar_mediciones_por_anyo($indicador, $anyo)
     {
         //Generamos mediciones en función de la periodicidad
         //Anual
         if ($indicador->periodicidad == 'Anual')
         {
-            $this->generar_medicion_anual($indicador, $anyo, $tipo);
+            $this->generar_medicion_anual($indicador, $anyo);
         }
         //Semestral
         else if ($indicador->periodicidad == 'Semestral')
         {
-            $this->generar_mediciones_semestrales($indicador, $anyo, $tipo);
+            $this->generar_mediciones_semestrales($indicador, $anyo);
         }
         //Cuatrimestral
         else if ($indicador->periodicidad == 'Cuatrimestral')
         {
-            $this->generar_mediciones_cuatrimestrales($indicador, $anyo, $tipo);
+            $this->generar_mediciones_cuatrimestrales($indicador, $anyo);
         }
         //Trimestral
         else if ($indicador->periodicidad == 'Trimestral')
         {
-            $this->generar_mediciones_trimestrales($indicador, $anyo, $tipo);
+            $this->generar_mediciones_trimestrales($indicador, $anyo);
         }
         //Mensual
         else
         {
-            $this->generar_mediciones_mensuales($indicador, $anyo, $tipo);
+            $this->generar_mediciones_mensuales($indicador, $anyo);
         }
     }
 
     //Genera una medición Anual
-    private function generar_medicion_anual($indicador, $anyo, $tipo)
+    private function generar_medicion_anual($indicador, $anyo)
     {
         $medicion = new Medicion();
         $etiqueta = $anyo;
@@ -165,7 +165,7 @@ class LogicaIndicador implements ILogicaIndicador
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
             $exito = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -187,21 +187,21 @@ class LogicaIndicador implements ILogicaIndicador
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
             $exito = MSG_MED_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
     //Genera las mediciones Semestrales
-    private function generar_mediciones_semestrales($indicador, $anyo, $tipo)
+    private function generar_mediciones_semestrales($indicador, $anyo)
     {
         for ($i = 1; $i != 3; $i++)
         {
-            $this->generar_medicion_semestral($indicador, $anyo, $tipo, $i);
+            $this->generar_medicion_semestral($indicador, $anyo, $i);
         }
     }
 
     //Genera una medición semestral
-    private function generar_medicion_semestral($indicador, $anyo, $tipo, $indice)
+    private function generar_medicion_semestral($indicador, $anyo, $indice)
     {
         $medicion = new Medicion();
         $etiqueta = $anyo . '.' . $indice . 'S';
@@ -209,7 +209,7 @@ class LogicaIndicador implements ILogicaIndicador
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
             $exito = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -238,21 +238,21 @@ class LogicaIndicador implements ILogicaIndicador
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
             $exito = MSG_MED_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
     //Genera las mediciones cuatrimestrales 
-    private function generar_mediciones_cuatrimestrales($indicador, $anyo, $tipo)
+    private function generar_mediciones_cuatrimestrales($indicador, $anyo)
     {
         for ($i = 1; $i != 4; $i++)
         {
-            $this->generar_medicion_cuatrimestral($indicador, $anyo, $tipo, $i);
+            $this->generar_medicion_cuatrimestral($indicador, $anyo, $i);
         }
     }
 
     //Genera una medición cuatrimestral
-    private function generar_medicion_cuatrimestral($indicador, $anyo, $tipo, $indice)
+    private function generar_medicion_cuatrimestral($indicador, $anyo, $indice)
     {
         $medicion = new Medicion();
         $etiqueta = $anyo . '.' . $indice . 'C';
@@ -260,7 +260,7 @@ class LogicaIndicador implements ILogicaIndicador
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
             $exito = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -289,21 +289,21 @@ class LogicaIndicador implements ILogicaIndicador
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
             $exito = MSG_MED_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
     //Genera las mediciones trimestrales 
-    private function generar_mediciones_trimestrales($indicador, $anyo, $tipo)
+    private function generar_mediciones_trimestrales($indicador, $anyo)
     {
         for ($i = 1; $i != 5; $i++)
         {
-            $this->generar_medicion_trimestral($indicador, $anyo, $tipo, $i);
+            $this->generar_medicion_trimestral($indicador, $anyo, $i);
         }
     }
 
     //Genera una medición trimestral
-    private function generar_medicion_trimestral($indicador, $anyo, $tipo, $indice)
+    private function generar_medicion_trimestral($indicador, $anyo, $indice)
     {
         $medicion = new Medicion();
         $etiqueta = $anyo . '.' . $indice . 'T';
@@ -311,7 +311,7 @@ class LogicaIndicador implements ILogicaIndicador
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
             $exito = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -340,21 +340,21 @@ class LogicaIndicador implements ILogicaIndicador
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
             $exito = MSG_MED_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
     //Genera las mediciones mensuales
-    private function generar_mediciones_mensuales($indicador, $anyo, $tipo)
+    private function generar_mediciones_mensuales($indicador, $anyo)
     {
         for ($i = 1; $i != 13; $i++)
         {
-            $this->generar_medicion_mensual($indicador, $anyo, $tipo, $i);
+            $this->generar_medicion_mensual($indicador, $anyo, $i);
         }
     }
 
     //Genera una medición mensual
-    private function generar_medicion_mensual($indicador, $anyo, $tipo, $indice)
+    private function generar_medicion_mensual($indicador, $anyo, $indice)
     {
         $medicion = new Medicion();
         if ($indice < 10)
@@ -369,7 +369,7 @@ class LogicaIndicador implements ILogicaIndicador
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
             $exito = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
         else
         {
@@ -424,14 +424,14 @@ class LogicaIndicador implements ILogicaIndicador
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
             $exito = MSG_MED_GENERADA;
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
     }
 
     //Borra del Indicador/Dato que recibe como parámetro la medición cuyo 
     //identificador recibe también como parámetro
     //El tipo es: "indicador" o "dato"
-    public function borrar_medicion($indicador, $tipo, $id_medicion)
+    public function borrar_medicion($indicador, $id_medicion)
     {
         $medicion = new Medicion();
         $medicion->load("id = $id_medicion");
@@ -479,13 +479,13 @@ class LogicaIndicador implements ILogicaIndicador
                 $estado = "exito=$exito";
             }
             $adodb->CompleteTrans();
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
         }
         else
         {
             $aviso = ERR_MED_BORRAR;
             $estado = "aviso=$aviso";
-            header("location:index.php?page=medicion_listar&id_$tipo=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
+            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
         }
     }
 

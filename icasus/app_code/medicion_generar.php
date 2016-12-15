@@ -6,7 +6,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //------------------------------------------------------------------------------
-// Genera las mediciones de un Indicador/Dato para el año actual en 
+// Descripcion: Genera las mediciones de un Indicador/Dato para el año actual en 
 // función de su periodicidad
 //------------------------------------------------------------------------------
 
@@ -16,11 +16,10 @@ global $plantilla;
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
-if (filter_has_var(INPUT_POST, 'id_entidad') && filter_has_var(INPUT_POST, 'id_indicador') && filter_has_var(INPUT_POST, 'tipo') && filter_has_var(INPUT_POST, 'anyo'))
+if (filter_has_var(INPUT_POST, 'id_entidad') && filter_has_var(INPUT_POST, 'id_indicador') && filter_has_var(INPUT_POST, 'anyo'))
 {
     $id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $id_indicador = filter_input(INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
-    $tipo = filter_input(INPUT_POST, 'tipo', FILTER_SANITIZE_STRING);
     $anyo = filter_input(INPUT_POST, 'anyo', FILTER_SANITIZE_NUMBER_INT);
 
     $indicador = new Indicador;
@@ -41,18 +40,18 @@ if (filter_has_var(INPUT_POST, 'id_entidad') && filter_has_var(INPUT_POST, 'id_i
         if ($permiso_generar)
         {
             //Generamos mediciones en función de la periodicidad y del año
-            $logicaIndicador->generar_mediciones($indicador, $tipo, $anyo);
+            $logicaIndicador->generar_mediciones($indicador, $anyo);
         }
         else
         {
             // El usuario no tiene permisos avisamos error
             $error = ERR_PERMISOS;
-            header("Location:index.php?page=medicion_listar&id_$tipo=$id_indicador&id_entidad=$id_entidad&error=$error");
+            header("Location:index.php?page=medicion_listar&id_indicador=$id_indicador&id_entidad=$id_entidad&error=$error");
         }
     }
     else
     {
-        $error = "$tipo " . ERR_MED_TIPO_NO_BD;
+        $error = ERR_INDIC_MOSTRAR;
         header("location:index.php?page=error&error=$error");
     }
 }

@@ -6,7 +6,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Borra la medición, los valores y los valores de referencia asociados a ella
+// Descripcion: Borra la medición, los valores y los valores de referencia asociados a ella
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
@@ -14,10 +14,9 @@ global $usuario;
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
-if (filter_has_var(INPUT_GET, 'tipo') AND filter_has_var(INPUT_GET, 'id_entidad'))
+if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-    $tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
 
     //Borrar una sola medición
     if (filter_has_var(INPUT_GET, 'id_medicion'))
@@ -43,12 +42,12 @@ if (filter_has_var(INPUT_GET, 'tipo') AND filter_has_var(INPUT_GET, 'id_entidad'
         }
         if ($autorizado)
         {
-            $logicaIndicador->borrar_medicion($indicador, $tipo, $id_medicion);
+            $logicaIndicador->borrar_medicion($indicador, $id_medicion);
         }
         else
         {
             $error = ERR_AUT;
-            header("location:index.php?page=medicion&id_medicion=$id_medicion&id_entidad=$id_entidad&tipo=$tipo&error=$error");
+            header("location:index.php?page=medicion&id_medicion=$id_medicion&id_entidad=$id_entidad&error=$error");
         }
     }
     //Borrar varias mediciones
@@ -64,7 +63,7 @@ if (filter_has_var(INPUT_GET, 'tipo') AND filter_has_var(INPUT_GET, 'id_entidad'
             $indicador->load("id = $medicion->id_indicador");
             foreach ($id_mediciones as $id_med)
             {
-                $logicaIndicador->borrar_medicion($indicador, $tipo, $id_med);
+                $logicaIndicador->borrar_medicion($indicador, $id_med);
             }
         }
     }
@@ -73,7 +72,7 @@ if (filter_has_var(INPUT_GET, 'tipo') AND filter_has_var(INPUT_GET, 'id_entidad'
     {
         $id_indicador = filter_input(INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
         $aviso = MSG_MEDS_NO_MARCADAS;
-        header("location:index.php?page=medicion_listar&id_$tipo=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
+        header("location:index.php?page=medicion_listar&id_indicador=$id_indicador&id_entidad=$id_entidad&aviso=$aviso");
     }
 }
 else
