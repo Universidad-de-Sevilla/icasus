@@ -430,7 +430,7 @@
                                 {if $indicador->id_proceso}
                                     <a title="{$smarty.const.TXT_PROC_VER}" href="index.php?page=proceso_mostrar&id_proceso={$indicador->proceso->id}&id_entidad={$indicador->id_entidad}">{$indicador->proceso->codigo} - {$indicador->proceso->nombre}</a>
                                 {else}
-                                    ---
+                                    {$smarty.const.TXT_INDIC_NO_PROC} ({$smarty.const.FIELD_DATO})
                                 {/if}
                             </td>
                         {/if}

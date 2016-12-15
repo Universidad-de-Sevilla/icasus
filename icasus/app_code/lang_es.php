@@ -455,7 +455,7 @@ define('MSG_INDICS_NO', 'No hay indicadores (proceso) activos.');
 define('MSG_INDICS_NO_CONTROL', 'No hay indicadores (control) activos.');
 define('MSG_INDICS_NO_ARCHIVADOS', 'No hay indicadores archivados.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
-define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador/dato.');
+define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador.');
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores/datos.');
 define('MSG_INDIC_CONFIRM_ARCHIVAR', 'El indicador quedará archivado pero no se eliminará, ¿realmente desea archivar este indicador?');
@@ -472,8 +472,8 @@ define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del indica
 define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores bajo su responsabilidad.');
 
 //Mediciones
-define('MSG_MED_NO_TIPO', 'Todavía no se han establecido mediciones para este');
-define('MSG_MED_NO_REBIUN', 'Todavía no se han generado las mediciones del año anterior para los datos Rebiun. Por favor, genere antes las mediciones.');
+define('MSG_MED_NO_TIPO', 'No se han creado mediciones.');
+define('MSG_MED_NO_REBIUN', 'No se han generado las mediciones del año anterior para los datos Rebiun. Por favor, genere antes las mediciones.');
 define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna medición.');
 define('MSG_MED_BORRADA', 'La/s medición/es se ha/n borrado con éxito.');
 define('MSG_MED_CONFIRM_BORRAR', 'Confirme si desea borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición.');
