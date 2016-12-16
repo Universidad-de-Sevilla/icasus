@@ -67,15 +67,6 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $proceso = $indicador->proceso;
     $smarty->assign('proceso', $proceso);
 
-    //Objetivo operacional de indicadores de control
-    $objop = new ObjetivoOperacional();
-    $objetivo_indicador = new ObjetivoIndicador();
-    if ($objetivo_indicador->load("id_indicador=$id_indicador AND control=1"))
-    {
-        $objop->load("id=$objetivo_indicador->id_objop");
-        $smarty->assign('objop', $objop);
-    }
-
     //Responsables
     $responsable = false;
     if ($indicador->id_responsable == $usuario->id

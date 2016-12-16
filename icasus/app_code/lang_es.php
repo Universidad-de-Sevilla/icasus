@@ -580,7 +580,7 @@ define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia
 define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" y/o "Límite" para activar el control del status por colores en las mediciones.');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 define('MSG_VALS_NO_MARCADOS', 'No se ha seleccionado ningún valor para desactivar.');
-define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en indicadores/datos archivados. Restaure primero el indicador/dato.');
+define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en indicadores archivados. Restaure primero el indicador.');
 
 //Control
 define('MSG_CONTROL_INFO', 'El control de indicadores/datos se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores/datos bajo su responsabilidad o todos si también es responsable de la Unidad.');
@@ -684,7 +684,7 @@ define('ERR_LOGIN_SSO_AUT', 'La relacion de este usuario con la Universidad no e
 
 //Valores
 define('ERR_VAL_REF_BORRAR', 'No se puede borrar un valor de referencia con valores asignados a alguna medición.');
-define('ERR_VAL_EDIT', 'No tiene permisos suficientes para editar valores en este');
+define('ERR_VAL_EDIT', 'No tiene permisos suficientes para editar valores.');
 
 //-----------------------------------------------------------------------------------
 //CAMPOS: FIELD_[Nombre]

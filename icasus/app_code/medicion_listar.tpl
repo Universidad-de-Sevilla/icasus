@@ -1,4 +1,4 @@
-<!-- Diálogo Confirmar Borrado -->
+<!-- Diálogo Confirmar Borrado Medición -->
 <div class="modal fade" id="dialogo_confirmar_borrado" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -16,7 +16,7 @@
         </div>
     </div>
 </div>
-<!-- /Diálogo Confirmar Borrado -->
+<!-- /Diálogo Confirmar Borrado Medición -->
 
 <!-- Diálogo Confirmar Borrado Mediciones-->
 <div class="modal fade" id="dialogo_confirmar_borrado_mediciones" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -292,7 +292,7 @@
                         </div>
                         <!-- /.col-sm-10 -->
                         <div class="col-sm-2">
-                            {if $_control || $responsable}
+                            {if $_control || $indicador->id_responsable == $_usuario->id}
                                 <a title="{$smarty.const.TXT_INDIC_RESTAURAR}" class="btn btn-danger pull-right" href='javascript:void(0)' 
                                    data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
                                     <i class="fa fa-recycle fa-fw"></i>
