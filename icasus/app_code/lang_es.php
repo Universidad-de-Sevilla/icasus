@@ -649,7 +649,7 @@ define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
 define('ERR_MED_NO_VAL', 'No existen valores pendientes ni recogidos para esta medición.');
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la medición, inténtelo de nuevo o contacte con los administradores de icasus.');
 define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el cálculo de otros indicadores. Borre éstos primero');
-define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables en este');
+define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables.');
 
 //Planes
 define('ERR_PLAN_MOSTRAR', 'No se puede mostrar el plan, el identificador no existe en la base de datos.');
