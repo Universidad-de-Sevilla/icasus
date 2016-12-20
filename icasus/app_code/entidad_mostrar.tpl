@@ -232,7 +232,7 @@
                         </div>
                         <!-- /.row -->                   
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href="index.php?page=indicador_listar&id_entidad={$entidad->id}">
                                     <div class="panel panel-resumen">
                                         <div class="panel-heading">
@@ -251,28 +251,8 @@
                                     </div>
                                 </a>
                             </div>
-                            <!-- /.col-md-4 -->
-                            <div class="col-md-4">
-                                <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href="index.php?page=dato_listar&id_entidad={$entidad->id}">
-                                    <div class="panel panel-resumen">
-                                        <div class="panel-heading">
-                                            <div class="row">
-                                                <div class="col-xs-12 text-center">
-                                                    <i class="fa fa-database fa-2x"></i>
-                                                    <span class="huge counter">{$num_datos}</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-12 text-center">
-                                                    <span class="h4">{$smarty.const.FIELD_DATOS}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!-- /.col-md-4 -->
-                            <div class="col-md-4">
+                            <!-- /.col-md-6 -->
+                            <div class="col-md-6">
                                 <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
                                     <div class="panel panel-resumen">
                                         <div class="panel-heading">
@@ -291,7 +271,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <!-- /.col-md-4 -->
+                            <!-- /.col-md-6 -->
                         </div>
                         <!-- /.row -->
                     </div>

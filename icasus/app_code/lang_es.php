@@ -95,15 +95,7 @@ define('TXT_PANEL_VENTANA_VAR', 'Variable');
 define('TXT_PANEL_INDICS', 'Indicadores/datos del panel');
 define('TXT_PANEL_INCLUIR', 'Añadir indicador/dato al panel');
 
-//Datos
-define('TXT_DATO_MEDICIONES', 'Mediciones del dato');
-define('TXT_DATO_EDIT', 'Editar dato');
-define('TXT_DATO_BORRAR', 'Borrar dato');
-define('TXT_DATO_ARCHIVAR', 'Archivar dato');
-define('TXT_DATO_ARCHIVADO', 'Dato archivado: este dato ya no está en uso.');
-define('TXT_DATO_ARCHIVADOS', 'Datos archivados');
-define('TXT_DATO_RESTAURAR', 'Restaurar dato');
-define('TXT_DATO_CREAR', 'Crear dato');
+//Datos;
 define('TXT_DATOS_REBIUN', 'Datos Rebiun');
 define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida de Datos Rebiun');
 
@@ -187,7 +179,6 @@ define('TXT_INICIO_DESCRIPCION', 'Mi icasus: listado de sus competencias/respons
 define('TXT_PLANES_DESCRIPCION', 'Planes estratégicos: listado de planes estratégicos de la unidad y gestión de los mismos.');
 define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de procesos de la unidad y gestión de los mismos. ');
 define('TXT_INDICS_DESCRIPCION', 'Indicadores: listado de indicadores de la unidad y gestión de los mismos.');
-define('TXT_DATOS_DESCRIPCION', 'Datos: listado de datos de la unidad y gestión de los mismos.');
 define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de mando: listado de cuadros de mando de la unidad y gestión de los mismos.');
 define('TXT_CONSULTA_DESCRIPCION', 'Consulta: efectuar consultas y operaciones que muestran información sobre los indicadores y datos de la unidad.');
 define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones y valores de los distintos indicadores y datos de la unidad bajo su responsabilidad.');

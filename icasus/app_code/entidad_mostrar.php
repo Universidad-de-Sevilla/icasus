@@ -71,7 +71,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $indicadores[$proceso->id] = $indicadores_proc;
     }
     $smarty->assign('indicadores', $indicadores);
-    $smarty->assign('datos', $datos);
 
     //Subunidades
     $subentidad = new Entidad();

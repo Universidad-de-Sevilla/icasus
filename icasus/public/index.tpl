@@ -129,15 +129,6 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_DATOS_US}" href='index.php?page=datos'>
-                                        <div>
-                                            <i class="fa fa-database fa-fw"></i> {$smarty.const.TXT_USER_DATO}:
-                                            <span class="pull-right badge">{$num_datos_propios}</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="divider"></li>
-                                <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO_US}" href='index.php?page=cuadros'>
                                         <div>
                                             <i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_USER_CUADROS}:
@@ -221,10 +212,6 @@
                                 <li>
                                     <a title="{$smarty.const.TXT_INDICS_US}" href='index.php?page=indicadores'>
                                         <span class="fa-stack fa-lg"><i class="fa fa-dashboard fa-fw"></i></span>{$smarty.const.TXT_INDICS_US}</a>
-                                </li>
-                                <li>
-                                    <a title="{$smarty.const.TXT_DATOS_US}" href='index.php?page=datos'>
-                                        <span class="fa-stack fa-lg"><i class="fa fa-database fa-fw"></i></span>{$smarty.const.TXT_DATOS_US}</a>
                                 </li>
                                 <li>
                                     <a title="{$smarty.const.TXT_CUADROS_MANDO_US}" href='index.php?page=cuadros'>
