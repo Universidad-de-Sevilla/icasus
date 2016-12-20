@@ -96,7 +96,7 @@
             </li>
             {if $cuadros_propios}
                 <li role="presentation">
-                    <a href="#user_cuadro" title="{$smarty.const.TXT_USER_CUADROS}" aria-controls="{$smarty.const.TXT_USER_CUADROS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i> {$smarty.const.TXT_USER_CUADROS}</a>
+                    <a href="#user_cuadro" title="{$smarty.const.TXT_USER_CUADROS}" aria-controls="{$smarty.const.TXT_USER_CUADROS}" role="tab" data-toggle="tab"><i class="fa fa-th fa-fw"></i><sub class="fa fa-user fa-fw"></sub> {$smarty.const.TXT_USER_CUADROS}</a>
                 </li>
             {/if}
         </ul>
