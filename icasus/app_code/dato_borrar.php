@@ -76,5 +76,5 @@ if (filter_has_var(INPUT_GET, 'id_dato') && filter_has_var(INPUT_GET, 'id_entida
 else
 { // falta id_dato o id_entidad
     $error = ERR_PARAM;
-    header("Location: index.php?page=dato_listar&id_entidad=$id_entidad&error=$error");
+    header("location:index.php?page=error&error=$error");
 }

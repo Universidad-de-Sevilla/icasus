@@ -130,5 +130,5 @@ else
 {
     // Faltan parametros avisamos error
     $error = ERR_PARAM;
-    header("Location: index.php?page=cuadro_listar&id_entidad=$cuadro->id_entidad&error=$error");
+    header("location:index.php?page=error&error=$error");
 }

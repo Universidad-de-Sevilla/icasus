@@ -40,5 +40,5 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
 else // falta id_indicador o id_entidad
 {
     $error = ERR_PARAM;
-    header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
+    header("location:index.php?page=error&error=$error");
 }
