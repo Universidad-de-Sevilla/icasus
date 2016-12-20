@@ -109,7 +109,6 @@ define('TXT_ETIQUETA_MINI_DESCRIPCION', 'Indica como aparece el nombre de la uni
 define('TXT_ORGANICA_DESCRIPCION', 'Sólo aparecen en los listados las unidades orgánicas');
 
 //Indicadores
-define('TXT_INDIC_MED', 'Mediciones del indicador');
 define('TXT_INDIC_IR', 'Ir al indicador/dato');
 define('TXT_INDIC_CREAR', 'Crear indicador');
 define('TXT_INDIC_EDIT', 'Editar indicador');

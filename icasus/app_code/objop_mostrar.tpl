@@ -412,7 +412,7 @@
                                                 <i class="fa fa-area-chart fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                               title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}">
+                                               title="{$smarty.const.FIELD_MEDICIONES}">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             {if $indicador->id_proceso}
@@ -501,7 +501,7 @@
                                                 <i class="fa fa-area-chart fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                               title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}">
+                                               title="{$smarty.const.FIELD_MEDICIONES}">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             {if $indicador->id_proceso}

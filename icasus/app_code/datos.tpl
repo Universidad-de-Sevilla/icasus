@@ -141,7 +141,7 @@
                                                 <i class="fa fa-area-chart fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                               title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
+                                               title="{$smarty.const.FIELD_MEDICIONES}" target="_blank">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_dato={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">

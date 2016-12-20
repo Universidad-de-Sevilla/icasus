@@ -57,7 +57,7 @@ else if (filter_has_var(INPUT_GET, 'modulo'))
 {
     $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 
-    //Cálculo de mediciones del dato/indicador
+    //Cálculo de mediciones del indicador
     if ($modulo == 'mediciones')
     {
         $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
