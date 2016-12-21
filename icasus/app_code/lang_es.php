@@ -747,8 +747,8 @@ define('FIELD_ANOTACION', 'Anotaciones');
 //Indicadores
 define('FIELD_INDIC', 'Indicador');
 define('FIELD_INDIC_TIPO', 'Tipo de indicador');
-define('FIELD_INDIC_BASE', 'Indicador/dato base');
-define('FIELD_INDIC_COMPLEMENT', 'Indicadores/datos complementarios');
+define('FIELD_INDIC_BASE', 'Indicador base');
+define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
 define('FIELD_INDICS', 'Indicadores');
 define('FIELD_INDICS_CORREL', 'Indicadores de proceso');
 define('FIELD_INDICS_CONTROL', 'Indicadores de control');

@@ -168,7 +168,7 @@
                 <div role="tabpanel" class="tab-pane" id="indicadores">
                     <br>
                     <div id="div_indics_correlacion" class="form-group">
-                        <label for="indicadores_correlacion" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS_CORREL}</label>
+                        <label for="indicadores_correlacion" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name="indicadores_correlacion[]" id="indicadores_correlacion" multiple>
                                 {foreach $indicadores as $indicador}
@@ -178,10 +178,10 @@
                         </div>
                     </div>
                     <div id="div_indics_control" class="form-group">
-                        <label for="indicadores_control" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS_CONTROL}</label>
+                        <label for="indicadores_control" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name="indicadores_control[]" id="indicadores_control" multiple>
-                                {foreach $indicadores as $indicador}
+                                {foreach $indicadores_ctl as $indicador}
                                     <option title="{$indicador->codigo} - {$indicador->nombre}" value="{$indicador->id}">{$indicador->codigo} - {$indicador->nombre}</option>
                                 {/foreach}
                             </select>

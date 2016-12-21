@@ -45,8 +45,10 @@ if (filter_has_var(INPUT_GET, 'id_objest') && $control)
 
     //Indicadores
     $indicador = new Indicador();
-    $indicadores = $indicador->Find("id_entidad=$plan->id_entidad AND archivado IS NULL");
+    $indicadores = $indicador->Find("id_entidad=$plan->id_entidad AND id_proceso IS NOT NULL AND archivado IS NULL");
+    $indicadores_ctl = $indicador->Find("id_entidad=$plan->id_entidad AND control=1 AND archivado IS NULL");
     $smarty->assign("indicadores", $indicadores);
+    $smarty->assign("indicadores_ctl", $indicadores_ctl);
 
     //Validar índice de un objetivo operacional
     $objop = new ObjetivoOperacional();
