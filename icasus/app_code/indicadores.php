@@ -11,12 +11,16 @@
 
 global $smarty;
 global $plantilla;
-//Variables para operar con Indicadores/Datos
+//Variables para operar con indicadores
 $logicaIndicador = new LogicaIndicador();
 $logicaMedicion = new LogicaMedicion();
+$indicador = new Indicador();
+
+//Todos los indicadores
+$indicadores_todos = $indicador->Find_joined("archivado is NULL");
+$smarty->assign('indicadores_todos', $indicadores_todos);
 
 //Indicadores de procesos
-$indicador = new Indicador();
 $indicadores = $indicador->Find_joined("id_proceso IS NOT NULL AND archivado is NULL");
 $smarty->assign('indicadores', $indicadores);
 
