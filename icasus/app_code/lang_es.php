@@ -750,8 +750,6 @@ define('FIELD_INDIC_TIPO', 'Tipo de indicador');
 define('FIELD_INDIC_BASE', 'Indicador base');
 define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
 define('FIELD_INDICS', 'Indicadores');
-define('FIELD_INDICS_CORREL', 'Indicadores de proceso');
-define('FIELD_INDICS_CONTROL', 'Indicadores de control');
 define('FIELD_FORM', 'Formulación');
 define('FIELD_FORMULA', 'Fórmula de cálculo');
 define('FIELD_FUENTE_INFO', 'Fuente de Información');

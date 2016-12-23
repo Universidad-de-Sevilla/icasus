@@ -17,7 +17,7 @@ global $plantilla;
 $logicaIndicador = new LogicaIndicador();
 $logicaMedicion = new LogicaMedicion();
 
-if (filter_has_var(INPUT_GET, 'id_medicion') && filter_has_var(INPUT_GET, 'tipo'))
+if (filter_has_var(INPUT_GET, 'id_medicion'))
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
