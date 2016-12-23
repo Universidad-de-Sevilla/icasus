@@ -193,11 +193,11 @@
                                             </td>
                                             <td>{$indicador->periodicidad}</td>
                                             <td style="font-size: 12px">
-                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}&id_entidad={$indicador->id_entidad}'>
+                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
                                                     {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                             </td>
                                             <td style="font-size: 12px">
-                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}&id_entidad={$indicador->id_entidad}'>
+                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
                                                     {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}
                                                 </a>
                                             </td>

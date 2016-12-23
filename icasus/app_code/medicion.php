@@ -20,24 +20,24 @@ $logicaMedicion = new LogicaMedicion();
 if (filter_has_var(INPUT_GET, 'id_medicion'))
 {
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
-    $tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
-    $smarty->assign("tipo", $tipo);
-
     $medicion = new Medicion();
-    $medicion->load("id = $id_medicion");
-    $smarty->assign("medicion", $medicion);
+    if ($medicion->load_joined("id = $id_medicion"))
+    {
+        $smarty->assign("medicion", $medicion);
+    }
+    else
+    {
+        $error = ERR_MED_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
 
-    $indicador = new Indicador();
-    $indicador->load("id = $medicion->id_indicador");
+    //Indicador de la medición
+    $indicador = $medicion->indicador;
     $smarty->assign("indicador", $indicador);
 
     //Proceso del indicador
-    if ($tipo == 'indicador')
-    {
-        $proceso = new Proceso();
-        $proceso->load_joined("id = $indicador->id_proceso");
-        $smarty->assign('proceso', $proceso);
-    }
+    $proceso = $indicador->proceso;
+    $smarty->assign('proceso', $proceso);
 
     //Obtener todas las mediciones para avanzar o retroceder 
     $mediciones = $medicion->Find("id_indicador = $indicador->id ORDER BY periodo_inicio");

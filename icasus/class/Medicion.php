@@ -16,6 +16,20 @@ class Medicion extends ADOdb_Active_Record
     public $medicion_valor;
     public $indicador;
 
+    public function load_joined($condicion)
+    {
+        if ($this->load($condicion))
+        {
+            $this->indicador = new Indicador();
+            $this->indicador->load_joined("id = $this->id_indicador");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public function find_joined_subunidad_valor($id_indicador, $id_entidad)
     {
         $mediciones = $this->find("id_indicador = $id_indicador");
@@ -50,14 +64,6 @@ class Medicion extends ADOdb_Active_Record
             }
         }
         return $mediciones;
-    }
-
-    //medicion_listar.php
-    public function cuadro_mando($id_indicador, $id_entidad)
-    {
-        $entidad = new Entidad();
-        $subunidades = $entidad->find_subunidades("id_madre = $id_entidad");
-        return $subunidades;
     }
 
     //obtener array de los años selecionados por el usuario para mostrar los valores

@@ -61,7 +61,7 @@
                                 <td style="font-size: 12px">{$valor.nombre_responsable_med} {$valor.apellidos_responsable_med}</td>
                                 <td>{$valor.fecha}</td>
                                 <td>
-                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>
+                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}" title="{$smarty.const.TXT_MED_VER}">---</a>
                                 </td>
                             </tr>
                         {/foreach}
@@ -127,7 +127,7 @@
                                     </td>
                                     <td>{$valor.fecha}</td>
                                     <td>
-                                        <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">---</a>
+                                        <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}" title="{$smarty.const.TXT_MED_VER}">---</a>
                                     </td>
                                 </tr>
                             {/foreach}
@@ -203,7 +203,7 @@
                                 <td>{$valor.fecha}</td>
                                 <td>{$valor.fecha_recogida|date_format:"%d-%m-%Y"}</td>
                                 <td>
-                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}&tipo={if $valor.proceso == ''}dato{else}indicador{/if}" title="{$smarty.const.TXT_MED_VER}">{$valor.valor|round:"2"}</a>
+                                    <a href="index.php?page=medicion&id_entidad={$valor.entidad_del_indicador}&id_medicion={$valor.id_medicion}" title="{$smarty.const.TXT_MED_VER}">{$valor.valor|round:"2"}</a>
                                 </td>
                             </tr>
                         {/foreach}
@@ -324,17 +324,10 @@
                                         {/if}
                                     </td>
                                     <td>
-                                        {if ($indicador->id_proceso)}
-                                            <a class="btn btn-default btn-circle btn-xs" 
-                                               href="index.php?page=medicion&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador">
-                                                <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
-                                            </a>
-                                        {else}
-                                            <a class="btn btn-default btn-circle btn-xs" 
-                                               href="index.php?page=medicion&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}&tipo=dato">
-                                                <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
-                                            </a>
-                                        {/if}
+                                        <a class="btn btn-default btn-circle btn-xs" 
+                                           href="index.php?page=medicion&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}">
+                                            <i title='{$smarty.const.TXT_GRABAR}' class="fa fa-floppy-o fa-fw"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             {/foreach}

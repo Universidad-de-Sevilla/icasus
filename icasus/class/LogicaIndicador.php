@@ -42,8 +42,7 @@ class LogicaIndicador implements ILogicaIndicador
     //-----------------------------------------------------------------
     //MEDICIONES
     //-----------------------------------------------------------------
-    //Genera las mediciones de un Indicador/Dato a partir de su Histórico. 
-    //El tipo es: "indicador" o "dato"
+    //Genera las mediciones de un Indicador/Dato a partir de su Histórico.
     public function generar_mediciones($indicador, $anyo)
     {
         //Primero generamos mediciones para los Indicadores/Datos Calculados 
@@ -88,8 +87,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera las mediciones de un Indicador/Dato para el año que recibe 
-    //como parámetro en Indicadores/Datos con periodicidad Bienal. 
-    //El tipo es: "indicador" o "dato"
+    //como parámetro en Indicadores/Datos con periodicidad Bienal.
     public function generar_medicion_bienal($indicador, $anyo)
     {
         $medicion = new Medicion();
@@ -125,7 +123,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Genera las mediciones de un Indicador/Dato para el año que recibe 
-    //como parámetro en función de su periodicidad. El tipo es: "indicador" o "dato"
+    //como parámetro en función de su periodicidad.
     public function generar_mediciones_por_anyo($indicador, $anyo)
     {
         //Generamos mediciones en función de la periodicidad
@@ -429,8 +427,7 @@ class LogicaIndicador implements ILogicaIndicador
     }
 
     //Borra del Indicador/Dato que recibe como parámetro la medición cuyo 
-    //identificador recibe también como parámetro
-    //El tipo es: "indicador" o "dato"
+    //identificador recibe también como parámetro.
     public function borrar_medicion($indicador, $id_medicion)
     {
         $medicion = new Medicion();

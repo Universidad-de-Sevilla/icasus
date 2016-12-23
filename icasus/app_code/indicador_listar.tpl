@@ -554,7 +554,7 @@
                                             {/if}
                                             {if $indicador->medicion->etiqueta}
                                                 <a class="btn btn-default btn-circle btn-xs" 
-                                                   href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}&tipo=indicador#med_valores">
+                                                   href="index.php?page=medicion&id_medicion={$indicador->medicion->id}&id_entidad={$indicador->id_entidad}#med_valores">
                                                     {if $indicador->calculo}
                                                         <i title='{$smarty.const.TXT_MED_VER}' class="fa fa-pencil fa-fw"></i>
                                                     {else}

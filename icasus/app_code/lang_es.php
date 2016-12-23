@@ -9,9 +9,9 @@
 /* Este fichero contiene constantes para todos los textos de la aplicación Icasus en español:
  * Clasificación:
  * TXT_[Nombre]--> Textos en general
+ * FIELD_[Nombre]--> Campos de las tablas
  * MSG_[Nombre]--> Avisos/Notificaciones
  * ERR_[Nombre]--> Errores
- * FIELD_[Nombre]--> Campos de las tablas
  */
 
 //---------------------------------------------------------------------------------
@@ -356,6 +356,160 @@ define('TXT_TODOS', 'Todos');
 define('TXT_PUBLICO', 'Público');
 define('TXT_PRIVADO', 'Privado');
 
+//-----------------------------------------------------------------------------------
+//CAMPOS: FIELD_[Nombre]
+//-----------------------------------------------------------------------------------
+
+define('FIELD_ID', 'ID');
+define('FIELD_ACCIONES', 'Acciones');
+define('FIELD_TITULO', 'Título');
+define('FIELD_DESC', 'Descripción');
+define('FIELD_VISIB', 'Visible');
+define('FIELD_COD', 'Código');
+define('FIELD_NOMBRE', 'Nombre');
+define('FIELD_PROPIETARIO', 'Propietario');
+define('FIELD_FECHA', 'Fecha');
+define('FIELD_WEB', 'Sitio web');
+define('FIELD_FUENTE', 'Fuente');
+define('FIELD_PERIODO', 'Período');
+define('FIELD_VISIBILIDAD', 'Visibilidad');
+define('FIELD_LIMITE', 'Límite');
+define('FIELD_META', 'Meta');
+define('FIELD_CREAC', 'Creación');
+define('FIELD_ARCHIVADO', 'Archivado');
+define('FIELD_FECHA_REV', 'Fecha de revisión');
+define('FIELD_FECHA_RECOGIDA', 'Fecha recogida');
+define('FIELD_AGREG', 'Agregado');
+define('FIELD_INTERP', 'Interpretación');
+define('FIELD_INICIO_PERIODO', 'Inicio del período');
+define('FIELD_FIN_PERIODO', 'Fin del período');
+define('FIELD_INICIO_GRABACION', 'Inicio de grabación');
+define('FIELD_FIN_GRABACION', 'Fin de grabación');
+define('FIELD_ETIQUETA', 'Etiqueta');
+define('FIELD_ETIQUETA_MINI', 'Etiqueta mini');
+define('FIELD_CAMBIO_A', 'Cambio a:');
+define('FIELD_ALIAS', 'Alias');
+define('FIELD_ORDEN', 'Orden');
+define('FIELD_ANCHO', 'Ancho');
+define('FIELD_ANYO', 'Año');
+define('FIELD_TOTAL', 'Total');
+define('FIELD_REGISTROS', 'Registros');
+define('FIELD_OBSERV', 'Observaciones');
+define('FIELD_ACTIVO', 'Activo');
+define('FIELD_VERSION', 'Versión');
+define('FIELD_COMENTARIOS', 'Comentarios');
+
+//Archivos
+define('FIELD_ARCHIVO', 'Archivo');
+
+//Cuadros de Mando
+define('FIELD_CUADRO_MANDO', 'Cuadro de mando');
+define('FIELD_CUADROS_MANDO', 'Cuadros de mando');
+//Paneles de los Cuadros de Mando
+define('FIELD_ANYOS_ATRAS', 'Años atrás');
+define('FIELD_ANYO_FIN', 'Año de fin');
+
+//Datos
+define('FIELD_DATO', 'Dato');
+define('FIELD_FUENTE_DAT', 'Fuente de datos');
+define('FIELD_DATOS', 'Datos');
+
+//Entidades (Unidades)
+define('FIELD_UNID', 'Unidad');
+define('FIELD_UNID_SUP', 'Unidad superior');
+define('FIELD_UNID_GEN', 'Unidad generadora');
+define('FIELD_SUBUNID', 'Subunidad');
+define('FIELD_SUBUNIDS', 'Subunidades');
+define('FIELD_UNIDS', 'Unidades');
+define('FIELD_ORGANICA', 'Orgánica');
+define('FIELD_ANOTACION', 'Anotaciones');
+
+//Indicadores
+define('FIELD_INDIC', 'Indicador');
+define('FIELD_INDIC_TIPO', 'Tipo de indicador');
+define('FIELD_INDIC_BASE', 'Indicador base');
+define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
+define('FIELD_INDICS', 'Indicadores');
+define('FIELD_FORM', 'Formulación');
+define('FIELD_FORMULA', 'Fórmula de cálculo');
+define('FIELD_FUENTE_INFO', 'Fuente de Información');
+define('FIELD_PERIOD', 'Periodicidad');
+define('FIELD_RESP', 'Responsable');
+define('FIELD_RESP_SEG', 'Responsable de Seguimiento');
+define('FIELD_MET', 'Método de comprobación (evidencia)');
+define('FIELD_EFQM', 'Criterios EFQM');
+define('FIELD_HISTORICO', 'Histórico');
+define('FIELD_ESTIMACION', 'Estimación');
+define('FIELD_CALCULO', 'Cálculo');
+define('FIELD_CALC_TOTAL', 'Cálculo del total entre subunidades');
+define('FIELD_CALC_TOTAL_ANUAL', 'Cálculo del total anual');
+define('FIELD_INTERVALO', 'Intervalo de valores [Vmin, Vmax]');
+define('FIELD_VALOR_MIN', 'Valor mínimo');
+define('FIELD_VALOR_MAX', 'Valor máximo');
+
+//Mediciones
+define('FIELD_MED', 'Medición');
+define('FIELD_MEDICIONES', 'Mediciones');
+define('FIELD_RESP_MED', 'Responsable de medición');
+define('FIELD_TIP_MED', 'Tipo de medición');
+
+//Páginas
+define('FIELD_PAG_CONTENIDO', 'Contenido de la página (HTML)');
+
+//Planes
+define('FIELD_PLAN', 'Plan estratégico');
+define('FIELD_PLANES', 'Planes estratégicos');
+define('FIELD_ANYO_INICIO', 'Año de inicio');
+define('FIELD_DURACION', 'Duración (años)');
+define('FIELD_MISION', 'Misión');
+define('FIELD_VISION', 'Visión');
+define('FIELD_VALORES', 'Valores');
+define('FIELD_FCE', 'Factores clave del éxito');
+define('FIELD_EJECUCION', 'Ejecución');
+
+//Líneas
+define('FIELD_LINEA', 'Línea estratégica');
+define('FIELD_LINEAS', 'Líneas estratégicas');
+define('FIELD_INDICE', 'Número');
+
+//Objetivos
+define('FIELD_OBJ_EST', 'Objetivo estratégico');
+define('FIELD_OBJ_OP', 'Objetivo operacional');
+define('FIELD_OBJS_EST', 'Objetivos estratégicos');
+define('FIELD_OBJS_OP', 'Objetivos operacionales');
+define('FIELD_PESO', 'Peso');
+
+//Procesos
+define('FIELD_PROC', 'Proceso');
+define('FIELD_PROCS', 'Procesos');
+define('FIELD_PROC_MADRE', 'Proceso madre');
+define('FIELD_TIPO_PROC', 'Tipo de proceso');
+define('FIELD_SUBPROCS', 'Subprocesos');
+define('FIELD_EQUIP_PROC', 'Equipo de proceso');
+define('FIELD_RESULTS_CLAVE', 'Resultados Clave');
+define('FIELD_ENTRADAS_PROV', 'Entradas/Proveedores');
+define('FIELD_SALIDAS_CLIENTS', 'Salidas/Clientes');
+define('FIELD_ACTIVIDADES', 'Actividades');
+define('FIELD_VARS_CONTROL', 'Variables de control');
+define('FIELD_DOCUMENTACION', 'Documentación');
+
+//Usuarios
+define('FIELD_LOGIN', 'Login');
+define('FIELD_USER', 'Usuario');
+define('FIELD_CLAVE', 'Clave de acceso');
+define('FIELD_APEL', 'Apellidos');
+define('FIELD_TEL', 'Teléfono');
+define('FIELD_CORREO', 'E-mail');
+define('FIELD_DNI', 'DNI o NIE (con letra)');
+define('FIELD_USER_GRABA', 'Usuario que graba');
+define('FIELD_ROL', 'Rol');
+define('FIELD_PUESTO', 'Puesto de trabajo');
+
+//Valores
+define('FIELD_VAL', 'Valor');
+define('FIELD_VAL_REF', 'Valor de referencia');
+define('FIELD_VISIB_GRAFIC', 'Visible en gráfica');
+
 //-------------------------------------------------------------------------------------
 //NOTIFICACIONES/AVISOS: MSG_[Nombre]
 //-------------------------------------------------------------------------------------
@@ -635,6 +789,7 @@ define('ERR_INDIC_GRABAR', 'No se ha podido grabar el indicador.');
 define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el indicador, el identificador no existe en la base de datos.');
 
 //Mediciones
+define('ERR_MED_MOSTRAR', 'No se puede mostrar la medicion, el identificador no existe en la base de datos.');
 define('ERR_MED_TIPO_NO_BD', 'solicitado no existe en la base de datos');
 define('ERR_MED_NO_VAL', 'No existen valores pendientes ni recogidos para esta medición.');
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la medición, inténtelo de nuevo o contacte con los administradores de icasus.');
@@ -675,157 +830,3 @@ define('ERR_LOGIN_SSO_AUT', 'La relacion de este usuario con la Universidad no e
 //Valores
 define('ERR_VAL_REF_BORRAR', 'No se puede borrar un valor de referencia con valores asignados a alguna medición.');
 define('ERR_VAL_EDIT', 'No tiene permisos suficientes para editar valores.');
-
-//-----------------------------------------------------------------------------------
-//CAMPOS: FIELD_[Nombre]
-//-----------------------------------------------------------------------------------
-
-define('FIELD_ID', 'ID');
-define('FIELD_ACCIONES', 'Acciones');
-define('FIELD_TITULO', 'Título');
-define('FIELD_DESC', 'Descripción');
-define('FIELD_VISIB', 'Visible');
-define('FIELD_COD', 'Código');
-define('FIELD_NOMBRE', 'Nombre');
-define('FIELD_PROPIETARIO', 'Propietario');
-define('FIELD_FECHA', 'Fecha');
-define('FIELD_WEB', 'Sitio web');
-define('FIELD_FUENTE', 'Fuente');
-define('FIELD_PERIODO', 'Período');
-define('FIELD_VISIBILIDAD', 'Visibilidad');
-define('FIELD_LIMITE', 'Límite');
-define('FIELD_META', 'Meta');
-define('FIELD_CREAC', 'Creación');
-define('FIELD_ARCHIVADO', 'Archivado');
-define('FIELD_FECHA_REV', 'Fecha de revisión');
-define('FIELD_FECHA_RECOGIDA', 'Fecha recogida');
-define('FIELD_AGREG', 'Agregado');
-define('FIELD_INTERP', 'Interpretación');
-define('FIELD_INICIO_PERIODO', 'Inicio del período');
-define('FIELD_FIN_PERIODO', 'Fin del período');
-define('FIELD_INICIO_GRABACION', 'Inicio de grabación');
-define('FIELD_FIN_GRABACION', 'Fin de grabación');
-define('FIELD_ETIQUETA', 'Etiqueta');
-define('FIELD_ETIQUETA_MINI', 'Etiqueta mini');
-define('FIELD_CAMBIO_A', 'Cambio a:');
-define('FIELD_ALIAS', 'Alias');
-define('FIELD_ORDEN', 'Orden');
-define('FIELD_ANCHO', 'Ancho');
-define('FIELD_ANYO', 'Año');
-define('FIELD_TOTAL', 'Total');
-define('FIELD_REGISTROS', 'Registros');
-define('FIELD_OBSERV', 'Observaciones');
-define('FIELD_ACTIVO', 'Activo');
-define('FIELD_VERSION', 'Versión');
-define('FIELD_COMENTARIOS', 'Comentarios');
-
-//Archivos
-define('FIELD_ARCHIVO', 'Archivo');
-
-//Cuadros de Mando
-define('FIELD_CUADRO_MANDO', 'Cuadro de mando');
-define('FIELD_CUADROS_MANDO', 'Cuadros de mando');
-//Paneles de los Cuadros de Mando
-define('FIELD_ANYOS_ATRAS', 'Años atrás');
-define('FIELD_ANYO_FIN', 'Año de fin');
-
-//Datos
-define('FIELD_DATO', 'Dato');
-define('FIELD_FUENTE_DAT', 'Fuente de datos');
-define('FIELD_DATOS', 'Datos');
-
-//Entidades (Unidades)
-define('FIELD_UNID', 'Unidad');
-define('FIELD_UNID_SUP', 'Unidad superior');
-define('FIELD_UNID_GEN', 'Unidad generadora');
-define('FIELD_SUBUNID', 'Subunidad');
-define('FIELD_SUBUNIDS', 'Subunidades');
-define('FIELD_UNIDS', 'Unidades');
-define('FIELD_ORGANICA', 'Orgánica');
-define('FIELD_ANOTACION', 'Anotaciones');
-
-//Indicadores
-define('FIELD_INDIC', 'Indicador');
-define('FIELD_INDIC_TIPO', 'Tipo de indicador');
-define('FIELD_INDIC_BASE', 'Indicador base');
-define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
-define('FIELD_INDICS', 'Indicadores');
-define('FIELD_FORM', 'Formulación');
-define('FIELD_FORMULA', 'Fórmula de cálculo');
-define('FIELD_FUENTE_INFO', 'Fuente de Información');
-define('FIELD_PERIOD', 'Periodicidad');
-define('FIELD_RESP', 'Responsable');
-define('FIELD_RESP_SEG', 'Responsable de Seguimiento');
-define('FIELD_MET', 'Método de comprobación (evidencia)');
-define('FIELD_EFQM', 'Criterios EFQM');
-define('FIELD_HISTORICO', 'Histórico');
-define('FIELD_ESTIMACION', 'Estimación');
-define('FIELD_CALCULO', 'Cálculo');
-define('FIELD_CALC_TOTAL', 'Cálculo del total entre subunidades');
-define('FIELD_CALC_TOTAL_ANUAL', 'Cálculo del total anual');
-define('FIELD_INTERVALO', 'Intervalo de valores [Vmin, Vmax]');
-define('FIELD_VALOR_MIN', 'Valor mínimo');
-define('FIELD_VALOR_MAX', 'Valor máximo');
-
-//Mediciones
-define('FIELD_MED', 'Medición');
-define('FIELD_MEDICIONES', 'Mediciones');
-define('FIELD_RESP_MED', 'Responsable de medición');
-define('FIELD_TIP_MED', 'Tipo de medición');
-
-//Páginas
-define('FIELD_PAG_CONTENIDO', 'Contenido de la página (HTML)');
-
-//Planes
-define('FIELD_PLAN', 'Plan estratégico');
-define('FIELD_PLANES', 'Planes estratégicos');
-define('FIELD_ANYO_INICIO', 'Año de inicio');
-define('FIELD_DURACION', 'Duración (años)');
-define('FIELD_MISION', 'Misión');
-define('FIELD_VISION', 'Visión');
-define('FIELD_VALORES', 'Valores');
-define('FIELD_FCE', 'Factores clave del éxito');
-define('FIELD_EJECUCION', 'Ejecución');
-
-//Líneas
-define('FIELD_LINEA', 'Línea estratégica');
-define('FIELD_LINEAS', 'Líneas estratégicas');
-define('FIELD_INDICE', 'Número');
-
-//Objetivos
-define('FIELD_OBJ_EST', 'Objetivo estratégico');
-define('FIELD_OBJ_OP', 'Objetivo operacional');
-define('FIELD_OBJS_EST', 'Objetivos estratégicos');
-define('FIELD_OBJS_OP', 'Objetivos operacionales');
-define('FIELD_PESO', 'Peso');
-
-//Procesos
-define('FIELD_PROC', 'Proceso');
-define('FIELD_PROCS', 'Procesos');
-define('FIELD_PROC_MADRE', 'Proceso madre');
-define('FIELD_TIPO_PROC', 'Tipo de proceso');
-define('FIELD_SUBPROCS', 'Subprocesos');
-define('FIELD_EQUIP_PROC', 'Equipo de proceso');
-define('FIELD_RESULTS_CLAVE', 'Resultados Clave');
-define('FIELD_ENTRADAS_PROV', 'Entradas/Proveedores');
-define('FIELD_SALIDAS_CLIENTS', 'Salidas/Clientes');
-define('FIELD_ACTIVIDADES', 'Actividades');
-define('FIELD_VARS_CONTROL', 'Variables de control');
-define('FIELD_DOCUMENTACION', 'Documentación');
-
-//Usuarios
-define('FIELD_LOGIN', 'Login');
-define('FIELD_USER', 'Usuario');
-define('FIELD_CLAVE', 'Clave de acceso');
-define('FIELD_APEL', 'Apellidos');
-define('FIELD_TEL', 'Teléfono');
-define('FIELD_CORREO', 'E-mail');
-define('FIELD_DNI', 'DNI o NIE (con letra)');
-define('FIELD_USER_GRABA', 'Usuario que graba');
-define('FIELD_ROL', 'Rol');
-define('FIELD_PUESTO', 'Puesto de trabajo');
-
-//Valores
-define('FIELD_VAL', 'Valor');
-define('FIELD_VAL_REF', 'Valor de referencia');
-define('FIELD_VISIB_GRAFIC', 'Visible en gráfica');

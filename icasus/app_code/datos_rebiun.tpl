@@ -120,7 +120,7 @@
                                                            data-id_usuario = "{$id_usuario}"/>
                                                 </td>
                                                 <td class="text-justify">
-                                                    <p><b><a title="{$valor->indicador->nombre} ({$valor->medicion->etiqueta})" href="index.php?page=medicion&id_medicion={$valor->medicion->id}&id_entidad={$valor->indicador->id_entidad}&tipo=dato">
+                                                    <p><b><a title="{$valor->indicador->nombre} ({$valor->medicion->etiqueta})" href="index.php?page=medicion&id_medicion={$valor->medicion->id}&id_entidad={$valor->indicador->id_entidad}">
                                                                 {$valor->indicador->nombre} ({$valor->medicion->etiqueta})</a></b></p>
                                                     <p><small>{$valor->indicador->descripcion}</small></p>   
                                                 </td>

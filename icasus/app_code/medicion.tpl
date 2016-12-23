@@ -151,7 +151,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&tipo={$tipo}&id_entidad={$indicador->id_entidad}'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href='index.php?page=medicion_borrar&id_medicion={$medicion->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
             </div>
         </div>
     </div>
@@ -164,14 +164,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-recycle fa-fw"></i> {if $tipo == 'indicador'}{$smarty.const.TXT_INDIC_RESTAURAR}{else}{$smarty.const.TXT_DATO_RESTAURAR}{/if}: {$indicador->nombre}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-recycle fa-fw"></i> {$smarty.const.TXT_INDIC_RESTAURAR}: {$indicador->nombre}</h3>
             </div>
             <div class="modal-body">
-                <p>{if $tipo == 'indicador'}{$smarty.const.MSG_INDIC_CONFIRM_RESTAURAR}{else}{$smarty.const.MSG_DATO_CONFIRM_RESTAURAR}{/if}</p>
+                <p>{$smarty.const.MSG_INDIC_CONFIRM_RESTAURAR}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href='index.php?page={$tipo}_archivar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&modulo=restaurar'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href='index.php?page=indicador_archivar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}&modulo=restaurar'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
             </div>
         </div>
     </div>
@@ -193,16 +193,16 @@
                         <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($mediciones)} {$smarty.const.FIELD_MEDICIONES}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[0]->id}&tipo={$tipo}'>
+                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice-1]->id}&tipo={$tipo}'>
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == (count($mediciones)-1)}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice+1]->id}&tipo={$tipo}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == (count($mediciones)-1)}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == (count($mediciones)-1)}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[(count($mediciones)-1)]->id}&tipo={$tipo}'>
+                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_MED}" class="btn btn-danger btn-xs {if $indice == (count($mediciones)-1)}disabled{/if}" href='index.php?page=medicion&id_entidad={$entidad->id}&id_medicion={$mediciones[(count($mediciones)-1)]->id}'>
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
@@ -269,7 +269,7 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            {if $tipo == 'indicador'}
+            {if $indicador->id_proceso}
                 <li>
                     <a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a>
                 </li>
@@ -283,10 +283,9 @@
                 </li>
             {else}
                 <li>
-                    <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page={$tipo}_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DATOS}</a>
+                    <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_INDICS}</a>
                 </li>
             {/if}
-            <li><a title="{$smarty.const.FIELD_MEDICIONES}: {$indicador->nombre}" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>{$smarty.const.FIELD_MEDICIONES}: {$indicador->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -308,11 +307,11 @@
             <li class="pull-right">
                 <div class="btn-toolbar" role="toolbar" aria-label="">
                     <div class="btn-group" role="group" aria-label="">
-                        <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-default" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                        <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-default" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                             <i class="fa fa-hourglass fa-fw"></i>
                         </a>
                         {if !$indicador->calculo && ($permiso_unidad || $indicador->id_responsable == $_usuario->id)}
-                            <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default" href='index.php?page=valores&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                            <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default" href='index.php?page=valores&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                 <i class="fa fa-pencil-square-o fa-fw"></i>
                             </a>
                         {/if}
@@ -341,12 +340,12 @@
                                 <div class="row">
                                     <div class="col-sm-10">
                                         <span class="panel-title">
-                                            <i class="fa fa-archive fa-fw"></i> {if $tipo=='indicador'}{$smarty.const.TXT_INDIC_ARCHIVADO}{else}{$smarty.const.TXT_DATO_ARCHIVADO}{/if}
+                                            <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_INDIC_ARCHIVADO}
                                         </span>
                                     </div>
                                     <!-- /.col-sm-10 -->
                                     <div class="col-sm-2">
-                                        {if $_control || $permiso}
+                                        {if $_control || $indicador->id_responsable == $_usuario->id}
                                             <a title="{$smarty.const.TXT_INDIC_RESTAURAR}" class="btn btn-danger pull-right" href='javascript:void(0)' 
                                                data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
                                                 <i class="fa fa-recycle fa-fw"></i>
@@ -591,7 +590,7 @@
                                 <tr>
                                     <th><span class="label label-primary">{$smarty.const.TXT_VAL_REF}</span></th>
                                     <td>
-                                        <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-default btn-xs" href='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                        <a title="{$smarty.const.TXT_VAL_REF}" class="btn btn-default btn-xs" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                             <i class="fa fa-tags fa-fw"></i>
                                         </a>
                                     </td>
