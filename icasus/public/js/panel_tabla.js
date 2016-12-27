@@ -31,10 +31,11 @@ $(document).ready(function () {
         $('#anyo_inicio').attr("max", valor);
     });
 
-    //Indicadores y datos
-    $('#indicadores, #datos').change(function () {
+    //Indicadores
+    $('#indicadores, #indicadores_ctl, #datos').change(function () {
         if ($("#datos option:selected").length === 0 &&
-                $("#indicadores option:selected").length === 0) {
+                $("#indicadores option:selected").length === 0 &&
+                $("#indicadores_ctl option:selected").length === 0) {
             $('#indicadores_datos').prop('required', true);
         }
         else {
@@ -55,6 +56,16 @@ $(document).ready(function () {
         $('#indicadores').trigger('change');
     });
 
+    $('#sel_todos_indics_ctl').on('click', function () {
+        $("#indicadores_ctl option").prop("selected", true).trigger('chosen:updated');
+        $('#indicadores_ctl').trigger('change');
+    });
+
+    $('#desel_todos_indics_ctl').on('click', function () {
+        $("#indicadores_ctl option").prop("selected", false).trigger('chosen:updated');
+        $('#indicadores_ctl').trigger('change');
+    });
+
     $('#sel_todos_datos').on('click', function () {
         $("#datos option").prop("selected", true).trigger('chosen:updated');
         $('#datos').trigger('change');
@@ -69,6 +80,7 @@ $(document).ready(function () {
     $(':reset').click(function () {
         $('#ventana_tiempo').bootstrapToggle('off');
         $('#indicadores option:selected').prop('selected', false).trigger('chosen:updated');
+        $('#indicadores_ctl option:selected').prop('selected', false).trigger('chosen:updated');
         $('#datos option:selected').prop('selected', false).trigger('chosen:updated');
         $('#indicadores_datos').prop('required', true);
     });

@@ -190,7 +190,7 @@
             </fieldset>
             <!-- /Ventana temporal -->
 
-            <!-- Indicadores/datos -->
+            <!-- Indicadores -->
             <fieldset>
                 <legend>{$smarty.const.TXT_PANEL_INDICS}</legend>
 
@@ -208,9 +208,9 @@
                 </div>
                 <!-- /Unidad -->
 
-                <!-- Indicadores -->
+                <!-- Indicadores (Proceso) -->
                 <div class="form-group">
-                    <label for="indicadores" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS}</label>
+                    <label for="indicadores" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})</label>
                     <div class="col-sm-8">
                         <select class="form-control chosen-select" name="id_indicadores[]" id="indicadores" multiple>
                             {foreach $indicadores as $indicador}
@@ -227,11 +227,32 @@
                         </button>
                     </div>
                 </div>
-                <!-- /Indicadores -->
+                <!-- /Indicadores (Proceso) -->
 
-                <!-- Datos -->
+                <!-- Indicadores (Control) -->
                 <div class="form-group">
-                    <label for="datos" class="col-sm-2 control-label">{$smarty.const.FIELD_DATOS}</label>
+                    <label for="indicadores_ctl" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})</label>
+                    <div class="col-sm-8">
+                        <select class="form-control chosen-select" name="id_indicadores[]" id="indicadores_ctl" multiple>
+                            {foreach $indicadores_ctl as $indicador}
+                                <option title="{$indicador->nombre}" value="{$indicador->id}">{$indicador->nombre}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <button id="sel_todos_indics_ctl" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_SEL_TODOS}" >
+                            <i class="fa fa-check-square-o fa-fw"></i>
+                        </button>
+                        <button id="desel_todos_indics_ctl" type="button" class="btn btn-default btn-primary btn-xs" title="{$smarty.const.TXT_DESEL_TODOS}" >
+                            <i class="fa fa-square-o fa-fw"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /Indicadores (Control) -->
+
+                <!-- Indicadores (Datos) -->
+                <div class="form-group">
+                    <label for="datos" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_DATOS})</label>
                     <div class="col-sm-8">
                         <select class="form-control chosen-select" name="id_indicadores[]" id="datos" multiple>
                             {foreach $datos as $dato}
@@ -248,7 +269,7 @@
                         </button>
                     </div>
                 </div>
-                <!-- /Datos -->
+                <!-- /Indicadores (Datos) -->
 
                 <div class="form-group has-feedback">
                     <div class="col-sm-offset-2 col-sm-8">
@@ -258,7 +279,7 @@
                 </div>
 
             </fieldset>
-            <!-- /Indicadores/datos -->
+            <!-- /Indicadores -->
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">

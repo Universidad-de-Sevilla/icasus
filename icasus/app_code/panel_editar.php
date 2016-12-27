@@ -87,11 +87,14 @@ if (filter_has_var(INPUT_GET, 'id_panel') && filter_has_var(INPUT_GET, 'id_cuadr
     //Paneles de tabla
     if ($panel->id_paneltipo == 6)
     {
-        //Sólo indicadores
+        //Indicadores de proceso
         $indicadores_unidad_no_datos = $indicador->find("id_entidad = $cuadro->id_entidad AND id_proceso is NOT NULL AND archivado is NULL");
         $smarty->assign('indicadores_unidad_no_datos', $indicadores_unidad_no_datos);
-        //Sólo datos
-        $datos_unidad = $indicador->find("id_entidad = $cuadro->id_entidad AND id_proceso is NULL AND archivado is NULL");
+        //Indicadores de control
+        $indicadores_ctl = $indicador->find("id_entidad = $cuadro->id_entidad AND control=1 AND archivado is NULL");
+        $smarty->assign('indicadores_ctl', $indicadores_ctl);
+        //Indicadores de datos
+        $datos_unidad = $indicador->find("id_entidad = $cuadro->id_entidad AND id_proceso is NULL AND control=0 AND archivado is NULL");
         $smarty->assign('datos_unidad', $datos_unidad);
         //Unidad del panel
         $id_unidad = reset($unidades)->id;

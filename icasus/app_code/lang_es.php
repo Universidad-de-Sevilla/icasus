@@ -69,12 +69,12 @@ define('TXT_POR_ANYO', 'Por año');
 define('TXT_CONSULT', 'Consulta avanzada');
 define('TXT_CONSULT_INFO', 'Para realizar la consulta busque e incluya los indicadores/datos que desee. Puede añadir hasta un máximo de 5 operandos a la consulta.');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
-define('TXT_CONSULT_OPERAND', 'Indicador/dato operando');
+define('TXT_CONSULT_OPERAND', 'Indicador operando');
 define('TXT_CONSULT_OPER', 'Operador');
 define('TXT_CONSULT_INCLUIR', 'Incluir/cambiar operando de la consulta');
 define('TXT_CONSULT_QUITAR', 'Retirar último operando de la consulta');
 define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
-define('TXT_CONSULT_BUSCAR', 'Buscar indicador/dato');
+define('TXT_CONSULT_BUSCAR', 'Buscar indicador');
 
 //Cuadros de Mando
 define('TXT_CUADRO_CREAR', 'Crear cuadro de mando');
@@ -92,8 +92,8 @@ define('TXT_PANEL_VENTANA', 'Ventana de tiempo');
 define('TXT_PANEL_VENTANA_DESC', 'Establece una ventana temporal para el panel. - Variable: periodo variable, finaliza en el año actual y comienza en un número fijo de años hacia atrás. - Fija: periodo fijo, con un año de inicio y otro de fin. ');
 define('TXT_PANEL_VENTANA_FIJA', 'Fija');
 define('TXT_PANEL_VENTANA_VAR', 'Variable');
-define('TXT_PANEL_INDICS', 'Indicadores/datos del panel');
-define('TXT_PANEL_INCLUIR', 'Añadir indicador/dato al panel');
+define('TXT_PANEL_INDICS', 'Indicadores del panel');
+define('TXT_PANEL_INCLUIR', 'Añadir indicador al panel');
 
 //Datos;
 define('TXT_DATOS_REBIUN', 'Datos Rebiun');
