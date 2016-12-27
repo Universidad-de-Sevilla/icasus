@@ -51,7 +51,7 @@
                 <a href="#user_indic" title="{$smarty.const.TXT_USER_INDIC}" aria-controls="{$smarty.const.TXT_USER_INDIC}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-user fa-fw"></sub> {$smarty.const.TXT_USER_INDIC}</a>
             </li>
             <li role="presentation">
-                <a href="#indic_todos" title="{$smarty.const.TXT_TODOS}" aria-controls="{$smarty.const.TXT_TODOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_TODOS}</a>
+                <a href="#indic_todos" title="{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_TODOS})" aria-controls="{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_TODOS})" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_TODOS})</a>
             </li>
             <li role="presentation">
                 <a href="#indic_procs" title="{$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})" aria-controls="{$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-gear fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})</a>
@@ -208,7 +208,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {foreach from=$indicadores item=indicador} 
+                                {foreach from=$indicadores_todos item=indicador} 
                                     <tr>
                                         <td><span class="label label-primary">{$indicador->codigo}</span></td>
                                         <td>

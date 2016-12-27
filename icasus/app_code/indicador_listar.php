@@ -11,9 +11,6 @@
 
 global $smarty;
 global $plantilla;
-//Variables para operar con Indicadores/Datos
-$logicaIndicador = new LogicaIndicador();
-$logicaMedicion = new LogicaMedicion();
 
 if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -22,8 +19,16 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    //Indicadores de procesos
+    //Variables para operar con Indicadores/Datos
+    $logicaIndicador = new LogicaIndicador();
+    $logicaMedicion = new LogicaMedicion();
     $indicador = new Indicador();
+
+    //Todos los indicadores
+    $indicadores_todos = $indicador->Find_joined("id_entidad = $id_entidad AND archivado is NULL");
+    $smarty->assign('indicadores_todos', $indicadores_todos);
+
+    //Indicadores de procesos
     $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado is NULL");
     $smarty->assign('indicadores', $indicadores);
 
