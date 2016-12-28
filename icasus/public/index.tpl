@@ -102,45 +102,45 @@
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
                                 <li>
-                                    <a title="{$smarty.const.TXT_USER_UNIDS}" href='index.php?page=entidad_listar'>
+                                    <a title="{$smarty.const.TXT_USER_UNIDS} ({$num_entidades_usuario})" href='index.php?page=entidad_listar'>
                                         <div>
-                                            <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-user fa-fw"></sub>
+                                            <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-user fa-fw"></sub> {$smarty.const.TXT_USER_UNIDS}:
                                             <span class="pull-right badge">{$num_entidades_usuario}</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_USER_PROCS}" href='index.php?page=procesos'>
+                                    <a title="{$smarty.const.TXT_USER_PROCS} ({$num_procesos_propios})" href='index.php?page=procesos'>
                                         <div>
-                                            <i class="fa fa-gears fa-fw"></i><sub class="fa fa-user fa-fw"></sub>
+                                            <i class="fa fa-gears fa-fw"></i><sub class="fa fa-user fa-fw"></sub> {$smarty.const.TXT_USER_PROCS}:
                                             <span class="pull-right badge">{$num_procesos_propios}</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_USER_INDIC}" href='index.php?page=indicadores'>
+                                    <a title="{$smarty.const.TXT_USER_INDIC} ({$num_indicadores_propios})" href='index.php?page=indicadores'>
                                         <div>
-                                            <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-user fa-fw"></sub>
+                                            <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-user fa-fw"></sub> {$smarty.const.TXT_USER_INDIC}:
                                             <span class="pull-right badge">{$num_indicadores_propios}</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_USER_CUADROS}" href='index.php?page=cuadros'>
+                                    <a title="{$smarty.const.TXT_USER_CUADROS} ({$num_cuadros_propios})" href='index.php?page=cuadros'>
                                         <div>
-                                            <i class="fa fa-th fa-fw"></i><sub class="fa fa-user fa-fw"></sub>
+                                            <i class="fa fa-th fa-fw"></i><sub class="fa fa-user fa-fw"></sub> {$smarty.const.TXT_USER_CUADROS}:
                                             <span class="pull-right badge">{$num_cuadros_propios}</span>
                                         </div>
                                     </a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a title="{$smarty.const.TXT_USER_OBJOPS}" href='index.php?page=planes'>
+                                    <a title="{$smarty.const.TXT_USER_OBJOPS} ({$num_objops_propios})" href='index.php?page=planes'>
                                         <div>
-                                            <i class="fa fa-bullseye fa-fw"></i><sub class="fa fa-user fa-fw"></sub>
+                                            <i class="fa fa-bullseye fa-fw"></i><sub class="fa fa-user fa-fw"></sub> {$smarty.const.TXT_USER_OBJOPS}:
                                             <span class="pull-right badge">{$num_objops_propios}</span>
                                         </div>
                                     </a>

@@ -29,14 +29,33 @@ $(document).ready(function () {
             $(".subunidad").removeAttr("checked");
             $(".unidad").prop("checked", 'true');
         }
+        $('.subunidad').trigger('change');
     });
 
     $('#marcar_todos').on('click', function () {
         $(".subunidad").prop("checked", 'true');
+        $('.subunidad').trigger('change');
     });
 
     $('#desmarcar_todos').on('click', function () {
         $(".subunidad").removeAttr("checked");
+        $('.subunidad').trigger('change');
+    });
+
+    $('.subunidad').click(function () {
+        $('.subunidad').trigger('change');
+    });
+
+    //Control
+    $('#activar_control').change(function () {
+        if ($('#activar_control').is(':checked')) {
+            $('#proceso').addClass('hidden');
+            $('#id_proceso').attr('disabled', 'disabled');
+        }
+        else {
+            $('#proceso').removeClass('hidden');
+            $('#id_proceso').removeAttr('disabled');
+        }
     });
 
     //Cálculo automático
@@ -71,6 +90,17 @@ $(document).ready(function () {
             $('#vmin,#vmax').addClass('hidden');
             $('#calculo_automatico').removeClass('hidden');
         }
+    });
+
+    //Validación del intervalo
+    $('#valor_max').change(function () {
+        var valor = parseFloat($(this).val()) - 0.01;
+        $('#valor_min').attr("max", valor);
+    });
+
+    $('#valor_min').change(function () {
+        var valor = parseFloat($(this).val()) + 0.01;
+        $('#valor_max').attr("min", valor);
     });
 
     //Periodicidad y mostrar selección de agregación temporal

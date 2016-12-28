@@ -59,17 +59,23 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            <li>
-                <a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a>
-            </li>
-            {if $proceso->madre}
+            {if isset($proceso)}
                 <li>
-                    <a title="{$proceso->madre->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->madre->id}&id_entidad={$entidad->id}'>{$proceso->madre->nombre|truncate:30}</a>
+                    <a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a>
+                </li>
+                {if $proceso->madre}
+                    <li>
+                        <a title="{$proceso->madre->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->madre->id}&id_entidad={$entidad->id}'>{$proceso->madre->nombre|truncate:30}</a>
+                    </li>
+                {/if}
+                <li>
+                    <a title="{$proceso->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>{$proceso->nombre|truncate:30}</a>
+                </li>
+            {else}
+                <li>
+                    <a title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_INDICS}</a>
                 </li>
             {/if}
-            <li>
-                <a title="{$proceso->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>{$proceso->nombre|truncate:30}</a>
-            </li>
             <li><a title="{$indicador->nombre}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}'>{$indicador->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
@@ -97,156 +103,187 @@
                 <!-- Tab indicador -->
                 <div role="tabpanel" class="tab-pane active" id="indicador">
                     <br>
-                    <div class="form-group has-feedback">
-                        <label for="codigo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_COD}</label>
-                        <div class="col-sm-8">
-                            <input title="{$smarty.const.TXT_CODIGO}" type='text' name='codigo' id='codigo' data-toggle="tooltip" data-placement="left" 
-                                   pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
-                                   class="form-control" placeholder="{$smarty.const.FIELD_COD}" value="{$indicador->codigo}" required/>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
-                        <div class="col-sm-8">
-                            <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" value="{$indicador->nombre}" required/>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="id_proceso" class="col-sm-2 control-label">{$smarty.const.FIELD_PROC}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name="id_proceso" id="id_proceso">
-                                {foreach $procesos as $proceso}
-                                    <option value="{$proceso->id}" {if $indicador->id_proceso == $proceso->id}selected{/if}>{$proceso->nombre}</option>
-                                {/foreach}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <label for="formulacion" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORM}</label>
-                        <div class="col-sm-8">
-                            <textarea  class="form-control" id="formulacion" name="formulacion" placeholder="{$smarty.const.FIELD_FORM}" required>{$indicador->formulacion}</textarea>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group has-feedback">
-                        <label for="historicos" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_HISTORICO}</label>
-                        <div class="col-sm-8">
-                            <input type="number" id='historicos' name="historicos" class="form-control" placeholder="{$smarty.const.FIELD_HISTORICO}" min='2000' max="{$smarty.now|date_format:'%Y'}" value="{$indicador->historicos}" required/>
-                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="periodicidad" class="col-sm-2 control-label">{$smarty.const.FIELD_PERIOD}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name="periodicidad" id="periodicidad">
-                                <option value="Bienal" {if {$indicador->periodicidad} == Bienal}selected{/if}>{$smarty.const.TXT_BIENAL}</option>
-                                <option value="Anual" {if {$indicador->periodicidad} == Anual}selected{/if}>{$smarty.const.TXT_ANUAL}</option>
-                                <option value="Semestral" {if $indicador->periodicidad == Semestral}selected{/if}>{$smarty.const.TXT_SEMESTRAL}</option>
-                                <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if}>{$smarty.const.TXT_CUATRIMESTRAL}</option>
-                                <option value="Trimestral" {if $indicador->periodicidad == Trimestral}selected{/if}>{$smarty.const.TXT_TRIMESTRAL}</option>
-                                <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if}>{$smarty.const.TXT_MENSUAL}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div id="total_anual" title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" data-toggle="tooltip" class="form-group {if $indicador->periodicidad == Anual OR $indicador->periodicidad == Bienal}hidden{/if}">
-                        <label for="id_tipo_agregacion_temporal" class="col-sm-2 control-label">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
-                                {foreach $tipos_agregacion as $tipo_agregacion}
-                                    {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 4 && $tipo_agregacion->id != 6}
-                                        <option title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion_temporal == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
-                                    {/if}
-                                {/foreach}
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="id_responsable" class="col-sm-2 control-label">{$smarty.const.FIELD_RESP_SEG}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name="id_responsable" id="id_responsable">
-                                {foreach $usuarios_entidades as $usuario_entidad}
-                                    <option value="{$usuario_entidad->usuario->id}" {if $indicador->id_responsable == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}</option>
-                                {/foreach} 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="id_responsable_medicion" class="col-sm-2 control-label">{$smarty.const.FIELD_RESP_MED}</label>
-                        <div class="col-sm-8">
-                            <select class="form-control chosen-select" name="id_responsable_medicion" id="id_responsable_medicion">
-                                {foreach $usuarios_entidades as $usuario_entidad}
-                                    <option value="{$usuario_entidad->usuario->id}" {if $indicador->id_responsable_medicion == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}</option>
-                                {/foreach} 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for='inverso' class="col-sm-2 control-label">{$smarty.const.FIELD_ESTIMACION}</label>
-                        <div class="col-sm-8">
-                            <div title="{$smarty.const.TXT_ESTIMACION}" data-toggle="tooltip" data-placement="left">
-                                <input type="checkbox" name='inverso' id='inverso' class="form-control" 
-                                       data-toggle="toggle" data-on="{$smarty.const.TXT_DESCENDENTE}"
-                                       data-onstyle="danger" data-offstyle="success"
-                                       data-off="{$smarty.const.TXT_ASCENDENTE}" value="1" data-size="small" {if $indicador->inverso}checked{/if}/>  
+
+                    <fieldset>
+                        <legend>{$smarty.const.TXT_DEFINICION}</legend>
+                        <div class="form-group has-feedback">
+                            <label for="codigo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_COD}</label>
+                            <div class="col-sm-8">
+                                <input title="{$smarty.const.TXT_CODIGO}" type='text' name='codigo' id='codigo' data-toggle="tooltip" data-placement="left" 
+                                       pattern="[A-Z]+[.]*[A-Z]*[0-9]*[.]*[0-9]*([-]*[A-Z]*[.]*[A-Z]*[0-9]*[.]*[0-9]*)*"
+                                       class="form-control" placeholder="{$smarty.const.FIELD_COD}" value="{$indicador->codigo}" required/>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                <div class="help-block with-errors"></div>
                             </div>
                         </div>
-                    </div>
-                    <div id="calculo_automatico">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">{$smarty.const.TXT_INDIC_DAT_CALCULADO}</label>
+                        <div class="form-group has-feedback">
+                            <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                             <div class="col-sm-8">
-                                <div title="{$smarty.const.TXT_SOLO_INDIC_CALC}" data-toggle="tooltip" data-placement="left">
-                                    <input type="checkbox" id="activar_calculo"  class="form-control" 
+                                <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" value="{$indicador->nombre}" required/>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="formulacion" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORM}</label>
+                            <div class="col-sm-8">
+                                <textarea  class="form-control" id="formulacion" name="formulacion" placeholder="{$smarty.const.FIELD_FORM}" required>{$indicador->formulacion}</textarea>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                <div class="help-block with-errors"></div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>{$smarty.const.FIELD_INDIC_TIPO}</legend>
+                        <div id="control" class="form-group">
+                            <label for='activar_control' class="col-sm-2 control-label">{$smarty.const.TXT_CONTROL}</label>
+                            <div class="col-sm-8">
+                                <div title="{$smarty.const.TXT_CONTROL}">
+                                    <input type="checkbox" name='control' id=activar_control class="form-control" 
                                            data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
                                            data-onstyle="success" data-offstyle="danger"
-                                           data-off="{$smarty.const.TXT_NO}" data-size="small" {if $indicador->calculo}checked{/if}/>  
+                                           data-off="{$smarty.const.TXT_NO}" value=1 data-size="small" 
+                                           {if $indicador->control}checked{/if}/>  
                                 </div>
                             </div>
                         </div>
-                        <div id="formula_calculo" class="form-group has-feedback {if !$indicador->calculo}hidden{/if}">
-                            <label for="calculo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORMULA}</label>
+                        <div id="proceso" class="form-group {if $indicador->control}hidden{/if}">
+                            <label for="id_proceso" class="col-sm-2 control-label">{$smarty.const.FIELD_PROC}</label>
                             <div class="col-sm-8">
-                                <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" class="form-control" data-toggle="tooltip" data-placement="left" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" required {if !$indicador->calculo}disabled{/if}>{$indicador->calculo}</textarea>
+                                <select class="form-control chosen-select" name="id_proceso" id="id_proceso">
+                                    <option value="0" {if !$indicador->id_proceso}selected{/if}>{$smarty.const.TXT_INDIC_NO_PROC} ({$smarty.const.FIELD_DATO})</option>
+                                    {foreach $procesos as $proceso}
+                                        <option value="{$proceso->id}" {if $indicador->id_proceso == $proceso->id}selected{/if}>{$proceso->nombre}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>{$smarty.const.FIELD_MED}</legend>
+                        <div class="form-group has-feedback">
+                            <label for="historicos" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_HISTORICO}</label>
+                            <div class="col-sm-8">
+                                <input type="number" id='historicos' name="historicos" class="form-control" placeholder="{$smarty.const.FIELD_HISTORICO}" min='2000' max="{$smarty.now|date_format:'%Y'}" value="{$indicador->historicos}" required/>
                                 <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
-                    </div>
-                    <div id="intervalo">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">{$smarty.const.FIELD_INTERVALO}</label>
+                            <label for="periodicidad" class="col-sm-2 control-label">{$smarty.const.FIELD_PERIOD}</label>
                             <div class="col-sm-8">
-                                <div title="{$smarty.const.TXT_INTERVALO}" data-toggle="tooltip" data-placement="left">
-                                    <input type="checkbox" id="activar_intervalo"  class="form-control" 
-                                           data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                           data-onstyle="success" data-offstyle="danger"
-                                           data-off="{$smarty.const.TXT_NO}" data-size="small" {if $indicador->valor_min}checked{/if}/>  
+                                <select class="form-control chosen-select" name="periodicidad" id="periodicidad">
+                                    <option value="Bienal" {if {$indicador->periodicidad} == Bienal}selected{/if}>{$smarty.const.TXT_BIENAL}</option>
+                                    <option value="Anual" {if {$indicador->periodicidad} == Anual}selected{/if}>{$smarty.const.TXT_ANUAL}</option>
+                                    <option value="Semestral" {if $indicador->periodicidad == Semestral}selected{/if}>{$smarty.const.TXT_SEMESTRAL}</option>
+                                    <option value="Cuatrimestral" {if $indicador->periodicidad == Cuatrimestral}selected{/if}>{$smarty.const.TXT_CUATRIMESTRAL}</option>
+                                    <option value="Trimestral" {if $indicador->periodicidad == Trimestral}selected{/if}>{$smarty.const.TXT_TRIMESTRAL}</option>
+                                    <option value="Mensual" {if $indicador->periodicidad == Mensual}selected{/if}>{$smarty.const.TXT_MENSUAL}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="total_anual" title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" data-toggle="tooltip" class="form-group {if $indicador->periodicidad == Anual OR $indicador->periodicidad == Bienal}hidden{/if}">
+                            <label for="id_tipo_agregacion_temporal" class="col-sm-2 control-label">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
+                            <div class="col-sm-8">
+                                <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
+                                    {foreach $tipos_agregacion as $tipo_agregacion}
+                                        {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 4 && $tipo_agregacion->id != 6}
+                                            <option title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion_temporal == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+                                        {/if}
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for='inverso' class="col-sm-2 control-label">{$smarty.const.FIELD_ESTIMACION}</label>
+                            <div class="col-sm-8">
+                                <div title="{$smarty.const.TXT_ESTIMACION}" data-toggle="tooltip" data-placement="left">
+                                    <input type="checkbox" name='inverso' id='inverso' class="form-control" 
+                                           data-toggle="toggle" data-on="{$smarty.const.TXT_DESCENDENTE}"
+                                           data-onstyle="danger" data-offstyle="success"
+                                           data-off="{$smarty.const.TXT_ASCENDENTE}" value="1" data-size="small" {if $indicador->inverso}checked{/if}/>  
                                 </div>
                             </div>
                         </div>
-                        <div id="vmin" class="form-group has-feedback {if !$indicador->valor_min}hidden{/if}">
-                            <label for="valor_min" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VALOR_MIN}</label>
-                            <div class="col-sm-8">
-                                <input type="number" step="0.01" id='valor_min' name="valor_min" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MIN}" value="{$indicador->valor_min}" required/>
-                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <div class="help-block with-errors"></div>
+                        <div id="calculo_automatico">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$smarty.const.TXT_INDIC_DAT_CALCULADO}</label>
+                                <div class="col-sm-8">
+                                    <div title="{$smarty.const.TXT_SOLO_INDIC_CALC}" data-toggle="tooltip" data-placement="left">
+                                        <input type="checkbox" id="activar_calculo"  class="form-control" 
+                                               data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                               data-onstyle="success" data-offstyle="danger"
+                                               data-off="{$smarty.const.TXT_NO}" data-size="small" {if $indicador->calculo}checked{/if}/>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="formula_calculo" class="form-group has-feedback {if !$indicador->calculo}hidden{/if}">
+                                <label for="calculo" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORMULA}</label>
+                                <div class="col-sm-8">
+                                    <textarea id="calculo" name="calculo" title="{$smarty.const.TXT_FORMULA}" class="form-control" data-toggle="tooltip" data-placement="left" rows="5" placeholder="{$smarty.const.TXT_FORMULA}" data-validar_formula="validar_formula" required {if !$indicador->calculo}disabled{/if}>{$indicador->calculo}</textarea>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <div class="help-block with-errors"></div>
+                                </div>
                             </div>
                         </div>
-                        <div id="vmax" class="form-group has-feedback {if !$indicador->valor_max}hidden{/if}">
-                            <label for="valor_max" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VALOR_MAX}</label>
-                            <div class="col-sm-8">
-                                <input type="number" step="0.01" id='valor_max' name="valor_max" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MAX}" value="{$indicador->valor_max}" required/>
-                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <div class="help-block with-errors"></div>
+                        <div id="intervalo">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">{$smarty.const.FIELD_INTERVALO}</label>
+                                <div class="col-sm-8">
+                                    <div title="{$smarty.const.TXT_INTERVALO}" data-toggle="tooltip" data-placement="left">
+                                        <input type="checkbox" id="activar_intervalo"  class="form-control" 
+                                               data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                               data-onstyle="success" data-offstyle="danger"
+                                               data-off="{$smarty.const.TXT_NO}" data-size="small" {if $indicador->valor_min}checked{/if}/>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="vmin" class="form-group has-feedback {if !$indicador->valor_min}hidden{/if}">
+                                <label for="valor_min" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VALOR_MIN}</label>
+                                <div class="col-sm-8">
+                                    <input type="number" step="0.01" id='valor_min' name="valor_min" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MIN}" value="{$indicador->valor_min}" required/>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                            <div id="vmax" class="form-group has-feedback {if !$indicador->valor_max}hidden{/if}">
+                                <label for="valor_max" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_VALOR_MAX}</label>
+                                <div class="col-sm-8">
+                                    <input type="number" step="0.01" id='valor_max' name="valor_max" class="form-control" placeholder="{$smarty.const.FIELD_VALOR_MAX}" value="{$indicador->valor_max}" required/>
+                                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    <div class="help-block with-errors"></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>{$smarty.const.TXT_USERS}</legend>
+                        <div class="form-group">
+                            <label for="id_responsable" class="col-sm-2 control-label">{$smarty.const.FIELD_RESP_SEG}</label>
+                            <div class="col-sm-8">
+                                <select class="form-control chosen-select" name="id_responsable" id="id_responsable">
+                                    {foreach $usuarios_entidades as $usuario_entidad}
+                                        <option value="{$usuario_entidad->usuario->id}" {if $indicador->id_responsable == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}</option>
+                                    {/foreach} 
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_responsable_medicion" class="col-sm-2 control-label">{$smarty.const.FIELD_RESP_MED}</label>
+                            <div class="col-sm-8">
+                                <select class="form-control chosen-select" name="id_responsable_medicion" id="id_responsable_medicion">
+                                    {foreach $usuarios_entidades as $usuario_entidad}
+                                        <option value="{$usuario_entidad->usuario->id}" {if $indicador->id_responsable_medicion == $usuario_entidad->usuario->id}selected{/if}>{$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}</option>
+                                    {/foreach} 
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
                             <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
@@ -305,6 +342,12 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="unidad_generadora" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID_GEN}</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="unidad_generadora" name="unidad_generadora" placeholder="{$smarty.const.FIELD_UNID_GEN}" value="{$indicador->unidad_generadora}">
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="criterios_efqm" class="col-sm-2 control-label">{$smarty.const.FIELD_EFQM}</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name="criterios_efqm[]" id="criterios_efqm" multiple>
@@ -329,12 +372,6 @@
                                     </option>
                                 {/foreach}
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="unidad_generadora" class="col-sm-2 control-label">{$smarty.const.FIELD_UNID_GEN}</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" id="unidad_generadora" name="unidad_generadora" placeholder="{$smarty.const.FIELD_UNID_GEN}" value="{$indicador->unidad_generadora}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -422,7 +459,7 @@
                                     <label>
                                         <input id="lista_subunidades" type="checkbox" name="subunidades[]" value="{$subunidad->id}" class="subunidad" data-validar_subunidades="validar_subunidades" 
                                                {foreach $indicador_subunidades as $indicador_subunidad}
-                                                   {if $indicador_subunidad->id_entidad == $subunidad->id} checked{/if}
+                                                   {if $indicador_subunidad->id_entidad == $subunidad->id}checked{/if}
                                                {/foreach}>
                                         {$subunidad->etiqueta}
                                     </label>
