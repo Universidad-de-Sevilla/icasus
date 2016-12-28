@@ -613,12 +613,11 @@ define('MSG_INDIC_ARCHIVADO', 'Se ha archivado el indicador: ');
 define('MSG_INDIC_RESTAURADO', 'Se ha restaurado el indicador: ');
 define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los datos del indicador.');
 define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para este indicador/dato.');
-define('MSG_INDIC_NO_MED', 'Todavía no se han definido mediciones para este indicador.');
+define('MSG_INDIC_NO_MED', 'Todavía no se han creado mediciones para este indicador.');
 define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del indicador. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
 define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores bajo su responsabilidad.');
 
 //Mediciones
-define('MSG_MED_NO_TIPO', 'No se han creado mediciones.');
 define('MSG_MED_NO_REBIUN', 'No se han generado las mediciones del año anterior para los datos Rebiun. Por favor, genere antes las mediciones.');
 define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna medición.');
 define('MSG_MED_BORRADA', 'La/s medición/es se ha/n borrado con éxito.');

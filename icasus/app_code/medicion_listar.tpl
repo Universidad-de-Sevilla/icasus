@@ -548,7 +548,7 @@
                 {else}
                     <div class="alert alert-info alert-dismissible">
                         <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_MED_NO_TIPO}
+                        {$smarty.const.MSG_INDIC_NO_MED}
                     </div>
                 {/if}
             </div>
