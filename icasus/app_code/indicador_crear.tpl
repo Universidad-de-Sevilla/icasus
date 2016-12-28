@@ -125,12 +125,10 @@
                                 <div class="help-block with-errors"></div>
                             </div>
                         </div>
-                        <div class="form-group has-feedback">
-                            <label for="formulacion" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FORM}</label>
+                        <div class="form-group">
+                            <label for="formulacion" class="col-sm-2 control-label">{$smarty.const.FIELD_FORM}</label>
                             <div class="col-sm-8">
-                                <textarea  class="form-control" id="formulacion" name="formulacion" placeholder="{$smarty.const.FIELD_FORM}" required></textarea>
-                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                                <div class="help-block with-errors"></div>
+                                <textarea  class="form-control" id="formulacion" name="formulacion" placeholder="{$smarty.const.FIELD_FORM}"></textarea>
                             </div>
                         </div>
                     </fieldset>

@@ -444,7 +444,13 @@
                     </tr>
                     <tr>
                         <th>{$smarty.const.FIELD_FORM}</th>
-                        <td>{$indicador->formulacion|nl2br}</td>
+                        <td>
+                            {if $indicador->formulacion != ""}
+                                {$indicador->formulacion|nl2br}
+                            {else}
+                                ---
+                            {/if}
+                        </td>
                     </tr>
                     <tr>
                         <th>{$smarty.const.FIELD_RESP_SEG}</th>

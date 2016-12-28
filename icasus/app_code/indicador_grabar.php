@@ -16,7 +16,6 @@ if (filter_has_var(INPUT_POST, 'codigo')
         AND filter_has_var(INPUT_POST, 'nombre')
         AND filter_has_var(INPUT_POST, 'id_responsable')
         AND filter_has_var(INPUT_POST, 'id_responsable_medicion')
-        AND filter_has_var(INPUT_POST, 'formulacion')
         AND filter_has_var(INPUT_POST, 'id_entidad')
         AND filter_has_var(INPUT_POST, 'tipo_seleccion_responsable'))
 {
@@ -56,7 +55,7 @@ if (filter_has_var(INPUT_POST, 'codigo')
     $indicador->id_entidad = $id_entidad;
     $indicador->codigo = filter_input(INPUT_POST, 'codigo', FILTER_SANITIZE_STRING);
     $indicador->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
-    $indicador->formulacion = filter_input(INPUT_POST, 'formulacion', FILTER_SANITIZE_STRING);
+    $indicador->formulacion = filter_has_var(INPUT_POST, 'formulacion') ? filter_input(INPUT_POST, 'formulacion', FILTER_SANITIZE_STRING) : null;
     $indicador->id_visibilidad = filter_input(INPUT_POST, 'id_visibilidad', FILTER_SANITIZE_NUMBER_INT);
     $tipo_seleccion_responsable = filter_input(INPUT_POST, 'tipo_seleccion_responsable');
     $indicador->control = filter_has_var(INPUT_POST, 'control') ? filter_input(INPUT_POST, 'control', FILTER_SANITIZE_NUMBER_INT) : 0;
