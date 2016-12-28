@@ -556,23 +556,6 @@ define('MSG_PANEL_EDITADO', "Panel editado correctamente:");
 define('MSG_PANEL_CREADO', "Se ha añadido al cuadro de mando el siguiente panel:");
 define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿está seguro?');
 
-//Datos
-define('MSG_DATOS_NO', 'No hay indicadores (datos) activos.');
-define('MSG_DATOS_NO_ARCHIVADOS', 'No hay datos archivados para ninguna unidad.');
-define('MSG_DATO_BORRADO', 'Se ha borrado el dato: ');
-define('MSG_DATO_ARCHIVADO', 'Se ha archivado el dato: ');
-define('MSG_DATO_RESTAURADO', 'Se ha restaurado el dato: ');
-define('MSG_DATO_ACTUALIZADO', 'Se ha actualizado el dato');
-define('MSG_DATO_CONFIRM_BORRAR', '¿Realmente quiere borrar este dato?');
-define('MSG_DATO_CONFIRM_ARCHIVAR', 'El dato quedará archivado pero no se eliminará, ¿realmente desea archivar este dato?');
-define('MSG_DATO_CONFIRM_RESTAURAR', '¿Realmente quiere restaurar este dato?');
-define('MSG_DATO_CONFIRM_EDITAR', 'Va a editar este dato, ¿está seguro?');
-define('MSG_DATO_CREADO', 'Se ha creado un nuevo dato');
-define('MSG_DATO_EXPORT_OK', 'Los datos se han exportado correctamente: ');
-define('MSG_DATO_NO_SUBUNID_ASIG', 'No se han asignado subunidades a este dato (corregir)');
-define('MSG_DATO_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del dato. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
-define('MSG_DATO_NO_ASIG', 'No dispone de datos bajo su responsabilidad.');
-
 //Entidades (Unidades)
 define('MSG_UNID_NO_PROC', 'No hay procesos definidos para esta unidad.');
 define('MSG_UNID_NO_MAPA', 'No existe un mapa de procesos definido para esta unidad.');
@@ -599,6 +582,7 @@ define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen unidades orgánicas.');
 define('MSG_INDICS_NO', 'No hay indicadores activos.');
 define('MSG_INDICS_NO_PROC', 'No hay indicadores (proceso) activos.');
 define('MSG_INDICS_NO_CONTROL', 'No hay indicadores (control) activos.');
+define('MSG_INDICS_NO_DATOS', 'No hay indicadores (datos) activos.');
 define('MSG_INDICS_NO_ARCHIVADOS', 'No hay indicadores archivados.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador.');
@@ -766,15 +750,6 @@ define('ERR_CUAD_MANDO', 'El cuadro de mando no existe o no tiene permisos para 
 define('ERR_CUAD_MANDO_EDIT', 'El cuadro de mando no existe o no tiene permisos para editarlo.');
 //Paneles
 define('ERR_PANEL_VAL_ORDEN', 'Ya existe un panel con el mismo orden en este cuadro de mando.');
-
-//Datos
-define('ERR_DATO_ARCHIVAR_DEP', 'Este dato influye en el cálculo de otros indicadores. Debe archivar éstos primero.');
-define('ERR_DATO_BORRAR_MED', 'Tiene mediciones asociadas al dato, necesita borrar primero las mediciones.');
-define('ERR_DATO_BORRAR_OBJOP', 'No se puede borrar el dato, está asociado al menos con un objetivo operacional de un plan estratégico.');
-define('ERR_DATO_BORRAR_PANEL', 'No se puede borrar el dato, está asociado al menos con un panel de los cuadros de mando. Debe quitarse antes del panel.');
-define('ERR_DATO_GRABAR', 'No se ha podido grabar el dato.');
-define('ERR_DATO_MOSTRAR', 'No se puede mostrar el dato, el identificador no existe en la base de datos.');
-define('ERR_DATO_BORRAR_DEP', 'Este dato influye en el cálculo de otros indicadores. Debe eliminar éstos primero.');
 
 //Entidades (Unidades)
 define('ERR_UNID_MOSTRAR', 'No se puede mostrar la unidad, el identificador no existe en la base de datos.');

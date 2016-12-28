@@ -229,7 +229,7 @@
                         <div class="col-sm-offset-2 col-sm-8">
                             <table class="table table-hover" id="indicadores_subunidades_seleccionados" data-texto_borrar="{$smarty.const.TXT_BORRAR}" style="background-color: white">
                                 <thead>
-                                <th>{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}</th>
+                                <th>{$smarty.const.FIELD_INDICS}</th>
                                 <th colspan="2">{$smarty.const.FIELD_UNID}</th>
                                 </thead>
                                 {foreach $panel_indicadores as $pi}
@@ -276,7 +276,7 @@
 
                     <!-- Indicador -->
                     <div class="form-group">
-                        <label for="indicador" class="col-sm-2 control-label">{$smarty.const.FIELD_INDIC}/{$smarty.const.FIELD_DATO}</label>
+                        <label for="indicador" class="col-sm-2 control-label">{$smarty.const.FIELD_INDIC}</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name="id_indicador" id="indicador">
                                 {foreach $indicadores_unidad as $indicador}
