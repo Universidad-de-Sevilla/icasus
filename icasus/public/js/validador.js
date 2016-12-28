@@ -59,7 +59,7 @@ $('#indicador_crear,#indicador_editar').validator({
         }
     },
     errors: {
-        validar_formula: 'La fórmula no tiene la sintaxis correcta. La sintaxis para referirse a indicadores/datos es la siguiente: [ID del indicador/dato]. Ejemplo: [1]+[2]',
+        validar_formula: 'La fórmula no tiene la sintaxis correcta. La sintaxis para referirse a indicadores es la siguiente: [ID del indicador]. Ejemplo: [1]+[2]',
         validar_subunidades: 'Debe seleccionar al menos una subunidad.'
     }
 });

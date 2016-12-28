@@ -31,8 +31,8 @@ define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_REP_GRAFIC', 'Gráficas');
 define('TXT_ASCENDENTE', 'Ascendente');
 define('TXT_DESCENDENTE', 'Descendente');
-define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores/datos:');
-define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores/datos:');
+define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores:');
+define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores:');
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
 define('TXT_LLAMAR_TLF', 'Llamar al teléfono');
 define('TXT_INVITADO', 'Invitado');
@@ -67,7 +67,7 @@ define('TXT_POR_ANYO', 'Por año');
 
 //Consulta
 define('TXT_CONSULT', 'Consulta avanzada');
-define('TXT_CONSULT_INFO', 'Para realizar la consulta busque e incluya los indicadores/datos que desee. Puede añadir hasta un máximo de 5 operandos a la consulta.');
+define('TXT_CONSULT_INFO', 'Para realizar la consulta busque e incluya los indicadores que desee. Puede añadir hasta un máximo de 5 operandos a la consulta.');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
 define('TXT_CONSULT_OPERAND', 'Indicador operando');
 define('TXT_CONSULT_OPER', 'Operador');
@@ -109,7 +109,7 @@ define('TXT_ETIQUETA_MINI_DESCRIPCION', 'Indica como aparece el nombre de la uni
 define('TXT_ORGANICA_DESCRIPCION', 'Sólo aparecen en los listados las unidades orgánicas');
 
 //Indicadores
-define('TXT_INDIC_IR', 'Ir al indicador/dato');
+define('TXT_INDIC_IR', 'Ir al indicador');
 define('TXT_INDIC_CREAR', 'Crear indicador');
 define('TXT_INDIC_EDIT', 'Editar indicador');
 define('TXT_INDIC_BORRAR', 'Borrar indicador');
@@ -267,10 +267,10 @@ define('TXT_EXAMINAR', 'Examinar...');
 define('TXT_NO_ARCHIVO_SEL', 'No se ha seleccionado ningún archivo.');
 define('TXT_BTN_ACEPTAR', 'Aceptar');
 define('TXT_BTN_GUARDAR', 'Guardar');
-define('TXT_SOLO_INDIC_CALC', 'Sólo si el valor del indicador/dato es calculado automáticamente (en función del valor de otros indicadores/datos). Deberá indicar una fórmula para el cálculo del mismo.');
-define('TXT_FORMULA', "Indique la fórmula para el cálculo, la sintaxis para referirse a indicadores/datos es la siguiente: [ID del indicador/dato]. Ejemplo: [1]+[2], el resultado será la suma del valor de indicador/dato con ID=1 más el indicador/dato con ID=2. IMPORTANTE: La periodicidad debe ser la misma para todos los indicadores/datos implicados, de lo contrario no será posible el cálculo.");
-define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el indicador/dato.');
-define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde se obtienen los valores para el indicador/dato.');
+define('TXT_SOLO_INDIC_CALC', 'Sólo si el valor del indicador es calculado automáticamente (en función del valor de otros indicadores). Deberá indicar una fórmula para el cálculo del mismo.');
+define('TXT_FORMULA', "Indique la fórmula para el cálculo, la sintaxis para referirse a indicadores es la siguiente: [ID del indicador]. Ejemplo: [1]+[2], el resultado será la suma del valor de indicador con ID=1 más el indicador con ID=2. IMPORTANTE: La periodicidad debe ser la misma para todos los indicadores implicados, de lo contrario no será posible el cálculo.");
+define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el indicador.');
+define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde se obtienen los valores para el indicador.');
 define('TXT_BUSCAR', 'Buscar...');
 define('TXT_VAL_INSERT', 'Introduzca un número (dentro del intervalo si existe), dejar en blanco para valor nulo.');
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
@@ -289,7 +289,7 @@ define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
 define('TXT_SEMESTRAL', 'Semestral');
 define('TXT_DOS_ULT_ANYO', 'Dos últimos años');
 //Tipos de Cálculo
-define('TXT_CALC_AUTO', 'Este indicador/dato es calculado automáticamente');
+define('TXT_CALC_AUTO', 'Este indicador es calculado automáticamente');
 
 //Tipos de Proceso
 define('TXT_ESTRATEGICO', '1-Estratégico');
@@ -299,15 +299,15 @@ define('TXT_INDEF', 'Indefinido');
 
 //Tipos de Representaciones Gráficas: paneles
 define('TXT_LINEAS', 'Líneas');
-define('TXT_LINEAS_DESC', 'Muestra varios indicadores/datos para distintas unidades como gráfica de líneas.');
+define('TXT_LINEAS_DESC', 'Muestra varios indicadores para distintas unidades como gráfica de líneas.');
 define('TXT_BARRAS', 'Barras');
-define('TXT_BARRAS_DESC', 'Muestra varios indicadores/datos para distintas unidades como gráfica de barras.');
+define('TXT_BARRAS_DESC', 'Muestra varios indicadores para distintas unidades como gráfica de barras.');
 define('TXT_MIXTO', 'Mixto');
-define('TXT_MIXTO_DESC', 'Muestra un indicador/dato base como gráfica de barras y el resto de indicadores/datos complementarios como gráficas de líneas.');
+define('TXT_MIXTO_DESC', 'Muestra un indicador base como gráfica de barras y el resto de indicadores complementarios como gráficas de líneas.');
 define('TXT_TABLA', 'Tabla');
-define('TXT_TABLA_DESC', 'Tabla que muestra varios indicadores/datos y su evolución total o de una unidad concreta para un período dado.');
+define('TXT_TABLA_DESC', 'Tabla que muestra varios indicadores y su evolución total o de una unidad concreta para un período dado.');
 define('TXT_TARTA', 'Tarta');
-define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador/dato entre las unidades afectadas como gráfica de tarta.');
+define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador entre las unidades afectadas como gráfica de tarta.');
 
 //Usuarios
 define('TXT_USERS_ASIGNAR', 'Asignar usuarios marcados');
@@ -334,7 +334,7 @@ define('TXT_VAL_AGREGAR', 'Agregar valor');
 define('TXT_VALS_SUBUNID', 'Valores por subunidad');
 define('TXT_VAL_IMPORT', 'Importar valores');
 define('TXT_VAL_CALCULAR', 'Calcular');
-define('TXT_VAL_CALC_DESCRIPCION', 'En indicadores/datos calculados actualiza los valores recalculando');
+define('TXT_VAL_CALC_DESCRIPCION', 'En indicadores calculados actualiza los valores recalculando');
 define('TXT_VAL_ACTIVO', 'Activo');
 define('TXT_VAL_INACTIVO', 'Inactivo');
 define('TXT_VAL_REF', 'Valores de referencia');
@@ -535,7 +535,7 @@ define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Consulta avanzada
 define('MSG_NO_CAL', 'No se puede calcular con los parámetros actuales.');
-define('MSG_NO_OPERANDOS', 'Todavía no se han añadido indicadores/datos a la consulta.');
+define('MSG_NO_OPERANDOS', 'Todavía no se han añadido indicadores a la consulta.');
 
 //Cuadros de Mando
 define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el cuadro de mando:');
@@ -547,8 +547,8 @@ define('MSG_CUADRO_CREADO', 'Se ha creado un nuevo cuadro de mando.');
 define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
 define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿está seguro?');
 //Paneles de los Cuadros de Mando
-define('MSG_PANEL_NO_VAL', 'No hay valores recogidos para los indicadores/datos de este panel.');
-define('MSG_PANEL_INDIC_UNID', 'Seleccione la unidad del indicador/dato para la que desea ver sus valores:');
+define('MSG_PANEL_NO_VAL', 'No hay valores recogidos para los indicadores de este panel.');
+define('MSG_PANEL_INDIC_UNID', 'Seleccione la unidad del indicador para la que desea ver sus valores:');
 define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando este panel, ¿está seguro?');
 define('MSG_PANEL_BORRADO', 'Se ha eliminado con éxito el panel seleccionado.');
 define('MSG_PANEL_CARGANDO', 'Cargando paneles, por favor espere.');
@@ -603,7 +603,7 @@ define('MSG_INDICS_NO_ARCHIVADOS', 'No hay indicadores archivados.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador.');
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
-define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores/datos.');
+define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores.');
 define('MSG_INDIC_CONFIRM_ARCHIVAR', 'El indicador quedará archivado pero no se eliminará, ¿realmente desea archivar este indicador?');
 define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este indicador?');
 define('MSG_INDIC_CONFIRM_RESTAURAR', '¿Realmente quiere restaurar este indicador?');
@@ -612,7 +612,7 @@ define('MSG_INDIC_BORRADO', 'Se ha borrado el indicador: ');
 define('MSG_INDIC_ARCHIVADO', 'Se ha archivado el indicador: ');
 define('MSG_INDIC_RESTAURADO', 'Se ha restaurado el indicador: ');
 define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los datos del indicador.');
-define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para este indicador/dato.');
+define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para este indicador.');
 define('MSG_INDIC_NO_MED', 'Todavía no se han creado mediciones para este indicador.');
 define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del indicador. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
 define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores bajo su responsabilidad.');
@@ -627,18 +627,18 @@ define('MSG_MEDS_GRABADAS', 'Mediciones grabadas');
 define('MSG_MED_ETIQUETA_NULA', 'La etiqueta no puede estar vacía. Puede restituir el valor anterior pulsando el icono "X" (cancelar).');
 define('MSG_MED_VAL_NO_PERIODO', 'No se pueden grabar valores, esta fuera del periodo de grabación:');
 define('MSG_MED_VAL_NULO', 'Está intentando introducir un valor vacío. Puede restituir el valor anterior pulsando el icono "X" (cancelar). Puede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---).');
-define('MSG_MED_VAL_INTERVALO', 'Debe insertar un valor que esté dentro del intervalo de valores permitidos por el indicador/dato:');
+define('MSG_MED_VAL_INTERVALO', 'Debe insertar un valor que esté dentro del intervalo de valores permitidos por el indicador:');
 define('MSG_MED_VAL_NOMUM', 'Está intentando introducir un dato que no es reconocido como número.');
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
-define('MSG_MED_CREAR', 'Esta acción, creará automáticamente todas las mediciones (si no existen), desde el año fijado (mínimo año del histórico) hasta el año actual. Tomará algo de tiempo en función del año seleccionado y la periodicidad del indicador/dato, ¿está seguro?');
-define('MSG_MED_CARGAR', 'Esta acción, cargará la cantidad indicada de registros de las mediciones del indicador/dato. Tomará algo de tiempo en función del número de registros seleccionado, ¿está seguro?');
+define('MSG_MED_CREAR', 'Esta acción, creará automáticamente todas las mediciones (si no existen), desde el año fijado (mínimo año del histórico) hasta el año actual. Tomará algo de tiempo en función del año seleccionado y la periodicidad del indicador, ¿está seguro?');
+define('MSG_MED_CARGAR', 'Esta acción, cargará la cantidad indicada de registros de las mediciones del indicador. Tomará algo de tiempo en función del número de registros seleccionado, ¿está seguro?');
 define('MSG_MED_GENERANDO', 'Generando mediciones... espere por favor.');
 define('MSG_MED_CARGANDO', 'Cargando mediciones... espere por favor.');
 define('MSG_MED_GENERADA', 'Se ha/n generado correctamente todas la/s medición/es.');
 define('MSG_MED_EXISTE', 'Se ha/n generado sólo la/s medición/es no existente/s desde el año seleccionado.');
 define('MSG_MEDS_NO_MARCADAS', 'No se ha marcado ninguna medición para borrar.');
-define('MSG_MED_RESP_ARCHIVADO', 'No se pueden editar responsables de medición en indicadores/datos archivados. Restaure primero el indicador/dato.');
+define('MSG_MED_RESP_ARCHIVADO', 'No se pueden editar responsables de medición en indicadores archivados. Restaure primero el indicador.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
@@ -728,13 +728,13 @@ define('MSG_VALS_NO_MARCADOS', 'No se ha seleccionado ningún valor para desacti
 define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en indicadores archivados. Restaure primero el indicador.');
 
 //Control
-define('MSG_CONTROL_INFO', 'El control de indicadores/datos se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores/datos bajo su responsabilidad o todos si también es responsable de la Unidad.');
-define('MSG_CONTROL_NO_RESPONSABLE', 'Usted no es responsable de esta unidad y tampoco de ningún indicador/dato de la misma.');
+define('MSG_CONTROL_INFO', 'El control de indicadores se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores bajo su responsabilidad o todos si también es responsable de la Unidad.');
+define('MSG_CONTROL_NO_RESPONSABLE', 'Usted no es responsable de esta unidad y tampoco de ningún indicador de la misma.');
 define('MSG_CONTROL_CARGA', 'Cargando datos de control, por favor espere.');
-define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado indicadores/datos con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');
+define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado indicadores con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');
 define('MSG_CONTROL_NO_VAL', 'No existen mediciones o no se han grabado valores durante el año seleccionado.');
 define('MSG_CONTROL_NO_MED', 'No se han creado mediciones para el año seleccionado.');
-define('MSG_CONTROL_MED', 'No existen indicadores/datos sin mediciones para el año seleccionado.');
+define('MSG_CONTROL_MED', 'No existen indicadores sin mediciones para el año seleccionado.');
 
 //----------------------------------------------------------------------------------
 //ERRORES: ERR_[Nombre]
@@ -768,13 +768,13 @@ define('ERR_CUAD_MANDO_EDIT', 'El cuadro de mando no existe o no tiene permisos 
 define('ERR_PANEL_VAL_ORDEN', 'Ya existe un panel con el mismo orden en este cuadro de mando.');
 
 //Datos
-define('ERR_DATO_ARCHIVAR_DEP', 'Este dato influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
+define('ERR_DATO_ARCHIVAR_DEP', 'Este dato influye en el cálculo de otros indicadores. Debe archivar éstos primero.');
 define('ERR_DATO_BORRAR_MED', 'Tiene mediciones asociadas al dato, necesita borrar primero las mediciones.');
 define('ERR_DATO_BORRAR_OBJOP', 'No se puede borrar el dato, está asociado al menos con un objetivo operacional de un plan estratégico.');
 define('ERR_DATO_BORRAR_PANEL', 'No se puede borrar el dato, está asociado al menos con un panel de los cuadros de mando. Debe quitarse antes del panel.');
 define('ERR_DATO_GRABAR', 'No se ha podido grabar el dato.');
 define('ERR_DATO_MOSTRAR', 'No se puede mostrar el dato, el identificador no existe en la base de datos.');
-define('ERR_DATO_BORRAR_DEP', 'Este dato influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
+define('ERR_DATO_BORRAR_DEP', 'Este dato influye en el cálculo de otros indicadores. Debe eliminar éstos primero.');
 
 //Entidades (Unidades)
 define('ERR_UNID_MOSTRAR', 'No se puede mostrar la unidad, el identificador no existe en la base de datos.');
@@ -782,8 +782,8 @@ define('ERR_UNID_EDIT', 'No se ha podido modificar la unidad.');
 
 //Indicadores
 define('ERR_INDIC_BORRAR_MED', 'Tiene mediciones asociadas al indicador, necesita borrar primero las mediciones.');
-define('ERR_INDIC_BORRAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe eliminar éstos primero.');
-define('ERR_INDIC_ARCHIVAR_DEP', 'Este indicador influye en el cálculo de otros indicadores/datos. Debe archivar éstos primero.');
+define('ERR_INDIC_BORRAR_DEP', 'Este indicador influye en el cálculo de otros indicadores. Debe eliminar éstos primero.');
+define('ERR_INDIC_ARCHIVAR_DEP', 'Este indicador influye en el cálculo de otros indicadores. Debe archivar éstos primero.');
 define('ERR_INDIC_BORRAR_OBJOP', 'No se puede borrar el indicador, está asociado al menos con un objetivo operacional de un plan estratégico.');
 define('ERR_INDIC_BORRAR_PANEL', 'No se puede borrar el indicador, está asociado al menos con un panel de los cuadros de mando. Debe quitarse antes del panel.');
 define('ERR_INDIC_GRABAR', 'No se ha podido grabar el indicador.');
