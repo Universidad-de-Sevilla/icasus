@@ -68,13 +68,13 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         else
         {
             $error = ERR_PERMISOS;
-            header("location:index.php?page=dato_listar&id_entidad=$entidad->id&error=$error");
+            header("location:index.php?page=indicador_listar&id_entidad=$id_entidad&error=$error");
         }
     }
     else
     {
         $aviso = MSG_MED_NO_REBIUN;
-        header("location:index.php?page=dato_listar&id_entidad=$entidad->id&aviso=$aviso");
+        header("location:index.php?page=indicador_listar&id_entidad=$id_entidad&aviso=$aviso");
     }
 }
 else

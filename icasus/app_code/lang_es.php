@@ -122,7 +122,7 @@ define('TXT_INDICS_MIO', 'Mis indicadores');
 define('TXT_INDIC_DAT', 'Datos del indicador');
 define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta medición.');
 define('TXT_INDIC_ACT_MED', 'Indique si además quiere activarla: ');
-define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores/datos dependientes');
+define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores dependientes');
 define('TXT_INDIC_DAT_CALCULADO', 'Calculado automáticamente');
 //Control
 define('TXT_INDIC_DAT_MED_NULA_AGRUPADOS', 'Mediciones nulas');
