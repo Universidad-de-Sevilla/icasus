@@ -130,7 +130,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     }
 
     $smarty->assign('_javascript', array('indicador_listar'));
-    $smarty->assign('_nombre_pagina', FIELD_INDICS . ': ' . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', FIELD_INDICS . '/' . FIELD_DATOS . ': ' . $entidad->nombre);
     $plantilla = 'indicador_listar.tpl';
 }
 else

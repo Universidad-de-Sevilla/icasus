@@ -244,7 +244,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12 text-center">
-                                                    <span class="h4">{$smarty.const.FIELD_INDICS}</span>
+                                                    <span class="h4">{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}</span>
                                                 </div>
                                             </div>
                                         </div>
