@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.40.0");
-define('IC_FECHA_REVISION', "29/12/2016");
+define('IC_VERSION', "3.40.1");
+define('IC_FECHA_REVISION', "10/01/2017");
 
+// 3.40.1 - 10/01/2017 - Se permite acceder a la edición de valores en indicadores/datos calculados sólo para asignar o activar/desactivar mediciones.
 // 3.40.0 - 29/12/2016 - Gestión para diferentes tipos de indicadores: proceso, control y/o dato.
 // 3.39.0 - 01/12/2016 - Creadas nuevas interfaces para una mejor usabilidad, y gestión de los planes estratégicos.
 // 3.38.0 - 25/11/2016 - Los paneles de los cuadros de mando informan cuando sus indicadores/datos no tienen valores recogidos y así no se bloquea el diálogo de carga. Tampoco se pueden borrar indicadores/datos que estén asociados a paneles.

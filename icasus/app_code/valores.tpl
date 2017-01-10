@@ -428,7 +428,7 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-{else if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo) && !$indicador->archivado && $mediciones}
+{else if ($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->archivado && $mediciones}
     <!-- Selección de periodos a consultar -->
     <div class="row">
         <div class="col-lg-12">

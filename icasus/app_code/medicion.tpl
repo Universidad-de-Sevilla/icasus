@@ -311,7 +311,7 @@
                         <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-default" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                             <i class="fa fa-hourglass fa-fw"></i>
                         </a>
-                        {if !$indicador->calculo && ($permiso_unidad || $indicador->id_responsable == $_usuario->id)}
+                        {if $permiso_unidad || $indicador->id_responsable == $_usuario->id}
                             <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default" href='index.php?page=valores&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                 <i class="fa fa-pencil-square-o fa-fw"></i>
                             </a>
