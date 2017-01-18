@@ -252,5 +252,5 @@ $smarty->assign("modulo", $modulo);
 $smarty->assign("entidad", $entidad);
 $smarty->assign("fecha", $fecha);
 $smarty->assign('_javascript', array('control'));
-$smarty->assign("_nombre_pagina", "Control:  $entidad->nombre");
+$smarty->assign("_nombre_pagina", TXT_CONTROL . ": " . $entidad->nombre);
 $plantilla = "control.tpl";

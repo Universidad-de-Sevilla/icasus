@@ -712,7 +712,9 @@ define('MSG_VALS_NO_MARCADOS', 'No se ha seleccionado ningún valor para desacti
 define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en indicadores archivados. Restaure primero el indicador.');
 
 //Control
-define('MSG_CONTROL_INFO', 'El control de indicadores se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores bajo su responsabilidad o todos si también es responsable de la Unidad.');
+define('MSG_CONTROL_MED_INFO', 'El control de mediciones se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores bajo su responsabilidad o todos si también es responsable de la Unidad.');
+define('MSG_CONTROL_EFQM_INFO', 'El control EFQM se muestra por criterios. Seleccione un criterio en el desplegable para visualizar los resultados. Aparecerán los indicadores asociados a dicho criterio.');
+define('MSG_CONTROL_EFQM_NO_RESUL', 'No se ha seleccionado ningún criterio EFQM o no existen indicadores/datos para los criterios seleccionados.');
 define('MSG_CONTROL_NO_RESPONSABLE', 'Usted no es responsable de esta unidad y tampoco de ningún indicador de la misma.');
 define('MSG_CONTROL_CARGA', 'Cargando datos de control, por favor espere.');
 define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado indicadores con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');

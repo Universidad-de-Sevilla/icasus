@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.40.1");
-define('IC_FECHA_REVISION', "10/01/2017");
+define('IC_VERSION', "3.41.0");
+define('IC_FECHA_REVISION', "18/01/2017");
 
+// 3.41.0 - 18/01/2017 - Control de indicadores/datos EFQM.
 // 3.40.1 - 10/01/2017 - Se permite acceder a la edición de valores en indicadores/datos calculados sólo para asignar o activar/desactivar mediciones.
 // 3.40.0 - 29/12/2016 - Gestión para diferentes tipos de indicadores: proceso, control y/o dato.
 // 3.39.0 - 01/12/2016 - Creadas nuevas interfaces para una mejor usabilidad, y gestión de los planes estratégicos.
