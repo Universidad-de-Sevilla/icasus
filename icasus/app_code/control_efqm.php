@@ -34,19 +34,29 @@ if ($modulo == 'efqm')
     if ($criterios)
     {
         $criterio_efqm_indicador = new Criterio_efqm_indicador();
+        $indicadores_efqm = array();
         $criterios_efqm_indicadores = array();
         foreach ($criterios as $id_criterio_efqm)
         {
             $id_efqm = filter_var($id_criterio_efqm, FILTER_SANITIZE_NUMBER_INT);
-            $criterios_efqm_indicadores = array_merge($criterios_efqm_indicadores, $criterio_efqm_indicador->Find("id_criterio_efqm=$id_criterio_efqm"));
+            //Indicadores/datos sin criterios EFQM
+            if ($id_efqm == 0)
+            {
+                $indicador = new Indicador();
+                $query_aux = "select distinct id_indicador from criterios_efqm_indicadores";
+                $indicadores_efqm = array_merge($indicadores_efqm, $indicador->Find_joined("id not in ($query_aux) and id_entidad=$id_entidad and archivado is null"));
+            }
+            else
+            {
+                $criterios_efqm_indicadores = array_merge($criterios_efqm_indicadores, $criterio_efqm_indicador->Find("id_criterio_efqm=$id_criterio_efqm"));
+            }
         }
-        $indicadores_efqm = array();
         foreach ($criterios_efqm_indicadores as $crit_efqm_ind)
         {
             $indicador = new Indicador();
             if ($indicador->load_joined("id=$crit_efqm_ind->id_indicador"))
             {
-                if (!in_array($indicador, $indicadores_efqm))
+                if (!in_array($indicador, $indicadores_efqm) && !($indicador->archivado) && $indicador->id_entidad == $id_entidad)
                 {
                     array_push($indicadores_efqm, $indicador);
                 }

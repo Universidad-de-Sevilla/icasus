@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.41.0");
-define('IC_FECHA_REVISION', "18/01/2017");
+define('IC_VERSION', "3.41.1");
+define('IC_FECHA_REVISION', "19/01/2017");
 
+// 3.41.1 - 19/01/2017 - El control de indicadores/datos EFQM permite ver también aquellos que no tienen criterios EFQM asociados. Corregido fallo: no se filtraba por unidad.
 // 3.41.0 - 18/01/2017 - Control de indicadores/datos EFQM.
 // 3.40.1 - 10/01/2017 - Se permite acceder a la edición de valores en indicadores/datos calculados sólo para asignar o activar/desactivar mediciones.
 // 3.40.0 - 29/12/2016 - Gestión para diferentes tipos de indicadores: proceso, control y/o dato.

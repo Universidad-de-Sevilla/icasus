@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}: {$entidad->nombre}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL} (EFQM): {$entidad->nombre}</h3>
             </div>
             <div class="modal-body">
                 <h4 class="text-center"><i class="fa fa-spinner fa-pulse"></i> {$smarty.const.MSG_CONTROL_CARGA}</h4>
@@ -122,6 +122,7 @@
                             <label class="col-sm-2 control-label">{$smarty.const.FIELD_EFQM}</label>
                             <div id="criterio" class="col-sm-6" data-id_entidad="{$entidad->id}">
                                 <select class="form-control chosen-select" id="efqm" multiple>
+                                    <option value="0">{$smarty.const.MSG_NO_DEF}</option>
                                     {foreach $criterios_efqm as $criterio_efqm}
                                         <option value="{$criterio_efqm->id}">
                                             {$criterio_efqm->codigo} - {$criterio_efqm->nombre}
@@ -190,13 +191,17 @@
                                     {$indicador->nombre}</a>
                             </td>
                             <td>
-                                <ul class="list-unstyled"> 
-                                    {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
-                                        <li>
-                                            {$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}
-                                        </li>
-                                    {/foreach}
-                                </ul>
+                               {if ($indicador->criterios_efqm|@count) > 0}
+                                    <ul class="list-unstyled"> 
+                                        {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
+                                            <li>
+                                                {$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}
+                                            </li>
+                                        {/foreach}
+                                    </ul>
+                                {else}
+                                    {$smarty.const.MSG_NO_DEF}
+                                {/if}
                             </td>
                             <td style="font-size: 12px">
                                 <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
