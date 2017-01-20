@@ -29,19 +29,6 @@ if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entida
     $entidad = new Entidad();
     $entidad->load("id=$id_entidad");
     $smarty->assign('entidad', $entidad);
-
-    //Validar año de inicio de un plan
-    $anyos = array();
-    $planes = $plan->Find("id_entidad=$id_entidad");
-    foreach ($planes as $pl)
-    {
-        if ($pl->anyo_inicio != $plan->anyo_inicio)
-        {
-            array_push($anyos, $pl->anyo_inicio);
-        }
-    }
-    $smarty->assign('elementos', $anyos);
-
     $smarty->assign('_nombre_pagina', TXT_PLAN_EDIT . ' ' . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion - 1) . ': ' . $entidad->nombre);
     $plantilla = 'plan_editar.tpl';
 }

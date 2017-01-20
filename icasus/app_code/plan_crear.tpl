@@ -120,7 +120,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
-                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=entidad_mostrar&id_entidad={$entidad->id}'>
+                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=plan_listar&id_entidad={$entidad->id}'>
                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                     </a>
                     <div class="pull-right">

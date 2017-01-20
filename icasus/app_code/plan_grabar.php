@@ -24,15 +24,23 @@ if (filter_has_var(INPUT_POST, 'anyo_inicio') && filter_has_var(INPUT_POST, 'dur
             $error = ERR_PLAN_EDIT;
             header("Location: index.php?page=error&error=error");
         }
+        $duracion_old = $plan->duracion;
+        $duracion = filter_input(INPUT_POST, 'duracion', FILTER_SANITIZE_NUMBER_INT);
+        //Si cambia la duración del plan
+        if ($duracion_old != $duracion)
+        {
+            //Actualizar ejecuciones del plan para la nueva duración
+        }
+        $plan->duracion = $duracion;
     }
     else
     {
         $plan->ejecucion = 0;
+        $plan->duracion = filter_input(INPUT_POST, 'duracion', FILTER_SANITIZE_NUMBER_INT);
     }
-    // Guardamos los datos
+    // Guardamos el resto de los datos
     $plan->id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $plan->anyo_inicio = filter_input(INPUT_POST, 'anyo_inicio', FILTER_SANITIZE_NUMBER_INT);
-    $plan->duracion = filter_input(INPUT_POST, 'duracion', FILTER_SANITIZE_NUMBER_INT);
     $plan->titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
     $plan->mision = filter_input(INPUT_POST, 'mision', FILTER_SANITIZE_STRING);
     $plan->vision = filter_input(INPUT_POST, 'vision', FILTER_SANITIZE_STRING);
