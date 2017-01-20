@@ -84,7 +84,7 @@
             <div class="form-group has-feedback">
                 <label for="duracion" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_DURACION}</label>
                 <div class="col-sm-8">
-                    <input type='number' class="form-control" name='duracion' id='duracion' value="{$plan->duracion}" min="1" placeholder="{$smarty.const.FIELD_DURACION}" required/>
+                    <input type='number' class="form-control" name='duracion' id='duracion' value="{$plan->duracion}" min="{$duracion_min}" placeholder="{$smarty.const.FIELD_DURACION}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>
                 </div>

@@ -29,7 +29,8 @@ if (filter_has_var(INPUT_POST, 'anyo_inicio') && filter_has_var(INPUT_POST, 'dur
         //Si cambia la duración del plan
         if ($duracion_old != $duracion)
         {
-            //Actualizar ejecuciones del plan para la nueva duración
+            //Actualizar la ejecucion global de todos los objetivos operacionales
+            //Actualizar ejecucion anual de todos los objetivos estratégicos      
         }
         $plan->duracion = $duracion;
     }

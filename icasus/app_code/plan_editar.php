@@ -29,6 +29,25 @@ if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entida
     $entidad = new Entidad();
     $entidad->load("id=$id_entidad");
     $smarty->assign('entidad', $entidad);
+
+    //Calcular la duración mínima del plan: limitada a las ejecuciones anuales
+    //que tengan recogidos valores
+    $duracion_min = 0;
+    $ejecucion = new Ejecucion();
+    for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
+    {
+        $ejecuciones_anyo = $ejecucion->Find("anyo=$i and id_objop is not null");
+        foreach ($ejecuciones_anyo as $ejecucion_anual)
+        {
+            if ($ejecucion_anual->valor > 0)
+            {
+                $duracion_min++;
+                break;
+            }
+        }
+    }
+    $smarty->assign('duracion_min', $duracion_min);
+
     $smarty->assign('_nombre_pagina', TXT_PLAN_EDIT . ' ' . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion - 1) . ': ' . $entidad->nombre);
     $plantilla = 'plan_editar.tpl';
 }
