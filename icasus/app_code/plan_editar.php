@@ -31,17 +31,17 @@ if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entida
     $smarty->assign('entidad', $entidad);
 
     //Calcular la duración mínima del plan: limitada a las ejecuciones anuales
-    //que tengan recogidos valores
-    $duracion_min = 0;
+    //que tengan recogidos valores (como mínimo dos años).
+    $duracion_min = 2;
     $ejecucion = new Ejecucion();
-    for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
+    for ($i = $plan->anyo_inicio + 2; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
     {
         $ejecuciones_anyo = $ejecucion->Find("anyo=$i and id_objop is not null");
         foreach ($ejecuciones_anyo as $ejecucion_anual)
         {
             if ($ejecucion_anual->valor > 0)
             {
-                $duracion_min++;
+                $duracion_min = $i - ($plan->anyo_inicio - 1);
                 break;
             }
         }
