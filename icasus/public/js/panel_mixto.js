@@ -30,6 +30,10 @@ $(document).ready(function () {
         var valor = $(this).val();
         $('#anyo_inicio').attr("max", valor);
     });
+    $('#anyo_inicio').change(function () {
+        var valor = $('#anyo_fin').val();
+        $('#anyo_inicio').attr("max", valor);
+    });
 
     //Reset
     $(':reset').click(function () {

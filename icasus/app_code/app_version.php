@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.42.0");
+define('IC_VERSION', "3.42.1");
 define('IC_FECHA_REVISION', "25/01/2017");
 
+// 3.42.1 - 25/01/2017 - Correccion: se valida al editar paneles de los cuadros de mando que el año de inicio no supere al de fin.
 // 3.42.0 - 25/01/2017 - Correcciones en la gestión de planes estratégicos: actualización de ejecuciones al editar (si es posible) la duración de los planes, tampoco se pueden editar los años de inicio de planes creados,...
 // 3.41.1 - 19/01/2017 - El control de indicadores/datos EFQM permite ver también aquellos que no tienen criterios EFQM asociados. Corregido fallo: no se filtraba por unidad.
 // 3.41.0 - 18/01/2017 - Control de indicadores/datos EFQM.
