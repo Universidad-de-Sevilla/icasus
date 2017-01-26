@@ -525,7 +525,7 @@
                                 <div id="{$proceso->id}" class="panel-collapse collapse proceso" role="tabpanel" aria-labelledby="" data-num_indic="{$indicadores[$proceso->id]|@count}">
                                     <div class="panel-body">
                                         {if $indicadores[$proceso->id]}
-                                            <div id="carousel-{$proceso->id}" class="carousel slide" data-ride="carousel">
+                                            <div id="carousel-{$proceso->id}" class="carousel slide" data-ride="carousel" data-interval="15000">
                                                 <!-- Wrapper for slides -->
                                                 <div class="carousel-inner" role="listbox">
                                                     {foreach $indicadores[$proceso->id] as $indicador}
@@ -605,7 +605,7 @@
                             <!-- /.panel-heading -->
                             <div id="datos" class="panel-collapse collapse proceso" role="tabpanel" aria-labelledby="" data-num_indic="{$datos|@count}">
                                 <div class="panel-body">
-                                    <div id="carousel-datos" class="carousel slide" data-ride="carousel">
+                                    <div id="carousel-datos" class="carousel slide" data-ride="carousel" data-interval="15000">
                                         <!-- Wrapper for slides -->
                                         <div class="carousel-inner" role="listbox">
                                             {foreach $datos as $dato}

@@ -7,8 +7,6 @@
 // Código javascript para entidad_mostrar.tpl
 //----------------------------------------------------------------------------
 
-var panel_vacio = "No hay mediciones o valores recogidos para este indicador"
-
 //Unidades orgánicas
 $("#organica").change(function () {
     var id_entidad = $(this).data('id_entidad');
@@ -29,7 +27,6 @@ $('.proceso').on('show.bs.collapse', function () {
         var id_proceso = $(this).attr('id');
         // Para cada contenedor de clase highchart vamos a pintar el gráfico
         $('.' + id_proceso + '.highchart').each(function (index) {
-            var panel = $(this);
             var id_panel = $(this).attr('id');
             var idIndicador = $(this).data("id_indicador");
             var nomIndicador = $(this).data("nombre_indicador");
@@ -133,6 +130,7 @@ $('.proceso').on('show.bs.collapse', function () {
                     },
                     series: dataseries
                 });
+
                 //Carga de los paneles completada
                 if (num_indic === index + 1) {
                     $('#dialogo_cargando_paneles').modal('hide');
@@ -188,4 +186,11 @@ $(document).ready(function () {
 $('.counter').counterUp({
     delay: 10,
     time: 1000
+});
+
+//Ajuste de las gráficas al tamaño del carrousel
+$('.carousel').on('slide.bs.carousel', function () {
+    setTimeout(function () {
+        $(window).trigger('resize');
+    }, 1);
 });
