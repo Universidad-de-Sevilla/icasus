@@ -76,6 +76,35 @@ else
 }
 
 // ---------------------------------------------------------------------------
+// Devuelve el número de planes estratégicos, procesos, indicadores/datos y 
+// cuadros de mando de la unidad cuyo identificador recibe como parámetro
+function info_unidad($link, $id)
+{
+    $query_unidad = "SELECT nombre FROM entidades WHERE id=$id";
+    $query_planes = "SELECT * FROM planes WHERE id_entidad=$id";
+    $query_procesos = "SELECT * FROM procesos WHERE id_entidad=$id";
+    $query_indicadores = "SELECT * FROM indicadores WHERE id_entidad=$id AND archivado is NULL";
+    $query_cuadros = "SELECT * FROM cuadros WHERE id_entidad=$id AND privado=0";
+
+    $unidad = mysqli_fetch_assoc(mysqli_query($link, $query_unidad))['nombre'];
+    $num_planes = mysqli_num_rows(mysqli_query($link, $query_planes));
+    $num_procesos = mysqli_num_rows(mysqli_query($link, $query_procesos));
+    $num_indicadores = mysqli_num_rows(mysqli_query($link, $query_indicadores));
+    $num_cuadros = mysqli_num_rows(mysqli_query($link, $query_cuadros));
+
+    //Añadimos al array de resultados como json
+    $datos = array(
+        "unidad" => $unidad,
+        "num_planes" => $num_planes,
+        "num_procesos" => $num_procesos,
+        "num_indicadores" => $num_indicadores,
+        "num_cuadros" => $num_cuadros
+    );
+    $json = json_encode($datos, JSON_UNESCAPED_UNICODE);
+    echo $json;
+}
+
+// ---------------------------------------------------------------------------
 // Devuelve los indicadores asociados a un panel de un cuadro de mando
 // Se utiliza en cuadro_mostrar
 function get_indicadores_panel($link, $id)
