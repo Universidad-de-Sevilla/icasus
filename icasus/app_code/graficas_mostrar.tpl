@@ -18,6 +18,22 @@
 </div>
 <!-- /Diálogo Confirmar Restaurar -->
 
+<!-- Diálogo Carga de Paneles -->
+<div class="modal fade" id="dialogo_cargando_paneles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sitemap fa-fw"></i> {$_nombre_pagina}</h3>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center"><i class='fa fa-spinner fa-pulse'></i> {$smarty.const.MSG_PANEL_CARGANDO}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Carga de Paneles -->
+
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
@@ -309,64 +325,108 @@
 {/if}
 <!-- /Indicadores dependientes -->
 
+<!-- Selección de periodos a consultar -->
+{if $pinta_grafico}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-calendar fa-fw"></i> {$smarty.const.FIELD_PERIODO}</span>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <form class="form-inline" method="post" action="">  
+                        <div class="form-group">
+                            <label for="inicio">{$smarty.const.FIELD_INICIO_PERIODO}</label>            
+                            <select class="form-control chosen-select" id="inicio" name="inicio">
+                                <option value="0">{$smarty.const.TXT_SEL}</option>
+                                {foreach from=$years item=year}
+                                    <option value="{$year->periodo_inicio|truncate:4:''}" data-id_indicador="{$indicador->id}">{$year->periodo_inicio|truncate:4:''}</option>
+                                {/foreach}
+                            </select>                
+                        </div>
+                        <div class="form-group col-sm-offset-2" id="end_year">
+                        </div>       
+                    </form>
+                    <div class="pull-right">
+                        <button id="btn_mostrar"
+                                data-id_indicador="{$indicador->id}"
+                                data-id_entidad="{$entidad->id}"
+                                class="btn btn-success">
+                            <i class="fa fa-search fa-fw"></i> {$smarty.const.TXT_MOSTRAR_RESUL}
+                        </button>
+                    </div>
+                </div>
+                <!-- /.panel-body --> 
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+{/if}
+<!-- /Selección de periodos a consultar -->
+
 <!-- Gráficas -->
-<div class ="row">
+<div id="graficas" class ="row">
     {if $pinta_grafico}
 
-        {if $panel_res}
-            <div class="col-lg-{$panel_res->ancho}" >
+        <!-- Panel de Valores/Subunidad -->
+        <div class="col-lg-{$panel_res->ancho}" >
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="fa fa-bar-chart fa-fw"></i><strong> {$panel_res->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}</span>
+                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div  id="container" 
+                          data-id_indicador="{$indicador->id}" 
+                          data-nombre_indicador="{$indicador->nombre}" 
+                          data-periodicidad="{$panel_res->periodicidad}"
+                          data-valor_min="{$indicador->valor_min}" 
+                          data-valor_max="{$indicador->valor_max}"
+                          data-fecha_inicio="{$panel_res->fecha_inicio}" 
+                          data-fecha_fin="{$panel_res->fecha_fin}"
+                          data-id_entidad="{$indicador->id_entidad}"
+                          data-agregacion="{$indicador->id_tipo_agregacion}">
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-{$panel->ancho} -->    
+        <!-- /Panel de Valores/Subunidad -->
+
+        <!-- Paneles de líneas -->
+        {foreach $paneles as $panel}
+            <div class="col-lg-{$panel->ancho}" >
                 <div class="panel panel-red">
                     <div class="panel-heading">
-                        <span class="panel-title"><i class="fa fa-bar-chart fa-fw"></i><strong> {$panel_res->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}</span>
+                        <span class="panel-title"><i class="fa fa-line-chart fa-fw"></i><strong> {$panel->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}</span>
                         <i class="fa fa-chevron-up pull-right clickable"></i>
                     </div>
                     <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div  id="container" 
-                              data-id_indicador="{$indicador->id}" 
-                              data-nombre_indicador="{$indicador->nombre}" 
-                              data-periodicidad="{$panel_res->periodicidad}"
-                              data-valor_min="{$indicador->valor_min}" 
-                              data-valor_max="{$indicador->valor_max}"
-                              data-id_entidad="{$indicador->id_entidad}"
-                              data-agregacion="{$indicador->id_tipo_agregacion}">
+                    <div class="panel-body">  
+                        <div class="highchart {$panel->tipo->clase_css}" 
+                             id="panel_{$panel->id}" 
+                             data-id_indicador="{$indicador->id}" 
+                             data-nombre_indicador="{$indicador->nombre}" 
+                             data-valor_min="{$indicador->valor_min}" 
+                             data-valor_max="{$indicador->valor_max}" 
+                             data-fecha_inicio="{$panel->fecha_inicio}" 
+                             data-fecha_fin="{$panel->fecha_fin}" 
+                             data-periodicidad="{$panel->periodicidad}">
                         </div>
                     </div>
                     <!-- /.panel-body -->
                 </div>
                 <!-- /.panel -->
             </div>
-            <!-- /.col-lg-{$panel->ancho} -->    
-        {/if}
-
-        {if isset($paneles)}
-            {foreach $paneles as $panel}
-                <div class="col-lg-{$panel->ancho}" >
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <span class="panel-title"><i class="fa fa-line-chart fa-fw"></i><strong> {$panel->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}</span>
-                            <i class="fa fa-chevron-up pull-right clickable"></i>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">  
-                            <div class="highchart {$panel->tipo->clase_css}" 
-                                 id="panel_{$panel->id}" 
-                                 data-id_indicador="{$indicador->id}" 
-                                 data-nombre_indicador="{$indicador->nombre}" 
-                                 data-valor_min="{$indicador->valor_min}" 
-                                 data-valor_max="{$indicador->valor_max}" 
-                                 data-fecha_inicio="{$panel->fecha_inicio}" 
-                                 data-fecha_fin="{$panel->fecha_fin}" 
-                                 data-periodicidad="{$panel->periodicidad}">
-                            </div>
-                        </div>
-                        <!-- /.panel-body -->
-                    </div>
-                    <!-- /.panel -->
-                </div>
-                <!-- /.col-lg-{$panel->ancho} -->
-            {/foreach} 
-        {/if}
+            <!-- /.col-lg-{$panel->ancho} -->
+        {/foreach} 
+        <!-- /Paneles de líneas -->
 
     {else if !$mediciones}
         <div class="col-lg-12">

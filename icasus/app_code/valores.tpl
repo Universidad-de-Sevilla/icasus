@@ -438,25 +438,21 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <form class="form-inline" method="post" action="">
-                        <input type="hidden" name="id_indicador" id="id_indicador" value="{$indicador->id}">
-                        <input type="hidden" name="id_entidad" id="id_entidad" value="{$entidad->id}">   
+                    <form class="form-inline" method="post" action=""> 
                         <div class="form-group">
                             <label for="inicio">{$smarty.const.FIELD_INICIO_PERIODO}</label>            
                             <select class="form-control chosen-select" id="inicio" name="inicio">
                                 <option value="0">{$smarty.const.TXT_SEL}</option>
                                 {foreach from=$years item=year}
-                                    <option value="{$year->periodo_inicio|truncate:4:''}" data-id_indicador="{$indicador->id}">{$year->periodo_inicio|truncate:4:''}</option>
+                                    <option value="{$year->periodo_inicio|truncate:4:''}">{$year->periodo_inicio|truncate:4:''}</option>
                                 {/foreach}
                             </select>                
                         </div>
-                        <div class="form-group col-lg-offset-1" id="end_year">
+                        <div class="form-group col-sm-offset-2" id="end_year">
                         </div>       
                     </form>
                     <div class="pull-right">
                         <button id="btn_mostrar"
-                                data-id_indicador="{$indicador->id}"
-                                data-id_entidad="{$entidad->id}"
                                 data-texto_cargando="{$smarty.const.MSG_MED_CARGANDO}"
                                 class="btn btn-success">
                             <i class="fa fa-search fa-fw"></i> {$smarty.const.TXT_MOSTRAR_RESUL}

@@ -543,20 +543,20 @@
                                                             <div class="carousel-caption">
                                                                 <h3>
                                                                     <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}' 
-                                                                       title="{$indicador->nombre}: {$indicador->descripcion}"><i class="fa fa-line-chart fa-fw"></i></a>
+                                                                       title="{$indicador->nombre}: {$indicador->descripcion}"><i class="fa fa-dashboard fa-fw"></i></a>
                                                                 </h3>
-                                                                <p style="color: #337AB7">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
+                                                                <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
                                                             </div>
                                                         </div>
                                                     {/foreach}
                                                 </div>
                                                 <!-- Controls -->
                                                 <a class="left carousel-control" title="{$smarty.const.TXT_ANT}" href="#carousel-{$proceso->id}" role="button" data-slide="prev">
-                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7"></span>
+                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7;"></span>
                                                     <span class="sr-only">{$smarty.const.TXT_ANT}</span>
                                                 </a>
                                                 <a class="right carousel-control" title="{$smarty.const.TXT_SIG}" href="#carousel-{$proceso->id}" role="button" data-slide="next">
-                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7"></span>
+                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7;"></span>
                                                     <span class="sr-only">{$smarty.const.TXT_SIG}</span>
                                                 </a>
                                             </div>
@@ -623,20 +623,20 @@
                                                     <div class="carousel-caption">
                                                         <h3>
                                                             <a href='index.php?page=indicador_mostrar&id_indicador={$dato->id}&id_entidad={$entidad->id}' 
-                                                               title="{$dato->nombre}: {$dato->descripcion}"><i class="fa fa-line-chart fa-fw"></i></a>
+                                                               title="{$dato->nombre}: {$dato->descripcion}"><i class="fa fa-dashboard fa-fw"></i></a>
                                                         </h3>
-                                                        <p style="color: #337AB7">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
+                                                        <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
                                                     </div>
                                                 </div>
                                             {/foreach}
                                         </div>
                                         <!-- Controls -->
                                         <a class="left carousel-control" title="{$smarty.const.TXT_ANT}" href="#carousel-datos" role="button" data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7"></span>
+                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7;"></span>
                                             <span class="sr-only">{$smarty.const.TXT_ANT}</span>
                                         </a>
                                         <a class="right carousel-control" title="{$smarty.const.TXT_SIG}" href="#carousel-datos" role="button" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7"></span>
+                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7;"></span>
                                             <span class="sr-only">{$smarty.const.TXT_SIG}</span>
                                         </a>
                                     </div>

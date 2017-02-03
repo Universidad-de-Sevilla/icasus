@@ -84,14 +84,28 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
 
     //Simplemente ver si hay mediciones
     $medicion = new Medicion();
+    $years = $medicion->find_year_mediciones($id_indicador);
+    $smarty->assign('years', $years);
     $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio");
     $smarty->assign("mediciones", $mediciones);
     if ($mediciones)
     {
+        $anio_fin = date('Y');
+        if ($anio_fin - 5 > $indicador->historicos)
+        {
+            $anio_inicio = $anio_fin - 5;
+        }
+        else
+        {
+            $anio_inicio = $indicador->historicos;
+        }
+
         //Prepara el panel de Valores/Subunidad
         $panel_res = new Panel();
         $panel_res->ancho = 12;
         $panel_res->nombre = TXT_VALS_SUBUNID;
+        $panel_res->fecha_inicio = $anio_inicio . "-01-01";
+        $panel_res->fecha_fin = $anio_fin . "-12-31";
         $panel_res->periodicidad = "anual";
         $smarty->assign("panel_res", $panel_res);
 
@@ -100,31 +114,28 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
         $panel = new Panel();
         $panel->tipo = new Panel_tipo();
         $panel->ancho = 12;
-        $anio_fin = date('Y');
+
+        // Prepara el panel intraanual
         if ($indicador->periodicidad != "Anual" && $indicador->periodicidad != "Bienal")
         {
-            // Prepara el panel intraanual
-            $anio_inicio = date('Y') - 2;
             $panel->id = 2;
             $panel->tipo->clase_css = "lineal";
             $panel->ancho = 6;
             $panel->nombre = TXT_DOS_ULT_ANYO;
-            $panel->fecha_inicio = $anio_inicio . "-01-01";
+            $panel->fecha_inicio = (date('Y') - 2) . "-01-01";
             $panel->fecha_fin = $anio_fin . "-12-31";
             $panel->periodicidad = "todos";
             $paneles[] = clone($panel);
         }
         // Prepara el panel anual o bienal
-        $anio_inicio = $indicador->historicos;
-
         if ($indicador->periodicidad == "Bienal")
         {
-            $anio_fin = date('Y') + 2;
+            $anio_fin = $anio_fin + 2;
         }
         $panel->id = 1;
         $panel->tipo->clase_css = "lineal";
         $panel->nombre = TXT_HISTORICO;
-        $panel->fecha_inicio = $indicador->historicos . "-01-01";
+        $panel->fecha_inicio = $anio_inicio . "-01-01";
         $panel->fecha_fin = $anio_fin . "-12-31";
         $panel->periodicidad = "anual";
         if ($indicador->periodicidad == "Bienal")
@@ -136,6 +147,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     }
 
     //Comprobamos si hay valores para pintar los gráficos
+    ///REVISAR FUNCIÓN SALIR ANTES DEL BUCLE
     $valor = new Valor();
     $pinta_grafico = false;
     if ($mediciones)
@@ -150,6 +162,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
                     if ($val->valor != null)
                     {
                         $pinta_grafico = true;
+                        break;
                     }
                 }
             }

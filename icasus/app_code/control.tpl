@@ -100,7 +100,7 @@
                         </div>
                         <div class="form-horizontal">
                             <div class="form-group">
-                                <label class="col-sm-1 control-label">{$smarty.const.FIELD_ANYO}</label>
+                                <label for="Year" class="col-sm-1 control-label">{$smarty.const.FIELD_ANYO}</label>
                                 <div id="periodo" class="col-sm-4" data-id_entidad="{$entidad->id}">
                                     {html_select_date id="Year" prefix="" all_extra="class='form-control chosen-select'"
                                             display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-9

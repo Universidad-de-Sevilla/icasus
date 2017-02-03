@@ -7,7 +7,7 @@
 // Muestra las gráficas para las mediciones en el fichero graficas_mostrar.tpl
 //----------------------------------------------------------------------------
 
-// Variables
+//Variables
 var idIndicador = $("#container").data("id_indicador");
 var nomIndicador = $("#container").data("nombre_indicador");
 var valor_min = null;
@@ -24,7 +24,13 @@ if (valor_min === 1 && valor_max === 9) {
     tickInterval = 1;
 }
 
-//Indicadores/datos con intranuales con agregación manual de unidades
+//Fechas
+var fecha_inicio = $("#container").data("fecha_inicio");
+var fecha_fin = $("#container").data("fecha_fin");
+var fecha_inicio_es = (new Date(fecha_inicio)).toLocaleDateString();
+var fecha_fin_es = (new Date(fecha_fin)).toLocaleDateString();
+
+//Indicadores/datos intranuales con agregación manual de unidades
 var id_entidad = $("#container").data("id_entidad");
 var id_tipo_agregacion = $("#container").data("agregacion");
 
@@ -33,7 +39,7 @@ var chartSerie = new HighchartSerie();
 var totales = [];
 // Consulta a la base de datos
 $.ajax({
-    url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador,
+    url: "api_publica.php?metodo=get_valores_con_timestamp&id=" + idIndicador + "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin,
     type: "GET",
     dataType: "json",
     success: onDataReceived
@@ -66,8 +72,11 @@ function onDataReceived(datos) {
             text: nomIndicador,
             style: {"fontSize": "14px"}
         },
+        subtitle: {
+            text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
+        },
         exporting: {
-            filename: nomIndicador
+            filename: nomIndicador + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
         },
         xAxis: {
             type: 'category'
@@ -140,7 +149,7 @@ $('.highchart').each(function () {
     if ($.isNumeric($(this).data("valor_max"))) {
         valor_max = $(this).data("valor_max");
     }
-//Intervalo para las encuestas
+    //Intervalo para las encuestas
     if (valor_min === 1 && valor_max === 9) {
         tickInterval = 1;
     }
@@ -308,3 +317,46 @@ hs.Expander.prototype.onAfterExpand = function () {
         i++;
     }
 };
+
+$(function () {
+    //Muestra el selector de los años de las mediciones
+    $('#inicio').on('change', function () {
+        var id_indicador = $('#btn_mostrar').data('id_indicador');
+        var id_entidad = $('#btn_mostrar').data('id_entidad');
+        $("#inicio option:selected").each(function () {
+            var elegido = $(this).val();
+            if (elegido === '0') {
+                $("#end_year").html(' ');
+            }
+            else
+            {
+                var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&inicio=" + elegido;
+                $.ajax({
+                    url: "index.php?page=valores_ajax&ajax=true&modulo=seleccionar_años" + parametros,
+                    success: function (datos) {
+                        $("#end_year").html(datos);
+                    }
+                });
+            }
+        });
+    });
+
+    //Muestra en las gráficas los valores que están entre los períodos seleccionados
+    $('#btn_mostrar').on('click', function () {
+        var id_indicador = $(this).data('id_indicador');
+        var id_entidad = $(this).data('id_entidad');
+        var inicio = $("#inicio").val();
+        var fin = $("#fin").val();
+        if (inicio !== '0') {
+            var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&inicio=" + inicio + "&fin=" + fin;
+            $('#dialogo_cargando_paneles').modal('show');
+            $.ajax({
+                url: "index.php?page=graficas_ajax&ajax=true" + parametros,
+                success: function (datos) {
+                    $("#graficas").html(datos);
+                    $('#dialogo_cargando_paneles').modal('hide');
+                }
+            });
+        }
+    });
+});
