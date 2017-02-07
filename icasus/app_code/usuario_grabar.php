@@ -36,5 +36,5 @@ else
 {
     // Avisamos de error por falta de parametros
     $error = ERR_PARAM;
-    header("Location: index.php?page=cuadros&error=error");
+    header("location:index.php?page=error&error=$error");
 }

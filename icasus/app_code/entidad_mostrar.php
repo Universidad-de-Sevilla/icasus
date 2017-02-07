@@ -61,18 +61,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     }
     $smarty->assign('principal', $principal);
 
-    // Obtenemos los procesos de la unidad sus indicadores y datos
-    $smarty->assign('procesos', $procesos);
-    $i = new Indicador();
-    $indicadores = array();
-    foreach ($procesos as $proceso)
-    {
-        $indicadores_proc = $i->find("id_proceso = $proceso->id AND id_entidad = $id_entidad AND archivado IS NULL");
-        $indicadores[$proceso->id] = $indicadores_proc;
-    }
-    $smarty->assign('indicadores', $indicadores);
-    $smarty->assign('datos', $datos);
-
     //Subunidades
     $subentidad = new Entidad();
     $subentidades = $subentidad->Find("id_madre = $id_entidad ORDER by codigo");
@@ -83,8 +71,20 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $archivos = $archivo->find_joined("id_objeto = $id_entidad AND tipo_objeto = 'unidad' AND visible=1");
     $smarty->assign('archivos', $archivos);
 
+    //Resumen
     $anio_fin = date('Y');
     $smarty->assign('anio_fin', $anio_fin);
+    $smarty->assign('procesos', $procesos);
+    $i = new Indicador();
+    $indicadores = array();
+    foreach ($procesos as $proceso)
+    {
+        $indicadores_proc = $i->find("id_proceso = $proceso->id AND id_entidad = $id_entidad AND archivado IS NULL");
+        $indicadores[$proceso->id] = $indicadores_proc;
+    }
+    $smarty->assign('indicadores', $indicadores);
+    $datos = $i->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado is NULL");
+    $smarty->assign('datos', $datos);
 
     $smarty->assign('_javascript', array('entidad_mostrar'));
     $smarty->assign('_nombre_pagina', FIELD_UNID . ': ' . $entidad->nombre);

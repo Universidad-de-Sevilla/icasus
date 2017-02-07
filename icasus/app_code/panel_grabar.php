@@ -81,7 +81,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
+                    header("location:index.php?page=error&error=$error");
                 }
                 break;
 
@@ -117,7 +117,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
+                    header("location:index.php?page=error&error=$error");
                 }
                 break;
 
@@ -144,7 +144,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
+                    header("location:index.php?page=error&error=$error");
                 }
                 break;
 
@@ -177,7 +177,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
+                    header("location:index.php?page=error&error=$error");
                 }
                 break;
 
@@ -211,7 +211,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
+                    header("location:index.php?page=error&error=$error");
                 }
                 break;
 
@@ -245,7 +245,7 @@ if (filter_has_var(INPUT_POST, 'id_cuadro') && filter_has_var(INPUT_POST, 'nombr
                 {
                     //Error faltan parámetros
                     $error = ERR_PARAM;
-                    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
+                    header("location:index.php?page=error&error=$error");
                 }
                 break;
         } //switch
@@ -261,5 +261,5 @@ else
 {
     //Error faltan parámetros
     $error = ERR_PARAM;
-    header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_ent&error=$error");
+    header("location:index.php?page=error&error=$error");
 }

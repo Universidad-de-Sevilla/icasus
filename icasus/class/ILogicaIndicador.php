@@ -8,7 +8,7 @@
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
 // Descripcion: Interface que contendra los métodos para la Lógica de Negocio 
-// de los Indicadores/Datos en Icasus.
+// de los Indicadores en Icasus.
 //--------------------------------------------------------------------------
 
 interface ILogicaIndicador
@@ -18,24 +18,20 @@ interface ILogicaIndicador
     //MEDICIONES
     //-----------------------------------------------------------------
     //Genera las mediciones de un Indicador/Dato a partir del año que recibe 
-    //como parámetro. 
-    //El tipo es: "indicador" o "dato"
-    public function generar_mediciones($indicador, $tipo, $anyo);
+    //como parámetro.
+    public function generar_mediciones($indicador, $anyo);
 
     //Genera las mediciones de un Indicador/Dato para el año que recibe 
-    //como parámetro en Indicadores/Datos con periodicidad Bienal. 
-    //El tipo es: "indicador" o "dato"
-    public function generar_medicion_bienal($indicador, $anyo, $tipo);
+    //como parámetro en Indicadores/Datos con periodicidad Bienal.
+    public function generar_medicion_bienal($indicador, $anyo);
 
     //Genera las mediciones de un Indicador/Dato para el año que recibe 
-    //como parámetro en función de su periodicidad. 
-    //El tipo es: "indicador" o "dato"
-    public function generar_mediciones_por_anyo($indicador, $anyo, $tipo);
+    //como parámetro en función de su periodicidad.
+    public function generar_mediciones_por_anyo($indicador, $anyo);
 
     //Borra del Indicador/Dato que recibe como parámetro la medición cuyo 
-    //identificador recibe también como parámetro
-    //El tipo es: "indicador" o "dato"
-    public function borrar_medicion($indicador, $tipo, $id_medicion);
+    //identificador recibe también como parámetro.
+    public function borrar_medicion($indicador, $id_medicion);
 
     //-----------------------------------------------------------------------------
     // FUNCIONES PARA EL CÁLCULO DE TOTALES

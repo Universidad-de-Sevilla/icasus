@@ -30,17 +30,23 @@ if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entida
     $entidad->load("id=$id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    //Validar año de inicio de un plan
-    $anyos = array();
-    $planes = $plan->Find("id_entidad=$id_entidad");
-    foreach ($planes as $pl)
+    //Calcular la duración mínima del plan: limitada a las ejecuciones anuales
+    //que tengan recogidos valores (como mínimo dos años).
+    $duracion_min = 2;
+    $ejecucion = new Ejecucion();
+    for ($i = $plan->anyo_inicio + 2; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
     {
-        if ($pl->anyo_inicio != $plan->anyo_inicio)
+        $ejecuciones_anyo = $ejecucion->Find("anyo=$i and id_objop is not null");
+        foreach ($ejecuciones_anyo as $ejecucion_anual)
         {
-            array_push($anyos, $pl->anyo_inicio);
+            if ($ejecucion_anual->valor > 0)
+            {
+                $duracion_min = $i - ($plan->anyo_inicio - 1);
+                break;
+            }
         }
     }
-    $smarty->assign('elementos', $anyos);
+    $smarty->assign('duracion_min', $duracion_min);
 
     $smarty->assign('_nombre_pagina', TXT_PLAN_EDIT . ' ' . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion - 1) . ': ' . $entidad->nombre);
     $plantilla = 'plan_editar.tpl';

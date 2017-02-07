@@ -1,8 +1,15 @@
 <?php
 
-define('IC_VERSION', "3.39.0");
-define('IC_FECHA_REVISION', "01/12/2016");
+define('IC_VERSION', "3.43.0");
+define('IC_FECHA_REVISION', "26/01/2017");
 
+// 3.43.0 - 26/01/2017 - Nueva función en la api_publica que permite obtener información (nº de planes, nº de procesos e indicadores,..) de una unidad.
+// 3.42.1 - 25/01/2017 - Correccion: se valida al editar paneles de los cuadros de mando que el año de inicio no supere al de fin.
+// 3.42.0 - 25/01/2017 - Correcciones en la gestión de planes estratégicos: actualización de ejecuciones al editar (si es posible) la duración de los planes, tampoco se pueden editar los años de inicio de planes creados,...
+// 3.41.1 - 19/01/2017 - El control de indicadores/datos EFQM permite ver también aquellos que no tienen criterios EFQM asociados. Corregido fallo: no se filtraba por unidad.
+// 3.41.0 - 18/01/2017 - Control de indicadores/datos EFQM.
+// 3.40.1 - 10/01/2017 - Se permite acceder a la edición de valores en indicadores/datos calculados sólo para asignar o activar/desactivar mediciones.
+// 3.40.0 - 29/12/2016 - Gestión para diferentes tipos de indicadores: proceso, control y/o dato.
 // 3.39.0 - 01/12/2016 - Creadas nuevas interfaces para una mejor usabilidad, y gestión de los planes estratégicos.
 // 3.38.0 - 25/11/2016 - Los paneles de los cuadros de mando informan cuando sus indicadores/datos no tienen valores recogidos y así no se bloquea el diálogo de carga. Tampoco se pueden borrar indicadores/datos que estén asociados a paneles.
 // 3.37.4 - 23/11/2016 - Se muestran en los listados de objetivos operacionales la duración (los años) que éstos están activos.

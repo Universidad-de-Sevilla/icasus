@@ -110,12 +110,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                         </a>
                     </li>
                     <li>
@@ -157,10 +152,10 @@
                 <a href="#objop_ficha" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation">
-                <a href="#indics_correl" title="{$smarty.const.FIELD_INDICS_CORREL}" aria-controls="{$smarty.const.FIELD_INDICS_CORREL}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-arrows-h fa-fw"></sub> {$smarty.const.FIELD_INDICS_CORREL}</a>
+                <a href="#indics_correl" title="{$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})" aria-controls="{$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-gear fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})</a>
             </li>
             <li role="presentation">
-                <a href="#indics_control" title="{$smarty.const.FIELD_INDICS_CONTROL}" aria-controls="{$smarty.const.FIELD_INDICS_CONTROL}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-sliders fa-fw"></sub> {$smarty.const.FIELD_INDICS_CONTROL}</a>
+                <a href="#indics_control" title="{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})" aria-controls="{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-sliders fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -417,7 +412,7 @@
                                                 <i class="fa fa-area-chart fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                               title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}">
+                                               title="{$smarty.const.FIELD_MEDICIONES}">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             {if $indicador->id_proceso}
@@ -458,7 +453,6 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
-                                    <th>{$smarty.const.FIELD_PROC}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
                                     <th>{$smarty.const.FIELD_RESP_MED}</th>
@@ -480,15 +474,6 @@
                                                title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
                                                 {$indicador->nombre}</a>
                                         </td>
-                                        <td>
-                                            {if $indicador->id_proceso}
-                                                <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
-                                                    {$indicador->proceso->nombre}
-                                                </a>
-                                            {else}
-                                                {$smarty.const.FIELD_DATOS}
-                                            {/if}
-                                        </td>
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
@@ -506,7 +491,7 @@
                                                 <i class="fa fa-area-chart fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                               title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}">
+                                               title="{$smarty.const.FIELD_MEDICIONES}">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             {if $indicador->id_proceso}

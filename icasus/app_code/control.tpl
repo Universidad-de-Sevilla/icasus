@@ -54,12 +54,7 @@
                         </li>
                         <li>
                             <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                                <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                             </a>
                         </li>
                         <li>
@@ -101,7 +96,7 @@
                     <div class="panel-body">
                         <div class="alert alert-info">
                             <i class="fa fa-info-circle fa-fw"></i> 
-                            {$smarty.const.MSG_CONTROL_INFO}
+                            {$smarty.const.MSG_CONTROL_MED_INFO}
                         </div>
                         <div class="form-horizontal">
                             <div class="form-group">
@@ -110,6 +105,9 @@
                                     {html_select_date id="Year" prefix="" all_extra="class='form-control chosen-select'"
                                             display_months=FALSE display_days=FALSE start_year=($smarty.now|date_format:"%Y")-9
                                             end_year=$smarty.now|date_format:"%Y" time='' reverse_years=TRUE}
+                                </div>
+                                <div class='col-sm-2'>
+                                    <a class='btn btn-primary' title="{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_EFQM}" href="index.php?page=control_efqm&modulo=inicio&id_entidad={$entidad->id}">{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_EFQM}</a>
                                 </div>
                             </div>
                         </div>

@@ -35,5 +35,5 @@ if (filter_has_var(INPUT_GET, 'id_cuadro'))
 else
 {
     $error = ERR_PARAM;
-    header("Location: index.php?page=cuadros&error=$error");
+    header("location:index.php?page=error&error=$error");
 }

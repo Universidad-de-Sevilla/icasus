@@ -6,7 +6,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //-------------------------------------------------------------------------------
-// Muestra la ficha del indicador
+// Descripcion: Muestra la ficha de un indicador
 //-------------------------------------------------------------------------------
 
 global $smarty;
@@ -22,11 +22,6 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     if ($indicador->load_joined("id = $id_indicador"))
     {
         $smarty->assign('indicador', $indicador);
-        //Si es un dato
-        if (!$indicador->id_proceso)
-        {
-            header("Location: index.php?page=dato_mostrar&id_dato=$id_indicador&id_entidad=$indicador->id_entidad");
-        }
     }
     else
     {
@@ -38,18 +33,22 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    //Proceso del indicador
-    $proceso = $indicador->proceso;
-    $smarty->assign('proceso', $proceso);
-
-    //Obtener todos los indicadores del proceso para avanzar o retroceder
+    //Obtener todos los indicadores para avanzar o retroceder
     if ($indicador->archivado)
     {
-        $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id AND archivado is NOT NULL");
+        $indicadores = $indicador->Find("id_entidad = $id_entidad AND archivado is NOT NULL");
     }
     else
     {
-        $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id AND archivado is NULL");
+        if ($indicador->id_proceso)
+        {
+
+            $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$indicador->id_proceso AND archivado is NULL");
+        }
+        else
+        {
+            $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado is NULL");
+        }
     }
     $smarty->assign("indicadores", $indicadores);
     $cont = 0;
@@ -61,6 +60,19 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
             $smarty->assign("indice", $indice);
         }
         $cont++;
+    }
+
+    //Proceso del indicador
+    $proceso = $indicador->proceso;
+    $smarty->assign('proceso', $proceso);
+
+    //Objetivo operacional de indicadores de control
+    $objop = new ObjetivoOperacional();
+    $objetivo_indicador = new ObjetivoIndicador();
+    if ($objetivo_indicador->load("id_indicador=$id_indicador AND control=1"))
+    {
+        $objop->load("id=$objetivo_indicador->id_objop");
+        $smarty->assign('objop', $objop);
     }
 
     //Responsables

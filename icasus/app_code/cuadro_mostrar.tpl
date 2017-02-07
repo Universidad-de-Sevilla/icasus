@@ -228,12 +228,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                         </a>
                     </li>
                     <li>
@@ -311,11 +306,11 @@
             {*Si la cuenta es impar y el panel es ancho*}
             {if ($cuenta +1)%2==0 && $panel->ancho>6}
                 {$cuenta=$cuenta+1}
-                </div>
-            {/if}
-            {*Creamos una fila al empezar, cada dos paneles normales o si es grande*}
-            {if $cuenta%2==0}
-                <div class="row">
+            </div>
+        {/if}
+        {*Creamos una fila al empezar, cada dos paneles normales o si es grande*}
+        {if $cuenta%2==0}
+            <div class="row">
             {/if}
             <div class="col-lg-{$panel->ancho}" >
                 <div class="panel panel-red">
@@ -402,15 +397,15 @@
             {*Cerramos la fila cada dos paneles normales si el panel 
             es grande y al terminar*}
             {if ($cuenta +1)%2==0 || $panel@last || $panel->ancho>6}
-                </div>
-            {/if}
-            {*Incrementamos la cuenta en función del ancho del panel*}
-            {if $panel->ancho>6}
-                {$cuenta = $cuenta+2}
-            {else}
-                {$cuenta = $cuenta+1}
-            {/if}
-        {/foreach} 
-    {/if}
+            </div>
+        {/if}
+        {*Incrementamos la cuenta en función del ancho del panel*}
+        {if $panel->ancho>6}
+            {$cuenta = $cuenta+2}
+        {else}
+            {$cuenta = $cuenta+1}
+        {/if}
+    {/foreach} 
+{/if}
 </div>
 <!-- /Paneles -->

@@ -107,12 +107,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                         </a>
                     </li>
                     <li>
@@ -161,10 +156,10 @@
                 <a href="#proc_subprocs" title="{$smarty.const.FIELD_SUBPROCS}" aria-controls="{$smarty.const.FIELD_SUBPROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_SUBPROCS}</a>
             </li>
             <li role="presentation">
-                <a href="#proc_indics" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</a>
+                <a href="#proc_indics" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-gear fa-fw"></sub> {$smarty.const.FIELD_INDICS}</a>
             </li>
             <li role="presentation">
-                <a href="#proc_indics_archivados" title="{$smarty.const.TXT_INDIC_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_INDIC_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.TXT_INDIC_ARCHIVADOS}</a>
+                <a href="#proc_indics_archivados" title="{$smarty.const.TXT_INDIC_ARCHIVADOS}" aria-controls="{$smarty.const.TXT_INDIC_ARCHIVADOS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-archive fa-fw"></sub> {$smarty.const.TXT_INDIC_ARCHIVADOS}</a>
             </li>
             <li role="presentation">
                 <a href="#proc_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
@@ -497,7 +492,7 @@
                                                 <i class="fa fa-area-chart fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                               title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
+                                               title="{$smarty.const.FIELD_MEDICIONES}" target="_blank">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
@@ -510,11 +505,9 @@
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
-                                                {if !$indicador->calculo}
-                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
-                                                        <i class="fa fa-pencil-square-o fa-fw"></i> 
-                                                    </a>
-                                                {/if}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
+                                                    <i class="fa fa-pencil-square-o fa-fw"></i> 
+                                                </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                     <i class="fa fa-user fa-fw"></i>
                                                 </a>
@@ -611,7 +604,7 @@
                                                 <i class="fa fa-area-chart fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
-                                               title="{$smarty.const.TXT_INDIC_MED}: {$indicador->nombre}" target="_blank">
+                                               title="{$smarty.const.FIELD_MEDICIONES}" target="_blank">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">

@@ -37,12 +37,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                         </a>
                     </li>
                     <li>
@@ -64,7 +59,9 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            <li><a title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DATOS}</a></li>
+            <li>
+                <a title="{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}</a>
+            </li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -125,7 +122,7 @@
                                                            data-id_usuario = "{$id_usuario}"/>
                                                 </td>
                                                 <td class="text-justify">
-                                                    <p><b><a title="{$valor->indicador->nombre} ({$valor->medicion->etiqueta})" href="index.php?page=medicion&id_medicion={$valor->medicion->id}&id_entidad={$valor->indicador->id_entidad}&tipo=dato">
+                                                    <p><b><a title="{$valor->indicador->nombre} ({$valor->medicion->etiqueta})" href="index.php?page=medicion&id_medicion={$valor->medicion->id}&id_entidad={$valor->indicador->id_entidad}">
                                                                 {$valor->indicador->nombre} ({$valor->medicion->etiqueta})</a></b></p>
                                                     <p><small>{$valor->indicador->descripcion}</small></p>   
                                                 </td>

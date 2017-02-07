@@ -137,12 +137,12 @@ hr, .divider{
 }
 
 .navbar-top-links .dropdown-alerts {
-    width: 350px;
+    width: 300px;
     min-width: 0;
 }
 
 .navbar-top-links .dropdown-alerts {
-    margin-left: -125px;
+    margin-left: -150px;
 }
 
 .navbar-top-links .dropdown-user {

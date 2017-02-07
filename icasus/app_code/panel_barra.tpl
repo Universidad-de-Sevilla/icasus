@@ -152,12 +152,7 @@
                         </li>
                         <li>
                             <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                                <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                             </a>
                         </li>
                         <li>
@@ -293,7 +288,7 @@
                         <div class="col-sm-offset-2 col-sm-8">
                             <table class="table table-hover" id="indicadores_subunidades_seleccionados" data-texto_borrar="{$smarty.const.TXT_BORRAR}" style="background-color: white">
                                 <thead>
-                                <th>{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}</th>
+                                <th>{$smarty.const.FIELD_INDICS}</th>
                                 <th colspan="2">{$smarty.const.FIELD_UNID}</th>
                                 </thead>
                             </table>

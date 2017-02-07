@@ -232,7 +232,7 @@
                         </div>
                         <!-- /.row -->                   
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href="index.php?page=indicador_listar&id_entidad={$entidad->id}">
                                     <div class="panel panel-resumen">
                                         <div class="panel-heading">
@@ -244,35 +244,15 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col-xs-12 text-center">
-                                                    <span class="h4">{$smarty.const.FIELD_INDICS}</span>
+                                                    <span class="h4">{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                            <!-- /.col-md-4 -->
-                            <div class="col-md-4">
-                                <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href="index.php?page=dato_listar&id_entidad={$entidad->id}">
-                                    <div class="panel panel-resumen">
-                                        <div class="panel-heading">
-                                            <div class="row">
-                                                <div class="col-xs-12 text-center">
-                                                    <i class="fa fa-database fa-2x"></i>
-                                                    <span class="huge counter">{$num_datos}</span>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-xs-12 text-center">
-                                                    <span class="h4">{$smarty.const.FIELD_DATOS}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <!-- /.col-md-4 -->
-                            <div class="col-md-4">
+                            <!-- /.col-md-6 -->
+                            <div class="col-md-6">
                                 <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
                                     <div class="panel panel-resumen">
                                         <div class="panel-heading">
@@ -291,7 +271,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <!-- /.col-md-4 -->
+                            <!-- /.col-md-6 -->
                         </div>
                         <!-- /.row -->
                     </div>
@@ -423,7 +403,6 @@
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_PLANES}" href='index.php?page=plan_listar&id_entidad={$subentidad->id}'><i class="fa fa-book fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$subentidad->id}'><i class="fa fa-gears fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_INDICS}" href='index.php?page=indicador_listar&id_entidad={$subentidad->id}'><i class="fa fa-dashboard fa-fw"></i></a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_DATOS}" href='index.php?page=dato_listar&id_entidad={$subentidad->id}'><i class="fa fa-database fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_CUADROS_MANDO}" href='index.php?page=cuadro_listar&id_entidad={$subentidad->id}'><i class="fa fa-th fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_CONSULT}" href='index.php?page=consulta_avanzada&id_entidad={$subentidad->id}'><i class="fa fa-commenting fa-fw"></i></a>
                                         </td>
@@ -516,6 +495,7 @@
             <!-- Resumen -->
             <div role="tabpanel" class="tab-pane" id="unid_res">
                 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
                     <!-- Indicadores agrupados por procesos -->
                     {if $procesos}
                         {foreach from=$procesos item=proceso}
@@ -601,21 +581,22 @@
                         </div> 
                     {/if}
                     <!-- /Indicadores agrupados por procesos -->
-                    <!-- Datos -->
+
+                    <!-- Resto de indicadores -->
                     {if $datos} 
                         <div class="panel panel-danger">
                             <div class="panel-heading" role="tab" id="">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <h4 class="panel-title">
-                                            <a title="{$smarty.const.FIELD_DATOS}" role="button" data-toggle="collapse" data-parent="#accordion" href="#datos" aria-expanded="false" aria-controls="">
-                                                <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS}
+                                            <a title="{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL}, {$smarty.const.FIELD_DATOS})" role="button" data-toggle="collapse" data-parent="#accordion" href="#datos" aria-expanded="false" aria-controls="">
+                                                <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL}, {$smarty.const.FIELD_DATOS})
                                             </a>
                                         </h4>
                                     </div>
                                     <!-- /.col-md-10 -->
                                     <div class="col-md-2">
-                                        <span title="{$entidad->nombre}: {$datos|@count} {$smarty.const.FIELD_DATOS}" class="badge pull-right">{$datos|@count} {$smarty.const.FIELD_DATOS}</span> 
+                                        <span title="{$entidad->nombre}: {$datos|@count} {$smarty.const.FIELD_INDICS}" class="badge pull-right">{$datos|@count} {$smarty.const.FIELD_INDICS}</span> 
                                     </div>
                                     <!-- /.col-md-2 -->
                                 </div>
@@ -641,7 +622,7 @@
                                                     </div>
                                                     <div class="carousel-caption">
                                                         <h3>
-                                                            <a href='index.php?page=dato_mostrar&id_dato={$dato->id}&id_entidad={$entidad->id}' 
+                                                            <a href='index.php?page=indicador_mostrar&id_indicador={$dato->id}&id_entidad={$entidad->id}' 
                                                                title="{$dato->nombre}: {$dato->descripcion}"><i class="fa fa-line-chart fa-fw"></i></a>
                                                         </h3>
                                                         <p style="color: #337AB7">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
@@ -673,7 +654,8 @@
                             {$smarty.const.MSG_UNID_NO_DATOS}
                         </div> 
                     {/if}
-                    <!-- /Datos -->
+                    <!-- /Resto de indicadores -->
+
                 </div>
             </div>
             <!-- /Resumen -->

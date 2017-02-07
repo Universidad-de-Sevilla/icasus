@@ -40,13 +40,17 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     }
     $smarty->assign('elementos', $ordenes);
 
-    //Indicadores
     $indicador = new Indicador();
+    //Indicadores de procesos
     $indicadores = $indicador->find("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado is NULL");
     $smarty->assign('indicadores', $indicadores);
 
-    //Datos
-    $datos = $indicador->find("id_entidad = $id_entidad AND id_proceso is NULL AND archivado is NULL");
+    //Indicadores de control
+    $indicadores_ctl = $indicador->find("id_entidad = $id_entidad AND control=1 AND archivado is NULL");
+    $smarty->assign('indicadores_ctl', $indicadores_ctl);
+
+    //Indicadores de datos
+    $datos = $indicador->find("id_entidad = $id_entidad AND id_proceso is NULL AND control=0 AND archivado is NULL");
     $smarty->assign('datos', $datos);
 
     $smarty->assign('_javascript', array('panel_tabla'));

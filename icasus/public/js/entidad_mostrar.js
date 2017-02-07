@@ -7,6 +7,8 @@
 // Código javascript para entidad_mostrar.tpl
 //----------------------------------------------------------------------------
 
+var panel_vacio = "No hay mediciones o valores recogidos para este indicador"
+
 //Unidades orgánicas
 $("#organica").change(function () {
     var id_entidad = $(this).data('id_entidad');
@@ -27,7 +29,8 @@ $('.proceso').on('show.bs.collapse', function () {
         var id_proceso = $(this).attr('id');
         // Para cada contenedor de clase highchart vamos a pintar el gráfico
         $('.' + id_proceso + '.highchart').each(function (index) {
-            var idPanel = $(this).attr('id');
+            var panel = $(this);
+            var id_panel = $(this).attr('id');
             var idIndicador = $(this).data("id_indicador");
             var nomIndicador = $(this).data("nombre_indicador");
             var periodicidad = $(this).data("periodicidad");
@@ -64,28 +67,30 @@ $('.proceso').on('show.bs.collapse', function () {
                 success: onDataReceived
             });
             function onDataReceived(datos) {
-                datos.forEach(function (dato) {
-                    // Agrega los que no tienen etiqueta_mini (total y referencias)
-                    // descarta las mediciones de unidades (no sirven aquí)
-                    if (!dato.etiqueta_mini && (dato.valor !== null)) {
-                        chartSerie.add(dato);
-                    }
-                });
-                // Pide las series de datos a chartSerie
-                // A saber: Totales y Valores de referencia
-                var dataseries = chartSerie.getLinealSerie();
-                // Si no es anual ocultamos valores de referencia
-                if (chartSerie.categoryType !== "año") {
-                    dataseries.forEach(function (dataserie, index) {
-                        if (index !== 0) {
-                            dataserie.visible = false;
+                if (datos) {
+                    datos.forEach(function (dato) {
+                        // Agrega los que no tienen etiqueta_mini (total y referencias)
+                        // descarta las mediciones de unidades (no sirven aquí)
+                        if (!dato.etiqueta_mini && (dato.valor !== null)) {
+                            chartSerie.add(dato);
                         }
                     });
+                    // Pide las series de datos a chartSerie
+                    // A saber: Totales y Valores de referencia
+                    var dataseries = chartSerie.getLinealSerie();
+                    // Si no es anual ocultamos valores de referencia
+                    if (chartSerie.categoryType !== "año") {
+                        dataseries.forEach(function (dataserie, index) {
+                            if (index !== 0) {
+                                dataserie.visible = false;
+                            }
+                        });
+                    }
                 }
                 //Gráfico de línea
                 pintaGrafico({
                     chart: {
-                        renderTo: idPanel,
+                        renderTo: id_panel,
                         events: {}
                     },
                     credits: {

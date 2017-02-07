@@ -18,57 +18,37 @@ $logicaIndicador = new LogicaIndicador();
 if (filter_has_var(INPUT_GET, 'id_indicador'))
 {
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
-    $tipo = "indicador";
-}
-else if (filter_has_var(INPUT_GET, 'id_dato'))
-{
-    $id_indicador = filter_input(INPUT_GET, 'id_dato', FILTER_SANITIZE_NUMBER_INT);
-    $tipo = "dato";
-}
-else
-{
-    $error = ERR_PARAM;
-    header("location:index.php?page=error&error=$error");
-}
-
-if (filter_has_var(INPUT_GET, 'id_entidad'))
-{
-    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
-
     $indicador = new Indicador();
-    $indicador->load("id = $id_indicador");
-    $smarty->assign('indicador', $indicador);
-
-    //Avanzar entre indicadores/datos
-    if ($tipo == "indicador")
+    if ($indicador->load_joined("id = $id_indicador"))
     {
-        //Proceso del indicador
-        $proceso = new Proceso();
-        $proceso->load_joined("id = $indicador->id_proceso");
-        $smarty->assign('proceso', $proceso);
-        //Obtener todos los indicadores del proceso para avanzar o retroceder 
-        if ($indicador->archivado)
-        {
-            $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id AND archivado is NOT NULL");
-        }
-        else
-        {
-            $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$proceso->id AND archivado is NULL");
-        }
-        $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
+        $smarty->assign('indicador', $indicador);
     }
     else
     {
-        //Obtener todos los datos para avanzar o retroceder 
-        if ($indicador->archivado)
+        $error = ERR_INDIC_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
+
+    $entidad = new Entidad();
+    $entidad->load("id = $indicador->id_entidad");
+    $smarty->assign('entidad', $entidad);
+
+    //Obtener todos los indicadores para avanzar o retroceder
+    if ($indicador->archivado)
+    {
+        $indicadores = $indicador->Find("id_entidad = $id_entidad AND archivado is NOT NULL");
+    }
+    else
+    {
+        if ($indicador->id_proceso)
         {
-            $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado is NOT NULL");
+
+            $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$indicador->id_proceso AND archivado is NULL");
         }
         else
         {
             $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado is NULL");
         }
-        $smarty->assign('_nombre_pagina', FIELD_DATO . ": $indicador->nombre");
     }
     $smarty->assign("indicadores", $indicadores);
     $cont = 0;
@@ -82,9 +62,26 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $cont++;
     }
 
-    $entidad = new Entidad();
-    $entidad->load("id = $indicador->id_entidad");
-    $smarty->assign('entidad', $entidad);
+    //Proceso del indicador
+    $proceso = $indicador->proceso;
+    $smarty->assign('proceso', $proceso);
+
+    //Responsables
+    $responsable = false;
+    if ($indicador->id_responsable == $usuario->id)
+    {
+        $responsable = true;
+    }
+    $smarty->assign('responsable', $responsable);
+
+    //Vemos si influye en otros Indicadores/Datos
+    $indicadores_dependientes = $logicaIndicador->calcular_influencias($id_indicador);
+    $smarty->assign('indicadores_dependientes', $indicadores_dependientes);
+
+    //Si es calculado vemos los Indicadores/Datos de los que depende
+    $indicadores_influyentes = $logicaIndicador->calcular_dependencias($id_indicador);
+    $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
+
 
     $medicion = new Medicion();
     $years = $medicion->find_year_mediciones($id_indicador);
@@ -135,20 +132,12 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id, $limite);
     $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
 
-    //Vemos si influye en otros Indicadores/Datos
-    $indicadores_dependientes = $logicaIndicador->calcular_influencias($indicador->id);
-    $smarty->assign('indicadores_dependientes', $indicadores_dependientes);
-
-    //Si es calculado vemos los Indicadores/Datos de los que depende
-    $indicadores_influyentes = $logicaIndicador->calcular_dependencias($id_indicador);
-    $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
-
-    $smarty->assign("tipo", $tipo);
     $smarty->assign('_javascript', array('valores'));
+    $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
     $plantilla = 'valores.tpl';
 }
 else
 {
     $error = ERR_PARAM;
-    header("location:index.php?page=entidad_listar&error=$error");
+    header("location:index.php?page=error&error=$error");
 }

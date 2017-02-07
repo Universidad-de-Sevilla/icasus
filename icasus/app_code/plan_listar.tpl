@@ -87,12 +87,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                         </a>
                     </li>
                     <li>
@@ -143,7 +138,7 @@
                     <a href="#planes" title="{$smarty.const.FIELD_PLANES}" aria-controls="{$smarty.const.FIELD_PLANES}" role="tab" data-toggle="tab"><i class="fa fa-book fa-fw"></i> {$smarty.const.FIELD_PLANES}</a>
                 </li>
                 <li role="presentation">
-                    <a href="#user_objops" title="{$smarty.const.TXT_USER_OBJOPS}" aria-controls="{$smarty.const.TXT_USER_OBJOPS}" role="tab" data-toggle="tab"><i class="fa fa-bullseye fa-fw"></i> {$smarty.const.TXT_USER_OBJOPS}</a>
+                    <a href="#user_objops" title="{$smarty.const.TXT_USER_OBJOPS}" aria-controls="{$smarty.const.TXT_USER_OBJOPS}" role="tab" data-toggle="tab"><i class="fa fa-bullseye fa-fw"></i><sub class="fa fa-user fa-fw"></sub> {$smarty.const.TXT_USER_OBJOPS}</a>
                 </li>
             </ul>
             <!-- /Nav tabs -->

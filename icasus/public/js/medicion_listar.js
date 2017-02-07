@@ -13,9 +13,8 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
     var etiqueta_medicion = button.data('etiqueta_medicion');
     var id_medicion = button.data('id_medicion');
     var id_entidad = button.data('id_entidad');
-    var tipo = button.data('tipo');
     var modal = $(this);
-    var link = 'index.php?page=medicion_borrar&id_medicion=' + id_medicion + '&tipo=' + tipo + '&id_entidad=' + id_entidad;
+    var link = 'index.php?page=medicion_borrar&id_medicion=' + id_medicion + '&id_entidad=' + id_entidad;
     modal.find('#etiqueta_medicion').text(etiqueta_medicion);
     modal.find('#borrar').attr('href', link);
 });

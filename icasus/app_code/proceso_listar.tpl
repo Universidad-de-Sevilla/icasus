@@ -81,12 +81,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                         </a>
                     </li>
                     <li>
@@ -121,13 +116,13 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-                <a href="#proc_list" title="{$smarty.const.TXT_PROC_LIST}"
-                   aria-controls="{$smarty.const.TXT_PROC_LIST}" role="tab" data-toggle="tab"><i
-                        class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_PROC_LIST}</a>
+                <a href="#proc_list" title="{$smarty.const.FIELD_PROCS}"
+                   aria-controls="{$smarty.const.FIELD_PROCS}" role="tab" data-toggle="tab"><i
+                        class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_PROCS}</a>
             </li>
             {if $procesos_propios}
                 <li role="presentation">
-                    <a href="#user_procs" title="{$smarty.const.TXT_USER_PROCS}" aria-controls="{$smarty.const.TXT_USER_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i> {$smarty.const.TXT_USER_PROCS}</a>
+                    <a href="#user_procs" title="{$smarty.const.TXT_USER_PROCS}" aria-controls="{$smarty.const.TXT_USER_PROCS}" role="tab" data-toggle="tab"><i class="fa fa-gears fa-fw"></i><sub class="fa fa-user fa-fw"></sub> {$smarty.const.TXT_USER_PROCS}</a>
                 </li>
             {/if}
             <li role="presentation">

@@ -22,12 +22,10 @@ $entidad = new Entidad();
 $entidad->load("id = $id_entidad");
 $smarty->assign('entidad', $entidad);
 
-
 $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
 $indicador = new Indicador();
 $indicador->load("id = $id_indicador");
 $smarty->assign('indicador', $indicador);
-
 
 $inicio = filter_input(INPUT_GET, 'inicio', FILTER_SANITIZE_NUMBER_INT);
 

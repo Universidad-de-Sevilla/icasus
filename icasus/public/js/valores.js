@@ -52,6 +52,7 @@ $(function () {
     $('#page-wrapper').on('change', '.activar_uno', function () {
         var activar_uno = $(this);
         var id_valor = $(this).data('id_valor');
+        var calculo = $(this).data('calculo');
         var id_medicion = $(this).parent().parent().data('id_medicion');
         var id_subunidad = $(this).parent().parent().parent().data('id_subunidad');
         var inicio = $("#inicio").val();
@@ -67,7 +68,7 @@ $(function () {
         $.ajax({
             url: "index.php?page=valores_ajax&ajax=true&modulo=activar_uno" + parametros,
             success: function () {
-                if (activo) {
+                if (activo && !calculo) {
                     $('#' + id_valor).prop('disabled', false);
                 }
                 else {

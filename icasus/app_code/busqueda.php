@@ -28,12 +28,8 @@ if (filter_has_var(INPUT_GET, 'texto_buscar'))
 
     //Buscar indicadores/datos
     $indicador = new Indicador();
-    $indicadores = $indicador->Find_joined("(upper(nombre) LIKE '%$textob%' OR upper(codigo) LIKE '%$textob%') AND id_proceso IS NOT NULL");
+    $indicadores = $indicador->Find_joined("(upper(nombre) LIKE '%$textob%' OR upper(codigo) LIKE '%$textob%')");
     $smarty->assign('indicadores', $indicadores);
-
-    //Buscar datos
-    $datos = $indicador->Find_joined("(upper(nombre) LIKE '%$textob%' OR upper(codigo) LIKE '%$textob%') AND id_proceso IS NULL");
-    $smarty->assign('datos', $datos);
 
     //Buscar cuadros de mando
     $cuadro = new Cuadro();

@@ -95,7 +95,7 @@ class Indicador_subunidad extends ADOdb_Active_Record
     }
 
     //actualiza los registros de la tabla indicador_subunidad de manera asincrona
-    //desde el controlador medicion_crear
+    //(SIN UTILIDAD ACTUALMENTE)
     public function actualizar_subunidades($id_indicador, $id_entidad)
     {
         $indicator = new Indicador();

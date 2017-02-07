@@ -37,12 +37,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                         </a>
                     </li>
                     <li>
@@ -80,18 +75,16 @@
               data-toggle="validator" class="form-horizontal">
             <input type="hidden" name="id_entidad" value="{$entidad->id}">
             <input type="hidden" name="id_plan" value="{$plan->id}">
-            <div class="form-group has-feedback">
+            <div class="form-group">
                 <label for="anyo_inicio" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_ANYO_INICIO}</label>
                 <div class="col-sm-8">
-                    <input type='number' class="form-control" name='anyo_inicio' id='anyo_inicio' value="{$plan->anyo_inicio}" min="{$smarty.now|date_format:'%Y'}" placeholder="{$smarty.const.FIELD_ANYO_INICIO}" data-elementos='{$elementos|@json_encode}' data-validar_igual="validar_igual" data-validar_igual-error="{$smarty.const.ERR_PLAN_VAL_ANYO}" required/>
-                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                    <div class="help-block with-errors"></div>
+                    <input type='text' class="form-control" name='anyo_inicio' id='anyo_inicio' value="{$plan->anyo_inicio}" placeholder="{$smarty.const.FIELD_ANYO_INICIO}" readonly/>
                 </div>
             </div>
             <div class="form-group has-feedback">
                 <label for="duracion" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_DURACION}</label>
                 <div class="col-sm-8">
-                    <input type='number' class="form-control" name='duracion' id='duracion' value="{$plan->duracion}" min="1" placeholder="{$smarty.const.FIELD_DURACION}" required/>
+                    <input type='number' class="form-control" name='duracion' id='duracion' value="{$plan->duracion}" min="{$duracion_min}" placeholder="{$smarty.const.FIELD_DURACION}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>
                 </div>

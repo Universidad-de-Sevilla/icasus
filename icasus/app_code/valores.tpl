@@ -110,14 +110,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-recycle fa-fw"></i> {if $tipo == 'indicador'}{$smarty.const.TXT_INDIC_RESTAURAR}{else}{$smarty.const.TXT_DATO_RESTAURAR}{/if}: {$indicador->nombre}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-recycle fa-fw"></i> {$smarty.const.TXT_INDIC_RESTAURAR}: {$indicador->nombre}</h3>
             </div>
             <div class="modal-body">
-                <p>{if $tipo == 'indicador'}{$smarty.const.MSG_INDIC_CONFIRM_RESTAURAR}{else}{$smarty.const.MSG_DATO_CONFIRM_RESTAURAR}{/if}</p>
+                <p>{$smarty.const.MSG_INDIC_CONFIRM_RESTAURAR}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href='index.php?page={$tipo}_archivar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}&modulo=restaurar'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar" href='index.php?page=indicador_archivar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}&modulo=restaurar'><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
             </div>
         </div>
     </div>
@@ -130,25 +130,25 @@
         <h3 title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    {if $tipo == 'indicador'}<i class="fa fa-dashboard fa-fw"></i>{else}<i class="fa fa-database fa-fw"></i>{/if} {$_nombre_pagina}
+                    <i class="fa fa-dashboard fa-fw"></i>{if $indicador->archivado}<sub class="fa fa-archive fa-fw"></sub>{else}{if $indicador->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{else if $indicador->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if}{/if} {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
                 {if count($indicadores)> 1}
                     <div class="col-md-2">
-                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($indicadores)} {if $tipo == 'indicador'}{if $indicador->archivado}{$smarty.const.TXT_INDIC_ARCHIVADOS}{else}{$smarty.const.FIELD_INDICS}{/if}{else}{if $indicador->archivado}{$smarty.const.TXT_DATO_ARCHIVADOS}{else}{$smarty.const.FIELD_DATOS}{/if}{/if}</div>
+                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($indicadores)} {$smarty.const.FIELD_INDICS}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
                             <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=valores&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[0]->id}'>
+                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_INDIC}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=valores&id_entidad={$entidad->id}&id_indicador={$indicadores[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=valores&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[$indice-1]->id}'>
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_INDIC}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=valores&id_entidad={$entidad->id}&id_indicador={$indicadores[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=valores&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[$indice+1]->id}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_INDIC}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=valores&id_entidad={$entidad->id}&id_indicador={$indicadores[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ULTIMO} {if $tipo == 'indicador'}{$smarty.const.FIELD_INDIC}{else}{$smarty.const.FIELD_DATO}{/if}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=valores&id_entidad={$entidad->id}&id_{$tipo}={$indicadores[(count($indicadores)-1)]->id}'>
+                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_INDIC}" class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled{/if}" href='index.php?page=valores&id_entidad={$entidad->id}&id_indicador={$indicadores[(count($indicadores)-1)]->id}'>
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
@@ -193,12 +193,7 @@
                     </li>
                     <li>
                         <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}">({$num_indicadores})</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a title="{$smarty.const.TXT_DATOS_DESCRIPCION}" href='index.php?page=dato_listar&id_entidad={$entidad->id}'>
-                            <i class="fa fa-database fa-fw"></i> {$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_datos} {$smarty.const.FIELD_DATOS}">({$num_datos})</span>
+                            <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                         </a>
                     </li>
                     <li>
@@ -220,7 +215,7 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            {if $tipo == 'indicador'}
+            {if $indicador->id_proceso}
                 <li>
                     <a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a>
                 </li>
@@ -234,7 +229,7 @@
                 </li>
             {else}
                 <li>
-                    <a title="{$smarty.const.FIELD_DATOS}" href='index.php?page={$tipo}_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_DATOS}</a>
+                    <a title="{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}</a>
                 </li>
             {/if}
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
@@ -250,30 +245,30 @@
     <div class="col-lg-12">
         <ul class="nav nav-tabs">
             <li role="presentation">
-                <a title="{$smarty.const.TXT_FICHA}" href='index.php?page={$tipo}_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$entidad->id}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
-            </li>
-            <li role="presentation" >
-                <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
+                <a title="{$smarty.const.TXT_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
             <li role="presentation">
-                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
+                <a title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-area-chart fa-fw"></i> {$smarty.const.TXT_REP_GRAFIC}</a>
             </li>
-            <li role="presentation" class="active">
-                <a title="{$smarty.const.TXT_VAL_EDIT}" href="#"><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
+            <li role="presentation">
+                <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
+            {if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo)}
+                <li role="presentation" class="active">
+                    <a title="{$smarty.const.TXT_VAL_EDIT}" href="#"><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
+                </li>
+            {/if}
             {if $_control || $_usuario->id==$indicador->id_responsable}
                 <li role="presentation">
-                    <a title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}</a>
+                    <a title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}</a>
                 </li>
             {/if}
             <li role="presentation">
-                <a title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_{$tipo}={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</a>
+                <a title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_REF}</a>
             </li>
-            {if $tipo == 'indicador'}
-                <li role="presentation">
-                    <a title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-connectdevelop fa-fw"></i> {$smarty.const.TXT_ANALISIS}</a>
-                </li>
-            {/if}
+            <li role="presentation">
+                <a title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-connectdevelop fa-fw"></i> {$smarty.const.TXT_ANALISIS}</a>
+            </li>
         </ul>
     </div>
     <!-- /.col-lg-12 -->
@@ -282,7 +277,7 @@
 <br>
 <!-- /Menú del indicador -->
 
-<!-- Indicadores/Datos archivados -->
+<!-- Indicadores archivados -->
 {if $indicador->archivado}
     <div class="row">
         <div class="col-lg-12">
@@ -291,13 +286,13 @@
                     <div class="row">
                         <div class="col-sm-10">
                             <span class="panel-title">
-                                <i class="fa fa-archive fa-fw"></i> {if $tipo=='indicador'}{$smarty.const.TXT_INDIC_ARCHIVADO}{else}{$smarty.const.TXT_DATO_ARCHIVADO}{/if}
+                                <i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_INDIC_ARCHIVADO}
                             </span>
                         </div>
                         <!-- /.col-sm-10 -->
                         <div class="col-sm-2">
-                            {if $_control || $indicador->id_responsable == $_usuario->id}
-                                <a title="{if $tipo=='indicador'}{$smarty.const.TXT_INDIC_RESTAURAR}{else}{$smarty.const.TXT_DATO_RESTAURAR}{/if}" class="btn btn-danger pull-right" href='javascript:void(0)' 
+                            {if $_control || $responsable}
+                                <a title="{$smarty.const.TXT_INDIC_RESTAURAR}" class="btn btn-danger pull-right" href='javascript:void(0)' 
                                    data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
                                     <i class="fa fa-recycle fa-fw"></i>
                                 </a>
@@ -332,9 +327,9 @@
     </div>
     <!-- /.row -->
 {/if}
-<!-- /Indicadores/Datos archivados -->
+<!-- /Indicadores archivados -->
 
-<!-- Indicadores/datos calculados -->
+<!-- Indicadores calculados -->
 {if $indicador->calculo}
     <div class="row">
         <div class="col-lg-12">
@@ -353,27 +348,15 @@
                                 <th>{$smarty.const.FIELD_NOMBRE}</th>
                             </tr>
                             {foreach $indicadores_influyentes as $indicador_influyente}
-                                {if $indicador_influyente->id_proceso}
-                                    <tr>
-                                        <td><span class="badge">{$indicador_influyente->id}</span></td>
-                                        <td>
-                                            <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}' 
-                                               title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
-                                                <i class="fa fa-dashboard fa-fw"></i> {$indicador_influyente->nombre}
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {else}
-                                    <tr>
-                                        <td><span class="badge">{$indicador_influyente->id}</span></td>
-                                        <td> 
-                                            <a class="btn btn-info" href='index.php?page=dato_mostrar&id_dato={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}' 
-                                               title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
-                                                <i class="fa fa-database fa-fw"></i> {$indicador_influyente->nombre}
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {/if}   
+                                <tr>
+                                    <td><span class="badge">{$indicador_influyente->id}</span></td>
+                                    <td>
+                                        <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}' 
+                                           title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
+                                            <i class="fa fa-dashboard fa-fw"></i>{if $indicador_influyente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{else if $indicador_influyente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_influyente->nombre}
+                                        </a>
+                                    </td>
+                                </tr>  
                             {/foreach}
                             <tr class="info">
                                 <th><i class="fa fa-calculator fa-fw"></i> {$smarty.const.FIELD_FORMULA}</th>
@@ -390,9 +373,9 @@
     </div>
     <!-- /.row -->
 {/if}
-<!-- /Indicadores/datos calculados -->
+<!-- /Indicadores calculados -->
 
-<!-- Indicadores/datos dependientes -->
+<!-- Indicadores dependientes -->
 {if $indicadores_dependientes}
     <div class="row">
         <div class="col-lg-12">
@@ -411,42 +394,41 @@
                                 <th>{$smarty.const.FIELD_NOMBRE}</th>
                             </tr>
                             {foreach $indicadores_dependientes as $indicador_dependiente}
-                                {if $indicador_dependiente->id_proceso}
-                                    <tr>
-                                        <td><span class="badge">{$indicador_dependiente->id}</span></td>
-                                        <td>
-                                            <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}' 
-                                               title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
-                                                <i class="fa fa-dashboard fa-fw"></i> {$indicador_dependiente->nombre}
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {else}
-                                    <tr>
-                                        <td><span class="badge">{$indicador_dependiente->id}</span></td>
-                                        <td> 
-                                            <a class="btn btn-warning" href='index.php?page=dato_mostrar&id_dato={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}' 
-                                               title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
-                                                <i class="fa fa-database fa-fw"></i> {$indicador_dependiente->nombre}
-                                            </a>
-                                        </td>
-                                    </tr>
-                                {/if}   
+                                <tr>
+                                    <td><span class="badge">{$indicador_dependiente->id}</span></td>
+                                    <td>
+                                        <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}' 
+                                           title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
+                                            <i class="fa fa-dashboard fa-fw"></i>{if $indicador_dependiente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{else if $indicador_dependiente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_dependiente->nombre}
+                                        </a>
+                                    </td>
+                                </tr>  
                             {/foreach}
                         </table>
                     </div>
                 </div>
-                <!-- /.panel-body -->
+                <!-- /.panel-body --> 
             </div>
-            <!-- /.panel --> 
+            <!-- /.panel -->
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
 {/if}
-<!-- /Indicadores/datos dependientes -->
+<!-- /Indicadores dependientes -->
 
-{if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo) && !$indicador->archivado}
+{if !$mediciones}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-info alert-dismissible">
+                <i class="fa fa-info-circle fa-fw"></i> 
+                {$smarty.const.MSG_INDIC_NO_VAL}
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+{else if ($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->archivado && $mediciones}
     <!-- Selección de periodos a consultar -->
     <div class="row">
         <div class="col-lg-12">
@@ -510,13 +492,25 @@
     <!-- /.row -->
     <!-- /Valores de subunidades-mediciones -->
 {else if !($_control || $indicador->id_responsable == $_usuario->id)}
-    <div class="alert alert-danger alert-dismissible">
-        <i class="fa fa-exclamation-circle fa-fw"></i> 
-        {$smarty.const.ERR_VAL_EDIT} {$tipo}.
-    </div> 
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-danger alert-dismissible">
+                <i class="fa fa-exclamation-circle fa-fw"></i> 
+                {$smarty.const.ERR_VAL_EDIT}
+            </div>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
 {else if $indicador->archivado}
-    <div class="alert alert-warning alert-dismissible">
-        <i class="fa fa-exclamation-triangle fa-fw"></i> 
-        {$smarty.const.MSG_VAL_ARCHIVADO}
-    </div> 
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-warning alert-dismissible">
+                <i class="fa fa-exclamation-triangle fa-fw"></i> 
+                {$smarty.const.MSG_VAL_ARCHIVADO}
+            </div> 
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
 {/if}
