@@ -31,22 +31,111 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'inic
     $anio_inicio = filter_input(INPUT_GET, 'inicio', FILTER_SANITIZE_NUMBER_INT);
     $anio_fin = filter_input(INPUT_GET, 'fin', FILTER_SANITIZE_NUMBER_INT);
 
-    //Simplemente ver si hay mediciones para el periodo dado
+    //Simplemente ver si hay mediciones
     $medicion = new Medicion();
-    if ($indicador->periodicidad == "Bienal")
-    {
-        $mediciones = $medicion->Find("id_indicador = $id_indicador AND periodo_inicio >= '$anio_inicio-01-01' AND periodo_fin <= DATE_ADD('$anio_fin-12-31',INTERVAL 2 YEAR) ORDER BY periodo_inicio");
-    }
-    else
-    {
-        $mediciones = $medicion->Find("id_indicador = $id_indicador AND periodo_inicio >= '$anio_inicio-01-01' AND periodo_fin <= '$anio_fin-12-31' ORDER BY periodo_inicio");
-    }
+    $mediciones = $medicion->Find("id_indicador = $id_indicador AND periodo_inicio >= '$anio_inicio-01-01' AND periodo_fin <= '$anio_fin-12-31' ORDER BY periodo_inicio");
+    $grafica_valores = false;
+    $grafica_intranual = false;
+    $grafica_historico = false;
     if ($mediciones)
     {
+        //Comprobamos la periodicidad
+        $intranual = false;
+        if ($indicador->periodicidad != "Anual" && $indicador->periodicidad != "Bienal")
+        {
+            $intranual = true;
+            if ($anio_fin - 1 >= $anio_inicio)
+            {
+                $anio_inicio_intranual = $anio_fin - 1;
+            }
+            else
+            {
+                $anio_inicio_intranual = $anio_inicio;
+            }
+        }
+
+        //Comprobamos si hay valores para pintar los gráficos de valores e histórico
+        $valor = new Valor();
+        $val_ref_medicion = new Valor_referencia_medicion();
+        $num_mediciones = count($mediciones);
+        $i = $j = 0;
+        while (!$grafica_valores && $i != $num_mediciones)
+        {
+            $med = $mediciones[$i];
+            $valores = $valor->Find("id_medicion=$med->id");
+            foreach ($valores as $val)
+            {
+                if ($val->valor != null)
+                {
+                    $grafica_valores = true;
+                    break;
+                }
+            }
+            $i++;
+        }
+        //Si hay valores podemos pintar el histórico
+        if ($grafica_valores)
+        {
+            $grafica_historico = true;
+        }
+        //Si no hay valores comprobamos si hay valores de referencia
+        else
+        {
+            while (!$grafica_historico && $j != $num_mediciones)
+            {
+                $med = $mediciones[$j];
+                $valores_referencia = $val_ref_medicion->Find("id_medicion=$med->id");
+                foreach ($valores_referencia as $val)
+                {
+                    if ($val->valor != null)
+                    {
+                        $grafica_historico = true;
+                        break;
+                    }
+                }
+                $j++;
+            }
+        }
+
+        //Comprobamos valores para el panel intranual
+        if ($intranual)
+        {
+            //Comprobamos si hay valores para pintar el gráfico intranual
+            $mediciones = $medicion->Find("id_indicador = $id_indicador AND periodo_inicio >= '$anio_inicio_intranual-01-01' AND periodo_fin <= '$anio_fin-12-31' ORDER BY periodo_inicio");
+            $num_mediciones = count($mediciones);
+            $k = 0;
+            while (!$grafica_intranual && $k != $num_mediciones)
+            {
+                $med = $mediciones[$k];
+                $valores = $valor->Find("id_medicion=$med->id");
+                $valores_referencia = $val_ref_medicion->Find("id_medicion=$med->id");
+                //Valores
+                foreach ($valores as $val)
+                {
+                    if ($val->valor != null)
+                    {
+                        $grafica_intranual = true;
+                        break;
+                    }
+                }
+                //Valores de referencia
+                foreach ($valores_referencia as $val)
+                {
+                    if ($val->valor != null)
+                    {
+                        $grafica_intranual = true;
+                        break;
+                    }
+                }
+                $k++;
+            }
+        }
+
+        //Paneles
         //Prepara el panel de Valores/Subunidad
         $panel_res = new Panel();
         $panel_res->ancho = 12;
-        $panel_res->nombre = TXT_VALS_SUBUNID;
+        $panel_res->nombre = TXT_VAL_UNID;
         $panel_res->fecha_inicio = $anio_inicio . "-01-01";
         $panel_res->fecha_fin = $anio_fin . "-12-31";
         $panel_res->periodicidad = "anual";
@@ -55,28 +144,10 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'inic
         //Prepara el resto de paneles
         $paneles = array();
         $panel = new Panel();
-        $panel->tipo = new Panel_tipo();
         $panel->ancho = 12;
 
-        // Prepara el panel intraanual
-        if ($indicador->periodicidad != "Anual" && $indicador->periodicidad != "Bienal")
-        {
-            $panel->id = 2;
-            $panel->tipo->clase_css = "lineal";
-            $panel->ancho = 6;
-            $panel->nombre = TXT_DOS_ULT_ANYO;
-            $panel->fecha_inicio = (date('Y') - 2) . "-01-01";
-            $panel->fecha_fin = date('Y') . "-12-31";
-            $panel->periodicidad = "todos";
-            $paneles[] = clone($panel);
-        }
-        // Prepara el panel anual o bienal
-        if ($indicador->periodicidad == "Bienal")
-        {
-            $anio_fin = $anio_fin + 2;
-        }
+        //Prepara el panel anual o bienal
         $panel->id = 1;
-        $panel->tipo->clase_css = "lineal";
         $panel->nombre = TXT_HISTORICO;
         $panel->fecha_inicio = $anio_inicio . "-01-01";
         $panel->fecha_fin = $anio_fin . "-12-31";
@@ -86,30 +157,23 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'inic
             $panel->periodicidad = "bienal";
         }
         $paneles[] = clone($panel);
+
+        // Prepara el panel intraanual
+        if ($intranual)
+        {
+            $panel->id = 2;
+            $panel->nombre = TXT_INTRANUAL;
+            $panel->fecha_inicio = $anio_inicio_intranual . "-01-01";
+            $panel->fecha_fin = $anio_fin . "-12-31";
+            $panel->periodicidad = "todos";
+            $paneles[] = clone($panel);
+        }
         $smarty->assign("paneles", $paneles);
     }
 
-    //Comprobamos si hay valores para pintar los gráficos en el periodo dado
-//    $valor = new Valor();
-//    $pinta_grafico = false;
-//    if ($mediciones)
-//    {
-//        foreach ($mediciones as $med)
-//        {
-//            $valores = $valor->Find_joined_jjmc($med->id, $usuario->id);
-//            if ($valores)
-//            {
-//                foreach ($valores as $val)
-//                {
-//                    if ($val->valor != null)
-//                    {
-//                        $pinta_grafico = true;
-//                    }
-//                }
-//            }
-//        }
-//    }
-
+    $smarty->assign("grafica_valores", $grafica_valores);
+    $smarty->assign("grafica_historico", $grafica_historico);
+    $smarty->assign("grafica_intranual", $grafica_intranual);
     $plantilla = 'graficas_ajax.tpl';
 }
 else

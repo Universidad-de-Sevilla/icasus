@@ -87,7 +87,7 @@ if (filter_has_var(INPUT_GET, 'id_medicion'))
         if ($pinta_grafico)
         {
             $panel = new Panel();
-            $panel->nombre = TXT_VALS_SUBUNID;
+            $panel->nombre = TXT_VAL_UNID;
             $smarty->assign("panel", $panel);
         }
     }

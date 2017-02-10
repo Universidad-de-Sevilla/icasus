@@ -325,19 +325,14 @@ $(function () {
         var id_entidad = $('#btn_mostrar').data('id_entidad');
         $("#inicio option:selected").each(function () {
             var elegido = $(this).val();
-            if (elegido === '0') {
-                $("#end_year").html(' ');
-            }
-            else
-            {
-                var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&inicio=" + elegido;
-                $.ajax({
-                    url: "index.php?page=valores_ajax&ajax=true&modulo=seleccionar_años" + parametros,
-                    success: function (datos) {
-                        $("#end_year").html(datos);
-                    }
-                });
-            }
+            var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&inicio=" + elegido;
+            $.ajax({
+                url: "index.php?page=valores_ajax&ajax=true&modulo=seleccionar_años" + parametros,
+                success: function (datos) {
+                    $("#end_year").html(datos);
+                }
+            });
+
         });
     });
 
@@ -347,16 +342,14 @@ $(function () {
         var id_entidad = $(this).data('id_entidad');
         var inicio = $("#inicio").val();
         var fin = $("#fin").val();
-        if (inicio !== '0') {
-            var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&inicio=" + inicio + "&fin=" + fin;
-            $('#dialogo_cargando_paneles').modal('show');
-            $.ajax({
-                url: "index.php?page=graficas_ajax&ajax=true" + parametros,
-                success: function (datos) {
-                    $("#graficas").html(datos);
-                    $('#dialogo_cargando_paneles').modal('hide');
-                }
-            });
-        }
+        var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&inicio=" + inicio + "&fin=" + fin;
+        $('#dialogo_cargando_paneles').modal('show');
+        $.ajax({
+            url: "index.php?page=graficas_ajax&ajax=true" + parametros,
+            success: function (datos) {
+                $("#graficas").html(datos);
+                $('#dialogo_cargando_paneles').modal('hide');
+            }
+        });
     });
 });

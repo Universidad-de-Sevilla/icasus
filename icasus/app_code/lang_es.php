@@ -287,7 +287,6 @@ define('TXT_MENSUAL', 'Mensual');
 define('TXT_TRIMESTRAL', 'Trimestral');
 define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
 define('TXT_SEMESTRAL', 'Semestral');
-define('TXT_DOS_ULT_ANYO', 'Dos últimos años');
 //Tipos de Cálculo
 define('TXT_CALC_AUTO', 'Este indicador es calculado automáticamente');
 
@@ -331,7 +330,7 @@ define('TXT_USER_EDIT', 'Editar usuario');
 define('TXT_VALS', 'Valores');
 define('TXT_VAL_EDIT', 'Editar valores');
 define('TXT_VAL_AGREGAR', 'Agregar valor');
-define('TXT_VALS_SUBUNID', 'Valores por subunidad');
+define('TXT_VAL_UNID', 'Valor/Unidad');
 define('TXT_VAL_IMPORT', 'Importar valores');
 define('TXT_VAL_CALCULAR', 'Calcular');
 define('TXT_VAL_CALC_DESCRIPCION', 'En indicadores calculados actualiza los valores recalculando');
@@ -586,6 +585,7 @@ define('MSG_INDICS_NO_DATOS', 'No hay indicadores (datos) activos.');
 define('MSG_INDICS_NO_ARCHIVADOS', 'No hay indicadores archivados.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador.');
+define('MSG_INDIC_NO_VAL_PERIODO', 'No hay valores recogidos para este indicador durante el período establecido.');
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores.');
 define('MSG_INDIC_CONFIRM_ARCHIVAR', 'El indicador quedará archivado pero no se eliminará, ¿realmente desea archivar este indicador?');

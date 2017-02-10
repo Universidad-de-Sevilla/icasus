@@ -296,7 +296,7 @@ if ($modulo == 'grafica')
         if ($pinta_grafico)
         {
             $panel = new Panel();
-            $panel->nombre = TXT_VALS_SUBUNID;
+            $panel->nombre = TXT_VAL_UNID;
             $smarty->assign("panel", $panel);
         }
     }
