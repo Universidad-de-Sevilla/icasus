@@ -140,7 +140,7 @@
                     text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
                 },
                 exporting: {
-                    filename: nomIndicador + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
+                    filename: nomIndicador.replace(/ /g, "_")
                 },
                 xAxis: {
                     type: 'category'
@@ -275,7 +275,7 @@
                         text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
                     },
                     exporting: {
-                        filename: nomIndicador + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
+                        filename: nomIndicador.replace(/ /g, "_")
                     },
                     xAxis: {
                         type: 'category'

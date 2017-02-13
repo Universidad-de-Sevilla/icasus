@@ -173,7 +173,7 @@ $('.panel_linea').each(function () {
                             text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
                         },
                         exporting: {
-                            filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
+                            filename: titulo.replace(/ /g, "_")
                         },
                         xAxis: {
                             type: 'category'
@@ -345,7 +345,7 @@ $('.panel_barra').each(function () {
                             text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
                         },
                         exporting: {
-                            filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
+                            filename: titulo.replace(/ /g, "_")
                         },
                         xAxis: {
                             type: 'category'
@@ -506,7 +506,7 @@ $(".panel_mixto").each(function () {
                             text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
                         },
                         exporting: {
-                            filename: titulo + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
+                            filename: titulo.replace(/ /g, "_")
                         },
                         xAxis: {
                             type: 'category'
@@ -665,7 +665,7 @@ $(".panel_tarta").each(function () {
                             text: 'Medición: ' + medicion + ' Total: ' + total
                         },
                         exporting: {
-                            filename: titulo + '(Medición: ' + medicion + ')'
+                            filename: titulo.replace(/ /g, "_")
                         },
                         xAxis: {
                             type: 'category'
