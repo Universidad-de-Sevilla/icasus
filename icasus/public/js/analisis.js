@@ -150,7 +150,7 @@ $('.highchart').each(function () {
                 text: 'Período: ' + fecha_inicio_es + ' al ' + fecha_fin_es
             },
             exporting: {
-                filename: nomIndicador.replace(/ /g, "_")
+                filename: nomIndicador + ' (' + fecha_inicio_es + ' al ' + fecha_fin_es + ')'
             },
             xAxis: {
                 type: 'category'

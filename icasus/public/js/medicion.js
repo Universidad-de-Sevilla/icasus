@@ -86,7 +86,7 @@ function actualizaGrafica() {
                     text: 'Medición: ' + medicion + ' Total: ' + total
                 },
                 exporting: {
-                    filename: nomIndicador.replace(/ /g, "_")
+                    filename: nomIndicador + '(Medición: ' + medicion + ')'
                 },
                 xAxis: {
                     type: 'category'
