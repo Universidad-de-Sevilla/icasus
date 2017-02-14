@@ -138,6 +138,9 @@ function HighchartSerie() {
             for (m in arrayMedicion) {
                 arrayMedicion[m].x = this.categories.position(arrayMedicion[m].id);
             }
+            arrayMedicion.sort(function (a, b) {
+                return a.x - b.x;
+            });
             //Colores para valores de referencia e indicadores de cuadros de mando
             if (medicion.indexOf('mite') !== -1
                     || medicion.indexOf('eta') !== -1
