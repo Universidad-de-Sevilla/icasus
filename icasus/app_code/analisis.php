@@ -118,7 +118,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     {
         foreach ($mediciones as $med)
         {
-            $valores = $valor->Find_joined_jjmc($med->id, $usuario->id);
+            $valores = $valor->Find("id_medicion=$med->id");
             if ($valores)
             {
                 foreach ($valores as $val)

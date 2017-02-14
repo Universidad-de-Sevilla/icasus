@@ -70,7 +70,7 @@ if (filter_has_var(INPUT_GET, 'id_medicion'))
     $smarty->assign('permiso_editar', $permiso_editar);
 
     $valor = new Valor();
-    $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
+    $valores = $valor->Find_joined("id_medicion=$id_medicion");
     $smarty->assign("valores", $valores);
 
     //Prepara el gráfico de tarta si hay valores
