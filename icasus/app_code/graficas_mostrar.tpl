@@ -340,8 +340,7 @@
                             <label for="inicio">{$smarty.const.FIELD_INICIO_PERIODO}</label>            
                             <select class="form-control chosen-select" id="inicio" name="inicio">
                                 {foreach from=$years item=year}
-                                    <option value="{$year->periodo_inicio|truncate:4:''}" 
-                                            data-id_indicador="{$indicador->id}"
+                                    <option value="{$year->periodo_inicio|truncate:4:''}"
                                             {if $year->periodo_inicio|truncate:4:''== $anio_inicio}selected{/if}>
                                         {$year->periodo_inicio|truncate:4:''}
                                     </option>
@@ -431,7 +430,7 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         {if $panel->id==1 && $grafica_historico || $panel->id==2 && $grafica_intranual}
-                            <div class="highchart {*$panel->tipo->clase_css*}"
+                            <div class="highchart"
                                  id="panel_{$panel->id}"
                                  data-id_indicador="{$indicador->id}"
                                  data-nombre_indicador="{$indicador->nombre}"

@@ -170,3 +170,36 @@
         </script>
     {/literal}
 {/if}
+
+{if $modulo=='grafica'}
+    <div class="col-lg-{$panel->ancho}" >
+        <div class="panel panel-red">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-line-chart fa-fw"></i><strong> {$panel->nombre}</strong> {$smarty.const.TXT_GRAFICO_AUMENTAR}</span>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                {if $grafica_historico}
+                    <div class="highchart" 
+                         id="panel_{$panel->id}" 
+                         data-id_indicador="{$indicador->id}" 
+                         data-nombre_indicador="{$indicador->nombre}" 
+                         data-valor_min="{$indicador->valor_min}" 
+                         data-valor_max="{$indicador->valor_max}" 
+                         data-fecha_inicio="{$panel->fecha_inicio}" 
+                         data-fecha_fin="{$panel->fecha_fin}" 
+                         data-periodicidad="{$panel->periodicidad}">
+                    </div>
+                {else}
+                    <div class="alert alert-info alert-dismissible">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_INDIC_NO_VAL_PERIODO}
+                    </div>
+                {/if}
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-{$panel->ancho} -->
+{/if}

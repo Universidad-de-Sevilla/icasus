@@ -86,22 +86,62 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $medicion = new Medicion();
     $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio");
     $smarty->assign("mediciones", $mediciones);
+    $grafica_historico = false;
     if ($mediciones)
     {
-        $panel = new Panel();
-        $panel->tipo = new Panel_tipo();
-        $panel->ancho = 6;
-        // Prepara el panel anual o bienal
-        $anio_inicio = $indicador->historicos;
-        $anio_fin = date('Y');
-        if ($indicador->periodicidad == "Bienal")
+        //Calculamos los años para los que existen mediciones a fin de 
+        //ajustar las gráficas
+        $years = $medicion->find_year_mediciones($id_indicador);
+        $smarty->assign('years', $years);
+        if (count($years) > 5)
         {
-            $anio_fin = date('Y') + 2;
+            $anio_inicio = strtok($years[count($years) - 5]->periodo_inicio, '-');
         }
+        else
+        {
+            $anio_inicio = strtok($years[0]->periodo_inicio, '-');
+        }
+        $anio_fin = strtok($years[count($years) - 1]->periodo_fin, '-');
+        $smarty->assign("anyo", $anio_fin);
+
+        //Comprobamos si hay valores para pintar el gráfico con el histórico
+        $mediciones = $medicion->Find("id_indicador = $id_indicador AND periodo_inicio >= '$anio_inicio-01-01' AND periodo_fin <= '$anio_fin-12-31' ORDER BY periodo_inicio");
+        $valor = new Valor();
+        $val_ref_medicion = new Valor_referencia_medicion();
+        $num_mediciones = count($mediciones);
+        $i = 0;
+        while (!$grafica_historico && $i != $num_mediciones)
+        {
+            $med = $mediciones[$i];
+            $valores = $valor->Find("id_medicion=$med->id");
+            $valores_referencia = $val_ref_medicion->Find("id_medicion=$med->id");
+            //Valores
+            foreach ($valores as $val)
+            {
+                if ($val->valor != null)
+                {
+                    $grafica_historico = true;
+                    break;
+                }
+            }
+            //Valores de referencia
+            foreach ($valores_referencia as $val)
+            {
+                if ($val->valor != null)
+                {
+                    $grafica_historico = true;
+                    break;
+                }
+            }
+            $i++;
+        }
+
+        //Prepara el panel
+        $panel = new Panel();
+        $panel->ancho = 6;
         $panel->id = 1;
-        $panel->tipo->clase_css = "lineal";
         $panel->nombre = TXT_HISTORICO;
-        $panel->fecha_inicio = $indicador->historicos . "-01-01";
+        $panel->fecha_inicio = $anio_inicio . "-01-01";
         $panel->fecha_fin = $anio_fin . "-12-31";
         $panel->periodicidad = "anual";
         if ($indicador->periodicidad == "Bienal")
@@ -109,40 +149,17 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
             $panel->periodicidad = "bienal";
         }
         $smarty->assign("panel", $panel);
+        $smarty->assign("grafica_historico", $grafica_historico);
+
+        //Recuperamos el análisis del indicador
+        $analisis = new Analisis();
+        $analisis->load("id_indicador=$id_indicador AND anyo=$anio_fin");
+        $smarty->assign('analisis_actual', $analisis);
+
+        //Tabla de análisis y planes
+        $lista_analisis = $analisis->find("id_indicador=$id_indicador");
+        $smarty->assign('lista_analisis', $lista_analisis);
     }
-
-    //Comprobamos si hay valores para pintar los gráficos
-    $valor = new Valor();
-    $pinta_grafico = false;
-    if ($mediciones)
-    {
-        foreach ($mediciones as $med)
-        {
-            $valores = $valor->Find("id_medicion=$med->id");
-            if ($valores)
-            {
-                foreach ($valores as $val)
-                {
-                    if ($val->valor != null)
-                    {
-                        $pinta_grafico = true;
-                    }
-                }
-            }
-        }
-    }
-    $smarty->assign("pinta_grafico", $pinta_grafico);
-
-    //Recuperamos el análisis del indicador
-    $analisis = new Analisis();
-    $anyo = idate('Y');
-    $smarty->assign('anyo', $anyo);
-    $analisis->load("id_indicador=$id_indicador AND anyo=$anyo");
-    $smarty->assign('analisis_actual', $analisis);
-
-    //Tabla de análisis y planes
-    $lista_analisis = $analisis->find("id_indicador=$id_indicador");
-    $smarty->assign('lista_analisis', $lista_analisis);
 
     $smarty->assign('_javascript', array('analisis'));
     $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
