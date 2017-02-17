@@ -536,9 +536,13 @@
                                                                  data-nombre_indicador="{$indicador->nombre}"
                                                                  data-valor_min="{$indicador->valor_min}" 
                                                                  data-valor_max="{$indicador->valor_max}" 
-                                                                 data-fecha_inicio="{$indicador->historicos}-01-01" 
+                                                                 data-fecha_inicio="{$anio_inicio}-01-01" 
                                                                  data-fecha_fin="{$anio_fin}-12-31"
-                                                                 data-periodicidad="anual">
+                                                                 {if $indicador->periodicidad=='Bienal'}
+                                                                     data-periodicidad= "bienal" 
+                                                                 {else}
+                                                                     data-periodicidad= "anual"
+                                                                 {/if}>
                                                             </div>
                                                             <div class="carousel-caption">
                                                                 <h3>
@@ -616,9 +620,13 @@
                                                          data-nombre_indicador="{$dato->nombre}"
                                                          data-valor_min="{$dato->valor_min}" 
                                                          data-valor_max="{$dato->valor_max}" 
-                                                         data-fecha_inicio="{$dato->historicos}-01-01" 
+                                                         data-fecha_inicio="{$anio_inicio}-01-01" 
                                                          data-fecha_fin="{$anio_fin}-12-31"
-                                                         data-periodicidad="anual">
+                                                         {if $dato->periodicidad=='Bienal'}
+                                                             data-periodicidad= "bienal" 
+                                                         {else}
+                                                             data-periodicidad= "anual"
+                                                         {/if}>
                                                     </div>
                                                     <div class="carousel-caption">
                                                         <h3>

@@ -53,6 +53,9 @@ $('.proceso').on('show.bs.collapse', function () {
             if (periodicidad === "anual") {
                 chartSerie.categoryType = "año";
             }
+            else if (periodicidad === "bienal") {
+                chartSerie.categoryType = "bienal";
+            }
             else {
                 chartSerie.categoryType = "medicion";
             }
@@ -76,7 +79,7 @@ $('.proceso').on('show.bs.collapse', function () {
                     // A saber: Totales y Valores de referencia
                     var dataseries = chartSerie.getLinealSerie();
                     // Si no es anual ocultamos valores de referencia
-                    if (chartSerie.categoryType !== "año") {
+                    if (chartSerie.categoryType !== "año" && chartSerie.categoryType !== "bienal") {
                         dataseries.forEach(function (dataserie, index) {
                             if (index !== 0) {
                                 dataserie.visible = false;
