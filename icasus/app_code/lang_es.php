@@ -343,7 +343,7 @@ define('TXT_VAL_REF_CREAR', 'Crear valor de referencia');
 define('TXT_VAL_REF_EDIT', 'Editar valor de referencia');
 define('TXT_VAL_REF_BORRAR', 'Borrar valores de referencia');
 define('TXT_VALS_DESACT', 'Desactivar valores');
-define('TXT_VAL_REF_NOMBRE', 'Los nombres "Meta" y/o "Límite" activarán el control por colores del status en las mediciones.');
+define('TXT_VAL_REF_NOMBRE', 'Los nombres "Meta" (color verde) y/o "Límite" (color rojo) activarán el control por colores del status en las mediciones.');
 define('TXT_VAL_REF_ETIQ', 'La etiqueta indica el nombre con el que aparecerá el valor de referencia en las gráficas y en las mediciones.');
 //Status
 define('TXT_VAL_LOGRADO', 'Valor óptimo');
@@ -706,7 +706,7 @@ define('MSG_VAL_REF_CREADO', 'Se ha añadido correctamente el valor de referenci
 define('MSG_VAL_REF_EDITADO', 'Se ha editado correctamente el valor de referencia:');
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
 define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia.');
-define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" y/o "Límite" para activar el control del status por colores en las mediciones.');
+define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" (color verde) y/o "Límite" (color rojo) para activar el control del status por colores en las mediciones.');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 define('MSG_VALS_NO_MARCADOS', 'No se ha seleccionado ningún valor para desactivar.');
 define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en indicadores archivados. Restaure primero el indicador.');

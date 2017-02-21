@@ -354,7 +354,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     {
         $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
             UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin,
-            valores_referencia.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia
+            valores_referencia.etiqueta as unidad, valores_referencia.nombre as nombre_ref, NULL as id_unidad, valor, TRUE as referencia
             FROM valores_referencia
             INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
             INNER JOIN mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
@@ -364,7 +364,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     {
         $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
             UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin,
-            valores_referencia.etiqueta as unidad, NULL as id_unidad, $operador_temporal(valor) as valor, TRUE as referencia
+            valores_referencia.etiqueta as unidad,valores_referencia.nombre as nombre_ref, NULL as id_unidad, $operador_temporal(valor) as valor, TRUE as referencia
             FROM valores_referencia
             INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
             INNER JOIN mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
@@ -387,7 +387,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
         {
             $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
                     UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
-                    valores_referencia.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia
+                    valores_referencia.etiqueta as unidad, valores_referencia.nombre as nombre_ref, NULL as id_unidad, valor, TRUE as referencia
                     FROM mediciones 
                     INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
                     INNER JOIN valores_referencia ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id 

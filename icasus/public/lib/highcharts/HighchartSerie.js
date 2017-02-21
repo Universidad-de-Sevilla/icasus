@@ -1,7 +1,8 @@
 //--------------------------------------------------------------------------
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
 // Archivo: public/js/HighchartSerie.js
-// Desarrolladores: Joaquín Valonero Zaera (tecnibus1@us.es)
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
 //--------------------------------------------------------------------------
 // Clase para acomodar los datos que devuelve la API de Icasus a los 
 // requisitos de la librería Highcharts
@@ -112,7 +113,8 @@ function HighchartSerie() {
         var data = {
             id: category,
             name: category,
-            y: parseFloat(elem.valor)//?parseFloat(elem.valor):null //para no mostrar los 0, descomentar
+            y: parseFloat(elem.valor), //?parseFloat(elem.valor):null //para no mostrar los 0, descomentar
+            ref: elem.nombre_ref ? elem.nombre_ref : ''//Si es valor de referencia guardamos su nombre para asignar colores
         };
         this.categories.add(category);
 
@@ -142,7 +144,8 @@ function HighchartSerie() {
                 return a.x - b.x;
             });
             //Colores para valores de referencia e indicadores de cuadros de mando
-            if (medicion.indexOf('mite') !== -1
+            var nombre_ref = this.serie[medicion][0].ref;
+            if (nombre_ref.indexOf('mite') !== -1
                     || medicion.indexOf('eta') !== -1
                     || medicion.indexOf('ebiun') !== -1
                     || nomIndicador !== '') {
@@ -150,16 +153,28 @@ function HighchartSerie() {
                     type: 'column',
                     name: medicion + nomIndicador,
                     data: arrayMedicion,
-                    color: color(medicion, nomIndicador, index)
+                    color: color(nombre_ref, nomIndicador, index)
                 });
             }
+//                        if (medicion.indexOf('mite') !== -1
+//                    || medicion.indexOf('eta') !== -1
+//                    || medicion.indexOf('ebiun') !== -1
+//                    || nomIndicador !== '') {
+//                serieHighchart.push({
+//                    type: 'column',
+//                    name: medicion + nomIndicador,
+//                    data: arrayMedicion,
+//                    color: color(medicion, nomIndicador, index)
+//                });
+//            }
             //Colores para el resto de las series
             else {
                 serieHighchart.push({
                     type: 'column',
                     name: medicion + nomIndicador,
                     data: arrayMedicion,
-                    visible: false
+                    visible: false,
+                    color: color(nombre_ref, nomIndicador, index)
                 });
             }
         }
@@ -182,7 +197,8 @@ function HighchartSerie() {
                 return a.x - b.x;
             });
             //Colores para valores de referencia e indicadores de cuadros de mando
-            if (unidad.indexOf('mite') !== -1
+            var nombre_ref = this.serie[unidad][0].ref;
+            if (nombre_ref.indexOf('mite') !== -1
                     || unidad.indexOf('eta') !== -1
                     || unidad.indexOf('ebiun') !== -1
                     || nomIndicador !== '') {
@@ -190,15 +206,27 @@ function HighchartSerie() {
                     type: 'line',
                     name: unidad + nomIndicador,
                     data: arrayUnidad,
-                    color: color(unidad, nomIndicador, index)
+                    color: color(nombre_ref, nomIndicador, index)
                 });
             }
+//            if (this.serie[unidad].ref.indexOf('mite') !== -1
+//                    || unidad.indexOf('eta') !== -1
+//                    || unidad.indexOf('ebiun') !== -1
+//                    || nomIndicador !== '') {
+//                serieHighchart.push({
+//                    type: 'line',
+//                    name: unidad + nomIndicador,
+//                    data: arrayUnidad,
+//                    color: color(this.serie[unidad].ref, nomIndicador, index)
+//                });
+//            }
             //Colores para el resto de las series
             else {
                 serieHighchart.push({
                     type: 'line',
                     name: unidad + nomIndicador,
-                    data: arrayUnidad
+                    data: arrayUnidad,
+                    color: color(nombre_ref, nomIndicador, index)
                 });
             }
         }
