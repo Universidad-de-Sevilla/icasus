@@ -77,11 +77,11 @@ class LogicaIndicador implements ILogicaIndicador
             $indicador->load("id=$indicador_dependiente->id_calculado");
             if ($indicador->id_proceso)
             {
-                $this->generar_mediciones($indicador, "indicador", $anyo);
+                $this->generar_mediciones($indicador, $anyo);
             }
             else
             {
-                $this->generar_mediciones($indicador, "dato", $anyo);
+                $this->generar_mediciones($indicador, $anyo);
             }
         }
     }
