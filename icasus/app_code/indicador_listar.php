@@ -38,12 +38,12 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 
     //Objetivos operacionales de indicadores de control
     $objops = array();
-    $objop = new ObjetivoOperacional();
     $objetivo_indicador = new ObjetivoIndicador();
     foreach ($indicadores_ctl as $indicador)
     {
         if ($objetivo_indicador->load("id_indicador=$indicador->id AND control=1"))
         {
+            $objop = new ObjetivoOperacional();
             $objop->load("id=$objetivo_indicador->id_objop");
             $objops[$indicador->id] = $objop;
         }

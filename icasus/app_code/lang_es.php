@@ -180,7 +180,7 @@ define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de procesos de la unidad y ge
 define('TXT_INDICS_DESCRIPCION', 'Indicadores/Datos: listado de indicadores/datos de la unidad y gestión de los mismos.');
 define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de mando: listado de cuadros de mando de la unidad y gestión de los mismos.');
 define('TXT_CONSULTA_DESCRIPCION', 'Consulta: efectuar consultas y operaciones que muestran información sobre los indicadores y datos de la unidad.');
-define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones y valores de los distintos indicadores y datos de la unidad bajo su responsabilidad.');
+define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones, valores y criterios EFQM de los distintos indicadores/datos de la unidad bajo su responsabilidad.');
 
 //Navegación
 define('TXT_MOSTRANDO', 'Mostrando');
