@@ -359,6 +359,19 @@
 {/if}
 <!-- /Indicadores archivados -->
 
+{if $aviso_ref && $indicador->valores_referencia}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-warning alert-dismissible">
+                <i class="fa fa-exclamation-triangle fa-fw"></i> 
+                {$smarty.const.MSG_VALS_REF_STATUS}
+            </div> 
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+{/if}
+
 <div class="row">
     <div class="col-lg-12">
         <!-- Barra de botones -->
@@ -462,21 +475,18 @@
                 <!-- /.col-sm-1 -->
             </div>
             <!-- /.row -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="alert alert-warning alert-dismissible">
+                        <i class="fa fa-exclamation-triangle fa-fw"></i> 
+                        {$smarty.const.MSG_VALS_REF_STATUS}
+                    </div> 
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
         {/if}
     </div>
     <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
-
-{if $aviso_ref}
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="alert alert-warning alert-dismissible">
-                <i class="fa fa-exclamation-triangle fa-fw"></i> 
-                {$smarty.const.MSG_VALS_REF_STATUS}
-            </div> 
-        </div>
-        <!-- /.col-lg-12 -->
-    </div>
-    <!-- /.row -->
-{/if}

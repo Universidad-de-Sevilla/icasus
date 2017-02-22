@@ -74,7 +74,7 @@ if ($modulo == 'editarfila')
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
+    $valores = $valor->Find_joined("id_medicion=$id_medicion");
     $smarty->assign("valores", $valores);
 
     $smarty->assign("modulo", "editarfila");
@@ -102,7 +102,7 @@ if ($modulo == 'cancelarfila')
     $entidad->load("id = $indicador->id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
+    $valores = $valor->Find_joined("id_medicion=$id_medicion");
     $smarty->assign("valores", $valores);
 
     $smarty->assign("modulo", "cancelarfila");
@@ -280,7 +280,7 @@ if ($modulo == 'grafica')
     $id_medicion = filter_input(INPUT_GET, 'id_medicion', FILTER_SANITIZE_NUMBER_INT);
     $medicion->load("id = $id_medicion");
     $indicador->load("id = $medicion->id_indicador");
-    $valores = $valor->Find_joined_jjmc($id_medicion, $usuario->id);
+    $valores = $valor->Find("id_medicion=$id_medicion");
 
     //Prepara el gráfico de tarta si hay valores
     $pinta_grafico = false;
@@ -296,7 +296,7 @@ if ($modulo == 'grafica')
         if ($pinta_grafico)
         {
             $panel = new Panel();
-            $panel->nombre = TXT_VALS_SUBUNID;
+            $panel->nombre = TXT_VAL_UNID;
             $smarty->assign("panel", $panel);
         }
     }

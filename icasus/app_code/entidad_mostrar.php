@@ -73,17 +73,20 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 
     //Resumen
     $anio_fin = date('Y');
+    $anio_inicio = $anio_fin - 5;
+    $smarty->assign('anio_inicio', $anio_inicio);
     $smarty->assign('anio_fin', $anio_fin);
     $smarty->assign('procesos', $procesos);
-    $i = new Indicador();
+    $indicador = new Indicador();
     $indicadores = array();
     foreach ($procesos as $proceso)
     {
-        $indicadores_proc = $i->find("id_proceso = $proceso->id AND id_entidad = $id_entidad AND archivado IS NULL");
-        $indicadores[$proceso->id] = $indicadores_proc;
+        $indicadores[$proceso->id] = $indicador->find("id_proceso = $proceso->id AND id_entidad = $id_entidad AND archivado IS NULL");
     }
     $smarty->assign('indicadores', $indicadores);
-    $datos = $i->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado is NULL");
+    $controles = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND control=1 AND archivado is NULL");
+    $smarty->assign('controles', $controles);
+    $datos = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND control=0 AND archivado is NULL");
     $smarty->assign('datos', $datos);
 
     $smarty->assign('_javascript', array('entidad_mostrar'));

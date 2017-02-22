@@ -105,7 +105,7 @@
                 <div id="{$entidad->etiqueta|replace:' ':'_'}" role="tabpanel" class="tab-pane {if $entidad@first}active{/if}">
                     <div class="panel panel-red">
                         <div class="panel-heading">
-                            <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VALS_SUBUNID} ({$entidad->etiqueta})</span>
+                            <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_UNID} ({$entidad->etiqueta})</span>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">

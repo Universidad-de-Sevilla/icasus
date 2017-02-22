@@ -2,20 +2,19 @@
 
 //-------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Archivo: graficas_mostrar.php
+// Archivo: graficas_ajax.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //-------------------------------------------------------------------------------
-// Descripcion: Muestra los gráficos de indicadores con sus valores
+// Descripcion: Muestra los gráficos de indicadores con sus valores 
+// para un periodo dado
 //-------------------------------------------------------------------------------
 
 global $smarty;
 global $usuario;
 global $plantilla;
-//Variable para operar con Indicadores/Datos
-$logicaIndicador = new LogicaIndicador();
 
-if (filter_has_var(INPUT_GET, 'id_indicador'))
+if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'inicio') && filter_has_var(INPUT_GET, 'fin'))
 {
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $indicador = new Indicador();
@@ -29,63 +28,12 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
         header("location:index.php?page=error&error=$error");
     }
 
-    $entidad = new Entidad();
-    $entidad->load("id = $indicador->id_entidad");
-    $smarty->assign('entidad', $entidad);
-
-    //Obtener todos los indicadores para avanzar o retroceder
-    if ($indicador->archivado)
-    {
-        $indicadores = $indicador->Find("id_entidad = $id_entidad AND archivado is NOT NULL");
-    }
-    else
-    {
-        if ($indicador->id_proceso)
-        {
-
-            $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso=$indicador->id_proceso AND archivado is NULL");
-        }
-        else
-        {
-            $indicadores = $indicador->Find("id_entidad = $id_entidad AND id_proceso IS NULL AND archivado is NULL");
-        }
-    }
-    $smarty->assign("indicadores", $indicadores);
-    $cont = 0;
-    foreach ($indicadores as $ind)
-    {
-        if ($id_indicador == $ind->id)
-        {
-            $indice = $cont;
-            $smarty->assign("indice", $indice);
-        }
-        $cont++;
-    }
-
-    //Proceso del indicador
-    $proceso = $indicador->proceso;
-    $smarty->assign('proceso', $proceso);
-
-    //Responsables
-    $responsable = false;
-    if ($indicador->id_responsable == $usuario->id)
-    {
-        $responsable = true;
-    }
-    $smarty->assign('responsable', $responsable);
-
-    //Vemos si influye en otros Indicadores/Datos
-    $indicadores_dependientes = $logicaIndicador->calcular_influencias($id_indicador);
-    $smarty->assign('indicadores_dependientes', $indicadores_dependientes);
-
-    //Si es calculado vemos los Indicadores/Datos de los que depende
-    $indicadores_influyentes = $logicaIndicador->calcular_dependencias($id_indicador);
-    $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
+    $anio_inicio = filter_input(INPUT_GET, 'inicio', FILTER_SANITIZE_NUMBER_INT);
+    $anio_fin = filter_input(INPUT_GET, 'fin', FILTER_SANITIZE_NUMBER_INT);
 
     //Simplemente ver si hay mediciones
     $medicion = new Medicion();
-    $mediciones = $medicion->Find("id_indicador = $id_indicador ORDER BY periodo_inicio");
-    $smarty->assign("mediciones", $mediciones);
+    $mediciones = $medicion->Find("id_indicador = $id_indicador AND periodo_inicio >= '$anio_inicio-01-01' AND periodo_fin <= '$anio_fin-12-31' ORDER BY periodo_inicio");
     $grafica_valores = false;
     $grafica_intranual = false;
     $grafica_historico = false;
@@ -96,41 +44,17 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
         if ($indicador->periodicidad != "Anual" && $indicador->periodicidad != "Bienal")
         {
             $intranual = true;
-        }
-
-        //Calculamos los años para los que existen mediciones a fin de 
-        //ajustar las gráficas
-        $years = $medicion->find_year_mediciones($id_indicador);
-        $smarty->assign('years', $years);
-        if (count($years) > 5)
-        {
-            $anio_inicio = strtok($years[count($years) - 5]->periodo_inicio, '-');
-            if ($intranual)
+            if ($anio_fin - 1 >= $anio_inicio)
             {
-                $anio_inicio_intranual = strtok($years[count($years) - 2]->periodo_inicio, '-');
+                $anio_inicio_intranual = $anio_fin - 1;
+            }
+            else
+            {
+                $anio_inicio_intranual = $anio_inicio;
             }
         }
-        else
-        {
-            $anio_inicio = strtok($years[0]->periodo_inicio, '-');
-            if ($intranual)
-            {
-                if (count($years) > 2)
-                {
-                    $anio_inicio_intranual = strtok($years[count($years) - 2]->periodo_inicio, '-');
-                }
-                else
-                {
-                    $anio_inicio_intranual = $anio_inicio;
-                }
-            }
-        }
-        $anio_fin = strtok($years[count($years) - 1]->periodo_fin, '-');
-        $smarty->assign("anio_inicio", $anio_inicio);
-        $smarty->assign("anio_fin", $anio_fin);
 
         //Comprobamos si hay valores para pintar los gráficos de valores e histórico
-        $mediciones = $medicion->Find("id_indicador = $id_indicador AND periodo_inicio >= '$anio_inicio-01-01' AND periodo_fin <= '$anio_fin-12-31' ORDER BY periodo_inicio");
         $valor = new Valor();
         $val_ref_medicion = new Valor_referencia_medicion();
         $num_mediciones = count($mediciones);
@@ -250,9 +174,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $smarty->assign("grafica_valores", $grafica_valores);
     $smarty->assign("grafica_historico", $grafica_historico);
     $smarty->assign("grafica_intranual", $grafica_intranual);
-    $smarty->assign('_javascript', array('graficas_mostrar'));
-    $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");
-    $plantilla = 'graficas_mostrar.tpl';
+    $plantilla = 'graficas_ajax.tpl';
 }
 else
 {

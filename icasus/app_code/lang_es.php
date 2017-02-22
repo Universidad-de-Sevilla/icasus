@@ -180,7 +180,7 @@ define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de procesos de la unidad y ge
 define('TXT_INDICS_DESCRIPCION', 'Indicadores/Datos: listado de indicadores/datos de la unidad y gestión de los mismos.');
 define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de mando: listado de cuadros de mando de la unidad y gestión de los mismos.');
 define('TXT_CONSULTA_DESCRIPCION', 'Consulta: efectuar consultas y operaciones que muestran información sobre los indicadores y datos de la unidad.');
-define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones y valores de los distintos indicadores y datos de la unidad bajo su responsabilidad.');
+define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones, valores y criterios EFQM de los distintos indicadores/datos de la unidad bajo su responsabilidad.');
 
 //Navegación
 define('TXT_MOSTRANDO', 'Mostrando');
@@ -287,7 +287,6 @@ define('TXT_MENSUAL', 'Mensual');
 define('TXT_TRIMESTRAL', 'Trimestral');
 define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
 define('TXT_SEMESTRAL', 'Semestral');
-define('TXT_DOS_ULT_ANYO', 'Dos últimos años');
 //Tipos de Cálculo
 define('TXT_CALC_AUTO', 'Este indicador es calculado automáticamente');
 
@@ -331,7 +330,7 @@ define('TXT_USER_EDIT', 'Editar usuario');
 define('TXT_VALS', 'Valores');
 define('TXT_VAL_EDIT', 'Editar valores');
 define('TXT_VAL_AGREGAR', 'Agregar valor');
-define('TXT_VALS_SUBUNID', 'Valores por subunidad');
+define('TXT_VAL_UNID', 'Valor/Unidad');
 define('TXT_VAL_IMPORT', 'Importar valores');
 define('TXT_VAL_CALCULAR', 'Calcular');
 define('TXT_VAL_CALC_DESCRIPCION', 'En indicadores calculados actualiza los valores recalculando');
@@ -344,7 +343,7 @@ define('TXT_VAL_REF_CREAR', 'Crear valor de referencia');
 define('TXT_VAL_REF_EDIT', 'Editar valor de referencia');
 define('TXT_VAL_REF_BORRAR', 'Borrar valores de referencia');
 define('TXT_VALS_DESACT', 'Desactivar valores');
-define('TXT_VAL_REF_NOMBRE', 'Los nombres "Meta" y/o "Límite" activarán el control por colores del status en las mediciones.');
+define('TXT_VAL_REF_NOMBRE', 'Los nombres "Meta" (color verde) y/o "Límite" (color rojo) activarán el control por colores del status en las mediciones.');
 define('TXT_VAL_REF_ETIQ', 'La etiqueta indica el nombre con el que aparecerá el valor de referencia en las gráficas y en las mediciones.');
 //Status
 define('TXT_VAL_LOGRADO', 'Valor óptimo');
@@ -586,6 +585,7 @@ define('MSG_INDICS_NO_DATOS', 'No hay indicadores (datos) activos.');
 define('MSG_INDICS_NO_ARCHIVADOS', 'No hay indicadores archivados.');
 define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
 define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador.');
+define('MSG_INDIC_NO_VAL_PERIODO', 'No hay valores recogidos para este indicador durante el período establecido.');
 define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
 define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores.');
 define('MSG_INDIC_CONFIRM_ARCHIVAR', 'El indicador quedará archivado pero no se eliminará, ¿realmente desea archivar este indicador?');
@@ -706,7 +706,7 @@ define('MSG_VAL_REF_CREADO', 'Se ha añadido correctamente el valor de referenci
 define('MSG_VAL_REF_EDITADO', 'Se ha editado correctamente el valor de referencia:');
 define('MSG_VALS_REF_BORRADO', 'Se han borrado:');
 define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia.');
-define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" y/o "Límite" para activar el control del status por colores en las mediciones.');
+define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" (color verde) y/o "Límite" (color rojo) para activar el control del status por colores en las mediciones.');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 define('MSG_VALS_NO_MARCADOS', 'No se ha seleccionado ningún valor para desactivar.');
 define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en indicadores archivados. Restaure primero el indicador.');

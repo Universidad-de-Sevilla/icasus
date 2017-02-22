@@ -325,7 +325,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
         {
             //Debido a la particularidad de este caso generaremos 
             //nuestro propio json
-            $array_intranual = calcular_intranual($id, $operador_temporal, $link);
+            $array_intranual = calcular_intranual($id, $operador_temporal, $link, $fecha_inicio, $fecha_fin);
             //Añadimos los datos
             $datos = array_merge($datos, $array_intranual);
         }
@@ -354,7 +354,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     {
         $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
             UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin,
-            valores_referencia.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia
+            valores_referencia.etiqueta as unidad, valores_referencia.nombre as nombre_ref, NULL as id_unidad, valor, TRUE as referencia
             FROM valores_referencia
             INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
             INNER JOIN mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
@@ -364,7 +364,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
     {
         $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
             UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin,
-            valores_referencia.etiqueta as unidad, NULL as id_unidad, $operador_temporal(valor) as valor, TRUE as referencia
+            valores_referencia.etiqueta as unidad,valores_referencia.nombre as nombre_ref, NULL as id_unidad, $operador_temporal(valor) as valor, TRUE as referencia
             FROM valores_referencia
             INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id
             INNER JOIN mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
@@ -387,7 +387,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
         {
             $query_ref = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
                     UNIX_TIMESTAMP(mediciones.periodo_inicio)*1000 as periodo_fin, 
-                    valores_referencia.etiqueta as unidad, NULL as id_unidad, valor, TRUE as referencia
+                    valores_referencia.etiqueta as unidad, valores_referencia.nombre as nombre_ref, NULL as id_unidad, valor, TRUE as referencia
                     FROM mediciones 
                     INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
                     INNER JOIN valores_referencia ON valores_referencia_mediciones.id_valor_referencia = valores_referencia.id 
@@ -396,7 +396,9 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
                     FROM mediciones 
                     INNER JOIN valores_referencia_mediciones ON valores_referencia_mediciones.id_medicion = mediciones.id
                     WHERE mediciones.id_indicador = $id AND valor IS NOT NULL AND grafica = 1
-                    GROUP BY valores_referencia_mediciones.id_valor_referencia, YEAR (periodo_inicio))";
+                    GROUP BY valores_referencia_mediciones.id_valor_referencia, YEAR (periodo_inicio))"
+                    . " AND mediciones.periodo_inicio >=  '$fecha_inicio'"
+                    . " AND mediciones.periodo_fin <= '$fecha_fin'";
         }
     }
     else if ($periodicidad == "mensual")
@@ -623,9 +625,8 @@ function calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link)
     return $array_json;
 }
 
-//Para indicadores/datos intranuales calcula los valores 
-//anuales por unidad y totales
-function calcular_intranual($id, $operador_temporal, $link)
+//Para indicadores/datos intranuales calcula los valores anuales por unidad y totales
+function calcular_intranual($id, $operador_temporal, $link, $fecha_inicio, $fecha_fin)
 {
 
     $query = "SELECT mediciones.id as id_medicion, mediciones.etiqueta as medicion,
@@ -643,6 +644,13 @@ function calcular_intranual($id, $operador_temporal, $link)
 
     //Años para los que se han recogido valores
     $anyos = array();
+    //Comprobamos las fechas si existen y obtenemos los años de inicio y fin
+    if ($fecha_inicio != 0 && $fecha_fin != 0)
+    {
+        $anyo_inicio = explode('-', $fecha_inicio)[0];
+        $anyo_fin = explode('-', $fecha_fin)[0];
+    }
+
     //Unidades para las que existen valores
     $unidades = array();
     //Valores recogidos durante un año por unidad
@@ -653,16 +661,38 @@ function calcular_intranual($id, $operador_temporal, $link)
         $medicion = $row['medicion'];
         $id_unidad = $row['id_unidad'];
         $anyo = explode('.', $medicion)[0];
-        if ($parciales[$anyo][$id_unidad])
+        //Comprobamos si el año está dentro de nuestras fechas si éstas son dadas
+        if ($anyo_inicio && $anyo_fin)
         {
-            array_push($parciales[$anyo][$id_unidad], $row['valor']);
+            if ($anyo >= $anyo_inicio && $anyo <= $anyo_fin)
+            {
+                if ($parciales[$anyo][$id_unidad])
+                {
+                    array_push($parciales[$anyo][$id_unidad], $row['valor']);
+                }
+                else
+                {
+                    $unidades[$id_unidad] = $row['etiqueta_mini'];
+                    $parciales[$anyo][$id_unidad] = array();
+                    array_push($anyos, $anyo);
+                    array_push($parciales[$anyo][$id_unidad], $row['valor']);
+                }
+            }
         }
+        //Si no hay fechas dadas añadimos todos los años
         else
         {
-            $unidades[$id_unidad] = $row['etiqueta_mini'];
-            $parciales[$anyo][$id_unidad] = array();
-            array_push($anyos, $anyo);
-            array_push($parciales[$anyo][$id_unidad], $row['valor']);
+            if ($parciales[$anyo][$id_unidad])
+            {
+                array_push($parciales[$anyo][$id_unidad], $row['valor']);
+            }
+            else
+            {
+                $unidades[$id_unidad] = $row['etiqueta_mini'];
+                $parciales[$anyo][$id_unidad] = array();
+                array_push($anyos, $anyo);
+                array_push($parciales[$anyo][$id_unidad], $row['valor']);
+            }
         }
     }
 

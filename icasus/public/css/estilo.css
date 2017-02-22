@@ -566,3 +566,8 @@ sub{
     align-items: center;
     justify-content: center;
 }
+
+/*Carrousel*/
+.carousel-control {
+    width: 0;
+}

@@ -119,7 +119,7 @@
                     </div>
                     <div class="form-horizontal">
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">{$smarty.const.FIELD_EFQM}</label>
+                            <label for="efqm" class="col-sm-2 control-label">{$smarty.const.FIELD_EFQM}</label>
                             <div id="criterio" class="col-sm-6" data-id_entidad="{$entidad->id}">
                                 <select class="form-control chosen-select" id="efqm" multiple>
                                     <option value="0">{$smarty.const.MSG_NO_DEF}</option>
@@ -191,7 +191,7 @@
                                     {$indicador->nombre}</a>
                             </td>
                             <td>
-                               {if ($indicador->criterios_efqm|@count) > 0}
+                                {if ($indicador->criterios_efqm|@count) > 0}
                                     <ul class="list-unstyled"> 
                                         {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
                                             <li>
@@ -251,7 +251,7 @@
         </div>
         {*Recargamos script para datatables y botones*}
         {literal}
-            <script>
+            <script defer>
                 //Datatables
                 $(document).ready(function () {
                     datatables = $('.datatable').DataTable({

@@ -525,7 +525,7 @@
                                 <div id="{$proceso->id}" class="panel-collapse collapse proceso" role="tabpanel" aria-labelledby="" data-num_indic="{$indicadores[$proceso->id]|@count}">
                                     <div class="panel-body">
                                         {if $indicadores[$proceso->id]}
-                                            <div id="carousel-{$proceso->id}" class="carousel slide" data-ride="carousel">
+                                            <div id="carousel-{$proceso->id}" class="carousel slide" data-ride="carousel" data-interval="15000">
                                                 <!-- Wrapper for slides -->
                                                 <div class="carousel-inner" role="listbox">
                                                     {foreach $indicadores[$proceso->id] as $indicador}
@@ -536,27 +536,31 @@
                                                                  data-nombre_indicador="{$indicador->nombre}"
                                                                  data-valor_min="{$indicador->valor_min}" 
                                                                  data-valor_max="{$indicador->valor_max}" 
-                                                                 data-fecha_inicio="{$indicador->historicos}-01-01" 
+                                                                 data-fecha_inicio="{$anio_inicio}-01-01" 
                                                                  data-fecha_fin="{$anio_fin}-12-31"
-                                                                 data-periodicidad="anual">
+                                                                 {if $indicador->periodicidad=='Bienal'}
+                                                                     data-periodicidad= "bienal" 
+                                                                 {else}
+                                                                     data-periodicidad= "anual"
+                                                                 {/if}>
                                                             </div>
                                                             <div class="carousel-caption">
                                                                 <h3>
                                                                     <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}' 
-                                                                       title="{$indicador->nombre}: {$indicador->descripcion}"><i class="fa fa-line-chart fa-fw"></i></a>
+                                                                       title="{$indicador->nombre}: {$indicador->descripcion}"><i class="fa fa-dashboard fa-fw"></i></a>
                                                                 </h3>
-                                                                <p style="color: #337AB7">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
+                                                                <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
                                                             </div>
                                                         </div>
                                                     {/foreach}
                                                 </div>
                                                 <!-- Controls -->
                                                 <a class="left carousel-control" title="{$smarty.const.TXT_ANT}" href="#carousel-{$proceso->id}" role="button" data-slide="prev">
-                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7"></span>
+                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7;"></span>
                                                     <span class="sr-only">{$smarty.const.TXT_ANT}</span>
                                                 </a>
                                                 <a class="right carousel-control" title="{$smarty.const.TXT_SIG}" href="#carousel-{$proceso->id}" role="button" data-slide="next">
-                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7"></span>
+                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7;"></span>
                                                     <span class="sr-only">{$smarty.const.TXT_SIG}</span>
                                                 </a>
                                             </div>
@@ -582,21 +586,99 @@
                     {/if}
                     <!-- /Indicadores agrupados por procesos -->
 
-                    <!-- Resto de indicadores -->
+                    <!-- Indicadores (control) -->
+                    {if $controles} 
+                        <div class="panel panel-success">
+                            <div class="panel-heading" role="tab" id="">
+                                <div class="row">
+                                    <div class="col-md-10">
+                                        <h4 class="panel-title">
+                                            <a title="{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})" role="button" data-toggle="collapse" data-parent="#accordion" href="#control" aria-expanded="false" aria-controls="">
+                                                <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-sliders fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <!-- /.col-md-10 -->
+                                    <div class="col-md-2">
+                                        <span title="{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL}): {$controles|@count} {$smarty.const.FIELD_INDICS}" class="badge pull-right">{$controles|@count} {$smarty.const.FIELD_INDICS}</span> 
+                                    </div>
+                                    <!-- /.col-md-2 -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div id="control" class="panel-collapse collapse proceso" role="tabpanel" aria-labelledby="" data-num_indic="{$controles|@count}">
+                                <div class="panel-body">
+                                    <div id="carousel-control" class="carousel slide" data-ride="carousel" data-interval="15000">
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner" role="listbox">
+                                            {foreach $controles as $control}
+                                                <div class="item {if $control@first}active{/if}">
+                                                    <div class="control highchart" 
+                                                         id="panel_{$control->id}" 
+                                                         data-id_indicador="{$control->id}" 
+                                                         data-nombre_indicador="{$control->nombre}"
+                                                         data-valor_min="{$control->valor_min}" 
+                                                         data-valor_max="{$control->valor_max}" 
+                                                         data-fecha_inicio="{$anio_inicio}-01-01" 
+                                                         data-fecha_fin="{$anio_fin}-12-31"
+                                                         {if $control->periodicidad=='Bienal'}
+                                                             data-periodicidad= "bienal" 
+                                                         {else}
+                                                             data-periodicidad= "anual"
+                                                         {/if}>
+                                                    </div>
+                                                    <div class="carousel-caption">
+                                                        <h3>
+                                                            <a href='index.php?page=indicador_mostrar&id_indicador={$control->id}&id_entidad={$entidad->id}' 
+                                                               title="{$control->nombre}: {$control->descripcion}"><i class="fa fa-dashboard fa-fw"></i></a>
+                                                        </h3>
+                                                        <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
+                                                    </div>
+                                                </div>
+                                            {/foreach}
+                                        </div>
+                                        <!-- Controls -->
+                                        <a class="left carousel-control" title="{$smarty.const.TXT_ANT}" href="#carousel-control" role="button" data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7;"></span>
+                                            <span class="sr-only">{$smarty.const.TXT_ANT}</span>
+                                        </a>
+                                        <a class="right carousel-control" title="{$smarty.const.TXT_SIG}" href="#carousel-control" role="button" data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7;"></span>
+                                            <span class="sr-only">{$smarty.const.TXT_SIG}</span>
+                                        </a>
+                                    </div>
+                                    <!-- /.carousel -->
+                                </div>
+                                <!-- /.panel-body-->
+                            </div>
+                            <!-- /.panel-collapse -->
+                        </div>
+                        <!-- /.panel -->
+                    {else}
+                        <br>
+                        <div class="alert alert-info alert-dismissible">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_UNID_NO_INDIC_CONTROL}
+                        </div> 
+                    {/if}
+                    <!-- /Indicadores (control) -->
+
+                    <!-- Indicadores (datos) -->
                     {if $datos} 
                         <div class="panel panel-danger">
                             <div class="panel-heading" role="tab" id="">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <h4 class="panel-title">
-                                            <a title="{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL}, {$smarty.const.FIELD_DATOS})" role="button" data-toggle="collapse" data-parent="#accordion" href="#datos" aria-expanded="false" aria-controls="">
-                                                <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL}, {$smarty.const.FIELD_DATOS})
+                                            <a title="{$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_DATOS})" role="button" data-toggle="collapse" data-parent="#accordion" href="#datos" aria-expanded="false" aria-controls="">
+                                                <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-database fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_DATOS})
                                             </a>
                                         </h4>
                                     </div>
                                     <!-- /.col-md-10 -->
                                     <div class="col-md-2">
-                                        <span title="{$entidad->nombre}: {$datos|@count} {$smarty.const.FIELD_INDICS}" class="badge pull-right">{$datos|@count} {$smarty.const.FIELD_INDICS}</span> 
+                                        <span title="{$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_DATOS}): {$datos|@count} {$smarty.const.FIELD_INDICS}" class="badge pull-right">{$datos|@count} {$smarty.const.FIELD_INDICS}</span> 
                                     </div>
                                     <!-- /.col-md-2 -->
                                 </div>
@@ -605,7 +687,7 @@
                             <!-- /.panel-heading -->
                             <div id="datos" class="panel-collapse collapse proceso" role="tabpanel" aria-labelledby="" data-num_indic="{$datos|@count}">
                                 <div class="panel-body">
-                                    <div id="carousel-datos" class="carousel slide" data-ride="carousel">
+                                    <div id="carousel-datos" class="carousel slide" data-ride="carousel" data-interval="15000">
                                         <!-- Wrapper for slides -->
                                         <div class="carousel-inner" role="listbox">
                                             {foreach $datos as $dato}
@@ -616,27 +698,31 @@
                                                          data-nombre_indicador="{$dato->nombre}"
                                                          data-valor_min="{$dato->valor_min}" 
                                                          data-valor_max="{$dato->valor_max}" 
-                                                         data-fecha_inicio="{$dato->historicos}-01-01" 
+                                                         data-fecha_inicio="{$anio_inicio}-01-01" 
                                                          data-fecha_fin="{$anio_fin}-12-31"
-                                                         data-periodicidad="anual">
+                                                         {if $dato->periodicidad=='Bienal'}
+                                                             data-periodicidad= "bienal" 
+                                                         {else}
+                                                             data-periodicidad= "anual"
+                                                         {/if}>
                                                     </div>
                                                     <div class="carousel-caption">
                                                         <h3>
                                                             <a href='index.php?page=indicador_mostrar&id_indicador={$dato->id}&id_entidad={$entidad->id}' 
-                                                               title="{$dato->nombre}: {$dato->descripcion}"><i class="fa fa-line-chart fa-fw"></i></a>
+                                                               title="{$dato->nombre}: {$dato->descripcion}"><i class="fa fa-dashboard fa-fw"></i></a>
                                                         </h3>
-                                                        <p style="color: #337AB7">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
+                                                        <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
                                                     </div>
                                                 </div>
                                             {/foreach}
                                         </div>
                                         <!-- Controls -->
                                         <a class="left carousel-control" title="{$smarty.const.TXT_ANT}" href="#carousel-datos" role="button" data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7"></span>
+                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7;"></span>
                                             <span class="sr-only">{$smarty.const.TXT_ANT}</span>
                                         </a>
                                         <a class="right carousel-control" title="{$smarty.const.TXT_SIG}" href="#carousel-datos" role="button" data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7"></span>
+                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7;"></span>
                                             <span class="sr-only">{$smarty.const.TXT_SIG}</span>
                                         </a>
                                     </div>
@@ -654,7 +740,7 @@
                             {$smarty.const.MSG_UNID_NO_DATOS}
                         </div> 
                     {/if}
-                    <!-- /Resto de indicadores -->
+                    <!-- /Indicadores (datos) -->
 
                 </div>
             </div>

@@ -2,7 +2,11 @@
     <label for="fin">{$smarty.const.FIELD_FIN_PERIODO}</label>            
     <select class="form-control" name="fin" id="fin">
         {foreach from=$years item=year}
-            {if $year->periodo_inicio|truncate:4:'' >= $year_inicio} <option value="{$year->periodo_inicio|truncate:4:''}" >{$year->periodo_inicio|truncate:4:''}</option>{/if}
+            {if $year->periodo_inicio|truncate:4:'' >= $year_inicio}
+                <option value="{$year->periodo_fin|truncate:4:''}">
+                    {$year->periodo_fin|truncate:4:''}
+                </option>
+            {/if}
         {/foreach}
     </select>
 
@@ -15,6 +19,7 @@
             });
         });
     </script>
+
 {else if $modulo == 'mostrar_valores' OR $modulo == 'asignar_una_medicion' OR $modulo == 'activar_all' OR $modulo == 'activar_uno'}
     <!-- Valores de subunidades-mediciones -->
     <div class="row">
