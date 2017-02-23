@@ -82,7 +82,6 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $indicadores_influyentes = $logicaIndicador->calcular_dependencias($id_indicador);
     $smarty->assign("indicadores_influyentes", $indicadores_influyentes);
 
-
     $medicion = new Medicion();
     $years = $medicion->find_year_mediciones($id_indicador);
     $smarty->assign('years', $years);

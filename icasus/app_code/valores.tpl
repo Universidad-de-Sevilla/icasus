@@ -253,12 +253,10 @@
             <li role="presentation">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
-            {if (($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo)}
+            {if $_control || $indicador->id_responsable == $_usuario->id}
                 <li role="presentation" class="active">
                     <a title="{$smarty.const.TXT_VAL_EDIT}" href="#"><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
                 </li>
-            {/if}
-            {if $_control || $_usuario->id==$indicador->id_responsable}
                 <li role="presentation">
                     <a title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}</a>
                 </li>
@@ -444,12 +442,26 @@
                             <select class="form-control chosen-select" id="inicio" name="inicio">
                                 <option value="0">{$smarty.const.TXT_SEL}</option>
                                 {foreach from=$years item=year}
-                                    <option value="{$year->periodo_inicio|truncate:4:''}">{$year->periodo_inicio|truncate:4:''}</option>
+                                    <option value="{$year->periodo_inicio|truncate:4:''}" 
+                                            {if $year->periodo_inicio|truncate:4:''== $mediciones[($mediciones|@count)-1]->periodo_inicio|truncate:4:''}selected{/if}>
+                                        {$year->periodo_inicio|truncate:4:''}
+                                    </option>
                                 {/foreach}
                             </select>                
                         </div>
                         <div class="form-group col-sm-offset-2" id="end_year">
-                        </div>       
+                            <label for="fin">{$smarty.const.FIELD_FIN_PERIODO}</label>            
+                            <select class="form-control chosen-select" name="fin" id="fin">
+                                {foreach from=$years item=year}
+                                    {if $year->periodo_inicio|truncate:4:'' >= $mediciones[($mediciones|@count)-1]->periodo_inicio|truncate:4:''}
+                                        <option value="{$year->periodo_fin|truncate:4:''}"
+                                                {if $year->periodo_fin|truncate:4:''== $mediciones[0]->periodo_fin|truncate:4:''}selected{/if}>
+                                            {$year->periodo_fin|truncate:4:''}
+                                        </option>
+                                    {/if}
+                                {/foreach}
+                            </select>
+                        </div>        
                     </form>
                     <div class="pull-right">
                         <button id="btn_mostrar"

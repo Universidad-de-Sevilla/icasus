@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.44.1");
-define('IC_FECHA_REVISION', "22/02/2017");
+define('IC_VERSION', "3.44.2");
+define('IC_FECHA_REVISION', "23/02/2017");
 
+// 3.44.2 - 23/02/2017 - En la edicición de indicadores/datos, se muestran los años seleccionados para el intervalo de valores que se está visualizando. Corrección: la pestaña de edición de valores no se mostraba cuando se estaba en ella en indicadores/datos calculados.
 // 3.44.1 - 22/02/2017 - Correcciones: generación de mediciones en indicadores influyentes y se listan correctamente los objetivos operacionales en el listado de indicadores de control. Cambiado texto descripción de control.
 // 3.44.0 - 21/02/2017 - Mejoras múltiples en gráficas: posibilidad de acotar periodos, colores de valores de referencia independientes de las etiquetas,...
 // 3.43.1 - 26/01/2017 - Correcciones: los gráficos del carrousel resumen de una unidad se ajustan al tamaño de su contenedor y los botones de desplazamiento (ocupan menos) no impiden la exportación de los mismos.
