@@ -197,7 +197,7 @@
                 <div class="row">
 
                     <!-- Datos de la línea -->
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <table class="table table-striped table-hover ficha">
                             <thead><th></th><th></th></thead>
                             <tbody>
@@ -240,18 +240,14 @@
                             </div>
                         {/if}
                     </div>
-                    <!-- /.col-md-12 -->
+                    <!-- /.col-md-6 -->
                     <!-- /Datos de la línea -->
-                </div>
-                <!-- /.row -->
 
-                <!-- Ejecución/año -->
-                <div class="row">
-                    <div class="col-md-12">
+                    <!-- Ejecución/año -->
+                    <div class="col-md-6">
                         <div class="panel panel-red">
                             <div class="panel-heading">
                                 <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}</span>
-                                <i class="fa fa-chevron-up pull-right clickable"></i>
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
@@ -282,11 +278,11 @@
                         </div>
                         <!-- /.panel -->
                     </div>
-                    <!-- /.col-md-12 -->
+                    <!-- /.col-md-6 -->
+                    <!-- /Ejecución/año -->
+
                 </div>
                 <!-- /.row -->
-                <!-- /Ejecución/año -->
-
             </div>
             <!-- /Ficha de la línea -->
 
