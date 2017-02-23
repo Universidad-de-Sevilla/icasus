@@ -91,7 +91,7 @@ class LogicaIndicador implements ILogicaIndicador
     public function generar_medicion_bienal($indicador, $anyo)
     {
         $medicion = new Medicion();
-        $etiqueta = $anyo . '-' . ($anyo + 2);
+        $etiqueta = $anyo . '-' . ($anyo + 1);
         //Comprobamos primero si ya exite la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
         {
@@ -101,8 +101,8 @@ class LogicaIndicador implements ILogicaIndicador
         else
         {
             $periodo_inicio = $anyo . '-01-01';
-            $periodo_fin = $anyo + 2 . '-12-31';
-            $grabacion_fin = $anyo + 3 . '-04-30';
+            $periodo_fin = $anyo + 1 . '-12-31';
+            $grabacion_fin = $anyo + 2 . '-04-30';
             $medicion->id_indicador = $indicador->id;
             $medicion->periodo_inicio = $periodo_inicio;
             $medicion->periodo_fin = $periodo_fin;
