@@ -90,31 +90,10 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
     $smarty->assign('objops', $objops);
     $smarty->assign('objops_objests', $objops_objests);
 
-    //Indicadores y años de ejecución de los objetivos operacionales
-    $objops_indicadores_correlacion = array();
-    $objops_indicadores_control = array();
+    //Años de ejecución de los objetivos operacionales
     $objops_anyos = array();
     foreach ($objops as $obj)
     {
-        //Indicadores de correlación
-        $objops_indicadores_correlacion[$obj->id] = array();
-        foreach ($obj->indicadores_correlacion as $correlacion)
-        {
-            $indicador = new Indicador();
-            $indicador->load("id=$correlacion->id_indicador");
-            array_push($objops_indicadores_correlacion[$obj->id], $indicador);
-        }
-
-        //Indicadores de control
-        $objops_indicadores_control[$obj->id] = array();
-        foreach ($obj->indicadores_control as $controlador)
-        {
-            $indicador = new Indicador();
-            $indicador->load("id=$controlador->id_indicador");
-            array_push($objops_indicadores_control[$obj->id], $indicador);
-        }
-
-        //Años de ejecucion
         $objops_anyos[$obj->id] = array();
         $ejecuciones = $ejecucion->Find("id_objop=$obj->id order by anyo");
         foreach ($ejecuciones as $ejec)
@@ -125,8 +104,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
             }
         }
     }
-    $smarty->assign('objops_indicadores_correlacion', $objops_indicadores_correlacion);
-    $smarty->assign('objops_indicadores_control', $objops_indicadores_control);
     $smarty->assign('objops_anyos', $objops_anyos);
 
     //Unidades de los objetivos operacionales

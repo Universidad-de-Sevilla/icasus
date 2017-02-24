@@ -217,7 +217,7 @@
                 <a href="#plan_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
             </li>
             <li role="presentation">
-                <a href="#plan_res" title="{$smarty.const.TXT_SEG} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" aria-controls="{$smarty.const.TXT_SEG} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" role="tab" data-toggle="tab"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.TXT_SEG}</a>
+                <a href="#plan_res" title="{$smarty.const.TXT_RESUMEN} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" aria-controls="{$smarty.const.TXT_RESUMEN} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" role="tab" data-toggle="tab"><i class="fa fa-th-list fa-fw"></i> {$smarty.const.TXT_RESUMEN}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -704,15 +704,15 @@
             </div>
             <!-- /Archivos del plan -->
 
-            <!-- Seguimiento del plan -->
+            <!-- Resumen del plan -->
             <div role="tabpanel" class="tab-pane" id="plan_res">
                 {if $lineas}
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="form-horizontal">
-                                <div class="form-group h4">
-                                    <label for="anyo" class="col-sm-3 control-label">{$smarty.const.FIELD_ANYO}</label>
-                                    <div class="col-sm-5">
+                                <div class="form-group">
+                                    <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO}</label>
+                                    <div class="col-sm-6">
                                         <select class="form-control chosen-select" id="anyo" data-id_plan="{$plan->id}">
                                             <option value="0" selected>{$smarty.const.TXT_TODOS}</option>
                                             {for $i={($plan->anyo_inicio + $plan->duracion-1)} to {$plan->anyo_inicio} step=-1}
@@ -726,7 +726,7 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <div id="plan_anyo">
-                        <ul class="list-group" style="margin: 0;">
+                        <ul class="list-group">
                             <li class="list-group-item list-group-item-info">
                                 <div class="row">
                                     <div class="col-sm-8 h4">
@@ -735,7 +735,7 @@
                                     <!-- /.col-sm-8 -->
                                     <div class="col-sm-4">
                                         <div class="progress">
-                                            <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$plan->ejecucion|round:"2"}%;">
+                                            <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$plan->ejecucion|round:"2"}%">
                                                 {$plan->ejecucion|round:"2"} %
                                             </div>
                                         </div>
@@ -745,9 +745,9 @@
                                 <!-- /.row -->
                             </li>
                         </ul>
-                        <div class="panel-group" id="accordion_lineas" role="tablist" aria-multiselectable="true" style="margin-bottom: 0;">
+                        <div class="panel-group" id="accordion_lineas" role="tablist" aria-multiselectable="true">
                             {foreach from=$lineas item=linea}
-                                <div class="panel panel-danger" style="margin-top: 0;">
+                                <div class="panel panel-danger">
                                     <div class="panel-heading" role="tab">
                                         <div class="row">
                                             <div class="col-sm-8">
@@ -763,7 +763,7 @@
                                             <!-- /.col-sm-8 -->
                                             <div class="col-sm-4">
                                                 <div class="progress">
-                                                    <div class="progress-bar {if $linea->ejecucion|round:"2" < 25}progress-bar-danger{else if $linea->ejecucion|round:"2" >= 25 && $linea->ejecucion|round:"2" < 75}progress-bar-warning{else if $linea->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$linea->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$linea->ejecucion|round:"2"}%;">
+                                                    <div class="progress-bar {if $linea->ejecucion|round:"2" < 25}progress-bar-danger{else if $linea->ejecucion|round:"2" >= 25 && $linea->ejecucion|round:"2" < 75}progress-bar-warning{else if $linea->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$linea->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$linea->ejecucion|round:"2"}%">
                                                         {$linea->ejecucion|round:"2"} %
                                                     </div>
                                                 </div>
@@ -774,10 +774,10 @@
                                     </div>
                                     <!-- /.panel-heading -->
                                     <div id="{$linea->id}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="">
-                                        <div class="panel-group" id="accordion_objests" role="tablist" aria-multiselectable="true" style="margin-bottom: 0;">
+                                        <div class="panel-group" id="accordion_objests" role="tablist" aria-multiselectable="true">
                                             {if $objests_lineas[$linea->id]}
                                                 {foreach from=$objests_lineas[$linea->id] item=objest}
-                                                    <div class="panel panel-warning" style="margin-top: 0;">
+                                                    <div class="panel panel-warning">
                                                         <div class="panel-heading" role="tab">
                                                             <div class="row">
                                                                 <div class="col-sm-8">
@@ -793,7 +793,7 @@
                                                                 <!-- /.col-sm-8 -->
                                                                 <div class="col-sm-4">
                                                                     <div class="progress">
-                                                                        <div class="progress-bar {if $objest->ejecucion|round:"2" < 25}progress-bar-danger{else if $objest->ejecucion|round:"2" >= 25 && $objest->ejecucion|round:"2" < 75}progress-bar-warning{else if $objest->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objest->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$objest->ejecucion|round:"2"}%;">
+                                                                        <div class="progress-bar {if $objest->ejecucion|round:"2" < 25}progress-bar-danger{else if $objest->ejecucion|round:"2" >= 25 && $objest->ejecucion|round:"2" < 75}progress-bar-warning{else if $objest->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objest->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$objest->ejecucion|round:"2"}%">
                                                                             {$objest->ejecucion|round:"2"} %
                                                                         </div>
                                                                     </div>
@@ -804,97 +804,41 @@
                                                         </div>
                                                         <!-- /.panel-heading -->
                                                         <div id="{$linea->id}{$objest->id}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="">
-                                                            <div class="panel-group" id="accordion_objops" role="tablist" aria-multiselectable="true" style="margin-bottom: 0;">
-                                                                {if $objops_objests[$objest->id]}
+                                                            {if $objops_objests[$objest->id]}
+                                                                <div class="list-group">
                                                                     {foreach from=$objops_objests[$objest->id] item=objop}
-                                                                        <div class="panel panel-success" style="margin-top: 0;">
-                                                                            <div class="panel-heading" role="tab">
-                                                                                <div class="row">
-                                                                                    <div class="col-sm-8">
-                                                                                        <h4 class="panel-title">
-                                                                                            <a title="{$smarty.const.FIELD_OBJ_OP}: {$linea->indice}.{$objest->indice}.{$objop->indice}. {$objop->nombre}" role="button" data-toggle="collapse" data-parent="#accordion_objops" href="#{$linea->id}{$objest->id}{$objop->id}" aria-expanded="false" aria-controls="">
-                                                                                                <i class="fa fa-bullseye fa-fw"></i> {$linea->indice}.{$objest->indice}.{$objop->indice}. {$objop->nombre}
-                                                                                            </a>
-                                                                                            <a class="panel-title pull-right" title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$plan->id_entidad}">
-                                                                                                <i class="fa fa-folder fa-fw"></i>
-                                                                                            </a> 
-                                                                                        </h4>
-                                                                                    </div>
-                                                                                    <!-- /.col-sm-8 -->
-                                                                                    <div class="col-sm-4">
-                                                                                        <div class="progress">
-                                                                                            <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{else if $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{else if $objop->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$objop->ejecucion|round:"2"}%;">
-                                                                                                {$objop->ejecucion|round:"2"} %
-                                                                                            </div>
+                                                                        <a href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$plan->id_entidad}" title="{$smarty.const.FIELD_OBJ_OP}: {$linea->indice}.{$objest->indice}.{$objop->indice}. {$objop->nombre}" class="list-group-item list-group-item-success">
+                                                                            <div class="row">
+                                                                                <div class="col-sm-8">
+                                                                                    <i class="fa fa-bullseye fa-fw"></i> {$linea->indice}.{$objest->indice}.{$objop->indice}. {$objop->nombre}
+                                                                                </div>
+                                                                                <!-- /.col-sm-8 -->
+                                                                                <div class="col-sm-4">
+                                                                                    <div class="progress">
+                                                                                        <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{else if $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{else if $objop->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$objop->ejecucion|round:"2"}%">
+                                                                                            {$objop->ejecucion|round:"2"} %
                                                                                         </div>
                                                                                     </div>
-                                                                                    <!-- /.col-sm-4 -->
                                                                                 </div>
-                                                                                <!-- /.row -->
+                                                                                <!-- /.col-sm-4 -->
                                                                             </div>
-                                                                            <!-- /.panel-heading -->
-                                                                            <div id="{$linea->id}{$objest->id}{$objop->id}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="">
-                                                                                <div class="panel-group" id="accordion_indics" role="tablist" aria-multiselectable="true" style="margin-bottom: 0;">
-                                                                                    <!-- Indicadores de correlación -->
-                                                                                    {if $objops_indicadores_correlacion[$objop->id]}
-                                                                                        <div class="list-group" style="margin: 0;">
-                                                                                            <a href="#" class="list-group-item disabled">
-                                                                                                <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-gear fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})
-                                                                                            </a>
-                                                                                            {foreach $objops_indicadores_correlacion[$objop->id] as $ind_correl}
-                                                                                                <a class="list-group-item" href='index.php?page=indicador_mostrar&id_indicador={$ind_correl->id}&id_entidad={$ind_correl->id_entidad}' 
-                                                                                                   title="{$ind_correl->nombre}: {$ind_correl->descripcion|replace:"\r\n":" "}">
-                                                                                                    {$ind_correl->nombre}
-                                                                                                </a>
-                                                                                            {/foreach}
-                                                                                        </div>
-                                                                                    {else}
-                                                                                        <div class="alert alert-info alert-dismissible" style="margin: 0;">
-                                                                                            <i class="fa fa-info-circle fa-fw"></i> 
-                                                                                            {$smarty.const.MSG_OBJOP_NO_INDICS_CORREL}
-                                                                                        </div>
-                                                                                    {/if}
-                                                                                    <!-- /Indicadores de correlación -->
-                                                                                    <!-- Indicadores de control -->
-                                                                                    {if $objops_indicadores_control[$objop->id]}
-                                                                                        <div class="list-group" style="margin: 0;">
-                                                                                            <a href="#" class="list-group-item disabled">
-                                                                                                <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-sliders fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})
-                                                                                            </a>
-                                                                                            {foreach $objops_indicadores_control[$objop->id] as $ind_ctl}
-                                                                                                <a class="list-group-item" href='index.php?page=indicador_mostrar&id_indicador={$ind_ctl->id}&id_entidad={$ind_ctl->id_entidad}' 
-                                                                                                   title="{$ind_ctl->nombre}: {$ind_ctl->descripcion|replace:"\r\n":" "}">
-                                                                                                    {$ind_ctl->nombre}
-                                                                                                </a>
-                                                                                            {/foreach}
-                                                                                        </div>
-                                                                                    {else}
-                                                                                        <div class="alert alert-info alert-dismissible" style="margin: 0;">
-                                                                                            <i class="fa fa-info-circle fa-fw"></i> 
-                                                                                            {$smarty.const.MSG_OBJOP_NO_INDICS_CONTROL}
-                                                                                        </div>
-                                                                                    {/if}
-                                                                                    <!-- /Indicadores de control -->
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- /.panel-collapse -->
-                                                                        </div>
-                                                                        <!-- /.panel -->
+                                                                            <!-- /.row -->
+                                                                        </a>
                                                                     {/foreach}
-                                                                {else}
-                                                                    <div class="alert alert-info alert-dismissible" style="margin: 0;">
-                                                                        <i class="fa fa-info-circle fa-fw"></i> 
-                                                                        {$smarty.const.MSG_OBJEST_NO_OBJOP}
-                                                                    </div> 
-                                                                {/if}
-                                                            </div>
+                                                                </div>
+                                                            {else}
+                                                                <div class="alert alert-info alert-dismissible">
+                                                                    <i class="fa fa-info-circle fa-fw"></i> 
+                                                                    {$smarty.const.MSG_OBJEST_NO_OBJOP}
+                                                                </div> 
+                                                            {/if}
                                                         </div>
                                                         <!-- /.panel-collapse -->
                                                     </div>
                                                     <!-- /.panel -->
                                                 {/foreach}
                                             {else}
-                                                <div class="alert alert-info alert-dismissible" style="margin: 0;">
+                                                <div class="alert alert-info alert-dismissible">
                                                     <i class="fa fa-info-circle fa-fw"></i> 
                                                     {$smarty.const.MSG_LINEA_NO_OBJEST}
                                                 </div> 
@@ -908,13 +852,13 @@
                         </div>
                     </div>
                 {else}
-                    <div class="alert alert-info alert-dismissible" style="margin: 0;">
+                    <div class="alert alert-info alert-dismissible">
                         <i class="fa fa-info-circle fa-fw"></i> 
                         {$smarty.const.MSG_PLAN_NO_LINEAS}
                     </div> 
                 {/if}
             </div>
-            <!-- /Seguimiento del plan -->
+            <!-- /Resumen del plan -->
 
         </div>
         <!-- /Tab panes -->

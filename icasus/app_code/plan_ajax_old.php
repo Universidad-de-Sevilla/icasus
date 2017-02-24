@@ -50,32 +50,6 @@ foreach ($objests as $obj)
 }
 $smarty->assign('objops_objests', $objops_objests);
 
-//Indicadores de objetivos operacionales
-$objops_indicadores_correlacion = array();
-$objops_indicadores_control = array();
-foreach ($objops as $objop)
-{
-    //Indicadores de correlación
-    $objops_indicadores_correlacion[$objop->id] = array();
-    foreach ($objop->indicadores_correlacion as $correlacion)
-    {
-        $indicador = new Indicador();
-        $indicador->load("id=$correlacion->id_indicador");
-        array_push($objops_indicadores_correlacion[$objop->id], $indicador);
-    }
-
-    //Indicadores de control
-    $objops_indicadores_control[$objop->id] = array();
-    foreach ($objop->indicadores_control as $controlador)
-    {
-        $indicador = new Indicador();
-        $indicador->load("id=$controlador->id_indicador");
-        array_push($objops_indicadores_control[$objop->id], $indicador);
-    }
-}
-$smarty->assign('objops_indicadores_correlacion', $objops_indicadores_correlacion);
-$smarty->assign('objops_indicadores_control', $objops_indicadores_control);
-
 if ($anyo)
 {
     //Ejecuciones anuales
@@ -117,7 +91,7 @@ if ($anyo)
     }
     $smarty->assign("ejecucion_objests", $ejecucion_objests);
 
-    //Indicadores y ejecuciones de objetivos operacionales
+    //Ejecuciones objetivos operacionales
     foreach ($objops as $objop)
     {
         if ($ejecucion->Load("id_objop=$objop->id AND anyo=$anyo"))

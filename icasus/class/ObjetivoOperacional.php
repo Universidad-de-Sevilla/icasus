@@ -58,6 +58,13 @@ class ObjetivoOperacional extends ADOdb_Active_Record
                 $responsable = new Usuario();
                 $responsable->load("id=$obj->id_responsable");
                 $obj->responsable = $responsable;
+
+                $objetivo_indicador = new ObjetivoIndicador();
+                $objetivo_indicadores_correlacion = $objetivo_indicador->Find("id_objop = $obj->id AND control=0");
+                $obj->indicadores_correlacion = $objetivo_indicadores_correlacion;
+
+                $objetivo_indicadores_control = $objetivo_indicador->Find("id_objop = $obj->id AND control=1");
+                $obj->indicadores_control = $objetivo_indicadores_control;
             }
         }
         return $objetivos_op;

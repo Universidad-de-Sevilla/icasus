@@ -25,6 +25,7 @@ define('TXT_DEPARTAMENTOS', 'Departamentos');
 define('TXT_BIBLIOTECAS', 'Bibliotecas');
 define('TXT_DEFINICION', 'Definición');
 define('TXT_CONTROL', 'Control');
+define('TXT_FICHA', 'Ficha');
 define('TXT_NO_ASIG', 'No asignado');
 define('TXT_CONTENIDO', 'Contenido de');
 define('TXT_INTRO_TEXTO', 'Introduce texto');
@@ -41,7 +42,7 @@ define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
 define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
 define('TXT_RESUL', 'Resultado');
-define('TXT_FICHA', 'Ficha');
+define('TXT_SEG', 'Seguimiento');
 
 //Análisis de indicadores
 define('TXT_ANALISIS', 'Análisis');
