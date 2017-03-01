@@ -83,6 +83,7 @@ if ($anyo)
     $ejecucion_lineas = array();
     $ejecucion_objests = array();
     $ejecucion_objops = array();
+    $activo_objops = array();
 
     //Ejecución del plan
     $ejecucion->load("id_plan=$id_plan AND anyo=$anyo");
@@ -123,12 +124,15 @@ if ($anyo)
         if ($ejecucion->Load("id_objop=$objop->id AND anyo=$anyo"))
         {
             $ejecucion_objops[$objop->id] = $ejecucion->valor;
+            $activo_objops[$objop->id] = $ejecucion->activo;
         }
         else
         {
             $ejecucion_objops[$objop->id] = 0;
+            $activo_objops[$objop->id] = 0;
         }
     }
     $smarty->assign("ejecucion_objops", $ejecucion_objops);
+    $smarty->assign("activo_objops", $activo_objops);
 }
 $plantilla = 'plan_ajax.tpl';
