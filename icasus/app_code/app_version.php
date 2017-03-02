@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.45.0");
-define('IC_FECHA_REVISION', "01/03/2017");
+define('IC_VERSION', "3.46.0");
+define('IC_FECHA_REVISION', "02/03/2017");
 
+// 3.46.0 - 02/03/2017 - Se ha reorganizado el código de la aplicación por carpetas y cambiado el código de los controladores necesarios a tal efecto.
 // 3.45.0 - 01/03/2017 - Revisión de los planes: cambios en la presentación de líneas y objetivos y seguimiento mejorado que incluye los indicadores.
 // 3.44.3 - 23/02/2017 - Corregido: se generan mediciones bienales correctamente (antes duraban tres años en vez de dos).
 // 3.44.2 - 23/02/2017 - En la edicición de indicadores/datos, se muestran los años seleccionados para el intervalo de valores que se está visualizando. Corrección: la pestaña de edición de valores no se mostraba cuando se estaba en ella en indicadores/datos calculados.

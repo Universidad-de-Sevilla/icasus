@@ -1,30 +1,32 @@
 <?php
 
-// ---------------------------------------------------------------
-// Proyecto: Icasus
-// Archivo: public/api_publica.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
-// Joaquín Valonero Zaera (tecnibus1@us.es)
-// ---------------------------------------------------------------
-// Acceso público a los dato de Icasus
-// Devuelve el resultado en formato JSON
-// ---------------------------------------------------------------
-// Métodos definidos:
-//
-// get_indicadores_panel($link,$id)
-// get_subunidades_indicador($link,$id)
-// get_valores_con_timestamp($link,$id, $fecha_inicio, $fecha_fin, $periodicidad)
-// ---------------------------------------------------------------
-// Funciones auxiliares
-//
-// obtener_total_calculado($link,$id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
-// obtener_totales_simples($link,$id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
-// ---------------------------------------------------------------
+/* ----------------------------------------------------------------------------------------
+  // Proyecto: Icasus
+  // Archivo: public/api_publica.php
+  // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+  // Joaquín Valonero Zaera (tecnibus1@us.es)
+  // --------------------------------------------------------------------------------------
+  // Acceso público a los dato de Icasus
+  // Devuelve el resultado en formato JSON
+  // --------------------------------------------------------------------------------------
+  // Métodos definidos:
+  //
+  // get_indicadores_panel($link,$id)
+  // get_subunidades_indicador($link,$id)
+  // get_valores_con_timestamp($link,$id, $fecha_inicio, $fecha_fin, $periodicidad)
+  // -------------------------------------------------------------------------------------
+  // Funciones auxiliares
+  //
+  // obtener_total_calculado($link,$id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
+  // obtener_totales_simples($link,$id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
+  // --------------------------------------------------------------------------------------
+ */
+
 // Carga el app_config y conecta a la base de datos
-// Es necesario porque este fichero no depende del controlador principal index.php
+// Es necesario porque este fichero no depende del controlador principal index.php 
 require_once("../app_code/app_config.php");
-//Clase Utiilidad para los cálculos
-require_once ('../class/Util.php');
+//Clase Utilidad para los cálculos
+require_once ('../util/Util.php');
 //Fichero de idioma
 require_once('../app_code/' . IC_LANG_FILE);
 
