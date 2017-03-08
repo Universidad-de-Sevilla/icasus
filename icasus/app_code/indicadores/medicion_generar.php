@@ -23,12 +23,13 @@ if (filter_has_var(INPUT_POST, 'id_entidad') && filter_has_var(INPUT_POST, 'id_i
     $anyo = filter_input(INPUT_POST, 'anyo', FILTER_SANITIZE_NUMBER_INT);
 
     $indicador = new Indicador;
-    if ($indicador->load("id = $id_indicador"))
+    if ($indicador->load_joined("id = $id_indicador"))
     {
-        //comprobar permisos para cambiar mediciones tanto para responsables del
-        //indicador como de la medición o responsables de la unidad
+        //Comprobar permisos para cambiar mediciones tanto para responsables del
+        //indicador como de la medición o responsables de la unidad y el proceso
         if ($control OR $indicador->id_responsable == $usuario->id
-                OR $indicador->id_responsable_medicion == $usuario->id)
+                OR $indicador->id_responsable_medicion == $usuario->id
+                OR $usuario->id == $indicador->proceso->id_propietario)
         {
             $permiso_generar = true;
         }

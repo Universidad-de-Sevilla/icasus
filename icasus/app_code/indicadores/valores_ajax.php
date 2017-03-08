@@ -24,7 +24,7 @@ $smarty->assign('entidad', $entidad);
 
 $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
 $indicador = new Indicador();
-$indicador->load("id = $id_indicador");
+$indicador->load_joined("id = $id_indicador");
 $smarty->assign('indicador', $indicador);
 
 $inicio = filter_input(INPUT_GET, 'inicio', FILTER_SANITIZE_NUMBER_INT);
@@ -39,7 +39,7 @@ $activo = filter_input(INPUT_GET, 'activo', FILTER_SANITIZE_NUMBER_INT);
 
 if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
 {
-    if ($control || $indicador->id_responsable == $usuario->id)
+    if ($control || $indicador->id_responsable == $usuario->id || $indicador->proceso->id_propietario == $usuario->id)
     {
         switch ($modulo)
         {

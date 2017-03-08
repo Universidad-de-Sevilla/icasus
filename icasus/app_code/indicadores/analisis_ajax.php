@@ -18,12 +18,12 @@ $smarty->assign('modulo', $modulo);
 
 $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
 $indicador = new Indicador();
-$indicador->load("id=$id_indicador");
+$indicador->load_joined("id=$id_indicador");
 $smarty->assign('indicador', $indicador);
 
 //Responsables
 $responsable = false;
-if ($indicador->id_responsable == $usuario->id)
+if ($indicador->id_responsable == $usuario->id || $indicador->proceso->id_propietario == $usuario->id)
 {
     $responsable = true;
 }

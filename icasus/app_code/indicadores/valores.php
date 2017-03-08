@@ -68,7 +68,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
 
     //Responsables
     $responsable = false;
-    if ($indicador->id_responsable == $usuario->id)
+    if ($indicador->id_responsable == $usuario->id || $usuario->id == $proceso->id_propietario)
     {
         $responsable = true;
     }

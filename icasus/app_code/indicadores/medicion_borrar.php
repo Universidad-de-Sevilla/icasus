@@ -25,14 +25,12 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $medicion = new Medicion();
         $medicion->load("id = $id_medicion");
         $indicador = new Indicador();
-        $indicador->load("id = $medicion->id_indicador");
+        $indicador->load_joined("id = $medicion->id_indicador");
 
         // Comprobamos si el usuario tiene autorización
-        if ($control)
-        {
-            $autorizado = true;
-        }
-        else if ($indicador->id_responsable == $usuario->id OR $indicador->id_responsable_medicion == $usuario->id)
+        if ($control OR $indicador->id_responsable == $usuario->id
+                OR $indicador->id_responsable_medicion == $usuario->id
+                OR $usuario->id == $indicador->proceso->id_propietario)
         {
             $autorizado = true;
         }
@@ -50,23 +48,43 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
             header("location:index.php?page=medicion&id_medicion=$id_medicion&id_entidad=$id_entidad&error=$error");
         }
     }
+
     //Borrar varias mediciones
-    if (filter_has_var(INPUT_POST, 'id_mediciones'))
+    if (filter_has_var(INPUT_POST, 'id_indicador') && filter_has_var(INPUT_POST, 'id_mediciones'))
     {
+        $id_indicador = filter_input(INPUT_POST, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
+        $indicador = new Indicador();
+        $indicador->load_joined("id=$id_indicador");
         $post_array = filter_input_array(INPUT_POST);
         $id_mediciones = $post_array['id_mediciones'];
         if ($id_mediciones)
         {
-            $medicion = new Medicion();
-            $medicion->load("id = $id_mediciones[0]");
-            $indicador = new Indicador();
-            $indicador->load("id = $medicion->id_indicador");
-            foreach ($id_mediciones as $id_med)
+            // Comprobamos si el usuario tiene autorización
+            if ($control OR $indicador->id_responsable == $usuario->id
+                    OR $indicador->id_responsable_medicion == $usuario->id
+                    OR $usuario->id == $indicador->proceso->id_propietario)
             {
-                $logicaIndicador->borrar_medicion($indicador, $id_med);
+                $autorizado = true;
+            }
+            else
+            {
+                $autorizado = false;
+            }
+            if ($autorizado)
+            {
+                foreach ($id_mediciones as $id_med)
+                {
+                    $logicaIndicador->borrar_medicion($indicador, $id_med);
+                }
+            }
+            else
+            {
+                $error = ERR_AUT;
+                header("location:index.php?page=medicion&id_medicion=$id_medicion&id_entidad=$id_entidad&error=$error");
             }
         }
     }
+
     //Si no marcamos ninguna casilla
     if (filter_has_var(INPUT_POST, 'id_indicador') && !filter_has_var(INPUT_POST, 'id_mediciones'))
     {

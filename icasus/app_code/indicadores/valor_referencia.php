@@ -64,13 +64,13 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $proceso = $indicador->proceso;
     $smarty->assign('proceso', $proceso);
 
-    //Permiso para crear y borrar referencias
-    $permiso = false;
-    if ($control || $indicador->id_responsable == $usuario->id)
+    //Responsables
+    $responsable = false;
+    if ($indicador->id_responsable == $usuario->id || $usuario->id == $proceso->id_propietario)
     {
-        $permiso = true;
+        $responsable = true;
     }
-    $smarty->assign('permiso', $permiso);
+    $smarty->assign('responsable', $responsable);
 
     //Comprobamos que existe al menos un valor de referencia 'Límite' o 'Meta'
     //y si no es así avisaremos

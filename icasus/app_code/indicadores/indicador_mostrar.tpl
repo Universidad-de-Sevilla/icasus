@@ -187,7 +187,7 @@
             <li role="presentation">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
-            {if $_control || $_usuario->id==$indicador->id_responsable}
+            {if $_control || $_usuario->id==$indicador->id_responsable || $_usuario->id==$proceso->id_propietario}
                 <li role="presentation">
                     <a title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
                 </li>

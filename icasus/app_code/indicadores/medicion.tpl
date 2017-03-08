@@ -311,7 +311,7 @@
                         <a title="{$smarty.const.FIELD_MEDICIONES}" class="btn btn-default" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                             <i class="fa fa-hourglass fa-fw"></i>
                         </a>
-                        {if $permiso_unidad || $indicador->id_responsable == $_usuario->id}
+                        {if $permiso_editar}
                             <a title="{$smarty.const.TXT_VAL_EDIT}" class="btn btn-default" href='index.php?page=valores&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                 <i class="fa fa-pencil-square-o fa-fw"></i>
                             </a>
@@ -346,7 +346,7 @@
                                     </div>
                                     <!-- /.col-sm-10 -->
                                     <div class="col-sm-2">
-                                        {if $_control || $indicador->id_responsable == $_usuario->id}
+                                        {if $permiso_editar}
                                             <a title="{$smarty.const.TXT_INDIC_RESTAURAR}" class="btn btn-danger pull-right" href='javascript:void(0)' 
                                                data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
                                                 <i class="fa fa-recycle fa-fw"></i>

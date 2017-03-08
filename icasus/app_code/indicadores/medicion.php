@@ -63,7 +63,8 @@ if (filter_has_var(INPUT_GET, 'id_medicion'))
     }
     $smarty->assign('permiso_unidad', $permiso_unidad);
     if ($control OR $indicador->id_responsable == $usuario->id
-            OR $indicador->id_responsable_medicion == $usuario->id)
+            OR $indicador->id_responsable_medicion == $usuario->id
+            OR $usuario->id == $proceso->id_propietario)
     {
         $permiso_editar = true;
     }

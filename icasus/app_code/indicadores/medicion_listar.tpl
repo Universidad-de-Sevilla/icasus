@@ -249,7 +249,7 @@
             <li role="presentation" class="active">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" href="#"><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
-            {if $_control || $_usuario->id==$indicador->id_responsable}
+            {if $_control || $_usuario->id==$indicador->id_responsable || $_usuario->id==$proceso->id_propietario}
                 <li role="presentation">
                     <a title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
                 </li>
@@ -285,7 +285,7 @@
                         </div>
                         <!-- /.col-sm-10 -->
                         <div class="col-sm-2">
-                            {if $_control || $indicador->id_responsable == $_usuario->id}
+                            {if $_control || $indicador->id_responsable == $_usuario->id || $_usuario->id==$proceso->id_propietario}
                                 <a title="{$smarty.const.TXT_INDIC_RESTAURAR}" class="btn btn-danger pull-right" href='javascript:void(0)' 
                                    data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
                                     <i class="fa fa-recycle fa-fw"></i>
@@ -483,8 +483,8 @@
                         <div class="table-responsive">
                             <table id="tabla_mediciones" class="table datatable table-striped table-hover">
                                 <thead>
-                                    <tr> 
-                                        <th>{$smarty.const.TXT_BORRAR}</th>
+                                    <tr>
+                                        <th {if !($_control || $responsable)}class="hidden"{/if}>{$smarty.const.TXT_BORRAR}</th>
                                         <th>{$smarty.const.FIELD_ETIQUETA}</th>
                                         <th>{$smarty.const.FIELD_INICIO_PERIODO}</th>
                                         <th>{$smarty.const.FIELD_FIN_PERIODO}</th>
@@ -496,7 +496,7 @@
                                 <tbody>
                                     {foreach $mediciones as $medicion}
                                         <tr {if isset($status[$medicion->id])}class="{$status[$medicion->id]}"{/if}>
-                                            <td>
+                                            <td {if !($_control || $responsable)}class="hidden"{/if}>
                                                 <input type="checkbox" name='id_mediciones[]' value="{$medicion->id}"/>
                                             </td>
                                             <td>

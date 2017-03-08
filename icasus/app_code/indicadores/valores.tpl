@@ -253,10 +253,10 @@
             <li role="presentation">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
-            {if $_control || $indicador->id_responsable == $_usuario->id}
-                <li role="presentation" class="active">
-                    <a title="{$smarty.const.TXT_VAL_EDIT}" href="#"><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
-                </li>
+            <li role="presentation" class="active">
+                <a title="{$smarty.const.TXT_VAL_EDIT}" href="#"><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
+            </li>
+            {if $_control || $indicador->id_responsable == $_usuario->id || $_usuario->id==$proceso->id_propietario}
                 <li role="presentation">
                     <a title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}</a>
                 </li>
@@ -426,7 +426,7 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-{else if ($_control || $indicador->id_responsable == $_usuario->id) && !$indicador->archivado && $mediciones}
+{else if ($_control || $responsable) && !$indicador->archivado && $mediciones}
     <!-- Selección de periodos a consultar -->
     <div class="row">
         <div class="col-lg-12">
@@ -440,7 +440,6 @@
                         <div class="form-group">
                             <label for="inicio">{$smarty.const.FIELD_INICIO_PERIODO}</label>            
                             <select class="form-control chosen-select" id="inicio" name="inicio">
-                                <option value="0">{$smarty.const.TXT_SEL}</option>
                                 {foreach from=$years item=year}
                                     <option value="{$year->periodo_inicio|truncate:4:''}" 
                                             {if $year->periodo_inicio|truncate:4:''== $mediciones[($mediciones|@count)-1]->periodo_inicio|truncate:4:''}selected{/if}>
@@ -499,7 +498,7 @@
     </div>
     <!-- /.row -->
     <!-- /Valores de subunidades-mediciones -->
-{else if !($_control || $indicador->id_responsable == $_usuario->id)}
+{else if !($_control || $responsable)}
     <div class="row">
         <div class="col-lg-12">
             <div class="alert alert-danger alert-dismissible">

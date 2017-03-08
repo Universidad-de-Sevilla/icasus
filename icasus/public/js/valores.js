@@ -130,19 +130,13 @@ $(function () {
     $('#inicio').on('change', function () {
         $("#inicio option:selected").each(function () {
             var elegido = $(this).val();
-            if (elegido === 0) {
-                $("#end_year").html(' ');
-            }
-            else
-            {
-                var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + elegido + "&fin=" + fin + "&activo=" + activo;
-                $.ajax({
-                    url: "index.php?page=valores_ajax&ajax=true&modulo=seleccionar_años" + parametros,
-                    success: function (datos) {
-                        $("#end_year").html(datos);
-                    }
-                });
-            }
+            var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + elegido + "&fin=" + fin + "&activo=" + activo;
+            $.ajax({
+                url: "index.php?page=valores_ajax&ajax=true&modulo=seleccionar_años" + parametros,
+                success: function (datos) {
+                    $("#end_year").html(datos);
+                }
+            });
         });
     });
 
@@ -151,9 +145,6 @@ $(function () {
         var inicio = $("#inicio").val();
         var fin = $("#fin").val();
         var texto_cargando = $(this).data('texto_cargando');
-        if (inicio === 0) {
-            fin = 0;
-        }
         var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&id_medicion=" + id_medicion + "&id_subunidad=" + id_subunidad + "&inicio=" + inicio + "&fin=" + fin + "&activo=" + activo;
         $("#panel_valores").html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_cargando + "</h4>");
         $.ajax({

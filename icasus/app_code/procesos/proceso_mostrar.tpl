@@ -396,7 +396,7 @@
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVOS_GESTION}" href='index.php?page=archivo_gestionar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
                                                 <i class="fa fa-archive fa-fw"></i>
                                             </a>
-                                            {if $_control}
+                                            {if $_control || $_usuario->id == $proceso->id_propietario}
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=proceso_editar&id_proceso={$subproceso->id}&id_entidad={$subproceso->id_entidad}'>
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>   
@@ -501,7 +501,7 @@
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
-                                            {if $_control OR $_usuario->id==$indicador->id_responsable}
+                                            {if $_control OR $_usuario->id==$indicador->id_responsable OR $_usuario->id==$proceso->id_propietario}
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=indicador_editar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' target="_blank">
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
@@ -532,7 +532,7 @@
                         </div>
                         <!-- /.col-sm-11 -->
                         <div class="col-sm-1">
-                            {if $_control}
+                            {if $_control || $_usuario->id == $proceso->id_propietario}
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                     <div class="btn-group" role="group" aria-label="">
                                         <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}&id_proceso={$proceso->id}' title="{$smarty.const.TXT_INDIC_CREAR}">
@@ -630,7 +630,7 @@
                         <!-- /.col-sm-11 -->
                         <div class="col-sm-1">
                             <!-- Barra de botones -->
-                            {if $_control}
+                            {if $_control || $_usuario->id == $proceso->id_propietario}
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                     <div class="btn-group" role="group" aria-label="">
                                         <a class="btn btn-danger" href='index.php?page=indicador_crear&id_entidad={$entidad->id}&id_proceso={$proceso->id}' title="{$smarty.const.TXT_INDIC_CREAR}">

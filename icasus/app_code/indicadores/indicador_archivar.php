@@ -17,11 +17,11 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
 {
     $indicador = new Indicador();
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
-    $indicador->load("id=$id_indicador");
+    $indicador->load_joined("id=$id_indicador");
     $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
     // Comprobamos que el usuario es responsable de este indicador 
     // para permitirle archivar o restaurar
-    if ($control || $usuario->id == $indicador->id_responsable)
+    if ($control || $usuario->id == $indicador->id_responsable || $usuario->id == $indicador->proceso->id_propietario)
     {
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
         $indicadores_dependientes = $logicaIndicador->calcular_influencias($id_indicador);
