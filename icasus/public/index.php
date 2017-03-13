@@ -29,21 +29,21 @@ spl_autoload_register('__autoload');
 function __autoload($class_name)
 {
     //Cargamos las entidades (mapean tablas de la bd)
-    if (file_exists('../entity/' . $class_name . '.php'))
+    if (file_exists('../app_code/entity/' . $class_name . '.php'))
     {
-        require_once('../entity/' . $class_name . '.php');
+        require_once('../app_code/entity/' . $class_name . '.php');
     }
 
     //Cargamos lógica
-    if (file_exists('../logic/' . $class_name . '.php'))
+    if (file_exists('../app_code/logic/' . $class_name . '.php'))
     {
-        require_once('../logic/' . $class_name . '.php');
+        require_once('../app_code/logic/' . $class_name . '.php');
     }
 
     //Cargamos clases de utilidades
-    if (file_exists('../util/' . $class_name . '.php'))
+    if (file_exists('../app_code/util/' . $class_name . '.php'))
     {
-        require_once('../util/' . $class_name . '.php');
+        require_once('../app_code/util/' . $class_name . '.php');
     }
 }
 
@@ -63,7 +63,7 @@ $usuario = new Usuario();
 $plantilla = '';
 
 // Configuramos parámetros $smarty
-$smarty->template_dir = '../app_code';
+$smarty->template_dir = '../app_code/modules';
 $smarty->compile_dir = '../templates_c';
 $smarty->config_dir = '../configs';
 $smarty->cache_dir = '../cache';
@@ -169,11 +169,11 @@ else
 }
 
 //Recorremos los directorios de la aplicación
-$directorios = new DirectoryIterator("../app_code/");
+$directorios = new DirectoryIterator("../app_code/modules/");
 $nombre_modulo = NULL;
 foreach ($directorios as $dir)
 {
-    if (file_exists("../app_code/" . $dir->getFilename() . "/$page.php"))
+    if (file_exists("../app_code/modules/" . $dir->getFilename() . "/$page.php"))
     {
         $nombre_modulo = $dir->getFilename();
         break;
@@ -183,12 +183,12 @@ foreach ($directorios as $dir)
 //Carga de la página solicitada
 if ($nombre_modulo)
 {
-    require_once("../app_code/" . $nombre_modulo . "/$page.php");
+    require_once("../app_code/modules/" . $nombre_modulo . "/$page.php");
 }
 else
 {
     $smarty->assign('error', ERR_404 . " $page");
-    require_once("../app_code/errores/error.php");
+    require_once("../app_code/modules/errores/error.php");
 }
 
 //Comprobamos si hay una petición AJAX

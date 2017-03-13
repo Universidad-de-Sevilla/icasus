@@ -616,7 +616,7 @@ define('MSG_MED_VAL_INTERVALO', 'Debe insertar un valor que esté dentro del int
 define('MSG_MED_VAL_NOMUM', 'Está intentando introducir un dato que no es reconocido como número.');
 define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
-define('MSG_MED_CREAR', 'Esta acción, creará automáticamente todas las mediciones (si no existen), desde el año fijado (mínimo año del histórico) hasta el año actual. Tomará algo de tiempo en función del año seleccionado y la periodicidad del indicador, ¿está seguro?');
+define('MSG_MED_CREAR', 'Esta acción, creará automáticamente todas las mediciones (si no existen), desde el inicio del año seleccionado (mínimo = año del histórico) hasta el fin del año actual. Tomará algun tiempo en función del año seleccionado y la periodicidad del indicador, ¿está seguro?');
 define('MSG_MED_CARGAR', 'Esta acción, cargará la cantidad indicada de registros de las mediciones del indicador. Tomará algo de tiempo en función del número de registros seleccionado, ¿está seguro?');
 define('MSG_MED_GENERANDO', 'Generando mediciones... espere por favor.');
 define('MSG_MED_CARGANDO', 'Cargando mediciones... espere por favor.');

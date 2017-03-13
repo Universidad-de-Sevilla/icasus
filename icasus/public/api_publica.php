@@ -26,7 +26,7 @@
 // Es necesario porque este fichero no depende del controlador principal index.php 
 require_once("../app_code/app_config.php");
 //Clase Utilidad para los cálculos
-require_once ('../util/Util.php');
+require_once ('../app_code/util/Util.php');
 //Fichero de idioma
 require_once('../app_code/' . IC_LANG_FILE);
 

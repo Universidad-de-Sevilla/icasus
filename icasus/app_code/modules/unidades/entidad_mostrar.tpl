@@ -499,7 +499,7 @@
                     <!-- Indicadores agrupados por procesos -->
                     {if $procesos}
                         {foreach from=$procesos item=proceso}
-                            <div class="panel panel-info">
+                            <div class="panel panel-info" style="margin-top: 0;">
                                 <div class="panel-heading" role="tab" id="">
                                     <div class="row">
                                         <div class="col-md-10">
@@ -579,7 +579,7 @@
                             <!-- /.panel -->
                         {/foreach}
                     {else}
-                        <div class="alert alert-info alert-dismissible">
+                        <div class="alert alert-info alert-dismissible" style="margin: 0;">
                             <i class="fa fa-info-circle fa-fw"></i> 
                             {$smarty.const.MSG_UNID_NO_PROC}
                         </div> 
@@ -588,8 +588,8 @@
 
                     <!-- Indicadores (control) -->
                     {if $controles} 
-                        <div class="panel panel-success">
-                            <div class="panel-heading" role="tab" id="">
+                        <div class="panel panel-success" style="margin-top: 0;">
+                            <div class="panel-heading" role="tab">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <h4 class="panel-title">
@@ -656,8 +656,7 @@
                         </div>
                         <!-- /.panel -->
                     {else}
-                        <br>
-                        <div class="alert alert-info alert-dismissible">
+                        <div class="alert alert-info alert-dismissible" style="margin: 0;">
                             <i class="fa fa-info-circle fa-fw"></i> 
                             {$smarty.const.MSG_UNID_NO_INDIC_CONTROL}
                         </div> 
@@ -666,8 +665,8 @@
 
                     <!-- Indicadores (datos) -->
                     {if $datos} 
-                        <div class="panel panel-danger">
-                            <div class="panel-heading" role="tab" id="">
+                        <div class="panel panel-danger" style="margin-top: 0;">
+                            <div class="panel-heading" role="tab">
                                 <div class="row">
                                     <div class="col-md-10">
                                         <h4 class="panel-title">
@@ -734,8 +733,7 @@
                         </div>
                         <!-- /.panel -->
                     {else}
-                        <br>
-                        <div class="alert alert-info alert-dismissible">
+                        <div class="alert alert-info alert-dismissible" style="margin: 0;">
                             <i class="fa fa-info-circle fa-fw"></i> 
                             {$smarty.const.MSG_UNID_NO_DATOS}
                         </div> 
