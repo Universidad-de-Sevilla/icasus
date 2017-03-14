@@ -329,12 +329,11 @@ $(function () {
     //Muestra el selector de los años de las mediciones
     $('#inicio').on('change', function () {
         var id_indicador = $('#btn_mostrar').data('id_indicador');
-        var id_entidad = $('#btn_mostrar').data('id_entidad');
         $("#inicio option:selected").each(function () {
             var elegido = $(this).val();
-            var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&inicio=" + elegido;
+            var parametros = "&id_indicador=" + id_indicador + "&inicio=" + elegido;
             $.ajax({
-                url: "index.php?page=valores_ajax&ajax=true&modulo=seleccionar_años" + parametros,
+                url: "index.php?page=graficas_ajax&ajax=true&modulo=seleccionar_anyos" + parametros,
                 success: function (datos) {
                     $("#end_year").html(datos);
                 }
@@ -346,13 +345,12 @@ $(function () {
     //Muestra en las gráficas los valores que están entre los períodos seleccionados
     $('#btn_mostrar').on('click', function () {
         var id_indicador = $(this).data('id_indicador');
-        var id_entidad = $(this).data('id_entidad');
         var inicio = $("#inicio").val();
         var fin = $("#fin").val();
-        var parametros = "&id_entidad=" + id_entidad + "&id_indicador=" + id_indicador + "&inicio=" + inicio + "&fin=" + fin;
+        var parametros = "&id_indicador=" + id_indicador + "&inicio=" + inicio + "&fin=" + fin;
         $('#dialogo_cargando_paneles').modal('show');
         $.ajax({
-            url: "index.php?page=graficas_ajax&ajax=true" + parametros,
+            url: "index.php?page=graficas_ajax&ajax=true&modulo=mostrar" + parametros,
             success: function (datos) {
                 $("#graficas").html(datos);
                 actualizaGraficas();

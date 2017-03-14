@@ -16,9 +16,9 @@ error_reporting(E_ALL & ~E_DEPRECATED);
 
 require_once('../app_code/app_config.php');
 require_once('../app_code/app_version.php');
-require_once('../../cascara_core/lib/adodb5/adodb.inc.php');
-require_once('../../cascara_core/lib/adodb5/adodb-active-record.inc.php');
-require_once('../../cascara_core/lib/smarty/Smarty.class.php');
+require_once('../../cascara_core/adodb5/adodb.inc.php');
+require_once('../../cascara_core/adodb5/adodb-active-record.inc.php');
+require_once('../../cascara_core/smarty/Smarty.class.php');
 
 //Fichero de idioma
 require_once('../app_code/' . IC_LANG_FILE);
@@ -28,9 +28,22 @@ spl_autoload_register('__autoload');
 
 function __autoload($class_name)
 {
-    if (file_exists('../class/' . $class_name . '.php'))
+    //Cargamos las entidades (mapean tablas de la bd)
+    if (file_exists('../app_code/entity/' . $class_name . '.php'))
     {
-        require_once('../class/' . $class_name . '.php');
+        require_once('../app_code/entity/' . $class_name . '.php');
+    }
+
+    //Cargamos lógica
+    if (file_exists('../app_code/logic/' . $class_name . '.php'))
+    {
+        require_once('../app_code/logic/' . $class_name . '.php');
+    }
+
+    //Cargamos clases de utilidades
+    if (file_exists('../app_code/util/' . $class_name . '.php'))
+    {
+        require_once('../app_code/util/' . $class_name . '.php');
     }
 }
 
@@ -50,7 +63,7 @@ $usuario = new Usuario();
 $plantilla = '';
 
 // Configuramos parámetros $smarty
-$smarty->template_dir = '../app_code';
+$smarty->template_dir = '../app_code/modules';
 $smarty->compile_dir = '../templates_c';
 $smarty->config_dir = '../configs';
 $smarty->cache_dir = '../cache';
@@ -155,18 +168,30 @@ else
     $page = IC_TIPO_LOGIN;
 }
 
-// Carga de la página solicitada
-if (file_exists("../app_code/$page.php"))
+//Recorremos los directorios de la aplicación
+$directorios = new DirectoryIterator("../app_code/modules/");
+$nombre_modulo = NULL;
+foreach ($directorios as $dir)
 {
-    require_once("../app_code/$page.php");
+    if (file_exists("../app_code/modules/" . $dir->getFilename() . "/$page.php"))
+    {
+        $nombre_modulo = $dir->getFilename();
+        break;
+    }
+}
+
+//Carga de la página solicitada
+if ($nombre_modulo)
+{
+    require_once("../app_code/modules/" . $nombre_modulo . "/$page.php");
 }
 else
 {
     $smarty->assign('error', ERR_404 . " $page");
-    require_once("../app_code/error.php");
+    require_once("../app_code/modules/errores/error.php");
 }
 
-////Comprobamos si hay una petición AJAX
+//Comprobamos si hay una petición AJAX
 $ajax = false;
 if (filter_has_var(INPUT_GET, 'ajax'))
 {

@@ -1,8 +1,15 @@
 <?php
 
-define('IC_VERSION', "3.44.1");
-define('IC_FECHA_REVISION', "22/02/2017");
+define('IC_VERSION', "3.46.3");
+define('IC_FECHA_REVISION', "13/03/2017");
 
+// 3.46.3 - 13/03/2017 - Pequeños cambios de estilo y en la organización del código.
+// 3.46.2 - 10/03/2017 - Correcciones: se permite visualizar intervalos distintos al original en las gráficas de indicadores/datos en los que el usuario carece de permisos (consulta).
+// 3.46.1 - 08/03/2017 - Correcciones: se muestran pestañas ocultas en los menús de indicadores cuando se accedía a secciones sin permisos, sólo fechas para elegir en la edición de valores de indicadores, permisos de propietarios de procesos en cuenta para los indicadores,...
+// 3.46.0 - 02/03/2017 - Se ha reorganizado el código de la aplicación por carpetas y cambiado el código de los controladores necesarios a tal efecto.
+// 3.45.0 - 01/03/2017 - Revisión de los planes: cambios en la presentación de líneas y objetivos y seguimiento mejorado que incluye los indicadores.
+// 3.44.3 - 23/02/2017 - Corregido: se generan mediciones bienales correctamente (antes duraban tres años en vez de dos).
+// 3.44.2 - 23/02/2017 - En la edicición de indicadores/datos, se muestran los años seleccionados para el intervalo de valores que se está visualizando. Corrección: la pestaña de edición de valores no se mostraba cuando se estaba en ella en indicadores/datos calculados.
 // 3.44.1 - 22/02/2017 - Correcciones: generación de mediciones en indicadores influyentes y se listan correctamente los objetivos operacionales en el listado de indicadores de control. Cambiado texto descripción de control.
 // 3.44.0 - 21/02/2017 - Mejoras múltiples en gráficas: posibilidad de acotar periodos, colores de valores de referencia independientes de las etiquetas,...
 // 3.43.1 - 26/01/2017 - Correcciones: los gráficos del carrousel resumen de una unidad se ajustan al tamaño de su contenedor y los botones de desplazamiento (ocupan menos) no impiden la exportación de los mismos.
