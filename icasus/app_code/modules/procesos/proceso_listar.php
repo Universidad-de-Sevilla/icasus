@@ -11,6 +11,9 @@
 
 global $smarty;
 global $plantilla;
+global $usuario;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 
 if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -26,6 +29,21 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     // Procesos propiedad del usuario
     $procesos_propios = $proceso->Find_joined("id_propietario = $usuario->id AND id_entidad=$id_entidad");
     $smarty->assign('procesos_propios', $procesos_propios);
+
+    //Permisos de procesos
+    $permiso_proceso = array();
+    foreach ($procesos as $proceso)
+    {
+        if ($logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso))
+        {
+            $permiso_proceso[$proceso->id] = true;
+        }
+        else
+        {
+            $permiso_proceso[$proceso->id] = false;
+        }
+    }
+    $smarty->assign('permiso_proceso', $permiso_proceso);
 
     $smarty->assign('_javascript', array('proceso_listar'));
     $smarty->assign('_nombre_pagina', FIELD_PROCS . ": " . $entidad->nombre);

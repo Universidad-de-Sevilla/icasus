@@ -194,7 +194,7 @@
                                                href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
-                                            {if $_control || $_usuario->id == $proceso->id_propietario}
+                                            {if $_control || $permiso_proceso[$proceso->id]}
                                                 <a class="btn btn-default btn-circle btn-xs"
                                                    title="{$smarty.const.TXT_ARCHIVOS_GESTION}"
                                                    href='index.php?page=archivo_gestionar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}'>
