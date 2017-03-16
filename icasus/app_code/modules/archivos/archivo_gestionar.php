@@ -26,32 +26,60 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     if (filter_has_var(INPUT_GET, 'id_plan'))
     {
         $id_plan = filter_input(INPUT_GET, 'id_plan', FILTER_SANITIZE_NUMBER_INT);
-        // Datos del plan estratégico
-        $plan = new Plan();
-        $plan->load("id = $id_plan");
-        $tipo = 'plan';
-        $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . FIELD_PLAN . " " . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion - 1));
-        $smarty->assign('plan', $plan);
-        $archivos = $archivo->find_joined("id_objeto = $id_plan AND tipo_objeto = 'plan'");
+        if ($control)
+        {
+            $plan = new Plan();
+            $plan->load("id = $id_plan");
+            $tipo = 'plan';
+            $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . FIELD_PLAN . " " . $plan->anyo_inicio . " - " . ($plan->anyo_inicio + $plan->duracion - 1));
+            $smarty->assign('plan', $plan);
+            $archivos = $archivo->find_joined("id_objeto = $id_plan AND tipo_objeto = 'plan'");
+        }
+        else
+        {
+            $error = ERR_PERMISOS;
+            header("Location: index.php?page=plan_mostrar&id_plan=$id_plan&id_entidad=$id_entidad&error=$error");
+        }
     }
+
     //Gestión de archivos de un proceso
     else if (filter_has_var(INPUT_GET, 'id_proceso'))
     {
+        //Variable para operar con Procesos
+        $logicaProceso = new LogicaProceso();
         $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
-        // Datos del proceso
         $proceso = new Proceso();
         $proceso->load_joined("id = $id_proceso");
-        $tipo = 'proceso';
-        $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . $proceso->nombre);
-        $smarty->assign('proceso', $proceso);
-        $archivos = $archivo->find_joined("id_objeto = $id_proceso AND tipo_objeto = 'proceso'");
+        //Permisos del proceso
+        $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso);
+        if ($control OR $permiso_proceso)
+        {
+            $tipo = 'proceso';
+            $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . $proceso->nombre);
+            $smarty->assign('proceso', $proceso);
+            $archivos = $archivo->find_joined("id_objeto = $id_proceso AND tipo_objeto = 'proceso'");
+        }
+        else
+        {
+            $error = ERR_PERMISOS;
+            header("Location: index.php?page=proceso_mostrar&id_proceso=$id_proceso&id_entidad=$id_entidad&error=$error");
+        }
     }
+
     //Gestión de archivos de una unidad
     else
     {
-        $tipo = 'unidad';
-        $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . $entidad->nombre);
-        $archivos = $archivo->find_joined("id_objeto = $id_entidad AND tipo_objeto = 'unidad'");
+        if ($control)
+        {
+            $tipo = 'unidad';
+            $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . $entidad->nombre);
+            $archivos = $archivo->find_joined("id_objeto = $id_entidad AND tipo_objeto = 'unidad'");
+        }
+        else
+        {
+            $error = ERR_PERMISOS;
+            header("Location: index.php?page=entidad_mostrar&id_entidad=$id_entidad&error=$error");
+        }
     }
 
     $smarty->assign('tipo', $tipo);
