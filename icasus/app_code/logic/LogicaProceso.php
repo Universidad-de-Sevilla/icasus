@@ -26,7 +26,7 @@ class LogicaProceso implements ILogicaProceso
         if ($proceso->id_madre > 0)
         {
             $proceso_madre = new Proceso();
-            $proceso_madre->load_joined("id=$proceso->id_madre");
+            $proceso_madre->load("id=$proceso->id_madre");
             return $this->comprobar_responsable_proceso($id_usuario, $proceso_madre);
         }
         return false;

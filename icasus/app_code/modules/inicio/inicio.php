@@ -12,6 +12,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 //Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 $logicaMedicion = new LogicaMedicion();
@@ -98,6 +100,21 @@ $smarty->assign('objops_unids', $objops_unids);
 
 if ($indicadores)
 {
+    //Permisos de procesos
+    $permiso_proceso = array();
+    foreach ($indicadores as $indicador)
+    {
+        if ($logicaProceso->comprobar_responsable_proceso($usuario->id, $indicador->proceso))
+        {
+            $permiso_proceso[$indicador->id] = true;
+        }
+        else
+        {
+            $permiso_proceso[$indicador->id] = false;
+        }
+    }
+    $smarty->assign('permiso_proceso', $permiso_proceso);
+
     // Valores totales de las últimas mediciones
     $totales = array();
     $valor = new Valor();
