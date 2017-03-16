@@ -12,6 +12,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 
 // Comprobamos que vengan los datos mínimos necesarios
 if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_entidad'))
@@ -30,10 +32,13 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
         $smarty->assign('proceso', $proceso);
     }
 
+    //Permisos del proceso
+    $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso);
+
     // Comprueba permisos para el usuario: responsable unidad, responsable delegado,
     // responsable indicador, propietatio proceso
     $usuario_entidad = new Usuario_entidad();
-    if ($control || $indicador->id_responsable == $usuario->id || $usuario->id == $indicador->proceso->id_propietario)
+    if ($control || $indicador->id_responsable == $usuario->id || $permiso_proceso)
     {
         $entidad = new Entidad();
         $entidad->load("id = $indicador->id_entidad");

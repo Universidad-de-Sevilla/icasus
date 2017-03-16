@@ -11,6 +11,9 @@
 
 global $smarty;
 global $plantilla;
+global $usuario;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 //Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 $logicaMedicion = new LogicaMedicion();
@@ -32,6 +35,10 @@ if (filter_has_var(INPUT_GET, 'id_proceso') AND filter_has_var(INPUT_GET, 'id_en
         $error = ERR_PROC_MOSTRAR;
         header("location:index.php?page=error&error=$error");
     }
+
+    //Permisos del proceso
+    $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso);
+    $smarty->assign('permiso_proceso', $permiso_proceso);
 
     //Obtener todos los procesos para avanzar o retroceder 
     $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");

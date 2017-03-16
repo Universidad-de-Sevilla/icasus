@@ -256,7 +256,7 @@
             <li role="presentation" class="active">
                 <a title="{$smarty.const.TXT_VAL_EDIT}" href="#"><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
             </li>
-            {if $_control || $indicador->id_responsable == $_usuario->id || $_usuario->id==$proceso->id_propietario}
+            {if $_control || $indicador->id_responsable == $_usuario->id || $permiso_proceso}
                 <li role="presentation">
                     <a title="{$smarty.const.FIELD_RESP_MED}" href='index.php?page=medicion_responsable&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-user fa-fw"></i> {$smarty.const.FIELD_RESP_MED}</a>
                 </li>

@@ -9,13 +9,21 @@
 // Descripcion: Borra un proceso
 //---------------------------------------------------------------------------------------------------
 
+global $usuario;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
+
 if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
     $proceso = new Proceso();
     $proceso->load_joined("id = $id_proceso");
-    if ($control OR $proceso->id_propietario == $proceso->propietario->id)
+
+    //Permisos del proceso
+    $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso);
+
+    if ($control OR $permiso_proceso)
     {
         $indicador = new Indicador();
         $indicadores = $indicador->Find("id_proceso = $id_proceso");

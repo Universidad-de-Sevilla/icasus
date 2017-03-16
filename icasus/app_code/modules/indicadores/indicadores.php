@@ -10,7 +10,10 @@
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
+global $usuario;
 global $plantilla;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 //Variables para operar con indicadores
 $logicaIndicador = new LogicaIndicador();
 $logicaMedicion = new LogicaMedicion();
@@ -19,6 +22,21 @@ $indicador = new Indicador();
 //Todos los indicadores
 $indicadores_todos = $indicador->Find_joined("archivado is NULL");
 $smarty->assign('indicadores_todos', $indicadores_todos);
+
+//Permisos de procesos
+$permiso_proceso = array();
+foreach ($indicadores_todos as $indicador)
+{
+    if ($logicaProceso->comprobar_responsable_proceso($usuario->id, $indicador->proceso))
+    {
+        $permiso_proceso[$indicador->id] = true;
+    }
+    else
+    {
+        $permiso_proceso[$indicador->id] = false;
+    }
+}
+$smarty->assign('permiso_proceso', $permiso_proceso);
 
 //Indicadores de procesos
 $indicadores = $indicador->Find_joined("id_proceso IS NOT NULL AND archivado is NULL");

@@ -12,6 +12,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 $smarty->assign('modulo', $modulo);
@@ -21,9 +23,12 @@ $indicador = new Indicador();
 $indicador->load_joined("id=$id_indicador");
 $smarty->assign('indicador', $indicador);
 
+//Permisos del proceso
+$permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $indicador->proceso);
+
 //Responsables
 $responsable = false;
-if ($indicador->id_responsable == $usuario->id || $indicador->proceso->id_propietario == $usuario->id)
+if ($indicador->id_responsable == $usuario->id || $permiso_proceso)
 {
     $responsable = true;
 }

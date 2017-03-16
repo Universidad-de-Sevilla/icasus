@@ -10,6 +10,8 @@
 //-------------------------------------------------------------------------------
 
 global $usuario;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
@@ -19,9 +21,13 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $indicador->load_joined("id=$id_indicador");
     $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
+
+    //Permisos del proceso
+    $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $indicador->proceso);
+
     // Comprobamos que el usuario es responsable de este indicador 
     // para permitirle archivar o restaurar
-    if ($control || $usuario->id == $indicador->id_responsable || $usuario->id == $indicador->proceso->id_propietario)
+    if ($control || $usuario->id == $indicador->id_responsable || $permiso_proceso)
     {
         $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
         $indicadores_dependientes = $logicaIndicador->calcular_influencias($id_indicador);

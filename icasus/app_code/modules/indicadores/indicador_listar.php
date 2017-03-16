@@ -11,6 +11,7 @@
 
 global $smarty;
 global $plantilla;
+global $usuario;
 
 if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -19,6 +20,8 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    //Variable para operar con Procesos
+    $logicaProceso = new LogicaProceso();
     //Variables para operar con Indicadores/Datos
     $logicaIndicador = new LogicaIndicador();
     $logicaMedicion = new LogicaMedicion();
@@ -27,6 +30,21 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     //Todos los indicadores
     $indicadores_todos = $indicador->Find_joined("id_entidad = $id_entidad AND archivado is NULL");
     $smarty->assign('indicadores_todos', $indicadores_todos);
+
+    //Permisos de procesos
+    $permiso_proceso = array();
+    foreach ($indicadores_todos as $indicador)
+    {
+        if ($logicaProceso->comprobar_responsable_proceso($usuario->id, $indicador->proceso))
+        {
+            $permiso_proceso[$indicador->id] = true;
+        }
+        else
+        {
+            $permiso_proceso[$indicador->id] = false;
+        }
+    }
+    $smarty->assign('permiso_proceso', $permiso_proceso);
 
     //Indicadores de procesos
     $indicadores = $indicador->Find_joined("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado is NULL");

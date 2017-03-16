@@ -552,7 +552,7 @@
                                     <th>{$smarty.const.FIELD_INICIO_GRABACION}</th>
                                     <td style="white-space:nowrap">
                                         <span id="gi" data-grabacion_inicio="{$medicion->grabacion_inicio}">
-                                            {if ($permiso_unidad || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo && !$indicador->archivado}
+                                            {if ($permiso_unidad || $permiso_proceso || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo && !$indicador->archivado}
                                                 <div>
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'gi');">
                                                         {if $medicion->grabacion_inicio}
@@ -572,7 +572,7 @@
                                     <th>{$smarty.const.FIELD_FIN_GRABACION}</th>
                                     <td style="white-space:nowrap">
                                         <span id="gf" data-grabacion_fin="{$medicion->grabacion_fin}">
-                                            {if ($permiso_unidad || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo && !$indicador->archivado}
+                                            {if ($permiso_unidad || $permiso_proceso || $indicador->id_responsable == $_usuario->id) && !$indicador->calculo && !$indicador->archivado}
                                                 <div>
                                                     <a href="javascript:void(0)" title="{$smarty.const.TXT_EDIT}" onclick="fecha_editar('{$medicion->id}', 'gf');">
                                                         {if $medicion->grabacion_fin}

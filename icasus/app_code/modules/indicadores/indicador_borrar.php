@@ -10,6 +10,8 @@
 //---------------------------------------------------------------------------------------------------
 
 global $usuario;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
@@ -19,8 +21,12 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_ind
     $id_indicador = filter_input(INPUT_GET, 'id_indicador', FILTER_SANITIZE_NUMBER_INT);
     $indicador = new Indicador();
     $indicador->load_joined("id = $id_indicador");
+
+    //Permisos del proceso
+    $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $indicador->proceso);
+
     // Comprobamos que el usuario es responsable de este indicador para permitirle borrar
-    if ($control || $usuario->id == $indicador->id_responsable || $usuario->id == $indicador->proceso->id_propietario)
+    if ($control || $usuario->id == $indicador->id_responsable || $permiso_proceso)
     {
         $medicion = new Medicion();
         $mediciones = $medicion->Find("id_indicador = $id_indicador");

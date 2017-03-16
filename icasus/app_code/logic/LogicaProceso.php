@@ -23,9 +23,11 @@ class LogicaProceso implements ILogicaProceso
             return true;
         }
         //Comprobamos la herencia para los subprocesos
-        if ($proceso->madre->id > 0)
+        if ($proceso->id_madre > 0)
         {
-            return $this->comprobar_responsable_proceso($id_usuario, $proceso->madre);
+            $proceso_madre = new Proceso();
+            $proceso_madre->load_joined("id=$proceso->id_madre");
+            return $this->comprobar_responsable_proceso($id_usuario, $proceso_madre);
         }
         return false;
     }

@@ -13,6 +13,8 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
@@ -25,11 +27,14 @@ if (filter_has_var(INPUT_POST, 'id_entidad') && filter_has_var(INPUT_POST, 'id_i
     $indicador = new Indicador;
     if ($indicador->load_joined("id = $id_indicador"))
     {
+        //Permisos del proceso
+        $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $indicador->proceso);
+
         //Comprobar permisos para cambiar mediciones tanto para responsables del
         //indicador como de la medición o responsables de la unidad y el proceso
         if ($control OR $indicador->id_responsable == $usuario->id
                 OR $indicador->id_responsable_medicion == $usuario->id
-                OR $usuario->id == $indicador->proceso->id_propietario)
+                OR $permiso_proceso)
         {
             $permiso_generar = true;
         }

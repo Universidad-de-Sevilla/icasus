@@ -728,7 +728,7 @@ define('MSG_CONTROL_MED', 'No existen indicadores sin mediciones para el año se
 //----------------------------------------------------------------------------------
 
 define('ERR', 'Error');
-define('ERR_PERMISOS', 'No tiene permisos para relizar esta acción.');
+define('ERR_PERMISOS', 'No tiene permisos para realizar esta acción.');
 define('ERR_404', 'Error 404: no encontramos la página que ha solicitado:');
 define('ERR_AUT', 'No está autorizado para realizar esta operación.');
 define('ERR_OP_BD', 'No ha podido realizarse la operación por un error en la base de datos.');

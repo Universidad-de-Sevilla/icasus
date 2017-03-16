@@ -249,7 +249,7 @@
             <li role="presentation" class="active">
                 <a title="{$smarty.const.FIELD_MEDICIONES}" href="#"><i class="fa fa-hourglass fa-fw"></i> {$smarty.const.FIELD_MEDICIONES}</a>
             </li>
-            {if $_control || $_usuario->id==$indicador->id_responsable || $_usuario->id==$proceso->id_propietario}
+            {if $_control || $_usuario->id==$indicador->id_responsable || $permiso_proceso}
                 <li role="presentation">
                     <a title="{$smarty.const.TXT_VAL_EDIT}" href='index.php?page=valores&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'><i class="fa fa-pencil-square-o fa-fw"></i> {$smarty.const.TXT_VAL_EDIT}</a>
                 </li>
@@ -285,7 +285,7 @@
                         </div>
                         <!-- /.col-sm-10 -->
                         <div class="col-sm-2">
-                            {if $_control || $indicador->id_responsable == $_usuario->id || $_usuario->id==$proceso->id_propietario}
+                            {if $_control || $indicador->id_responsable == $_usuario->id || $permiso_proceso}
                                 <a title="{$smarty.const.TXT_INDIC_RESTAURAR}" class="btn btn-danger pull-right" href='javascript:void(0)' 
                                    data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
                                     <i class="fa fa-recycle fa-fw"></i>

@@ -11,6 +11,8 @@
 
 global $smarty;
 global $usuario;
+//Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 //Variable para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 
@@ -27,10 +29,13 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $indicador = new Indicador();
         $indicador->load_joined("id = $medicion->id_indicador");
 
+        //Permisos del proceso
+        $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $indicador->proceso);
+
         // Comprobamos si el usuario tiene autorización
         if ($control OR $indicador->id_responsable == $usuario->id
                 OR $indicador->id_responsable_medicion == $usuario->id
-                OR $usuario->id == $indicador->proceso->id_propietario)
+                OR $permiso_proceso)
         {
             $autorizado = true;
         }
@@ -57,12 +62,16 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         $indicador->load_joined("id=$id_indicador");
         $post_array = filter_input_array(INPUT_POST);
         $id_mediciones = $post_array['id_mediciones'];
+
         if ($id_mediciones)
         {
+            //Permisos del proceso
+            $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $indicador->proceso);
+
             // Comprobamos si el usuario tiene autorización
             if ($control OR $indicador->id_responsable == $usuario->id
                     OR $indicador->id_responsable_medicion == $usuario->id
-                    OR $usuario->id == $indicador->proceso->id_propietario)
+                    OR $permiso_proceso)
             {
                 $autorizado = true;
             }
