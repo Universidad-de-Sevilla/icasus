@@ -129,14 +129,16 @@
                                     <th>{$smarty.const.FIELD_ETIQUETA} ({$smarty.const.FIELD_ETIQUETA_MINI})</th>
                                     <td>{$entidad->etiqueta} ({$entidad->etiqueta_mini})</td>
                                 </tr>
-                                {if $entidad->madre->id !=0 && $entidad->madre->id !=1}
-                                    <tr>
-                                        <th>{$smarty.const.FIELD_UNID_SUP}</th>
-                                        <td>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_UNID_SUP}</th>
+                                    <td>
+                                        {if $entidad->madre->id !=0 && $entidad->madre->id !=1}
                                             <a title="{$entidad->madre->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
-                                        </td>
-                                    </tr>
-                                {/if}
+                                        {else}
+                                            ---
+                                        {/if}
+                                    </td>
+                                </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_WEB}</th>
                                     <td>

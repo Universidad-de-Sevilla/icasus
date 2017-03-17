@@ -175,6 +175,21 @@
 
             <!-- Parámetros del proceso -->
             <div role="tabpanel" class="tab-pane active" id="proc_param">
+
+                {if $proceso_madre}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.FIELD_PROC_MADRE}: 
+                                <a title="{$proceso_madre->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$proceso_madre->id_entidad}">{$proceso_madre->nombre}</a>
+                            </div> 
+                        </div>
+                        <!-- /.col-lg-12 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
+
                 <!-- Barra de botones -->
                 {if $_control || $permiso_proceso}
                     <div id="botones_ficha" class="hidden">
