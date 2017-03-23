@@ -8,6 +8,7 @@
 //---------------------------------------------------------------------------------------------------
 // Muestra un listado de usuarios de la unidad para ser desasignados de ella
 //---------------------------------------------------------------------------------------------------
+
 global $smarty;
 global $plantilla;
 
@@ -18,30 +19,38 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
-    $smarty->assign('_nombre_pagina', TXT_USERS_BAJA . ' - ' . $entidad->nombre);
 
-    $usuario_entidad = new Usuario_entidad;
-    $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
-    $smarty->assign('usuarios', $usuarios);
-
-    $post_array = filter_input_array(INPUT_POST);
-    $id_usuarios = $post_array['id_usuario'];
-    if ($id_usuarios)
+    if ($control)
     {
-        $contador = 0;
+        $usuario_entidad = new Usuario_entidad;
+        $usuarios = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
+        $smarty->assign('usuarios', $usuarios);
 
-        foreach ($id_usuarios as $id_usuario)
+        $post_array = filter_input_array(INPUT_POST);
+        $id_usuarios = $post_array['id_usuario'];
+        if ($id_usuarios)
         {
-            $id_usuario = filter_var($id_usuario, FILTER_SANITIZE_NUMBER_INT);
-            $usuario_entidad->desasignar_usuario($id_entidad, $id_usuario);
-            $contador ++;
+            $contador = 0;
+
+            foreach ($id_usuarios as $id_usuario)
+            {
+                $id_usuario = filter_var($id_usuario, FILTER_SANITIZE_NUMBER_INT);
+                $usuario_entidad->desasignar_usuario($id_entidad, $id_usuario);
+                $contador ++;
+            }
+            $exito = MSG_UNID_USERS_BORRADOS . ' ' . $contador . ' ' . TXT_USERS;
+            header("location:index.php?page=entidad_despoblar&id_entidad=$id_entidad&exito=$exito");
         }
-        $exito = MSG_UNID_USERS_BORRADOS . ' ' . $contador . ' ' . TXT_USERS;
-        header("location:index.php?page=entidad_despoblar&id_entidad=$id_entidad&exito=$exito");
+        else
+        {
+            $smarty->assign('_nombre_pagina', TXT_USERS_BAJA . ' - ' . $entidad->nombre);
+            $plantilla = 'unidades/entidad_despoblar.tpl';
+        }
     }
     else
     {
-        $plantilla = 'unidades/entidad_despoblar.tpl';
+        $error = ERR_PERMISOS;
+        header("Location: index.php?page=entidad_mostrar&id_entidad=$id_entidad&error=$error");
     }
 }
 else

@@ -30,7 +30,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     else
     {
         $error = ERR_PERMISOS;
-        header("location:index.php?page=error&error=$error");
+        header("location:index.php?page=entidad_mostrar&id_entidad=$id_entidad&error=$error");
     }
 }
 else

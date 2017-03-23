@@ -112,8 +112,7 @@
                         <select class="form-control chosen-select" name='id_padre' id='id_padre'>
                             {foreach from=$entidades item=padre}
                                 {if $padre->id != $entidad->id}
-                                    <option value="{$padre->id}" {if $entidad->id_madre == $padre->id}selected{/if}>{$padre->nombre}
-                                    </option>
+                                    <option value="{$padre->id}" {if $entidad->id_madre == $padre->id}selected{/if}>{$padre->nombre}</option>
                                 {/if}
                             {/foreach}
                         </select>

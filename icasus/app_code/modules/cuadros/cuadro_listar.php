@@ -8,6 +8,9 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Lista los cuadros de mando para una unidad
 //---------------------------------------------------------------------------------------------------
+global $usuario;
+global $smarty;
+global $plantilla;
 
 if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -17,11 +20,11 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $smarty->assign('entidad', $entidad);
 
     $cuadro = new Cuadro();
-    $cuadros = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
+    $cuadros = $cuadro->Find_joined("privado = 0 AND id_entidad = $id_entidad");
     $smarty->assign('cuadros', $cuadros);
 
     // Cuadros de mando del usuario
-    $cuadros_propios = $cuadro->Find_joined("id_usuario = $usuario->id AND id_entidad = $id_entidad");
+    $cuadros_propios = $cuadro->Find("id_usuario = $usuario->id AND id_entidad = $id_entidad");
     $smarty->assign('cuadros_propios', $cuadros_propios);
 
     $plantilla = 'cuadros/cuadro_listar.tpl';

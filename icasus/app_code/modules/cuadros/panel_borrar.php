@@ -27,7 +27,7 @@ if (filter_has_var(INPUT_GET, 'id_panel'))
     else
     {
         $error = ERR_PERMISOS;
-        header("location:index.php?page=error&error=$error");
+        header("location:index.php?page=cuadro_mostrar&id_cuadro=$panel->id_cuadro&id_entidad=$cuadro->id_entidad&error=$error");
     }
 }
 else

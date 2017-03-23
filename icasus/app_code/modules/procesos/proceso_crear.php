@@ -19,17 +19,25 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $entidad->load("id = $id_entidad");
     $smarty->assign("entidad", $entidad);
 
-    $usuario_entidad = new Usuario_entidad;
-    $usuarios_entidad = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
-    $smarty->assign("usuarios_entidad", $usuarios_entidad);
+    if ($control)
+    {
+        $usuario_entidad = new Usuario_entidad;
+        $usuarios_entidad = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
+        $smarty->assign("usuarios_entidad", $usuarios_entidad);
 
-    $proceso_madre = new Proceso();
-    $procesos_madre = $proceso_madre->find("id_entidad = $id_entidad");
-    $smarty->assign('procesos_madre', $procesos_madre);
+        $proceso_madre = new Proceso();
+        $procesos_madre = $proceso_madre->find("id_entidad = $id_entidad");
+        $smarty->assign('procesos_madre', $procesos_madre);
 
-    $cuadro = new Cuadro();
-    $cuadros_proceso = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
-    $smarty->assign('cuadros_proceso', $cuadros_proceso);
+        $cuadro = new Cuadro();
+        $cuadros_proceso = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
+        $smarty->assign('cuadros_proceso', $cuadros_proceso);
+    }
+    else
+    {
+        $error = ERR_PERMISOS;
+        header("Location: index.php?page=proceso_listar&id_entidad=$id_entidad&error=$error");
+    }
 
     $smarty->assign('_javascript', array('proceso_crear'));
     $smarty->assign("_nombre_pagina", TXT_PROC_CREAR . " - " . $entidad->nombre);

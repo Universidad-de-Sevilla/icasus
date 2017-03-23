@@ -8,8 +8,12 @@
 //---------------------------------------------------------------------------------------------------
 // Descripcion: Modifica procesos existentes
 //--------------------------------------------------------------------------------------------------- 
+
 global $smarty;
 global $plantilla;
+global $usuario;
+// Variable para operar con Procesos
+$logicaProceso = new LogicaProceso();
 
 // Para empezar a hablar necesitamos el id del proceso              
 if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_entidad'))
@@ -65,23 +69,33 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
     {
         $proceso = new Proceso();
         $proceso->load_joined("id = $id_proceso");
+        //Permisos del proceso
+        $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso);
         $smarty->assign('proceso', $proceso);
 
-        $usuario_entidad = new Usuario_entidad();
-        $usuarios_entidad = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
-        $smarty->assign('usuarios_entidad', $usuarios_entidad);
+        if ($control || $permiso_proceso)
+        {
+            $usuario_entidad = new Usuario_entidad();
+            $usuarios_entidad = $usuario_entidad->Find_usuarios("id_entidad = $id_entidad");
+            $smarty->assign('usuarios_entidad', $usuarios_entidad);
 
-        $proceso_madre = new Proceso();
-        $procesos_madre = $proceso_madre->Find("id_entidad = $id_entidad AND id <> $id_proceso");
-        $smarty->assign('procesos_madre', $procesos_madre);
+            $proceso_madre = new Proceso();
+            $procesos_madre = $proceso_madre->Find("id_entidad = $id_entidad AND id <> $id_proceso");
+            $smarty->assign('procesos_madre', $procesos_madre);
 
-        $cuadro = new Cuadro();
-        $cuadros_proceso = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
-        $smarty->assign('cuadros_proceso', $cuadros_proceso);
+            $cuadro = new Cuadro();
+            $cuadros_proceso = $cuadro->Find("privado = 0 AND id_entidad = $id_entidad");
+            $smarty->assign('cuadros_proceso', $cuadros_proceso);
 
-        $smarty->assign("entidad", $entidad);
-        $smarty->assign('_nombre_pagina', TXT_PROC_EDIT . ": " . $proceso->nombre);
-        $plantilla = "procesos/proceso_editar.tpl";
+            $smarty->assign("entidad", $entidad);
+            $smarty->assign('_nombre_pagina', TXT_PROC_EDIT . ": " . $proceso->nombre);
+            $plantilla = "procesos/proceso_editar.tpl";
+        }
+        else
+        {
+            $error = ERR_PERMISOS;
+            header("Location: index.php?page=proceso_mostrar&id_proceso=$id_proceso&id_entidad=$id_entidad&error=$error");
+        }
     }
 }
 else

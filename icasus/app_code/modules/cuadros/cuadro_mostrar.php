@@ -48,7 +48,7 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     else
     {
         $error = ERR_CUAD_MANDO;
-        header("location:index.php?page=cuadros&error=$error");
+        header("location:index.php?page=cuadro_listar&id_entidad=$id_entidad&error=$error");
     }
 }
 else

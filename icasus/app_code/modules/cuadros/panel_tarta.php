@@ -22,35 +22,43 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     $cuadro->load("id=$id_cuadro");
     $smarty->assign('cuadro', $cuadro);
 
-    //Tipo de panel: tarta
-    $panel_tipo = new Panel_tipo();
-    $panel_tipo->load("nombre = 'tarta'");
-    $smarty->assign('panel_tipo', $panel_tipo);
-
-    //Validar orden del panel dentro del cuadro de mando
-    $panel = new Panel();
-    $ordenes = array();
-    $paneles = $panel->Find("id_cuadro=$id_cuadro");
-    foreach ($paneles as $pl)
+    if ($control || $usuario->id == $cuadro->id_usuario)
     {
-        array_push($ordenes, $pl->orden);
+        //Tipo de panel: tarta
+        $panel_tipo = new Panel_tipo();
+        $panel_tipo->load("nombre = 'tarta'");
+        $smarty->assign('panel_tipo', $panel_tipo);
+
+        //Validar orden del panel dentro del cuadro de mando
+        $panel = new Panel();
+        $ordenes = array();
+        $paneles = $panel->Find("id_cuadro=$id_cuadro");
+        foreach ($paneles as $pl)
+        {
+            array_push($ordenes, $pl->orden);
+        }
+        $smarty->assign('elementos', $ordenes);
+
+        //Indicadores/datos
+        $indicador = new Indicador();
+        $indicadores = $indicador->find("id_entidad = $id_entidad AND archivado is NULL");
+        $smarty->assign('indicadores', $indicadores);
+
+        //Mediciones
+        $id_indicador = $indicadores[0]->id;
+        $medicion = new Medicion();
+        $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
+        $smarty->assign('mediciones', $mediciones);
+
+        $smarty->assign('_javascript', array('panel_tarta'));
+        $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR . ': ' . TXT_TARTA);
+        $plantilla = "cuadros/panel_tarta.tpl";
     }
-    $smarty->assign('elementos', $ordenes);
-
-    //Indicadores/datos
-    $indicador = new Indicador();
-    $indicadores = $indicador->find("id_entidad = $id_entidad AND archivado is NULL");
-    $smarty->assign('indicadores', $indicadores);
-
-    //Mediciones
-    $id_indicador = $indicadores[0]->id;
-    $medicion = new Medicion();
-    $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio");
-    $smarty->assign('mediciones', $mediciones);
-
-    $smarty->assign('_javascript', array('panel_tarta'));
-    $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR . ': ' . TXT_TARTA);
-    $plantilla = "cuadros/panel_tarta.tpl";
+    else
+    {
+        $error = ERR_PERMISOS;
+        header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_entidad&error=$error");
+    }
 }
 //Peticiones ajax
 else if (filter_has_var(INPUT_GET, 'modulo'))

@@ -126,11 +126,11 @@
                             <tbody>
                                 {foreach from=$personas item=persona}
                                     <tr>
-                                        <td><input title="{$smarty.const.TXT_SEL}" type='checkbox' name='id_usuario[]' value='{$persona.id}'/></td>
-                                        <td style="font-size: 12px">{$persona.nombre|upper}</td>
-                                        <td style="font-size: 12px">{$persona.apellidos|upper}</td>
-                                        <td>{$persona.correo}</td>
-                                        <td>{$persona.puesto}</td>
+                                        <td><input title="{$smarty.const.TXT_SEL}" type='checkbox' name='id_usuario[]' value='{$persona->id}'/></td>
+                                        <td style="font-size: 12px">{$persona->nombre|upper}</td>
+                                        <td style="font-size: 12px">{$persona->apellidos|upper}</td>
+                                        <td>{$persona->correo}</td>
+                                        <td>{$persona->puesto}</td>
                                     </tr>
                                 {/foreach}
                             </tbody>

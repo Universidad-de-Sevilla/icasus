@@ -163,4 +163,5 @@ if ($modulo == 'borrar')
     {
         $fichero->delete();
     }
+    //TODO borrar el fichero del servidor
 }

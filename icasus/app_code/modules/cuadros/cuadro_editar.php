@@ -9,6 +9,10 @@
 // Descripcion: Editar un cuadro de mandos existente
 //---------------------------------------------------------------------------------------------------
 
+global $usuario;
+global $plantilla;
+global $smarty;
+
 if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_entidad'))
 {
     $id_cuadro = filter_input(INPUT_GET, 'id_cuadro', FILTER_SANITIZE_NUMBER_INT);
@@ -21,8 +25,18 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     $entidad->load("id=$id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    $smarty->assign('_nombre_pagina', TXT_CUADRO_EDIT . ': ' . $cuadro->nombre);
-    $plantilla = 'cuadros/cuadro_editar.tpl';
+    //Comprobamos los permisos del usuario
+    if ($control || $usuario->id == $cuadro->id_usuario)
+    {
+        $smarty->assign('_nombre_pagina', TXT_CUADRO_EDIT . ': ' . $cuadro->nombre);
+        $plantilla = 'cuadros/cuadro_editar.tpl';
+    }
+    else
+    {
+
+        $error = ERR_PERMISOS;
+        header("Location: index.php?page=cuadro_listar&id_entidad=$cuadro->id_entidad&error=$error");
+    }
 }
 else
 {

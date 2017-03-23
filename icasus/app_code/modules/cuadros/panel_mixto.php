@@ -22,29 +22,37 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     $cuadro->load("id=$id_cuadro");
     $smarty->assign('cuadro', $cuadro);
 
-    //Tipo de panel: mixto
-    $panel_tipo = new Panel_tipo();
-    $panel_tipo->load("nombre = 'mixto'");
-    $smarty->assign('panel_tipo', $panel_tipo);
-
-    //Validar orden del panel dentro del cuadro de mando
-    $panel = new Panel();
-    $ordenes = array();
-    $paneles = $panel->Find("id_cuadro=$id_cuadro");
-    foreach ($paneles as $pl)
+    if ($control || $usuario->id == $cuadro->id_usuario)
     {
-        array_push($ordenes, $pl->orden);
+        //Tipo de panel: mixto
+        $panel_tipo = new Panel_tipo();
+        $panel_tipo->load("nombre = 'mixto'");
+        $smarty->assign('panel_tipo', $panel_tipo);
+
+        //Validar orden del panel dentro del cuadro de mando
+        $panel = new Panel();
+        $ordenes = array();
+        $paneles = $panel->Find("id_cuadro=$id_cuadro");
+        foreach ($paneles as $pl)
+        {
+            array_push($ordenes, $pl->orden);
+        }
+        $smarty->assign('elementos', $ordenes);
+
+        //Indicadores/datos
+        $indicador = new Indicador();
+        $indicadores = $indicador->find("id_entidad = $id_entidad AND archivado is NULL");
+        $smarty->assign('indicadores', $indicadores);
+
+        $smarty->assign('_javascript', array('panel_mixto'));
+        $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR . ': ' . TXT_MIXTO);
+        $plantilla = "cuadros/panel_mixto.tpl";
     }
-    $smarty->assign('elementos', $ordenes);
-
-    //Indicadores/datos
-    $indicador = new Indicador();
-    $indicadores = $indicador->find("id_entidad = $id_entidad AND archivado is NULL");
-    $smarty->assign('indicadores', $indicadores);
-
-    $smarty->assign('_javascript', array('panel_mixto'));
-    $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR . ': ' . TXT_MIXTO);
-    $plantilla = "cuadros/panel_mixto.tpl";
+    else
+    {
+        $error = ERR_PERMISOS;
+        header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_entidad&error=$error");
+    }
 }
 else
 {

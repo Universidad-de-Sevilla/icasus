@@ -25,37 +25,45 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     $cuadro->load("id=$id_cuadro");
     $smarty->assign('cuadro', $cuadro);
 
-    //Tipo de panel: tabla
-    $panel_tipo = new Panel_tipo();
-    $panel_tipo->load("nombre = 'tabla'");
-    $smarty->assign('panel_tipo', $panel_tipo);
-
-    //Validar orden del panel dentro del cuadro de mando
-    $panel = new Panel();
-    $ordenes = array();
-    $paneles = $panel->Find("id_cuadro=$id_cuadro");
-    foreach ($paneles as $pl)
+    if ($control || $usuario->id == $cuadro->id_usuario)
     {
-        array_push($ordenes, $pl->orden);
+        //Tipo de panel: tabla
+        $panel_tipo = new Panel_tipo();
+        $panel_tipo->load("nombre = 'tabla'");
+        $smarty->assign('panel_tipo', $panel_tipo);
+
+        //Validar orden del panel dentro del cuadro de mando
+        $panel = new Panel();
+        $ordenes = array();
+        $paneles = $panel->Find("id_cuadro=$id_cuadro");
+        foreach ($paneles as $pl)
+        {
+            array_push($ordenes, $pl->orden);
+        }
+        $smarty->assign('elementos', $ordenes);
+
+        $indicador = new Indicador();
+        //Indicadores de procesos
+        $indicadores = $indicador->find("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado is NULL");
+        $smarty->assign('indicadores', $indicadores);
+
+        //Indicadores de control
+        $indicadores_ctl = $indicador->find("id_entidad = $id_entidad AND control=1 AND archivado is NULL");
+        $smarty->assign('indicadores_ctl', $indicadores_ctl);
+
+        //Indicadores de datos
+        $datos = $indicador->find("id_entidad = $id_entidad AND id_proceso is NULL AND control=0 AND archivado is NULL");
+        $smarty->assign('datos', $datos);
+
+        $smarty->assign('_javascript', array('panel_tabla'));
+        $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR . ': ' . TXT_TABLA);
+        $plantilla = "cuadros/panel_tabla.tpl";
     }
-    $smarty->assign('elementos', $ordenes);
-
-    $indicador = new Indicador();
-    //Indicadores de procesos
-    $indicadores = $indicador->find("id_entidad = $id_entidad AND id_proceso IS NOT NULL AND archivado is NULL");
-    $smarty->assign('indicadores', $indicadores);
-
-    //Indicadores de control
-    $indicadores_ctl = $indicador->find("id_entidad = $id_entidad AND control=1 AND archivado is NULL");
-    $smarty->assign('indicadores_ctl', $indicadores_ctl);
-
-    //Indicadores de datos
-    $datos = $indicador->find("id_entidad = $id_entidad AND id_proceso is NULL AND control=0 AND archivado is NULL");
-    $smarty->assign('datos', $datos);
-
-    $smarty->assign('_javascript', array('panel_tabla'));
-    $smarty->assign('_nombre_pagina', TXT_PANEL_CREAR . ': ' . TXT_TABLA);
-    $plantilla = "cuadros/panel_tabla.tpl";
+    else
+    {
+        $error = ERR_PERMISOS;
+        header("location:index.php?page=cuadro_mostrar&id_cuadro=$id_cuadro&id_entidad=$id_entidad&error=$error");
+    }
 }
 else
 {

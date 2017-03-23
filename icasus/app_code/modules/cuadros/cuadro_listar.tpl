@@ -108,14 +108,12 @@
             <!-- Lista de Cuadros de mando -->
             <div role="tabpanel" class="tab-pane active" id="cuadro_list">
                 <!-- Barra de botones -->
-                {if $_control}
-                    <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
-                        <div class="btn-group" role="group" aria-label="">
-                            <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_CREAR}">
-                                <i class="fa fa-th fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
-                        </div>
+                <div id="botones" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                    <div class="btn-group" role="group" aria-label="">
+                        <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_CREAR}">
+                            <i class="fa fa-th fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
                     </div>
-                {/if}
+                </div>
                 <!-- /Barra de botones -->
                 {if $cuadros}
                     <div class="table-responsive">
@@ -123,21 +121,19 @@
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_CUADRO_MANDO}</th>
-                                    <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                     <th>{$smarty.const.FIELD_COMENTARIOS}</th>
+                                    <th>{$smarty.const.FIELD_PROPIETARIO}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {foreach from=$cuadros item=cuadro}
                                     <tr>
-                                        <td><a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}">{$cuadro->nombre}</a></td>            
-                                        <td>
-                                            {if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}
-                                            {else}{$smarty.const.TXT_PRIVADO}
-                                            {/if}
-                                        </td>
+                                        <td><a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}">{$cuadro->nombre}</a></td>
                                         <td>{if $cuadro->comentarios}{$cuadro->comentarios}{else}---{/if}</td>
+                                        <td style="font-size: 12px">
+                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$cuadro->id_usuario}'>{$cuadro->usuario->nombre} {$cuadro->usuario->apellidos}</a>
+                                        </td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}"><i class="fa fa-th fa-fw"></i></a>
                                                 {if $cuadro->id_usuario == $_usuario->id || $_control}
@@ -163,15 +159,12 @@
                         </div>
                         <!-- /.col-sm-11 -->
                         <div class="col-sm-1">
-                            <!-- Barra de botones -->
-                            {if $_control}
-                                <div class="btn-toolbar" role="toolbar" aria-label="">
-                                    <div class="btn-group" role="group" aria-label="">
-                                        <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_CREAR}">
-                                            <i class="fa fa-th fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
-                                    </div>
+                            <div class="btn-toolbar" role="toolbar" aria-label="">
+                                <div class="btn-group" role="group" aria-label="">
+                                    <a class="btn btn-default btn-danger" href="index.php?page=cuadro_crear&id_entidad={$entidad->id}" title="{$smarty.const.TXT_CUADRO_CREAR}">
+                                        <i class="fa fa-th fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
                                 </div>
-                            {/if}
+                            </div>
                             <!-- /Barra de botones -->
                         </div>
                         <!-- /.col-sm-1 -->
@@ -189,8 +182,8 @@
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_CUADRO_MANDO}</th>
-                                    <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                     <th>{$smarty.const.FIELD_COMENTARIOS}</th>
+                                    <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
                             </thead>
@@ -199,7 +192,8 @@
                                     <tr>
                                         <td>
                                             <a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}">{$cuadro->nombre}</a>
-                                        </td> 
+                                        </td>
+                                        <td>{if $cuadro->comentarios}{$cuadro->comentarios}{else}---{/if}</td>
                                         <td>
                                             {if $cuadro->privado == 0}
                                                 {$smarty.const.TXT_PUBLICO}
@@ -207,7 +201,6 @@
                                                 {$smarty.const.TXT_PRIVADO}
                                             {/if}
                                         </td>
-                                        <td>{if $cuadro->comentarios}{$cuadro->comentarios}{else}---{/if}</td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VER}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}"><i class="fa fa-th fa-fw"></i></a>                 
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='index.php?page=cuadro_editar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}'><i class="fa fa-pencil fa-fw"></i></a>   
