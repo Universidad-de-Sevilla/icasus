@@ -59,7 +59,14 @@
                 <!-- /.dropdown-menu -->
             </li>
             <!-- /.dropdown -->
-            <li><a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a></li>
+            <li>
+                <a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a>
+            </li>
+            {if isset($proceso)}
+                <li>
+                    <a title="{$proceso->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>{$proceso->nombre|truncate:30}</a>
+                </li>
+            {/if}
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -106,14 +113,19 @@
                     <div class="form-group">
                         <label for="madre" class="col-sm-2 control-label">{$smarty.const.FIELD_PROC_MADRE}</label>
                         <div class="col-sm-8">
-                            <select class="form-control chosen-select" name='madre' id='madre'>
-                                <option value="0">{$smarty.const.TXT_PROC_ES_MADRE}</option>
-                                {foreach from=$procesos_madre item=proceso_madre}
-                                    <option value="{$proceso_madre->id}">
-                                        {$proceso_madre->codigo} - {$proceso_madre->nombre}
-                                    </option>
-                                {/foreach} 
-                            </select>
+                            {if isset($proceso)}
+                                <input type='hidden' name="madre" value="{$proceso->id}"/>
+                                <input type='text' class="form-control" id="madre" value="{$proceso->nombre}" readonly/>
+                            {else}
+                                <select class="form-control chosen-select" name='madre' id='madre'>
+                                    <option value="0">{$smarty.const.TXT_PROC_ES_MADRE}</option>
+                                    {foreach from=$procesos_madre item=proceso_madre}
+                                        <option value="{$proceso_madre->id}">
+                                            {$proceso_madre->codigo} - {$proceso_madre->nombre}
+                                        </option>
+                                    {/foreach} 
+                                </select>
+                            {/if}
                         </div>
                     </div>
                     <div class="form-group has-feedback">
@@ -190,9 +202,15 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=proceso_listar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
-                            </a>
+                            {if isset($proceso)}
+                                <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>
+                                    <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                </a>
+                            {else}
+                                <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=proceso_listar&id_entidad={$entidad->id}'>
+                                    <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                </a>
+                            {/if}
                             <div class="pull-right">
                                 <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
                                     <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
@@ -259,12 +277,15 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8">
-                            <button id="btn_prev_proceso" title="{$smarty.const.TXT_ANT}" type="button" class="btn btn-primary btnPrev">
-                                <i class=" fa fa-arrow-left fa-fw"></i> {$smarty.const.TXT_ANT}
-                            </button>
-                            <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=proceso_listar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
-                            </a>     
+                            {if isset($proceso)}
+                                <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$entidad->id}'>
+                                    <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                </a>
+                            {else}
+                                <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href = 'index.php?page=proceso_listar&id_entidad={$entidad->id}'>
+                                    <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
+                                </a>
+                            {/if}    
                             <div class="pull-right">
                                 <button title="{$smarty.const.TXT_GRABAR}" type="submit" class="btn btn-success">
                                     <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}

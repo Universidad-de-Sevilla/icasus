@@ -68,7 +68,7 @@ if (filter_has_var(INPUT_GET, 'id_proceso') && filter_has_var(INPUT_GET, 'id_ent
     else
     {
         $proceso = new Proceso();
-        $proceso->load_joined("id = $id_proceso");
+        $proceso->load("id = $id_proceso");
         //Permisos del proceso
         $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso);
         $smarty->assign('proceso', $proceso);

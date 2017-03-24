@@ -41,7 +41,7 @@ if (filter_has_var(INPUT_POST, 'alcance') && filter_has_var(INPUT_POST, 'nombre'
     if ($proceso->save())
     {
         $exito = MSG_PROC_GRABAR;
-        header("Location:index.php?page=proceso_listar&id_entidad=$id_entidad&exito=$exito");
+        header("Location:index.php?page=proceso_mostrar&id_proceso=$proceso->id&id_entidad=$id_entidad&exito=$exito");
     }
     else
     {

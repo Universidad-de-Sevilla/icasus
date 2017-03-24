@@ -26,11 +26,8 @@ if (filter_has_var(INPUT_GET, 'id_indicador') && filter_has_var(INPUT_GET, 'id_e
     $smarty->assign('indicador', $indicador);
 
     //Proceso del indicador
-    if ($indicador->id_proceso)
-    {
-        $proceso = $indicador->proceso;
-        $smarty->assign('proceso', $proceso);
-    }
+    $proceso = $indicador->proceso;
+    $smarty->assign('proceso', $proceso);
 
     //Permisos del proceso
     $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso);

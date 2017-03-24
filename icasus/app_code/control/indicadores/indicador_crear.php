@@ -38,7 +38,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     if (filter_has_var(INPUT_GET, 'id_proceso'))
     {
         $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
-        $proceso->load_joined("id = $id_proceso");
+        $proceso->load("id = $id_proceso");
         $nombre_pagina = $nombre_pagina . " - " . $proceso->nombre;
         //Permisos del proceso
         $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso);

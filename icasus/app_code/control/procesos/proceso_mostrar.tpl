@@ -377,9 +377,21 @@
 
             <!-- Subprocesos -->
             <div role="tabpanel" class="tab-pane" id="proc_subprocs">
+                <!-- Barra de botones -->
+                {if $_control || $permiso_proceso}
+                    <div id="botones_subprocs" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href="index.php?page=proceso_crear&id_proceso={$proceso->id}&id_entidad={$entidad->id}"
+                               title="{$smarty.const.TXT_PROC_CREAR}">
+                                <i class="fa fa-gear fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            </a>
+                        </div>
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
                 {if $subprocesos}
                     <div class="table-responsive">
-                        <table class="table datatable table-striped table-hover">
+                        <table id="tabla_subprocs" class="table datatable table-striped table-hover">
                             <thead>
                                 <tr>   
                                     <th>{$smarty.const.FIELD_COD}</th>
@@ -426,10 +438,29 @@
                         </table>
                     </div>
                 {else}
-                    <div class="alert alert-info alert-dismissible">
-                        <i class="fa fa-info-circle fa-fw"></i> 
-                        {$smarty.const.MSG_PROC_NO_SUBPROCS}
-                    </div> 
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_PROC_NO_SUBPROCS}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            {if $_control || $permiso_proceso}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href="index.php?page=proceso_crear&id_proceso={$proceso->id}&id_entidad={$entidad->id}"
+                                           title="{$smarty.const.TXT_PROC_CREAR}">
+                                            <i class="fa fa-gear fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-1 -->
+                    </div>
+                    <!-- /.row -->
                 {/if}
             </div>
             <!-- /Subprocesos -->
