@@ -132,11 +132,6 @@
             <li>
                 <a title="{$smarty.const.FIELD_PROCS}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PROCS}</a>
             </li>
-            {if $proceso_madre}
-                <li>
-                    <a title="{$proceso_madre->nombre}" href='index.php?page=proceso_mostrar&id_proceso={$proceso_madre->id}&id_entidad={$entidad->id}'>{$proceso_madre->nombre|truncate:30}</a>
-                </li>
-            {/if}
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
