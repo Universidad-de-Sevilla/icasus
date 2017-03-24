@@ -2,7 +2,7 @@
 
 //----------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Fichero: class/Indicador_dependencia.php
+// Fichero: entity/Indicador_dependencia.php
 // Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)

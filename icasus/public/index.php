@@ -2,7 +2,7 @@
 
 /* --------------------------------------------------------------------------
   Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
-  Archivo: index.php
+  Archivo: public/index.php
   Desarrolladores: Juanan Ruiz <juanan@us.es>, Jesús Martin <jjmc@us.es>,
   Joaquín Valonero Zaera (tecnibus1@us.es)
   --------------------------------------------------------------------------
@@ -63,7 +63,7 @@ $usuario = new Usuario();
 $plantilla = '';
 
 // Configuramos parámetros $smarty
-$smarty->template_dir = '../app_code/modules';
+$smarty->template_dir = '../app_code/control';
 $smarty->compile_dir = '../templates_c';
 $smarty->config_dir = '../configs';
 $smarty->cache_dir = '../cache';
@@ -169,11 +169,11 @@ else
 }
 
 //Recorremos los directorios de la aplicación
-$directorios = new DirectoryIterator("../app_code/modules/");
+$directorios = new DirectoryIterator("../app_code/control/");
 $nombre_modulo = NULL;
 foreach ($directorios as $dir)
 {
-    if (file_exists("../app_code/modules/" . $dir->getFilename() . "/$page.php"))
+    if (file_exists("../app_code/control/" . $dir->getFilename() . "/$page.php"))
     {
         $nombre_modulo = $dir->getFilename();
         break;
@@ -183,7 +183,7 @@ foreach ($directorios as $dir)
 //Carga de la página solicitada
 if ($nombre_modulo)
 {
-    require_once("../app_code/modules/" . $nombre_modulo . "/$page.php");
+    require_once("../app_code/control/" . $nombre_modulo . "/$page.php");
 }
 else
 {

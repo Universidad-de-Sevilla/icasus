@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: class/ILogicaValores.php
+// Archivo: logic/ILogicaValores.php
 // Tipo: definicion de Interfaz
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)

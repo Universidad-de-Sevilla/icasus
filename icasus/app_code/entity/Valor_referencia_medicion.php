@@ -2,7 +2,7 @@
 
 //-------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: class/Valor_referencia_medicion.php
+// Archivo: entity/Valor_referencia_medicion.php
 // Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
