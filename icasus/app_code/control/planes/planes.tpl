@@ -76,7 +76,6 @@
                                     <th>{$smarty.const.FIELD_OBJ_OP}</th>
                                     <th>{$smarty.const.FIELD_PLAN}</th>
                                     <th>{$smarty.const.FIELD_UNID}</th>
-                                    <th>{$smarty.const.FIELD_RESP}</th>
                                     <th>{$smarty.const.FIELD_DURACION}</th>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <th>Nº {$smarty.const.FIELD_UNIDS}</th>
@@ -99,10 +98,6 @@
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=plan_mostrar&id_plan={$objop->objest->linea->id_plan}&id_entidad={$objop->objest->linea->plan->id_entidad}">{$objop->objest->linea->plan->anyo_inicio} - {$objop->objest->linea->plan->anyo_inicio + $objop->objest->linea->plan->duracion - 1}</a>
                                         </td>
                                         <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$objop->objest->linea->plan->id_entidad}'>{$objop->objest->linea->plan->entidad->etiqueta}</a></td>
-                                        <td style="font-size: 12px">
-                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$objop->id_responsable}'>
-                                                {$objop->responsable->nombre} {$objop->responsable->apellidos}</a>
-                                        </td>
                                         <td>
                                             {if $objops_anyos[$objop->id]}
                                                 {foreach $objops_anyos[$objop->id] as $anyo}

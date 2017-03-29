@@ -127,7 +127,7 @@
                                             </td>
                                             <td>{$proceso->alcance}</td>
                                             <td>
-                                                {if $proceso->madre->id > 0}
+                                                {if $proceso->madre}
                                                     <a title="{$proceso->madre->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->madre->id}&id_entidad={$proceso->madre->id_entidad}">
                                                         {$proceso->madre->nombre}
                                                     </a>

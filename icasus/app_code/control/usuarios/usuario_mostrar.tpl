@@ -299,8 +299,7 @@
                                         <th>{$smarty.const.FIELD_PROC}</th>
                                         <th>{$smarty.const.FIELD_UNID}</th>
                                         <th>{$smarty.const.FIELD_TIPO_PROC}</th>
-                                        <th>{$smarty.const.FIELD_PROC_MADRE}</th>         
-                                        <th>{$smarty.const.FIELD_PROPIETARIO}</th>
+                                        <th>{$smarty.const.FIELD_PROC_MADRE}</th>
                                         <th>{$smarty.const.FIELD_ACCIONES}</th>
                                     </tr>
                                 </thead>
@@ -316,18 +315,13 @@
                                             <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$proceso->entidad->id}'>{$proceso->entidad->etiqueta}</a></td>
                                             <td>{$proceso->alcance}</td>
                                             <td>
-                                                {if $proceso->madre->id > 0}
+                                                {if $proceso->madre}
                                                     <a title="{$proceso->madre->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->madre->id}&id_entidad={$proceso->madre->id_entidad}">
                                                         {$proceso->madre->nombre}
                                                     </a>
                                                 {else}
                                                     ---
                                                 {/if}
-                                            </td>
-                                            <td style="font-size: 12px">
-                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
-                                                    {$proceso->propietario->nombre} {$proceso->propietario->apellidos}
-                                                </a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">
@@ -538,7 +532,6 @@
                                         <th>{$smarty.const.FIELD_OBJ_OP}</th>
                                         <th>{$smarty.const.FIELD_PLAN}</th>
                                         <th>{$smarty.const.FIELD_UNID}</th>
-                                        <th>{$smarty.const.FIELD_RESP}</th>
                                         <th>{$smarty.const.FIELD_DURACION}</th>
                                         <th>{$smarty.const.FIELD_EJECUCION}</th>
                                         <th>Nº {$smarty.const.FIELD_UNIDS}</th>
@@ -561,10 +554,6 @@
                                                 <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=plan_mostrar&id_plan={$objop->objest->linea->id_plan}&id_entidad={$objop->objest->linea->plan->id_entidad}">{$objop->objest->linea->plan->anyo_inicio} - {$objop->objest->linea->plan->anyo_inicio + $objop->objest->linea->plan->duracion - 1}</a>
                                             </td>
                                             <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$objop->objest->linea->plan->id_entidad}'>{$objop->objest->linea->plan->entidad->etiqueta}</a></td>
-                                            <td style="font-size: 12px">
-                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$objop->id_responsable}'>
-                                                    {$objop->responsable->nombre} {$objop->responsable->apellidos}</a>
-                                            </td>
                                             <td>
                                                 {if $objops_anyos[$objop->id]}
                                                     {foreach $objops_anyos[$objop->id] as $anyo}

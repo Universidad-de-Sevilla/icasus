@@ -173,7 +173,7 @@
                                         </td>
                                         <td>{$proceso->alcance}</td>
                                         <td>
-                                            {if $proceso->madre->id > 0}
+                                            {if $proceso->madre}
                                                 <a title="{$proceso->madre->nombre}"
                                                    href="index.php?page=proceso_mostrar&id_proceso={$proceso->madre->id}&id_entidad={$proceso->madre->id_entidad}">
                                                     {$proceso->madre->nombre}
@@ -261,8 +261,7 @@
                                     <th>{$smarty.const.FIELD_COD}</th>
                                     <th>{$smarty.const.FIELD_PROC}</th>
                                     <th>{$smarty.const.FIELD_TIPO_PROC}</th>
-                                    <th>{$smarty.const.FIELD_PROC_MADRE}</th>         
-                                    <th>{$smarty.const.FIELD_PROPIETARIO}</th>
+                                    <th>{$smarty.const.FIELD_PROC_MADRE}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
                             </thead>
@@ -277,18 +276,13 @@
                                         </td>
                                         <td>{$proceso->alcance}</td>
                                         <td>
-                                            {if $proceso->madre->id > 0}
+                                            {if $proceso->madre}
                                                 <a title="{$proceso->madre->nombre}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->madre->id}&id_entidad={$proceso->madre->id_entidad}">
                                                     {$proceso->madre->nombre}
                                                 </a>
                                             {else}
                                                 ---
                                             {/if}
-                                        </td>
-                                        <td style="font-size: 12px">
-                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href="index.php?page=usuario_mostrar&id_usuario={$proceso->propietario->id}">
-                                                {$proceso->propietario->nombre} {$proceso->propietario->apellidos}
-                                            </a>
                                         </td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}">

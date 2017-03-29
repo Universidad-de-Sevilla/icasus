@@ -118,7 +118,7 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_CUADRO_MANDO}</th>
                                     <th>{$smarty.const.FIELD_UNID}</th>
-                                    <th>{$smarty.const.FIELD_VISIBILIDAD}</th>
+                                    <th>{$smarty.const.FIELD_PROPIETARIO}</th>
                                     <th>{$smarty.const.FIELD_COMENTARIOS}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
@@ -128,10 +128,8 @@
                                     <tr>
                                         <td><a title="{$cuadro->nombre}" href="index.php?page=cuadro_mostrar&id_cuadro={$cuadro->id}&id_entidad={$cuadro->id_entidad}">{$cuadro->nombre}</a></td>            
                                         <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$cuadro->entidad->id}'>{$cuadro->entidad->etiqueta}</a></td>
-                                        <td>
-                                            {if $cuadro->privado == 0}{$smarty.const.TXT_PUBLICO}
-                                            {else}{$smarty.const.TXT_PRIVADO}
-                                            {/if}
+                                        <td style="font-size: 12px">
+                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$cuadro->id_usuario}'>{$cuadro->usuario->nombre} {$cuadro->usuario->apellidos}</a>
                                         </td>
                                         <td>{if $cuadro->comentarios}{$cuadro->comentarios}{else}---{/if}</td>
                                         <td style="white-space:nowrap">
