@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.46.3");
-define('IC_FECHA_REVISION', "13/03/2017");
+define('IC_VERSION', "3.47.0");
+define('IC_FECHA_REVISION', "29/03/2017");
 
+// 3.47.0 - 29/03/2017 - Revisión completa de los permisos: permisos controlados a nivel de proceso, creación de subprocesos desde un proceso, correcciones varias, ...
 // 3.46.3 - 13/03/2017 - Pequeños cambios de estilo y en la organización del código.
 // 3.46.2 - 10/03/2017 - Correcciones: se permite visualizar intervalos distintos al original en las gráficas de indicadores/datos en los que el usuario carece de permisos (consulta).
 // 3.46.1 - 08/03/2017 - Correcciones: se muestran pestañas ocultas en los menús de indicadores cuando se accedía a secciones sin permisos, sólo fechas para elegir en la edición de valores de indicadores, permisos de propietarios de procesos en cuenta para los indicadores,...

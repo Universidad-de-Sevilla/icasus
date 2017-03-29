@@ -30,14 +30,24 @@ else
     $cadena = "AND (e.id_madre = $id_entidad OR e.id= $id_entidad)";
 }
 
-// Indicadores/datos bajo la responsabilidad de este usuario
+// Indicadores/datos bajo la responsabilidad del usuario
 $indicador = new Indicador();
 $indicadores_datos_propios = $indicador->Find_joined("(id_responsable = $usuario->id OR id_responsable_medicion = $usuario->id) AND id_entidad=$id_entidad AND archivado IS NULL");
 $smarty->assign("indicadores_datos_propios", $indicadores_datos_propios);
 $cadena_aux = '';
 if (!$control && $indicadores_datos_propios)
 {
-    $cadena_aux = "AND (i.id_responsable = $usuario->id OR i.id_responsable_medicion = $usuario->id)";
+    $cadena_aux = "AND (i.id_responsable = $usuario->id OR i.id_responsable_medicion = $usuario->id OR p.id_propietario = $usuario->id)";
+    $cadena = $cadena . ' ' . $cadena_aux;
+}
+
+// Procesos bajo la responsabilidad del usuario actual
+$proceso = new Proceso();
+$procesos_propios = $proceso->Find("id_propietario = $usuario->id AND id_entidad = $id_entidad");
+$smarty->assign('procesos_propios', $procesos_propios);
+if (!$control && !$indicadores_datos_propios && $procesos_propios)
+{
+    $cadena_aux = "AND p.id_propietario = $usuario->id";
     $cadena = $cadena . ' ' . $cadena_aux;
 }
 
@@ -69,14 +79,25 @@ if ($modulo == 'inicio')
 
     //Indicadores/Datos valores de referencia
     //Buscar todos valores ref de los indicadores/datos para el año actual
-    if (!$control && $indicadores_datos_propios)
+    $indicadores = array();
+    if ($indicadores_datos_propios)
     {
         $indicadores = $indicadores_datos_propios;
     }
-    else
+    if ($procesos_propios)
+    {
+        $proc_indics = array();
+        foreach ($procesos_propios as $proc)
+        {
+            $proc_indics = array_merge($proc_indics, $indicador->Find_joined("id_proceso=$proc->id AND archivado is NULL"));
+        }
+        $indicadores = array_merge($indicadores, $proc_indics);
+    }
+    if ($control)
     {
         $indicadores = $indicador->Find_joined("id_entidad=$id_entidad AND archivado is NULL");
     }
+
     $medicion = new Medicion();
     $mediciones = array();
     $medicion_lim = array();
@@ -188,14 +209,25 @@ if ($modulo == 'filtrOnlyear')
 
     //Indicadores/Datos valores de referencia
     //Buscar todos valores ref de los indicadores/datos para el año actual
-    if (!$control && $indicadores_datos_propios)
+    $indicadores = array();
+    if ($indicadores_datos_propios)
     {
         $indicadores = $indicadores_datos_propios;
     }
-    else
+    if ($procesos_propios)
+    {
+        $proc_indics = array();
+        foreach ($procesos_propios as $proc)
+        {
+            $proc_indics = array_merge($proc_indics, $indicador->Find_joined("id_proceso=$proc->id AND archivado is NULL"));
+        }
+        $indicadores = array_merge($indicadores, $proc_indics);
+    }
+    if ($control)
     {
         $indicadores = $indicador->Find_joined("id_entidad=$id_entidad AND archivado is NULL");
     }
+
     $medicion = new Medicion();
     $mediciones = array();
     $medicion_lim = array();
