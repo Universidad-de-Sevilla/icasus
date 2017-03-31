@@ -186,6 +186,9 @@
             <li role="presentation">
                 <a href="#linea_objop" title="{$smarty.const.FIELD_OBJS_OP}" aria-controls="{$smarty.const.FIELD_OBJS_OP}" role="tab" data-toggle="tab"><i class="fa fa-bullseye fa-fw"></i> {$smarty.const.FIELD_OBJS_OP}</a>
             </li>
+            <li role="presentation">
+                <a href="#linea_res" title="{$smarty.const.TXT_SEGUIMIENTO}" aria-controls="{$smarty.const.TXT_SEGUIMIENTO}" role="tab" data-toggle="tab"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.TXT_SEGUIMIENTO}</a>
+            </li>
         </ul>
         <!-- /Nav tabs -->
         <br>
@@ -195,9 +198,8 @@
             <!-- Ficha de la línea -->
             <div role="tabpanel" class="tab-pane active" id="linea_ficha">
                 <div class="row">
-
                     <!-- Datos de la línea -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <table class="table table-striped table-hover ficha">
                             <thead><th></th><th></th></thead>
                             <tbody>
@@ -240,47 +242,8 @@
                             </div>
                         {/if}
                     </div>
-                    <!-- /.col-md-6 -->
+                    <!-- /.col-md-12 -->
                     <!-- /Datos de la línea -->
-
-                    <!-- Ejecución/año -->
-                    <div class="col-md-6">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}</span>
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <table class="table table-striped table-hover ficha">
-                                    <thead>
-                                        <tr>
-                                            <th>{$smarty.const.FIELD_ANYO}</th>
-                                            <th>{$smarty.const.FIELD_EJECUCION}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
-                                            <tr>
-                                                <td><span class="label label-default">{$i}</span></td>
-                                                <td>
-                                                    <div class="progress">
-                                                        <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
-                                                            {$ejecucion_anual[$i]|round:"2"} %
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        {/for}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.panel-body -->        
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-md-6 -->
-                    <!-- /Ejecución/año -->
-
                 </div>
                 <!-- /.row -->
             </div>
@@ -486,6 +449,48 @@
                 {/if}
             </div>
             <!-- /Objetivos operacionales de la línea -->
+
+            <!-- Seguimiento de la línea -->
+            <div role="tabpanel" class="tab-pane" id="linea_res">
+                <!-- Ejecución/año -->
+                <div class="col-md-12">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}</span>
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body">
+                            <table class="table table-striped table-hover ficha">
+                                <thead>
+                                    <tr>
+                                        <th>{$smarty.const.FIELD_ANYO}</th>
+                                        <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
+                                        <tr>
+                                            <td><span class="label label-default">{$i}</span></td>
+                                            <td>
+                                                <div class="progress">
+                                                    <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
+                                                        {$ejecucion_anual[$i]|round:"2"} %
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {/for}
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.panel-body -->        
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-md-12 -->
+                <!-- /Ejecución/año -->
+            </div>
+            <!-- /Seguimiento de la línea -->
 
         </div>
         <!-- /Tab panes -->
