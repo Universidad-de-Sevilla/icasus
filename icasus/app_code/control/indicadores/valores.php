@@ -134,8 +134,11 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC LIMIT $limite");
     $smarty->assign('mediciones', $mediciones);
 
-    $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id, $limite);
-    $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
+    if ($mediciones)
+    {
+        $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id, $limite);
+        $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
+    }
 
     $smarty->assign('_javascript', array('valores'));
     $smarty->assign('_nombre_pagina', FIELD_INDIC . ": $indicador->nombre");

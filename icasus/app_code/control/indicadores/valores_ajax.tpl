@@ -22,23 +22,17 @@
 
 {else if $modulo == 'mostrar_valores' OR $modulo == 'asignar_una_medicion' OR $modulo == 'activar_all' OR $modulo == 'activar_uno'}
     <!-- Valores de subunidades-mediciones -->
-    <div class="row">
-        <div class="col-lg-12" id="mostrar_valores">
-            <div class="panel panel-red">
-                <div class="panel-heading">
-                    <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA}</span>
-                </div>
-                <!-- /.panel-heading -->
-                <div id="panel_valores" class="panel-body">
-                    {include file="indicadores/valores_mostrar.tpl"}
-                </div>
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
+    <div class="panel panel-red">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="fa fa-tags fa-fw"></i> {$smarty.const.TXT_VAL_TABLA}</span>
         </div>
-        <!-- /.col-lg-12 -->
+        <!-- /.panel-heading -->
+        <div id="panel_valores" class="panel-body">
+            {include file="indicadores/valores_mostrar.tpl"}
+        </div>
+        <!-- /.panel-body -->
     </div>
-    <!-- /.row -->
+    <!-- /.panel -->
     <!-- /Valores de subunidades-mediciones -->
 
     {*Recargamos script, datatables y boostrap-toggle tras petición ajax*}

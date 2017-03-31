@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.47.0");
-define('IC_FECHA_REVISION', "29/03/2017");
+define('IC_VERSION', "3.47.1");
+define('IC_FECHA_REVISION', "31/03/2017");
 
+// 3.47.1 - 31/03/2017 - Correcciones en las mediciones y edición de valores: optimización, validación en generación y carga,...
 // 3.47.0 - 29/03/2017 - Revisión completa de los permisos: permisos controlados a nivel de proceso, creación de subprocesos desde un proceso, correcciones varias, ...
 // 3.46.3 - 13/03/2017 - Pequeños cambios de estilo y en la organización del código.
 // 3.46.2 - 10/03/2017 - Correcciones: se permite visualizar intervalos distintos al original en las gráficas de indicadores/datos en los que el usuario carece de permisos (consulta).

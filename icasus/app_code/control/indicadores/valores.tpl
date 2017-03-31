@@ -62,47 +62,49 @@
 </div>
 <!-- /Diálogo Asignar Unidad a una medición -->
 
-{foreach from=$subunidades_mediciones item=subunidades}
-    <!-- Diálogo Activar las mediciones de una subunidad para un indicador/dato -->
-    <div class="modal fade" id="modal_activar_all_{$subunidades->id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil-square-o fa-fw"></i> <span id="nombre_unidad_{$subunidades->id}"></span></h3>
-                </div>
-                <div class="modal-body">
-                    <p>{$smarty.const.TXT_MED_ACT_TODAS}</p>          
-                </div>
-                <div class="modal-footer">
-                    <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
-                    <button title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-success" name="btn_confirm_all" id="btn_confirm_all_{$subunidades->id}" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+{if $mediciones}
+    {foreach from=$subunidades_mediciones item=subunidades}
+        <!-- Diálogo Activar las mediciones de una subunidad para un indicador/dato -->
+        <div class="modal fade" id="modal_activar_all_{$subunidades->id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil-square-o fa-fw"></i> <span id="nombre_unidad_{$subunidades->id}"></span></h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>{$smarty.const.TXT_MED_ACT_TODAS}</p>          
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+                        <button title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-success" name="btn_confirm_all" id="btn_confirm_all_{$subunidades->id}" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- /Diálogo Activar las mediciones de una subunidad para un indicador/dato -->
+        <!-- /Diálogo Activar las mediciones de una subunidad para un indicador/dato -->
 
-    <!-- Diálogo Desactivar las mediciones de una subunidad para un indicador/dato -->
-    <div class="modal fade" id="modal_desactivar_all_{$subunidades->id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil-square-o fa-fw"></i> <span id="nombre_unidad_des_{$subunidades->id}"></span></h3>
-                </div>
-                <div class="modal-body">
-                    <p>{$smarty.const.TXT_MED_DESACT_TODAS}</p>             
-                </div>
-                <div class="modal-footer">
-                    <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
-                    <button title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-success" name="btn_confirm_des_all" id="btn_confirm_des_all_{$subunidades->id}" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+        <!-- Diálogo Desactivar las mediciones de una subunidad para un indicador/dato -->
+        <div class="modal fade" id="modal_desactivar_all_{$subunidades->id}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h3 class="modal-title" id="myModalLabel"><i class="fa fa-pencil-square-o fa-fw"></i> <span id="nombre_unidad_des_{$subunidades->id}"></span></h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>{$smarty.const.TXT_MED_DESACT_TODAS}</p>             
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+                        <button title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-success" name="btn_confirm_des_all" id="btn_confirm_des_all_{$subunidades->id}" data-dismiss="modal"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_BTN_ACEPTAR}</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- /Diálogo Desactivar las mediciones de una subunidad para un indicador/dato -->
-{/foreach}
+        <!-- /Diálogo Desactivar las mediciones de una subunidad para un indicador/dato -->
+    {/foreach}
+{/if}
 
 <!-- Diálogo Confirmar Restaurar -->
 <div class="modal fade" id="dialogo_confirmar_restaurar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

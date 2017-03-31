@@ -22,19 +22,27 @@ $('#dialogo_confirmar_borrado').on('show.bs.modal', function (event) {
 //Generación/creación de mediciones
 $('#btn_confirm_generar').click(function (e) {
     e.preventDefault();
-    var texto_generando = $(this).data('texto_generando');
-    $('#form_generar').submit();
-    $('#dialogo_confirmar_generar .modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_generando + "</h4>");
-    $('#dialogo_confirmar_generar .modal-footer').hide();
+    var anyo = $('#anyo').val();
+    if ($.isNumeric(anyo)
+            && anyo >= $('#anyo').attr('min') && anyo <= $('#anyo').attr('max')) {
+        var texto_generando = $(this).data('texto_generando');
+        $('#form_generar').submit();
+        $('#dialogo_confirmar_generar .modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_generando + "</h4>");
+        $('#dialogo_confirmar_generar .modal-footer').hide();
+    }
 });
 
 //Carga de mediciones
 $('#btn_confirm_cargar').click(function (e) {
     e.preventDefault();
-    var texto_cargando = $(this).data('texto_cargando');
-    $('#form_cargar').submit();
-    $('#dialogo_confirmar_cargar .modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_cargando + "</h4>");
-    $('#dialogo_confirmar_cargar .modal-footer').hide();
+    var registros = $('#registros').val();
+    if ($.isNumeric(registros)
+            && registros >= 1 && registros <= $('#registros').attr('max')) {
+        var texto_cargando = $(this).data('texto_cargando');
+        $('#form_cargar').submit();
+        $('#dialogo_confirmar_cargar .modal-body').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i> " + texto_cargando + "</h4>");
+        $('#dialogo_confirmar_cargar .modal-footer').hide();
+    }
 });
 
 //Tablas de valores

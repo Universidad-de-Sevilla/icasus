@@ -145,12 +145,13 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $total_registros = count($mediciones_todas);
     $smarty->assign("total_registros", $total_registros);
 
-    $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id, $limite);
-    $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
-
     //Si hay mediciones calculamos totales y valores de referencia
     if ($mediciones)
     {
+        //Subunidades
+        $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id, $limite);
+        $smarty->assign('subunidades_mediciones', $subunidades_mediciones);
+
         //Totales
         $totales = array();
         $valor = new Valor();

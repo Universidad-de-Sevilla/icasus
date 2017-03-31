@@ -82,17 +82,9 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                 }
 
                 $medicion = new Medicion();
+                $cabeceras = $medicion->mediciones_periodos($id_indicador, $inicio, $fin);
+                $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
 
-                if (filter_input(INPUT_GET, 'inicio') == 0)
-                {
-                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
-                    $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
-                }
-                else
-                {
-                    $cabeceras = $medicion->mediciones_periodos($id_indicador, $inicio, $fin);
-                    $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
-                }
                 break;
 
             case 'activar_uno':
@@ -103,33 +95,17 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
                 $valor->save();
 
                 $medicion = new Medicion();
+                $cabeceras = $medicion->mediciones_periodos($id_indicador, $inicio, $fin);
+                $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
 
-                if (filter_input(INPUT_GET, 'inicio') == 0)
-                {
-                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
-                    $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
-                }
-                else
-                {
-                    $cabeceras = $medicion->mediciones_periodos($id_indicador, $inicio, $fin);
-                    $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
-                }
                 break;
 
             case 'mostrar_valores':
 
                 $medicion = new Medicion();
+                $cabeceras = $medicion->mediciones_periodos($id_indicador, $inicio, $fin);
+                $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
 
-                if (filter_input(INPUT_GET, 'inicio') == 0)
-                {
-                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
-                    $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
-                }
-                else
-                {
-                    $cabeceras = $medicion->mediciones_periodos($id_indicador, $inicio, $fin);
-                    $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
-                }
                 break;
 
             case 'seleccionar_años':
@@ -146,21 +122,11 @@ if (isset($id_indicador) AND isset($modulo) AND isset($id_entidad))
             case 'activar_all':
 
                 $medicion = new Medicion();
+                $valores = new Valor();
+                $valores->valores_activar_periodos($id_indicador, $id_subunidad, $activo, $inicio, $fin);
+                $cabeceras = $medicion->mediciones_periodos($id_indicador, $inicio, $fin);
+                $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
 
-                if (filter_input(INPUT_GET, 'inicio') == 0)
-                {
-                    $valores = new Valor();
-                    $valores->valores_activar($id_indicador, $id_subunidad, $activo);
-                    $cabeceras = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
-                    $subunidades_mediciones = $entidad->find_subunidades_mediciones($id_indicador, $entidad->id);
-                }
-                else
-                {
-                    $valores = new Valor();
-                    $valores->valores_activar_periodos($id_indicador, $id_subunidad, $activo, $inicio, $fin);
-                    $cabeceras = $medicion->mediciones_periodos($id_indicador, $inicio, $fin);
-                    $subunidades_mediciones = $entidad->find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin);
-                }
                 break;
         }
         $smarty->assign('mediciones', $cabeceras);

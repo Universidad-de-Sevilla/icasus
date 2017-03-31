@@ -2,7 +2,7 @@
     <thead>
         <tr>
             <th></th>
-            <th>{$smarty.const.FIELD_SUBUNIDS}</th>
+            <th>{$smarty.const.FIELD_UNIDS}</th>
                 {foreach from=$mediciones item=medicion}
                 <th>{$medicion->etiqueta}</th>
                 {/foreach}
