@@ -228,7 +228,6 @@
             <!-- Ficha del plan -->
             <div role="tabpanel" class="tab-pane active" id="plan_ficha">
                 <div class="row">
-
                     <!-- Datos del plan -->
                     <div class="col-md-12">
                         <table class="table table-striped table-hover ficha">
@@ -315,49 +314,6 @@
                     <!-- /Datos del plan -->
                 </div>
                 <!-- /.row -->
-
-                <!-- Ejecución/año -->
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}</span>
-                                <i class="fa fa-chevron-up pull-right clickable"></i>
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <table class="table table-striped table-hover ficha">
-                                    <thead>
-                                        <tr>
-                                            <th>{$smarty.const.FIELD_ANYO}</th>
-                                            <th>{$smarty.const.FIELD_EJECUCION}</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
-                                            <tr>
-                                                <td><span class="label label-default">{$i}</span></td>
-                                                <td>
-                                                    <div class="progress">
-                                                        <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
-                                                            {$ejecucion_anual[$i]|round:"2"} %
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        {/for}
-                                    </tbody>
-                                </table>
-                            </div>
-                            <!-- /.panel-body -->        
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-md-12 -->
-                </div>
-                <!-- /.row -->
-                <!-- /Ejecución/año -->
-
             </div>
             <!-- /Ficha del plan -->
 
@@ -907,6 +863,49 @@
                             {/foreach}
                         </div>
                     </div>
+                    <hr>
+                    <!-- Ejecución/año -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="panel panel-red">
+                                <div class="panel-heading">
+                                    <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}</span>
+                                    <i class="fa fa-chevron-up pull-right clickable"></i>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div class="panel-body">
+                                    <table class="table table-striped table-hover ficha">
+                                        <thead>
+                                            <tr>
+                                                <th>{$smarty.const.FIELD_ANYO}</th>
+                                                <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
+                                                <tr>
+                                                    <td><span class="label label-default">{$i}</span></td>
+                                                    <td>
+                                                        <div class="progress">
+                                                            <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
+                                                                {$ejecucion_anual[$i]|round:"2"} %
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            {/for}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.panel-body -->        
+                            </div>
+                            <!-- /.panel -->
+                        </div>
+                        <!-- /.col-md-12 -->
+                    </div>
+                    <!-- /.row -->
+                    <!-- /Ejecución/año -->
+
                 {else}
                     <div class="alert alert-info alert-dismissible" style="margin: 0;">
                         <i class="fa fa-info-circle fa-fw"></i> 
