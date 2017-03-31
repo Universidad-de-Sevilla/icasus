@@ -217,7 +217,7 @@
                 <a href="#plan_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
             </li>
             <li role="presentation">
-                <a href="#plan_res" title="{$smarty.const.TXT_SEG} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" aria-controls="{$smarty.const.TXT_SEG} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" role="tab" data-toggle="tab"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.TXT_SEG}</a>
+                <a href="#plan_res" title="{$smarty.const.TXT_SEGUIMIENTO} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" aria-controls="{$smarty.const.TXT_SEGUIMIENTO} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" role="tab" data-toggle="tab"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.TXT_SEGUIMIENTO}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->

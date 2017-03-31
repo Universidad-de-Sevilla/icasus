@@ -39,10 +39,9 @@ define('TXT_LLAMAR_TLF', 'Llamar al teléfono');
 define('TXT_INVITADO', 'Invitado');
 define('TXT_MANTENIMIENTO', 'Estamos realizando tareas de mantenimiento. Los servicios estarán disponibles lo antes posible, rogamos disculpen las molestias.');
 define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
-define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
 define('TXT_RESUL', 'Resultado');
-define('TXT_SEG', 'Seguimiento');
+define('TXT_SEGUIMIENTO', 'Seguimiento');
 
 //Análisis de indicadores
 define('TXT_ANALISIS', 'Análisis');
