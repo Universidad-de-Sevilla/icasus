@@ -453,7 +453,6 @@
             <!-- Seguimiento de la línea -->
             <div role="tabpanel" class="tab-pane" id="linea_res">
                 <!-- Ejecución/año -->
-                <div class="col-md-12">
                     <div class="panel panel-red">
                         <div class="panel-heading">
                             <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}</span>
@@ -486,8 +485,6 @@
                         <!-- /.panel-body -->        
                     </div>
                     <!-- /.panel -->
-                </div>
-                <!-- /.col-md-12 -->
                 <!-- /Ejecución/año -->
             </div>
             <!-- /Seguimiento de la línea -->

@@ -157,6 +157,9 @@
             <li role="presentation">
                 <a href="#indics_control" title="{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})" aria-controls="{$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-sliders fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})</a>
             </li>
+            <li role="presentation">
+                <a href="#objop_res" title="{$smarty.const.TXT_SEGUIMIENTO}" aria-controls="{$smarty.const.TXT_SEGUIMIENTO}" role="tab" data-toggle="tab"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.TXT_SEGUIMIENTO}</a>
+            </li>
         </ul>
         <!-- /Nav tabs -->
         <br>
@@ -166,9 +169,8 @@
             <!-- Ficha del objetivo operacional -->
             <div role="tabpanel" class="tab-pane active" id="objop_ficha">
                 <div class="row">
-
                     <!-- Datos del objetivo operacional -->
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <table class="table table-striped table-hover ficha">
                             <thead><th></th><th></th></thead>
                             <tbody>
@@ -275,77 +277,8 @@
                             </div>
                         {/if}
                     </div>
-                    <!-- /.col-md-6 -->
+                    <!-- /.col-md-12 -->
                     <!-- /Datos del objetivo operacional -->
-
-                    <!-- Ejecución/año -->
-                    <div class="col-md-6">
-                        <div class="panel panel-red">
-                            <div class="panel-heading">
-                                <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_OBJ_OP} {$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}</span>
-                            </div>
-                            <!-- /.panel-heading -->
-                            <div class="panel-body">
-                                <div class="table-responsive">
-                                    <table class="table table-striped table-hover ficha">
-                                        <thead>
-                                            <tr>
-                                                <th>{$smarty.const.FIELD_ANYO}</th>
-                                                <th>{$smarty.const.FIELD_EJECUCION}</th>
-                                                    {if $_control || $responsable}
-                                                    <th></th>
-                                                    {/if}
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
-                                                <tr>
-                                                    <td><span class="label label-default">{$i}</span></td>
-                                                    <td id="porcentaje_{$i}">
-                                                        <div class="progress">
-                                                            <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
-                                                                {$ejecucion_anual[$i]|round:"2"} %
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    {if $_control || $responsable}
-                                                        <td style="white-space:nowrap" id="edicion_{$i}">
-                                                            <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$i}'>
-                                                                <i class="fa fa-pencil fa-fw"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td>
-                                                            <input class="form-control activar"  type="checkbox"
-                                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
-                                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
-                                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
-                                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if}>
-                                                        </td>
-                                                    {else}
-                                                        <td>
-                                                            <input class="form-control activar"  type="checkbox"
-                                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
-                                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
-                                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
-                                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if} disabled>
-                                                        </td>
-                                                    {/if}
-                                                </tr>
-                                            {/for}
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- /.panel-body -->        
-                        </div>
-                        <!-- /.panel -->
-                    </div>
-                    <!-- /.col-md-6 -->
-                    <!-- /Ejecución/año -->
-
                 </div>
                 <!-- /.row -->
             </div>
@@ -518,6 +451,75 @@
                 {/if}
             </div>
             <!-- /Indicadores de control -->
+
+            <!-- Seguimiento del objetivo operacional -->
+            <div role="tabpanel" class="tab-pane" id="objop_res">
+                <!-- Ejecución/año -->
+                <div class="panel panel-red">
+                    <div class="panel-heading">
+                        <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_OBJ_OP} {$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}</span>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover ficha">
+                                <thead>
+                                    <tr>
+                                        <th>{$smarty.const.FIELD_ANYO}</th>
+                                        <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                            {if $_control || $responsable}
+                                            <th></th>
+                                            {/if}
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
+                                        <tr>
+                                            <td><span class="label label-default">{$i}</span></td>
+                                            <td id="porcentaje_{$i}">
+                                                <div class="progress">
+                                                    <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
+                                                        {$ejecucion_anual[$i]|round:"2"} %
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            {if $_control || $responsable}
+                                                <td style="white-space:nowrap" id="edicion_{$i}">
+                                                    <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$i}'>
+                                                        <i class="fa fa-pencil fa-fw"></i>
+                                                    </a>
+                                                </td>
+                                                <td>
+                                                    <input class="form-control activar" data-width="80" type="checkbox"
+                                                           data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                           data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                           data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                           {if $activacion_anual[$i] == 1}checked="checked"{/if}>
+                                                </td>
+                                            {else}
+                                                <td>
+                                                    <input class="form-control activar" data-width="80" type="checkbox"
+                                                           data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                           data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                           data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                           {if $activacion_anual[$i] == 1}checked="checked"{/if} disabled>
+                                                </td>
+                                            {/if}
+                                        </tr>
+                                    {/for}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- /.panel-body -->        
+                </div>
+                <!-- /.panel -->
+                <!-- /Ejecución/año -->
+            </div>
+            <!-- /Seguimiento del objetivo operacional -->
 
         </div>
         <!-- /Tab panes -->
