@@ -64,21 +64,25 @@ if (filter_has_var(INPUT_GET, 'id_objop'))
     $ejecucion = new Ejecucion();
     $ejecucion_anual = array();
     $activacion_anual = array();
+    $resultado_anual = array();
     for ($i = $linea->plan->anyo_inicio; $i <= ($linea->plan->anyo_inicio + $linea->plan->duracion); $i++)
     {
         if ($ejecucion->Load("id_objop=$objop->id AND anyo=$i"))
         {
             $ejecucion_anual[$i] = $ejecucion->valor;
             $activacion_anual[$i] = $ejecucion->activo;
+            $resultado_anual[$i] = $ejecucion->resultado;
         }
         else
         {
             $ejecucion_anual[$i] = 0;
             $activacion_anual[$i] = 1;
+            $resultado_anual[$i] = "";
         }
     }
     $smarty->assign("ejecucion_anual", $ejecucion_anual);
     $smarty->assign("activacion_anual", $activacion_anual);
+    $smarty->assign("resultado_anual", $resultado_anual);
 
     //Indicadores del objetivo operacional
     $objetivo_indicador = new ObjetivoIndicador();

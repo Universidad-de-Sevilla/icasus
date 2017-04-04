@@ -31,9 +31,11 @@ $plantilla = 'planes/objop_ajax.tpl';
 if ($modulo == 'grabar_ejecucion')
 {
     $valor = filter_input(INPUT_POST, 'valor', FILTER_VALIDATE_FLOAT);
+    $resultado = filter_input(INPUT_POST, 'resultado', FILTER_SANITIZE_STRING);
     $ejecucion = new Ejecucion();
     $ejecucion->load("id_objop=$id_objop AND anyo=$anyo");
     $ejecucion->valor = $valor;
+    $ejecucion->resultado = $resultado;
     $ejecucion->Save();
     //Actualizamos ejecuciones
     $logicaPlan->actualizar_ejecucion_anual($objop->id_objest, $anyo);
@@ -59,4 +61,12 @@ if ($modulo == 'activar_objetivo')
     //Actualizamos ejecuciones
     $logicaPlan->actualizar_ejecucion_anual($objop->id_objest, $anyo);
     $logicaPlan->actualizar_ejecucion_global($id_objop);
+}
+
+if ($modulo == 'editar_resultado' OR $modulo == 'cancelar_resultado')
+{
+    //Obtenemos sus ejecución anual
+    $ejecucion_anual = new Ejecucion();
+    $ejecucion_anual->Load("id_objop=$id_objop AND anyo=$anyo");
+    $smarty->assign("resultado_anual", $ejecucion_anual->resultado);
 }

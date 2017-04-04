@@ -316,13 +316,9 @@
                                                 {$indicador->nombre}</a>
                                         </td>
                                         <td>
-                                            {if $indicador->id_proceso}
-                                                <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
-                                                    {$indicador->proceso->nombre}
-                                                </a>
-                                            {else}
-                                                {$smarty.const.FIELD_DATOS}
-                                            {/if}
+                                            <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
+                                                {$indicador->proceso->nombre}
+                                            </a>
                                         </td>
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
@@ -344,11 +340,9 @@
                                                title="{$smarty.const.FIELD_MEDICIONES}">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
-                                            {if $indicador->id_proceso}
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                                    <i class="fa fa-connectdevelop fa-fw"></i>
-                                                </a> 
-                                            {/if}
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                                <i class="fa fa-connectdevelop fa-fw"></i>
+                                            </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
@@ -423,11 +417,9 @@
                                                title="{$smarty.const.FIELD_MEDICIONES}">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
-                                            {if $indicador->id_proceso}
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
-                                                    <i class="fa fa-connectdevelop fa-fw"></i>
-                                                </a> 
-                                            {/if}   
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                                <i class="fa fa-connectdevelop fa-fw"></i>
+                                            </a> 
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
@@ -455,75 +447,70 @@
             <!-- Seguimiento del objetivo operacional -->
             <div role="tabpanel" class="tab-pane" id="objop_res">
                 <!-- Ejecución/año -->
-                <div class="panel panel-red">
-                    <div class="panel-heading">
-                        <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_OBJ_OP} {$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}</span>
-                    </div>
-                    <!-- /.panel-heading -->
-                    <div class="panel-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-hover ficha">
-                                <thead>
-                                    <tr>
-                                        <th>{$smarty.const.FIELD_ANYO}</th>
-                                        <th>{$smarty.const.FIELD_EJECUCION}</th>
-                                            {if $_control || $responsable}
-                                            <th></th>
-                                            {/if}
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
-                                        <tr>
-                                            <td><span class="label label-default">{$i}</span></td>
-                                            <td id="porcentaje_{$i}">
-                                                <div class="progress">
-                                                    <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
-                                                        {$ejecucion_anual[$i]|round:"2"} %
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            {if $_control || $responsable}
-                                                <td style="white-space:nowrap" id="edicion_{$i}">
-                                                    <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$i}'>
-                                                        <i class="fa fa-pencil fa-fw"></i>
-                                                    </a>
-                                                </td>
-                                                <td>
-                                                    <input class="form-control activar" data-width="80" type="checkbox"
-                                                           data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
-                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                           data-off="{$smarty.const.TXT_VAL_INACTIVO}"
-                                                           data-id_objop='{$objop->id}' data-anyo='{$i}'
-                                                           {if $activacion_anual[$i] == 1}checked="checked"{/if}>
-                                                </td>
-                                            {else}
-                                                <td>
-                                                    <input class="form-control activar" data-width="80" type="checkbox"
-                                                           data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
-                                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                           data-off="{$smarty.const.TXT_VAL_INACTIVO}"
-                                                           data-id_objop='{$objop->id}' data-anyo='{$i}'
-                                                           {if $activacion_anual[$i] == 1}checked="checked"{/if} disabled>
-                                                </td>
-                                            {/if}
-                                        </tr>
-                                    {/for}
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- /.panel-body -->        
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover ficha">
+                        <thead>
+                            <tr>
+                                <th>{$smarty.const.FIELD_ANYO}</th>
+                                <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                <th>{$smarty.const.TXT_RESUL}</th>
+                                    {if $_control || $responsable}
+                                    <th></th>
+                                    {/if}
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
+                                <tr>
+                                    <td><span class="label label-default">{$i}</span></td>
+                                    <td id="porcentaje_{$i}">
+                                        <div class="progress">
+                                            <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
+                                                {$ejecucion_anual[$i]|round:"2"} %
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td id="resultado_{$i}">
+                                        <textarea  class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual[$i]}</textarea>
+                                    </td>
+                                    {if $_control || $responsable}
+                                        <td style="white-space:nowrap" id="edicion_{$i}">
+                                            <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$i}'>
+                                                <i class="fa fa-pencil fa-fw"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <input class="form-control activar" data-width="60" type="checkbox"
+                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if}>
+                                        </td>
+                                    {else}
+                                        <td>
+                                            <input class="form-control activar" data-width="60" type="checkbox"
+                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if} disabled>
+                                        </td>
+                                    {/if}
+                                </tr>
+                            {/for}
+                        </tbody>
+                    </table>
                 </div>
-                <!-- /.panel -->
-                <!-- /Ejecución/año -->
             </div>
-            <!-- /Seguimiento del objetivo operacional -->
-
+            <!-- /Ejecución/año -->
         </div>
-        <!-- /Tab panes -->
+        <!-- /Seguimiento del objetivo operacional -->
+
     </div>
-    <!-- /.col-lg-12 -->
+    <!-- /Tab panes -->
+</div>
+<!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
