@@ -60,7 +60,7 @@ if (filter_has_var(INPUT_GET, 'id_objop'))
     $smarty->assign('linea', $linea);
     $smarty->assign('plan', $linea->plan);
 
-    //Obtenemos sus ejecuciones y activaciones anuales
+    //Obtenemos sus ejecuciones, activaciones y resultados anuales
     $ejecucion = new Ejecucion();
     $ejecucion_anual = array();
     $activacion_anual = array();

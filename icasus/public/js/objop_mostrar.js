@@ -34,7 +34,7 @@ $('#page-wrapper').on('keyup', '.valor', function () {
     }
 });
 
-//Grabación de porcentajes
+//Grabación de porcentajes y resultados
 $('#page-wrapper').on('click', '.grabar', function () {
     var id_objop = $(this).data('id_objop');
     var anyo = $(this).data('anyo');

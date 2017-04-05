@@ -12,7 +12,6 @@
 
 global $smarty;
 global $plantilla;
-global $usuario;
 //Variable para operar con los planes
 $logicaPlan = new LogicaPlan();
 
@@ -44,7 +43,7 @@ if ($modulo == 'grabar_ejecucion')
 
 if ($modulo == 'actualizar_porcentaje')
 {
-    //Obtenemos sus ejecución anual
+    //Obtenemos su ejecución anual
     $ejecucion_anual = new Ejecucion();
     $ejecucion_anual->Load("id_objop=$id_objop AND anyo=$anyo");
     $smarty->assign("ejecucion_anual", $ejecucion_anual->valor);
@@ -53,7 +52,7 @@ if ($modulo == 'actualizar_porcentaje')
 if ($modulo == 'activar_objetivo')
 {
     $activo = filter_input(INPUT_GET, 'activo');
-    //Obtenemos sus ejecución anual
+    //Obtenemos su ejecución anual
     $ejecucion_anual = new Ejecucion();
     $ejecucion_anual->Load("id_objop=$id_objop AND anyo=$anyo");
     $ejecucion_anual->activo = $activo;
@@ -65,7 +64,7 @@ if ($modulo == 'activar_objetivo')
 
 if ($modulo == 'editar_resultado' OR $modulo == 'cancelar_resultado')
 {
-    //Obtenemos sus ejecución anual
+    //Obtenemos su ejecución anual
     $ejecucion_anual = new Ejecucion();
     $ejecucion_anual->Load("id_objop=$id_objop AND anyo=$anyo");
     $smarty->assign("resultado_anual", $ejecucion_anual->resultado);
