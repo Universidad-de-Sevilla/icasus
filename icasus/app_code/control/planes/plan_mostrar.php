@@ -34,18 +34,22 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_pl
     //Obtenemos sus ejecuciones anuales
     $ejecucion = new Ejecucion();
     $ejecucion_anual = array();
+    $resultado_anual = array();
     for ($i = $plan->anyo_inicio; $i <= ($plan->anyo_inicio + $plan->duracion - 1); $i++)
     {
         if ($ejecucion->Load("id_plan=$plan->id AND anyo=$i"))
         {
             $ejecucion_anual[$i] = $ejecucion->valor;
+            $resultado_anual[$i] = $ejecucion->resultado;
         }
         else
         {
             $ejecucion_anual[$i] = 0;
+            $resultado_anual[$i] = "";
         }
     }
     $smarty->assign("ejecucion_anual", $ejecucion_anual);
+    $smarty->assign("resultado_anual", $resultado_anual);
 
     //Obtener todos los planes para avanzar o retroceder 
     $planes = $plan->Find("id_entidad = $id_entidad");
