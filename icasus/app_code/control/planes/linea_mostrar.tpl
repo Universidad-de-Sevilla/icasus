@@ -453,38 +453,44 @@
             <!-- Seguimiento de la línea -->
             <div role="tabpanel" class="tab-pane" id="linea_res">
                 <!-- Ejecución/año -->
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}</span>
-                        </div>
-                        <!-- /.panel-heading -->
-                        <div class="panel-body">
-                            <table class="table table-striped table-hover ficha">
-                                <thead>
-                                    <tr>
-                                        <th>{$smarty.const.FIELD_ANYO}</th>
-                                        <th>{$smarty.const.FIELD_EJECUCION}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
-                                        <tr>
-                                            <td><span class="label label-default">{$i}</span></td>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
-                                                        {$ejecucion_anual[$i]|round:"2"} %
-                                                    </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    {/for}
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- /.panel-body -->        
-                    </div>
-                    <!-- /.panel -->
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover ficha">
+                        <thead>
+                            <tr>
+                                <th>{$smarty.const.FIELD_ANYO}</th>
+                                <th>{$smarty.const.FIELD_EJECUCION}</th>
+                                <th>{$smarty.const.TXT_RESUL}</th>
+                                    {if $_control}
+                                    <th></th>
+                                    {/if}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
+                                <tr>
+                                    <td><span class="label label-default">{$i}</span></td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
+                                                {$ejecucion_anual[$i]|round:"2"} %
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td id="resultado_{$i}">
+                                        <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual[$i]}</textarea>
+                                    </td>
+                                    {if $_control}
+                                        <td style="white-space:nowrap" id="edicion_{$i}">
+                                            <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_linea='{$linea->id}' data-anyo='{$i}'>
+                                                <i class="fa fa-pencil fa-fw"></i>
+                                            </a>
+                                        </td>
+                                    {/if}
+                                </tr>
+                            {/for}
+                        </tbody>
+                    </table>       
+                </div>
                 <!-- /Ejecución/año -->
             </div>
             <!-- /Seguimiento de la línea -->
