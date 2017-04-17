@@ -2,7 +2,7 @@
 
 //----------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Fichero: class/Indicador_subunidad.php
+// Fichero: entity/Indicador_subunidad.php
 // Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)

@@ -2,7 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Archivo: class/Usuario.php
+// Archivo: entity/Usuario.php
 // Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
@@ -30,22 +30,6 @@ class Usuario extends ADOdb_Active_Record
         {
             return false;
         }
-    }
-
-    //TODO: eliminar tras comprobar que no se usa
-    //Devuelve las entidades a las que pertenece el usuario con sus respectivas subentidades
-    public function entidades()
-    {
-        $entidades = $usuario_entidad->Find_entidades("id_usuario = $this->id");
-    }
-
-    public function Find_sql($where)
-    {
-        $db = $this->DB();
-        $sql = "SELECT * FROM usuarios WHERE $where";
-
-        $rs = $db->getall($sql);
-        return $rs;
     }
 
 }

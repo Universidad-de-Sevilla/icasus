@@ -2,7 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Archivo: class/Proceso.php
+// Archivo: entity/Proceso.php
 // Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
@@ -102,9 +102,19 @@ class Proceso extends ADOdb_Active_Record
                 $proceso->propietario = $propietario;
 
                 //pasar nombre del proceso madre
-                $madre = new Proceso();
-                $madre->load("id = $proceso->id_madre");
-                $proceso->madre = $madre;
+                if ($proceso->id_madre)
+                {
+                    $madre = new Proceso();
+                    $madre->load("id = $proceso->id_madre");
+                    $proceso->madre = $madre;
+                }
+
+                if ($proceso->id_cuadro)
+                {
+                    $cuadro = new Cuadro();
+                    $cuadro->load("id = $proceso->id_cuadro");
+                    $proceso->cuadro = $cuadro;
+                }
             }
         }
         return $procesos;

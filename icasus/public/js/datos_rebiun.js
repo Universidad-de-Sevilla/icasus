@@ -1,6 +1,6 @@
 //------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: datos_rebiun.js
+// Archivo: public/js/datos_rebiun.js
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //------------------------------------------------------------------------------

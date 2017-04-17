@@ -1,7 +1,7 @@
 <?php
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: class/Criterio_efqm.php
+// Archivo: entity/Criterio_efqm.php
 // Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)

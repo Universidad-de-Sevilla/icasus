@@ -18,6 +18,7 @@ $('#page-wrapper').on('click', '.editar', function () {
     var id_objop = $(this).data('id_objop');
     var anyo = $(this).data('anyo');
     $("#page-wrapper #edicion_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=editar_ejecucion&id_objop=" + id_objop + "&anyo=" + anyo);
+    $("#page-wrapper #resultado_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=editar_resultado&id_objop=" + id_objop + "&anyo=" + anyo);
 });
 
 //Validación
@@ -33,19 +34,21 @@ $('#page-wrapper').on('keyup', '.valor', function () {
     }
 });
 
-//Grabación de porcentajes
+//Grabación de porcentajes y resultados
 $('#page-wrapper').on('click', '.grabar', function () {
     var id_objop = $(this).data('id_objop');
     var anyo = $(this).data('anyo');
     var valor = $('#page-wrapper #valor_' + anyo).val();
+    var resultado = $('#page-wrapper #resultado_' + anyo).children('textarea').val();
     valor = valor.replace(',', '.');
     if ($.isNumeric(valor) && valor >= 0 && valor <= 100) {
         $.ajax({
             type: "POST",
-            data: {'valor': valor},
+            data: {'valor': valor, 'resultado': resultado},
             url: "index.php?page=objop_ajax&ajax=true&modulo=grabar_ejecucion&id_objop=" + id_objop + "&anyo=" + anyo,
             success: function () {
                 $("#page-wrapper #edicion_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=cancelar_ejecucion&id_objop=" + id_objop + "&anyo=" + anyo);
+                $("#page-wrapper #resultado_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=cancelar_resultado&id_objop=" + id_objop + "&anyo=" + anyo);
                 $("#page-wrapper #porcentaje_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=actualizar_porcentaje&id_objop=" + id_objop + "&anyo=" + anyo);
                 $("#page-wrapper #ejecucion_global").load("index.php?page=objop_ajax&ajax=true&modulo=actualizar_global&id_objop=" + id_objop + "&anyo=" + anyo);
             }
@@ -61,6 +64,7 @@ $('#page-wrapper').on('click', '.cancelar', function () {
     var id_objop = $(this).data('id_objop');
     var anyo = $(this).data('anyo');
     $("#page-wrapper #edicion_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=cancelar_ejecucion&id_objop=" + id_objop + "&anyo=" + anyo);
+    $("#page-wrapper #resultado_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=cancelar_resultado&id_objop=" + id_objop + "&anyo=" + anyo);
 });
 
 //Activar/Desactivar objetivo manualmente

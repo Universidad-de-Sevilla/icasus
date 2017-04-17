@@ -39,10 +39,9 @@ define('TXT_LLAMAR_TLF', 'Llamar al teléfono');
 define('TXT_INVITADO', 'Invitado');
 define('TXT_MANTENIMIENTO', 'Estamos realizando tareas de mantenimiento. Los servicios estarán disponibles lo antes posible, rogamos disculpen las molestias.');
 define('TXT_BUSCAR_RESUL', 'Resultados de la búsqueda: ');
-define('TXT_RESUMEN', 'Resumen');
 define('TXT_RESET', 'Reset');
 define('TXT_RESUL', 'Resultado');
-define('TXT_SEG', 'Seguimiento');
+define('TXT_SEGUIMIENTO', 'Seguimiento');
 
 //Análisis de indicadores
 define('TXT_ANALISIS', 'Análisis');
@@ -716,7 +715,7 @@ define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en indicadores archivad
 define('MSG_CONTROL_MED_INFO', 'El control de mediciones se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores bajo su responsabilidad o todos si también es responsable de la Unidad.');
 define('MSG_CONTROL_EFQM_INFO', 'El control EFQM se muestra por criterios. Seleccione un criterio en el desplegable para visualizar los resultados. Aparecerán los indicadores asociados a dicho criterio.');
 define('MSG_CONTROL_EFQM_NO_RESUL', 'No se ha seleccionado ningún criterio EFQM o no existen indicadores/datos para los criterios seleccionados.');
-define('MSG_CONTROL_NO_RESPONSABLE', 'Usted no es responsable de esta unidad y tampoco de ningún indicador de la misma.');
+define('MSG_CONTROL_NO_RESPONSABLE', 'Usted no es responsable de esta unidad y tampoco de ningún proceso o indicador de la misma.');
 define('MSG_CONTROL_CARGA', 'Cargando datos de control, por favor espere.');
 define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado indicadores con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');
 define('MSG_CONTROL_NO_VAL', 'No existen mediciones o no se han grabado valores durante el año seleccionado.');
@@ -728,7 +727,7 @@ define('MSG_CONTROL_MED', 'No existen indicadores sin mediciones para el año se
 //----------------------------------------------------------------------------------
 
 define('ERR', 'Error');
-define('ERR_PERMISOS', 'No tiene permisos para relizar esta acción.');
+define('ERR_PERMISOS', 'No tiene permisos para realizar esta acción.');
 define('ERR_404', 'Error 404: no encontramos la página que ha solicitado:');
 define('ERR_AUT', 'No está autorizado para realizar esta operación.');
 define('ERR_OP_BD', 'No ha podido realizarse la operación por un error en la base de datos.');

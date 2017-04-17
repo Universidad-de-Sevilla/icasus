@@ -2,7 +2,7 @@
 
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
-// Archivo: class/Cuadro.php
+// Archivo: entity/Cuadro.php
 // Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
@@ -15,6 +15,7 @@ class Cuadro extends ADOdb_Active_Record
 
     public $_table = 'cuadros';
     public $entidad;
+    public $usuario;
 
     public function load_joined($condicion)
     {
@@ -22,6 +23,10 @@ class Cuadro extends ADOdb_Active_Record
         {
             $this->entidad = new Entidad();
             $this->entidad->load("id = $this->id_entidad");
+
+            $this->usuario = new Usuario();
+            $this->usuario->load("id = $this->id_usuario");
+
             return true;
         }
         else
@@ -40,6 +45,10 @@ class Cuadro extends ADOdb_Active_Record
                 $entidad = new Entidad();
                 $entidad->load("id= $cuadro->id_entidad");
                 $cuadro->entidad = $entidad;
+
+                $usuario = new Usuario();
+                $usuario->load("id= $cuadro->id_usuario");
+                $cuadro->usuario = $usuario;
             }
         }
         return $cuadros;

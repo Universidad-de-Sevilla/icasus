@@ -61,9 +61,41 @@ $('#anyo').on('change', function () {
     var anyo = $('#anyo').val();
     $('#plan_anyo').html("<h4 class='text-center'><i class='fa fa-spinner fa-pulse'></i></h4>");
     $.ajax({
-        url: "index.php?page=plan_ajax&ajax=true&id_plan=" + id_plan + "&anyo=" + anyo,
+        url: "index.php?page=plan_ajax&ajax=true&modulo=mostrar&id_plan=" + id_plan + "&anyo=" + anyo,
         success: function () {
-            $('#plan_anyo').load("index.php?page=plan_ajax&ajax=true&id_plan=" + id_plan + "&anyo=" + anyo);
+            $('#plan_anyo').load("index.php?page=plan_ajax&ajax=true&modulo=mostrar&id_plan=" + id_plan + "&anyo=" + anyo);
         }
     });
+});
+
+//Resultados
+$('#page-wrapper').on('click', '.editar', function () {
+    var id_plan = $(this).data('id_plan');
+    var anyo = $(this).data('anyo');
+    $('#page-wrapper #resultado_' + anyo).children('textarea').attr('readonly', false);
+    $("#page-wrapper #edicion_" + anyo).load("index.php?page=plan_ajax&ajax=true&modulo=editar_resultado&id_plan=" + id_plan + "&anyo=" + anyo);
+});
+
+//Grabación de resultados
+$('#page-wrapper').on('click', '.grabar', function () {
+    var id_plan = $(this).data('id_plan');
+    var anyo = $(this).data('anyo');
+    var resultado = $('#page-wrapper #resultado_' + anyo).children('textarea').val();
+    $.ajax({
+        type: "POST",
+        data: {'resultado': resultado},
+        url: "index.php?page=plan_ajax&ajax=true&modulo=grabar_resultado&id_plan=" + id_plan + "&anyo=" + anyo,
+        success: function () {
+            $("#page-wrapper #edicion_" + anyo).load("index.php?page=plan_ajax&ajax=true&modulo=cancelar_edicion&id_plan=" + id_plan + "&anyo=" + anyo);
+            $("#page-wrapper #resultado_" + anyo).load("index.php?page=plan_ajax&ajax=true&modulo=cancelar_resultado&id_plan=" + id_plan + "&anyo=" + anyo);
+        }
+    });
+});
+
+//Cancelar edición
+$('#page-wrapper').on('click', '.cancelar', function () {
+    var id_plan = $(this).data('id_plan');
+    var anyo = $(this).data('anyo');
+    $("#page-wrapper #edicion_" + anyo).load("index.php?page=plan_ajax&ajax=true&modulo=cancelar_edicion&id_plan=" + id_plan + "&anyo=" + anyo);
+    $("#page-wrapper #resultado_" + anyo).load("index.php?page=plan_ajax&ajax=true&modulo=cancelar_resultado&id_plan=" + id_plan + "&anyo=" + anyo);
 });
