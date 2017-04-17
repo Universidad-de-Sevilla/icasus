@@ -683,7 +683,7 @@
                         <div class="col-lg-12">
                             <div class="form-horizontal">
                                 <div class="form-group h4">
-                                    <label for="anyo" class="col-sm-3 control-label">{$smarty.const.FIELD_ANYO}</label>
+                                    <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO}</label>
                                     <div class="col-sm-5">
                                         <select class="form-control chosen-select" id="anyo" data-id_plan="{$plan->id}">
                                             <option value="0" selected>{$smarty.const.TXT_TODOS}</option>
@@ -692,11 +692,15 @@
                                             {/for}
                                         </select>
                                     </div>
+                                    <div class='col-sm-2'>
+                                        <a class='btn btn-primary' title="{$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}" href="#ejec_anyo">{$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
+                    <!-- /.row -->
                     <div id="plan_anyo">
                         <ul class="list-group" style="margin: 0;">
                             <li class="list-group-item list-group-item-info">
@@ -988,7 +992,7 @@
                     <!-- Ejecución/año -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="panel panel-red">
+                            <div id="ejec_anyo" class="panel panel-red">
                                 <div class="panel-heading">
                                     <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}</span>
                                     <i class="fa fa-chevron-up pull-right clickable"></i>
