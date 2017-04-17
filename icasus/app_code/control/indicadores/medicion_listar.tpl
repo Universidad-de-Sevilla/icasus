@@ -46,7 +46,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hourglass fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_MED_CREAR}: {$indicador->nombre}</h3>
             </div>
-            <form class="form-horizontal" id="form_generar" name="form_generar" data-toggle="validator" method="post" action="index.php?page=medicion_generar">
+            <form class="form-horizontal" id="form_generar" name="form_generar" data-toggle="validator" method="post" action="index.php?page=medicion_generar&id_entidad={$indicador->id_entidad}">
                 <input type="hidden" name="id_entidad" value="{$indicador->id_entidad}"/>
                 <input type="hidden" name="id_indicador" value="{$indicador->id}"/>
                 <div class="modal-body">
