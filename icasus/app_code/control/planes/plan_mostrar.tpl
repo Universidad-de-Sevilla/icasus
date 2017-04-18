@@ -693,7 +693,7 @@
                                         </select>
                                     </div>
                                     <div class='col-sm-2'>
-                                        <a class='btn btn-primary' title="{$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}" href="#ejec_anyo">{$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}</a>
+                                        <a class='btn btn-primary' title="{$smarty.const.TXT_RESUL}" href="#ejec_anyo">{$smarty.const.TXT_RESUL}</a>
                                     </div>
                                 </div>
                             </div>
@@ -809,7 +809,7 @@
                                                                                 <!-- /.row -->
                                                                             </div>
                                                                             <!-- /.panel-heading -->
-                                                                            <div id="{$linea->id}{$objest->id}{$objop->id}" class="panel-collapse collapse objop" role="tabpanel" aria-labelledby="" data-num_indic="{$objops_indicadores_correlacion[$objop->id]|@count}">
+                                                                            <div id="{$linea->id}{$objest->id}{$objop->id}" class="panel-collapse collapse objop" role="tabpanel" aria-labelledby="" data-num_indic="{$objops_indicadores_correlacion[$objop->id]|@count + $objops_indicadores_control[$objop->id]|@count}">
                                                                                 <div class="panel-group" id="accordion_indics" role="tablist" aria-multiselectable="true" style="margin-bottom: 0;">
 
                                                                                     <!-- Indicadores de correlación -->
@@ -838,12 +838,12 @@
                                                                                                         {foreach $objops_indicadores_correlacion[$objop->id] as $ind_correl}
                                                                                                             <div class="item {if $ind_correl@first}active{/if}">
                                                                                                                 <div class="{$linea->id}{$objest->id}{$objop->id} highchart" 
-                                                                                                                     id="panel_{$ind_correl->id}" 
+                                                                                                                     id="panel_{$objop->id}_{$ind_correl->id}" 
                                                                                                                      data-id_indicador="{$ind_correl->id}" 
                                                                                                                      data-nombre_indicador="{$ind_correl->nombre}"
                                                                                                                      data-valor_min="{$ind_correl->valor_min}" 
                                                                                                                      data-valor_max="{$ind_correl->valor_max}" 
-                                                                                                                     data-fecha_inicio="{$plan->anyo_inicio}-01-01" 
+                                                                                                                     data-fecha_inicio="{$plan->anyo_inicio - 1}-01-01" 
                                                                                                                      data-fecha_fin="{($plan->anyo_inicio + $plan->duracion-1)}-12-31"
                                                                                                                      {if $ind_correl->periodicidad=='Bienal'}
                                                                                                                          data-periodicidad= "bienal" 
@@ -910,12 +910,12 @@
                                                                                                         {foreach $objops_indicadores_control[$objop->id] as $ind_ctl}
                                                                                                             <div class="item {if $ind_ctl@first}active{/if}">
                                                                                                                 <div class="{$linea->id}{$objest->id}{$objop->id} highchart" 
-                                                                                                                     id="panel_{$ind_ctl->id}" 
+                                                                                                                     id="panel_{$objop->id}_{$ind_ctl->id}" 
                                                                                                                      data-id_indicador="{$ind_ctl->id}" 
                                                                                                                      data-nombre_indicador="{$ind_ctl->nombre}"
                                                                                                                      data-valor_min="{$ind_ctl->valor_min}" 
                                                                                                                      data-valor_max="{$ind_ctl->valor_max}" 
-                                                                                                                     data-fecha_inicio="{$plan->anyo_inicio}-01-01" 
+                                                                                                                     data-fecha_inicio="{$plan->anyo_inicio - 1}-01-01" 
                                                                                                                      data-fecha_fin="{($plan->anyo_inicio + $plan->duracion-1)}-12-31"
                                                                                                                      {if $ind_ctl->periodicidad=='Bienal'}
                                                                                                                          data-periodicidad= "bienal" 
