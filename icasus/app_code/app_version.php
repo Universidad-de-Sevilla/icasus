@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.48.0");
-define('IC_FECHA_REVISION', "06/04/2017");
+define('IC_VERSION', "3.49.0");
+define('IC_FECHA_REVISION', "18/04/2017");
 
+// 3.49.0 - 18/04/2017 - Carrusel con gráficos de indicadores de correlación y de control al desplegar un objetivo operacional en la pestaña seguimiento de un plan estratégico.
 // 3.48.0 - 06/04/2017 - Gestión de resultados para las ejecuciones anuales de los planes, lineas y objetivos estratégicos y operacionales.
 // 3.47.1 - 31/03/2017 - Correcciones en las mediciones y edición de valores: optimización, validación en generación y carga,...
 // 3.47.0 - 29/03/2017 - Revisión completa de los permisos: permisos controlados a nivel de proceso, creación de subprocesos desde un proceso, correcciones varias, ...

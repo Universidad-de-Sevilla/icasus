@@ -549,7 +549,7 @@
                                                             <div class="carousel-caption">
                                                                 <h3>
                                                                     <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}' 
-                                                                       title="{$indicador->nombre}: {$indicador->descripcion}"><i class="fa fa-dashboard fa-fw"></i></a>
+                                                                       title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}"><i class="fa fa-dashboard fa-fw"></i></a>
                                                                 </h3>
                                                                 <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
                                                             </div>
@@ -633,7 +633,7 @@
                                                     <div class="carousel-caption">
                                                         <h3>
                                                             <a href='index.php?page=indicador_mostrar&id_indicador={$control->id}&id_entidad={$entidad->id}' 
-                                                               title="{$control->nombre}: {$control->descripcion}"><i class="fa fa-dashboard fa-fw"></i></a>
+                                                               title="{$control->nombre}: {$control->descripcion|replace:"\r\n":" "}"><i class="fa fa-dashboard fa-fw"></i></a>
                                                         </h3>
                                                         <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
                                                     </div>
@@ -710,7 +710,7 @@
                                                     <div class="carousel-caption">
                                                         <h3>
                                                             <a href='index.php?page=indicador_mostrar&id_indicador={$dato->id}&id_entidad={$entidad->id}' 
-                                                               title="{$dato->nombre}: {$dato->descripcion}"><i class="fa fa-dashboard fa-fw"></i></a>
+                                                               title="{$dato->nombre}: {$dato->descripcion|replace:"\r\n":" "}"><i class="fa fa-dashboard fa-fw"></i></a>
                                                         </h3>
                                                         <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
                                                     </div>

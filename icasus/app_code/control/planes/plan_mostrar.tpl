@@ -1,3 +1,19 @@
+<!-- Diálogo Carga de Paneles -->
+<div class="modal fade" id="dialogo_cargando_paneles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sitemap fa-fw"></i> {$_nombre_pagina}</h3>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center"><i class='fa fa-spinner fa-pulse'></i> {$smarty.const.MSG_PANEL_CARGANDO}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Carga de Paneles -->
+
 <!-- Diálogo Confirmar Borrado Plan -->
 <div class="modal fade" id="dialogo_confirmar_borrado_plan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -667,7 +683,7 @@
                         <div class="col-lg-12">
                             <div class="form-horizontal">
                                 <div class="form-group h4">
-                                    <label for="anyo" class="col-sm-3 control-label">{$smarty.const.FIELD_ANYO}</label>
+                                    <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO}</label>
                                     <div class="col-sm-5">
                                         <select class="form-control chosen-select" id="anyo" data-id_plan="{$plan->id}">
                                             <option value="0" selected>{$smarty.const.TXT_TODOS}</option>
@@ -676,11 +692,15 @@
                                             {/for}
                                         </select>
                                     </div>
+                                    <div class='col-sm-2'>
+                                        <a class='btn btn-primary' title="{$smarty.const.TXT_RESUL}" href="#ejec_anyo">{$smarty.const.TXT_RESUL}</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
+                    <!-- /.row -->
                     <div id="plan_anyo">
                         <ul class="list-group" style="margin: 0;">
                             <li class="list-group-item list-group-item-info">
@@ -789,21 +809,73 @@
                                                                                 <!-- /.row -->
                                                                             </div>
                                                                             <!-- /.panel-heading -->
-                                                                            <div id="{$linea->id}{$objest->id}{$objop->id}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="">
+                                                                            <div id="{$linea->id}{$objest->id}{$objop->id}" class="panel-collapse collapse objop" role="tabpanel" aria-labelledby="" data-num_indic="{$objops_indicadores_correlacion[$objop->id]|@count + $objops_indicadores_control[$objop->id]|@count}">
                                                                                 <div class="panel-group" id="accordion_indics" role="tablist" aria-multiselectable="true" style="margin-bottom: 0;">
+
                                                                                     <!-- Indicadores de correlación -->
                                                                                     {if $objops_indicadores_correlacion[$objop->id]}
-                                                                                        <div class="list-group" style="margin: 0;">
-                                                                                            <a href="#" class="list-group-item disabled">
-                                                                                                <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-gear fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})
-                                                                                            </a>
-                                                                                            {foreach $objops_indicadores_correlacion[$objop->id] as $ind_correl}
-                                                                                                <a class="list-group-item" href='index.php?page=indicador_mostrar&id_indicador={$ind_correl->id}&id_entidad={$ind_correl->id_entidad}' 
-                                                                                                   title="{$ind_correl->nombre}: {$ind_correl->descripcion|replace:"\r\n":" "}">
-                                                                                                    {$ind_correl->nombre}
-                                                                                                </a>
-                                                                                            {/foreach}
+                                                                                        <div class="panel panel-default">
+                                                                                            <div class="panel-heading">
+                                                                                                <span class="panel-title">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-10">
+                                                                                                            <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-gear fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})
+                                                                                                        </div>
+                                                                                                        <!-- /.col-md-10 -->
+                                                                                                        <div class="col-md-2">
+                                                                                                            <span title="{$objop->nombre}: {$objops_indicadores_correlacion[$objop->id]|@count} {$smarty.const.FIELD_INDICS} ({$smarty.const.FIELD_PROC})" class="badge">{$objops_indicadores_correlacion[$objop->id]|@count} {$smarty.const.FIELD_INDICS}</span>
+                                                                                                        </div>
+                                                                                                        <!-- /.col-md-2 -->
+                                                                                                    </div>
+                                                                                                    <!-- /.row -->
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <!-- /.panel-heading -->
+                                                                                            <div class="panel-body">
+                                                                                                <div id="carousel-correl-{$objop->id}" class="carousel slide" data-ride="carousel" data-interval="15000">
+                                                                                                    <!-- Wrapper for slides -->
+                                                                                                    <div class="carousel-inner" role="listbox">
+                                                                                                        {foreach $objops_indicadores_correlacion[$objop->id] as $ind_correl}
+                                                                                                            <div class="item {if $ind_correl@first}active{/if}">
+                                                                                                                <div class="{$linea->id}{$objest->id}{$objop->id} highchart" 
+                                                                                                                     id="panel_{$objop->id}_{$ind_correl->id}" 
+                                                                                                                     data-id_indicador="{$ind_correl->id}" 
+                                                                                                                     data-nombre_indicador="{$ind_correl->nombre}"
+                                                                                                                     data-valor_min="{$ind_correl->valor_min}" 
+                                                                                                                     data-valor_max="{$ind_correl->valor_max}" 
+                                                                                                                     data-fecha_inicio="{$plan->anyo_inicio - 1}-01-01" 
+                                                                                                                     data-fecha_fin="{($plan->anyo_inicio + $plan->duracion-1)}-12-31"
+                                                                                                                     {if $ind_correl->periodicidad=='Bienal'}
+                                                                                                                         data-periodicidad= "bienal" 
+                                                                                                                     {else}
+                                                                                                                         data-periodicidad= "anual"
+                                                                                                                     {/if}>
+                                                                                                                </div>
+                                                                                                                <div class="carousel-caption">
+                                                                                                                    <h3>
+                                                                                                                        <a href='index.php?page=indicador_mostrar&id_indicador={$ind_correl->id}&id_entidad={$ind_correl->id_entidad}' 
+                                                                                                                           title="{$ind_correl->nombre}: {$ind_correl->descripcion|replace:"\r\n":" "}"><i class="fa fa-dashboard fa-fw"></i></a>
+                                                                                                                    </h3>
+                                                                                                                    <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        {/foreach}
+                                                                                                    </div>
+                                                                                                    <!-- Controls -->
+                                                                                                    <a class="left carousel-control" title="{$smarty.const.TXT_ANT}" href="#carousel-correl-{$objop->id}" role="button" data-slide="prev">
+                                                                                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7;"></span>
+                                                                                                        <span class="sr-only">{$smarty.const.TXT_ANT}</span>
+                                                                                                    </a>
+                                                                                                    <a class="right carousel-control" title="{$smarty.const.TXT_SIG}" href="#carousel-correl-{$objop->id}" role="button" data-slide="next">
+                                                                                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7;"></span>
+                                                                                                        <span class="sr-only">{$smarty.const.TXT_SIG}</span>
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <!-- /.carousel -->
+                                                                                            </div>
+                                                                                            <!-- /.panel-body -->
                                                                                         </div>
+                                                                                        <!-- /.panel -->
                                                                                     {else}
                                                                                         <div class="alert alert-info alert-dismissible" style="margin: 0;">
                                                                                             <i class="fa fa-info-circle fa-fw"></i> 
@@ -811,19 +883,71 @@
                                                                                         </div>
                                                                                     {/if}
                                                                                     <!-- /Indicadores de correlación -->
+
                                                                                     <!-- Indicadores de control -->
                                                                                     {if $objops_indicadores_control[$objop->id]}
-                                                                                        <div class="list-group" style="margin: 0;">
-                                                                                            <a href="#" class="list-group-item disabled">
-                                                                                                <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-sliders fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})
-                                                                                            </a>
-                                                                                            {foreach $objops_indicadores_control[$objop->id] as $ind_ctl}
-                                                                                                <a class="list-group-item" href='index.php?page=indicador_mostrar&id_indicador={$ind_ctl->id}&id_entidad={$ind_ctl->id_entidad}' 
-                                                                                                   title="{$ind_ctl->nombre}: {$ind_ctl->descripcion|replace:"\r\n":" "}">
-                                                                                                    {$ind_ctl->nombre}
-                                                                                                </a>
-                                                                                            {/foreach}
+                                                                                        <div class="panel panel-default">
+                                                                                            <div class="panel-heading">
+                                                                                                <span class="panel-title">
+                                                                                                    <div class="row">
+                                                                                                        <div class="col-md-10">
+                                                                                                            <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-sliders fa-fw"></sub> {$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})
+                                                                                                        </div>
+                                                                                                        <!-- /.col-md-10 -->
+                                                                                                        <div class="col-md-2">
+                                                                                                            <span title="{$objop->nombre}: {$objops_indicadores_control[$objop->id]|@count} {$smarty.const.FIELD_INDICS} ({$smarty.const.TXT_CONTROL})" class="badge">{$objops_indicadores_control[$objop->id]|@count} {$smarty.const.FIELD_INDICS}</span>
+                                                                                                        </div>
+                                                                                                        <!-- /.col-md-2 -->
+                                                                                                    </div>
+                                                                                                    <!-- /.row -->
+                                                                                                </span>
+                                                                                            </div>
+                                                                                            <!-- /.panel-heading -->
+                                                                                            <div class="panel-body">
+                                                                                                <div id="carousel-control-{$objop->id}" class="carousel slide" data-ride="carousel" data-interval="15000">
+                                                                                                    <!-- Wrapper for slides -->
+                                                                                                    <div class="carousel-inner" role="listbox">
+                                                                                                        {foreach $objops_indicadores_control[$objop->id] as $ind_ctl}
+                                                                                                            <div class="item {if $ind_ctl@first}active{/if}">
+                                                                                                                <div class="{$linea->id}{$objest->id}{$objop->id} highchart" 
+                                                                                                                     id="panel_{$objop->id}_{$ind_ctl->id}" 
+                                                                                                                     data-id_indicador="{$ind_ctl->id}" 
+                                                                                                                     data-nombre_indicador="{$ind_ctl->nombre}"
+                                                                                                                     data-valor_min="{$ind_ctl->valor_min}" 
+                                                                                                                     data-valor_max="{$ind_ctl->valor_max}" 
+                                                                                                                     data-fecha_inicio="{$plan->anyo_inicio - 1}-01-01" 
+                                                                                                                     data-fecha_fin="{($plan->anyo_inicio + $plan->duracion-1)}-12-31"
+                                                                                                                     {if $ind_ctl->periodicidad=='Bienal'}
+                                                                                                                         data-periodicidad= "bienal" 
+                                                                                                                     {else}
+                                                                                                                         data-periodicidad= "anual"
+                                                                                                                     {/if}>
+                                                                                                                </div>
+                                                                                                                <div class="carousel-caption">
+                                                                                                                    <h3>
+                                                                                                                        <a href='index.php?page=indicador_mostrar&id_indicador={$ind_ctl->id}&id_entidad={$ind_ctl->id_entidad}' 
+                                                                                                                           title="{$ind_ctl->nombre}: {$ind_ctl->descripcion|replace:"\r\n":" "}"><i class="fa fa-dashboard fa-fw"></i></a>
+                                                                                                                    </h3>
+                                                                                                                    <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        {/foreach}
+                                                                                                    </div>
+                                                                                                    <!-- Controls -->
+                                                                                                    <a class="left carousel-control" title="{$smarty.const.TXT_ANT}" href="#carousel-control-{$objop->id}" role="button" data-slide="prev">
+                                                                                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7;"></span>
+                                                                                                        <span class="sr-only">{$smarty.const.TXT_ANT}</span>
+                                                                                                    </a>
+                                                                                                    <a class="right carousel-control" title="{$smarty.const.TXT_SIG}" href="#carousel-control-{$objop->id}" role="button" data-slide="next">
+                                                                                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7;"></span>
+                                                                                                        <span class="sr-only">{$smarty.const.TXT_SIG}</span>
+                                                                                                    </a>
+                                                                                                </div>
+                                                                                                <!-- /.carousel -->
+                                                                                            </div>
+                                                                                            <!-- /.panel-body -->
                                                                                         </div>
+                                                                                        <!-- /.panel -->
                                                                                     {else}
                                                                                         <div class="alert alert-info alert-dismissible" style="margin: 0;">
                                                                                             <i class="fa fa-info-circle fa-fw"></i> 
@@ -831,6 +955,7 @@
                                                                                         </div>
                                                                                     {/if}
                                                                                     <!-- /Indicadores de control -->
+
                                                                                 </div>
                                                                             </div>
                                                                             <!-- /.panel-collapse -->
@@ -867,7 +992,7 @@
                     <!-- Ejecución/año -->
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="panel panel-red">
+                            <div id="ejec_anyo" class="panel panel-red">
                                 <div class="panel-heading">
                                     <span class="panel-title"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.FIELD_EJECUCION}/{$smarty.const.FIELD_ANYO}: {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}</span>
                                     <i class="fa fa-chevron-up pull-right clickable"></i>
