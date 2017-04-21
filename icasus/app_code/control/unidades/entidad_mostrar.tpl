@@ -182,9 +182,6 @@
                                 <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger" href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
                                     <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                                 </a>
-                                <a title="{$smarty.const.TXT_VAL_IMPORT}" class="btn btn-default btn-danger" href='index.php?page=csv_importar&id_entidad={$entidad->id}'>
-                                    <i class="fa fa-upload fa-fw"></i>
-                                </a>
                             </div>
                         {/if}
                     </div>
