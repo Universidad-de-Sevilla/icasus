@@ -182,9 +182,6 @@
                                 <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger" href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
                                     <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                                 </a>
-                                <a title="{$smarty.const.TXT_VAL_IMPORT}" class="btn btn-default btn-danger" href='index.php?page=csv_importar&id_entidad={$entidad->id}'>
-                                    <i class="fa fa-upload fa-fw"></i>
-                                </a>
                             </div>
                         {/if}
                     </div>
@@ -309,11 +306,8 @@
                 {if $_control}
                     <div id="botones_user" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
-                            <a title="{$smarty.const.TXT_USERS_VINC}" class="btn btn-default btn-danger" href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-user-plus fa-fw"></i>
-                            </a>
-                            <a title="{$smarty.const.TXT_USERS_DESVINC}" class="btn btn-default btn-danger" href='index.php?page=entidad_despoblar&id_entidad={$entidad->id}'>
-                                <i class="fa fa-user-times fa-fw"></i>
+                            <a title="{$smarty.const.TXT_USER_GESTION}" class="btn btn-default btn-danger" href='index.php?page=entidad_usuarios&id_entidad={$entidad->id}'>
+                                <i class="fa fa-users fa-fw"></i>
                             </a>
                         </div>
                     </div>

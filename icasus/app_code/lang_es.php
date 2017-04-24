@@ -309,8 +309,8 @@ define('TXT_TARTA', 'Tarta');
 define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador entre las unidades afectadas como gráfica de tarta.');
 
 //Usuarios
-define('TXT_USERS_ASIGNAR', 'Asignar usuarios marcados');
-define('TXT_USERS_DESASIGNAR', 'Desasignar usuarios marcados');
+define('TXT_USERS_ASIGNAR', 'Asignar usuarios');
+define('TXT_USERS_DESASIGNAR', 'Desasignar usuarios');
 define('TXT_USERS_ALTA', 'Alta de usuarios');
 define('TXT_USERS_BAJA', 'Baja de usuarios');
 define('TXT_USER_UNIDS', 'Mis unidades');
@@ -319,7 +319,7 @@ define('TXT_USER_INDIC', 'Mis indicadores');
 define('TXT_USER_DATO', 'Mis datos');
 define('TXT_USER_CUADROS', 'Mis cuadros de mando');
 define('TXT_USER_OBJOPS', 'Mis objetivos operacionales');
-define('TXT_USERS_ASIG', 'Usuarios asignados actualmente');
+define('TXT_USERS_ASIG', 'Usuarios asignados');
 define('TXT_USERS_DISP', 'Usuarios disponibles');
 define('TXT_USERS_VINC', 'Vincular usuarios');
 define('TXT_USERS_DESVINC', 'Desvincular usuarios');
@@ -695,6 +695,7 @@ define('MSG_USER_EDITADO', 'El usuario se ha modificado correctamente.');
 define('MSG_USER_CONFIRM_EDITAR', 'Va a editar este usuario, ¿está seguro?');
 define('MSG_USERS_CONFIRM_VINC', '¿Desea vincular a la unidad los usuarios marcados?');
 define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la unidad los usuarios marcados?');
+define('MSG_USERS_NO_MARCADOS', 'No se ha marcado ningun usuario.');
 
 //Valores
 define('MSG_VAL_NO_ASIG', 'Todavía no se han asignado valores a esta medición.');
