@@ -8,10 +8,12 @@
 //----------------------------------------------------------------------------
 
 //Edición de roles de los usuarios
-$('#rol_usuario').on('change', function () {
-    var id_rol = $('#rol_usuario').val();
-    var id_entidad = $(this).data('id_entidad');
-    var id_usuario = $(this).data('id_usuario');
-    $.get("index.php?page=entidad_usuarios&ajax=true", {id_entidad: id_entidad, id_usuario: id_usuario, id_rol: id_rol}, function () {
+$(document).ready(function () {
+    $('.rol_usuario').on('change', function () {
+        var id_rol = $(this).val();
+        var id_entidad = $(this).data('id_entidad');
+        var id_usuario = $(this).data('id_usuario');
+        $.get("index.php?page=entidad_usuarios&ajax=true", {id_entidad: id_entidad, id_usuario: id_usuario, id_rol: id_rol}, function () {
+        });
     });
 });
