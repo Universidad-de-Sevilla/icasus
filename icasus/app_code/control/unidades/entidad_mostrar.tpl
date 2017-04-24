@@ -307,7 +307,7 @@
                     <div id="botones_user" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
                             <a title="{$smarty.const.TXT_USER_GESTION}" class="btn btn-default btn-danger" href='index.php?page=entidad_usuarios&id_entidad={$entidad->id}'>
-                                <i class="fa fa-users fa-fw"></i>
+                                <i class="fa fa-users fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                             </a>
                         </div>
                     </div>
@@ -361,8 +361,8 @@
                             {if $_control}
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                     <div class="btn-group" role="group" aria-label="">
-                                        <a title="{$smarty.const.TXT_USERS_VINC}" class="btn btn-default btn-danger" href='index.php?page=entidad_poblar&id_entidad={$entidad->id}'>
-                                            <i class="fa fa-user-plus fa-fw"></i>
+                                        <a title="{$smarty.const.TXT_USER_GESTION}" class="btn btn-default btn-danger" href='index.php?page=entidad_usuarios&id_entidad={$entidad->id}'>
+                                            <i class="fa fa-users fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                                         </a>
                                     </div>
                                 </div>
