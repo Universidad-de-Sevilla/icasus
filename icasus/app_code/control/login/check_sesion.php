@@ -2,7 +2,7 @@
 
 //------------------------------------------------------------------------------
 // Proyecto: Icasus
-// Archivo: sesion/check_sesion.php
+// Archivo: login/check_sesion.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //------------------------------------------------------------------------------
@@ -17,4 +17,4 @@ if (isset($_SESSION['usuario']))
 }
 
 $smarty->assign('resultado', $resultado);
-$plantilla = 'sesion/check_sesion.tpl';
+$plantilla = 'login/check_sesion.tpl';

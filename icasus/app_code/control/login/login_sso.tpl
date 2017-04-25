@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-8 col-md-offset-2 vertical-center">
+    <div class="col-md-6 col-md-offset-3 vertical-center">
         <div class="login-panel panel panel-default">
             <!-- Nombre página -->
             <div class="panel-heading">
@@ -9,7 +9,7 @@
                     </div>
                     <!-- /.col-sm-2 -->
                     <div class="col-sm-10">
-                        <h1>{$_nombre_pagina} <b>{$smarty.const.TXT_ICASUS}</b></h1>
+                        <h2>{$_nombre_pagina} <b>{$smarty.const.TXT_ICASUS}</b></h2>
                     </div>
                     <!-- /.col-sm-10 -->
                 </div>
