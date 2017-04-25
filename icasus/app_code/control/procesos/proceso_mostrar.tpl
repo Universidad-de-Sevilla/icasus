@@ -479,6 +479,8 @@
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_COD}</th>
+                                    <th></th>
+                                    <th></th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
                                     <th>{$smarty.const.FIELD_RESP_MED}</th>
@@ -495,9 +497,13 @@
                                             {if $indicador->calculo}
                                                 <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
                                             {/if}
+                                        </td>
+                                        <td>
                                             {if $indicador->id_tipo_agregacion!= 0}
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
+                                        </td>
+                                        <td>
                                             <a title='{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}' href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$proceso->id_entidad}'>{$indicador->nombre}</a>
                                         </td>
                                         <td style="font-size: 12px">
@@ -598,6 +604,8 @@
                             <thead>
                                 <tr>   
                                     <th>{$smarty.const.FIELD_ID}</th>
+                                    <th></th>
+                                    <th></th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
                                     <th>{$smarty.const.FIELD_PROC}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
@@ -616,9 +624,13 @@
                                             {if $indicador->calculo}
                                                 <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
                                             {/if}
+                                        </td>
+                                        <td>
                                             {if $indicador->id_tipo_agregacion!= 0}
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
+                                        </td>
+                                        <td>
                                             <a target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}' 
                                                title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
                                                 {$indicador->nombre}</a>
