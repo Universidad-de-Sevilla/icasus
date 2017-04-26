@@ -267,6 +267,7 @@
                             <th>{$smarty.const.FIELD_INDIC}</th>
                             <th>{$smarty.const.FIELD_PROC}</th>
                             <th>{$smarty.const.FIELD_MED}</th>
+                            <th><span class="label label-default">{$smarty.const.FIELD_TOTAL}</span></th>
                             <th><span class="label label-danger">{$smarty.const.FIELD_LIMITE}</span></th>
                             <th><span class="label label-success">{$smarty.const.FIELD_META}</span></th>
                             <th>{$smarty.const.FIELD_ACCIONES}</th>
@@ -291,6 +292,13 @@
                                         {/if}
                                     </td>
                                     <td>{$medicion->etiqueta}</td>
+                                    <td>
+                                        {if $medicion_total[$medicion->id]!== NULL}
+                                            {$medicion_total[$medicion->id]|round:"2"}
+                                        {else}
+                                            ---
+                                        {/if}
+                                    </td>
                                     <td {if isset($medicion_lim[$indicador->id])}style="color:red"{/if}>
                                         {if isset($medicion_lim[$indicador->id])}
                                             {if ($medicion_lim[$indicador->id][$medicion->id])}
