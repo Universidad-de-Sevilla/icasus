@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.50.3");
-define('IC_FECHA_REVISION', "25/04/2017");
+define('IC_VERSION', "3.50.4");
+define('IC_FECHA_REVISION', "26/04/2017");
 
+// 3.50.4 - 26/04/2017 - Se distingue entre indicadores de proceso, control y datos en la sección de control de una unidad.
 // 3.50.3 - 25/04/2017 - Cambios de estilo, tablas de indicadores con calculo y agregacion en columnas separadas.
 // 3.50.2 - 24/04/2017 - Correcciones en la gestión de usuarios, cambiados textos, iconos...
 // 3.50.1 - 21/04/2017 - Retirada la importación de valores a una unidad dado que no se utiliza.

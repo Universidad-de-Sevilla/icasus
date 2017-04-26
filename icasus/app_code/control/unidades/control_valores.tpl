@@ -41,12 +41,14 @@
                         {foreach from=$valores_agrupados item=valor}
                             <tr>
                                 <td>
-                                    {if $valor.proceso == ''}
-                                        {$smarty.const.FIELD_DATOS}
-                                    {else} 
+                                    {if $valor.id_proceso}
                                         <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
                                             {$valor.proceso}
                                         </a>
+                                    {else if $valor.control}
+                                        {$smarty.const.TXT_CONTROL}
+                                    {else}
+                                        {$smarty.const.FIELD_DATO}
                                     {/if}
                                 </td>
                                 <td>{$valor.subunidades}</td>
@@ -105,12 +107,14 @@
                                 <tr>
                                     <td style="text-align: center"><input type='checkbox' name='id_valor[]' value='{$valor.id_valor}'/></td>
                                     <td>
-                                        {if $valor.proceso == ''}
-                                            {$smarty.const.FIELD_DATOS}
-                                        {else}
+                                        {if $valor.id_proceso}
                                             <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
                                                 {$valor.proceso}
                                             </a>
+                                        {else if $valor.control}
+                                            {$smarty.const.TXT_CONTROL}
+                                        {else}
+                                            {$smarty.const.FIELD_DATO}
                                         {/if}
                                     </td>
                                     <td>{$valor.unidad}</td>
@@ -176,12 +180,14 @@
                         {foreach from= $valores_ult_mod item=valor}
                             <tr>
                                 <td>
-                                    {if $valor.proceso == ''}
-                                        {$smarty.const.FIELD_DATOS}
-                                    {else}
+                                    {if $valor.id_proceso}
                                         <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
                                             {$valor.proceso}
                                         </a>
+                                    {else if $valor.control}
+                                        {$smarty.const.TXT_CONTROL}
+                                    {else}
+                                        {$smarty.const.FIELD_DATO}
                                     {/if}
                                 </td>
                                 <td>{$valor.unidad}</td>
@@ -223,12 +229,14 @@
                         {foreach from=$indicadores_sin_med item=indicador}
                             <tr>
                                 <td>
-                                    {if $indicador.proceso == ''}
-                                        {$smarty.const.FIELD_DATOS}
-                                    {else}
+                                    {if $indicador.id_proceso}
                                         <a href="index.php?page=proceso_mostrar&id_proceso={$indicador.id_proceso}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_PROC_VER}">
                                             {$indicador.proceso}
                                         </a>
+                                    {else if $indicador.control}
+                                        {$smarty.const.TXT_CONTROL}
+                                    {else}
+                                        {$smarty.const.FIELD_DATO} 
                                     {/if}
                                 </td>
                                 <td>
@@ -276,8 +284,10 @@
                                             <a href="index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_PROC_VER}">
                                                 {$indicador->proceso->nombre}
                                             </a>
+                                        {else if $indicador->control}
+                                            {$smarty.const.TXT_CONTROL}
                                         {else}
-                                            {$smarty.const.FIELD_DATOS}
+                                            {$smarty.const.FIELD_DATO}
                                         {/if}
                                     </td>
                                     <td>{$medicion->etiqueta}</td>

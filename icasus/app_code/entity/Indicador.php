@@ -264,49 +264,49 @@ class Indicador extends ADOdb_Active_Record
         }
     }
 
-    public function rebiun_2012_detalle()
-    {
-        $sql = " SELECT i.codigo, i.nombre as indicador, e.etiqueta as subunidad, u.login as medidor, v.valor
-    FROM indicadores i
-    INNER JOIN mediciones m ON m.id_indicador = i.id
-    INNER JOIN valores v ON v.id_medicion = m.id
-    INNER JOIN entidades e ON e.id = v.id_entidad
-    INNER JOIN usuarios u ON u.id = v.id_usuario
-    WHERE m.etiqueta = 2012 AND i.codigo LIKE 'R%'
-    ORDER BY i.codigo, e.etiqueta";
-        $db = $this->DB();
-        return $db->getall($sql);
-    }
-
-    public function rebiun_2012_suma()
-    {
-        $sql = "SELECT i.codigo, i.nombre as indicador, m.etiqueta, SUM(v.valor) as valor
-    FROM indicadores i
-    INNER JOIN mediciones m ON m.id_indicador = i.id
-    INNER JOIN valores v ON v.id_medicion = m.id
-    WHERE (m.etiqueta = 2012 OR m.etiqueta = 2011) AND i.codigo LIKE 'R%' AND id_tipo_agregacion = 2
-    GROUP BY i.codigo, i.nombre, m.etiqueta
-    ORDER BY i.codigo";
-        $db = $this->DB();
-        return $db->getall($sql);
-    }
-
-    public function rebiun_2012_promedio()
-    {
-        $sql = "SELECT i.codigo, i.nombre as indicador, m.etiqueta, AVG(v.valor) as valor
-    FROM indicadores i
-    INNER JOIN mediciones m ON m.id_indicador = i.id
-    INNER JOIN valores v ON v.id_medicion = m.id
-    WHERE (m.etiqueta = 2012 OR m.etiqueta = 2011) AND i.codigo LIKE 'R%' AND id_tipo_agregacion = 1
-    GROUP BY i.codigo, i.nombre, m.etiqueta
-    ORDER BY i.codigo";
-        $db = $this->DB();
-        return $db->getall($sql);
-    }
+//    public function rebiun_2012_detalle()
+//    {
+//        $sql = " SELECT i.codigo, i.nombre as indicador, e.etiqueta as subunidad, u.login as medidor, v.valor
+//    FROM indicadores i
+//    INNER JOIN mediciones m ON m.id_indicador = i.id
+//    INNER JOIN valores v ON v.id_medicion = m.id
+//    INNER JOIN entidades e ON e.id = v.id_entidad
+//    INNER JOIN usuarios u ON u.id = v.id_usuario
+//    WHERE m.etiqueta = 2012 AND i.codigo LIKE 'R%'
+//    ORDER BY i.codigo, e.etiqueta";
+//        $db = $this->DB();
+//        return $db->getall($sql);
+//    }
+//
+//    public function rebiun_2012_suma()
+//    {
+//        $sql = "SELECT i.codigo, i.nombre as indicador, m.etiqueta, SUM(v.valor) as valor
+//    FROM indicadores i
+//    INNER JOIN mediciones m ON m.id_indicador = i.id
+//    INNER JOIN valores v ON v.id_medicion = m.id
+//    WHERE (m.etiqueta = 2012 OR m.etiqueta = 2011) AND i.codigo LIKE 'R%' AND id_tipo_agregacion = 2
+//    GROUP BY i.codigo, i.nombre, m.etiqueta
+//    ORDER BY i.codigo";
+//        $db = $this->DB();
+//        return $db->getall($sql);
+//    }
+//
+//    public function rebiun_2012_promedio()
+//    {
+//        $sql = "SELECT i.codigo, i.nombre as indicador, m.etiqueta, AVG(v.valor) as valor
+//    FROM indicadores i
+//    INNER JOIN mediciones m ON m.id_indicador = i.id
+//    INNER JOIN valores v ON v.id_medicion = m.id
+//    WHERE (m.etiqueta = 2012 OR m.etiqueta = 2011) AND i.codigo LIKE 'R%' AND id_tipo_agregacion = 1
+//    GROUP BY i.codigo, i.nombre, m.etiqueta
+//    ORDER BY i.codigo";
+//        $db = $this->DB();
+//        return $db->getall($sql);
+//    }
 
     public function find_sin_mediciones($id_entidad, $fecha, $cadena)
     {
-        $sql = "SELECT i.id as id_indicador,i.id_entidad, i.nombre as indicador, "
+        $sql = "SELECT i.id as id_indicador,i.id_entidad, i.nombre as indicador, i.control,"
                 . "p.nombre as proceso, p.id as id_proceso "
                 . "FROM indicadores i "
                 . "LEFT JOIN procesos p ON i.id_proceso = p.id "
