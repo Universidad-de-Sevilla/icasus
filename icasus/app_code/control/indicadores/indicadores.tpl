@@ -370,6 +370,7 @@
                                     <th></th>
                                     <th></th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
+                                    <th></th>
                                     <th>{$smarty.const.FIELD_OBJ_OP}</th>
                                     <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
@@ -398,10 +399,12 @@
                                                 {$indicador->nombre}</a>
                                         </td>
                                         <td>
+                                            {if isset($objops[$indicador->id]) && $objops[$indicador->id]->descendente}
+                                                <i class="fa fa-sitemap fa-fw" title="{$smarty.const.TXT_OBJOP_DESC}"></i>
+                                            {/if}
+                                        </td>
+                                        <td>
                                             {if isset($objops[$indicador->id])}
-                                                {if $objops[$indicador->id]->descendente}
-                                                    <i class="fa fa-sitemap fa-fw" title="{$smarty.const.TXT_OBJOP_DESC}"></i>
-                                                {/if}
                                                 <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objops[$indicador->id]->id}&id_entidad={$indicador->id_entidad}">{$objops[$indicador->id]->nombre}</a>
                                             {else}
                                                 ---

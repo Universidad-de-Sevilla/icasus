@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.50.5");
-define('IC_FECHA_REVISION', "26/04/2017");
+define('IC_VERSION', "3.50.6");
+define('IC_FECHA_REVISION', "27/04/2017");
 
+// 3.50.6 - 27/04/2017 - Se incluye el tipo de objetivo operacional en una columna separada en las tablas para una mejor ordenación de los mismos.
 // 3.50.5 - 26/04/2017 - Se incluye una columna con el total de la medición dentro de la pestaña de valores de referencia de la sección de control de una unidad.
 // 3.50.4 - 26/04/2017 - Se distingue entre indicadores de proceso, control y datos en la sección de control de una unidad.
 // 3.50.3 - 25/04/2017 - Cambios de estilo, tablas de indicadores con calculo y agregacion en columnas separadas.
