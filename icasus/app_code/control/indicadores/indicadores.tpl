@@ -370,8 +370,7 @@
                                     <th></th>
                                     <th></th>
                                     <th>{$smarty.const.FIELD_INDIC}</th>
-                                    <th></th>
-                                    <th>{$smarty.const.FIELD_OBJ_OP}</th>
+                                    <th>{$smarty.const.FIELD_OBJS_OP}</th>
                                     <th>{$smarty.const.FIELD_UNID}</th>
                                     <th>{$smarty.const.FIELD_PERIOD}</th>
                                     <th>{$smarty.const.FIELD_RESP}</th>
@@ -399,13 +398,14 @@
                                                 {$indicador->nombre}</a>
                                         </td>
                                         <td>
-                                            {if isset($objops[$indicador->id]) && $objops[$indicador->id]->descendente}
-                                                <i class="fa fa-sitemap fa-fw" title="{$smarty.const.TXT_OBJOP_DESC}"></i>
-                                            {/if}
-                                        </td>
-                                        <td>
-                                            {if isset($objops[$indicador->id])}
-                                                <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objops[$indicador->id]->id}&id_entidad={$indicador->id_entidad}">{$objops[$indicador->id]->nombre}</a>
+                                            {if $objops[$indicador->id]|@count > 0}
+                                                <ul class="list-unstyled">
+                                                    {foreach $objops[$indicador->id] as $objop}
+                                                        <li>
+                                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$indicador->id_entidad}">{$objop->nombre}</a>
+                                                        </li>
+                                                    {/foreach}
+                                                </ul>
                                             {else}
                                                 ---
                                             {/if}

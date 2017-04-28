@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.51.1");
+define('IC_VERSION', "3.51.2");
 define('IC_FECHA_REVISION', "28/04/2017");
 
+// 3.51.2 - 28/04/2017 - Se listan todos los objetivos operacionales asociados a un indicador de control en su ficha y también en los listados de indicadores.
 // 3.51.1 - 28/04/2017 - Se tienen en cuenta en la sección de control en la pestaña 'sin mediciones' los indicadores que tienen periodicidad bienal.
 // 3.51.0 - 27/04/2017 - Posibilidad de buscar usuarios. Éstos se incluyen en los resultados de búsqueda y también los elementos de los que sean responsables.
 // 3.50.6 - 27/04/2017 - Se incluye el tipo de objetivo operacional en una columna separada en las tablas para una mejor ordenación de los mismos.
