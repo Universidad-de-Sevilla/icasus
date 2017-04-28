@@ -311,7 +311,7 @@ class Indicador extends ADOdb_Active_Record
                 . "FROM indicadores i "
                 . "LEFT JOIN procesos p ON i.id_proceso = p.id "
                 . "WHERE i.id NOT IN (SELECT id_indicador FROM mediciones m "
-                . "WHERE DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha) "
+                . "WHERE DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha OR DATE_FORMAT( m.periodo_fin, '%Y' ) = $fecha) "
                 . "AND i.id_entidad = {$id_entidad} "
                 . "AND i.archivado is NULL $cadena";
         $db = $this->DB();
