@@ -32,8 +32,8 @@ define('TXT_INTRO_TEXTO', 'Introduce texto');
 define('TXT_REP_GRAFIC', 'Gráficas');
 define('TXT_ASCENDENTE', 'Ascendente');
 define('TXT_DESCENDENTE', 'Descendente');
-define('TXT_DEPENDE', 'Su cálculo depende de los siguientes indicadores:');
-define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes indicadores:');
+define('TXT_DEPENDE', 'Su cálculo depende de los siguientes Indicadores:');
+define('TXT_INFLUYE', 'Influye en el cálculo de los siguientes Indicadores:');
 define('TXT_ENVIAR_CORREO', 'Enviar E-mail');
 define('TXT_LLAMAR_TLF', 'Llamar al teléfono');
 define('TXT_INVITADO', 'Invitado');
@@ -43,7 +43,7 @@ define('TXT_RESET', 'Reset');
 define('TXT_RESUL', 'Resultado');
 define('TXT_SEGUIMIENTO', 'Seguimiento');
 
-//Análisis de indicadores
+//Análisis de Indicadores
 define('TXT_ANALISIS', 'Análisis');
 define('TXT_ANALISIS_DESC', 'Análisis: para el año seleccionado comente los resultados obtenidos en años anteriores.');
 define('TXT_PLAN_ACCION', 'Plan de acción');
@@ -67,19 +67,19 @@ define('TXT_POR_ANYO', 'Por año');
 
 //Consulta
 define('TXT_CONSULT', 'Consulta avanzada');
-define('TXT_CONSULT_INFO', 'Para realizar la consulta busque e incluya los indicadores que desee. Puede añadir hasta un máximo de 5 operandos a la consulta.');
+define('TXT_CONSULT_INFO', 'Para realizar la consulta busque e incluya los Indicadores que desee. Puede añadir hasta un máximo de 5 operandos a la consulta.');
 define('TXT_CONSULT_PARAM', 'Parámetros de la consulta');
 define('TXT_CONSULT_OPERAND', 'Indicador operando');
 define('TXT_CONSULT_OPER', 'Operador');
 define('TXT_CONSULT_INCLUIR', 'Incluir/cambiar operando de la consulta');
 define('TXT_CONSULT_QUITAR', 'Retirar último operando de la consulta');
 define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
-define('TXT_CONSULT_BUSCAR', 'Buscar indicador');
+define('TXT_CONSULT_BUSCAR', 'Buscar Indicador');
 
 //Cuadros de Mando
-define('TXT_CUADRO_CREAR', 'Crear cuadro de mando');
-define('TXT_CUADRO_EDIT', 'Editar cuadro de mando');
-define('TXT_CUADRO_BORRAR', 'Borrar cuadro de mando');
+define('TXT_CUADRO_CREAR', 'Crear Cuadro de Mando');
+define('TXT_CUADRO_EDIT', 'Editar Cuadro de Mando');
+define('TXT_CUADRO_BORRAR', 'Borrar Cuadro de Mando');
 //Paneles de los Cuadros de Mando
 define('TXT_PANEL_CREAR', 'Crear panel');
 define('TXT_PANEL_TIPO', 'Tipo de panel');
@@ -93,7 +93,7 @@ define('TXT_PANEL_VENTANA_DESC', 'Establece una ventana temporal para el panel. 
 define('TXT_PANEL_VENTANA_FIJA', 'Fija');
 define('TXT_PANEL_VENTANA_VAR', 'Variable');
 define('TXT_PANEL_INDICS', 'Indicadores del panel');
-define('TXT_PANEL_INCLUIR', 'Añadir indicador al panel');
+define('TXT_PANEL_INCLUIR', 'Añadir Indicador al panel');
 
 //Datos;
 define('TXT_DATOS_REBIUN', 'Datos Rebiun');
@@ -101,25 +101,25 @@ define('TXT_DATOS_REBIUN_RECOGIDA', 'Recogida de Datos Rebiun');
 
 //Entidades (Unidades)
 define('TXT_UNID', 'Unidad');
-define('TXT_UNID_ASIG_PRINCIPAL', 'Convertir en unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad (sólo se puede asignar una unidad como principal).');
-define('TXT_UNID_PRINCIPAL', 'Unidad principal: al iniciar sesión accederá directamente a la ficha de esta unidad.');
-define('TXT_UNID_EDIT', 'Editar unidad');
-define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el indicador');
-define('TXT_ETIQUETA_MINI_DESCRIPCION', 'Indica como aparece el nombre de la unidad en las gráficas');
-define('TXT_ORGANICA_DESCRIPCION', 'Sólo aparecen en los listados las unidades orgánicas');
+define('TXT_UNID_ASIG_PRINCIPAL', 'Convertir en Unidad principal: al iniciar sesión accederá directamente a la ficha de esta Unidad (sólo se puede asignar una Unidad como principal).');
+define('TXT_UNID_PRINCIPAL', 'Unidad principal: al iniciar sesión accederá directamente a la ficha de esta Unidad.');
+define('TXT_UNID_EDIT', 'Editar Unidad');
+define('TXT_UNIDS_MEDS_INDIC', 'Unidades con mediciones en el Indicador');
+define('TXT_ETIQUETA_MINI_DESCRIPCION', 'Indica como aparece el nombre de la Unidad en las gráficas');
+define('TXT_ORGANICA_DESCRIPCION', 'Sólo aparecen en los listados las Unidades orgánicas');
 
 //Indicadores
-define('TXT_INDIC_IR', 'Ir al indicador');
-define('TXT_INDIC_CREAR', 'Crear indicador');
-define('TXT_INDIC_EDIT', 'Editar indicador');
-define('TXT_INDIC_BORRAR', 'Borrar indicador');
-define('TXT_INDIC_NO_PROC', 'Sin proceso asociado');
-define('TXT_INDIC_ARCHIVAR', 'Archivar indicador');
-define('TXT_INDIC_ARCHIVADO', 'Indicador archivado: este indicador ya no está en uso.');
+define('TXT_INDIC_IR', 'Ir al Indicador');
+define('TXT_INDIC_CREAR', 'Crear Indicador');
+define('TXT_INDIC_EDIT', 'Editar Indicador');
+define('TXT_INDIC_BORRAR', 'Borrar Indicador');
+define('TXT_INDIC_NO_PROC', 'Sin Proceso asociado');
+define('TXT_INDIC_ARCHIVAR', 'Archivar Indicador');
+define('TXT_INDIC_ARCHIVADO', 'Indicador archivado: este Indicador ya no está en uso.');
 define('TXT_INDIC_ARCHIVADOS', 'Indicadores archivados');
-define('TXT_INDIC_RESTAURAR', 'Restaurar indicador');
-define('TXT_INDICS_MIO', 'Mis indicadores');
-define('TXT_INDIC_DAT', 'Datos del indicador');
+define('TXT_INDIC_RESTAURAR', 'Restaurar Indicador');
+define('TXT_INDICS_MIO', 'Mis Indicadores');
+define('TXT_INDIC_DAT', 'Datos del Indicador');
 define('TXT_INDIC_CONFIRM_ASIG_MED', 'Por favor, confirme si desea asignar esta medición.');
 define('TXT_INDIC_ACT_MED', 'Indique si además quiere activarla: ');
 define('TXT_INDIC_DAT_DEPENDIENTES', 'Indicadores dependientes');
@@ -144,10 +144,10 @@ define('TXT_SOFT_LIBRE', 'Software Libre');
 define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
 
 //Mediciones
-define('TXT_MED_UNICA', 'Medición única en la unidad actual.');
+define('TXT_MED_UNICA', 'Medición única en la Unidad actual.');
 define('TXT_MED_VER', 'Ver/Editar medición');
-define('TXT_MED_AGRED', 'Medición agregada en subunidades y cumplimentada por los responsables de las subunidades, o la persona delegada.');
-define('TXT_MED_AGRED_CEN', 'Medición agregada en subunidades y cumplimentada de manera centralizada por el responsable de medición del indicador.');
+define('TXT_MED_AGRED', 'Medición agregada en Subunidades y cumplimentada por los responsables de las Subunidades, o la persona delegada.');
+define('TXT_MED_AGRED_CEN', 'Medición agregada en Subunidades y cumplimentada de manera centralizada por el responsable de medición del Indicador.');
 define('TXT_MED_BORRAR', 'Borrar medición');
 define('TXT_MED_ACT_TODAS', 'Activar todas las mediciones.');
 define('TXT_MED_DESACT_TODAS', ' Desactivar todas las mediciones.');
@@ -162,10 +162,12 @@ define('TXT_MED_RESP_SEL', 'Elegir nuevo responsable de medición ...');
 //Menú Principal
 define('TXT_INICIO', 'Mi icasus');
 define('TXT_UNIDS_US', 'Unidades US');
+define('TXT_PLANES_US', 'Planes Estratégicos US');
+define('TXT_CARTAS_US', 'Cartas de Servicios US');
 define('TXT_PROCS_US', 'Procesos US');
 define('TXT_INDICS_US', 'Indicadores/Datos US');
 define('TXT_DATOS_US', 'Datos US');
-define('TXT_CUADROS_MANDO_US', 'Cuadros de mando US');
+define('TXT_CUADROS_MANDO_US', 'Cuadros de Mando US');
 define('TXT_USERS_US', 'Usuarios US');
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
@@ -175,12 +177,12 @@ define('TXT_USER_PERFIL', 'Perfil de usuario');
 define('TXT_CERRAR_SESION', 'Cerrar sesión');
 //Menú de Unidades
 define('TXT_INICIO_DESCRIPCION', 'Mi icasus: listado de sus competencias/responsabilidades.');
-define('TXT_PLANES_DESCRIPCION', 'Planes estratégicos: listado de planes estratégicos de la unidad y gestión de los mismos.');
-define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de procesos de la unidad y gestión de los mismos. ');
-define('TXT_INDICS_DESCRIPCION', 'Indicadores/Datos: listado de indicadores/datos de la unidad y gestión de los mismos.');
-define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de mando: listado de cuadros de mando de la unidad y gestión de los mismos.');
-define('TXT_CONSULTA_DESCRIPCION', 'Consulta: efectuar consultas y operaciones que muestran información sobre los indicadores y datos de la unidad.');
-define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones, valores y criterios EFQM de los distintos indicadores/datos de la unidad bajo su responsabilidad.');
+define('TXT_PLANES_DESCRIPCION', 'Planes Estratégicos: listado de Planes Estratégicos de la Unidad y gestión de los mismos.');
+define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de Procesos de la Unidad y gestión de los mismos. ');
+define('TXT_INDICS_DESCRIPCION', 'Indicadores/Datos: listado de Indicadores/Datos de la Unidad y gestión de los mismos.');
+define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de Mando: listado de Cuadros de Mando de la Unidad y gestión de los mismos.');
+define('TXT_CONSULTA_DESCRIPCION', 'Consulta: efectuar consultas y operaciones que muestran información sobre los Indicadores y Datos de la Unidad.');
+define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones, valores y criterios EFQM de los distintos Indicadores/Datos de la Unidad bajo su responsabilidad.');
 
 //Navegación
 define('TXT_MOSTRANDO', 'Mostrando');
@@ -217,39 +219,38 @@ define('TXT_PAG_CREAR', 'Crear página');
 define('TXT_PAG_EDIT', 'Editar página');
 
 //Planes Estratégicos
-define('TXT_PLANES_US', 'Planes estratégicos US');
-define('TXT_PLAN_CREAR', 'Crear plan estratégico');
-define('TXT_PLAN_EDIT', 'Editar plan estratégico');
-define('TXT_PLAN_BORRAR', 'Borrar plan estratégico');
+define('TXT_PLAN_CREAR', 'Crear Plan Estratégico');
+define('TXT_PLAN_EDIT', 'Editar Plan Estratégico');
+define('TXT_PLAN_BORRAR', 'Borrar Plan Estratégico');
 
 //Líneas Estratégicas
-define('TXT_LINEA_CREAR', 'Crear línea estratégica');
-define('TXT_LINEA_EDIT', 'Editar línea estratégica');
-define('TXT_LINEA_BORRAR', 'Borrar línea estratégica');
+define('TXT_LINEA_CREAR', 'Crear Línea Estratégica');
+define('TXT_LINEA_EDIT', 'Editar Línea Estratégica');
+define('TXT_LINEA_BORRAR', 'Borrar Línea Estratégica');
 
 //Objetivos Estratégicos
-define('TXT_OBJEST_CREAR', 'Crear objetivo estratégico');
-define('TXT_OBJEST_EDIT', 'Editar objetivo estratégico');
-define('TXT_OBJEST_BORRAR', 'Borrar objetivo estratégico');
+define('TXT_OBJEST_CREAR', 'Crear Objetivo Estratégico');
+define('TXT_OBJEST_EDIT', 'Editar Objetivo Estratégico');
+define('TXT_OBJEST_BORRAR', 'Borrar Objetivo Estratégico');
 
 //Objetivos Operacionales
-define('TXT_OBJOP_CREAR', 'Crear objetivo operacional');
-define('TXT_OBJOP_EDIT', 'Editar objetivo operacional');
-define('TXT_OBJOP_BORRAR', 'Borrar objetivo operacional');
-define('TXT_OBJOP_TIPO', 'Tipo de objetivo operacional');
+define('TXT_OBJOP_CREAR', 'Crear Objetivo Operacional');
+define('TXT_OBJOP_EDIT', 'Editar Objetivo Operacional');
+define('TXT_OBJOP_BORRAR', 'Borrar Objetivo Operacional');
+define('TXT_OBJOP_TIPO', 'Tipo de Objetivo Operacional');
 define('TXT_OBJOP_PROPIO', 'Propio');
 define('TXT_OBJOP_DESC', 'Descendente');
 
 //Procesos
-define('TXT_PROC_VER', 'Ver proceso');
-define('TXT_PROC_MAP', 'Mapa de procesos');
-define('TXT_PROC_CUADRO', 'Sin cuadro de mando asociado (opcional: seleccione un cuadro del desplegable).');
-define('TXT_PROC_MAP_EDIT', 'Agregar/editar mapa de procesos');
-define('TXT_PROC_ES_MADRE', 'Es un proceso madre');
-define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha del proceso');
-define('TXT_PROC_EDIT', 'Editar proceso');
-define('TXT_PROC_CREAR', 'Crear proceso');
-define('TXT_PROC_BORRAR', 'Borrar proceso');
+define('TXT_PROC_VER', 'Ver Proceso');
+define('TXT_PROC_MAP', 'Mapa de Procesos');
+define('TXT_PROC_CUADRO', 'Sin Cuadro de Mando asociado (opcional: seleccione un Cuadro del desplegable).');
+define('TXT_PROC_MAP_EDIT', 'Agregar/editar mapa de Procesos');
+define('TXT_PROC_ES_MADRE', 'Es un Proceso madre');
+define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha del Proceso');
+define('TXT_PROC_EDIT', 'Editar Proceso');
+define('TXT_PROC_CREAR', 'Crear Proceso');
+define('TXT_PROC_BORRAR', 'Borrar Proceso');
 define('TXT_PROC_FLUJO', 'Flujograma');
 
 //Propiedades
@@ -257,9 +258,9 @@ define('TXT_OTRAS_PROP', 'Otras propiedades');
 
 //Propiedades HTML: Titles, placeholders, values de botones...
 define('TXT_CODIGO', 'Único, fácil de recordar, en mayúsculas y sin espacios');
-define('TXT_PESO', 'El peso [0.01,1] indica la importancia del objetivo operacional dentro del objetivo estratégico al que pertenece. Influye por tanto en el grado de ejecución de éste.');
+define('TXT_PESO', 'El peso [0.01,1] indica la importancia del Objetivo Operacional dentro del Objetivo Estratégico al que pertenece. Influye por tanto en el grado de ejecución de éste.');
 define('TXT_ESTA', 'Está aquí');
-define('TXT_CALCULO_TOTAL', 'Determina cómo se calcula el total entre todas las subunidades');
+define('TXT_CALCULO_TOTAL', 'Determina cómo se calcula el total entre todas las Subunidades');
 define('TXT_CALCULO_TOTAL_ANUAL', 'Determina cómo se calcula el total anual entre todos los periodos');
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CANCEL', 'Cancelar');
@@ -267,10 +268,10 @@ define('TXT_EXAMINAR', 'Examinar...');
 define('TXT_NO_ARCHIVO_SEL', 'No se ha seleccionado ningún archivo.');
 define('TXT_BTN_ACEPTAR', 'Aceptar');
 define('TXT_BTN_GUARDAR', 'Guardar');
-define('TXT_SOLO_INDIC_CALC', 'Sólo si el valor del indicador es calculado automáticamente (en función del valor de otros indicadores). Deberá indicar una fórmula para el cálculo del mismo.');
-define('TXT_FORMULA', "Indique la fórmula para el cálculo, la sintaxis para referirse a indicadores es la siguiente: [ID del indicador]. Ejemplo: [1]+[2], el resultado será la suma del valor de indicador con ID=1 más el indicador con ID=2. IMPORTANTE: La periodicidad debe ser la misma para todos los indicadores implicados, de lo contrario no será posible el cálculo.");
-define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el indicador.');
-define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde se obtienen los valores para el indicador.');
+define('TXT_SOLO_INDIC_CALC', 'Sólo si el valor del Indicador es calculado automáticamente (en función del valor de otros Indicadores). Deberá indicar una fórmula para el cálculo del mismo.');
+define('TXT_FORMULA', "Indique la fórmula para el cálculo, la sintaxis para referirse a Indicadores es la siguiente: [ID del Indicador]. Ejemplo: [1]+[2], el resultado será la suma del valor de Indicador con ID=1 más el Indicador con ID=2. IMPORTANTE: La periodicidad debe ser la misma para todos los Indicadores implicados, de lo contrario no será posible el cálculo.");
+define('TXT_FUENTE_INFO', 'Conceptos, ideas, normativas... por las cuales surge el Indicador.');
+define('TXT_FUENTE_DAT', 'Documentos, aplicaciones u otras fuentes... de donde se obtienen los valores para el Indicador.');
 define('TXT_BUSCAR', 'Buscar...');
 define('TXT_VAL_INSERT', 'Introduzca un número (dentro del intervalo si existe), dejar en blanco para valor nulo.');
 define('TXT_FECHA_REV_ACTUAL', 'Fecha de la revisión actual');
@@ -288,7 +289,7 @@ define('TXT_TRIMESTRAL', 'Trimestral');
 define('TXT_CUATRIMESTRAL', 'Cuatrimestral');
 define('TXT_SEMESTRAL', 'Semestral');
 //Tipos de Cálculo
-define('TXT_CALC_AUTO', 'Este indicador es calculado automáticamente');
+define('TXT_CALC_AUTO', 'Este Indicador es calculado automáticamente');
 
 //Tipos de Proceso
 define('TXT_ESTRATEGICO', '1-Estratégico');
@@ -298,27 +299,26 @@ define('TXT_INDEF', 'Indefinido');
 
 //Tipos de Representaciones Gráficas: paneles
 define('TXT_LINEAS', 'Líneas');
-define('TXT_LINEAS_DESC', 'Muestra varios indicadores para distintas unidades como gráfica de líneas.');
+define('TXT_LINEAS_DESC', 'Muestra varios Indicadores para distintas Unidades como gráfica de líneas.');
 define('TXT_BARRAS', 'Barras');
-define('TXT_BARRAS_DESC', 'Muestra varios indicadores para distintas unidades como gráfica de barras.');
+define('TXT_BARRAS_DESC', 'Muestra varios Indicadores para distintas Unidades como gráfica de barras.');
 define('TXT_MIXTO', 'Mixto');
-define('TXT_MIXTO_DESC', 'Muestra un indicador base como gráfica de barras y el resto de indicadores complementarios como gráficas de líneas.');
+define('TXT_MIXTO_DESC', 'Muestra un Indicador base como gráfica de barras y el resto de Indicadores complementarios como gráficas de líneas.');
 define('TXT_TABLA', 'Tabla');
-define('TXT_TABLA_DESC', 'Tabla que muestra varios indicadores y su evolución total o de una unidad concreta para un período dado.');
+define('TXT_TABLA_DESC', 'Tabla que muestra varios Indicadores y su evolución total o de una Unidad concreta para un período dado.');
 define('TXT_TARTA', 'Tarta');
-define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un indicador entre las unidades afectadas como gráfica de tarta.');
+define('TXT_TARTA_DESC', 'Muestra como se reparte una medición de un Indicador entre las Unidades afectadas como gráfica de tarta.');
 
 //Usuarios
 define('TXT_USERS_ASIGNAR', 'Asignar usuarios');
 define('TXT_USERS_DESASIGNAR', 'Desasignar usuarios');
 define('TXT_USERS_ALTA', 'Alta de usuarios');
 define('TXT_USERS_BAJA', 'Baja de usuarios');
-define('TXT_USER_UNIDS', 'Mis unidades');
-define('TXT_USER_PROCS', 'Mis procesos');
-define('TXT_USER_INDIC', 'Mis indicadores');
-define('TXT_USER_DATO', 'Mis datos');
-define('TXT_USER_CUADROS', 'Mis cuadros de mando');
-define('TXT_USER_OBJOPS', 'Mis objetivos operacionales');
+define('TXT_USER_UNIDS', 'Mis Unidades');
+define('TXT_USER_PROCS', 'Mis Procesos');
+define('TXT_USER_INDIC', 'Mis Indicadores');
+define('TXT_USER_CUADROS', 'Mis Cuadros de Mando');
+define('TXT_USER_OBJOPS', 'Mis Objetivos Operacionales');
 define('TXT_USERS_ASIG', 'Usuarios asignados');
 define('TXT_USER_GESTION', 'Gestión de usuarios');
 define('TXT_USER_EDIT', 'Editar usuario');
@@ -330,7 +330,7 @@ define('TXT_VAL_AGREGAR', 'Agregar valor');
 define('TXT_VAL_UNID', 'Valor/Unidad');
 define('TXT_VAL_IMPORT', 'Importar valores');
 define('TXT_VAL_CALCULAR', 'Calcular');
-define('TXT_VAL_CALC_DESCRIPCION', 'En indicadores calculados actualiza los valores recalculando');
+define('TXT_VAL_CALC_DESCRIPCION', 'En Indicadores calculados actualiza los valores recalculando');
 define('TXT_VAL_ACTIVO', 'Activo');
 define('TXT_VAL_INACTIVO', 'Inactivo');
 define('TXT_VAL_REF', 'Valores de referencia');
@@ -399,15 +399,15 @@ define('FIELD_COMENTARIOS', 'Comentarios');
 define('FIELD_ARCHIVO', 'Archivo');
 
 //Cuadros de Mando
-define('FIELD_CUADRO_MANDO', 'Cuadro de mando');
-define('FIELD_CUADROS_MANDO', 'Cuadros de mando');
+define('FIELD_CUADRO_MANDO', 'Cuadro de Mando');
+define('FIELD_CUADROS_MANDO', 'Cuadros de Mando');
 //Paneles de los Cuadros de Mando
 define('FIELD_ANYOS_ATRAS', 'Años atrás');
 define('FIELD_ANYO_FIN', 'Año de fin');
 
 //Datos
 define('FIELD_DATO', 'Dato');
-define('FIELD_FUENTE_DAT', 'Fuente de datos');
+define('FIELD_FUENTE_DAT', 'Fuente de Datos');
 define('FIELD_DATOS', 'Datos');
 
 //Entidades (Unidades)
@@ -422,7 +422,7 @@ define('FIELD_ANOTACION', 'Anotaciones');
 
 //Indicadores
 define('FIELD_INDIC', 'Indicador');
-define('FIELD_INDIC_TIPO', 'Tipo de indicador');
+define('FIELD_INDIC_TIPO', 'Tipo de Indicador');
 define('FIELD_INDIC_BASE', 'Indicador base');
 define('FIELD_INDIC_COMPLEMENT', 'Indicadores complementarios');
 define('FIELD_INDICS', 'Indicadores');
@@ -437,7 +437,7 @@ define('FIELD_EFQM', 'Criterios EFQM');
 define('FIELD_HISTORICO', 'Histórico');
 define('FIELD_ESTIMACION', 'Estimación');
 define('FIELD_CALCULO', 'Cálculo');
-define('FIELD_CALC_TOTAL', 'Cálculo del total entre subunidades');
+define('FIELD_CALC_TOTAL', 'Cálculo del total entre Subunidades');
 define('FIELD_CALC_TOTAL_ANUAL', 'Cálculo del total anual');
 define('FIELD_INTERVALO', 'Intervalo de valores [Vmin, Vmax]');
 define('FIELD_VALOR_MIN', 'Valor mínimo');
@@ -453,8 +453,8 @@ define('FIELD_TIP_MED', 'Tipo de medición');
 define('FIELD_PAG_CONTENIDO', 'Contenido de la página (HTML)');
 
 //Planes
-define('FIELD_PLAN', 'Plan estratégico');
-define('FIELD_PLANES', 'Planes estratégicos');
+define('FIELD_PLAN', 'Plan Estratégico');
+define('FIELD_PLANES', 'Planes Estratégicos');
 define('FIELD_ANYO_INICIO', 'Año de inicio');
 define('FIELD_DURACION', 'Duración (años)');
 define('FIELD_MISION', 'Misión');
@@ -464,29 +464,29 @@ define('FIELD_FCE', 'Factores clave del éxito');
 define('FIELD_EJECUCION', 'Ejecución');
 
 //Líneas
-define('FIELD_LINEA', 'Línea estratégica');
-define('FIELD_LINEAS', 'Líneas estratégicas');
+define('FIELD_LINEA', 'Línea Estratégica');
+define('FIELD_LINEAS', 'Líneas Estratégicas');
 define('FIELD_INDICE', 'Número');
 
 //Objetivos
-define('FIELD_OBJ_EST', 'Objetivo estratégico');
-define('FIELD_OBJ_OP', 'Objetivo operacional');
-define('FIELD_OBJS_EST', 'Objetivos estratégicos');
-define('FIELD_OBJS_OP', 'Objetivos operacionales');
+define('FIELD_OBJ_EST', 'Objetivo Estratégico');
+define('FIELD_OBJ_OP', 'Objetivo Operacional');
+define('FIELD_OBJS_EST', 'Objetivos Estratégicos');
+define('FIELD_OBJS_OP', 'Objetivos Operacionales');
 define('FIELD_PESO', 'Peso');
 
 //Procesos
 define('FIELD_PROC', 'Proceso');
 define('FIELD_PROCS', 'Procesos');
 define('FIELD_PROC_MADRE', 'Proceso madre');
-define('FIELD_TIPO_PROC', 'Tipo de proceso');
+define('FIELD_TIPO_PROC', 'Tipo de Proceso');
 define('FIELD_SUBPROCS', 'Subprocesos');
-define('FIELD_EQUIP_PROC', 'Equipo de proceso');
+define('FIELD_EQUIP_PROC', 'Equipo de Proceso');
 define('FIELD_RESULTS_CLAVE', 'Resultados Clave');
 define('FIELD_ENTRADAS_PROV', 'Entradas/Proveedores');
 define('FIELD_SALIDAS_CLIENTS', 'Salidas/Clientes');
 define('FIELD_ACTIVIDADES', 'Actividades');
-define('FIELD_VARS_CONTROL', 'Variables de control');
+define('FIELD_VARS_CONTROL', 'Variables de Control');
 define('FIELD_DOCUMENTACION', 'Documentación');
 
 //Usuarios
@@ -512,7 +512,7 @@ define('FIELD_VISIB_GRAFIC', 'Visible en gráfica');
 
 define('MSG_NO_DEF', 'No se han definido.');
 define('MSG_TOTAL_LINEAS', 'Total de líneas');
-define('MSG_LINEAS_NO_REF_INDIC', 'líneas que no referenciaban a ningún indicador.');
+define('MSG_LINEAS_NO_REF_INDIC', 'líneas que no referenciaban a ningún Indicador.');
 define('MSG_NO_MET_SOL', 'No existe el método solicitado.');
 define('MSG_ERR', 'Por favor inténtelo de nuevo, si el problema persiste póngase en contacto con nosotros en la dirección: ');
 define('MSG_CAMPO_REQ', 'Campo obligatorio');
@@ -520,8 +520,8 @@ define('MSG_BUSCAR_NO_RESUL', 'No existen resultados para la búsqueda solicitad
 define('MSG_BUSCAR_NO_TEXTO', 'No introdujo ningún texto para buscar.');
 define('MSG_NO_SESION', 'Su sesión ha expirado.');
 
-//Análisis y planes de acción
-define('MSG_ANAPLAN_NO', 'Todavía no se ha registrado ningún análisis ni plan de acción para el indicador. Utilice el selector de la parte superior y los cuadros de texto para ello.');
+//Análisis y Planes de acción
+define('MSG_ANAPLAN_NO', 'Todavía no se ha registrado ningún análisis ni Plan de acción para el Indicador. Utilice el selector de la parte superior y los cuadros de texto para ello.');
 
 //Archivos
 define('MSG_ARCHIVO_BORRAR_CONFIRM', 'Por favor, confirme si desea borrar el archivo');
@@ -529,78 +529,81 @@ define('MSG_ARCHIVO_SUBIDA_OK', 'Se ha subido correctamente el archivo.');
 define('MSG_ARCHIVO_BORRADO', 'Se ha eliminado con éxito el archivo.');
 define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
+//Cartas de Servicios
+define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
+
 //Consulta avanzada
 define('MSG_NO_CAL', 'No se puede calcular con los parámetros actuales.');
-define('MSG_NO_OPERANDOS', 'Todavía no se han añadido indicadores a la consulta.');
+define('MSG_NO_OPERANDOS', 'Todavía no se han añadido Indicadores a la consulta.');
 
 //Cuadros de Mando
-define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el cuadro de mando:');
-define('MSG_CUADRO_MANDO_CONFIRM_BORRAR', '¿Desea borrar el cuadro de mando?');
-define('MSG_CUADRO_MANDO_NO_PROPIO', 'No tiene ningún cuadro de mando propio todavía. Cree un nuevo cuadro de mando.');
-define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún cuadro de mando público todavía. Cree un nuevo cuadro de mando.');
-define('MSG_CUADRO_MANDO_BORRAR', 'No se puede borrar un cuadro de mando que contenga paneles. Bórrelos primero.');
-define('MSG_CUADRO_CREADO', 'Se ha creado un nuevo cuadro de mando.');
-define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el cuadro de mando.');
-define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este cuadro de mando, ¿está seguro?');
+define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el Cuadro de Mando:');
+define('MSG_CUADRO_MANDO_CONFIRM_BORRAR', '¿Desea borrar el Cuadro de Mando?');
+define('MSG_CUADRO_MANDO_NO_PROPIO', 'No tiene ningún Cuadro de Mando propio todavía. Cree un nuevo Cuadro de Mando.');
+define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún Cuadro de Mando público todavía. Cree un nuevo Cuadro de Mando.');
+define('MSG_CUADRO_MANDO_BORRAR', 'No se puede borrar un Cuadro de Mando que contenga paneles. Bórrelos primero.');
+define('MSG_CUADRO_CREADO', 'Se ha creado un nuevo Cuadro de Mando.');
+define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el Cuadro de Mando.');
+define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este Cuadro de Mando, ¿está seguro?');
 //Paneles de los Cuadros de Mando
-define('MSG_PANEL_NO_VAL', 'No hay valores recogidos para los indicadores de este panel.');
-define('MSG_PANEL_INDIC_UNID', 'Seleccione la unidad del indicador para la que desea ver sus valores:');
-define('MSG_PANEL_BORRAR', 'Va a borrar del cuadro de mando este panel, ¿está seguro?');
+define('MSG_PANEL_NO_VAL', 'No hay valores recogidos para los Indicadores de este panel.');
+define('MSG_PANEL_INDIC_UNID', 'Seleccione la Unidad del Indicador para la que desea ver sus valores:');
+define('MSG_PANEL_BORRAR', 'Va a borrar del Cuadro de Mando este panel, ¿está seguro?');
 define('MSG_PANEL_BORRADO', 'Se ha eliminado con éxito el panel seleccionado.');
 define('MSG_PANEL_CARGANDO', 'Cargando paneles, por favor espere.');
 define('MSG_PANEL_EDITADO', "Panel editado correctamente:");
-define('MSG_PANEL_CREADO', "Se ha añadido al cuadro de mando el siguiente panel:");
+define('MSG_PANEL_CREADO', "Se ha añadido al Cuadro de Mando el siguiente panel:");
 define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿está seguro?');
 
 //Entidades (Unidades)
-define('MSG_UNID_NO_PROC', 'No hay procesos definidos para esta unidad.');
-define('MSG_UNID_NO_MAPA', 'No existe un mapa de procesos definido para esta unidad.');
-define('MSG_UNID_NO_ARCHIVOS', 'No se han subido archivos en esta unidad.');
-define('MSG_UNID_NO_USERS', 'No se han vinculado usuarios a esta unidad.');
+define('MSG_UNID_NO_PROC', 'No hay Procesos definidos para esta Unidad.');
+define('MSG_UNID_NO_MAPA', 'No existe un mapa de Procesos definido para esta Unidad.');
+define('MSG_UNID_NO_ARCHIVOS', 'No se han subido archivos en esta Unidad.');
+define('MSG_UNID_NO_USERS', 'No se han vinculado usuarios a esta Unidad.');
 define('MSG_UNID_USERS_TODOS', 'Todos los usuarios disponibles están asignados.');
-define('MSG_UNID_USERS_BORRADOS', 'Se han eliminado de la unidad');
-define('MSG_UNID_USERS_AGREGADOS', 'Se han agregado a la unidad');
-define('MSG_UNID_CONFIRM_EDITAR', 'Va a editar esta unidad, ¿está seguro?');
-define('MSG_UNID_EDITADA', 'La unidad se ha modificado con los datos que aparecen a continuación.');
-define('MSG_UNID_NO_INDIC', 'No hay indicadores activos en esta unidad.');
-define('MSG_UNID_NO_INDIC_PROC', 'No hay indicadores (proceso) activos en esta unidad.');
-define('MSG_UNID_NO_INDIC_CONTROL', 'No hay indicadores (control) activos en esta unidad.');
-define('MSG_UNID_NO_DATOS', 'No hay indicadores (datos) activos en esta unidad.');
-define('MSG_UNID_NO_INDIC_ARCHIVADOS', 'No hay indicadores archivados en esta unidad.');
-define('MSG_UNID_NO_DATO_ARCHIVADOS', 'No hay datos archivados en esta unidad.');
-define('MSG_UNID_NO_CUADROS', 'No hay cuadros de mando definidos para esta unidad.');
-define('MSG_UNID_NO_PLANES', 'No hay planes estratégicos definidos para esta unidad.');
-define('MSG_UNID_NO_IND_NO_DAT', 'No hay indicadores ni datos definidos para esta unidad.');
-define('MSG_UNID_NO_SUBUNIDS', 'Esta unidad no tiene subunidades.');
-define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna unidad.');
-define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen unidades orgánicas.');
+define('MSG_UNID_USERS_BORRADOS', 'Se han eliminado de la Unidad');
+define('MSG_UNID_USERS_AGREGADOS', 'Se han agregado a la Unidad');
+define('MSG_UNID_CONFIRM_EDITAR', 'Va a editar esta Unidad, ¿está seguro?');
+define('MSG_UNID_EDITADA', 'La Unidad se ha modificado con los datos que aparecen a continuación.');
+define('MSG_UNID_NO_INDIC', 'No hay Indicadores activos en esta Unidad.');
+define('MSG_UNID_NO_INDIC_PROC', 'No hay Indicadores (Proceso) activos en esta Unidad.');
+define('MSG_UNID_NO_INDIC_CONTROL', 'No hay Indicadores (Control) activos en esta Unidad.');
+define('MSG_UNID_NO_DATOS', 'No hay Indicadores (Datos) activos en esta Unidad.');
+define('MSG_UNID_NO_INDIC_ARCHIVADOS', 'No hay Indicadores archivados en esta Unidad.');
+define('MSG_UNID_NO_DATO_ARCHIVADOS', 'No hay Datos archivados en esta Unidad.');
+define('MSG_UNID_NO_CUADROS', 'No hay Cuadros de Mando definidos para esta Unidad.');
+define('MSG_UNID_NO_PLANES', 'No hay Planes Estratégicos definidos para esta Unidad.');
+define('MSG_UNID_NO_IND_NO_DAT', 'No hay Indicadores ni Datos definidos para esta Unidad.');
+define('MSG_UNID_NO_SUBUNIDS', 'Esta Unidad no tiene Subunidades.');
+define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna Unidad.');
+define('MSG_UNIDS_NO_EXISTEN', 'Actualmente, no existen Unidades orgánicas.');
 
 //Indicadores
-define('MSG_INDICS_NO', 'No hay indicadores activos.');
-define('MSG_INDICS_NO_PROC', 'No hay indicadores (proceso) activos.');
-define('MSG_INDICS_NO_CONTROL', 'No hay indicadores (control) activos.');
-define('MSG_INDICS_NO_DATOS', 'No hay indicadores (datos) activos.');
-define('MSG_INDICS_NO_ARCHIVADOS', 'No hay indicadores archivados.');
-define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este indicador (corregir).');
-define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este indicador.');
-define('MSG_INDIC_NO_VAL_PERIODO', 'No hay valores recogidos para este indicador durante el período establecido.');
-define('MSG_INDIC_CREADO', 'Se ha creado un nuevo indicador.');
-define('MSG_INDIC_NO_ENC', 'No se han encontrado indicadores.');
-define('MSG_INDIC_CONFIRM_ARCHIVAR', 'El indicador quedará archivado pero no se eliminará, ¿realmente desea archivar este indicador?');
-define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este indicador?');
-define('MSG_INDIC_CONFIRM_RESTAURAR', '¿Realmente quiere restaurar este indicador?');
-define('MSG_INDIC_CONFIRM_EDITAR', 'Va a editar este indicador, ¿está seguro?');
-define('MSG_INDIC_BORRADO', 'Se ha borrado el indicador: ');
-define('MSG_INDIC_ARCHIVADO', 'Se ha archivado el indicador: ');
-define('MSG_INDIC_RESTAURADO', 'Se ha restaurado el indicador: ');
-define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los datos del indicador.');
-define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para este indicador.');
-define('MSG_INDIC_NO_MED', 'Todavía no se han creado mediciones para este indicador.');
-define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del indicador. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
-define('MSG_INDIC_NO_ASIG', 'No dispone de indicadores bajo su responsabilidad.');
+define('MSG_INDICS_NO', 'No hay Indicadores activos.');
+define('MSG_INDICS_NO_PROC', 'No hay Indicadores (Proceso) activos.');
+define('MSG_INDICS_NO_CONTROL', 'No hay Indicadores (Control) activos.');
+define('MSG_INDICS_NO_DATOS', 'No hay Indicadores (Datos) activos.');
+define('MSG_INDICS_NO_ARCHIVADOS', 'No hay Indicadores archivados.');
+define('MSG_INDIC_NO_SUBUNID_ASIG', 'No se han asignado Unidad/Subunidades a este Indicador (corregir).');
+define('MSG_INDIC_NO_VAL', 'No hay valores recogidos para este Indicador.');
+define('MSG_INDIC_NO_VAL_PERIODO', 'No hay valores recogidos para este Indicador durante el período establecido.');
+define('MSG_INDIC_CREADO', 'Se ha creado un nuevo Indicador.');
+define('MSG_INDIC_NO_ENC', 'No se han encontrado Indicadores.');
+define('MSG_INDIC_CONFIRM_ARCHIVAR', 'El Indicador quedará archivado pero no se eliminará, ¿realmente desea archivar este Indicador?');
+define('MSG_INDIC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Indicador?');
+define('MSG_INDIC_CONFIRM_RESTAURAR', '¿Realmente quiere restaurar este Indicador?');
+define('MSG_INDIC_CONFIRM_EDITAR', 'Va a editar este Indicador, ¿está seguro?');
+define('MSG_INDIC_BORRADO', 'Se ha borrado el Indicador: ');
+define('MSG_INDIC_ARCHIVADO', 'Se ha archivado el Indicador: ');
+define('MSG_INDIC_RESTAURADO', 'Se ha restaurado el Indicador: ');
+define('MSG_INDIC_ACTUALIZADO', 'Se han actualizado los datos del Indicador.');
+define('MSG_INDIC_NO_VAL_REF', 'No se han definido valores de referencia para este Indicador.');
+define('MSG_INDIC_NO_MED', 'Todavía no se han creado mediciones para este Indicador.');
+define('MSG_INDIC_PERIODICIDAD', 'IMPORTANTE: Cambió la periodicidad del Indicador. Por favor, revise las mediciones: borre aquellas que considere no válidas.');
+define('MSG_INDIC_NO_ASIG', 'No dispone de Indicadores bajo su responsabilidad.');
 
 //Mediciones
-define('MSG_MED_NO_REBIUN', 'No se han generado las mediciones del año anterior para los datos Rebiun. Por favor, genere antes las mediciones.');
+define('MSG_MED_NO_REBIUN', 'No se han generado las mediciones del año anterior para los Datos Rebiun. Por favor, genere antes las mediciones.');
 define('MSG_MED_NO_ASIG', 'No tiene asignada ninguna medición.');
 define('MSG_MED_BORRADA', 'La/s medición/es se ha/n borrado con éxito.');
 define('MSG_MED_CONFIRM_BORRAR', 'Confirme si desea borrar esta medición. Recuerde que se borrarán los valores y los valores de referencia recogidos para esta medición.');
@@ -609,18 +612,18 @@ define('MSG_MEDS_GRABADAS', 'Mediciones grabadas');
 define('MSG_MED_ETIQUETA_NULA', 'La etiqueta no puede estar vacía. Puede restituir el valor anterior pulsando el icono "X" (cancelar).');
 define('MSG_MED_VAL_NO_PERIODO', 'No se pueden grabar valores, esta fuera del periodo de grabación:');
 define('MSG_MED_VAL_NULO', 'Está intentando introducir un valor vacío. Puede restituir el valor anterior pulsando el icono "X" (cancelar). Puede dejarlo en blanco (nulo) introduciendo tres guiones seguidos (---).');
-define('MSG_MED_VAL_INTERVALO', 'Debe insertar un valor que esté dentro del intervalo de valores permitidos por el indicador:');
+define('MSG_MED_VAL_INTERVALO', 'Debe insertar un valor que esté dentro del intervalo de valores permitidos por el Indicador:');
 define('MSG_MED_VAL_NOMUM', 'Está intentando introducir un dato que no es reconocido como número.');
-define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de indicadores que no pertenecen a la Unidad actual.');
+define('MSG_MEDS_INDIC_NO_UNID', 'Mediciones en la muestra, de Indicadores que no pertenecen a la Unidad actual.');
 define('MSG_MED_CREADA', 'Se ha agregado correctamente una nueva medición. Unidades afectadas: ');
-define('MSG_MED_CREAR', 'Esta acción, creará automáticamente todas las mediciones (si no existen), desde el inicio del año seleccionado (mínimo = año del histórico) hasta el fin del año actual. Tomará algun tiempo en función del año seleccionado y la periodicidad del indicador, ¿está seguro?');
-define('MSG_MED_CARGAR', 'Esta acción, cargará la cantidad indicada de registros de las mediciones del indicador. Tomará algo de tiempo en función del número de registros seleccionado, ¿está seguro?');
+define('MSG_MED_CREAR', 'Esta acción, creará automáticamente todas las mediciones (si no existen), desde el inicio del año seleccionado (mínimo = año del histórico) hasta el fin del año actual. Tomará algun tiempo en función del año seleccionado y la periodicidad del Indicador, ¿está seguro?');
+define('MSG_MED_CARGAR', 'Esta acción, cargará la cantidad indicada de registros de las mediciones del Indicador. Tomará algo de tiempo en función del número de registros seleccionado, ¿está seguro?');
 define('MSG_MED_GENERANDO', 'Generando mediciones... espere por favor.');
 define('MSG_MED_CARGANDO', 'Cargando mediciones... espere por favor.');
 define('MSG_MED_GENERADA', 'Se ha/n generado correctamente todas la/s medición/es.');
 define('MSG_MED_EXISTE', 'Se ha/n generado sólo la/s medición/es no existente/s desde el año seleccionado.');
 define('MSG_MEDS_NO_MARCADAS', 'No se ha marcado ninguna medición para borrar.');
-define('MSG_MED_RESP_ARCHIVADO', 'No se pueden editar responsables de medición en indicadores archivados. Restaure primero el indicador.');
+define('MSG_MED_RESP_ARCHIVADO', 'No se pueden editar responsables de medición en Indicadores archivados. Restaure primero el Indicador.');
 
 //Páginas
 define('MSG_PAG_NUEVA_OK', 'La página se ha creado correctamente.');
@@ -628,71 +631,71 @@ define('MSG_PAG_CONFIRM_EDITAR', 'Va a editar esta página, ¿está seguro?');
 define('MSG_PAG_EDIT_OK', 'La página se ha modificado correctamente.');
 
 //Planes
-define('MSG_PLANES_NO', 'No hay planes estratégicos definidos para ninguna unidad.');
-define('MSG_PLAN_CONFIRM_BORRAR', '¿Realmente quiere borrar este plan?');
-define('MSG_PLAN_CREADO', 'Se ha creado un nuevo plan estratégico para esta unidad.');
-define('MSG_PLAN_EDITADO', 'Se ha editado el plan correctamente.');
-define('MSG_PLAN_CONFIRM_EDITAR', 'Va a editar este plan, ¿está seguro?');
-define('MSG_PLAN_BORRADO', 'Se ha eliminado el plan estratégico:');
-define('MSG_PLAN_BORRAR', 'No tiene permisos para borrar el plan o éste todavía contiene líneas estratégicas. Bórrelas primero.');
-define('MSG_PLAN_NO_LINEAS', 'No hay líneas estratégicas definidas para este plan.');
-define('MSG_PLAN_NO_OBJEST', 'No hay objetivos estratégicos definidos para las líneas estratégicas del plan.');
-define('MSG_PLAN_NO_OBJOP', 'No hay objetivos operacionales definidos para los objetivos estratégicos de las líneas estratégicas del plan.');
-define('MSG_PLAN_NO_ARCHIVOS', 'No se han subido archivos para este plan estratégico.');
+define('MSG_PLANES_NO', 'No hay Planes Estratégicos definidos para ninguna Unidad.');
+define('MSG_PLAN_CONFIRM_BORRAR', '¿Realmente quiere borrar este Plan?');
+define('MSG_PLAN_CREADO', 'Se ha creado un nuevo Plan Estratégico para esta Unidad.');
+define('MSG_PLAN_EDITADO', 'Se ha editado el Plan correctamente.');
+define('MSG_PLAN_CONFIRM_EDITAR', 'Va a editar este Plan, ¿está seguro?');
+define('MSG_PLAN_BORRADO', 'Se ha eliminado el Plan Estratégico:');
+define('MSG_PLAN_BORRAR', 'No tiene permisos para borrar el Plan o éste todavía contiene Líneas Estratégicas. Bórrelas primero.');
+define('MSG_PLAN_NO_LINEAS', 'No hay Líneas Estratégicas definidas para este Plan.');
+define('MSG_PLAN_NO_OBJEST', 'No hay Objetivos Estratégicos definidos para las Líneas Estratégicas del Plan.');
+define('MSG_PLAN_NO_OBJOP', 'No hay Objetivos Operacionales definidos para los Objetivos Estratégicos de las Líneas Estratégicas del Plan.');
+define('MSG_PLAN_NO_ARCHIVOS', 'No se han subido archivos para este Plan Estratégico.');
 
 //Líneas
-define('MSG_LINEA_CONFIRM_BORRAR', '¿Realmente quiere borrar esta línea?');
-define('MSG_LINEA_CREADA', 'Se ha creado una nueva línea estratégica para este plan.');
-define('MSG_LINEA_EDITADA', 'Se ha editado la línea correctamente.');
-define('MSG_LINEA_CONFIRM_EDITAR', 'Va a editar esta línea, ¿está seguro?');
-define('MSG_LINEA_BORRADA', 'Se ha eliminado la línea estratégica:');
-define('MSG_LINEA_BORRAR', 'No tiene permisos para borrar la línea o ésta todavía contiene objetivos estratégicos. Bórrelos primero.');
-define('MSG_LINEA_NO_OBJEST', 'No hay objetivos estratégicos definidos para esta línea estratégica del plan.');
-define('MSG_LINEA_NO_OBJOP', 'No hay objetivos operacionales definidos para los objetivos estratégicos de esta línea estratégica del plan.');
+define('MSG_LINEA_CONFIRM_BORRAR', '¿Realmente quiere borrar esta Línea?');
+define('MSG_LINEA_CREADA', 'Se ha creado una nueva Línea Estratégica para este Plan.');
+define('MSG_LINEA_EDITADA', 'Se ha editado la Línea correctamente.');
+define('MSG_LINEA_CONFIRM_EDITAR', 'Va a editar esta Línea, ¿está seguro?');
+define('MSG_LINEA_BORRADA', 'Se ha eliminado la Línea Estratégica:');
+define('MSG_LINEA_BORRAR', 'No tiene permisos para borrar la Línea o ésta todavía contiene Objetivos Estratégicos. Bórrelos primero.');
+define('MSG_LINEA_NO_OBJEST', 'No hay Objetivos Estratégicos definidos para esta Línea Estratégica del Plan.');
+define('MSG_LINEA_NO_OBJOP', 'No hay Objetivos Operacionales definidos para los Objetivos Estratégicos de esta Línea Estratégica del Plan.');
 
 //Objetivos Estratégicos
-define('MSG_OBJEST_CONFIRM_BORRAR', '¿Realmente quiere borrar este objetivo estratégico?');
-define('MSG_OBJEST_CREADO', 'Se ha creado un nuevo objetivo estratégico para esta línea del plan:');
-define('MSG_OBJEST_EDITADO', 'Se ha editado el objetivo estratégico correctamente.');
-define('MSG_OBJEST_CONFIRM_EDITAR', 'Va a editar este objetivo estratégico, ¿está seguro?');
-define('MSG_OBJEST_BORRADO', 'Se ha eliminado el objetivo estratégico:');
-define('MSG_OBJEST_BORRAR', 'No tiene permisos para borrar el objetivo estratégico o éste todavía contiene objetivos operacionales. Bórrelos primero.');
-define('MSG_OBJEST_NO_OBJOP', 'No hay objetivos operacionales definidos para este objetivo estratégico de esta línea estratégica del plan.');
+define('MSG_OBJEST_CONFIRM_BORRAR', '¿Realmente quiere borrar este Objetivo Estratégico?');
+define('MSG_OBJEST_CREADO', 'Se ha creado un nuevo Objetivo Estratégico para esta Línea del Plan:');
+define('MSG_OBJEST_EDITADO', 'Se ha editado el Objetivo Estratégico correctamente.');
+define('MSG_OBJEST_CONFIRM_EDITAR', 'Va a editar este Objetivo Estratégico, ¿está seguro?');
+define('MSG_OBJEST_BORRADO', 'Se ha eliminado el Objetivo Estratégico:');
+define('MSG_OBJEST_BORRAR', 'No tiene permisos para borrar el Objetivo Estratégico o éste todavía contiene Objetivos Operacionales. Bórrelos primero.');
+define('MSG_OBJEST_NO_OBJOP', 'No hay Objetivos Operacionales definidos para este Objetivo Estratégico de esta Línea Estratégica del Plan.');
 
 //Objetivos Operacionales
-define('MSG_OBJOP_CONFIRM_BORRAR', '¿Realmente quiere borrar este objetivo operacional?');
-define('MSG_OBJOP_CREADO', 'Se ha creado un nuevo objetivo operacional para el actual objetivo estratégico:');
-define('MSG_OBJOP_EDITADO', 'Se ha editado el objetivo operacional correctamente.');
-define('MSG_OBJOP_CONFIRM_EDITAR', 'Va a editar este objetivo operacional, ¿está seguro?');
-define('MSG_OBJOP_BORRADO', 'Se ha eliminado el objetivo operacional:');
-define('MSG_OBJOP_BORRAR', 'No tiene permisos para borrar el objetivo operacional.');
-define('MSG_OBJOP_NO_INDICS_CORREL', 'No se han definido los indicadores de correlación para este objetivo operacional.');
-define('MSG_OBJOP_NO_INDICS_CONTROL', 'No se han definido los indicadores de control para este objetivo operacional.');
+define('MSG_OBJOP_CONFIRM_BORRAR', '¿Realmente quiere borrar este Objetivo Operacional?');
+define('MSG_OBJOP_CREADO', 'Se ha creado un nuevo Objetivo Operacional para el actual Objetivo Estratégico:');
+define('MSG_OBJOP_EDITADO', 'Se ha editado el Objetivo Operacional correctamente.');
+define('MSG_OBJOP_CONFIRM_EDITAR', 'Va a editar este Objetivo Operacional, ¿está seguro?');
+define('MSG_OBJOP_BORRADO', 'Se ha eliminado el Objetivo Operacional:');
+define('MSG_OBJOP_BORRAR', 'No tiene permisos para borrar el Objetivo Operacional.');
+define('MSG_OBJOP_NO_INDICS_CORREL', 'No se han definido los Indicadores de Correlación para este Objetivo Operacional.');
+define('MSG_OBJOP_NO_INDICS_CONTROL', 'No se han definido los Indicadores de Control para este Objetivo Operacional.');
 define('MSG_OBJOP_VALOR_EJ', 'Debe introducir un valor para la ejecución entre 0 y 100 (%).');
-define('MSG_OBJOP_NO_SUBUNID_ASIG', 'No se han asignado unidad/subunidades a este objetivo operacional (corregir).');
-define('MSG_OBJOP_NO_ASIG', 'No dispone de objetivos operacionales bajo su responsabilidad.');
+define('MSG_OBJOP_NO_SUBUNID_ASIG', 'No se han asignado Unidad/Subunidades a este Objetivo Operacional (corregir).');
+define('MSG_OBJOP_NO_ASIG', 'No dispone de Objetivos Operacionales bajo su responsabilidad.');
 
 //Procesos
-define('MSG_PROCS_NO', 'No hay procesos definidos para ninguna unidad.');
-define('MSG_PROC_NO_ASIG', 'No dispone de procesos en propiedad.');
-define('MSG_PROC_NO_SUBPROCS', 'Este proceso no tiene subprocesos.');
-define('MSG_PROC_NO_FLUJO', 'Este proceso no tiene flujograma. Suba el archivo de imagen correspondiente y defina su descripción como flujograma.');
-define('MSG_PROC_BORRADO', 'Se ha borrado el proceso: ');
-define('MSG_PROC_CONFIRM_EDITAR', 'Va a editar este proceso, ¿está seguro?');
-define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este proceso?');
-define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo proceso para esta unidad.');
-define('MSG_PROC_EDITADO', 'Se ha modificado el proceso correctamente.');
-define('MSG_PROC_NO_INDIC', 'No se ha definido ningún indicador para este proceso.');
-define('MSG_PROC_NO_INDIC_ARCHIVADOS', 'No hay indicadores archivados en este proceso.');
-define('MSG_PROC_NO_ARCHIVOS', 'No se han subido archivos para este proceso.');
-define('MSG_PROC_MAPA', 'Para agregar/editar el mapa de procesos de su unidad, póngase en contacto con nosotros a través de la dirección: ');
+define('MSG_PROCS_NO', 'No hay Procesos definidos para ninguna Unidad.');
+define('MSG_PROC_NO_ASIG', 'No dispone de Procesos en propiedad.');
+define('MSG_PROC_NO_SUBPROCS', 'Este Proceso no tiene subprocesos.');
+define('MSG_PROC_NO_FLUJO', 'Este Proceso no tiene flujograma. Suba el archivo de imagen correspondiente y defina su descripción como flujograma.');
+define('MSG_PROC_BORRADO', 'Se ha borrado el Proceso: ');
+define('MSG_PROC_CONFIRM_EDITAR', 'Va a editar este Proceso, ¿está seguro?');
+define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Proceso?');
+define('MSG_PROC_GRABAR', 'Se ha grabado un nuevo Proceso para esta Unidad.');
+define('MSG_PROC_EDITADO', 'Se ha modificado el Proceso correctamente.');
+define('MSG_PROC_NO_INDIC', 'No se ha definido ningún Indicador para este Proceso.');
+define('MSG_PROC_NO_INDIC_ARCHIVADOS', 'No hay Indicadores archivados en este Proceso.');
+define('MSG_PROC_NO_ARCHIVOS', 'No se han subido archivos para este Proceso.');
+define('MSG_PROC_MAPA', 'Para agregar/editar el mapa de Procesos de su Unidad, póngase en contacto con nosotros a través de la dirección: ');
 
 //Usuarios
 define('MSG_USER_CREADO', 'Se ha creado un nuevo usuario en el sistema.');
 define('MSG_USER_EDITADO', 'El usuario se ha modificado correctamente.');
 define('MSG_USER_CONFIRM_EDITAR', 'Va a editar este usuario, ¿está seguro?');
-define('MSG_USERS_CONFIRM_VINC', '¿Desea vincular a la unidad los usuarios marcados?');
-define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la unidad los usuarios marcados?');
+define('MSG_USERS_CONFIRM_VINC', '¿Desea vincular a la Unidad los usuarios marcados?');
+define('MSG_USERS_CONFIRM_DESVINC', '¿Desea desvincular de la Unidad los usuarios marcados?');
 define('MSG_USERS_NO_MARCADOS', 'No se ha marcado ningun usuario.');
 
 //Valores
@@ -708,18 +711,18 @@ define('MSG_VALS_REF_NO_MARCADOS', 'No se ha marcado ningún valor de referencia
 define('MSG_VALS_REF_STATUS', 'Cree valores de referencia con el nombre "Meta" (color verde) y/o "Límite" (color rojo) para activar el control del status por colores en las mediciones.');
 define('MSG_VALS_DESACT', 'Se han desactivado:');
 define('MSG_VALS_NO_MARCADOS', 'No se ha seleccionado ningún valor para desactivar.');
-define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en indicadores archivados. Restaure primero el indicador.');
+define('MSG_VAL_ARCHIVADO', 'No se pueden editar valores en Indicadores archivados. Restaure primero el Indicador.');
 
 //Control
-define('MSG_CONTROL_MED_INFO', 'El control de mediciones se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los indicadores bajo su responsabilidad o todos si también es responsable de la Unidad.');
-define('MSG_CONTROL_EFQM_INFO', 'El control EFQM se muestra por criterios. Seleccione un criterio en el desplegable para visualizar los resultados. Aparecerán los indicadores asociados a dicho criterio.');
-define('MSG_CONTROL_EFQM_NO_RESUL', 'No se ha seleccionado ningún criterio EFQM o no existen indicadores/datos para los criterios seleccionados.');
-define('MSG_CONTROL_NO_RESPONSABLE', 'Usted no es responsable de esta unidad y tampoco de ningún proceso o indicador de la misma.');
+define('MSG_CONTROL_MED_INFO', 'El control de mediciones se muestra por años. Seleccione un año en el desplegable para visualizar los resultados. Sólo aparecerán los Indicadores bajo su responsabilidad o todos si también es responsable de la Unidad.');
+define('MSG_CONTROL_EFQM_INFO', 'El control EFQM se muestra por criterios. Seleccione un criterio en el desplegable para visualizar los resultados. Aparecerán los Indicadores asociados a dicho criterio.');
+define('MSG_CONTROL_EFQM_NO_RESUL', 'No se ha seleccionado ningún criterio EFQM o no existen Indicadores/Datos para los criterios seleccionados.');
+define('MSG_CONTROL_NO_RESPONSABLE', 'Usted no es responsable de esta Unidad y tampoco de ningún Proceso o Indicador de la misma.');
 define('MSG_CONTROL_CARGA', 'Cargando datos de control, por favor espere.');
-define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado indicadores con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');
+define('MSG_CONTROL_NO_MED_NULO', 'No se ha encontrado Indicadores con mediciones nulas para el año seleccionado, o no existen mediciones para este año.');
 define('MSG_CONTROL_NO_VAL', 'No existen mediciones o no se han grabado valores durante el año seleccionado.');
 define('MSG_CONTROL_NO_MED', 'No se han creado mediciones para el año seleccionado.');
-define('MSG_CONTROL_MED', 'No existen indicadores sin mediciones para el año seleccionado.');
+define('MSG_CONTROL_MED', 'No existen Indicadores sin mediciones para el año seleccionado.');
 
 //----------------------------------------------------------------------------------
 //ERRORES: ERR_[Nombre]
@@ -747,55 +750,55 @@ define('ERR_ARCHIVO_SUBIR', 'No se ha podido subir el archivo, consulte al admin
 define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.');
 
 //Cuadros de Mando
-define('ERR_CUAD_MANDO', 'El cuadro de mando no existe o no tiene permisos para consultarlo.');
-define('ERR_CUAD_MANDO_EDIT', 'El cuadro de mando no existe o no tiene permisos para editarlo.');
+define('ERR_CUAD_MANDO', 'El Cuadro de Mando no existe o no tiene permisos para consultarlo.');
+define('ERR_CUAD_MANDO_EDIT', 'El Cuadro de Mando no existe o no tiene permisos para editarlo.');
 //Paneles
-define('ERR_PANEL_VAL_ORDEN', 'Ya existe un panel con el mismo orden en este cuadro de mando.');
+define('ERR_PANEL_VAL_ORDEN', 'Ya existe un panel con el mismo orden en este Cuadro de Mando.');
 
 //Entidades (Unidades)
-define('ERR_UNID_MOSTRAR', 'No se puede mostrar la unidad, el identificador no existe en la base de datos.');
-define('ERR_UNID_EDIT', 'No se ha podido modificar la unidad.');
+define('ERR_UNID_MOSTRAR', 'No se puede mostrar la Unidad, el identificador no existe en la base de datos.');
+define('ERR_UNID_EDIT', 'No se ha podido modificar la Unidad.');
 
 //Indicadores
-define('ERR_INDIC_BORRAR_MED', 'Tiene mediciones asociadas al indicador, necesita borrar primero las mediciones.');
-define('ERR_INDIC_BORRAR_DEP', 'Este indicador influye en el cálculo de otros indicadores. Debe eliminar éstos primero.');
-define('ERR_INDIC_ARCHIVAR_DEP', 'Este indicador influye en el cálculo de otros indicadores. Debe archivar éstos primero.');
-define('ERR_INDIC_BORRAR_OBJOP', 'No se puede borrar el indicador, está asociado al menos con un objetivo operacional de un plan estratégico.');
-define('ERR_INDIC_BORRAR_PANEL', 'No se puede borrar el indicador, está asociado al menos con un panel de los cuadros de mando. Debe quitarse antes del panel.');
-define('ERR_INDIC_GRABAR', 'No se ha podido grabar el indicador.');
-define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el indicador, el identificador no existe en la base de datos.');
+define('ERR_INDIC_BORRAR_MED', 'Tiene mediciones asociadas al Indicador, necesita borrar primero las mediciones.');
+define('ERR_INDIC_BORRAR_DEP', 'Este Indicador influye en el cálculo de otros Indicadores. Debe eliminar éstos primero.');
+define('ERR_INDIC_ARCHIVAR_DEP', 'Este Indicador influye en el cálculo de otros Indicadores. Debe archivar éstos primero.');
+define('ERR_INDIC_BORRAR_OBJOP', 'No se puede borrar el Indicador, está asociado al menos con un Objetivo Operacional de un Plan Estratégico.');
+define('ERR_INDIC_BORRAR_PANEL', 'No se puede borrar el Indicador, está asociado al menos con un panel de los Cuadros de Mando. Debe quitarse antes del panel.');
+define('ERR_INDIC_GRABAR', 'No se ha podido grabar el Indicador.');
+define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el Indicador, el identificador no existe en la base de datos.');
 
 //Mediciones
 define('ERR_MED_MOSTRAR', 'No se puede mostrar la medicion, el identificador no existe en la base de datos.');
 define('ERR_MED_NO_VAL', 'No existen valores pendientes ni recogidos para esta medición.');
 define('ERR_MED_GRABAR', 'Ha ocurrido un error al grabar la medición, inténtelo de nuevo o contacte con los administradores de icasus.');
-define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el cálculo de otros indicadores. Borre éstos primero');
+define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el cálculo de otros Indicadores. Borre éstos primero');
 define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables.');
 
 //Planes
-define('ERR_PLAN_MOSTRAR', 'No se puede mostrar el plan, el identificador no existe en la base de datos.');
-define('ERR_PLAN_EDIT', 'El plan estratégico no existe o no tiene permisos para editarlo.');
-define('ERR_PLAN_VAL_ANYO', 'Ya existe un plan con el mismo año de inicio.');
+define('ERR_PLAN_MOSTRAR', 'No se puede mostrar el Plan, el identificador no existe en la base de datos.');
+define('ERR_PLAN_EDIT', 'El Plan Estratégico no existe o no tiene permisos para editarlo.');
+define('ERR_PLAN_VAL_ANYO', 'Ya existe un Plan con el mismo año de inicio.');
 
 //Líneas
-define('ERR_LINEA_MOSTRAR', 'No se puede mostrar la línea, el identificador no existe en la base de datos.');
-define('ERR_LINEA_EDIT', 'La línea estratégica no existe o no tiene permisos para editarla.');
-define('ERR_LINEA_VAL_INDICE', 'Ya existe una línea con el mismo índice para este plan.');
+define('ERR_LINEA_MOSTRAR', 'No se puede mostrar la Línea, el identificador no existe en la base de datos.');
+define('ERR_LINEA_EDIT', 'La Línea Estratégica no existe o no tiene permisos para editarla.');
+define('ERR_LINEA_VAL_INDICE', 'Ya existe una Línea con el mismo índice para este Plan.');
 
 //Objeticos Estratégicos
-define('ERR_OBJEST_MOSTRAR', 'No se puede mostrar el objetivo estratégico, el identificador no existe en la base de datos.');
-define('ERR_OBJEST_EDIT', 'El objetivo estratégico no existe o no tiene permisos para editarlo.');
-define('ERR_OBJEST_VAL_INDICE', 'Ya existe un objetivo estratégico con el mismo índice para esta línea del plan.');
+define('ERR_OBJEST_MOSTRAR', 'No se puede mostrar el Objetivo Estratégico, el identificador no existe en la base de datos.');
+define('ERR_OBJEST_EDIT', 'El Objetivo Estratégico no existe o no tiene permisos para editarlo.');
+define('ERR_OBJEST_VAL_INDICE', 'Ya existe un Objetivo Estratégico con el mismo índice para esta Línea del Plan.');
 
 //Objeticos Operacionales
-define('ERR_OBJOP_MOSTRAR', 'No se puede mostrar el objetivo operacional, el identificador no existe en la base de datos.');
-define('ERR_OBJOP_EDIT', 'El objetivo operacional no existe o no tiene permisos para editarlo.');
-define('ERR_OBJOP_VAL_INDICE', 'Ya existe un objetivo operacional con el mismo índice para este objetivo estratégico de esta línea del plan.');
+define('ERR_OBJOP_MOSTRAR', 'No se puede mostrar el Objetivo Operacional, el identificador no existe en la base de datos.');
+define('ERR_OBJOP_EDIT', 'El Objetivo Operacional no existe o no tiene permisos para editarlo.');
+define('ERR_OBJOP_VAL_INDICE', 'Ya existe un Objetivo Operacional con el mismo índice para este Objetivo Estratégico de esta Línea del Plan.');
 
 //Procesos
-define('ERR_PROC_MOSTRAR', 'No se puede mostrar el proceso, el identificador no existe en la base de datos.');
-define('ERR_PROC_BORRAR', 'Tiene indicadores asociados al proceso, necesita borrar primero los indicadores.');
-define('ERR_PROC_GRABAR', 'Ha ocurrido un error al grabar el proceso.');
+define('ERR_PROC_MOSTRAR', 'No se puede mostrar el Proceso, el identificador no existe en la base de datos.');
+define('ERR_PROC_BORRAR', 'Tiene Indicadores asociados al Proceso, necesita borrar primero los Indicadores.');
+define('ERR_PROC_GRABAR', 'Ha ocurrido un error al grabar el Proceso.');
 
 //Usuarios
 define('ERR_USER_MOSTRAR', 'No se puede mostrar el usuario, el identificador no existe en la base de datos.');
