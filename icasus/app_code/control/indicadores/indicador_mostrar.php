@@ -73,13 +73,16 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
     $smarty->assign('permiso_proceso', $permiso_proceso);
 
     //Objetivo operacional de indicadores de control
-    $objop = new ObjetivoOperacional();
+    $objops = array();
     $objetivo_indicador = new ObjetivoIndicador();
-    if ($objetivo_indicador->load("id_indicador=$id_indicador AND control=1"))
+    $objetivos_indicadores = $objetivo_indicador->Find("id_indicador=$id_indicador AND control=1");
+    foreach ($objetivos_indicadores as $obj_ind)
     {
-        $objop->load("id=$objetivo_indicador->id_objop");
-        $smarty->assign('objop', $objop);
+        $objop = new ObjetivoOperacional();
+        $objop->load("id=$obj_ind->id_objop");
+        array_push($objops, $objop);
     }
+    $smarty->assign('objops', $objops);
 
     //Responsables
     $responsable = false;

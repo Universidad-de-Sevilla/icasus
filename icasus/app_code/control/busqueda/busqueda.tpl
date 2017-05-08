@@ -53,6 +53,9 @@
                 <li id="tab_objops" role="presentation">
                     <a href="#objops" title="{$smarty.const.FIELD_OBJS_OP}" aria-controls="{$smarty.const.FIELD_OBJS_OP}" role="tab" data-toggle="tab"><i class="fa fa-bullseye fa-fw"></i> {$smarty.const.FIELD_OBJS_OP}</a>
                 </li>
+                <li id="tab_users" role="presentation">
+                    <a href="#users" title="{$smarty.const.TXT_USERS}" aria-controls="{$smarty.const.TXT_USERS}" role="tab" data-toggle="tab"><i class="fa fa-users fa-fw"></i> {$smarty.const.TXT_USERS}</a>
+                </li>
             </ul>
             <!-- /Nav tabs -->
             <br>
@@ -463,6 +466,7 @@
                                 <thead>
                                     <tr>
                                         <th>{$smarty.const.FIELD_INDICE}</th>
+                                        <th></th>
                                         <th>{$smarty.const.FIELD_OBJ_OP}</th>
                                         <th>{$smarty.const.FIELD_OBJ_EST}</th>
                                         <th>{$smarty.const.FIELD_LINEA}</th>
@@ -483,6 +487,8 @@
                                                 {if $objop->descendente}
                                                     <i class="fa fa-sitemap fa-fw" title="{$smarty.const.TXT_OBJOP_DESC}"></i>
                                                 {/if}
+                                            </td>
+                                            <td>
                                                 <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$objop->objest->linea->plan->id_entidad}">{$objop->nombre}</a>
                                             </td>
                                             <td>
@@ -526,6 +532,51 @@
                     {/if}
                 </div>
                 <!-- /Tab objops -->
+
+                <!-- Tab usuarios -->
+                <div id="users" role="tabpanel" class="tab-pane">
+                    {if $usuarios}
+                        <div class="table-responsive">
+                            <table class="table datatable table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>{$smarty.const.FIELD_LOGIN}</th>
+                                        <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                        <th>{$smarty.const.FIELD_APEL}</th>
+                                        <th>{$smarty.const.FIELD_CORREO}</th>
+                                        <th>{$smarty.const.FIELD_TEL}</th>
+                                        <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach from=$usuarios item=usuario}
+                                        <tr>
+                                            <td> 
+                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'>
+                                                    {$usuario->login}
+                                                </a>
+                                            </td>
+                                            <td style="font-size: 12px">{$usuario->nombre}</td>
+                                            <td style="font-size: 12px">{$usuario->apellidos}</td>       
+                                            <td>{if $usuario->correo}<a title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->correo}'>{$usuario->correo}</a>{else}---{/if}</td>
+                                            <td>{if $usuario->telefono}<a title="{$smarty.const.TXT_LLAMAR_TLF}" href='tel:+34{$usuario->telefono}'>{$usuario->telefono}</a>{else}---{/if}</td>
+                                            <td style="white-space:nowrap">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$usuario->id}'><i class="fa fa-user fa-fw"></i></a>                 
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ENVIAR_CORREO}" href='mailto:{$usuario->correo}'><i class="fa fa-envelope fa-fw"></i></a>
+                                            </td>
+                                        </tr>
+                                    {/foreach}
+                                </tbody>
+                            </table>
+                        </div>
+                    {else}
+                        <div class="alert alert-info alert-dismissible">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_BUSCAR_NO_RESUL}
+                        </div> 
+                    {/if}
+                </div>
+                <!-- /Tab usuarios -->
 
             </div>
             <!-- /Tab panes -->

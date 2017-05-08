@@ -13,6 +13,9 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
+//Variable para operar con indicadores
+$logicaIndicador = new LogicaIndicador();
+
 $modulo = filter_input(INPUT_GET, 'modulo', FILTER_SANITIZE_STRING);
 $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
 
@@ -100,6 +103,7 @@ if ($modulo == 'inicio')
 
     $medicion = new Medicion();
     $mediciones = array();
+    $medicion_total = array();
     $medicion_lim = array();
     $medicion_obj = array();
     $valor_referencia_medicion = new Valor_referencia_medicion();
@@ -111,9 +115,13 @@ if ($modulo == 'inicio')
         {
             $mediciones[$indicador->id] = $medicion->find("id_indicador=$indicador->id AND etiqueta like '$fecha%'");
             $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
-            if ($valores_referencia)
+            foreach ($mediciones[$indicador->id] as $med)
             {
-                foreach ($mediciones[$indicador->id] as $med)
+                //Totales
+                $medicion_total[$med->id] = $logicaIndicador->calcular_total($indicador, $valor->find("id_medicion=$med->id"), $med->etiqueta);
+
+                //Valores de referencia
+                if ($valores_referencia)
                 {
                     foreach ($valores_referencia as $valor_referencia)
                     {
@@ -146,6 +154,7 @@ if ($modulo == 'inicio')
     }
     $smarty->assign('indicadores', $indicadores);
     $smarty->assign('mediciones', $mediciones);
+    $smarty->assign('medicion_total', $medicion_total);
     $smarty->assign('medicion_lim', $medicion_lim);
     $smarty->assign('medicion_obj', $medicion_obj);
 
@@ -230,6 +239,7 @@ if ($modulo == 'filtrOnlyear')
 
     $medicion = new Medicion();
     $mediciones = array();
+    $medicion_total = array();
     $medicion_lim = array();
     $medicion_obj = array();
     $valor_referencia_medicion = new Valor_referencia_medicion();
@@ -241,9 +251,13 @@ if ($modulo == 'filtrOnlyear')
         {
             $mediciones[$indicador->id] = $medicion->find("id_indicador=$indicador->id AND etiqueta like '$fecha%'");
             $valores_referencia = $valor_referencia->Find("id_indicador = $indicador->id");
-            if ($valores_referencia)
+            foreach ($mediciones[$indicador->id] as $med)
             {
-                foreach ($mediciones[$indicador->id] as $med)
+                //Totales
+                $medicion_total[$med->id] = $logicaIndicador->calcular_total($indicador, $valor->find("id_medicion=$med->id"), $med->etiqueta);
+
+                //Valores de referencia
+                if ($valores_referencia)
                 {
                     foreach ($valores_referencia as $valor_referencia)
                     {
@@ -276,6 +290,7 @@ if ($modulo == 'filtrOnlyear')
     }
     $smarty->assign('indicadores', $indicadores);
     $smarty->assign('mediciones', $mediciones);
+    $smarty->assign('medicion_total', $medicion_total);
     $smarty->assign('medicion_lim', $medicion_lim);
     $smarty->assign('medicion_obj', $medicion_obj);
 }

@@ -424,6 +424,7 @@
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_INDICE}</th>
+                                    <th></th>
                                     <th>{$smarty.const.FIELD_OBJ_OP}</th>
                                     <th>{$smarty.const.FIELD_PLAN}</th>
                                     <th>{$smarty.const.FIELD_UNID}</th>
@@ -443,6 +444,8 @@
                                             {if $objop->descendente}
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.TXT_OBJOP_DESC}"></i>
                                             {/if}
+                                        </td>
+                                        <td>
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$objop->objest->linea->plan->id_entidad}">{$objop->nombre}</a>
                                         </td>
                                         <td>

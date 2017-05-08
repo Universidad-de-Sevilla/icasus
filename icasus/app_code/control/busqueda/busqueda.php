@@ -16,24 +16,35 @@ if (filter_has_var(INPUT_GET, 'texto_buscar'))
     //Para hacer búsqueda case insensitive:
     $textob = strtoupper($texto);
 
+    //Usuarios
+    $usuario = new Usuario();
+    $usuarios = $usuario->Find("upper(nombre) LIKE '%$textob%' OR upper(apellidos) LIKE '%$textob%'");
+    $smarty->assign('usuarios', $usuarios);
+    $ids_usuarios = array();
+    foreach ($usuarios as $usuario)
+    {
+        array_push($ids_usuarios, $usuario->id);
+    }
+    $ids_usuarios_st = join("','", $ids_usuarios);
+
     //Buscar entidades
-    $entidad = new Entidad;
+    $entidad = new Entidad();
     $entidades = $entidad->Find("(upper(nombre) LIKE '%$textob%' OR upper(codigo) LIKE '%$textob%') AND es_organica = 1");
     $smarty->assign('entidades', $entidades);
 
     //Buscar procesos
     $proceso = new Proceso();
-    $procesos = $proceso->Find_joined("upper(nombre) LIKE '%$textob%' OR upper(codigo) LIKE '%$textob%'");
+    $procesos = $proceso->Find_joined("upper(nombre) LIKE '%$textob%' OR upper(codigo) LIKE '%$textob%' OR id_propietario IN ('$ids_usuarios_st')");
     $smarty->assign('procesos', $procesos);
 
     //Buscar indicadores/datos
     $indicador = new Indicador();
-    $indicadores = $indicador->Find_joined("(upper(nombre) LIKE '%$textob%' OR upper(codigo) LIKE '%$textob%')");
+    $indicadores = $indicador->Find_joined("(upper(nombre) LIKE '%$textob%' OR upper(codigo) LIKE '%$textob%') OR id_responsable IN ('$ids_usuarios_st') OR id_responsable_medicion IN ('$ids_usuarios_st')");
     $smarty->assign('indicadores', $indicadores);
 
     //Buscar cuadros de mando
     $cuadro = new Cuadro();
-    $cuadros_public = $cuadro->Find_joined("upper(nombre) LIKE '%$textob%' AND privado=0");
+    $cuadros_public = $cuadro->Find_joined("(upper(nombre) LIKE '%$textob%' OR id_usuario IN ('$ids_usuarios_st')) AND privado=0");
     $smarty->assign('cuadros_publicos', $cuadros_public);
 
     //Buscar planes estratégicos
@@ -53,7 +64,7 @@ if (filter_has_var(INPUT_GET, 'texto_buscar'))
 
     //Buscar objetivos operacionales
     $objop = new ObjetivoOperacional();
-    $objops = $objop->Find_joined("upper(nombre) LIKE '%$textob%'");
+    $objops = $objop->Find_joined("upper(nombre) LIKE '%$textob%' OR id_responsable IN ('$ids_usuarios_st')");
     $smarty->assign('objops', $objops);
 
     $smarty->assign("_nombre_pagina", TXT_BUSCAR_RESUL . '"' . $texto . '"');

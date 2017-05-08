@@ -111,7 +111,7 @@ class Valor extends ADOdb_Active_Record
         $db = $this->DB();
         $sql = "SELECT  v.id as id_valor, m.id as id_medicion,p.nombre as proceso,
             p.id as id_proceso,e.etiqueta as unidad, 
-            i.nombre as indicador, i.id_entidad as entidad_del_indicador,
+            i.nombre as indicador, i.id_entidad as entidad_del_indicador,i.control,
             i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, 
             v.valor FROM `valores` v
 			LEFT JOIN mediciones m ON v.id_medicion = m.id
@@ -133,7 +133,7 @@ class Valor extends ADOdb_Active_Record
         $db = $this->DB();
         $sql = "SELECT  COUNT(v.id) as subunidades, v.id as id_valor, m.id as id_medicion,p.nombre as proceso,
             p.id as id_proceso, i.nombre as indicador, 
-            i.id_entidad as entidad_del_indicador,i.id as id_indicador,
+            i.id_entidad as entidad_del_indicador,i.id as id_indicador,i.control,
             e.id as id_entidad,m.etiqueta as fecha,u.id as id_usuario,
             u.nombre as nombre_responsable,u.apellidos as apellidos_responsable,
             um.nombre as nombre_responsable_med,um.apellidos as apellidos_responsable_med,
@@ -159,7 +159,7 @@ class Valor extends ADOdb_Active_Record
         $db = $this->DB();
         $sql = "SELECT  v.id as id_valor,v.fecha_recogida, m.id as id_medicion,p.nombre as proceso,
             p.id as id_proceso,e.etiqueta as unidad, 
-            i.nombre as indicador, i.id_entidad as entidad_del_indicador,
+            i.nombre as indicador, i.id_entidad as entidad_del_indicador,i.control,
             i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, 
             v.valor FROM `valores` v
 			LEFT JOIN mediciones m ON v.id_medicion = m.id

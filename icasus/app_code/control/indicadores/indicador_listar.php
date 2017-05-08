@@ -59,11 +59,13 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $objetivo_indicador = new ObjetivoIndicador();
     foreach ($indicadores_ctl as $indicador)
     {
-        if ($objetivo_indicador->load("id_indicador=$indicador->id AND control=1"))
+        $objops[$indicador->id] = array();
+        $objetivos_indicadores = $objetivo_indicador->Find("id_indicador=$indicador->id AND control=1");
+        foreach ($objetivos_indicadores as $obj_ind)
         {
             $objop = new ObjetivoOperacional();
-            $objop->load("id=$objetivo_indicador->id_objop");
-            $objops[$indicador->id] = $objop;
+            $objop->load("id=$obj_ind->id_objop");
+            array_push($objops[$indicador->id], $objop);
         }
     }
     $smarty->assign('objops', $objops);

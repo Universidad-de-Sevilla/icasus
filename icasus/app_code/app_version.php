@@ -1,8 +1,14 @@
 <?php
 
-define('IC_VERSION', "3.50.3");
-define('IC_FECHA_REVISION', "25/04/2017");
+define('IC_VERSION', "3.51.2");
+define('IC_FECHA_REVISION', "28/04/2017");
 
+// 3.51.2 - 28/04/2017 - Se listan todos los objetivos operacionales asociados a un indicador de control en su ficha y también en los listados de indicadores.
+// 3.51.1 - 28/04/2017 - Se tienen en cuenta en la sección de control en la pestaña 'sin mediciones' los indicadores que tienen periodicidad bienal.
+// 3.51.0 - 27/04/2017 - Posibilidad de buscar usuarios. Éstos se incluyen en los resultados de búsqueda y también los elementos de los que sean responsables.
+// 3.50.6 - 27/04/2017 - Se incluye el tipo de objetivo operacional en una columna separada en las tablas para una mejor ordenación de los mismos.
+// 3.50.5 - 26/04/2017 - Se incluye una columna con el total de la medición dentro de la pestaña de valores de referencia de la sección de control de una unidad.
+// 3.50.4 - 26/04/2017 - Se distingue entre indicadores de proceso, control y datos en la sección de control de una unidad.
 // 3.50.3 - 25/04/2017 - Cambios de estilo, tablas de indicadores con calculo y agregacion en columnas separadas.
 // 3.50.2 - 24/04/2017 - Correcciones en la gestión de usuarios, cambiados textos, iconos...
 // 3.50.1 - 21/04/2017 - Retirada la importación de valores a una unidad dado que no se utiliza.

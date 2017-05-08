@@ -380,10 +380,16 @@
                     </tr>
                     <tr>
                         {if $indicador->control}
-                            <th>{$smarty.const.FIELD_OBJ_OP}</th>
+                            <th>{$smarty.const.FIELD_OBJS_OP}</th>
                             <td>
-                                {if isset($objop)}
-                                    <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$indicador->id_entidad}">{$objop->nombre}</a>
+                                {if $objops|@count > 0}
+                                    <ul class="list-unstyled">
+                                        {foreach $objops as $objop}
+                                            <li>
+                                                <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$indicador->id_entidad}">{$objop->nombre}</a>
+                                            </li>
+                                        {/foreach}
+                                    </ul>
                                 {else}
                                     ---
                                 {/if}
