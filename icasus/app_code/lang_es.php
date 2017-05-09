@@ -76,6 +76,10 @@ define('TXT_CONSULT_QUITAR', 'Retirar último operando de la consulta');
 define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 define('TXT_CONSULT_BUSCAR', 'Buscar Indicador');
 
+//Cartas de Servicios
+define('TXT_CARTA_CREAR', 'Crear Carta de Servicios');
+define('TXT_CARTA_BORRAR', 'Borrar Carta de Servicios');
+
 //Cuadros de Mando
 define('TXT_CUADRO_CREAR', 'Crear Cuadro de Mando');
 define('TXT_CUADRO_EDIT', 'Editar Cuadro de Mando');
@@ -178,6 +182,7 @@ define('TXT_CERRAR_SESION', 'Cerrar sesión');
 //Menú de Unidades
 define('TXT_INICIO_DESCRIPCION', 'Mi icasus: listado de sus competencias/responsabilidades.');
 define('TXT_PLANES_DESCRIPCION', 'Planes Estratégicos: listado de Planes Estratégicos de la Unidad y gestión de los mismos.');
+define('TXT_CARTAS_DESCRIPCION', 'Cartas de Servicios: listado de las Cartas de Servicios de la Unidad y gestión de las mismas.');
 define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de Procesos de la Unidad y gestión de los mismos. ');
 define('TXT_INDICS_DESCRIPCION', 'Indicadores/Datos: listado de Indicadores/Datos de la Unidad y gestión de los mismos.');
 define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de Mando: listado de Cuadros de Mando de la Unidad y gestión de los mismos.');
@@ -398,6 +403,10 @@ define('FIELD_COMENTARIOS', 'Comentarios');
 //Archivos
 define('FIELD_ARCHIVO', 'Archivo');
 
+//Cartas
+define('FIELD_CARTA', 'Carta de Servicio');
+define('FIELD_CARTAS', 'Cartas de Servicios');
+
 //Cuadros de Mando
 define('FIELD_CUADRO_MANDO', 'Cuadro de Mando');
 define('FIELD_CUADROS_MANDO', 'Cuadros de Mando');
@@ -531,6 +540,7 @@ define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Cartas de Servicios
 define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
+define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Servicios?');
 
 //Consulta avanzada
 define('MSG_NO_CAL', 'No se puede calcular con los parámetros actuales.');
@@ -573,6 +583,7 @@ define('MSG_UNID_NO_INDIC_ARCHIVADOS', 'No hay Indicadores archivados en esta Un
 define('MSG_UNID_NO_DATO_ARCHIVADOS', 'No hay Datos archivados en esta Unidad.');
 define('MSG_UNID_NO_CUADROS', 'No hay Cuadros de Mando definidos para esta Unidad.');
 define('MSG_UNID_NO_PLANES', 'No hay Planes Estratégicos definidos para esta Unidad.');
+define('MSG_UNID_NO_CARTAS', 'No hay Cartas de Servicios definidas para esta Unidad.');
 define('MSG_UNID_NO_IND_NO_DAT', 'No hay Indicadores ni Datos definidos para esta Unidad.');
 define('MSG_UNID_NO_SUBUNIDS', 'Esta Unidad no tiene Subunidades.');
 define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna Unidad.');
