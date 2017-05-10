@@ -24,5 +24,3 @@ $(document).ready(function () {
         modal.find('#borrar').attr('href', link);
     });
 });
-
-

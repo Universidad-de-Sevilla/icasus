@@ -84,6 +84,7 @@ define('TXT_CARTA_BORRAR', 'Borrar Carta de Servicios');
 define('TXT_CUADRO_CREAR', 'Crear Cuadro de Mando');
 define('TXT_CUADRO_EDIT', 'Editar Cuadro de Mando');
 define('TXT_CUADRO_BORRAR', 'Borrar Cuadro de Mando');
+define('TXT_CUADRO_ASOC', 'Sin Cuadro de Mando asociado (opcional: seleccione un Cuadro del desplegable).');
 //Paneles de los Cuadros de Mando
 define('TXT_PANEL_CREAR', 'Crear panel');
 define('TXT_PANEL_TIPO', 'Tipo de panel');
@@ -249,7 +250,6 @@ define('TXT_OBJOP_DESC', 'Descendente');
 //Procesos
 define('TXT_PROC_VER', 'Ver Proceso');
 define('TXT_PROC_MAP', 'Mapa de Procesos');
-define('TXT_PROC_CUADRO', 'Sin Cuadro de Mando asociado (opcional: seleccione un Cuadro del desplegable).');
 define('TXT_PROC_MAP_EDIT', 'Agregar/editar mapa de Procesos');
 define('TXT_PROC_ES_MADRE', 'Es un Proceso madre');
 define('TXT_PROC_VERSION', 'Número de la versión actual de la ficha del Proceso');
@@ -539,6 +539,8 @@ define('MSG_ARCHIVO_BORRADO', 'Se ha eliminado con éxito el archivo.');
 define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Cartas de Servicios
+define('MSG_CARTA_CREADA', 'Se ha creado una nueva Carta de Servicios.');
+define('MSG_CARTA_EDITADA', 'Se ha editado correctamente la Carta de Servicios.');
 define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
 define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Servicios?');
 
@@ -759,6 +761,9 @@ define('ERR_ARCHIVO_NO', 'No existe el archivo con el identificador:');
 define('ERR_ARCHIVO_GRABAR', 'Error no se han podido grabar los datos del archivo.');
 define('ERR_ARCHIVO_SUBIR', 'No se ha podido subir el archivo, consulte al administrador del sistema.');
 define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.');
+
+//Cartas de Servicios
+define('ERR_CARTA_EDIT', 'La Carta de Servicios no existe o no tiene permisos para editarla.');
 
 //Cuadros de Mando
 define('ERR_CUAD_MANDO', 'El Cuadro de Mando no existe o no tiene permisos para consultarlo.');

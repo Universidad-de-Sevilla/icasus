@@ -139,7 +139,7 @@
                     <div class="form-group has-feedback">
                         <label for="fecha_revision" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_FECHA}</label>
                         <div class="col-sm-8">
-                            <div class="input-group date" data-provide="datepicker" data-date-language="es" data-date-autoclose="true">
+                            <div class="input-group date" data-provide="datepicker" data-date-language="es" data-date-autoclose="true" data-date-today-highlight="true">
                                 <div class="input-group-addon"><i class="fa fa-calendar fa-fw"></i></div>
                                 <input type='text' class="form-control" name='fecha_revision' id='fecha_revision' placeholder="{$smarty.const.TXT_FECHA_REV_ACTUAL}" data-validar_fecha="validar_fecha" required/>
                             </div>
@@ -173,7 +173,7 @@
                         <label for="cuadro" class="col-sm-2 control-label">{$smarty.const.FIELD_CUADRO_MANDO}</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name='cuadro' id='cuadro'>
-                                <option value="0">{$smarty.const.TXT_PROC_CUADRO}</option>
+                                <option value="0">{$smarty.const.TXT_CUADRO_ASOC}</option>
                                 {foreach from=$cuadros_proceso item=cuadro_proc}
                                     <option value="{$cuadro_proc->id}">
                                         {$cuadro_proc->nombre}
