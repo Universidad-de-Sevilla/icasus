@@ -78,6 +78,7 @@ define('TXT_CONSULT_BUSCAR', 'Buscar Indicador');
 
 //Cartas de Servicios
 define('TXT_CARTA_CREAR', 'Crear Carta de Servicios');
+define('TXT_CARTA_EDIT', 'Editar Carta de Servicios');
 define('TXT_CARTA_BORRAR', 'Borrar Carta de Servicios');
 
 //Cuadros de Mando
@@ -404,8 +405,16 @@ define('FIELD_COMENTARIOS', 'Comentarios');
 define('FIELD_ARCHIVO', 'Archivo');
 
 //Cartas
-define('FIELD_CARTA', 'Carta de Servicio');
+define('FIELD_CARTA', 'Carta de Servicios');
 define('FIELD_CARTAS', 'Cartas de Servicios');
+
+//Servicios
+define('FIELD_SERVICIO', 'Servicio');
+define('FIELD_SERVICIOS', 'Servicios');
+
+//Compromisos
+define('FIELD_COMPROMISO', 'Compromiso');
+define('FIELD_COMPROMISOS', 'Compromisos');
 
 //Cuadros de Mando
 define('FIELD_CUADRO_MANDO', 'Cuadro de Mando');
@@ -541,6 +550,7 @@ define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 //Cartas de Servicios
 define('MSG_CARTA_CREADA', 'Se ha creado una nueva Carta de Servicios.');
 define('MSG_CARTA_EDITADA', 'Se ha editado correctamente la Carta de Servicios.');
+define('MSG_CARTA_NO_ARCHIVOS', 'No se han subido archivos para esta Carta de Servicios.');
 define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
 define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Servicios?');
 

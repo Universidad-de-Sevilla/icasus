@@ -6,7 +6,8 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Gestiona los archivos de unidades y procesos
+// Descripcion: Gestiona los archivos de Unidades, Planes Estratégicos,
+// Cartas de Servicios y Procesos
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
@@ -28,10 +29,15 @@ if ($modulo == 'subir')
     $fichero->id_objeto = filter_input(INPUT_POST, 'id_objeto', FILTER_SANITIZE_NUMBER_INT);
     $fichero->id_usuario = $usuario->id;
     $fichero->visible = filter_input(INPUT_POST, 'svisible', FILTER_SANITIZE_NUMBER_INT);
-    //Vemos si el archivo es para una unidad, plan estratégico o para un proceso
+    //Vemos si el archivo es para una Unidad, Plan Estratégico, 
+    //Carta de Servicios o para un Proceso
     if ($tipo == 'plan')
     {
         $fichero->tipo_objeto = 'plan';
+    }
+    else if ($tipo == 'carta')
+    {
+        $fichero->tipo_objeto = 'carta';
     }
     else if ($tipo == 'proceso')
     {
@@ -48,7 +54,7 @@ if ($modulo == 'subir')
 
     $subdir = "$fichero->id_objeto";
     $dir = IC_DIR_BASE . "private_upload/$fichero->tipo_objeto/";
-    //comprobamos si el directorio de la unidad existe.
+    //comprobamos si el directorio existe.
     if (!file_exists($dir))
     {
         if (!mkdir($dir, 0755))
@@ -57,6 +63,10 @@ if ($modulo == 'subir')
             if ($tipo == 'plan')
             {
                 header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
+            }
+            else if ($tipo == 'carta')
+            {
+                header("Location: index.php?page=archivo_gestionar&id_carta=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
             }
             else if ($tipo == 'proceso')
             {
@@ -68,7 +78,7 @@ if ($modulo == 'subir')
             }
         }
     }
-    //comprobamos si el subdirectorio de la unidad existe.
+    //comprobamos si el subdirectorio de existe.
     if (!file_exists($dir . $subdir))
     {
         if (!mkdir($dir . $subdir, 0755))
@@ -77,6 +87,10 @@ if ($modulo == 'subir')
             if ($tipo == 'plan')
             {
                 header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
+            }
+            else if ($tipo == 'carta')
+            {
+                header("Location: index.php?page=archivo_gestionar&id_carta=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
             }
             else if ($tipo == 'proceso')
             {
@@ -103,6 +117,10 @@ if ($modulo == 'subir')
             {
                 header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&exito=$exito");
             }
+            else if ($tipo == 'carta')
+            {
+                header("Location: index.php?page=archivo_gestionar&id_carta=$fichero->id_objeto&id_entidad=$id_entidad&exito=$exito");
+            }
             else if ($tipo == 'proceso')
             {
                 header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&exito=$exito");
@@ -119,6 +137,10 @@ if ($modulo == 'subir')
         if ($tipo == 'plan')
         {
             header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
+        }
+        else if ($tipo == 'carta')
+        {
+            header("Location: index.php?page=archivo_gestionar&id_carta=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
         }
         else if ($tipo == 'proceso')
         {

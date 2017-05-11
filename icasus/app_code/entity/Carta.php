@@ -15,6 +15,7 @@ class Carta extends ADOdb_Active_Record
 
     public $_table = 'cartas';
     public $entidad;
+    public $cuadro;
 
     public function load_joined($condicion)
     {
@@ -22,6 +23,13 @@ class Carta extends ADOdb_Active_Record
         {
             $this->entidad = new Entidad();
             $this->entidad->load("id = $this->id_entidad");
+
+            if ($this->id_cuadro)
+            {
+                $cuadro = new Cuadro();
+                $cuadro->load("id = $this->id_cuadro");
+                $this->cuadro = $cuadro;
+            }
             return true;
         }
         else
