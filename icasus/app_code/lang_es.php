@@ -552,6 +552,7 @@ define('MSG_CARTA_CREADA', 'Se ha creado una nueva Carta de Servicios.');
 define('MSG_CARTA_EDITADA', 'Se ha editado correctamente la Carta de Servicios.');
 define('MSG_CARTA_NO_ARCHIVOS', 'No se han subido archivos para esta Carta de Servicios.');
 define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
+define('MSG_CARTA_CONFIRM_EDITAR', 'Va a editar esta Carta de Servicios, ¿está seguro?');
 define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Servicios?');
 
 //Consulta avanzada
@@ -773,6 +774,7 @@ define('ERR_ARCHIVO_SUBIR', 'No se ha podido subir el archivo, consulte al admin
 define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.');
 
 //Cartas de Servicios
+define('ERR_CARTA_MOSTRAR', 'No se puede mostrar la Carta de Sercicios, el identificador no existe en la base de datos.');
 define('ERR_CARTA_EDIT', 'La Carta de Servicios no existe o no tiene permisos para editarla.');
 
 //Cuadros de Mando
@@ -802,7 +804,7 @@ define('ERR_MED_BORRAR', 'No se puede borrar la medicion ya que influye en el c�
 define('ERR_MED_RESP', 'No tiene permisos suficientes para editar responsables.');
 
 //Planes
-define('ERR_PLAN_MOSTRAR', 'No se puede mostrar el Plan, el identificador no existe en la base de datos.');
+define('ERR_PLAN_MOSTRAR', 'No se puede mostrar el Plan Estratégico, el identificador no existe en la base de datos.');
 define('ERR_PLAN_EDIT', 'El Plan Estratégico no existe o no tiene permisos para editarlo.');
 define('ERR_PLAN_VAL_ANYO', 'Ya existe un Plan con el mismo año de inicio.');
 

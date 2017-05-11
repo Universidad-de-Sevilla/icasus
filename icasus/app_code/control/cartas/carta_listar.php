@@ -18,10 +18,11 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
-    $entidad->load("id =  $id_entidad");
+    $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);
 
-    //Planes de la Unidad
+    //Cartas de Servicios de la Unidad
+    $cartas = $carta->Find("id_entidad=$id_entidad ORDER BY fecha DESC");
     $smarty->assign('cartas', $cartas);
 
     $smarty->assign('_javascript', array('carta_listar'));
