@@ -81,6 +81,14 @@ define('TXT_CARTA_CREAR', 'Crear Carta de Servicios');
 define('TXT_CARTA_EDIT', 'Editar Carta de Servicios');
 define('TXT_CARTA_BORRAR', 'Borrar Carta de Servicios');
 
+//Servicios
+define('TXT_SERVICIO_CREAR', 'Crear Servicio');
+define('TXT_SERVICIO_EDIT', 'Editar Servicio');
+define('TXT_SERVICIO_BORRAR', 'Borrar Servicio');
+
+//Compromisos
+define('TXT_COMPROMISO_CREAR', 'Crear Compromiso');
+
 //Cuadros de Mando
 define('TXT_CUADRO_CREAR', 'Crear Cuadro de Mando');
 define('TXT_CUADRO_EDIT', 'Editar Cuadro de Mando');
@@ -411,6 +419,7 @@ define('FIELD_CARTAS', 'Cartas de Servicios');
 //Servicios
 define('FIELD_SERVICIO', 'Servicio');
 define('FIELD_SERVICIOS', 'Servicios');
+define('FIELD_DESCRIPCION', 'Descripción');
 
 //Compromisos
 define('FIELD_COMPROMISO', 'Compromiso');
@@ -484,7 +493,7 @@ define('FIELD_EJECUCION', 'Ejecución');
 //Líneas
 define('FIELD_LINEA', 'Línea Estratégica');
 define('FIELD_LINEAS', 'Líneas Estratégicas');
-define('FIELD_INDICE', 'Número');
+define('FIELD_INDICE', 'Índice');
 
 //Objetivos
 define('FIELD_OBJ_EST', 'Objetivo Estratégico');
@@ -552,8 +561,15 @@ define('MSG_CARTA_CREADA', 'Se ha creado una nueva Carta de Servicios.');
 define('MSG_CARTA_EDITADA', 'Se ha editado correctamente la Carta de Servicios.');
 define('MSG_CARTA_NO_ARCHIVOS', 'No se han subido archivos para esta Carta de Servicios.');
 define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
+define('MSG_CARTA_NO_SERVICIOS', 'No se han definido Servicios para esta Carta de Servicios.');
 define('MSG_CARTA_CONFIRM_EDITAR', 'Va a editar esta Carta de Servicios, ¿está seguro?');
 define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Servicios?');
+
+//Servicios
+define('MSG_SERVICIO_CREADO', 'Se ha creado un nuevo Servicio para esta Carta.');
+define('MSG_SERVICIO_EDITADO', 'Se ha editado el Servicio correctamente.');
+define('MSG_SERVICIO_CONFIRM_EDITAR', 'Va a editar este Servicio, ¿está seguro?');
+define('MSG_SERVICIO_CONFIRM_BORRAR', '¿Desea borrar este Servicio?');
 
 //Consulta avanzada
 define('MSG_NO_CAL', 'No se puede calcular con los parámetros actuales.');
@@ -776,6 +792,11 @@ define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.'
 //Cartas de Servicios
 define('ERR_CARTA_MOSTRAR', 'No se puede mostrar la Carta de Sercicios, el identificador no existe en la base de datos.');
 define('ERR_CARTA_EDIT', 'La Carta de Servicios no existe o no tiene permisos para editarla.');
+
+//Servicios
+define('ERR_SERVICIO_MOSTRAR', 'No se puede mostrar el Servicio, el identificador no existe en la base de datos.');
+define('ERR_SERVICIO_VAL_INDICE', 'Ya existe un Servicio con el mismo índice para esta Carta de Servicios.');
+define('ERR_SERVICIO_EDIT', 'El Servicio no existe o no tiene permisos para editarlo.');
 
 //Cuadros de Mando
 define('ERR_CUAD_MANDO', 'El Cuadro de Mando no existe o no tiene permisos para consultarlo.');

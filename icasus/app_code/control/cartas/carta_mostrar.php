@@ -46,6 +46,10 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_ca
     }
 
     //Servicios
+    $servicio = new Servicio();
+    $servicios = $servicio->Find("id_carta=$id_carta order by indice");
+    $smarty->assign('servicios', $servicios);
+
     //Compromisos
     //Indicadores
     //Archivos

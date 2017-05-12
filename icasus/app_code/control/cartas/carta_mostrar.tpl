@@ -23,6 +23,25 @@
 <!-- /Diálogo Confirmar Borrado Carta -->
 
 <!-- Diálogo Confirmar Borrado Servicio -->
+<div class="modal fade" id="dialogo_confirmar_borrado_servicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i
+                        class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_SERVICIO_BORRAR}: <span id="nombre_servicio"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_SERVICIO_CONFIRM_BORRAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- /Diálogo Confirmar Borrado Servicio -->
 
 <!-- Diálogo Confirmar Borrado Compromiso -->
@@ -147,6 +166,9 @@
                 <a href="#carta_compromisos" title="{$smarty.const.FIELD_COMPROMISOS}" aria-controls="{$smarty.const.FIELD_COMPROMISOS}" role="tab" data-toggle="tab"><i class="fa fa-handshake-o fa-fw"></i> {$smarty.const.FIELD_COMPROMISOS}</a>
             </li>
             <li role="presentation">
+                <a href="#carta_indics" title="{$smarty.const.FIELD_INDICS}" aria-controls="{$smarty.const.FIELD_INDICS}" role="tab" data-toggle="tab"><i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}</a>
+            </li>
+            <li role="presentation">
                 <a href="#carta_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
             </li>
         </ul>
@@ -232,15 +254,98 @@
 
             <!-- Servicios de la Carta -->
             <div role="tabpanel" class="tab-pane" id="carta_servicios">
-
+                <!-- Barra de botones -->
+                {if $_control}
+                    <div id="botones_servicio" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=servicio_crear&id_carta={$carta->id}&id_entidad={$carta->id_entidad}' 
+                               title="{$smarty.const.TXT_SERVICIO_CREAR}">
+                                <i class="fa fa-user-circle-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            </a>
+                        </div>
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
+                {if $servicios}
+                    <div class="table-responsive">
+                        <table id="tabla_servicios" class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_INDICE}</th>
+                                    <th>{$smarty.const.FIELD_SERVICIO}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$servicios item=servicio} 
+                                    <tr>  
+                                        <td>
+                                            <span class="label label-default">S. {$servicio->indice}</span>
+                                        </td>
+                                        <td>
+                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=servicio_mostrar&id_entidad={$carta->id_entidad}&id_servicio={$servicio->id}">{$servicio->nombre}</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=servicio_mostrar&id_entidad={$carta->id_entidad}&id_servicio={$servicio->id}">
+                                                <i class="fa fa-folder fa-fw"></i>
+                                            </a>
+                                            {if $_control}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_COMPROMISO_CREAR}" href="index.php?page=compromiso_crear&id_servicio={$servicio->id}&id_entidad={$carta->id_entidad}">
+                                                    <i class="fa fa-handshake-o fa-fw"></i>
+                                                </a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=servicio_editar&id_entidad={$carta->id_entidad}&id_servicio={$servicio->id}">
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_SERVICIO_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_servicio"
+                                                   data-id_entidad="{$carta->id_entidad}" data-nombre="S. {$servicio->indice}. {$servicio->nombre}" data-id_servicio="{$servicio->id}">
+                                                    <i class="fa fa-trash fa-fw"></i>
+                                                </a>
+                                            {/if}
+                                        </td>
+                                    </tr>     
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_CARTA_NO_SERVICIOS}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=servicio_crear&id_carta={$carta->id}&id_entidad={$carta->id_entidad}' 
+                                           title="{$smarty.const.TXT_SERVICIO_CREAR}">
+                                            <i class="fa fa-user-circle-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-1 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
             </div>
             <!-- /Servicios de la Carta -->
 
             <!-- Compromisos de la Carta -->
-            <div role="tabpanel" class="tab-pane" id="plan_objest">
+            <div role="tabpanel" class="tab-pane" id="carta_compromisos">
 
             </div>
             <!-- /Compromisos de la Carta -->
+
+            <!-- Indicadores de la Carta -->
+            <div role="tabpanel" class="tab-pane" id="carta_indics">
+
+            </div>
+            <!-- /Indicadores de la Carta -->
 
             <!-- Archivos la Carta de Servicios -->
             <div role="tabpanel" class="tab-pane" id="carta_archivos">
