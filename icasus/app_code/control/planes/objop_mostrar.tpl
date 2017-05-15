@@ -499,43 +499,45 @@
                         </thead>
                         <tbody>
                             {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
-                                <tr>
-                                    <td><span class="label label-default">{$i}</span></td>
-                                    <td id="porcentaje_{$i}">
-                                        <div class="progress">
-                                            <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
-                                                {$ejecucion_anual[$i]|round:"2"} %
+                                {if $activacion_anual[$i] || $_control || $responsable}
+                                    <tr>
+                                        <td><span class="label label-default">{$i}</span></td>
+                                        <td id="porcentaje_{$i}">
+                                            <div class="progress">
+                                                <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
+                                                    {$ejecucion_anual[$i]|round:"2"} %
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td id="resultado_{$i}">
-                                        <textarea  class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual[$i]}</textarea>
-                                    </td>
-                                    {if $_control || $responsable}
-                                        <td style="white-space:nowrap" id="edicion_{$i}">
-                                            <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$i}'>
-                                                <i class="fa fa-pencil fa-fw"></i>
-                                            </a>
                                         </td>
-                                        <td>
-                                            <input class="form-control activar" data-width="60" type="checkbox"
-                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
-                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
-                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
-                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if}>
+                                        <td id="resultado_{$i}">
+                                            <textarea  class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual[$i]}</textarea>
                                         </td>
-                                    {else}
-                                        <td>
-                                            <input class="form-control activar" data-width="60" type="checkbox"
-                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
-                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
-                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
-                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if} disabled>
-                                        </td>
-                                    {/if}
-                                </tr>
+                                        {if $_control || $responsable}
+                                            <td style="white-space:nowrap" id="edicion_{$i}">
+                                                <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$i}'>
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <input class="form-control activar" data-width="60" type="checkbox"
+                                                       data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                       data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                       data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                       data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                       {if $activacion_anual[$i] == 1}checked="checked"{/if}>
+                                            </td>
+                                        {else}
+                                            <td>
+                                                <input class="form-control activar" data-width="60" type="checkbox"
+                                                       data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                       data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                       data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                       data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                       {if $activacion_anual[$i] == 1}checked="checked"{/if} disabled>
+                                            </td>
+                                        {/if}
+                                    </tr>
+                                {/if}
                             {/for}
                         </tbody>
                     </table>
