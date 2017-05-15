@@ -77,5 +77,6 @@ $(".activar").change(function () {
     }
     $.get('index.php?page=objop_ajax&ajax=true&modulo=activar_objetivo', {id_objop: id_objop, anyo: anyo, activo: activo}, function () {
         $("#page-wrapper #ejecucion_global").load("index.php?page=objop_ajax&ajax=true&modulo=actualizar_global&id_objop=" + id_objop + "&anyo=" + anyo);
+        $("#page-wrapper #duracion").load("index.php?page=objop_ajax&ajax=true&modulo=actualizar_duracion&id_objop=" + id_objop + "&anyo=" + anyo);
     });
 });

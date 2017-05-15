@@ -60,8 +60,20 @@ if (filter_has_var(INPUT_GET, 'id_objop'))
     $smarty->assign('linea', $linea);
     $smarty->assign('plan', $linea->plan);
 
-    //Obtenemos sus ejecuciones, activaciones y resultados anuales
+    //Años de ejecución del objetivo operacional
+    $objop_anyos = array();
     $ejecucion = new Ejecucion();
+    $ejecuciones = $ejecucion->Find("id_objop=$id_objop order by anyo");
+    foreach ($ejecuciones as $ejec)
+    {
+        if ($ejec->activo)
+        {
+            array_push($objop_anyos, $ejec->anyo);
+        }
+    }
+    $smarty->assign('objop_anyos', $objop_anyos);
+
+    //Obtenemos sus ejecuciones, activaciones y resultados anuales 
     $ejecucion_anual = array();
     $activacion_anual = array();
     $resultado_anual = array();

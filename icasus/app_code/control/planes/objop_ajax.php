@@ -62,6 +62,22 @@ if ($modulo == 'activar_objetivo')
     $logicaPlan->actualizar_ejecucion_global($id_objop);
 }
 
+if ($modulo == 'actualizar_duracion')
+{
+    //Años de ejecución del objetivo operacional
+    $objop_anyos = array();
+    $ejecucion = new Ejecucion();
+    $ejecuciones = $ejecucion->Find("id_objop=$id_objop order by anyo");
+    foreach ($ejecuciones as $ejec)
+    {
+        if ($ejec->activo)
+        {
+            array_push($objop_anyos, $ejec->anyo);
+        }
+    }
+    $smarty->assign('objop_anyos', $objop_anyos);
+}
+
 if ($modulo == 'editar_resultado' OR $modulo == 'cancelar_resultado')
 {
     //Obtenemos su ejecución anual

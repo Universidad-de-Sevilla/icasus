@@ -28,6 +28,29 @@
     </div>
 {/if}
 
+{if $modulo==='actualizar_duracion'}
+    {if $objop_anyos}
+        {foreach $objop_anyos as $anyo}
+            {if $anyo@first}
+                {$anyo}{$escrito=true}
+            {else if $anyo_anterior+1 == $anyo and !$anyo@last}
+                {$escrito=false}
+            {else if $anyo_anterior+1 != $anyo and !$escrito}
+                - {$anyo_anterior}, {$anyo}
+                {$escrito=true}
+            {else if $anyo_anterior+1 != $anyo}
+                , {$anyo}
+                {$escrito=true}
+            {else if $anyo@last && $objop_anyos|@count>1}
+                - {$anyo}
+            {/if}
+            {$anyo_anterior=$anyo}
+        {/foreach}
+    {else}
+        ---
+    {/if}
+{/if}
+
 {if $modulo==='cancelar_ejecucion'}
     <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$anyo}'>
         <i class="fa fa-pencil fa-fw"></i>

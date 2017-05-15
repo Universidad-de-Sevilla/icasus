@@ -217,6 +217,31 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                    <th>{$smarty.const.FIELD_DURACION}</th>
+                                    <td id="duracion">
+                                        {if $objop_anyos}
+                                            {foreach $objop_anyos as $anyo}
+                                                {if $anyo@first}
+                                                    {$anyo}{$escrito=true}
+                                                {else if $anyo_anterior+1 == $anyo and !$anyo@last}
+                                                    {$escrito=false}
+                                                {else if $anyo_anterior+1 != $anyo and !$escrito}
+                                                    - {$anyo_anterior}, {$anyo}
+                                                    {$escrito=true}
+                                                {else if $anyo_anterior+1 != $anyo}
+                                                    , {$anyo}
+                                                    {$escrito=true}
+                                                {else if $anyo@last && $objop_anyos|@count>1}
+                                                    - {$anyo}
+                                                {/if}
+                                                {$anyo_anterior=$anyo}
+                                            {/foreach}
+                                        {else}
+                                            ---
+                                        {/if}
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th>{$smarty.const.FIELD_EJECUCION}</th>
                                     <td id="ejecucion_global"> 
                                         <div class="progress">
