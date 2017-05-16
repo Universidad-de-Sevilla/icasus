@@ -1,5 +1,5 @@
 {if $modulo==='editar_ejecucion'}
-    <input id="valor_{$anyo}" type="text" class="valor" placeholder="{$smarty.const.FIELD_VAL} %">
+    <input id="valor_{$anyo}" type="text" {if $valor>0}value="{$valor}"{/if} class="valor" placeholder="{$smarty.const.FIELD_VAL} %">
     <a title="{$smarty.const.TXT_GRABAR}" class="btn btn-default btn-xs btn-circle grabar" data-id_objop='{$objop->id}' data-anyo='{$anyo}'>
         <i class="fa fa-floppy-o fa-fw"></i>
     </a>

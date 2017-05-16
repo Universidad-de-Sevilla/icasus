@@ -27,6 +27,12 @@ $anyo = filter_input(INPUT_GET, 'anyo', FILTER_SANITIZE_NUMBER_INT);
 $smarty->assign('anyo', $anyo);
 $plantilla = 'planes/objop_ajax.tpl';
 
+if ($modulo == 'editar_ejecucion')
+{
+    $valor = filter_input(INPUT_GET, 'valor', FILTER_VALIDATE_FLOAT);
+    $smarty->assign('valor', $valor);
+}
+
 if ($modulo == 'grabar_ejecucion')
 {
     $valor = filter_input(INPUT_POST, 'valor', FILTER_VALIDATE_FLOAT);

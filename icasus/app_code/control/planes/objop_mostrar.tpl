@@ -524,7 +524,7 @@
                                 {if $activacion_anual[$i] || $_control || $responsable}
                                     <tr>
                                         <td style="width:2%"><span class="label label-default">{$i}</span></td>
-                                        <td id="porcentaje_{$i}">
+                                        <td id="porcentaje_{$i}" data-valor="{$ejecucion_anual[$i]|round:"2"}">
                                             <div class="progress">
                                                 <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
                                                     {$ejecucion_anual[$i]|round:"2"} %
