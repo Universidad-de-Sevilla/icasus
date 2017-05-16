@@ -9,7 +9,7 @@
 {/if}
 
 {if $modulo==='editar_resultado'}
-    <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}">{$resultado_anual}</textarea>
+    <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" rows="4">{$resultado_anual}</textarea>
 {/if}
 
 {if $modulo==='actualizar_porcentaje'}
@@ -58,5 +58,5 @@
 {/if}
 
 {if $modulo==='cancelar_resultado'}
-    <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual}</textarea>
+    <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" rows="4" readonly>{$resultado_anual}</textarea>
 {/if}

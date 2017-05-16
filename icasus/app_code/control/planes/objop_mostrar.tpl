@@ -341,7 +341,7 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
                                         </td>
-                                        <td>
+                                        <td style="width:30%">
                                             <a target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
                                                 {$indicador->nombre}</a>
@@ -429,7 +429,7 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
                                         </td>
-                                        <td>
+                                        <td style="width:30%">
                                             <a target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
                                                 {$indicador->nombre}</a>
@@ -483,6 +483,28 @@
 
             <!-- Seguimiento del objetivo operacional -->
             <div role="tabpanel" class="tab-pane" id="objop_res">
+                <!-- Ejecucion -->
+                <ul class="list-group" style="margin: 0;">
+                    <li class="list-group-item list-group-item-info">
+                        <div class="row">
+                            <div class="col-sm-8 h4">
+                                {$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}
+                            </div>
+                            <!-- /.col-sm-8 -->
+                            <div class="col-sm-4">
+                                <div class="progress">
+                                    <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{else if $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{else if $objop->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$objop->ejecucion|round:"2"}%;">
+                                        {$objop->ejecucion|round:"2"} %
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-sm-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </li>
+                </ul>
+                <!-- /Ejecucion -->
+                <br>
                 <!-- Ejecución/año -->
                 <div class="table-responsive">
                     <table class="table table-striped table-hover ficha">
@@ -501,7 +523,7 @@
                             {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
                                 {if $activacion_anual[$i] || $_control || $responsable}
                                     <tr>
-                                        <td><span class="label label-default">{$i}</span></td>
+                                        <td style="width:2%"><span class="label label-default">{$i}</span></td>
                                         <td id="porcentaje_{$i}">
                                             <div class="progress">
                                                 <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
@@ -509,8 +531,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td id="resultado_{$i}">
-                                            <textarea  class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual[$i]}</textarea>
+                                        <td id="resultado_{$i}" style="width:50%">
+                                            <textarea  class="form-control" placeholder="{$smarty.const.TXT_RESUL}" rows="4" readonly>{$resultado_anual[$i]}</textarea>
                                         </td>
                                         {if $_control || $responsable}
                                             <td style="white-space:nowrap" id="edicion_{$i}">

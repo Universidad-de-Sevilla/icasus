@@ -230,10 +230,10 @@
                 <a href="#plan_objop" title="{$smarty.const.FIELD_OBJS_OP}" aria-controls="{$smarty.const.FIELD_OBJS_OP}" role="tab" data-toggle="tab"><i class="fa fa-bullseye fa-fw"></i> {$smarty.const.FIELD_OBJS_OP}</a>
             </li>
             <li role="presentation">
-                <a href="#plan_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
+                <a href="#plan_res" title="{$smarty.const.TXT_SEGUIMIENTO} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" aria-controls="{$smarty.const.TXT_SEGUIMIENTO} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" role="tab" data-toggle="tab"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.TXT_SEGUIMIENTO}</a>
             </li>
             <li role="presentation">
-                <a href="#plan_res" title="{$smarty.const.TXT_SEGUIMIENTO} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" aria-controls="{$smarty.const.TXT_SEGUIMIENTO} ({$smarty.const.FIELD_LINEAS}, {$smarty.const.FIELD_OBJS_EST}, {$smarty.const.FIELD_OBJS_OP})" role="tab" data-toggle="tab"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.TXT_SEGUIMIENTO}</a>
+                <a href="#plan_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -335,6 +335,28 @@
 
             <!-- Líneas estratégicas del plan -->
             <div role="tabpanel" class="tab-pane" id="plan_lineas">
+                <!-- Ejecucion -->
+                <ul class="list-group" style="margin: 0;">
+                    <li class="list-group-item list-group-item-info">
+                        <div class="row">
+                            <div class="col-sm-8 h4">
+                                {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}
+                            </div>
+                            <!-- /.col-sm-8 -->
+                            <div class="col-sm-4">
+                                <div class="progress">
+                                    <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$plan->ejecucion|round:"2"}%;">
+                                        {$plan->ejecucion|round:"2"} %
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-sm-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </li>
+                </ul>
+                <!-- /Ejecucion -->
+                <br>
                 <!-- Barra de botones -->
                 {if $_control}
                     <div id="botones_linea" class="btn-toolbar hidden" role="toolbar" aria-label="">
@@ -361,10 +383,10 @@
                             <tbody>
                                 {foreach from=$lineas item=linea} 
                                     <tr>  
-                                        <td>
+                                        <td style="width:2%">
                                             <span class="label label-default">{$linea->indice}</span>
                                         </td>
-                                        <td>
+                                        <td style="width:40%">
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=linea_mostrar&id_entidad={$plan->id_entidad}&id_linea={$linea->id}">{$linea->nombre}</a>
                                         </td>
                                         <td style="white-space:nowrap">
@@ -426,6 +448,28 @@
 
             <!-- Objetivos estratégicos del plan -->
             <div role="tabpanel" class="tab-pane" id="plan_objest">
+                <!-- Ejecucion -->
+                <ul class="list-group" style="margin: 0;">
+                    <li class="list-group-item list-group-item-info">
+                        <div class="row">
+                            <div class="col-sm-8 h4">
+                                {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}
+                            </div>
+                            <!-- /.col-sm-8 -->
+                            <div class="col-sm-4">
+                                <div class="progress">
+                                    <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$plan->ejecucion|round:"2"}%;">
+                                        {$plan->ejecucion|round:"2"} %
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-sm-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </li>
+                </ul>
+                <!-- /Ejecucion -->
+                <br>
                 {if $objests}
                     <div class="table-responsive">
                         <table id="tabla_objest" class="table datatable table-striped table-hover">
@@ -445,13 +489,13 @@
                                         <td>
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=linea_mostrar&id_entidad={$plan->id_entidad}&id_linea={$objest->id_linea}">{$objest->linea->indice}. {$objest->linea->nombre}</a>
                                         </td>
-                                        <td>
+                                        <td style="width:2%">
                                             <span class="label label-default">{$objest->linea->indice}.{$objest->indice}</span>
                                         </td>
-                                        <td>
+                                        <td style="width:30%">
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$plan->id_entidad}">{$objest->nombre}</a>
                                         </td>
-                                        <td>
+                                        <td style="width:2%">
                                             {$objops_objests[$objest->id]|@count}
                                         </td>
                                         <td style="white-space:nowrap">
@@ -500,6 +544,28 @@
 
             <!-- Objetivos operacionales del plan -->
             <div role="tabpanel" class="tab-pane" id="plan_objop">
+                <!-- Ejecucion -->
+                <ul class="list-group" style="margin: 0;">
+                    <li class="list-group-item list-group-item-info">
+                        <div class="row">
+                            <div class="col-sm-8 h4">
+                                {$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}
+                            </div>
+                            <!-- /.col-sm-8 -->
+                            <div class="col-sm-4">
+                                <div class="progress">
+                                    <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$plan->ejecucion|round:"2"}%;">
+                                        {$plan->ejecucion|round:"2"} %
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-sm-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </li>
+                </ul>
+                <!-- /Ejecucion -->
+                <br>
                 {if $objops}
                     <div class="table-responsive">
                         <table id="tabla_objop" class="table datatable table-striped table-hover">
@@ -522,7 +588,7 @@
                                         <td>
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objest_mostrar&id_objest={$objop->id_objest}&id_entidad={$plan->id_entidad}">{$objop->objest->linea->indice}.{$objop->objest->indice}. {$objop->objest->nombre}</a>
                                         </td>
-                                        <td>
+                                        <td style="width:2%">
                                             <span class="label label-default">{$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}</span>
                                         </td>
                                         <td>
@@ -530,14 +596,14 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.TXT_OBJOP_DESC}"></i>
                                             {/if}
                                         </td>
-                                        <td>
+                                        <td style="width:30%">
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$entidad->id}">{$objop->nombre}</a>
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$objop->id_responsable}'>
                                                 {$objop->responsable->nombre} {$objop->responsable->apellidos}</a>
                                         </td>
-                                        <td>
+                                        <td style="width:2%">
                                             {if $objops_anyos[$objop->id]}
                                                 {foreach $objops_anyos[$objop->id] as $anyo}
                                                     {if $anyo@first}
@@ -566,7 +632,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td style="width:2%">
                                             {if $objop->descendente}
                                                 {$objops_unids[$objop->id]|@count}
                                             {else}
@@ -606,78 +672,6 @@
                 {/if}
             </div>
             <!-- /Objetivos operacionales del plan -->
-
-            <!-- Archivos del plan -->
-            <div role="tabpanel" class="tab-pane" id="plan_archivos">
-                <!-- Barra de botones -->
-                {if $_control}
-                    <div id="botones_archivo" class="btn-toolbar hidden" role="toolbar" aria-label="">
-                        <div class="btn-group" role="group" aria-label="">
-                            <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_plan={$plan->id}&id_entidad={$entidad->id}' 
-                               title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
-                                <i class="fa fa-archive fa-fw"></i>
-                            </a>
-                        </div>
-                    </div>
-                {/if}
-                <!-- /Barra de botones -->
-                {if $archivos}
-                    <div class="table-responsive">
-                        <table id="tabla_archivos" class="table datatable table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>{$smarty.const.FIELD_ARCHIVO}</th>
-                                    <th>{$smarty.const.FIELD_USER}</th>
-                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$archivos item=archivo} 
-                                    {if $archivo->visible}
-                                        <tr>  
-                                            <td>
-                                                <a title='{$archivo->titulo}: {$archivo->descripcion|replace:"\r\n":" "}' href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo}</a>
-                                            </td>
-                                            <td style="font-size: 12px">
-                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'>{$archivo->usuario->nombre} {$archivo->usuario->apellidos}</a>
-                                            </td>
-                                            <td style="white-space:nowrap">
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVO_DESCARGA}" href="index.php?page=archivo_descargar&id={$archivo->id}"><i class="fa fa-download fa-fw"></i></a>                 
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'><i class="fa fa-user fa-fw"></i></a>
-                                            </td>
-                                        </tr>
-                                    {/if}
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                {else}
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="alert alert-info alert-dismissible">
-                                <i class="fa fa-info-circle fa-fw"></i> 
-                                {$smarty.const.MSG_PLAN_NO_ARCHIVOS}
-                            </div>
-                        </div>
-                        <!-- /.col-sm-11 -->
-                        <div class="col-sm-1">
-                            {if $_control}
-                                <div class="btn-toolbar" role="toolbar" aria-label="">
-                                    <div class="btn-group" role="group" aria-label="">
-                                        <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_plan={$plan->id}&id_entidad={$entidad->id}' 
-                                           title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
-                                            <i class="fa fa-archive fa-fw"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            {/if}
-                        </div>
-                        <!-- /.col-sm-1 -->
-                    </div>
-                    <!-- /.row -->
-                {/if}
-            </div>
-            <!-- /Archivos del plan -->
 
             <!-- Seguimiento del plan -->
             <div role="tabpanel" class="tab-pane" id="plan_res">
@@ -1016,7 +1010,7 @@
                                         <tbody>
                                             {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
                                                 <tr>
-                                                    <td><span class="label label-default">{$i}</span></td>
+                                                    <td style="width:2%"><span class="label label-default">{$i}</span></td>
                                                     <td>
                                                         <div class="progress">
                                                             <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
@@ -1024,8 +1018,8 @@
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td id="resultado_{$i}">
-                                                        <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual[$i]}</textarea>
+                                                    <td id="resultado_{$i}" style="width:50%">
+                                                        <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" rows="4" readonly>{$resultado_anual[$i]}</textarea>
                                                     </td>
                                                     {if $_control}
                                                         <td style="white-space:nowrap" id="edicion_{$i}">
@@ -1056,6 +1050,78 @@
                 {/if}
             </div>
             <!-- /Seguimiento del plan -->
+
+            <!-- Archivos del plan -->
+            <div role="tabpanel" class="tab-pane" id="plan_archivos">
+                <!-- Barra de botones -->
+                {if $_control}
+                    <div id="botones_archivo" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_plan={$plan->id}&id_entidad={$entidad->id}' 
+                               title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                <i class="fa fa-archive fa-fw"></i>
+                            </a>
+                        </div>
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
+                {if $archivos}
+                    <div class="table-responsive">
+                        <table id="tabla_archivos" class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_ARCHIVO}</th>
+                                    <th>{$smarty.const.FIELD_USER}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$archivos item=archivo} 
+                                    {if $archivo->visible}
+                                        <tr>  
+                                            <td>
+                                                <a title='{$archivo->titulo}: {$archivo->descripcion|replace:"\r\n":" "}' href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo}</a>
+                                            </td>
+                                            <td style="font-size: 12px">
+                                                <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'>{$archivo->usuario->nombre} {$archivo->usuario->apellidos}</a>
+                                            </td>
+                                            <td style="white-space:nowrap">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ARCHIVO_DESCARGA}" href="index.php?page=archivo_descargar&id={$archivo->id}"><i class="fa fa-download fa-fw"></i></a>                 
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'><i class="fa fa-user fa-fw"></i></a>
+                                            </td>
+                                        </tr>
+                                    {/if}
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_PLAN_NO_ARCHIVOS}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_plan={$plan->id}&id_entidad={$entidad->id}' 
+                                           title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
+                                            <i class="fa fa-archive fa-fw"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-1 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
+            </div>
+            <!-- /Archivos del plan -->
 
         </div>
         <!-- /Tab panes -->

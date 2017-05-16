@@ -14,5 +14,5 @@
 {/if}
 
 {if $modulo==='cancelar_resultado'}
-    <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual}</textarea>
+    <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" rows="4" readonly>{$resultado_anual}</textarea>
 {/if}

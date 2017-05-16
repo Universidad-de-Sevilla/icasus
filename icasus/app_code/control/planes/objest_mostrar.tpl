@@ -153,10 +153,10 @@
     <div class="col-lg-12">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active">
+            <li role="presentation">
                 <a href="#objest_ficha" title="{$smarty.const.TXT_FICHA}" aria-controls="{$smarty.const.TXT_FICHA}" role="tab" data-toggle="tab"><i class="fa fa-folder fa-fw"></i> {$smarty.const.TXT_FICHA}</a>
             </li>
-            <li role="presentation">
+            <li role="presentation" class="active">
                 <a href="#objest_objop" title="{$smarty.const.FIELD_OBJS_OP}" aria-controls="{$smarty.const.FIELD_OBJS_OP}" role="tab" data-toggle="tab"><i class="fa fa-bullseye fa-fw"></i> {$smarty.const.FIELD_OBJS_OP}</a>
             </li>
             <li role="presentation">
@@ -169,7 +169,7 @@
         <div class="tab-content">
 
             <!-- Ficha del objetivo estratégico -->
-            <div role="tabpanel" class="tab-pane active" id="objest_ficha">
+            <div role="tabpanel" class="tab-pane" id="objest_ficha">
                 <div class="row">
                     <!-- Datos del objetivo estratégico -->
                     <div class="col-md-12">
@@ -223,7 +223,29 @@
             <!-- /Ficha del objetivo estratégico -->
 
             <!-- Objetivos operacionales del objetivo estratégico -->
-            <div role="tabpanel" class="tab-pane" id="objest_objop">
+            <div role="tabpanel" class="tab-pane active" id="objest_objop">
+                <!-- Ejecucion -->
+                <ul class="list-group" style="margin: 0;">
+                    <li class="list-group-item list-group-item-info">
+                        <div class="row">
+                            <div class="col-sm-8 h4">
+                                {$linea->indice}.{$objest>indice}. {$objest->nombre}
+                            </div>
+                            <!-- /.col-sm-8 -->
+                            <div class="col-sm-4">
+                                <div class="progress">
+                                    <div class="progress-bar {if $objest->ejecucion|round:"2" < 25}progress-bar-danger{else if $objest->ejecucion|round:"2" >= 25 && $objest->ejecucion|round:"2" < 75}progress-bar-warning{else if $objest->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objest->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$objest->ejecucion|round:"2"}%;">
+                                        {$objest->ejecucion|round:"2"} %
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-sm-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </li>
+                </ul>
+                <!-- /Ejecucion -->
+                <br>
                 <!-- Barra de botones -->
                 {if $_control}
                     <div id="botones_objop" class="btn-toolbar hidden" role="toolbar" aria-label="">
@@ -254,7 +276,7 @@
                             <tbody>
                                 {foreach from=$objops item=objop} 
                                     <tr>  
-                                        <td>
+                                        <td style="width:2%">
                                             <span class="label label-default">{$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}</span>
                                         </td>
                                         <td>
@@ -262,14 +284,14 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.TXT_OBJOP_DESC}"></i>
                                             {/if}
                                         </td>
-                                        <td>
+                                        <td style="width:40%">
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$entidad->id}">{$objop->nombre}</a>
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$objop->id_responsable}'>
                                                 {$objop->responsable->nombre} {$objop->responsable->apellidos}</a>
                                         </td>
-                                        <td>
+                                        <td style="width:2%">
                                             {if $objops_anyos[$objop->id]}
                                                 {foreach $objops_anyos[$objop->id] as $anyo}
                                                     {if $anyo@first}
@@ -298,7 +320,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td>
+                                        <td style="width:2%">
                                             {if $objop->descendente}
                                                 {$objops_unids[$objop->id]|@count}
                                             {else}
@@ -354,6 +376,28 @@
 
             <!-- Seguimiento del objetivo estratégico -->
             <div role="tabpanel" class="tab-pane" id="objest_res">
+                <!-- Ejecucion -->
+                <ul class="list-group" style="margin: 0;">
+                    <li class="list-group-item list-group-item-info">
+                        <div class="row">
+                            <div class="col-sm-8 h4">
+                                {$linea->indice}.{$objest>indice}. {$objest->nombre}
+                            </div>
+                            <!-- /.col-sm-8 -->
+                            <div class="col-sm-4">
+                                <div class="progress">
+                                    <div class="progress-bar {if $objest->ejecucion|round:"2" < 25}progress-bar-danger{else if $objest->ejecucion|round:"2" >= 25 && $objest->ejecucion|round:"2" < 75}progress-bar-warning{else if $objest->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objest->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$objest->ejecucion|round:"2"}%;">
+                                        {$objest->ejecucion|round:"2"} %
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-sm-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </li>
+                </ul>
+                <!-- /Ejecucion -->
+                <br>
                 <!-- Ejecución/año -->
                 <div class="table-responsive">
                     <table class="table table-striped table-hover ficha">
@@ -370,7 +414,7 @@
                         <tbody>
                             {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
                                 <tr>
-                                    <td><span class="label label-default">{$i}</span></td>
+                                    <td style="width:2%"><span class="label label-default">{$i}</span></td>
                                     <td>
                                         <div class="progress">
                                             <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
@@ -378,8 +422,8 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td id="resultado_{$i}">
-                                        <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual[$i]}</textarea>
+                                    <td id="resultado_{$i}" style="width:50%">
+                                        <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" rows="4" readonly>{$resultado_anual[$i]}</textarea>
                                     </td>
                                     {if $_control}
                                         <td style="white-space:nowrap" id="edicion_{$i}">
