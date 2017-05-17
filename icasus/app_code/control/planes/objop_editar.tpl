@@ -61,9 +61,12 @@
             <!-- /.dropdown -->
             <li><a title="{$smarty.const.FIELD_PLANES}" href='index.php?page=plan_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLANES}</a></li>
             <li><a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}</a></li>
+            <li><a title="{$smarty.const.FIELD_LINEAS}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}#plan_lineas'>{$smarty.const.FIELD_LINEAS}</a></li>
             <li><a title="{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}" href='index.php?page=linea_mostrar&id_entidad={$entidad->id}&id_linea={$linea->id}'>{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_OBJS_EST}" href='index.php?page=linea_mostrar&id_linea={$linea->id}&id_entidad={$entidad->id}#linea_objests'>{$smarty.const.FIELD_OBJS_EST}</a></li>
             <li><a title="{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre|truncate:30}</a></li>
-            <li><a title="{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}" href='index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_OBJ_OP} {$linea->indice}.{$objest->indice}.{$objop->indice}. {$objop->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_OBJS_OP}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$entidad->id}#objest_objops'>{$smarty.const.FIELD_OBJS_OP}</a></li>
+            <li><a title="{$smarty.const.FIELD_OBJ_OP} {$linea->indice}.{$objest->indice}.{$objop->indice}. {$objest->nombre}" href='index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_OBJ_OP} {$linea->indice}.{$objest->indice}.{$objop->indice}. {$objop->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
