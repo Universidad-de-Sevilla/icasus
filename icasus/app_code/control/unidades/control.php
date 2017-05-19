@@ -299,5 +299,5 @@ $smarty->assign("modulo", $modulo);
 $smarty->assign("entidad", $entidad);
 $smarty->assign("fecha", $fecha);
 $smarty->assign('_javascript', array('control'));
-$smarty->assign("_nombre_pagina", TXT_CONTROL . ": " . $entidad->nombre);
+$smarty->assign("_nombre_pagina", TXT_CONTROL . " (" . FIELD_MEDICIONES . "): " . $entidad->nombre);
 $plantilla = "unidades/control.tpl";
