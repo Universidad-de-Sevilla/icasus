@@ -1,0 +1,67 @@
+<?php
+
+//---------------------------------------------------------------------------------------------------
+// Proyecto: Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
+// Archivo: cartas/servicio_mostrar.php
+// Tipo: controlador
+// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
+// Joaquín Valonero Zaera (tecnibus1@us.es)
+//---------------------------------------------------------------------------------------------------
+// Descripcion: Muestra la página principal de un Servicio
+//---------------------------------------------------------------------------------------------------
+
+global $smarty;
+global $plantilla;
+global $usuario;
+
+if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_servicio'))
+{
+    $id_servicio = filter_input(INPUT_GET, 'id_servicio', FILTER_SANITIZE_NUMBER_INT);
+    $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+
+    //Obtenemos los datos del Servicio
+    $servicio = new Servicio();
+    if ($servicio->load_joined("id = $id_servicio"))
+    {
+        $smarty->assign('servicio', $servicio);
+    }
+    else
+    {
+        $error = ERR_SERVICIO_MOSTRAR;
+        header("location:index.php?page=error&error=$error");
+    }
+
+    //Carta de Servicios
+    $carta = $servicio->carta;
+    $smarty->assign('carta', $carta);
+
+    //Obtener todos los Servicios para avanzar o retroceder 
+    $servicios = $servicio->Find("id_carta=$servicio->id_carta");
+    $smarty->assign("servicios", $servicio);
+    $cont = 0;
+    foreach ($servicios as $serv)
+    {
+        if ($id_servicio == $serv->id)
+        {
+            $indice = $cont;
+            $smarty->assign("indice", $indice);
+        }
+        $cont++;
+    }
+
+    //Compromisos
+    //Indicadores
+
+    $entidad = new Entidad();
+    $entidad->load("id = $id_entidad");
+    $smarty->assign('entidad', $entidad);
+
+    $smarty->assign('_javascript', array('servicio_mostrar'));
+    $smarty->assign('_nombre_pagina', FIELD_SERVICIO . " S." . $servicio->indice . ". " . $servicio->nombre);
+    $plantilla = 'cartas/servicio_mostrar.tpl';
+}
+else
+{
+    $error = ERR_PARAM;
+    header("location:index.php?page=error&error=$error");
+}

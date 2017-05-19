@@ -280,7 +280,7 @@
                                 {foreach from=$servicios item=servicio} 
                                     <tr>  
                                         <td>
-                                            <span class="label label-default">S. {$servicio->indice}</span>
+                                            <span class="label label-default">S.{$servicio->indice}</span>
                                         </td>
                                         <td>
                                             <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=servicio_mostrar&id_entidad={$carta->id_entidad}&id_servicio={$servicio->id}">{$servicio->nombre}</a>
