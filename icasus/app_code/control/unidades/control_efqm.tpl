@@ -117,23 +117,30 @@
                         <i class="fa fa-info-circle fa-fw"></i> 
                         {$smarty.const.MSG_CONTROL_EFQM_INFO}
                     </div>
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="efqm" class="col-sm-2 control-label">{$smarty.const.FIELD_EFQM}</label>
-                            <div id="criterio" class="col-sm-6" data-id_entidad="{$entidad->id}">
-                                <select class="form-control chosen-select" id="efqm" multiple>
-                                    <option value="0">{$smarty.const.MSG_NO_DEF}</option>
-                                    {foreach $criterios_efqm as $criterio_efqm}
-                                        <option value="{$criterio_efqm->id}">
-                                            {$criterio_efqm->codigo} - {$criterio_efqm->nombre}
-                                        </option>
-                                    {/foreach}
-                                </select>
-                            </div>
-                            <div class='col-sm-2'>
-                                <a class='btn btn-primary' title="{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_MEDICIONES}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_MEDICIONES}</a>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="efqm" class="col-sm-2 control-label">{$smarty.const.FIELD_EFQM}</label>
+                                    <div id="criterio" class="col-sm-10" data-id_entidad="{$entidad->id}">
+                                        <select class="form-control chosen-select" id="efqm" multiple>
+                                            <option value="0">{$smarty.const.MSG_NO_DEF}</option>
+                                            {foreach $criterios_efqm as $criterio_efqm}
+                                                <option value="{$criterio_efqm->id}">
+                                                    {$criterio_efqm->codigo} - {$criterio_efqm->nombre}
+                                                </option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                        <!-- /.col-md-7 -->
+                        <div class="col-md-5">
+                            <a class='btn btn-primary' title="{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_MEDICIONES}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_MEDICIONES}</a>
+                            <a class='btn btn-primary' title="{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_PLANES}" href="index.php?page=control_planes&modulo=inicio&id_entidad={$entidad->id}">{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_PLANES}</a>
+                        </div>
+                        <!-- /.col-md-5 -->
                     </div>
                 </div>
                 <!-- /.panel-body --> 

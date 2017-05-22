@@ -27,6 +27,12 @@ $anyo = filter_input(INPUT_GET, 'anyo', FILTER_SANITIZE_NUMBER_INT);
 $smarty->assign('anyo', $anyo);
 $plantilla = 'planes/objop_ajax.tpl';
 
+if ($modulo == 'editar_ejecucion')
+{
+    $valor = filter_input(INPUT_GET, 'valor', FILTER_VALIDATE_FLOAT);
+    $smarty->assign('valor', $valor);
+}
+
 if ($modulo == 'grabar_ejecucion')
 {
     $valor = filter_input(INPUT_POST, 'valor', FILTER_VALIDATE_FLOAT);
@@ -60,6 +66,22 @@ if ($modulo == 'activar_objetivo')
     //Actualizamos ejecuciones
     $logicaPlan->actualizar_ejecucion_anual($objop->id_objest, $anyo);
     $logicaPlan->actualizar_ejecucion_global($id_objop);
+}
+
+if ($modulo == 'actualizar_duracion')
+{
+    //Años de ejecución del objetivo operacional
+    $objop_anyos = array();
+    $ejecucion = new Ejecucion();
+    $ejecuciones = $ejecucion->Find("id_objop=$id_objop order by anyo");
+    foreach ($ejecuciones as $ejec)
+    {
+        if ($ejec->activo)
+        {
+            array_push($objop_anyos, $ejec->anyo);
+        }
+    }
+    $smarty->assign('objop_anyos', $objop_anyos);
 }
 
 if ($modulo == 'editar_resultado' OR $modulo == 'cancelar_resultado')

@@ -134,8 +134,11 @@
             <!-- /.dropdown -->
             <li><a title="{$smarty.const.FIELD_PLANES}" href='index.php?page=plan_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLANES}</a></li>
             <li><a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}</a></li>
+            <li><a title="{$smarty.const.FIELD_LINEAS}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}#plan_lineas'>{$smarty.const.FIELD_LINEAS}</a></li>
             <li><a title="{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}" href='index.php?page=linea_mostrar&id_entidad={$entidad->id}&id_linea={$linea->id}'>{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_OBJS_EST}" href='index.php?page=linea_mostrar&id_linea={$linea->id}&id_entidad={$entidad->id}#linea_objests'>{$smarty.const.FIELD_OBJS_EST}</a></li>
             <li><a title="{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_OBJ_EST} {$linea->indice}.{$objest->indice}. {$objest->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_OBJS_OP}" href='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$entidad->id}#objest_objops'>{$smarty.const.FIELD_OBJS_OP}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -211,6 +214,31 @@
                                     <td> 
                                         {if $objop->observaciones}
                                             {$objop->observaciones|nl2br}
+                                        {else}
+                                            ---
+                                        {/if}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_DURACION}</th>
+                                    <td id="duracion">
+                                        {if $objop_anyos}
+                                            {foreach $objop_anyos as $anyo}
+                                                {if $anyo@first}
+                                                    {$anyo}{$escrito=true}
+                                                {else if $anyo_anterior+1 == $anyo and !$anyo@last}
+                                                    {$escrito=false}
+                                                {else if $anyo_anterior+1 != $anyo and !$escrito}
+                                                    - {$anyo_anterior}, {$anyo}
+                                                    {$escrito=true}
+                                                {else if $anyo_anterior+1 != $anyo}
+                                                    , {$anyo}
+                                                    {$escrito=true}
+                                                {else if $anyo@last && $objop_anyos|@count>1}
+                                                    - {$anyo}
+                                                {/if}
+                                                {$anyo_anterior=$anyo}
+                                            {/foreach}
                                         {else}
                                             ---
                                         {/if}
@@ -316,40 +344,40 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
                                         </td>
-                                        <td>
-                                            <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
+                                        <td style="width:30%">
+                                            <a target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
                                                 {$indicador->nombre}</a>
                                         </td>
                                         <td>
-                                            <a title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
+                                            <a target="_blank" title="{$smarty.const.TXT_PROC_VER}" href='index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}'>
                                                 {$indicador->proceso->nombre}
                                             </a>
                                         </td>
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
-                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
+                                            <a target="_blank" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
                                                 {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                         </td>
                                         <td style="font-size: 12px">
-                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
+                                            <a target="_blank" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a target="_blank" class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a target="_blank" class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-area-chart fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
+                                            <a target="_blank" class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$smarty.const.FIELD_MEDICIONES}">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a target="_blank" class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-connectdevelop fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a target="_blank" class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
                                         </td>
@@ -404,35 +432,35 @@
                                                 <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
                                             {/if}
                                         </td>
-                                        <td>
-                                            <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
+                                        <td style="width:30%">
+                                            <a target="_blank" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
                                                 {$indicador->nombre}</a>
                                         </td>
                                         <td>{$indicador->periodicidad}</td>
                                         <td style="font-size: 12px">
-                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
+                                            <a target="_blank" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
                                                 {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
                                         </td>
                                         <td style="font-size: 12px">
-                                            <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
+                                            <a target="_blank" title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
                                                 {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a target="_blank" class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a target="_blank" class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-area-chart fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
+                                            <a target="_blank" class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
                                                title="{$smarty.const.FIELD_MEDICIONES}">
                                                 <i class="fa fa-hourglass fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a target="_blank" class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-connectdevelop fa-fw"></i>
                                             </a> 
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                            <a target="_blank" class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
                                                 <i class="fa fa-tags fa-fw"></i>
                                             </a>
                                         </td>
@@ -458,6 +486,28 @@
 
             <!-- Seguimiento del objetivo operacional -->
             <div role="tabpanel" class="tab-pane" id="objop_res">
+                <!-- Ejecucion -->
+                <ul class="list-group" style="margin: 0;">
+                    <li class="list-group-item list-group-item-info">
+                        <div class="row">
+                            <div class="col-sm-8 h4">
+                                {$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}
+                            </div>
+                            <!-- /.col-sm-8 -->
+                            <div class="col-sm-4">
+                                <div class="progress">
+                                    <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{else if $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{else if $objop->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$objop->ejecucion|round:"2"}%;">
+                                        {$objop->ejecucion|round:"2"} %
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col-sm-4 -->
+                        </div>
+                        <!-- /.row -->
+                    </li>
+                </ul>
+                <!-- /Ejecucion -->
+                <br>
                 <!-- Ejecución/año -->
                 <div class="table-responsive">
                     <table class="table table-striped table-hover ficha">
@@ -474,43 +524,45 @@
                         </thead>
                         <tbody>
                             {for $i={$plan->anyo_inicio} to {($plan->anyo_inicio + $plan->duracion-1)}}
-                                <tr>
-                                    <td><span class="label label-default">{$i}</span></td>
-                                    <td id="porcentaje_{$i}">
-                                        <div class="progress">
-                                            <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
-                                                {$ejecucion_anual[$i]|round:"2"} %
+                                {if $activacion_anual[$i] || $_control || $responsable}
+                                    <tr>
+                                        <td style="width:2%"><span class="label label-default">{$i}</span></td>
+                                        <td id="porcentaje_{$i}" data-valor="{$ejecucion_anual[$i]|round:"2"}">
+                                            <div class="progress">
+                                                <div class="progress-bar {if $ejecucion_anual[$i]|round:"2" < 25}progress-bar-danger{else if $ejecucion_anual[$i]|round:"2" >= 25 && $ejecucion_anual[$i]|round:"2" < 75}progress-bar-warning{else if $ejecucion_anual[$i]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual[$i]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual[$i]|round:"2"}%">
+                                                    {$ejecucion_anual[$i]|round:"2"} %
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td id="resultado_{$i}">
-                                        <textarea  class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual[$i]}</textarea>
-                                    </td>
-                                    {if $_control || $responsable}
-                                        <td style="white-space:nowrap" id="edicion_{$i}">
-                                            <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$i}'>
-                                                <i class="fa fa-pencil fa-fw"></i>
-                                            </a>
                                         </td>
-                                        <td>
-                                            <input class="form-control activar" data-width="60" type="checkbox"
-                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
-                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
-                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
-                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if}>
+                                        <td id="resultado_{$i}" style="width:50%">
+                                            <textarea  class="form-control" placeholder="{$smarty.const.TXT_RESUL}" rows="4" readonly>{$resultado_anual[$i]}</textarea>
                                         </td>
-                                    {else}
-                                        <td>
-                                            <input class="form-control activar" data-width="60" type="checkbox"
-                                                   data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
-                                                   data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                                   data-off="{$smarty.const.TXT_VAL_INACTIVO}"
-                                                   data-id_objop='{$objop->id}' data-anyo='{$i}'
-                                                   {if $activacion_anual[$i] == 1}checked="checked"{/if} disabled>
-                                        </td>
-                                    {/if}
-                                </tr>
+                                        {if $_control || $responsable}
+                                            <td style="white-space:nowrap" id="edicion_{$i}">
+                                                <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$i}'>
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <input class="form-control activar" data-width="60" type="checkbox"
+                                                       data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                       data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                       data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                       data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                       {if $activacion_anual[$i] == 1}checked="checked"{/if}>
+                                            </td>
+                                        {else}
+                                            <td>
+                                                <input class="form-control activar" data-width="60" type="checkbox"
+                                                       data-toggle="toggle" data-on="{$smarty.const.TXT_VAL_ACTIVO}"
+                                                       data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                                       data-off="{$smarty.const.TXT_VAL_INACTIVO}"
+                                                       data-id_objop='{$objop->id}' data-anyo='{$i}'
+                                                       {if $activacion_anual[$i] == 1}checked="checked"{/if} disabled>
+                                            </td>
+                                        {/if}
+                                    </tr>
+                                {/if}
                             {/for}
                         </tbody>
                     </table>

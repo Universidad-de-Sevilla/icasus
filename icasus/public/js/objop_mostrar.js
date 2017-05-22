@@ -17,7 +17,8 @@ $(document).ready(function () {
 $('#page-wrapper').on('click', '.editar', function () {
     var id_objop = $(this).data('id_objop');
     var anyo = $(this).data('anyo');
-    $("#page-wrapper #edicion_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=editar_ejecucion&id_objop=" + id_objop + "&anyo=" + anyo);
+    var valor = $("#page-wrapper #porcentaje_" + anyo).data('valor');
+    $("#page-wrapper #edicion_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=editar_ejecucion&id_objop=" + id_objop + "&anyo=" + anyo + "&valor=" + valor);
     $("#page-wrapper #resultado_" + anyo).load("index.php?page=objop_ajax&ajax=true&modulo=editar_resultado&id_objop=" + id_objop + "&anyo=" + anyo);
 });
 
@@ -77,5 +78,6 @@ $(".activar").change(function () {
     }
     $.get('index.php?page=objop_ajax&ajax=true&modulo=activar_objetivo', {id_objop: id_objop, anyo: anyo, activo: activo}, function () {
         $("#page-wrapper #ejecucion_global").load("index.php?page=objop_ajax&ajax=true&modulo=actualizar_global&id_objop=" + id_objop + "&anyo=" + anyo);
+        $("#page-wrapper #duracion").load("index.php?page=objop_ajax&ajax=true&modulo=actualizar_duracion&id_objop=" + id_objop + "&anyo=" + anyo);
     });
 });

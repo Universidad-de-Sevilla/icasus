@@ -1,5 +1,5 @@
 {if $modulo==='editar_ejecucion'}
-    <input id="valor_{$anyo}" type="text" class="valor" placeholder="{$smarty.const.FIELD_VAL} %">
+    <input id="valor_{$anyo}" type="text" {if $valor>0}value="{$valor}"{/if} class="valor" placeholder="{$smarty.const.FIELD_VAL} %">
     <a title="{$smarty.const.TXT_GRABAR}" class="btn btn-default btn-xs btn-circle grabar" data-id_objop='{$objop->id}' data-anyo='{$anyo}'>
         <i class="fa fa-floppy-o fa-fw"></i>
     </a>
@@ -9,7 +9,7 @@
 {/if}
 
 {if $modulo==='editar_resultado'}
-    <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}">{$resultado_anual}</textarea>
+    <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" rows="4">{$resultado_anual}</textarea>
 {/if}
 
 {if $modulo==='actualizar_porcentaje'}
@@ -28,6 +28,29 @@
     </div>
 {/if}
 
+{if $modulo==='actualizar_duracion'}
+    {if $objop_anyos}
+        {foreach $objop_anyos as $anyo}
+            {if $anyo@first}
+                {$anyo}{$escrito=true}
+            {else if $anyo_anterior+1 == $anyo and !$anyo@last}
+                {$escrito=false}
+            {else if $anyo_anterior+1 != $anyo and !$escrito}
+                - {$anyo_anterior}, {$anyo}
+                {$escrito=true}
+            {else if $anyo_anterior+1 != $anyo}
+                , {$anyo}
+                {$escrito=true}
+            {else if $anyo@last && $objop_anyos|@count>1}
+                - {$anyo}
+            {/if}
+            {$anyo_anterior=$anyo}
+        {/foreach}
+    {else}
+        ---
+    {/if}
+{/if}
+
 {if $modulo==='cancelar_ejecucion'}
     <a title="{$smarty.const.TXT_EDIT}" class="btn btn-default btn-xs btn-circle editar" data-id_objop='{$objop->id}' data-anyo='{$anyo}'>
         <i class="fa fa-pencil fa-fw"></i>
@@ -35,5 +58,5 @@
 {/if}
 
 {if $modulo==='cancelar_resultado'}
-    <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" readonly>{$resultado_anual}</textarea>
+    <textarea class="form-control" placeholder="{$smarty.const.TXT_RESUL}" rows="4" readonly>{$resultado_anual}</textarea>
 {/if}

@@ -61,6 +61,7 @@
             <!-- /.dropdown -->
             <li><a title="{$smarty.const.FIELD_PLANES}" href='index.php?page=plan_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLANES}</a></li>
             <li><a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}</a></li>
+            <li><a title="{$smarty.const.FIELD_LINEAS}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}#plan_lineas'>{$smarty.const.FIELD_LINEAS}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -92,7 +93,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
-                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}'>
+                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}#plan_lineas'>
                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                     </a>
                     <div class="pull-right">

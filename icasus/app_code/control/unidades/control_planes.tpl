@@ -84,7 +84,7 @@
     <!-- /.row -->
     <!-- /Breadcrumbs -->
 
-    {if $_control || $indicadores_datos_propios || $procesos_propios}
+    {if $_control || $objops_propios}
         <!-- Selección del año de consulta -->
         <div class="row">
             <div class="col-lg-12">
@@ -96,7 +96,7 @@
                     <div class="panel-body">
                         <div class="alert alert-info">
                             <i class="fa fa-info-circle fa-fw"></i> 
-                            {$smarty.const.MSG_CONTROL_MED_INFO}
+                            {$smarty.const.MSG_CONTROL_PLANES_INFO}
                         </div>
                         <div class="row">
                             <div class="col-md-6">
@@ -113,8 +113,8 @@
                             </div>
                             <!-- /.col-md-6 -->
                             <div class="col-md-6">
+                                <a class='btn btn-primary' title="{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_MEDICIONES}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_MEDICIONES}</a>
                                 <a class='btn btn-primary' title="{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_EFQM}" href="index.php?page=control_efqm&modulo=inicio&id_entidad={$entidad->id}">{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_EFQM}</a>
-                                <a class='btn btn-primary' title="{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_PLANES}" href="index.php?page=control_planes&modulo=inicio&id_entidad={$entidad->id}">{$smarty.const.TXT_CONTROL}: {$smarty.const.FIELD_PLANES}</a>
                             </div>
                             <!-- /.col-md-6 -->
                         </div>
@@ -132,7 +132,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div id="datos_control">
-                    {include file="unidades/control_valores.tpl"}
+                    {include file="unidades/control_resultados.tpl"}
                 </div>
                 <!-- /#datos_control -->
             </div>
@@ -155,7 +155,7 @@
 {/if}
 
 {if $modulo == 'filtrOnlyear'}
-    {include file="unidades/control_valores.tpl"}
+    {include file="unidades/control_resultados.tpl"}
     {*Recargamos script para datatables y botones*}
     {literal}
         <script>
@@ -191,10 +191,6 @@
                 $('.table-responsive').on('scroll', function () {
                     datatables.fixedHeader.adjust();
                 });
-
-                //Barra de botones
-                var botones = $('#botones').html();
-                $('#tabla_nulos_filter').append(botones);
             });
         </script>
     {/literal}
