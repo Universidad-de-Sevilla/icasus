@@ -88,6 +88,8 @@ define('TXT_SERVICIO_BORRAR', 'Borrar Servicio');
 
 //Compromisos
 define('TXT_COMPROMISO_CREAR', 'Crear Compromiso');
+define('TXT_COMPROMISO_EDIT', 'Editar Compromiso');
+define('TXT_COMPROMISO_BORRAR', 'Borrar Compromiso');
 
 //Cuadros de Mando
 define('TXT_CUADRO_CREAR', 'Crear Cuadro de Mando');
@@ -562,14 +564,23 @@ define('MSG_CARTA_EDITADA', 'Se ha editado correctamente la Carta de Servicios.'
 define('MSG_CARTA_NO_ARCHIVOS', 'No se han subido archivos para esta Carta de Servicios.');
 define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
 define('MSG_CARTA_NO_SERVICIOS', 'No se han definido Servicios para esta Carta de Servicios.');
+define('MSG_CARTA_NO_COMPROMISOS', 'No se han definido Compromisos para esta Carta de Servicios.');
 define('MSG_CARTA_CONFIRM_EDITAR', 'Va a editar esta Carta de Servicios, ¿está seguro?');
 define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Servicios?');
 
 //Servicios
+define('MSG_SERVICIO_NO_COMPROMISOS', 'No se han definido Compromisos para este Servicio.');
 define('MSG_SERVICIO_CREADO', 'Se ha creado un nuevo Servicio para esta Carta.');
 define('MSG_SERVICIO_EDITADO', 'Se ha editado el Servicio correctamente.');
 define('MSG_SERVICIO_CONFIRM_EDITAR', 'Va a editar este Servicio, ¿está seguro?');
 define('MSG_SERVICIO_CONFIRM_BORRAR', '¿Desea borrar este Servicio?');
+
+//Compromisos
+define('MSG_COMPROMISO_NO_INDICS', 'No se han definido Indicadores para este Servicio.');
+define('MSG_COMPROMISO_CREADO', 'Se ha creado un nuevo Compromiso para este Servicio.');
+define('MSG_COMPROMISO_EDITADO', 'Se ha editado el Compromiso correctamente.');
+define('MSG_COMPROMISO_CONFIRM_EDITAR', 'Va a editar este Compromiso, ¿está seguro?');
+define('MSG_COMPROMISO_CONFIRM_BORRAR', '¿Desea borrar este Compromiso?');
 
 //Consulta avanzada
 define('MSG_NO_CAL', 'No se puede calcular con los parámetros actuales.');

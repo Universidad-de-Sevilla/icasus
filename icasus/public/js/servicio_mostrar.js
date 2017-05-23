@@ -11,10 +11,8 @@
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha').html();
     var botones_compromiso = $('#botones_compromiso').html();
-//    var botones_indics = $('#botones_indics').html();
     $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
     $('#tabla_compromisos_filter').append(botones_compromiso);
-//    $('#tabla_indics_control_filter').append(botones_indics);
 
     //Borrado de compromisos
     $('#dialogo_confirmar_borrado_compromiso').on('show.bs.modal', function (event) {
@@ -28,5 +26,3 @@ $(document).ready(function () {
         modal.find('#borrar').attr('href', link);
     });
 });
-
-

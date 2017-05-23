@@ -51,6 +51,17 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_ca
     $smarty->assign('servicios', $servicios);
 
     //Compromisos
+    $compromiso = new Compromiso();
+    $compromisos = array();
+    $compromisos_servicios = array();
+    foreach ($servicios as $serv)
+    {
+        $compromisos = array_merge($compromisos, $compromiso->Find_joined("id_servicio=$serv->id"));
+        $compromisos_servicios[$serv->id] = $compromiso->Find("id_servicio=$serv->id order by indice");
+    }
+    $smarty->assign('compromisos', $compromisos);
+    $smarty->assign('compromisos_servicios', $compromisos_servicios);
+    
     //Indicadores
     //Archivos
     $archivo = new Fichero();

@@ -45,6 +45,25 @@
 <!-- /Diálogo Confirmar Borrado Servicio -->
 
 <!-- Diálogo Confirmar Borrado Compromiso -->
+<div class="modal fade" id="dialogo_confirmar_borrado_compromiso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i
+                        class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_COMPROMISO_BORRAR}: <span id="nombre_compromiso"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_COMPROMISO_CONFIRM_BORRAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- /Diálogo Confirmar Borrado Compromiso -->
 
 <!-- Nombre página -->
@@ -297,7 +316,7 @@
                                                     <i class="fa fa-pencil fa-fw"></i>
                                                 </a>
                                                 <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_SERVICIO_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_servicio"
-                                                   data-id_entidad="{$carta->id_entidad}" data-nombre="S. {$servicio->indice}. {$servicio->nombre}" data-id_servicio="{$servicio->id}">
+                                                   data-id_entidad="{$carta->id_entidad}" data-nombre="S.{$servicio->indice}. {$servicio->nombre}" data-id_servicio="{$servicio->id}">
                                                     <i class="fa fa-trash fa-fw"></i>
                                                 </a>
                                             {/if}
@@ -337,7 +356,56 @@
 
             <!-- Compromisos de la Carta -->
             <div role="tabpanel" class="tab-pane" id="carta_compromisos">
-
+                {if $compromisos}
+                    <div class="table-responsive">
+                        <table id="tabla_objest" class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_INDICE}</th>
+                                    <th>{$smarty.const.FIELD_COMPROMISO}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$compromisos item=compromiso} 
+                                    <tr>  
+                                        <td>
+                                            <span class="label label-default">C.{$compromiso->indice}</span>
+                                        </td>
+                                        <td>
+                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">{$compromiso->nombre}</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">
+                                                <i class="fa fa-folder fa-fw"></i>
+                                            </a>
+                                            {if $_control}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=compromiso_editar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_COMPROMISO_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_compromiso"
+                                                   data-id_entidad="{$carta->id_entidad}" data-nombre="C.{$compromiso->indice}. {$compromiso->nombre}" data-id_compromiso="{$compromiso->id}">
+                                                    <i class="fa fa-trash fa-fw"></i>
+                                                </a>
+                                            {/if}
+                                        </td>
+                                    </tr>    
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_CARTA_NO_COMPROMISOS}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-12 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
             </div>
             <!-- /Compromisos de la Carta -->
 

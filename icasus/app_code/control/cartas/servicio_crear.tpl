@@ -77,7 +77,7 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <form action='index.php?page=servicio_grabar' method='post' id='formlinea' name='formservicio' 
+        <form action='index.php?page=servicio_grabar' method='post' id='formservicio' name='formservicio' 
               data-toggle="validator" class="form-horizontal">
             <input type="hidden" name="id_carta" value="{$carta->id}">
             <div class="form-group has-feedback">

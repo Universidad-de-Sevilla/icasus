@@ -2,7 +2,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h3 title="{$_nombre_pagina}" class="page-header">
-            <i class="fa fa-user-circle-o fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$_nombre_pagina}
+            <i class="fa fa-handshake-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$_nombre_pagina}
         </h3>
     </div>
     <!-- /.col-lg-12 -->
@@ -68,6 +68,7 @@
             <li><a title="{$smarty.const.FIELD_CARTA} {$carta->fecha|date_format:'%d/%m/%Y'}" href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_CARTA} {$carta->fecha|date_format:'%d/%m/%Y'}</a></li>
             <li><a title="{$smarty.const.FIELD_SERVICIOS}" href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$entidad->id}#carta_servicios'>{$smarty.const.FIELD_SERVICIOS}</a></li>
             <li><a title="{$smarty.const.FIELD_SERVICIO} S. {$servicio->indice}. {$servicio->nombre}" href='index.php?page=servicio_mostrar&id_entidad={$carta->id_entidad}&id_servicio={$servicio->id}'>{$smarty.const.FIELD_SERVICIO} S. {$servicio->indice}. {$servicio->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_COMPROMISOS}" href='index.php?page=servicio_mostrar&id_servicio={$servicio->id}&id_entidad={$entidad->id}#servicio_compromisos'>{$smarty.const.FIELD_COMPROMISOS}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -78,16 +79,15 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <form action='index.php?page=servicio_grabar' method='post' id='formservicio' name='formservicio' 
+        <form action='index.php?page=compromiso_grabar' method='post' id='formcompromiso' name='formservicio' 
               data-toggle="validator" class="form-horizontal">
-            <input type="hidden" name="id_carta" value="{$carta->id}">
             <input type="hidden" name="id_servicio" value="{$servicio->id}">
             <div class="form-group has-feedback">
                 <label for="indice" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_INDICE}</label>
                 <div class="col-sm-8">
                     <div class="input-group">
-                        <div class="input-group-addon">S.</div>
-                        <input type='number' class="form-control" name='indice' id='indice' value="{$servicio->indice}" min="1" placeholder="{$smarty.const.FIELD_INDICE}" data-elementos='{$elementos|@json_encode}' data-validar_igual="validar_igual" data-validar_igual-error="{$smarty.const.ERR_SERVICIO_VAL_INDICE}" required/>
+                        <div class="input-group-addon">C.</div>
+                        <input type='number' class="form-control" name='indice' id='indice' value="1" min="1" placeholder="{$smarty.const.FIELD_INDICE}" data-elementos='{$elementos|@json_encode}' data-validar_igual="validar_igual" data-validar_igual-error="{$smarty.const.ERR_SERVICIO_VAL_INDICE}" required/>
                     </div>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>
@@ -96,7 +96,7 @@
             <div class="form-group has-feedback">
                 <label for="nombre" class="col-sm-2 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
                 <div class="col-sm-8">
-                    <input type='text' class="form-control" value="{$servicio->nombre}" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
+                    <input type='text' class="form-control" name='nombre' id='nombre' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>
                 </div>
@@ -104,45 +104,34 @@
             <div class="form-group">
                 <label for="descripcion" class="col-sm-2 control-label">{$smarty.const.FIELD_DESCRIPCION}</label>
                 <div class="col-sm-8">
-                    <textarea  class="form-control" name="descripcion" id="descripcion" placeholder="{$smarty.const.FIELD_DESCRIPCION}">{$servicio->descripcion}</textarea>
+                    <textarea  class="form-control" name="descripcion" id="descripcion" placeholder="{$smarty.const.FIELD_DESCRIPCION}"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="indicadores_compromiso" class="col-sm-2 control-label">{$smarty.const.FIELD_INDICS}</label>
+                <div class="col-sm-8">
+                    <select class="form-control chosen-select" name="indicadores_compromiso[]" id="indicadores_compromiso" multiple>
+                        {foreach $indicadores as $indicador}
+                            <option title="{$indicador->codigo} - {$indicador->nombre}" value="{$indicador->id}">{$indicador->codigo} - {$indicador->nombre}</option>
+                        {/foreach}
+                    </select>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
-                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=servicio_mostrar&id_servicio={$servicio->id}&id_entidad={$carta->id_entidad}'>
+                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=servicio_mostrar&id_servicio={$servicio->id}&id_entidad={$carta->id_entidad}#servicio_compromisos'>
                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                     </a>
                     <div class="pull-right">
                         <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
                             <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                         </button>
-                        <button title="{$smarty.const.TXT_GRABAR}" type="button" class="btn btn-success" data-toggle="modal" data-target="#dialogo_confirmar_edicion">
+                        <button title="{$smarty.const.TXT_GRABAR}" type="submit" class="btn btn-success">
                             <i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}
                         </button>
                     </div>
                 </div>
             </div>
-
-            <!-- Diálogo Confirmar Edición -->
-            <div class="modal fade" id="dialogo_confirmar_edicion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-long-arrow-right fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_SERVICIO_EDIT}: S. {$servicio->indice}. {$servicio->nombre}</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p>{$smarty.const.MSG_SERVICIO_CONFIRM_EDITAR}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                            <button type="submit" title="{$smarty.const.TXT_SI}" class="btn btn-success" name="editar" id="editar"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- /Diálogo Confirmar Edición -->
-
         </form>
     </div>
     <!-- /.col-lg-12 -->

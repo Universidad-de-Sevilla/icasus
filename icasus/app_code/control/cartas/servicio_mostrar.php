@@ -35,9 +35,9 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_se
     $carta = $servicio->carta;
     $smarty->assign('carta', $carta);
 
-    //Obtener todos los Servicios para avanzar o retroceder 
-    $servicios = $servicio->Find("id_carta=$servicio->id_carta");
-    $smarty->assign("servicios", $servicio);
+    //Obtener todos los Servicios para avanzar o retroceder
+    $servicios = $servicio->Find("id_carta=$carta->id");
+    $smarty->assign("servicios", $servicios);
     $cont = 0;
     foreach ($servicios as $serv)
     {
@@ -50,6 +50,10 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_se
     }
 
     //Compromisos
+    $compromiso = new Compromiso();
+    $compromisos = $compromiso->Find("id_servicio=$id_servicio order by indice");
+    $smarty->assign('compromisos', $compromisos);
+
     //Indicadores
 
     $entidad = new Entidad();

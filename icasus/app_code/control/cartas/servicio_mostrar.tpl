@@ -65,7 +65,7 @@
                                 <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_SERVICIO}" class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}" href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[$indice-1]->id}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_SERVICIO}" class="btn btn-danger btn-xs {if $indice == (count($servicios)-1)}disabled{/if}" href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicio[$indice+1]->id}'>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_SERVICIO}" class="btn btn-danger btn-xs {if $indice == (count($servicios)-1)}disabled{/if}" href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[$indice+1]->id}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
                                 <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_SERVICIO}" class="btn btn-danger btn-xs {if $indice == (count($servicios)-1)}disabled{/if}" href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[(count($servicios)-1)]->id}'>
@@ -216,11 +216,85 @@
             </div>
             <!-- /Ficha del Servicio -->
 
-            <!-- Compromisos del Carta -->
+            <!-- Compromisos del Servicio -->
             <div role="tabpanel" class="tab-pane" id="servicio_compromisos">
-
+                <!-- Barra de botones -->
+                {if $_control}
+                    <div id="botones_compromiso" class="btn-toolbar hidden" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a class="btn btn-danger" href='index.php?page=compromiso_crear&id_servicio={$servicio->id}&id_entidad={$carta->id_entidad}' 
+                               title="{$smarty.const.TXT_COMPROMISO_CREAR}">
+                                <i class="fa fa-handshake-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            </a>
+                        </div>
+                    </div>
+                {/if}
+                <!-- /Barra de botones -->
+                {if $compromisos}
+                    <div class="table-responsive">
+                        <table id="tabla_compromisos" class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_INDICE}</th>
+                                    <th>{$smarty.const.FIELD_COMPROMISO}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach from=$compromisos item=compromiso} 
+                                    <tr>  
+                                        <td>
+                                            <span class="label label-default">C.{$compromiso->indice}</span>
+                                        </td>
+                                        <td>
+                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">{$compromiso->nombre}</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">
+                                                <i class="fa fa-folder fa-fw"></i>
+                                            </a>
+                                            {if $_control}
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=compromiso_editar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">
+                                                    <i class="fa fa-pencil fa-fw"></i>
+                                                </a>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_COMPROMISO_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_compromiso"
+                                                   data-id_entidad="{$carta->id_entidad}" data-nombre="C.{$compromiso->indice}. {$compromiso->nombre}" data-id_compromiso="{$compromiso->id}">
+                                                    <i class="fa fa-trash fa-fw"></i>
+                                                </a>
+                                            {/if}
+                                        </td>
+                                    </tr>     
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="row">
+                        <div class="col-sm-11">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_SERVICIO_NO_COMPROMISOS}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-11 -->
+                        <div class="col-sm-1">
+                            {if $_control}
+                                <div class="btn-toolbar" role="toolbar" aria-label="">
+                                    <div class="btn-group" role="group" aria-label="">
+                                        <a class="btn btn-danger" href='index.php?page=compromiso_crear&id_servicio={$servicio->id}&id_entidad={$carta->id_entidad}' 
+                                           title="{$smarty.const.TXT_COMPROMISO_CREAR}">
+                                            <i class="fa fa-handshake-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                        </a>
+                                    </div>
+                                </div>
+                            {/if}
+                        </div>
+                        <!-- /.col-sm-1 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
             </div>
-            <!-- /Compromisos de la Carta -->
+            <!-- /Compromisos del Servicio -->
 
             <!-- Indicadores de la Carta -->
             <div role="tabpanel" class="tab-pane" id="servicio_indics">
