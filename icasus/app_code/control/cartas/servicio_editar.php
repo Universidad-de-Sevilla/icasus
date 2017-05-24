@@ -46,7 +46,7 @@ if (filter_has_var(INPUT_GET, 'id_servicio') && $control)
     }
     $smarty->assign('elementos', $indices);
 
-    $smarty->assign('_nombre_pagina', TXT_SERVICIO_EDIT . ': S. ' . $servicio->indice . '. ' . $servicio->nombre);
+    $smarty->assign('_nombre_pagina', TXT_SERVICIO_EDIT . ': S.' . $servicio->indice . '. ' . $servicio->nombre);
     $plantilla = 'cartas/servicio_editar.tpl';
 }
 else

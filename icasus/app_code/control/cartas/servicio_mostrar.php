@@ -61,7 +61,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_se
     $smarty->assign('entidad', $entidad);
 
     $smarty->assign('_javascript', array('servicio_mostrar'));
-    $smarty->assign('_nombre_pagina', FIELD_SERVICIO . " S." . $servicio->indice . ". " . $servicio->nombre);
+    $smarty->assign('_nombre_pagina', FIELD_SERVICIO . ": S." . $servicio->indice . ". " . $servicio->nombre);
     $plantilla = 'cartas/servicio_mostrar.tpl';
 }
 else

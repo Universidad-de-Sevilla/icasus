@@ -67,7 +67,7 @@
             <li><a title="{$smarty.const.FIELD_CARTAS}" href='index.php?page=carta_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_CARTAS}</a></li>
             <li><a title="{$smarty.const.FIELD_CARTA} {$carta->fecha|date_format:'%d/%m/%Y'}" href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_CARTA} {$carta->fecha|date_format:'%d/%m/%Y'}</a></li>
             <li><a title="{$smarty.const.FIELD_SERVICIOS}" href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$entidad->id}#carta_servicios'>{$smarty.const.FIELD_SERVICIOS}</a></li>
-            <li><a title="{$smarty.const.FIELD_SERVICIO} S. {$servicio->indice}. {$servicio->nombre}" href='index.php?page=servicio_mostrar&id_entidad={$carta->id_entidad}&id_servicio={$servicio->id}'>{$smarty.const.FIELD_SERVICIO} S. {$servicio->indice}. {$servicio->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_SERVICIO} S.{$servicio->indice}. {$servicio->nombre}" href='index.php?page=servicio_mostrar&id_entidad={$carta->id_entidad}&id_servicio={$servicio->id}'>{$smarty.const.FIELD_SERVICIO} S.{$servicio->indice}. {$servicio->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -129,7 +129,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-long-arrow-right fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_SERVICIO_EDIT}: S. {$servicio->indice}. {$servicio->nombre}</h3>
+                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-user-circle-o fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_SERVICIO_EDIT}: S.{$servicio->indice}. {$servicio->nombre}</h3>
                         </div>
                         <div class="modal-body">
                             <p>{$smarty.const.MSG_SERVICIO_CONFIRM_EDITAR}</p>

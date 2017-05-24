@@ -576,7 +576,7 @@ define('MSG_SERVICIO_CONFIRM_EDITAR', 'Va a editar este Servicio, ¿está seguro
 define('MSG_SERVICIO_CONFIRM_BORRAR', '¿Desea borrar este Servicio?');
 
 //Compromisos
-define('MSG_COMPROMISO_NO_INDICS', 'No se han definido Indicadores para este Servicio.');
+define('MSG_COMPROMISO_NO_INDICS', 'No se han definido Indicadores para este Compromiso.');
 define('MSG_COMPROMISO_CREADO', 'Se ha creado un nuevo Compromiso para este Servicio.');
 define('MSG_COMPROMISO_EDITADO', 'Se ha editado el Compromiso correctamente.');
 define('MSG_COMPROMISO_CONFIRM_EDITAR', 'Va a editar este Compromiso, ¿está seguro?');
@@ -808,6 +808,11 @@ define('ERR_CARTA_EDIT', 'La Carta de Servicios no existe o no tiene permisos pa
 define('ERR_SERVICIO_MOSTRAR', 'No se puede mostrar el Servicio, el identificador no existe en la base de datos.');
 define('ERR_SERVICIO_VAL_INDICE', 'Ya existe un Servicio con el mismo índice para esta Carta de Servicios.');
 define('ERR_SERVICIO_EDIT', 'El Servicio no existe o no tiene permisos para editarlo.');
+
+//Compromisos
+define('ERR_COMPROMISO_MOSTRAR', 'No se puede mostrar el Compromiso, el identificador no existe en la base de datos.');
+define('ERR_COMPROMISO_VAL_INDICE', 'Ya existe un Compromiso con el mismo índice para este Servicio.');
+define('ERR_COMPROMISO_EDIT', 'El Compromiso no existe o no tiene permisos para editarlo.');
 
 //Cuadros de Mando
 define('ERR_CUAD_MANDO', 'El Cuadro de Mando no existe o no tiene permisos para consultarlo.');
