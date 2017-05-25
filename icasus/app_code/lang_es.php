@@ -581,6 +581,8 @@ define('MSG_COMPROMISO_CREADO', 'Se ha creado un nuevo Compromiso para este Serv
 define('MSG_COMPROMISO_EDITADO', 'Se ha editado el Compromiso correctamente.');
 define('MSG_COMPROMISO_CONFIRM_EDITAR', 'Va a editar este Compromiso, ¿está seguro?');
 define('MSG_COMPROMISO_CONFIRM_BORRAR', '¿Desea borrar este Compromiso?');
+define('MSG_COMPROMISO_BORRAR', 'No tiene permisos para borrar el Compromiso.');
+define('MSG_COMPROMISO_BORRADO', 'Se ha eliminado el Compromiso:');
 
 //Consulta avanzada
 define('MSG_NO_CAL', 'No se puede calcular con los parámetros actuales.');
