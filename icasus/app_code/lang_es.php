@@ -574,6 +574,8 @@ define('MSG_SERVICIO_CREADO', 'Se ha creado un nuevo Servicio para esta Carta.')
 define('MSG_SERVICIO_EDITADO', 'Se ha editado el Servicio correctamente.');
 define('MSG_SERVICIO_CONFIRM_EDITAR', 'Va a editar este Servicio, ¿está seguro?');
 define('MSG_SERVICIO_CONFIRM_BORRAR', '¿Desea borrar este Servicio?');
+define('MSG_SERVICIO_BORRAR', 'No tiene permisos para borrar el Servicio o éste todavía contiene Compromisos. Bórrelos primero.');
+define('MSG_SERVICIO_BORRADO', 'Se ha eliminado el Servicio:');
 
 //Compromisos
 define('MSG_COMPROMISO_NO_INDICS', 'No se han definido Indicadores para este Compromiso.');
