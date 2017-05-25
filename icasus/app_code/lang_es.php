@@ -567,6 +567,8 @@ define('MSG_CARTA_NO_SERVICIOS', 'No se han definido Servicios para esta Carta d
 define('MSG_CARTA_NO_COMPROMISOS', 'No se han definido Compromisos para esta Carta de Servicios.');
 define('MSG_CARTA_CONFIRM_EDITAR', 'Va a editar esta Carta de Servicios, ¿está seguro?');
 define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Servicios?');
+define('MSG_CARTA_BORRAR', 'No tiene permisos para borrar esta Carta de Servicios o ésta todavía contiene Servicios. Bórrelos primero.');
+define('MSG_CARTA_BORRADA', 'Se ha eliminado la Carta de Servicios:');
 
 //Servicios
 define('MSG_SERVICIO_NO_COMPROMISOS', 'No se han definido Compromisos para este Servicio.');
