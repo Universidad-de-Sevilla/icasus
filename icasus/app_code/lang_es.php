@@ -572,6 +572,7 @@ define('MSG_CARTA_BORRADA', 'Se ha eliminado la Carta de Servicios:');
 
 //Servicios
 define('MSG_SERVICIO_NO_COMPROMISOS', 'No se han definido Compromisos para este Servicio.');
+define('MSG_SERVICIO_NO_INDICS', 'No se han asociado Indicadores a ningún Compromiso de este Servicio.');
 define('MSG_SERVICIO_CREADO', 'Se ha creado un nuevo Servicio para esta Carta.');
 define('MSG_SERVICIO_EDITADO', 'Se ha editado el Servicio correctamente.');
 define('MSG_SERVICIO_CONFIRM_EDITAR', 'Va a editar este Servicio, ¿está seguro?');
