@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-sitemap fa-fw"></i> {$_nombre_pagina}</h3>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-book fa-fw"></i> {$_nombre_pagina}</h3>
             </div>
             <div class="modal-body">
                 <h4 class="text-center"><i class='fa fa-spinner fa-pulse'></i> {$smarty.const.MSG_PANEL_CARGANDO}</h4>

@@ -1,3 +1,19 @@
+<!-- Diálogo Carga de Paneles -->
+<div class="modal fade" id="dialogo_cargando_paneles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i class="fa fa-map-o fa-fw"></i> {$_nombre_pagina}</h3>
+            </div>
+            <div class="modal-body">
+                <h4 class="text-center"><i class='fa fa-spinner fa-pulse'></i> {$smarty.const.MSG_PANEL_CARGANDO}</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Carga de Paneles -->
+
 <!-- Diálogo Confirmar Borrado Carta -->
 <div class="modal fade" id="dialogo_confirmar_borrado_carta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -189,6 +205,9 @@
             </li>
             <li role="presentation">
                 <a href="#carta_archivos" title="{$smarty.const.TXT_ARCHIVOS}" aria-controls="{$smarty.const.TXT_ARCHIVOS}" role="tab" data-toggle="tab"><i class="fa fa-archive fa-fw"></i> {$smarty.const.TXT_ARCHIVOS}</a>
+            </li>
+            <li role="presentation">
+                <a href="#carta_res" title="{$smarty.const.TXT_SEGUIMIENTO} ({$smarty.const.FIELD_SERVICIOS}, {$smarty.const.FIELD_COMPROMISOS}, {$smarty.const.FIELD_INDICS})" aria-controls="{$smarty.const.TXT_SEGUIMIENTO} ({$smarty.const.FIELD_SERVICIOS}, {$smarty.const.FIELD_COMPROMISOS}, {$smarty.const.FIELD_INDICS})" role="tab" data-toggle="tab"><i class="fa fa-tasks fa-fw"></i> {$smarty.const.TXT_SEGUIMIENTO}</a>
             </li>
         </ul>
         <!-- /Nav tabs -->
@@ -581,6 +600,115 @@
                 {/if}
             </div>
             <!-- /Archivos de la Carta de Servicios -->
+
+            <!-- Seguimiento de la Carta de Servicios -->
+            <div role="tabpanel" class="tab-pane" id="carta_res">
+                {if $servicios}
+                    <div class="panel-group" id="accordion_servicios" role="tablist" aria-multiselectable="true" style="margin-bottom: 0;">
+                        {foreach from=$servicios item=servicio}
+                            <div class="panel panel-danger" style="margin-top: 0;">
+                                <div class="panel-heading" role="tab">
+                                    <h4 class="panel-title">
+                                        <a title="{$smarty.const.FIELD_SERVICIO}: S.{$servicio->indice}. {$servicio->nombre}" role="button" data-toggle="collapse" data-parent="#accordion_servicios" href="#{$servicio->id}" aria-expanded="false" aria-controls="">
+                                            <i class="fa fa-user-circle-o fa-fw"></i> S.{$servicio->indice}. {$servicio->nombre}
+                                        </a>
+                                        <a class="panel-title pull-right" title="{$smarty.const.TXT_FICHA}" href="index.php?page=servicio_mostrar&id_servicio={$servicio->id}&id_entidad={$carta->id_entidad}">
+                                            <i class="fa fa-folder fa-fw"></i>
+                                        </a> 
+                                    </h4>
+                                </div>
+                                <!-- /.panel-heading -->
+                                <div id="{$servicio->id}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="">
+                                    <div class="panel-group" id="accordion_compromisos" role="tablist" aria-multiselectable="true" style="margin-bottom: 0;">
+                                        {if $compromisos_servicios[$servicio->id]}
+                                            {foreach from=$compromisos_servicios[$servicio->id] item=compromiso}
+                                                <div class="panel panel-warning" style="margin-top: 0;">
+                                                    <div class="panel-heading" role="tab">
+                                                        <h4 class="panel-title">
+                                                            <a title="{$smarty.const.FIELD_COMPROMISO}: C.{$compromiso->indice}. {$compromiso->nombre}" role="button" data-toggle="collapse" data-parent="#accordion_compromisos" href="#{$servicio->id}{$compromiso->id}" aria-expanded="false" aria-controls="">
+                                                                <i class="fa fa-handshake-o fa-fw"></i> C.{$compromiso->indice}. {$compromiso->nombre}
+                                                            </a>
+                                                            <a class="panel-title pull-right" title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_compromiso={$compromiso->id}&id_entidad={$carta->id_entidad}">
+                                                                <i class="fa fa-folder fa-fw"></i>
+                                                            </a> 
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                                <!-- /.panel-heading -->
+                                                <div id="{$servicio->id}{$compromiso->id}" class="panel-collapse collapse compromiso" role="tabpanel" aria-labelledby="" {if isset($compromiso_indicadores[$compromiso->id])}data-num_indic="{$compromiso_indicadores[$compromiso->id]|@count}{/if}">
+                                                    {if isset($compromiso_indicadores[$compromiso->id])}
+                                                        <div class="panel-body">
+                                                            <div id="carousel-indics-{$compromiso->id}" class="carousel slide" data-ride="carousel" data-interval="15000">
+                                                                <!-- Wrapper for slides -->
+                                                                <div class="carousel-inner" role="listbox">
+                                                                    {foreach $compromiso_indicadores[$compromiso->id] as $ind}
+                                                                        <div class="item {if $ind@first}active{/if}">
+                                                                            <div class="{$servicio->id}{$compromiso->id} highchart" 
+                                                                                 id="panel_{$compromiso->id}_{$ind->id}" 
+                                                                                 data-id_indicador="{$ind->id}" 
+                                                                                 data-nombre_indicador="{$ind->nombre}"
+                                                                                 data-valor_min="{$ind->valor_min}" 
+                                                                                 data-valor_max="{$ind->valor_max}" 
+                                                                                 data-fecha_inicio="{$anio_inicio}-01-01" 
+                                                                                 data-fecha_fin="{$anio_fin}-12-31"
+                                                                                 {if $ind->periodicidad=='Bienal'}
+                                                                                     data-periodicidad= "bienal" 
+                                                                                 {else}
+                                                                                     data-periodicidad= "anual"
+                                                                                 {/if}>
+                                                                            </div>
+                                                                            <div class="carousel-caption">
+                                                                                <h3>
+                                                                                    <a href='index.php?page=indicador_mostrar&id_indicador={$ind->id}&id_entidad={$ind->id_entidad}' 
+                                                                                       title="{$ind->nombre}: {$ind->descripcion|replace:"\r\n":" "}"><i class="fa fa-dashboard fa-fw"></i></a>
+                                                                                </h3>
+                                                                                <p style="color: #337AB7;">{$smarty.const.TXT_GRAFICO_AUMENTAR}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    {/foreach}
+                                                                </div>
+                                                                <!-- Controls -->
+                                                                <a class="left carousel-control" title="{$smarty.const.TXT_ANT}" href="#carousel-correl-{$objop->id}" role="button" data-slide="prev">
+                                                                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="color: #337AB7;"></span>
+                                                                    <span class="sr-only">{$smarty.const.TXT_ANT}</span>
+                                                                </a>
+                                                                <a class="right carousel-control" title="{$smarty.const.TXT_SIG}" href="#carousel-correl-{$objop->id}" role="button" data-slide="next">
+                                                                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="color: #337AB7;"></span>
+                                                                    <span class="sr-only">{$smarty.const.TXT_SIG}</span>
+                                                                </a>
+                                                            </div>
+                                                            <!-- /.carousel -->
+                                                        </div>
+                                                    {else}
+                                                        <div class="alert alert-info alert-dismissible" style="margin: 0;">
+                                                            <i class="fa fa-info-circle fa-fw"></i> 
+                                                            {$smarty.const.MSG_COMPROMISO_NO_INDICS}
+                                                        </div> 
+                                                    {/if}
+                                                </div>
+                                                <!-- /.panel-collapse -->
+                                            {/foreach}
+                                        {else}
+                                            <div class="alert alert-info alert-dismissible" style="margin: 0;">
+                                                <i class="fa fa-info-circle fa-fw"></i> 
+                                                {$smarty.const.MSG_SERVICIO_NO_COMPROMISOS}
+                                            </div> 
+                                        {/if}
+                                    </div>
+                                </div>
+                                <!-- /.panel-collapse -->
+                            </div>
+                            <!-- /.panel -->
+                        {/foreach}
+                    </div>
+                {else}
+                    <div class="alert alert-info alert-dismissible" style="margin: 0;">
+                        <i class="fa fa-info-circle fa-fw"></i> 
+                        {$smarty.const.MSG_CARTA_NO_SERVICIOS}
+                    </div> 
+                {/if}
+            </div>
+            <!-- /Seguimiento de la Carta de Servicios -->
 
         </div>
         <!-- /Tab panes -->

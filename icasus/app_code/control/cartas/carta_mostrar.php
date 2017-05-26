@@ -96,6 +96,12 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_ca
     $archivos = $archivo->find_joined("id_objeto = $id_carta AND tipo_objeto = 'carta' AND visible=1");
     $smarty->assign('archivos', $archivos);
 
+    //Seguimiento
+    $anio_fin = date('Y');
+    $anio_inicio = $anio_fin - 5;
+    $smarty->assign('anio_inicio', $anio_inicio);
+    $smarty->assign('anio_fin', $anio_fin);
+
     $entidad = new Entidad();
     $entidad->load("id = $id_entidad");
     $smarty->assign('entidad', $entidad);

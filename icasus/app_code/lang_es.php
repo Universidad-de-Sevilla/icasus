@@ -565,6 +565,7 @@ define('MSG_CARTA_NO_ARCHIVOS', 'No se han subido archivos para esta Carta de Se
 define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
 define('MSG_CARTA_NO_SERVICIOS', 'No se han definido Servicios para esta Carta de Servicios.');
 define('MSG_CARTA_NO_COMPROMISOS', 'No se han definido Compromisos para esta Carta de Servicios.');
+define('MSG_CARTA_NO_INDICS', 'No se han definido Indicadores para esta Carta de Servicios.');
 define('MSG_CARTA_CONFIRM_EDITAR', 'Va a editar esta Carta de Servicios, ¿está seguro?');
 define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Servicios?');
 define('MSG_CARTA_BORRAR', 'No tiene permisos para borrar esta Carta de Servicios o ésta todavía contiene Servicios. Bórrelos primero.');
