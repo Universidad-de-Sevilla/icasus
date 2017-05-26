@@ -80,7 +80,6 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_se
             $indicadores = array_merge($indicadores, $compromiso_indicadores[$comp->id]);
         }
     }
-
     $smarty->assign('indicadores', $indicadores);
     $smarty->assign('compromiso_indicadores', $compromiso_indicadores);
 

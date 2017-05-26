@@ -61,8 +61,36 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_ca
     }
     $smarty->assign('compromisos', $compromisos);
     $smarty->assign('compromisos_servicios', $compromisos_servicios);
-    
+
     //Indicadores
+    $compromiso_indicador = new CompromisoIndicador();
+    //Guarda todos los indicadores del servicio
+    $indicadores = array();
+    //Guarda los ids de indicadores asociados a un id_compromiso
+    $compromiso_indicadores_ids = array();
+    //Guarda los indicadores de un compromiso
+    $compromiso_indicadores = array();
+    foreach ($compromisos as $comp)
+    {
+        //Buscamos los indicadores del compromiso
+        $compromiso_indicadores_ids[$comp->id] = $compromiso_indicador->Find("id_compromiso=$comp->id");
+        //Guardamos los indicadores
+        if ($compromiso_indicadores_ids[$comp->id])
+        {
+            $compromiso_indicadores[$comp->id] = array();
+            foreach ($compromiso_indicadores_ids[$comp->id] as $comp_ind_id)
+            {
+                //Guardamos el indicador asociado a un compromiso
+                $indicador = new Indicador();
+                $indicador->load_joined("id=$comp_ind_id->id_indicador");
+                array_push($compromiso_indicadores[$comp->id], $indicador);
+            }
+            $indicadores = array_merge($indicadores, $compromiso_indicadores[$comp->id]);
+        }
+    }
+    $smarty->assign('indicadores', $indicadores);
+    $smarty->assign('compromiso_indicadores', $compromiso_indicadores);
+
     //Archivos
     $archivo = new Fichero();
     $archivos = $archivo->find_joined("id_objeto = $id_carta AND tipo_objeto = 'carta' AND visible=1");

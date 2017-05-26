@@ -363,33 +363,39 @@
                                 <tr>
                                     <th>{$smarty.const.FIELD_INDICE}</th>
                                     <th>{$smarty.const.FIELD_COMPROMISO}</th>
+                                    <th>{$smarty.const.FIELD_SERVICIO}</th>
                                     <th>{$smarty.const.FIELD_ACCIONES}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {foreach from=$compromisos item=compromiso} 
-                                    <tr>  
-                                        <td>
-                                            <span class="label label-default">C.{$compromiso->indice}</span>
-                                        </td>
-                                        <td>
-                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">{$compromiso->nombre}</a>
-                                        </td>
-                                        <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">
-                                                <i class="fa fa-folder fa-fw"></i>
-                                            </a>
-                                            {if $_control}
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=compromiso_editar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">
-                                                    <i class="fa fa-pencil fa-fw"></i>
+                                {foreach $servicios as $serv}
+                                    {foreach from=$compromisos_servicios[$serv->id] item=compromiso} 
+                                        <tr>  
+                                            <td>
+                                                <span class="label label-default">C.{$compromiso->indice}</span>
+                                            </td>
+                                            <td>
+                                                <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">{$compromiso->nombre}</a>
+                                            </td>
+                                            <td>
+                                                <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=servicio_mostrar&id_entidad={$carta->id_entidad}&id_servicio={$serv->id}">S.{$serv->indice}. {$serv->nombre}</a>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">
+                                                    <i class="fa fa-folder fa-fw"></i>
                                                 </a>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_COMPROMISO_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_compromiso"
-                                                   data-id_entidad="{$carta->id_entidad}" data-nombre="C.{$compromiso->indice}. {$compromiso->nombre}" data-id_compromiso="{$compromiso->id}">
-                                                    <i class="fa fa-trash fa-fw"></i>
-                                                </a>
-                                            {/if}
-                                        </td>
-                                    </tr>    
+                                                {if $_control}
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=compromiso_editar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">
+                                                        <i class="fa fa-pencil fa-fw"></i>
+                                                    </a>
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_COMPROMISO_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_compromiso"
+                                                       data-id_entidad="{$carta->id_entidad}" data-nombre="C.{$compromiso->indice}. {$compromiso->nombre}" data-id_compromiso="{$compromiso->id}">
+                                                        <i class="fa fa-trash fa-fw"></i>
+                                                    </a>
+                                                {/if}
+                                            </td>
+                                        </tr>    
+                                    {/foreach}
                                 {/foreach}
                             </tbody>
                         </table>
@@ -411,7 +417,96 @@
 
             <!-- Indicadores de la Carta -->
             <div role="tabpanel" class="tab-pane" id="carta_indics">
-
+                {if $indicadores}
+                    <div class="table-responsive">
+                        <table id="tabla_indics" class="table datatable table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_COD}</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>{$smarty.const.FIELD_INDIC}</th>
+                                    <th>{$smarty.const.FIELD_COMPROMISO}</th>
+                                    <th>{$smarty.const.FIELD_SERVICIO}</th>
+                                    <th>{$smarty.const.FIELD_PERIOD}</th>
+                                    <th>{$smarty.const.FIELD_RESP}</th>
+                                    <th>{$smarty.const.FIELD_RESP_MED}</th>
+                                    <th>{$smarty.const.FIELD_ACCIONES}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {foreach $servicios as $serv}
+                                    {foreach $compromisos_servicios[$serv->id] as $comp}
+                                        {foreach from=$compromiso_indicadores[$comp->id] item=indicador}
+                                            <tr>
+                                                <td><span class="label label-primary">{$indicador->codigo}</span></td>
+                                                <td>
+                                                    {if $indicador->calculo}
+                                                        <i class="fa fa-calculator fa-fw" title="{$smarty.const.TXT_CALC_AUTO}: {$indicador->calculo}"></i>
+                                                    {/if}
+                                                </td>
+                                                <td>
+                                                    {if $indicador->id_tipo_agregacion!= 0}
+                                                        <i class="fa fa-sitemap fa-fw" title="{$smarty.const.FIELD_AGREG}"></i>
+                                                    {/if}
+                                                </td>
+                                                <td>
+                                                    <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
+                                                       title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}">
+                                                        {$indicador->nombre}</a>
+                                                </td>
+                                                <td>
+                                                    <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_compromiso={$comp->id}&id_entidad={$indicador->id_entidad}">C.{$comp->indice}. {$comp->nombre}</a>
+                                                </td>
+                                                <td>
+                                                    <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=servicio_mostrar&id_entidad={$carta->id_entidad}&id_servicio={$serv->id}">S.{$serv->indice}. {$serv->nombre}</a>
+                                                </td>
+                                                <td>{$indicador->periodicidad}</td>
+                                                <td style="font-size: 12px">
+                                                    <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable}'>
+                                                        {$indicador->responsable->nombre} {$indicador->responsable->apellidos}</a>
+                                                </td>
+                                                <td style="font-size: 12px">
+                                                    <a title="{$smarty.const.TXT_USER_PERFIL}" href='index.php?page=usuario_mostrar&id_usuario={$indicador->id_responsable_medicion}'>
+                                                        {$indicador->responsable_medicion->nombre} {$indicador->responsable_medicion->apellidos}</a>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                                        <i class="fa fa-folder fa-fw"></i>
+                                                    </a>
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_REP_GRAFIC}" href='index.php?page=graficas_mostrar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                                        <i class="fa fa-area-chart fa-fw"></i>
+                                                    </a>
+                                                    <a class="btn btn-default btn-circle btn-xs" href='index.php?page=medicion_listar&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}' 
+                                                       title="{$smarty.const.FIELD_MEDICIONES}">
+                                                        <i class="fa fa-hourglass fa-fw"></i>
+                                                    </a>
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_ANALISIS}" href='index.php?page=analisis&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                                        <i class="fa fa-connectdevelop fa-fw"></i>
+                                                    </a>
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_VAL_REF}" href='index.php?page=valor_referencia&id_indicador={$indicador->id}&id_entidad={$indicador->id_entidad}'>
+                                                        <i class="fa fa-tags fa-fw"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {/foreach}
+                                    {/foreach}
+                                {/foreach}
+                            </tbody>
+                        </table>
+                    </div>
+                {else}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="alert alert-info alert-dismissible">
+                                <i class="fa fa-info-circle fa-fw"></i> 
+                                {$smarty.const.MSG_CARTA_NO_INDICS}
+                            </div>
+                        </div>
+                        <!-- /.col-sm-12 -->
+                    </div>
+                    <!-- /.row -->
+                {/if}
             </div>
             <!-- /Indicadores de la Carta -->
 
