@@ -67,9 +67,9 @@
             <li><a title="{$smarty.const.FIELD_CARTAS}" href='index.php?page=carta_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_CARTAS}</a></li>
             <li><a title="{$smarty.const.FIELD_CARTA} {$carta->fecha|date_format:'%d/%m/%Y'}" href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_CARTA} {$carta->fecha|date_format:'%d/%m/%Y'}</a></li>
             <li><a title="{$smarty.const.FIELD_SERVICIOS}" href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$entidad->id}#carta_servicios'>{$smarty.const.FIELD_SERVICIOS}</a></li>
-            <li><a title="{$smarty.const.FIELD_SERVICIO} S.{$servicio->indice}. {$servicio->nombre}" href='index.php?page=servicio_mostrar&id_entidad={$carta->id_entidad}&id_servicio={$servicio->id}'>{$smarty.const.FIELD_SERVICIO} S.{$servicio->indice}. {$servicio->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_SERVICIO}: S.{$servicio->indice}. {$servicio->nombre}" href='index.php?page=servicio_mostrar&id_entidad={$carta->id_entidad}&id_servicio={$servicio->id}'>S.{$servicio->indice}. {$servicio->nombre|truncate:30}</a></li>
             <li><a title="{$smarty.const.FIELD_COMPROMISOS}" href='index.php?page=servicio_mostrar&id_servicio={$servicio->id}&id_entidad={$entidad->id}#servicio_compromisos'>{$smarty.const.FIELD_COMPROMISOS}</a></li>
-            <li><a title="{$smarty.const.FIELD_COMPROMISO} C.{$compromiso->indice}. {$compromiso->nombre}" href='index.php?page=compromiso_mostrar&id_entidad={$entidad->id}&id_compromiso={$compromiso->id}'>{$smarty.const.FIELD_COMPROMISO} C.{$compromiso->indice}. {$compromiso->nombre|truncate:30}</a></li>
+            <li><a title="{$smarty.const.FIELD_COMPROMISO}: C.{$compromiso->indice}. {$compromiso->nombre}" href='index.php?page=compromiso_mostrar&id_entidad={$entidad->id}&id_compromiso={$compromiso->id}'>C.{$compromiso->indice}. {$compromiso->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
