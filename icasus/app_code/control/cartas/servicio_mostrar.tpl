@@ -188,7 +188,7 @@
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_CARTA}</th>
-                                    <td><a href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$carta->id_entidad}'>{$carta->fecha|date_format:'%d/%m/%Y'}</a></td>
+                                    <td><a title="{$smarty.const.FIELD_CARTA}" href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$carta->id_entidad}'>{$carta->fecha|date_format:'%d/%m/%Y'}</a></td>
                                 </tr>
                                 <tr>
                                     <th>{$smarty.const.FIELD_DESCRIPCION}</th>

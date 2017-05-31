@@ -164,6 +164,10 @@
                                     <td>{$compromiso->nombre}</td>
                                 </tr>
                                 <tr>
+                                    <th>{$smarty.const.FIELD_SERVICIO}</th>
+                                    <td><a title="{$smarty.const.FIELD_SERVICIO}" href='index.php?page=servicio_mostrar&id_servicio={$compromiso->id_servicio}&id_entidad={$carta->id_entidad}'>S.{$compromiso->servicio->indice}. {$compromiso->servicio->nombre}</a></td>
+                                </tr>
+                                <tr>
                                     <th>{$smarty.const.FIELD_DESCRIPCION}</th>
                                     <td>
                                         {if $compromiso->descripcion}
