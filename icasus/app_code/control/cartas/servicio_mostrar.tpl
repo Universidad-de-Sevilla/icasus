@@ -251,7 +251,7 @@
                                             <span class="label label-default">C.{$compromiso->indice}</span>
                                         </td>
                                         <td>
-                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">{$compromiso->nombre}</a>
+                                            <a title="{$compromiso->nombre}: {$compromiso->descripcion|replace:"\r\n":" "}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">{$compromiso->nombre}</a>
                                         </td>
                                         <td>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_entidad={$carta->id_entidad}&id_compromiso={$compromiso->id}">
@@ -339,7 +339,7 @@
                                                     {$indicador->nombre}</a>
                                             </td>
                                             <td>
-                                                <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=compromiso_mostrar&id_compromiso={$comp->id}&id_entidad={$indicador->id_entidad}">C.{$comp->indice}. {$comp->nombre}</a>
+                                                <a title="{$comp->nombre}: {$comp->descripcion|replace:"\r\n":" "}" href="index.php?page=compromiso_mostrar&id_compromiso={$comp->id}&id_entidad={$indicador->id_entidad}">C.{$comp->indice}. {$comp->nombre}</a>
                                             </td>
                                             <td>{$indicador->periodicidad}</td>
                                             <td style="font-size: 12px">
