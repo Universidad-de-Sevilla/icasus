@@ -38,7 +38,7 @@ class Servicio extends ADOdb_Active_Record
             foreach ($servicios as $serv)
             {
                 $carta = new Carta();
-                $carta->load("id= $serv->id_carta");
+                $carta->load_joined("id= $serv->id_carta");
                 $serv->carta = $carta;
             }
         }

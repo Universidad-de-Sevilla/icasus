@@ -44,7 +44,7 @@ class Compromiso extends ADOdb_Active_Record
             foreach ($compromisos as $comp)
             {
                 $servicio = new Servicio();
-                $servicio->load("id= $comp->id_servicio");
+                $servicio->load_joined("id= $comp->id_servicio");
                 $comp->servicio = $servicio;
 
                 $compromiso_indicador = new CompromisoIndicador();

@@ -18,7 +18,7 @@ if (filter_has_var(INPUT_GET, 'texto_buscar'))
 
     //Usuarios
     $usuario = new Usuario();
-    $usuarios = $usuario->Find("upper(nombre) LIKE '%$textob%' OR upper(apellidos) LIKE '%$textob%'");
+    $usuarios = $usuario->Find("upper(login) LIKE '%$textob%' OR upper(nombre) LIKE '%$textob%' OR upper(apellidos) LIKE '%$textob%'");
     $smarty->assign('usuarios', $usuarios);
     $ids_usuarios = array();
     foreach ($usuarios as $usuario)
@@ -66,6 +66,21 @@ if (filter_has_var(INPUT_GET, 'texto_buscar'))
     $objop = new ObjetivoOperacional();
     $objops = $objop->Find_joined("upper(nombre) LIKE '%$textob%' OR id_responsable IN ('$ids_usuarios_st')");
     $smarty->assign('objops', $objops);
+
+    //Buscar Cartas de Servicios
+    $carta = new Carta();
+    $cartas = $carta->Find_joined("fecha LIKE '%$textob%'");
+    $smarty->assign('cartas', $cartas);
+
+    //Buscar Servicios
+    $servicio = new Servicio();
+    $servicios = $servicio->Find_joined("upper(nombre) LIKE '%$textob%'");
+    $smarty->assign('servicios', $servicios);
+
+    //Buscar Compromisos
+    $compromiso = new Compromiso();
+    $compromisos = $compromiso->Find_joined("upper(nombre) LIKE '%$textob%'");
+    $smarty->assign('compromisos', $compromisos);
 
     $smarty->assign("_nombre_pagina", TXT_BUSCAR_RESUL . '"' . $texto . '"');
     $plantilla = "busqueda/busqueda.tpl";
