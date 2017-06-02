@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.52.0");
+define('IC_VERSION', "3.52.1");
 define('IC_FECHA_REVISION', "02/06/2017");
 
+// 3.52.1 - 02/06/2017 - Se incluyen las Cartas de Servicios en el desplegable del breadcrumbs de la nueva página de control de resultados de los Planes Estratégicos.
 // 3.52.0 - 02/06/2017 - Gestión de Cartas de Servicios.
 // 3.51.3 - 19/05/2017 - Correcciones y mejoras en la gestión de los Planes Estratégicos (menú migas de pan mejorado, control de resultados,...)
 // 3.51.2 - 28/04/2017 - Se listan todos los objetivos operacionales asociados a un indicador de control en su ficha y también en los listados de indicadores.
