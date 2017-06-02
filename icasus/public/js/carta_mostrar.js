@@ -10,9 +10,11 @@
 //Barras de botones
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha').html();
+    var botones_normativas = $('#botones_normativas').html();
     var botones_servicio = $('#botones_servicio').html();
     var botones_archivo = $('#botones_archivo').html();
     $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
+    $('#tabla_normativas_filter').append(botones_normativas);
     $('#tabla_servicios_filter').append(botones_servicio);
     $('#tabla_archivos_filter').append(botones_archivo);
 

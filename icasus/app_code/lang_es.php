@@ -81,6 +81,11 @@ define('TXT_CARTA_CREAR', 'Crear Carta de Servicios');
 define('TXT_CARTA_EDIT', 'Editar Carta de Servicios');
 define('TXT_CARTA_BORRAR', 'Borrar Carta de Servicios');
 
+//Normativas
+define('TXT_NORMATIVA_CREAR', 'Incluir Normativa');
+define('TXT_NORMATIVA_EDIT', 'Editar Normativa');
+define('TXT_NORMATIVA_BORRAR', 'Borrar Normativa');
+
 //Servicios
 define('TXT_SERVICIO_CREAR', 'Crear Servicio');
 define('TXT_SERVICIO_EDIT', 'Editar Servicio');
@@ -418,6 +423,10 @@ define('FIELD_ARCHIVO', 'Archivo');
 define('FIELD_CARTA', 'Carta de Servicios');
 define('FIELD_CARTAS', 'Cartas de Servicios');
 
+//Normativas
+define('FIELD_NORMATIVA', 'Normativa');
+define('FIELD_NORMATIVAS', 'Normativas');
+
 //Servicios
 define('FIELD_SERVICIO', 'Servicio');
 define('FIELD_SERVICIOS', 'Servicios');
@@ -563,6 +572,7 @@ define('MSG_CARTA_CREADA', 'Se ha creado una nueva Carta de Servicios.');
 define('MSG_CARTA_EDITADA', 'Se ha editado correctamente la Carta de Servicios.');
 define('MSG_CARTA_NO_ARCHIVOS', 'No se han subido archivos para esta Carta de Servicios.');
 define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
+define('MSG_CARTA_NO_NORMATIVAS', 'No se han definido Normativas para esta Carta de Servicios.');
 define('MSG_CARTA_NO_SERVICIOS', 'No se han definido Servicios para esta Carta de Servicios.');
 define('MSG_CARTA_NO_COMPROMISOS', 'No se han definido Compromisos para esta Carta de Servicios.');
 define('MSG_CARTA_NO_INDICS', 'No se han definido Indicadores para esta Carta de Servicios.');
