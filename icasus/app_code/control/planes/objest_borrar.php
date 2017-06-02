@@ -42,7 +42,7 @@ if (filter_has_var(INPUT_GET, 'id_objest') && filter_has_var(INPUT_GET, 'id_enti
                 $logicaPlan->actualizar_ejecucion_anual_linea($linea->id, $i);
             }
             $logicaPlan->actualizar_ejecucion_global_linea($linea->id);
-            header("Location: index.php?page=linea_mostrar&id_linea=$linea->id&id_entidad=$id_entidad&exito=$exito");
+            header("Location: index.php?page=linea_mostrar&id_linea=$linea->id&id_entidad=$id_entidad&exito=$exito#linea_objest");
         }
         else
         {

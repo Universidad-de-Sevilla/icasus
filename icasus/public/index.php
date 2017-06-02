@@ -100,6 +100,7 @@ if (isset($_SESSION['usuario']) && IC_TIPO_LOGIN != 'mantenimiento')
 
     $entidad = new Entidad();
     $plan = new Plan();
+    $carta = new Carta();
     $proceso = new Proceso();
     $indicador = new Indicador();
     $cuadro = new Cuadro();
@@ -113,9 +114,12 @@ if (isset($_SESSION['usuario']) && IC_TIPO_LOGIN != 'mantenimiento')
 
     if ($entidad->load("id = $id_entidad"))
     {
-        //Cantidad de planes, procesos, indicadores y cuadros de mando de la unidad
+        //Cantidad de planes, cartas, procesos, indicadores y cuadros de mando de la unidad
         $planes = $plan->Find("id_entidad = $id_entidad ORDER BY anyo_inicio DESC");
         $smarty->assign('num_planes', count($planes));
+
+        $cartas = $carta->Find("id_entidad = $id_entidad");
+        $smarty->assign('num_cartas', count($cartas));
 
         $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");
         $smarty->assign('num_procesos', count($procesos));
