@@ -34,7 +34,7 @@ if (filter_has_var(INPUT_GET, 'id_plan') && filter_has_var(INPUT_GET, 'id_entida
             {
                 $ejecucion->delete();
             }
-            header("Location: index.php?page=entidad_mostrar&id_entidad=$id_entidad&exito=$exito");
+            header("Location: index.php?page=plan_listar&id_entidad=$id_entidad&exito=$exito");
         }
         else
         {

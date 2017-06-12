@@ -6,7 +6,8 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Gestión de los archivos de unidades y procesos
+// Descripcion: Gestión de los archivos de Unidades, Planes Estratégicos,
+// Cartas de Servicios y Procesos
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
@@ -22,7 +23,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 
     $archivo = new Fichero();
 
-    //Gestión de archivos de un plan estratégico
+    //Gestión de archivos de un Plan Estratégico
     if (filter_has_var(INPUT_GET, 'id_plan'))
     {
         $id_plan = filter_input(INPUT_GET, 'id_plan', FILTER_SANITIZE_NUMBER_INT);
@@ -42,14 +43,34 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         }
     }
 
-    //Gestión de archivos de un proceso
+    //Gestión de archivos de una Carta de Servicios
+    else if (filter_has_var(INPUT_GET, 'id_carta'))
+    {
+        $id_carta = filter_input(INPUT_GET, 'id_carta', FILTER_SANITIZE_NUMBER_INT);
+        if ($control)
+        {
+            $carta = new Carta();
+            $carta->load("id = $id_carta");
+            $tipo = 'carta';
+            $smarty->assign('_nombre_pagina', TXT_ARCHIVOS_GESTION . ': ' . FIELD_CARTA . " " . date("d-m-Y", strtotime($carta->fecha)));
+            $smarty->assign('carta', $carta);
+            $archivos = $archivo->find_joined("id_objeto = $id_carta AND tipo_objeto = 'carta'");
+        }
+        else
+        {
+            $error = ERR_PERMISOS;
+            header("Location: index.php?page=carta_mostrar&id_carta=$id_carta&id_entidad=$id_entidad&error=$error");
+        }
+    }
+
+    //Gestión de archivos de un Proceso
     else if (filter_has_var(INPUT_GET, 'id_proceso'))
     {
         //Variable para operar con Procesos
         $logicaProceso = new LogicaProceso();
         $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
         $proceso = new Proceso();
-        $proceso->load_joined("id = $id_proceso");
+        $proceso->load("id = $id_proceso");
         //Permisos del proceso
         $permiso_proceso = $logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso);
         if ($control OR $permiso_proceso)
@@ -66,7 +87,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         }
     }
 
-    //Gestión de archivos de una unidad
+    //Gestión de archivos de una Unidad
     else
     {
         if ($control)

@@ -65,7 +65,7 @@ $('#indicador_crear,#indicador_editar').validator({
 });
 
 //Función que valida que no se repita un nombre ya existente
-$('#formplan,#formlinea,#formobjest,#formobjop,#panel_nuevo,#panel_editar').validator({
+$('#formplan,#formlinea,#formobjest,#formobjop,#panel_nuevo,#panel_editar,#formservicio,#formcompromiso').validator({
     custom: {
         'validar_igual': function ($el) {
             return ($el.data('elementos').indexOf($el.val()) === -1);

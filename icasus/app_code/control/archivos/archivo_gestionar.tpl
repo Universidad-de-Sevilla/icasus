@@ -6,6 +6,8 @@
                   data-toggle="validator" class="form-horizontal">
                 {if isset($plan)}
                     <input type="hidden" value="{$plan->id}" name="id_objeto">
+                {else if isset($carta)}
+                    <input type="hidden" value="{$carta->id}" name="id_objeto">
                 {else if isset($proceso)}
                     <input type="hidden" value="{$proceso->id}" name="id_objeto">
                 {else}
@@ -187,6 +189,11 @@
                         </a>
                     </li>
                     <li>
+                        <a title="{$smarty.const.TXT_CARTAS_DESCRIPCION}" href='index.php?page=carta_listar&id_entidad={$entidad->id}'>
+                            <i class="fa fa-map-o fa-fw"></i> {$smarty.const.FIELD_CARTAS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cartas} {$smarty.const.FIELD_CARTAS}">({$num_cartas})</span>
+                        </a>
+                    </li>
+                    <li>
                         <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
                             <i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.FIELD_PROCS}">({$num_procesos})</span>
                         </a>
@@ -219,6 +226,12 @@
                 <li><a title="{$smarty.const.FIELD_PLANES}" href='index.php?page=plan_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLANES}</a></li>
                 <li>
                     <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}" href='index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}</a>
+                </li>
+            {/if}
+            {if isset($carta)}
+                <li><a title="{$smarty.const.FIELD_CARTAS}" href='index.php?page=carta_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_CARTAS}</a></li>
+                <li>
+                    <a title="{$smarty.const.FIELD_CARTA} {$carta->fecha|date_format:'%d/%m/%Y'}" href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_CARTA} {$carta->fecha|date_format:'%d/%m/%Y'}</a>
                 </li>
             {/if}
             {if isset($proceso)}
@@ -299,6 +312,11 @@
                         <div class="alert alert-info alert-dismissible">
                             <i class="fa fa-info-circle fa-fw"></i> 
                             {$smarty.const.MSG_PLAN_NO_ARCHIVOS}
+                        </div>
+                    {else if isset($carta)}
+                        <div class="alert alert-info alert-dismissible">
+                            <i class="fa fa-info-circle fa-fw"></i> 
+                            {$smarty.const.MSG_CARTA_NO_ARCHIVOS}
                         </div> 
                     {else if isset($proceso)}
                         <div class="alert alert-info alert-dismissible">

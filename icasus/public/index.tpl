@@ -204,6 +204,10 @@
                                         <span class="fa-stack fa-lg"><i class="fa fa-book fa-fw"></i></span>{$smarty.const.TXT_PLANES_US}</a>
                                 </li>
                                 <li>
+                                    <a title="{$smarty.const.TXT_CARTAS_US}" href='index.php?page=cartas'>
+                                        <span class="fa-stack fa-lg"><i class="fa fa-map-o fa-fw"></i></span>{$smarty.const.TXT_CARTAS_US}</a>
+                                </li>
+                                <li>
                                     <a title="{$smarty.const.TXT_PROCS_US}" href='index.php?page=procesos'>
                                         <span class="fa-stack fa-lg"><i class="fa fa-gears fa-fw"></i></span>{$smarty.const.TXT_PROCS_US}</a>
                                 </li>

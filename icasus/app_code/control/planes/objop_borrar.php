@@ -52,7 +52,7 @@ if (filter_has_var(INPUT_GET, 'id_objop') && filter_has_var(INPUT_GET, 'id_entid
                 $logicaPlan->actualizar_ejecucion_anual($objest->id, $i);
             }
             $logicaPlan->actualizar_ejecucion_global_objest($objest->id);
-            header("Location: index.php?page=objest_mostrar&id_objest=$objest->id&id_entidad=$id_entidad&exito=$exito");
+            header("Location: index.php?page=objest_mostrar&id_objest=$objest->id&id_entidad=$id_entidad&exito=$exito#objest_objop");
         }
         else
         {

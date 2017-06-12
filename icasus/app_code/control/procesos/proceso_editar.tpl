@@ -31,6 +31,11 @@
                         </a>
                     </li>
                     <li>
+                        <a title="{$smarty.const.TXT_CARTAS_DESCRIPCION}" href='index.php?page=carta_listar&id_entidad={$entidad->id}'>
+                            <i class="fa fa-map-o fa-fw"></i> {$smarty.const.FIELD_CARTAS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cartas} {$smarty.const.FIELD_CARTAS}">({$num_cartas})</span>
+                        </a>
+                    </li>
+                    <li>
                         <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
                             <i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.FIELD_PROCS}">({$num_procesos})</span>
                         </a>
@@ -164,7 +169,7 @@
                         <label for="cuadro" class="col-sm-2 control-label">{$smarty.const.FIELD_CUADRO_MANDO}</label>
                         <div class="col-sm-8">
                             <select class="form-control chosen-select" name='cuadro' id='cuadro'>
-                                <option value="0">{$smarty.const.TXT_PROC_CUADRO}</option>
+                                <option value="0">{$smarty.const.TXT_CUADRO_ASOC}</option>
                                 {foreach from=$cuadros_proceso item=cuadro_proc}
                                     <option value="{$cuadro_proc->id}" {if $cuadro_proc->id == $proceso->id_cuadro} selected {/if}>
                                         {$cuadro_proc->nombre}
