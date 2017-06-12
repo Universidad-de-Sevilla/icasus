@@ -192,7 +192,7 @@ if ($nombre_modulo)
 else
 {
     $smarty->assign('error', ERR_404 . " $page");
-    require_once("../app_code/modules/errores/error.php");
+    require_once("../app_code/control/errores/error.php");
 }
 
 //Comprobamos si hay una petición AJAX
