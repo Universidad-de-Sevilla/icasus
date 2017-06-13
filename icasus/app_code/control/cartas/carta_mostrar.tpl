@@ -38,6 +38,110 @@
 </div>
 <!-- /Diálogo Confirmar Borrado Carta -->
 
+<!-- Diálogo Crear Normativa -->
+<div class="modal fade" id="crear_normativa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action="" id="formcrearnormativa" name="formcrearnormativa" data-toggle="validator" class="form-horizontal">
+                <input type="hidden"  name="id_carta" value="{$carta->id}"/>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{$smarty.const.TXT_CERRAR}"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hand-paper-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_NORMATIVA_CREAR}</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group has-feedback">
+                        <label for="c-nombre-norm" class="col-sm-3 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
+                        <div class="col-sm-8">
+                            <input type='text' class="form-control" name='c-nombre-norm' id='c-nombre-norm' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="c-url-norm" class="col-sm-3 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> URL</label>
+                        <div class="col-sm-8">
+                            <input type='url' name='c-url-norm' id='c-url-norm' class="form-control" placeholder="URL" required/>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+                    <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
+                        <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
+                    </button>
+                    <button name="normativa_crear" id="normativa_crear" type="button" title="{$smarty.const.TXT_GRABAR}" class="btn btn-success"><i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Crear Normativa -->
+
+<!-- Diálogo Editar Normativa -->
+<div class="modal fade" id="editar_normativa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post" action="" id="formeditarnormativa" name="formcrearnormativa" data-toggle="validator" class="form-horizontal">
+                <input type="hidden" id="id_normativa" name="id_normativa"/>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="{$smarty.const.TXT_CERRAR}"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel"><i class="fa fa-hand-paper-o fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_NORMATIVA_EDIT}</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group has-feedback">
+                        <label for="e-nombre-norm" class="col-sm-3 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> {$smarty.const.FIELD_NOMBRE}</label>
+                        <div class="col-sm-8">
+                            <input type='text' class="form-control" name='e-nombre-norm' id='e-nombre-norm' placeholder="{$smarty.const.FIELD_NOMBRE}" required/>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="e-url-norm" class="col-sm-3 control-label"><i title="{$smarty.const.MSG_CAMPO_REQ}" class="fa fa-asterisk fa-fw"></i> URL</label>
+                        <div class="col-sm-8">
+                            <input type='url' name='e-url-norm' id='e-url-norm' class="form-control" placeholder="URL" required/>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" title="{$smarty.const.TXT_CANCEL}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}</button>
+                    <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
+                        <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
+                    </button>
+                    <button name="normativa_editar" id="normativa_editar" type="button" title="{$smarty.const.TXT_GRABAR}" class="btn btn-success"><i class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Editar Normativa -->
+
+<!-- Diálogo Confirmar Borrado Normativa -->
+<div class="modal fade" id="dialogo_confirmar_borrado_normativa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h3 class="modal-title" id="myModalLabel"><i
+                        class="fa fa-trash fa-fw"></i> {$smarty.const.TXT_NORMATIVA_BORRAR}: <span id="nombre_normativa"></span></h3>
+            </div>
+            <div class="modal-body">
+                <p>{$smarty.const.MSG_NORMATIVA_CONFIRM_BORRAR}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar"><i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Diálogo Confirmar Borrado Normativa -->
+
 <!-- Diálogo Confirmar Borrado Servicio -->
 <div class="modal fade" id="dialogo_confirmar_borrado_servicio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -299,72 +403,75 @@
                 {if $_control}
                     <div id="botones_normativas" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
-                            <a class="btn btn-danger" href='index.php?page=normativa_crear&id_carta={$carta->id}&id_entidad={$carta->id_entidad}' 
-                               title="{$smarty.const.TXT_NORMATIVA_CREAR}">
+                            <a class="btn btn-danger" href='javascript:void(0)' 
+                               data-toggle="modal" data-target="#crear_normativa" title="{$smarty.const.TXT_NORMATIVA_CREAR}">
                                 <i class="fa fa-hand-paper-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                             </a>
                         </div>
                     </div>
                 {/if}
                 <!-- /Barra de botones -->
-                {if $normativas}
-                    <div class="table-responsive">
-                        <table id="tabla_normativas" class="table datatable table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>{$smarty.const.FIELD_NOMBRE}</th>
-                                    <th>URL</th>
-                                    {if $_control}<th>{$smarty.const.FIELD_ACCIONES}</th>{/if}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {foreach from=$normativas item=normativa} 
-                                    <tr>  
-                                        <td>{$normativa->nombre}</td>
-                                        <td>
-                                            <a title="{$normativa->nombre}" href="{$normativa->enlace}">{$normativa->enlace}</a>
-                                        </td>
-                                        {if $_control}
+                <div id="normativas">
+                    {if $normativas}
+                        <div class="table-responsive">
+                            <table id="tabla_normativas" class="table datatable table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                        <th>URL</th>
+                                        {if $_control}<th>{$smarty.const.FIELD_ACCIONES}</th>{/if}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {foreach from=$normativas item=normativa} 
+                                        <tr>
+                                            <td id="norm_nombre_{$normativa->id}">{$normativa->nombre}</td>
                                             <td>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=normativa_editar&id_entidad={$carta->id_entidad}&id_normativa={$normativa->id}">
-                                                    <i class="fa fa-pencil fa-fw"></i>
-                                                </a>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_NORMATIVA_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_normativa"
-                                                   data-id_entidad="{$carta->id_entidad}" data-nombre="{$normativa->nombre}" data-id_normativa="{$normativa->id}">
-                                                    <i class="fa fa-trash fa-fw"></i>
-                                                </a>
+                                                <a id="norm_url_{$normativa->id}" title="{$normativa->nombre}" href="{$normativa->enlace}" target="_blank">{$normativa->enlace}</a>
                                             </td>
-                                        {/if}
-                                    </tr>     
-                                {/foreach}
-                            </tbody>
-                        </table>
-                    </div>
-                {else}
-                    <div class="row">
-                        <div class="col-sm-11">
-                            <div class="alert alert-info alert-dismissible">
-                                <i class="fa fa-info-circle fa-fw"></i> 
-                                {$smarty.const.MSG_CARTA_NO_NORMATIVAS}
-                            </div>
+                                            {if $_control}
+                                                <td>
+                                                    <a class="editar_normativa btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href='javascript:void(0)' 
+                                                       data-toggle="modal" data-target="#editar_normativa" data-id_normativa="{$normativa->id}">
+                                                        <i class="fa fa-pencil fa-fw"></i>
+                                                    </a>
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_NORMATIVA_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_normativa"
+                                                       data-id_entidad="{$carta->id_entidad}" data-nombre="{$normativa->nombre}" data-id_normativa="{$normativa->id}">
+                                                        <i class="fa fa-trash fa-fw"></i>
+                                                    </a>
+                                                </td>
+                                            {/if}
+                                        </tr>     
+                                    {/foreach}
+                                </tbody>
+                            </table>
                         </div>
-                        <!-- /.col-sm-11 -->
-                        <div class="col-sm-1">
-                            {if $_control}
-                                <div class="btn-toolbar" role="toolbar" aria-label="">
-                                    <div class="btn-group" role="group" aria-label="">
-                                        <a class="btn btn-danger" href='index.php?page=normativa_crear&id_carta={$carta->id}&id_entidad={$carta->id_entidad}' 
-                                           title="{$smarty.const.TXT_NORMATIVA_CREAR}">
-                                            <i class="fa fa-hand-paper-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
-                                        </a>
-                                    </div>
+                    {else}
+                        <div class="row">
+                            <div class="col-sm-11">
+                                <div class="alert alert-info alert-dismissible">
+                                    <i class="fa fa-info-circle fa-fw"></i> 
+                                    {$smarty.const.MSG_CARTA_NO_NORMATIVAS}
                                 </div>
-                            {/if}
+                            </div>
+                            <!-- /.col-sm-11 -->
+                            <div class="col-sm-1">
+                                {if $_control}
+                                    <div class="btn-toolbar" role="toolbar" aria-label="">
+                                        <div class="btn-group" role="group" aria-label="">
+                                            <a class="btn btn-danger" href='javascript:void(0)' 
+                                               data-toggle="modal" data-target="#crear_normativa" title="{$smarty.const.TXT_NORMATIVA_CREAR}">
+                                                <i class="fa fa-hand-paper-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {/if}
+                            </div>
+                            <!-- /.col-sm-1 -->
                         </div>
-                        <!-- /.col-sm-1 -->
-                    </div>
-                    <!-- /.row -->
-                {/if}
+                        <!-- /.row -->
+                    {/if}
+                </div>
             </div>
             <!-- /Normativas de la Carta -->
 
