@@ -10,13 +10,27 @@
 //Barras de botones
 $(document).ready(function () {
     var botones_ficha = $('#botones_ficha').html();
+    var botones_normativas = $('#botones_normativas').html();
     var botones_servicio = $('#botones_servicio').html();
     var botones_archivo = $('#botones_archivo').html();
     $('#btn_ficha').addClass('dt-buttons btn-group pull-right').append(botones_ficha);
+    $('#tabla_normativas_filter').append(botones_normativas);
     $('#tabla_servicios_filter').append(botones_servicio);
     $('#tabla_archivos_filter').append(botones_archivo);
 
-    //Borrado de servicios
+    //Borrado de Normativas
+    $('#dialogo_confirmar_borrado_normativa').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var nombre = button.data('nombre');
+        var id_normativa = button.data('id_normativa');
+        var id_entidad = button.data('id_entidad');
+        var modal = $(this);
+        var link = 'index.php?page=normativa_borrar&id_entidad=' + id_entidad + '&id_normativa=' + id_normativa;
+        modal.find('#nombre_normativa').text(nombre);
+        modal.find('#borrar').attr('href', link);
+    });
+
+    //Borrado de Servicios
     $('#dialogo_confirmar_borrado_servicio').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
         var nombre = button.data('nombre');

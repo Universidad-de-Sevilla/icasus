@@ -45,6 +45,11 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_ca
         $cont++;
     }
 
+    //Normativas
+    $normativa = new Normativa();
+    $normativas = $normativa->Find("id_carta=$id_carta");
+    $smarty->assign('normativas', $normativas);
+
     //Servicios
     $servicio = new Servicio();
     $servicios = $servicio->Find("id_carta=$id_carta order by indice");

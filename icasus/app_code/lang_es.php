@@ -81,6 +81,11 @@ define('TXT_CARTA_CREAR', 'Crear Carta de Servicios');
 define('TXT_CARTA_EDIT', 'Editar Carta de Servicios');
 define('TXT_CARTA_BORRAR', 'Borrar Carta de Servicios');
 
+//Normativas
+define('TXT_NORMATIVA_CREAR', 'Incluir Normativa');
+define('TXT_NORMATIVA_EDIT', 'Editar Normativa');
+define('TXT_NORMATIVA_BORRAR', 'Borrar Normativa');
+
 //Servicios
 define('TXT_SERVICIO_CREAR', 'Crear Servicio');
 define('TXT_SERVICIO_EDIT', 'Editar Servicio');
@@ -418,6 +423,10 @@ define('FIELD_ARCHIVO', 'Archivo');
 define('FIELD_CARTA', 'Carta de Servicios');
 define('FIELD_CARTAS', 'Cartas de Servicios');
 
+//Normativas
+define('FIELD_NORMATIVA', 'Normativa');
+define('FIELD_NORMATIVAS', 'Normativas');
+
 //Servicios
 define('FIELD_SERVICIO', 'Servicio');
 define('FIELD_SERVICIOS', 'Servicios');
@@ -563,6 +572,7 @@ define('MSG_CARTA_CREADA', 'Se ha creado una nueva Carta de Servicios.');
 define('MSG_CARTA_EDITADA', 'Se ha editado correctamente la Carta de Servicios.');
 define('MSG_CARTA_NO_ARCHIVOS', 'No se han subido archivos para esta Carta de Servicios.');
 define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
+define('MSG_CARTA_NO_NORMATIVAS', 'No se han definido Normativas para esta Carta de Servicios.');
 define('MSG_CARTA_NO_SERVICIOS', 'No se han definido Servicios para esta Carta de Servicios.');
 define('MSG_CARTA_NO_COMPROMISOS', 'No se han definido Compromisos para esta Carta de Servicios.');
 define('MSG_CARTA_NO_INDICS', 'No se han definido Indicadores para esta Carta de Servicios.');
@@ -570,6 +580,14 @@ define('MSG_CARTA_CONFIRM_EDITAR', 'Va a editar esta Carta de Servicios, ¿está
 define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Servicios?');
 define('MSG_CARTA_BORRAR', 'No tiene permisos para borrar esta Carta de Servicios o ésta todavía contiene Servicios. Bórrelos primero.');
 define('MSG_CARTA_BORRADA', 'Se ha eliminado la Carta de Servicios:');
+
+//Normativas
+define('MSG_NORMATIVA_CREADA', 'Se ha inlcuido una nueva Normativa para esta Carta.');
+define('MSG_NORMATIVA_EDITADA', 'Se ha editado la Normativa correctamente.');
+define('MSG_NORMATIVA_CONFIRM_EDITAR', 'Va a editar esta Normativa, ¿está seguro?');
+define('MSG_NORMATIVA_CONFIRM_BORRAR', '¿Desea borrar esta Normativa?');
+define('MSG_NORMATIVA_BORRAR', 'No tiene permisos para borrar la Normativa.');
+define('MSG_NORMATIVA_BORRADA', 'Se ha eliminado la Normativa:');
 
 //Servicios
 define('MSG_SERVICIO_NO_COMPROMISOS', 'No se han definido Compromisos para este Servicio.');
@@ -813,6 +831,10 @@ define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.'
 //Cartas de Servicios
 define('ERR_CARTA_MOSTRAR', 'No se puede mostrar la Carta de Sercicios, el identificador no existe en la base de datos.');
 define('ERR_CARTA_EDIT', 'La Carta de Servicios no existe o no tiene permisos para editarla.');
+
+//Normativas
+define('ERR_NORMATIVA_MOSTRAR', 'No se puede mostrar la Normativa, el identificador no existe en la base de datos.');
+define('ERR_NORMATIVA_EDIT', 'La Normativa no existe o no tiene permisos para editarla.');
 
 //Servicios
 define('ERR_SERVICIO_MOSTRAR', 'No se puede mostrar el Servicio, el identificador no existe en la base de datos.');
