@@ -18,39 +18,6 @@ $(document).ready(function () {
     $('#tabla_servicios_filter').append(botones_servicio);
     $('#tabla_archivos_filter').append(botones_archivo);
 
-    //Crear Normativas
-    $('#normativa_crear').click(function () {
-        var id_carta = $('[name=id_carta]').val();
-        var nombre = $('[name=c-nombre-norm]').val();
-        var url = $('[name=c-url-norm]').val();
-        if (!(url === '') && !(nombre === '')) {
-            $.post('index.php?page=carta_ajax&ajax=true&modulo=crear_normativa', {id_carta: id_carta, url: url, nombre: nombre}, function (result) {
-                $('#crear_normativa').modal('hide');
-                $('#normativas').html(result);
-            });
-        }
-        else {
-            $('#formcrearnormativa').validator('validate');
-        }
-    });
-
-    //Editar Normativas
-    $('#page-wrapper').on('click', '.editar_normativa', function () {
-        var id_normativa = $(this).data('id_normativa');
-        $('[name=id_normativa]').attr('value', id_normativa);
-        $('[name=e-nombre-norm]').attr('value', $('#page-wrapper').find('#norm_nombre_' + id_normativa).text());
-        $('[name=e-url-norm]').attr('value', $('#page-wrapper').find('#norm_url_' + id_normativa).text());
-    });
-    $('#normativa_editar').click(function () {
-        var id_normativa = $('[name=id_normativa]').val();
-        var nombre = $('[name=e-nombre-norm]').val();
-        var url = $('[name=e-url-norm]').val();
-        $.post('index.php?page=carta_ajax&ajax=true&modulo=editar_normativa', {id_normativa: id_normativa, url: url, nombre: nombre}, function (result) {
-            $('#editar_normativa').modal('hide');
-            $('#normativas').html(result);
-        });
-    });
-
     //Borrado de Normativas
     $('#dialogo_confirmar_borrado_normativa').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget);
