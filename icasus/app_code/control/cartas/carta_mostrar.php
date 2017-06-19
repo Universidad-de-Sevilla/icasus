@@ -95,6 +95,11 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_ca
     }
     $smarty->assign('indicadores', $indicadores);
     $smarty->assign('compromiso_indicadores', $compromiso_indicadores);
+    
+    //Derechos
+    $derecho = new Derecho();
+    $derechos = $derecho->Find("id_carta=$id_carta");
+    $smarty->assign('derechos', $derechos);
 
     //Archivos
     $archivo = new Fichero();
