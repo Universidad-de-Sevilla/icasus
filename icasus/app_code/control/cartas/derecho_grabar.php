@@ -36,7 +36,7 @@ if (filter_has_var(INPUT_POST, 'nombre'))
     $derecho->categoria = filter_input(INPUT_POST, 'categoria', FILTER_SANITIZE_STRING);
     $derecho->descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
     $derecho->save();
-    header("Location: index.php?page=carta_mostrar&id_entidad=$carta->id_entidad&id_carta=$id_carta&exito=$exito#carta_derechos");
+    header("Location: index.php?page=derecho_mostrar&id_entidad=$carta->id_entidad&id_derecho=$derecho->id&exito=$exito");
 }
 else
 {

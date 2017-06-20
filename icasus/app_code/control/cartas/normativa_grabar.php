@@ -35,7 +35,7 @@ if (filter_has_var(INPUT_POST, 'nombre') && filter_has_var(INPUT_POST, 'enlace')
     $normativa->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $normativa->enlace = filter_input(INPUT_POST, 'enlace', FILTER_SANITIZE_URL);
     $normativa->save();
-    header("Location: index.php?page=carta_mostrar&id_entidad=$carta->id_entidad&id_carta=$id_carta&exito=$exito#carta_normativas");
+    header("Location: index.php?page=normativa_mostrar&id_entidad=$carta->id_entidad&id_normativa=$normativa->id&exito=$exito");
 }
 else
 {
