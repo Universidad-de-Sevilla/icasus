@@ -682,17 +682,20 @@
                                         <th>{$smarty.const.FIELD_NOMBRE}</th>
                                         <th>{$smarty.const.FIELD_CAT}</th>
                                         <th>{$smarty.const.FIELD_DESC}</th>
-                                        {if $_control}<th>{$smarty.const.FIELD_ACCIONES}</th>{/if}
+                                        <th>{$smarty.const.FIELD_ACCIONES}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {foreach from=$derechos item=derecho} 
                                         <tr>
-                                            <td>{$derecho->nombre}</td>
+                                            <td><a title="{$smarty.const.TXT_FICHA}" href="index.php?page=derecho_mostrar&id_entidad={$carta->id_entidad}&id_derecho={$derecho->id}">{$derecho->nombre}</a></td>
                                             <td>{if $derecho->categoria}{$derecho->categoria}{else}---{/if}</td>
                                             <td>{if $derecho->descripcion}{$derecho->descripcion|nl2br}{else}---{/if}</td>
-                                            {if $_control}
-                                                <td>
+                                            <td>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=derecho_mostrar&id_entidad={$carta->id_entidad}&id_derecho={$derecho->id}">
+                                                    <i class="fa fa-folder fa-fw"></i>
+                                                </a>
+                                                {if $_control}
                                                     <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=derecho_editar&id_entidad={$carta->id_entidad}&id_derecho={$derecho->id}">
                                                         <i class="fa fa-pencil fa-fw"></i>
                                                     </a>
@@ -700,8 +703,8 @@
                                                        data-id_entidad="{$carta->id_entidad}" data-nombre="{$derecho->nombre}" data-id_derecho="{$derecho->id}">
                                                         <i class="fa fa-trash fa-fw"></i>
                                                     </a>
-                                                </td>
-                                            {/if}
+                                                {/if}
+                                            </td>
                                         </tr>     
                                     {/foreach}
                                 </tbody>
