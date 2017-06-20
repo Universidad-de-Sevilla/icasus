@@ -361,18 +361,22 @@
                                     <tr>
                                         <th>{$smarty.const.FIELD_NOMBRE}</th>
                                         <th>URL</th>
-                                        {if $_control}<th>{$smarty.const.FIELD_ACCIONES}</th>{/if}
+                                        <th>{$smarty.const.FIELD_ACCIONES}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {foreach from=$normativas item=normativa} 
                                         <tr>
-                                            <td>{$normativa->nombre}</td>
+                                            <td><a title="{$smarty.const.TXT_FICHA}" href="index.php?page=normativa_mostrar&id_entidad={$carta->id_entidad}&id_normativa={$normativa->id}">{$normativa->nombre}</a></td>
                                             <td>
                                                 <a title="{$normativa->nombre}" href="{$normativa->enlace}" target="_blank">{$normativa->enlace}</a>
                                             </td>
-                                            {if $_control}
-                                                <td>
+
+                                            <td>
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=normativa_mostrar&id_entidad={$carta->id_entidad}&id_normativa={$normativa->id}">
+                                                    <i class="fa fa-folder fa-fw"></i>
+                                                </a>
+                                                {if $_control}
                                                     <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=normativa_editar&id_entidad={$carta->id_entidad}&id_normativa={$normativa->id}">
                                                         <i class="fa fa-pencil fa-fw"></i>
                                                     </a>
@@ -380,8 +384,8 @@
                                                        data-id_entidad="{$carta->id_entidad}" data-nombre="{$normativa->nombre}" data-id_normativa="{$normativa->id}">
                                                         <i class="fa fa-trash fa-fw"></i>
                                                     </a>
-                                                </td>
-                                            {/if}
+                                                {/if}
+                                            </td>
                                         </tr>     
                                     {/foreach}
                                 </tbody>

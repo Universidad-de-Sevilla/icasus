@@ -67,6 +67,7 @@
             <li><a title="{$smarty.const.FIELD_CARTAS}" href='index.php?page=carta_listar&id_entidad={$entidad->id}'>{$smarty.const.FIELD_CARTAS}</a></li>
             <li><a title="{$smarty.const.FIELD_CARTA} {$carta->fecha|date_format:'%d/%m/%Y'}" href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$entidad->id}'>{$smarty.const.FIELD_CARTA} {$carta->fecha|date_format:'%d/%m/%Y'}</a></li>
             <li><a title="{$smarty.const.FIELD_NORMATIVAS}" href='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$entidad->id}#carta_normativas'>{$smarty.const.FIELD_NORMATIVAS}</a></li>
+            <li><a title="{$smarty.const.FIELD_NORMATIVA}: {$normativa->nombre}" href='index.php?page=normativa_mostrar&id_entidad={$carta->id_entidad}&id_normativa={$normativa->id}'>{$normativa->nombre|truncate:30}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -99,7 +100,7 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
-                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$carta->id_entidad}#carta_normativas'>
+                    <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=normativa_mostrar&id_normativa={$normativa->id}&id_entidad={$carta->id_entidad}'>
                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}
                     </a>
                     <div class="pull-right">
