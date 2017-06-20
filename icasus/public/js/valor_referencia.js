@@ -103,6 +103,9 @@ $(document).ready(function () {
                 window.location.replace(location.href + "&exito=" + texto_crear + ' ' + nombre);
             });
         }
+        else {
+            $('#crear_referencia').validator('validate');
+        }
     });
 
     //Barra de botones
