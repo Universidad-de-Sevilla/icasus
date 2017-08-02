@@ -58,7 +58,7 @@
 <div class="row">
     <div class="col-lg-12">
         <ol class="breadcrumb">
-            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
+            <li><i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i></li>
             <li><a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}">
@@ -362,7 +362,7 @@
                             <area shape="rect" coords="492,387,595,432" title="{$smarty.const.TXT_PROC_VER}"
                                   href="index.php?page=proceso_mostrar&id_entidad=14&id_proceso=1912"/>
                         </map>
-                    {else if $entidad->id==20}
+                    {elseif $entidad->id==20}
                         <img src="images/mapa_proceso_un09.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}" usemap="#Map">
                         <map name="Map" id="Map">
                             <area shape="rect" coords="770,508,1032,558" title="{$smarty.const.TXT_PROC_VER}"

@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.52.4");
-define('IC_FECHA_REVISION', "20/06/2017");
+define('IC_VERSION', "3.52.5");
+define('IC_FECHA_REVISION', "26/06/2017");
 
+// 3.52.5 - 26/06/2017 - Comprueba que viene el id de la carta al crear un nuevo enlace de normativa
 // 3.52.4 - 20/06/2017 - Se mejora la gestión de normativas y derechos añadiendoles una página propia.
 // 3.52.3 - 19/06/2017 - Se incluye gestión de Derechos de los usuarios para las Cartas de Servicios.
 // 3.52.2 - 14/06/2017 - Se incluye gestión de Normativas para las Cartas de Servicios.

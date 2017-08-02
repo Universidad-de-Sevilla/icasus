@@ -14,6 +14,11 @@ class Carta extends ADOdb_Active_Record
 {
 
     public $_table = 'cartas';
+    public $id_entidad;
+    public $id_cuadro;
+    public $fecha;
+    public $mision;
+    public $valores;
     public $entidad;
     public $cuadro;
 

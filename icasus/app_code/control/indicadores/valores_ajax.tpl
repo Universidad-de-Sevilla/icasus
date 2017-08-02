@@ -20,7 +20,7 @@
         });
     </script>
 
-{else if $modulo == 'mostrar_valores' OR $modulo == 'asignar_una_medicion' OR $modulo == 'activar_all' OR $modulo == 'activar_uno'}
+{elseif $modulo == 'mostrar_valores' OR $modulo == 'asignar_una_medicion' OR $modulo == 'activar_all' OR $modulo == 'activar_uno'}
     <!-- Valores de subunidades-mediciones -->
     <div class="panel panel-red">
         <div class="panel-heading">

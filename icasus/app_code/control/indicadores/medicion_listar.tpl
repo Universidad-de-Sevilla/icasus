@@ -123,10 +123,10 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 title="{$_nombre_pagina}" class="page-header">
+        <div title="{$_nombre_pagina}" class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-dashboard fa-fw"></i>{if $indicador->archivado}<sub class="fa fa-archive fa-fw"></sub>{else}{if $indicador->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{else if $indicador->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if}{/if} {$_nombre_pagina}
+                    <i class="fa fa-dashboard fa-fw"></i>{if $indicador->archivado}<sub class="fa fa-archive fa-fw"></sub>{else}{if $indicador->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{elseif $indicador->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if}{/if} {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -155,7 +155,7 @@
                 <!-- /Navegación -->
             </div>
             <!-- /.row -->
-        </h3>
+        </div>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -390,7 +390,7 @@
                                     <td>
                                         <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}' 
                                            title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
-                                            <i class="fa fa-dashboard fa-fw"></i>{if $indicador_influyente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{else if $indicador_influyente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_influyente->nombre}
+                                            <i class="fa fa-dashboard fa-fw"></i>{if $indicador_influyente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{elseif $indicador_influyente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_influyente->nombre}
                                         </a>
                                     </td>
                                 </tr>  
@@ -436,7 +436,7 @@
                                     <td>
                                         <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}' 
                                            title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
-                                            <i class="fa fa-dashboard fa-fw"></i>{if $indicador_dependiente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{else if $indicador_dependiente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_dependiente->nombre}
+                                            <i class="fa fa-dashboard fa-fw"></i>{if $indicador_dependiente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{elseif $indicador_dependiente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_dependiente->nombre}
                                         </a>
                                     </td>
                                 </tr>  
@@ -509,7 +509,7 @@
                                                     {if isset($status[$medicion->id])}
                                                         {if $status[$medicion->id] == 'danger'}
                                                             <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
-                                                        {else if $status[$medicion->id] == 'success'}
+                                                        {elseif $status[$medicion->id] == 'success'}
                                                             <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
                                                         {else}
                                                             <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
@@ -575,7 +575,7 @@
                             <thead>
                                 <tr>
                                     <th>{$smarty.const.FIELD_UNID}</th>
-                                        {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                        {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step -1}
                                         <th>{$i}</th>
                                         {/for}
                                 </tr>
@@ -586,7 +586,7 @@
                                         {if $subunidades->id != $entidad->id}
                                             <tr>
                                                 <td><span class="label label-primary">{$subunidades->etiqueta}</span></td>
-                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step -1}
                                                     <td>
                                                         {if $totales_anuales[$subunidades->id][$i]=== NULL}
                                                             ---
@@ -605,13 +605,15 @@
                                         {if $subunidades->id == $entidad->id}
                                             <tr>
                                                 <th>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion_temporal})</th>
-                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step -1}
                                                     <td {if isset($status_anuales[$subunidades->id][$i])}class="{$status_anuales[$subunidades->id][$i]}"{/if}>
                                                         {if ($totales_anuales[$subunidades->id][$i])!== NULL}
                                                             {if isset($status_anuales[$subunidades->id][$i])}
                                                                 {if $status_anuales[$subunidades->id][$i] == 'danger'}
-                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
-                                                                {else if $status_anuales[$subunidades->id][$i] == 'success'}
+                                                                    <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}:
+                                                                        {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}:
+                                                                        {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
+                                                                {elseif $status_anuales[$subunidades->id][$i] == 'success'}
                                                                     <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
                                                                 {else}
                                                                     <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
@@ -635,13 +637,13 @@
                                         {if $subunidades->id == $entidad->id}
                                             <tr>
                                                 <th>{$smarty.const.FIELD_TOTAL}: {$subunidades->etiqueta} ({$agregacion_temporal})</th>
-                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step=-1}
+                                                    {for $i=($smarty.now|date_format:"%Y") to $anyo_inicio step -1}
                                                     <td {if isset($status_anuales[$subunidades->id][$i])}class="{$status_anuales[$subunidades->id][$i]}"{/if}>
                                                         {if ($totales_anuales[$subunidades->id][$i])!== NULL}
                                                             {if isset($status_anuales[$subunidades->id][$i])}
                                                                 {if $status_anuales[$subunidades->id][$i] == 'danger'}
                                                                     <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
-                                                                {else if $status_anuales[$subunidades->id][$i] == 'success'}
+                                                                {elseif $status_anuales[$subunidades->id][$i] == 'success'}
                                                                     <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
                                                                 {else}
                                                                     <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$ref_anuales_lim[$i]}, {$smarty.const.FIELD_META}: {$ref_anuales_obj[$i]})" class="label label-{$status_anuales[$subunidades->id][$i]}">{$totales_anuales[$subunidades->id][$i]|round:"2"}</span>
@@ -728,7 +730,7 @@
                                                         {if isset($status[$medicion->id])}
                                                             {if $status[$medicion->id] == 'danger'}
                                                                 <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
-                                                            {else if $status[$medicion->id] == 'success'}
+                                                            {elseif $status[$medicion->id] == 'success'}
                                                                 <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>
                                                             {else}
                                                                 <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$medicion->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$medicion->id]})" class="label label-{$status[$medicion->id]}">{$totales[$medicion->id]|round:"2"}</span>

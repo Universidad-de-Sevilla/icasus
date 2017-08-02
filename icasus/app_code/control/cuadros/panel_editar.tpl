@@ -105,22 +105,22 @@
                 <i class="fa fa-info-circle fa-fw"></i> 
                 {$smarty.const.TXT_LINEAS_DESC}
             </div>
-        {else if $panel->id_paneltipo == 3}
+        {elseif $panel->id_paneltipo == 3}
             <div class="alert alert-info alert-dismissible">
                 <i class="fa fa-info-circle fa-fw"></i> 
                 {$smarty.const.TXT_TARTA_DESC}
             </div>
-        {else if $panel->id_paneltipo == 4}
+        {elseif $panel->id_paneltipo == 4}
             <div class="alert alert-info alert-dismissible">
                 <i class="fa fa-info-circle fa-fw"></i> 
                 {$smarty.const.TXT_MIXTO_DESC}
             </div>
-        {else if $panel->id_paneltipo == 6}
+        {elseif $panel->id_paneltipo == 6}
             <div class="alert alert-info alert-dismissible">
                 <i class="fa fa-info-circle fa-fw"></i> 
                 {$smarty.const.TXT_TABLA_DESC}
             </div>
-        {else if $panel->id_paneltipo == 7}
+        {elseif $panel->id_paneltipo == 7}
             <div class="alert alert-info alert-dismissible">
                 <i class="fa fa-info-circle fa-fw"></i> 
                 {$smarty.const.TXT_BARRAS_DESC}
@@ -234,8 +234,10 @@
                         <div class="col-sm-offset-2 col-sm-8">
                             <table class="table table-hover" id="indicadores_subunidades_seleccionados" data-texto_borrar="{$smarty.const.TXT_BORRAR}" style="background-color: white">
                                 <thead>
-                                <th>{$smarty.const.FIELD_INDICS}</th>
-                                <th colspan="2">{$smarty.const.FIELD_UNID}</th>
+                                <tr>
+                                    <th>{$smarty.const.FIELD_INDICS}</th>
+                                    <th colspan="2">{$smarty.const.FIELD_UNID}</th>
+                                </tr>
                                 </thead>
                                 {foreach $panel_indicadores as $pi}
                                     <tr class="fila_borrar">
@@ -277,7 +279,7 @@
                     </div>
 
                     {*Editando paneles de tarta*}
-                {else if $panel->id_paneltipo == 3}
+                {elseif $panel->id_paneltipo == 3}
 
                     <!-- Indicador -->
                     <div class="form-group">
@@ -306,7 +308,7 @@
                     <!-- /Mediciones -->
 
                     {*Editando paneles mixtos*}
-                {else if $panel->id_paneltipo == 4}
+                {elseif $panel->id_paneltipo == 4}
 
                     <!-- Indicador base -->
                     <div class="form-group">
@@ -340,7 +342,7 @@
                     <!-- /Indicadores complementarios -->
 
                     {*Editando paneles de tabla*}
-                {else if $panel->id_paneltipo == 6}
+                {elseif $panel->id_paneltipo == 6}
 
                     <!-- Unidad -->
                     <div class="form-group">

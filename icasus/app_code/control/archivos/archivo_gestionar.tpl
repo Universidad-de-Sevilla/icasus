@@ -6,9 +6,9 @@
                   data-toggle="validator" class="form-horizontal">
                 {if isset($plan)}
                     <input type="hidden" value="{$plan->id}" name="id_objeto">
-                {else if isset($carta)}
+                {elseif isset($carta)}
                     <input type="hidden" value="{$carta->id}" name="id_objeto">
-                {else if isset($proceso)}
+                {elseif isset($proceso)}
                     <input type="hidden" value="{$proceso->id}" name="id_objeto">
                 {else}
                     <input type="hidden" value="{$entidad->id}" name="id_objeto">
@@ -313,12 +313,12 @@
                             <i class="fa fa-info-circle fa-fw"></i> 
                             {$smarty.const.MSG_PLAN_NO_ARCHIVOS}
                         </div>
-                    {else if isset($carta)}
+                    {elseif isset($carta)}
                         <div class="alert alert-info alert-dismissible">
                             <i class="fa fa-info-circle fa-fw"></i> 
                             {$smarty.const.MSG_CARTA_NO_ARCHIVOS}
                         </div> 
-                    {else if isset($proceso)}
+                    {elseif isset($proceso)}
                         <div class="alert alert-info alert-dismissible">
                             <i class="fa fa-info-circle fa-fw"></i> 
                             {$smarty.const.MSG_PROC_NO_ARCHIVOS}

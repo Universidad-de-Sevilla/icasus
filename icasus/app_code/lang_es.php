@@ -77,9 +77,11 @@ define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 define('TXT_CONSULT_BUSCAR', 'Buscar Indicador');
 
 //Cartas de Servicios
-define('TXT_CARTA_CREAR', 'Crear Carta de Servicios');
-define('TXT_CARTA_EDIT', 'Editar Carta de Servicios');
-define('TXT_CARTA_BORRAR', 'Borrar Carta de Servicios');
+define('TXT_CARTA_TITULO', 'Carta de Compromisos de Servicios');
+define('TXT_CARTAS_TITULO', 'Cartas de Compromisos de Servicios');
+define('TXT_CARTA_CREAR', 'Crear Carta de Compromisos');
+define('TXT_CARTA_EDIT', 'Editar Carta de Compromiso');
+define('TXT_CARTA_BORRAR', 'Borrar Carta de Compromiso');
 
 //Normativas
 define('TXT_NORMATIVA_CREAR', 'Incluir Normativa');
@@ -186,15 +188,15 @@ define('TXT_MEDS_BORRAR', 'Borrar mediciones');
 define('TXT_MED_RESP_SEL', 'Elegir nuevo responsable de medición ...');
 
 //Menú Principal
-define('TXT_INICIO', 'Mi icasus');
-define('TXT_UNIDS_US', 'Unidades US');
-define('TXT_PLANES_US', 'Planes Estratégicos US');
-define('TXT_CARTAS_US', 'Cartas de Servicios US');
-define('TXT_PROCS_US', 'Procesos US');
-define('TXT_INDICS_US', 'Indicadores/Datos US');
-define('TXT_DATOS_US', 'Datos US');
-define('TXT_CUADROS_MANDO_US', 'Cuadros de Mando US');
-define('TXT_USERS_US', 'Usuarios US');
+define('TXT_INICIO', 'Mi Icasus');
+define('TXT_UNIDS_US', 'Unidades');
+define('TXT_PLANES_US', 'Planes Estratégicos');
+define('TXT_CARTAS_US', 'Cartas de Compromisos');
+define('TXT_PROCS_US', 'Procesos');
+define('TXT_INDICS_US', 'Indicadores/Datos');
+define('TXT_DATOS_US', 'Datos');
+define('TXT_CUADROS_MANDO_US', 'Cuadros de Mando');
+define('TXT_USERS_US', 'Usuarios');
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
 define('TXT_UNIVERSIDAD', 'Universidad de Sevilla');
@@ -204,7 +206,7 @@ define('TXT_CERRAR_SESION', 'Cerrar sesión');
 //Menú de Unidades
 define('TXT_INICIO_DESCRIPCION', 'Mi icasus: listado de sus competencias/responsabilidades.');
 define('TXT_PLANES_DESCRIPCION', 'Planes Estratégicos: listado de Planes Estratégicos de la Unidad y gestión de los mismos.');
-define('TXT_CARTAS_DESCRIPCION', 'Cartas de Servicios: listado de las Cartas de Servicios de la Unidad y gestión de las mismas.');
+define('TXT_CARTAS_DESCRIPCION', 'Cartas de Compromisos: listado de las Cartas de Compromisos de la Unidad y gestión de las mismas.');
 define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de Procesos de la Unidad y gestión de los mismos. ');
 define('TXT_INDICS_DESCRIPCION', 'Indicadores/Datos: listado de Indicadores/Datos de la Unidad y gestión de los mismos.');
 define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de Mando: listado de Cuadros de Mando de la Unidad y gestión de los mismos.');
@@ -426,8 +428,8 @@ define('FIELD_COMENTARIOS', 'Comentarios');
 define('FIELD_ARCHIVO', 'Archivo');
 
 //Cartas
-define('FIELD_CARTA', 'Carta de Servicios');
-define('FIELD_CARTAS', 'Cartas de Servicios');
+define('FIELD_CARTA', 'Carta de Compromisos');
+define('FIELD_CARTAS', 'Cartas de Compromiso');
 
 //Normativas
 define('FIELD_NORMATIVA', 'Normativa');
@@ -578,22 +580,22 @@ define('MSG_ARCHIVO_BORRADO', 'Se ha eliminado con éxito el archivo.');
 define('MSG_ARCHIVOS_PROCESADOS', 'Archivos procesados');
 
 //Cartas de Servicios
-define('MSG_CARTA_CREADA', 'Se ha creado una nueva Carta de Servicios.');
-define('MSG_CARTA_EDITADA', 'Se ha editado correctamente la Carta de Servicios.');
-define('MSG_CARTA_NO_ARCHIVOS', 'No se han subido archivos para esta Carta de Servicios.');
-define('MSG_CARTAS_NO', 'No hay Cartas de Servicios definidas para ninguna Unidad.');
-define('MSG_CARTA_NO_NORMATIVAS', 'No se han definido Normativas para esta Carta de Servicios.');
-define('MSG_CARTA_NO_DERECHOS', 'No se han definido Derechos para los usuarios de esta Carta de Servicios.');
-define('MSG_CARTA_NO_SERVICIOS', 'No se han definido Servicios para esta Carta de Servicios.');
-define('MSG_CARTA_NO_COMPROMISOS', 'No se han definido Compromisos para esta Carta de Servicios.');
-define('MSG_CARTA_NO_INDICS', 'No se han definido Indicadores para esta Carta de Servicios.');
-define('MSG_CARTA_CONFIRM_EDITAR', 'Va a editar esta Carta de Servicios, ¿está seguro?');
-define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Servicios?');
-define('MSG_CARTA_BORRAR', 'No tiene permisos para borrar esta Carta de Servicios o ésta todavía contiene Servicios. Bórrelos primero.');
-define('MSG_CARTA_BORRADA', 'Se ha eliminado la Carta de Servicios:');
+define('MSG_CARTA_CREADA', 'Se ha creado una nueva Carta de Compromisos.');
+define('MSG_CARTA_EDITADA', 'Se ha editado correctamente la Carta de Compromisos.');
+define('MSG_CARTA_NO_ARCHIVOS', 'No se han subido archivos para esta Carta de Compromisos.');
+define('MSG_CARTAS_NO', 'No hay Cartas de Compromisos definidas para ninguna Unidad.');
+define('MSG_CARTA_NO_NORMATIVAS', 'No se han definido Normativas para esta Carta de Compromisos.');
+define('MSG_CARTA_NO_DERECHOS', 'No se han definido Derechos para los usuarios de esta Carta de Compromisos.');
+define('MSG_CARTA_NO_SERVICIOS', 'No se han definido Servicios para esta Carta de Compromisos.');
+define('MSG_CARTA_NO_COMPROMISOS', 'No se han definido Compromisos para esta Carta de Compromisos.');
+define('MSG_CARTA_NO_INDICS', 'No se han definido Indicadores para esta Carta de Compromisos.');
+define('MSG_CARTA_CONFIRM_EDITAR', 'Va a editar esta Carta de Compromisos, ¿está seguro?');
+define('MSG_CARTA_CONFIRM_BORRAR', '¿Desea borrar la Carta de Compromisos?');
+define('MSG_CARTA_BORRAR', 'No tiene permisos para borrar esta Carta de Compromisos o ésta todavía contiene Servicios. Bórrelos primero.');
+define('MSG_CARTA_BORRADA', 'Se ha eliminado la Carta de Compromisos:');
 
 //Normativas
-define('MSG_NORMATIVA_CREADA', 'Se ha inlcuido una nueva Normativa para esta Carta.');
+define('MSG_NORMATIVA_CREADA', 'Se ha inlcuido una nueva Normativa para esta Cartera.');
 define('MSG_NORMATIVA_EDITADA', 'Se ha editado la Normativa correctamente.');
 define('MSG_NORMATIVA_CONFIRM_EDITAR', 'Va a editar esta Normativa, ¿está seguro?');
 define('MSG_NORMATIVA_CONFIRM_BORRAR', '¿Desea borrar esta Normativa?');
@@ -603,7 +605,7 @@ define('MSG_NORMATIVA_BORRADA', 'Se ha eliminado la Normativa:');
 //Servicios
 define('MSG_SERVICIO_NO_COMPROMISOS', 'No se han definido Compromisos para este Servicio.');
 define('MSG_SERVICIO_NO_INDICS', 'No se han asociado Indicadores a ningún Compromiso de este Servicio.');
-define('MSG_SERVICIO_CREADO', 'Se ha creado un nuevo Servicio para esta Carta.');
+define('MSG_SERVICIO_CREADO', 'Se ha creado un nuevo Servicio para esta Cartera.');
 define('MSG_SERVICIO_EDITADO', 'Se ha editado el Servicio correctamente.');
 define('MSG_SERVICIO_CONFIRM_EDITAR', 'Va a editar este Servicio, ¿está seguro?');
 define('MSG_SERVICIO_CONFIRM_BORRAR', '¿Desea borrar este Servicio?');
@@ -620,7 +622,7 @@ define('MSG_COMPROMISO_BORRAR', 'No tiene permisos para borrar el Compromiso.');
 define('MSG_COMPROMISO_BORRADO', 'Se ha eliminado el Compromiso:');
 
 //Derechos
-define('MSG_DERECHO_CREADO', 'Se ha añadido un nuevo Derecho de los usuarios para esta Carta.');
+define('MSG_DERECHO_CREADO', 'Se ha añadido un nuevo Derecho de los usuarios para esta Cartera.');
 define('MSG_DERECHO_EDITADO', 'Se ha editado el Derecho de los usuarios correctamente.');
 define('MSG_DERECHO_CONFIRM_EDITAR', 'Va a editar este Derecho, ¿está seguro?');
 define('MSG_DERECHO_CONFIRM_BORRAR', '¿Desea borrar este Derecho?');
@@ -668,7 +670,7 @@ define('MSG_UNID_NO_INDIC_ARCHIVADOS', 'No hay Indicadores archivados en esta Un
 define('MSG_UNID_NO_DATO_ARCHIVADOS', 'No hay Datos archivados en esta Unidad.');
 define('MSG_UNID_NO_CUADROS', 'No hay Cuadros de Mando definidos para esta Unidad.');
 define('MSG_UNID_NO_PLANES', 'No hay Planes Estratégicos definidos para esta Unidad.');
-define('MSG_UNID_NO_CARTAS', 'No hay Cartas de Servicios definidas para esta Unidad.');
+define('MSG_UNID_NO_CARTAS', 'No hay Cartas de Compromisos definidas para esta Unidad.');
 define('MSG_UNID_NO_IND_NO_DAT', 'No hay Indicadores ni Datos definidos para esta Unidad.');
 define('MSG_UNID_NO_SUBUNIDS', 'Esta Unidad no tiene Subunidades.');
 define('MSG_UNID_NO_ASIG', 'No tiene asignada ninguna Unidad.');
@@ -848,8 +850,8 @@ define('ERR_ARCHIVO_SUBIR', 'No se ha podido subir el archivo, consulte al admin
 define('ERR_ARCHIVO_NO_SEL', 'No se ha especificado ningún archivo para subir.');
 
 //Cartas de Servicios
-define('ERR_CARTA_MOSTRAR', 'No se puede mostrar la Carta de Sercicios, el identificador no existe en la base de datos.');
-define('ERR_CARTA_EDIT', 'La Carta de Servicios no existe o no tiene permisos para editarla.');
+define('ERR_CARTA_MOSTRAR', 'No se puede mostrar la Cartera de Sercicios, el identificador no existe en la base de datos.');
+define('ERR_CARTA_EDIT', 'La Carta de Compromisos no existe o no tiene permisos para editarla.');
 
 //Normativas
 define('ERR_NORMATIVA_MOSTRAR', 'No se puede mostrar la Normativa, el identificador no existe en la base de datos.');
@@ -857,7 +859,7 @@ define('ERR_NORMATIVA_EDIT', 'La Normativa no existe o no tiene permisos para ed
 
 //Servicios
 define('ERR_SERVICIO_MOSTRAR', 'No se puede mostrar el Servicio, el identificador no existe en la base de datos.');
-define('ERR_SERVICIO_VAL_INDICE', 'Ya existe un Servicio con el mismo índice para esta Carta de Servicios.');
+define('ERR_SERVICIO_VAL_INDICE', 'Ya existe un Servicio con el mismo índice para esta Carta de Compromisos.');
 define('ERR_SERVICIO_EDIT', 'El Servicio no existe o no tiene permisos para editarlo.');
 
 //Compromisos

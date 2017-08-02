@@ -129,10 +129,10 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 title="{$_nombre_pagina}" class="page-header">
+        <div class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-dashboard fa-fw"></i>{if $indicador->archivado}<sub class="fa fa-archive fa-fw"></sub>{else}{if $indicador->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{else if $indicador->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if}{/if} {$_nombre_pagina}
+                    <i class="fa fa-dashboard fa-fw"></i>{if $indicador->archivado}<sub class="fa fa-archive fa-fw"></sub>{else}{if $indicador->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{elseif $indicador->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if}{/if} {$_nombre_pagina}
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -161,7 +161,7 @@
                 <!-- /Navegación -->
             </div>
             <!-- /.row -->
-        </h3>
+        </div>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -353,7 +353,7 @@
                                     <td>
                                         <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}' 
                                            title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
-                                            <i class="fa fa-dashboard fa-fw"></i>{if $indicador_influyente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{else if $indicador_influyente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_influyente->nombre}
+                                            <i class="fa fa-dashboard fa-fw"></i>{if $indicador_influyente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{elseif $indicador_influyente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_influyente->nombre}
                                         </a>
                                     </td>
                                 </tr>  
@@ -399,7 +399,7 @@
                                     <td>
                                         <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}' 
                                            title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
-                                            <i class="fa fa-dashboard fa-fw"></i>{if $indicador_dependiente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{else if $indicador_dependiente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_dependiente->nombre}
+                                            <i class="fa fa-dashboard fa-fw"></i>{if $indicador_dependiente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{elseif $indicador_dependiente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_dependiente->nombre}
                                         </a>
                                     </td>
                                 </tr>  
@@ -428,7 +428,7 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-{else if ($_control || $responsable) && !$indicador->archivado && $mediciones}
+{elseif ($_control || $responsable) && !$indicador->archivado && $mediciones}
     <!-- Selección de periodos a consultar -->
     <div class="row">
         <div class="col-lg-12">
@@ -500,7 +500,7 @@
     </div>
     <!-- /.row -->
     <!-- /Valores de subunidades-mediciones -->
-{else if !($_control || $responsable)}
+{elseif !($_control || $responsable)}
     <div class="row">
         <div class="col-lg-12">
             <div class="alert alert-danger alert-dismissible">
@@ -511,7 +511,7 @@
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
-{else if $indicador->archivado}
+{elseif $indicador->archivado}
     <div class="row">
         <div class="col-lg-12">
             <div class="alert alert-warning alert-dismissible">

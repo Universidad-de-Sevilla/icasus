@@ -99,7 +99,7 @@
 <div class="row">
     <div class="col-lg-12">
         <ol class="breadcrumb">
-            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
+            <li><i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -298,7 +298,7 @@
                                                 {if isset($status[$indicador->id])}
                                                     {if $status[$indicador->id] == 'danger'}
                                                         <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_MEJORABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="label label-{$status[$indicador->id]}">{$totales[$indicador->id]|round:"2"}</span>
-                                                    {else if $status[$indicador->id] == 'success'}
+                                                    {elseif $status[$indicador->id] == 'success'}
                                                         <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_LOGRADO} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="label label-{$status[$indicador->id]}">{$totales[$indicador->id]|round:"2"}</span>
                                                     {else}
                                                         <span title="{if $indicador->inverso}{$smarty.const.TXT_DESCENDENTE}{else}{$smarty.const.TXT_ASCENDENTE}{/if}: {$smarty.const.TXT_VAL_ACEPTABLE} ({$smarty.const.FIELD_LIMITE}: {$medicion_lim[$indicador->id]}, {$smarty.const.FIELD_META}: {$medicion_obj[$indicador->id]})" class="label label-{$status[$indicador->id]}">{$totales[$indicador->id]|round:"2"}</span>
@@ -458,15 +458,15 @@
                                                 {foreach $objops_anyos[$objop->id] as $anyo}
                                                     {if $anyo@first}
                                                         {$anyo}{$escrito=true}
-                                                    {else if $anyo_anterior+1 == $anyo and !$anyo@last}
+                                                    {elseif $anyo_anterior+1 == $anyo and !$anyo@last}
                                                         {$escrito=false}
-                                                    {else if $anyo_anterior+1 != $anyo and !$escrito}
+                                                    {elseif $anyo_anterior+1 != $anyo and !$escrito}
                                                         - {$anyo_anterior}, {$anyo}
                                                         {$escrito=true}
-                                                    {else if $anyo_anterior+1 != $anyo}
+                                                    {elseif $anyo_anterior+1 != $anyo}
                                                         , {$anyo}
                                                         {$escrito=true}
-                                                    {else if $anyo@last && $objops_anyos[$objop->id]|@count>1}
+                                                    {elseif $anyo@last && $objops_anyos[$objop->id]|@count>1}
                                                         - {$anyo}
                                                     {/if}
                                                     {$anyo_anterior=$anyo}
@@ -477,7 +477,7 @@
                                         </td>
                                         <td style="white-space:nowrap">
                                             <div class="progress">
-                                                <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{else if $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{else if $objop->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$objop->ejecucion|round:"2"}%">
+                                                <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{elseif $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{elseif $objop->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$objop->ejecucion|round:"2"}%">
                                                     {$objop->ejecucion|round:"2"} %
                                                 </div>
                                             </div>

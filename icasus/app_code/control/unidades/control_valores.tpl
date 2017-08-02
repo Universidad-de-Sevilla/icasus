@@ -45,7 +45,7 @@
                                         <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
                                             {$valor.proceso}
                                         </a>
-                                    {else if $valor.control}
+                                    {elseif $valor.control}
                                         {$smarty.const.TXT_CONTROL}
                                     {else}
                                         {$smarty.const.FIELD_DATO}
@@ -111,7 +111,7 @@
                                             <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
                                                 {$valor.proceso}
                                             </a>
-                                        {else if $valor.control}
+                                        {elseif $valor.control}
                                             {$smarty.const.TXT_CONTROL}
                                         {else}
                                             {$smarty.const.FIELD_DATO}
@@ -184,7 +184,7 @@
                                         <a href="index.php?page=proceso_mostrar&id_proceso={$valor.id_proceso}&id_entidad={$valor.entidad_del_indicador}" title="{$smarty.const.TXT_PROC_VER}">
                                             {$valor.proceso}
                                         </a>
-                                    {else if $valor.control}
+                                    {elseif $valor.control}
                                         {$smarty.const.TXT_CONTROL}
                                     {else}
                                         {$smarty.const.FIELD_DATO}
@@ -233,7 +233,7 @@
                                         <a href="index.php?page=proceso_mostrar&id_proceso={$indicador.id_proceso}&id_entidad={$indicador.id_entidad}" title="{$smarty.const.TXT_PROC_VER}">
                                             {$indicador.proceso}
                                         </a>
-                                    {else if $indicador.control}
+                                    {elseif $indicador.control}
                                         {$smarty.const.TXT_CONTROL}
                                     {else}
                                         {$smarty.const.FIELD_DATO} 
@@ -285,7 +285,7 @@
                                             <a href="index.php?page=proceso_mostrar&id_proceso={$indicador->id_proceso}&id_entidad={$indicador->id_entidad}" title="{$smarty.const.TXT_PROC_VER}">
                                                 {$indicador->proceso->nombre}
                                             </a>
-                                        {else if $indicador->control}
+                                        {elseif $indicador->control}
                                             {$smarty.const.TXT_CONTROL}
                                         {else}
                                             {$smarty.const.FIELD_DATO}

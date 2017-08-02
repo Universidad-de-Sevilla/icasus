@@ -9,7 +9,7 @@
                     <!-- /.col-sm-8 -->
                     <div class="col-sm-4">
                         <div class="progress">
-                            <div class="progress-bar {if $ejecucion_plan|round:"2" < 25}progress-bar-danger{else if $ejecucion_plan|round:"2" >= 25 && $ejecucion_plan|round:"2" < 75}progress-bar-warning{else if $ejecucion_plan|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_plan|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$ejecucion_plan|round:"2"}%;">
+                            <div class="progress-bar {if $ejecucion_plan|round:"2" < 25}progress-bar-danger{elseif $ejecucion_plan|round:"2" >= 25 && $ejecucion_plan|round:"2" < 75}progress-bar-warning{elseif $ejecucion_plan|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_plan|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$ejecucion_plan|round:"2"}%;">
                                 {$ejecucion_plan|round:"2"} %
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                             <!-- /.col-sm-8 -->
                             <div class="col-sm-4">
                                 <div class="progress">
-                                    <div class="progress-bar {if $ejecucion_lineas[$linea->id]|round:"2" < 25}progress-bar-danger{else if $ejecucion_lineas[$linea->id]|round:"2" >= 25 && $ejecucion_lineas[$linea->id]|round:"2" < 75}progress-bar-warning{else if $ejecucion_lineas[$linea->id]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_lineas[$linea->id]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$ejecucion_lineas[$linea->id]|round:"2"}%;">
+                                    <div class="progress-bar {if $ejecucion_lineas[$linea->id]|round:"2" < 25}progress-bar-danger{elseif $ejecucion_lineas[$linea->id]|round:"2" >= 25 && $ejecucion_lineas[$linea->id]|round:"2" < 75}progress-bar-warning{elseif $ejecucion_lineas[$linea->id]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_lineas[$linea->id]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$ejecucion_lineas[$linea->id]|round:"2"}%;">
                                         {$ejecucion_lineas[$linea->id]|round:"2"} %
                                     </div>
                                 </div>
@@ -67,7 +67,7 @@
                                                 <!-- /.col-sm-8 -->
                                                 <div class="col-sm-4">
                                                     <div class="progress">
-                                                        <div class="progress-bar {if $ejecucion_objests[$objest->id]|round:"2" < 25}progress-bar-danger{else if $ejecucion_objests[$objest->id]|round:"2" >= 25 && $ejecucion_objests[$objest->id]|round:"2" < 75}progress-bar-warning{else if $ejecucion_objests[$objest->id]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_objests[$objest->id]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$ejecucion_objests[$objest->id]|round:"2"}%;">
+                                                        <div class="progress-bar {if $ejecucion_objests[$objest->id]|round:"2" < 25}progress-bar-danger{elseif $ejecucion_objests[$objest->id]|round:"2" >= 25 && $ejecucion_objests[$objest->id]|round:"2" < 75}progress-bar-warning{elseif $ejecucion_objests[$objest->id]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_objests[$objest->id]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$ejecucion_objests[$objest->id]|round:"2"}%;">
                                                             {$ejecucion_objests[$objest->id]|round:"2"} %
                                                         </div>
                                                     </div>
@@ -98,7 +98,7 @@
                                                                         <!-- /.col-sm-8 -->
                                                                         <div class="col-sm-4">
                                                                             <div class="progress">
-                                                                                <div class="progress-bar {if $ejecucion_objops[$objop->id]|round:"2" < 25}progress-bar-danger{else if $ejecucion_objops[$objop->id]|round:"2" >= 25 && $ejecucion_objops[$objop->id]|round:"2" < 75}progress-bar-warning{else if $ejecucion_objops[$objop->id]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_objops[$objop->id]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$ejecucion_objops[$objop->id]|round:"2"}%;">
+                                                                                <div class="progress-bar {if $ejecucion_objops[$objop->id]|round:"2" < 25}progress-bar-danger{elseif $ejecucion_objops[$objop->id]|round:"2" >= 25 && $ejecucion_objops[$objop->id]|round:"2" < 75}progress-bar-warning{elseif $ejecucion_objops[$objop->id]|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_objops[$objop->id]|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$ejecucion_objops[$objop->id]|round:"2"}%;">
                                                                                     {$ejecucion_objops[$objop->id]|round:"2"} %
                                                                                 </div>
                                                                             </div>
@@ -297,7 +297,7 @@
                     <!-- /.col-sm-8 -->
                     <div class="col-sm-4">
                         <div class="progress">
-                            <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{else if $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{else if $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$plan->ejecucion|round:"2"}%;">
+                            <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{elseif $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{elseif $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$plan->ejecucion|round:"2"}%;">
                                 {$plan->ejecucion|round:"2"} %
                             </div>
                         </div>
@@ -325,7 +325,7 @@
                             <!-- /.col-sm-8 -->
                             <div class="col-sm-4">
                                 <div class="progress">
-                                    <div class="progress-bar {if $linea->ejecucion|round:"2" < 25}progress-bar-danger{else if $linea->ejecucion|round:"2" >= 25 && $linea->ejecucion|round:"2" < 75}progress-bar-warning{else if $linea->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$linea->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$linea->ejecucion|round:"2"}%;">
+                                    <div class="progress-bar {if $linea->ejecucion|round:"2" < 25}progress-bar-danger{elseif $linea->ejecucion|round:"2" >= 25 && $linea->ejecucion|round:"2" < 75}progress-bar-warning{elseif $linea->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$linea->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$linea->ejecucion|round:"2"}%;">
                                         {$linea->ejecucion|round:"2"} %
                                     </div>
                                 </div>
@@ -355,7 +355,7 @@
                                                 <!-- /.col-sm-8 -->
                                                 <div class="col-sm-4">
                                                     <div class="progress">
-                                                        <div class="progress-bar {if $objest->ejecucion|round:"2" < 25}progress-bar-danger{else if $objest->ejecucion|round:"2" >= 25 && $objest->ejecucion|round:"2" < 75}progress-bar-warning{else if $objest->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objest->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$objest->ejecucion|round:"2"}%;">
+                                                        <div class="progress-bar {if $objest->ejecucion|round:"2" < 25}progress-bar-danger{elseif $objest->ejecucion|round:"2" >= 25 && $objest->ejecucion|round:"2" < 75}progress-bar-warning{elseif $objest->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objest->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$objest->ejecucion|round:"2"}%;">
                                                             {$objest->ejecucion|round:"2"} %
                                                         </div>
                                                     </div>
@@ -385,7 +385,7 @@
                                                                     <!-- /.col-sm-8 -->
                                                                     <div class="col-sm-4">
                                                                         <div class="progress">
-                                                                            <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{else if $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{else if $objop->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$objop->ejecucion|round:"2"}%;">
+                                                                            <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{elseif $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{elseif $objop->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width: {$objop->ejecucion|round:"2"}%;">
                                                                                 {$objop->ejecucion|round:"2"} %
                                                                             </div>
                                                                         </div>

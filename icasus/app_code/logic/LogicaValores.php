@@ -79,7 +79,7 @@ class LogicaValores implements ILogicaValores
         if ($numeros)
         {
             sort($numeros, SORT_NUMERIC);
-            $med = floor((count($numeros) / 2));
+            $med = (int) floor((count($numeros) / 2));
             return (count($numeros) % 2 != 0) ? $numeros[$med] : ($numeros[$med - 1] + $numeros[$med]) / 2;
         }
         else
@@ -88,6 +88,7 @@ class LogicaValores implements ILogicaValores
         }
     }
 
+    //TODO: esta función apesta pero no me atrevo a tocarla
     //Calcula el total de forma manual tomando el valor de la Unidad madre 
     //del indicador/dato del conjunto de valores que recibe como parámetro.
     public function manual($indicador, $valores)

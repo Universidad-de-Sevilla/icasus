@@ -117,7 +117,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') AND filter_has_var(INPUT_GET, 'id_ca
     $smarty->assign('entidad', $entidad);
 
     $smarty->assign('_javascript', array('carta_mostrar'));
-    $smarty->assign('_nombre_pagina', FIELD_CARTA . " " . date("d-m-Y", strtotime($carta->fecha)) . ': ' . $entidad->nombre);
+    $smarty->assign('_nombre_pagina', TXT_CARTA_TITULO . " " . date("Y", strtotime($carta->fecha)) . ': ' . $entidad->nombre);
     $plantilla = 'cartas/carta_mostrar.tpl';
 }
 else
