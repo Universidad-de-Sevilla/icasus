@@ -381,7 +381,7 @@
                                   href="index.php?page=proceso_mostrar&id_entidad=20&id_proceso=1953"/>
                         </map>
                     {else if $entidad->id==51}
-                        <img src="images/mapa_procesos_sav.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
+                        <img src="index.php?page=archivo_descargar&id=62" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
                     {/if}
                 {else}
                     <div class="row">
