@@ -65,7 +65,7 @@ define('IC_FECHA_REVISION', "26/06/2017");
 // 3.29.1 - 28/09/2016 - Corregidos enlaces a los cuadros de mando en la sección de búsqueda.
 // 3.29.0 - 23/09/2016 - Se incluye la periodicidad bienal para los paneles de líneas de los cuadros de mando y se permite editar la misma.
 // 3.28.4 - 23/09/2016 - Se muestra correctamente la periodicidad bienal en las secciones gráficas y análisis de indicadores/datos.
-// 3.28.3 - 23/09/2016 - Diálogos de carga para los paneles de los cuadros de mando y también para los del resumen de una entidad. Redondeados valores en control y cambio de include_once por require_once en el controlador index.php.
+// 3.28.3 - 23/09/2016 - Diálogos de carga para los paneles de los cuadros de mando y tagit pmbién para los del resumen de una entidad. Redondeados valores en control y cambio de include_once por require_once en el controlador index.php.
 // 3.28.2 - 20/09/2016 - Paneles tabla multi muestran correctamente indicadores/datos bienales. Reestablecida restricción de edición de valores de referencia para los responsables de indicadores/datos.
 // 3.28.1 - 20/09/2016 - Corregidos paneles tabla_multi que ahora si muestran los calculados y los responsables de un indicador ahora pueden editar sus valores de referencia.
 // 3.28.0 - 19/09/2016 - Control mejorado de indicadores/datos que tiene en cuenta las responsabilidades de cada usuario.
