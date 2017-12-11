@@ -18,7 +18,8 @@ $usuario_sso = new OpenSSO();
 // (que hace de presentación y tiene un enlace para autenticar)
 if (filter_has_var(INPUT_GET, 'autenticar'))
 {
-    if ($usuario_sso->check_and_force_sso())
+    $url = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    if ($usuario_sso->check_and_force_sso($url))
     {
         //$dni = $usuario_sso->irispersonaluniqueid;
         $usesrelacion = $usuario_sso->attribute('usesrelacion');
