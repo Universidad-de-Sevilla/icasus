@@ -380,8 +380,10 @@
                             <area shape="rect" coords="1110,776,1454,830" title="{$smarty.const.TXT_PROC_VER}"
                                   href="index.php?page=proceso_mostrar&id_entidad=20&id_proceso=1953"/>
                         </map>
-                    {else if $entidad->id==51}
+                    {elseif $entidad->id==51}
                         <img src="images/mapa_procesos_sav.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
+                    {elseif $entidad->id==55}
+                        <img src="images/mapa_procesos_internacional.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
                     {/if}
                 {else}
                     <div class="row">
