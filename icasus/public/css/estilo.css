@@ -51,7 +51,7 @@ hr, .divider{
     padding: 0 15px 40px;
     min-height: 568px;
     margin-top: 10px;
-    background: #fff url("../images/universidad_trans.jpg") no-repeat center fixed;
+    background: #fff;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
