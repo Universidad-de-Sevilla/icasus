@@ -64,7 +64,7 @@ backToTop();
 
 //Si cambia la longitud del documento recargamos backToTop
 onElementHeightChange(document.body, function () {
-    backToTop();
+    // backToTop();
 });
 
 function backToTop() {

@@ -15,8 +15,7 @@ global $usuario;
 //Variable para operar con Procesos
 $logicaProceso = new LogicaProceso();
 
-if (filter_has_var(INPUT_GET, 'id_entidad'))
-{
+if (filter_has_var(INPUT_GET, 'id_entidad')) {
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
     $entidad->load("id =  $id_entidad");
@@ -32,14 +31,10 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 
     //Permisos de procesos
     $permiso_proceso = array();
-    foreach ($procesos as $proceso)
-    {
-        if ($logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso))
-        {
+    foreach ($procesos as $proceso) {
+        if ($logicaProceso->comprobar_responsable_proceso($usuario->id, $proceso)) {
             $permiso_proceso[$proceso->id] = true;
-        }
-        else
-        {
+        } else {
             $permiso_proceso[$proceso->id] = false;
         }
     }
@@ -48,9 +43,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $smarty->assign('_javascript', array('proceso_listar'));
     $smarty->assign('_nombre_pagina', FIELD_PROCS . ": " . $entidad->nombre);
     $plantilla = 'procesos/proceso_listar.tpl';
-}
-else
-{
+} else {
     $error = ERR_PARAM;
     header("location:index.php?page=error&error=$error");
 }
