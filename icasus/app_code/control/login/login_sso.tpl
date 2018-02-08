@@ -33,7 +33,7 @@
                                 {$smarty.const.TXT_LOGIN_PARTE4} <a title="{$smarty.const.TXT_SOFT_LIBRE}" target="_blank" href="https://github.com/Universidad-de-Sevilla/icasus">{$smarty.const.TXT_SOFT_LIBRE}</a>.
                             </p>
                             <p>
-                                {$smarty.const.TXT_LOGIN_PARTE5} <a title="{$smarty.const.TXT_IC_MANUAL}" target="_blank" href="docs/icasus_manual_breve.pdf">{$smarty.const.TXT_IC_MANUAL}</a>
+                                {$smarty.const.TXT_LOGIN_PARTE5} <a title="{$smarty.const.TXT_IC_MANUAL}" target="_blank" href="docs/icasus3_manual_usuario.pdf">{$smarty.const.TXT_IC_MANUAL}</a>
                                 {$smarty.const.TXT_LOGIN_PARTE6}
                             </p>
                             <a id="formlogin" title="{$smarty.const.TXT_LOGIN}" class="btn btn-success btn-block" href ='index.php?page=login_sso&autenticar'>

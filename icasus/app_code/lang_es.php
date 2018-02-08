@@ -166,10 +166,10 @@ define('TXT_LOGIN_PARTE2', 'Para acceder al sistema es necesario ser miembro act
 define('TXT_LOGIN_PARTE3', 'ha sido desarrollado por el');
 define('TXT_LOGIN_PARTE4', 'y puede utilizarse como');
 define('TXT_LOGIN_PARTE5', 'Puede bajar una primera versión del');
-define('TXT_LOGIN_PARTE6', 'en formato .PDF (revisión disponible: 26 mayo 2010).');
+define('TXT_LOGIN_PARTE6', 'en formato PDF (revisión disponible: 8 febrero 2018).');
 define('TXT_AREA_REC_HUM', 'Área de Recursos Humanos de la Universidad de Sevilla');
 define('TXT_SOFT_LIBRE', 'Software Libre');
-define('TXT_IC_MANUAL', 'Manual de referencia rápida de Icasus');
+define('TXT_IC_MANUAL', 'Manual de usuario de Icasus 3');
 
 //Mediciones
 define('TXT_MED_UNICA', 'Medición única en la Unidad actual.');
