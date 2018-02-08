@@ -1,28 +1,30 @@
 <?php
 
-//-------------------------------------------------------------------------------------------
-// Proyecto: Icasus
-// Archivo: login/login_sso.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
-// Joaquín Valonero Zaera (tecnibus1@us.es)
-//---------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------
-// Controlador que autentica a los usuarios para entrar al sistema usando el SSO de la US 
-//-------------------------------------------------------------------------------------------
+//require_once("libopensso-php/OpenSSO.php");
+//$usuario_sso = new OpenSSO();
 
-require_once("libopensso-php/OpenSSO.php");
+include_once('libopensso/lib/US/OpenSSO/InternalHandler.php');
+include_once('libopensso/lib/US/OpenSSO/User.php');
+
+try {
+    $usuario_sso = new \US\OpenSSO\User(IC_SSO_METADATA);
+} catch (Exception $e) {
+    echo "<h2>Error del servidor de autenticaci&oacute;n</h2><p>Vuelva a intentarlo un poco m&aacute;s tarde 
+        o env&iacute;e una incidencia a r2h2@us.es</p><p>" . $e->getMessage() . "</p>";
+}
+
 $smarty->assign("_nombre_pagina", TXT_BIENVENIDO);
-$usuario_sso = new OpenSSO();
 
-// Este controlador puede hacer tres cosas: autenticar, logout o mostrar la página inicial 
+// Este controlador puede hacer tres cosas: autenticar, logout o mostrar la página inicial
 // (que hace de presentación y tiene un enlace para autenticar)
 if (filter_has_var(INPUT_GET, 'autenticar'))
 {
     $url = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-    if ($usuario_sso->check_and_force_sso($url))
+//    if ($usuario_sso->check_and_force_sso($url))
+    if ($usuario_sso->enforceAuthentication($url))
     {
         //$dni = $usuario_sso->irispersonaluniqueid;
-        $usesrelacion = $usuario_sso->attribute('usesrelacion');
+        $usesrelacion = $usuario_sso->attributeAsArray('usesrelacion');
         $acceso_autorizado = false;
 
         if (is_array($usesrelacion))
@@ -48,7 +50,7 @@ if (filter_has_var(INPUT_GET, 'autenticar'))
         if ($acceso_autorizado)
         {
             $usuario = new Usuario();
-            if ($usuario->load_joined("login = '" . $usuario_sso->attribute('uid') . "'"))
+            if ($usuario->load_joined("login = '" . $usuario_sso->uid . "'"))
             {
                 // Si el usuario existe en icasus cargamos sus datos
                 $_SESSION['usuario'] = $usuario;
@@ -72,11 +74,11 @@ if (filter_has_var(INPUT_GET, 'autenticar'))
             else
             {
                 // Si el usuario no existe lo damos de alta con los datos de ldap
-                $usuario->login = $usuario_sso->attribute('uid');
-                $usuario->nombre = $usuario_sso->attribute('givenname');
-                $usuario->nif = $usuario_sso->attribute('irispersonaluniqueid');
-                $usuario->apellidos = $usuario_sso->attribute('sn');
-                $usuario->correo = $usuario_sso->attribute('mail');
+                $usuario->login = $usuario_sso->uid;
+                $usuario->nombre = $usuario_sso->givenname;
+                $usuario->nif = $usuario_sso->irispersonaluniqueid;
+                $usuario->apellidos = $usuario_sso->sn;
+                $usuario->correo = $usuario_sso->mail;
                 if ($usuario->save())
                 {
                     $_SESSION['usuario'] = $usuario;

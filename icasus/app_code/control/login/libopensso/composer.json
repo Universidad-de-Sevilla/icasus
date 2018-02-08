@@ -1,0 +1,23 @@
+{
+    "name": "us/libopensso",
+    "type": "library",
+    "description": "OpenSSO integration helper",
+    "keywords": ["sso","opensso"],
+    "homepage": "http://github.com/adobo/libopensso",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jorge López Pérez",
+            "email": "jorge@adobo.org",
+            "homepage": "http://adobo.org"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "US\\OpenSSO": "lib"
+        }
+    }
+}

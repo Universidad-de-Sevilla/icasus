@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+  <title>libopensso-php</title>
+  <parser>
+    <default-package-name>libopensso-php</default-package-name>
+    <target>doc</target>
+  </parser>
+  <files>
+    <directory>lib/</directory>
+    <ignore-hidden>on</ignore-hidden>
+    <ignore-symlinks>on</ignore-symlinks>
+    <ignore>examples/*</ignore>
+  </files>
+  <transformer>
+    <target>doc</target>
+  </transformer>
+</phpdoc>
