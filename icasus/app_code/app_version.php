@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.52.7");
-define('IC_FECHA_REVISION', "07/02/2018");
+define('IC_VERSION', "3.53.0");
+define('IC_FECHA_REVISION', "08/02/2018");
 
+// 3.53.0 - 08/02/2018 - Nueva versión de la librería opensso (1.0.10)
 // 3.52.7 - 07/02/2018 - Automatiza valor inicial histórico en creación indicador. Cambia literal "Clientes" por "Usuarios".
 // 3.52.6 - 27/12/2017 - Mapa procesos Centro Internacional todavía a mano
 // 3.52.5 - 26/06/2017 - Comprueba que viene el id de la carta al crear un nuevo enlace de normativa

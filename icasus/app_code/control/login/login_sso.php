@@ -1,20 +1,21 @@
 <?php
 
-//-------------------------------------------------------------------------------------------
-// Proyecto: Icasus
-// Archivo: login/login_sso.php
-// Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
-// Joaquín Valonero Zaera (tecnibus1@us.es)
-//---------------------------------------------------------------------------------------------------
-//-------------------------------------------------------------------------------------------
-// Controlador que autentica a los usuarios para entrar al sistema usando el SSO de la US 
-//-------------------------------------------------------------------------------------------
+//require_once("libopensso-php/OpenSSO.php");
+//$usuario_sso = new OpenSSO();
 
-require_once("libopensso-php/OpenSSO.php");
+include_once('libopensso/lib/US/OpenSSO/InternalHandler.php');
+include_once('libopensso/lib/US/OpenSSO/User.php');
+
+try {
+    $usuario_sso = new \US\OpenSSO\User(IC_SSO_METADATA);
+} catch (Exception $e) {
+    echo "<h2>Error del servidor de autenticaci&oacute;n</h2><p>Vuelva a intentarlo un poco m&aacute;s tarde 
+        o env&iacute;e una incidencia a r2h2@us.es</p><p>" . $e->getMessage() . "</p>";
+}
+
 $smarty->assign("_nombre_pagina", TXT_BIENVENIDO);
-$usuario_sso = new OpenSSO();
 
-// Este controlador puede hacer tres cosas: autenticar, logout o mostrar la página inicial 
+// Este controlador puede hacer tres cosas: autenticar, logout o mostrar la página inicial
 // (que hace de presentación y tiene un enlace para autenticar)
 if (filter_has_var(INPUT_GET, 'autenticar'))
 {

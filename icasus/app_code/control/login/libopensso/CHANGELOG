@@ -1,0 +1,36 @@
+1.0.10:
+	* Update metadata
+
+1.0.9:
+	* Use TLS instead of SSL
+
+1.0.8:
+	* User::allAttributes() required a parameter value. Make it optional
+
+1.0.7:
+	* Stop checking certificate serial numbers. Using CA certificates it
+	  makes no sense
+1.0
+	* Stop using packs. Now using metadata.ini file
+	* Redirect to /UI/Logout on logout always
+	* Make the library more object oriented: use Exceptions instead of
+	  error_* functions
+
+0.3.4.1
+	* Pack for opensso-pre new certificates
+
+0.3.4
+	* Fixed 'error' attribute name
+
+0.3.3
+	* GET parameter not considered when not in https connections
+
+0.3.2
+	* Cookie for IE workaround is now only set for https connections
+
+0.3.1
+        * New pack for opensso-pre (certificate changed)
+
+0.3
+	* Configuration packs/bundles with certificate validation support
+	* Modified "User Agent" string

@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project version="2.0.0a12" title="libopensso-php">
+  <file path="InternalHandler.php" hash="11cccab79452b817811bde31a251f97f" package="libopensso-php">
+    <docblock line="2">
+      <description>OpenSSO integration library for PHP</description>
+      <long-description></long-description>
+      <tag line="2" name="license" description="MIT"/>
+      <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
+      <tag line="2" name="version" description="1.0.8"/>
+      <tag line="2" name="package" description="libopensso-php"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="US\OpenSSO" line="17" package="libopensso-php">
+      <extends/>
+      <name>InternalHandler</name>
+      <full_name>\US\OpenSSO\InternalHandler</full_name>
+      <docblock line="13">
+        <description>Helper class for OpenSSO integration</description>
+        <long-description></long-description>
+        <tag line="13" name="package" description="libopensso-php"/>
+      </docblock>
+      <constant namespace="US\OpenSSO" line="22" package="libopensso-php">
+        <name>VERSION</name>
+        <full_name>VERSION</full_name>
+        <value>'1.0.8'</value>
+        <docblock line="19">
+          <description>Library version, used inside User-Agent</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <constant namespace="US\OpenSSO" line="27" package="libopensso-php">
+        <name>DEFAULT_COOKIENAME</name>
+        <full_name>DEFAULT_COOKIENAME</full_name>
+        <value>'iPlanetDirectoryPro'</value>
+        <docblock line="24">
+          <description>Default cookie name</description>
+          <long-description></long-description>
+        </docblock>
+      </constant>
+      <property final="false" static="false" visibility="protected" line="32" namespace="US\OpenSSO" package="Default">
+        <name>$path</name>
+        <default></default>
+        <docblock line="29">
+          <description>Metadata path</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="37" namespace="US\OpenSSO" package="Default">
+        <name>$metadata</name>
+        <default></default>
+        <docblock line="34">
+          <description>Cached metadata</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="protected" line="42" namespace="US\OpenSSO" package="Default">
+        <name>$env</name>
+        <default></default>
+        <docblock line="39">
+          <description>Chosen environment</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="47" namespace="US\OpenSSO" package="Default">
+        <name>$cookiename</name>
+        <default></default>
+        <docblock line="44">
+          <description>Current cookie name</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="52" namespace="US\OpenSSO" package="Default">
+        <name>$token</name>
+        <default></default>
+        <docblock line="49">
+          <description>Current user SSO token</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="57" namespace="US\OpenSSO" package="Default">
+        <name>$attributes</name>
+        <default></default>
+        <docblock line="54">
+          <description>Attributes for current user</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <property final="false" static="false" visibility="private" line="62" namespace="US\OpenSSO" package="Default">
+        <name>$context</name>
+        <default></default>
+        <docblock line="59">
+          <description>Context needed for stream functions</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="73" package="libopensso-php">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="64">
+          <description>Constructs a new OpenSSO client handler</description>
+          <long-description></long-description>
+          <tag line="64" name="param" description="Which environment from metadata should this helper use" type="string" variable="$env">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="64" name="param" description="When true cookie name will be&#10;       fetched from server using getCookieNameForToken" type="boolean" variable="$fetch_cookie_name">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="64" name="param" description="Directory to load metadata from" type="string" variable="$metadata_dir">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="64" name="throws" description="On error" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="73">
+          <name>$env</name>
+          <default>'opensso-pre.us.es'</default>
+          <type/>
+        </argument>
+        <argument line="73">
+          <name>$fetch_cookie_name</name>
+          <default>FALSE</default>
+          <type/>
+        </argument>
+        <argument line="73">
+          <name>$metadata_dir</name>
+          <default>''</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="101" package="libopensso-php">
+        <name>validateToken</name>
+        <full_name>validateToken</full_name>
+        <docblock line="95">
+          <description>Checks if current user has a valid SSO session</description>
+          <long-description></long-description>
+          <tag line="95" name="return" description="User has a valid SSO session or not" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="141" package="libopensso-php">
+        <name>fetchAttributes</name>
+        <full_name>fetchAttributes</full_name>
+        <docblock line="134">
+          <description>Fetchs user attributes</description>
+          <long-description></long-description>
+          <tag line="134" name="internal" description=""/>
+          <tag line="134" name="return" description="" type="void">
+            <type by_reference="false">void</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="protected" namespace="US\OpenSSO" line="191" package="libopensso-php">
+        <name>doRequest</name>
+        <full_name>doRequest</full_name>
+        <docblock line="180">
+          <description>Connects to an OpenSSO identity service and retrieves answer</description>
+          <long-description></long-description>
+          <tag line="180" name="internal" description=""/>
+          <tag line="180" name="param" description="Web service to be queried" type="string" variable="$service">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="180" name="param" description="HTTP method to be used" type="string" variable="$method">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="180" name="param" description="Query that have to be appended to the URL" type="string" variable="$query">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="180" name="return" description="Answer from server" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="180" name="throw" description="Thrown on connection problems and when HTTP response code is not 200" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+        <argument line="191">
+          <name>$service</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="191">
+          <name>$method</name>
+          <default>'GET'</default>
+          <type/>
+        </argument>
+        <argument line="191">
+          <name>$query</name>
+          <default>''</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="279" package="libopensso-php">
+        <name>attribute</name>
+        <full_name>attribute</full_name>
+        <docblock line="271">
+          <description>Returns an attribute value/values</description>
+          <long-description></long-description>
+          <tag line="271" name="param" description="Attribute name" type="string" variable="$atr">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="271" name="param" description="Whether to cast to array even if attribute has a single value" type="boolean" variable="$force_array">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="271" name="return" description="Array value(s) or false if attribute was not found" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="279">
+          <name>$atr</name>
+          <default></default>
+          <type/>
+        </argument>
+        <argument line="279">
+          <name>$force_array</name>
+          <default>FALSE</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="301" package="libopensso-php">
+        <name>allAttributes</name>
+        <full_name>allAttributes</full_name>
+        <docblock line="296">
+          <description>Returns all attributes</description>
+          <long-description></long-description>
+          <tag line="296" name="param" description="Force use of arrays even on single valued attributes" type="boolean" variable="$force_arrays">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="301">
+          <name>$force_arrays</name>
+          <default>FALSE</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="322" package="libopensso-php">
+        <name>getLoginUrl</name>
+        <full_name>getLoginUrl</full_name>
+        <docblock line="317">
+          <description>Returns login URL for current environment</description>
+          <long-description></long-description>
+          <tag line="317" name="return" description="OpenSSO login URL" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="331" package="libopensso-php">
+        <name>getLogoutUrl</name>
+        <full_name>getLogoutUrl</full_name>
+        <docblock line="326">
+          <description>Returns logout URL for current environment</description>
+          <long-description></long-description>
+          <tag line="326" name="return" description="OpenSSO logout URL" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="342" package="libopensso-php">
+        <name>createStream</name>
+        <full_name>createStream</full_name>
+        <docblock line="335">
+          <description>Creates data stream to server with SSL options</description>
+          <long-description></long-description>
+          <tag line="335" name="internal" description=""/>
+          <tag line="335" name="throws" description="On error" type="\Exception">
+            <type by_reference="false">\Exception</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="376" package="libopensso-php">
+        <name>setCookieName</name>
+        <full_name>setCookieName</full_name>
+        <docblock line="369">
+          <description>Prepares cookie name, using the default one or asking the server for</description>
+          <long-description></long-description>
+          <tag line="369" name="internal" description=""/>
+          <tag line="369" name="param" description="Ask server for cookie name if TRUE" type="boolean" variable="$ask_server">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="376">
+          <name>$ask_server</name>
+          <default>FALSE</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="392" package="libopensso-php">
+        <name>readToken</name>
+        <full_name>readToken</full_name>
+        <docblock line="386">
+          <description>Reads SSO token from either cookie or GET parameter (solves IE issues
+with two letter domains)</description>
+          <long-description></long-description>
+          <tag line="386" name="internal" description=""/>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <file path="User.php" hash="30fc27738c2715317de0b1b91cf90cbc" package="libopensso-php">
+    <docblock line="2">
+      <description>OpenSSO integration library for PHP</description>
+      <long-description></long-description>
+      <tag line="2" name="license" description="MIT"/>
+      <tag line="2" name="author" description="Jorge López Pérez &lt;jorge@adobo.org&gt;"/>
+      <tag line="2" name="version" description="1.0.8"/>
+      <tag line="2" name="package" description="libopensso-php"/>
+    </docblock>
+    <class final="false" abstract="false" namespace="US\OpenSSO" line="18" package="libopensso-php">
+      <extends/>
+      <name>User</name>
+      <full_name>\US\OpenSSO\User</full_name>
+      <docblock line="13">
+        <description>Implements methods to manage OpenSSO interactions</description>
+        <long-description></long-description>
+        <tag line="13" name="package" description="libopensso-php"/>
+      </docblock>
+      <property final="false" static="false" visibility="private" line="23" namespace="US\OpenSSO" package="Default">
+        <name>$handler</name>
+        <default></default>
+        <docblock line="20">
+          <description>OpenSSO internal handler</description>
+          <long-description></long-description>
+        </docblock>
+      </property>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="34" package="libopensso-php">
+        <name>__construct</name>
+        <full_name>__construct</full_name>
+        <docblock line="25">
+          <description>Creates a new OpenSSO user manager</description>
+          <long-description></long-description>
+          <tag line="25" name="param" description="Which environment from metadata should this helper use" type="string" variable="$env">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="25" name="param" description="When true cookie name will be&#10;       fetched from server using getCookieNameForToken" type="boolean" variable="$ask_server">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="25" name="param" description="Directory to load metadata from" type="string" variable="$metadata_dir">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+        <argument line="34">
+          <name>$env</name>
+          <default>'opensso-pre.us.es'</default>
+          <type/>
+        </argument>
+        <argument line="35">
+          <name>$ask_server</name>
+          <default>FALSE</default>
+          <type/>
+        </argument>
+        <argument line="36">
+          <name>$metadata_dir</name>
+          <default>''</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="50" package="libopensso-php">
+        <name>enforceAuthentication</name>
+        <full_name>enforceAuthentication</full_name>
+        <docblock line="42">
+          <description>Enforces OpenSSO authentication by redirecting user to
+OpenSSO login page if not currently logged in</description>
+          <long-description></long-description>
+          <tag line="42" name="param" description="optional URL to return after authentication" type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="42" name="return" description="determines if user was authenticated or not" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="50">
+          <name>$url</name>
+          <default>''</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="68" package="libopensso-php">
+        <name>isAuthenticated</name>
+        <full_name>isAuthenticated</full_name>
+        <docblock line="63">
+          <description>Checks current user authentication state</description>
+          <long-description></long-description>
+          <tag line="63" name="return" description="user has a valid session" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="79" package="libopensso-php">
+        <name>logout</name>
+        <full_name>logout</full_name>
+        <docblock line="72">
+          <description>Logs out current user</description>
+          <long-description></long-description>
+          <tag line="72" name="param" description="optional URL to return after authentication" type="string" variable="$url">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="72" name="return" description="determines if user was authenticated or not" type="boolean">
+            <type by_reference="false">boolean</type>
+          </tag>
+        </docblock>
+        <argument line="79">
+          <name>$url</name>
+          <default>''</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="94" package="libopensso-php">
+        <name>__get</name>
+        <full_name>__get</full_name>
+        <docblock line="89">
+          <description>Magic __get method</description>
+          <long-description></long-description>
+          <tag line="89" name="param" description="Attribute name" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="89" name="return" description="Attribute value" type="mixed">
+            <type by_reference="false">mixed</type>
+          </tag>
+        </docblock>
+        <argument line="94">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="104" package="libopensso-php">
+        <name>attributeAsArray</name>
+        <full_name>attributeAsArray</full_name>
+        <docblock line="98">
+          <description>Reads attribute value and returns it as an array</description>
+          <long-description></long-description>
+          <tag line="98" name="param" description="Attribute name" type="string" variable="$name">
+            <type by_reference="false">string</type>
+          </tag>
+          <tag line="98" name="return" description="Values for attribute" type="Array">
+            <type by_reference="false">Array</type>
+          </tag>
+        </docblock>
+        <argument line="104">
+          <name>$name</name>
+          <default></default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="public" namespace="US\OpenSSO" line="114" package="libopensso-php">
+        <name>allAttributes</name>
+        <full_name>allAttributes</full_name>
+        <docblock line="108">
+          <description>Returns all attributes for current user</description>
+          <long-description></long-description>
+          <tag line="108" name="param" description="Whether to return values as arrays" type="boolean" variable="$use_arrays">
+            <type by_reference="false">boolean</type>
+          </tag>
+          <tag line="108" name="return" description="Associative array of attribute =&gt; value" type="Array">
+            <type by_reference="false">Array</type>
+          </tag>
+        </docblock>
+        <argument line="114">
+          <name>$use_arrays</name>
+          <default>FALSE</default>
+          <type/>
+        </argument>
+      </method>
+      <method final="false" abstract="false" static="false" visibility="private" namespace="US\OpenSSO" line="125" package="libopensso-php">
+        <name>currentUrl</name>
+        <full_name>currentUrl</full_name>
+        <docblock line="118">
+          <description>Returns current URL</description>
+          <long-description></long-description>
+          <tag line="118" name="internal" description=""/>
+          <tag line="118" name="return" description="Current URL" type="string">
+            <type by_reference="false">string</type>
+          </tag>
+        </docblock>
+      </method>
+    </class>
+  </file>
+  <package name="Default" full_name="Default"/>
+  <package name="libopensso-php" full_name="libopensso-php"/>
+  <namespace name="US" full_name="US">
+    <namespace name="OpenSSO" full_name="US\OpenSSO"/>
+  </namespace>
+  <marker count="0">todo</marker>
+  <marker count="0">fixme</marker>
+  <deprecated count="0"/>
+</project>

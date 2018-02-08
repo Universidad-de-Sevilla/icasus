@@ -1,0 +1,254 @@
+<!DOCTYPE html><html xmlns:date="http://exslt.org/dates-and-times" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+<meta charset="utf-8">
+<title>libopensso-php » \OpenSSO\Handler</title>
+<meta name="author" content="Mike van Riel">
+<meta name="description" content="">
+<link href="../css/template.css" rel="stylesheet" media="all">
+<script src="../js/jquery-1.7.1.min.js" type="text/javascript"></script><script src="../js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script><script src="../js/jquery.mousewheel.min.js" type="text/javascript"></script><script src="../js/bootstrap.js" type="text/javascript"></script><script src="../js/template.js" type="text/javascript"></script><script src="../js/prettify/prettify.min.js" type="text/javascript"></script><link rel="shortcut icon" href="../img/favicon.ico">
+<link rel="apple-touch-icon" href="../img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="../img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="../img/apple-touch-icon-114x114.png">
+</head>
+<body>
+<div class="navbar navbar-fixed-top">
+<div class="navbar-inner"><div class="container">
+<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a class="brand" href="../index.html">libopensso-php</a><div class="nav-collapse"><ul class="nav">
+<li class="dropdown">
+<a href="#api" class="dropdown-toggle" data-toggle="dropdown">
+                                    API Documentation <b class="caret"></b></a><ul class="dropdown-menu"></ul>
+</li>
+<li class="dropdown" id="charts-menu">
+<a href="#charts" class="dropdown-toggle" data-toggle="dropdown">
+                                    Charts <b class="caret"></b></a><ul class="dropdown-menu"><li><a href="../graph_class.html"><i class="icon-list-alt"></i> Class hierarchy diagram</a></li></ul>
+</li>
+<li class="dropdown" id="reports-menu">
+<a href="#reports" class="dropdown-toggle" data-toggle="dropdown">
+                                    Reports <b class="caret"></b></a><ul class="dropdown-menu">
+<li><a href="../errors.html"><i class="icon-remove-sign"></i> Errors 
+                <span class="label label-info">0</span></a></li>
+<li><a href="../markers.html"><i class="icon-map-marker"></i> Markers 
+                <ul></ul></a></li>
+<li><a href="../deprecated.html"><i class="icon-stop"></i> Deprecated elements 
+                <span class="label label-info">0</span></a></li>
+</ul>
+</li>
+</ul></div>
+</div></div>
+<div class="go_to_top"><a href="#___" style="color: inherit">Back to top  <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+<noscript><div class="alert alert-warning">
+                            Javascript is disabled; several features are only available
+                            if Javascript is enabled.
+                        </div></noscript>
+<div class="row">
+<div class="span4">
+<span class="btn-group visibility" data-toggle="buttons-checkbox"><button class="btn public active" title="Show public elements">Public</button><button class="btn protected" title="Show protected elements">Protected</button><button class="btn private" title="Show private elements">Private</button><button class="btn inherited active" title="Show inherited elements">Inherited</button></span><div class="btn-group view pull-right" data-toggle="buttons-radio">
+<button class="btn details" title="Show descriptions and method names"><i class="icon-list"></i></button><button class="btn simple" title="Show only method names"><i class="icon-align-justify"></i></button>
+</div>
+<ul class="side-nav nav nav-list">
+<li class="nav-header">
+<i class="icon-custom icon-method"></i> Methods</li>
+<li class="method public "><a href="#__construct" title="__construct :: Constructs a new OpenSSO client handler"><span class="description">Constructs a new OpenSSO client handler</span><pre>__construct()</pre></a></li>
+<li class="method public "><a href="#all_attributes" title="all_attributes :: Returns all attributes"><span class="description">Returns all attributes</span><pre>all_attributes()</pre></a></li>
+<li class="method public "><a href="#attribute" title="attribute :: Returns an attribute value/values"><span class="description">Returns an attribute value/values</span><pre>attribute()</pre></a></li>
+<li class="method public "><a href="#check_and_force_sso" title="check_and_force_sso :: Forces OpenSSO login"><span class="description">Forces OpenSSO login</span><pre>check_and_force_sso()</pre></a></li>
+<li class="method public "><a href="#check_sso" title="check_sso :: Checks if current user has a valid SSO session"><span class="description">Checks if current user has a valid SSO session</span><pre>check_sso()</pre></a></li>
+<li class="method public "><a href="#logout" title="logout :: Logs out user from OpenSSO"><span class="description">Logs out user from OpenSSO</span><pre>logout()</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-property"></i> Properties</li>
+<li class="nav-header protected">» Protected</li>
+<li class="property protected "><a href="#%24env" title="$env :: Chosen environment"><span class="description">Chosen environment</span><pre>$env</pre></a></li>
+<li class="property protected "><a href="#%24metadata" title="$metadata :: Cached metadata"><span class="description">Cached metadata</span><pre>$metadata</pre></a></li>
+<li class="property protected "><a href="#%24path" title="$path :: Metadata path"><span class="description">Metadata path</span><pre>$path</pre></a></li>
+<li class="nav-header private">» Private</li>
+<li class="property private "><a href="#%24attributes" title="$attributes :: Attributes for current user"><span class="description">Attributes for current user</span><pre>$attributes</pre></a></li>
+<li class="property private "><a href="#%24context" title="$context :: Context needed for stream functions"><span class="description">Context needed for stream functions</span><pre>$context</pre></a></li>
+<li class="property private "><a href="#%24cookiename" title="$cookiename :: Current cookie name"><span class="description">Current cookie name</span><pre>$cookiename</pre></a></li>
+<li class="property private "><a href="#%24token" title="$token :: Current user SSO token"><span class="description">Current user SSO token</span><pre>$token</pre></a></li>
+<li class="nav-header">
+<i class="icon-custom icon-constant"></i> Constants</li>
+<li class="constant  "><a href="#cookiename" title="cookiename :: Default cookie name"><span class="description">Default cookie name</span><pre>cookiename</pre></a></li>
+<li class="constant  "><a href="#version" title="version :: Library version, used inside User-Agent"><span class="description">Library version, used inside User-Agent</span><pre>version</pre></a></li>
+</ul>
+</div>
+<div class="span8">
+<a name="%5COpenSSO%5CHandler" id="\OpenSSO\Handler"></a><ul class="breadcrumb">
+<li>
+<a href="../index.html"><i class="icon-custom icon-class"></i></a><span class="divider">\</span>
+</li>
+<li><a href="../namespaces/OpenSSO.html">OpenSSO</a></li>
+<li class="active">
+<span class="divider">\</span><a href="../classes/OpenSSO.Handler.html">Handler</a>
+</li>
+</ul>
+<div href="../classes/OpenSSO.Handler.html" class="element class">
+<p class="short_description">Class for OpenSSO integration</p>
+<div class="details">
+<p class="long_description"></p>
+<table class="table table-bordered"><tr>
+<th>package</th>
+<td><a href="../packages/libopensso-php.html">libopensso-php</a></td>
+</tr></table>
+<h3>
+<i class="icon-custom icon-method"></i> Methods</h3>
+<a name="__construct" id="__construct"></a><div class="element clickable method public __construct" data-toggle="collapse" data-target=".__construct .collapse">
+<h2>Constructs a new OpenSSO client handler</h2>
+<pre>__construct(string $env, boolean $fetch_cookie_name, string $metadata_dir) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$env</h4>
+<code>string</code><p>Which environment from metadata should this helper use</p></div>
+<div class="subelement argument">
+<h4>$fetch_cookie_name</h4>
+<code>boolean</code><p>When true cookie name will be fetched from server using getCookieNameForToken</p></div>
+<div class="subelement argument">
+<h4>$metadata_dir</h4>
+<code>string</code><p>Directory to load metadata from</p></div>
+<h3>Exceptions</h3>
+<table class="table table-bordered"><tr>
+<th><code><a href="http://php.net/manual/en/class.exception.php">\Exception</a></code></th>
+<td>On error</td>
+</tr></table>
+</div></div>
+</div>
+<a name="all_attributes" id="all_attributes"></a><div class="element clickable method public all_attributes" data-toggle="collapse" data-target=".all_attributes .collapse">
+<h2>Returns all attributes</h2>
+<pre>all_attributes(boolean $force_arrays) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$force_arrays</h4>
+<code>boolean</code><p>Force use of arrays even on single valued attributes</p></div>
+</div></div>
+</div>
+<a name="attribute" id="attribute"></a><div class="element clickable method public attribute" data-toggle="collapse" data-target=".attribute .collapse">
+<h2>Returns an attribute value/values</h2>
+<pre>attribute(string $atr, boolean $force_array) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$atr</h4>
+<code>string</code><p>Attribute name</p></div>
+<div class="subelement argument">
+<h4>$force_array</h4>
+<code>boolean</code><p>Whether to cast to array even if attribute has a single value</p></div>
+</div></div>
+</div>
+<a name="check_and_force_sso" id="check_and_force_sso"></a><div class="element clickable method public check_and_force_sso" data-toggle="collapse" data-target=".check_and_force_sso .collapse">
+<h2>Forces OpenSSO login</h2>
+<pre>check_and_force_sso(string $gotourl) : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$gotourl</h4>
+<code>string</code><p>Return URL. If not specified, current URL is used</p></div>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>User has a valid SSO session or not</div>
+</div></div>
+</div>
+<a name="check_sso" id="check_sso"></a><div class="element clickable method public check_sso" data-toggle="collapse" data-target=".check_sso .collapse">
+<h2>Checks if current user has a valid SSO session</h2>
+<pre>check_sso() : boolean</pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Returns</h3>
+<div class="subelement response">
+<code>boolean</code>User has a valid SSO session or not</div>
+</div></div>
+</div>
+<a name="logout" id="logout"></a><div class="element clickable method public logout" data-toggle="collapse" data-target=".logout .collapse">
+<h2>Logs out user from OpenSSO</h2>
+<pre>logout(string $gotourl) </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description">
+<p class="long_description"></p>
+<h3>Parameters</h3>
+<div class="subelement argument">
+<h4>$gotourl</h4>
+<code>string</code><p>URL to return to after logging out</p></div>
+</div></div>
+</div>
+<h3>
+<i class="icon-custom icon-property"></i> Properties</h3>
+<a name="%24env" id="$env"> </a><div class="element clickable property protected $env" data-toggle="collapse" data-target=".$env .collapse">
+<h2>Chosen environment</h2>
+<pre>$env </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24metadata" id="$metadata"> </a><div class="element clickable property protected $metadata" data-toggle="collapse" data-target=".$metadata .collapse">
+<h2>Cached metadata</h2>
+<pre>$metadata </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24path" id="$path"> </a><div class="element clickable property protected $path" data-toggle="collapse" data-target=".$path .collapse">
+<h2>Metadata path</h2>
+<pre>$path </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24attributes" id="$attributes"> </a><div class="element clickable property private $attributes" data-toggle="collapse" data-target=".$attributes .collapse">
+<h2>Attributes for current user</h2>
+<pre>$attributes </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24context" id="$context"> </a><div class="element clickable property private $context" data-toggle="collapse" data-target=".$context .collapse">
+<h2>Context needed for stream functions</h2>
+<pre>$context </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24cookiename" id="$cookiename"> </a><div class="element clickable property private $cookiename" data-toggle="collapse" data-target=".$cookiename .collapse">
+<h2>Current cookie name</h2>
+<pre>$cookiename </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="%24token" id="$token"> </a><div class="element clickable property private $token" data-toggle="collapse" data-target=".$token .collapse">
+<h2>Current user SSO token</h2>
+<pre>$token </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<h3>
+<i class="icon-custom icon-constant"></i> Constants</h3>
+<a name="cookiename" id="cookiename"> </a><div class="element clickable constant  cookiename" data-toggle="collapse" data-target=".cookiename .collapse">
+<h2>Default cookie name</h2>
+<pre>cookiename </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+<a name="version" id="version"> </a><div class="element clickable constant  version" data-toggle="collapse" data-target=".version .collapse">
+<h2>Library version, used inside User-Agent</h2>
+<pre>version </pre>
+<div class="labels"></div>
+<div class="row collapse"><div class="detail-description"><p class="long_description"></p></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row"><footer class="span12">
+            Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by <a href="http://glyphicons.com/">Glyphicons</a>.<br>
+            Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor 2.0.0a3</a> and<br>
+            generated on 2012-05-15T14:40:22+02:00.<br></footer></div>
+</div>
+</body>
+</html>
