@@ -384,6 +384,8 @@
                         <img src="images/mapa_procesos_sav.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
                     {elseif $entidad->id==55}
                         <img src="images/mapa_procesos_internacional.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
+                    {elseif $entidad->id==310}
+                        <img src="images/mapa_procesos_segeedin.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
                     {/if}
                 {else}
                     <div class="row">
