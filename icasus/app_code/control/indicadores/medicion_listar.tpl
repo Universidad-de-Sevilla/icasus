@@ -123,7 +123,7 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <div title="{$_nombre_pagina}" class="page-header">
+        <div class="page-header">
             <div class="row">
                 <div class="col-md-10">
                     <h4><i class="fa fa-dashboard fa-fw"></i>{if $indicador->archivado}<sub

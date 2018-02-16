@@ -67,7 +67,7 @@
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                     <!-- /.col-md-2 -->
                 {/if}
