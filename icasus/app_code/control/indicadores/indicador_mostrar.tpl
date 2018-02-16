@@ -61,10 +61,20 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 title="{$_nombre_pagina}" class="page-header">
+
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-dashboard fa-fw"></i>{if $indicador->archivado}<sub class="fa fa-archive fa-fw"></sub>{else}{if $indicador->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{elseif $indicador->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if}{/if} {$_nombre_pagina}
+                    <h3 title="{$_nombre_pagina}" class="page-header">
+                        <i class="fa fa-dashboard fa-fw"></i>
+                        {if $indicador->archivado}<sub class="fa fa-archive fa-fw"></sub>
+                        {else}
+                            {if $indicador->id_proceso}<sub class="fa fa-gear fa-fw"></sub>
+                            {elseif $indicador->control}<sub class="fa fa-sliders fa-fw"></sub>
+                            {else}<sub class="fa fa-database fa-fw"></sub>
+                            {/if}
+                        {/if}
+                        {$_nombre_pagina}
+                    </h3>
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -93,7 +103,7 @@
                 <!-- /Navegación -->
             </div>
             <!-- /.row -->
-        </h3>
+
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -298,6 +308,8 @@
                             <tr>
                                 <th>{$smarty.const.FIELD_ID}</th>
                                 <th>{$smarty.const.FIELD_NOMBRE}</th>
+                                <th>{$smarty.const.FIELD_PERIODO}</th>
+                                <th>{$smarty.const.FIELD_HISTORICO}</th>
                             </tr>
                             {foreach $indicadores_influyentes as $indicador_influyente}
                                 <tr>
@@ -308,11 +320,13 @@
                                             <i class="fa fa-dashboard fa-fw"></i>{if $indicador_influyente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{elseif $indicador_influyente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_influyente->nombre}
                                         </a>
                                     </td>
-                                </tr>  
+                                    <td>{$indicador_influyente->periodicidad}</td>
+                                    <td>{$indicador_influyente->historicos}</td>
+                                </tr>
                             {/foreach}
                             <tr class="info">
                                 <th><i class="fa fa-calculator fa-fw"></i> {$smarty.const.FIELD_FORMULA}</th>
-                                <td>{$indicador->calculo}</td>
+                                <td colspan="3">{$indicador->calculo}</td>
                             </tr>
                         </table>
                     </div>
