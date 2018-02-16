@@ -61,20 +61,18 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-
+        <div class="page-header">
             <div class="row">
                 <div class="col-md-10">
-                    <h3 title="{$_nombre_pagina}" class="page-header">
-                        <i class="fa fa-dashboard fa-fw"></i>
-                        {if $indicador->archivado}<sub class="fa fa-archive fa-fw"></sub>
-                        {else}
-                            {if $indicador->id_proceso}<sub class="fa fa-gear fa-fw"></sub>
-                            {elseif $indicador->control}<sub class="fa fa-sliders fa-fw"></sub>
-                            {else}<sub class="fa fa-database fa-fw"></sub>
+                    <h4><i class="fa fa-dashboard fa-fw"></i>{if $indicador->archivado}<sub
+                            class="fa fa-archive fa-fw"></sub>{else} {if $indicador->id_proceso}<sub
+                            class="fa fa-gear fa-fw"></sub>{elseif $indicador->control}<sub
+                            class="fa fa-sliders fa-fw"></sub>{else}<sub
+                            class="fa fa-database fa-fw"></sub>
                             {/if}
                         {/if}
                         {$_nombre_pagina}
-                    </h3>
+                    </h4>
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -96,14 +94,15 @@
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
-                        </div> 
+                        </div>
                     </div>
                     <!-- /.col-md-2 -->
                 {/if}
                 <!-- /Navegación -->
             </div>
             <!-- /.row -->
-
+        </div>
+        <!-- /.page-header -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -154,7 +153,7 @@
                         <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
                             <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
-                    </li>   
+                    </li>
                     <li>
                         <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
                             <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
@@ -226,12 +225,12 @@
             <i class="fa fa-dashboard fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
         </a>
         {if !$indicador->archivado}
-            <a title="{$smarty.const.TXT_INDIC_ARCHIVAR}" class="btn btn-danger" href='javascript:void(0)' 
+            <a title="{$smarty.const.TXT_INDIC_ARCHIVAR}" class="btn btn-danger" href='javascript:void(0)'
                data-toggle="modal" data-target="#dialogo_confirmar_archivado">
                 <i class="fa fa-archive fa-fw"></i>
             </a>
         {/if}
-        <a title="{$smarty.const.TXT_INDIC_BORRAR}" class="btn btn-danger {if $indicador->archivado}disabled{/if}" href='javascript:void(0)' 
+        <a title="{$smarty.const.TXT_INDIC_BORRAR}" class="btn btn-danger {if $indicador->archivado}disabled{/if}" href='javascript:void(0)'
            data-toggle="modal" data-target="#dialogo_confirmar_borrado">
             <i class="fa fa-trash fa-fw"></i>
         </a>
@@ -254,7 +253,7 @@
                         <!-- /.col-sm-10 -->
                         <div class="col-sm-2">
                             {if $_control || $responsable}
-                                <a title="{$smarty.const.TXT_INDIC_RESTAURAR}" class="btn btn-danger pull-right" href='javascript:void(0)' 
+                                <a title="{$smarty.const.TXT_INDIC_RESTAURAR}" class="btn btn-danger pull-right" href='javascript:void(0)'
                                    data-toggle="modal" data-target="#dialogo_confirmar_restaurar">
                                     <i class="fa fa-recycle fa-fw"></i>
                                 </a>
@@ -281,7 +280,7 @@
                         </table>
                     </div>
                 </div>
-                <!-- /.panel-body --> 
+                <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
         </div>
@@ -315,7 +314,7 @@
                                 <tr>
                                     <td><span class="badge">{$indicador_influyente->id}</span></td>
                                     <td>
-                                        <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}' 
+                                        <a class="btn btn-info" href='index.php?page=indicador_mostrar&id_indicador={$indicador_influyente->id}&id_entidad={$indicador_influyente->id_entidad}'
                                            title="{$smarty.const.TXT_FICHA}: {$indicador_influyente->nombre}">
                                             <i class="fa fa-dashboard fa-fw"></i>{if $indicador_influyente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{elseif $indicador_influyente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_influyente->nombre}
                                         </a>
@@ -363,17 +362,17 @@
                                 <tr>
                                     <td><span class="badge">{$indicador_dependiente->id}</span></td>
                                     <td>
-                                        <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}' 
+                                        <a class="btn btn-warning" href='index.php?page=indicador_mostrar&id_indicador={$indicador_dependiente->id}&id_entidad={$indicador_dependiente->id_entidad}'
                                            title="{$smarty.const.TXT_FICHA}: {$indicador_dependiente->nombre}">
                                             <i class="fa fa-dashboard fa-fw"></i>{if $indicador_dependiente->id_proceso}<sub class="fa fa-gear fa-fw"></sub>{elseif $indicador_dependiente->control}<sub class="fa fa-sliders fa-fw"></sub>{else}<sub class="fa fa-database fa-fw"></sub>{/if} {$indicador_dependiente->nombre}
                                         </a>
                                     </td>
-                                </tr>  
+                                </tr>
                             {/foreach}
                         </table>
                     </div>
                 </div>
-                <!-- /.panel-body --> 
+                <!-- /.panel-body -->
             </div>
             <!-- /.panel -->
         </div>
@@ -432,7 +431,7 @@
                     </tr>
                     <tr>
                         <th>{$smarty.const.FIELD_DESC}</th>
-                        <td> 
+                        <td>
                             {if $indicador->descripcion != ""}
                                 {$indicador->descripcion|nl2br}
                             {else}
@@ -447,14 +446,14 @@
                     <tr>
                         <th>{$smarty.const.FIELD_PERIOD}</th>
                         <td>{$indicador->periodicidad}</td>
-                    </tr>      
+                    </tr>
                     <tr>
                         <th title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</th>
                         <td title="{$indicador->tipo_agregacion_temporal->explicacion}">{$indicador->tipo_agregacion_temporal->descripcion}</td>
                     </tr>
                     <tr>
                         <th>{$smarty.const.FIELD_OBSERV}</th>
-                        <td> 
+                        <td>
                             {if $indicador->observaciones != ""}
                                 {$indicador->observaciones|nl2br}
                             {else}
@@ -486,7 +485,7 @@
                     </tr>
                     <tr>
                         <th>{$smarty.const.FIELD_FUENTE_INFO}</th>
-                        <td> 
+                        <td>
                             {if $indicador->fuente_informacion != ""}
                                 {$indicador->fuente_informacion}
                             {else}
@@ -496,7 +495,7 @@
                     </tr>
                     <tr>
                         <th>{$smarty.const.FIELD_FUENTE_DAT}</th>
-                        <td> 
+                        <td>
                             {if $indicador->fuente_datos != ""}
                                 {$indicador->fuente_datos}
                             {else}
@@ -506,7 +505,7 @@
                     </tr>
                     <tr>
                         <th>{$smarty.const.FIELD_MET}</th>
-                        <td> 
+                        <td>
                             {if $indicador->evidencia != ""}
                                 {$indicador->evidencia}
                             {else}
@@ -516,7 +515,7 @@
                     </tr>
                     <tr>
                         <th>{$smarty.const.FIELD_INTERP}</th>
-                        <td> 
+                        <td>
                             {if $indicador->interpretacion != ""}
                                 {$indicador->interpretacion}
                             {else}
@@ -526,7 +525,7 @@
                     </tr>
                     <tr>
                         <th>{$smarty.const.FIELD_ESTIMACION}</th>
-                        <td title="{$smarty.const.TXT_ESTIMACION}"> 
+                        <td title="{$smarty.const.TXT_ESTIMACION}">
                             {if $indicador->inverso}
                                 {$smarty.const.TXT_DESCENDENTE}
                             {else}
@@ -538,7 +537,7 @@
                         <th>{$smarty.const.FIELD_INTERVALO}</th>
                         <td>
                             {if $indicador->valor_min != NULL && $indicador->valor_max != NULL}
-                                [{$indicador->valor_min}, {$indicador->valor_max}] 
+                                [{$indicador->valor_min}, {$indicador->valor_max}]
                             {else}
                                 {$smarty.const.TXT_NO_ASIG}
                             {/if}
@@ -548,7 +547,7 @@
                         <th>{$smarty.const.FIELD_EFQM}</th>
                         <td>
                             {if ($indicador->criterios_efqm|@count) > 0}
-                                <ul class="list-unstyled"> 
+                                <ul class="list-unstyled">
                                     {foreach $indicador->criterios_efqm as $indicador_criterio_efqm}
                                         <li>
                                             {$indicador_criterio_efqm->criterio_efqm->codigo} - {$indicador_criterio_efqm->criterio_efqm->nombre}
@@ -566,7 +565,7 @@
                     </tr>
                     <tr>
                         <th>{$smarty.const.FIELD_UNID_GEN}</th>
-                        <td> 
+                        <td>
                             {if $indicador->unidad_generadora != ""}
                                 {$indicador->unidad_generadora}
                             {else}
