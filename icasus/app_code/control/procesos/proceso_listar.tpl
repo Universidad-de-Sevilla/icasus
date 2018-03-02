@@ -388,6 +388,8 @@
                         <img src="images/mapa_procesos_segeedin.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
                     {elseif $entidad->id==28}}
                         <img src="images/mapa_procesos_biologia.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
+                    {elseif $entidad->id==6}}
+                        <img src="images/mapa_gabinete_juridico.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
                     {/if}
                 {else}
                     <div class="row">
