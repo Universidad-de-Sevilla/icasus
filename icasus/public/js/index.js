@@ -63,9 +63,9 @@ jQuery(function ($) {
 backToTop();
 
 //Si cambia la longitud del documento recargamos backToTop
-onElementHeightChange(document.body, function () {
-    // backToTop();
-});
+// onElementHeightChange(document.body, function () {
+//     // backToTop();
+// });
 
 function backToTop() {
     if (($(window).height() + 100) < $(document).height()) {
@@ -75,21 +75,22 @@ function backToTop() {
         });
     }
 }
+
 //Detecta cambios de longitud del documento
-function onElementHeightChange(elm, callback) {
-    var lastHeight = elm.clientHeight, newHeight;
-    (function run() {
-        newHeight = elm.clientHeight;
-        if (lastHeight != newHeight)
-            callback();
-        lastHeight = newHeight;
-
-        if (elm.onElementHeightChangeTimer)
-            clearTimeout(elm.onElementHeightChangeTimer);
-
-        elm.onElementHeightChangeTimer = setTimeout(run, 200);
-    })();
-}
+// function onElementHeightChange(elm, callback) {
+//     var lastHeight = elm.clientHeight, newHeight;
+//     (function run() {
+//         newHeight = elm.clientHeight;
+//         if (lastHeight != newHeight)
+//             callback();
+//         lastHeight = newHeight;
+//
+//         if (elm.onElementHeightChangeTimer)
+//             clearTimeout(elm.onElementHeightChangeTimer);
+//
+//         elm.onElementHeightChangeTimer = setTimeout(run, 200);
+//     })();
+// }
 
 //Tooltips
 $(function () {
