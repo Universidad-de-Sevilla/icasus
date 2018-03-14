@@ -14,10 +14,10 @@
 class LogicaMedicion implements ILogicaMedicion
 {
 
-    //Colores para el status de una medición
-//    private $mejorable = 'red';
-//    private $aceptable = 'yellow';
-//    private $logrado = 'green';
+    // Colores para el status de una medición
+    // private $mejorable = 'red';
+    // private $aceptable = 'yellow';
+    // private $logrado = 'green';
 
     private $mejorable = 'danger';
     private $aceptable = 'warning';
@@ -29,8 +29,7 @@ class LogicaMedicion implements ILogicaMedicion
     {
         $indicador_subunidad = new Indicador_subunidad();
         $indicadores_subunidades = $indicador_subunidad->Find("id_indicador = $medicion->id_indicador");
-        foreach ($indicadores_subunidades as $indicador_subunidad)
-        {
+        foreach ($indicadores_subunidades as $indicador_subunidad) {
             $valor = new Valor();
             $valor->id_entidad = $indicador_subunidad->id_entidad;
             $valor->id_medicion = $medicion->id;
@@ -50,40 +49,21 @@ class LogicaMedicion implements ILogicaMedicion
         $valor = new Valor();
         $valores_medicion = $valor->Find("id_medicion=$medicion->id");
         //Obtenemos los ids de las nuevas subunidades
-        foreach ($indicador_subunidades as $indicador_subunidad)
-        {
+        foreach ($indicador_subunidades as $indicador_subunidad) {
             array_push($indicador_subunidades_id, $indicador_subunidad->id_entidad);
         }
         //Actualizamos los valores de la medicion
-        foreach ($valores_medicion as $valor_medicion)
-        {
-//            //Si se media antes pero ahora no lo desactivamos
-//            if (!in_array($valor_medicion->id_entidad, $indicador_subunidades_id))
-//            {
-//                $valor->Load("id=$valor_medicion->id");
-//                $valor->activo = 0;
-//                $valor->Save();
-//            }
-//            //Si no se media, pero antes si (existia) y ahora también activamos el valor
-//            if (in_array($valor_medicion->id_entidad, $indicador_subunidades_id))
-//            {
-//                $valor->Load("id=$valor_medicion->id");
-//                $valor->activo = 1;
-//                $valor->Save();
-//            }
+        foreach ($valores_medicion as $valor_medicion) {
             //Si se media antes pero ahora no, lo borramos
-            if (!in_array($valor_medicion->id_entidad, $indicador_subunidades_id))
-            {
+            if (!in_array($valor_medicion->id_entidad, $indicador_subunidades_id)) {
                 $valor->Load("id=$valor_medicion->id");
                 $valor->Delete();
             }
         }
         //Si no existia  un valor para esa Unidad 
         //(nunca se midió hasta hoy) lo generamos
-        foreach ($indicador_subunidades_id as $indicador_subunidad_id)
-        {
-            if (!$valor->Load("id_medicion=$medicion->id AND id_entidad=$indicador_subunidad_id"))
-            {
+        foreach ($indicador_subunidades_id as $indicador_subunidad_id) {
+            if (!$valor->Load("id_medicion=$medicion->id AND id_entidad=$indicador_subunidad_id")) {
                 $valor = new Valor();
                 $valor->id_entidad = $indicador_subunidad_id;
                 $valor->id_medicion = $medicion->id;
@@ -99,13 +79,10 @@ class LogicaMedicion implements ILogicaMedicion
     {
         $status = null;
         //Estimación descendente
-        if ($inverso)
-        {
+        if ($inverso) {
             $status = $this->calcular_status_medicion_descendente($valor, $limite, $meta);
-        }
-        //Estimación ascendente
-        else
-        {
+        } //Estimación ascendente
+        else {
             $status = $this->calcular_status_medicion_ascendente($valor, $limite, $meta);
         }
         return $status;
@@ -114,40 +91,26 @@ class LogicaMedicion implements ILogicaMedicion
     //Devuelve el status para una medición estimada descendentemente
     private function calcular_status_medicion_descendente($valor, $limite, $meta)
     {
-        if ($limite && $meta)
-        {
-            if ($valor > $limite)
-            {
+        if ($limite && $meta) {
+            if ($valor > $limite) {
                 return $this->mejorable;
-            }
-            else if ($valor <= $meta)
-            {
+            } else if ($valor <= $meta) {
                 return $this->logrado;
-            }
-            else
-            {
+            } else {
                 return $this->aceptable;
             }
         }
-        if ($meta && !$limite)
-        {
-            if ($valor <= $meta)
-            {
+        if ($meta && !$limite) {
+            if ($valor <= $meta) {
                 return $this->logrado;
-            }
-            else
-            {
+            } else {
                 return $this->mejorable;
             }
         }
-        if ($limite && !$meta)
-        {
-            if ($valor > $limite)
-            {
+        if ($limite && !$meta) {
+            if ($valor > $limite) {
                 return $this->mejorable;
-            }
-            else
-            {
+            } else {
                 return $this->logrado;
             }
         }
@@ -157,40 +120,26 @@ class LogicaMedicion implements ILogicaMedicion
     //Devuelve el status para una medición estimada ascendentemente
     private function calcular_status_medicion_ascendente($valor, $limite, $meta)
     {
-        if ($limite && $meta)
-        {
-            if ($valor < $limite)
-            {
+        if ($limite && $meta) {
+            if ($valor < $limite) {
                 return $this->mejorable;
-            }
-            else if ($valor >= $meta)
-            {
+            } else if ($valor >= $meta) {
                 return $this->logrado;
-            }
-            else
-            {
+            } else {
                 return $this->aceptable;
             }
         }
-        if ($meta && !$limite)
-        {
-            if ($valor >= $meta)
-            {
+        if ($meta && !$limite) {
+            if ($valor >= $meta) {
                 return $this->logrado;
-            }
-            else
-            {
+            } else {
                 return $this->mejorable;
             }
         }
-        if ($limite && !$meta)
-        {
-            if ($valor < $limite)
-            {
+        if ($limite && !$meta) {
+            if ($valor < $limite) {
                 return $this->mejorable;
-            }
-            else
-            {
+            } else {
                 return $this->logrado;
             }
         }
@@ -204,8 +153,7 @@ class LogicaMedicion implements ILogicaMedicion
         //Valores de referencia
         $valor_referencia = new Valor_referencia();
         $valores_referencia = $valor_referencia->Find("id_indicador = $medicion->id_indicador");
-        foreach ($valores_referencia as $valor_referencia)
-        {
+        foreach ($valores_referencia as $valor_referencia) {
             $valor_referencia_medicion = new Valor_referencia_medicion();
             $valor_referencia_medicion->id_valor_referencia = $valor_referencia->id;
             $valor_referencia_medicion->valor = NULL;
@@ -220,8 +168,7 @@ class LogicaMedicion implements ILogicaMedicion
     {
         $valor = new Valor();
         $valores_borrar = $valor->Find("id_medicion=$id");
-        foreach ($valores_borrar as $valor_borrar)
-        {
+        foreach ($valores_borrar as $valor_borrar) {
             $valor->Load("id=$valor_borrar->id");
             $valor->Delete();
         }

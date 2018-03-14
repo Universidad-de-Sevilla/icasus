@@ -12,20 +12,28 @@
 
 class Valor extends ADOdb_Active_Record
 {
-
     public $_table = 'valores';
     public $entidad;
     public $usuario;
     public $medicion;
     public $indicador;
+    // Propiedades que persisten en BD
+    public $id;
+    public $activo;
+    public $fecha_recogida;
+    public $id_entidad;
+    public $id_medicion;
+    public $id_usuario;
+    public $observaciones;
+    public $valor;
+    public $valor_parcial;
 
     //Activa/desactiva los valores de una subunidad según parametros
     public function valores_activar_periodos($id_indicador, $id_subunidad, $activar, $inicio, $fin)
     {
         $medicion = new Medicion();
         $mediciones = $medicion->find("id_indicador = $id_indicador AND date_format(periodo_inicio,'%Y') between '$inicio' AND '$fin' ORDER BY periodo_inicio");
-        foreach ($mediciones as $medicion)
-        {
+        foreach ($mediciones as $medicion) {
             $valor = new Valor();
             $valor->load("id_medicion = $medicion->id AND id_entidad = $id_subunidad");
             $valor->activo = $activar;
@@ -37,8 +45,7 @@ class Valor extends ADOdb_Active_Record
     {
         $medicion = new Medicion();
         $mediciones = $medicion->find("id_indicador = $id_indicador");
-        foreach ($mediciones as $medicion)
-        {
+        foreach ($mediciones as $medicion) {
             $valor = new Valor();
             $valor->load("id_medicion = $medicion->id AND id_entidad = $id_subunidad");
             $valor->activo = $activar;
@@ -48,11 +55,10 @@ class Valor extends ADOdb_Active_Record
 
     public function Find_joined($condicion)
     {
+        /** @var array $valores */
         $valores = $this->Find($condicion);
-        if ($valores)
-        {
-            foreach ($valores as & $valor)
-            {
+        if ($valores) {
+            foreach ($valores as & $valor) {
                 $valor->entidad = new Entidad();
                 $valor->entidad->load("id = $valor->id_entidad");
 
@@ -67,10 +73,8 @@ class Valor extends ADOdb_Active_Record
     public function Find_joined_indicador($condicion)
     {
         $valores = $this->Find($condicion);
-        if ($valores)
-        {
-            foreach ($valores as & $valor)
-            {
+        if ($valores) {
+            foreach ($valores as & $valor) {
                 $valor->medicion = new Medicion();
                 $valor->medicion->load("id = $valor->id_medicion");
                 $id_indicador = $valor->medicion->id_indicador;
@@ -83,8 +87,7 @@ class Valor extends ADOdb_Active_Record
 
     public function load_joined($id)
     {
-        if ($this->load("id = $id"))
-        {
+        if ($this->load("id = $id")) {
             $this->entidad = new Entidad();
             $this->entidad->load("id = $this->id_entidad");
 
@@ -92,9 +95,7 @@ class Valor extends ADOdb_Active_Record
             $this->usuario->load("id = $this->id_usuario");
 
             return $this;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -175,5 +176,4 @@ class Valor extends ADOdb_Active_Record
 			ORDER BY  m.periodo_inicio,v.fecha_recogida, i.nombre";
         return $db->getall($sql);
     }
-
 }
