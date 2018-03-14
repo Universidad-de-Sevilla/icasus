@@ -60,21 +60,21 @@ jQuery(function ($) {
 // Back to Top
 // Only enable if the document has a long scroll bar
 // Note the window height + offset
-backToTop();
+// backToTop();
 
 //Si cambia la longitud del documento recargamos backToTop
 // onElementHeightChange(document.body, function () {
 //     // backToTop();
 // });
 
-function backToTop() {
-    if (($(window).height() + 100) < $(document).height()) {
-        $('#top-link-block').removeClass('hidden').affix({
-            // how far to scroll down before link "slides" into view
-            offset: {top: 100}
-        });
-    }
-}
+// function backToTop() {
+//     if (($(window).height() + 100) < $(document).height()) {
+//         $('#top-link-block').removeClass('hidden').affix({
+//             // how far to scroll down before link "slides" into view
+//             offset: {top: 100}
+//         });
+//     }
+// }
 
 //Detecta cambios de longitud del documento
 // function onElementHeightChange(elm, callback) {
