@@ -12,9 +12,17 @@
 
 class Fichero extends ADOdb_Active_Record
 {
-
-    public $_table = 'ficheros';
+    public $_table = 'icasus_fichero';
     public $usuario;
+    public $id;
+    public $id_objeto;
+    public $id_usuario;
+    public $descripcion;
+    public $tipo_objeto;
+    public $titulo;
+    public $extension;
+    public $visible;
+
 
     public function find_joined($condicion)
     {
@@ -30,5 +38,4 @@ class Fichero extends ADOdb_Active_Record
         }
         return $ficheros;
     }
-
 }

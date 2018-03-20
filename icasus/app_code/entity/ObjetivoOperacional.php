@@ -12,12 +12,12 @@
 
 class ObjetivoOperacional extends ADOdb_Active_Record
 {
-
-    public $_table = 'objetivos_operacionales';
+    public $_table = 'icasus_objetivo_operacional';
     public $objest;
     public $responsable;
     public $indicadores_correlacion;
     public $indicadores_control;
+
 
     public function load_joined($condicion)
     {
@@ -69,5 +69,4 @@ class ObjetivoOperacional extends ADOdb_Active_Record
         }
         return $objetivos_op;
     }
-
 }

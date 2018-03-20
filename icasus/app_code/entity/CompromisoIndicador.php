@@ -12,7 +12,8 @@
 
 class CompromisoIndicador extends ADOdb_Active_Record
 {
-
-    public $_table = 'compromisos_indicadores';
-
+    public $_table = 'icasus_compromiso_indicador';
+    public $id;
+    public $id_compromiso;
+    public $id_indicador;
 }

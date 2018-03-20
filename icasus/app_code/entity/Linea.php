@@ -12,20 +12,22 @@
 
 class Linea extends ADOdb_Active_Record
 {
-
-    public $_table = 'lineas';
+    public $_table = 'icasus_linea';
     public $plan;
+    public $id;
+    public $id_plan;
+    public $indice;
+    public $nombre;
+    public $ejecucion;
+
 
     public function load_joined($condicion)
     {
-        if ($this->load($condicion))
-        {
+        if ($this->load($condicion)) {
             $this->plan = new Plan();
             $this->plan->load_joined("id = $this->id_plan");
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -33,10 +35,8 @@ class Linea extends ADOdb_Active_Record
     public function Find_joined($criterio)
     {
         $lineas = $this->Find($criterio);
-        if ($lineas)
-        {
-            foreach ($lineas as $linea)
-            {
+        if ($lineas) {
+            foreach ($lineas as $linea) {
                 $plan = new Plan();
                 $plan->load_joined("id= $linea->id_plan");
                 $linea->plan = $plan;
@@ -44,5 +44,4 @@ class Linea extends ADOdb_Active_Record
         }
         return $lineas;
     }
-
 }

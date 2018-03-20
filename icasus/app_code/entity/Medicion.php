@@ -11,21 +11,26 @@
 
 class Medicion extends ADOdb_Active_Record
 {
-
-    public $_table = 'mediciones';
+    public $_table = 'icasus_medicion';
     public $medicion_valor;
     public $indicador;
+    public $id;
+    public $id_indicador;
+    public $etiqueta;
+    public $periodo_inicio;
+    public $periodo_fin;
+    public $grabacion_inicio;
+    public $grabacion_fin;
+    public $observaciones;
+
 
     public function load_joined($condicion)
     {
-        if ($this->load($condicion))
-        {
+        if ($this->load($condicion)) {
             $this->indicador = new Indicador();
             $this->indicador->load_joined("id = $this->id_indicador");
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -33,29 +38,21 @@ class Medicion extends ADOdb_Active_Record
     public function find_joined_subunidad_valor($id_indicador, $id_entidad)
     {
         $mediciones = $this->find("id_indicador = $id_indicador");
-        if ($mediciones)
-        {
-            foreach ($mediciones as $medicion)
-            {
+        if ($mediciones) {
+            foreach ($mediciones as $medicion) {
                 $sql = "SELECT  m.etiqueta,m.id,v.id_medicion,m.id,v.id_entidad,v.valor
-					FROM `mediciones` m
-					LEFT JOIN valores v ON m.id = v.id_medicion
+					FROM `medicion` m
+					LEFT JOIN valor v ON m.id = v.id_medicion
 					WHERE m.id = $medicion->id
 					AND v.id_entidad =$id_entidad";
                 $db = $this->DB();
                 $medicion_valor = $db->execute($sql);
-                if ($medicion_valor->_numOfRows == 0)
-                {
+                if ($medicion_valor->_numOfRows == 0) {
                     $valor = $medicion_valor->_numOfRows;
-                }
-                else
-                {
-                    if ($medicion_valor->fields["valor"] == '')
-                    {
+                } else {
+                    if ($medicion_valor->fields["valor"] == '') {
                         $valor = 'NULL';
-                    }
-                    else
-                    {
+                    } else {
                         $valor = $medicion_valor->fields["valor"];
                     }
                     $valor = $medicion_valor;
@@ -83,15 +80,12 @@ class Medicion extends ADOdb_Active_Record
     public function find_joined_indicador($condicion)
     {
         $mediciones = $this->Find($condicion);
-        if ($mediciones)
-        {
-            foreach ($mediciones as $medicion)
-            {
+        if ($mediciones) {
+            foreach ($mediciones as $medicion) {
                 $medicion->indicador = new Indicador();
                 $medicion->indicador->load("id = $medicion->id_indicador");
             }
         }
         return $mediciones;
     }
-
 }

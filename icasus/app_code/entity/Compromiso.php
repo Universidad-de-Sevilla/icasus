@@ -12,15 +12,19 @@
 
 class Compromiso extends ADOdb_Active_Record
 {
-
-    public $_table = 'compromisos';
+    public $_table = 'icasus_compromiso';
     public $servicio;
     public $indicadores;
+    public $id;
+    public $id_servicio;
+    public $indice;
+    public $nombre;
+    public $descripcion;
+
 
     public function load_joined($condicion)
     {
-        if ($this->load($condicion))
-        {
+        if ($this->load($condicion)) {
             $this->servicio = new Servicio();
             $this->servicio->load_joined("id=$this->id_servicio");
 
@@ -29,9 +33,7 @@ class Compromiso extends ADOdb_Active_Record
             $this->indicadores = $indicadores;
 
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -39,10 +41,8 @@ class Compromiso extends ADOdb_Active_Record
     public function Find_joined($criterio)
     {
         $compromisos = $this->Find($criterio);
-        if ($compromisos)
-        {
-            foreach ($compromisos as $comp)
-            {
+        if ($compromisos) {
+            foreach ($compromisos as $comp) {
                 $servicio = new Servicio();
                 $servicio->load_joined("id= $comp->id_servicio");
                 $comp->servicio = $servicio;
@@ -54,5 +54,4 @@ class Compromiso extends ADOdb_Active_Record
         }
         return $compromisos;
     }
-
 }

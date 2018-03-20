@@ -12,7 +12,8 @@
 
 class Indicador_dependencia extends ADOdb_Active_Record
 {
-
-    public $_table = 'indicadores_dependencias';
-
+    public $_table = 'icasus_indicador_dependencia';
+    public $id;
+    public $id_calculado;
+    public $id_operando;
 }

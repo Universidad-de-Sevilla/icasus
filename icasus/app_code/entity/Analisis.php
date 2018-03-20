@@ -12,20 +12,21 @@
 
 class Analisis extends ADOdb_Active_Record
 {
-
-    public $_table = 'analisis';
+    public $_table = 'icasus_analisis';
     public $indicador;
+    public $id;
+    public $id_indicador;
+    public $anyo;
+    public $analisis;
+    public $plan_accion;
 
     public function load_joined($condicion)
     {
-        if ($this->load($condicion))
-        {
+        if ($this->load($condicion)) {
             $this->indicador = new Indicador();
             $this->indicador->load("id = $this->id_indicador");
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -33,10 +34,8 @@ class Analisis extends ADOdb_Active_Record
     public function Find_joined($criterio)
     {
         $analisis = $this->Find($criterio);
-        if ($analisis)
-        {
-            foreach ($analisis as $ana)
-            {
+        if ($analisis) {
+            foreach ($analisis as $ana) {
                 $indicador = new Indicador();
                 $indicador->load("id= $ana->id_indicador");
                 $ana->indicador = $indicador;
@@ -44,5 +43,4 @@ class Analisis extends ADOdb_Active_Record
         }
         return $analisis;
     }
-
 }

@@ -12,9 +12,9 @@
 
 class Criterio_efqm_indicador extends ADOdb_Active_Record
 {
-
-    public $_table = 'criterios_efqm_indicadores';
+    public $_table = 'icasus_criterios_efqm_indicadores';
     public $criterio_efqm;
+
 
     public function Find_joined($criterio)
     {
@@ -30,5 +30,4 @@ class Criterio_efqm_indicador extends ADOdb_Active_Record
         }
         return $criterios_efqm_indicadores;
     }
-
 }
