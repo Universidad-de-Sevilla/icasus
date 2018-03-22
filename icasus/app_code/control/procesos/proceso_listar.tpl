@@ -392,6 +392,8 @@
                         <img src="images/mapa_gabinete_juridico.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
                     {elseif $entidad->id==16}}
                         <img src="images/mapa_procesos_hernando_colon.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
+                    {elseif $entidad->id==2}}
+                        <img src="images/mapa_procesos_forpas.png" class="img-responsive img-rounded" alt="{$smarty.const.TXT_PROC_MAP}">
                     {/if}
                 {else}
                     <div class="row">
