@@ -12,9 +12,18 @@
 
 class Plan extends ADOdb_Active_Record
 {
-
-    public $_table = 'planes';
+    public $_table = 'icasus_plan';
     public $entidad;
+    public $id;
+    public $id_entidad;
+    public $anyo_inicio;
+    public $duracion;
+    public $mision;
+    public $vision;
+    public $valores;
+    public $fce;
+    public $titulo;
+    public $ejecucion;
 
     public function load_joined($condicion)
     {
@@ -44,5 +53,4 @@ class Plan extends ADOdb_Active_Record
         }
         return $planes;
     }
-
 }

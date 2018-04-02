@@ -2,8 +2,13 @@
 
 class Panel_indicador extends ADOdb_Active_Record
 {
-    public $_table = 'panel_indicadores';
+    public $_table = 'icasus_panel_indicador';
     public $indicador;
+    public $id;
+    public $id_panel;
+    public $id_indicador;
+    public $id_entidad;
+    public $mostrar_referencias;
 
     // Devuelve un array de paneles con los panel_indicador asociados a cada uno
     public function load_joined($condicion)
@@ -22,7 +27,7 @@ class Panel_indicador extends ADOdb_Active_Record
     {
         /** @var ADOConnection $db */
         $db = $this->DB();
-        $sql = /** @lang mysql */ "DELETE FROM panel_indicadores WHERE $condicion";
+        $sql = /** @lang mysql */ "DELETE FROM icasus_panel_indicador WHERE $condicion";
         $db->execute($sql);
     }
 

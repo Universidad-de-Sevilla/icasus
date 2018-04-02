@@ -12,7 +12,9 @@
 
 class Panel_tipo extends ADOdb_Active_Record
 {
-
-    public $_table = 'panel_tipos';
-
+    public $_table = 'icasus_panel_tipo';
+    public $id;
+    public $nombre;
+    public $ancho_predeterminado;
+    public $clase_css;
 }

@@ -12,13 +12,15 @@
 class Proceso extends ADOdb_Active_Record
 {
 
-    public $_table = 'procesos';
+    public $_table = 'icasus_proceso';
     public $propietario;
     public $error; //propiedad de uso interno para almacenar los errores
     public $madre;
     public $cuadro;
     public $entidad;
     public $indicadores = array();
+
+    // TODO:meter campos desde consulta
 
     //devuelve los procesos de los indicadores de la unidad superior
     public function proceso_indicador_superior($id_unidad)
@@ -35,12 +37,15 @@ class Proceso extends ADOdb_Active_Record
     public function procesos_indicadores_segregados($id_unidad)
     {
         $db = $this->DB();
-        $query = "SELECT insu.id_indicador,insu.id_entidad,i.id_proceso,p.nombre as nombre_proceso,e.nombre as nombre_entidad FROM indicadores_subunidades insu 
-							INNER JOIN indicadores i ON insu.id_indicador = i.id 
-							INNER JOIN procesos p ON i.id_proceso = p.id 
-							INNER JOIN entidades e ON p.id_entidad = e.id 
-							WHERE insu.id_entidad = $id_unidad AND insu.id_indicador 
-							NOT IN (SELECT id FROM indicadores  WHERE id_entidad = $id_unidad) GROUP BY i.id_proceso";
+        $query = "SELECT insu.id_indicador, insu.id_entidad, i.id_proceso, p.nombre as nombre_proceso,
+                      e.nombre as nombre_entidad 
+                    FROM icasus_indicador_subunidad insu 
+					INNER JOIN icasus_indicador i ON insu.id_indicador = i.id 
+					INNER JOIN icasus_proceso p ON i.id_proceso = p.id 
+					INNER JOIN icasus_entidad e ON p.id_entidad = e.id 
+					WHERE insu.id_entidad = $id_unidad AND insu.id_indicador 
+					NOT IN (SELECT id FROM icasus_indicador  WHERE id_entidad = $id_unidad) 
+					GROUP BY i.id_proceso";
         $procesos = $db->getall($query);
 
         return $procesos;
