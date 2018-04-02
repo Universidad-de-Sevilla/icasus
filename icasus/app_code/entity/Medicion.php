@@ -41,8 +41,8 @@ class Medicion extends ADOdb_Active_Record
         if ($mediciones) {
             foreach ($mediciones as $medicion) {
                 $sql = "SELECT  m.etiqueta,m.id,v.id_medicion,m.id,v.id_entidad,v.valor
-					FROM `medicion` m
-					LEFT JOIN valor v ON m.id = v.id_medicion
+					FROM icasus_medicion m
+					LEFT JOIN icasus_valor v ON m.id = v.id_medicion
 					WHERE m.id = $medicion->id
 					AND v.id_entidad =$id_entidad";
                 $db = $this->DB();

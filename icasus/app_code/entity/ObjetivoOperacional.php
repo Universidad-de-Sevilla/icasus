@@ -17,6 +17,16 @@ class ObjetivoOperacional extends ADOdb_Active_Record
     public $responsable;
     public $indicadores_correlacion;
     public $indicadores_control;
+    public $id;
+    public $id_objest;
+    public $id_responsable;
+    public $indice;
+    public $nombre;
+    public $ejecucion;
+    public $descendente;
+    public $peso;
+    public $observaciones;
+    public $descripcion;
 
 
     public function load_joined($condicion)

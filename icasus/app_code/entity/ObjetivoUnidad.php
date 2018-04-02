@@ -12,9 +12,12 @@
 
 class ObjetivoUnidad extends ADOdb_Active_Record
 {
-
-    public $_table = 'objetivos_unidades';
+    public $_table = 'icasus_objetivo_unidad';
     public $entidad;
+    public $id;
+    public $id_objop;
+    public $id_entidad;
+
 
     public function Find_entidades($criterio)
     {
@@ -38,5 +41,4 @@ class ObjetivoUnidad extends ADOdb_Active_Record
         $cadena2 = Util::quitar_tildes($b->entidad->etiqueta);
         return strcasecmp($cadena1, $cadena2);
     }
-
 }
