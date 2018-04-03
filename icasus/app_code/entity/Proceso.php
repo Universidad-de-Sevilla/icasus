@@ -20,7 +20,9 @@ class Proceso extends ADOdb_Active_Record
     public $entidad;
     public $indicadores = array();
 
+    // - - - - - - - - - - - - - - - - -
     // TODO:meter campos desde consulta
+    // - - - - - - - - - - - - - - - - -
 
     //devuelve los procesos de los indicadores de la unidad superior
     public function proceso_indicador_superior($id_unidad)
