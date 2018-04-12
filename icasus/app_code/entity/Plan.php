@@ -3,11 +3,8 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: entity/Plan.php
-// Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
-//---------------------------------------------------------------------------------------------------
-// Mapea la tabla planes de la base de datos
 //---------------------------------------------------------------------------------------------------
 
 class Plan extends ADOdb_Active_Record

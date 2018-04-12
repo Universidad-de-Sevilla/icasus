@@ -12,16 +12,19 @@
 
 class Usuario_entidad extends ADOdb_Active_Record
 {
-
-    public $_table = 'usuarios_entidades';
+    public $_table = 'icasus_usuario_entidad';
     public $asiste;
     public $entidad;
     public $rol;
     public $usuario;
     public $indicadores_entidad; //cuadromando_crear.php
+    public $id;
+    public $id_usuario;
+    public $id_entidad;
+    public $id_rol;
+    public $principal;
 
     //Devuelve todas las entidades de un usuario con sus indicadores
-
     public function Find_entidades_indicadores($id_usuario)
     {
         $ues = $this->Find("id_usuario = $id_usuario");
@@ -158,5 +161,4 @@ class Usuario_entidad extends ADOdb_Active_Record
         }
         return false;
     }
-
 }

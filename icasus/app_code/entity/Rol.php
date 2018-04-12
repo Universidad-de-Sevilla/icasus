@@ -11,7 +11,9 @@
 
 class Rol extends ADOdb_Active_Record
 {
-
-    public $_table = 'roles';
-
+    public $_table = 'icasus_rol';
+    public $id;
+    public $nombre;
+    public $orden;
+    public $objeto;
 }

@@ -12,9 +12,13 @@
 
 class Servicio extends ADOdb_Active_Record
 {
-
-    public $_table = 'servicios';
+    public $_table = 'icasus_servicio';
     public $carta;
+    public $id;
+    public $id_carta;
+    public $indice;
+    public $nombre;
+    public $descripcion;
 
     public function load_joined($condicion)
     {
@@ -44,5 +48,4 @@ class Servicio extends ADOdb_Active_Record
         }
         return $servicios;
     }
-
 }

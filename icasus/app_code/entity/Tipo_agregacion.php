@@ -12,7 +12,9 @@
 
 class Tipo_agregacion extends ADOdb_Active_Record
 {
-
-    var $_table = 'tipo_agregacion';
-
+    public $_table = 'icasus_tipo_agregacion';
+    public $id;
+    public $descripcion;
+    public $operador;
+    public $explicacion;
 }
