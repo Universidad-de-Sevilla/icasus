@@ -337,14 +337,14 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
                     UNIX_TIMESTAMP(m.periodo_inicio)*1000 as periodo_fin, 
                     vr.etiqueta as unidad, vr.nombre as nombre_ref, NULL as id_unidad, valor, TRUE as referencia
                     FROM icasus_medicion m 
-                    INNER JOIN valores_referencia_mediciones ON vrm.id_medicion = m.id
+                    INNER JOIN icasus_valor_referencia_medicion vrm ON vrm.id_medicion = m.id
                     INNER JOIN icasus_valor_referencia vr ON vrm.id_valor_referencia = vr.id 
-                    WHERE (periodo_inicio, id_valor_referencia) IN
+                    WHERE (m.periodo_inicio, vrm.id_valor_referencia) IN
                     (SELECT max(m.periodo_inicio) as periodo_inicio, vrm.id_valor_referencia
                     FROM icasus_medicion m 
                     INNER JOIN icasus_valor_referencia_medicion vrm ON vrm.id_medicion = m.id
-                    WHERE m.id_indicador = $id AND valor IS NOT NULL AND grafica = 1
-                    GROUP BY vrm.id_valor_referencia, YEAR (periodo_inicio))"
+                    WHERE m.id_indicador = $id AND vrm.valor IS NOT NULL AND vr.grafica = 1
+                    GROUP BY vrm.id_valor_referencia, YEAR (m.periodo_inicio))"
                 . " AND m.periodo_inicio >=  '$fecha_inicio'"
                 . " AND m.periodo_fin <= '$fecha_fin'";
         }
@@ -450,8 +450,9 @@ function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fec
     $query = "SELECT m.id as id_medicion, m.etiqueta as medicion,
             UNIX_TIMESTAMP(MIN(m.periodo_inicio))*1000 as periodo_fin,
             $operador(v.valor) as valor
-            FROM icasus_medicion m INNER JOIN icasus_valor v ON m.id = v.id_medicion
-            WHERE m.id_indicador = $id_indicador AND valor IS NOT NULL";
+            FROM icasus_medicion m 
+            INNER JOIN icasus_valor v ON m.id = v.id_medicion
+            WHERE m.id_indicador = $id_indicador AND v.valor IS NOT NULL";
     if ($fecha_inicio > 0) {
         $query .= " AND m.periodo_inicio >=  '$fecha_inicio'";
     }
@@ -548,9 +549,10 @@ function calcular_intranual($id, $operador_temporal, $link, $fecha_inicio, $fech
             UNIX_TIMESTAMP(MIN(m.periodo_inicio))*1000 as periodo_fin,
             e.etiqueta as unidad, e.id as id_unidad, v.valor,
             e.etiqueta_mini as etiqueta_mini
-            FROM icasus_medicion m INNER JOIN icasus_valor v ON m.id = v.id_medicion
+            FROM icasus_medicion m 
+            INNER JOIN icasus_valor v ON m.id = v.id_medicion
             INNER JOIN icasus_entidad e ON e.id = v.id_entidad
-            WHERE m.id_indicador = $id AND valor IS NOT NULL GROUP BY id_unidad, "
+            WHERE m.id_indicador = $id AND v.valor IS NOT NULL GROUP BY id_unidad, "
         . "YEAR(m.periodo_inicio), MONTH(m.periodo_inicio), "
         . "DAY(m.periodo_inicio)";
 
@@ -636,82 +638,6 @@ function calcular_intranual($id, $operador_temporal, $link, $fecha_inicio, $fech
             }
         }
     }
-
-//TODO: Totales anuales centralizados
-//    $totalcentral = array();
-//    $parcialcentral = array();
-//    $mediciones = array();
-//
-//    foreach ($result as $row)
-//    {
-//        $medicion = $row['medicion'];
-//       $id_unidad = $row['id_unidad'];
-//       $anyo = explode('.', $medicion)[0];
-//        if ($parcialcentral[$medicion])
-//        {
-//            array_push($parcialcentral[$medicion], $row['valor']);
-//        }
-//        else
-//        {
-//           $unidades[$id_unidad] = $row['etiqueta_mini'];
-//            $parcialcentral[$medicion] = array();
-//            array_push($mediciones, $medicion);
-//            array_push($parcialcentral[$medicion], $row['valor']);
-//        }
-//    }
-//
-//    foreach ($mediciones as $medicion)
-//    {
-//        switch ($operador)
-//        {
-//
-//            case 'MAX':
-//                $totalcentral[$medicion] = Util::maximo($totales[$anyo]);
-//                break;
-//            case 'SUM':
-//                $totalcentral[$medicion] = Util::sumatorio($totales[$anyo]);
-//                break;
-//            case 'AVG':
-//                $totalcentral[$medicion] = Util::media($totales[$anyo]);
-//                break;
-//            default:
-//                break;
-//        }
-//    }
-//
-//    foreach ($anyos as $anyo)
-//    {
-//        //Comprobar si existen mediciones de esa unidad para ese año no procesadas
-//        if ($totales[$anyo] && $total[$anyo] == NULL)
-//        {
-//            switch ($operador)
-//            {
-//
-//                case 'LAST':
-//                    $total[$anyo] = $totales[$anyo][count($totales[$anyo]) - 1];
-//                    break;
-//                case 'MAX':
-//                    $total[$anyo] = Util::maximo($totales[$anyo]);
-//                    break;
-//                case 'SUM':
-//                    $total[$anyo] = Util::sumatorio($totales[$anyo]);
-//                    break;
-//                case 'AVG':
-//                    $total[$anyo] = Util::media($totales[$anyo]);
-//                    break;
-//                default:
-//                    break;
-//            }
-//            array_push($totales_json, array(
-//                "id_medicion" => 0,
-//                "medicion" => $anyo,
-//                "periodo_fin" => mktime(0, 0, 0, 12, 31, $anyo) * 1000,
-//                "unidad" => "Total",
-//                "id_unidad" => "0",
-//                "valor" => $total[$anyo]
-//            ));
-//        }
-//    }
 
     return $array_json;
 }
