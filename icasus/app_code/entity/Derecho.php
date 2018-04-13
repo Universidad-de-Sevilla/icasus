@@ -14,6 +14,7 @@ class Derecho extends ADOdb_Active_Record
 {
     public $_table = 'icasus_derecho';
     public $carta;
+    public $id;
     public $id_carta;
     public $nombre;
     public $categoria;

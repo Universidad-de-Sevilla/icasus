@@ -1,5 +1,4 @@
 <?php
-
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus (http://wiki.us.es/icasus/)
 // Archivo: cartas/compromiso_crear.php
@@ -8,6 +7,8 @@
 //---------------------------------------------------------------------------------------------------
 // Descripción: muestra el formulario que permite crear un nuevo Compromiso
 //---------------------------------------------------------------------------------------------------
+
+global $control;
 
 if (filter_has_var(INPUT_GET, 'id_servicio') && $control)
 {

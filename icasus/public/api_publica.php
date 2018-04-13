@@ -378,6 +378,7 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
 function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 {
     $elementos_calculo = array();
+    $totales_calculados = array();
     $query = "SELECT i.calculo, ta.operador FROM icasus_indicador i INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  WHERE i.id = $id_indicador";
     $resultado = mysqli_query($link, $query);
     $registro = mysqli_fetch_assoc($resultado);

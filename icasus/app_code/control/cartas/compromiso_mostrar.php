@@ -14,18 +14,14 @@ global $smarty;
 global $plantilla;
 global $usuario;
 
-if (filter_has_var(INPUT_GET, 'id_compromiso'))
-{
+if (filter_has_var(INPUT_GET, 'id_compromiso')) {
     $id_compromiso = filter_input(INPUT_GET, 'id_compromiso', FILTER_SANITIZE_NUMBER_INT);
 
     //Obtenemos los datos del Compromiso
     $compromiso = new Compromiso();
-    if ($compromiso->load_joined("id = $id_compromiso"))
-    {
+    if ($compromiso->load_joined("id = $id_compromiso")) {
         $smarty->assign('compromiso', $compromiso);
-    }
-    else
-    {
+    } else {
         $error = ERR_COMPROMISO_MOSTRAR;
         header("location:index.php?page=error&error=$error");
     }
@@ -34,10 +30,8 @@ if (filter_has_var(INPUT_GET, 'id_compromiso'))
     $compromisos = $compromiso->Find("id_servicio = $compromiso->id_servicio order by indice");
     $smarty->assign("compromisos", $compromisos);
     $cont = 0;
-    foreach ($compromisos as $comp)
-    {
-        if ($id_compromiso == $comp->id)
-        {
+    foreach ($compromisos as $comp) {
+        if ($id_compromiso == $comp->id) {
             $indice = $cont;
             $smarty->assign("indice", $indice);
         }
@@ -53,8 +47,7 @@ if (filter_has_var(INPUT_GET, 'id_compromiso'))
     $compromiso_indicador = new CompromisoIndicador();
     $indicadores = array();
     $compromiso_indicadores = $compromiso_indicador->Find("id_compromiso=$compromiso->id");
-    foreach ($compromiso_indicadores as $comp_ind)
-    {
+    foreach ($compromiso_indicadores as $comp_ind) {
         $indicador = new Indicador();
         $indicador->load_joined("id=$comp_ind->id_indicador");
         array_push($indicadores, $indicador);
@@ -64,9 +57,7 @@ if (filter_has_var(INPUT_GET, 'id_compromiso'))
     $smarty->assign('_javascript', array('compromiso_mostrar'));
     $smarty->assign('_nombre_pagina', FIELD_COMPROMISO . ": C." . $compromiso->indice . ". " . $compromiso->nombre);
     $plantilla = 'cartas/compromiso_mostrar.tpl';
-}
-else
-{
+} else {
     $error = ERR_PARAM;
     header("location:index.php?page=error&error=$error");
 }
