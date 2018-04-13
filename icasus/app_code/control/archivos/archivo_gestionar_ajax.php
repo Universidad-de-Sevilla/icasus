@@ -61,7 +61,7 @@ if ($modulo == 'subir') {
             }
         }
     }
-    //comprobamos si el subdirectorio de existe.
+    //comprobamos si el subdirectorio existe.
     if (!file_exists($dir . $subdir)) {
         if (!mkdir($dir . $subdir, 0755)) {
             $error = ERR_SUBDIR;

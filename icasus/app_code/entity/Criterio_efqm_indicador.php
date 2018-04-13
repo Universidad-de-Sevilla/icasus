@@ -12,7 +12,7 @@
 
 class Criterio_efqm_indicador extends ADOdb_Active_Record
 {
-    public $_table = 'icasus_criterios_efqm_indicadores';
+    public $_table = 'icasus_criterio_efqm_indicador';
     public $criterio_efqm;
 
 
