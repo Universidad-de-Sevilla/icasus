@@ -12,7 +12,9 @@
 
 class ObjetivoIndicador extends ADOdb_Active_Record
 {
-
-    public $_table = 'objetivos_indicadores';
-
+    public $_table = 'icasus_objetivo_indicador';
+    public $id;
+    public $id_objop;
+    public $id_indicador;
+    public $control;
 }

@@ -3,18 +3,24 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: entity/Plan.php
-// Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
-//---------------------------------------------------------------------------------------------------
-// Mapea la tabla planes de la base de datos
 //---------------------------------------------------------------------------------------------------
 
 class Plan extends ADOdb_Active_Record
 {
-
-    public $_table = 'planes';
+    public $_table = 'icasus_plan';
     public $entidad;
+    public $id;
+    public $id_entidad;
+    public $anyo_inicio;
+    public $duracion;
+    public $mision;
+    public $vision;
+    public $valores;
+    public $fce;
+    public $titulo;
+    public $ejecucion;
 
     public function load_joined($condicion)
     {
@@ -44,5 +50,4 @@ class Plan extends ADOdb_Active_Record
         }
         return $planes;
     }
-
 }

@@ -12,7 +12,8 @@
 
 class Visibilidad extends ADOdb_Active_Record
 {
-
-    var $_table = 'visibilidad';
-
+    public $_table = 'icasus_visibilidad';
+    public $id;
+    public $nombre;
+    public $descripcion;
 }

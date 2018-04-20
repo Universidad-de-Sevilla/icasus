@@ -12,8 +12,7 @@
 
 class Carta extends ADOdb_Active_Record
 {
-
-    public $_table = 'cartas';
+    public $_table = 'icasus_carta';
     public $id_entidad;
     public $id_cuadro;
     public $fecha;
@@ -24,21 +23,17 @@ class Carta extends ADOdb_Active_Record
 
     public function load_joined($condicion)
     {
-        if ($this->load($condicion))
-        {
+        if ($this->load($condicion)) {
             $this->entidad = new Entidad();
             $this->entidad->load("id = $this->id_entidad");
 
-            if ($this->id_cuadro)
-            {
+            if ($this->id_cuadro) {
                 $cuadro = new Cuadro();
                 $cuadro->load("id = $this->id_cuadro");
                 $this->cuadro = $cuadro;
             }
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -46,10 +41,8 @@ class Carta extends ADOdb_Active_Record
     public function Find_joined($criterio)
     {
         $cartas = $this->Find($criterio);
-        if ($cartas)
-        {
-            foreach ($cartas as $carta)
-            {
+        if ($cartas) {
+            foreach ($cartas as $carta) {
                 $entidad = new Entidad();
                 $entidad->load("id= $carta->id_entidad");
                 $carta->entidad = $entidad;
@@ -57,5 +50,4 @@ class Carta extends ADOdb_Active_Record
         }
         return $cartas;
     }
-
 }

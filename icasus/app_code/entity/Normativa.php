@@ -12,20 +12,21 @@
 
 class Normativa extends ADOdb_Active_Record
 {
-
-    public $_table = 'normativas';
+    public $_table = 'icasus_normativa';
     public $carta;
+    public $id;
+    public $id_carta;
+    public $nombre;
+    public $enlace;
+
 
     public function load_joined($condicion)
     {
-        if ($this->load($condicion))
-        {
+        if ($this->load($condicion)) {
             $this->carta = new Carta();
             $this->carta->load("id = $this->id_carta");
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -33,10 +34,8 @@ class Normativa extends ADOdb_Active_Record
     public function Find_joined($criterio)
     {
         $normativas = $this->Find($criterio);
-        if ($normativas)
-        {
-            foreach ($normativas as $normativa)
-            {
+        if ($normativas) {
+            foreach ($normativas as $normativa) {
                 $carta = new Carta();
                 $carta->load("id= $normativa->id_carta");
                 $normativa->carta = $carta;
@@ -44,5 +43,4 @@ class Normativa extends ADOdb_Active_Record
         }
         return $normativas;
     }
-
 }

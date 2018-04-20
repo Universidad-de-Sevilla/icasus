@@ -2,7 +2,7 @@
 
 class Entidad extends ADOdb_Active_Record
 {
-    public $_table = 'entidades';
+    public $_table = 'icasus_entidad';
     public $id;
     public $anotaciones;
     public $codigo;
@@ -19,12 +19,12 @@ class Entidad extends ADOdb_Active_Record
     public $objeto;
     public $orden;
     public $web;
-
     public $indicadores;
     public $valores;
     public $madre;
     public $usuario;
     public $mediciones;
+
 
     //obtener subunidades de una unidad con sus valores de las mediciones del indicador elegidas por el usuario.
     public function find_subunidades_mediciones_periodos($id_indicador, $id_entidad, $inicio, $fin)
@@ -111,5 +111,4 @@ class Entidad extends ADOdb_Active_Record
             return false;
         }
     }
-
 }

@@ -20,8 +20,7 @@ $tipo = filter_input(INPUT_GET, 'tipo', FILTER_SANITIZE_STRING);
 $fichero = new Fichero();
 $db = $fichero->DB();
 
-if ($modulo == 'subir')
-{
+if ($modulo == 'subir') {
     $extension = pathinfo($_FILES['sarchivo']['name']);
     $ext = $extension["extension"];
     $fichero->titulo = filter_input(INPUT_POST, 'stitulo', FILTER_SANITIZE_STRING);
@@ -31,20 +30,13 @@ if ($modulo == 'subir')
     $fichero->visible = filter_input(INPUT_POST, 'svisible', FILTER_SANITIZE_NUMBER_INT);
     //Vemos si el archivo es para una Unidad, Plan Estratégico, 
     //Carta de Servicios o para un Proceso
-    if ($tipo == 'plan')
-    {
+    if ($tipo == 'plan') {
         $fichero->tipo_objeto = 'plan';
-    }
-    else if ($tipo == 'carta')
-    {
+    } else if ($tipo == 'carta') {
         $fichero->tipo_objeto = 'carta';
-    }
-    else if ($tipo == 'proceso')
-    {
+    } else if ($tipo == 'proceso') {
         $fichero->tipo_objeto = 'proceso';
-    }
-    else
-    {
+    } else {
         $fichero->tipo_objeto = 'unidad';
     }
     $fichero->extension = $ext;
@@ -55,109 +47,69 @@ if ($modulo == 'subir')
     $subdir = "$fichero->id_objeto";
     $dir = IC_DIR_BASE . "private_upload/$fichero->tipo_objeto/";
     //comprobamos si el directorio existe.
-    if (!file_exists($dir))
-    {
-        if (!mkdir($dir, 0755))
-        {
+    if (!file_exists($dir)) {
+        if (!mkdir($dir, 0755)) {
             $error = ERR_DIR;
-            if ($tipo == 'plan')
-            {
+            if ($tipo == 'plan') {
                 header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
-            }
-            else if ($tipo == 'carta')
-            {
+            } else if ($tipo == 'carta') {
                 header("Location: index.php?page=archivo_gestionar&id_carta=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
-            }
-            else if ($tipo == 'proceso')
-            {
+            } else if ($tipo == 'proceso') {
                 header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
-            }
-            else
-            {
+            } else {
                 header("Location: index.php?page=archivo_gestionar&id_entidad=$id_entidad&error=$error");
             }
         }
     }
-    //comprobamos si el subdirectorio de existe.
-    if (!file_exists($dir . $subdir))
-    {
-        if (!mkdir($dir . $subdir, 0755))
-        {
+    //comprobamos si el subdirectorio existe.
+    if (!file_exists($dir . $subdir)) {
+        if (!mkdir($dir . $subdir, 0755)) {
             $error = ERR_SUBDIR;
-            if ($tipo == 'plan')
-            {
+            if ($tipo == 'plan') {
                 header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
-            }
-            else if ($tipo == 'carta')
-            {
+            } else if ($tipo == 'carta') {
                 header("Location: index.php?page=archivo_gestionar&id_carta=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
-            }
-            else if ($tipo == 'proceso')
-            {
+            } else if ($tipo == 'proceso') {
                 header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
-            }
-            else
-            {
+            } else {
                 header("Location: index.php?page=archivo_gestionar&id_entidad=$id_entidad&error=$error");
             }
         }
     }
     //grabamos el archivo
-    if ($fichero->save())
-    {
-        if (!move_uploaded_file($_FILES['sarchivo']['tmp_name'], $dir . $subdir . "/archivo_" . $fichero->id . ".$ext"))
-        {
+    if ($fichero->save()) {
+        if (!move_uploaded_file($_FILES['sarchivo']['tmp_name'], $dir . $subdir . "/archivo_" . $fichero->id . ".$ext")) {
             $fichero->load("id = $fichero->id");
             $fichero->delete();
-        }
-        else
-        {
+        } else {
             $exito = MSG_ARCHIVO_SUBIDA_OK;
-            if ($tipo == 'plan')
-            {
+            if ($tipo == 'plan') {
                 header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&exito=$exito");
-            }
-            else if ($tipo == 'carta')
-            {
+            } else if ($tipo == 'carta') {
                 header("Location: index.php?page=archivo_gestionar&id_carta=$fichero->id_objeto&id_entidad=$id_entidad&exito=$exito");
-            }
-            else if ($tipo == 'proceso')
-            {
+            } else if ($tipo == 'proceso') {
                 header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&exito=$exito");
-            }
-            else
-            {
+            } else {
                 header("Location: index.php?page=archivo_gestionar&id_entidad=$id_entidad&exito=$exito");
             }
         }
-    }
-    else
-    {
+    } else {
         $error = ERR_ARCHIVO_GRABAR;
-        if ($tipo == 'plan')
-        {
+        if ($tipo == 'plan') {
             header("Location: index.php?page=archivo_gestionar&id_plan=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
-        }
-        else if ($tipo == 'carta')
-        {
+        } else if ($tipo == 'carta') {
             header("Location: index.php?page=archivo_gestionar&id_carta=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
-        }
-        else if ($tipo == 'proceso')
-        {
+        } else if ($tipo == 'proceso') {
             header("Location: index.php?page=archivo_gestionar&id_proceso=$fichero->id_objeto&id_entidad=$id_entidad&error=$error");
-        }
-        else
-        {
+        } else {
             header("Location: index.php?page=archivo_gestionar&id_entidad=$id_entidad&error=$error");
         }
     }
 }
 
-if ($modulo == 'actualizar')
-{
+if ($modulo == 'actualizar') {
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-    if ($fichero->load("id =$id"))
-    {
+    if ($fichero->load("id =$id")) {
         $fichero->titulo = filter_input(INPUT_POST, 'titulo', FILTER_SANITIZE_STRING);
         $fichero->descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
         $fichero->id_usuario = $usuario->id;
@@ -167,22 +119,18 @@ if ($modulo == 'actualizar')
     }
 }
 
-if ($modulo == 'visibilidad')
-{
+if ($modulo == 'visibilidad') {
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-    if ($fichero->load("id =$id"))
-    {
+    if ($fichero->load("id =$id")) {
         $fichero->visible = filter_input(INPUT_POST, 'visible', FILTER_SANITIZE_NUMBER_INT);
         //$db->execute("SET NAMES UTF8");
         $fichero->save();
     }
 }
 
-if ($modulo == 'borrar')
-{
+if ($modulo == 'borrar') {
     $id = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
-    if ($fichero->load("id =$id"))
-    {
+    if ($fichero->load("id =$id")) {
         $fichero->delete();
     }
     //TODO borrar el fichero del servidor

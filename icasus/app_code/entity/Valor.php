@@ -12,7 +12,7 @@
 
 class Valor extends ADOdb_Active_Record
 {
-    public $_table = 'valores';
+    public $_table = 'icasus_valor';
     public $entidad;
     public $usuario;
     public $medicion;
@@ -113,18 +113,18 @@ class Valor extends ADOdb_Active_Record
         $sql = "SELECT  v.id as id_valor, m.id as id_medicion,p.nombre as proceso,
             p.id as id_proceso,e.etiqueta as unidad, 
             i.nombre as indicador, i.id_entidad as entidad_del_indicador,i.control,
-            i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, 
-            v.valor FROM `valores` v
-			LEFT JOIN mediciones m ON v.id_medicion = m.id
-			LEFT JOIN entidades e ON v.id_entidad = e.id
-			LEFT JOIN indicadores i ON m.id_indicador = i.id
-			LEFT JOIN procesos p ON p.id = i.id_proceso
+            i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, v.valor 
+            FROM icasus_valor v
+			LEFT JOIN icasus_medicion m ON v.id_medicion = m.id
+			LEFT JOIN icasus_entidad e ON v.id_entidad = e.id
+			LEFT JOIN icasus_indicador i ON m.id_indicador = i.id
+			LEFT JOIN icasus_proceso p ON p.id = i.id_proceso
 			WHERE v.valor IS NULL
-			$cadena
-                        AND i.archivado IS NULL
+			$cadena AND i.archivado IS NULL
 			AND v.activo = 1 
 			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
 			ORDER BY  i.nombre,e.etiqueta";
+
         return $db->getall($sql);
     }
 
@@ -137,20 +137,20 @@ class Valor extends ADOdb_Active_Record
             i.id_entidad as entidad_del_indicador,i.id as id_indicador,i.control,
             e.id as id_entidad,m.etiqueta as fecha,u.id as id_usuario,
             u.nombre as nombre_responsable,u.apellidos as apellidos_responsable,
-            um.nombre as nombre_responsable_med,um.apellidos as apellidos_responsable_med,
-            v.valor FROM `valores` v
-			LEFT JOIN mediciones m ON v.id_medicion = m.id
-			LEFT JOIN entidades e ON v.id_entidad = e.id
-			LEFT JOIN indicadores i ON m.id_indicador = i.id
-                        LEFT JOIN usuarios u ON i.id_responsable = u.id
-                        LEFT JOIN usuarios um ON i.id_responsable_medicion = um.id
-			LEFT JOIN procesos p ON p.id = i.id_proceso
+            um.nombre as nombre_responsable_med,um.apellidos as apellidos_responsable_med,v.valor 
+            FROM icasus_valor v
+			LEFT JOIN icasus_medicion m ON v.id_medicion = m.id
+			LEFT JOIN icasus_entidad e ON v.id_entidad = e.id
+			LEFT JOIN icasus_indicador i ON m.id_indicador = i.id
+            LEFT JOIN icasus_usuario u ON i.id_responsable = u.id
+            LEFT JOIN icasus_usuario um ON i.id_responsable_medicion = um.id
+			LEFT JOIN icasus_proceso p ON p.id = i.id_proceso
 			WHERE v.valor IS NULL
-			$cadena
-                        AND i.archivado IS NULL
+			$cadena AND i.archivado IS NULL
 			AND v.activo = 1 
 			AND DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
 			GROUP BY  i.id,m.id ORDER BY i.nombre,m.etiqueta";
+
         return $db->getall($sql);
     }
 
@@ -161,19 +161,18 @@ class Valor extends ADOdb_Active_Record
         $sql = "SELECT  v.id as id_valor,v.fecha_recogida, m.id as id_medicion,p.nombre as proceso,
             p.id as id_proceso,e.etiqueta as unidad, 
             i.nombre as indicador, i.id_entidad as entidad_del_indicador,i.control,
-            i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, 
-            v.valor FROM `valores` v
-			LEFT JOIN mediciones m ON v.id_medicion = m.id
-			LEFT JOIN entidades e ON v.id_entidad = e.id
-			LEFT JOIN indicadores i ON m.id_indicador = i.id
-			LEFT JOIN procesos p ON p.id = i.id_proceso
+            i.id as id_indicador,e.id as id_entidad,m.etiqueta as fecha, v.valor 
+            FROM icasus_valor v
+			LEFT JOIN icasus_medicion m ON v.id_medicion = m.id
+			LEFT JOIN icasus_entidad e ON v.id_entidad = e.id
+			LEFT JOIN icasus_indicador i ON m.id_indicador = i.id
+			LEFT JOIN icasus_proceso p ON p.id = i.id_proceso
 			WHERE v.valor IS NOT NULL
-			$cadena
-                        AND i.archivado IS NULL
+			$cadena AND i.archivado IS NULL
 			AND v.activo = 1 
-			AND (DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha
-                        OR DATE_FORMAT( v.fecha_recogida, '%Y' ) = $fecha)
+			AND (DATE_FORMAT( m.periodo_inicio, '%Y' ) = $fecha OR DATE_FORMAT( v.fecha_recogida, '%Y' ) = $fecha)
 			ORDER BY  m.periodo_inicio,v.fecha_recogida, i.nombre";
+
         return $db->getall($sql);
     }
 }

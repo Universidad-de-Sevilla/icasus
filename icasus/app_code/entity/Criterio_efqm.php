@@ -11,6 +11,5 @@
 
 class Criterio_efqm extends ADOdb_Active_Record
 {
-	public $_table = 'criterios_efqm';
-
+    public $_table = 'icasus_criterio_efqm';
 }

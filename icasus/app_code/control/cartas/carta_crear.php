@@ -9,8 +9,7 @@
 // Descripción: muestra el formulario que permite crear una nueva Carta de Servicios
 //---------------------------------------------------------------------------------------------------
 
-if (filter_has_var(INPUT_GET, 'id_entidad') && $control)
-{
+if (filter_has_var(INPUT_GET, 'id_entidad') && $control) {
     $id_entidad = filter_input(INPUT_GET, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $entidad = new Entidad();
     $entidad->load("id=$id_entidad");
@@ -23,9 +22,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && $control)
     $smarty->assign('entidad', $entidad);
     $smarty->assign('_nombre_pagina', TXT_CARTA_CREAR . ": " . $entidad->nombre);
     $plantilla = 'cartas/carta_crear.tpl';
-}
-else
-{
+} else {
     $error = ERR_PARAM;
     header("location:index.php?page=error&error=$error");
 }

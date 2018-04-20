@@ -13,9 +13,13 @@
 class Valor_referencia_medicion extends ADOdb_Active_Record
 {
 
-    public $_table = 'valores_referencia_mediciones';
+    public $_table = 'icasus_valor_referencia_medicion';
     public $medicion;
     public $valor_referencia;
+    public $id;
+    public $id_valor_referencia;
+    public $id_medicion;
+    public $valor;
 
     public function load_joined($condicion)
     {
@@ -23,6 +27,7 @@ class Valor_referencia_medicion extends ADOdb_Active_Record
         {
             $this->valor_referencia = new Valor_referencia();
             $this->valor_referencia->load("id = $this->id_valor_referencia");
+
             return true;
         }
         else
@@ -42,7 +47,7 @@ class Valor_referencia_medicion extends ADOdb_Active_Record
                 $valor_referencia_medicion->valor_referencia->load("id = $valor_referencia_medicion->id_valor_referencia");
             }
         }
+
         return $valores_referencia_mediciones;
     }
-
 }

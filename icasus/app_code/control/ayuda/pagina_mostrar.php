@@ -12,13 +12,10 @@
 global $smarty;
 global $plantilla;
 
-if (filter_has_var(INPUT_GET, 'alias') or filter_has_var(INPUT_GET, 'id_pagina'))
-{
+if (filter_has_var(INPUT_GET, 'alias') or filter_has_var(INPUT_GET, 'id_pagina')) {
     $alias = filter_has_var(INPUT_GET, 'alias') ? filter_input(INPUT_GET, 'alias', FILTER_SANITIZE_STRING) : '';
     $id_pagina = filter_has_var(INPUT_GET, 'id_pagina') ? filter_input(INPUT_GET, 'id_pagina', FILTER_SANITIZE_NUMBER_INT) : 0;
-}
-else
-{
+} else {
     // Mostramos la página índice
     $alias = 'indice';
     $id_pagina = 0;
@@ -26,18 +23,15 @@ else
 
 //Comprobamos si estamos en el índice
 $indice = false;
-if ($alias === 'indice')
-{
+if ($alias === 'indice') {
     $indice = true;
 }
 $smarty->assign('indice', $indice);
 
 // Sólo administradores de Icasus pueden editar la ayuda
 $admin = false;
-foreach ($usuario->entidades as $entidad)
-{
-    if ($entidad->id_entidad == 1 && ($entidad->id_rol == 1 || $entidad->id_rol == 2))
-    {
+foreach ($usuario->entidades as $entidad) {
+    if ($entidad->id_entidad == 1 && ($entidad->id_rol == 1 || $entidad->id_rol == 2)) {
         $admin = true;
     }
 }

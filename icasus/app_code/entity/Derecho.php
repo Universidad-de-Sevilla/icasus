@@ -12,20 +12,22 @@
 
 class Derecho extends ADOdb_Active_Record
 {
-
-    public $_table = 'derechos';
+    public $_table = 'icasus_derecho';
     public $carta;
+    public $id;
+    public $id_carta;
+    public $nombre;
+    public $categoria;
+    public $descripcion;
+
 
     public function load_joined($condicion)
     {
-        if ($this->load($condicion))
-        {
+        if ($this->load($condicion)) {
             $this->carta = new Carta();
             $this->carta->load("id = $this->id_carta");
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -33,10 +35,8 @@ class Derecho extends ADOdb_Active_Record
     public function Find_joined($criterio)
     {
         $derechos = $this->Find($criterio);
-        if ($derechos)
-        {
-            foreach ($derechos as $derecho)
-            {
+        if ($derechos) {
+            foreach ($derechos as $derecho) {
                 $carta = new Carta();
                 $carta->load("id= $derecho->id_carta");
                 $derecho->carta = $carta;
@@ -44,5 +44,4 @@ class Derecho extends ADOdb_Active_Record
         }
         return $derechos;
     }
-
 }

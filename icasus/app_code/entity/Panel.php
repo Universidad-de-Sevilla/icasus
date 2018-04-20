@@ -12,10 +12,20 @@
 
 class Panel extends ADOdb_Active_Record
 {
-
-    public $_table = 'paneles';
+    public $_table = 'icasus_panel';
     public $indicadores;
     public $tipo;
+    public $id;
+    public $id_cuadro;
+    public $nombre;
+    public $id_paneltipo;
+    public $id_medicion;
+    public $orden;
+    public $ancho;
+    public $periodicidad;
+    public $anyo_inicio;
+    public $anyo_fin;
+    public $anyos_atras;
 
     // Devuelve un array de paneles con los panel_tipo y panel_indicador asociados a cada uno
     // Recibe una condición en formato WhereOrderBy
@@ -38,7 +48,7 @@ class Panel extends ADOdb_Active_Record
     public function permiso_panel($id_usuario, $id_panel)
     {
         $db = $this->db();
-        $sql = "SELECT * FROM cuadros c LEFT JOIN paneles p 
+        $sql = "SELECT * FROM icasus_cuadro c LEFT JOIN icasus_panel p 
 						ON p.id_cuadro = c.id 
 						WHERE c.id_usuario = $id_usuario  AND p.id= $id_panel";
 
@@ -66,5 +76,4 @@ class Panel extends ADOdb_Active_Record
             //escribir error en log
         }
     }
-
 }

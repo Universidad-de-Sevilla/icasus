@@ -12,7 +12,11 @@
 
 class Valor_referencia extends ADOdb_Active_Record
 {
-
-    var $_table = 'valores_referencia';
-
+    public $_table = 'icasus_valor_referencia';
+    public $id;
+    public $id_indicador;
+    public $activo;
+    public $etiqueta;
+    public $grafica;
+    public $nombre;
 }

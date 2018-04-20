@@ -12,18 +12,15 @@
 
 global $usuario;
 
-if (filter_has_var(INPUT_POST, 'nombre'))
-{
+if (filter_has_var(INPUT_POST, 'nombre')) {
     $derecho = new Derecho();
     $carta = new Carta();
     $exito = MSG_DERECHO_CREADO;
     // Si viene el id es que estamos editando un Derecho existente
-    if (filter_has_var(INPUT_POST, 'id_derecho'))
-    {
+    if (filter_has_var(INPUT_POST, 'id_derecho')) {
         $id_derecho = filter_input(INPUT_POST, 'id_derecho', FILTER_SANITIZE_NUMBER_INT);
         $exito = MSG_DERECHO_EDITADO;
-        if ($derecho->load("id = $id_derecho") == false)
-        {
+        if ($derecho->load("id = $id_derecho") == false) {
             $error = ERR_DERECHO_EDIT;
             header("Location: index.php?page=error&error=error");
         }
@@ -37,9 +34,7 @@ if (filter_has_var(INPUT_POST, 'nombre'))
     $derecho->descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
     $derecho->save();
     header("Location: index.php?page=derecho_mostrar&id_entidad=$carta->id_entidad&id_derecho=$derecho->id&exito=$exito");
-}
-else
-{
+} else {
     // Avisamos de error por falta de parametros
     $error = ERR_PARAM;
     header("Location: index.php?page=error&error=error");

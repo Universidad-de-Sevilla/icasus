@@ -9,36 +9,28 @@
 // Descripcion: Editar una Normativa existente
 //---------------------------------------------------------------------------------------------------
 
-if (filter_has_var(INPUT_GET, 'id_normativa') && $control)
-{
-    $id_normativa = filter_input(INPUT_GET, 'id_normativa', FILTER_SANITIZE_NUMBER_INT);
+global $control;
 
+if (filter_has_var(INPUT_GET, 'id_normativa') && $control) {
+    $id_normativa = filter_input(INPUT_GET, 'id_normativa', FILTER_SANITIZE_NUMBER_INT);
     //Obtenemos los datos de la Normativa
     $normativa = new Normativa();
-    if ($normativa->load("id = $id_normativa"))
-    {
+    if ($normativa->load("id = $id_normativa")) {
         $smarty->assign('normativa', $normativa);
-    }
-    else
-    {
+    } else {
         $error = ERR_NORMATIVA_MOSTRAR;
         header("location:index.php?page=error&error=$error");
     }
-
     $id_carta = $normativa->id_carta;
     $carta = new Carta();
     $carta->load("id = $id_carta");
     $smarty->assign('carta', $carta);
-
     $entidad = new Entidad();
     $entidad->load("id=$carta->id_entidad");
     $smarty->assign('entidad', $entidad);
-
     $smarty->assign('_nombre_pagina', TXT_NORMATIVA_EDIT . ': ' . $normativa->nombre);
     $plantilla = 'cartas/normativa_editar.tpl';
-}
-else
-{
+} else {
     $error = ERR_PARAM;
     header("location:index.php?page=error&error=$error");
 }

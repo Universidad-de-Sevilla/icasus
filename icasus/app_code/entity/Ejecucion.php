@@ -12,7 +12,14 @@
 
 class Ejecucion extends ADOdb_Active_Record
 {
-
-    public $_table = 'ejecuciones';
-
+    public $_table = 'icasus_ejecucion';
+    public $id;
+    public $id_plan;
+    public $id_linea;
+    public $id_objest;
+    public $id_objop;
+    public $anyo;
+    public $valor;
+    public $activo;
+    public $resultado;
 }

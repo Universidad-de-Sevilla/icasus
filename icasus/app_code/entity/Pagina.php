@@ -12,12 +12,15 @@
 
 class Pagina extends ADOdb_Active_Record
 {
-
-    public $_table = "paginas";
+    public $_table = "icasus_pagina";
+    public $id;
+    public $titulo;
+    public $contenido;
+    public $alias;
+    public $modified;
 
     function alieniza($alias)
     {
         return strtr($alias, "???????¥µÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýÿ ", "SOZsozYYuAAAAAAACEEEEIIIIDNOOOOOOUUUUYsaaaaaaaceeeeiiiionoooooouuuuyy_");
     }
-
 }

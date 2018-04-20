@@ -12,15 +12,19 @@
 
 class Cuadro extends ADOdb_Active_Record
 {
-
-    public $_table = 'cuadros';
+    public $_table = 'icasus_cuadro';
     public $entidad;
     public $usuario;
+    public $nombre;
+    public $id_usuario;
+    public $privado;
+    public $comentarios;
+    public $id_entidad;
+
 
     public function load_joined($condicion)
     {
-        if ($this->load($condicion))
-        {
+        if ($this->load($condicion)) {
             $this->entidad = new Entidad();
             $this->entidad->load("id = $this->id_entidad");
 
@@ -28,9 +32,7 @@ class Cuadro extends ADOdb_Active_Record
             $this->usuario->load("id = $this->id_usuario");
 
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
@@ -38,10 +40,8 @@ class Cuadro extends ADOdb_Active_Record
     public function Find_joined($criterio)
     {
         $cuadros = $this->Find($criterio);
-        if ($cuadros)
-        {
-            foreach ($cuadros as $cuadro)
-            {
+        if ($cuadros) {
+            foreach ($cuadros as $cuadro) {
                 $entidad = new Entidad();
                 $entidad->load("id= $cuadro->id_entidad");
                 $cuadro->entidad = $entidad;
@@ -53,5 +53,4 @@ class Cuadro extends ADOdb_Active_Record
         }
         return $cuadros;
     }
-
 }
