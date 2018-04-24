@@ -241,7 +241,7 @@
                     <li class="list-group-item list-group-item-info">
                         <div class="row">
                             <div class="col-sm-8 h4">
-                                {$linea->indice}.{$objest>indice}. {$objest->nombre}
+                                {$linea->indice}.{$objest->indice}. {$objest->nombre}
                             </div>
                             <!-- /.col-sm-8 -->
                             <div class="col-sm-4">
