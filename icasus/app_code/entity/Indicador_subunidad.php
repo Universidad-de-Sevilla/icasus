@@ -28,12 +28,6 @@ class Indicador_subunidad extends ADOdb_Active_Record
     public function indicador_segregado($id_unidad, $id_proceso)
     {
         $db = $this->DB();
-        /*
-          $query = "SELECT * FROM indicadores_subunidades insu
-          INNER JOIN indicadores i ON insu.id_indicador = i.id
-          WHERE insu.id_entidad = $id_unidad AND insu.id_indicador
-          NOT IN (SELECT id FROM indicadores  WHERE id_entidad = $id_unidad)";
-         */
         $query = "SELECT * FROM icasus_indicador_subunidad insu
 					LEFT JOIN icasus_indicador i
 					ON insu.id_indicador = i.id

@@ -1,8 +1,10 @@
 <?php
 
-define('IC_VERSION', "3.53.0");
-define('IC_FECHA_REVISION', "08/02/2018");
+define('IC_VERSION', "3.54.1");
+define('IC_FECHA_REVISION', "24/04/2018");
 
+// 3.54.1 - 24/04/2018 - Faltaba por cambiar una consulta y no se podían borrar mediciones
+// 3.54.0 - 20/04/2018 - Cambio de nombres de tablas de la base de datos y migración a baobab.
 // 3.53.0 - 08/02/2018 - Nueva versión de la librería opensso (1.0.10)
 // 3.52.7 - 07/02/2018 - Automatiza valor inicial histórico en creación indicador. Cambia literal "Clientes" por "Usuarios".
 // 3.52.6 - 27/12/2017 - Mapa procesos Centro Internacional todavía a mano

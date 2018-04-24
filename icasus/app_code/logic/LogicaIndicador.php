@@ -33,8 +33,7 @@ class LogicaIndicador implements ILogicaIndicador
     public function borrar_unidades($id)
     {
         $indicador_subunidad = new Indicador_subunidad();
-        while ($indicador_subunidad->load("id_indicador = $id"))
-        {
+        while ($indicador_subunidad->load("id_indicador = $id")) {
             $indicador_subunidad->delete();
         }
     }
@@ -49,17 +48,12 @@ class LogicaIndicador implements ILogicaIndicador
         //cuyo cálculo dependa del Indicador/Dato actual
         $this->generar_mediciones_indicadores_dependientes($indicador, $anyo);
 
-        if ($indicador->periodicidad == 'Bienal')
-        {
-            for ($i = $anyo; $i < idate('Y') + 1; $i += 2)
-            {
+        if ($indicador->periodicidad == 'Bienal') {
+            for ($i = $anyo; $i < idate('Y') + 1; $i += 2) {
                 $this->generar_medicion_bienal($indicador, $i);
             }
-        }
-        else
-        {
-            for ($i = $anyo; $i < idate('Y') + 1; $i++)
-            {
+        } else {
+            for ($i = $anyo; $i < idate('Y') + 1; $i++) {
                 $this->generar_mediciones_por_anyo($indicador, $i);
             }
         }
@@ -71,16 +65,12 @@ class LogicaIndicador implements ILogicaIndicador
     {
         $indicador_dependencia = new Indicador_dependencia();
         $indicadores_dependientes = $indicador_dependencia->Find("id_operando=$indicador->id");
-        foreach ($indicadores_dependientes as $indicador_dependiente)
-        {
+        foreach ($indicadores_dependientes as $indicador_dependiente) {
             $indicador = new Indicador();
             $indicador->load("id=$indicador_dependiente->id_calculado");
-            if ($indicador->id_proceso)
-            {
+            if ($indicador->id_proceso) {
                 $this->generar_mediciones($indicador, $anyo);
-            }
-            else
-            {
+            } else {
                 $this->generar_mediciones($indicador, $anyo);
             }
         }
@@ -93,13 +83,10 @@ class LogicaIndicador implements ILogicaIndicador
         $medicion = new Medicion();
         $etiqueta = $anyo . '-' . ($anyo + 1);
         //Comprobamos primero si ya exite la medición
-        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
-        {
+        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'")) {
             $exito = MSG_MED_EXISTE;
             header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
-        }
-        else
-        {
+        } else {
             $periodo_inicio = $anyo . '-01-01';
             $periodo_fin = $anyo + 1 . '-12-31';
             $grabacion_fin = $anyo + 2 . '-04-30';
@@ -128,28 +115,19 @@ class LogicaIndicador implements ILogicaIndicador
     {
         //Generamos mediciones en función de la periodicidad
         //Anual
-        if ($indicador->periodicidad == 'Anual')
-        {
+        if ($indicador->periodicidad == 'Anual') {
             $this->generar_medicion_anual($indicador, $anyo);
-        }
-        //Semestral
-        else if ($indicador->periodicidad == 'Semestral')
-        {
+        } //Semestral
+        else if ($indicador->periodicidad == 'Semestral') {
             $this->generar_mediciones_semestrales($indicador, $anyo);
-        }
-        //Cuatrimestral
-        else if ($indicador->periodicidad == 'Cuatrimestral')
-        {
+        } //Cuatrimestral
+        else if ($indicador->periodicidad == 'Cuatrimestral') {
             $this->generar_mediciones_cuatrimestrales($indicador, $anyo);
-        }
-        //Trimestral
-        else if ($indicador->periodicidad == 'Trimestral')
-        {
+        } //Trimestral
+        else if ($indicador->periodicidad == 'Trimestral') {
             $this->generar_mediciones_trimestrales($indicador, $anyo);
-        }
-        //Mensual
-        else
-        {
+        } //Mensual
+        else {
             $this->generar_mediciones_mensuales($indicador, $anyo);
         }
     }
@@ -160,13 +138,10 @@ class LogicaIndicador implements ILogicaIndicador
         $medicion = new Medicion();
         $etiqueta = $anyo;
         //Comprobamos primero si ya exite la medición
-        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
-        {
+        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'")) {
             $exito = MSG_MED_EXISTE;
             header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
-        }
-        else
-        {
+        } else {
             $periodo_inicio = $anyo . '-01-01';
             $periodo_fin = $anyo . '-12-31';
             $grabacion_fin = $anyo + 1 . '-04-30';
@@ -192,8 +167,7 @@ class LogicaIndicador implements ILogicaIndicador
     //Genera las mediciones Semestrales
     private function generar_mediciones_semestrales($indicador, $anyo)
     {
-        for ($i = 1; $i != 3; $i++)
-        {
+        for ($i = 1; $i != 3; $i++) {
             $this->generar_medicion_semestral($indicador, $anyo, $i);
         }
     }
@@ -204,21 +178,15 @@ class LogicaIndicador implements ILogicaIndicador
         $medicion = new Medicion();
         $etiqueta = $anyo . '.' . $indice . 'S';
         //Comprobamos primero si ya exite la medición
-        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
-        {
+        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'")) {
             $exito = MSG_MED_EXISTE;
             header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
-        }
-        else
-        {
+        } else {
             $periodo_inicio = array($anyo . '-01-01', $anyo . '-07-01');
             $periodo_fin = array($anyo . '-06-30', $anyo . '-12-31');
-            if (Util::esBisiesto($anyo + 1))
-            {
+            if (Util::esBisiesto($anyo + 1)) {
                 $grabacion_fin = array($anyo . '-08-31', $anyo + 1 . '-02-29');
-            }
-            else
-            {
+            } else {
                 $grabacion_fin = array($anyo . '-08-31', $anyo + 1 . '-02-28');
             }
             $medicion->id_indicador = $indicador->id;
@@ -243,8 +211,7 @@ class LogicaIndicador implements ILogicaIndicador
     //Genera las mediciones cuatrimestrales 
     private function generar_mediciones_cuatrimestrales($indicador, $anyo)
     {
-        for ($i = 1; $i != 4; $i++)
-        {
+        for ($i = 1; $i != 4; $i++) {
             $this->generar_medicion_cuatrimestral($indicador, $anyo, $i);
         }
     }
@@ -255,21 +222,15 @@ class LogicaIndicador implements ILogicaIndicador
         $medicion = new Medicion();
         $etiqueta = $anyo . '.' . $indice . 'C';
         //Comprobamos primero si ya exite la medición
-        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
-        {
+        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'")) {
             $exito = MSG_MED_EXISTE;
             header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
-        }
-        else
-        {
+        } else {
             $periodo_inicio = array($anyo . '-01-01', $anyo . '-05-01', $anyo . '-09-01');
             $periodo_fin = array($anyo . '-04-30', $anyo . '-08-31', $anyo . '-12-31');
-            if (Util::esBisiesto($anyo + 1))
-            {
+            if (Util::esBisiesto($anyo + 1)) {
                 $grabacion_fin = array($anyo . '-06-30', $anyo . '-10-31', $anyo + 1 . '-02-29');
-            }
-            else
-            {
+            } else {
                 $grabacion_fin = array($anyo . '-06-30', $anyo . '-10-31', $anyo + 1 . '-02-28');
             }
             $medicion->id_indicador = $indicador->id;
@@ -294,8 +255,7 @@ class LogicaIndicador implements ILogicaIndicador
     //Genera las mediciones trimestrales 
     private function generar_mediciones_trimestrales($indicador, $anyo)
     {
-        for ($i = 1; $i != 5; $i++)
-        {
+        for ($i = 1; $i != 5; $i++) {
             $this->generar_medicion_trimestral($indicador, $anyo, $i);
         }
     }
@@ -306,21 +266,15 @@ class LogicaIndicador implements ILogicaIndicador
         $medicion = new Medicion();
         $etiqueta = $anyo . '.' . $indice . 'T';
         //Comprobamos primero si ya exite la medición
-        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
-        {
+        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'")) {
             $exito = MSG_MED_EXISTE;
             header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
-        }
-        else
-        {
+        } else {
             $periodo_inicio = array($anyo . '-01-01', $anyo . '-04-01', $anyo . '-07-01', $anyo . '-10-01');
             $periodo_fin = array($anyo . '-03-31', $anyo . '-06-30', $anyo . '-09-30', $anyo . '-12-31');
-            if (Util::esBisiesto($anyo + 1))
-            {
+            if (Util::esBisiesto($anyo + 1)) {
                 $grabacion_fin = array($anyo . '-05-31', $anyo . '-08-31', $anyo . '-11-30', $anyo + 1 . '-02-29');
-            }
-            else
-            {
+            } else {
                 $grabacion_fin = array($anyo . '-05-31', $anyo . '-08-31', $anyo . '-11-30', $anyo + 1 . '-02-28');
             }
             $medicion->id_indicador = $indicador->id;
@@ -345,8 +299,7 @@ class LogicaIndicador implements ILogicaIndicador
     //Genera las mediciones mensuales
     private function generar_mediciones_mensuales($indicador, $anyo)
     {
-        for ($i = 1; $i != 13; $i++)
-        {
+        for ($i = 1; $i != 13; $i++) {
             $this->generar_medicion_mensual($indicador, $anyo, $i);
         }
     }
@@ -355,30 +308,23 @@ class LogicaIndicador implements ILogicaIndicador
     private function generar_medicion_mensual($indicador, $anyo, $indice)
     {
         $medicion = new Medicion();
-        if ($indice < 10)
-        {
+        if ($indice < 10) {
             $etiqueta = $anyo . '.0' . $indice;
-        }
-        else
-        {
+        } else {
             $etiqueta = $anyo . '.' . $indice;
         }
         //Comprobamos primero si ya exite la medición
-        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'"))
-        {
+        if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'")) {
             $exito = MSG_MED_EXISTE;
             header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
-        }
-        else
-        {
+        } else {
             $periodo_inicio = array($anyo . '-01-01', $anyo . '-02-01',
                 $anyo . '-03-01', $anyo . '-04-01', $anyo . '-05-01',
                 $anyo . '-06-01', $anyo . '-07-01', $anyo . '-08-01',
                 $anyo . '-09-01', $anyo . '-10-01', $anyo . '-11-01',
                 $anyo . '-12-01');
             //Si el año es bisiesto añadimos un día a Febrero
-            if (Util::esBisiesto($anyo))
-            {
+            if (Util::esBisiesto($anyo)) {
                 $periodo_fin = array($anyo . '-01-31', $anyo . '-02-29',
                     $anyo . '-03-31', $anyo . '-04-30',
                     $anyo . '-05-31', $anyo . '-06-30',
@@ -391,9 +337,7 @@ class LogicaIndicador implements ILogicaIndicador
                     $anyo . '-08-31', $anyo . '-09-30',
                     $anyo . '-10-31', $anyo . '-11-30',
                     $anyo . '-12-31', $anyo + 1 . '-01-31');
-            }
-            else
-            {
+            } else {
                 $periodo_fin = array($anyo . '-01-31', $anyo . '-02-28',
                     $anyo . '-03-31', $anyo . '-04-30',
                     $anyo . '-05-31', $anyo . '-06-30',
@@ -436,50 +380,40 @@ class LogicaIndicador implements ILogicaIndicador
         //Comprobar si el indicador influye en otros si es asi no se podra borrar la medicion
         $indicadores_dependientes = $this->calcular_influencias($indicador->id);
         //Si influye comprobamos las mediciones existentes
-        if ($indicadores_dependientes)
-        {
-            foreach ($indicadores_dependientes as $indicador_dependiente)
-            {
+        if ($indicadores_dependientes) {
+            foreach ($indicadores_dependientes as $indicador_dependiente) {
                 $mediciones = $medicion->Find("id_indicador = $indicador_dependiente->id ORDER BY periodo_inicio");
-                foreach ($mediciones as $med)
-                {
-                    if ($med->etiqueta === $medicion->etiqueta)
-                    {
+                foreach ($mediciones as $med) {
+                    if ($med->etiqueta === $medicion->etiqueta) {
                         $sin_dependencias = false;
                     }
                 }
             }
         }
         //Si no influye podemos borrar
-        if ($sin_dependencias)
-        {
+        if ($sin_dependencias) {
             $adodb = $medicion->db();
             // Consulta para borrar los valores
-            $query1 = "DELETE FROM valores WHERE id_medicion = $id_medicion;\n";
+            $query1 = "DELETE FROM icasus_valor WHERE id_medicion = $id_medicion;\n";
             // Consulta para borrar los registros relacionados de la tabla valor_referencia_medicion
-            $query2 = "DELETE FROM valores_referencia_mediciones WHERE id_medicion = $id_medicion;\n";
+            $query2 = "DELETE FROM icasus_valor_referencia_medicion WHERE id_medicion = $id_medicion;\n";
             // Consulta para borrar la medición
-            $query3 = "DELETE FROM mediciones WHERE id = $id_medicion;\n";
+            $query3 = "DELETE FROM icasus_medicion WHERE id = $id_medicion;\n";
             // Comenzamos una transacción de manera que se borre todo o nada
             $adodb->StartTrans();
             $adodb->Execute($query1);
             $adodb->Execute($query2);
             $adodb->Execute($query3);
-            if ($adodb->HasFailedTrans())
-            {
+            if ($adodb->HasFailedTrans()) {
                 $error = ERR_OP_BD;
                 $estado = "error=$error";
-            }
-            else
-            {
+            } else {
                 $exito = MSG_MED_BORRADA;
                 $estado = "exito=$exito";
             }
             $adodb->CompleteTrans();
             header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
-        }
-        else
-        {
+        } else {
             $aviso = ERR_MED_BORRAR;
             $estado = "aviso=$aviso";
             header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&$estado");
@@ -497,15 +431,11 @@ class LogicaIndicador implements ILogicaIndicador
     {
         $total = null;
         //Significa que la medición no es centralizada
-        if ($valores)
-        {
-            if (count($valores) > 1)
-            {
+        if ($valores) {
+            if (count($valores) > 1) {
                 $total = $this->calcular_total_agregacion($indicador, $valores, $etiqueta);
-            }
-            //La medición esta centralizada por tanto sólo tenemos un valor
-            else
-            {
+            } //La medición esta centralizada por tanto sólo tenemos un valor
+            else {
                 $total = $valores[0]->valor;
             }
         }
@@ -514,8 +444,7 @@ class LogicaIndicador implements ILogicaIndicador
 
     private function calcular_total_agregacion($indicador, $valores, $etiqueta)
     {
-        switch ($indicador->id_tipo_agregacion)
-        {
+        switch ($indicador->id_tipo_agregacion) {
             //Media
             case 1:
                 {
@@ -544,7 +473,8 @@ class LogicaIndicador implements ILogicaIndicador
                 {
                     return $this->calcular_total_heredado($indicador, $etiqueta);
                 }
-            default:return null;
+            default:
+                return null;
         }
     }
 
@@ -557,43 +487,33 @@ class LogicaIndicador implements ILogicaIndicador
         $es_variable = false;
         $formula = "";
         $calculo = str_split($indicador->calculo);
-        foreach ($calculo as $elemento)
-        {
-            if ($elemento == "[")
-            {
+        foreach ($calculo as $elemento) {
+            if ($elemento == "[") {
                 $variable = "";
                 $es_variable = true;
                 continue;
             }
-            if ($elemento == "]")
-            {
-                if (is_numeric($variable))
-                {
-                    $id_operando = (int) $variable;
+            if ($elemento == "]") {
+                if (is_numeric($variable)) {
+                    $id_operando = (int)$variable;
                     $operando = new Indicador();
                     $operando->Load("id=$id_operando");
                     $valores = $this->indicador_valores_medicion($operando, $etiqueta);
                     $valor_total = $this->calcular_total($operando, $valores, $etiqueta);
                     //Si no se puede calcular un operando devolvemos null para evitar
                     //errores de parseo
-                    if ($valor_total === NULL)
-                    {
+                    if ($valor_total === NULL) {
                         return NULL;
-                    }
-                    else
-                    {
+                    } else {
                         $formula .= "$valor_total";
                     }
                 }
                 $es_variable = false;
                 continue;
             }
-            if ($es_variable)
-            {
+            if ($es_variable) {
                 $variable .= $elemento;
-            }
-            else
-            {
+            } else {
                 $formula .= $elemento;
             }
         }
@@ -608,8 +528,7 @@ class LogicaIndicador implements ILogicaIndicador
     //y en función de su tipo de agregación 
     public function calcular_total_temporal($indicador, $subunidad, $anyo)
     {
-        switch ($indicador->id_tipo_agregacion_temporal)
-        {
+        switch ($indicador->id_tipo_agregacion_temporal) {
             //Media
             case 1:
                 {
@@ -630,7 +549,8 @@ class LogicaIndicador implements ILogicaIndicador
                 {
                     return $this->calcular_total_temporal_evolutivo($indicador, $subunidad, $anyo);
                 }
-            default:return null;
+            default:
+                return null;
         }
     }
 
@@ -638,14 +558,12 @@ class LogicaIndicador implements ILogicaIndicador
     private function calcular_total_temporal_media($indicador, $subunidad, $anyo)
     {
         //Si es el total en un indicador/dato agregado
-        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad)
-        {
+        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad) {
             $medicion = new Medicion();
             $valor = new Valor();
             $totales = array();
             $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
-            foreach ($mediciones as $medicion)
-            {
+            foreach ($mediciones as $medicion) {
                 $valores = $valor->Find("id_medicion=$medicion->id");
                 $total = $this->calcular_total($indicador, $valores, $medicion->etiqueta);
                 $valor_total = new Valor();
@@ -653,16 +571,12 @@ class LogicaIndicador implements ILogicaIndicador
                 array_push($totales, $valor_total);
             }
             return $this->logicaValores->media($totales);
-        }
-        else
-        {
+        } else {
 
             $valores = array();
             //Tomamos sólo los valores del año
-            foreach ($subunidad->mediciones as $medicion)
-            {
-                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false)
-                {
+            foreach ($subunidad->mediciones as $medicion) {
+                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false) {
                     array_push($valores, $medicion->medicion_valor);
                 }
             }
@@ -674,14 +588,12 @@ class LogicaIndicador implements ILogicaIndicador
     private function calcular_total_temporal_sumatorio($indicador, $subunidad, $anyo)
     {
         //Si es el total en un indicador/dato agregado
-        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad)
-        {
+        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad) {
             $medicion = new Medicion();
             $valor = new Valor();
             $totales = array();
             $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
-            foreach ($mediciones as $medicion)
-            {
+            foreach ($mediciones as $medicion) {
                 $valores = $valor->Find("id_medicion=$medicion->id");
                 $total = $this->calcular_total($indicador, $valores, $medicion->etiqueta);
                 $valor_total = new Valor();
@@ -689,15 +601,11 @@ class LogicaIndicador implements ILogicaIndicador
                 array_push($totales, $valor_total);
             }
             return $this->logicaValores->sumatorio($totales);
-        }
-        else
-        {
+        } else {
             $valores = array();
             //Tomamos sólo los valores del año
-            foreach ($subunidad->mediciones as $medicion)
-            {
-                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false)
-                {
+            foreach ($subunidad->mediciones as $medicion) {
+                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false) {
                     array_push($valores, $medicion->medicion_valor);
                 }
             }
@@ -709,14 +617,12 @@ class LogicaIndicador implements ILogicaIndicador
     private function calcular_total_temporal_maximo($indicador, $subunidad, $anyo)
     {
         //Si es el total en un indicador/dato agregado
-        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad)
-        {
+        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad) {
             $medicion = new Medicion();
             $valor = new Valor();
             $totales = array();
             $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
-            foreach ($mediciones as $medicion)
-            {
+            foreach ($mediciones as $medicion) {
                 $valores = $valor->Find("id_medicion=$medicion->id");
                 $total = $this->calcular_total($indicador, $valores, $medicion->etiqueta);
                 $valor_total = new Valor();
@@ -724,15 +630,11 @@ class LogicaIndicador implements ILogicaIndicador
                 array_push($totales, $valor_total);
             }
             return $this->logicaValores->maximo($totales);
-        }
-        else
-        {
+        } else {
             $valores = array();
             //Tomamos sólo los valores del año
-            foreach ($subunidad->mediciones as $medicion)
-            {
-                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false)
-                {
+            foreach ($subunidad->mediciones as $medicion) {
+                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false) {
                     array_push($valores, $medicion->medicion_valor);
                 }
             }
@@ -744,44 +646,32 @@ class LogicaIndicador implements ILogicaIndicador
     private function calcular_total_temporal_evolutivo($indicador, $subunidad, $anyo)
     {
         //Si es el total en un indicador/dato agregado
-        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad)
-        {
+        if ($indicador->id_tipo_agregacion != 0 && $indicador->id_tipo_agregacion != 4 && $subunidad->id == $indicador->id_entidad) {
             $medicion = new Medicion();
             $valor = new Valor();
             $totales = array();
             $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
-            foreach ($mediciones as $medicion)
-            {
+            foreach ($mediciones as $medicion) {
                 $valores = $valor->Find("id_medicion=$medicion->id");
                 $total = $this->calcular_total($indicador, $valores, $medicion->etiqueta);
                 array_push($totales, $total);
             }
-            if ($totales)
-            {
+            if ($totales) {
                 return $totales[0];
-            }
-            else
-            {
+            } else {
                 return NULL;
             }
-        }
-        else
-        {
+        } else {
             $mediciones = array();
             //Tomamos sólo las mediciones del año
-            foreach ($subunidad->mediciones as $medicion)
-            {
-                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false)
-                {
+            foreach ($subunidad->mediciones as $medicion) {
+                if (strpos($medicion->etiqueta, '' . $anyo . '') !== false) {
                     array_push($mediciones, $medicion);
                 }
             }
-            if ($mediciones)
-            {
+            if ($mediciones) {
                 return $mediciones[0]->medicion_valor->valor;
-            }
-            else
-            {
+            } else {
                 return NULL;
             }
         }
@@ -801,26 +691,21 @@ class LogicaIndicador implements ILogicaIndicador
         $es_variable = false;
         // Recorremos la cadena $calculo para sacar los 
         // indicadores/datos influyentes
-        foreach ($calculo as $elemento)
-        {
-            if ($elemento == "[")
-            {
+        foreach ($calculo as $elemento) {
+            if ($elemento == "[") {
                 $variable = "";
                 $es_variable = true;
                 continue;
             }
-            if ($elemento == "]")
-            {
+            if ($elemento == "]") {
                 //Es el id de un indicador/dato del que depende
-                if (is_numeric($variable))
-                {
+                if (is_numeric($variable)) {
                     //Lo guardamos en la tabla de indicadores_dependencias
-                    $this->guarda_dependencia($id, (int) $variable);
+                    $this->guarda_dependencia($id, (int)$variable);
                 }
                 $es_variable = false;
             }
-            if ($es_variable)
-            {
+            if ($es_variable) {
                 $variable .= $elemento;
             }
         }
@@ -841,8 +726,7 @@ class LogicaIndicador implements ILogicaIndicador
     public function borrar_dependencias($id)
     {
         $indicador_dependencia = new Indicador_dependencia();
-        while ($indicador_dependencia->load("id_calculado = $id"))
-        {
+        while ($indicador_dependencia->load("id_calculado = $id")) {
             $indicador_dependencia->delete();
         }
     }
@@ -852,8 +736,7 @@ class LogicaIndicador implements ILogicaIndicador
         $indicadores_influyentes = array();
         $indicador_dependencia = new Indicador_dependencia();
         $indicadores_dependencias = $indicador_dependencia->Find("id_calculado=$id");
-        foreach ($indicadores_dependencias as $indicador_dependiente)
-        {
+        foreach ($indicadores_dependencias as $indicador_dependiente) {
             $indicador_influye = new Indicador();
             $indicador_influye->load("id=$indicador_dependiente->id_operando");
             $indicadores_influyentes[] = $indicador_influye;
@@ -868,8 +751,7 @@ class LogicaIndicador implements ILogicaIndicador
         $indicadores_dependientes = array();
         $indicador_dependencia = new Indicador_dependencia();
         $indicadores_dependencias = $indicador_dependencia->Find("id_operando=$id");
-        foreach ($indicadores_dependencias as $indicador_dependiente)
-        {
+        foreach ($indicadores_dependencias as $indicador_dependiente) {
             $indicador_depende = new Indicador();
             $indicador_depende->load("id=$indicador_dependiente->id_calculado");
             $indicadores_dependientes[] = $indicador_depende;
@@ -883,10 +765,8 @@ class LogicaIndicador implements ILogicaIndicador
     public function actualizar_valor_indicadores_calculados($id, $etiqueta, $id_entidad)
     {
         $indicadores_dependientes = $this->calcular_influencias($id);
-        if ($indicadores_dependientes)
-        {
-            foreach ($indicadores_dependientes as $indicador_dependiente)
-            {
+        if ($indicadores_dependientes) {
+            foreach ($indicadores_dependientes as $indicador_dependiente) {
                 $this->actualizar_valor_indicadores_calculados($indicador_dependiente->id, $etiqueta, $id_entidad);
                 $this->actualizar_valor($indicador_dependiente, $etiqueta, $id_entidad);
             }
@@ -901,26 +781,20 @@ class LogicaIndicador implements ILogicaIndicador
         //Variable que nos dirá si es factible el cálculo
         $calculable = true;
         $indicadores_influyentes = $this->calcular_dependencias($indicador->id);
-        foreach ($indicadores_influyentes as $indicador_influyente)
-        {
+        foreach ($indicadores_influyentes as $indicador_influyente) {
             //Comprobamos que la periodicidad de todos los indicadores 
             //implicados sea la misma
-            if ($indicador->periodicidad !== $indicador_influyente->periodicidad)
-            {
+            if ($indicador->periodicidad !== $indicador_influyente->periodicidad) {
                 $calculable = false;
             }
         }
-        if ($calculable)
-        {
+        if ($calculable) {
             //Si el Indicador/Dato se mide de forma centralizada en la Unidad superior 
             //entonces calculamos totales  de los influyentes y a partir de la 
             //fórmula calculamos y grabamos el valor
-            if ($indicador->id_tipo_agregacion == 0)
-            {
+            if ($indicador->id_tipo_agregacion == 0) {
                 $this->actualizar_valor_centralizado($indicador, $etiqueta);
-            }
-            else
-            {
+            } else {
                 $this->actualizar_valor_agregado($indicador, $etiqueta, $id_entidad);
             }
         }
@@ -935,19 +809,15 @@ class LogicaIndicador implements ILogicaIndicador
         $es_variable = false;
         $formula = "";
         $calculo = str_split($indicador->calculo);
-        foreach ($calculo as $elemento)
-        {
-            if ($elemento == "[")
-            {
+        foreach ($calculo as $elemento) {
+            if ($elemento == "[") {
                 $variable = "";
                 $es_variable = true;
                 continue;
             }
-            if ($elemento == "]")
-            {
-                if (is_numeric($variable))
-                {
-                    $id_operando = (int) $variable;
+            if ($elemento == "]") {
+                if (is_numeric($variable)) {
+                    $id_operando = (int)$variable;
                     $operando = new Indicador();
                     $operando->Load("id=$id_operando");
                     $valores = $this->indicador_valores_medicion($operando, $etiqueta);
@@ -957,12 +827,9 @@ class LogicaIndicador implements ILogicaIndicador
                 $es_variable = false;
                 continue;
             }
-            if ($es_variable)
-            {
+            if ($es_variable) {
                 $variable .= $elemento;
-            }
-            else
-            {
+            } else {
                 $formula .= $elemento;
             }
         }
@@ -989,34 +856,27 @@ class LogicaIndicador implements ILogicaIndicador
         $medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'");
         $valor = new Valor();
         //Si se mide entonces calculamos
-        if ($valor->load("id_medicion=$medicion->id AND id_entidad=$id_entidad"))
-        {
+        if ($valor->load("id_medicion=$medicion->id AND id_entidad=$id_entidad")) {
             // Recorremos la cadena $calculo para sacar y calcular las variables
             // Almacenamos el resultado en $formula
             $es_variable = false;
             $formula = "";
             $calculo = str_split($indicador->calculo);
-            foreach ($calculo as $elemento)
-            {
-                if ($elemento == "[")
-                {
+            foreach ($calculo as $elemento) {
+                if ($elemento == "[") {
                     $variable = "";
                     $es_variable = true;
                     continue;
                 }
-                if ($elemento == "]")
-                {
-                    if (is_numeric($variable))
-                    {
-                        $id_operando = (int) $variable;
+                if ($elemento == "]") {
+                    if (is_numeric($variable)) {
+                        $id_operando = (int)$variable;
                         $operando = new Indicador();
                         $operando->Load("id=$id_operando");
                         //Recuperar el valor para la entidad
                         $valores = $this->indicador_valores_medicion($operando, $etiqueta);
-                        foreach ($valores as $val)
-                        {
-                            if ($val->id_entidad == $id_entidad)
-                            {
+                        foreach ($valores as $val) {
+                            if ($val->id_entidad == $id_entidad) {
                                 $valor_total = $val->valor;
                             }
                         }
@@ -1025,12 +885,9 @@ class LogicaIndicador implements ILogicaIndicador
                     $es_variable = false;
                     continue;
                 }
-                if ($es_variable)
-                {
+                if ($es_variable) {
                     $variable .= $elemento;
-                }
-                else
-                {
+                } else {
                     $formula .= $elemento;
                 }
             }
@@ -1060,8 +917,7 @@ class LogicaIndicador implements ILogicaIndicador
     //del indicador/dato con periodicidad intranual que también recibe como parámetro
     public function calcular_ref_anual($indicador, $valores_referencia, $anyo, $referencia)
     {
-        switch ($indicador->id_tipo_agregacion_temporal)
-        {
+        switch ($indicador->id_tipo_agregacion_temporal) {
             //Media
             case 1:
                 {
@@ -1082,7 +938,8 @@ class LogicaIndicador implements ILogicaIndicador
                 {
                     return $this->calcular_ref_anual_evolutivo($indicador, $valores_referencia, $anyo, $referencia);
                 }
-            default:return null;
+            default:
+                return null;
         }
     }
 
@@ -1096,17 +953,13 @@ class LogicaIndicador implements ILogicaIndicador
         $valores_ref_anyo = array();
         $valor_referencia_medicion = new Valor_referencia_medicion();
         $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
-        foreach ($mediciones as $medicion)
-        {
+        foreach ($mediciones as $medicion) {
             //Vemos la referencias para las mediciones de ese año
             $medicion_referencias = $valor_referencia_medicion->Find_joined("id_medicion=$medicion->id");
-            if ($medicion_referencias)
-            {
-                foreach ($medicion_referencias as $med_ref)
-                {
+            if ($medicion_referencias) {
+                foreach ($medicion_referencias as $med_ref) {
                     //Si es la referencia deseada
-                    if (strpos($med_ref->valor_referencia->nombre, $referencia))
-                    {
+                    if (strpos($med_ref->valor_referencia->nombre, $referencia)) {
                         $valor = new Valor();
                         $valor->valor = $med_ref->valor;
                         array_push($valores_ref_anyo, $valor);
@@ -1127,17 +980,13 @@ class LogicaIndicador implements ILogicaIndicador
         $valores_ref_anyo = array();
         $valor_referencia_medicion = new Valor_referencia_medicion();
         $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
-        foreach ($mediciones as $medicion)
-        {
+        foreach ($mediciones as $medicion) {
             //Vemos la referencias para las mediciones de ese año
             $medicion_referencias = $valor_referencia_medicion->Find_joined("id_medicion=$medicion->id");
-            if ($medicion_referencias)
-            {
-                foreach ($medicion_referencias as $med_ref)
-                {
+            if ($medicion_referencias) {
+                foreach ($medicion_referencias as $med_ref) {
                     //Si es la referencia deseada
-                    if (strpos($med_ref->valor_referencia->nombre, $referencia))
-                    {
+                    if (strpos($med_ref->valor_referencia->nombre, $referencia)) {
                         $valor = new Valor();
                         $valor->valor = $med_ref->valor;
                         array_push($valores_ref_anyo, $valor);
@@ -1158,17 +1007,13 @@ class LogicaIndicador implements ILogicaIndicador
         $valores_ref_anyo = array();
         $valor_referencia_medicion = new Valor_referencia_medicion();
         $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
-        foreach ($mediciones as $medicion)
-        {
+        foreach ($mediciones as $medicion) {
             //Vemos la referencias para las mediciones de ese año
             $medicion_referencias = $valor_referencia_medicion->Find_joined("id_medicion=$medicion->id");
-            if ($medicion_referencias)
-            {
-                foreach ($medicion_referencias as $med_ref)
-                {
+            if ($medicion_referencias) {
+                foreach ($medicion_referencias as $med_ref) {
                     //Si es la referencia deseada
-                    if (strpos($med_ref->valor_referencia->nombre, $referencia))
-                    {
+                    if (strpos($med_ref->valor_referencia->nombre, $referencia)) {
                         $valor = new Valor();
                         $valor->valor = $med_ref->valor;
                         array_push($valores_ref_anyo, $valor);
@@ -1188,17 +1033,13 @@ class LogicaIndicador implements ILogicaIndicador
         $medicion = new Medicion();
         $valor_referencia_medicion = new Valor_referencia_medicion();
         $mediciones = $medicion->Find("id_indicador = $indicador->id AND etiqueta LIKE '$anyo%' ORDER BY periodo_inicio DESC");
-        foreach ($mediciones as $medicion)
-        {
+        foreach ($mediciones as $medicion) {
             //Vemos la referencias para las mediciones de ese año
             $medicion_referencias = $valor_referencia_medicion->Find_joined("id_medicion=$medicion->id");
-            if ($medicion_referencias)
-            {
-                foreach ($medicion_referencias as $med_ref)
-                {
+            if ($medicion_referencias) {
+                foreach ($medicion_referencias as $med_ref) {
                     //Si es la referencia deseada
-                    if (strpos($med_ref->valor_referencia->nombre, $referencia))
-                    {
+                    if (strpos($med_ref->valor_referencia->nombre, $referencia)) {
                         return $med_ref->valor;
                     }
                 }
@@ -1219,37 +1060,25 @@ class LogicaIndicador implements ILogicaIndicador
         $anyo = date('Y');
         $fecha = date('Y-m-d');
         //Periodicidad Bienal
-        if ($indicador->periodicidad == 'Bienal')
-        {
+        if ($indicador->periodicidad == 'Bienal') {
             $mediciones_actualizables = $this->actualizar_mediciones_bienales($indicador, $anyo);
-        }
-        //Periodicidad Anual
-        else if ($indicador->periodicidad == 'Anual')
-        {
+        } //Periodicidad Anual
+        else if ($indicador->periodicidad == 'Anual') {
             $mediciones_actualizables = $this->actualizar_mediciones_anuales($indicador, $anyo);
-        }
-        //Periodicidad Semestral
-        else if ($indicador->periodicidad == 'Semestral')
-        {
+        } //Periodicidad Semestral
+        else if ($indicador->periodicidad == 'Semestral') {
             $mediciones_actualizables = $this->actualizar_mediciones_semestrales($indicador, $anyo, $fecha);
-        }
-        //Periodicidad Cuatrimestral
-        else if ($indicador->periodicidad == 'Cuatrimestral')
-        {
+        } //Periodicidad Cuatrimestral
+        else if ($indicador->periodicidad == 'Cuatrimestral') {
             $mediciones_actualizables = $this->actualizar_mediciones_cuatrimestrales($indicador, $anyo, $fecha);
-        }
-        //Periodicidad Trimestral
-        else if ($indicador->periodicidad == 'Trimestral')
-        {
+        } //Periodicidad Trimestral
+        else if ($indicador->periodicidad == 'Trimestral') {
             $mediciones_actualizables = $this->actualizar_mediciones_trimestrales($indicador, $anyo, $fecha);
-        }
-        //Periodicidad mensual
-        else
-        {
+        } //Periodicidad mensual
+        else {
             $mediciones_actualizables = $this->actualizar_mediciones_mensuales($indicador, $anyo, $fecha);
         }
-        foreach ($mediciones_actualizables as $medicion)
-        {
+        foreach ($mediciones_actualizables as $medicion) {
             //Borramos todos los valores de las mediciones a actualizar
             $this->logicaMedicion->borrar_valores_medicion($medicion->id);
             //Generamos valores nulos
@@ -1266,37 +1095,25 @@ class LogicaIndicador implements ILogicaIndicador
         $anyo = date('Y');
         $fecha = date('Y-m-d');
         //Periodicidad Bienal
-        if ($indicador->periodicidad == 'Bienal')
-        {
+        if ($indicador->periodicidad == 'Bienal') {
             $mediciones_actualizables = $this->actualizar_mediciones_bienales($indicador, $anyo);
-        }
-        //Periodicidad Anual
-        else if ($indicador->periodicidad == 'Anual')
-        {
+        } //Periodicidad Anual
+        else if ($indicador->periodicidad == 'Anual') {
             $mediciones_actualizables = $this->actualizar_mediciones_anuales($indicador, $anyo);
-        }
-        //Periodicidad Semestral
-        else if ($indicador->periodicidad == 'Semestral')
-        {
+        } //Periodicidad Semestral
+        else if ($indicador->periodicidad == 'Semestral') {
             $mediciones_actualizables = $this->actualizar_mediciones_semestrales($indicador, $anyo, $fecha);
-        }
-        //Periodicidad Cuatrimestral
-        else if ($indicador->periodicidad == 'Cuatrimestral')
-        {
+        } //Periodicidad Cuatrimestral
+        else if ($indicador->periodicidad == 'Cuatrimestral') {
             $mediciones_actualizables = $this->actualizar_mediciones_cuatrimestrales($indicador, $anyo, $fecha);
-        }
-        //Periodicidad Trimestral
-        else if ($indicador->periodicidad == 'Trimestral')
-        {
+        } //Periodicidad Trimestral
+        else if ($indicador->periodicidad == 'Trimestral') {
             $mediciones_actualizables = $this->actualizar_mediciones_trimestrales($indicador, $anyo, $fecha);
-        }
-        //Periodicidad mensual
-        else
-        {
+        } //Periodicidad mensual
+        else {
             $mediciones_actualizables = $this->actualizar_mediciones_mensuales($indicador, $anyo, $fecha);
         }
-        foreach ($mediciones_actualizables as $medicion)
-        {
+        foreach ($mediciones_actualizables as $medicion) {
             $this->logicaMedicion->actualizar_subunidades_medicion($medicion);
         }
     }
@@ -1308,7 +1125,7 @@ class LogicaIndicador implements ILogicaIndicador
         $medicion = new Medicion();
         $etiqueta = $anyo - 1;
         return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo-%' "
-                        . "OR etiqueta LIKE '$etiqueta-%')");
+            . "OR etiqueta LIKE '$etiqueta-%')");
     }
 
     //Devuelve las mediciones a actualizar en un Indicador/Dato con periodicidad 
@@ -1326,13 +1143,10 @@ class LogicaIndicador implements ILogicaIndicador
     {
         $medicion = new Medicion();
         //Estamos en el segundo Semestre
-        if ($fecha > $anyo . "-06-30")
-        {
+        if ($fecha > $anyo . "-06-30") {
             return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo.2S'");
-        }
-        //Estamos en el primer Semestre
-        else
-        {
+        } //Estamos en el primer Semestre
+        else {
             return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo%'");
         }
     }
@@ -1344,19 +1158,14 @@ class LogicaIndicador implements ILogicaIndicador
     {
         $medicion = new Medicion();
         //Estamos en el primer Cuatrimestre
-        if ($fecha < $anyo . "-05-01")
-        {
+        if ($fecha < $anyo . "-05-01") {
             return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo%'");
-        }
-        //Estamos en el segundo Cuatrimestre
-        else if ($fecha >= $anyo . "-05-01" && $fecha < $anyo . "-09-01")
-        {
+        } //Estamos en el segundo Cuatrimestre
+        else if ($fecha >= $anyo . "-05-01" && $fecha < $anyo . "-09-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.2C' "
-                            . "OR etiqueta LIKE '$anyo.3C')");
-        }
-        //Estamos en el tercer Cuatrimestre
-        else
-        {
+                . "OR etiqueta LIKE '$anyo.3C')");
+        } //Estamos en el tercer Cuatrimestre
+        else {
             return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo.3C'");
         }
     }
@@ -1368,26 +1177,19 @@ class LogicaIndicador implements ILogicaIndicador
     {
         $medicion = new Medicion();
         //Estamos en el primer Trimestre
-        if ($fecha < $anyo . "-04-01")
-        {
+        if ($fecha < $anyo . "-04-01") {
             return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo%'");
-        }
-        //Estamos en el segundo Trimestre
-        else if ($fecha >= $anyo . "-04-01" && $fecha < $anyo . "-07-01")
-        {
+        } //Estamos en el segundo Trimestre
+        else if ($fecha >= $anyo . "-04-01" && $fecha < $anyo . "-07-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.2T' "
-                            . "OR etiqueta LIKE '$anyo.3T' "
-                            . "OR etiqueta LIKE '$anyo.4T')");
-        }
-        //Estamos en el tercer Trimestre
-        else if ($fecha >= $anyo . "-07-01" && $fecha < $anyo . "-10-01")
-        {
+                . "OR etiqueta LIKE '$anyo.3T' "
+                . "OR etiqueta LIKE '$anyo.4T')");
+        } //Estamos en el tercer Trimestre
+        else if ($fecha >= $anyo . "-07-01" && $fecha < $anyo . "-10-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.3T' "
-                            . "OR etiqueta LIKE '$anyo.4T')");
-        }
-        //Estamos en el cuarto Trimestre
-        else
-        {
+                . "OR etiqueta LIKE '$anyo.4T')");
+        } //Estamos en el cuarto Trimestre
+        else {
             return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo.4T'");
         }
     }
@@ -1399,118 +1201,95 @@ class LogicaIndicador implements ILogicaIndicador
     {
         $medicion = new Medicion();
         //Estamos en Enero
-        if ($fecha < $anyo . "-02-01")
-        {
+        if ($fecha < $anyo . "-02-01") {
             return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo%'");
-        }
-        //Estamos en Febrero
-        else if ($fecha >= $anyo . "-02-01" && $fecha < $anyo . "-03-01")
-        {
+        } //Estamos en Febrero
+        else if ($fecha >= $anyo . "-02-01" && $fecha < $anyo . "-03-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.02' "
-                            . "OR etiqueta LIKE '$anyo.03' "
-                            . "OR etiqueta LIKE '$anyo.04'"
-                            . "OR etiqueta LIKE '$anyo.05'"
-                            . "OR etiqueta LIKE '$anyo.06'"
-                            . "OR etiqueta LIKE '$anyo.07'"
-                            . "OR etiqueta LIKE '$anyo.08'"
-                            . "OR etiqueta LIKE '$anyo.09'"
-                            . "OR etiqueta LIKE '$anyo.10'"
-                            . "OR etiqueta LIKE '$anyo.11'"
-                            . "OR etiqueta LIKE '$anyo.12')");
-        }
-        //Estamos en Marzo
-        else if ($fecha >= $anyo . "-03-01" && $fecha < $anyo . "-04-01")
-        {
+                . "OR etiqueta LIKE '$anyo.03' "
+                . "OR etiqueta LIKE '$anyo.04'"
+                . "OR etiqueta LIKE '$anyo.05'"
+                . "OR etiqueta LIKE '$anyo.06'"
+                . "OR etiqueta LIKE '$anyo.07'"
+                . "OR etiqueta LIKE '$anyo.08'"
+                . "OR etiqueta LIKE '$anyo.09'"
+                . "OR etiqueta LIKE '$anyo.10'"
+                . "OR etiqueta LIKE '$anyo.11'"
+                . "OR etiqueta LIKE '$anyo.12')");
+        } //Estamos en Marzo
+        else if ($fecha >= $anyo . "-03-01" && $fecha < $anyo . "-04-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.03' "
-                            . "OR etiqueta LIKE '$anyo.04'"
-                            . "OR etiqueta LIKE '$anyo.05'"
-                            . "OR etiqueta LIKE '$anyo.06'"
-                            . "OR etiqueta LIKE '$anyo.07'"
-                            . "OR etiqueta LIKE '$anyo.08'"
-                            . "OR etiqueta LIKE '$anyo.09'"
-                            . "OR etiqueta LIKE '$anyo.10'"
-                            . "OR etiqueta LIKE '$anyo.11'"
-                            . "OR etiqueta LIKE '$anyo.12')");
-        }
-        //Estamos en Abril
-        else if ($fecha >= $anyo . "-04-01" && $fecha < $anyo . "-05-01")
-        {
+                . "OR etiqueta LIKE '$anyo.04'"
+                . "OR etiqueta LIKE '$anyo.05'"
+                . "OR etiqueta LIKE '$anyo.06'"
+                . "OR etiqueta LIKE '$anyo.07'"
+                . "OR etiqueta LIKE '$anyo.08'"
+                . "OR etiqueta LIKE '$anyo.09'"
+                . "OR etiqueta LIKE '$anyo.10'"
+                . "OR etiqueta LIKE '$anyo.11'"
+                . "OR etiqueta LIKE '$anyo.12')");
+        } //Estamos en Abril
+        else if ($fecha >= $anyo . "-04-01" && $fecha < $anyo . "-05-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.04' "
-                            . "OR etiqueta LIKE '$anyo.05'"
-                            . "OR etiqueta LIKE '$anyo.06'"
-                            . "OR etiqueta LIKE '$anyo.07'"
-                            . "OR etiqueta LIKE '$anyo.08'"
-                            . "OR etiqueta LIKE '$anyo.09'"
-                            . "OR etiqueta LIKE '$anyo.10'"
-                            . "OR etiqueta LIKE '$anyo.11'"
-                            . "OR etiqueta LIKE '$anyo.12')");
-        }
-        //Estamos en Mayo
-        else if ($fecha >= $anyo . "-05-01" && $fecha < $anyo . "-06-01")
-        {
+                . "OR etiqueta LIKE '$anyo.05'"
+                . "OR etiqueta LIKE '$anyo.06'"
+                . "OR etiqueta LIKE '$anyo.07'"
+                . "OR etiqueta LIKE '$anyo.08'"
+                . "OR etiqueta LIKE '$anyo.09'"
+                . "OR etiqueta LIKE '$anyo.10'"
+                . "OR etiqueta LIKE '$anyo.11'"
+                . "OR etiqueta LIKE '$anyo.12')");
+        } //Estamos en Mayo
+        else if ($fecha >= $anyo . "-05-01" && $fecha < $anyo . "-06-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.05' "
-                            . "OR etiqueta LIKE '$anyo.06'"
-                            . "OR etiqueta LIKE '$anyo.07'"
-                            . "OR etiqueta LIKE '$anyo.08'"
-                            . "OR etiqueta LIKE '$anyo.09'"
-                            . "OR etiqueta LIKE '$anyo.10'"
-                            . "OR etiqueta LIKE '$anyo.11'"
-                            . "OR etiqueta LIKE '$anyo.12')");
-        }
-        //Estamos en Junio
-        else if ($fecha >= $anyo . "-06-01" && $fecha < $anyo . "-07-01")
-        {
+                . "OR etiqueta LIKE '$anyo.06'"
+                . "OR etiqueta LIKE '$anyo.07'"
+                . "OR etiqueta LIKE '$anyo.08'"
+                . "OR etiqueta LIKE '$anyo.09'"
+                . "OR etiqueta LIKE '$anyo.10'"
+                . "OR etiqueta LIKE '$anyo.11'"
+                . "OR etiqueta LIKE '$anyo.12')");
+        } //Estamos en Junio
+        else if ($fecha >= $anyo . "-06-01" && $fecha < $anyo . "-07-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.06' "
-                            . "OR etiqueta LIKE '$anyo.07'"
-                            . "OR etiqueta LIKE '$anyo.08'"
-                            . "OR etiqueta LIKE '$anyo.09'"
-                            . "OR etiqueta LIKE '$anyo.10'"
-                            . "OR etiqueta LIKE '$anyo.11'"
-                            . "OR etiqueta LIKE '$anyo.12')");
-        }
-        //Estamos en Julio
-        else if ($fecha >= $anyo . "-07-01" && $fecha < $anyo . "-08-01")
-        {
+                . "OR etiqueta LIKE '$anyo.07'"
+                . "OR etiqueta LIKE '$anyo.08'"
+                . "OR etiqueta LIKE '$anyo.09'"
+                . "OR etiqueta LIKE '$anyo.10'"
+                . "OR etiqueta LIKE '$anyo.11'"
+                . "OR etiqueta LIKE '$anyo.12')");
+        } //Estamos en Julio
+        else if ($fecha >= $anyo . "-07-01" && $fecha < $anyo . "-08-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.07' "
-                            . "OR etiqueta LIKE '$anyo.08'"
-                            . "OR etiqueta LIKE '$anyo.09'"
-                            . "OR etiqueta LIKE '$anyo.10'"
-                            . "OR etiqueta LIKE '$anyo.11'"
-                            . "OR etiqueta LIKE '$anyo.12')");
-        }
-        //Estamos en Agosto
-        else if ($fecha >= $anyo . "-08-01" && $fecha < $anyo . "-09-01")
-        {
+                . "OR etiqueta LIKE '$anyo.08'"
+                . "OR etiqueta LIKE '$anyo.09'"
+                . "OR etiqueta LIKE '$anyo.10'"
+                . "OR etiqueta LIKE '$anyo.11'"
+                . "OR etiqueta LIKE '$anyo.12')");
+        } //Estamos en Agosto
+        else if ($fecha >= $anyo . "-08-01" && $fecha < $anyo . "-09-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.08' "
-                            . "OR etiqueta LIKE '$anyo.09'"
-                            . "OR etiqueta LIKE '$anyo.10'"
-                            . "OR etiqueta LIKE '$anyo.11'"
-                            . "OR etiqueta LIKE '$anyo.12')");
-        }
-        //Estamos en Septiembre
-        else if ($fecha >= $anyo . "-09-01" && $fecha < $anyo . "-10-01")
-        {
+                . "OR etiqueta LIKE '$anyo.09'"
+                . "OR etiqueta LIKE '$anyo.10'"
+                . "OR etiqueta LIKE '$anyo.11'"
+                . "OR etiqueta LIKE '$anyo.12')");
+        } //Estamos en Septiembre
+        else if ($fecha >= $anyo . "-09-01" && $fecha < $anyo . "-10-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.09' "
-                            . "OR etiqueta LIKE '$anyo.10'"
-                            . "OR etiqueta LIKE '$anyo.11'"
-                            . "OR etiqueta LIKE '$anyo.12')");
-        }
-        //Estamos en Octubre
-        else if ($fecha >= $anyo . "-10-01" && $fecha < $anyo . "-11-01")
-        {
+                . "OR etiqueta LIKE '$anyo.10'"
+                . "OR etiqueta LIKE '$anyo.11'"
+                . "OR etiqueta LIKE '$anyo.12')");
+        } //Estamos en Octubre
+        else if ($fecha >= $anyo . "-10-01" && $fecha < $anyo . "-11-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.10' "
-                            . "OR etiqueta LIKE '$anyo.11'"
-                            . "OR etiqueta LIKE '$anyo.12')");
-        }
-        //Estamos en Noviembre
-        else if ($fecha >= $anyo . "-11-01" && $fecha < $anyo . "-12-01")
-        {
+                . "OR etiqueta LIKE '$anyo.11'"
+                . "OR etiqueta LIKE '$anyo.12')");
+        } //Estamos en Noviembre
+        else if ($fecha >= $anyo . "-11-01" && $fecha < $anyo . "-12-01") {
             return $medicion->Find("id_indicador=$indicador->id AND (etiqueta LIKE '$anyo.11' "
-                            . "OR etiqueta LIKE '$anyo.12')");
-        }
-        //Estamos en Diciembre
-        else
-        {
+                . "OR etiqueta LIKE '$anyo.12')");
+        } //Estamos en Diciembre
+        else {
             return $medicion->Find("id_indicador=$indicador->id AND etiqueta LIKE '$anyo.12'");
         }
     }
@@ -1532,8 +1311,7 @@ class LogicaIndicador implements ILogicaIndicador
     public function borrar_criterios_efqm($id)
     {
         $criterio_efqm_indicador = new Criterio_efqm_indicador();
-        while ($criterio_efqm_indicador->load("id_indicador = $id"))
-        {
+        while ($criterio_efqm_indicador->load("id_indicador = $id")) {
             $criterio_efqm_indicador->delete();
         }
     }
