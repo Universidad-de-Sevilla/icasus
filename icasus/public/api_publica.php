@@ -69,11 +69,11 @@ if (mysqli_select_db($link, IC_DB_DATABASE)) {
 function info_unidad($link, $id)
 {
     $query_unidad = "SELECT e.nombre FROM icasus_entidad e WHERE e.id=$id";
-    $query_planes = "SELECT * FROM icasus_plan p WHERE id_entidad=$id";
+    $query_planes = "SELECT * FROM icasus_plan p WHERE p.id_entidad=$id";
     $query_cartas = "SELECT * FROM icasus_carta c WHERE c.id_entidad=$id";
-    $query_procesos = "SELECT * FROM icasus_proceso WHERE p.id_entidad=$id";
+    $query_procesos = "SELECT * FROM icasus_proceso p WHERE p.id_entidad=$id";
     $query_indicadores = "SELECT * FROM icasus_indicador i WHERE i.id_entidad=$id AND i.archivado is NULL";
-    $query_cuadros = "SELECT * FROM icasus_cuadro WHERE c.id_entidad=$id AND c.privado=0";
+    $query_cuadros = "SELECT * FROM icasus_cuadro c WHERE c.id_entidad=$id AND c.privado=0";
 
     $unidad = mysqli_fetch_assoc(mysqli_query($link, $query_unidad))['nombre'];
     $num_planes = mysqli_num_rows(mysqli_query($link, $query_planes));
@@ -121,8 +121,8 @@ function get_subunidades_indicador($link, $id)
 {
     $query = "SELECT e.id, e.etiqueta, e.nombre, e.etiqueta_mini as etiqueta_mini
               FROM icasus_entidad e 
-              INNER JOIN icasus_indicador_subunidad is ON e.id = is.id_entidad
-              WHERE is.id_indicador = $id
+              INNER JOIN icasus_indicador_subunidad i ON e.id = i.id_entidad
+              WHERE i.id_indicador = $id
               ORDER BY e.orden";
     $resultado = mysqli_query($link, $query);
     while ($registro = mysqli_fetch_assoc($resultado)) {
@@ -379,7 +379,9 @@ function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin
 {
     $elementos_calculo = array();
     $totales_calculados = array();
-    $query = "SELECT i.calculo, ta.operador FROM icasus_indicador i INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  WHERE i.id = $id_indicador";
+    $query = "SELECT i.calculo, ta.operador FROM icasus_indicador i 
+              INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  
+              WHERE i.id = $id_indicador";
     $resultado = mysqli_query($link, $query);
     $registro = mysqli_fetch_assoc($resultado);
     $calculo = $registro['calculo'];
@@ -437,7 +439,10 @@ function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin
 function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fecha_fin = '0', $periodicidad = 'todos')
 {
     // Obtenemos el operador o tipo de agregación del indicador
-    $query = "SELECT ta.operador FROM icasus_indicador i INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  WHERE i.id = $id_indicador";
+    $query = "SELECT ta.operador 
+              FROM icasus_indicador i 
+              INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  
+              WHERE i.id = $id_indicador";
     $resultado = mysqli_query($link, $query);
     $registro = mysqli_fetch_assoc($resultado);
     $operador = $registro['operador'];
@@ -485,9 +490,8 @@ function calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link)
               UNIX_TIMESTAMP(MIN(m.periodo_inicio))*1000 as periodo_fin,
               'Total' as unidad, 0 as id_unidad, v.valor as valor
               FROM icasus_medicion m INNER JOIN icasus_valor v ON m.id = v.id_medicion
-              WHERE v.id_entidad = $id_entidad AND m.id_indicador = $id "
-        . "AND valor IS NOT NULL GROUP BY YEAR(m.periodo_inicio), "
-        . "MONTH(m.periodo_inicio)";
+              WHERE v.id_entidad = $id_entidad AND m.id_indicador = $id AND valor IS NOT NULL 
+              GROUP BY YEAR(m.periodo_inicio), MONTH(m.periodo_inicio)";
 
     $result = mysqli_query($link, $query);
 
@@ -546,16 +550,14 @@ function calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link)
 function calcular_intranual($id, $operador_temporal, $link, $fecha_inicio, $fecha_fin)
 {
 
-    $query = "SELECT m.id as id_medicion, m.etiqueta as medicion,
+    $query = "SELECT m.id as id_medicion, m.etiqueta as medicion, 
             UNIX_TIMESTAMP(MIN(m.periodo_inicio))*1000 as periodo_fin,
-            e.etiqueta as unidad, e.id as id_unidad, v.valor,
-            e.etiqueta_mini as etiqueta_mini
+            e.etiqueta as unidad, e.id as id_unidad, v.valor, e.etiqueta_mini as etiqueta_mini
             FROM icasus_medicion m 
             INNER JOIN icasus_valor v ON m.id = v.id_medicion
             INNER JOIN icasus_entidad e ON e.id = v.id_entidad
-            WHERE m.id_indicador = $id AND v.valor IS NOT NULL GROUP BY id_unidad, "
-        . "YEAR(m.periodo_inicio), MONTH(m.periodo_inicio), "
-        . "DAY(m.periodo_inicio)";
+            WHERE m.id_indicador = $id AND v.valor IS NOT NULL 
+            GROUP BY id_unidad, YEAR(m.periodo_inicio), MONTH(m.periodo_inicio), DAY(m.periodo_inicio)";
 
     //Agrupamos por unidad y año
     $result = mysqli_query($link, $query);
