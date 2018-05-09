@@ -380,7 +380,7 @@ function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin
     $elementos_calculo = array();
     $totales_calculados = array();
     $query = "SELECT i.calculo, ta.operador FROM icasus_indicador i 
-              INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  
+              INNER JOIN icasus_tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  
               WHERE i.id = $id_indicador";
     $resultado = mysqli_query($link, $query);
     $registro = mysqli_fetch_assoc($resultado);
@@ -441,7 +441,7 @@ function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fec
     // Obtenemos el operador o tipo de agregación del indicador
     $query = "SELECT ta.operador 
               FROM icasus_indicador i 
-              INNER JOIN tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  
+              INNER JOIN icasus_tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  
               WHERE i.id = $id_indicador";
     $resultado = mysqli_query($link, $query);
     $registro = mysqli_fetch_assoc($resultado);
