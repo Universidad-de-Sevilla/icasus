@@ -89,7 +89,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         else
         {
             $persona = new Usuario();
-            $query_aux = "select id_usuario from usuarios_entidades where id_entidad=$id_entidad";
+            $query_aux = "SELECT id_usuario FROM icasus_usuarios_entidades WHERE id_entidad=$id_entidad";
             $personas = $persona->Find("id NOT IN ($query_aux) ORDER BY apellidos");
             $smarty->assign('personas', $personas);
 
