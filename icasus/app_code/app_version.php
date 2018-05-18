@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.54.2");
-define('IC_FECHA_REVISION', "24/04/2018");
+define('IC_VERSION', "3.54.3");
+define('IC_FECHA_REVISION', "18/05/2018");
 
+// 3.54.3 - 18/05/2018 - Corrige error en gráfica de indicador calculado con mediciones intraanuales
 // 3.54.2 - 24/04/2018 - Corrige error de numeración de objetivo estratégico al mostrar los objetivos operacionales
 // 3.54.1 - 24/04/2018 - Faltaba por cambiar una consulta y no se podían borrar mediciones
 // 3.54.0 - 20/04/2018 - Cambio de nombres de tablas de la base de datos y migración a baobab.
