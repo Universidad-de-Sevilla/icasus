@@ -199,7 +199,6 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
         $query .= " GROUP BY id_unidad, YEAR(m.periodo_inicio), MONTH(m.periodo_inicio), DAY(m.periodo_inicio)";
     }
     $query .= " ORDER BY m.periodo_inicio";
-
     if (!$resultado = mysqli_query($link, $query)) {
         echo ERR_CONSULTA_EXE;
     }
@@ -425,12 +424,13 @@ function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin
         eval("\$total_calculado = $formula;");
         $totales_calculados[] = array(
             "id_medicion" => (int)$totales[$id_indicador_parcial][$i]['id_medicion'],
-            "medicion" => (int)$totales[$id_indicador_parcial][$i]['medicion'],
+            "medicion" => $totales[$id_indicador_parcial][$i]['medicion'],
             "periodo_fin" => (int)$totales[$id_indicador_parcial][$i]['periodo_fin'],
             "unidad" => "Total",
             "id_unidad" => 0,
             "valor" => $total_calculado);
     }
+
     return $totales_calculados;
 }
 
