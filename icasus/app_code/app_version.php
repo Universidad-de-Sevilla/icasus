@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.54.3");
-define('IC_FECHA_REVISION', "18/05/2018");
+define('IC_VERSION', "3.55.0");
+define('IC_FECHA_REVISION', "25/05/2018");
 
+// 3.55.0 - 25/05/2018 - Liberando Icasus al mundo. Scripts para creación de tablas en base de datos e instrucciones de instalación
 // 3.54.3 - 18/05/2018 - Corrige error en gráfica de indicador calculado con mediciones intraanuales
 // 3.54.2 - 24/04/2018 - Corrige error de numeración de objetivo estratégico al mostrar los objetivos operacionales
 // 3.54.1 - 24/04/2018 - Faltaba por cambiar una consulta y no se podían borrar mediciones
