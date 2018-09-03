@@ -54,3 +54,10 @@ Edita su contenido para configurar el acceso a la base de datos, algunas rutas y
 
 Con eso podrías acceder a http://tuservidor.com/icasus/public/index.php y ver la pantalla de login. Usa "admin" con la 
 clave "admin" para acceder si has volcado los usuarios de prueba.
+
+## Tips & Bugs
+En versiones posteriores a mySQL 5.7.0 el modo "ONLY_FULL_GROUP_BY" que viene implementado por defecto en el servidor 
+entra en conflicto con algunas consultas de Icasus, para evitarlo debes añadir la siguiente línea de código al archivo 
+"/etc/mysql/my.cnf" dentro de la sección '[mysqld]'
+
+`sql_mode = "STRICT_TRANS_TABLES,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION"`
