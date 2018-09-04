@@ -335,7 +335,7 @@
                 <div class="btn-group" role="group" aria-label="">
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_PANEL_CREAR}"
                        href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_crear_panel">
-                        <i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub></a>
+                        <i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_PANEL_CREAR}</a>
                 </div>
                 <div class="btn-group pull-right" role="group" aria-label="">
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_CUADRO_EDIT}"
