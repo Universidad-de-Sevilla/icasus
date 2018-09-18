@@ -55,6 +55,32 @@ Edita su contenido para configurar el acceso a la base de datos, algunas rutas y
 Con eso podrías acceder a http://tuservidor.com/icasus/public/index.php y ver la pantalla de login. Usa "admin" con la 
 clave "admin" para acceder si has volcado los usuarios de prueba.
 
+## Volcado de datos de usuarios y entidades/unidades
+
+La aplicación no dispone de herramientas para crear usuarios o entidades. Se presupone que estos datos se incorporarán 
+a la base de datos utilizando un volcado desde otra aplicación o base de datos.
+
+A continuación te indico cuales serían los campos imprescindibles que necesitan estas tablas para funcionar:
+### Tabla icasus_usuario
+- id (entero) - Se puede facilitar o dejar que SQL lo asigne automáticamente
+- login (texto 50) - Se puede usar el correo 
+- clave (texto 45) - No es obligatoria, cuidado porque no va encriptada
+- nombre(texto 45)
+- apellidos (texto 75)
+- nif (texto 10)
+- correo (texto 75)
+- puesto (texto 250) No es obligatorio pero si se facilita aparece junto al nombre del usuario a la hora de asignar responsabilidades
+
+
+### Tabla icasus_entidad
+- id (entero) - En esta tabla es mejor proveerlo para poder indicar las relaciones entre unidades usando el campo id_madre
+- nombre (texto 75)
+- etiqueta (texto 50)
+- etiqueta_mini (texto 12)
+- codigo (texto 50)
+- id_madre (entero) - Codigo de la unidad superior, si no tiene introducir 0.
+
+
 ## Tips & Bugs
 En versiones posteriores a mySQL 5.7.0 el modo "ONLY_FULL_GROUP_BY" que viene implementado por defecto en el servidor 
 entra en conflicto con algunas consultas de Icasus, para evitarlo debes añadir la siguiente línea de código al archivo 
