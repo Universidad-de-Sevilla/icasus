@@ -38,6 +38,19 @@ if (filter_has_var(INPUT_GET, 'id_entidad')) {
             $permiso_proceso[$proceso->id] = false;
         }
     }
+
+    //Mapa de procesos
+    $mapa = new Fichero();
+    $condicion = "id_objeto = $id_entidad AND tipo_objeto = 'unidad' AND descripcion = 'mapa' AND extension IN ('PNG','GIF','JPG','JPEG');";
+    if ($mapa->load($condicion)) {
+        $smarty->assign('mapa', $mapa);
+        $areas = new Fichero();
+        $condicion = "id_objeto= $id_entidad AND tipo_objeto = 'unidad' AND descripcion = 'areas' AND extension IN ('HTML','HTM','TXT','JPEG');";
+        if ($areas->load($condicion)) {
+            $smarty->assign('areas', $areas);
+        }
+    }
+
     $smarty->assign('permiso_proceso', $permiso_proceso);
 
     $smarty->assign('_javascript', array('proceso_listar'));
