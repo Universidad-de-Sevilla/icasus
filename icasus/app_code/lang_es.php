@@ -786,7 +786,10 @@ define('MSG_PROC_EDITADO', 'Se ha modificado el Proceso correctamente.');
 define('MSG_PROC_NO_INDIC', 'No se ha definido ningún Indicador para este Proceso.');
 define('MSG_PROC_NO_INDIC_ARCHIVADOS', 'No hay Indicadores archivados en este Proceso.');
 define('MSG_PROC_NO_ARCHIVOS', 'No se han subido archivos para este Proceso.');
-define('MSG_PROC_MAPA', 'Para agregar/editar el mapa de Procesos de su Unidad, póngase en contacto con nosotros a través de la dirección: ');
+define('MSG_PROC_MAPA', 'Prepare un archivo de imagen con el mapa 
+    de procesos, un ancho aproximado de 1200 píxeles y formato PNG, JPG o GIF. Vaya a la ficha de su unidad y en la 
+    pestaña archivos suba el fichero con el nombre que desee pero indicando sólo la palabra "mapa" en la descripción. 
+    Vuelva al listado de procesos y allí aparecera el mapa en su apartado correspondiente.');
 
 //Usuarios
 define('MSG_USER_CREADO', 'Se ha creado un nuevo usuario en el sistema.');

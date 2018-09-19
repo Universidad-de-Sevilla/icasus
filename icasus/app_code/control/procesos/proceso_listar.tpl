@@ -34,7 +34,11 @@
                             class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_PROC_MAP_EDIT}</h3>
             </div>
             <div class="modal-body">
-                <p>{$smarty.const.MSG_PROC_MAPA} {mailto address="icasus@us.es" encode="javascript"}</p>
+                <p>{$smarty.const.MSG_PROC_MAPA}</p>
+                <ul>
+                    <li><a href="index.php?page=archivo_gestionar&id_entidad={$entidad->id}">{$smarty.const.TXT_ARCHIVOS_GESTION}</a></li>
+                </ul>
+
             </div>
             <div class="modal-footer">
                 <button type="button" title="{$smarty.const.TXT_BTN_ACEPTAR}" class="btn btn-primary"
@@ -177,7 +181,8 @@
                     <div id="botones" class="hidden">
                         <a class="btn btn-danger" href="index.php?page=proceso_crear&id_entidad={$entidad->id}"
                            title="{$smarty.const.TXT_PROC_CREAR}">
-                            <i class="fa fa-gear fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                            <i class="fa fa-gear fa-fw"></i>
+                            {$smarty.const.TXT_PROC_CREAR}
                         </a>
                     </div>
                 {/if}
@@ -361,7 +366,8 @@
                             <button class="btn btn-danger" title="{$smarty.const.TXT_PROC_MAP_EDIT}"
                                     data-toggle="modal"
                                     data-target="#dialogo_mapa">
-                                <i class="fa fa-map fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                <i class="fa fa-map fa-fw"></i>
+                                {$smarty.const.TXT_PROC_MAP_EDIT}
                             </button>
                         </div>
                     </div>
@@ -376,18 +382,6 @@
                             {include file="{$smarty.const.IC_DIR_BASE}private_upload/unidad/{$entidad->id}/archivo_{$areas->id}.{$areas->extension}"}
                         </map>
                     {/if}
-                {elseif $entidad->id==14}
-                {elseif $entidad->id==20}
-                {elseif $entidad->id==51}
-                {elseif $entidad->id==55}
-                {elseif $entidad->id==310}
-                {elseif $entidad->id==28}
-                {elseif $entidad->id==6}
-                {elseif $entidad->id==16}
-                {elseif $entidad->id==2}
-                {elseif $entidad->id==42}
-                {elseif $entidad->id==18}
-                {elseif $entidad->id==312}
                 {else}
                     <div class="row">
                         <div class="col-sm-11">
