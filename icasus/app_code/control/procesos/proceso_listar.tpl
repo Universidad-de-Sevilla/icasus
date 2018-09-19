@@ -373,58 +373,21 @@
                          class="img-rounded img-responsive" usemap="#Map">
                     {if isset($areas)}
                         <map name="Map" id="Map">
-                            {include file="../../../private_upload/unidad/{$entidad->id}/archivo_{$areas->id}.{$areas->extension}"}
+                            {include file="{$smarty.const.IC_DIR_BASE}private_upload/unidad/{$entidad->id}/archivo_{$areas->id}.{$areas->extension}"}
                         </map>
                     {/if}
+                {elseif $entidad->id==14}
                 {elseif $entidad->id==20}
-                    <img src="images/mapa_proceso_un09.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}" usemap="#Map">
-                    <map name="Map" id="Map">
-                        <area shape="rect" coords="770,508,1032,558" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=20&id_proceso=1947"/>
-                        <area shape="rect" coords="770,592,1030,641" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=20&id_proceso=1948"/>
-                        <area shape="rect" coords="770,668,1030,722" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=20&id_proceso=1949"/>
-                        <area shape="rect" coords="770,774,1030,800" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=20&id_proceso=1950"/>
-                        <area shape="rect" coords="770,830,1030,885" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=20&id_proceso=1951"/>
-                        <area shape="rect" coords="1110,530,1454,585" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=20&id_proceso=1952"/>
-                        <area shape="rect" coords="1110,776,1454,830" title="{$smarty.const.TXT_PROC_VER}"
-                              href="index.php?page=proceso_mostrar&id_entidad=20&id_proceso=1953"/>
-                    </map>
                 {elseif $entidad->id==51}
-                    <img src="images/mapa_procesos_sav.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}">
                 {elseif $entidad->id==55}
-                    <img src="images/mapa_procesos_internacional.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}">
                 {elseif $entidad->id==310}
-                    <img src="images/mapa_procesos_segeedin.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}">
                 {elseif $entidad->id==28}
-                    <img src="images/mapa_procesos_biologia.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}">
                 {elseif $entidad->id==6}
-                    <img src="images/mapa_gabinete_juridico.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}">
                 {elseif $entidad->id==16}
-                    <img src="images/mapa_procesos_hernando_colon.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}">
                 {elseif $entidad->id==2}
-                    <img src="images/mapa_procesos_forpas.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}">
                 {elseif $entidad->id==42}
-                    <img src="images/mapa_procesos_psicologia.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}">
                 {elseif $entidad->id==18}
-                    <img src="images/mapa_procesos_arquitectura.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}">
                 {elseif $entidad->id==312}
-                    <img src="images/mapa_procesos_accion_social.png" class="img-responsive img-rounded"
-                         alt="{$smarty.const.TXT_PROC_MAP}">
                 {else}
                     <div class="row">
                         <div class="col-sm-11">
@@ -440,7 +403,6 @@
                 <!-- Mapa de procesos -->
             </div>
             <!-- /Mapa de procesos -->
-
         </div>
         <!-- /Tab panes -->
     </div>
