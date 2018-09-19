@@ -37,8 +37,8 @@
 <div class="row">
     <div class="col-lg-12">
         <ol class="breadcrumb">
-            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
-            <li><a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
+            <li><i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
+                <a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}">
                     {$entidad->nombre|truncate:30} <i class="fa fa-caret-down"></i>
@@ -103,7 +103,7 @@
                 <div class="btn-group" role="group" aria-label="">
                     <a class="btn btn-danger" href='index.php?page=carta_crear&id_entidad={$entidad->id}' 
                        title="{$smarty.const.TXT_CARTA_CREAR}">
-                        <i class="fa fa-map-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                        <i class="fa fa-map-o fa-fw"></i> {$smarty.const.TXT_CARTA_CREAR}
                     </a>
                 </div>
             </div>
@@ -160,7 +160,7 @@
                             <div class="btn-group" role="group" aria-label="">
                                 <a class="btn btn-danger" href='index.php?page=carta_crear&id_entidad={$entidad->id}' 
                                    title="{$smarty.const.TXT_CARTA_CREAR}">
-                                    <i class="fa fa-map-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                    <i class="fa fa-map-o fa-fw"></i> {$smarty.const.TXT_CARTA_CREAR}
                                 </a>
                             </div>
                         </div>

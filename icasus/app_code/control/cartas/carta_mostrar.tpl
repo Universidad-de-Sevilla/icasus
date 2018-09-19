@@ -395,7 +395,7 @@
                             <div id="botones_ficha" class="btn-toolbar hidden" role="toolbar" aria-label="">
                                 <a title="{$smarty.const.TXT_CARTA_EDIT}" class="btn btn-default btn-danger"
                                    href="index.php?page=carta_editar&id_carta={$carta->id}&id_entidad={$carta->id_entidad}">
-                                    <i class="fa fa-map-o fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
+                                    <i class="fa fa-map-o fa-fw"></i> {$smarty.const.TXT_CARTA_EDIT}
                                 </a>
                                 <a title="{$smarty.const.TXT_CARTA_BORRAR}" class="btn btn-default btn-danger"
                                    href='javascript:void(0)' data-toggle="modal"
@@ -421,7 +421,7 @@
                             <a class="btn btn-danger"
                                href='index.php?page=normativa_crear&id_carta={$carta->id}&id_entidad={$carta->id_entidad}'
                                title="{$smarty.const.TXT_NORMATIVA_CREAR}">
-                                <i class="fa fa-hand-paper-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                <i class="fa fa-hand-paper-o fa-fw"></i> {$smarty.const.TXT_NORMATIVA_CREAR}
                             </a>
                         </div>
                     </div>
@@ -517,7 +517,7 @@
                             <a class="btn btn-danger"
                                href='index.php?page=servicio_crear&id_carta={$carta->id}&id_entidad={$carta->id_entidad}'
                                title="{$smarty.const.TXT_SERVICIO_CREAR}">
-                                <i class="fa fa-user-circle-o fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                <i class="fa fa-user-circle-o fa-fw"></i> {$smarty.const.TXT_SERVICIO_CREAR}
                             </a>
                         </div>
                     </div>
@@ -802,7 +802,7 @@
                             <a class="btn btn-danger"
                                href='index.php?page=derecho_crear&id_carta={$carta->id}&id_entidad={$carta->id_entidad}'
                                title="{$smarty.const.TXT_DERECHO_CREAR}">
-                                <i class="fa fa-gavel fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                <i class="fa fa-gavel fa-fw"></i>{$smarty.const.TXT_DERECHO_CREAR}
                             </a>
                         </div>
                     </div>
@@ -871,7 +871,7 @@
                                             <a class="btn btn-danger"
                                                href='index.php?page=derecho_crear&id_carta={$carta->id}&id_entidad={$carta->id_entidad}'
                                                title="{$smarty.const.TXT_DERECHO_CREAR}">
-                                                <i class="fa fa-gavel fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
+                                                <i class="fa fa-gavel fa-fw"></i> {$smarty.const.TXT_DERECHO_CREAR}
                                             </a>
                                         </div>
                                     </div>
