@@ -1,8 +1,9 @@
 <?php
 
-define('IC_VERSION', "3.56.0");
-define('IC_FECHA_REVISION', "19/09/2018");
+define('IC_VERSION', "3.57.0");
+define('IC_FECHA_REVISION', "18/10/2018");
 
+// 3.57.0 - 18/10/2018 - Agrega campo nombre a las cartas de servicio a petición de biblioteca
 // 3.56.0 - 19/09/2018 - Habilita la subida de mapas de procesos por el propio usuario
 // 3.55.0 - 25/05/2018 - Liberando Icasus al mundo. Scripts para creación de tablas en base de datos e instrucciones de instalación
 // 3.54.3 - 18/05/2018 - Corrige error en gráfica de indicador calculado con mediciones intraanuales
