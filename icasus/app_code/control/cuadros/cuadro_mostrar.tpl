@@ -192,7 +192,7 @@
 <div class="row">
     <div class="col-lg-12">
         <div id="nombre_cuadro" title="{$_nombre_pagina}" class="page-header" data-id_unidad="{$entidad->id}"
-            data-nombre_unidad="{$entidad->etiqueta}" data-panel_vacio="{$smarty.const.MSG_PANEL_NO_VAL}">
+             data-nombre_unidad="{$entidad->etiqueta}" data-panel_vacio="{$smarty.const.MSG_PANEL_NO_VAL}">
             <div class="row">
                 <div class="col-md-10">
                     <i class="fa fa-th fa-fw"></i> {$_nombre_pagina}
@@ -209,16 +209,18 @@
                                    href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_CUADRO_MANDO}"
-                                   class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
-                                   href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice-1]->id}'>
-                                    <i class="fa fa-play fa-rotate-180 fa-fw"></i>
-                                </a>
-                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_CUADRO_MANDO}"
-                                   class="btn btn-danger btn-xs {if $indice == (count($cuadros)-1)}disabled{/if}"
-                                   href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice+1]->id}'>
-                                    <i class="fa fa-play fa-fw"></i>
-                                </a>
+                                {if count($cuadros) > 2}
+                                    <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_CUADRO_MANDO}"
+                                       class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
+                                       href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice-1]->id}'>
+                                        <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                                    </a>
+                                    <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_CUADRO_MANDO}"
+                                       class="btn btn-danger btn-xs {if $indice == (count($cuadros)-1)}disabled{/if}"
+                                       href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice+1]->id}'>
+                                        <i class="fa fa-play fa-fw"></i>
+                                    </a>
+                                {/if}
                                 <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_CUADRO_MANDO}"
                                    class="btn btn-danger btn-xs {if $indice == (count($cuadros)-1)}disabled{/if}"
                                    href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[(count($cuadros)-1)]->id}'>
@@ -335,7 +337,8 @@
                 <div class="btn-group" role="group" aria-label="">
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_PANEL_CREAR}"
                        href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_crear_panel">
-                        <i class="fa fa-columns fa-fw"></i><sub class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_PANEL_CREAR}</a>
+                        <i class="fa fa-columns fa-fw"></i><sub
+                                class="fa fa-plus fa-fw"></sub> {$smarty.const.TXT_PANEL_CREAR}</a>
                 </div>
                 <div class="btn-group pull-right" role="group" aria-label="">
                     <a class="btn btn-default btn-danger" title="{$smarty.const.TXT_CUADRO_EDIT}"
