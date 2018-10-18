@@ -33,6 +33,7 @@
                             <th class="hidden"></th>
                             <th>{$smarty.const.FIELD_FECHA}</th>
                             <th>{$smarty.const.FIELD_UNID}</th>
+                            <th>{$smarty.const.FIELD_NOMBRE}</th>
                             <th>{$smarty.const.FIELD_ACCIONES}</th>
                         </tr>
                     </thead>
@@ -43,7 +44,10 @@
                                 <td>
                                     <a title="{$carta->fecha|date_format:'%d/%m/%Y'}" href="index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$carta->id_entidad}">{$carta->fecha|date_format:'%d/%m/%Y'}</a>
                                 </td>
-                                <td><a title="{$smarty.const.TXT_FICHA}" href='index.php?page=entidad_mostrar&id_entidad={$carta->id_entidad}'>{$carta->entidad->etiqueta}</a></td>
+                                <td>{$carta->entidad->etiqueta}</td>
+                                <td>
+                                    <a title="{$carta->nombre}" href="index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$carta->id_entidad}">{$carta->nombre|truncate:100}</a>
+                                </td>
                                 <td>
                                     <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=carta_mostrar&id_carta={$carta->id}&id_entidad={$carta->id_entidad}">
                                         <i class="fa fa-folder fa-fw"></i>

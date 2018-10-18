@@ -32,6 +32,7 @@ if (filter_has_var(INPUT_POST, 'fecha') && filter_has_var(INPUT_POST, 'id_entida
     // Guardamos los datos
     $carta->fecha = $fecha;
     $carta->id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
+    $carta->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $carta->id_cuadro = filter_has_var(INPUT_POST, 'cuadro') ? filter_input(INPUT_POST, 'cuadro', FILTER_SANITIZE_NUMBER_INT) : 0;
     $carta->mision = filter_input(INPUT_POST, 'mision', FILTER_SANITIZE_STRING);
     $carta->vision = filter_input(INPUT_POST, 'vision', FILTER_SANITIZE_STRING);

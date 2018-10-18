@@ -90,6 +90,13 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="nombre" class="col-sm-2 control-label">{$smarty.const.FIELD_NOMBRE}</label>
+                <div class="col-sm-8">
+                    <input type='text' class="form-control" name='nombre' id='nombre'
+                           placeholder="Opcionalmente puede poner un nombre a esta carta"/>
+                </div>
+            </div>
+            <div class="form-group">
                 <label for="cuadro" class="col-sm-2 control-label">{$smarty.const.FIELD_CUADRO_MANDO}</label>
                 <div class="col-sm-8">
                     <select class="form-control chosen-select" name='cuadro' id='cuadro'>
