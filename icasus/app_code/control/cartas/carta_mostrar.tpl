@@ -166,7 +166,7 @@
                                href='index.php?page=carta_mostrar&id_entidad={$entidad->id}&id_carta={$cartas[0]->id}'>
                                 <i class="fa fa-step-backward fa-fw"></i>
                             </a>
-                            {if  count($cartas) > 2}
+                            {if count($cartas) > 2}
                                 <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_CARTA}"
                                    class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
                                    href='index.php?page=carta_mostrar&id_entidad={$entidad->id}&id_carta={$cartas[$indice-1]->id}'>
