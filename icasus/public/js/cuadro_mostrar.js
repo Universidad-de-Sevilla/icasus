@@ -633,7 +633,7 @@ $(".panel_tarta").each(function () {
                         });
                     }
                     datos.forEach(function (dato) {
-                        if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
+                        if (dato.etiqueta_mini && dato.id_medicion === id_medicion) {
                             chartSerie.add(dato);
                         }
                         //Guardamos el total
