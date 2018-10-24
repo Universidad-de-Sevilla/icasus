@@ -591,6 +591,8 @@ $(".panel_tarta").each(function () {
     var id_panel = $(this).data("id_panel");
     var titulo = $(this).data("titulo_panel");
     var id_medicion = $(this).data("id_medicion");
+    var anyo_inicio = $(this).data("anyo_inicio");
+    var periodicidad = $(this).data("periodicidad");
     //Ancho de la leyenda del gráfico
     var ancho_leyenda = $(this).width() - ($(this).width() / 20);
     //Variables para guardar el nombre y total de la medición solicitada
@@ -598,16 +600,12 @@ $(".panel_tarta").each(function () {
     //Indicadores/datos del panel
     var panel_indics = $('#panel_indics_' + id_panel);
 
-    //Obtenemos la lista de indicadores que forman el panel 
-    //y los recorremos para sacar su serie
+    //Obtenemos la lista de indicadores que forman el panel y los recorremos para sacar su serie
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
         $.each(indicadores, function (index, indicador) {
-
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id;
-
             // contenedor para los datos del gráfico
             var chartSerie = new HighchartSerie();
-
             $.ajax({
                 url: urlApi,
                 type: "GET",
@@ -616,7 +614,6 @@ $(".panel_tarta").each(function () {
             });
 
             function onDataReceived(datos) {
-
                 if (datos) {
                     //Buscamos la medición para luego obtener su total
                     while (!medicion) {
@@ -627,21 +624,24 @@ $(".panel_tarta").each(function () {
                         });
                     }
                     datos.forEach(function (dato) {
-                        if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
-                            chartSerie.add(dato);
+                        if (id_medicion === 0) {
+                            if (dato.medicion == anyo_inicio && dato.valor != 0) {
+                                chartSerie.add(dato);
+                            }
+                        } else {
+                            if (dato.etiqueta_mini && dato.id_medicion == id_medicion) {
+                                chartSerie.add(dato);
+                            }
                         }
                         //Guardamos el total
                         if (medicion == dato.medicion && dato.id_unidad == 0) {
                             total = parseFloat(dato.valor);
                         }
                     });
-
                     //Redondeamos el total
                     total = Highcharts.numberFormat(total, 2);
-
                     //Pide las series de datos a chartSerie
                     var dataseries = chartSerie.getPieSerie();
-
                     //Gráfico de tarta
                     pintaGrafico({
                         chart: {
@@ -696,7 +696,6 @@ $(".panel_tarta").each(function () {
                 //Incluye en listado de indicadores el indicador relacionado
                 panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
                     + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
-
                 //Si no hay ningún valor para ningún indicador del cuadro
                 if (vacios > 0) {
                     panel.append('<div class="alert alert-info alert-dismissible"><i class="fa fa-info-circle fa-fw"></i> ' + panel_vacio + '</div>');
