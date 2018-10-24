@@ -88,10 +88,9 @@ $('.panel_linea').each(function () {
     //y los recorremos para sacar su serie
     $.getJSON("api_publica.php?metodo=get_indicadores_panel&id=" + id_panel).done(function (indicadores) {
         $.each(indicadores, function (index, indicador) {
-
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
-                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
-                    "&periodicidad=" + periodicidad;
+                "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
+                "&periodicidad=" + periodicidad;
 
             //Contenedor para los datos del gráfico
             var chartSerie = new HighchartSerie();
@@ -114,31 +113,29 @@ $('.panel_linea').each(function () {
             });
 
             function onDataReceived(datos) {
-
                 //Si tenemos valores
                 if (datos) {
                     datos.forEach(function (dato) {
                         //Si es un Total
                         if (indicador.id_entidad == 0) {
                             if (!dato.etiqueta_mini && !dato.referencia
-                                    && (dato.valor !== null)) {
+                                && (dato.valor !== null)) {
                                 chartSerie.add(dato);
                             }
                         }
                         //Si es una Unidad
                         else {
                             if (indicador.id_entidad == dato.id_unidad
-                                    && (dato.valor !== null)) {
+                                && (dato.valor !== null)) {
                                 chartSerie.add(dato, true);
                             }
                         }
                         //Si es una referencia
                         if (dato.referencia && (dato.valor !== null)
-                                && indicadores_procesados.indexOf(indicador.id) === -1) {
+                            && indicadores_procesados.indexOf(indicador.id) === -1) {
                             chartSerie.add(dato);
                         }
                     });
-
                     // Pide las series de datos a chartSerie
                     var dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
                     // Si es no anual ocultamos valores de referencia
@@ -149,8 +146,7 @@ $('.panel_linea').each(function () {
                             }
                         });
                     }
-
-                    //Sacar los datos de la dataserie y hacer un push en 
+                    //Sacar los datos de la dataserie y hacer un push en
                     //total_dataseries donde el nombre es el del indicador.
                     dataseries.forEach(function (dataserie) {
                         totalDataseries.push(dataserie);
@@ -206,14 +202,12 @@ $('.panel_linea').each(function () {
                 else {
                     vacios++;
                 }
-
                 //Incluye en listado de indicadores el indicador relacionado si no estaba ya
                 if (indicadores_procesados.indexOf(indicador.id) === -1) {
                     panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                            + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
+                        + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
                     indicadores_procesados.push(indicador.id);
                 }
-
                 //Si no hay ningún valor para ningún indicador del cuadro
                 if (vacios === indicadores_procesados.length && !aviso) {
                     panel.append('<div class="alert alert-info alert-dismissible"><i class="fa fa-info-circle fa-fw"></i> ' + panel_vacio + '</div>');
@@ -262,8 +256,8 @@ $('.panel_barra').each(function () {
         $.each(indicadores, function (index, indicador) {
 
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
-                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
-                    "&periodicidad=" + periodicidad;
+                "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
+                "&periodicidad=" + periodicidad;
 
             //Contenedor para los datos del gráfico
             var chartSerie = new HighchartSerie();
@@ -293,20 +287,20 @@ $('.panel_barra').each(function () {
                         //Si es un Total
                         if (indicador.id_entidad == 0) {
                             if (!dato.etiqueta_mini && !dato.referencia
-                                    && (dato.valor !== null)) {
+                                && (dato.valor !== null)) {
                                 chartSerie.add(dato);
                             }
                         }
                         //Si es una Unidad
                         else {
                             if (indicador.id_entidad == dato.id_unidad
-                                    && (dato.valor !== null)) {
+                                && (dato.valor !== null)) {
                                 chartSerie.add(dato, true);
                             }
                         }
                         //Si es una referencia
                         if (dato.referencia && (dato.valor !== null)
-                                && indicadores_procesados.indexOf(indicador.id) === -1) {
+                            && indicadores_procesados.indexOf(indicador.id) === -1) {
                             chartSerie.add(dato);
                         }
                     });
@@ -382,7 +376,7 @@ $('.panel_barra').each(function () {
                 //Incluye en listado de indicadores el indicador relacionado si no estaba ya
                 if (indicadores_procesados.indexOf(indicador.id) === -1) {
                     panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                            + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
+                        + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
                     indicadores_procesados.push(indicador.id);
                 }
 
@@ -436,8 +430,8 @@ $(".panel_mixto").each(function () {
         $.each(indicadores, function (index, indicador) {
 
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id +
-                    "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
-                    +"&periodicidad=" + periodicidad;
+                "&fecha_inicio=" + fecha_inicio + "&fecha_fin=" + fecha_fin +
+                +"&periodicidad=" + periodicidad;
 
             // contenedor para los datos del indicador
             var chartSerie = new HighchartSerie();
@@ -534,7 +528,7 @@ $(".panel_mixto").each(function () {
                                             this.chart.yAxis[0].addPlotLine({
                                                 label: {
                                                     text: '<span title="Total ' + this.name + ': ' + Highcharts.numberFormat(totales[this.name], 2) + '">Total: <b>'
-                                                            + Highcharts.numberFormat(totales[this.name], 2) + '</b></span>',
+                                                        + Highcharts.numberFormat(totales[this.name], 2) + '</b></span>',
                                                     x: -50,
                                                     y: 10,
                                                     useHTML: true,
@@ -574,7 +568,7 @@ $(".panel_mixto").each(function () {
                 //Incluye en listado de indicadores el indicador relacionado si no estaba ya
                 if (indicadores_procesados.indexOf(indicador.id) === -1) {
                     panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                            + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
+                        + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
                     indicadores_procesados.push(indicador.id);
                 }
 
@@ -701,7 +695,7 @@ $(".panel_tarta").each(function () {
 
                 //Incluye en listado de indicadores el indicador relacionado
                 panel_indics.append('<li><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                        + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
+                    + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></li>');
 
                 //Si no hay ningún valor para ningún indicador del cuadro
                 if (vacios > 0) {
@@ -733,7 +727,7 @@ $(".panel_tabla").each(function () {
         $.each(indicadores, function (index, indicador) {
 
             htmlTabla += '<tr><td style="white-space:nowrap">' + indicador.codigo + '</td><td><a title="' + indicador.nombre + '" href="index.php?page=indicador_mostrar&id_indicador=' + indicador.id
-                    + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></td>';
+                + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></td>';
 
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + '&periodicidad=anual';
 
@@ -786,6 +780,7 @@ $(".panel_tabla").each(function () {
                     }
                 }
             }
+
             // Si no obtenemos resultados
             if (valor_anyo_inicio === null && valor_anyo_fin === null) {
                 htmlTabla += '<td style="white-space:nowrap">---</td>';
@@ -804,16 +799,25 @@ $(".panel_tabla").each(function () {
             "iDisplayLength": 25,
             fixedHeader: true,
             dom: "<'row'<'col-sm-2'B><'col-sm-5'l><'col-sm-5'f>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                "<'row'<'col-sm-12'tr>>" +
+                "<'row'<'col-sm-5'i><'col-sm-7'p>>",
             buttons: [
-                {extend: 'colvis', text: "<i title='Ver columnas' class='fa fa-columns fa-fw'></i> <i class='fa fa-caret-down'></i>"},
+                {
+                    extend: 'colvis',
+                    text: "<i title='Ver columnas' class='fa fa-columns fa-fw'></i> <i class='fa fa-caret-down'></i>"
+                },
                 {
                     extend: 'collection',
                     text: "<i title='Exportar' class='fa fa-share-square-o fa-fw'></i> <i class='fa fa-caret-down'></i>",
                     buttons: [
-                        {extend: 'csv', text: "<i title='Exportar a CSV' class='fa fa-file-text-o fa-fw'></i> Exportar a CSV"},
-                        {extend: 'excel', text: "<i title='Exportar a Excel' class='fa fa-file-excel-o fa-fw'></i> Exportar a Excel"},
+                        {
+                            extend: 'csv',
+                            text: "<i title='Exportar a CSV' class='fa fa-file-text-o fa-fw'></i> Exportar a CSV"
+                        },
+                        {
+                            extend: 'excel',
+                            text: "<i title='Exportar a Excel' class='fa fa-file-excel-o fa-fw'></i> Exportar a Excel"
+                        },
                         {extend: 'print', text: "<i title='Imprimir/PDF' class='fa fa-print fa-fw'></i> Imprimir/PDF"}
                     ]
                 }
@@ -843,7 +847,7 @@ function pintaGrafico(chartOptions, totales) {
                 chart.yAxis[0].addPlotLine({
                     label: {
                         text: '<span title="Total ' + selected.name + ': ' + Highcharts.numberFormat(totales[selected.name], 2) + '">Total: <b>'
-                                + Highcharts.numberFormat(totales[selected.name], 2) + '</b></span>',
+                            + Highcharts.numberFormat(totales[selected.name], 2) + '</b></span>',
                         x: -50,
                         y: 10,
                         useHTML: true,
@@ -879,7 +883,7 @@ hs.Expander.prototype.onAfterExpand = function () {
                 hsChart.yAxis[0].addPlotLine({
                     label: {
                         text: '<span title="Total ' + selected.name + ': ' + Highcharts.numberFormat(totales[selected.name], 2) + '">Total: <b>'
-                                + Highcharts.numberFormat(totales[selected.name], 2) + '</b></span>',
+                            + Highcharts.numberFormat(totales[selected.name], 2) + '</b></span>',
                         x: -50,
                         y: 10,
                         useHTML: true,
