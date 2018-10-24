@@ -137,18 +137,20 @@
                                    href='index.php?page=plan_mostrar&id_entidad={$entidad->id}&id_plan={$planes[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                {if count($planes) > 2}
-                                    <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_PLAN}"
-                                       class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
-                                       href='index.php?page=plan_mostrar&id_entidad={$entidad->id}&id_plan={$planes[$indice-1]->id}'>
-                                        <i class="fa fa-play fa-rotate-180 fa-fw"></i>
-                                    </a>
-                                    <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_PLAN}"
-                                       class="btn btn-danger btn-xs {if $indice == (count($planes)-1)}disabled{/if}"
-                                       href='index.php?page=plan_mostrar&id_entidad={$entidad->id}&id_plan={$planes[$indice+1]->id}'>
-                                        <i class="fa fa-play fa-fw"></i>
-                                    </a>
-                                {/if}
+                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_PLAN}"
+                                   {if $indice == 0}class="btn btn-danger btn-xs disabled" href="#"{else}
+                                   class="btn btn-danger btn-xs"
+                                   href='index.php?page=plan_mostrar&id_entidad={$entidad->id}&id_plan={$planes[$indice-1]->id}'
+                                    {/if}>
+                                    <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                                </a>
+                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_PLAN}"
+                                   {if $indice == (count($planes)-1)}class="btn btn-danger btn-xs disabled" href="#"{else}
+                                   class="btn btn-danger btn-xs"
+                                   href='index.php?page=plan_mostrar&id_entidad={$entidad->id}&id_plan={$planes[$indice+1]->id}'
+                                    {/if}>
+                                    <i class="fa fa-play fa-fw"></i>
+                                </a>
                                 <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_PLAN}"
                                    class="btn btn-danger btn-xs {if $indice == (count($planes)-1)}disabled{/if}"
                                    href='index.php?page=plan_mostrar&id_entidad={$entidad->id}&id_plan={$planes[(count($planes)-1)]->id}'>

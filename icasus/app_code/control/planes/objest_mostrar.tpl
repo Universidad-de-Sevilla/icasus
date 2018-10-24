@@ -60,38 +60,36 @@
             </div>
             <!-- /.col-md-10 -->
             <!-- Navegación -->
-            {if count($objests)> 1}
-                <div class="col-md-2">
-                    <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($objests)} {$smarty.const.FIELD_OBJS_EST}</div>
-                    <div class="btn-toolbar" role="toolbar" aria-label="">
-                        <div class="btn-group" role="group" aria-label="">
-                            <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_OBJ_EST}"
-                               class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
-                               href='index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}&id_objest={$objests[0]->id}'>
-                                <i class="fa fa-step-backward fa-fw"></i>
-                            </a>
-                            <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_OBJ_EST}"
-                               class="btn btn-danger btn-xs{if $indice == 0} disabled" href="#"{else}"
-                            href="index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}
-                            &id_objest={$objests[$indice-1]->id}"{/if}>
-                            <i class="fa fa-play fa-rotate-180 fa-fw"></i>
-                            </a>
-                            <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_OBJ_EST}"
-                               class="btn btn-danger btn-xs{if $indice == (count($objests)-1)} disabled" href="#"{else}"
-                            href="index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}
-                            &id_objest={$objests[$indice+1]->id}"{/if}>
-                            <i class="fa fa-play fa-fw"></i>
-                            </a>
-                            <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_OBJ_EST}{count($objests)}"
-                               class="btn btn-danger btn-xs {if $indice == (count($objests)-1)}disabled{/if}"
-                               href='index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}&id_objest={$objests[(count($objests)-1)]->id}'>
-                                <i class="fa fa-step-forward fa-fw"></i>
-                            </a>
-                        </div>
+            <div class="col-md-2">
+                <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($objests)} {$smarty.const.FIELD_OBJS_EST}</div>
+                <div class="btn-toolbar" role="toolbar" aria-label="">
+                    <div class="btn-group" role="group" aria-label="">
+                        <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_OBJ_EST}"
+                           class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
+                           href='index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}&id_objest={$objests[0]->id}'>
+                            <i class="fa fa-step-backward fa-fw"></i>
+                        </a>
+                        <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_OBJ_EST}"
+                           class="btn btn-danger btn-xs{if $indice == 0} disabled" href="#"{else}"
+                        href="index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}
+                        &id_objest={$objests[$indice-1]->id}"{/if}>
+                        <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                        </a>
+                        <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_OBJ_EST}"
+                           class="btn btn-danger btn-xs{if $indice == (count($objests)-1)} disabled" href="#"{else}"
+                        href="index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}
+                        &id_objest={$objests[$indice+1]->id}"{/if}>
+                        <i class="fa fa-play fa-fw"></i>
+                        </a>
+                        <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_OBJ_EST}{count($objests)}"
+                           class="btn btn-danger btn-xs {if $indice == (count($objests)-1)}disabled{/if}"
+                           href='index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}&id_objest={$objests[(count($objests)-1)]->id}'>
+                            <i class="fa fa-step-forward fa-fw"></i>
+                        </a>
                     </div>
                 </div>
-                <!-- /.col-md-2 -->
-            {/if}
+            </div>
+            <!-- /.col-md-2 -->
             <!-- /Navegación -->
         </div>
         <!-- /.row -->

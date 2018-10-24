@@ -61,38 +61,34 @@
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
-                {if count($servicios)> 1}
-                    <div class="col-md-2">
-                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($servicios)} {$smarty.const.FIELD_SERVICIOS}</div>
-                        <div class="btn-toolbar" role="toolbar" aria-label="">
-                            <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_SERVICIO}"
-                                   class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
-                                   href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[0]->id}'>
-                                    <i class="fa fa-step-backward fa-fw"></i>
-                                </a>
-                                {if count($servicios) > 2}
-                                    <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_SERVICIO}"
-                                       class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
-                                       href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[$indice-1]->id}'>
-                                        <i class="fa fa-play fa-rotate-180 fa-fw"></i>
-                                    </a>
-                                    <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_SERVICIO}"
-                                       class="btn btn-danger btn-xs {if $indice == (count($servicios)-1)}disabled{/if}"
-                                       href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[$indice+1]->id}'>
-                                        <i class="fa fa-play fa-fw"></i>
-                                    </a>
-                                {/if}
-                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_SERVICIO}"
-                                   class="btn btn-danger btn-xs {if $indice == (count($servicios)-1)}disabled{/if}"
-                                   href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[(count($servicios)-1)]->id}'>
-                                    <i class="fa fa-step-forward fa-fw"></i>
-                                </a>
-                            </div>
+                <div class="col-md-2">
+                    <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($servicios)} {$smarty.const.FIELD_SERVICIOS}</div>
+                    <div class="btn-toolbar" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_SERVICIO}"
+                               class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
+                               href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[0]->id}'>
+                                <i class="fa fa-step-backward fa-fw"></i>
+                            </a>
+                            <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_SERVICIO}"
+                               class="btn btn-danger btn-xs {if $indice == 0} disabled" href="#"{else}"
+                               href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[$indice-1]->id}'{/if}>
+                                <i class="fa fa-play fa-rotate-180 fa-fw"></i>
+                            </a>
+                            <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_SERVICIO}"
+                               class="btn btn-danger btn-xs {if $indice == (count($servicios)-1)} disabled" href="#"{else}"
+                               href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[$indice+1]->id}'{/if}>
+                                <i class="fa fa-play fa-fw"></i>
+                            </a>
+                            <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_SERVICIO}"
+                               class="btn btn-danger btn-xs {if $indice == (count($servicios)-1)}disabled{/if}"
+                               href='index.php?page=servicio_mostrar&id_entidad={$entidad->id}&id_servicio={$servicios[(count($servicios)-1)]->id}'>
+                                <i class="fa fa-step-forward fa-fw"></i>
+                            </a>
                         </div>
                     </div>
-                    <!-- /.col-md-2 -->
-                {/if}
+                </div>
+                <!-- /.col-md-2 -->
                 <!-- /Navegación -->
             </div>
             <!-- /.row -->
@@ -227,8 +223,10 @@
                     <div class="col-md-12">
                         <table class="table table-striped table-hover ficha">
                             <thead>
-                            <th></th>
-                            <th></th>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                            </tr>
                             </thead>
                             <tbody>
                             <tr>

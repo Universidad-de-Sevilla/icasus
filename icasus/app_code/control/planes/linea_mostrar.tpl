@@ -78,50 +78,48 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 title="{$_nombre_pagina}" class="page-header">
-            <div class="row">
-                <div class="col-md-10">
-                    <i class="fa fa-long-arrow-right fa-fw"></i> {$_nombre_pagina}
-                </div>
-                <!-- /.col-md-10 -->
-                <!-- Navegación -->
-                {if count($lineas)> 1}
-                    <div class="col-md-2">
-                        <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($lineas)} {$smarty.const.FIELD_LINEAS}</div>
-                        <div class="btn-toolbar" role="toolbar" aria-label="">
-                            <div class="btn-group" role="group" aria-label="">
-                                <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_LINEA}"
-                                   class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
-                                   href='index.php?page=linea_mostrar&id_entidad={$plan->id_entidad}&id_linea={$lineas[0]->id}'>
-                                    <i class="fa fa-step-backward fa-fw"></i>
-                                </a>
-                                <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_LINEA}"
-                                   class="btn btn-danger btn-xs {if $indice == 0}disabled" href="#"{else}"
-                                    href='index.php?page=linea_mostrar&id_entidad={$plan->id_entidad}
-                                    &id_linea={$lineas[$indice-1]->id}'{/if}>
+        <div class="row">
+            <div class="col-md-10">
+                <h3 title="{$_nombre_pagina}" class="page-header"><i
+                            class="fa fa-long-arrow-right fa-fw"></i> {$_nombre_pagina}</h3>
+            </div>
+            <!-- /.col-md-10 -->
+            <!-- Navegación -->
+            {if count($lineas)> 1}
+                <div class="col-md-2">
+                    <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($lineas)} {$smarty.const.FIELD_LINEAS}</div>
+                    <div class="btn-toolbar" role="toolbar" aria-label="">
+                        <div class="btn-group" role="group" aria-label="">
+                            <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_LINEA}"
+                               class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
+                               href='index.php?page=linea_mostrar&id_entidad={$plan->id_entidad}&id_linea={$lineas[0]->id}'>
+                                <i class="fa fa-step-backward fa-fw"></i>
+                            </a>
+                            <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_LINEA}"
+                               {if $indice == 0}class="btn btn-danger btn-xs disabled" href="#"{else}
+                               class="btn btn-danger btn-xs"
+                               href='index.php?page=linea_mostrar&id_entidad={$plan->id_entidad} &id_linea={$lineas[$indice-1]->id}'{/if}>
                                 <i class="fa fa-play fa-rotate-180 fa-fw"></i>
-                                </a>
-                                <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_LINEA}"
-                                   class="btn btn-danger btn-xs {if $indice == (count($lineas)-1)}disabled"
-                                   href="#"{else}"
-                                    href='index.php?page=linea_mostrar&id_entidad={$plan->id_entidad}
-                                    &id_linea={$lineas[$indice+1]->id}'{/if}>
+                            </a>
+                            <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_LINEA}"
+                               {if $indice == (count($lineas)-1)}class="btn btn-danger btn-xs disabled" href="#"{else}
+                                class="btn btn-danger btn-xs"
+                                href="index.php?page=linea_mostrar&id_entidad={$plan->id_entidad} &id_linea={$lineas[$indice+1]->id}"{/if}>
                                 <i class="fa fa-play fa-fw"></i>
-                                </a>
-                                <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_LINEA}"
-                                   class="btn btn-danger btn-xs {if $indice == (count($lineas)-1)}disabled{/if}"
-                                   href='index.php?page=linea_mostrar&id_entidad={$plan->id_entidad}&id_linea={$lineas[(count($lineas)-1)]->id}'>
-                                    <i class="fa fa-step-forward fa-fw"></i>
-                                </a>
-                            </div>
+                            </a>
+                            <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_LINEA}"
+                               class="btn btn-danger btn-xs {if $indice == (count($lineas)-1)}disabled{/if}"
+                               href="index.php?page=linea_mostrar&id_entidad={$plan->id_entidad}&id_linea={$lineas[(count($lineas)-1)]->id}">
+                                <i class="fa fa-step-forward fa-fw"></i>
+                            </a>
                         </div>
                     </div>
-                    <!-- /.col-md-2 -->
-                {/if}
-                <!-- /Navegación -->
-            </div>
-            <!-- /.row -->
-        </h3>
+                </div>
+                <!-- /.col-md-2 -->
+            {/if}
+            <!-- /Navegación -->
+        </div>
+        <!-- /.row -->
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -132,9 +130,9 @@
 <div class="row">
     <div class="col-lg-12">
         <ol class="breadcrumb">
-            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
-            <li><a title="{$smarty.const.FIELD_UNIDS}"
-                   href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
+            <li><i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i><a
+                        title="{$smarty.const.FIELD_UNIDS}"
+                        href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}"
                    href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}">

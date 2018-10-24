@@ -50,14 +50,13 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 title="{$_nombre_pagina}" class="page-header">
+
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-bullseye fa-fw"></i> {$_nombre_pagina}
+                    <h3 title="{$_nombre_pagina}" class="page-header"><i class="fa fa-bullseye fa-fw"></i> {$_nombre_pagina}</h3>
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
-                {if count($objops)> 1}
                     <div class="col-md-2">
                         <div style="font-size:10px">{$indice+1} {$smarty.const.TXT_DE} {count($objops)} {$smarty.const.FIELD_OBJS_OP}</div>
                         <div class="btn-toolbar" role="toolbar" aria-label="">
@@ -86,11 +85,9 @@
                         </div>
                     </div>
                     <!-- /.col-md-2 -->
-                {/if}
                 <!-- /Navegación -->
             </div>
             <!-- /.row -->
-        </h3>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -101,8 +98,7 @@
 <div class="row">
     <div class="col-lg-12">
         <ol class="breadcrumb">
-            <li><i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i></li>
-            <li><a title="{$smarty.const.FIELD_UNIDS}"
+            <li><i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i><a title="{$smarty.const.FIELD_UNIDS}"
                    href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}"

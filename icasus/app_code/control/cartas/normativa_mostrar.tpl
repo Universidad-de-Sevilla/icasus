@@ -27,10 +27,10 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 title="{$_nombre_pagina}" class="page-header">
+
             <div class="row">
                 <div class="col-md-10">
-                    <i class="fa fa-hand-paper-o fa-fw"></i> {$_nombre_pagina}
+                    <h3 title="{$_nombre_pagina}" class="page-header"><i class="fa fa-hand-paper-o fa-fw"></i> {$_nombre_pagina}</h3>
                 </div>
                 <!-- /.col-md-10 -->
                 <!-- Navegación -->
@@ -44,18 +44,16 @@
                                    href='index.php?page=normativa_mostrar&id_entidad={$entidad->id}&id_normativa={$normativas[0]->id}'>
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
-                                {if count($normativas) > 2}
                                     <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_NORMATIVA}"
-                                       class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
-                                       href='index.php?page=normativa_mostrar&id_entidad={$entidad->id}&id_normativa={$normativas[$indice-1]->id}'>
+                                       class="btn btn-danger btn-xs {if $indice == 0}disabled" href="#"{else}"
+                                       href='index.php?page=normativa_mostrar&id_entidad={$entidad->id}&id_normativa={$normativas[$indice-1]->id}'{/if}>
                                         <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                     </a>
                                     <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_NORMATIVA}"
-                                       class="btn btn-danger btn-xs {if $indice == (count($normativas)-1)}disabled{/if}"
-                                       href='index.php?page=normativa_mostrar&id_entidad={$entidad->id}&id_normativa={$normativas[$indice+1]->id}'>
+                                       class="btn btn-danger btn-xs {if $indice == (count($normativas)-1)}disabled" href="#"{else}"
+                                       href='index.php?page=normativa_mostrar&id_entidad={$entidad->id}&id_normativa={$normativas[$indice+1]->id}'{/if}>
                                         <i class="fa fa-play fa-fw"></i>
                                     </a>
-                                {/if}
                                 <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_NORMATIVA}"
                                    class="btn btn-danger btn-xs {if $indice == (count($normativas)-1)}disabled{/if}"
                                    href='index.php?page=normativa_mostrar&id_entidad={$entidad->id}&id_normativa={$normativas[(count($normativas)-1)]->id}'>
@@ -69,7 +67,6 @@
                 <!-- /Navegación -->
             </div>
             <!-- /.row -->
-        </h3>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -80,8 +77,8 @@
 <div class="row">
     <div class="col-lg-12">
         <ol class="breadcrumb">
-            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
-            <li><a title="{$smarty.const.FIELD_UNIDS}"
+            <li><i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
+                <a title="{$smarty.const.FIELD_UNIDS}"
                    href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}"
