@@ -31,7 +31,7 @@ if (filter_has_var(INPUT_GET, 'autenticar'))
         {
             foreach ($usesrelacion as $perfil)
             {
-                if ($perfil == 'PAS' OR $perfil == 'PDI' OR $perfil == 'MISCELANEA')
+                if ($perfil == 'PAS' OR $perfil == 'PDI' OR $perfil == 'MISCELANEA' OR $perfil == 'PDIEXTERNO')
                 {
                     $acceso_autorizado = true;
                 }
@@ -39,7 +39,7 @@ if (filter_has_var(INPUT_GET, 'autenticar'))
         }
         else
         {
-            if ($usesrelacion == 'PAS' or $usesrelacion == 'PDI' or $usesrelacion == 'MISCELANEA')
+            if ($usesrelacion == 'PAS' OR $usesrelacion == 'PDI' OR $usesrelacion == 'MISCELANEA' OR $perfil == 'PDIEXTERNO')
             {
                 $acceso_autorizado = true;
             }
