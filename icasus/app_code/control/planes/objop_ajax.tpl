@@ -14,7 +14,7 @@
 
 {if $modulo==='actualizar_porcentaje'}
     <div class="progress">
-        <div class="progress-bar {if $ejecucion_anual|round:"2" < 25}progress-bar-danger{elseif $ejecucion_anual|round:"2" >= 25 && $ejecucion_anual|round:"2" < 75}progress-bar-warning{elseif $ejecucion_anual|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$ejecucion_anual|round:"2"}%">
+        <div class="progress-bar {if $ejecucion_anual|round:"2" < 25}progress-bar-danger{elseif $ejecucion_anual|round:"2" >= 25 && $ejecucion_anual|round:"2" < 75}progress-bar-warning{elseif $ejecucion_anual|round:"2" >= 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$ejecucion_anual|round:"2"}" aria-valuemin="0" aria-valuemax="1000" style="min-width: 4em;width:{$ejecucion_anual|round:"2"}%">
             {$ejecucion_anual|round:"2"} %
         </div>
     </div>
@@ -22,7 +22,7 @@
 
 {if $modulo==='actualizar_global'}
     <div class="progress">
-        <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{elseif $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{elseif $objop->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$objop->ejecucion|round:"2"}%">
+        <div class="progress-bar {if $objop->ejecucion|round:"2" < 25}progress-bar-danger{elseif $objop->ejecucion|round:"2" >= 25 && $objop->ejecucion|round:"2" < 75}progress-bar-warning{elseif $objop->ejecucion|round:"2" >= 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$objop->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="1000" style="min-width: 4em;width:{$objop->ejecucion|round:"2"}%">
             {$objop->ejecucion|round:"2"} %
         </div>
     </div>

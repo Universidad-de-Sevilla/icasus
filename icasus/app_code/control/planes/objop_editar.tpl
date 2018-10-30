@@ -311,7 +311,8 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-bullseye fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub> {$smarty.const.TXT_OBJOP_EDIT}: {$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}</h3>
+                            <h3 class="modal-title" id="myModalLabel"><i class="fa fa-bullseye fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
+                                {$smarty.const.TXT_OBJOP_EDIT}: {$objop->objest->linea->indice}.{$objop->objest->indice}.{$objop->indice}. {$objop->nombre}</h3>
                         </div>
                         <div class="modal-body">
                             <p>{$smarty.const.MSG_OBJOP_CONFIRM_EDITAR}</p>

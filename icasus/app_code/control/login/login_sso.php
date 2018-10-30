@@ -21,6 +21,7 @@ if (filter_has_var(INPUT_GET, 'autenticar'))
 {
     $url = "https://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
 //    if ($usuario_sso->check_and_force_sso($url))
+    /** @var \US\OpenSSO\User $usuario_sso */
     if ($usuario_sso->enforceAuthentication($url))
     {
         //$dni = $usuario_sso->irispersonaluniqueid;
@@ -39,7 +40,7 @@ if (filter_has_var(INPUT_GET, 'autenticar'))
         }
         else
         {
-            if ($usesrelacion == 'PAS' OR $usesrelacion == 'PDI' OR $usesrelacion == 'MISCELANEA' OR $perfil == 'PDIEXTERNO')
+            if ($usesrelacion == 'PAS' OR $usesrelacion == 'PDI' OR $usesrelacion == 'MISCELANEA' OR $usesrelacion == 'PDIEXTERNO')
             {
                 $acceso_autorizado = true;
             }
@@ -50,6 +51,7 @@ if (filter_has_var(INPUT_GET, 'autenticar'))
         if ($acceso_autorizado)
         {
             $usuario = new Usuario();
+
             if ($usuario->load_joined("login = '" . $usuario_sso->uid . "'"))
             {
                 // Si el usuario existe en icasus cargamos sus datos

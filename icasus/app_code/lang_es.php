@@ -769,7 +769,7 @@ define('MSG_OBJOP_BORRADO', 'Se ha eliminado el Objetivo Operacional:');
 define('MSG_OBJOP_BORRAR', 'No tiene permisos para borrar el Objetivo Operacional.');
 define('MSG_OBJOP_NO_INDICS_CORREL', 'No se han definido los Indicadores de Correlación para este Objetivo Operacional.');
 define('MSG_OBJOP_NO_INDICS_CONTROL', 'No se han definido los Indicadores de Control para este Objetivo Operacional.');
-define('MSG_OBJOP_VALOR_EJ', 'Debe introducir un valor para la ejecución entre 0 y 100 (%).');
+define('MSG_OBJOP_VALOR_EJ', 'Debe introducir un valor numérico y positivo en el porcentaje de ejecución.');
 define('MSG_OBJOP_NO_SUBUNID_ASIG', 'No se han asignado Unidad/Subunidades a este Objetivo Operacional (corregir).');
 define('MSG_OBJOP_NO_ASIG', 'No dispone de Objetivos Operacionales bajo su responsabilidad.');
 

@@ -42,7 +42,7 @@ $('#page-wrapper').on('click', '.grabar', function () {
     var valor = $('#page-wrapper #valor_' + anyo).val();
     var resultado = $('#page-wrapper #resultado_' + anyo).children('textarea').val();
     valor = valor.replace(',', '.');
-    if ($.isNumeric(valor) && valor >= 0 && valor <= 100) {
+    if ($.isNumeric(valor) && valor >= 0) {
         $.ajax({
             type: "POST",
             data: {'valor': valor, 'resultado': resultado},
