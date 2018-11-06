@@ -442,8 +442,7 @@
             <div id='analisis_plan'>
                 <div class="form-horizontal">
                     <div id="analisis" class="form-group">
-                        <label for="analisis" class="col-sm-2 control-label">{$smarty.const.TXT_ANALISIS} ({$anyo}
-                            )</label>
+                        <label for="analisis" class="col-sm-2 control-label">{$smarty.const.TXT_ANALISIS}</label>
                         <div class="col-sm-6">
                             <textarea class="form-control" id="texto_analisis"
                                       placeholder="{$smarty.const.TXT_ANALISIS_DESC}" rows="9"
@@ -462,7 +461,7 @@
                         <label for="plan_accion" class="col-sm-2 control-label">{$smarty.const.TXT_PLAN_ACCION} ({$anyo}
                             )</label>
                         <div class="col-sm-6">
-                            <textarea class="form-control" id="texto_plan" placeholder="{$smarty.const.TXT_PLAN_ACCION}"
+                            <textarea class="form-control" id="texto_plan" placeholder="{$smarty.const.TXT_PLAN_ACCION_DESC}"
                                       rows="9" readonly>{$analisis_actual->plan_accion}</textarea>
                         </div>
                         {if $_control || $responsable}
