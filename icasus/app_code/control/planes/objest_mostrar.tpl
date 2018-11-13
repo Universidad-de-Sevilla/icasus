@@ -71,14 +71,12 @@
                         </a>
                         <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_OBJ_EST}"
                            class="btn btn-danger btn-xs{if $indice == 0} disabled" href="#"{else}"
-                        href="index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}
-                        &id_objest={$objests[$indice-1]->id}"{/if}>
+                        href="index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}&id_objest={$objests[$indice-1]->id}"{/if}>
                         <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                         </a>
                         <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_OBJ_EST}"
                            class="btn btn-danger btn-xs{if $indice == (count($objests)-1)} disabled" href="#"{else}"
-                        href="index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}
-                        &id_objest={$objests[$indice+1]->id}"{/if}>
+                        href="index.php?page=objest_mostrar&id_entidad={$plan->id_entidad}&id_objest={$objests[$indice+1]->id}"{/if}>
                         <i class="fa fa-play fa-fw"></i>
                         </a>
                         <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_OBJ_EST}{count($objests)}"
@@ -468,7 +466,7 @@
                     <li class="list-group-item list-group-item-info">
                         <div class="row">
                             <div class="col-sm-8 h4">
-                                {$linea->indice}.{$objest>indice}. {$objest->nombre}
+                                {$linea->indice}.{$objest->indice}. {$objest->nombre}
                             </div>
                             <!-- /.col-sm-8 -->
                             <div class="col-sm-4">
