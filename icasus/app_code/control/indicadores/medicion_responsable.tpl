@@ -53,15 +53,13 @@
                                 </a>
                                 <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_INDIC}"
                                    class="btn btn-danger btn-xs {if $indice == 0}disabled" href="#"{else}"
-                                href='index.php?page=medicion_responsable&id_entidad={$entidad->id}
-                                &id_indicador={$indicadores[$indice-1]->id}'{/if}>
+                                href='index.php?page=medicion_responsable&id_entidad={$entidad->id}&id_indicador={$indicadores[$indice-1]->id}'{/if}>
                                 <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
                                 <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_INDIC}"
                                    class="btn btn-danger btn-xs {if $indice == (count($indicadores)-1)}disabled"
                                    href="#"{else}"
-                                href='index.php?page=medicion_responsable&id_entidad={$entidad->id}
-                                &id_indicador={$indicadores[$indice+1]->id}'{/if}>
+                                href='index.php?page=medicion_responsable&id_entidad={$entidad->id}&id_indicador={$indicadores[$indice+1]->id}'{/if}>
                                 <i class="fa fa-play fa-fw"></i>
                                 </a>
                                 <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_INDIC}"
