@@ -50,7 +50,7 @@
         <!-- Custom CSS -->
         <link href="css/estilo.css" rel="stylesheet">
         <!-- Modificaciones modo demo -->
-        {if $smarty.const.IC_MODO_DEMO}<link href="css/demo.css" rel="stylesheet">{/if}
+        {if $smarty.const.IC_MODO_DEMO === true}<link href="css/demo.css" rel="stylesheet">{/if}
 
         <!-- Custom Fonts -->
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
