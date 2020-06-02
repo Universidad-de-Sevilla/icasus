@@ -729,6 +729,7 @@ $(".panel_tabla").each(function () {
                 + '&id_entidad=' + unidad_cuadro + '">' + indicador.nombre + '</a></td>';
 
             var urlApi = "api_publica.php?metodo=get_valores_con_timestamp&id=" + indicador.id + '&periodicidad=anual';
+            urlApi += '&fecha_inicio=' + anyo_inicio + '-01-01&fecha_fin=' + anyo_fin + '-12-31'
 
             $.ajax({
                 url: urlApi,
