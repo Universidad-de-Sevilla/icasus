@@ -371,8 +371,6 @@ function get_valores_con_timestamp($link, $id, $fecha_inicio = 0, $fecha_fin = 0
 
 // ---------------------------------------------------------------------------
 // Realiza los cálculos para obtener los totales de un indicador calculado
-// Ejemplo de llamada:
-// http://localhost/icasus/api_publica.php?metodo=obtener_total_calculado&id=5035&fecha_inicio=2010-01-01&fecha_fin=2013-12-31&periodicidad=anual
 // ---------------------------------------------------------------------------
 function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
 {
