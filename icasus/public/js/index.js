@@ -193,4 +193,4 @@ function check_sesion() {
         }
     });
 }
-sesion_activa = setInterval(check_sesion, 10000);
+sesion_activa = setInterval(check_sesion, 100000);
