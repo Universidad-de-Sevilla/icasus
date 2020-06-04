@@ -8,6 +8,7 @@
   // --------------------------------------------------------------------------------------
   // Acceso público a los dato de Icasus
   // Devuelve el resultado en formato JSON
+  // No utiliza adodb
   // --------------------------------------------------------------------------------------
   // Métodos definidos:
   //

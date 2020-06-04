@@ -16,8 +16,8 @@ error_reporting(E_ALL & ~E_DEPRECATED);
 
 require_once('../app_code/app_config.php');
 require_once('../app_code/app_version.php');
-require_once('../../cascara_core/adodb5/adodb.inc.php');
-require_once('../../cascara_core/adodb5/adodb-active-record.inc.php');
+require_once('../../cascara_core/adodb5.21/adodb.inc.php');
+require_once('../../cascara_core/adodb5.21/adodb-active-record.inc.php');
 require_once('../../cascara_core/smarty/Smarty.class.php');
 
 //Fichero de idioma
