@@ -13,6 +13,8 @@
 
 // Todas las constantes declaradas en este fichero empiezan 
 // por IC (de icasus) para denotar su caracter global a toda la aplicación
+define('IC_MODO_DEMO', false);
+define('IC_MODO_DESARROLLO', true);
 
 //Conexion a la base de datos
 define('IC_DB_HOST','localhost');//escriba la dirección del servidor de bases de datos (BD)
