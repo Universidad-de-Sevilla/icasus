@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="es-ES">
-
     <head>
-
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,59 +14,44 @@
 
         <!-- Favicon -->
         <link rel="shortcut icon" href="favicon.ico">
-
         <!-- Bootstrap Core CSS -->
         <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
         <!-- Chosen CSS -->
         <link href="lib/chosen/chosen.min.css" rel="stylesheet">
         <link href="lib/chosen/chosen-bootstrap.css" rel="stylesheet">
-
         <!-- Bootstrap DatePicker -->
         <link href="lib/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet">
-
         <!-- Bootstrap Toggle -->
         <link href="lib/bootstrap-toggle/css/bootstrap-toggle.min.css" rel="stylesheet">
-
         <!-- Datatables -->
         <link href="lib/dataTables/css/dataTables.bootstrap.css" rel="stylesheet">
-
         <!-- Datatables Buttons -->
         <link href="lib/dataTables/css/buttons.bootstrap.min.css" rel="stylesheet">
-
         <!-- Datatables FixedHeader -->
         <link href="lib/dataTables/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-
         <!-- Datatables FixedColumns -->
         <link href="lib/dataTables/css/fixedColumns.bootstrap.min.css" rel="stylesheet">
-
         <!-- Highslide -->
         <link rel="stylesheet" type="text/css" href="lib/highslide/highslide.css"/>
         <script type='text/javascript' src="lib/highslide/js/highslide-full.min.js"></script>
         <script type='text/javascript' src="lib/highslide/js/highslide.config.js"></script>
-
         <!-- Custom CSS -->
         <link href="css/estilo.css" rel="stylesheet">
         <!-- Modificaciones modo demo -->
         {if $smarty.const.IC_MODO_DEMO === true}<link href="css/demo.css" rel="stylesheet">{/if}
-
         <!-- Custom Fonts -->
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
         <!-- Google Analytics -->
         <script src="js/google_analytics.js"></script>
-
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
     </head>
 
     <body {if !isset($_usuario)} class="login-page" data-on_login="true"{/if} data-on_login="false">
-
         {if isset($_usuario)}
             {* Si se ha iniciado sesión *}
             <div id="wrapper">
