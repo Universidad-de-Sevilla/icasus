@@ -48,9 +48,7 @@ function __autoload($class_name)
 $dsn = 'mysqli://' . IC_DB_LOGIN . ':' . IC_DB_CLAVE . '@' . IC_DB_HOST . '/' . IC_DB_DATABASE;
 $adodb = NewADOConnection($dsn);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
-
 $adodb->Execute("SET NAMES UTF8");
-
 date_default_timezone_set('Europe/Madrid');
 setlocale(LC_ALL, 'es-ES');
 
