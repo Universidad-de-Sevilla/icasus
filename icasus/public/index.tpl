@@ -11,7 +11,6 @@
         <meta name="author" content="Joaquín Valonero Zaera">
 
         <title>{$_nombre_pagina} - {$smarty.const.TXT_ICASUS}</title>
-
         <!-- Favicon -->
         <link rel="shortcut icon" href="favicon.ico">
         <!-- Bootstrap Core CSS -->
@@ -43,12 +42,6 @@
         <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <!-- Google Analytics -->
         <script src="js/google_analytics.js"></script>
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
     </head>
 
     <body {if !isset($_usuario)} class="login-page" data-on_login="true"{/if} data-on_login="false">
