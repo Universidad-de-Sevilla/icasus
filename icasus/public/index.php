@@ -22,32 +22,29 @@ require_once('../../cascara_core/smarty/Smarty.class.php');
 
 //Fichero de idioma
 require_once('../app_code/' . IC_LANG_FILE);
-
 // Carga las clases necesarias automaticamente
 spl_autoload_register('__autoload');
 
 function __autoload($class_name)
 {
-    //Cargamos las entidades (mapean tablas de la bd)
+    //Carga las entidades (mapean tablas de la bd)
     if (file_exists('../app_code/entity/' . $class_name . '.php'))
     {
         require_once('../app_code/entity/' . $class_name . '.php');
     }
-
-    //Cargamos lógica
+    //Carga lógica
     if (file_exists('../app_code/logic/' . $class_name . '.php'))
     {
         require_once('../app_code/logic/' . $class_name . '.php');
     }
-
-    //Cargamos clases de utilidades
+    //Carga clases de utilidades
     if (file_exists('../app_code/util/' . $class_name . '.php'))
     {
         require_once('../app_code/util/' . $class_name . '.php');
     }
 }
 
-// Conectamos a los datos con ADODB y ActiveRecord 
+// Conecta a los datos con ADODB y ActiveRecord
 $dsn = 'mysqli://' . IC_DB_LOGIN . ':' . IC_DB_CLAVE . '@' . IC_DB_HOST . '/' . IC_DB_DATABASE;
 $adodb = NewADOConnection($dsn);
 ADOdb_Active_Record::SetDatabaseAdapter($adodb);
@@ -62,13 +59,16 @@ $smarty = new Smarty();
 $usuario = new Usuario();
 $plantilla = '';
 
-// Configuramos parámetros $smarty
-$smarty->template_dir = '../app_code/control';
-$smarty->compile_dir = '../templates_c';
-$smarty->config_dir = '../configs';
-$smarty->cache_dir = '../cache';
-//Descomentar en producción
-//$smarty->setCaching(Smarty::CACHING_LIFETIME_CURRENT);
+// Configura parámetros $smarty
+$smarty->setTemplateDir('../app_code/control');
+$smarty->setCompileDir('../templates_c');
+$smarty->setConfigDir('../configs');
+$smarty->setCacheDir('../cache');
+if (defined(IC_MODO_DESARROLLO) && IC_MODO_DESARROLLO)
+{
+    $smarty->clearAllCache();
+}
+
 // Crea una sesión con un identificador encriptado para evitar ataques
 $session_key = substr(md5(IC_DIR_BASE), 0, 8);
 session_name('IC_SESSID' . $session_key);
