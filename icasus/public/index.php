@@ -11,8 +11,8 @@
  */
 
 // Esto es para que se vean los errores comentar en producción
-ini_set('display_errors', '1');
-error_reporting(E_ALL & ~E_DEPRECATED);
+//ini_set('display_errors', '1');
+//error_reporting(E_ALL & ~E_DEPRECATED);
 
 require_once('../app_code/app_config.php');
 require_once('../app_code/app_version.php');
