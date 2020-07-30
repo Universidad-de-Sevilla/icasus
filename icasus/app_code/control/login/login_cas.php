@@ -29,7 +29,7 @@ if (filter_has_var(INPUT_GET, 'autenticar')) {
         }
     } else {
         if ($usuario_sso_relacion == 'PAS' or $usuario_sso_relacion == 'PDI' or $usuario_sso_relacion == 'MISCELANEA'
-                or $usuario_sso_relacion == 'PDIEXTERNO') {
+            or $usuario_sso_relacion == 'PDIEXTERNO') {
             $acceso_autorizado = true;
         }
     }
@@ -83,5 +83,5 @@ if (filter_has_var(INPUT_GET, 'autenticar')) {
     phpCAS::handleLogoutRequests();
     header('location:' . '/index.php');
 } else {
-    $plantilla = "login/login_sso.tpl";
+    $plantilla = "login/login_cas.tpl";
 }
