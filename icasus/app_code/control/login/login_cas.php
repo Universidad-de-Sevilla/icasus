@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../../../cascara_core/phpCAS-1.3.8/CAS.php';
 // Instancia el cliente
 phpCAS::client(CAS_VERSION_2_0, IC_SSO_CAS_URL, IC_SSO_CAS_PORT, IC_SSO_CAS_PATH);
 // Habilita la validación del certificado y de su CN
-phpCAS::setCasServerCACert(CAS_SERVER_CA_CERT_PATH, true);
+phpCAS::setCasServerCACert(IC_SSO_CAS_SERVER_CA_CERT_PATH, true);
 phpCAS::forceAuthentication();
 
 $smarty->assign("_nombre_pagina", TXT_BIENVENIDO);
