@@ -142,6 +142,7 @@ if (isset($_SESSION['usuario']) && IC_TIPO_LOGIN != 'mantenimiento')
     {
         $error = ERR_UNID_MOSTRAR;
         header("location:index.php?page=error&error=$error");
+        exit();
     }
 
     // Entidades de este usuario

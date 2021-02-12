@@ -13,6 +13,9 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+if (empty($plantilla)) {
+    $plantilla = "indicadores/medicion.tpl";
+}
 //Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();
 $logicaMedicion = new LogicaMedicion();
