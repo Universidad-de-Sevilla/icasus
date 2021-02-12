@@ -429,14 +429,14 @@ class LogicaIndicador implements ILogicaIndicador
     //por defecto devolverá null.
     public function calcular_total($indicador, $valores, $etiqueta)
     {
-        $total = null;
+        $total = 0;
         //Significa que la medición no es centralizada
         if ($valores) {
             if (count($valores) > 1) {
                 $total = $this->calcular_total_agregacion($indicador, $valores, $etiqueta);
             } //La medición esta centralizada por tanto sólo tenemos un valor
             else {
-                $total = $valores[0]->valor;
+                $total = $valores[0]->valor ?? 0;
             }
         }
         return $total;
@@ -518,8 +518,8 @@ class LogicaIndicador implements ILogicaIndicador
             }
         }
         // Calcula el resultado de la formula y guarda el valor final 
-        eval("\$valor_final = $formula;");
-        $total = $valor_final;
+        @eval("\$valor_final = $formula;");
+        $total = is_nan($valor_final) ? 0 : $valor_total;
         return $total;
     }
 
@@ -821,7 +821,7 @@ class LogicaIndicador implements ILogicaIndicador
                     $operando = new Indicador();
                     $operando->Load("id=$id_operando");
                     $valores = $this->indicador_valores_medicion($operando, $etiqueta);
-                    $valor_total = $this->calcular_total($operando, $valores, $etiqueta);
+                    $valor_total = $this->calcular_total($operando, $valores, $etiqueta) ?? 0;
                     $formula .= "$valor_total";
                 }
                 $es_variable = false;
@@ -833,15 +833,15 @@ class LogicaIndicador implements ILogicaIndicador
                 $formula .= $elemento;
             }
         }
-        // Calcula el resultado de la formula y guarda el valor final 
-        eval("\$valor_final = $formula;");
+        // Calcula el resultado de la formula y guarda el valor final
+        @eval("\$valor_final = $formula;");
 
         //Grabamos el valor
         $valor = new Valor();
         $medicion = new Medicion();
         $medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'");
         $valor->load("id_medicion=$medicion->id");
-        $valor->valor = $valor_final;
+        $valor->valor = is_nan($valor_final) ? 0 : $valor_total;
         $valor->Save();
     }
 
@@ -877,7 +877,7 @@ class LogicaIndicador implements ILogicaIndicador
                         $valores = $this->indicador_valores_medicion($operando, $etiqueta);
                         foreach ($valores as $val) {
                             if ($val->id_entidad == $id_entidad) {
-                                $valor_total = $val->valor;
+                                $valor_total = $val->valor ?? 0;
                             }
                         }
                         $formula .= "$valor_total";
@@ -892,10 +892,9 @@ class LogicaIndicador implements ILogicaIndicador
                 }
             }
             // Calcula el resultado de la formula y guarda el valor final 
-            eval("\$valor_final = $formula;");
-
+            @eval("\$valor_final = $formula;");
             //Grabamos el valor
-            $valor->valor = $valor_final;
+            $valor->valor = is_nan($valor_final) ? 0 : $valor_final;
             $valor->Save();
         }
     }
