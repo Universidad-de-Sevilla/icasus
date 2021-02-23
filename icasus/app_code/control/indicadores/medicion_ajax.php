@@ -14,7 +14,7 @@ global $smarty;
 global $usuario;
 global $plantilla;
 if (empty($plantilla)) {
-    $plantilla = "indicadores/medicion.tpl";
+    $plantilla = "indicadores/medicion_ajax.tpl";
 }
 //Variables para operar con Indicadores/Datos
 $logicaIndicador = new LogicaIndicador();

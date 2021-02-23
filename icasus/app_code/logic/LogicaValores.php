@@ -27,14 +27,7 @@ class LogicaValores implements ILogicaValores
                 $num_valores++;
             }
         }
-        if ($num_valores !== 0)
-        {
-            return ($suma / $num_valores);
-        }
-        else
-        {
-            return 0;
-        }
+        return $num_valores > 0 ? ($suma / $num_valores) : null;
     }
 
     //Calcula el sumatorio del conjunto de valores que recibe como parámetro.

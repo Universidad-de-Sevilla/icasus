@@ -436,7 +436,7 @@ class LogicaIndicador implements ILogicaIndicador
                 $total = $this->calcular_total_agregacion($indicador, $valores, $etiqueta);
             } //La medición esta centralizada por tanto sólo tenemos un valor
             else {
-                $total = $valores[0]->valor ?? 0;
+                $total = $valores[0]->valor ?? null;
             }
         }
         return $total;
@@ -519,8 +519,7 @@ class LogicaIndicador implements ILogicaIndicador
         }
         // Calcula el resultado de la formula y guarda el valor final 
         @eval("\$valor_final = $formula;");
-        $total = is_nan($valor_final) ? 0 : $valor_total;
-        return $total;
+        return is_nan($valor_final) ? null : $valor_total;
     }
 
     //Calcula el total anual del indicador/dato que recibe como parámetro para la 
@@ -600,7 +599,7 @@ class LogicaIndicador implements ILogicaIndicador
                 $valor_total->valor = $total;
                 array_push($totales, $valor_total);
             }
-            return $this->logicaValores->sumatorio($totales);
+            return $totales ? $this->logicaValores->sumatorio($totales) : null;
         } else {
             $valores = array();
             //Tomamos sólo los valores del año
@@ -609,7 +608,7 @@ class LogicaIndicador implements ILogicaIndicador
                     array_push($valores, $medicion->medicion_valor);
                 }
             }
-            return $this->logicaValores->sumatorio($valores);
+            return $valores ? $this->logicaValores->sumatorio($valores) : null;
         }
     }
 
@@ -669,11 +668,7 @@ class LogicaIndicador implements ILogicaIndicador
                     array_push($mediciones, $medicion);
                 }
             }
-            if ($mediciones) {
-                return $mediciones[0]->medicion_valor->valor;
-            } else {
-                return NULL;
-            }
+            return $mediciones ? $mediciones[0]->medicion_valor->valor : NULL;
         }
     }
 
