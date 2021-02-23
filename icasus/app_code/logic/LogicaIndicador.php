@@ -841,7 +841,7 @@ class LogicaIndicador implements ILogicaIndicador
         $medicion = new Medicion();
         $medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'");
         $valor->load("id_medicion=$medicion->id");
-        $valor->valor = is_nan($valor_final) ? 0 : $valor_total;
+        $valor->valor = is_nan($valor_final) ? null : $valor_final;
         $valor->Save();
     }
 
