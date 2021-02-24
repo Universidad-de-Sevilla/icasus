@@ -844,8 +844,8 @@ class LogicaIndicador implements ILogicaIndicador
     //que se mide como agregado de subunidades
     private function actualizar_valor_agregado($indicador, $etiqueta, $id_entidad)
     {
-        //En este caso comprobaremos primero que el Indicador/Dato calculado se 
-        //mida para la entidad en la que hemos introducido valores en sus 
+        //En este caso comprobaremos primero que el Indicador/Dato calculado se
+        //mida para la entidad en la que hemos introducido valores en sus
         //Indicadores/Datos influyentes
         $medicion = new Medicion();
         $medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'");
@@ -889,7 +889,7 @@ class LogicaIndicador implements ILogicaIndicador
             // Calcula el resultado de la formula y guarda el valor final 
             @eval("\$valor_final = $formula;");
             //Grabamos el valor
-            $valor->valor = is_nan($valor_final) ? 0 : $valor_final;
+            $valor->valor = is_nan($valor_final) ? null : $valor_final;
             $valor->Save();
         }
     }

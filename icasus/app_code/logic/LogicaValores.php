@@ -33,7 +33,7 @@ class LogicaValores implements ILogicaValores
     //Calcula el sumatorio del conjunto de valores que recibe como parámetro.
     public function sumatorio($valores)
     {
-        $suma = 0;
+        $suma = null;
         foreach ($valores as $valor)
         {
             if ($valor->valor !== null)
@@ -47,7 +47,7 @@ class LogicaValores implements ILogicaValores
     //Calcula el maximo del conjunto de valores que recibe como parámetro.
     public function maximo($valores)
     {
-        $maximo = 0;
+        $maximo = null;
         foreach ($valores as $valor)
         {
             if ($valor->valor !== null && $valor->valor > $maximo)
@@ -77,7 +77,7 @@ class LogicaValores implements ILogicaValores
         }
         else
         {
-            return 0;
+            return null;
         }
     }
 
