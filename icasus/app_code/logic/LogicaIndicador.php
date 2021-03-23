@@ -519,7 +519,7 @@ class LogicaIndicador implements ILogicaIndicador
         }
         // Calcula el resultado de la formula y guarda el valor final 
         @eval("\$valor_final = $formula;");
-        return is_nan($valor_final) ? null : $valor_total;
+        return is_nan($valor_final) ? null : $valor_final;
     }
 
     //Calcula el total anual del indicador/dato que recibe como parámetro para la 
