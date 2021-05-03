@@ -428,7 +428,7 @@
                     <label for="anyo" class="col-sm-2 control-label">{$smarty.const.FIELD_ANYO}</label>
                     <div class="col-sm-4">
                         <select class="form-control chosen-select" id="anyo" name="anyo"
-                                data-id_indicador='{$indicador->id}'>
+                                data-id_indicador='{$indicador->id}' data-id_entidad='{$indicador->id_entidad}'>
                             {foreach from=$years item=year}
                                 <option value="{$year->periodo_fin|truncate:4:''}"
                                         {if $year->periodo_fin|truncate:4:''== $anyo}selected{/if}>

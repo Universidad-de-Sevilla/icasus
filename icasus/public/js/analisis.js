@@ -9,11 +9,14 @@
 
 //Selección del análisis y el plan por años
 $('#anyo').change(function () {
-    var anyo = $(this).val();
-    var id_indicador = $(this).data('id_indicador');
-    $("#analisis_plan").load("index.php?page=analisis_ajax&ajax=true&modulo=mostrar&id_indicador=" + id_indicador + "&anyo=" + anyo);
+    let anyo = $(this).val();
+    let id_indicador = $(this).data('id_indicador');
+    let id_entidad = $(this).data('id_entidad');
+    $("#analisis_plan").load("index.php?page=analisis_ajax&ajax=true&modulo=mostrar&id_indicador=" + id_indicador
+        + "&id_entidad=" + id_entidad + "&anyo=" + anyo);
     $.ajax({
-        url: "index.php?page=analisis_ajax&ajax=true&modulo=grafica&id_indicador=" + id_indicador + "&anyo=" + anyo,
+        url: "index.php?page=analisis_ajax&ajax=true&modulo=grafica&id_indicador=" + id_indicador
+            + "&id_entidad=" + id_entidad + "&anyo=" + anyo,
         success: function (datos) {
             $("#grafica").html(datos);
             actualizaGrafica();
@@ -21,17 +24,15 @@ $('#anyo').change(function () {
     });
 });
 
-//Gestión de Análisis
+//Gestión de Análisis y de Planes de acción
 $('#page-wrapper').on('click', '#editar_analisis', function () {
-    var id_indicador = $(this).data('id_indicador');
-    var anyo = $(this).data('anyo');
+    let id_indicador = $(this).data('id_indicador');
+    let anyo = $(this).data('anyo');
     $("#page-wrapper #analisis").load("index.php?page=analisis_ajax&ajax=true&modulo=editar_analisis&id_indicador=" + id_indicador + "&anyo=" + anyo);
-});
-
-$('#page-wrapper').on('click', '#grabar_analisis', function () {
-    var id_indicador = $(this).data('id_indicador');
-    var anyo = $(this).data('anyo');
-    var texto = $('#page-wrapper #texto_analisis').val();
+}).on('click', '#grabar_analisis', function () {
+    let id_indicador = $(this).data('id_indicador');
+    let anyo = $(this).data('anyo');
+    let texto = $('#page-wrapper #texto_analisis').val();
     $.ajax({
         type: "POST",
         data: {'texto': texto},
@@ -41,25 +42,18 @@ $('#page-wrapper').on('click', '#grabar_analisis', function () {
             $("#page-wrapper #tabla_analisis_plan").load("index.php?page=analisis_ajax&ajax=true&modulo=actualizar_tabla&id_indicador=" + id_indicador + "&anyo=" + anyo);
         }
     });
-});
-
-$('#page-wrapper').on('click', '#cancelar_analisis', function () {
-    var id_indicador = $(this).data('id_indicador');
-    var anyo = $(this).data('anyo');
+}).on('click', '#cancelar_analisis', function () {
+    let id_indicador = $(this).data('id_indicador');
+    let anyo = $(this).data('anyo');
     $("#page-wrapper #analisis").load("index.php?page=analisis_ajax&ajax=true&modulo=cancelar_analisis&id_indicador=" + id_indicador + "&anyo=" + anyo);
-});
-
-//Gestión de Planes de acción
-$('#page-wrapper').on('click', '#editar_plan', function () {
-    var id_indicador = $(this).data('id_indicador');
-    var anyo = $(this).data('anyo');
+}).on('click', '#editar_plan', function () {
+    let id_indicador = $(this).data('id_indicador');
+    let anyo = $(this).data('anyo');
     $("#page-wrapper #plan").load("index.php?page=analisis_ajax&ajax=true&modulo=editar_plan&id_indicador=" + id_indicador + "&anyo=" + anyo);
-});
-
-$('#page-wrapper').on('click', '#grabar_plan', function () {
-    var id_indicador = $(this).data('id_indicador');
-    var anyo = $(this).data('anyo');
-    var texto = $('#page-wrapper #texto_plan').val();
+}).on('click', '#grabar_plan', function () {
+    let id_indicador = $(this).data('id_indicador');
+    let anyo = $(this).data('anyo');
+    let texto = $('#page-wrapper #texto_plan').val();
     $.ajax({
         type: "POST",
         data: {'texto': texto},
@@ -69,11 +63,9 @@ $('#page-wrapper').on('click', '#grabar_plan', function () {
             $("#page-wrapper #tabla_analisis_plan").load("index.php?page=analisis_ajax&ajax=true&modulo=actualizar_tabla&id_indicador=" + id_indicador + "&anyo=" + anyo);
         }
     });
-});
-
-$('#page-wrapper').on('click', '#cancelar_plan', function () {
-    var id_indicador = $(this).data('id_indicador');
-    var anyo = $(this).data('anyo');
+}).on('click', '#cancelar_plan', function () {
+    let id_indicador = $(this).data('id_indicador');
+    let anyo = $(this).data('anyo');
     $("#page-wrapper #plan").load("index.php?page=analisis_ajax&ajax=true&modulo=cancelar_plan&id_indicador=" + id_indicador + "&anyo=" + anyo);
 });
 
