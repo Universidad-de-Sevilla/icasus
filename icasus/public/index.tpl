@@ -45,6 +45,12 @@
     </head>
 
     <body {if !isset($_usuario)} class="login-page" data-on_login="true"{/if} data-on_login="false">
+<!-- {*
+        <div class="alert alert-danger text-center">
+            <h1><i class="fa fa-exclamation-triangle"></i> Interrupción del servicio.</h1>
+            <div>Se ha programado una parada del servicio <strong>durante la tarde del jueves 15 de abril a partir de las 14:00h</strong> por revisión de la instalación eléctrica del edificio.</div>
+        </div>
++*} -->
         {if isset($_usuario)}
             {* Si se ha iniciado sesión *}
             <div id="wrapper">
