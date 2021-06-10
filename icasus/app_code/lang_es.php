@@ -104,13 +104,19 @@ define('TXT_DERECHO_CREAR', 'Crear Derecho');
 define('TXT_DERECHO_EDIT', 'Editar Derecho');
 define('TXT_DERECHO_BORRAR', 'Borrar Derecho');
 
-//Cuadros de Mando
-define('TXT_CUADRO_CREAR', 'Crear Cuadro de Mando');
-define('TXT_CUADRO_EDIT', 'Editar Cuadro de Mando');
-define('TXT_CUADRO_BORRAR', 'Borrar Cuadro de Mando');
-define('TXT_CUADRO_ASOC', 'Sin Cuadro de Mando asociado (opcional: seleccione un Cuadro del desplegable).');
-//Paneles de los Cuadros de Mando
-define('TXT_PANEL_CREAR', 'Crear panel');
+//Paneles de Gestión (antes Cuadros de Mando)
+const TXT_PANEL_GESTION_CREAR = 'Crear Panel de Gestión';
+const TXT_CUADRO_CREAR = TXT_PANEL_GESTION_CREAR;
+const TXT_PANEL_GESTION_EDIT = 'Editar Panel de Gestión';
+const TXT_CUADRO_EDIT = TXT_PANEL_GESTION_EDIT;
+const TXT_PANEL_GESTION_BORRAR = 'Borrar Panel de Gestión';
+const TXT_CUADRO_BORRAR = TXT_PANEL_GESTION_BORRAR;
+const TXT_PANEL_GESTION_ASOC = 'Sin Panel de Gestión asociado (opcional: seleccione uno del desplegable).';
+const TXT_CUADRO_ASOC = TXT_PANEL_GESTION_ASOC;
+
+//Bloques de los Paneles de Gestión (antes Paneles de los Cuadros de Mando)
+const TXT_BLOQUE_CREAR = 'Crear bloque';
+const TXT_PANEL_CREAR = TXT_BLOQUE_CREAR;
 define('TXT_PANEL_TIPO', 'Tipo de panel');
 define('TXT_PANEL_BORRAR', 'Borrar panel');
 define('TXT_PANEL_EDITAR', 'Editar panel');
@@ -196,7 +202,8 @@ define('TXT_CARTAS_US', 'Cartas de Compromisos');
 define('TXT_PROCS_US', 'Procesos');
 define('TXT_INDICS_US', 'Indicadores/Datos');
 define('TXT_DATOS_US', 'Datos');
-define('TXT_CUADROS_MANDO_US', 'Cuadros de Mando');
+const TXT_PANELES_GESTION_US = 'Paneles de Gestión';
+const TXT_CUADROS_MANDO_US = TXT_PANELES_GESTION_US;
 define('TXT_USERS_US', 'Usuarios');
 define('TXT_USERS', 'Usuarios');
 define('TXT_AYUDA', 'Ayuda');
@@ -210,7 +217,8 @@ define('TXT_PLANES_DESCRIPCION', 'Planes Estratégicos: listado de Planes Estrat
 define('TXT_CARTAS_DESCRIPCION', 'Cartas de Compromisos: listado de las Cartas de Compromisos de la Unidad y gestión de las mismas.');
 define('TXT_PROCS_DESCRIPCION', 'Procesos: listado de Procesos de la Unidad y gestión de los mismos. ');
 define('TXT_INDICS_DESCRIPCION', 'Indicadores/Datos: listado de Indicadores/Datos de la Unidad y gestión de los mismos.');
-define('TXT_CUADRO_MANDO_DESCRIPCION', 'Cuadros de Mando: listado de Cuadros de Mando de la Unidad y gestión de los mismos.');
+const TXT_PANEL_GESTION_DESCRIPCION = 'Paneles de Gestión (antes Cuadros de Mando): listado y administración de Paneles de Gestión de la Unidad.';
+const TXT_CUADRO_MANDO_DESCRIPCION = TXT_PANEL_GESTION_DESCRIPCION;
 define('TXT_CONSULTA_DESCRIPCION', 'Consulta: efectuar consultas y operaciones que muestran información sobre los Indicadores y Datos de la Unidad.');
 define('TXT_CONTROL_DESCRIPCION', 'Control: controle las mediciones, valores y criterios EFQM de los distintos Indicadores/Datos de la Unidad bajo su responsabilidad.');
 
@@ -347,7 +355,8 @@ define('TXT_USERS_BAJA', 'Baja de usuarios');
 define('TXT_USER_UNIDS', 'Mis Unidades');
 define('TXT_USER_PROCS', 'Mis Procesos');
 define('TXT_USER_INDIC', 'Mis Indicadores');
-define('TXT_USER_CUADROS', 'Mis Cuadros de Mando');
+const TXT_USER_PANELES_GESTION = 'Mis Paneles de Gestión';
+const TXT_USER_CUADROS = TXT_USER_PANELES_GESTION;
 define('TXT_USER_OBJOPS', 'Mis Objetivos Operacionales');
 define('TXT_USERS_ASIG', 'Usuarios asignados');
 define('TXT_USER_GESTION', 'Gestión de usuarios');
@@ -450,12 +459,14 @@ define('FIELD_COMPROMISOS', 'Compromisos');
 define('FIELD_DERECHO', 'Derecho');
 define('FIELD_DERECHOS', 'Derechos de los usuarios');
 
-//Cuadros de Mando
-define('FIELD_CUADRO_MANDO', 'Cuadro de Mando');
-define('FIELD_CUADROS_MANDO', 'Cuadros de Mando');
-//Paneles de los Cuadros de Mando
-define('FIELD_ANYOS_ATRAS', 'Años atrás');
-define('FIELD_ANYO_FIN', 'Año de fin');
+//Paneles de Gestión (antes Cuadros de Mando)
+const FIELD_PANEL_GESTION = 'Panel de Gestión';
+const FIELD_CUADRO_MANDO = FIELD_PANEL_GESTION;
+const FIELD_PANELES_GESTION = 'Paneles de Gestión';
+const FIELD_CUADROS_MANDO = FIELD_PANELES_GESTION;
+//Bloques de loa Paneles de Gestión (antes Paneles de los Cuadros de Mando)
+const FIELD_ANYOS_ATRAS = 'Años atrás';
+const FIELD_ANYO_FIN = 'Año de fin';
 
 //Datos
 define('FIELD_DATO', 'Dato');
@@ -636,24 +647,40 @@ define('MSG_DERECHO_BORRADO', 'Se ha eliminado el Derecho de los usuarios:');
 define('MSG_NO_CAL', 'No se puede calcular con los parámetros actuales.');
 define('MSG_NO_OPERANDOS', 'Todavía no se han añadido Indicadores a la consulta.');
 
-//Cuadros de Mando
-define('MSG_CUADRO_MANDO_BORRADO', 'Se ha eliminado el Cuadro de Mando:');
-define('MSG_CUADRO_MANDO_CONFIRM_BORRAR', '¿Desea borrar el Cuadro de Mando?');
-define('MSG_CUADRO_MANDO_NO_PROPIO', 'No tiene ningún Cuadro de Mando propio todavía. Cree un nuevo Cuadro de Mando.');
-define('MSG_CUADRO_MANDO_NO_PUBLIC', 'No existe ningún Cuadro de Mando público todavía. Cree un nuevo Cuadro de Mando.');
-define('MSG_CUADRO_MANDO_BORRAR', 'No se puede borrar un Cuadro de Mando que contenga paneles. Bórrelos primero.');
-define('MSG_CUADRO_CREADO', 'Se ha creado un nuevo Cuadro de Mando.');
-define('MSG_CUADRO_EDITADO', 'Se ha editado correctamente el Cuadro de Mando.');
-define('MSG_CUADRO_CONFIRM_EDITAR', 'Va a editar este Cuadro de Mando, ¿está seguro?');
-//Paneles de los Cuadros de Mando
-define('MSG_PANEL_NO_VAL', 'No hay valores recogidos para los Indicadores de este panel.');
-define('MSG_PANEL_INDIC_UNID', 'Seleccione la Unidad del Indicador para la que desea ver sus valores:');
-define('MSG_PANEL_BORRAR', 'Va a borrar del Cuadro de Mando este panel, ¿está seguro?');
-define('MSG_PANEL_BORRADO', 'Se ha eliminado con éxito el panel seleccionado.');
-define('MSG_PANEL_CARGANDO', 'Cargando paneles, por favor espere.');
-define('MSG_PANEL_EDITADO', "Panel editado correctamente:");
-define('MSG_PANEL_CREADO', "Se ha añadido al Cuadro de Mando el siguiente panel:");
-define('MSG_PANEL_CONFIRM_EDITAR', 'Va a editar este panel, ¿está seguro?');
+//Paneles de Gestión (antes Cuadros de Mando)
+const MSG_PANEL_GESTION_BORRADO = 'Se ha eliminado el Panel de Gestión:';
+const MSG_CUADRO_MANDO_BORRADO = MSG_PANEL_GESTION_BORRADO;
+const MSG_PANEL_GESTION_CONFIRM_BORRAR = '¿Desea borrar el Panel de Gestión?';
+const MSG_CUADRO_MANDO_CONFIRM_BORRAR = MSG_PANEL_GESTION_CONFIRM_BORRAR;
+const MSG_PANEL_GESTION_NO_PROPIO = 'No tiene ningún Panel de Gestión propio todavía. Cree un nuevo Panel de Gestión.';
+const MSG_CUADRO_MANDO_NO_PROPIO = MSG_PANEL_GESTION_NO_PROPIO;
+const MSG_PANEL_GESTION_NO_PUBLIC = 'No existe ningún Panel de Gestión público todavía. Cree un nuevo Panel de Gestión.';
+const MSG_CUADRO_MANDO_NO_PUBLIC = MSG_PANEL_GESTION_NO_PUBLIC;
+const MSG_PANEL_GESTION_BORRAR = 'No se puede borrar un Panel de Gestión que contenga paneles. Bórrelos primero.';
+const MSG_CUADRO_MANDO_BORRAR = MSG_PANEL_GESTION_BORRAR;
+const MSG_PANEL_GESTION_CREADO = 'Se ha creado un nuevo Panel de Gestión.';
+const MSG_CUADRO_CREADO = MSG_PANEL_GESTION_CREADO;
+const MSG_PANEL_GESTION_EDITADO = 'Se ha editado correctamente el Panel de Gestión.';
+const MSG_CUADRO_EDITADO = MSG_PANEL_GESTION_EDITADO;
+const MSG_PANEL_GESTION_CONFIRM_EDITAR = 'Va a editar este Panel de Gestión, ¿está seguro?';
+const MSG_CUADRO_CONFIRM_EDITAR = MSG_PANEL_GESTION_CONFIRM_EDITAR;
+//Bloques de los Paneles de Gestión (antes Paneles de los Cuadros de Mando)
+const MSG_BLOQUE_NO_VAL = 'No hay valores recogidos para los Indicadores de este bloque.';
+const MSG_PANEL_NO_VAL = MSG_BLOQUE_NO_VAL;
+const MSG_BLOQUE_INDIC_UNID = 'Seleccione la Unidad del Indicador para la que desea ver sus valores:';
+const MSG_PANEL_INDIC_UNID = MSG_BLOQUE_INDIC_UNID;
+const MSG_BLOQUE_BORRAR = 'Va a borrar este bloque del Panel de Gestión, ¿está seguro?';
+const MSG_PANEL_BORRAR = MSG_BLOQUE_BORRAR;
+const MSG_BLOQUE_BORRADO = 'Se ha eliminado con éxito el bloque seleccionado.';
+const MSG_PANEL_BORRADO = MSG_BLOQUE_BORRADO;
+const MSG_BLOQUE_CARGANDO = 'Cargando bloques, por favor espere.';
+const MSG_PANEL_CARGANDO = MSG_BLOQUE_CARGANDO;
+const MSG_BLOQUE_EDITADO = "Bloque editado correctamente:";
+const MSG_PANEL_EDITADO = MSG_BLOQUE_EDITADO;
+const MSG_BLOQUE_CREADO = "Se ha añadido el siguiente bloque al Panel de Control:";
+const MSG_PANEL_CREADO = MSG_BLOQUE_CREADO;
+const MSG_BLOQUE_CONFIRM_EDITAR = 'Va a editar este bloque, ¿está seguro?';
+const MSG_PANEL_CONFIRM_EDITAR = MSG_BLOQUE_CONFIRM_EDITAR;
 
 //Entidades (Unidades)
 define('MSG_UNID_NO_PROC', 'No hay Procesos definidos para esta Unidad.');
@@ -671,7 +698,8 @@ define('MSG_UNID_NO_INDIC_CONTROL', 'No hay Indicadores (Control) activos en est
 define('MSG_UNID_NO_DATOS', 'No hay Indicadores (Datos) activos en esta Unidad.');
 define('MSG_UNID_NO_INDIC_ARCHIVADOS', 'No hay Indicadores archivados en esta Unidad.');
 define('MSG_UNID_NO_DATO_ARCHIVADOS', 'No hay Datos archivados en esta Unidad.');
-define('MSG_UNID_NO_CUADROS', 'No hay Cuadros de Mando definidos para esta Unidad.');
+const MSG_UNID_NO_PANELES_GESTION = 'No hay Paneles de Gestión definidos para esta Unidad.';
+const MSG_UNID_NO_CUADROS = MSG_UNID_NO_PANELES_GESTION;
 define('MSG_UNID_NO_PLANES', 'No hay Planes Estratégicos definidos para esta Unidad.');
 define('MSG_UNID_NO_CARTAS', 'No hay Cartas de Compromisos definidas para esta Unidad.');
 define('MSG_UNID_NO_IND_NO_DAT', 'No hay Indicadores ni Datos definidos para esta Unidad.');
@@ -877,11 +905,14 @@ define('ERR_COMPROMISO_EDIT', 'El Compromiso no existe o no tiene permisos para 
 define('ERR_DERECHO_MOSTRAR', 'No se puede mostrar el Derecho, el identificador no existe en la base de datos.');
 define('ERR_DERECHO_EDIT', 'El Derecho no existe o no tiene permisos para editarlo.');
 
-//Cuadros de Mando
-define('ERR_CUAD_MANDO', 'El Cuadro de Mando no existe o no tiene permisos para consultarlo.');
-define('ERR_CUAD_MANDO_EDIT', 'El Cuadro de Mando no existe o no tiene permisos para editarlo.');
-//Paneles
-define('ERR_PANEL_VAL_ORDEN', 'Ya existe un panel con el mismo orden en este Cuadro de Mando.');
+//Panel de Gestión (antes Cuadros de Mando)
+const ERR_PANEL_GESTION_MANDO = 'El Panel de Gestión no existe o no tiene permisos para consultarlo.';
+const ERR_CUAD_MANDO = ERR_PANEL_GESTION_MANDO;
+const ERR_PANEL_GESTION_EDIT = 'El Panel de Gestión no existe o no tiene permisos para editarlo.';
+const ERR_CUAD_MANDO_EDIT = ERR_PANEL_GESTION_EDIT;
+//Bloques (antes Paneles)
+const ERR_BLOQUE_VAL_ORDEN = 'Ya existe un bloque con el mismo orden en este Panel de Gestión.';
+const ERR_PANEL_VAL_ORDEN = ERR_BLOQUE_VAL_ORDEN;
 
 //Entidades (Unidades)
 define('ERR_UNID_MOSTRAR', 'No se puede mostrar la Unidad, el identificador no existe en la base de datos.');
@@ -892,7 +923,8 @@ define('ERR_INDIC_BORRAR_MED', 'Tiene mediciones asociadas al Indicador, necesit
 define('ERR_INDIC_BORRAR_DEP', 'Este Indicador influye en el cálculo de otros Indicadores. Debe eliminar éstos primero.');
 define('ERR_INDIC_ARCHIVAR_DEP', 'Este Indicador influye en el cálculo de otros Indicadores. Debe archivar éstos primero.');
 define('ERR_INDIC_BORRAR_OBJOP', 'No se puede borrar el Indicador, está asociado al menos con un Objetivo Operacional de un Plan Estratégico.');
-define('ERR_INDIC_BORRAR_PANEL', 'No se puede borrar el Indicador, está asociado al menos con un panel de los Cuadros de Mando. Debe quitarse antes del panel.');
+const ERR_INDIC_BORRAR_BLOQUE = 'No se puede borrar el Indicador, está asociado al menos con un bloque de los Paneles de Gestión. Debe quitarse antes del bloque.';
+const ERR_INDIC_BORRAR_PANEL = ERR_INDIC_BORRAR_BLOQUE;
 define('ERR_INDIC_GRABAR', 'No se ha podido grabar el Indicador.');
 define('ERR_INDIC_MOSTRAR', 'No se puede mostrar el Indicador, el identificador no existe en la base de datos.');
 
