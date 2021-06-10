@@ -539,7 +539,13 @@
                     <td>{$indicador->periodicidad}</td>
                 </tr>
                 <tr>
-                    <th title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</th>
+                    <th title="{if $indicador->periodicidad == Anual or $indicador->periodicidad == Bienal}{$smarty.const.TXT_CALCULO_TOTAL_ANUAL_HIST}{else}{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}{/if}">
+                        {if $indicador->periodicidad == Anual or $indicador->periodicidad == Bienal}
+                            {$smarty.const.FIELD_CALC_TOTAL_ANUAL_HIST}
+                        {else}
+                            {$smarty.const.FIELD_CALC_TOTAL_ANUAL}
+                        {/if}
+                    </th>
                     <td title="{$indicador->tipo_agregacion_temporal->explicacion}">{$indicador->tipo_agregacion_temporal->descripcion}</td>
                 </tr>
                 <tr>

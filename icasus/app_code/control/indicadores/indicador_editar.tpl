@@ -182,8 +182,20 @@
                                 </select>
                             </div>
                         </div>
-                        <div id="total_anual" title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}" data-toggle="tooltip" class="form-group {if $indicador->periodicidad == Anual OR $indicador->periodicidad == Bienal}hidden{/if}">
-                            <label for="id_tipo_agregacion_temporal" class="col-sm-2 control-label">{$smarty.const.FIELD_CALC_TOTAL_ANUAL}</label>
+                        <div id="total_anual" class="form-group"
+                             title="{if $indicador->periodicidad == Anual or $indicador->periodicidad == Bienal}{$smarty.const.TXT_CALCULO_TOTAL_ANUAL_HIST}{else}{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}{/if}"
+                             data-toggle="tooltip"
+                             data-label="{$smarty.const.FIELD_CALC_TOTAL_ANUAL}"
+                             data-label_hist="{$smarty.const.FIELD_CALC_TOTAL_ANUAL_HIST}"
+                             data-title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}"
+                             data-title_hist="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL_HIST}">
+                            <label for="id_tipo_agregacion_temporal" id="agregacion_anual" class="col-sm-2 control-label">
+                                {if $indicador->periodicidad == Anual or $indicador->periodicidad == Bienal}
+                                    {$smarty.const.FIELD_CALC_TOTAL_ANUAL_HIST}
+                                {else}
+                                    {$smarty.const.FIELD_CALC_TOTAL_ANUAL}
+                                {/if}
+                            </label>
                             <div class="col-sm-8">
                                 <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
                                     {foreach $tipos_agregacion as $tipo_agregacion}

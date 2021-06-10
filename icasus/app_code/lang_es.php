@@ -291,6 +291,7 @@ define('TXT_PESO', 'El peso [0.01,1] indica la importancia del Objetivo Operacio
 define('TXT_ESTA', 'Está aquí');
 define('TXT_CALCULO_TOTAL', 'Determina cómo se calcula el total entre todas las Subunidades');
 define('TXT_CALCULO_TOTAL_ANUAL', 'Determina cómo se calcula el total anual entre todos los periodos');
+const TXT_CALCULO_TOTAL_ANUAL_HIST = 'Determina cómo se calcula el total anual entre todos los periodos (solo aplicable si se ha modificado la periodicidad)';
 define('TXT_GRABAR', 'Grabar');
 define('TXT_CANCEL', 'Cancelar');
 define('TXT_EXAMINAR', 'Examinar...');
@@ -490,6 +491,7 @@ define('FIELD_ESTIMACION', 'Estimación');
 define('FIELD_CALCULO', 'Cálculo');
 define('FIELD_CALC_TOTAL', 'Cálculo del total entre Subunidades');
 define('FIELD_CALC_TOTAL_ANUAL', 'Cálculo del total anual');
+const FIELD_CALC_TOTAL_ANUAL_HIST = 'Cálculo del total anual (histórico)';
 define('FIELD_INTERVALO', 'Intervalo de valores [Vmin, Vmax]');
 define('FIELD_VALOR_MIN', 'Valor mínimo');
 define('FIELD_VALOR_MAX', 'Valor máximo');

@@ -105,14 +105,15 @@ $(document).ready(function () {
 
     //Periodicidad y mostrar selección de agregación temporal
     $('#periodicidad').on('change', function () {
-        var valor = $("#periodicidad option:selected").text();
-        if (valor === 'Bienal' || valor === 'Anual')
-        {
-            $('#total_anual').addClass('hidden');
-        }
-        else
-        {
-            $('#total_anual').removeClass('hidden');
+        let valor = $("#periodicidad option:selected").text();
+        let divTotal = $("#total_anual")
+        let labelTotal = $('#agregacion_anual');
+        if (valor === 'Bienal' || valor === 'Anual') {
+            labelTotal.html(divTotal.data('label_hist'));
+            divTotal.tooltip('hide').attr('data-original-title', divTotal.data('title_hist')).tooltip('show');
+        } else {
+            labelTotal.html(divTotal.data('label'));
+            divTotal.tooltip('hide').attr('data-original-title', divTotal.data('title')).tooltip('show');
         }
     });
 });

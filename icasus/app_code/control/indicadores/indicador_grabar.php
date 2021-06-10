@@ -70,9 +70,9 @@ if (filter_has_var(INPUT_POST, 'codigo')
         $indicador->id_tipo_agregacion = 0;
     }
     $indicador->id_tipo_agregacion_temporal = filter_has_var(INPUT_POST, 'id_tipo_agregacion_temporal') ? filter_input(INPUT_POST, 'id_tipo_agregacion_temporal', FILTER_SANITIZE_NUMBER_INT) : 0;
-    if ($indicador->periodicidad == 'Bienal' || $indicador->periodicidad == 'Anual') {
-        $indicador->id_tipo_agregacion_temporal = 0;
-    }
+    //if ($indicador->periodicidad == 'Bienal' || $indicador->periodicidad == 'Anual') {
+    //    $indicador->id_tipo_agregacion_temporal = 0;
+    //}
     if (filter_has_var(INPUT_POST, 'valor_min')) {
         $valor_min = filter_input(INPUT_POST, 'valor_min', FILTER_VALIDATE_FLOAT);
         if (is_numeric($valor_min)) {
