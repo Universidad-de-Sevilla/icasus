@@ -26,11 +26,6 @@ if (filter_has_var(INPUT_POST, 'nombre'))
             header("Location: index.php?page=cuadros&error=error");
         }
     }
-    // Estamos creando un cuadro nuevo y asumimos su propiedad
-    else
-    {
-        $cuadro->id_usuario = $usuario->id;
-    }
     $cuadro->id_entidad = filter_input(INPUT_POST, 'id_entidad', FILTER_SANITIZE_NUMBER_INT);
     $cuadro->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
     $cuadro->privado = 0;
@@ -39,6 +34,7 @@ if (filter_has_var(INPUT_POST, 'nombre'))
         $cuadro->privado = filter_input(INPUT_POST, 'privado', FILTER_VALIDATE_BOOLEAN);
     }
     $cuadro->comentarios = filter_has_var(INPUT_POST, 'comentarios') ? filter_input(INPUT_POST, 'comentarios', FILTER_SANITIZE_STRING) : '';
+    $cuadro->id_usuario = filter_input(INPUT_POST, 'id_responsable', FILTER_SANITIZE_NUMBER_INT);
     $cuadro->save();
     header("Location: index.php?page=cuadro_mostrar&id_cuadro=$cuadro->id&id_entidad=$cuadro->id_entidad&exito=$exito");
 }

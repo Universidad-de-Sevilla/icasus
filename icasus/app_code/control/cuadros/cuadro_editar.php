@@ -25,6 +25,10 @@ if (filter_has_var(INPUT_GET, 'id_cuadro') && filter_has_var(INPUT_GET, 'id_enti
     $entidad->load("id=$id_entidad");
     $smarty->assign('entidad', $entidad);
 
+    $usuario_entidad = new Usuario_entidad;
+    $usuarios_entidad = $usuario_entidad->Find_usuarios("id_entidad = '$id_entidad'");
+    $smarty->assign("usuarios_entidad", $usuarios_entidad);
+
     //Comprobamos los permisos del usuario
     if ($control || $usuario->id == $cuadro->id_usuario)
     {

@@ -102,6 +102,18 @@
                 </div>
             </div>
             <div class="form-group">
+                <label for="id_responsable" class="col-sm-2 control-label">{$smarty.const.FIELD_RESP}</label>
+                <div class="col-sm-8">
+                    <select class="form-control chosen-select" name="id_responsable" id="id_responsable">
+                        {foreach $usuarios_entidad as $usuario_entidad}
+                            <option value="{$usuario_entidad->usuario->id}" {if $usuario_entidad->id === $_usuario->id}selected{/if}>
+                                {$usuario_entidad->usuario->apellidos}, {$usuario_entidad->usuario->nombre} {if $usuario_entidad->usuario->puesto} - {$usuario_entidad->usuario->puesto} {/if}
+                            </option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
                     <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
                         <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_CANCEL}

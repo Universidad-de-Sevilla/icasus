@@ -211,12 +211,12 @@
                                 </a>
                                 <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_CUADRO_MANDO}"
                                    class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
-                                   href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice-1]->id}'>
+                                   href='{if $indice > 0}index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice-1]->id}{/if}'>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
                                 <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_CUADRO_MANDO}"
                                    class="btn btn-danger btn-xs {if $indice == (count($cuadros)-1)}disabled{/if}"
-                                   href='index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice+1]->id}'>
+                                   href='{if $indice < (count($cuadros)-1)}index.php?page=cuadro_mostrar&id_entidad={$entidad->id}&id_cuadro={$cuadros[$indice+1]->id}{/if}'>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
                                 <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_CUADRO_MANDO}"
