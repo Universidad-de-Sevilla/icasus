@@ -188,7 +188,8 @@
                              data-label="{$smarty.const.FIELD_CALC_TOTAL_ANUAL}"
                              data-label_hist="{$smarty.const.FIELD_CALC_TOTAL_ANUAL_HIST}"
                              data-title="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL}"
-                             data-title_hist="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL_HIST}">
+                             data-title_hist="{$smarty.const.TXT_CALCULO_TOTAL_ANUAL_HIST}"
+                             data-option0="{$tipos_agregacion[0]->descripcion}">
                             <label for="id_tipo_agregacion_temporal" id="agregacion_anual" class="col-sm-2 control-label">
                                 {if $indicador->periodicidad == Anual or $indicador->periodicidad == Bienal}
                                     {$smarty.const.FIELD_CALC_TOTAL_ANUAL_HIST}
@@ -199,8 +200,14 @@
                             <div class="col-sm-8">
                                 <select class="form-control chosen-select" name="id_tipo_agregacion_temporal" id="id_tipo_agregacion_temporal">
                                     {foreach $tipos_agregacion as $tipo_agregacion}
-                                        {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 4 && $tipo_agregacion->id != 6}
-                                            <option title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion_temporal == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+                                        {if $indicador->periodicidad == Anual or $indicador->periodicidad == Bienal}
+                                            {if $tipo_agregacion->id != 4 && $tipo_agregacion->id != 6}
+                                                <option title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion_temporal == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+                                            {/if}
+                                        {else}
+                                            {if $tipo_agregacion->id != 0 && $tipo_agregacion->id != 4 && $tipo_agregacion->id != 6}
+                                                <option title="{$tipo_agregacion->explicacion}" value="{$tipo_agregacion->id}" {if $indicador->id_tipo_agregacion_temporal == $tipo_agregacion->id}selected{/if}>{$tipo_agregacion->descripcion}</option>
+                                            {/if}
                                         {/if}
                                     {/foreach}
                                 </select>
