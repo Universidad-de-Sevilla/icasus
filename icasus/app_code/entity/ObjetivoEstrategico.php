@@ -18,6 +18,7 @@ class ObjetivoEstrategico extends ADOdb_Active_Record
     public $id_linea;
     public $indice;
     public $nombre;
+    public $descripcion;
     public $ejecucion;
 
 
