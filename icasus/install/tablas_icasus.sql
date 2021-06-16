@@ -249,6 +249,7 @@ CREATE TABLE `icasus_linea` (
   `id_plan` int(10) unsigned NOT NULL,
   `indice` int(10) unsigned NOT NULL,
   `nombre` varchar(150) NOT NULL DEFAULT '',
+  `descripcion` TEXT NULL,
   `ejecucion` double NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
@@ -293,6 +294,7 @@ CREATE TABLE `icasus_objetivo_estrategico` (
   `id_linea` int(10) unsigned NOT NULL,
   `indice` int(10) unsigned NOT NULL,
   `nombre` varchar(250) NOT NULL DEFAULT '',
+  `descripcion` TEXT NULL,
   `ejecucion` double NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
