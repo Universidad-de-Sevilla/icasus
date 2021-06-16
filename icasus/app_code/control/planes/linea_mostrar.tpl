@@ -270,6 +270,10 @@
                                 <td>{$linea->nombre}</td>
                             </tr>
                             <tr>
+                                <th>{$smarty.const.FIELD_DESC}</th>
+                                <td>{$linea->descripcion}</td>
+                            </tr>
+                            <tr>
                                 <th>{$smarty.const.FIELD_PLAN}</th>
                                 <td>
                                     <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {($plan->anyo_inicio + $plan->duracion-1)}"
