@@ -99,7 +99,7 @@
             <div class="form-group has-feedback">
                 <label for="descripcion" class="col-sm-2 control-label"> {$smarty.const.FIELD_DESC}</label>
                 <div class="col-sm-8">
-                    <textarea class="form-control" rows="3" name="descripcion" id="descripcion" placeholder="{$smarty.const.FIELD_DESC}">{$linea->descripcion}</textarea>
+                    <textarea class="form-control" rows="3" name="descripcion" id="descripcion" placeholder="{$smarty.const.FIELD_DESC}"></textarea>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                     <div class="help-block with-errors"></div>
                 </div>

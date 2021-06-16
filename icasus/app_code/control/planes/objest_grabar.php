@@ -43,6 +43,7 @@ if (filter_has_var(INPUT_POST, 'indice') && filter_has_var(INPUT_POST, 'nombre')
     $objest->id_linea = $id_linea;
     $objest->indice = filter_input(INPUT_POST, 'indice', FILTER_SANITIZE_NUMBER_INT);
     $objest->nombre = filter_input(INPUT_POST, 'nombre', FILTER_SANITIZE_STRING);
+    $objest->descripcion = filter_input(INPUT_POST, 'descripcion', FILTER_SANITIZE_STRING);
     $objest->save();
 
     //Si estamos creando un nuevo objetivo estratégico

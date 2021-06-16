@@ -112,6 +112,15 @@
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
+            <div class="form-group has-feedback">
+                <label for="descripcion" class="col-sm-2 control-label"> {$smarty.const.FIELD_DESC}</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" rows="3" name="descripcion" id="descripcion"
+                              placeholder="{$smarty.const.FIELD_DESC}">{$objest->descripcion}</textarea>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-8">
                     <a class="btn btn-danger" title="{$smarty.const.TXT_CANCEL}" href ='index.php?page=objest_mostrar&id_objest={$objest->id}&id_entidad={$entidad->id}'>

@@ -246,6 +246,12 @@
                                 </td>
                             </tr>
                             <tr>
+                                <th>{$smarty.const.FIELD_DESC}</th>
+                                <td>
+                                    {$objest->descripcion}
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>{$smarty.const.FIELD_LINEA}</th>
                                 <td>
                                     <a title="{$smarty.const.FIELD_LINEA} {$linea->indice}. {$linea->nombre}"
