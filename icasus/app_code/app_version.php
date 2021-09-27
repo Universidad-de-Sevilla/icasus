@@ -1,7 +1,7 @@
 <?php
 
-define('IC_VERSION', "3.58.0");
-define('IC_FECHA_REVISION', "05/06/2020");
+const IC_VERSION = "3.61.0";
+const IC_FECHA_REVISION = "16/06/2021";
 
 // Lista de cambios trasladada a /CHANGELOG.md
 // 3.57.0 - 18/10/2018 - Agrega campo nombre a las cartas de servicio a petición de biblioteca
