@@ -36,10 +36,7 @@ class LogicaValores implements ILogicaValores
         $suma = null;
         foreach ($valores as $valor)
         {
-            if ($valor->valor !== null)
-            {
-                $suma += $valor->valor;
-            }
+            $suma += $valor->valor ?? 0;
         }
         return $suma;
     }

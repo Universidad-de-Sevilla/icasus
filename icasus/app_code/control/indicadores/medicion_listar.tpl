@@ -850,10 +850,12 @@
                                         <td><span class="label label-primary">{$subunidades->etiqueta}</span></td>
                                         {foreach from=$subunidades->mediciones item=medicion}
                                             <td>
-                                                {if $medicion->medicion_valor->valor == NULL}
-                                                    ---
-                                                {else}
-                                                    {$medicion->medicion_valor->valor|round:"2"}
+                                                {if $medicion->medicion_valor}
+                                                    {if $medicion->medicion_valor->valor}
+                                                        {$medicion->medicion_valor->valor|round:"2"}
+                                                    {else}
+                                                        ---
+                                                    {/if}
                                                 {/if}
                                             </td>
                                         {/foreach}

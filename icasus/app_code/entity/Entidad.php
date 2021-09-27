@@ -45,8 +45,14 @@ class Entidad extends ADOdb_Active_Record
         return $subunidades;
     }
 
-    //obtener subunidades de una unidad con sus valores de todas las mediciones del indicador.
-    public function find_subunidades_mediciones($id_indicador, $id_entidad, $limite = null)
+    /**
+     * Obtener subunidades de una unidad con sus valores de todas las mediciones del indicador.
+     * @param int $id_indicador
+     * @param int $id_entidad
+     * @param int|null $limite
+     * @return Entidad|null
+     */
+    public function find_subunidades_mediciones(int $id_indicador, int $id_entidad, int $limite = null): ?array
     {
         $subunidades = $this->find("id = $id_entidad OR id_madre = $id_entidad ORDER BY etiqueta");
         foreach ($subunidades as $subunidad)
@@ -60,12 +66,15 @@ class Entidad extends ADOdb_Active_Record
             {
                 $mediciones = $medicion->find("id_indicador = $id_indicador ORDER BY periodo_inicio DESC");
             }
-
-            foreach ($mediciones as $medicion)
+            $ids_mediciones = implode(',', array_column($mediciones, 'id'));
+            $valor = new Valor();
+            $valores = $valor->find("id_entidad = {$subunidad->id} AND id_medicion IN ($ids_mediciones)");
+            foreach ($valores as $valor)
             {
-                $valor = new Valor();
-                $valor->load("id_entidad = $subunidad->id AND id_medicion = $medicion->id");
-                $medicion->medicion_valor = $valor;
+                $medicion = array_column($mediciones, null, 'id')[$valor->id_medicion] ?? null;
+                if ($medicion) {
+                    $medicion->medicion_valor = $valor;
+                }
             }
             $subunidad->mediciones = $mediciones;
         }
