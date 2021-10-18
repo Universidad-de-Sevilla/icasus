@@ -18,7 +18,7 @@ intuitiva.
 Toda la información de procesos, indicadores y cuadros de mando se 
 encuentra centralizada y actualizada constantemente.
 
-![alt text](https://github.com/Universidad-de-Sevilla/icasus/raw/master/icasus/public/images/captura_icasus.png "Captura de pantalla de una unidad")
+![alt text](https://github.com/Universidad-de-Sevilla/icasus/raw/master/icasus/public/images/ayuda/pantalla_inicio_unidad.png "Captura de pantalla de una unidad")
 
 Se ha desarrollado en la Universidad de Sevilla por el personal 
 informático de la Dirección de Recursos Humanos y con la colaboración 
@@ -36,14 +36,18 @@ Utiliza php, mysql, bootstrap3, smarty, adodb y active record.
 
 ## Instalación de la aplicación
 
-1. Clona el proyecto con con git o descarga un comprimido desde https://github.com/Universidad-de-Sevilla/icasus/archive/master.zip
+1. Clona el proyecto con Git o bien descarga un comprimido desde https://github.com/Universidad-de-Sevilla/icasus/archive/master.zip
+y descomprime su contenido. Después, cámbiate al directorio del proyecto.
 
-2. Crea una carpeta "templates_c" dentro de la carpeta "icasus/icasus" de la aplicación con permisos de lectura y escritura para el 
+2. Crea una carpeta "templates_c" dentro de la carpeta "icasus" de la aplicación con permisos de lectura y escritura para el 
 usuario bajo el que corre tu servidor web. Crea otra carpeta "private_upload" con los mismos permisos y con las 
-subcarpetas "carta", "plan", "proceso" y "unidad". Puedes hacerlo todo de golpe y porrazo con:
-`mkdir -m 774 -p templates_c private_upload/{carta,plan,proceso,unidad}`
+subcarpetas "carta", "plan", "proceso" y "unidad". Puedes crear todas las carpetas golpe y porrazo con
+(no olvides asignar después los permisos para el usuario del servicio web):
+```shell
+mkdir -m 775 -p icasus/templates_c icasus/private_upload/{carta,plan,proceso,unidad}`
+```
 
-3. Crea una nueva base de datos en tu servidor mysql y haz un volcado del script "icasus/tablas_icasus.sql" para generar 
+4. Crea una nueva base de datos en tu servidor mysql y haz un volcado del script "icasus/tablas_icasus.sql" para generar 
 las tablas necesarias. También puedes volcar los valores por defecto de las tablas auxiliares, cuyo contenido es más o menos estático
 usando las consultas: volcado_criterios_efqm, volcado_roles, volcado_tipo_agregacion, volcado_visibilidad. Si lo deseas
 también puedes crear algunas unidades y usuarios de prueba para poder empezar a "hacer algo" tras la instalación, utiliza 
