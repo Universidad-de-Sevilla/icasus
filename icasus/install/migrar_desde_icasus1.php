@@ -5,6 +5,17 @@
  * @note Este script debe ejecutarse con el comando "php" desde una terminal.
  */
 
+// Comprobar que se está ejecutando el comando "php" y verificar parámetros de entrada
+if (PHP_SAPI !== 'cli') {
+    echo "*** Solo ejecutable desde el comando php.\n";
+    exit(1);
+}
+if ($argc < 2) {
+    echo "*** Error de ejecución. Formato: php " . basename($argv[0]) . " listar | IdEntidad ...\n";
+    exit(1);
+}
+
+// Fichero de configuración
 include(__DIR__ . '/../app_code/app_config.php');
 
 // Abrir conexiones a BD
@@ -15,12 +26,19 @@ if (!$ic1 or !$ic3) {
     exit(1);
 }
 
-// Ids. de las entidades a migrar
-$id_entidades = [88];
+if ($argv[1] === 'listar') {
+    echo "\tEntidades definidas en Icasus 1:\n";
+    foreach (consultar($ic1, "SELECT id_entidad, codigo, nombre FROM entidad;") as $ent) {
+        printf("%4d  %-30s  %s\n", $ent['id_entidad'], $ent['codigo'],
+            iconv("UTF-8", "ISO-8859-1//TRANSLIT", $ent['nombre']));
+    }
+    exit();
+}
+// Ids de las entidades a migrar
+$id_entidades = array_filter(array_slice($argv, 1), 'is_numeric');
 
 foreach ($id_entidades as $id_entidad) {
-    $indicadores = consultar($ic1, "SELECT * FROM indicador WHERE id_entidad = $id_entidad;");
-    foreach ($indicadores as $ind) {
+    foreach (consultar($ic1, "SELECT * FROM indicador WHERE id_entidad = '$id_entidad';") as $ind) {
         $resp = consultar($ic1, "SELECT * FROM usuario WHERE id_usuario = ${ind['id_responsable']};")[0];
         // Obtener responsable
         $resp3 = consultar($ic3, "SELECT * FROM icasus_usuario WHERE login = '${resp['login']}';")[0] ?? null;
@@ -59,20 +77,20 @@ foreach ($id_entidades as $id_entidad) {
             $sql = "INSERT INTO icasus_indicador (id_entidad, id_proceso, id_responsable, id_responsable_medicion, "
                 . "id_visibilidad, codigo, nombre, descripcion, formulacion, periodicidad, fuente_informacion, "
                 . "fuente_datos, fecha_creacion) VALUES ("
-                . "$id_entidad' ${proc3['id']}, ${resp3['id']}, ${resp3['id']}, '${ind['id_visibilidad']}', '${ind['codigo']}', "
+                . "$id_entidad, ${proc3['id']}, ${resp3['id']}, ${resp3['id']}, '${ind['id_visibilidad']}', '${ind['codigo']}', "
                 . "'" . iconv("UTF-8", "ISO-8859-1//TRANSLIT", $ind['nombre']) . "', "
                 . "'" . iconv("UTF-8", "ISO-8859-1//TRANSLIT", $ind['descripcion']) . "', "
                 . "'" . iconv("UTF-8", "ISO-8859-1//TRANSLIT", $ind['formulacion']) . "', "
                 . "CASE '{$ind['periodicidad']}' WHEN '1' THEN 'Mensual' WHEN '3' THEN 'Trimestral' WHEN '6' THEN 'Semestral' WHEN '12' THEN 'Anual' END, "
                 . "'" . iconv("UTF-8", "ISO-8859-1//TRANSLIT", $ind['fuente']) . "', "
                 . "'" . iconv("UTF-8", "ISO-8859-1//TRANSLIT", $ind['fuente']) . "', "
-                . "'${$ind['fecha_creacion']}';";
+                . (isset($ind['fecha_creacion']) ? "'" . $ind['fecha_creacion'] . "'" : 'NULL') . ");";
             if (!mysqli_query($ic3, $sql)) {
                 echo "*** Error al crear el indicador '${ind['codigo']}'.\n";
                 continue;
             } else {
                 $id_ind3 = mysqli_insert_id($ic3);
-                echo "Creado nuevo indicador '${ind['codigo']}' con id. '$id'.\n";
+                echo "Creado nuevo indicador '${ind['codigo']}' con id. '$id_ind3'.\n";
             }
             $ind3 = consultar($ic3, "SELECT * FROM icasus_indicador WHERE id = " . $id_ind3)[0] ?? null;
         }
@@ -82,9 +100,11 @@ foreach ($id_entidades as $id_entidad) {
             // Crear medición
             $sql = "INSERT INTO icasus_medicion (id_indicador, etiqueta, periodo_inicio, periodo_fin, "
                 . "grabacion_inicio, grabacion_fin) VALUES ("
-                 . "$id_ind3, YEAR(${val['f_entrada']}), "
-                 . "CONCAT(YEAR(${val['f_entrada']}), '-01-01'), CONCAT(YEAR(${val['f_entrada']}), '-12-31'), "
-                 . "'${val['f_entrada']}', '${val['f_entrada']}');";
+                . "${ind3['id']}, '" . date("Y", $val['fecha_recogida']) . "', "
+                . "'" . date("Y-01-01", $val['fecha_recogida']) . "', "
+                . "'" . date("Y-12-31", $val['fecha_recogida']) . "', "
+                . "'" . date("Y-m-d", $val['fecha_recogida']) . "', "
+                . "'" . date("Y-m-d", $val['fecha_recogida']) . "');";
             if (!mysqli_query($ic3, $sql)) {
                 echo "*** Error al crear medición con fecha '${val['f_entrada']}' del indicador '${ind['codigo']}'.\n";
                 continue;
@@ -96,7 +116,7 @@ foreach ($id_entidades as $id_entidad) {
             $sql = "INSERT INTO icasus_valor (id_medicion, id_entidad, id_usuario, valor, valor_parcial, "
                 . "fecha_recogida, activo, observaciones) VALUES ("
                 . "$id_med3, $id_entidad, ${val['id_usuario']}, '${val['valor']}', '${val['valor']}', "
-                . "'${val['f_recogida']}', 1, '${val['observaciones']}');";
+                . "'" . date("Y-m-d", $val['fecha_recogida']) . "', 1, '${val['observaciones']}');";
             if (!mysqli_query($ic3, $sql)) {
                 echo "*** Error al crear valor para la medición con id. '$id_med3' del indicador '${ind['codigo']}'.\n";
             } else {
