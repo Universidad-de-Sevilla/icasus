@@ -25,16 +25,16 @@ class LogicaPlan implements ILogicaPlan
         //Obtenemos los objetivos operacionales con el mismo objetivo estratégico
         $objop = new ObjetivoOperacional();
         $objops = $objop->Find("id_objest=$id_objest");
-        $valores = array();
-        $pesos = array();
+        $valores = [];
+        $pesos = [];
         foreach ($objops as $obj)
         {
             $ejecucion_anual = new Ejecucion();
             $ejecucion_anual->load("id_objop=$obj->id AND anyo=$anyo");
             if ($ejecucion_anual->activo)
             {
-                array_push($valores, $ejecucion_anual->valor);
-                array_push($pesos, $obj->peso);
+                $valores[] = $ejecucion_anual->valor;
+                $pesos[] = $obj->peso;
             }
         }
         //Grabamos el resultado
@@ -43,7 +43,6 @@ class LogicaPlan implements ILogicaPlan
         if ($ejecucion_total->load("id_objest=$id_objest AND anyo=$anyo"))
         {
             $ejecucion_total->valor = Util::media_ponderada($valores, $pesos);
-            $ejecucion_total->Save();
         }
         //Si no existe creamos el grado de ejecución
         else
@@ -52,8 +51,8 @@ class LogicaPlan implements ILogicaPlan
             $ejecucion_total->anyo = $anyo;
             $ejecucion_total->valor = Util::media_ponderada($valores, $pesos);
             $ejecucion_total->activo = 1;
-            $ejecucion_total->Save();
         }
+        $ejecucion_total->Save();
         //Actualizado el objetivo estratégico pasamos a la línea
         $objest = new ObjetivoEstrategico();
         $objest->load("id=$id_objest");
@@ -67,12 +66,12 @@ class LogicaPlan implements ILogicaPlan
         //Obtenemos los objetivos estratégicos dentro de la misma línea
         $objest = new ObjetivoEstrategico();
         $objests = $objest->Find("id_linea=$id_linea");
-        $valores = array();
+        $valores = [];
         foreach ($objests as $obj)
         {
             $ejecucion_anual = new Ejecucion();
             $ejecucion_anual->load("id_objest=$obj->id AND anyo=$anyo");
-            array_push($valores, $ejecucion_anual->valor);
+            $valores[] = $ejecucion_anual->valor;
         }
         //Grabamos el resultado
         $ejecucion_total = new Ejecucion();
@@ -80,7 +79,6 @@ class LogicaPlan implements ILogicaPlan
         if ($ejecucion_total->load("id_linea=$id_linea AND anyo=$anyo"))
         {
             $ejecucion_total->valor = Util::media($valores);
-            $ejecucion_total->Save();
         }
         //Si no existe creamos el grado de ejecución
         else
@@ -89,8 +87,8 @@ class LogicaPlan implements ILogicaPlan
             $ejecucion_total->anyo = $anyo;
             $ejecucion_total->valor = Util::media($valores);
             $ejecucion_total->activo = 1;
-            $ejecucion_total->Save();
         }
+        $ejecucion_total->Save();
         //Actualizada la línea pasamos al plan
         $linea = new Linea();
         $linea->load("id=$id_linea");
@@ -104,12 +102,12 @@ class LogicaPlan implements ILogicaPlan
         //Obtenemos las líneas estratégicas dentro del mismo plan
         $linea = new Linea();
         $lineas = $linea->Find("id_plan=$id_plan");
-        $valores = array();
+        $valores = [];
         foreach ($lineas as $linea)
         {
             $ejecucion_anual = new Ejecucion();
             $ejecucion_anual->load("id_linea=$linea->id AND anyo=$anyo");
-            array_push($valores, $ejecucion_anual->valor);
+            $valores[] = $ejecucion_anual->valor;
         }
 
         //Grabamos el resultado
@@ -118,7 +116,6 @@ class LogicaPlan implements ILogicaPlan
         if ($ejecucion_total->load("id_plan=$id_plan AND anyo=$anyo"))
         {
             $ejecucion_total->valor = Util::media($valores);
-            $ejecucion_total->Save();
         }
         //Si no existe creamos el grado de ejecución
         else
@@ -127,8 +124,8 @@ class LogicaPlan implements ILogicaPlan
             $ejecucion_total->anyo = $anyo;
             $ejecucion_total->valor = Util::media($valores);
             $ejecucion_total->activo = 1;
-            $ejecucion_total->Save();
         }
+        $ejecucion_total->Save();
     }
 
     //---------------------------------------------------------------------------
@@ -143,12 +140,12 @@ class LogicaPlan implements ILogicaPlan
         //Obtenemos las ejecuciones del objetivo operacional para todos los años
         $ejecucion = new Ejecucion();
         $ejecuciones_anuales = $ejecucion->Find("id_objop=$id_objop");
-        $valores = array();
+        $valores = [];
         foreach ($ejecuciones_anuales as $ejecucion_anual)
         {
             if ($ejecucion_anual->activo)
             {
-                array_push($valores, $ejecucion_anual->valor);
+                $valores[] = $ejecucion_anual->valor;
             }
         }
         //Grabamos el resultado
@@ -167,10 +164,10 @@ class LogicaPlan implements ILogicaPlan
         //Obtenemos las ejecuciones del objetivo estratégico para todos los años
         $ejecucion = new Ejecucion();
         $ejecuciones_anuales = $ejecucion->Find("id_objest=$id_objest");
-        $valores = array();
+        $valores = [];
         foreach ($ejecuciones_anuales as $ejecucion_anual)
         {
-            array_push($valores, $ejecucion_anual->valor);
+            $valores[] = $ejecucion_anual->valor;
         }
         //Grabamos el resultado
         $objest->ejecucion = Util::media($valores);
@@ -188,10 +185,10 @@ class LogicaPlan implements ILogicaPlan
         //Obtenemos las ejecuciones de la línea para todos los años
         $ejecucion = new Ejecucion();
         $ejecuciones_anuales = $ejecucion->Find("id_linea=$id_linea");
-        $valores = array();
+        $valores = [];
         foreach ($ejecuciones_anuales as $ejecucion_anual)
         {
-            array_push($valores, $ejecucion_anual->valor);
+            $valores[] = $ejecucion_anual->valor;
         }
         //Grabamos el resultado
         $linea->ejecucion = Util::media($valores);
@@ -209,10 +206,10 @@ class LogicaPlan implements ILogicaPlan
         //Obtenemos las ejecuciones del plan para todos los años
         $ejecucion = new Ejecucion();
         $ejecuciones_anuales = $ejecucion->Find("id_plan=$id_plan");
-        $valores = array();
+        $valores = [];
         foreach ($ejecuciones_anuales as $ejecucion_anual)
         {
-            array_push($valores, $ejecucion_anual->valor);
+            $valores[] = $ejecucion_anual->valor;
         }
         //Grabamos el resultado
         $plan->ejecucion = Util::media($valores);

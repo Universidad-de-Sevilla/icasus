@@ -137,10 +137,9 @@ class LogicaIndicador implements ILogicaIndicador
     {
         $medicion = new Medicion();
         $etiqueta = $anyo;
-        //Comprobamos primero si ya exite la medición
+        //Comprobamos primero si ya existe la medición
         if ($medicion->load("id_indicador=$indicador->id AND etiqueta LIKE '$etiqueta'")) {
             $exito = MSG_MED_EXISTE;
-            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         } else {
             $periodo_inicio = $anyo . '-01-01';
             $periodo_fin = $anyo . '-12-31';
@@ -160,8 +159,8 @@ class LogicaIndicador implements ILogicaIndicador
             $this->logicaMedicion->generar_valores_referencia_medicion($medicion);
 
             $exito = MSG_MED_GENERADA;
-            header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
         }
+        header("location:index.php?page=medicion_listar&id_indicador=$indicador->id&id_entidad=$indicador->id_entidad&exito=$exito");
     }
 
     //Genera las mediciones Semestrales
