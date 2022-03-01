@@ -5,7 +5,7 @@
 // Archivo: entity/Carta.php
 // Tipo: definicion de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
-// Joaquín Valonero Zaera (tecnibus1@us.es)
+// Joaquín Valonero Zaera (tecnibus1@us.es), Ramón M. Gómez (ramongomez@us.es)
 //---------------------------------------------------------------------------------------------------
 // Mapea la tabla cartas de la base de datos
 //---------------------------------------------------------------------------------------------------
@@ -20,8 +20,22 @@ class Carta extends ADOdb_Active_Record
     public $valores;
     public $entidad;
     public $cuadro;
+    public $nombre;
+    public $archivado;
 
-    public function load_joined($condicion)
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param string $condicion
+     * @return bool
+     */
+    public function load_joined(string $condicion): bool
     {
         if ($this->load($condicion)) {
             $this->entidad = new Entidad();
@@ -38,7 +52,11 @@ class Carta extends ADOdb_Active_Record
         }
     }
 
-    public function Find_joined($criterio)
+    /**
+     * @param string $criterio
+     * @return bool
+     */
+    public function Find_joined(string $criterio): bool
     {
         $cartas = $this->Find($criterio);
         if ($cartas) {

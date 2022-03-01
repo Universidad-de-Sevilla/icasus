@@ -32,6 +32,8 @@ CREATE TABLE `icasus_carta` (
   `mision` text,
   `vision` text,
   `valores` text,
+  `nombre` varchar(250),
+  `archivado` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 

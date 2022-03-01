@@ -77,12 +77,19 @@ define('TXT_CONSULT_QUITAR', 'Retirar último operando de la consulta');
 define('TXT_CONSULT_RESUL', 'Resultados de la consulta');
 define('TXT_CONSULT_BUSCAR', 'Buscar Indicador');
 
-//Cartas de Servicios
-define('TXT_CARTA_TITULO', 'Carta de Compromisos de Servicios');
-define('TXT_CARTAS_TITULO', 'Cartas de Compromisos de Servicios');
-define('TXT_CARTA_CREAR', 'Crear Carta de Compromisos');
-define('TXT_CARTA_EDIT', 'Editar Carta de Compromiso');
-define('TXT_CARTA_BORRAR', 'Borrar Carta de Compromiso');
+//Cartas de Compromisos
+const TXT_CARTA_TITULO = 'Carta de Compromisos de Servicios';
+const TXT_CARTAS_TITULO = 'Cartas de Compromisos de Servicios';
+const TXT_CARTA_CREAR = 'Crear Carta de Compromisos';
+const TXT_CARTA_EDIT = 'Editar Carta de Compromisos';
+const TXT_CARTA_BORRAR = 'Borrar Carta de Compromisos';
+const TXT_CARTA_ARCHIVAR = 'Archivar Carta de Compromisos';
+const TXT_CARTA_RESTAURAR = 'Restaurar Carta de Compromisos';
+const MSG_CARTA_CONFIRM_ARCHIVAR = 'La Carta de Compromisos quedará archivada pero no se eliminará, ¿realmente desea archivar esta Carta?';
+const MSG_CARTA_CONFIRM_RESTAURAR = '¿Quiere restaurar esta Carta de Compromisos?';
+const MSG_NO_CARTAS_ARCHIVADAS = 'No hay Carta de Compromisos archivadas.';
+const MSG_CARTA_ARCHIVADA = 'Se ha archivado la Carta de Compromisos: ';
+const MSG_CARTA_RESTAURADA = 'Se ha restaurado la Carta de Compromisos: ';
 
 //Normativas
 define('TXT_NORMATIVA_CREAR', 'Incluir Normativa');
@@ -458,8 +465,8 @@ define('FIELD_COMENTARIOS', 'Comentarios');
 define('FIELD_ARCHIVO', 'Archivo');
 
 //Cartas
-define('FIELD_CARTA', 'Carta de Compromisos');
-define('FIELD_CARTAS', 'Cartas de Compromiso');
+const FIELD_CARTA = 'Carta de Compromisos';
+const FIELD_CARTAS = 'Cartas de Compromiso';
 
 //Normativas
 define('FIELD_NORMATIVA', 'Normativa');
