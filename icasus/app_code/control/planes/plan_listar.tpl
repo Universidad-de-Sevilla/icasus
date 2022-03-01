@@ -13,10 +13,10 @@
                 <p>{$smarty.const.MSG_PLAN_CONFIRM_BORRAR}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i
-                        class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar"><i
-                        class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" id="borrar">
+                    <i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
             </div>
         </div>
     </div>
@@ -38,10 +38,10 @@
                 <p>{$smarty.const.MSG_OBJOP_CONFIRM_BORRAR}</p>
             </div>
             <div class="modal-footer">
-                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal"><i
-                        class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
-                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" name="borrar" id="borrar"><i
-                        class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
+                <button type="button" title="{$smarty.const.TXT_NO}" class="btn btn-danger" data-dismiss="modal">
+                    <i class="fa fa-times fa-fw"></i> {$smarty.const.TXT_NO}</button>
+                <a title="{$smarty.const.TXT_SI}" class="btn btn-success" id="borrar">
+                    <i class="fa fa-check fa-fw"></i> {$smarty.const.TXT_SI}</a>
             </div>
         </div>
     </div>
@@ -65,48 +65,48 @@
     <div class="col-lg-12">
         <ol class="breadcrumb">
             <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
-            <li><a title="{$smarty.const.FIELD_UNIDS}" href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
+            <li><a title="{$smarty.const.FIELD_UNIDS}" href='?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
             <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}">
+                <a class="dropdown-toggle" data-toggle="dropdown" data-target="#" title="{$entidad->nombre}" href="?page=entidad_mostrar&id_entidad={$entidad->id}">
                     {$entidad->nombre|truncate:30} <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        <a title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" href="index.php?page=entidad_mostrar&id_entidad={$entidad->id}"><i class="fa fa-folder fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}</a>
+                        <a title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}" href="?page=entidad_mostrar&id_entidad={$entidad->id}"><i class="fa fa-folder fa-fw"></i> {$entidad->nombre} / <i class="fa fa-user fa-fw"></i> {$_rol}</a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a title="{$smarty.const.TXT_PLANES_DESCRIPCION}" href='index.php?page=plan_listar&id_entidad={$entidad->id}'>
+                        <a title="{$smarty.const.TXT_PLANES_DESCRIPCION}" href='?page=plan_listar&id_entidad={$entidad->id}'>
                             <i class="fa fa-book fa-fw"></i> {$smarty.const.FIELD_PLANES} <span title="{$smarty.const.FIELD_TOTAL}: {$num_planes} {$smarty.const.FIELD_PLANES}">({$num_planes})</span>
                         </a>
                     </li>
                     <li>
-                        <a title="{$smarty.const.TXT_CARTAS_DESCRIPCION}" href='index.php?page=carta_listar&id_entidad={$entidad->id}'>
+                        <a title="{$smarty.const.TXT_CARTAS_DESCRIPCION}" href='?page=carta_listar&id_entidad={$entidad->id}'>
                             <i class="fa fa-map-o fa-fw"></i> {$smarty.const.FIELD_CARTAS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cartas} {$smarty.const.FIELD_CARTAS}">({$num_cartas})</span>
                         </a>
                     </li>
                     <li>
-                        <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='index.php?page=proceso_listar&id_entidad={$entidad->id}'>
+                        <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}" href='?page=proceso_listar&id_entidad={$entidad->id}'>
                             <i class="fa fa-gears fa-fw"></i> {$smarty.const.FIELD_PROCS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_procesos} {$smarty.const.FIELD_PROCS}">({$num_procesos})</span>
                         </a>
                     </li>
                     <li>
-                        <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='index.php?page=indicador_listar&id_entidad={$entidad->id}'>
+                        <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}" href='?page=indicador_listar&id_entidad={$entidad->id}'>
                             <i class="fa fa-dashboard fa-fw"></i> {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS} <span title="{$smarty.const.FIELD_TOTAL}: {$num_indicadores} {$smarty.const.FIELD_INDICS}/{$smarty.const.FIELD_DATOS}">({$num_indicadores})</span>
                         </a>
                     </li>
                     <li>
-                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
+                        <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}" href='?page=cuadro_listar&id_entidad={$entidad->id}'>
                             <i class="fa fa-th fa-fw"></i> {$smarty.const.FIELD_CUADROS_MANDO} <span title="{$smarty.const.FIELD_TOTAL}: {$num_cuadros} {$smarty.const.FIELD_CUADROS_MANDO}">({$num_cuadros})</span>
                         </a>
                     </li>
                     <li>
-                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
+                        <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" href="?page=consulta_avanzada&id_entidad={$entidad->id}">
                             <i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}
                         </a>
                     </li>   
                     <li>
-                        <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                        <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" href="?page=control&modulo=inicio&id_entidad={$entidad->id}">
                             <i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}
                         </a>
                     </li>
@@ -128,7 +128,7 @@
         {if $_control}
             <div id="botones_plan" class="btn-toolbar hidden" role="toolbar" aria-label="">
                 <div class="btn-group" role="group" aria-label="">
-                    <a class="btn btn-danger" href='index.php?page=plan_crear&id_entidad={$entidad->id}' 
+                    <a class="btn btn-danger" href='?page=plan_crear&id_entidad={$entidad->id}'
                        title="{$smarty.const.TXT_PLAN_CREAR}">
                         <i class="fa fa-book fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                     </a>
@@ -153,7 +153,7 @@
 
                 <!-- Planes -->
                 <div role="tabpanel" class="tab-pane active" id="planes">
-                    {if $planes}
+                    {if $planes_activos}
                         <div class="table-responsive">
                             <table id="tabla_planes" class="table datatable table-striped table-hover">
                                 <thead>
@@ -165,11 +165,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {foreach from=$planes item=plan} 
-                                        <tr>  
+                                    {foreach from=$planes_activos item=plan}
+                                        <tr>
                                             <td>
-                                                <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}" href="index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
-                                                    {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}
+                                                <a title="{$smarty.const.FIELD_PLAN} {$plan}" href="?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                                    {$plan}
                                                 </a>
                                             </td>
                                             <td>
@@ -187,11 +187,11 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
                                                     <i class="fa fa-folder fa-fw"></i>
                                                 </a>
                                                 {if $_control}
-                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=plan_editar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="?page=plan_editar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
                                                         <i class="fa fa-pencil fa-fw"></i>
                                                     </a>
                                                     <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PLAN_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_plan"
@@ -200,7 +200,7 @@
                                                     </a>
                                                 {/if}
                                             </td>
-                                        </tr>     
+                                        </tr>
                                     {/foreach}
                                 </tbody>
                             </table>
@@ -218,7 +218,7 @@
                                 {if $_control}
                                     <div class="btn-toolbar" role="toolbar" aria-label="">
                                         <div class="btn-group" role="group" aria-label="">
-                                            <a class="btn btn-danger" href='index.php?page=plan_crear&id_entidad={$entidad->id}' 
+                                            <a class="btn btn-danger" href='?page=plan_crear&id_entidad={$entidad->id}'
                                                title="{$smarty.const.TXT_PLAN_CREAR}">
                                                 <i class="fa fa-book fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                             </a>
@@ -261,10 +261,10 @@
                                             {/if}
                                         </td>
                                         <td>
-                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$objop->objest->linea->plan->id_entidad}">{$objop->nombre}</a>
+                                            <a title="{$smarty.const.TXT_FICHA}" href="?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$objop->objest->linea->plan->id_entidad}">{$objop->nombre}</a>
                                         </td>
                                         <td>
-                                            <a title="{$smarty.const.TXT_FICHA}" href="index.php?page=plan_mostrar&id_plan={$objop->objest->linea->id_plan}&id_entidad={$objop->objest->linea->plan->id_entidad}">{$objop->objest->linea->plan->anyo_inicio} - {$objop->objest->linea->plan->anyo_inicio + $objop->objest->linea->plan->duracion - 1}</a>
+                                            <a title="{$smarty.const.TXT_FICHA}" href="?page=plan_mostrar&id_plan={$objop->objest->linea->id_plan}&id_entidad={$objop->objest->linea->plan->id_entidad}">{$objop->objest->linea->plan->anyo_inicio} - {$objop->objest->linea->plan->anyo_inicio + $objop->objest->linea->plan->duracion - 1}</a>
                                         </td>
                                         <td>
                                             {if $objops_anyos[$objop->id]}
@@ -303,10 +303,10 @@
                                             {/if}
                                         </td>
                                         <td>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$objop->objest->linea->plan->id_entidad}">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="?page=objop_mostrar&id_objop={$objop->id}&id_entidad={$objop->objest->linea->plan->id_entidad}">
                                                 <i class="fa fa-folder fa-fw"></i>
                                             </a>
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=objop_editar&id_objop={$objop->id}&id_entidad={$objop->objest->linea->plan->id_entidad}">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="?page=objop_editar&id_objop={$objop->id}&id_entidad={$objop->objest->linea->plan->id_entidad}">
                                                 <i class="fa fa-pencil fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_OBJOP_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_objop"
@@ -324,7 +324,7 @@
 
             </div>
         {else}
-            {if $planes}
+            {if $planes_activos}
                 <div class="table-responsive">
                     <table id="tabla_planes" class="table datatable table-striped table-hover">
                         <thead>
@@ -336,10 +336,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {foreach from=$planes item=plan} 
+                            {foreach from=$planes_activos item=plan}
                                 <tr>  
                                     <td>
-                                        <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}" href="index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                        <a title="{$smarty.const.FIELD_PLAN} {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}" href="?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
                                             {$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}
                                         </a>
                                     </td>
@@ -358,11 +358,11 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="index.php?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                        <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
                                             <i class="fa fa-folder fa-fw"></i>
                                         </a>
                                         {if $_control}
-                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="index.php?page=plan_editar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                            <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="?page=plan_editar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
                                                 <i class="fa fa-pencil fa-fw"></i>
                                             </a>
                                             <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PLAN_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_plan"
@@ -389,7 +389,7 @@
                         {if $_control}
                             <div class="btn-toolbar" role="toolbar" aria-label="">
                                 <div class="btn-group" role="group" aria-label="">
-                                    <a class="btn btn-danger" href='index.php?page=plan_crear&id_entidad={$entidad->id}' 
+                                    <a class="btn btn-danger" href='?page=plan_crear&id_entidad={$entidad->id}'
                                        title="{$smarty.const.TXT_PLAN_CREAR}">
                                         <i class="fa fa-book fa-fw"></i><sub class="fa fa-plus fa-fw"></sub>
                                     </a>
@@ -403,6 +403,71 @@
             {/if}
         {/if}
     </div>
-    <!-- /.col-lg-12 -->    
+    <!-- /.col-lg-12 -->
 </div>
 <!-- /.row -->
+
+<!-- Planes archivados -->
+<div class="row">
+    <div class="col-lg-12">
+        {if $planes_archivados}
+            <h4 class="page-header">
+                <i class="fa fa-archive fa-fw"></i> {$smarty.const.FIELD_PLANES_ARCHIVADOS}
+            </h4>
+            <div class="table-responsive">
+                <table id="tabla_planes_archivados" class="table datatable table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>{$smarty.const.FIELD_PLAN}</th>
+                        <th>{$smarty.const.FIELD_TITULO}</th>
+                        <th>{$smarty.const.FIELD_EJECUCION}</th>
+                        <th>{$smarty.const.FIELD_ACCIONES}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach from=$planes_archivados item=plan}
+                        <tr>
+                            <td>
+                                <a title="{$smarty.const.FIELD_PLAN} {$plan}" href="?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                    {$plan}
+                                </a>
+                            </td>
+                            <td>
+                                {if $plan->titulo}
+                                    <i>"{$plan->titulo}"</i>
+                                {else}
+                                    ---
+                                {/if}
+                            </td>
+                            <td style="white-space:nowrap">
+                                <div class="progress">
+                                    <div class="progress-bar {if $plan->ejecucion|round:"2" < 25}progress-bar-danger{elseif $plan->ejecucion|round:"2" >= 25 && $plan->ejecucion|round:"2" < 75}progress-bar-warning{elseif $plan->ejecucion|round:"2" == 100}progress-bar-success{/if}" role="progressbar" aria-valuenow="{$plan->ejecucion|round:"2"}" aria-valuemin="0" aria-valuemax="100" style="min-width: 4em;width:{$plan->ejecucion|round:"2"}%">
+                                        {$plan->ejecucion|round:"2"} %
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}" href="?page=plan_mostrar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                    <i class="fa fa-folder fa-fw"></i>
+                                </a>
+                                {if $_control}
+                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_EDIT}" href="?page=plan_editar&id_plan={$plan->id}&id_entidad={$plan->id_entidad}">
+                                        <i class="fa fa-pencil fa-fw"></i>
+                                    </a>
+                                    <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_PLAN_BORRAR}" href='javascript:void(0)' data-toggle="modal" data-target="#dialogo_confirmar_borrado_plan"
+                                       data-id_plan="{$plan->id}" data-periodo_plan="{$plan->anyo_inicio} - {$plan->anyo_inicio + $plan->duracion-1}" data-id_entidad="{$plan->id_entidad}">
+                                        <i class="fa fa-trash fa-fw"></i>
+                                    </a>
+                                {/if}
+                            </td>
+                        </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+            </div>
+        {else}
+            {$smarty.const.MSG_NO_PLANES_ARCHIVADOS}
+        {/if}
+    </div>
+</div>
+<!-- /Planes archivados -->

@@ -7,7 +7,7 @@
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es)
 //---------------------------------------------------------------------------------------------------
-// Descripcion: Lista los planes estratégicos de una Unidad
+// Descripción: Lista los planes estratégicos de una Unidad
 //---------------------------------------------------------------------------------------------------
 
 global $smarty;
@@ -22,24 +22,26 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     $smarty->assign('entidad', $entidad);
 
     //Planes de la Unidad
-    $smarty->assign('planes', $planes);
-
+    $planes_activos = array_filter($planes, function ($plan) {return null === $plan->archivado;});
+    $planes_archivados = array_diff($planes, $planes_activos);
+    $smarty->assign('planes_activos', $planes_activos);
+    $smarty->assign('planes_archivados', $planes_archivados);
     //Objetivos operacionales bajo la responsabilidad del usuario en la Unidad
     $objop = new ObjetivoOperacional();
     $objops = $objop->Find_joined("id_responsable = $usuario->id");
-    $objops_propios = array();
+    $objops_propios = [];
     foreach ($objops as $objop)
     {
         if ($objop->objest->linea->plan->id_entidad == $id_entidad)
         {
-            array_push($objops_propios, $objop);
+            $objops_propios[] = $objop;
         }
     }
     $smarty->assign('objops_propios', $objops_propios);
 
     //Años de ejecución de los objetivos operacionales
     $ejecucion = new Ejecucion();
-    $objops_anyos = array();
+    $objops_anyos = [];
     foreach ($objops_propios as $obj)
     {
         $objops_anyos[$obj->id] = array();
@@ -48,7 +50,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
         {
             if ($ejec->activo)
             {
-                array_push($objops_anyos[$obj->id], $ejec->anyo);
+                $objops_anyos[$obj->id][] = $ejec->anyo;
             }
         }
     }
@@ -56,7 +58,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 
     //Unidades de los objetivos operacionales
     $objop_unidad = new ObjetivoUnidad();
-    $objops_unids = array();
+    $objops_unids = [];
     foreach ($objops_propios as $obj)
     {
         $objops_unids[$obj->id] = $objop_unidad->Find("id_objop=$obj->id");
