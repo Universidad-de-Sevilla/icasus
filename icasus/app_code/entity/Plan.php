@@ -21,8 +21,21 @@ class Plan extends ADOdb_Active_Record
     public $fce;
     public $titulo;
     public $ejecucion;
+    public $archivado;
 
-    public function load_joined($condicion)
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->anyo_inicio . " - " . ($this->anyo_inicio + $this->duracion - 1);
+    }
+
+    /**
+     * @param string $condicion
+     * @return bool
+     */
+    public function load_joined(string $condicion): bool
     {
         if ($this->load($condicion))
         {
@@ -36,7 +49,11 @@ class Plan extends ADOdb_Active_Record
         }
     }
 
-    public function Find_joined($criterio)
+    /**
+     * @param string $criterio
+     * @return bool
+     */
+    public function Find_joined(string $criterio): bool
     {
         $planes = $this->Find($criterio);
         if ($planes)

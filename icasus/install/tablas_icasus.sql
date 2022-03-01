@@ -420,6 +420,7 @@ CREATE TABLE `icasus_plan` (
   `fce` text,
   `titulo` varchar(100) DEFAULT NULL,
   `ejecucion` double NOT NULL,
+  `archivado` date DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 

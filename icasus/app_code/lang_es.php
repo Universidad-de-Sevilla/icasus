@@ -269,9 +269,16 @@ define('TXT_PAG_CREAR', 'Crear página');
 define('TXT_PAG_EDIT', 'Editar página');
 
 //Planes Estratégicos
-define('TXT_PLAN_CREAR', 'Crear Plan Estratégico');
-define('TXT_PLAN_EDIT', 'Editar Plan Estratégico');
-define('TXT_PLAN_BORRAR', 'Borrar Plan Estratégico');
+const TXT_PLAN_CREAR = 'Crear Plan Estratégico';
+const TXT_PLAN_EDIT = 'Editar Plan Estratégico';
+const TXT_PLAN_BORRAR = 'Borrar Plan Estratégico';
+const TXT_PLAN_ARCHIVAR = 'Archivar Plan Estratégico';
+const TXT_PLAN_RESTAURAR = 'Restaurar Plan Estratégico';
+const MSG_PLAN_CONFIRM_ARCHIVAR = 'El Plan Estratégico y todas sus dependencias quedarán archivados pero no se eliminarán, ¿realmente desea archivar este Plan?';
+const MSG_PLAN_CONFIRM_RESTAURAR = '¿Quiere restaurar este Plan Estratégico y todas sus dependencias?';
+const MSG_NO_PLANES_ARCHIVADOS = 'No hay Planes Estratégicos archivados.';
+const MSG_PLAN_ARCHIVADO = 'Se ha archivado el Plan Estratégico: ';
+const MSG_PLAN_RESTAURADO = 'Se ha restaurado el Plan Estratégico: ';
 
 //Líneas Estratégicas
 define('TXT_LINEA_CREAR', 'Crear Línea Estratégica');
@@ -530,10 +537,12 @@ define('FIELD_PAG_CONTENIDO', 'Contenido de la página (HTML)');
 
 //Planes
 define('FIELD_PLAN', 'Plan Estratégico');
-define('FIELD_PLANES', 'Planes Estratégicos');
+const FIELD_PLANES = 'Planes Estratégicos';
+const FIELD_PLANES_ARCHIVADOS = 'Planes Estratégicos Archivados';
 define('FIELD_ANYO_INICIO', 'Año de inicio');
 define('FIELD_DURACION', 'Duración (años)');
-define('FIELD_MISION', 'Misión');
+const FIELD_PROPOSITO = 'Propósito (Misión)';
+const FIELD_MISION = FIELD_PROPOSITO;
 define('FIELD_VISION', 'Visión');
 define('FIELD_VALORES', 'Valores');
 define('FIELD_FCE', 'Factores clave del éxito');
