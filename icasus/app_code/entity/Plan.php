@@ -67,4 +67,25 @@ class Plan extends ADOdb_Active_Record
         }
         return $planes;
     }
+
+    /**
+     * Obtiene los id. de los indicadores de control del plan estratégico.
+     * @param int $id_plan
+     * @return array
+     */
+    public function find_indicadores_control_plan(int $id_plan): array
+    {
+        $sql = <<<EOT
+SELECT DISTINCT ii.id
+FROM icasus_indicador ii
+    JOIN icasus_objetivo_indicador ioi on ii.id = ioi.id_indicador
+    JOIN icasus_objetivo_operacional ioo on ioi.id_objop = ioo.id
+    JOIN icasus_objetivo_estrategico ioe on ioo.id_objest = ioe.id
+    JOIN icasus_linea il on ioe.id_linea = il.id
+    JOIN icasus_plan ip on il.id_plan = ip.id
+WHERE ip.id = '$id_plan' AND ioi.control = 1;
+EOT;
+        $db = $this->DB();
+        return $db->getAll($sql);
+    }
 }

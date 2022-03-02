@@ -21,19 +21,41 @@ if (filter_has_var(INPUT_GET, 'id_entidad') && filter_has_var(INPUT_GET, 'id_pla
     // Comprobamos que el usuario es responsable de este plan para permitirle archivar o restaurar
     if ($control || $usuario->id == $plan->entidad->id_responsable)
     {
+        $cont = 0;
         if ($modulo === 'archivar')
         {
+            // Archivar indicadores de control
+            foreach ($plan->find_indicadores_control_plan($plan->id) as $indic)
+            {
+                $indicador = new Indicador();
+                if ($indicador->Load("id = {$indic['id']} AND archivado IS NULL"))
+                {
+                    $indicador->archivado = date("Y-m-d");
+                    $indicador->Save();
+                    $cont++;
+                }
+            }
             $plan->archivado = date("Y-m-d");
             $plan->Save();
-            $exito = MSG_PLAN_ARCHIVADO . "$plan";
+            $exito = MSG_PLAN_ARCHIVADO . "$plan. " . MSG_INDIC_CONTROL_ARCHIVADOS . "$cont.";
             header("Location: index.php?page=plan_listar&id_entidad=$id_entidad&exito=$exito");
             exit();
         }
         if ($modulo === 'restaurar')
         {
+            // Restaurar indicadores de control
+            foreach ($plan->find_indicadores_control_plan($plan->id) as $indic) {
+                $indicador = new Indicador();
+                if ($indicador->Load("id = {$indic['id']} AND archivado = '$plan->archivado'"))
+                {
+                    $indicador->archivado = null;
+                    $indicador->Save();
+                    $cont++;
+                }
+            }
             $plan->archivado = null;
             $plan->Save();
-            $exito = MSG_PLAN_RESTAURADO . "$plan";
+            $exito = MSG_PLAN_RESTAURADO . "$plan. " . MSG_INDIC_CONTROL_RESTAURADOS . "$cont.";
             header("Location: index.php?page=plan_listar&id_entidad=$id_entidad&exito=$exito");
             exit();
         }
