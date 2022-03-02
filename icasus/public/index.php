@@ -114,10 +114,10 @@ if (isset($_SESSION['usuario']) && IC_TIPO_LOGIN != 'mantenimiento')
     {
         //Cantidad de planes, cartas, procesos, indicadores y cuadros de mando de la unidad
         $planes = $plan->Find("id_entidad = $id_entidad ORDER BY anyo_inicio DESC");
-        $smarty->assign('num_planes', count($planes));
+        $smarty->assign('num_planes', count(array_filter($planes ?? [], function ($p) {return null === $p->archivado;})));
 
         $cartas = $carta->Find("id_entidad = $id_entidad");
-        $smarty->assign('num_cartas', count($cartas));
+        $smarty->assign('num_cartas', count(array_filter($cartas ?? [], function ($c) {return null === $c->archivado;})));
 
         $procesos = $proceso->Find("id_entidad = $id_entidad ORDER BY codigo");
         $smarty->assign('num_procesos', count($procesos));
