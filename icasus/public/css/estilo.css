@@ -39,6 +39,12 @@ hr, .divider{
     background-color: #FFC526 !important;
 }
 
+.h3 {
+    font-size: x-large;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
 .dropdown-menu {
     border-color: #FFC526 !important;
 }

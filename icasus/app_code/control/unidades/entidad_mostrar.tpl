@@ -18,8 +18,8 @@
 <!-- Nombre página -->
 <div class="row">
     <div class="col-lg-12">
-        <h3 title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}"
-            class="page-header">
+        <div class="h3 page-header"
+             title="{$smarty.const.FIELD_USER}: {$_usuario->login} - {$smarty.const.TXT_UNID}: {$entidad->nombre} - {$smarty.const.FIELD_ROL}: {$_rol}">
             <div class="row">
                 <div class="col-md-10">
                     <i class="fa fa-sitemap fa-fw"></i>{if $principal}<sub title="{$smarty.const.TXT_UNID_PRINCIPAL}"
@@ -35,22 +35,22 @@
                             <div class="btn-group" role="group" aria-label="">
                                 <a title="{$smarty.const.TXT_PRIMER} {$smarty.const.FIELD_UNID}"
                                    class="btn btn-danger btn-xs {if $indice == 0}disabled{/if}"
-                                   href='index.php?page=entidad_mostrar&id_entidad={$unidades[0]->id}'>
+                                   href="?page=entidad_mostrar&id_entidad={$unidades[0]->id}">
                                     <i class="fa fa-step-backward fa-fw"></i>
                                 </a>
                                 <a title="{$smarty.const.TXT_ANT} {$smarty.const.FIELD_UNID}"
-                                   class="btn btn-danger btn-xs {if $indice == 0}disabled" href="#"{else}"
-                                   href='index.php?page=entidad_mostrar&id_entidad={$unidades[$indice-1]->id}'{/if}>
+                                   class="btn btn-danger btn-xs {if $indice == 0}disabled" href="#"{else}
+                                   href="?page=entidad_mostrar&id_entidad={$unidades[$indice-1]->id}"{/if}>
                                     <i class="fa fa-play fa-rotate-180 fa-fw"></i>
                                 </a>
                                 <a title="{$smarty.const.TXT_SIG} {$smarty.const.FIELD_UNID}"
-                                   class="btn btn-danger btn-xs {if $indice == (count($unidades)-1)}disabled" href="#"{else}"
-                                   href='index.php?page=entidad_mostrar&id_entidad={$unidades[$indice+1]->id}'{/if}>
+                                   class="btn btn-danger btn-xs {if $indice == (count($unidades)-1)}disabled" href="#"{else}
+                                   href="?page=entidad_mostrar&id_entidad={$unidades[$indice+1]->id}"{/if}>
                                     <i class="fa fa-play fa-fw"></i>
                                 </a>
                                 <a title="{$smarty.const.TXT_ULTIMO} {$smarty.const.FIELD_UNID}"
                                    class="btn btn-danger btn-xs {if $indice == (count($unidades)-1)}disabled{/if}"
-                                   href='index.php?page=entidad_mostrar&id_entidad={$unidades[(count($unidades)-1)]->id}'>
+                                   href="?page=entidad_mostrar&id_entidad={$unidades[(count($unidades)-1)]->id}">
                                     <i class="fa fa-step-forward fa-fw"></i>
                                 </a>
                             </div>
@@ -61,7 +61,7 @@
                 <!-- /Navegación -->
             </div>
             <!-- /.row -->
-        </h3>
+        </div>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -72,9 +72,9 @@
 <div class="row">
     <div class="col-lg-12">
         <ol class="breadcrumb">
-            <i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
-            <li><a title="{$smarty.const.FIELD_UNIDS}"
-                   href='index.php?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
+            <li><i title="{$smarty.const.TXT_ESTA}" class="fa fa-map-marker fa-fw"></i>
+                <a title="{$smarty.const.FIELD_UNIDS}"
+                   href='?page=entidad_listar'>{$smarty.const.FIELD_UNIDS}</a></li>
             <li title="{$_nombre_pagina}" class="active">{$_nombre_pagina}</li>
         </ol>
     </div>
@@ -127,7 +127,7 @@
                                 <i class="fa fa-info-circle fa-fw"></i>
                                 {$smarty.const.FIELD_UNID_SUP}:
                                 <a title="{$entidad->madre->nombre}"
-                                   href="index.php?page=entidad_mostrar&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
+                                   href="?page=entidad_mostrar&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
                             </div>
                         </div>
                         <!-- /.col-lg-12 -->
@@ -139,8 +139,10 @@
                     <div class="col-md-6">
                         <table class="table table-striped table-hover ficha">
                             <thead>
-                            <th></th>
-                            <th></th>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                            </tr>
                             </thead>
                             <tbody>
                             <tr>
@@ -160,7 +162,7 @@
                                 <td>
                                     {if $entidad->madre->id !=0 && $entidad->madre->id !=1}
                                         <a title="{$entidad->madre->nombre}"
-                                           href="index.php?page=entidad_mostrar&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
+                                           href="?page=entidad_mostrar&id_entidad={$entidad->madre->id}">{$entidad->madre->nombre}</a>
                                     {else}
                                         ---
                                     {/if}
@@ -180,18 +182,10 @@
                             <tr>
                                 <th>{$smarty.const.FIELD_ORGANICA}</th>
                                 <td>
-                                    {if $_control}
-                                        <input data-id_entidad="{$entidad->id}" type="checkbox" class="grafica"
-                                               data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                               data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                               data-off="{$smarty.const.TXT_NO}" {if $entidad->es_organica}checked{/if}
-                                               id="organica">
-                                    {else}
-                                        <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
-                                               data-onstyle="success" data-offstyle="danger" data-size="mini"
-                                               data-off="{$smarty.const.TXT_NO}" {if $entidad->es_organica}checked{/if}
-                                               disabled>
-                                    {/if}
+                                    <input type="checkbox" data-toggle="toggle" data-on="{$smarty.const.TXT_SI}"
+                                           data-onstyle="success" data-offstyle="danger" data-size="mini"
+                                           data-off="{$smarty.const.TXT_NO}" {if $entidad->es_organica}checked{/if}
+                                           disabled>
                                 </td>
                             </tr>
                             <tr>
@@ -209,7 +203,7 @@
                         {if $_control}
                             <div id="botones_ficha" class="btn-toolbar hidden" role="toolbar" aria-label="">
                                 <a title="{$smarty.const.TXT_UNID_EDIT}" class="btn btn-default btn-danger"
-                                   href='index.php?page=entidad_editar&id_entidad={$entidad->id}'>
+                                   href='?page=entidad_editar&id_entidad={$entidad->id}'>
                                     <i class="fa fa-sitemap fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                                 </a>
                             </div>
@@ -220,7 +214,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <a title="{$smarty.const.TXT_PLANES_DESCRIPCION}"
-                                   href="index.php?page=plan_listar&id_entidad={$entidad->id}">
+                                   href="?page=plan_listar&id_entidad={$entidad->id}">
                                     <div class="panel panel-resumen">
                                         <div class="panel-heading">
                                             <div class="row">
@@ -241,7 +235,7 @@
                             <!-- /.col-md-6 -->
                             <div class="col-md-6">
                                 <a title="{$smarty.const.TXT_CARTAS_DESCRIPCION}"
-                                   href="index.php?page=carta_listar&id_entidad={$entidad->id}">
+                                   href="?page=carta_listar&id_entidad={$entidad->id}">
                                     <div class="panel panel-resumen">
                                         <div class="panel-heading">
                                             <div class="row">
@@ -265,7 +259,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <a title="{$smarty.const.TXT_PROCS_DESCRIPCION}"
-                                   href="index.php?page=proceso_listar&id_entidad={$entidad->id}">
+                                   href="?page=proceso_listar&id_entidad={$entidad->id}">
                                     <div class="panel panel-resumen">
                                         <div class="panel-heading">
                                             <div class="row">
@@ -286,7 +280,7 @@
                             <!-- /.col-md-6 -->
                             <div class="col-md-6">
                                 <a title="{$smarty.const.TXT_INDICS_DESCRIPCION}"
-                                   href="index.php?page=indicador_listar&id_entidad={$entidad->id}">
+                                   href="?page=indicador_listar&id_entidad={$entidad->id}">
                                     <div class="panel panel-resumen">
                                         <div class="panel-heading">
                                             <div class="row">
@@ -311,7 +305,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <a title="{$smarty.const.TXT_CUADRO_MANDO_DESCRIPCION}"
-                                   href='index.php?page=cuadro_listar&id_entidad={$entidad->id}'>
+                                   href='?page=cuadro_listar&id_entidad={$entidad->id}'>
                                     <div class="panel panel-resumen">
                                         <div class="panel-heading">
                                             <div class="row">
@@ -339,21 +333,21 @@
                 <div class="row">
                     <div class="col-md-4">
                         <a title="{$smarty.const.TXT_CONSULTA_DESCRIPCION}" class="btn btn-danger btn-block"
-                           href="index.php?page=consulta_avanzada&id_entidad={$entidad->id}">
+                           href="?page=consulta_avanzada&id_entidad={$entidad->id}">
                             <h4><i class="fa fa-commenting fa-fw"></i> {$smarty.const.TXT_CONSULT}</h4>
                         </a>
                     </div>
                     <!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <a title="{$smarty.const.TXT_INICIO_DESCRIPCION}" class="btn btn-danger btn-block"
-                           href='index.php?page=inicio'>
+                           href='?page=inicio'>
                             <h4><i class="fa fa-home fa-fw"></i> {$smarty.const.TXT_INICIO}</h4>
                         </a>
                     </div>
                     <!-- /.col-md-4 -->
                     <div class="col-md-4">
                         <a title="{$smarty.const.TXT_CONTROL_DESCRIPCION}" class="btn btn-danger btn-block"
-                           href="index.php?page=control&modulo=inicio&id_entidad={$entidad->id}">
+                           href="?page=control&modulo=inicio&id_entidad={$entidad->id}">
                             <h4><i class="fa fa-sliders fa-fw"></i> {$smarty.const.TXT_CONTROL}</h4>
                         </a>
                     </div>
@@ -369,7 +363,7 @@
                     <div id="botones_user" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
                             <a title="{$smarty.const.TXT_USER_GESTION}" class="btn btn-default btn-danger"
-                               href='index.php?page=entidad_usuarios&id_entidad={$entidad->id}'>
+                               href='?page=entidad_usuarios&id_entidad={$entidad->id}'>
                                 <i class="fa fa-users fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                             </a>
                         </div>
@@ -394,7 +388,7 @@
                                 <tr>
                                     <td>
                                         <a title="{$smarty.const.TXT_USER_PERFIL}"
-                                           href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'>
+                                           href='?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'>
                                             {$usuario->usuario->login}
                                         </a>
                                     </td>
@@ -408,7 +402,7 @@
                                     <td>
                                         <a class="btn btn-default btn-circle btn-xs"
                                            title="{$smarty.const.TXT_USER_PERFIL}"
-                                           href='index.php?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'><i
+                                           href='?page=usuario_mostrar&id_usuario={$usuario->usuario->id}'><i
                                                     class="fa fa-user fa-fw"></i></a>
                                         <a class="btn btn-default btn-circle btn-xs"
                                            title="{$smarty.const.TXT_ENVIAR_CORREO}"
@@ -434,7 +428,7 @@
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                     <div class="btn-group" role="group" aria-label="">
                                         <a title="{$smarty.const.TXT_USER_GESTION}" class="btn btn-default btn-danger"
-                                           href='index.php?page=entidad_usuarios&id_entidad={$entidad->id}'>
+                                           href='?page=entidad_usuarios&id_entidad={$entidad->id}'>
                                             <i class="fa fa-users fa-fw"></i><sub class="fa fa-pencil fa-fw"></sub>
                                         </a>
                                     </div>
@@ -466,29 +460,29 @@
                                     <td><span class="label label-primary">{$subentidad->codigo}</span></td>
                                     <td>
                                         <a title="{$subentidad->nombre}"
-                                           href='index.php?page=entidad_mostrar&id_entidad={$subentidad->id}'>{$subentidad->nombre}</a>
+                                           href='?page=entidad_mostrar&id_entidad={$subentidad->id}'>{$subentidad->nombre}</a>
                                     </td>
                                     <td>
                                         <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_FICHA}"
-                                           href='index.php?page=entidad_mostrar&id_entidad={$subentidad->id}'><i
+                                           href='?page=entidad_mostrar&id_entidad={$subentidad->id}'><i
                                                     class="fa fa-folder fa-fw"></i></a>
                                         <a class="btn btn-default btn-circle btn-xs"
                                            title="{$smarty.const.FIELD_PLANES}"
-                                           href='index.php?page=plan_listar&id_entidad={$subentidad->id}'><i
+                                           href='?page=plan_listar&id_entidad={$subentidad->id}'><i
                                                     class="fa fa-book fa-fw"></i></a>
                                         <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.FIELD_PROCS}"
-                                           href='index.php?page=proceso_listar&id_entidad={$subentidad->id}'><i
+                                           href='?page=proceso_listar&id_entidad={$subentidad->id}'><i
                                                     class="fa fa-gears fa-fw"></i></a>
                                         <a class="btn btn-default btn-circle btn-xs"
                                            title="{$smarty.const.FIELD_INDICS}"
-                                           href='index.php?page=indicador_listar&id_entidad={$subentidad->id}'><i
+                                           href='?page=indicador_listar&id_entidad={$subentidad->id}'><i
                                                     class="fa fa-dashboard fa-fw"></i></a>
                                         <a class="btn btn-default btn-circle btn-xs"
                                            title="{$smarty.const.FIELD_CUADROS_MANDO}"
-                                           href='index.php?page=cuadro_listar&id_entidad={$subentidad->id}'><i
+                                           href='?page=cuadro_listar&id_entidad={$subentidad->id}'><i
                                                     class="fa fa-th fa-fw"></i></a>
                                         <a class="btn btn-default btn-circle btn-xs" title="{$smarty.const.TXT_CONSULT}"
-                                           href='index.php?page=consulta_avanzada&id_entidad={$subentidad->id}'><i
+                                           href='?page=consulta_avanzada&id_entidad={$subentidad->id}'><i
                                                     class="fa fa-commenting fa-fw"></i></a>
                                     </td>
                                 </tr>
@@ -511,7 +505,7 @@
                 {if $_control}
                     <div id="botones_archivo" class="btn-toolbar hidden" role="toolbar" aria-label="">
                         <div class="btn-group" role="group" aria-label="">
-                            <a class="btn btn-danger" href='index.php?page=archivo_gestionar&id_entidad={$entidad->id}'
+                            <a class="btn btn-danger" href='?page=archivo_gestionar&id_entidad={$entidad->id}'
                                title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
                                 <i class="fa fa-archive fa-fw"></i>
                             </a>
@@ -535,20 +529,20 @@
                                     <tr>
                                         <td>
                                             <a title='{$archivo->titulo}: {$archivo->descripcion|replace:"\r\n":" "}'
-                                               href="index.php?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo}</a>
+                                               href="?page=archivo_descargar&id={$archivo->id}">{$archivo->titulo}</a>
                                         </td>
                                         <td style="font-size: 12px">
                                             <a title="{$smarty.const.TXT_USER_PERFIL}"
-                                               href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'>{$archivo->usuario->nombre} {$archivo->usuario->apellidos}</a>
+                                               href='?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'>{$archivo->usuario->nombre} {$archivo->usuario->apellidos}</a>
                                         </td>
                                         <td style="white-space:nowrap">
                                             <a class="btn btn-default btn-circle btn-xs"
                                                title="{$smarty.const.TXT_ARCHIVO_DESCARGA}"
-                                               href="index.php?page=archivo_descargar&id={$archivo->id}"><i
+                                               href="?page=archivo_descargar&id={$archivo->id}"><i
                                                         class="fa fa-download fa-fw"></i></a>
                                             <a class="btn btn-default btn-circle btn-xs"
                                                title="{$smarty.const.TXT_USER_PERFIL}"
-                                               href='index.php?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'><i
+                                               href='?page=usuario_mostrar&id_usuario={$archivo->usuario->id}'><i
                                                         class="fa fa-user fa-fw"></i></a>
                                         </td>
                                     </tr>
@@ -571,7 +565,7 @@
                                 <div class="btn-toolbar" role="toolbar" aria-label="">
                                     <div class="btn-group" role="group" aria-label="">
                                         <a class="btn btn-danger"
-                                           href='index.php?page=archivo_gestionar&id_entidad={$entidad->id}'
+                                           href='?page=archivo_gestionar&id_entidad={$entidad->id}'
                                            title="{$smarty.const.TXT_ARCHIVOS_GESTION}">
                                             <i class="fa fa-archive fa-fw"></i>
                                         </a>
@@ -609,11 +603,11 @@
                                         <!-- /.col-md-10 -->
                                         <div class="col-md-2">
                                             <a title="{$smarty.const.TXT_FICHA}"
-                                               href="index.php?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><i
+                                               href="?page=proceso_mostrar&id_proceso={$proceso->id}&id_entidad={$proceso->id_entidad}"><i
                                                         class="fa fa-folder fa-fw"></i></a>
                                             {if $proceso->id_cuadro}
                                                 <a title="{$smarty.const.FIELD_CUADRO_MANDO}"
-                                                   href="index.php?page=cuadro_mostrar&id_cuadro={$proceso->id_cuadro}&id_entidad={$proceso->id_entidad}"><i
+                                                   href="?page=cuadro_mostrar&id_cuadro={$proceso->id_cuadro}&id_entidad={$proceso->id_entidad}"><i
                                                             class="fa fa-th fa-fw"></i></a>
                                             {/if}
                                             <span title="{$proceso->nombre}: {$indicadores[$proceso->id]|@count} {$smarty.const.FIELD_INDICS}"
@@ -650,7 +644,7 @@
                                                             </div>
                                                             <div class="carousel-caption">
                                                                 <h3>
-                                                                    <a href='index.php?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}'
+                                                                    <a href='?page=indicador_mostrar&id_indicador={$indicador->id}&id_entidad={$entidad->id}'
                                                                        title="{$indicador->nombre}: {$indicador->descripcion|replace:"\r\n":" "}"><i
                                                                                 class="fa fa-dashboard fa-fw"></i></a>
                                                                 </h3>
@@ -746,7 +740,7 @@
                                                     </div>
                                                     <div class="carousel-caption">
                                                         <h3>
-                                                            <a href='index.php?page=indicador_mostrar&id_indicador={$control->id}&id_entidad={$entidad->id}'
+                                                            <a href='?page=indicador_mostrar&id_indicador={$control->id}&id_entidad={$entidad->id}'
                                                                title="{$control->nombre}: {$control->descripcion|replace:"\r\n":" "}"><i
                                                                         class="fa fa-dashboard fa-fw"></i></a>
                                                         </h3>
@@ -835,7 +829,7 @@
                                                     </div>
                                                     <div class="carousel-caption">
                                                         <h3>
-                                                            <a href='index.php?page=indicador_mostrar&id_indicador={$dato->id}&id_entidad={$entidad->id}'
+                                                            <a href='?page=indicador_mostrar&id_indicador={$dato->id}&id_entidad={$entidad->id}'
                                                                title="{$dato->nombre}: {$dato->descripcion|replace:"\r\n":" "}"><i
                                                                         class="fa fa-dashboard fa-fw"></i></a>
                                                         </h3>
