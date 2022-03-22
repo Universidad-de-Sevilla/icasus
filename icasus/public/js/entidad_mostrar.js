@@ -187,7 +187,7 @@ $(document).ready(function () {
 
 //Conteo de procesos, indicadores/datos, etc..
 $('.counter').counterUp({
-    delay: 10,
+    delay: 16,
     time: 1000
 });
 
