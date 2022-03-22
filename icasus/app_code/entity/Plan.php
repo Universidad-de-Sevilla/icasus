@@ -4,7 +4,7 @@
 // Proyecto: Icasus 
 // Archivo: entity/Plan.php
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
-// Joaquín Valonero Zaera (tecnibus1@us.es)
+// Joaquín Valonero Zaera (tecnibus1@us.es), Ramón M. Gómez (ramongomez@us.es)
 //---------------------------------------------------------------------------------------------------
 
 class Plan extends ADOdb_Active_Record
@@ -50,10 +50,11 @@ class Plan extends ADOdb_Active_Record
     }
 
     /**
+     * Obtener planes estratégicos de una entidad.
      * @param string $criterio
-     * @return bool
+     * @return array|null
      */
-    public function Find_joined(string $criterio): bool
+    public function Find_joined(string $criterio): ?array
     {
         $planes = $this->Find($criterio);
         if ($planes)
@@ -61,9 +62,11 @@ class Plan extends ADOdb_Active_Record
             foreach ($planes as $plan)
             {
                 $entidad = new Entidad();
-                $entidad->load("id= $plan->id_entidad");
+                $entidad->load("id = '$plan->id_entidad'");
                 $plan->entidad = $entidad;
             }
+        } else {
+            $planes = null;
         }
         return $planes;
     }

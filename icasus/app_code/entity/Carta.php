@@ -3,7 +3,7 @@
 //---------------------------------------------------------------------------------------------------
 // Proyecto: Icasus 
 // Archivo: entity/Carta.php
-// Tipo: definicion de clase
+// Tipo: definición de clase
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
 // Joaquín Valonero Zaera (tecnibus1@us.es), Ramón M. Gómez (ramongomez@us.es)
 //---------------------------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ class Carta extends ADOdb_Active_Record
 
             if ($this->id_cuadro) {
                 $cuadro = new Cuadro();
-                $cuadro->load("id = $this->id_cuadro");
+                $cuadro->load("id = '$this->id_cuadro'");
                 $this->cuadro = $cuadro;
             }
             return true;
@@ -53,18 +53,21 @@ class Carta extends ADOdb_Active_Record
     }
 
     /**
+     *
      * @param string $criterio
-     * @return bool
+     * @return array|null
      */
-    public function Find_joined(string $criterio): bool
+    public function Find_joined(string $criterio): ?array
     {
         $cartas = $this->Find($criterio);
         if ($cartas) {
             foreach ($cartas as $carta) {
                 $entidad = new Entidad();
-                $entidad->load("id= $carta->id_entidad");
+                $entidad->load("id = '$carta->id_entidad'");
                 $carta->entidad = $entidad;
             }
+        } else {
+            $cartas = null;
         }
         return $cartas;
     }
