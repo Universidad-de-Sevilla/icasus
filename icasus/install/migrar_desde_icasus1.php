@@ -29,7 +29,7 @@ if (!$ic1 or !$ic3) {
 if ($argv[1] === 'listar') {
     echo "\tEntidades definidas en Icasus 1:\n";
     foreach (consultar($ic1, "SELECT id_entidad, codigo, nombre FROM entidad;") as $ent) {
-        printf("%4d  %-30s  %s\n", $ent['id_entidad'], $ent['codigo'], utf8_decode($ent['nombre']));
+        printf("%4d  %-30s  %s\n", $ent['id_entidad'], $ent['codigo'], $ent['nombre']);
     }
     exit(0);
 }
@@ -42,7 +42,7 @@ if (empty($entidades)) {
     exit(1);
 }
 // Solicitar confirmación
-echo "Migrar indicadores de las entidades: " . utf8_decode(implode(', ', array_column($entidades, 'nombre'))) . ".\n";
+echo "Migrar indicadores de las entidades: " . implode(', ', array_column($entidades, 'nombre')) . ".\n";
 $seguir = readline("¿Continuar con la operación? (s/N): ");
 if ($seguir !== "s") {
     exit(0);
@@ -92,13 +92,11 @@ foreach ($entidades as $entidad) {
                 $sql = "INSERT INTO icasus_indicador (id_entidad, id_proceso, id_responsable, id_responsable_medicion, "
                     . "id_visibilidad, id_tipo_agregacion_temporal, codigo, nombre, descripcion, formulacion, "
                     . "periodicidad, fuente_informacion, id_tipo_agregacion, fuente_datos, fecha_creacion) VALUES ("
-                    . "$id_entidad3, ${proc3['id']}, ${resp3['id']}, ${resp3['id']}, '${ind['id_visibilidad']}', 0, '${ind['codigo']}', "
-                    . "'" . utf8_decode($ind['nombre']) . "', "
-                    . "'" . utf8_decode($ind['descripcion']) . "', "
-                    . "'" . utf8_decode($ind['formulacion']) . "', "
+                    . "$id_entidad3, ${proc3['id']}, ${resp3['id']}, ${resp3['id']}, '${ind['id_visibilidad']}', 0, "
+                    . "'${ind['codigo']}', '{$ind['nombre']}', '{$ind['descripcion']}', '{$ind['formulacion']}', "
                     . "CASE '{$ind['periodicidad']}' WHEN '1' THEN 'Mensual' WHEN '3' THEN 'Trimestral' WHEN '4' THEN 'Cuatrimestral' WHEN '6' THEN 'Semestral' WHEN '12' THEN 'Anual' END, "
-                    . "'" . utf8_decode($ind['fuente']) . "', 0, '" . utf8_decode($ind['fuente']) . "', "
-                    . (isset($ind['fecha_creacion']) ? "'" . $ind['fecha_creacion'] . "'" : 'NULL') . ");";
+                    . "'{$ind['fuente']}', 0, '{$ind['fuente']}', "
+                    . (isset($ind['fecha_creacion']) ? ("'" . $ind['fecha_creacion'] . "'") : 'NULL') . ");";
                 if (!mysqli_query($ic3, $sql)) {
                     echo "*** Error al crear el indicador '${ind['codigo']}':\n" . mysqli_error($ic3) . "\n";
                     continue;
