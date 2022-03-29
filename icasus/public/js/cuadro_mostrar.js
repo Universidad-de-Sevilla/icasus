@@ -8,12 +8,12 @@
 // las gráficas de los cuadros de mando.
 //----------------------------------------------------------------------------
 
-//Diaĺogo de confirmación para el botón de borrar panel
+//Diálogo de confirmación para el botón de borrar panel
 $('#dialogo_borrado_panel').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget);
-    var nombre_panel = button.data('nombre_panel');
-    var id_panel = button.data('id_panel');
-    var modal = $(this);
+    let button = $(event.relatedTarget);
+    let nombre_panel = button.data('nombre_panel');
+    let id_panel = button.data('id_panel');
+    let modal = $(this);
     modal.find('#nombre_panel').text(nombre_panel);
     $('#nombre_panel_borrado').text(nombre_panel);
     modal.find('#borrar').click(function () {
@@ -26,9 +26,8 @@ $('#dialogo_borrado_panel').on('show.bs.modal', function (event) {
             }
         });
     });
-});
-$('#dialogo_borrado_panel').on('hide.bs.modal', function () {
-    var modal = $(this);
+}).on('hide.bs.modal', function () {
+    let modal = $(this);
     modal.find('#borrar').unbind('click');
 });
 

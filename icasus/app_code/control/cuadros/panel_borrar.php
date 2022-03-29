@@ -12,6 +12,7 @@
 global $smarty;
 global $usuario;
 global $plantilla;
+global $control;
 
 if (filter_has_var(INPUT_GET, 'id_panel'))
 {
@@ -23,6 +24,8 @@ if (filter_has_var(INPUT_GET, 'id_panel'))
     if ($cuadro->id_usuario == $usuario->id || $control)
     {
         $panel->borrar_panel("id = $id_panel");
+        $smarty->assign('_nombre_pagina', '');
+        $plantilla = 'cuadros/panel_borrar.tpl';
     }
     else
     {

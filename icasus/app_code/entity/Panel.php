@@ -69,7 +69,7 @@ class Panel extends ADOdb_Active_Record
         if ($this->delete())
         {
             $indicadores = new Panel_indicador();
-            $indicadores->borrar_indicadores("id_panel = $this->id ");
+            $indicadores->borrar_indicadores("id_panel = " . $this->id ?? "0");
         }
         else
         {
