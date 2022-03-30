@@ -18,11 +18,17 @@ $('#dialogo_borrado_panel').on('show.bs.modal', function (event) {
     $('#nombre_panel_borrado').text(nombre_panel);
     modal.find('#borrar').click(function () {
         $.ajax({
-            url: "index.php?page=panel_borrar&ajax=true&id_panel=" + id_panel,
-            success: function () {
-                button.parents(".panel").parent().remove();
+            type: 'post',
+            url: "index.php?page=panel_borrar&ajax=true",
+            data: {id_panel: id_panel},
+            success: function (response) {
                 $('#dialogo_borrado_panel').modal('hide');
-                $('#dialogo_notificar_borrado_panel').modal('show');
+                if (response.length === 0) {
+                    button.parents(".panel").parent().remove();
+                    $('#dialogo_notificar_borrado_panel').modal('show');
+                } else {
+                    window.location.replace(location.href + "&error=" + response);
+                }
             }
         });
     });

@@ -14,9 +14,9 @@ global $usuario;
 global $plantilla;
 global $control;
 
-if (filter_has_var(INPUT_GET, 'id_panel'))
+if (filter_has_var(INPUT_POST, 'id_panel'))
 {
-    $id_panel = filter_input(INPUT_GET, 'id_panel', FILTER_SANITIZE_NUMBER_INT);
+    $id_panel = filter_input(INPUT_POST, 'id_panel', FILTER_SANITIZE_NUMBER_INT);
     $panel = new Panel();
     $panel->load("id=$id_panel");
     $cuadro = new Cuadro();
@@ -25,16 +25,14 @@ if (filter_has_var(INPUT_GET, 'id_panel'))
     {
         $panel->borrar_panel("id = $id_panel");
         $smarty->assign('_nombre_pagina', '');
-        $plantilla = 'cuadros/panel_borrar.tpl';
     }
     else
     {
-        $error = ERR_PERMISOS;
-        header("location:index.php?page=cuadro_mostrar&id_cuadro=$panel->id_cuadro&id_entidad=$cuadro->id_entidad&error=$error");
+        $smarty->assign('error', ERR_PERMISOS);
     }
 }
 else
 {
-    $error = ERR_PARAM;
-    header("location:index.php?page=error&error=$error");
-}	
+    $smarty->assign('error', ERR_PARAM);
+}
+$plantilla = 'cuadros/panel_borrar.tpl';

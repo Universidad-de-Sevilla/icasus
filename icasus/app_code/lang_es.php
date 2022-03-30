@@ -895,7 +895,7 @@ define('MSG_CONTROL_NO_RESUL', 'No existen resultados no grabados o Planes Estra
 //----------------------------------------------------------------------------------
 
 const ERR = 'Error';
-define('ERR_PERMISOS', 'No tiene permisos para realizar esta acción.');
+const ERR_PERMISOS = 'No tiene permisos para realizar esta acción.';
 define('ERR_404', 'Error 404: no encontramos la página que ha solicitado:');
 define('ERR_AUT', 'No está autorizado para realizar esta operación.');
 const ERR_OP_BD = 'No ha podido realizarse la operación por un error en la base de datos.';
@@ -905,7 +905,7 @@ define('ERR_CONSULTA_EXE', 'Fallo en la ejecución de la consulta');
 define('ERR_DIR', 'Error no se ha podido crear el directorio tipo objeto.');
 define('ERR_SUBDIR', 'Error no se ha podido crear el subdirectorio objeto.');
 define('ERR_NO_DIR_NAME', 'No se ha proporcionado un nombre de directorio.');
-define('ERR_PARAM', 'Faltan parámetros para realizar esta acción.');
+const ERR_PARAM = 'Faltan parámetros para realizar esta acción.';
 define('ERR_GUARDAR', 'Hubo un problema, no se han podido guardar los cambios.');
 
 //Archivos
