@@ -56,3 +56,4 @@ if ($modulo == 'activar')
     $db->execute("SET NAMES UTF8");
     $vr->save();
 }
+$plantilla = 'indicadores/valor_referencia_ajax.tpl';

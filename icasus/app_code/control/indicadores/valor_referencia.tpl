@@ -61,8 +61,8 @@
                     <button type="reset" class="btn btn-warning" title="{$smarty.const.TXT_RESET}">
                         <i class="fa fa-refresh fa-fw"></i> {$smarty.const.TXT_RESET}
                     </button>
-                    <button name="valor_nuevo_crear" id="valor_nuevo_crear"
-                            data-texto_crear="{$smarty.const.MSG_VAL_REF_CREADO}" type="button"
+                    <button name="valor_nuevo_crear" id="valor_nuevo_crear" type="button"
+                            data-texto_crear="{$smarty.const.MSG_VAL_REF_CREADO}" data-texto_error="{$smarty.const.ERR_OP_BD}"
                             title="{$smarty.const.TXT_GRABAR}" class="btn btn-success"><i
                                 class="fa fa-download fa-fw"></i> {$smarty.const.TXT_GRABAR}</button>
                 </div>

@@ -9,9 +9,11 @@
 
 //carga inicial
 $(document).ready(function () {
-    var id;
-    var texto_crear = $('#valor_nuevo_crear').data('texto_crear');
-    var texto_editar = $('#valor_editar').data('texto_editar');
+    let valor_nuevo = $('#valor_nuevo_crear');
+    let id;
+    let texto_crear = valor_nuevo.data('texto_crear');
+    let texto_error = valor_nuevo.data('texto_error');
+    let texto_editar = $('#valor_editar').data('texto_editar');
 
     //Editar valores de referencia
     $("a.dialog_button").click(function () {
@@ -85,22 +87,29 @@ $(document).ready(function () {
     });
 
     //Crear nuevo valor de referencia
-    $('#valor_nuevo_crear').click(function () {
-        var id_indicador = $('[name=c-id_indicador]').val();
-        var etiqueta = $('[name=c-etiqueta]').val();
-        var nombre = $('[name=c-nombre]').val();
-        var grafica = 0;
-        var activo = 0;
+    valor_nuevo.on('click', function () {
+        let id_indicador = $('[name=c-id_indicador]').val();
+        let etiqueta = $('[name=c-etiqueta]').val();
+        let nombre = $('[name=c-nombre]').val();
+        let grafica = 0;
+        let activo = 0;
         if ($("input:checkbox[name=c-grafica]").is(':checked')) {
             grafica = 1;
         }
         if ($('input:checkbox[name=c-activo]').is(':checked')) {
             activo = 1;
         }
-        if (!(etiqueta === '') && !(nombre === '')) {
-            $.post('index.php?page=valor_referencia_ajax&ajax=true&modulo=crear', {id_indicador: id_indicador, etiqueta: etiqueta, nombre: nombre, grafica: grafica, activo: activo}, function () {
-//                location.reload();
-                window.location.replace(location.href + "&exito=" + texto_crear + ' ' + nombre);
+        if (etiqueta !== '' && nombre !== '') {
+            $.ajax({
+                type: 'post',
+                url: 'index.php?page=valor_referencia_ajax&ajax=true&modulo=crear',
+                data: {id_indicador: id_indicador, etiqueta: etiqueta, nombre: nombre, grafica: grafica, activo: activo},
+                success: function () {
+                    window.location.replace(location.href + "&exito=" + texto_crear + ' ' + nombre);
+                },
+                error: function () {
+                    window.location.replace(location.href + "&error=" + texto_error);
+                },
             });
         }
         else {

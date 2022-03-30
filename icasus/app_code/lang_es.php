@@ -894,11 +894,11 @@ define('MSG_CONTROL_NO_RESUL', 'No existen resultados no grabados o Planes Estra
 //ERRORES: ERR_[Nombre]
 //----------------------------------------------------------------------------------
 
-define('ERR', 'Error');
+const ERR = 'Error';
 define('ERR_PERMISOS', 'No tiene permisos para realizar esta acción.');
 define('ERR_404', 'Error 404: no encontramos la página que ha solicitado:');
 define('ERR_AUT', 'No está autorizado para realizar esta operación.');
-define('ERR_OP_BD', 'No ha podido realizarse la operación por un error en la base de datos.');
+const ERR_OP_BD = 'No ha podido realizarse la operación por un error en la base de datos.';
 define('ERR_CON_BD', 'Error de conexión a la base de datos.');
 define('ERR_CONSULTA_OP', 'Fallo en la consulta getOperador.');
 define('ERR_CONSULTA_EXE', 'Fallo en la ejecución de la consulta');
