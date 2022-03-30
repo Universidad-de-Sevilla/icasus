@@ -168,7 +168,7 @@ if (filter_has_var(INPUT_GET, 'modulo'))
 
                 //Prepara el panel anual o bienal
                 $panel->id = 1;
-                $panel->nombre = TXT_HISTORICO;
+                $panel->nombre = FIELD_HISTORICO;
                 $panel->fecha_inicio = $anio_inicio . "-01-01";
                 $panel->fecha_fin = $anio_fin . "-12-31";
                 $panel->periodicidad = "anual";

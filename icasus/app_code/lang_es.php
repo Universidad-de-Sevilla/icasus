@@ -325,6 +325,7 @@ define('TXT_OTRAS_PROP', 'Otras propiedades');
 define('TXT_CODIGO', 'Único, fácil de recordar, en mayúsculas y sin espacios');
 define('TXT_PESO', 'El peso [0.01,1] indica la importancia del Objetivo Operacional dentro del Objetivo Estratégico al que pertenece. Influye por tanto en el grado de ejecución de éste.');
 define('TXT_ESTA', 'Está aquí');
+const TXT_HISTORICO = 'Año de inicio de las mediciones';
 define('TXT_CALCULO_TOTAL', 'Determina cómo se calcula el total entre todas las Subunidades');
 define('TXT_CALCULO_TOTAL_ANUAL', 'Determina cómo se calcula el total anual entre todos los periodos');
 const TXT_CALCULO_TOTAL_ANUAL_HIST = 'Determina cómo se calcula el total anual entre todos los periodos (solo aplicable si se ha modificado la periodicidad)';
@@ -346,7 +347,6 @@ define('TXT_INTERVALO', 'Sólo si se quieren limitar los valores de las medicion
 define('TXT_ESTIMACION', 'Una estimación ascendente implica una evolución positiva cuanto más altos sean los valores de las mediciones, la estimación descendente implica lo contrario.');
 
 //Tiempo/Periodicidad
-define('TXT_HISTORICO', 'Histórico');
 define('TXT_BIENAL', 'Bienal');
 define('TXT_ANUAL', 'Anual');
 define('TXT_INTRANUAL', 'Intranual');

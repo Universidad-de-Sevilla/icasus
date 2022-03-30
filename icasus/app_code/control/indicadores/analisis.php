@@ -146,7 +146,7 @@ if (filter_has_var(INPUT_GET, 'id_indicador'))
         $panel = new Panel();
         $panel->ancho = 6;
         $panel->id = 1;
-        $panel->nombre = TXT_HISTORICO;
+        $panel->nombre = FIELD_HISTORICO;
         $panel->fecha_inicio = $anio_inicio . "-01-01";
         $panel->fecha_fin = $anio_fin . "-12-31";
         $panel->periodicidad = "anual";
