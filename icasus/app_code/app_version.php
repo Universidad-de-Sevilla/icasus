@@ -1,7 +1,7 @@
 <?php
 
-const IC_VERSION = "3.62.0";
-const IC_FECHA_REVISION = "15/03/2022";
+const IC_VERSION = "3.62.1";
+const IC_FECHA_REVISION = "22/07/2022";
 
 // Lista de cambios trasladada a /CHANGELOG.md
 // 3.57.0 - 18/10/2018 - Agrega campo nombre a las cartas de servicio a petición de biblioteca

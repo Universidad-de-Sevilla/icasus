@@ -1,6 +1,18 @@
 # Changes in Icasus 3
 All notable changes are documented in this file using the [Keep a CHANGELOG](https://keepachangelog.com/) principles.
 
+## [3.62.1] - 2022-07-22
+### Added
+- Add description for indicator measurement history
+
+### Fixed
+- Fix some bugs in migration script
+- Fix minor bugs in sidebar menu
+- Avoid switching Organic switch on Unit tab
+- Fix Ajax bug when adding a new indicator reference value
+- Fix Ajax bug when deleting a Management Panel block
+- Fix some bugs when showing annual or biannual Management Panel blocks
+
 ## [3.62.0] - 2022-03-02
 ### Added
 - Strategic Plan and Letter of Commitment can be archived/restored (new database fields are needed)

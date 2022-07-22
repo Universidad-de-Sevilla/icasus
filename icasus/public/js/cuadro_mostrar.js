@@ -2,7 +2,7 @@
 // Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
 // Archivo: public/js/cuadro_mostrar.js
 // Desarrolladores: Juanan Ruiz (juanan@us.es), Jesus Martin Corredera (jjmc@us.es),
-// Joaquín Valonero Zaera (tecnibus1@us.es)
+// Joaquín Valonero Zaera (tecnibus1@us.es), Ramón M. Gómez (ramongomez@us.es)
 //--------------------------------------------------------------------------
 // Incluye el código JavaScript para el fichero cuadro_mostrar.tpl que gestiona 
 // las gráficas de los cuadros de mando.
@@ -85,9 +85,9 @@ $('.panel_linea').each(function () {
     var panel_indics = $('#panel_indics_' + id_panel);
     //Guarda el identificador de los indicadores representados para evitar 
     //la repetición de nombres y de valores de referencia
-    var indicadores_procesados = new Array();
+    var indicadores_procesados = [];
     //Guarda los datos de todas las series de cada indicador del panel
-    var totalDataseries = new Array();
+    var totalDataseries = [];
 
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie
@@ -122,7 +122,7 @@ $('.panel_linea').each(function () {
                 if (datos) {
                     datos.forEach(function (dato) {
                         //Si es un Total
-                        if (indicador.id_entidad == 0) {
+                        if (indicador.id_entidad === 0) {
                             if (!dato.etiqueta_mini && !dato.referencia
                                 && (dato.valor !== null)) {
                                 chartSerie.add(dato);
@@ -130,7 +130,7 @@ $('.panel_linea').each(function () {
                         }
                         //Si es una Unidad
                         else {
-                            if (indicador.id_entidad == dato.id_unidad
+                            if (indicador.id_entidad === dato.id_unidad
                                 && (dato.valor !== null)) {
                                 chartSerie.add(dato, true);
                             }
@@ -142,7 +142,7 @@ $('.panel_linea').each(function () {
                         }
                     });
                     // Pide las series de datos a chartSerie
-                    var dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
+                    let dataseries = chartSerie.getLinealSerie(indicador.nombre, index);
                     // Si es no anual ocultamos valores de referencia
                     if (chartSerie.categoryType !== "año" && chartSerie.categoryType !== "bienal") {
                         dataseries.forEach(function (dataserie, index) {
@@ -251,9 +251,9 @@ $('.panel_barra').each(function () {
     var panel_indics = $('#panel_indics_' + id_panel);
     //Guarda el identificador de los indicadores representados para evitar 
     //la repetición de nombres y de valores de referencia
-    var indicadores_procesados = new Array();
+    var indicadores_procesados = [];
     //Guarda los datos de todas las series de cada indicador del panel
-    var totalDataseries = new Array();
+    var totalDataseries = [];
 
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie
@@ -423,11 +423,11 @@ $(".panel_mixto").each(function () {
     var panel_indics = $('#panel_indics_' + id_panel);
     //Guarda el identificador de los indicadores representados para evitar 
     //la repetición de nombres y de valores de referencia
-    var indicadores_procesados = new Array();
+    var indicadores_procesados = [];
     //Guarda los totales del indicador base
-    var totales = new Array();
+    var totales = [];
     //Guarda los datos de todas las series de cada indicador del panel
-    var totalDataseries = new Array();
+    var totalDataseries = [];
 
     //Obtenemos la lista de indicadores que forman el panel 
     //y los recorremos para sacar su serie
