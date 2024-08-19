@@ -24,7 +24,7 @@
  */
 
 // Carga el app_config y conecta a la base de datos
-// Es necesario porque este fichero no depende del controlador principal index.php 
+// Es necesario porque este fichero no depende del controlador principal index.php
 require_once("../app_code/app_config.php");
 //Clase Utilidad para los cálculos
 require_once('../app_code/util/Util.php');
@@ -65,16 +65,16 @@ if (mysqli_select_db($link, IC_DB_DATABASE)) {
 }
 
 // ---------------------------------------------------------------------------
-// Devuelve el número de planes estratégicos, procesos, indicadores/datos y 
+// Devuelve el número de planes estratégicos, procesos, indicadores/datos y
 // cuadros de mando de la unidad cuyo identificador recibe como parámetro
 function info_unidad($link, $id)
 {
-    $query_unidad = "SELECT e.nombre FROM icasus_entidad e WHERE e.id=$id";
-    $query_planes = "SELECT * FROM icasus_plan p WHERE p.id_entidad=$id";
-    $query_cartas = "SELECT * FROM icasus_carta c WHERE c.id_entidad=$id";
-    $query_procesos = "SELECT * FROM icasus_proceso p WHERE p.id_entidad=$id";
-    $query_indicadores = "SELECT * FROM icasus_indicador i WHERE i.id_entidad=$id AND i.archivado is NULL";
-    $query_cuadros = "SELECT * FROM icasus_cuadro c WHERE c.id_entidad=$id AND c.privado=0";
+    $query_unidad = "SELECT e.nombre FROM icasus_entidad e WHERE e.id='$id'";
+    $query_planes = "SELECT * FROM icasus_plan p WHERE p.id_entidad='$id'";
+    $query_cartas = "SELECT * FROM icasus_carta c WHERE c.id_entidad='$id'";
+    $query_procesos = "SELECT * FROM icasus_proceso p WHERE p.id_entidad='$id'";
+    $query_indicadores = "SELECT * FROM icasus_indicador i WHERE i.id_entidad='$id' AND i.archivado IS NULL";
+    $query_cuadros = "SELECT * FROM icasus_cuadro c WHERE c.id_entidad='$id' AND c.privado=0";
 
     $unidad = mysqli_fetch_assoc(mysqli_query($link, $query_unidad))['nombre'];
     $num_planes = mysqli_num_rows(mysqli_query($link, $query_planes));
@@ -83,15 +83,15 @@ function info_unidad($link, $id)
     $num_indicadores = mysqli_num_rows(mysqli_query($link, $query_indicadores));
     $num_cuadros = mysqli_num_rows(mysqli_query($link, $query_cuadros));
 
-    //Añadimos al array de resultados como json
-    $datos = array(
+    // Añadimos al array de resultados como json
+    $datos = [
         "unidad" => $unidad,
         "num_planes" => $num_planes,
         "num_cartas" => $num_cartas,
         "num_procesos" => $num_procesos,
         "num_indicadores" => $num_indicadores,
         "num_cuadros" => $num_cuadros
-    );
+    ];
     $json = json_encode($datos, JSON_UNESCAPED_UNICODE);
     echo $json;
 }
@@ -104,7 +104,7 @@ function get_indicadores_panel($link, $id)
     $query = "SELECT i.id, i.codigo, i.nombre, pi.id_entidad
               FROM icasus_indicador i
               INNER JOIN icasus_panel_indicador pi ON i.id = pi.id_indicador
-              WHERE pi.id_panel = $id 
+              WHERE pi.id_panel = '$id'
               ORDER BY i.codigo";
 
     $resultado = mysqli_query($link, $query);
@@ -120,10 +120,10 @@ function get_indicadores_panel($link, $id)
 // Se utiliza en consulta_avanzada
 function get_subunidades_indicador($link, $id)
 {
-    $query = "SELECT e.id, e.etiqueta, e.nombre, e.etiqueta_mini as etiqueta_mini
-              FROM icasus_entidad e 
+    $query = "SELECT e.id, e.etiqueta, e.nombre, e.etiqueta_mini AS etiqueta_mini
+              FROM icasus_entidad e
               INNER JOIN icasus_indicador_subunidad i ON e.id = i.id_entidad
-              WHERE i.id_indicador = $id
+              WHERE i.id_indicador = '$id'
               ORDER BY e.orden";
     $resultado = mysqli_query($link, $query);
     while ($registro = mysqli_fetch_assoc($resultado)) {
@@ -154,12 +154,12 @@ function get_valores_con_timestamp($link, int $id, string $fecha_inicio = '', st
     // --------------------------------------------------------------------------------------------------
 
     $datos = $array_manual = [];
-    $query_operadores = "SELECT agregacion_unidad.operador as operador, agregacion_temporal.operador as operador_temporal, 
+    $query_operadores = "SELECT agregacion_unidad.operador as operador, agregacion_temporal.operador as operador_temporal,
             i.id_entidad as id_entidad, i.calculo as calculo
             FROM icasus_indicador i
             INNER JOIN icasus_tipo_agregacion as agregacion_unidad ON agregacion_unidad.id = i.id_tipo_agregacion
             INNER JOIN icasus_tipo_agregacion as agregacion_temporal ON agregacion_temporal.id = i.id_tipo_agregacion_temporal
-            WHERE i.id = $id";
+            WHERE i.id = '$id'";
 
     $operador = 'SUM'; // valor por defecto
     $operador_temporal = 'SUM'; // valor por defecto
@@ -188,10 +188,10 @@ function get_valores_con_timestamp($link, int $id, string $fecha_inicio = '', st
             UNIX_TIMESTAMP(MIN(m.periodo_inicio))*1000 as periodo_fin,
             e.etiqueta as unidad, e.id as id_unidad, $valor as valor,
             e.etiqueta_mini as etiqueta_mini
-            FROM icasus_medicion m 
+            FROM icasus_medicion m
             INNER JOIN icasus_valor v ON m.id = v.id_medicion
             INNER JOIN icasus_entidad e ON e.id = v.id_entidad
-            WHERE m.id_indicador = $id AND valor IS NOT NULL";
+            WHERE m.id_indicador = '$id' AND valor IS NOT NULL";
 
     if ($fecha_inicio !== '') {
         $query .= " AND m.periodo_inicio >= '$fecha_inicio'";
@@ -223,7 +223,7 @@ function get_valores_con_timestamp($link, int $id, string $fecha_inicio = '', st
     }
 
     //-----------------------------------------------------------------------------------
-    // Aquí van los totales, si el indicador es calculado por herencia 
+    // Aquí van los totales, si el indicador es calculado por herencia
     // usamos obtener_total_calculado
     //------------------------------------------------------------------------------------
     //Indicadores/datos calculados con herencia
@@ -232,25 +232,32 @@ function get_valores_con_timestamp($link, int $id, string $fecha_inicio = '', st
         $datos = array_merge($datos, $totales);
     } //Indicadores/datos no calculados con herencia
     else {
-        $query_unidades = "SELECT MIN(m.id) as id_medicion, MIN(m.etiqueta) as medicion, MIN(m.periodo_inicio) as periodo_fin, 
-                'Total' as unidad, 0 as id_unidad, $operador(v.valor) as valor 
-                FROM icasus_medicion m 
-                INNER JOIN icasus_valor v ON m.id = v.id_medicion 
-                WHERE m.id_indicador = $id AND v.valor IS NOT NULL";
-
+        if (in_array($operador_temporal, ['AVG', 'SUM', 'MAX'])) {
+            $query_unidades = "SELECT MIN(m.id) as id_medicion, MIN(m.etiqueta) as medicion, MIN(m.periodo_inicio) as periodo_fin,
+                'Total' as unidad, 0 as id_unidad, $operador_temporal(v.valor) as valor
+                FROM icasus_medicion m
+                INNER JOIN icasus_valor v ON m.id = v.id_medicion
+                WHERE m.id_indicador = '$id' AND v.valor IS NOT NULL";
+        } else {
+            $query_unidades = "SELECT MIN(m.id) as id_medicion, MIN(m.etiqueta) as medicion, MIN(m.periodo_inicio) as periodo_fin,
+                'Total' as unidad, 0 as id_unidad, v.valor as valor
+                FROM icasus_medicion m
+                INNER JOIN icasus_valor v ON m.id = v.id_medicion
+                WHERE m.id_indicador = '$id' AND v.valor IS NOT NULL";
+        }
         //Indicadores/datos con agregación de unidades manual
         if ($operador === 'MANUAL') {
             // Si el operador de agregado es 'manual' cogemos del tirón los icasus_valor v de la unidad madre
             $query_unidades = "SELECT m.id as id_medicion, m.etiqueta as medicion,
               UNIX_TIMESTAMP(MIN(m.periodo_inicio))*1000 as periodo_fin,
               'Total' as unidad, 0 as id_unidad, v.valor as valor
-              FROM icasus_medicion m 
+              FROM icasus_medicion m
               INNER JOIN icasus_valor v ON m.id = v.id_medicion
-              WHERE v.id_entidad = $id_entidad AND m.id_indicador = $id AND v.valor IS NOT NULL";
+              WHERE v.id_entidad = '$id_entidad' AND m.id_indicador = '$id' AND v.valor IS NOT NULL";
         }
         //Indicadores/datos con agregación de unidades manual y agregación temporal (vista anual)
         if ($operador === 'MANUAL' && $operador_temporal !== NULL && $periodicidad === "anual") {
-            //Debido a la particularidad de este caso generaremos 
+            //Debido a la particularidad de este caso generaremos
             //nuestro propio json
             $array_manual = calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link);
         }
@@ -266,13 +273,13 @@ function get_valores_con_timestamp($link, int $id, string $fecha_inicio = '', st
         $query_unidades .= " ORDER BY m.periodo_inicio DESC";
 
         if ($operador_temporal === 'LAST') {
-            $query_temporal = "SELECT MIN(id_medicion) as id_medicion, MIN(medicion) as medicion, 
-                UNIX_TIMESTAMP(MIN(periodo_fin))*1000 as periodo_fin, 
+            $query_temporal = "SELECT MIN(id_medicion) as id_medicion, MIN(medicion) as medicion,
+                UNIX_TIMESTAMP(MIN(periodo_fin))*1000 as periodo_fin,
                 MIN(unidad) as unidad, MIN(id_unidad) as id_unidad, valor
                 FROM ($query_unidades) unidades";
         } else {
-            $query_temporal = "SELECT MIN(id_medicion) as id_medicion, MIN(medicion) as medicion, 
-                UNIX_TIMESTAMP(MIN(periodo_fin))*1000 as periodo_fin, 
+            $query_temporal = "SELECT MIN(id_medicion) as id_medicion, MIN(medicion) as medicion,
+                UNIX_TIMESTAMP(MIN(periodo_fin))*1000 as periodo_fin,
                 MIN(unidad) as unidad, MIN(id_unidad) as id_unidad, $operador_temporal(valor) as valor
                 FROM ($query_unidades) unidades";
         }
@@ -302,7 +309,7 @@ function get_valores_con_timestamp($link, int $id, string $fecha_inicio = '', st
 
         //Indicadores/datos intranuales: valores parciales unidad/año
         if ($operador_temporal !== NULL && $periodicidad === "todos") {
-            //Debido a la particularidad de este caso generaremos 
+            //Debido a la particularidad de este caso generaremos
             //nuestro propio json
             $array_intranual = calcular_intranual($id, $operador_temporal, $link, $fecha_inicio, $fecha_fin);
             //Añadimos los datos
@@ -332,7 +339,7 @@ function get_valores_con_timestamp($link, int $id, string $fecha_inicio = '', st
             FROM icasus_valor_referencia vr
             INNER JOIN icasus_valor_referencia_medicion vrm ON vrm.id_valor_referencia = vr.id
             INNER JOIN icasus_medicion m ON vrm.id_medicion = m.id
-            WHERE m.id_indicador = $id AND grafica = 1";
+            WHERE m.id_indicador = '$id' AND grafica = 1";
     } else {
         $query_ref = "SELECT m.id as id_medicion, m.etiqueta as medicion,
             UNIX_TIMESTAMP(m.periodo_inicio)*1000 as periodo_fin,
@@ -340,7 +347,7 @@ function get_valores_con_timestamp($link, int $id, string $fecha_inicio = '', st
             FROM icasus_valor_referencia vr
             INNER JOIN icasus_valor_referencia_medicion vrm ON vrm.id_valor_referencia = vr.id
             INNER JOIN icasus_medicion m ON vrm.id_medicion = m.id
-            WHERE m.id_indicador = $id AND grafica = 1";
+            WHERE m.id_indicador = '$id' AND grafica = 1";
     }
 
     if ($fecha_inicio !== '') {
@@ -358,16 +365,16 @@ function get_valores_con_timestamp($link, int $id, string $fecha_inicio = '', st
 
             if ($operador_temporal === 'LAST') {
                 $query_ref = "SELECT m.id as id_medicion, m.etiqueta as medicion,
-                    UNIX_TIMESTAMP(m.periodo_inicio)*1000 as periodo_fin, 
+                    UNIX_TIMESTAMP(m.periodo_inicio)*1000 as periodo_fin,
                     vr.etiqueta as unidad, vr.nombre as nombre_ref, NULL as id_unidad, valor, TRUE as referencia
-                    FROM icasus_medicion m 
+                    FROM icasus_medicion m
                     INNER JOIN icasus_valor_referencia_medicion vrm ON vrm.id_medicion = m.id
-                    INNER JOIN icasus_valor_referencia vr ON vrm.id_valor_referencia = vr.id 
+                    INNER JOIN icasus_valor_referencia vr ON vrm.id_valor_referencia = vr.id
                     WHERE (m.periodo_inicio, vrm.id_valor_referencia) IN
                     (SELECT max(m.periodo_inicio) as periodo_inicio, vrm.id_valor_referencia
-                    FROM icasus_medicion m 
+                    FROM icasus_medicion m
                     INNER JOIN icasus_valor_referencia_medicion vrm ON vrm.id_medicion = m.id
-                    WHERE m.id_indicador = $id AND vrm.valor IS NOT NULL AND vr.grafica = 1
+                    WHERE m.id_indicador = '$id' AND vrm.valor IS NOT NULL AND vr.grafica = 1
                     GROUP BY vrm.id_valor_referencia, YEAR (m.periodo_inicio))"
                     . " AND m.periodo_inicio >=  '$fecha_inicio'"
                     . " AND m.periodo_fin <= '$fecha_fin'";
@@ -398,13 +405,14 @@ function get_valores_con_timestamp($link, int $id, string $fecha_inicio = '', st
 // ---------------------------------------------------------------------------
 // Realiza los cálculos para obtener los totales de un indicador calculado
 // ---------------------------------------------------------------------------
-function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin, $periodicidad)
+function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin, $periodicidad): array
 {
-    $elementos_calculo = array();
-    $totales_calculados = array();
-    $query = "SELECT i.calculo, ta.operador FROM icasus_indicador i 
-              INNER JOIN icasus_tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  
-              WHERE i.id = $id_indicador";
+    $variable = '';
+    $elementos_calculo = [];
+    $totales_calculados = [];
+    $query = "SELECT i.calculo, ta.operador FROM icasus_indicador i
+              INNER JOIN icasus_tipo_agregacion ta ON i.id_tipo_agregacion = ta.id
+              WHERE i.id = '$id_indicador'";
     $resultado = mysqli_query($link, $query);
     $registro = mysqli_fetch_assoc($resultado);
     $calculo = $registro['calculo'];
@@ -443,16 +451,17 @@ function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin
             $formula .= $elemento;
         }
     }
-    // Calcula el resultado de la formula y guarda el valor final
+    // Calcula el resultado de la fórmula y guarda el valor final
     for ($i = 0; $i < count($totales[$id_indicador_parcial]); $i++) {
         eval("\$total_calculado = $formula;");
-        $totales_calculados[] = array(
+        $totales_calculados[] = [
             "id_medicion" => (int)$totales[$id_indicador_parcial][$i]['id_medicion'],
             "medicion" => $totales[$id_indicador_parcial][$i]['medicion'],
             "periodo_fin" => (int)$totales[$id_indicador_parcial][$i]['periodo_fin'],
             "unidad" => "Total",
             "id_unidad" => 0,
-            "valor" => $total_calculado);
+            "valor" => $total_calculado
+        ];
     }
 
     return $totales_calculados;
@@ -460,13 +469,14 @@ function obtener_total_calculado($link, $id_indicador, $fecha_inicio, $fecha_fin
 
 // ---------------------------------------------------------------------------
 
-function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fecha_fin = '0', $periodicidad = 'todos')
+function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fecha_fin = '0', $periodicidad = 'todos'): array
 {
+    $datos = [];
     // Obtenemos el operador o tipo de agregación del indicador
-    $query = "SELECT ta.operador 
-              FROM icasus_indicador i 
-              INNER JOIN icasus_tipo_agregacion ta ON i.id_tipo_agregacion = ta.id  
-              WHERE i.id = $id_indicador";
+    $query = "SELECT ta.operador
+              FROM icasus_indicador i
+              INNER JOIN icasus_tipo_agregacion ta ON i.id_tipo_agregacion = ta.id
+              WHERE i.id = '$id_indicador'";
     $resultado = mysqli_query($link, $query);
     $registro = mysqli_fetch_assoc($resultado);
     $operador = $registro['operador'];
@@ -480,9 +490,9 @@ function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fec
     $query = "SELECT m.id as id_medicion, m.etiqueta as medicion,
             UNIX_TIMESTAMP(MIN(m.periodo_inicio))*1000 as periodo_fin,
             $operador(v.valor) as valor
-            FROM icasus_medicion m 
+            FROM icasus_medicion m
             INNER JOIN icasus_valor v ON m.id = v.id_medicion
-            WHERE m.id_indicador = $id_indicador AND v.valor IS NOT NULL";
+            WHERE m.id_indicador = '$id_indicador' AND v.valor IS NOT NULL";
     if ($fecha_inicio > 0) {
         $query .= " AND m.periodo_inicio >=  '$fecha_inicio'";
     }
@@ -506,39 +516,38 @@ function obtener_totales_simples($link, $id_indicador, $fecha_inicio = '0', $fec
     return $datos;
 }
 
-//Función que devuelve el array en formato json con el resultado del 
-//calculo anual en indicadores/datos manuales intranuales
-function calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link)
+// Función que devuelve el array en formato json con el resultado del
+// cálculo anual en indicadores/datos manuales intranuales
+function calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link): array
 {
     $query = "SELECT m.id as id_medicion, m.etiqueta as medicion,
               UNIX_TIMESTAMP(MIN(m.periodo_inicio))*1000 as periodo_fin,
               'Total' as unidad, 0 as id_unidad, v.valor as valor
               FROM icasus_medicion m INNER JOIN icasus_valor v ON m.id = v.id_medicion
-              WHERE v.id_entidad = $id_entidad AND m.id_indicador = $id AND valor IS NOT NULL 
+              WHERE v.id_entidad = '$id_entidad' AND m.id_indicador = '$id' AND valor IS NOT NULL
               GROUP BY YEAR(m.periodo_inicio), MONTH(m.periodo_inicio)";
 
     $result = mysqli_query($link, $query);
 
-    //Años para los que se han recogido valores
-    $anyos = array();
-    //Valores recogidos durante un año
-    $parciales = array();
+    // Años para los que se han recogido valores
+    $anyos = [];
+    // Valores recogidos durante un año
+    $parciales = [];
 
     foreach ($result as $row) {
         $medicion = $row['medicion'];
         $anyo = explode('.', $medicion)[0];
-        if ($parciales[$anyo]) {
-            array_push($parciales[$anyo], $row['valor']);
-        } else {
-            $parciales[$anyo] = array();
-            array_push($anyos, $anyo);
-            array_push($parciales[$anyo], $row['valor']);
+        if (!$parciales[$anyo]) {
+            $parciales[$anyo] = [];
+            $anyos[] = $anyo;
         }
+        $parciales[$anyo][] = $row['valor'];
     }
 
-    //Totales recogidos durante un año
-    $totales = array();
+    // Totales recogidos durante un año
+    $totales = [];
 
+    $array_json = [];
     foreach ($anyos as $anyo) {
         switch ($operador_temporal) {
             case 'LAST':
@@ -570,67 +579,64 @@ function calcular_manual_intranual($id_entidad, $id, $operador_temporal, $link)
     return $array_json;
 }
 
-//Para indicadores/datos intranuales calcula los valores anuales por unidad y totales
-function calcular_intranual($id, $operador_temporal, $link, $fecha_inicio, $fecha_fin)
+// Para indicadores/datos intranuales calcula los valores anuales por unidad y totales
+function calcular_intranual($id, $operador_temporal, $link, $fecha_inicio, $fecha_fin): array
 {
 
-    $query = "SELECT m.id as id_medicion, m.etiqueta as medicion, 
+    $query = "SELECT m.id as id_medicion, m.etiqueta as medicion,
             UNIX_TIMESTAMP(MIN(m.periodo_inicio))*1000 as periodo_fin,
             e.etiqueta as unidad, e.id as id_unidad, v.valor, e.etiqueta_mini as etiqueta_mini
-            FROM icasus_medicion m 
+            FROM icasus_medicion m
             INNER JOIN icasus_valor v ON m.id = v.id_medicion
             INNER JOIN icasus_entidad e ON e.id = v.id_entidad
-            WHERE m.id_indicador = $id AND v.valor IS NOT NULL 
+            WHERE m.id_indicador = '$id' AND v.valor IS NOT NULL
             GROUP BY id_unidad, YEAR(m.periodo_inicio), MONTH(m.periodo_inicio), DAY(m.periodo_inicio)";
 
-    //Agrupamos por unidad y año
+    // Agrupamos por unidad y año
     $result = mysqli_query($link, $query);
 
-    //Años para los que se han recogido valores
-    $anyos = array();
-    //Comprobamos las fechas si existen y obtenemos los años de inicio y fin
+    // Años para los que se han recogido valores
+    $anyos = [];
+    // Comprobamos las fechas si existen y obtenemos los años de inicio y fin
     if ($fecha_inicio != 0 && $fecha_fin != 0) {
         $anyo_inicio = explode('-', $fecha_inicio)[0];
         $anyo_fin = explode('-', $fecha_fin)[0];
     }
 
-    //Unidades para las que existen valores
-    $unidades = array();
-    //Valores recogidos durante un año por unidad
-    $parciales = array();
+    // Unidades para las que existen valores
+    $unidades = [];
+    // Valores recogidos durante un año por unidad
+    $parciales = [];
 
     foreach ($result as $row) {
         $medicion = $row['medicion'];
         $id_unidad = $row['id_unidad'];
         $anyo = explode('.', $medicion)[0];
-        //Comprobamos si el año está dentro de nuestras fechas si éstas son dadas
+        // Comprobamos si el año está dentro de nuestras fechas si éstas son dadas
         if ($anyo_inicio && $anyo_fin) {
             if ($anyo >= $anyo_inicio && $anyo <= $anyo_fin) {
-                if ($parciales[$anyo][$id_unidad]) {
-                    array_push($parciales[$anyo][$id_unidad], $row['valor']);
-                } else {
+                if (!$parciales[$anyo][$id_unidad]) {
                     $unidades[$id_unidad] = $row['etiqueta_mini'];
                     $parciales[$anyo][$id_unidad] = array();
-                    array_push($anyos, $anyo);
-                    array_push($parciales[$anyo][$id_unidad], $row['valor']);
+                    $anyos[] = $anyo;
                 }
+                $parciales[$anyo][$id_unidad][] = $row['valor'];
             }
-        } //Si no hay fechas dadas añadimos todos los años
+        } // Si no hay fechas dadas añadimos todos los años
         else {
-            if ($parciales[$anyo][$id_unidad]) {
-                array_push($parciales[$anyo][$id_unidad], $row['valor']);
-            } else {
+            if (!$parciales[$anyo][$id_unidad]) {
                 $unidades[$id_unidad] = $row['etiqueta_mini'];
                 $parciales[$anyo][$id_unidad] = array();
-                array_push($anyos, $anyo);
-                array_push($parciales[$anyo][$id_unidad], $row['valor']);
+                $anyos[] = $anyo;
             }
+            $parciales[$anyo][$id_unidad][] = $row['valor'];
         }
     }
 
-    //Totales recogidos durante un año por unidad
-    $totales = array();
+    // Totales recogidos durante un año por unidad
+    $totales = [];
 
+    $array_json = [];
     foreach ($anyos as $anyo) {
         foreach ($unidades as $id_unidad => $unidad) {
             //Comprobar si existen mediciones de esa unidad para ese año no procesadas
@@ -652,8 +658,8 @@ function calcular_intranual($id, $operador_temporal, $link, $fecha_inicio, $fech
                     default:
                         break;
                 }
-                //Añadimos al array de resultados como json
-                $array_json[] = array(
+                // Añadimos al array de resultados como json
+                $array_json[] = [
                     "id_medicion" => 0,
                     "medicion" => $anyo,
                     "periodo_fin" => mktime(0, 0, 0, 12, 31, $anyo) * 1000,
@@ -661,7 +667,7 @@ function calcular_intranual($id, $operador_temporal, $link, $fecha_inicio, $fech
                     "etiqueta_mini" => "$unidad",
                     "id_unidad" => $id_unidad,
                     "valor" => $totales[$anyo][$id_unidad]
-                );
+                ];
             }
         }
     }
