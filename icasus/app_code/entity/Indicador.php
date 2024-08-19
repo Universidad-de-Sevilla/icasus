@@ -75,35 +75,35 @@ class Indicador extends ADOdb_Active_Record
     {
         if ($this->load($criterio)) {
             $proceso = new Proceso();
-            $proceso->load_joined("id = $this->id_proceso");
+            $proceso->load_joined("id = '$this->id_proceso'");
             $this->proceso = $proceso;
 
             $responsable_medicion = new Usuario();
-            $responsable_medicion->load("id = $this->id_responsable_medicion");
+            $responsable_medicion->load("id = '$this->id_responsable_medicion'");
             $this->responsable_medicion = $responsable_medicion;
 
             $responsable = new Usuario();
-            $responsable->load("id = $this->id_responsable");
+            $responsable->load("id = '$this->id_responsable'");
             $this->responsable = $responsable;
 
             $visibilidad = new Visibilidad();
-            $visibilidad->load("id = $this->id_visibilidad");
+            $visibilidad->load("id = '$this->id_visibilidad'");
             $this->visibilidad = $visibilidad;
 
             $criterio = new Criterio_efqm_indicador();
-            $criterios = $criterio->Find_joined("id_indicador = $this->id");
+            $criterios = $criterio->Find_joined("id_indicador = '$this->id'");
             $this->criterios_efqm = $criterios;
 
             $valor_referencia = new Valor_referencia();
-            $valores_referencia = $valor_referencia->Find("id_indicador = $this->id");
+            $valores_referencia = $valor_referencia->Find("id_indicador = '$this->id'");
             $this->valores_referencia = $valores_referencia;
 
             $tipo_agregacion = new Tipo_agregacion();
-            $tipo_agregacion->load("id = $this->id_tipo_agregacion");
+            $tipo_agregacion->load("id = '$this->id_tipo_agregacion'");
             $this->tipo_agregacion = $tipo_agregacion;
 
             $tipo_agregacion_temporal = new Tipo_agregacion();
-            $tipo_agregacion_temporal->load("id = $this->id_tipo_agregacion_temporal");
+            $tipo_agregacion_temporal->load("id = '$this->id_tipo_agregacion_temporal'");
             $this->tipo_agregacion_temporal = $tipo_agregacion_temporal;
 
             return true;
@@ -138,11 +138,11 @@ class Indicador extends ADOdb_Active_Record
                 $indicador->visibilidad = $visibilidad;
 
                 $tipo_agregacion = new Tipo_agregacion();
-                $tipo_agregacion->load("id = $this->id_tipo_agregacion");
+                $tipo_agregacion->load("id = '$this->id_tipo_agregacion'");
                 $indicador->tipo_agregacion = $tipo_agregacion;
 
                 $tipo_agregacion_temporal = new Tipo_agregacion();
-                $tipo_agregacion_temporal->load("id = $this->id_tipo_agregacion_temporal");
+                $tipo_agregacion_temporal->load("id = '$this->id_tipo_agregacion_temporal'");
                 $indicador->tipo_agregacion_temporal = $tipo_agregacion_temporal;
             }
         }

@@ -840,7 +840,7 @@ define('MSG_OBJOP_NO_ASIG', 'No dispone de Objetivos Operacionales bajo su respo
 define('MSG_PROCS_NO', 'No hay Procesos definidos para ninguna Unidad.');
 define('MSG_PROC_NO_ASIG', 'No dispone de Procesos en propiedad.');
 define('MSG_PROC_NO_SUBPROCS', 'Este Proceso no tiene subprocesos.');
-define('MSG_PROC_NO_FLUJO', 'Este Proceso no tiene flujograma. Suba el archivo de imagen correspondiente y defina su descripción como flujograma.');
+const MSG_PROC_NO_FLUJO = 'Este Proceso no tiene flujograma. Pulse el icono de gestión de archivos, suba la imagen correspondiente (con extensión PNG, GIF, JPG o JPEG) e incluya en el campo descripción solo la palabra "flujograma".';
 define('MSG_PROC_BORRADO', 'Se ha borrado el Proceso: ');
 define('MSG_PROC_CONFIRM_EDITAR', 'Va a editar este Proceso, ¿está seguro?');
 define('MSG_PROC_CONFIRM_BORRAR', '¿Realmente quiere borrar este Proceso?');

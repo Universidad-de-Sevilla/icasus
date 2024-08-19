@@ -3,7 +3,7 @@
 /* --------------------------------------------------------------------------
   Proyecto Icasus <https://gestionproyectos.us.es/projects/r2h2-icasus/>
   Archivo: public/index.php
-  Desarrolladores: Juanan Ruiz <juanan@us.es>, Jesús Martin <jjmc@us.es>,
+  Desarrolladores: Juanan Ruiz <juanan@us.es>, Jesús Martín <jjmc@us.es>,
   Joaquín Valonero Zaera (tecnibus1@us.es)
   --------------------------------------------------------------------------
   Descripción: Esta es la página que carga a todas las demás en su seno maternal
@@ -81,7 +81,13 @@ if (!session_id())
     //@ini_set("session.gc_maxlifetime",10);
     session_start();
 }
-
+// Sanear los parámetros de la petición para evitar inyección de código
+foreach ($_GET as $param => $valor) {
+    $_GET[$param] = htmlspecialchars($valor);
+}
+foreach ($_REQUEST as $param => $valor) {
+    $_REQUEST[$param] = htmlspecialchars($valor);
+}
 //Página solicitada
 $page = "inicio"; //por defecto
 if (filter_has_var(INPUT_GET, 'page'))
@@ -200,7 +206,7 @@ if (filter_has_var(INPUT_GET, 'ajax'))
 {
     $ajax = filter_input(INPUT_GET, 'ajax', FILTER_VALIDATE_BOOLEAN);
 }
-//Si es asi sólo recargaremos la sección afectada
+//Si es asi solo recargaremos la sección afectada
 if ($ajax)
 {
     $template = $plantilla;

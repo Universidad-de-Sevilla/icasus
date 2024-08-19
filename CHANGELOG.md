@@ -1,6 +1,12 @@
 # Changes in Icasus 3
 All notable changes are documented in this file using the [Keep a CHANGELOG](https://keepachangelog.com/) principles.
 
+## [3.63.0] - 2024-08-19
+
+### Fixed
+- Fix an important XSS flaw when processing URL parameters
+- Remove unnecessary files
+
 ## [3.62.1] - 2022-07-22
 ### Added
 - Add description for indicator measurement history

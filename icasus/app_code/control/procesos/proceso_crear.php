@@ -11,8 +11,12 @@
 
 global $smarty;
 global $plantilla;
+global $control;
+global $proceso;
+global $usuario;
 //Variable para operar con Procesos
 $logicaProceso = new LogicaProceso();
+$id_proceso = null;
 
 if (filter_has_var(INPUT_GET, 'id_entidad'))
 {
@@ -23,7 +27,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
 
     $nombre_pagina = TXT_PROC_CREAR;
     // Si creamos un subproceso desde la ficha de un proceso
-    $permiso_proceso = FALSE;
+    $permiso_proceso = false;
     if (filter_has_var(INPUT_GET, 'id_proceso'))
     {
         $id_proceso = filter_input(INPUT_GET, 'id_proceso', FILTER_SANITIZE_NUMBER_INT);
@@ -35,8 +39,9 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     }
     else
     {
+        // TODO ignorar el proceso actual y sus descendientes de la lista de posibles madres
         $proceso_madre = new Proceso();
-        $procesos_madre = $proceso_madre->find("id_entidad = $id_entidad");
+        $procesos_madre = $proceso_madre->find("id_entidad = '$id_entidad' AND id <> '$proceso->id'");
         $smarty->assign('procesos_madre', $procesos_madre);
     }
 
@@ -53,7 +58,7 @@ if (filter_has_var(INPUT_GET, 'id_entidad'))
     else
     {
         $error = ERR_PERMISOS;
-        if ($id_proceso)
+        if (null !== $id_proceso)
         {
             header("Location: index.php?page=proceso_mostrar&id_proceso=$id_proceso&id_entidad=$id_entidad&error=$error");
         }
